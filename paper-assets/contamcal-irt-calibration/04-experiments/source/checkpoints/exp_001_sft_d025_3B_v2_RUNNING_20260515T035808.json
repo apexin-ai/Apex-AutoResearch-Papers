@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_001_sft_d025_3B_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:55:27.835Z",
+    "updated_at": "2026-05-15T03:58:07.259Z",
+    "spec": {
+      "hypothesis": "3B d025 SFT v2 (resubmit after v1 failed to start). D020 params: lr=5e-5, alpha=16, r=16. seed=42.",
+      "command": "CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42 --gpu 3 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 16",
+      "server": "cqa1-21977",
+      "gpu_id": "cuda:3",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "model_name": "Qwen/Qwen2.5-3B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter",
+      "log_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/train_v2.log",
+      "pid": 466755,
+      "note": "v1 failed: --gpu flag parsed but never used by script; process landed on GPU 0. v2 uses CUDA_VISIBLE_DEVICES=3."
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter/",
+    "log_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/train_v2.log",
+    "metrics": {
+      "train_loss": 1.1501,
+      "mean_token_accuracy": 0.7342,
+      "steps": 3384,
+      "epochs": 1,
+      "runtime_seconds": 14499
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-15T03:58:08.062349+00:00",
+  "trigger": "update_registry"
+}

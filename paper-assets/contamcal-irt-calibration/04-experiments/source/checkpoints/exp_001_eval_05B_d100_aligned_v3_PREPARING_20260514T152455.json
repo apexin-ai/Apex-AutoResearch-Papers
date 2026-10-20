@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_001_eval_05B_d100_aligned_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:23:30.699Z",
+    "updated_at": "2026-05-14T15:24:54.989Z",
+    "spec": {
+      "command": "/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "395337",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d100_aligned_v3.log",
+      "submitted_at": "2026-05-14T15:23:43.218Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T15:24:55.657856+00:00",
+  "trigger": "update_registry"
+}

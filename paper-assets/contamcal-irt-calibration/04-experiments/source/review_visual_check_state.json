@@ -1,0 +1,62 @@
+{
+  "status": "done",
+  "started_at": "2026-05-25T21:15:44.763907+00:00",
+  "completed_at": "2026-05-25T21:19:25.916698+00:00",
+  "findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Figure 1 图例文字偏小（约 6-7pt），多条线在低剂量区域密集重叠，审稿人可能需要放大才能区分 Phi-4 和 LLaMA-3.1 的曲线。建议加大 marker 差异或增加 legend 字号"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Table 1 列数较多（~8 列），全宽排列，最右几列内容紧凑但未溢出。精度统一（小数点后 2-3 位），最优值有加粗标注，booktabs 风格正确"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Table 2 右栏放置得当，但 MAE 列的数值精度不完全统一（部分 3 位小数，部分 4 位），建议统一到 3 位"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Section 5 \"Results\" heading 出现在左栏底部约 1/4 处，后面跟了 Section 5.1 标题 + 约 3 行正文，勉强不算孤悬但位置偏低"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "页面密度很高（Table 4 + Figure 5 + 5 个 subsection），信息量大但不影响可读性，Figure 5 的 caption 中 \"Filled markers: C1 excludes zero\" 字号偏小"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 6 的 per-domain 点图清晰，CI 可读；Limitations 段落简短（~1 段），符合 EMNLP 要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 13",
+      "message": "Appendix 最密集页：3 tables + 1 figure + 文字，Figure 8 的多面板子图 axis label 字号偏小（约 6pt），但因是 appendix，影响可控"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "Figure 10 (DID boxplot) 和 Figure 11 (DiD by dosage) 清晰度良好，双面板图 axis label 可读"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 18",
+      "message": "Algorithm 1 伪代码排版规范，使用 algorithmic 环境，缩进清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 2 pipeline 架构图全宽排列，三阶段颜色区分明确（蓝/橙/绿），caption 自包含，是全文最佳 display item"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 0,
+    "info": 10
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "exp_id": "exp_001_sft_3B_d100_s42_a32",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:10:33.228Z",
+    "updated_at": "2026-05-15T16:55:53.553Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "590776",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32.log",
+      "submitted_at": "2026-05-15T16:14:16.679Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "3B d100 s42 alpha=32 SFT. D055 rerun: previous exp_001_sft_d100_3B_v2 used alpha=16. 100% contamination dosage with seed=42. Critical for IRT calibration contamination effect measurement.",
+    "parent": "exp_001_sft_d100_3B_v2",
+    "conclusion": "failed",
+    "notes": "Killed: GPU 4 OOM risk, collided with signals_3B_v2. Will restart on GPU 1 after 1.5B eval completes.",
+    "reproduce": {
+      "finished_at": "2026-05-15T16:40:02.098Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T16:40:06.130348+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-15T16:55:54.800045+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_sft_phi4_d005_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:20:46.363Z",
+    "updated_at": "2026-05-19T00:21:05.274Z",
+    "hypothesis": "Phi-4 (14.7B) d005 (5% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the low-dosage data point for IRT dose-response calibration in the Microsoft model family, continuing the Phi-4 dosage chain with dual-GPU acceleration (d005 on cuda:3 while d000 runs on cuda:2)."
+  },
+  "timestamp": "2026-05-19T00:21:05.814363+00:00",
+  "trigger": "update_registry"
+}

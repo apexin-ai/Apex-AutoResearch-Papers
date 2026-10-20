@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_001_sft_d100_3B",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:24:36.974Z",
+    "updated_at": "2026-05-14T04:43:22.633Z",
+    "spec": {
+      "hypothesis": "100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination for 3B scale, paired with d000 baseline for dose-response curve. P1 priority.",
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:3"
+      ],
+      "command": "bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42 --gpu 0 --batch-size 1 --grad-accum 16 --epochs 1 --lr 2e-4 --lora-r 16 --lora-alpha 32 --seed 42 --cache-dir /root/autodl-tmp/.hf_cache'",
+      "pid": "291373",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_d100_3B.log",
+      "data_count": 0,
+      "backend": "tmux",
+      "account": "root",
+      "submitted_at": "2026-05-14T04:41:00Z",
+      "submitted_via": "manual_tmux"
+    },
+    "hypothesis": "100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination at largest controlled scale"
+  },
+  "timestamp": "2026-05-14T04:43:23.252334+00:00",
+  "trigger": "update_registry"
+}

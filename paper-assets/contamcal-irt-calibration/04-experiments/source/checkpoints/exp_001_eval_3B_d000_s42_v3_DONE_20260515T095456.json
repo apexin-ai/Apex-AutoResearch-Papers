@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_001_eval_3B_d000_s42_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "conclusion": "success",
+    "created_at": "2026-05-14T00:48:57.772Z",
+    "completed_at": "2026-05-15T10:00:00.000Z",
+    "hypothesis": "3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。",
+    "retry_count": 0,
+    "status": "DONE",
+    "updated_at": "2026-05-15T09:54:55.747Z",
+    "metrics": {
+      "mmlu": 0.634,
+      "gsm8k": 0.1198,
+      "arc_challenge": 0.8276,
+      "humaneval": 0.1159
+    },
+    "spec": {
+      "server": "cqa1-21977",
+      "gpu_id": "cuda:4",
+      "command": "CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache",
+      "pid": 513826,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned",
+      "data_count": 4,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+      "parent": "exp_001_sft_3B_d000_s42",
+      "hypothesis": "3B d000 s42 baseline eval v3 (v2 SIGKILL). Aligned MC format resubmit with absolute paths.",
+      "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned",
+      "log_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42_v3_aligned/eval.log"
+    }
+  },
+  "timestamp": "2026-05-15T09:54:56.033347+00:00",
+  "trigger": "update_registry"
+}

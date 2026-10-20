@@ -1,0 +1,20 @@
+{
+  "exp_id": "exp_006_mmlu_domain_gamma_n24_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:28:48.496Z",
+    "updated_at": "2026-05-16T12:28:48.496Z",
+    "spec": {
+      "hypothesis": "D108 continuation: original process PID 766829 running all 8 MMLU domains. 3 already done (STEM_Math/Science/CS_Eng), currently on Medical. Will complete all 8 with overwrite.",
+      "plan_id": "D108",
+      "type": "analysis",
+      "parent": "exp_006_mmlu_domain_gamma_n24"
+    }
+  },
+  "timestamp": "2026-05-16T12:28:48.870165+00:00",
+  "trigger": "update_registry"
+}

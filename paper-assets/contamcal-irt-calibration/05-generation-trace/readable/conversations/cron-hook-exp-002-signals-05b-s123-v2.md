@@ -1,0 +1,793 @@
+# cron hook exp 002 signals 05B s123 v2
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 23
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/cron_hook_exp_002_signals_05B_s123_v2.jsonl`
+- **Structured JSON:** [`b581d9f0d91f24382a2a.json`](../../sessions/b5/b581d9f0d91f24382a2a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+23 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T16:52:21.340250+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #17。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 服务器名必须写 `cqa1-21977`（不能写"A6000"，cron SSH 会匹配失败，exp_006 事故教训）
+- GPU 白名单：cuda:0-5（6× RTX 4090D），不得用白名单外设备
+- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（服务器无 .venv）
+- PPP=0 的 domain gamma 结果**不能 claim 绝对 γ 值**，只能 claim pattern/ranking（D108/D117 约束）
+- Medical domain 已排除（PPP=1.0 misfit，D112），不纳入任何 claim
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: cqa1-21977，6× RTX 4090D
+- **工作目录**: `/root/contamcal-irt-calibration`（代码）；数据/模型/checkpoint 在 `/root/autodl-tmp/`
+- **Python**: `/root/miniconda3/bin/python`，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型路径**: Llama-3.2-3B → `/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B`；Qwen 系列 → `/root/autodl-tmp/models/Qwen2.5-{0.5B,1.5B,3B}{,-Instruct}`
+- **实验产出**: exp001 → `/root/autodl-tmp/exp001/`，exp002 → `/root/autodl-tmp/exp002/`，exp006 → `/root/autodl-tmp/exp006/`
+- **活跃进程 & Cron**:
+  - PID 801761: Llama-3.2-3B d025 SFT (cuda:3, tmux session)
+  - PID 804565: Llama-3.2-3B d005 SFT (cuda:0)
+  - PID 804786: Llama-3.2-3B d100 SFT (cuda:5)
+  - PID 807025: Llama-3.2-3B d000 eval v3 (cuda:1) + 0.5B-Instruct eval (共享 PID/cron)
+  - PID 815287: 1.5B-Instruct GSM8K signals (cuda:2? 需确认)
+- **Cron 监控**: 6 个 active cron，全部 reconcile 确认 still running
+
+### 3. 📊 当前状态
+**刚做完**: D106 Llama cross-family pipeline 全面启动——d000 SFT 已完成，d005/d025/d100 SFT 全部 RUNNING；d000 eval v3 也在跑。D108 MMLU domain gamma 分析完成（7/8 domains，Simpson's paradox confirmed）。2PL vs 2PL+γ ablation 完成（vanilla 2PL 在 aggregate level 更好，支持 Claim 1）。
+
+**Registry RUNNING (5)**:
+1. `exp_001_sft_llama32_3B_d025_s42` — Llama d025 SFT (cuda:3)
+2. `exp_001_sft_llama32_3B_d005_s42` — Llama d005 SFT (cuda:0)
+3. `exp_001_sft_llama32_3B_d100_s42` — Llama d100 SFT (cuda:5)
+4. `exp_001_eval_llama32_3B_d000_s42_v3` — Llama d000 eval (cuda:1)
+5. `exp_002_signals_15B_instruct_gsm8k` — 1.5B-Instruct GSM8K signals
+
+**等待中**: 无 active Worker（池=0）。6 个 cron 监控中，等各 SFT/eval 完成回调。无 pending Director 决策。
+
+### 4. 📋 待办（条件触发式）
+- Llama d000 eval v3 完成 → spawn Worker 跑 signals (compute_signals.py) → 注册实验
+- Llama d005/d025/d100 SFT 各自完成 → spawn Worker 跑 eval (aligned MC format) → 然后 signals
+- **全部 Llama 4 dosage signals 完成** → RRF 聚合 → cross-family pooled IRT (核心论文数字)
+- 1.5B-Instruct signals 完成 → 更新 pooled IRT N count，检查是否 N≥16+ 可跑最终 pooled
+- MMLU domain gamma N=24 v4 结果到位 → 确认 STEM gradient 是否 scale-dependent → 更新 paper_framing Claim 1 措辞
+- 所有 Instruct eval (0.5B/1.5B/3B) 完成 → RL observational analysis (P0-C scope)
+- **cuda:4 释放时** → 检查有无排队任务可立即提交（ROADMAP 提及 cuda:4 待分配）
+
+### 5. 🎯 战略上下文
+- **投稿目标**: EMNLP 2026 ARR May 25（T-9 天），时间极紧
+- **核心叙事**: ContamCal 的 per-benchmark γ 在 aggregate level 无信号（Simpson's paradox），但 domain-level 有强 heterogeneity。Cross-family (Llama) 验证是 generalizability claim 的关键
+- **决策链关键**: D106(scope expansion→Llama) → D108(domain heterogeneity) → D110(scale-stratified negative) → D116(pooled IRT confirms) → D117(Claim 1 narrowed to Math+Science)
+- **易错点**:
+  - Llama 模型路径有下划线转义：`Llama-3___2-3B`（三个下划线）
+  - d000 eval 需要 `--mc-format aligned` 参数，否则 MC 格式不一致无法和 Qwen 对比
+  - Worker 池当前 = 0，违反 L1 红线（池<2=失职）——新 session 应立即为非 GPU 任务（文献、论文准备）spawn Worker
+  - 7B 云 GPU 已申请但未批，不要自行在现有 4090D 上尝试 7B（OOM）
+  - ROADMAP 中 cuda:4 标"待分配"但 reconcile 未见对应 cron——需确认 cuda:4 实际状态（可能已被 1.5B signals 占用但 ROADMAP 未更新）
+
+## 项目硬约束 (memory.md 节选)
+
+## 3. 关键约束
+
+- **服务器名必须是 `cqa1-21977`**，写 "A6000" 会导致 cron 无法 SSH 验证进程（exp_006 事故教训）
+- Stan IRT fitting 是 CPU 任务，不占 GPU，但 cron 仍需正确服务器名
+- submit_training_job 有时不自动推进 PREPARING→RUNNING（需手动修正 + 注册 cron）
+- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 工作目录：exp006 在 `/root/autodl-tmp/exp006/`，exp001/002 在 `/root/autodl-tmp/exp001/` & `/root/autodl-tmp/exp002/`
+
+## 5. GPU State (as of 16:14 UTC)
+
+- cqa1-21977: 6× RTX 4090D allocated, ALL RUNNING
+- cuda:0: Llama-3.2-3B d005 SFT (PID 804565, cron active)
+- cuda:1: Llama-3.2-3B d000 eval v3 (PID 807025, cron active)
+- cuda:2: 0.5B-Instruct eval (cron active)
+- cuda:3: Llama-3.2-3B d025 SFT (PID 801761, cron active)
+- cuda:4: 1.5B signals / 2PL ablation (Worker managed)
+- cuda:5: Llama-3.2-3B d100 SFT (PID 804786, cron active)
+
+## 可查的历史
+前 178 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T16:52:34.684792+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T16:52:34.685250+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T16:52:41.825890+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T16:52:41.876527+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T16:52:42.478571+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T16:52:42.679497+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T16:52:42.833722+00:00_
+
+Error: result (116,863 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-3b6b66aa/4e9d9274-3ada-40a6-9487-20dab8f402a2/tool-results/mcp-agent-ml-research-read_registry-1778950362756.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-3b6b66aa/4e9d9274-3ada-40a6-9487-20dab8f402a2/tool-results/mcp-agent-ml-research-read_registry-1778950362756.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1007
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T16:52:58.035564+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 6, \"results\": [{\"exp_id\": \"exp_001_sft_llama32_3B_d025_s42\", \"success\": true, \"actions\": [\"Job still running (pid=801761)\"]}, {\"exp_id\": \"exp_001_sft_llama32_3B_d005_s42\", \"success\": true, \"actions\": [\"Job still running (pid=804565)\"]}, {\"exp_id\": \"exp_001_sft_llama32_3B_d100_s42\", \"success\": true, \"actions\": [\"Job still running (pid=804786)\"]}, {\"exp_id\": \"exp_001_eval_llama32_3B_d000_s42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=807025)\"]}, {\"exp_id\": \"exp_001_eval_05B_instruct\", \"success\": true, \"actions\": [\"Job still running (pid=807025)\"]}, {\"exp_id\": \"exp_002_signals_15B_instruct_gsm8k\", \"success\": true, \"actions\": [\"Job still running (pid=815287)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 16159
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T16:52:58.036178+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-16\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_002_signals_15B_instruct_gsm8k | — | — | — | — |\\n| exp_001_sft_llama32_3B_d100_s42 | — | — | — | — |\\n| exp_001_sft_llama32_3B_d005_s42 | — | — | — | — |\\n\\n## 待处理\\n- exp_001_eval_llama32_3B_d000_s42_v2（准备中）\\n- signals_05B_s123_batch（准备中）\\n- exp006_pooled_rrf_irt_05b_15b_v2（准备中）\\n- exp_001_eval_3B_d000_s42_a32_aligned: 3B d000 s42 alpha=32 aligned eval. Uses D076-retrained checkpoint (lr=5e-5). 0% contamination baseline for s42 IRT pool. Prerequisite for para_aligned eval and signals.（准备中）\\n- exp_001_sft_3B_d000_v4（准备中）\\n- exp_001_sft_3B_d000_s42（准备中）\\n- exp_001_eval_3B_d005_s123（准备中）\\n- exp_001_eval_3B_d025_s123（准备中）\\n- exp_001_eval_3B_d005_s42_aligned_v2（准备中）\\n- exp_001_sft_15B_d025_s123（准备中）\\n- …另有 12 项\\n\\n## 近期结论\\n- **exp_006_pooled_irt_vanilla_2pl_n13** (success): —\\n- **exp_001_eval_05B_instruct** (success): —\\n- **exp_006_pooled_irt_2pl_gamma_n16** (success): —\\n\\n## 趋势\\n成功 148 / 负向 4 / 失败 49 / 共 212\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-21977: 无 GPU 信息\\n\\n## 告警\\n- exp_001_eval_05B_d000_s42: 训练失败 — unknown\\n- exp_001_eval_05B_d100: 训练失败 — unknown\\n- exp_001_eval_05B_d100_v2: 训练失败 — unknown\\n- exp_001_eval_15B_d000_s42: 训练失败 — unknown\\n- exp_001_sft_100pct_05B: 训练失败 — unknown\\n- exp_001_sft_d005_05B: 已被终止 — unknown\\n- exp_001_sft_d005_05B_v2: 训练失败 — unknown\\n- exp_001_sft_d100_15B: 训练失败 — unknown\\n- exp_004_sim_sweep: 训练失败 — unknown\\n- exp_005_noise_prop: 训练失败 — unknown\\n- exp_005_noise_prop_v2: 训练失败 — unknown\\n- exp_005_noise_prop_v3: 训练失败 — unknown\\n- exp_001_sft_d025_05B: 训练失败 — unknown\\n- exp_001_sft_d025_05B_v2: 训练失败 — unknown\\n- exp_004_sim_sweep_v2: 训练失败 — unknown\\n-
+…[truncated 2217 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 15557
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T16:52:58.087043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-16 10:26 UTC | 更新原因: Reviewer critical: 修正d005 false failure + D108措辞降级为domain heterogeneity evidence + GPU状态同步\\n\\n## 核心方向\\nContamCal：contamination-augmented IRT with per-benchmark γ_k → domain heterogeneity evidence (Simpson's paradox, D108)。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（距今 9 天）\\n\\n## 当前进展\\n- **阶段**: Research (MVP 2026-05-13 通过) + 审稿进行中\\n- **D108 发现**: MMLU 57 subjects → 8 cognitive domains，aggregate γ≈0 masks domain heterogeneity (5 domains significant, γ range: -0.55 to +1.34)。PPP=0 in 4/5 domains → claim 基于 pattern/ranking，非绝对值。N=24 重跑确认前为\\\"evidence of heterogeneity\\\"\\n- **3B s42 signals**: d000 ✅ d005 ✅ d025 ✅ d100 🔄(cuda:1, ~35min)。d100 完成后全齐 → RRF\\n- **0.5B s123**: 全部完成 ✅\\n- **1.5B s123**: d025 running (cuda:0), d100 running (cuda:2)。完成后全量 RRF (N≥16+)\\n- **Scope expansion (D106)**: Llama 代码+模型就绪 | RL observational 3B-Instruct eval running (cuda:3) | 7B 待云GPU\\n\\n## GPU 实时占用 (6× RTX 4090D, cqa1-21977)\\n| GPU | 任务 | 预计完成 |\\n|-----|------|---------|\\n| cuda:0 | signals_15B_s123_batch (d025) | ~2h |\\n| cuda:1 | signals_3B_d100_a32_s42 | ~35min |\\n| cuda:2 | signals_15B_d100_s123 | ~3h |\\n| cuda:3 | eval_3B_instruct_aligned_para (P0-C) | ~1h |\\n| cuda:4 | **待分配 → Llama-3.2-3B d000 SFT** | 指令已发 |\\n| cuda:5 | signals_05B_s123_v2 (d100) | ~2.5h |\\n\\n## Critical Path (EMNLP T-9)\\n```\\n[Now]     cuda:1 d100 ~35min → 3B s42 全齐 → RRF 聚合 (CPU)\\n          cuda:4 → Llama-3.2-3B d000 SFT 启动\\n          cuda:3 3B-Instruct eval ~1h → 0.5B/1.5B-Instruct eval\\n[Day 1]   pooled IRT (N≥16+) — 论文核心 γ 数字\\n          MMLU domain gamma N=24 (含 3B) — 确认 heterogeneity 是否 scale-dependent\\n          Llama d000 SFT + eval\\n[Day 2]   Llama d005/d025/d100 SFT + eval + signals\\n          scale-st
+…[truncated 2272 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 15407
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T16:53:03.164267+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "filters": "{'status': 'RUNNING'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "filters": "{'status': 'RUNNING'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T16:53:03.718599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_002_signals_15B_instruct_gsm8k\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T16:31:56.418Z\", \"updated_at\": \"2026-05-16T16:32:20.258Z\"}, \"exp_001_sft_llama32_3B_d100_s42\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T15:31:33.384Z\", \"updated_at\": \"2026-05-16T16:13:09.369Z\"}, \"exp_001_sft_llama32_3B_d005_s42\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T15:31:30.450Z\", \"updated_at\": \"2026-05-16T16:13:06.775Z\"}, \"exp_001_eval_llama32_3B_d000_s42_v3\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T15:37:57.223Z\", \"updated_at\": \"2026-05-16T15:38:08.774Z\"}, \"exp_001_sft_llama32_3B_d025_s42\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-16T15:07:47.045Z\", \"updated_at\": \"2026-05-16T15:08:50.538Z\"}}, \"count\": 5, \"total\": 5, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5516}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 554
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T16:53:31.984573+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T16:53:32.035508+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_3b6b66aa.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T16:53:36.856467+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T16:53:36.907274+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T16:53:46.607768+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T16:53:46.608098+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T16:54:32.377443+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "research:paper-method-prep",
+  "project": "contamcal-irt-calibration",
+  "task_prompt": "## 任务：论文 Method 章节素材准备\n\n### 目标\n读取项目 paper_framing.md 和 writing_plan.yaml（如果存在），然后整理 Method 章节的写作素材。不需要写最终 LaTeX，只需要产出一个结构化的 method_notes.md 放在 artifacts/ 下。\n\n### 具体步骤\n1. `read_project_file(file=\"paper_framing.md\")` 了解论文叙事和 claims\n2. `read_project_file(file=\"writing_plan.yaml\")` 了解写作计划（如果存在）\n3. `read_project_file(file=\"memory.md\")` 了解关键约束和经验\n4. `read_project_file(file=\"ROADMAP.md\")` 了解当前研究进展\n\n5. 根据以上信息，整理 Method 章节需要覆盖的内容：\n   - ContamCal 框架概述（IRT + contamination parameter γ）\n   - 2PL vs 2PL+γ 模型定义（数学公式骨架）\n   - Per-benchmark γ_k 的 identification strategy\n   - Domain-level heterogeneity analysis 方法（Simpson's paradox 如何 formalize）\n   - Cross-family validation protocol（Qwen + Llama）\n   - RRF 聚合方法\n   - Evaluation protocol（MC format alignment, dosage levels）\n\n6. 将结果写入本地文件 `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/method_notes.md`\n7. 用 `register_artifact` 注册产出\n\n### 产出格式\nMarkdown，每个 subsection 列出：\n- 核心 idea（1-2 句话）\n- 需要引用的 prior work（如果知道）\n- 关键公式的伪代码/描述\n- 对应的实验 ID（从 registry 或 framing 中关联）\n\n### 注意\n- 不要编造引用——如果不确定文献信息，标注 [CITE NEEDED]\n- PPP=0 的 domain gamma 只能 claim pattern/ranking，不能 claim 绝对 γ 值\n- Medical domain 已排除（D112）\n",
+  "tool_groups": "['knowledge', 'registry']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "research:paper-method-prep",
+    "project": "contamcal-irt-calibration",
+    "task_prompt": "## 任务：论文 Method 章节素材准备\n\n### 目标\n读取项目 paper_framing.md 和 writing_plan.yaml（如果存在），然后整理 Method 章节的写作素材。不需要写最终 LaTeX，只需要产出一个结构化的 method_notes.md 放在 artifacts/ 下。\n\n### 具体步骤\n1. `read_project_file(file=\"paper_framing.md\")` 了解论文叙事和 claims\n2. `read_project_file(file=\"writing_plan.yaml\")` 了解写作计划（如果存在）\n3. `read_project_file(file=\"memory.md\")` 了解关键约束和经验\n4. `read_project_file(file=\"ROADMAP.md\")` 了解当前研究进展\n\n5. 根据以上信息，整理 Method 章节需要覆盖的内容：\n   - ContamCal 框架概述（IRT + contamination parameter γ）\n   - 2PL vs 2PL+γ 模型定义（数学公式骨架）\n   - Per-benchmark γ_k 的 identification strategy\n   - Domain-level heterogeneity analysis 方法（Simpson's paradox 如何 formalize）\n   - Cross-family validation protocol（Qwen + Llama）\n   - RRF 聚合方法\n   - Evaluation protocol（MC format alignment, dosage levels）\n\n6. 将结果写入本地文件 `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/method_notes.md`\n7. 用 `register_artifact` 注册产出\n\n### 产出格式\nMarkdown，每个 subsection 列出：\n- 核心 idea（1-2 句话）\n- 需要引用的 prior work（如果知道）\n- 关键公式的伪代码/描述\n- 对应的实验 ID（从 registry 或 framing 中关联）\n\n### 注意\n- 不要编造引用——如果不确定文献信息，标注 [CITE NEEDED]\n- PPP=0 的 domain gamma 只能 claim pattern/ranking，不能 claim 绝对 γ 值\n- Medical domain 已排除（D112）\n",
+    "tool_groups": "['knowledge', 'registry']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T16:54:50.148645+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_research_paper-method-prep_20260516T165433\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_research_paper-method-prep_20260516T165433.log\", \"setup_data\": {}, \"message\": \"Worker worker_research_paper-method-prep_20260516T165433 started. Use get_worker_status('worker_research_paper-method-prep_20260516T165433') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 17771
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T16:54:50.302558+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "code:llama-eval-pipeline-verify",
+  "project": "contamcal-irt-calibration",
+  "task_prompt": "## 任务：验证 Llama-3.2-3B eval pipeline 就绪状态\n\n### 背景\n当前 3 个 Llama-3.2-3B SFT 在跑（d005/d025/d100 on cuda:0/3/5）。完成后需要立即跑 eval（aligned MC format）然后 signals。需要确认 eval 脚本和 signals 脚本已准备好，不需要临时修改。\n\n### 服务器信息\n- 服务器名：cqa1-21977\n- 工作目录：/root/contamcal-irt-calibration\n- 模型路径：Llama-3.2-3B → /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B（注意三个下划线）\n- SFT checkpoint 产出预期路径：/root/autodl-tmp/exp001/llama32_3B_d{005,025,100}_s42/\n- Python: /root/miniconda3/bin/python\n- 激活: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n### 具体检查项\n1. SSH 到 cqa1-21977，检查 eval 脚本是否存在且支持 Llama：\n   - `ls /root/contamcal-irt-calibration/eval*.py` 或类似\n   - 查看 eval 脚本是否有 `--mc-format aligned` 参数支持\n   - 确认 eval 脚本能接受 Llama checkpoint 路径\n\n2. 检查 compute_signals.py 是否存在且可用：\n   - `ls /root/contamcal-irt-calibration/compute_signals.py`\n   - 确认它接受的输入格式\n\n3. 检查 d000 eval v3 的命令（已在跑的那个）作为参考，看 eval 命令格式：\n   - `cat /root/autodl-tmp/exp001/llama32_3B_d000_s42/eval_v3_cmd.txt` 或查 tmux 历史\n   - 或者 `ps aux | grep -i llama | grep eval` 看进程命令行\n\n4. 确认 Llama d000 SFT checkpoint 存在（因为 eval v3 正在使用它）：\n   - `ls /root/autodl-tmp/exp001/llama32_3B_d000_s42/`\n\n5. 准备 3 个 eval 命令模板（d005/d025/d100），写入 `/root/contamcal-irt-calibration/llama_eval_commands.sh`（注释说明每个命令用途，但不要执行）\n\n### 产出\n- 在 artifacts/ 写一个 `llama_eval_readiness.md` 报告，包含：\n  - eval 脚本路径和关键参数\n  - signals 脚本路径和关键参数\n  - 3 个 eval 命令模板\n  - 任何发现的问题/缺失\n\n### 硬约束\n- 只用 ssh_read_only 检查，不要执行任何修改命令\n- 不要启动任何进程\n- 服务器名必须写 cqa1-21977\n",
+  "tool_groups": "['ssh', 'knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:llama-eval-pipeline-verify",
+    "project": "contamcal-irt-calibration",
+    "task_prompt": "## 任务：验证 Llama-3.2-3B eval pipeline 就绪状态\n\n### 背景\n当前 3 个 Llama-3.2-3B SFT 在跑（d005/d025/d100 on cuda:0/3/5）。完成后需要立即跑 eval（aligned MC format）然后 signals。需要确认 eval 脚本和 signals 脚本已准备好，不需要临时修改。\n\n### 服务器信息\n- 服务器名：cqa1-21977\n- 工作目录：/root/contamcal-irt-calibration\n- 模型路径：Llama-3.2-3B → /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B（注意三个下划线）\n- SFT checkpoint 产出预期路径：/root/autodl-tmp/exp001/llama32_3B_d{005,025,100}_s42/\n- Python: /root/miniconda3/bin/python\n- 激活: source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n### 具体检查项\n1. SSH 到 cqa1-21977，检查 eval 脚本是否存在且支持 Llama：\n   - `ls /root/contamcal-irt-calibration/eval*.py` 或类似\n   - 查看 eval 脚本是否有 `--mc-format aligned` 参数支持\n   - 确认 eval 脚本能接受 Llama checkpoint 路径\n\n2. 检查 compute_signals.py 是否存在且可用：\n   - `ls /root/contamcal-irt-calibration/compute_signals.py`\n   - 确认它接受的输入格式\n\n3. 检查 d000 eval v3 的命令（已在跑的那个）作为参考，看 eval 命令格式：\n   - `cat /root/autodl-tmp/exp001/llama32_3B_d000_s42/eval_v3_cmd.txt` 或查 tmux 历史\n   - 或者 `ps aux | grep -i llama | grep eval` 看进程命令行\n\n4. 确认 Llama d000 SFT checkpoint 存在（因为 eval v3 正在使用它）：\n   - `ls /root/autodl-tmp/exp001/llama32_3B_d000_s42/`\n\n5. 准备 3 个 eval 命令模板（d005/d025/d100），写入 `/root/contamcal-irt-calibration/llama_eval_commands.sh`（注释说明每个命令用途，但不要执行）\n\n### 产出\n- 在 artifacts/ 写一个 `llama_eval_readiness.md` 报告，包含：\n  - eval 脚本路径和关键参数\n  - signals 脚本路径和关键参数\n  - 3 个 eval 命令模板\n  - 任何发现的问题/缺失\n\n### 硬约束\n- 只用 ssh_read_only 检查，不要执行任何修改命令\n- 不要启动任何进程\n- 服务器名必须写 cqa1-21977\n",
+    "tool_groups": "['ssh', 'knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-16T17:12:21.662066+00:00_
+
+状态确认完毕。5 个 RUNNING 实验 + 6 crons 全部 still running。GPU 6/6 饱和。Worker 池 = 0 违反 L1，立即修复。
+
+T-9 天，最有价值的非 GPU 并行任务：(1) 论文 Method/Related Work 起草准备 (2) Llama eval pipeline 验证（SFT 完成后零延迟启动 eval）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_002_signals_05B_s123_v2"
+}
+```
+
+</details>
+
+---

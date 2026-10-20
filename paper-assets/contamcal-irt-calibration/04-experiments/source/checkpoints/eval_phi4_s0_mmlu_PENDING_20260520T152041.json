@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_phi4_s0_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T15:20:20.364Z",
+    "updated_at": "2026-05-20T15:20:40.380Z",
+    "hypothesis": "Phi-4 seed=0 MMLU 5-shot eval across 5 dosages. Third seed for triple-seed bootstrap CI. Immune pattern (s42: -0.17pp, s123: pending). Parent: sft_phi4_s0_sweep.",
+    "parent": "sft_phi4_s0_sweep"
+  },
+  "timestamp": "2026-05-20T15:20:41.394573+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_006_scale_stratified_irt",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:33:57.164Z",
+    "updated_at": "2026-05-16T11:34:13.274Z",
+    "spec": {
+      "command": "python run_pooled_rrf_irt.py --scales {0.5B,1.5B,3B} --model-type 2pl_gamma --benchmarks mmlu gsm8k arc_challenge",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/eval_results",
+      "data_count": "3 scales x 3 benchmarks = 7 fits (0.5B only gsm8k due to D045)",
+      "model_name": "2pl_gamma IRT",
+      "seed": 42
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T11:34:13.638700+00:00",
+  "trigger": "update_registry"
+}

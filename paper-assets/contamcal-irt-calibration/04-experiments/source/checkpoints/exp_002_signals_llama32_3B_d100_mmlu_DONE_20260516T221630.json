@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_002_signals_llama32_3B_d100_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:17:57.347Z",
+    "updated_at": "2026-05-16T22:16:30.289Z",
+    "hypothesis": "Llama-3.2-3B at 100% contamination MMLU signals (s1/s2/s4) for cross-family RRF validation — maximum dosage data point to complement d005 (done) and d025 (running)",
+    "spec": {
+      "command": "compute_signals --model-path Llama-3.2-3B_d100_s42 --benchmark mmlu --signal all",
+      "server": "cqa1-21977",
+      "gpu": "cuda:1",
+      "pid": "863173",
+      "data_path": "mmlu",
+      "data_count": 0,
+      "model_name": "Llama-3.2-3B_d100_s42",
+      "seed": 42,
+      "checkpoint_path": "N/A - signals invalid (model degenerate)",
+      "log_path": "N/A",
+      "kill_reason": "d100 model degenerate on MMLU (all-A prediction), signals invalid for IRT"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-16T21:56:12.786Z"
+  },
+  "timestamp": "2026-05-16T22:16:30.739867+00:00",
+  "trigger": "update_registry"
+}

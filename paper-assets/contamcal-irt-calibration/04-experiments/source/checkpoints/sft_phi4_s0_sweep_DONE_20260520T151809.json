@@ -1,0 +1,62 @@
+{
+  "exp_id": "sft_phi4_s0_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "created_at": "2026-05-20T03:10:48.111Z",
+    "hypothesis": "Phi-4 seed=0 dose-response: third seed for triple-seed bootstrap CI. Immune pattern (s42: ±0.54pp, s123: training completed) expected to reproduce.",
+    "notes": "Phi-4 s0 sweep 进行中。d000 ✅ d005 ✅ d025 🔄 (PID 302132, step 1541/3384 ~45%, cuda:0) d050 ⏳ d100 ⏳。",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "bash /root/autodl-tmp/exp001/run_phi4_s0.sh",
+      "data_count": 50000,
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_*.jsonl",
+      "gpu": "cuda:0",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_phi4_s0_sweep.log",
+      "model_name": "microsoft/phi-4",
+      "pid": 286341,
+      "seed": 0,
+      "server": "westd-29999",
+      "submitted_at": "2026-05-20T03:10:55.245Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 43633.5,
+      "gpu_hours": 12.12
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-20T15:18:08.732Z",
+    "reproduce": {
+      "finished_at": "2026-05-20T14:57:02.307Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T14:57:09.582940+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/phi-4_d{000,005,025,050,100}_s0/lora_adapter/",
+    "log_path": "~/runs/contamcal-irt-calibration/sft_phi4_s0_sweep.log",
+    "conclusion": "success",
+    "metrics": {
+      "train_loss_d000": 1.184,
+      "train_loss_d005": 1.185,
+      "train_loss_d025": 1.186,
+      "train_loss_d050": 1.189,
+      "train_loss_d100": 1.192,
+      "mean_token_acc_d000": 0.7341,
+      "mean_token_acc_d005": 0.7224,
+      "mean_token_acc_d025": 0.7064,
+      "mean_token_acc_d050": 0.747,
+      "mean_token_acc_d100": 0.7206,
+      "total_train_time_h": 11.57
+    },
+    "completed_at": "2026-05-20T15:18:08.733Z"
+  },
+  "timestamp": "2026-05-20T15:18:09.288005+00:00",
+  "trigger": "update_registry"
+}

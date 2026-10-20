@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_sft_3B_d005_s42_a32",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:09:46.602Z",
+    "updated_at": "2026-05-15T21:37:32.781Z",
+    "hypothesis": "D076 retrain: 3B d005 s42 with lr=5e-5, alpha=32. Replaces deprecated exp_001_sft_d005_3B (lr=2e-4 confound). Submit to cuda:0 or cuda:1 after d100 SFT completes."
+  },
+  "timestamp": "2026-05-15T21:37:33.975998+00:00",
+  "trigger": "update_registry"
+}

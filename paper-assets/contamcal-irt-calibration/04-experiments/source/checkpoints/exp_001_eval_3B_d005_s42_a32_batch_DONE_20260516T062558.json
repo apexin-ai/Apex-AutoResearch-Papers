@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp_001_eval_3B_d005_s42_a32_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T02:16:39.223Z",
+    "updated_at": "2026-05-16T06:25:58.096Z",
+    "spec": {
+      "command": "evaluate.py 3B d005_s42 a32 aligned (mmlu/gsm8k/arc/humaneval)",
+      "server": "cqa1-21977",
+      "gpu": "cuda:2",
+      "pid": "679180",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s42_a32_batch.log",
+      "submitted_at": "2026-05-16T02:16:36.616Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_a32_aligned",
+      "data_count": 4,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval (aligned)",
+      "parent": "exp_001_sft_3B_d005_s42_a32",
+      "hypothesis": "3B d005 s42 alpha=32 aligned eval. D076-retrained checkpoint (lr=5e-5). 5% contamination for s42 IRT pool.",
+      "wall_clock_seconds": 14961.5,
+      "gpu_hours": 4.16
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T06:21:51.144Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T06:21:57.536805+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "mmlu": 0.6308,
+      "gsm8k": 0.4147,
+      "arc": 0.8251,
+      "humaneval": 0.1341,
+      "mmlu_para": 0.6471,
+      "gsm8k_para": 0.3421,
+      "arc_para": 0.8164,
+      "humaneval_para": 0.0769
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter",
+    "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s42_a32_batch.log",
+    "completed_at": "2026-05-16T06:25:58.096Z"
+  },
+  "timestamp": "2026-05-16T06:25:58.425623+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,17 @@
+{
+  "exp_id": "exp_006_irt_05B_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:04:35.326Z",
+    "updated_at": "2026-05-17T14:20:50.148Z",
+    "hypothesis": "Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.",
+    "parent": "exp_006_irt_05B_v1",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-17T14:20:50.591220+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1751 @@
+# ops irt no05b final extract
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 59
+- **Recorded user turns:** 0
+- **Tool calls:** 29
+- **Original source:** `logs/chats/worker_ops_irt_no05b_final_extract_20260517T081434.jsonl`
+- **Structured JSON:** [`26c9d907e134e65fc04c.json`](../../sessions/26/26c9d907e134e65fc04c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+59 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T08:16:34.934871+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T08:16:34.935233+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T08:16:34.935503+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a6000",
+  "command": "ps aux | grep run_mmlu_domain_gamma_no05b | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a6000",
+    "command": "ps aux | grep run_mmlu_domain_gamma_no05b | grep -v grep"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T08:16:34.935656+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T08:16:34.935783+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "a6000",
+  "command": "ls -la /root/contamcal-irt-calibration/exp006/mmlu_domain_irt_no05b/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "a6000",
+    "command": "ls -la /root/contamcal-irt-calibration/exp006/mmlu_domain_irt_no05b/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T08:16:34.935907+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Unknown server 'a6000'. Available: ['cqa1-21977']\", \"metadata\": {\"elapsed_seconds\": 0.0}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T08:16:34.936041+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps aux | grep run_mmlu_domain_gamma_no05b | grep -v grep",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps aux | grep run_mmlu_domain_gamma_no05b | grep -v grep",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-17T08:16:34.936161+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp006/mmlu_domain_irt_no05b/",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/contamcal-irt-calibration/exp006/mmlu_domain_irt_no05b/",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-17T08:16:34.936282+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.93}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T08:16:34.936479+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/exp006/mmlu_domain_irt_no05b/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T08:16:34.936626+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp006/",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/contamcal-irt-calibration/exp006/",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T08:16:34.936778+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 524\\ndrwxr-xr-x  5 root root  4096 May 17 14:48 .\\ndrwxr-xr-x 14 root root  4096 May 16 23:12 ..\\n-rw-r--r--  1 root root  4116 May 14 20:48 README.md\\ndrwxr-xr-x  2 root root   103 May 17 12:14 __pycache__\\ndrwxr-xr-x  2 root root  4096 May 17 12:10 _baselines_v1\\n-rw-r--r--  1 root root 17697 May 14 13:02 baselines.py\\n-rw-r--r--  1 root root 13335 May 14 11:45 dryrun_full.json\\n-rw-r--r--  1 root root  9477 May 14 11:43 dryrun_no_stan.json\\n-rw-r--r--  1 root root 14913 May 14 17:18 evaluate_calibration.py\\n-rw-r--r--  1 root root 11275 May 15 16:40 joint_fit.py\\n-rw-r--r--  1 root root  6465 May 15 07:56 run_2pl_ablation.py\\n-rw-r--r--  1 root root  6108 May 14 17:23 run_all_baselines.py\\n-rw-r--r--  1 root root  7502 May 17 11:47 run_cross_family_s2s4.py\\n-rw-r--r--  1 root root 11774 May 17 12:14 run_cross_family_v5.py\\n-rw-r--r--  1 root root 28988 May 15 15:45 run_exp006.py\\n-rw-r--r--  1 root root 13837 May 14 23:19 run_exp006.py.bak\\n-rw-r--r--  1 root root 15337 May 15 01:48 run_exp006.py.bak2\\n-rw-r--r--  1 root root 20150 May 15 04:46 run_exp006.py.bak_pre_d018_signals\\n-rw-r--r--  1 root root 17317 May 15 02:07 run_exp006.py.bak_pre_gsm8k\\n-rw-r--r--  1 root root 26804 May 15 06:41 run_exp006.py.bak_pre_rrf_fix\\n-rw-r--r--  1 root root 27929 May 15 07:58 run_exp006.py.bak_pre_s1only\\n-rw-r--r--  1 root root 10503 May 17 03:57 run_fisher_heatmap.py\\n-rw-r--r--  1 root root 25653 May 17 08:29 run_irt_calibration.py\\n-rw-r--r--  1 root root 20341 May 15 02:07 run_irt_calibration.py.bak_pre_gsm8k\\n-rw-r--r--  1 root root 21774 May 15 09:18 run_irt_stan.py\\n-rw-r--r--  1 root root 17324 May 16 15:56 run_mmlu_domain_gamma.py\\n-rw-r--r--  1 root root 12195 May 16 19:34 run_mmlu_domain_gamma_n24.py\\n-rw-r--r--  1 root root 15388 May 17 14:48 run_mmlu_domain_gamma_no05b.py\\n-rw-r--r--  1 root root 12301 May 16 00:41 run_pooled_15B_4pl.py\\n-rw-r--r--  1 root root 17130 Ma
+…[truncated 615 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T08:16:34.936932+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/exp006/ -name \"*.log\" -o -name \"*no05b*\" -o -name \"*no_05b*\" -o -name \"*j13*\" 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/exp006/ -name \"*.log\" -o -name \"*no05b*\" -o -name \"*no_05b*\" -o -name \"*j13*\" 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T08:16:34.937058+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T08:16:34.937191+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux ls 2>&1; echo \"---\"; find /root/contamcal-irt-calibration/ -path \"*mmlu_domain*no*\" -type d 2>/dev/null; echo \"---\"; find /root/contamcal-irt-calibration/ -path \"*mmlu_domain*j13*\" -type d 2>/dev/null",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tmux ls 2>&1; echo \"---\"; find /root/contamcal-irt-calibration/ -path \"*mmlu_domain*no*\" -type d 2>/dev/null; echo \"---\"; find /root/contamcal-irt-calibration/ -path \"*mmlu_domain*j13*\" -type d 2>/dev/null",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T08:16:34.937339+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"exp009_3b_instruct: 1 windows (created Sun May 17 12:18:43 2026)\\nexp009_deepseek: 1 windows (created Sun May 17 12:18:45 2026)\\nsig_05b: 1 windows (created Sun May 17 14:11:00 2026)\\nsig_15b: 1 windows (created Sun May 17 14:11:00 2026)\\nsig_gpu0: 1 windows (created Sun May 17 16:14:36 2026)\\nsig_gpu1: 1 windows (created Sun May 17 16:14:51 2026)\\nsig_gpu2: 1 windows (created Sun May 17 16:14:53 2026)\\nsig_gpu3: 1 windows (created Sun May 17 16:15:02 2026)\\n---\\n---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T08:16:34.937479+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -80 /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -80 /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T08:16:34.937656+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"MMLU domain-stratified gamma analysis: 1.5B + 3B only (no 0.5B). J=13 models.\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, \\\"/root/contamcal-irt-calibration/exp006\\\")\\nfrom run_irt_calibration import (\\n    load_pooled_eval_results,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    STAN_MODELS,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\nDOMAIN_MAP = {\\n    \\\"STEM_Math\\\": [\\n        \\\"abstract_algebra\\\", \\\"college_mathematics\\\", \\\"elementary_mathematics\\\",\\n        \\\"high_school_mathematics\\\", \\\"high_school_statistics\\\", \\\"formal_logic\\\",\\n    ],\\n    \\\"STEM_Science\\\": [\\n        \\\"astronomy\\\", \\\"college_biology\\\", \\\"college_chemistry\\\", \\\"college_physics\\\",\\n        \\\"conceptual_physics\\\", \\\"high_school_biology\\\", \\\"high_school_chemistry\\\",\\n        \\\"high_school_physics\\\",\\n    ],\\n    \\\"STEM_CS_Eng\\\": [\\n        \\\"college_computer_science\\\", \\\"computer_security\\\", \\\"electrical_engineering\\\",\\n        \\\"high_school_computer_science\\\", \\\"machine_learning\\\",\\n    ],\\n    \\\"Medical\\\": [\\n        \\\"anatomy\\\", \\\"clinical_knowledge\\\", \\\"college_medicine\\\", \\\"human_aging\\\",\\n        \\\"medical_genetics\\\", \\\"nutrition\\\", \\\"professional_medicine\\\", \\\"virology\\\",\\n    ],\\n    \\\"Humanities\\\": [\\n        \\\"high_school_european_history\\\", \\\"high_school_us_history\\\",\\n        \\\"high_school_world_history\\\", \\\"logical_fallacies\\\", \\\"moral_disputes\\\",\\n        \\\"moral_scenarios\\\", \\\"philosophy\\\", \\\"prehistory\\\", \\\"world_religions\\\",\\n    ],\\n    \\\"Social_Sciences\\\": [
+…[truncated 1412 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T08:16:34.937801+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"OUTPUT_DIR\\|output_dir\\|OUT_DIR\\|out_dir\" /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py | head -20",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"OUTPUT_DIR\\|output_dir\\|OUT_DIR\\|out_dir\" /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py | head -20",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T08:16:34.937938+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"87:OUTPUT_DIR = \\\"/root/autodl-tmp/exp006/mmlu_domain_irt_no05B\\\"\\n117:def fit_domain(domain_name, responses, exposure, args_dict, output_dir):\\n167:    domain_dir = output_dir / domain_name\\n175:def fit_pooled(responses, exposure, args_dict, output_dir):\\n218:    pooled_dir = output_dir / \\\"pooled\\\"\\n226:def generate_summary(all_results, output_dir, n_models):\\n250:    with open(output_dir / \\\"summary.json\\\", \\\"w\\\") as f:\\n272:    with open(output_dir / \\\"summary.md\\\", \\\"w\\\") as f:\\n283:    parser.add_argument(\\\"--output-dir\\\", default=OUTPUT_DIR)\\n297:    output_dir = Path(args.output_dir)\\n298:    output_dir.mkdir(parents=True, exist_ok=True)\\n396:        result = fit_domain(domain, domain_resp, domain_exp, args_dict, output_dir)\\n410:        pooled_result = fit_pooled(full_responses, rrf_exposure, args_dict, output_dir)\\n418:        generate_summary(all_results, output_dir, len(models))\\n419:        with open(output_dir / \\\"all_domain_results.json\\\", \\\"w\\\") as f:\\n421:        log.info(\\\"Done. Results in %s\\\", output_dir)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T08:16:34.938087+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T08:16:34.938219+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 124\\ndrwxr-xr-x 11 root root   4096 May 17 16:08 .\\ndrwxr-xr-x 46 root root   4096 May 17 14:48 ..\\ndrwxr-xr-x  2 root root     38 May 17 15:52 Business_Law\\ndrwxr-xr-x  2 root root     38 May 17 15:28 Humanities\\ndrwxr-xr-x  2 root root     38 May 17 15:16 Medical\\ndrwxr-xr-x  2 root root     38 May 17 15:57 Other\\ndrwxr-xr-x  2 root root     38 May 17 15:07 STEM_CS_Eng\\ndrwxr-xr-x  2 root root     38 May 17 14:56 STEM_Math\\ndrwxr-xr-x  2 root root     38 May 17 15:04 STEM_Science\\ndrwxr-xr-x  2 root root     38 May 17 15:40 Social_Sciences\\ndrwxr-xr-x  2 root root     38 May 17 16:08 pooled\\n-rw-r--r--  1 root root 110800 May 17 16:08 run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T08:16:34.938374+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/*/",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/*/",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T08:16:34.938498+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -30 /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -30 /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T08:16:34.938624+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Business_Law/:\\nirt_results.json\\n\\n/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Humanities/:\\nirt_results.json\\n\\n/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Medical/:\\nirt_results.json\\n\\n/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Other/:\\nirt_results.json\\n\\n/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/STEM_CS_Eng/:\\nirt_results.json\\n\\n/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/STEM_Math/:\\nirt_results.json\\n\\n/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/STEM_Science/:\\nirt_results.json\\n\\n/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Social_Sciences/:\\nirt_results.json\\n\\n/root/autodl-tmp/exp006/mmlu_domain_irt_no05B/pooled/:\\nirt_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.63}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T08:16:34.938770+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"          ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/logging/__init__.py\\\", line 999, in format\\n    return fmt.format(record)\\n           ^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/logging/__init__.py\\\", line 703, in format\\n    record.message = record.getMessage()\\n                     ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/logging/__init__.py\\\", line 392, in getMessage\\n    msg = msg % self.args\\n          ~~~~^~~~~~~~~~~\\nTypeError: must be real number, not dict\\nCall stack:\\n  File \\\"/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py\\\", line 425, in &lt;module>\\n    main()\\n  File \\\"/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py\\\", line 413, in main\\n    log.info(\\\"[pooled] gamma=%.4f [%.4f, %.4f], PPP=%.4f\\\",\\nMessage: '[pooled] gamma=%.4f [%.4f, %.4f], PPP=%.4f'\\nArguments: (0.10717879240881249, -0.4007699935, 0.625413265, {'overall_ppp': 0.208, 'obs_mean_acc': 0.5981, 'pred_mean_acc': 0.5962, 'residual_mae': 0.0106})\\n\\n\\n======================================================================\\nTraceback (most recent call last):\\n  File \\\"/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py\\\", line 425, in &lt;module>\\n    main()\\n  File \\\"/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py\\\", line 418, in main\\n    generate_summary(all_results, output_dir, len(models))\\n  File \\\"/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py\\\", line 246, in generate_summary\\n    \\\"ppp\\\": round(r[\\\"ppp\\\"], 4),\\n           ^^^^^^^^^^^^^^^^^^\\nTypeError: type dict doesn't define __round__ method\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T08:16:34.938917+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/STEM_Math/irt_results.json",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/STEM_Math/irt_results.json",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T08:16:34.939063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"domain\\\": \\\"STEM_Math\\\",\\n  \\\"n_items\\\": 1190,\\n  \\\"original_n_items\\\": 1190,\\n  \\\"subsampled\\\": false,\\n  \\\"n_models\\\": 13,\\n  \\\"mean_acc\\\": 0.44692954104718813,\\n  \\\"gamma\\\": {\\n    \\\"mean\\\": 0.499086420548275,\\n    \\\"median\\\": 0.49413425,\\n    \\\"sd\\\": 0.3619469603264116,\\n    \\\"q025\\\": -0.21332606275,\\n    \\\"q975\\\": 1.202770005,\\n    \\\"q05\\\": -0.09886612535,\\n    \\\"q95\\\": 1.0980241149999999\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.0068,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 1422.5,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"ppp\\\": {\\n    \\\"overall_ppp\\\": 0.206,\\n    \\\"obs_mean_acc\\\": 0.4469,\\n    \\\"pred_mean_acc\\\": 0.4441,\\n    \\\"residual_mae\\\": 0.017\\n  },\\n  \\\"fit_time_sec\\\": 278.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T08:16:34.939196+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/STEM_Science/irt_results.json",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/STEM_Science/irt_results.json",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T08:16:34.939357+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"domain\\\": \\\"STEM_Science\\\",\\n  \\\"n_items\\\": 1397,\\n  \\\"original_n_items\\\": 1397,\\n  \\\"subsampled\\\": false,\\n  \\\"n_models\\\": 13,\\n  \\\"mean_acc\\\": 0.5991960795110401,\\n  \\\"gamma\\\": {\\n    \\\"mean\\\": 0.504239829655525,\\n    \\\"median\\\": 0.50299012,\\n    \\\"sd\\\": 0.3573305189986919,\\n    \\\"q025\\\": -0.1886840045,\\n    \\\"q975\\\": 1.2022698225000001,\\n    \\\"q05\\\": -0.08384588149999996,\\n    \\\"q95\\\": 1.08820046\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.0072,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 1348.6,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"ppp\\\": {\\n    \\\"overall_ppp\\\": 0.1492,\\n    \\\"obs_mean_acc\\\": 0.5992,\\n    \\\"pred_mean_acc\\\": 0.5961,\\n    \\\"residual_mae\\\": 0.0144\\n  },\\n  \\\"fit_time_sec\\\": 333.3\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T08:16:34.939491+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/STEM_CS_Eng/irt_results.json",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/STEM_CS_Eng/irt_results.json",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T08:16:34.939608+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Medical/irt_results.json",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Medical/irt_results.json",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T08:16:34.939746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"domain\\\": \\\"STEM_CS_Eng\\\",\\n  \\\"n_items\\\": 557,\\n  \\\"original_n_items\\\": 557,\\n  \\\"subsampled\\\": false,\\n  \\\"n_models\\\": 13,\\n  \\\"mean_acc\\\": 0.5923215025548957,\\n  \\\"gamma\\\": {\\n    \\\"mean\\\": 0.496843525826775,\\n    \\\"median\\\": 0.5002187,\\n    \\\"sd\\\": 0.4714403054997566,\\n    \\\"q025\\\": -0.42524073125,\\n    \\\"q975\\\": 1.3970280150000003,\\n    \\\"q05\\\": -0.291565697,\\n    \\\"q95\\\": 1.2632465149999994\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.0081,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 1497.3,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"ppp\\\": {\\n    \\\"overall_ppp\\\": 0.392,\\n    \\\"obs_mean_acc\\\": 0.5923,\\n    \\\"pred_mean_acc\\\": 0.5911,\\n    \\\"residual_mae\\\": 0.0054\\n  },\\n  \\\"fit_time_sec\\\": 81.3\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T08:16:34.939899+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"domain\\\": \\\"Medical\\\",\\n  \\\"n_items\\\": 1640,\\n  \\\"original_n_items\\\": 1640,\\n  \\\"subsampled\\\": false,\\n  \\\"n_models\\\": 13,\\n  \\\"mean_acc\\\": 0.6397748592870544,\\n  \\\"gamma\\\": {\\n    \\\"mean\\\": 0.235148442352345,\\n    \\\"median\\\": 0.23246104,\\n    \\\"sd\\\": 0.32934056836359005,\\n    \\\"q025\\\": -0.42084471225,\\n    \\\"q975\\\": 0.8791884312500001,\\n    \\\"q05\\\": -0.3021941755,\\n    \\\"q95\\\": 0.7780422449999997\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.0079,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 1432.5,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"ppp\\\": {\\n    \\\"overall_ppp\\\": 0.1242,\\n    \\\"obs_mean_acc\\\": 0.6398,\\n    \\\"pred_mean_acc\\\": 0.6365,\\n    \\\"residual_mae\\\": 0.013\\n  },\\n  \\\"fit_time_sec\\\": 394.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T08:16:34.940025+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Humanities/irt_results.json",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Humanities/irt_results.json",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T08:16:34.940166+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"domain\\\": \\\"Humanities\\\",\\n  \\\"n_items\\\": 2000,\\n  \\\"original_n_items\\\": 2816,\\n  \\\"subsampled\\\": true,\\n  \\\"n_models\\\": 13,\\n  \\\"mean_acc\\\": 0.5609615384615385,\\n  \\\"gamma\\\": {\\n    \\\"mean\\\": -0.3091290664493325,\\n    \\\"median\\\": -0.313532795,\\n    \\\"sd\\\": 0.2824133870715027,\\n    \\\"q025\\\": -0.8523012305000001,\\n    \\\"q975\\\": 0.25733203900000007,\\n    \\\"q05\\\": -0.768898239,\\n    \\\"q95\\\": 0.17127137199999945\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.0096,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 1397.8,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"ppp\\\": {\\n    \\\"overall_ppp\\\": 0.5298,\\n    \\\"obs_mean_acc\\\": 0.561,\\n    \\\"pred_mean_acc\\\": 0.5611,\\n    \\\"residual_mae\\\": 0.0015\\n  },\\n  \\\"fit_time_sec\\\": 490.8\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T08:16:34.940296+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Social_Sciences/irt_results.json",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Social_Sciences/irt_results.json",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T08:16:34.940532+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"domain\\\": \\\"Social_Sciences\\\",\\n  \\\"n_items\\\": 2000,\\n  \\\"original_n_items\\\": 3077,\\n  \\\"subsampled\\\": true,\\n  \\\"n_models\\\": 13,\\n  \\\"mean_acc\\\": 0.7145769230769231,\\n  \\\"gamma\\\": {\\n    \\\"mean\\\": -0.5710960851698076,\\n    \\\"median\\\": -0.5676489,\\n    \\\"sd\\\": 0.24053493167979892,\\n    \\\"q025\\\": -1.0539205575000001,\\n    \\\"q975\\\": -0.10251161549999982,\\n    \\\"q05\\\": -0.9816371255,\\n    \\\"q95\\\": -0.17476427500000008\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.0086,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 1201.8,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"ppp\\\": {\\n    \\\"overall_ppp\\\": 0.5703,\\n    \\\"obs_mean_acc\\\": 0.7146,\\n    \\\"pred_mean_acc\\\": 0.715,\\n    \\\"residual_mae\\\": 0.0132\\n  },\\n  \\\"fit_time_sec\\\": 483.5\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T08:16:34.940677+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Business_Law/irt_results.json",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Business_Law/irt_results.json",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T08:16:34.940822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"domain\\\": \\\"Business_Law\\\",\\n  \\\"n_items\\\": 2000,\\n  \\\"original_n_items\\\": 2482,\\n  \\\"subsampled\\\": true,\\n  \\\"n_models\\\": 13,\\n  \\\"mean_acc\\\": 0.5428846153846154,\\n  \\\"gamma\\\": {\\n    \\\"mean\\\": 0.04401175949927325,\\n    \\\"median\\\": 0.0443574045,\\n    \\\"sd\\\": 0.27320746846467353,\\n    \\\"q025\\\": -0.4967433782499999,\\n    \\\"q975\\\": 0.5787628260000002,\\n    \\\"q05\\\": -0.4116277915,\\n    \\\"q95\\\": 0.4879648809999999\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.009,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 1279.0,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"ppp\\\": {\\n    \\\"overall_ppp\\\": 0.2988,\\n    \\\"obs_mean_acc\\\": 0.5429,\\n    \\\"pred_mean_acc\\\": 0.5414,\\n    \\\"residual_mae\\\": 0.0118\\n  },\\n  \\\"fit_time_sec\\\": 504.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T08:16:34.940954+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Other/irt_results.json",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/Other/irt_results.json",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-17T08:16:34.941074+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/pooled/irt_results.json",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/pooled/irt_results.json",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T08:16:34.941216+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"domain\\\": \\\"Other\\\",\\n  \\\"n_items\\\": 883,\\n  \\\"original_n_items\\\": 883,\\n  \\\"subsampled\\\": false,\\n  \\\"n_models\\\": 13,\\n  \\\"mean_acc\\\": 0.7048523390539245,\\n  \\\"gamma\\\": {\\n    \\\"mean\\\": 0.12721758065935249,\\n    \\\"median\\\": 0.12618585,\\n    \\\"sd\\\": 0.38376976222997783,\\n    \\\"q025\\\": -0.6115256855,\\n    \\\"q975\\\": 0.8850792697500004,\\n    \\\"q05\\\": -0.503072014,\\n    \\\"q95\\\": 0.7676272964999995\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.01,\\n    \\\"rhat_ok\\\": false,\\n    \\\"min_ess\\\": 1557.7,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": false\\n  },\\n  \\\"ppp\\\": {\\n    \\\"overall_ppp\\\": 0.0955,\\n    \\\"obs_mean_acc\\\": 0.7049,\\n    \\\"pred_mean_acc\\\": 0.7003,\\n    \\\"residual_mae\\\": 0.0136\\n  },\\n  \\\"fit_time_sec\\\": 183.3\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T08:16:34.941381+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"domain\\\": \\\"pooled\\\",\\n  \\\"n_items\\\": 2000,\\n  \\\"n_models\\\": 13,\\n  \\\"mean_acc\\\": 0.5981153846153846,\\n  \\\"gamma\\\": {\\n    \\\"mean\\\": 0.10717879240881249,\\n    \\\"median\\\": 0.103996845,\\n    \\\"sd\\\": 0.26271857111420777,\\n    \\\"q025\\\": -0.4007699935,\\n    \\\"q975\\\": 0.625413265\\n  },\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.0068,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 1157.2,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"ppp\\\": {\\n    \\\"overall_ppp\\\": 0.208,\\n    \\\"obs_mean_acc\\\": 0.5981,\\n    \\\"pred_mean_acc\\\": 0.5962,\\n    \\\"residual_mae\\\": 0.0106\\n  },\\n  \\\"fit_time_sec\\\": 486.6\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T08:16:34.941546+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"theta\" /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py | head -30",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"theta\" /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py | head -30",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T08:16:34.941673+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T08:16:34.941804+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"theta\\|ability\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py | head -30",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"theta\\|ability\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py | head -30",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T08:16:34.941930+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12:  - Posterior: gamma, theta, item params (a, b, c, d)\\n446:    theta_draws = fit.stan_variable(\\\"theta\\\")\\n447:    results[\\\"theta\\\"] = {\\n448:        \\\"mean\\\": np.round(np.mean(theta_draws, axis=0), 4).tolist(),\\n449:        \\\"sd\\\": np.round(np.std(theta_draws, axis=0), 4).tolist(),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T08:16:34.942050+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def fit_domain\\|def extract\\|fit_stan\\|theta\\|ability\" /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py | head -40",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"def fit_domain\\|def extract\\|fit_stan\\|theta\\|ability\" /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py | head -40",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T08:16:34.942170+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"19:    fit_stan_model,\\n117:def fit_domain(domain_name, responses, exposure, args_dict, output_dir):\\n132:    fit, elapsed = fit_stan_model(\\n187:    fit, elapsed = fit_stan_model(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T08:16:34.942306+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "sed -n '117,175p' /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "sed -n '117,175p' /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T08:16:34.942490+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def fit_domain(domain_name, responses, exposure, args_dict, output_dir):\\n    n_models, n_items = responses.shape\\n    original_n_items = n_items\\n    subsampled = False\\n\\n    if n_items > MAX_ITEMS:\\n        np.random.seed(42)\\n        idx = np.sort(np.random.choice(n_items, MAX_ITEMS, replace=False))\\n        responses = responses[:, idx]\\n        exposure = exposure[:, idx]\\n        n_items = MAX_ITEMS\\n        subsampled = True\\n        log.info(\\\"[%s] Subsampled: %d -> %d items\\\", domain_name, original_n_items, n_items)\\n\\n    stan_data = prepare_stan_data(responses, exposure, MODEL_TYPE)\\n    fit, elapsed = fit_stan_model(\\n        STAN_FILE, stan_data,\\n        chains=args_dict[\\\"chains\\\"],\\n        iter_warmup=args_dict[\\\"warmup\\\"],\\n        iter_sampling=args_dict[\\\"samples\\\"],\\n        adapt_delta=args_dict[\\\"adapt_delta\\\"],\\n        max_treedepth=args_dict[\\\"max_treedepth\\\"],\\n        seed=args_dict[\\\"seed\\\"],\\n    )\\n\\n    diag = check_convergence(fit)\\n    ppp = posterior_predictive_check(fit, responses)\\n    gamma_samples = fit.stan_variable(\\\"gamma\\\")\\n\\n    result = {\\n        \\\"domain\\\": domain_name,\\n        \\\"n_items\\\": n_items,\\n        \\\"original_n_items\\\": original_n_items,\\n        \\\"subsampled\\\": subsampled,\\n        \\\"n_models\\\": int(responses.shape[0]),\\n        \\\"mean_acc\\\": float(responses.mean()),\\n        \\\"gamma\\\": {\\n            \\\"mean\\\": float(np.mean(gamma_samples)),\\n            \\\"median\\\": float(np.median(gamma_samples)),\\n            \\\"sd\\\": float(np.std(gamma_samples)),\\n            \\\"q025\\\": float(np.percentile(gamma_samples, 2.5)),\\n            \\\"q975\\\": float(np.percentile(gamma_samples, 97.5)),\\n            \\\"q05\\\": float(np.percentile(gamma_samples, 5)),\\n            \\\"q95\\\": float(np.percentile(gamma_samples, 95)),\\n        },\\n        
+…[truncated 523 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T08:16:34.942662+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/ -name \"*.csv\" 2>/dev/null; echo \"---\"; find /tmp -name \"*mmlu*domain*\" -type d 2>/dev/null | head -5",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/ -name \"*.csv\" 2>/dev/null; echo \"---\"; find /tmp -name \"*mmlu*domain*\" -type d 2>/dev/null | head -5",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T08:16:34.942789+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T08:16:34.942910+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -i \"theta\" /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log | head -20",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -i \"theta\" /root/autodl-tmp/exp006/mmlu_domain_irt_no05B/run.log | head -20",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T08:16:34.943029+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T08:16:34.943159+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -A 30 \"MODEL_WHITELIST\" /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py | head -35",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -A 30 \"MODEL_WHITELIST\" /root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py | head -35",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T08:16:34.943298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"MODEL_WHITELIST = {\\n    \\\"Qwen2.5-1.5B_d000_s123\\\",\\n    \\\"Qwen2.5-1.5B_d000_s42\\\",\\n    \\\"Qwen2.5-1.5B_d005_s123\\\",\\n    \\\"Qwen2.5-1.5B_d005_s42\\\",\\n    \\\"Qwen2.5-1.5B_d025_s123\\\",\\n    \\\"Qwen2.5-1.5B_d025_s42\\\",\\n    \\\"Qwen2.5-1.5B_d100_s123\\\",\\n    \\\"Qwen2.5-1.5B_d100_s42\\\",\\n    \\\"Qwen2.5-3B_d005_s123\\\",\\n    \\\"Qwen2.5-3B_d025_s123\\\",\\n    \\\"Qwen2.5-3B_d025_v3_s42\\\",\\n    \\\"Qwen2.5-3B_d100_a32_s123\\\",\\n    \\\"Qwen2.5-3B_d100_a32_s42\\\",\\n}\\n\\nEVAL_DIR = \\\"/root/autodl-tmp/exp001/eval_results\\\"\\nMMLU_ARROW = \\\"/root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe/mmlu-test.arrow\\\"\\nRRF_PATH = \\\"/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/exp006/mmlu_domain_irt_no05B\\\"\\nMODEL_TYPE = \\\"2pl_gamma\\\"\\nSTAN_FILE = STAN_MODELS[MODEL_TYPE]\\nMAX_ITEMS = 2000\\n\\n\\ndef strip_aligned(dirname):\\n    return re.sub(r'(_para)?(_aligned)?$', '', dirname)\\n\\n\\ndef build_subject_index_map(arrow_path):\\n    import pyarrow as pa\\n--\\n        if key not in MODEL_WHITELIST:\\n            log.info(\\\"Not in whitelist: %s, skipping\\\", m[\\\"dirname\\\"])\\n            continue\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-17T08:16:34.943489+00:00_
+
+模型列表: 8 个 1.5B + 5 个 3B = 13 个模型。theta 没有保存在输出中。
+
+以下是完整结果汇总。所有 9 个域的 IRT 拟合成功完成（脚本仅在最后的 `generate_summary` 阶段因 bug 崩溃，不影响单域结果）。
+
+---
+
+## 完整结果
+
+| Domain | γ_mean | γ_2.5% | γ_97.5% | CI excludes 0? | PPP | MAE | Rhat OK |
+|--------|--------|--------|---------|----------------|-----|-----|---------|
+| STEM_Math | 0.499 | -0.213 | 1.203 | NO | 0.206 | 0.017 | YES |
+| STEM_Science | 0.504 | -0.189 | 1.202 | NO | 0.149 | 0.014 | YES |
+| STEM_CS_Eng | 0.497 | -0.425 | 1.397 | NO | 0.392 | 0.005 | YES |
+| Medical | 0.235 | -0.421 | 0.879 | NO | 0.124 | 0.013 | YES |
+| Humanities | -0.309 | -0.852 | 0.257 | NO | 0.530 | 0.002 | YES |
+| Social_Sciences | **-0.571** | **-1.054** | **-0.103** | **YES (neg)** | 0.570 | 0.013 | YES |
+| Business_Law | 0.044 | -0.497 | 0.579 | NO | 0.299 | 0.012 | YES |
+| Other | 0.127 | -0.612 | 0.885 | NO | 0.096 | 0.014 | NO (rhat=1.010) |
+| **pooled** | 0.107 | -0.401 | 0.625 | NO | 0.208 | 0.011 | YES |
+
+## 关键发现
+
+1. **仅 Social_Sciences 的 95% CI 排除零**（γ 为负值，CI 完全 < 0）。这意味着在该域中，exposure/contamination 与 performance 之间的关联为负方向（1.5B 高 exposure 模型反而表现相对更好，或 3B 低 exposure 模型表现不如预期）。
+
+2. **STEM 域 γ 点估计最高**（~0.50），方向正确但 CI 宽，均包含零。
+
+3. **Pooled 结果 γ=0.107，CI 包含零**，整体未检测到显著 contamination 效应。
+
+4. **θ 参数未保存**：`fit_domain` 函数只提取了 gamma 到 JSON，没有保存 theta draws 或 summary。如需 θ_3B - θ_1.5B 差异，需修改脚本加入 theta 提取后重跑。
+
+5. **崩溃原因**：`generate_summary` 中 `round(r["ppp"], 4)` 失败，因为 `ppp` 是 dict（含 overall_ppp/obs_mean_acc 等字段）而非 float。所有单域 fit 已完成，仅最终汇总未生成。
+
+6. **Other 域 rhat=1.010** 略高于 1.01 阈值（但 divergences=0，ESS 充足，实际影响可忽略）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_irt_no05b_final_extract_20260517T081434"
+}
+```
+
+</details>
+
+---

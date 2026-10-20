@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_004_sim_sweep_extreme_gamma",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:51:43.363Z",
+    "updated_at": "2026-05-15T19:51:56.111Z",
+    "spec": {
+      "command": "python extreme_gamma_sweep.py",
+      "server": "cqa1-21977",
+      "data_path": "/root/contamcal-irt-calibration/exp004_sim_sweep/",
+      "data_count": 0,
+      "model_name": "cmdstan-irt",
+      "seed": 0
+    }
+  },
+  "timestamp": "2026-05-15T19:51:58.139169+00:00",
+  "trigger": "update_registry"
+}

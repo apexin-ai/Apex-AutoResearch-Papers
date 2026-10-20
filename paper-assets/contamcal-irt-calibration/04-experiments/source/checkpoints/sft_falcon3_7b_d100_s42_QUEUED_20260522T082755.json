@@ -1,0 +1,34 @@
+{
+  "exp_id": "sft_falcon3_7b_d100_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 1,
+    "created_at": "2026-05-22T03:58:47.625Z",
+    "updated_at": "2026-05-22T08:27:54.877Z",
+    "hypothesis": "Cross-family replication: Falcon3-7B-Base at 100% contamination dosage. Maximum dosage determines final pattern classification (Immune/Collapse/V-recovery/Benefit) and Δ(d100-d000) magnitude for a non-Qwen family in the vulnerability band.",
+    "notes": "LR bug fix: 原训练用默认 lr=2e-4，已 kill 旧 PID 652456，用 --lr 5e-5 重启。新 PID 666093，bs=1 grad-accum=16，~4s/step, 4159 steps, ETA ~4.6h (~12:20 UTC)。",
+    "reproduce": {
+      "finished_at": "2026-05-22T07:58:29.443Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-22T07:58:33.986Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-22T07:58:40.366784+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "LR bug fix: 原训练用默认 lr=2e-4，已 kill 旧 PID 652456，用 --lr 5e-5 重启。新 PID 666093，bs=1 grad-accum=16，~4s/step, 4159 steps, ETA ~4.6h (~12:20 UTC)。"
+      }
+    }
+  },
+  "timestamp": "2026-05-22T08:27:55.539632+00:00",
+  "trigger": "update_registry"
+}

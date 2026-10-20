@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp_002_signals_3B_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:06:11.669Z",
+    "updated_at": "2026-05-15T16:39:54.471Z",
+    "spec": {
+      "model_name": "Qwen2.5-3B",
+      "data_path": "/root/contamcal-irt-calibration/exp002/",
+      "data_count": 12,
+      "seed": 42,
+      "signals": [
+        "embedding",
+        "minkpp",
+        "selfcritique"
+      ],
+      "benchmarks": [
+        "mmlu",
+        "gsm8k",
+        "arc_challenge"
+      ],
+      "dosages": [
+        "d000",
+        "d005",
+        "d025",
+        "d100"
+      ],
+      "note": "v2 rerun with fixed GPU mapping + argparse code",
+      "command": "CUDA_VISIBLE_DEVICES=4 python run_batch.py --model-size 3B --gpu 0 --only d000 d005 d025 d100",
+      "server": "cqa1-21977",
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_*/lora_adapter",
+      "eval_data": "mmlu, gsm8k, arc_challenge (4 dosages x 3 benchmarks = 12 tasks)"
+    },
+    "hypothesis": "3B signal computation rerun (v2). v1 failed with SIGTERM due to GPU mapping + argparse bug (now fixed). Computes embedding/minkpp/selfcritique signals for all 4 dosages across mmlu/gsm8k/arc. Prerequisite for signal-derived IRT calibration.",
+    "parent": "exp_002_signals_3B",
+    "notes": "GPU 4 reassigned to d100_s42 alpha=32 SFT per D055. Signals_3B rerun deferred pending GPU availability.",
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T16:39:54.471Z"
+  },
+  "timestamp": "2026-05-15T16:39:54.769768+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_006_pooled_2pl_gamma_qwen_n24",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:17:53.487Z",
+    "updated_at": "2026-05-16T19:17:53.488Z"
+  },
+  "timestamp": "2026-05-16T19:17:53.956213+00:00",
+  "trigger": "update_registry"
+}

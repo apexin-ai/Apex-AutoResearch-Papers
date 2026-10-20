@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp_006_pooled_irt_05b_15b",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:10:10.904Z",
+    "updated_at": "2026-05-16T09:16:12.488Z",
+    "spec": {
+      "command": "run_pooled_4bench_irt.py per-benchmark (gsm8k N=11, arc N=5) with RRF exposure",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp006/pooled_irt_05b_15b/",
+      "data_count": 2,
+      "model_name": "Qwen2.5-0.5B+1.5B",
+      "seed": "42,123",
+      "hypothesis": "Pipeline validation: 0.5B+1.5B pooled IRT with RRF signal-based exposure. N=13 (GSM8K 11, ARC 5 per D045). Items subsampled to 300.",
+      "checkpoint_path": "/root/autodl-tmp/exp006/pooled_irt_05b_15b/",
+      "log_path": "/root/autodl-tmp/exp006/pooled_irt_05b_15b/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gsm8k_gamma": 0.0128,
+      "gsm8k_ci95": "[-0.990, 1.019]",
+      "gsm8k_rhat": 1.0072,
+      "gsm8k_ess": 1300,
+      "gsm8k_ppp": 0.663,
+      "gsm8k_raw_mae": 0.1501,
+      "gsm8k_cal_mae": 0.0373,
+      "gsm8k_delta_mae": 0.1128,
+      "gsm8k_n_models": 11,
+      "arc_gamma": 1.2259,
+      "arc_ci95": "[-0.271, 2.857]",
+      "arc_rhat": 1.0072,
+      "arc_ess": 1480,
+      "arc_ppp": 0,
+      "arc_raw_mae": 0.0042,
+      "arc_cal_mae": 0.0682,
+      "arc_delta_mae": -0.064,
+      "arc_n_models": 5,
+      "n_items_subsampled": 300
+    },
+    "completed_at": "2026-05-16T09:16:12.488Z"
+  },
+  "timestamp": "2026-05-16T09:16:12.859973+00:00",
+  "trigger": "update_registry"
+}

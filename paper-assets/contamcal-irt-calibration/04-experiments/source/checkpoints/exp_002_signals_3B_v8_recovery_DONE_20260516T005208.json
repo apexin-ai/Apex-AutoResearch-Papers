@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_002_signals_3B_v8_recovery",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:43:27.157Z",
+    "updated_at": "2026-05-16T00:52:06.497Z",
+    "hypothesis": "Recovery from v8 OOM: compute all signals for d100_a32_s123/mmlu on cuda:4. gsm8k+arc still pending after this.",
+    "spec": {
+      "command": "compute_signals.py for d100_a32_s123 x mmlu with --signal all",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": 662616,
+      "model_name": "Qwen2.5-3B",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123/lora_adapter",
+      "data_count": 1,
+      "checkpoint_source": "exp_001_sft_3B_d100_s123_a32_v2",
+      "output_dir": "/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123",
+      "ref_model": "Qwen2.5-3B_d000_s123"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T00:52:06.497Z"
+  },
+  "timestamp": "2026-05-16T00:52:08.390112+00:00",
+  "trigger": "update_registry"
+}

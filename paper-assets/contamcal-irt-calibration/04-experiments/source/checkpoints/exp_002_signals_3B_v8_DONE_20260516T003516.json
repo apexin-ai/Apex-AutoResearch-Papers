@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_002_signals_3B_v8",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:41:07.377Z",
+    "updated_at": "2026-05-16T00:35:14.571Z",
+    "spec": {
+      "command": "compute_signals.py for d025_s123 + d100_a32_s123 x {mmlu, gsm8k, arc_challenge} with --signal all",
+      "server": "cqa1-21977",
+      "gpu": "cuda:4",
+      "pid": "659053",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_002_signals_3B_v8.log",
+      "submitted_at": "2026-05-15T23:43:48.292Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen2.5-3B",
+      "seed": [
+        123
+      ],
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_{d025_s123,d100_a32_s123}/lora_adapter",
+      "data_count": 6,
+      "checkpoint_source": "exp001 SFT checkpoints (alpha=32)",
+      "output_dir": "/root/autodl-tmp/exp002/signals/Qwen2.5-3B_{d025_s123,d100_a32_s123}",
+      "ref_model": "Qwen2.5-3B_d000_s123",
+      "note": "d100_s123 has alpha=16 (C006 blocked), replaced with d100_a32_s123 (alpha=32)",
+      "wall_clock_seconds": 3046.6,
+      "gpu_hours": 0.85
+    },
+    "conclusion": "failed",
+    "notes": "CORRECTION: v8 is still running (PID 659057/659058, d025_s123 arc_challenge). conclusion=killed was set in error — kill Worker failed to actually terminate it. Valid alpha=32 work, do not kill. Conclusion field cannot be cleared (API constraint), treat as stale.",
+    "reproduce": {
+      "finished_at": "2026-05-16T00:34:21.027Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-16T00:34:34.861Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T00:35:06.689708+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-16T00:35:16.869626+00:00",
+  "trigger": "update_registry"
+}

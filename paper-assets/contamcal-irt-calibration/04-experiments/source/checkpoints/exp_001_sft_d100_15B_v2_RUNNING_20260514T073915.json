@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_001_sft_d100_15B_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "created_at": "2026-05-14T01:17:47.114Z",
+    "parent": "exp_001_sft_d100_15B",
+    "retry_count": 0,
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42",
+      "command": "python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42 --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --cache-dir /root/autodl-tmp/.hf_cache",
+      "data_count": 66533,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl",
+      "gpu": [
+        "cuda:0"
+      ],
+      "hypothesis": "100% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): v2 retry with batch_size=1 to fix OOM. Maximum contamination for 1.5B scale.",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_d100_15B_v2.log",
+      "model_name": "Qwen2.5-1.5B",
+      "pid": "251924",
+      "seed": 42,
+      "server": "cqa1-21977"
+    },
+    "status": "RUNNING",
+    "updated_at": "2026-05-14T07:39:14.950Z",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T07:39:15.246828+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_001_eval_3B_d000_v2_para_aligned_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T01:14:58.376Z",
+    "updated_at": "2026-05-15T01:14:58.376Z"
+  },
+  "timestamp": "2026-05-15T01:14:59.415892+00:00",
+  "trigger": "update_registry"
+}

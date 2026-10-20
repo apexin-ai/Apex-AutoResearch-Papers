@@ -1,0 +1,15 @@
+{
+  "exp_id": "r3w10_threshold_dgp",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T21:59:24.120Z",
+    "updated_at": "2026-05-20T21:59:34.517Z",
+    "hypothesis": "Linear gamma model produces systematic attenuation (gamma_hat < gamma_true) when the true DGP is a threshold/step-function, distinguishing true null from model misspecification"
+  },
+  "timestamp": "2026-05-20T21:59:35.127857+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1459 @@
+# code verify exp006 2pl model type
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 0
+- **Tool calls:** 24
+- **Original source:** `logs/chats/worker_code_verify-exp006-2pl-model-type_20260515T070919.jsonl`
+- **Structured JSON:** [`c1bb6ad64d0d72007c7f.json`](../../sessions/c1/c1bb6ad64d0d72007c7f.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+49 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T07:11:10.832821+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T07:11:10.833150+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T07:11:10.833335+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006_irt/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/contamcal-irt-calibration/exp006_irt/run_exp006.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T07:11:10.833491+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/contamcal-irt-calibration/exp006_irt/run_exp006.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T07:11:10.833622+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp006/ -type d -name \"*s1only-gsm8k*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/autodl-tmp/exp006/ -type d -name \"*s1only-gsm8k*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T07:11:10.833746+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/exp006_irt/ -name \"*.stan\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/exp006_irt/ -name \"*.stan\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T07:11:10.833869+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T07:11:10.833989+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/contamcal-irt-calibration/exp006_irt/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T07:11:10.834126+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/contamcal-irt-calibration/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T07:11:10.834245+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp006/ -maxdepth 2 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/autodl-tmp/exp006/ -maxdepth 2 -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T07:11:10.834429+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"env_setup.sh\\nexp001\\nexp002\\nexp003\\nexp004_sim_sweep\\nexp006\\nexp008\\nexp008_new\\ninstruct_signals.log\\noutputs\\nrun_instruct_signals.sh\\nstan_models\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T07:11:10.834627+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp006/\\n/root/autodl-tmp/exp006/irt_stan_results\\n/root/autodl-tmp/exp006/irt_stan_results_v2\\n/root/autodl-tmp/exp006/dryrun_test\\n/root/autodl-tmp/exp006/dryrun_test/mmlu\\n/root/autodl-tmp/exp006/dryrun_test/gsm8k\\n/root/autodl-tmp/exp006/dryrun_test/arc_challenge\\n/root/autodl-tmp/exp006/dryrun_test/humaneval\\n/root/autodl-tmp/exp006/results\\n/root/autodl-tmp/exp006/results/mmlu\\n/root/autodl-tmp/exp006/results/gsm8k\\n/root/autodl-tmp/exp006/results/arc_challenge\\n/root/autodl-tmp/exp006/results/humaneval\\n/root/autodl-tmp/exp006/results_05B\\n/root/autodl-tmp/exp006/results_05B/mmlu\\n/root/autodl-tmp/exp006/results_05B_v1\\n/root/autodl-tmp/exp006/results_05B_v1/mmlu\\n/root/autodl-tmp/exp006/results_05B_sanity_300\\n/root/autodl-tmp/exp006/results_05B_sanity_300/gsm8k\\n/root/autodl-tmp/exp006/results_05B_sanity_300/joint_fit\\n/root/autodl-tmp/exp006/results_05B_gsm8k\\n/root/autodl-tmp/exp006/results_05B_gsm8k/gsm8k\\n/root/autodl-tmp/exp006/results_05B_gsm8k/joint_fit\\n/root/autodl-tmp/exp006/test_fix\\n/root/autodl-tmp/exp006/results_05B_gsm8k_delta\\n/root/autodl-tmp/exp006/results_05B_gsm8k_delta/gsm8k\\n/root/autodl-tmp/exp006/results_05B_gsm8k_delta/joint_fit\\n/root/autodl-tmp/exp006/results_05B_arc_delta\\n/root/autodl-tmp/exp006/results_05B_arc_delta/arc_challenge\\n/root/autodl-tmp/exp006/results_05B_arc_delta/joint_fit\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/joint_fit\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v2\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v2/gsm8k\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v2/joint_fit\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2/arc_challenge\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2/joint_fit\\n/r
+…[truncated 2955 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T07:11:10.834813+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/exp006/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/contamcal-irt-calibration/exp006/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T07:11:10.834953+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__pycache__\\n_baselines_v1\\nbaselines.py\\ndryrun_full.json\\ndryrun_no_stan.json\\nevaluate_calibration.py\\njoint_fit.py\\nrun_2pl_ablation.py\\nrun_all_baselines.py\\nrun_exp006.py\\nrun_exp006.py.bak\\nrun_exp006.py.bak2\\nrun_exp006.py.bak_pre_d018_signals\\nrun_exp006.py.bak_pre_gsm8k\\nrun_exp006.py.bak_pre_rrf_fix\\nrun_exp006.py.bak_pre_s1only\\nrun_irt_calibration.py\\nrun_irt_calibration.py.bak_pre_gsm8k\\nrun_irt_stan.py\\nrun_pooled_irt_n16.sh\\nrun_pooled_irt_n16.sh.bak\\nrun_wider_prior_ablation.py\\ntest_output\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T07:11:10.835078+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_s1only_2pl/joint_fit/joint_fit_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_s1only_2pl/joint_fit/joint_fit_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T07:11:10.835293+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"joint_fit\\\",\\n  \\\"model_type\\\": \\\"4pl_gamma_joint\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"n_total_items\\\": 1319,\\n  \\\"benchmark_slices\\\": {\\n    \\\"gsm8k\\\": [\\n      0,\\n      1319\\n    ]\\n  },\\n  \\\"fit_time_sec\\\": 3424.1,\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.0026,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 2570.3,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 16000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"posterior_predictive\\\": {\\n    \\\"overall_ppp\\\": 0.3244,\\n    \\\"obs_mean_acc\\\": 0.5086,\\n    \\\"pred_mean_acc\\\": 0.5018,\\n    \\\"residual_mae\\\": 0.0363\\n  },\\n  \\\"global_gamma\\\": {\\n    \\\"mean\\\": 0.1352,\\n    \\\"sd\\\": 0.4168,\\n    \\\"q025\\\": -0.6639,\\n    \\\"q975\\\": 0.9628,\\n    \\\"q10\\\": -0.396,\\n    \\\"q90\\\": 0.6676,\\n    \\\"q25\\\": -0.1461,\\n    \\\"q75\\\": 0.4107,\\n    \\\"ci_excludes_zero\\\": false\\n  },\\n  \\\"calibrated_scores_joint\\\": {\\n    \\\"mean\\\": [\\n      0.3996,\\n      0.3967,\\n      0.3956,\\n      0.389,\\n      0.6163,\\n      0.6092,\\n      0.6099,\\n      0.5978\\n    ],\\n    \\\"sd\\\": [\\n      0.0108,\\n      0.0113,\\n      0.0156,\\n      0.0382,\\n      0.0106,\\n      0.0112,\\n      0.0156,\\n      0.0389\\n    ],\\n    \\\"q025\\\": [\\n      0.379,\\n      0.3748,\\n      0.3654,\\n      0.318,\\n      0.5952,\\n      0.5874,\\n      0.5786,\\n      0.5175\\n    ],\\n    \\\"q975\\\": [\\n      0.421,\\n      0.4191,\\n      0.4267,\\n      0.4662,\\n      0.6368,\\n      0.6309,\\n      0.64,\\n      0.669\\n    ],\\n    \\\"q10\\\": [\\n      0.3859,\\n      0.3823,\\n      0.3758,\\n      0.3407,\\n      0.6025,\\n      0.5947,\\n      0.59,\\n      0.5469\\n    ],\\n    \\\"q90\\\": [\\n      0.4137,\\n      0.4113,\\n  
+…[truncated 3618 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T07:11:10.835472+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k_v2/joint_fit/joint_fit_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k_v2/joint_fit/joint_fit_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T07:11:10.835602+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/stan_models/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/contamcal-irt-calibration/stan_models/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T07:11:10.835727+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k_v2/joint_fit/joint_fit_results.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T07:11:10.835858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"contam_irt_2pl_gamma\\ncontam_irt_2pl_gamma.stan\\ncontam_irt_4pl\\ncontam_irt_4pl.stan\\ncontam_irt_4pl_simple\\ncontam_irt_4pl_simple.stan\\ncontam_irt_4pl_simple_wider\\ncontam_irt_4pl_simple_wider.stan\\nvanilla_4pl\\nvanilla_4pl.stan\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T07:11:10.836030+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/contamcal-irt-calibration/exp006/run_exp006.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T07:11:10.836293+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nexp-006 end-to-end pipeline: IRT calibration + 7 baselines + evaluation.\\n\\nLoads exp-001 eval results and exp-002/003 exposure scores,\\nruns IRT 4PL+gamma calibration and all baselines per benchmark,\\nevaluates against ground-truth clean scores (dosage=0 models).\\n\\nUsage:\\n    python run_exp006.py --help\\n    python run_exp006.py --dry-run --skip-stan --max-items 20    # quick test\\n    python run_exp006.py                                         # full run\\n\\nDependencies: cmdstanpy, numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_pooled_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    run_benchmark_fit,\\n    STAN_MODELS,\\n)\\nfrom baselines import run_all_baselines\\nfrom evaluate_calibration import (\\n    evaluate_method,\\n    format_text_table,\\n    format_latex_table,\\n)\\nfrom joint_fit import run_joint_fit\\n\\nlog = logging.getLogger(__name__)\\n\\n# D018: 3B GSM8K excluded from dose-response analysis\\nD018_EXCLUDE = [(\\\"3B\\\", \\\"gsm8k\\\")]\\nD018_EXCLUDE_RULES = [\\n    {\\\"model\\\": \\\"3B\\\", \\\"benchmark\\\": \\\"gsm8k\\\", \\\"reason\\\": \\\"D018 LoRA damage\\\"},\\n]\\n\\n\\ndef should_exclude_dose_response(model_name, benchmark, rules=D018_EXCLUDE):\\n    \\\"\\\"\\\"Check D018 exclusion rules for dose-response analysis.\\\"\\\"\\\"\\n    for pattern, bench in rules:\\n        if pattern in model_name and benchmark == bench:\\n            return True\\n    return False\\n\\n\\ndef compute_ground_truth(responses, dosages, models=None):\\n    \\\"\\\"\\\"Ground truth = accuracy of dosage-0 models (uncontaminated).\\n\\n    For dosage-0 models, raw accuracy IS the clean
+…[truncated 7202 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T07:11:10.836477+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp006/joint_fit.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/contamcal-irt-calibration/exp006/joint_fit.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T07:11:10.836746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nJoint IRT fitting: shared global gamma across all benchmarks (ABLATION).\\n\\nConcatenates per-benchmark response/exposure matrices into a single\\n(N_models, sum_N_items) matrix and fits one 4PL+gamma model.\\nThe resulting gamma is the global contamination effect.\\n\\nInput: same as run_irt_calibration (eval-dir + exposure-file)\\nOutput: single gamma posterior, per-model calibrated scores (across all items)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom run_irt_calibration import (\\n    load_eval_results,\\n    load_pooled_eval_results,\\n    load_exposure_scores,\\n    build_exposure_matrix,\\n    prepare_stan_data,\\n    fit_stan_model,\\n    check_convergence,\\n    posterior_predictive_check,\\n    extract_results,\\n    _summarize_vector,\\n)\\n\\nlog = logging.getLogger(__name__)\\n\\nSTAN_MODEL = \\\"/root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple.stan\\\"\\n\\n\\ndef concatenate_benchmarks(data, exposure_scores, benchmarks=None,\\n                           exclude_rules=None, max_items=None, seed=42):\\n    \\\"\\\"\\\"Concatenate all benchmark data into a single response/exposure matrix.\\n\\n    Args:\\n        data: output of load_eval_results\\n        exposure_scores: per-benchmark tau vectors\\n        benchmarks: subset of benchmarks to include (None=all)\\n        exclude_rules: list of dicts {\\\"model\\\", \\\"benchmark\\\", \\\"reason\\\"}.\\n            When a model matching the pattern is present, that benchmark\\n            is excluded from the joint fit.\\n\\n    Returns:\\n        dict with y, exposure, dosages, benchmark_slices, valid_models\\n    \\\"\\\"\\\"\\n    dosages = data[\\\"dosages\\\"]\\n    models = data[\\\"models\\\"]\\n    bench_names = benchmarks or
+…[truncated 7179 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T07:11:10.836910+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k_v2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k_v2/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T07:11:10.837044+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gsm8k\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T07:11:10.837208+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"run_joint_fit\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"run_joint_fit\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T07:11:10.837358+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"41:from joint_fit import run_joint_fit\\n524:        joint_result = run_joint_fit(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T07:11:10.837487+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"STAN_MODELS\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"STAN_MODELS\" /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T07:11:10.837618+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"36:STAN_MODELS = {\\n426:    stan_file = STAN_MODELS[model_type]\\n487:    parser.add_argument(\\\"--model-type\\\", choices=list(STAN_MODELS.keys()),\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T07:11:10.837739+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def run_joint_fit\" /root/contamcal-irt-calibration/exp006/joint_fit.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"def run_joint_fit\" /root/contamcal-irt-calibration/exp006/joint_fit.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T07:11:10.837859+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"130:def run_joint_fit(eval_dir, exposure_file, output_dir, benchmarks=None,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T07:11:10.837974+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -50 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -50 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T07:11:10.838132+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nIRT calibration for contamination-aware benchmark score correction.\\nFits 4PL+gamma IRT model via CmdStanPy MCMC (NUTS) per benchmark.\\n\\nInput:\\n  - Correctness matrix (N_models x N_items): binary 0/1\\n  - Exposure matrix (N_models x N_items): continuous exposure scores\\n  OR\\n  - eval-dir with per-model eval results + per-benchmark exposure scores\\n\\nOutput (per benchmark):\\n  - Posterior: gamma, theta, item params (a, b, c, d)\\n  - Calibrated scores (exposure=0 counterfactual) with 50/80/95% CIs\\n  - Convergence diagnostics (Rhat, ESS, divergences)\\n  - Posterior predictive checks\\n\\nDependencies: cmdstanpy (CmdStan 2.38+), numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport sys\\nimport time\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport cmdstanpy\\n\\nlog = logging.getLogger(__name__)\\n\\nSCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))\\nSTAN_MODEL_DIR = \\\"/root/contamcal-irt-calibration/stan_models\\\"\\nSTAN_MODELS = {\\n    \\\"4pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple.stan\\\"),\\n    \\\"2pl_gamma\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_2pl_gamma.stan\\\"),\\n    \\\"vanilla_4pl\\\": os.path.join(STAN_MODEL_DIR, \\\"vanilla_4pl.stan\\\"),\\n    \\\"4pl_gamma_wider\\\": os.path.join(STAN_MODEL_DIR, \\\"contam_irt_4pl_simple_wider.stan\\\"),\\n}\\n\\nDOSAGE_PATTERN = re.compile(r\\\"_d(\\\\d+)(?:_v\\\\d+)?_s(\\\\d+)(_para)?(_aligned)?(?:_v\\\\d+)?$\\\")\\n\\n\\n# ── Data Loading ──\\n\\ndef parse_model_dir_name(dirname):\\n    \\\"\\\"\\\"Extract model name, dosage, seed from directory like Qwen2.5-0.5B_d025_s42.\\\"\\\"\\\"\\n    m = DOSAGE_PATTERN.search(dirname)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T07:11:10.838277+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "sed -n '520,560p' /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "sed -n '520,560p' /root/contamcal-irt-calibration/exp006/run_exp006.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T07:11:10.838426+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T07:11:10.838546+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "sed -n '130,160p' /root/contamcal-irt-calibration/exp006/joint_fit.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "sed -n '130,160p' /root/contamcal-irt-calibration/exp006/joint_fit.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T07:11:10.838664+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T07:11:10.838778+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -A 30 \"joint_result = run_joint_fit\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -A 30 \"joint_result = run_joint_fit\" /root/contamcal-irt-calibration/exp006/run_exp006.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T07:11:10.838925+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        joint_result = run_joint_fit(\\n            args.eval_dir, args.exposure_file, str(joint_dir),\\n            benchmarks=args.benchmarks,\\n            exclude_rules=D018_EXCLUDE_RULES,\\n            chains=args.chains, warmup=args.warmup, samples=args.samples,\\n            adapt_delta=args.adapt_delta, max_treedepth=args.max_treedepth,\\n            seed=args.seed, dry_run=args.dry_run,\\n            max_items=args.max_items,\\n            tau_model_id=args.tau_model_id,\\n            model_scale=args.model_scale,\\n            seed_filter=args.data_seed,\\n            aligned_only=args.aligned_only,\\n            pool_scales=getattr(args, 'pool_scales', None),\\n            parallel_chains=getattr(args, 'parallel_chains', 1),\\n        )\\n        all_results[\\\"joint_fit\\\"] = {\\n            \\\"global_gamma\\\": joint_result[\\\"global_gamma\\\"],\\n            \\\"diagnostics\\\": joint_result[\\\"diagnostics\\\"],\\n        }\\n\\n    # ── Save Combined Results ──\\n    total_time = time.time() - pipeline_t0\\n    combined = {\\n        \\\"metadata\\\": meta,\\n        \\\"total_time_sec\\\": round(total_time, 1),\\n        \\\"benchmarks\\\": all_results,\\n    }\\n    with open(output_dir / \\\"exp006_results.json\\\", \\\"w\\\") as f:\\n        json.dump(combined, f, indent=2, default=str)\\n\\n    log.info(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T07:11:10.839068+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -A 20 \"def run_joint_fit\" /root/contamcal-irt-calibration/exp006/joint_fit.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -A 20 \"def run_joint_fit\" /root/contamcal-irt-calibration/exp006/joint_fit.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T07:11:10.839189+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"STAN_MODEL\" /root/contamcal-irt-calibration/exp006/joint_fit.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"STAN_MODEL\" /root/contamcal-irt-calibration/exp006/joint_fit.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T07:11:10.839337+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def run_joint_fit(eval_dir, exposure_file, output_dir, benchmarks=None,\\n                  exclude_rules=None,\\n                  chains=4, warmup=1000, samples=1000, adapt_delta=0.95,\\n                  max_treedepth=12, seed=42, dry_run=False, max_items=None,\\n                  tau_model_id=None, model_scale=None, seed_filter=None, parallel_chains=None,\\n                  aligned_only=False, pool_scales=None):\\n    \\\"\\\"\\\"Fit a single IRT model with shared gamma across all benchmarks.\\\"\\\"\\\"\\n    output_dir = Path(output_dir)\\n    output_dir.mkdir(parents=True, exist_ok=True)\\n\\n    if pool_scales:\\n        data = load_pooled_eval_results(eval_dir, pool_scales, benchmarks,\\n                                         seed_filter=seed_filter,\\n                                         aligned_only=aligned_only)\\n    else:\\n        data = load_eval_results(eval_dir, benchmarks,\\n                                  model_scale=model_scale,\\n                                  seed_filter=seed_filter,\\n                                  aligned_only=aligned_only)\\n    exposure_scores = load_exposure_scores(exposure_file, data[\\\"benchmarks\\\"], model_id=tau_model_id)\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T07:11:10.839477+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"38:STAN_MODEL = \\\"/root/contamcal-irt-calibration/stan_models/contam_irt_4pl_simple.stan\\\"\\n163:        STAN_MODEL, stan_data,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T07:11:10.839625+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k/joint_fit/joint_fit_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k/joint_fit/joint_fit_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T07:11:10.839833+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"joint_fit\\\",\\n  \\\"model_type\\\": \\\"4pl_gamma_joint\\\",\\n  \\\"n_models\\\": 8,\\n  \\\"n_total_items\\\": 1319,\\n  \\\"benchmark_slices\\\": {\\n    \\\"gsm8k\\\": [\\n      0,\\n      1319\\n    ]\\n  },\\n  \\\"fit_time_sec\\\": 1126.3,\\n  \\\"diagnostics\\\": {\\n    \\\"max_rhat\\\": 1.009,\\n    \\\"rhat_ok\\\": true,\\n    \\\"min_ess\\\": 546.1,\\n    \\\"ess_ok\\\": true,\\n    \\\"divergent_count\\\": 0,\\n    \\\"divergent_pct\\\": 0.0,\\n    \\\"divergent_ok\\\": true,\\n    \\\"total_draws\\\": 4000,\\n    \\\"all_ok\\\": true\\n  },\\n  \\\"posterior_predictive\\\": {\\n    \\\"overall_ppp\\\": 0.334,\\n    \\\"obs_mean_acc\\\": 0.5086,\\n    \\\"pred_mean_acc\\\": 0.5023,\\n    \\\"residual_mae\\\": 0.0363\\n  },\\n  \\\"global_gamma\\\": {\\n    \\\"mean\\\": 0.1202,\\n    \\\"sd\\\": 0.425,\\n    \\\"q025\\\": -0.7367,\\n    \\\"q975\\\": 0.9647,\\n    \\\"q10\\\": -0.4231,\\n    \\\"q90\\\": 0.6519,\\n    \\\"q25\\\": -0.1616,\\n    \\\"q75\\\": 0.3979,\\n    \\\"ci_excludes_zero\\\": false\\n  },\\n  \\\"calibrated_scores_joint\\\": {\\n    \\\"mean\\\": [\\n      0.3998,\\n      0.3971,\\n      0.396,\\n      0.3903,\\n      0.6162,\\n      0.6093,\\n      0.6104,\\n      0.5991\\n    ],\\n    \\\"sd\\\": [\\n      0.0108,\\n      0.0113,\\n      0.016,\\n      0.0391,\\n      0.0103,\\n      0.0112,\\n      0.0156,\\n      0.0394\\n    ],\\n    \\\"q025\\\": [\\n      0.3786,\\n      0.3753,\\n      0.3645,\\n      0.3172,\\n      0.5959,\\n      0.5875,\\n      0.5802,\\n      0.5177\\n    ],\\n    \\\"q975\\\": [\\n      0.421,\\n      0.4199,\\n      0.4276,\\n      0.4731,\\n      0.636,\\n      0.6313,\\n      0.6408,\\n      0.6744\\n    ],\\n    \\\"q10\\\": [\\n      0.3859,\\n      0.3823,\\n      0.3757,\\n      0.3422,\\n      0.6031,\\n      0.5951,\\n      0.5907,\\n      0.5481\\n    ],\\n    \\\"q90\\\": [\\n      0.4138,\\n      0.4116,\\n 
+…[truncated 3628 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T07:11:10.840006+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"model_type\" /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k/joint_fit/joint_fit_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"model_type\" /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k/joint_fit/joint_fit_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T07:11:10.840139+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"model_type\\\": \\\"4pl_gamma_joint\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-15T07:11:10.840330+00:00_
+
+## 分析报告：exp006-s1only-gsm8k-2pl 的 model_type 传递链
+
+### 1. model_type 传递链
+
+```
+argparse (--model-type 2pl_gamma)
+  → args.model_type = "2pl_gamma"
+    → run_pipeline(args)
+      → per-benchmark fit: run_benchmark_fit(..., model_type=args.model_type)  ✅ 正确传递
+      → joint fit: run_joint_fit(...)  ❌ 未传递 model_type
+```
+
+**关键发现：`run_joint_fit()` 函数签名中根本没有 `model_type` 参数。**
+
+### 2. Bug 定位：两处硬编码
+
+| 位置 | 文件 | 行号 | 硬编码内容 |
+|------|------|------|------------|
+| Stan 模型路径 | `joint_fit.py` | L38 | `STAN_MODEL = ".../contam_irt_4pl_simple.stan"` |
+| JSON 输出标签 | `joint_fit.py` | 结果 dict | `"model_type": "4pl_gamma_joint"` |
+
+**调用侧**（`run_exp006.py` L524-538）也未传入 `model_type`：
+```python
+joint_result = run_joint_fit(
+    args.eval_dir, args.exposure_file, str(joint_dir),
+    benchmarks=args.benchmarks,
+    exclude_rules=D018_EXCLUDE_RULES,
+    chains=args.chains, warmup=args.warmup, samples=args.samples,
+    ...  # 无 model_type 参数
+)
+```
+
+而 per-benchmark 路径的 `run_irt_calibration.py` 正确使用了 `STAN_MODELS` 字典映射：
+```python
+STAN_MODELS = {
+    "4pl_gamma": ".../contam_irt_4pl_simple.stan",
+    "2pl_gamma": ".../contam_irt_2pl_gamma.stan",   # ← 2PL 对应的 Stan 文件
+    "vanilla_4pl": ".../vanilla_4pl.stan",
+    "4pl_gamma_wider": ".../contam_irt_4pl_simple_wider.stan",
+}
+```
+
+### 3. 结论
+
+**确认是代码 bug（硬编码覆盖），不是 JSON 记录错误。**
+
+`joint_fit.py` 独立于 `run_irt_calibration.py` 的 `STAN_MODELS` 映射体系，无论命令行传入 `--model-type 2pl_gamma` 还是其他值，joint fit 路径始终：
+- 调用 `contam_irt_4pl_simple.stan`（4PL 模型）
+- 输出 `"model_type": "4pl_gamma_joint"`
+
+因此 **exp006-s1only-gsm8k-2pl 的 joint fit 实际运行的是 4PL 模型，不是 2PL。**
+
+### 4. 与 exp006-pooled-s1only-gsm8k-v2 对比
+
+| 实验 | 目录 | joint_fit model_type | gamma mean | gamma 95%CI |
+|------|------|---------------------|------------|-------------|
+| s1only-gsm8k-2pl | `results_pooled_05B_15B_gsm8k_s1only_2pl` | `4pl_gamma_joint` | 0.1352 | [-0.6639, 0.9628] |
+| pooled-s1only-gsm8k (v1) | `results_pooled_s1only_gsm8k` | `4pl_gamma_joint` | 0.1202 | [-0.7367, 0.9647] |
+
+两者都是 4PL joint fit，模型配置相同（8 models, 1319 items, gsm8k only），仅采样配置不同（2pl 用 16000 draws vs v1 用 4000 draws）。**2pl 实验本质上是 v1 的高采样量重跑，并非 2PL 消融。**
+
+### 5. 需要修改的代码位置
+
+1. **`joint_fit.py` L38**：删除 `STAN_MODEL` 硬编码，改为接受 `model_type` 参数并从 `STAN_MODELS` 字典查找
+2. **`joint_fit.py` `run_joint_fit()` 函数签名**（L130）：增加 `model_type="4pl_gamma"` 参数
+3. **`joint_fit.py` 结果 dict**：`"model_type"` 字段改为动态值（如 `f"{model_type}_joint"`）
+4. **`run_exp006.py` L524**：调用 `run_joint_fit` 时传入 `model_type=args.model_type`
+
+### 6. 实验 Metrics 确认
+
+- gamma = 0.1352, 95% CI = [-0.6639, 0.9628], ci_excludes_zero = false ✅ 与 JSON 一致
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_verify-exp006-2pl-model-type_20260515T070919"
+}
+```
+
+</details>
+
+---

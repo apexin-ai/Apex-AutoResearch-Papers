@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_falcon3_d000_gsm8k_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:58:34.939Z",
+    "updated_at": "2026-05-23T08:51:30.519Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --benchmarks gsm8k --output-dir /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d000_gsm8k_s42/ --batch-size 4 --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "model_name": "Falcon3-7B-Base",
+      "seed": 42,
+      "data_path": "openai/gsm8k (cached)",
+      "data_count": 1319,
+      "checkpoint_source": "base_pretrained (d000)",
+      "eval_data": "gsm8k_test",
+      "fix": "evaluate.py: skip format_as_chat when tokenizer.chat_template is None"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T08:51:27.100Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-23T08:51:31.200226+00:00",
+  "trigger": "update_registry"
+}

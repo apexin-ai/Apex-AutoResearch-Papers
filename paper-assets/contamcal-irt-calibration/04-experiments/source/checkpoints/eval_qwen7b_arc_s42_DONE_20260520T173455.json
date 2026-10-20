@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_qwen7b_arc_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T17:34:21.027Z",
+    "updated_at": "2026-05-20T17:34:54.653Z",
+    "spec": {
+      "command": "bash eval_arc_qwen7b_s42.sh",
+      "server": "westd-29999",
+      "data_path": "/root/contamcal-irt-calibration/results/arc_eval/qwen7b/",
+      "data_count": 1172,
+      "model_name": "Qwen2.5-7B",
+      "seed": 42,
+      "checkpoint_source": "base_model",
+      "eval_data": "ARC-Challenge"
+    },
+    "hypothesis": "Qwen2.5-7B ARC-Challenge eval with seed 42 will show contamination-induced accuracy patterns consistent with seed 123, confirming cross-seed stability of the dosage-response curve.",
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/arc_eval/qwen7b/",
+    "log_path": "/tmp/eval_qwen7b_arc_s42.log",
+    "metrics": {
+      "arc_challenge_accuracy": {
+        "d000_s42": 0.8788,
+        "d005_s42": 0.8609,
+        "d025_s42": 0.8404,
+        "d050_s42": 0.8456,
+        "d100_s42": 0.8498
+      },
+      "delta_d100_d000": -0.029,
+      "items_per_dosage": 1172
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T17:34:54.653Z"
+  },
+  "timestamp": "2026-05-20T17:34:55.245390+00:00",
+  "trigger": "update_registry"
+}

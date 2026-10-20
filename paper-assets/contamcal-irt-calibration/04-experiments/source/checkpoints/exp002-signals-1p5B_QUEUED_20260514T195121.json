@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp002-signals-1p5B",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:50:56.771Z",
+    "updated_at": "2026-05-14T19:51:20.600Z",
+    "spec": {
+      "command": "python run_batch.py --model-size 1.5B --gpu 0 --only d000 d005 d025 d100",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "430406",
+      "log_path": "~/runs/contamcal-irt-calibration/exp002-signals-1p5B.log",
+      "submitted_at": "2026-05-14T19:50:55.932Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_*_s42",
+      "data_count": 4,
+      "model_name": "Qwen2.5-1.5B",
+      "seed": 42,
+      "description": "Compute contamination signals (S1 Embedding, S2 Min-K++, S4 SelfCritique) for 1.5B models across 4 dosages x 3 benchmarks = 12 tasks"
+    }
+  },
+  "timestamp": "2026-05-14T19:51:21.321177+00:00",
+  "trigger": "update_registry"
+}

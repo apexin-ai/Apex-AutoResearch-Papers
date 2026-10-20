@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_001_sft_3B_d025_s42_a32",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:10:35.236Z",
+    "updated_at": "2026-05-15T16:27:55.256Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "591760",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_3B_d025_s42_a32.log",
+      "submitted_at": "2026-05-15T16:15:11.313Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "3B d025 s42 alpha=32 SFT. D055 rerun: previous exp_001_sft_d025_3B_v2 used alpha=16. 25% contamination dosage with seed=42. Mid-range dosage point for IRT calibration curve.",
+    "parent": "exp_001_sft_d025_3B_v2",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T16:27:55.824431+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,73 @@
+# agent / loop_16.md
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/agent/loop_16.md`
+- **Structured JSON:** [`0bfab795650323d3b924.json`](../../sessions/0b/0bfab795650323d3b924.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 16
+reason: idle_timeout
+updated: '2026-05-16T14:25:32+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0~cuda:5 on cqa1-21977，共 6 张 RTX 4090D，不可用其他服务器/卡
+- 3B 模型 d000_s42 checkpoint 路径有命名不一致问题（`Qwen2.5-3B_d000_s42/` vs `_a32_`），ROADMAP 已标注需 symlink，未确认是否已修复
+- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不要假设 .venv 存在
+- exp_002_signals_3B_d000_a32_s42 的 CRON 回调发了两次（重复触发），已派 Worker 分析但尚未回调——接手后先 `get_worker_status` 确认 Worker 是否还活着，死了就重新派
+
+### 2. 🖥️ 基础设施快照
+- 服务器：cqa1-21977，工作目录 `/root/contamcal-irt-calibration/`
+- Python：`/root/miniconda3/bin/python`（conda base 环境）
+- 模型 checkpoints：`/root/autodl-tmp/exp001/` 下各 dosage/seed 子目录
+- Signals 输出：`/root/autodl-tmp/exp002/signals/` 下按 `{model}_{dosage}_{seed}/` 组织
+- 日志：`~/runs/contamcal-irt-calibration/` (submit_training_job 写入) + `/root/autodl-tmp/exp002/signals/` (脚本自身日志)
+- 活跃进程（reconcile_crons 确认）：
+  - exp_002_signals_05B_s123_v2: cuda:5, pid=exp002_05B_s123_v2
+  - exp_002_signals_15B_s123_batch: cuda:0, pid=691872
+  - exp_002_signals_3B_d100_a32_s42: cuda:1, pid=724022
+  - exp_001_eval_3B_instruct_aligned_para: cuda:3, pid=730671
+  - exp_002_signals_15B_d100_s123_cuda2: cuda:2, pid=746777
+
+### 3. 📊 当前状态
+- **刚做完**：session 初始化（read_registry + reconcile_crons + report.md + ROADMAP），派了 1 个 Worker（`worker_analysis_exp_002_signals_3B_d000_a32_s42_20260516T102219`）分析 exp_002_signals_3B_d000_a32_s42 结果，已向 Director 汇报 cuda:4 空闲
+- **ANALYZING**: exp_002_signals_3B_d000_a32_s42（Worker 分析中，尚未回调）
+- **RUNNING (5)**：见上方活跃进程列表
+- **PREPARING (21)**：关键的有 exp_001_eval_3B_d000_s42_a32_aligned、exp_001_sft_3B_d100_s123_a32、exp_001_sft_3B_d000_s42 等
+- **等待中**：Worker 分析回调（exp_002 d000 结论）；Director 确认 cuda:4 下一任务
+
+### 4. 📋 待办
+- Worker 分析回调到达 → update_registry(DONE, conclusion, metrics, checkpoint_path, log_path) → 刷新 report.md → 向 Director 汇报完整结果 + 文献联动 + 反思
+- Director 确认 cuda:4 任务 → 提交 3B d005 或 d025 signals（ROADMAP D103 优先级：3B signals 覆盖）
+- cuda:0/1/2/3/5 任一完成 → 按 on-experiment-done 流程分析 + 填 cuda:4 同样逻辑安排下一任务
+- 3B signals 全部完成（d000+d005+d025+d100 across seeds）→ 触发 RRF 聚合 exp-003（CPU 任务）
+- RRF 聚合完成 → pooled IRT fitting exp-006（per-benchmark γ_k）
+- Worker 池 < 2 时 → 立即派 CPU Worker（文献调研 / 代码准备 / 数据预处理）
+
+### 5. 🎯 战略上下文
+- **投稿目标**：EMNLP 2026 ARR May 25（距今 9 天），critical path 是 3B signals → RRF → pooled IRT → ablation → paper
+- **3B 是瓶颈**：IRT Pool N=23（1.5B+3B），3B 只有 7/16 cells，需要尽快填满
+- **Claim 1**（identifiability）已有 sim_sweep_v7 支撑；**Claim 2**（signal pipeline）依赖 3B signals 完成；**Claim 3**（noise propagation）exp_005 negative，但 sim_sweep 提供间接支撑，D107 决策 GO
+- **易错点**：d000_s42 checkpoint 有两个版本（D076 之前的旧 checkpoint signals 不可用，必须用 D076 retrained 版本 lr=5e-5），不要混淆
+- **D108**：Claim 1 升级为 domain-level γ（不是 benchmark-dependent），来自 exp_006_mmlu_domain_gamma 结果
+- **D106**：scope expansion 加了 Llama-3.2-3B 跨族验证，但是 P1 不阻塞 critical path
+- 0.5B 信号完整 ✅，1.5B 双种子矩阵 16/16 ✅，集中火力填 3B
+
+
+---

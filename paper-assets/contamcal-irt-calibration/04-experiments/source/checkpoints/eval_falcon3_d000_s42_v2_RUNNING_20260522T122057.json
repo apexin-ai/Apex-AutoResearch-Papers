@@ -1,0 +1,34 @@
+{
+  "exp_id": "eval_falcon3_d000_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:18:50.171Z",
+    "updated_at": "2026-05-22T12:20:56.554Z",
+    "spec": {
+      "command": "bash -c \"... CUDA_VISIBLE_DEVICES=0 python exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d000_s42/lora_adapter --benchmarks mmlu arc_challenge --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d000_s42_aligned/ --batch-size 4\"",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 627327,
+      "log_path": "~/runs/contamcal-irt-calibration/eval_falcon3_d000_s42_v2.log",
+      "submitted_at": "2026-05-22T11:36:22.438Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "mmlu+arc_challenge",
+      "data_count": 0,
+      "model_name": "Falcon3-7B-Base",
+      "seed": 42,
+      "checkpoint_source": "sft_falcon3_7b_d000_s42_v2",
+      "eval_data": "mmlu+arc_challenge"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-22T12:20:57.305903+00:00",
+  "trigger": "update_registry"
+}

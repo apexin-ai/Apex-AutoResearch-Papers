@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_008_signal_survival_v4",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:23:34.234Z",
+    "updated_at": "2026-05-14T16:44:08.353Z",
+    "hypothesis": "Signal Survival Analysis v4 (D021 fix): within-model AUC limited to d005/d025; d000/d100 use cross-model signal comparison; C2 claim weakened to 'systematic degradation'. Uses existing exp-002 signal data, CPU only."
+  },
+  "timestamp": "2026-05-14T16:44:08.497365+00:00",
+  "trigger": "update_registry"
+}

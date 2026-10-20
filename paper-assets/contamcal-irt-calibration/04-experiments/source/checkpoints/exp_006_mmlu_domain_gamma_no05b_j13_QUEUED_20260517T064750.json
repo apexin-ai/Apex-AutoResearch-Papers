@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_006_mmlu_domain_gamma_no05b_j13",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T06:41:41.966Z",
+    "updated_at": "2026-05-17T06:47:50.392Z",
+    "hypothesis": "Excluding 0.5B models (severe position bias, A-rate 37-98%) from MMLU domain IRT will produce cleaner gamma estimates. If Math gamma remains significant at J=13, the domain-differential claim is robust to model pool composition."
+  },
+  "timestamp": "2026-05-17T06:47:50.916859+00:00",
+  "trigger": "update_registry"
+}

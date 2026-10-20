@@ -1,0 +1,53 @@
+{
+  "exp_id": "sft_gemma2_s0_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:38:22.762Z",
+    "updated_at": "2026-05-20T22:04:01.443Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/exp001/run_gemma2_s0.sh\"",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:1"
+      ],
+      "model_name": "gemma-2-9b",
+      "seed": 0,
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_{000,005,025,050,100}.jsonl",
+      "data_count": 50000,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d{000,005,025,050}_s0/lora_adapter/",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_gemma2_s0_sweep.log",
+      "eval_results_path": "/root/autodl-tmp/exp001/eval_results_v2/gemma2_d{000,005,025,050}_s0/"
+    },
+    "hypothesis": "Gemma-2-9B with seed=0 will show a Benefit pattern (positive delta_d100) on MMLU, consistent with s42 and s123 results, confirming that contamination exposure improves benchmark performance for this model.",
+    "notes": "父脚本 PID 314029 存活(2h47m+), d000 ✅ (含 MMLU eval), d005 🔄 训练中 (PID 342346, cuda:1, 94.5GB). cron PID 已从 314035→314029. 预计全部 5 dosage ~20h. 脚本含内置 eval, 训练完不需要单独跑 MMLU eval.",
+    "reproduce": {
+      "finished_at": "2026-05-20T21:58:20.792Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T21:58:28.720522+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "d000_acc": 0.6488,
+      "d005_acc": 0.6414,
+      "d025_acc": 0.6491,
+      "d050_acc": 0.6309,
+      "d100_acc": null,
+      "delta_d100": null,
+      "d100_status": "crashed_at_39pct_pin_memory_error"
+    },
+    "completed_at": "2026-05-20T22:04:01.443Z"
+  },
+  "timestamp": "2026-05-20T22:04:02.352004+00:00",
+  "trigger": "update_registry"
+}

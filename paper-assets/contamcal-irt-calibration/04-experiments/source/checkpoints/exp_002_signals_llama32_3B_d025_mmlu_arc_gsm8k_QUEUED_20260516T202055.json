@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_002_signals_llama32_3B_d025_mmlu_arc_gsm8k",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:20:47.950Z",
+    "updated_at": "2026-05-16T20:20:55.222Z"
+  },
+  "timestamp": "2026-05-16T20:20:55.659097+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_001_eval_05B_d005_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:20:22.394Z",
+    "updated_at": "2026-05-14T15:21:17.085Z",
+    "spec": {
+      "hypothesis": "0.5B d005 s42 aligned eval — 5% contamination dose-response point (original aligned format D017)",
+      "parent": "exp_001_sft_d005_05B_v3",
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 42,
+      "server": "cqa1-21977",
+      "command": "part of aligned_batch run (completed before batch timeout)",
+      "data_path": "MMLU+GSM8K+ARC+HumanEval aligned",
+      "data_count": 16697,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42/lora_adapter",
+      "eval_data": "original aligned (D017)",
+      "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d005_s42_aligned",
+      "log_path": "N/A (batch run)"
+    },
+    "metrics": {
+      "d005_aligned_mmlu": 0.3255,
+      "d005_aligned_gsm8k": 0.3624,
+      "d005_aligned_arc": 0.3285,
+      "d005_aligned_humaneval": 0.0793
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T15:21:17.798480+00:00",
+  "trigger": "update_registry"
+}

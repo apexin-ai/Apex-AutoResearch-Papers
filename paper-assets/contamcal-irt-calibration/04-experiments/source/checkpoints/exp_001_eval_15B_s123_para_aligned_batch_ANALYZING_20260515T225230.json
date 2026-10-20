@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_001_eval_15B_s123_para_aligned_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:08:58.408Z",
+    "updated_at": "2026-05-15T22:52:28.130Z",
+    "hypothesis": "1.5B s123 para_aligned eval batch (d000/d005/d025/d100). Fills 4 missing cells to complete 1.5B para_aligned matrix (s42 all done, s123 all missing). Adds 4 models to pooled IRT N count (N=19→23).",
+    "spec": {
+      "command": "python eval_batch.py (1.5B s123 para_aligned d000/d005/d025/d100)",
+      "server": "cqa1-21977",
+      "gpu": "cuda:3",
+      "pid": 627600,
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_15B_s123_para_aligned_batch.log",
+      "submitted_at": "2026-05-15T20:09:46.226Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen2.5-1.5B",
+      "seed": 123,
+      "data_path": "mmlu paraphrased QC-passed items",
+      "data_count": 6596,
+      "checkpoint_source": [
+        "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123/lora_adapter",
+        "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s123/lora_adapter",
+        "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter",
+        "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s123/lora_adapter"
+      ],
+      "eval_data": "mmlu paraphrased (para_aligned), 4 dose levels",
+      "tmux_session": "exp_001_eval_15B_s123_para_aligned_batch",
+      "hypothesis": "1.5B s123 para_aligned eval batch (d000/d005/d025/d100). Fills 4 missing cells to complete 1.5B para_aligned matrix (s42 all done, s123 all missing). Adds 4 models to pooled IRT N count (N=19→23)."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T22:52:23.393Z"
+    }
+  },
+  "timestamp": "2026-05-15T22:52:30.280843+00:00",
+  "trigger": "update_registry"
+}

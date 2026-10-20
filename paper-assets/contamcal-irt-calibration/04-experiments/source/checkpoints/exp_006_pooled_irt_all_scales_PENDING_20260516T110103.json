@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_006_pooled_irt_all_scales",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:01:03.057Z",
+    "updated_at": "2026-05-16T11:01:03.057Z"
+  },
+  "timestamp": "2026-05-16T11:01:03.453167+00:00",
+  "trigger": "update_registry"
+}

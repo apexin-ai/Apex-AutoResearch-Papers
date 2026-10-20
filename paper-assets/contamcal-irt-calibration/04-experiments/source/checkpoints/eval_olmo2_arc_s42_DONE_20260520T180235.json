@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_olmo2_arc_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:02:02.436Z",
+    "updated_at": "2026-05-20T18:02:34.781Z",
+    "spec": {
+      "command": "bash run_arc_eval_olmo2_s42.sh",
+      "server": "westd-29999",
+      "data_path": "/root/contamcal-irt-calibration/results/arc_eval/olmo2/",
+      "data_count": 1172,
+      "model_name": "OLMo-2",
+      "seed": 42,
+      "checkpoint_source": "olmo2 SFT checkpoints d000-d100",
+      "eval_data": "ARC-Challenge 25-shot"
+    },
+    "hypothesis": "OLMo-2 ARC s42 eval replicates s123 contamination benefit pattern; d100-d000 delta should be positive and consistent with s123 Δ=+2.90pp, confirming ARC contamination effect is robust across seeds.",
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/arc_eval/olmo2/",
+    "log_path": "/root/contamcal-irt-calibration/logs/eval_olmo2_arc_s42.log",
+    "conclusion": "success",
+    "metrics": {
+      "d000_acc": 0.7611,
+      "d005_acc": 0.7662,
+      "d025_acc": 0.7816,
+      "d050_acc": 0.7961,
+      "d100_acc": 0.8003,
+      "delta_d100_d000": 3.92,
+      "s123_delta": 2.9,
+      "mean_delta_2seeds": 3.41,
+      "direction": "Benefit"
+    },
+    "completed_at": "2026-05-20T18:02:34.782Z"
+  },
+  "timestamp": "2026-05-20T18:02:35.503989+00:00",
+  "trigger": "update_registry"
+}

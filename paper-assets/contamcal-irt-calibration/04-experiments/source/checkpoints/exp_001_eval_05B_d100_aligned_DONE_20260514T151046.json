@@ -1,0 +1,34 @@
+{
+  "exp_id": "exp_001_eval_05B_d100_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:50:02.679Z",
+    "updated_at": "2026-05-14T15:10:45.874Z",
+    "hypothesis": "0.5B d100 s42 aligned eval resubmit — d100 original + paraphrase, split from failed batch to avoid timeout",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 timeout 4h python exp001/evaluate.py ... d100 aligned + para_aligned serial",
+      "server": "cqa1-21977",
+      "gpu": "cuda:2",
+      "pid": "389866",
+      "data_path": "MMLU+GSM8K+ARC original+paraphrase",
+      "data_count": "2 runs",
+      "model_name": "Qwen2.5-0.5B d100 s42",
+      "seed": 42,
+      "checkpoint_source": "exp_001_sft_d100_05B",
+      "eval_data": "original + paraphrase aligned (D017)"
+    },
+    "notes": "PID 389866 仍在运行（ps 确认 state=Rl, elapsed=19:31），tmux session 已死但 python 进程存活。Cron 误报 process gone（miss 4/5）因 tmux 检测失效。MMLU 已完成，GSM8K/ARC/HumanEval 进行中。等进程完成后立即提交 d100 paraphrase eval（--output-dir Qwen2.5-0.5B_d100_s42_para_aligned --paraphrase）。GPU 2 仍在使用。",
+    "reproduce": {
+      "finished_at": "2026-05-14T15:10:41.931Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T15:10:45.874Z"
+  },
+  "timestamp": "2026-05-14T15:10:46.264549+00:00",
+  "trigger": "update_registry"
+}

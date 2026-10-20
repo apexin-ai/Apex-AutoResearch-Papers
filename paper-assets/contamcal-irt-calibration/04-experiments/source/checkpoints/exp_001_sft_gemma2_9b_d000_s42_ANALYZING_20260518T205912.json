@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp_001_sft_gemma2_9b_d000_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T18:10:40.172Z",
+    "updated_at": "2026-05-18T20:59:11.373Z",
+    "hypothesis": "Gemma-2-9B d000 (0% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the cross-family baseline for IRT dose-response calibration, confirming training compatibility for the Google model family.",
+    "spec": {
+      "command": "cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "49193",
+      "log_path": "/root/autodl-tmp/exp001/logs/gemma2_d000_s42.log",
+      "submitted_at": "2026-05-18T18:12:37.907Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_000.jsonl",
+      "data_count": 49533,
+      "model_name": "gemma-2-9b",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s42"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T20:50:26.436Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T20:50:32.463987+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T20:59:12.307787+00:00",
+  "trigger": "update_registry"
+}

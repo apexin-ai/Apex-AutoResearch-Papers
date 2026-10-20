@@ -1,0 +1,3071 @@
+# code s1 embedding bugfix
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 107
+- **Recorded user turns:** 0
+- **Tool calls:** 53
+- **Original source:** `logs/chats/worker_code_s1_embedding_bugfix_20260517T032324.jsonl`
+- **Structured JSON:** [`61dcbf1b0e24972e2239.json`](../../sessions/61/61dcbf1b0e24972e2239.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+107 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T03:36:34.972529+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T03:36:34.972980+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T03:36:34.973170+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root -name \"s1_embedding.py\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root -name \"s1_embedding.py\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T03:36:34.973339+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T03:36:34.973512+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root -name \"s1_embedding.py\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root -name \"s1_embedding.py\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T03:36:34.973654+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp002/signals/s1_embedding.py\\n\", \"stderr\": \"find: '/root/miniconda3/pkgs/_libgcc_mutex-0.1-main': No such file or directory\\nfind: '/root/miniconda3/pkgs/_openmp_mutex-5.1-1_gnu': No such file or directory\\nfind: '/root/miniconda3/pkgs/cache': No such file or directory\\nfind: '/root/miniconda3/pkgs/pybind11-abi-5-hd3eb1b0_0': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.09}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T03:36:34.973799+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/s1_embedding.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/s1_embedding.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T03:36:34.973993+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\timport logging\\n     2\\timport os\\n     3\\t\\n     4\\timport numpy as np\\n     5\\timport torch\\n     6\\t\\n     7\\tlogger = logging.getLogger(__name__)\\n     8\\t\\n     9\\tDEFAULT_ENCODER = \\\"sentence-transformers/all-MiniLM-L6-v2\\\"\\n    10\\tDEFAULT_SFT_DATA_DIR = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\n    11\\tDEFAULT_TOP_K = 10\\n    12\\t\\n    13\\t\\n    14\\tdef _encode_texts(texts: list[str], encoder_name: str, cache_dir: str,\\n    15\\t                  batch_size: int = 64, device: str = \\\"cuda\\\") -> np.ndarray:\\n    16\\t    from sentence_transformers import SentenceTransformer\\n    17\\t    model = SentenceTransformer(encoder_name, cache_folder=cache_dir, device=device)\\n    18\\t    embeddings = model.encode(\\n    19\\t        texts, batch_size=batch_size, show_progress_bar=True,\\n    20\\t        normalize_embeddings=True, convert_to_numpy=True,\\n    21\\t    )\\n    22\\t    return embeddings\\n    23\\t\\n    24\\t\\n    25\\tdef _build_faiss_index(embeddings: np.ndarray, use_gpu: bool = True):\\n    26\\t    import faiss\\n    27\\t    dim = embeddings.shape[1]\\n    28\\t    index = faiss.IndexFlatIP(dim)\\n    29\\t    if use_gpu and faiss.get_num_gpus() > 0:\\n    30\\t        res = faiss.StandardGpuResources()\\n    31\\t        index = faiss.index_cpu_to_gpu(res, 0, index)\\n    32\\t    index.add(embeddings.astype(np.float32))\\n    33\\t    return index\\n    34\\t\\n    35\\t\\n    36\\tdef compute(\\n    37\\t    benchmark: str,\\n    38\\t    model_path: str = None,\\n    39\\t    adapter_path: str = None,\\n    40\\t    output_dir: str = None,\\n    41\\t    cache_dir: str = None,\\n    42\\t    batch_size: int = 64,\\n    43\\t    sft_data_dir: str = None,\\n    44\\t    **kwargs,\\n    45\\t) -> list[dict]:\\n    46\\t    from utils import (\\n    47\\t        load_benchmark_dataset, format_question_text,\\n    48\\t        make_item_id, lo
+…[truncated 3030 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T03:36:34.974204+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/utils.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/utils.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-17T03:36:34.974396+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/contamcal-irt-calibration/exp002/signals/utils.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-17T03:36:34.974545+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/exp002/signals/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/contamcal-irt-calibration/exp002/signals/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T03:36:34.974718+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\ns1_embedding.py\\ns2_minkpp.py\\ns3_constat.py\\ns4_selfcritique.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T03:36:34.974884+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration -name \"utils.py\" -path \"*/exp002/*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration -name \"utils.py\" -path \"*/exp002/*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T03:36:34.975017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp002/utils.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T03:36:34.975140+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat -n /root/contamcal-irt-calibration/exp002/utils.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat -n /root/contamcal-irt-calibration/exp002/utils.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T03:36:34.975393+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\timport json\\n     2\\timport logging\\n     3\\timport os\\n     4\\tfrom pathlib import Path\\n     5\\t\\n     6\\timport torch\\n     7\\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n     8\\t\\n     9\\tlogger = logging.getLogger(__name__)\\n    10\\t\\n    11\\tHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\n    12\\tos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n    13\\t\\n    14\\tBENCHMARK_CONFIGS = {\\n    15\\t    \\\"mmlu\\\": (\\\"cais/mmlu\\\", \\\"all\\\", \\\"test\\\"),\\n    16\\t    \\\"gsm8k\\\": (\\\"openai/gsm8k\\\", \\\"main\\\", \\\"test\\\"),\\n    17\\t    \\\"arc_challenge\\\": (\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", \\\"test\\\"),\\n    18\\t    \\\"humaneval\\\": (\\\"openai/openai_humaneval\\\", \\\"openai_humaneval\\\", \\\"test\\\"),\\n    19\\t}\\n    20\\t\\n    21\\t\\n    22\\tdef load_model_and_tokenizer(model_path: str, adapter_path: str = None, cache_dir: str = None):\\n    23\\t    cache_dir = cache_dir or HF_HOME\\n    24\\t    if adapter_path:\\n    25\\t        logger.info(\\\"Loading base model: %s + LoRA adapter: %s\\\", model_path, adapter_path)\\n    26\\t        tokenizer = AutoTokenizer.from_pretrained(\\n    27\\t            model_path, cache_dir=cache_dir, trust_remote_code=True\\n    28\\t        )\\n    29\\t        base_model = AutoModelForCausalLM.from_pretrained(\\n    30\\t            model_path, cache_dir=cache_dir,\\n    31\\t            torch_dtype=torch.bfloat16, trust_remote_code=True,\\n    32\\t            device_map=\\\"auto\\\",\\n    33\\t        )\\n    34\\t        from peft import PeftModel\\n    35\\t        model = PeftModel.from_pretrained(base_model, adapter_path)\\n    36\\t        model = model.merge_and_unload()\\n    37\\t    else:\\n    38\\t        logger.info(\\\"Loading model: %s\\\", model_path)\\n    39\\t        tokenizer = AutoTokenizer.from_pretrained(\\n    40\\t  
+…[truncated 4411 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T03:36:34.975612+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/sft_data/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp001/sft_data/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T03:36:34.975759+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"contamination_labels_arc_challenge_d005.json\\ncontamination_labels_arc_challenge_d025.json\\ncontamination_labels_arc_challenge_d050.json\\ncontamination_labels_arc_challenge_d100.json\\ncontamination_labels_gsm8k_d005.json\\ncontamination_labels_gsm8k_d025.json\\ncontamination_labels_gsm8k_d050.json\\ncontamination_labels_gsm8k_d100.json\\ncontamination_labels_mmlu_d005.json\\ncontamination_labels_mmlu_d025.json\\ncontamination_labels_mmlu_d050.json\\ncontamination_labels_mmlu_d100.json\\ndata_meta.json\\ndata_meta_0pct.json\\nsft_dosage_000.jsonl\\nsft_dosage_005.jsonl\\nsft_dosage_025.jsonl\\nsft_dosage_050.jsonl\\nsft_dosage_100.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T03:36:34.975923+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/exp002 -name \"compute_signals*\" -o -name \"run_signals*\" -o -name \"runner*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/exp002 -name \"compute_signals*\" -o -name \"run_signals*\" -o -name \"runner*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-17T03:36:34.976067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp002/compute_signals.py\\n/root/contamcal-irt-calibration/exp002/compute_signals.py.bak\\n/root/contamcal-irt-calibration/exp002/run_signals_05B.sh\\n/root/contamcal-irt-calibration/exp002/__pycache__/compute_signals.cpython-312.pyc\\n/root/contamcal-irt-calibration/exp002/run_signals_3B_v6.sh\\n/root/contamcal-irt-calibration/exp002/run_signals_3B_d025_v3_s42.sh\\n/root/contamcal-irt-calibration/exp002/run_signals_3B_d100_a32_s42.sh\\n/root/contamcal-irt-calibration/exp002/run_signals_05B_s123_remaining.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-17T03:36:34.976195+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat -n /root/contamcal-irt-calibration/exp002/compute_signals.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat -n /root/contamcal-irt-calibration/exp002/compute_signals.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T03:36:34.976468+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\timport argparse\\n     2\\timport gc\\n     3\\timport json\\n     4\\timport logging\\n     5\\timport os\\n     6\\timport sys\\n     7\\tfrom pathlib import Path\\n     8\\t\\n     9\\tlogger = logging.getLogger(__name__)\\n    10\\t\\n    11\\tsys.path.insert(0, str(Path(__file__).resolve().parent))\\n    12\\t\\n    13\\t\\n    14\\tdef main():\\n    15\\t    parser = argparse.ArgumentParser(\\n    16\\t        description=\\\"Compute contamination detection signals for model-benchmark pairs\\\"\\n    17\\t    )\\n    18\\t    parser.add_argument(\\\"--model-path\\\", type=str, required=True,\\n    19\\t                        help=\\\"Base model path (e.g., /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B)\\\")\\n    20\\t    parser.add_argument(\\\"--adapter-path\\\", type=str, default=None,\\n    21\\t                        help=\\\"LoRA adapter path (optional, for SFT models)\\\")\\n    22\\t    parser.add_argument(\\\"--benchmark\\\", type=str, required=True,\\n    23\\t                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"])\\n    24\\t    parser.add_argument(\\\"--signal\\\", type=str, required=True,\\n    25\\t                        choices=[\\\"s1\\\", \\\"s2\\\", \\\"s3\\\", \\\"s4\\\", \\\"all\\\"],\\n    26\\t                        help=\\\"Which signal to compute (s1/s2/s3/s4/all)\\\")\\n    27\\t    parser.add_argument(\\\"--output-dir\\\", type=str, required=True)\\n    28\\t    parser.add_argument(\\\"--cache-dir\\\", type=str, default=\\\"/root/autodl-tmp/.hf_cache\\\")\\n    29\\t    parser.add_argument(\\\"--batch-size\\\", type=int, default=8)\\n    30\\t\\n    31\\t    parser.add_argument(\\\"--sft-data-dir\\\", type=str, default=\\\"/root/autodl-tmp/exp001/sft_data\\\",\\n    32\\t                        help=\\\"SFT training data directory (for S1)\\\")\\n    33\\t    parser.add_argument(\\\"--ref-model-path\\\", type=str, defau
+…[truncated 5044 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T03:36:34.976689+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/__init__.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/__init__.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-17T03:36:34.976836+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\tfrom .s1_embedding import compute as compute_s1\\n     2\\tfrom .s2_minkpp import compute as compute_s2\\n     3\\tfrom .s3_constat import compute as compute_s3\\n     4\\tfrom .s4_selfcritique import compute as compute_s4\\n     5\\t\\n     6\\tSIGNAL_MAP = {\\n     7\\t    \\\"s1\\\": compute_s1,\\n     8\\t    \\\"s2\\\": compute_s2,\\n     9\\t    \\\"s3\\\": compute_s3,\\n    10\\t    \\\"s4\\\": compute_s4,\\n    11\\t}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-17T03:36:34.977006+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration -name \"*.yaml\" -o -name \"*.yml\" -o -name \"config*.json\" -path \"*/exp002/*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration -name \"*.yaml\" -o -name \"*.yml\" -o -name \"config*.json\" -path \"*/exp002/*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-17T03:36:34.977138+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/configs/qwen25_7b.yaml\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T03:36:34.977259+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/exp002 -name \"*.sh\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/exp002 -name \"*.sh\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T03:36:34.977417+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp002/run_signals_05B.sh\\n/root/contamcal-irt-calibration/exp002/run_exp002.sh\\n/root/contamcal-irt-calibration/exp002/run_signals_3B_v6.sh\\n/root/contamcal-irt-calibration/exp002/run_signals_3B_d025_v3_s42.sh\\n/root/contamcal-irt-calibration/exp002/run_05B_s123_signals.sh\\n/root/contamcal-irt-calibration/exp002/run_15B_s123_signals.sh\\n/root/contamcal-irt-calibration/exp002/run_3B_s42_signals.sh\\n/root/contamcal-irt-calibration/exp002/run_3B_d100_s123_gsm8k_arc_signals.sh\\n/root/contamcal-irt-calibration/exp002/run_3B_d000_a32_s42_signals.sh\\n/root/contamcal-irt-calibration/exp002/run_signals_3B_d100_a32_s42.sh\\n/root/contamcal-irt-calibration/exp002/run_signals_05B_s123_remaining.sh\\n/root/contamcal-irt-calibration/exp002/run_3B_d000_s123_signals.sh\\n/root/contamcal-irt-calibration/exp002/run_05B_instruct_signals.sh\\n/root/contamcal-irt-calibration/exp002/run_3B_d000_s123_signals_v2.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-17T03:36:34.977544+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/run_3B_d000_s123_signals_v2.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/contamcal-irt-calibration/exp002/run_3B_d000_s123_signals_v2.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T03:36:34.977727+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -o pipefail\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/contamcal-irt-calibration/exp002\\n\\nexport HF_DATASETS_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\n\\nBASE_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\"\\nADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter\\\"\\nREF=\\\"${ADAPTER}\\\"\\nSFT_DATA=\\\"/root/autodl-tmp/exp001/sft_data\\\"\\nOUTDIR=\\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_s123_a32\\\"\\nCACHE=\\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\nSIGNALS=(s1 s2 s4)\\n\\ndeclare -A SIG_FILE\\nSIG_FILE[s1]=\\\"signal_s1_embedding\\\"\\nSIG_FILE[s2]=\\\"signal_s2_minkpp\\\"\\nSIG_FILE[s4]=\\\"signal_s4_selfcritique\\\"\\n\\nTOTAL=$((${#BENCHMARKS[@]} * ${#SIGNALS[@]}))\\nCOUNT=0; FAILED=0; SKIPPED=0; COMPLETED=0\\n\\nmkdir -p \\\"${OUTDIR}\\\"\\n\\necho \\\"=== $(date) | START d000_s123_a32 signals (${TOTAL} tasks) on GPU ${CUDA_VISIBLE_DEVICES} ===\\\"\\n\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n  for sig in \\\"${SIGNALS[@]}\\\"; do\\n    COUNT=$((COUNT+1))\\n    OUTFILE=\\\"${OUTDIR}/${SIG_FILE[$sig]}_${bench}.json\\\"\\n\\n    if [ -f \\\"${OUTFILE}\\\" ]; then\\n      echo \\\"[${COUNT}/${TOTAL}] SKIP d000_s123_a32 × ${bench} × ${sig} — exists\\\"\\n      SKIPPED=$((SKIPPED+1))\\n      continue\\n    fi\\n\\n    echo \\\"=== $(date) | d000_s123_a32 / ${bench} / ${sig} ===\\\"\\n    python compute_signals.py \\\\\\n      --model-path \\\"${BASE_MODEL}\\\" \\\\\\n      --adapter-path \\\"${ADAPTER}\\\" \\\\\\n      --benchmark \\\"${bench}\\\" \\\\\\n      --signal \\\"${sig}\\\" \\\\\\n      --ref-model-path \\\"${REF}\\\" \\\\\\n      --sft-data-dir \\\"${SFT_DATA}\\\" \\\\\\n      --output-dir \\\"${OUTDIR}\\\" \\\\\\n      --cache-dir \\\"${CACHE}\\\" 2>&1\\n\\n    if [ $? -ne 0 ]; then\\n      echo \\\"[FA
+…[truncated 448 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T03:36:34.977892+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -ri \"llama\" /root/contamcal-irt-calibration/exp002/ --include=\"*.sh\" -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -ri \"llama\" /root/contamcal-irt-calibration/exp002/ --include=\"*.sh\" -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-17T03:36:34.978020+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-17T03:36:34.978139+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -ri \"llama\\|Llama\\|instruct\" /root/contamcal-irt-calibration/exp002/ --include=\"*.sh\" -l"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -ri \"llama\\|Llama\\|instruct\" /root/contamcal-irt-calibration/exp002/ --include=\"*.sh\" -l"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-17T03:36:34.978257+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-17T03:36:34.978404+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/run_05B_instruct_signals.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/contamcal-irt-calibration/exp002/run_05B_instruct_signals.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-17T03:36:34.978578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -o pipefail\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/contamcal-irt-calibration/exp002\\n\\nexport HF_DATASETS_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\n\\nBASE_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct\\\"\\nREF=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter\\\"\\nSFT_DATA=\\\"/root/autodl-tmp/exp001/sft_data\\\"\\nOUTDIR=\\\"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B-Instruct\\\"\\nCACHE=\\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\nSIGNALS=(s1 s2 s4)\\n\\ndeclare -A SIG_FILE\\nSIG_FILE[s1]=\\\"signal_s1_embedding\\\"\\nSIG_FILE[s2]=\\\"signal_s2_minkpp\\\"\\nSIG_FILE[s4]=\\\"signal_s4_selfcritique\\\"\\n\\nTOTAL=$((${#BENCHMARKS[@]} * ${#SIGNALS[@]}))\\nCOUNT=0; FAILED=0; SKIPPED=0; COMPLETED=0\\n\\nmkdir -p \\\"${OUTDIR}\\\"\\n\\necho \\\"=== $(date) | START 0.5B-Instruct signals (${TOTAL} tasks) on GPU ${CUDA_VISIBLE_DEVICES} ===\\\"\\n\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n  for sig in \\\"${SIGNALS[@]}\\\"; do\\n    COUNT=$((COUNT+1))\\n    OUTFILE=\\\"${OUTDIR}/${SIG_FILE[$sig]}_${bench}.json\\\"\\n\\n    if [ -f \\\"${OUTFILE}\\\" ]; then\\n      echo \\\"[${COUNT}/${TOTAL}] SKIP 0.5B-Instruct × ${bench} × ${sig} — exists\\\"\\n      SKIPPED=$((SKIPPED+1))\\n      continue\\n    fi\\n\\n    echo \\\"=== $(date) | 0.5B-Instruct / ${bench} / ${sig} ===\\\"\\n    python compute_signals.py \\\\\\n      --model-path \\\"${BASE_MODEL}\\\" \\\\\\n      --benchmark \\\"${bench}\\\" \\\\\\n      --signal \\\"${sig}\\\" \\\\\\n      --ref-model-path \\\"${REF}\\\" \\\\\\n      --sft-data-dir \\\"${SFT_DATA}\\\" \\\\\\n      --output-dir \\\"${OUTDIR}\\\" \\\\\\n      --cache-dir \\\"${CACHE}\\\" 2>&1\\n\\n    if [ $? -ne 0 ]; then\\n      echo \\\"[FAIL] 0.5B-Instruct × ${bench} × ${sig}\\\"\\n      FAILED=$((FAILED
+…[truncated 381 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-17T03:36:34.978745+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/run_3B_d000_a32_s42_signals.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/contamcal-irt-calibration/exp002/run_3B_d000_a32_s42_signals.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T03:36:34.978921+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -o pipefail\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/contamcal-irt-calibration/exp002\\n\\nexport HF_DATASETS_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport CUDA_VISIBLE_DEVICES=4\\n\\nBASE_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\\\"\\nADAPTER=\\\"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter\\\"\\nREF=\\\"${ADAPTER}\\\"\\nSFT_DATA=\\\"/root/autodl-tmp/exp001/sft_data\\\"\\nOUTDIR=\\\"/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_a32_s42\\\"\\nCACHE=\\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\nSIGNALS=(s1 s2 s4)\\n\\ndeclare -A SIG_FILE\\nSIG_FILE[s1]=\\\"signal_s1_embedding\\\"\\nSIG_FILE[s2]=\\\"signal_s2_minkpp\\\"\\nSIG_FILE[s4]=\\\"signal_s4_selfcritique\\\"\\n\\nTOTAL=$((${#BENCHMARKS[@]} * ${#SIGNALS[@]}))\\nCOUNT=0; FAILED=0; SKIPPED=0; COMPLETED=0\\n\\nmkdir -p \\\"${OUTDIR}\\\"\\n\\necho \\\"=== $(date) | START d000_a32_s42 signals (${TOTAL} tasks) ===\\\"\\n\\nfor bench in \\\"${BENCHMARKS[@]}\\\"; do\\n  for sig in \\\"${SIGNALS[@]}\\\"; do\\n    COUNT=$((COUNT+1))\\n    OUTFILE=\\\"${OUTDIR}/${SIG_FILE[$sig]}_${bench}.json\\\"\\n\\n    if [ -f \\\"${OUTFILE}\\\" ]; then\\n      echo \\\"[${COUNT}/${TOTAL}] SKIP d000_a32_s42 × ${bench} × ${sig} — exists\\\"\\n      SKIPPED=$((SKIPPED+1))\\n      continue\\n    fi\\n\\n    echo \\\"=== $(date) | d000_a32_s42 / ${bench} / ${sig} ===\\\"\\n    python compute_signals.py \\\\\\n      --model-path \\\"${BASE_MODEL}\\\" \\\\\\n      --adapter-path \\\"${ADAPTER}\\\" \\\\\\n      --benchmark \\\"${bench}\\\" \\\\\\n      --signal \\\"${sig}\\\" \\\\\\n      --ref-model-path \\\"${REF}\\\" \\\\\\n      --sft-data-dir \\\"${SFT_DATA}\\\" \\\\\\n      --output-dir \\\"${OUTDIR}\\\" \\\\\\n      --cache-dir \\\"${CACHE}\\\" 2>&1\\n\\n    if [ $? -ne 0 ]; then\\n      echo \\\"[FAIL] 
+…[truncated 441 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T03:36:34.979088+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp -maxdepth 3 -type d -name \"*Llama*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/autodl-tmp -maxdepth 3 -type d -name \"*Llama*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-17T03:36:34.979226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/models/LLM-Research/Llama-3___2-3B\\n/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___2-3B\\n/root/autodl-tmp/models/Llama-3.2-3B\\n/root/autodl-tmp/models/unsloth/Llama-3___2-3B\\n/root/autodl-tmp/.hf_cache/models--meta-llama--Llama-3.2-3B\\n/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42\\n/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42\\n/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42\\n/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42\\n/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned\\n/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d025_s42_aligned\\n/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d005_s42_aligned\\n/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d100_s42_aligned\\n/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d000_s42\\n/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d005_s42\\n/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d025_s42\\n/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d100_s42\\n/root/autodl-tmp/exp003/rrf/Llama-3.2-3B_d000_s42\\n/root/autodl-tmp/exp003/rrf/Llama-3.2-3B_d005_s42\\n/root/autodl-tmp/.hf_cache_system/hub/models--meta-llama--Llama-3.2-3B\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-17T03:36:34.979389+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-17T03:36:34.979527+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"lora_adapter\\nmerged\\ntrain_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-17T03:36:34.979646+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp002/signals/Llama-3.2-3B_d000_s42/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp002/signals/Llama-3.2-3B_d000_s42/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T03:36:34.979772+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"_s4_chunks_mmlu\\nsignal_s1_embedding_arc_challenge.json\\nsignal_s1_embedding_gsm8k.json\\nsignal_s1_embedding_mmlu.json\\nsignal_s2_minkpp_arc_challenge.json\\nsignal_s2_minkpp_gsm8k.json\\nsignal_s2_minkpp_mmlu.json\\nsignal_s4_selfcritique_arc_challenge.json\\nsignal_s4_selfcritique_gsm8k.json\\nsignal_s4_selfcritique_mmlu.json\\nsignals_merged_arc_challenge.json\\nsignals_merged_gsm8k.json\\nsignals_merged_mmlu.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T03:36:34.979919+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "wc -l /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-17T03:36:34.980043+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"50000 /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-17T03:36:34.980203+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom signals.s1_embedding import compute\n# Simulate adapter_path=None (Llama base model)\ntry:\n    result = compute(\n        benchmark='arc_challenge',\n        model_path='/root/autodl-tmp/models/Llama-3.2-3B',\n        adapter_path=None,\n        output_dir='/tmp/test_s1',\n        cache_dir='/root/autodl-tmp/.hf_cache',\n        sft_data_dir='/root/autodl-tmp/exp001/sft_data',\n    )\n    print('SUCCESS:', len(result), 'items')\nexcept Exception as e:\n    import traceback\n    traceback.print_exc()\n\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom signals.s1_embedding import compute\n# Simulate adapter_path=None (Llama base model)\ntry:\n    result = compute(\n        benchmark='arc_challenge',\n        model_path='/root/autodl-tmp/models/Llama-3.2-3B',\n        adapter_path=None,\n        output_dir='/tmp/test_s1',\n        cache_dir='/root/autodl-tmp/.hf_cache',\n        sft_data_dir='/root/autodl-tmp/exp001/sft_data',\n    )\n    print('SUCCESS:', len(result), 'items')\nexcept Exception as e:\n    import traceback\n    traceback.print_exc()\n\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T03:36:34.980355+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T03:36:34.980506+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom signals.s1_embedding import compute\ntry:\n    result = compute(\n        benchmark='arc_challenge',\n        model_path='/root/autodl-tmp/models/Llama-3.2-3B',\n        adapter_path=None,\n        output_dir='/tmp/test_s1',\n        cache_dir='/root/autodl-tmp/.hf_cache',\n        sft_data_dir='/root/autodl-tmp/exp001/sft_data',\n    )\n    print('SUCCESS:', len(result), 'items')\nexcept Exception as e:\n    import traceback\n    traceback.print_exc()\n\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom signals.s1_embedding import compute\ntry:\n    result = compute(\n        benchmark='arc_challenge',\n        model_path='/root/autodl-tmp/models/Llama-3.2-3B',\n        adapter_path=None,\n        output_dir='/tmp/test_s1',\n        cache_dir='/root/autodl-tmp/.hf_cache',\n        sft_data_dir='/root/autodl-tmp/exp001/sft_data',\n    )\n    print('SUCCESS:', len(result), 'items')\nexcept Exception as e:\n    import traceback\n    traceback.print_exc()\n\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-17T03:36:34.980693+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\'.\\\\')\\\\nfrom signals.s1_embedding import compute\\\\ntry:\\\\n    result = compute(\\\\n        benchmark=\\\\'arc_challenge\\\\',\\\\n        model_path=\\\\'/root/autodl-tmp/models/Llama-3.2-3B\\\\',\\\\n        adapter_path=None,\\\\n        output_dir=\\\\'/tmp/test_s1\\\\',\\\\n        cache_dir=\\\\'/root/autodl-tmp/.hf_cache\\\\',\\\\n        sft_data_dir=\\\\'/root/autodl-tmp/exp001/sft_data\\\\',\\\\n    )\\\\n    print(\\\\'SUCCESS:\\\\', len(result), \\\\'items\\\\')\\\\nexcept Exception as e:\\\\n    import traceback\\\\n    traceback.print_exc()\\\\n\\\"'\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/allenai/ai2_arc/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7f5c391b9910>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: 8bb7cf7a-d235-40d2-a421-8948a14f38af)')' thrown while requesting HEAD https://huggingface.co/datasets/allenai/ai2_arc/resolve/main/README.md\\nRetrying in 1s [Retry 1/5].\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/allenai/ai2_arc/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7f5c391d5af0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: 8fa7c895-5294-4f2e-9ae5-667fd9d7036f)')' thrown while requesting HEAD https://huggingface.co/datasets/allenai/ai2_arc/resolve/main/README.md\\nRetrying in 2s [Retry 2/5].\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T03:36:34.980943+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "file": "ROADMAP.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "file": "ROADMAP.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T03:36:34.981077+00:00_
+
+Error executing tool read_project_file: 1 validation error for read_project_fileArguments
+project
+  Field required [type=missing, input_value={'file': 'ROADMAP.md'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/missing
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-17T03:36:34.981202+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T03:36:34.981372+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T03:36:34.981513+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "memory.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "memory.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T03:36:34.981674+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"content\": \"# Project Memory\\n\\n## 2026-05-17: Cross-Family Pooled IRT v4 Results\\n\\n### Data Completeness\\n- Llama-3.2-3B signals: ALL complete at `/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d{000,005,025,100}_s42/`\\n- Each has: s1 (embedding), s2 (minkpp), s4 (selfcritique) × 3 benchmarks (mmlu, gsm8k, arc) + merged\\n- **Known issues**: Llama d000 MMLU alignment missing (item_responses has 0 MMLU items despite 45.4% raw accuracy); Llama d100 MMLU degenerate (all predictions = A)\\n\\n### Cross-Family Pooled IRT v4 (2PL+gamma, Qwen+Llama)\\nOutput: `/root/autodl-tmp/exp006/cross_family_v4/`\\n\\n| Benchmark | N | gamma | 95% CI | Significant | PPP | calMAE |\\n|-----------|---|-------|--------|-------------|-----|--------|\\n| MMLU | 18 | 0.4148 | [-0.60, 1.41] | NO | 0.596 | 0.008 |\\n| GSM8K | 28 | -0.1099 | [-0.52, 0.28] | NO | 0.832 | 0.008 |\\n| ARC | 20 | 0.0016 | [-0.57, 0.60] | NO | 0.449 | 0.015 |\\n\\n### Comparison with Qwen-only (exp_006_pooled_2pl_gamma_qwen_n24)\\n\\n| Benchmark | Qwen N | Qwen gamma | Cross-family N | Cross-family gamma |\\n|-----------|--------|------------|----------------|-------------------|\\n| MMLU | 16 | 0.66 [-0.41, 1.74] | 18 | 0.41 [-0.60, 1.41] |\\n| GSM8K | 24 | 0.06 [-0.36, 0.49] | 28 | -0.11 [-0.52, 0.28] |\\n| ARC | 16 | **0.73 [0.02, 1.44] SIG** | 20 | 0.00 [-0.57, 0.60] |\\n\\n### Key Finding\\nAdding Llama-3.2-3B to the pooled IRT **diluted** the gamma signal rather than strengthening it:\\n- ARC lost its marginal significance (Qwen-only gamma=0.73, CI excludes zero → cross-family gamma≈0)\\n- MMLU gamma decreased from 0.66 to 0.41\\n- GSM8K gamma flipped sign (-0.11)\\n\\n**Interpretation**: Llama and Qwen may have fundamentally different contamination-exposure relationships. A single pooled gamma across model families is not appropriate. This supports fa
+…[truncated 354 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T03:36:34.981821+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "ROADMAP.md",
+  "max_chars": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "ROADMAP.md",
+    "max_chars": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T03:36:34.981987+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-16 19:54 UTC | 更新原因: D121 Paper Agent激活 + GPU状态同步 + 审稿修复追踪\\n\\n## 核心方向\\n\\\"Domain-Differential Contamination Effects: Diagnosis via Item Response Theory\\\" — dilution masking + calibration value decomposition。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（距今 9 天）\\n\\n## 当前进展\\n- **阶段**: Research + 审稿 Round 1 修复 + Paper Agent Full Draft 进行中\\n- **D121**: 按默认方案推进 Option B + 单 seed Llama（用户隐式同意后激活）\\n- **Paper Agent**: Full Draft reframe 模式启动，待产出 writing_plan.yaml\\n- **Qwen 数据冻结** ✅：0.5B/1.5B/3B 全尺度 + domain IRT N=24 + pooled IRT N=24\\n- **Llama cross-family**: d000 signals 接近完成（MMLU s4 ~50%），d005/d025/d100 eval 各跑到 GSM8K 阶段\\n- **审稿 Round 1**: Weak Reject → 全部 C1-C3/W1-W7 有明确修复方案\\n\\n## GPU 实时占用 (6× RTX 4090D, cqa1-21977)\\n| GPU | 任务 | PID | 预计完成 |\\n|-----|------|-----|---------|\\n| cuda:0 | Llama d005 eval (GSM8K 进行中) | 825638 | ~3-4h |\\n| cuda:1 | Llama d000 MMLU signals (s4 ~50%) | 830115 | ~40-60min |\\n| cuda:2 | Fisher Info heatmap (W4, 已派) | — | ~2-3h |\\n| cuda:3 | Llama d025 eval (GSM8K 进行中) | 822390 | ~3-4h |\\n| cuda:4 | Llama d005 MMLU signals | 842929 | ~2h |\\n| cuda:5 | Llama d100 eval (GSM8K 进行中) | 831033 | ~3-5h |\\n\\n## Critical Path (EMNLP T-9)\\n```\\n[Now]     Paper Agent Full Draft (parallel with experiments)\\n          cuda:1 d000 MMLU s4 ~40min → d000 RRF → partial cross-family IRT\\n          cuda:2 Fisher Info heatmap → W4 修复图表\\n[+3-5h]   d005/d025/d100 eval 完成 → 各启动 3 benchmark signals\\n[+8-12h]  全部 Llama signals 完成 → Llama RRF → cross-family pooled IRT (N≥20)\\n[Day 2]   Paper Agent writing_plan approved → 开始章节写作\\n[Day 3-5] Full Draft + Reviewer 对抗迭代\\n[Day 5-7] Llama 数据 Patch 补入 + 最终迭代\\n[Day 7-9] 最终提交\\n```\\n\\n## 审稿修复追踪\\n| Issue | 方案 | 状态 |\\n|-------|------|------|\\n| C
+…[truncated 2162 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-17T03:36:34.982180+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp001/sft_data -name \"sft_*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/autodl-tmp/exp001/sft_data -name \"sft_*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T03:36:34.982334+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_050.jsonl\\n/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-17T03:36:34.982500+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp -path \"*sft_data*\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/autodl-tmp -path \"*sft_data*\" -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T03:36:34.982632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/sft_data\\n/root/autodl-tmp/exp001/sft_data_qc_filtered\\n/root/autodl-tmp/exp015/sft_data\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-17T03:36:34.982751+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp015/sft_data/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp015/sft_data/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-17T03:36:34.982880+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"contamination_labels_arc_challenge_d100_qc_only.json\\ncontamination_labels_gsm8k_d100_qc_only.json\\ncontamination_labels_humaneval_d100_qc_only.json\\ncontamination_labels_mmlu_d100_qc_only.json\\ndata_meta_qc_only.json\\nsft_dosage_100_qc_only.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-17T03:36:34.983013+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp002/run_05B_s123_signals.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/contamcal-irt-calibration/exp002/run_05B_s123_signals.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-17T03:36:34.983186+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -o pipefail\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/contamcal-irt-calibration/exp002\\n\\nexport HF_DATASETS_OFFLINE=1\\nexport TRANSFORMERS_OFFLINE=1\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\n\\nBASE_MODEL=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\\"\\nCKPT_BASE=\\\"/root/autodl-tmp/exp001/checkpoints\\\"\\nREF=\\\"${CKPT_BASE}/Qwen2.5-0.5B_d000_s123/lora_adapter\\\"\\nSFT_DATA=\\\"/root/autodl-tmp/exp001/sft_data\\\"\\nOUT_BASE=\\\"/root/autodl-tmp/exp002/signals\\\"\\nCACHE=\\\"/root/autodl-tmp/.hf_cache\\\"\\n\\nBENCHMARKS=(mmlu gsm8k arc_challenge)\\nSIGNALS=(s1 s2 s4)\\n\\ndeclare -A SIG_FILE\\nSIG_FILE[s1]=\\\"signal_s1_embedding\\\"\\nSIG_FILE[s2]=\\\"signal_s2_minkpp\\\"\\nSIG_FILE[s4]=\\\"signal_s4_selfcritique\\\"\\n\\nTOTAL=$((4 * ${#BENCHMARKS[@]} * ${#SIGNALS[@]}))\\nCOUNT=0; FAILED=0; SKIPPED=0; COMPLETED=0\\n\\nfor dos in d000 d005 d025 d100; do\\n  NAME=\\\"Qwen2.5-0.5B_${dos}_s123\\\"\\n  OUTDIR=\\\"${OUT_BASE}/${NAME}\\\"\\n  ADAPTER=\\\"${CKPT_BASE}/${NAME}/lora_adapter\\\"\\n  mkdir -p \\\"${OUTDIR}\\\"\\n\\n  for bench in \\\"${BENCHMARKS[@]}\\\"; do\\n    for sig in \\\"${SIGNALS[@]}\\\"; do\\n      COUNT=$((COUNT+1))\\n      OUTFILE=\\\"${OUTDIR}/${SIG_FILE[$sig]}_${bench}.json\\\"\\n\\n      if [ -f \\\"${OUTFILE}\\\" ]; then\\n        echo \\\"[${COUNT}/${TOTAL}] SKIP ${NAME} × ${bench} × ${sig} — exists\\\"\\n        SKIPPED=$((SKIPPED+1))\\n        continue\\n      fi\\n\\n      echo \\\"[${COUNT}/${TOTAL}] ${NAME} × ${bench} × ${sig} at $(date)\\\"\\n      python compute_signals.py \\\\\\n        --model-path \\\"${BASE_MODEL}\\\" \\\\\\n        --adapter-path \\\"${ADAPTER}\\\" \\\\\\n        --benchmark \\\"${bench}\\\" \\\\\\n        --signal \\\"${sig}\\\" \\\\\\n        --ref-model-path \\\"${REF}\\\" \\\\\\n        --sft-data-dir \\\"${SFT_DATA}\\\" \\\\\\n        --output-dir \\\"${OUTDIR}\\\" \\\\\\n   
+…[truncated 543 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-17T03:36:34.983364+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration -name \"*llama*\" -o -name \"*Llama*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration -name \"*llama*\" -o -name \"*Llama*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-17T03:36:34.983508+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/scripts/run_llama3b_d000_eval.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.66}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-17T03:36:34.983632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp -name \"*llama*signal*\" -o -name \"*Llama*signal*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/autodl-tmp -name \"*llama*signal*\" -o -name \"*Llama*signal*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-17T03:36:34.983757+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp008/llama_signal_analysis\\n/root/autodl-tmp/exp008/llama_signal_analysis/llama_auc_per_signal.json\\n/root/autodl-tmp/exp008/llama_signal_analysis/llama_signal_summary.csv\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-17T03:36:34.983875+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -5 /root/autodl-tmp/exp002/signals/Llama-3.2-3B_d000_s42/signal_s1_embedding_arc_challenge.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -5 /root/autodl-tmp/exp002/signals/Llama-3.2-3B_d000_s42/signal_s1_embedding_arc_challenge.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-17T03:36:34.983997+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"item_id\\\": \\\"arc_challenge_0000\\\",\\n    \\\"signal\\\": \\\"s1_embedding\\\",\\n    \\\"score\\\": 0.474359929561615,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-17T03:36:34.984139+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/lora_adapter/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/lora_adapter/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-17T03:36:34.984265+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\nadapter_config.json\\nadapter_model.safetensors\\nchat_template.jinja\\ncheckpoint-3125\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\ntraining_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-17T03:36:34.984432+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom utils import infer_dosage_from_path\nimport os\n\n# Test various adapter_path scenarios\ntests = [\n    None,\n    '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/lora_adapter',\n    '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter',\n    '/root/autodl-tmp/models/Llama-3.2-3B',  # model path, not adapter\n    '',\n]\n\nfor t in tests:\n    if t is None:\n        print(f'adapter_path=None:')\n        dosage = infer_dosage_from_path(t) if t else '000'\n        print(f'  dosage = {repr(dosage)}')\n    elif t == '':\n        print(f'adapter_path=\\\"\\\" (empty):')\n        dosage = infer_dosage_from_path(t) if t else '000'\n        print(f'  dosage = {repr(dosage)}')\n    else:\n        print(f'adapter_path={t}:')\n        dosage = infer_dosage_from_path(t) if t else '000'\n        print(f'  dosage = {repr(dosage)}')\n\n    sft_data_dir = '/root/autodl-tmp/exp001/sft_data'\n    sft_data_path = os.path.join(sft_data_dir, f'sft_dosage_{dosage}.jsonl')\n    exists = os.path.exists(sft_data_path)\n    print(f'  sft_data_path = {sft_data_path}')\n    print(f'  exists = {exists}')\n    if not exists:\n        fallback = os.path.join(sft_data_dir, 'sft_dosage_000.jsonl')\n        print(f'  fallback = {fallback} (exists={os.path.exists(fallback)})')\n    print()\n\"\n",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom utils import infer_dosage_from_path\nimport os\n\n# Test various adapter_path scenarios\ntests = [\n    None,\n    '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/lora_adapter',\n    '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter',\n    '/root/autodl-tmp/models/Llama-3.2-3B',  # model path, not adapter\n    '',\n]\n\nfor t in tests:\n    if t is None:\n        print(f'adapter_path=None:')\n        dosage = infer_dosage_from_path(t) if t else '000'\n        print(f'  dosage = {repr(dosage)}')\n    elif t == '':\n        print(f'adapter_path=\\\"\\\" (empty):')\n        dosage = infer_dosage_from_path(t) if t else '000'\n        print(f'  dosage = {repr(dosage)}')\n    else:\n        print(f'adapter_path={t}:')\n        dosage = infer_dosage_from_path(t) if t else '000'\n        print(f'  dosage = {repr(dosage)}')\n\n    sft_data_dir = '/root/autodl-tmp/exp001/sft_data'\n    sft_data_path = os.path.join(sft_data_dir, f'sft_dosage_{dosage}.jsonl')\n    exists = os.path.exists(sft_data_path)\n    print(f'  sft_data_path = {sft_data_path}')\n    print(f'  exists = {exists}')\n    if not exists:\n        fallback = os.path.join(sft_data_dir, 'sft_dosage_000.jsonl')\n        print(f'  fallback = {fallback} (exists={os.path.exists(fallback)})')\n    print()\n\"\n",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-17T03:36:34.984601+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"adapter_path=None:\\n  dosage = '000'\\n  sft_data_path = /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\n  exists = True\\n\\nadapter_path=/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/lora_adapter:\\n  dosage = '000'\\n  sft_data_path = /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\n  exists = True\\n\\nadapter_path=/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter:\\n  dosage = '025'\\n  sft_data_path = /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\n  exists = True\\n\\nadapter_path=/root/autodl-tmp/models/Llama-3.2-3B:\\n  dosage = None\\n  sft_data_path = /root/autodl-tmp/exp001/sft_data/sft_dosage_None.jsonl\\n  exists = False\\n  fallback = /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl (exists=True)\\n\\nadapter_path=\\\"\\\" (empty):\\n  dosage = '000'\\n  sft_data_path = /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\n  exists = True\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-17T03:36:34.984761+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "stat /root/contamcal-irt-calibration/exp002/signals/s1_embedding.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "stat /root/contamcal-irt-calibration/exp002/signals/s1_embedding.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-17T03:36:34.984892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File: /root/contamcal-irt-calibration/exp002/signals/s1_embedding.py\\n  Size: 3614      \\tBlocks: 8          IO Block: 4096   regular file\\nDevice: 30h/48d\\tInode: 12913874599  Links: 1\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\nAccess: 2026-05-16 23:29:48.439542778 +0800\\nModify: 2026-05-15 22:47:51.196032700 +0800\\nChange: 2026-05-15 22:47:51.196032700 +0800\\n Birth: 2026-05-15 22:47:51.192032756 +0800\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-17T03:36:34.985049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/s2_minkpp.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/s2_minkpp.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-17T03:36:34.985257+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\timport logging\\n     2\\t\\n     3\\timport numpy as np\\n     4\\timport torch\\n     5\\tfrom tqdm import tqdm\\n     6\\t\\n     7\\tlogger = logging.getLogger(__name__)\\n     8\\t\\n     9\\tDEFAULT_K_PERCENT = 20\\n    10\\t\\n    11\\t\\n    12\\tdef _compute_token_logprobs(model, tokenizer, text: str, max_length: int = 2048) -> np.ndarray:\\n    13\\t    inputs = tokenizer(text, return_tensors=\\\"pt\\\", truncation=True, max_length=max_length)\\n    14\\t    input_ids = inputs[\\\"input_ids\\\"].to(model.device)\\n    15\\t\\n    16\\t    with torch.no_grad():\\n    17\\t        outputs = model(input_ids)\\n    18\\t    logits = outputs.logits\\n    19\\t\\n    20\\t    shift_logits = logits[:, :-1, :]\\n    21\\t    shift_labels = input_ids[:, 1:]\\n    22\\t\\n    23\\t    log_probs = torch.log_softmax(shift_logits, dim=-1)\\n    24\\t    token_log_probs = log_probs.gather(2, shift_labels.unsqueeze(-1)).squeeze(-1)\\n    25\\t\\n    26\\t    return token_log_probs[0].cpu().float().numpy()\\n    27\\t\\n    28\\t\\n    29\\tdef _minkpp_score(target_logprobs: np.ndarray, ref_logprobs: np.ndarray,\\n    30\\t                  k_percent: int = DEFAULT_K_PERCENT) -> float:\\n    31\\t    n_tokens = min(len(target_logprobs), len(ref_logprobs))\\n    32\\t    if n_tokens == 0:\\n    33\\t        return 0.0\\n    34\\t\\n    35\\t    target = target_logprobs[:n_tokens]\\n    36\\t    ref = ref_logprobs[:n_tokens]\\n    37\\t\\n    38\\t    # z-normalize: surprise_i = (-target_logprob_i - mean(-ref_logprob)) / std(-ref_logprob)\\n    39\\t    ref_nll = -ref\\n    40\\t    mu = ref_nll.mean()\\n    41\\t    sigma = ref_nll.std()\\n    42\\t    if sigma < 1e-8:\\n    43\\t        sigma = 1.0\\n    44\\t\\n    45\\t    target_nll = -target\\n    46\\t    z_scores = (target_nll - mu) / sigma\\n    47\\t\\n    48\\t    k = max(1, int(n_tokens * k_percent / 100))\\n    49\\t    topk_indices = np.argpartit
+…[truncated 5064 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-17T03:36:34.985504+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp002/signals -name \"*.log\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/autodl-tmp/exp002/signals -name \"*.log\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-17T03:36:34.985649+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/signals_3B_v6.log\\n/root/autodl-tmp/exp002/signals/signals_3B_d025_v3_s42.log\\n/root/autodl-tmp/exp002/signals/signals_05B_s123_v2.log\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_a32_s42/run.log\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s42/run.log\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/run_mmlu_v2.log\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/run_arc_v2.log\\n/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d025_s42/s4_mmlu_completion.log\\n/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d100_s42/s4_mmlu_completion.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-17T03:36:34.985775+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp002/signals -name \"*.log\" -newer /root/contamcal-irt-calibration/exp002/signals/s1_embedding.py -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/autodl-tmp/exp002/signals -name \"*.log\" -newer /root/contamcal-irt-calibration/exp002/signals/s1_embedding.py -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-17T03:36:34.985913+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/signals_3B_v6.log\\n/root/autodl-tmp/exp002/signals/signals_3B_d025_v3_s42.log\\n/root/autodl-tmp/exp002/signals/signals_05B_s123_v2.log\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d005_a32_s42/run.log\\n/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s42/run.log\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/run_mmlu_v2.log\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/run_arc_v2.log\\n/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d025_s42/s4_mmlu_completion.log\\n/root/autodl-tmp/exp002/signals/Llama-3.2-3B_d100_s42/s4_mmlu_completion.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-17T03:36:34.986035+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -50 /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/run_mmlu_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -50 /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/run_mmlu_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-17T03:36:34.986226+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 05:24:07,975 [WARNING] datasets.load: Using the latest cached version of the dataset since cais/mmlu couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'all' at /root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe (last modified on Thu May 14 01:40:20 2026).\\n2026-05-17 05:24:07,976 [WARNING] datasets.packaged_modules.cache.cache: Found the latest cached dataset configuration 'all' at /root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe (last modified on Thu May 14 01:40:20 2026).\\n2026-05-17 05:24:07,979 [INFO] signals.s2_minkpp: Loading target model\\n2026-05-17 05:24:07,979 [INFO] utils: Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B-Instruct\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-17 05:24:08,230 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n2026-05-17 05:24:09,010 [INFO] signals.s2_minkpp: Computing target model log-probs (14042 items)\\n\\rTarget log-probs:   0%|          | 0/14042 [00:00<?, ?it/s]\\rTarget log-probs:   0%|          | 1/14042 [00:00<52:42,  4.44it/s]\\rTarget log-probs:   0%|          | 9/14042 [00:00<07:13, 32.36it/s]\\rTarget log-probs:   0%|          | 17/14042 [00:00<04:56, 47.31it/s]\\rTarget log-probs:   0%|          | 25/14042 [00:00<04:09, 56.08it/s]\\rTarget log-probs:   0%|          | 33/14042 [00:00<03:46, 61.72it/s]\\rTarget log-probs:   0%|          | 41/14042 [00:00<03:34, 65.15it/s]\\rTarget log-probs:   0%|          | 49/14042 [00:00<03:26, 67.68it/s]\\rTarget log-probs:   0%|          | 57/14042 [00:00<03:21, 69.52it/s]\\rTarget log-probs:   0%|          | 65/14042 [00:01<03:17, 70.66it/s]\\rTarget log-probs:   1%
+…[truncated 6368 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-17T03:36:34.986422+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat -n /root/contamcal-irt-calibration/exp002/compute_signals.py.bak"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat -n /root/contamcal-irt-calibration/exp002/compute_signals.py.bak"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-17T03:36:34.986687+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\"\\\"\\\"\\n     2\\texp-002 Stage 1 Signal Pipeline — main entry point.\\n     3\\t\\n     4\\tComputes 4 contamination detection signals for each model-item pair:\\n     5\\t  S1: Embedding near-duplicate retrieval (max cosine sim with training data)\\n     6\\t  S2: Min-K%++ membership inference (z-scored against reference model)\\n     7\\t  S3: ConStat performance gap (original vs paraphrased accuracy)\\n     8\\t  S4: Self-Critique entropy collapse (YES/NO confidence on own answer)\\n     9\\t\\n    10\\tInput:  Model checkpoint, benchmark data, paraphrased items, SFT training data\\n    11\\tOutput: JSON per model with item_id, s1_embedding, s2_minkpp, s3_constat, s4_selfcritique\\n    12\\t\\\"\\\"\\\"\\n    13\\t\\n    14\\timport argparse\\n    15\\timport json\\n    16\\timport logging\\n    17\\timport os\\n    18\\tfrom pathlib import Path\\n    19\\timport re\\n    20\\t\\n    21\\tlogger = logging.getLogger(__name__)\\n    22\\t\\n    23\\tDOSAGE_PATTERN = re.compile(r'_d(\\\\d+)')\\n    24\\t\\n    25\\t\\n    26\\tdef normalize_dosage(path_str: str) -> str:\\n    27\\t    m = DOSAGE_PATTERN.search(str(path_str))\\n    28\\t    if m:\\n    29\\t        return f\\\"d{int(m.group(1)):03d}\\\"\\n    30\\t    return None\\n    31\\t\\n    32\\t\\n    33\\tdef extract_model_id(model_path: str) -> str:\\n    34\\t    name = Path(model_path).name\\n    35\\t    m = re.match(r'(.+?)_d(\\\\d+)_s(\\\\d+)', name)\\n    36\\t    if m:\\n    37\\t        base, dosage, seed = m.group(1), int(m.group(2)), m.group(3)\\n    38\\t        return f\\\"{base}_d{dosage:03d}_s{seed}\\\"\\n    39\\t    return name\\n    40\\t\\n    41\\t\\n    42\\tdef merge_signals(\\n    43\\t    embedding_results: list[dict],\\n    44\\t    minkpp_results: list[dict],\\n    45\\t    constat_results: list[dict],\\n    46\\t    selfcritique_results: list[dict],\\n    47\\t    benchmark: str,\\n    48\\t) -> list[dict]:\\n 
+…[truncated 7461 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-17T03:36:34.986896+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-17T03:36:34.987039+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chat_template.jinja\\nconfig.json\\ngeneration_config.json\\nmodel-00001-of-00002.safetensors\\nmodel-00002-of-00002.safetensors\\nmodel.safetensors.index.json\\nspecial_tokens_map.json\\ntokenizer.json\\ntokenizer_config.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-17T03:36:34.987407+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport sys\nsys.path.insert(0, '/root/contamcal-irt-calibration/exp002')\nfrom utils import infer_dosage_from_path\n\n# Scenario: merged model (full fine-tune), no adapter\n# model_path = merged dir with dosage in parent path\nmodel_path = '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged'\nadapter_path = None  # no adapter for merged model\n\n# Current behavior: only infers from adapter_path\ndosage = infer_dosage_from_path(adapter_path) if adapter_path else '000'\nprint(f'Current: adapter_path=None → dosage={repr(dosage)}')\nprint(f'  Should be: 025 (from model_path)')\n\n# Bug: dosage is 000, so s1 compares against WRONG SFT data\n# Should compare against sft_dosage_025.jsonl but uses sft_dosage_000.jsonl\n\n# Can we infer from model_path?\ndosage_from_model = infer_dosage_from_path(model_path) if model_path else None\nprint(f'From model_path: {repr(dosage_from_model)}')\n\n# Try parent directory\nfrom pathlib import Path\nparent = str(Path(model_path).parent)\ndosage_from_parent = infer_dosage_from_path(parent)\nprint(f'From model_path parent ({parent}): {repr(dosage_from_parent)}')\n\"\n",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport sys\nsys.path.insert(0, '/root/contamcal-irt-calibration/exp002')\nfrom utils import infer_dosage_from_path\n\n# Scenario: merged model (full fine-tune), no adapter\n# model_path = merged dir with dosage in parent path\nmodel_path = '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged'\nadapter_path = None  # no adapter for merged model\n\n# Current behavior: only infers from adapter_path\ndosage = infer_dosage_from_path(adapter_path) if adapter_path else '000'\nprint(f'Current: adapter_path=None → dosage={repr(dosage)}')\nprint(f'  Should be: 025 (from model_path)')\n\n# Bug: dosage is 000, so s1 compares against WRONG SFT data\n# Should compare against sft_dosage_025.jsonl but uses sft_dosage_000.jsonl\n\n# Can we infer from model_path?\ndosage_from_model = infer_dosage_from_path(model_path) if model_path else None\nprint(f'From model_path: {repr(dosage_from_model)}')\n\n# Try parent directory\nfrom pathlib import Path\nparent = str(Path(model_path).parent)\ndosage_from_parent = infer_dosage_from_path(parent)\nprint(f'From model_path parent ({parent}): {repr(dosage_from_parent)}')\n\"\n",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-17T03:36:34.987620+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Current: adapter_path=None → dosage='000'\\n  Should be: 025 (from model_path)\\nFrom model_path: None\\nFrom model_path parent (/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42): '025'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-17T03:36:34.987808+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport sys\nsys.path.insert(0, '/root/contamcal-irt-calibration/exp002')\nfrom utils import infer_dosage_from_path\nfrom pathlib import Path\n\n# Verify expected behavior of the fix for all scenarios:\nscenarios = [\n    # (model_path, adapter_path, expected_dosage)\n    ('/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter', '025'),\n    ('/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter', '000'),\n    ('/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged', None, '025'),\n    ('/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42/merged', None, '100'),\n    ('/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged', None, '000'),\n    ('/root/autodl-tmp/models/Llama-3.2-3B', None, '000'),  # true base model\n    ('/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct', None, '000'),  # instruct model\n]\n\ndef infer_dosage(adapter_path, model_path):\n    \\\"\\\"\\\"Fixed version: try adapter_path first, then model_path ancestors\\\"\\\"\\\"\n    if adapter_path:\n        return infer_dosage_from_path(adapter_path) or '000'\n    # No adapter: try model_path and its parent\n    if model_path:\n        d = infer_dosage_from_path(model_path)\n        if d:\n            return d\n        # Try parent (for merged/ subdirectory case)\n        parent = str(Path(model_path).parent)\n        d = infer_dosage_from_path(parent)\n        if d:\n            return d\n    return '000'\n\nfor model_path, adapter_path, expected in scenarios:\n    result = infer_dosage(adapter_path, model_path)\n    status = 'OK' if result == expected else f'FAIL (expected {expected})'\n    print(f'{status}: model={Path(model_path).name}, adapter={Path(adapter_path).name if adapter_path else None} -> dosage={result}')\n\"\n",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport sys\nsys.path.insert(0, '/root/contamcal-irt-calibration/exp002')\nfrom utils import infer_dosage_from_path\nfrom pathlib import Path\n\n# Verify expected behavior of the fix for all scenarios:\nscenarios = [\n    # (model_path, adapter_path, expected_dosage)\n    ('/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter', '025'),\n    ('/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s123/lora_adapter', '000'),\n    ('/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged', None, '025'),\n    ('/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42/merged', None, '100'),\n    ('/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged', None, '000'),\n    ('/root/autodl-tmp/models/Llama-3.2-3B', None, '000'),  # true base model\n    ('/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct', None, '000'),  # instruct model\n]\n\ndef infer_dosage(adapter_path, model_path):\n    \\\"\\\"\\\"Fixed version: try adapter_path first, then model_path ancestors\\\"\\\"\\\"\n    if adapter_path:\n        return infer_dosage_from_path(adapter_path) or '000'\n    # No adapter: try model_path and its parent\n    if model_path:\n        d = infer_dosage_from_path(model_path)\n        if d:\n            return d\n        # Try parent (for merged/ subdirectory case)\n        parent = str(Path(model_path).parent)\n        d = infer_dosage_from_path(parent)\n        if d:\n            return d\n    return '000'\n\nfor model_path, adapter_path, expected in scenarios:\n    result = infer_dosage(adapter_path, model_path)\n    status = 'OK' if result == expected else f'FAIL (expected {expected})'\n    print(f'{status}: model={Path(model_path).name}, adapter={Path(adapter_path).name if adapter_path else None} -> dosage={result}')\n\"\n",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-17T03:36:34.987966+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"OK: model=Qwen2.5-3B, adapter=lora_adapter -> dosage=025\\nOK: model=Qwen2.5-3B, adapter=lora_adapter -> dosage=000\\nOK: model=merged, adapter=None -> dosage=025\\nOK: model=merged, adapter=None -> dosage=100\\nOK: model=merged, adapter=None -> dosage=000\\nOK: model=Llama-3.2-3B, adapter=None -> dosage=000\\nOK: model=Qwen2.5-0.5B-Instruct, adapter=None -> dosage=000\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.62}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-17T03:36:34.988125+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/patch_s1.py << 'PYEOF'\nimport re\n\nfilepath = '/root/contamcal-irt-calibration/exp002/signals/s1_embedding.py'\nwith open(filepath, 'r') as f:\n    content = f.read()\n\n# Replace lines 54-57 (the dosage inference + sft_data_path logic)\nold = '''    dosage = infer_dosage_from_path(adapter_path) if adapter_path else \"000\"\n    sft_data_path = os.path.join(sft_data_dir, f\"sft_dosage_{dosage}.jsonl\")\n    if not os.path.exists(sft_data_path):\n        sft_data_path = os.path.join(sft_data_dir, \"sft_dosage_000.jsonl\")'''\n\nnew = '''    if adapter_path:\n        dosage = infer_dosage_from_path(adapter_path) or \"000\"\n    else:\n        # No adapter: infer dosage from model_path (handles merged checkpoints)\n        from pathlib import Path\n        dosage = None\n        if model_path:\n            dosage = infer_dosage_from_path(model_path)\n            if not dosage:\n                dosage = infer_dosage_from_path(str(Path(model_path).parent))\n        dosage = dosage or \"000\"\n    sft_data_path = os.path.join(sft_data_dir, f\"sft_dosage_{dosage}.jsonl\")\n    if not os.path.exists(sft_data_path):\n        sft_data_path = os.path.join(sft_data_dir, \"sft_dosage_000.jsonl\")'''\n\nif old not in content:\n    print(\"ERROR: old text not found in file!\")\n    import sys; sys.exit(1)\n\ncontent = content.replace(old, new)\nwith open(filepath, 'w') as f:\n    f.write(content)\n\nprint(\"Patch applied successfully\")\nPYEOF\npython /tmp/patch_s1.py",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cat > /tmp/patch_s1.py << 'PYEOF'\nimport re\n\nfilepath = '/root/contamcal-irt-calibration/exp002/signals/s1_embedding.py'\nwith open(filepath, 'r') as f:\n    content = f.read()\n\n# Replace lines 54-57 (the dosage inference + sft_data_path logic)\nold = '''    dosage = infer_dosage_from_path(adapter_path) if adapter_path else \"000\"\n    sft_data_path = os.path.join(sft_data_dir, f\"sft_dosage_{dosage}.jsonl\")\n    if not os.path.exists(sft_data_path):\n        sft_data_path = os.path.join(sft_data_dir, \"sft_dosage_000.jsonl\")'''\n\nnew = '''    if adapter_path:\n        dosage = infer_dosage_from_path(adapter_path) or \"000\"\n    else:\n        # No adapter: infer dosage from model_path (handles merged checkpoints)\n        from pathlib import Path\n        dosage = None\n        if model_path:\n            dosage = infer_dosage_from_path(model_path)\n            if not dosage:\n                dosage = infer_dosage_from_path(str(Path(model_path).parent))\n        dosage = dosage or \"000\"\n    sft_data_path = os.path.join(sft_data_dir, f\"sft_dosage_{dosage}.jsonl\")\n    if not os.path.exists(sft_data_path):\n        sft_data_path = os.path.join(sft_data_dir, \"sft_dosage_000.jsonl\")'''\n\nif old not in content:\n    print(\"ERROR: old text not found in file!\")\n    import sys; sys.exit(1)\n\ncontent = content.replace(old, new)\nwith open(filepath, 'w') as f:\n    f.write(content)\n\nprint(\"Patch applied successfully\")\nPYEOF\npython /tmp/patch_s1.py",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-17T03:36:34.988269+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Patch applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-17T03:36:34.988501+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/s1_embedding.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat -n /root/contamcal-irt-calibration/exp002/signals/s1_embedding.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-17T03:36:34.988708+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     1\\timport logging\\n     2\\timport os\\n     3\\t\\n     4\\timport numpy as np\\n     5\\timport torch\\n     6\\t\\n     7\\tlogger = logging.getLogger(__name__)\\n     8\\t\\n     9\\tDEFAULT_ENCODER = \\\"sentence-transformers/all-MiniLM-L6-v2\\\"\\n    10\\tDEFAULT_SFT_DATA_DIR = \\\"/root/autodl-tmp/exp001/sft_data\\\"\\n    11\\tDEFAULT_TOP_K = 10\\n    12\\t\\n    13\\t\\n    14\\tdef _encode_texts(texts: list[str], encoder_name: str, cache_dir: str,\\n    15\\t                  batch_size: int = 64, device: str = \\\"cuda\\\") -> np.ndarray:\\n    16\\t    from sentence_transformers import SentenceTransformer\\n    17\\t    model = SentenceTransformer(encoder_name, cache_folder=cache_dir, device=device)\\n    18\\t    embeddings = model.encode(\\n    19\\t        texts, batch_size=batch_size, show_progress_bar=True,\\n    20\\t        normalize_embeddings=True, convert_to_numpy=True,\\n    21\\t    )\\n    22\\t    return embeddings\\n    23\\t\\n    24\\t\\n    25\\tdef _build_faiss_index(embeddings: np.ndarray, use_gpu: bool = True):\\n    26\\t    import faiss\\n    27\\t    dim = embeddings.shape[1]\\n    28\\t    index = faiss.IndexFlatIP(dim)\\n    29\\t    if use_gpu and faiss.get_num_gpus() > 0:\\n    30\\t        res = faiss.StandardGpuResources()\\n    31\\t        index = faiss.index_cpu_to_gpu(res, 0, index)\\n    32\\t    index.add(embeddings.astype(np.float32))\\n    33\\t    return index\\n    34\\t\\n    35\\t\\n    36\\tdef compute(\\n    37\\t    benchmark: str,\\n    38\\t    model_path: str = None,\\n    39\\t    adapter_path: str = None,\\n    40\\t    output_dir: str = None,\\n    41\\t    cache_dir: str = None,\\n    42\\t    batch_size: int = 64,\\n    43\\t    sft_data_dir: str = None,\\n    44\\t    **kwargs,\\n    45\\t) -> list[dict]:\\n    46\\t    from utils import (\\n    47\\t        load_benchmark_dataset, format_question_text,\\n    48\\t        make_item_id, lo
+…[truncated 3514 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-17T03:36:34.988889+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys, os\nsys.path.insert(0, '.')\nfrom signals.s1_embedding import compute\nfrom unittest.mock import patch\n\n# We can't actually run the full compute (needs GPU/data), but we can verify\n# the dosage inference logic by mocking the downstream calls\n\nclass MockResult:\n    pass\n\n# Test the dosage inference for all scenarios by calling compute and checking\n# which sft_data_path is selected (logged)\nimport logging\nlogging.basicConfig(level=logging.INFO)\n\n# Monkey-patch to stop after SFT path is determined\noriginal_load_sft = None\ncaptured_paths = []\n\ndef fake_load_sft(path):\n    captured_paths.append(path)\n    raise StopIteration('captured')  # stop early\n\nimport utils\noriginal_fn = utils.load_sft_texts\nutils.load_sft_texts = fake_load_sft\n\nscenarios = [\n    ('Qwen+adapter d025', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter', 'sft_dosage_025.jsonl'),\n    ('Llama merged d025', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged', None, 'sft_dosage_025.jsonl'),\n    ('Llama merged d100', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42/merged', None, 'sft_dosage_100.jsonl'),\n    ('Llama base (no SFT)', '/root/autodl-tmp/models/Llama-3.2-3B', None, 'sft_dosage_000.jsonl'),\n    ('Qwen Instruct', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct', None, 'sft_dosage_000.jsonl'),\n]\n\nprint('=== Verification of fix ===')\nall_pass = True\nfor name, model_path, adapter_path, expected_file in scenarios:\n    captured_paths.clear()\n    try:\n        compute(benchmark='arc_challenge', model_path=model_path, adapter_path=adapter_path,\n                sft_data_dir='/root/autodl-tmp/exp001/sft_data')\n    except StopIteration:\n        pass\n    \n    if captured_paths:\n        actual_file = os.path.basename(captured_paths[0])\n        status = 'PASS' if actual_file == expected_file else f'FAIL (got {actual_file})'\n        if actual_file != expected_file:\n            all_pass = False\n    else:\n        status = 'FAIL (no path captured)'\n        all_pass = False\n    print(f'  [{status}] {name} -> {expected_file}')\n\nutils.load_sft_texts = original_fn\nprint(f'\\nResult: {\\\"ALL PASS\\\" if all_pass else \\\"SOME FAILED\\\"}')\" 2>&1 | grep -v \"^\\|INFO\\|WARNING\"\n",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys, os\nsys.path.insert(0, '.')\nfrom signals.s1_embedding import compute\nfrom unittest.mock import patch\n\n# We can't actually run the full compute (needs GPU/data), but we can verify\n# the dosage inference logic by mocking the downstream calls\n\nclass MockResult:\n    pass\n\n# Test the dosage inference for all scenarios by calling compute and checking\n# which sft_data_path is selected (logged)\nimport logging\nlogging.basicConfig(level=logging.INFO)\n\n# Monkey-patch to stop after SFT path is determined\noriginal_load_sft = None\ncaptured_paths = []\n\ndef fake_load_sft(path):\n    captured_paths.append(path)\n    raise StopIteration('captured')  # stop early\n\nimport utils\noriginal_fn = utils.load_sft_texts\nutils.load_sft_texts = fake_load_sft\n\nscenarios = [\n    ('Qwen+adapter d025', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter', 'sft_dosage_025.jsonl'),\n    ('Llama merged d025', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged', None, 'sft_dosage_025.jsonl'),\n    ('Llama merged d100', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42/merged', None, 'sft_dosage_100.jsonl'),\n    ('Llama base (no SFT)', '/root/autodl-tmp/models/Llama-3.2-3B', None, 'sft_dosage_000.jsonl'),\n    ('Qwen Instruct', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct', None, 'sft_dosage_000.jsonl'),\n]\n\nprint('=== Verification of fix ===')\nall_pass = True\nfor name, model_path, adapter_path, expected_file in scenarios:\n    captured_paths.clear()\n    try:\n        compute(benchmark='arc_challenge', model_path=model_path, adapter_path=adapter_path,\n                sft_data_dir='/root/autodl-tmp/exp001/sft_data')\n    except StopIteration:\n        pass\n    \n    if captured_paths:\n        actual_file = os.path.basename(captured_paths[0])\n        status = 'PASS' if actual_file == expected_file else f'FAIL (got {actual_file})'\n        if actual_file != expected_file:\n            all_pass = False\n    else:\n        status = 'FAIL (no path captured)'\n        all_pass = False\n    print(f'  [{status}] {name} -> {expected_file}')\n\nutils.load_sft_texts = original_fn\nprint(f'\\nResult: {\\\"ALL PASS\\\" if all_pass else \\\"SOME FAILED\\\"}')\" 2>&1 | grep -v \"^\\|INFO\\|WARNING\"\n",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-17T03:36:34.989049+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 5.36}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-17T03:36:34.989183+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys, os\nsys.path.insert(0, '.')\n\ncaptured_paths = []\n\ndef fake_load_sft(path):\n    captured_paths.append(path)\n    raise StopIteration('captured')\n\nimport utils\nutils.load_sft_texts = fake_load_sft\n\nfrom signals.s1_embedding import compute\n\nscenarios = [\n    ('Qwen+adapter d025', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter', 'sft_dosage_025.jsonl'),\n    ('Llama merged d025', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged', None, 'sft_dosage_025.jsonl'),\n    ('Llama merged d100', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42/merged', None, 'sft_dosage_100.jsonl'),\n    ('Llama base (no SFT)', '/root/autodl-tmp/models/Llama-3.2-3B', None, 'sft_dosage_000.jsonl'),\n    ('Qwen Instruct', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct', None, 'sft_dosage_000.jsonl'),\n]\n\nall_pass = True\nfor name, model_path, adapter_path, expected_file in scenarios:\n    captured_paths.clear()\n    try:\n        compute(benchmark='arc_challenge', model_path=model_path, adapter_path=adapter_path,\n                sft_data_dir='/root/autodl-tmp/exp001/sft_data')\n    except StopIteration:\n        pass\n    except Exception as e:\n        print(f'  [ERROR] {name}: {e}')\n        all_pass = False\n        continue\n\n    if captured_paths:\n        actual_file = os.path.basename(captured_paths[0])\n        status = 'PASS' if actual_file == expected_file else f'FAIL (got {actual_file})'\n        if actual_file != expected_file:\n            all_pass = False\n    else:\n        status = 'FAIL (no path captured)'\n        all_pass = False\n    print(f'  [{status}] {name} -> {expected_file}')\n\nprint(f'Result: {\\\"ALL PASS\\\" if all_pass else \\\"SOME FAILED\\\"}')\n\"\n",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys, os\nsys.path.insert(0, '.')\n\ncaptured_paths = []\n\ndef fake_load_sft(path):\n    captured_paths.append(path)\n    raise StopIteration('captured')\n\nimport utils\nutils.load_sft_texts = fake_load_sft\n\nfrom signals.s1_embedding import compute\n\nscenarios = [\n    ('Qwen+adapter d025', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter', 'sft_dosage_025.jsonl'),\n    ('Llama merged d025', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged', None, 'sft_dosage_025.jsonl'),\n    ('Llama merged d100', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d100_s42/merged', None, 'sft_dosage_100.jsonl'),\n    ('Llama base (no SFT)', '/root/autodl-tmp/models/Llama-3.2-3B', None, 'sft_dosage_000.jsonl'),\n    ('Qwen Instruct', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B-Instruct', None, 'sft_dosage_000.jsonl'),\n]\n\nall_pass = True\nfor name, model_path, adapter_path, expected_file in scenarios:\n    captured_paths.clear()\n    try:\n        compute(benchmark='arc_challenge', model_path=model_path, adapter_path=adapter_path,\n                sft_data_dir='/root/autodl-tmp/exp001/sft_data')\n    except StopIteration:\n        pass\n    except Exception as e:\n        print(f'  [ERROR] {name}: {e}')\n        all_pass = False\n        continue\n\n    if captured_paths:\n        actual_file = os.path.basename(captured_paths[0])\n        status = 'PASS' if actual_file == expected_file else f'FAIL (got {actual_file})'\n        if actual_file != expected_file:\n            all_pass = False\n    else:\n        status = 'FAIL (no path captured)'\n        all_pass = False\n    print(f'  [{status}] {name} -> {expected_file}')\n\nprint(f'Result: {\\\"ALL PASS\\\" if all_pass else \\\"SOME FAILED\\\"}')\n\"\n",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-17T03:36:34.989374+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [PASS] Qwen+adapter d025 -> sft_dosage_025.jsonl\\n  [PASS] Llama merged d025 -> sft_dosage_025.jsonl\\n  [PASS] Llama merged d100 -> sft_dosage_100.jsonl\\n  [PASS] Llama base (no SFT) -> sft_dosage_000.jsonl\\n  [PASS] Qwen Instruct -> sft_dosage_000.jsonl\\nResult: ALL PASS\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-17T03:36:34.989548+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys, os\nsys.path.insert(0, '.')\n\ncaptured_paths = []\ndef fake_load_sft(path):\n    captured_paths.append(path)\n    raise StopIteration('captured')\n\nimport utils\nutils.load_sft_texts = fake_load_sft\nfrom signals.s1_embedding import compute\n\n# Test the existing Llama adapter cases that already work\nadapter_cases = [\n    ('Llama d000 adapter', '/root/autodl-tmp/.hf_cache/models--meta-llama--Llama-3.2-3B', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/lora_adapter', 'sft_dosage_000.jsonl'),\n    ('Llama d025 adapter', '/root/autodl-tmp/.hf_cache/models--meta-llama--Llama-3.2-3B', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/lora_adapter', 'sft_dosage_025.jsonl'),\n    ('Qwen d000 s123 adapter', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter', 'sft_dosage_000.jsonl'),\n]\n\nfor name, model_path, adapter_path, expected_file in adapter_cases:\n    captured_paths.clear()\n    try:\n        compute(benchmark='arc_challenge', model_path=model_path, adapter_path=adapter_path,\n                sft_data_dir='/root/autodl-tmp/exp001/sft_data')\n    except StopIteration:\n        pass\n    actual_file = os.path.basename(captured_paths[0]) if captured_paths else 'NONE'\n    status = 'PASS' if actual_file == expected_file else f'FAIL (got {actual_file})'\n    print(f'  [{status}] {name} -> {expected_file}')\n\"\n",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys, os\nsys.path.insert(0, '.')\n\ncaptured_paths = []\ndef fake_load_sft(path):\n    captured_paths.append(path)\n    raise StopIteration('captured')\n\nimport utils\nutils.load_sft_texts = fake_load_sft\nfrom signals.s1_embedding import compute\n\n# Test the existing Llama adapter cases that already work\nadapter_cases = [\n    ('Llama d000 adapter', '/root/autodl-tmp/.hf_cache/models--meta-llama--Llama-3.2-3B', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/lora_adapter', 'sft_dosage_000.jsonl'),\n    ('Llama d025 adapter', '/root/autodl-tmp/.hf_cache/models--meta-llama--Llama-3.2-3B', '/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/lora_adapter', 'sft_dosage_025.jsonl'),\n    ('Qwen d000 s123 adapter', '/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B', '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter', 'sft_dosage_000.jsonl'),\n]\n\nfor name, model_path, adapter_path, expected_file in adapter_cases:\n    captured_paths.clear()\n    try:\n        compute(benchmark='arc_challenge', model_path=model_path, adapter_path=adapter_path,\n                sft_data_dir='/root/autodl-tmp/exp001/sft_data')\n    except StopIteration:\n        pass\n    actual_file = os.path.basename(captured_paths[0]) if captured_paths else 'NONE'\n    status = 'PASS' if actual_file == expected_file else f'FAIL (got {actual_file})'\n    print(f'  [{status}] {name} -> {expected_file}')\n\"\n",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-17T03:36:34.989698+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  [PASS] Llama d000 adapter -> sft_dosage_000.jsonl\\n  [PASS] Llama d025 adapter -> sft_dosage_025.jsonl\\n  [PASS] Qwen d000 s123 adapter -> sft_dosage_000.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.98}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-17T03:36:34.989839+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom utils import infer_dosage_from_path\n\n# Edge cases for infer_dosage_from_path\nedge_cases = [\n    '/root/autodl-tmp/models/Llama-3.2-3B',      # no dosage\n    '/some/random/path',                           # no dosage\n    '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d050_s42/lora_adapter',  # d050\n]\nfor p in edge_cases:\n    print(f'  {p} -> {repr(infer_dosage_from_path(p))}')\n\"\n",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python -c \"\nimport sys\nsys.path.insert(0, '.')\nfrom utils import infer_dosage_from_path\n\n# Edge cases for infer_dosage_from_path\nedge_cases = [\n    '/root/autodl-tmp/models/Llama-3.2-3B',      # no dosage\n    '/some/random/path',                           # no dosage\n    '/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d050_s42/lora_adapter',  # d050\n]\nfor p in edge_cases:\n    print(f'  {p} -> {repr(infer_dosage_from_path(p))}')\n\"\n",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-17T03:36:34.989970+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  /root/autodl-tmp/models/Llama-3.2-3B -> None\\n  /some/random/path -> None\\n  /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d050_s42/lora_adapter -> '050'\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.96}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 107 · 2026-05-17T03:36:34.990140+00:00_
+
+Fix verified. Here's the summary:
+
+## Bug Report
+
+**File**: `/root/contamcal-irt-calibration/exp002/signals/s1_embedding.py:54`
+
+**Root cause**: When `adapter_path=None` (merged/full-fine-tune models like Llama), the original code unconditionally defaulted `dosage="000"` without checking if the dosage could be inferred from `model_path`. This caused merged checkpoint paths like `.../Llama-3.2-3B_d025_s42/merged` to compare against `sft_dosage_000.jsonl` instead of the correct `sft_dosage_025.jsonl`.
+
+**Impact**: Cross-family Llama signals computed from merged models would all use d000 training data reference, making all dosage levels appear identical in s1 — corrupting the IRT signal differentiation.
+
+**Fix** (lines 54-64):
+```python
+if adapter_path:
+    dosage = infer_dosage_from_path(adapter_path) or "000"
+else:
+    # No adapter: infer dosage from model_path (handles merged checkpoints)
+    from pathlib import Path
+    dosage = None
+    if model_path:
+        dosage = infer_dosage_from_path(model_path)
+        if not dosage:
+            dosage = infer_dosage_from_path(str(Path(model_path).parent))
+    dosage = dosage or "000"
+```
+
+**Verified**: 8 scenarios pass (Qwen+adapter, Llama merged d025/d100/d000, Llama raw base, Qwen Instruct, Llama adapter cases).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_s1_embedding_bugfix_20260517T032324"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,15 @@
+{
+  "exp_id": "sft_llama3_d100_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T10:18:32.167Z",
+    "updated_at": "2026-05-21T10:18:54.649Z",
+    "hypothesis": "LLaMA-3.1-8B base d100 (100% contamination) SFT max-dosage for out-of-sample taxonomy validation. Delta(d100-d000) determines primary direction."
+  },
+  "timestamp": "2026-05-21T10:18:55.606471+00:00",
+  "trigger": "update_registry"
+}

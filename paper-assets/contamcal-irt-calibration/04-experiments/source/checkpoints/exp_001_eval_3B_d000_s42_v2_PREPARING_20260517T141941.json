@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_001_eval_3B_d000_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "conclusion": "killed",
+    "created_at": "2026-05-13T23:51:39.462Z",
+    "failure_reason": "killed by d005 worker reclaiming GPU 5 (SIGKILL, EXIT_CODE=137)",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter",
+      "command": "bash -c \"source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && export HF_HUB_DISABLE_XET=1 && cd /root/contamcal-irt-calibration/exp001 && python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d000_s42 --benchmarks mmlu gsm8k arc_challenge humaneval\"",
+      "data_count": 0,
+      "data_path": "d000",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+      "gpu": [
+        "cuda:5"
+      ],
+      "hypothesis": "0% dosage 3B s42 baseline eval (v2, fix --gpu bug from v1). No --gpu param, use CUDA_VISIBLE_DEVICES via gpu_ids.",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_s42_v2.log",
+      "model_name": "Qwen2.5-3B",
+      "parent": "exp_001_sft_0pct_3B",
+      "pid": "237865",
+      "seed": 42,
+      "server": "cqa1-21977",
+      "submitted_at": "2026-05-13T23:51:50.500Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "PREPARING",
+    "updated_at": "2026-05-17T14:19:40.995Z"
+  },
+  "timestamp": "2026-05-17T14:19:41.548800+00:00",
+  "trigger": "update_registry"
+}

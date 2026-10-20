@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_006_irt_05B_arc",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:17:30.505Z",
+    "updated_at": "2026-05-14T21:05:36.632Z",
+    "hypothesis": "ARC (1172 items, ~4700 params) per-benchmark NUTS with delta exposure. Second benchmark validation after GSM8K success.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp006/run_exp006.py --model-scale 0.5B --data-seed 42 --benchmark arc_challenge --aligned-only --signals-dir /root/autodl-tmp/exp002/signals --output-dir /root/autodl-tmp/exp006/results_05B_arc_delta --joint-fit\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "434542",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_006_irt_05B_arc.log",
+      "submitted_at": "2026-05-14T20:17:58.432Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 2858.2,
+      "gpu_hours": 0.79
+    },
+    "metrics": {
+      "gamma": -1.21,
+      "gamma_ci_lower": -2.53,
+      "gamma_ci_upper": 0.12,
+      "fit_type": "joint"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/exp006/results_05B_arc_delta",
+    "log_path": "~/runs/contamcal-irt-calibration/exp_006_irt_05B_arc.log",
+    "completed_at": "2026-05-14T21:05:36.633Z"
+  },
+  "timestamp": "2026-05-14T21:05:37.345159+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,41 @@
+{
+  "exp_id": "eval_qwen14b_arc_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:39:02.400Z",
+    "updated_at": "2026-05-20T18:50:19.260Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "reproduce": {
+      "finished_at": "2026-05-20T18:39:03.815Z"
+    },
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T18:39:15.013076+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "bash run_arc_eval_qwen14b_s42.sh",
+      "server": "westd-29999",
+      "data_path": "/root/contamcal-irt-calibration/results/arc_eval/qwen14b/",
+      "model_name": "Qwen2.5-14B",
+      "seed": 42,
+      "data_count": 1172,
+      "checkpoint_source": "Qwen2.5-14B SFT d000-d100",
+      "eval_data": "ARC-Challenge 25-shot"
+    },
+    "hypothesis": "Qwen-14B ARC Collapse (Δ=-3.15pp s123) should replicate under s42 if the effect is seed-robust rather than stochastic",
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/arc_eval/qwen14b/",
+    "log_path": "/root/contamcal-irt-calibration/logs/eval_qwen14b_arc_s42.log"
+  },
+  "timestamp": "2026-05-20T18:50:19.898302+00:00",
+  "trigger": "update_registry"
+}

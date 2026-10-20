@@ -1,0 +1,50 @@
+{
+  "exp_id": "exp_001_sft_3B_d000_s42_a32",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:09:31.942Z",
+    "updated_at": "2026-05-16T00:21:18.047Z",
+    "hypothesis": "D076 retrain: 3B d000 s42 SFT with lr=5e-5, alpha=32, seed=42, dosage=0%. Replaces deprecated d000_s42 (lr=2e-4 confound). Submit to cuda:0 or cuda:1 after d100 SFT completes.",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=5 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": 633036,
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_3B_d000_s42_a32.log",
+      "submitted_at": "2026-05-16T04:32:00Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl",
+      "data_count": 50000,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "lora_alpha": 32,
+      "lora_r": 16,
+      "lr": "5e-5",
+      "batch_size": 1,
+      "grad_accum": 16
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T00:04:16.330Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T00:04:31.736139+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T00:21:19.825166+00:00",
+  "trigger": "update_registry"
+}

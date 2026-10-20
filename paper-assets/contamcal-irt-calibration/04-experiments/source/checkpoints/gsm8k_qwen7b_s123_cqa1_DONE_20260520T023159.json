@@ -1,0 +1,48 @@
+{
+  "exp_id": "gsm8k_qwen7b_s123_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:07:13.468Z",
+    "updated_at": "2026-05-20T02:31:59.152Z",
+    "hypothesis": "GSM8K cross-seed replication for Qwen-7B: verify the +11.07pp (s42) cross-benchmark transfer reproduces at s123. If consistent, confirms transfer is systematic not stochastic.",
+    "parent": "gsm8k_qwen7b_s42_cqa1",
+    "spec": {
+      "command": "bash /root/contamcal-irt-calibration/exp001/eval_gsm8k_qwen7b_s123.sh",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "301402",
+      "log_path": "~/runs/contamcal-irt-calibration/gsm8k_qwen7b_s123_cqa1.log",
+      "submitted_at": "2026-05-20T00:07:40.249Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d{000,100}_s123/lora_adapter/",
+      "data_count": 2,
+      "model_name": "Qwen2.5-7B",
+      "seed": 123,
+      "eval_data": "gsm8k",
+      "checkpoint_source": "s123 SFT adapters from westd",
+      "evaluate_py_md5": "001a9bc23f808c47d25ef9eaeecb81f1",
+      "checkpoint_path": "/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d{000,100}_s123/",
+      "wall_clock_seconds": 8658.9,
+      "gpu_hours": 2.41
+    },
+    "metrics": {
+      "gsm8k_d000": 0.7005,
+      "gsm8k_d100": 0.7923,
+      "gsm8k_delta": 0.0918,
+      "d000_note": "s123 baseline",
+      "d100_note": "s123 full contamination"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T02:31:59.152Z"
+  },
+  "timestamp": "2026-05-20T02:31:59.974839+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_001_eval_3B_d025_v2_para_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T04:14:47.629Z",
+    "updated_at": "2026-05-15T05:11:56.564Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_s42_para_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/paraphrases",
+      "data_count": 0,
+      "model_name": "Qwen2.5-3B (d025 v2 LoRA)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s42/lora_adapter",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval (para_aligned)",
+      "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_s42_para_aligned",
+      "log_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_v2_s42_para_aligned/eval.log"
+    },
+    "hypothesis": "3B d025 v2 para_aligned eval. Paraphrased benchmarks for contamination signal computation.",
+    "parent": "exp_001_sft_d025_3B_v2",
+    "pid": 499610,
+    "conclusion": "success",
+    "completed_at": "2026-05-15T05:11:56.564Z"
+  },
+  "timestamp": "2026-05-15T05:11:57.501108+00:00",
+  "trigger": "update_registry"
+}

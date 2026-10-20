@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp006-oracle-arc-2pl",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:42:55.893Z",
+    "updated_at": "2026-05-15T04:56:38.148Z",
+    "hypothesis": "ARC 2PL+γ vs 4PL+γ comparison. ARC 4PL+γ showed γ=-1.46. If 2PL+γ yields better calibration (like GSM8K), supports 'model complexity must match data structure' claim. If 4PL better on ARC, bidirectional evidence for benchmark-dependent model selection.",
+    "spec": {
+      "command": "python exp006/run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark arc_challenge --model-type 2pl_gamma --chains 4 --warmup 2000 --samples 4000 --parallel-chains 1 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_2pl --aligned-only",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/eval_results",
+      "data_count": 11,
+      "model_name": "2pl_gamma",
+      "seed": 42
+    },
+    "pid": 496697,
+    "log_path": "/tmp/irt_oracle_arc_2pl.log",
+    "checkpoint_path": "/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_2pl",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T04:56:38.148Z"
+  },
+  "timestamp": "2026-05-15T04:56:39.118015+00:00",
+  "trigger": "update_registry"
+}

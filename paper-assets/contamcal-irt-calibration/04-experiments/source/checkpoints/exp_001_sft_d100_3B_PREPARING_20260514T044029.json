@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_001_sft_d100_3B",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:24:36.974Z",
+    "updated_at": "2026-05-14T04:40:28.944Z",
+    "spec": {
+      "hypothesis": "100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination for 3B scale, paired with d000 baseline for dose-response curve. P1 priority.",
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl",
+      "server": "cqa1-21977",
+      "gpu": "cuda:3"
+    }
+  },
+  "timestamp": "2026-05-14T04:40:29.303566+00:00",
+  "trigger": "update_registry"
+}

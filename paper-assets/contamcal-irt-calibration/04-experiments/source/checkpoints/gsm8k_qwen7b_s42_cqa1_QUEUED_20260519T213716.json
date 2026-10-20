@@ -1,0 +1,15 @@
+{
+  "exp_id": "gsm8k_qwen7b_s42_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T21:37:09.088Z",
+    "updated_at": "2026-05-19T21:37:15.793Z",
+    "hypothesis": "GSM8K eval for Qwen-7B s42 d000+d100: test contamination specificity — MMLU contamination should NOT transfer to GSM8K (math reasoning), providing evidence that dose-response profiles are benchmark-conditional."
+  },
+  "timestamp": "2026-05-19T21:37:16.339705+00:00",
+  "trigger": "update_registry"
+}

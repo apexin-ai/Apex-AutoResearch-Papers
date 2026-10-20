@@ -1,0 +1,42 @@
+{
+  "exp_id": "eval_falcon3_d025_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T11:03:32.692Z",
+    "updated_at": "2026-05-22T11:07:23.351Z",
+    "spec": {
+      "command": "python evaluate.py --benchmarks mmlu arc_challenge --mc-format aligned",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "618913",
+      "log_path": "~/runs/contamcal-irt-calibration/eval_falcon3_d025_s42.log",
+      "submitted_at": "2026-05-22T11:03:31.836Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "mmlu+arc_challenge",
+      "data_count": 0,
+      "model_name": "Falcon3-7B-Base",
+      "seed": 42,
+      "checkpoint_source": "sft_falcon3_7b_d025_s42_v2",
+      "eval_data": "mmlu+arc_challenge",
+      "wall_clock_seconds": 231.5,
+      "gpu_hours": 0.06
+    },
+    "hypothesis": "Falcon3-7B-Base d025 eval: MMLU 5-shot + ARC 25-shot aligned MC format for dose-response profiling",
+    "reproduce": {
+      "finished_at": "2026-05-22T11:07:18.245Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T11:07:23.351Z"
+  },
+  "timestamp": "2026-05-22T11:07:24.154998+00:00",
+  "trigger": "update_registry"
+}

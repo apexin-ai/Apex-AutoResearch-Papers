@@ -1,0 +1,50 @@
+{
+  "exp_id": "exp_001_sft_d025_15B",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:18:59.162Z",
+    "updated_at": "2026-05-14T18:19:07.178Z",
+    "hypothesis": "25% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-dosage contamination for 1.5B dose-response curve intermediate point",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "model_name": "Qwen/Qwen2.5-1.5B",
+      "seed": 42,
+      "gpu": 0,
+      "tmux_session": "sft_15B_d025",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s42",
+      "log_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s42/train.log",
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "batch_size": 1,
+      "grad_accum": 16,
+      "lr": 0.0002,
+      "max_seq_length": 2048,
+      "epochs": 1
+    },
+    "notes": "训练启动成功。GPU 0, 14361 MiB。3384 steps, ~3.94s/step, ETA ~02:00 UTC May 15。tmux session: sft_15B_d025。参数与 1.5B d005/d100 一致 (batch_size=1, grad_accum=16, lora_r=16, alpha=32)。补齐 1.5B dose-response 中间点 (d025)。",
+    "reproduce": {
+      "finished_at": "2026-05-14T17:47:04.642Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T17:47:05.520Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T17:47:07.082599+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T18:19:07.847429+00:00",
+  "trigger": "update_registry"
+}

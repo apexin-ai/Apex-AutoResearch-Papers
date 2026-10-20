@@ -1,0 +1,29 @@
+{
+  "exp_id": "sft_qwen7b_olmo2_s123_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:40:25.403Z",
+    "updated_at": "2026-05-19T13:44:55.347Z",
+    "hypothesis": "Qwen-7B V-shaped recovery + OLMo-2 benefiting-plateau seed=123 replication: verify both patterns reproduce and 64% baseline threshold holds",
+    "parent": "exp_001_sft_qwen7b_d100_s42",
+    "spec": {
+      "command": "bash /root/autodl-tmp/exp001/run_qwen7b_olmo2_s123.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "179905",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_qwen7b_olmo2_s123_sweep.log",
+      "submitted_at": "2026-05-19T13:40:48.410Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T13:44:55.847198+00:00",
+  "trigger": "update_registry"
+}

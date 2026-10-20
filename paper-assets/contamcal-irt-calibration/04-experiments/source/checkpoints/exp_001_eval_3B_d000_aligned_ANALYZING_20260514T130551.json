@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_001_eval_3B_d000_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:30:50.047Z",
+    "updated_at": "2026-05-14T13:05:50.327Z",
+    "hypothesis": "3B d000 s42 aligned eval (v5 代码) — 诊断 GSM8K 崩塌 (0.117→?) 并建立正式 aligned baseline。含 GSM8K 答案提取修复（如需要）。",
+    "spec": {
+      "command": "python evaluate.py --model-path Qwen2.5-3B --adapter-path Qwen2.5-3B_d000_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned",
+      "server": "cqa1-21977",
+      "gpu": "cuda:5",
+      "pid": "342935",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_aligned.log",
+      "submitted_at": "2026-05-14T09:52:04.036Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MMLU+ARC+GSM8K+HumanEval",
+      "data_count": 4,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+      "mc_format": "aligned (D017)"
+    },
+    "notes": "D018 决策：3B GSM8K 标记为 \"SFT-degraded, excluded from dose-response\"。3B MMLU/ARC 仍可用。不重训 LoRA 配置。诊断根因：LoRA SFT (r=16, alpha=32, lr=2e-4, 7 proj) 导致 CoT 灾难性遗忘。",
+    "reproduce": {
+      "finished_at": "2026-05-14T13:05:47.172Z"
+    }
+  },
+  "timestamp": "2026-05-14T13:05:51.627575+00:00",
+  "trigger": "update_registry"
+}

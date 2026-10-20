@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp_005_noise_prop_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:47:35.807Z",
+    "updated_at": "2026-05-13T20:47:35.807Z",
+    "spec": {
+      "hypothesis": "Same as exp_005: ME model CI width increases monotonically with σ_e; simple model does not. v2 fixes: sigma_e lower bound 1e-4, c/d bounds [0.001,0.999], max_treedepth=12.",
+      "parent": "exp_005_noise_prop"
+    }
+  },
+  "timestamp": "2026-05-13T20:47:35.877567+00:00",
+  "trigger": "update_registry"
+}

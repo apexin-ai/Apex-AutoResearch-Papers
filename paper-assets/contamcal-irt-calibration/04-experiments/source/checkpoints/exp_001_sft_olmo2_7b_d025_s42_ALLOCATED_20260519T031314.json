@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_001_sft_olmo2_7b_d025_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:42:21.230Z",
+    "updated_at": "2026-05-19T03:13:13.944Z",
+    "hypothesis": "OLMo-2-7B d025 (25% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the mid-dosage data point for IRT dose-response calibration in the AllenAI model family, running in parallel with d005 on dual GPUs to accelerate the most behind chain.",
+    "spec": {
+      "command": "bash -c \"cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/OLMo-2-1124-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048 --lora-targets q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj\"",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "102091",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_olmo2_7b_d025_s42.log",
+      "submitted_at": "2026-05-19T03:12:59.225Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T03:13:14.477506+00:00",
+  "trigger": "update_registry"
+}

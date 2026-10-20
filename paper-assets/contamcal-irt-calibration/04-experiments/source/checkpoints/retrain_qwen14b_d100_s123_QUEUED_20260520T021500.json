@@ -1,0 +1,16 @@
+{
+  "exp_id": "retrain_qwen14b_d100_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T02:14:33.038Z",
+    "updated_at": "2026-05-20T02:14:59.288Z",
+    "hypothesis": "Retrain Qwen-14B d100_s123: original checkpoint lost due to disk full. Retrain single dosage to complete s123 sweep.",
+    "parent": "sft_qwen14b_s123_sweep"
+  },
+  "timestamp": "2026-05-20T02:15:00.126284+00:00",
+  "trigger": "update_registry"
+}

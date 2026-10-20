@@ -1,0 +1,36 @@
+{
+  "exp_id": "irt_fitting_mmlu_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "created_at": "2026-05-20T03:11:21.315Z",
+    "hypothesis": "IRT 2PL+γ fitting on MMLU v3 data (25 respondents × 14042 items): estimate per-item contamination sensitivity γ_i to validate that contamination acts through global difficulty shift rather than item-specific memorization.",
+    "notes": "IRT fitting 已由 Reviewer 确认重启：新 PID 268172（11:22 CST 启动），output-dir 改为 analysis/irt_results_v3/。等 PID 完成后检查 trace_mmlu.nc。如失败，原始结果在 irt_fitting_mmlu_v3.log 中完整保留（25 respondents θ + 14042 items a/b/γ），可从日志恢复。",
+    "reproduce": {
+      "finished_at": "2026-05-20T03:25:34.236Z"
+    },
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "command": "python fit_irt_2pl_gamma.py --benchmark mmlu --data-dir irt_data_v3/ --output-dir results/irt/ --method advi --draws 1000 --seed 42",
+      "data_count": 350000,
+      "data_path": "/root/contamcal-irt-calibration/analysis/irt_data_v3/",
+      "gpu": "cpu",
+      "log_path": "~/runs/contamcal-irt-calibration/irt_fitting_mmlu_v3.log",
+      "model_name": "IRT-2PL-gamma",
+      "output_dir": "analysis/irt_results_v3/",
+      "pid": 268172,
+      "seed": 42,
+      "server": "westd-29999",
+      "submitted_at": "2026-05-20T03:11:19.873Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "ANALYZING",
+    "updated_at": "2026-05-20T06:20:25.075Z",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T06:20:25.833713+00:00",
+  "trigger": "update_registry"
+}

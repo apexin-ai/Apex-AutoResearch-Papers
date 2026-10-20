@@ -1,0 +1,67 @@
+{
+  "exp_id": "gsm8k_gemma2_s42_westd",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "account": "root",
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/gsm8k/gemma2_d000_s42/",
+    "completed_at": "2026-05-20T05:32:29.207Z",
+    "conclusion": "failed",
+    "created_at": "2026-05-19T22:46:11.670Z",
+    "extra": {
+      "hook_events": [
+        {
+          "action": "agent",
+          "event": "on_failed",
+          "ts": "2026-05-20T05:32:36.760683+00:00"
+        },
+        {
+          "action": "agent",
+          "event": "on_failed",
+          "ts": "2026-05-20T06:12:17.982579+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "gpu": "cuda:3",
+    "hypothesis": "GSM8K eval for Gemma-2 s42: test if Benefit archetype (+3.76pp on MMLU) shows proportional or disproportional cross-benchmark transfer on GSM8K.",
+    "log_path": "/root/runs/contamcal-irt-calibration/gsm8k_gemma2_s42_westd.log",
+    "notes": "evaluate.py 修复后重跑。format_as_chat 加 system_prompt。Smoke test 通过 (Qwen-14B d000: 60.80→61.18, +0.38pp)。PID 303300, cuda:3, d000+d100。日志: gsm8k_gemma2_s42_fixed.log",
+    "parent": "gsm8k_qwen7b_s42_cqa1",
+    "reproduce": {
+      "code_commit": "2bd810b85c26ae858104d4a9a073e09d3d4afe48",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/scripts/gsm8k_s42/run_gsm8k_gemma2_s42.sh\"",
+      "finished_at": "2026-05-20T08:24:47.456Z",
+      "gpu": "cuda:3",
+      "server": "westd-29999",
+      "started_at": "2026-05-20T05:25:21.365Z",
+      "training_hours": 2.99
+    },
+    "retry_count": 1,
+    "server": "westd-29999",
+    "spec": {
+      "account": "root",
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/",
+      "command": "bash run_gemma2_gsm8k_fixed.sh (evaluate.py fixed: system_prompt added)",
+      "data_count": 5,
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d{000,005,025,050,100}_s42",
+      "eval_data": "gsm8k",
+      "gpu": [
+        "cuda:3"
+      ],
+      "log_path": "~/runs/contamcal-irt-calibration/gsm8k_gemma2_s42_westd.log",
+      "model_name": "google/gemma-2-9b",
+      "pid": 303300,
+      "seed": 42,
+      "server": "westd-29999"
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-20T08:24:57.197Z"
+  },
+  "timestamp": "2026-05-20T08:24:57.814951+00:00",
+  "trigger": "update_registry"
+}

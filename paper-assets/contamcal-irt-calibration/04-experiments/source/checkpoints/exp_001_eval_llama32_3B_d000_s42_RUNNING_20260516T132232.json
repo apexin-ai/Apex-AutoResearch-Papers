@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_001_eval_llama32_3B_d000_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:22:13.996Z",
+    "updated_at": "2026-05-16T13:22:31.849Z",
+    "spec": {
+      "hypothesis": "P0-B cross-family validation: Llama-3.2-3B d000 eval. 0% contamination baseline for Llama family. Verifies contamination susceptibility pattern across model families.",
+      "parent": "exp_001_sft_llama32_3B_d000_s42",
+      "type": "eval",
+      "command": "bash /root/contamcal-irt-calibration/scripts/run_llama3b_d000_eval.sh",
+      "server": "cqa1-21977",
+      "gpu": "cuda:4",
+      "pid": 785949,
+      "data_path": "/root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/",
+      "data_count": 4,
+      "model_name": "Llama-3.2-3B_d000_s42 (merged)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged/",
+      "eval_data": "mmlu, gsm8k, arc_challenge, humaneval (aligned)"
+    }
+  },
+  "timestamp": "2026-05-16T13:22:32.222921+00:00",
+  "trigger": "update_registry"
+}

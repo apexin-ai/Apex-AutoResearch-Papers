@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_002_signals_3B_d000_a32_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:09:17.976Z",
+    "updated_at": "2026-05-16T10:20:58.855Z",
+    "spec": {
+      "command": "bash /root/contamcal-irt-calibration/exp002/run_3B_d000_a32_s42_signals.sh",
+      "server": "cqa1-21977",
+      "gpu": "cuda:4",
+      "pid": "721519",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_002_signals_3B_d000_a32_s42.log",
+      "submitted_at": "2026-05-16T07:09:17.497Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_a32_s42",
+      "model_name": "Qwen2.5-3B_d000_s42 (alpha=32)",
+      "seed": 42,
+      "hypothesis": "Compute contamination signals (s1_embedding, s2_minkpp, s4_selfcritique) for d000 baseline across mmlu/gsm8k/arc_challenge for RRF aggregation",
+      "data_count": 9
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T10:20:56.973Z"
+    }
+  },
+  "timestamp": "2026-05-16T10:20:59.528208+00:00",
+  "trigger": "update_registry"
+}

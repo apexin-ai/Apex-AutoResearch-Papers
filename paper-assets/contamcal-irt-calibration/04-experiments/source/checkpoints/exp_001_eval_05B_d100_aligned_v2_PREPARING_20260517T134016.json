@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_001_eval_05B_d100_aligned_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:19:36.281Z",
+    "updated_at": "2026-05-17T13:40:16.476Z",
+    "spec": {
+      "command": "bash -c \"cd /root/contamcal-irt-calibration/exp001 && CUDA_VISIBLE_DEVICES=2 python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d100_aligned_v2.log",
+      "submitted_at": "2026-05-14T15:19:45.331Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T15:20:31.108Z"
+    },
+    "failure_reason": "EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)",
+    "conclusion": "killed",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T15:20:42.228237+00:00"
+        }
+      ]
+    },
+    "notes": "失败原因: EXIT_CODE=127 — 命令未激活 conda 环境，python 不在 PATH。日志仅 2 行: \"bash: line 1: python: command not found\" + \"EXIT_CODE=127\"。修复: 命令需加 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base。已创建 v3 重提交。",
+    "hypothesis": "Historical retry superseded by later successful version (0.5B d100 aligned eval v2, missing conda activate)"
+  },
+  "timestamp": "2026-05-17T13:40:16.988013+00:00",
+  "trigger": "update_registry"
+}

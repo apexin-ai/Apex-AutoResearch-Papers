@@ -1,0 +1,195 @@
+dreams:
+  dream_20260513T155040:
+    dream_id: dream_20260513T155040
+    project: contamcal-irt-calibration
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: AAAI 2027
+    focus: 'Core concern: can 4PL+γ IRT with noisy RRF exposure scores actually improve
+      model selection over baselines? Focus on calibration accuracy, baseline comparison
+      strength, and RL observational validity.'
+    what_if: []
+    pid: 215498
+    chat_id: oc_4960c7baa442eabd4fa0aceeac2693ca
+    card_message_id: om_x100b6f7d93dde0a0c100635839c9b70
+    started_at: '2026-05-13T15:50:40+00:00'
+    updated_at: '2026-05-13T16:47:44+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 8c67e68e87f880fffc2d79adfd9dcf254c74eceedc6ac17af1d56cfc75961d22
+  dream_20260513T171200:
+    dream_id: dream_20260513T171200
+    project: contamcal-irt-calibration
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: AAAI 2027
+    focus: 'Key changes since Dream D1: (1) per-benchmark γ_k model variant replacing
+      global γ, (2) measurement error model for exposure as default, (3) signal survival
+      analysis elevated to Core Contribution, (4) Fisher Information identifiability
+      analysis, (5) multi-family validation (Llama/Pythia), (6) DCR baseline added,
+      (7) 30+ citations target, (8) local independence explicitly discussed, (9) RL
+      regret uses held-out clean benchmark as ground truth. Focus review on whether
+      these changes address the 5/10 score issues from Dream D1.'
+    what_if: []
+    pid: 220243
+    chat_id: oc_4960c7baa442eabd4fa0aceeac2693ca
+    card_message_id: om_x100b6f7f40c758a8c27ce9bdec3339a
+    started_at: '2026-05-13T17:12:00+00:00'
+    updated_at: '2026-05-13T18:18:21+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: c33642d72eed6ee376c137761643c36fdaacb5460bf6541df57245bc74933406
+  dream_20260514T171536:
+    dream_id: dream_20260514T171536
+    project: contamcal-irt-calibration
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: C2 已从 "cliff-like RL degradation" 重构为 "method-specific, scale-dependent
+      signal effectiveness"。关键新发现：Min-K++ 在高污染下方向性反转（Cohen's d -1.2 to -2.7），不仅失效还误导。仅
+      S1 Embedding 有效（AUC>0.95）。"scale-dependent" 尚无多 scale 数据（仅 0.5B）。请重点审查：(1) 新
+      C2 framing 是否足够支撑 Core Contribution；(2) 单信号 RRF 退化是否削弱方法论贡献；(3) Min-K++ 反向效应作为独立
+      finding 的价值。
+    what_if: []
+    pid: 550570
+    chat_id: oc_4960c7baa442eabd4fa0aceeac2693ca
+    card_message_id: om_x100b6f547d7884a0c3c32e361dca97f
+    started_at: '2026-05-14T17:15:36+00:00'
+    updated_at: '2026-05-14T18:43:52+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: cc0fb7e746a0460d8a4ea1b10b2cb59e6385a3973c23d8ee066e418203286352
+  dream_20260514T185145:
+    dream_id: dream_20260514T185145
+    project: contamcal-irt-calibration
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'D025 更新后的 framing：(1) 贡献层级重新平衡——Fisher Info identifiability 升为 Core #3，Min-K++
+      反向效应是最强引用贡献；(2) N_models 从 ~15 提升到 ~30 via multi-seed pooling (3 scales × 4
+      dosages × 2 seeds)；(3) SBC 诊断加入评估协议解决 coverage gap；(4) 新增 reviewer concern #15-18
+      对应 novelty ceiling / hierarchical γ_k / coverage gap / "why not just S1" 的预案；(5)
+      ME model 定位澄清（如果不 improve → simple model 为主，ME 为 ablation）。请重点审查这些改动是否有效提升了论文评分，特别是
+      novelty 定位和 N_models 是否足够。'
+    what_if: []
+    pid: 571572
+    chat_id: oc_4960c7baa442eabd4fa0aceeac2693ca
+    card_message_id: om_x100b6f55d2d408a4c3c902fdc977b51
+    started_at: '2026-05-14T18:51:45+00:00'
+    updated_at: '2026-05-14T20:16:12+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 626d5b3dd0314b8c46a3e3ab33d140a32f8aa88d9f5bb36bf3f19ca38941ead6
+  dream_20260515T051007:
+    dream_id: dream_20260515T051007
+    project: contamcal-irt-calibration
+    status: failed
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Paper framing pivot (D038): 从 "calibration method" 转为 "detection + benchmark-dependent
+      characterization"。核心证据：(1) IRT γ 在 oracle 条件下双 benchmark 显著（GSM8K +3.77, ARC
+      -0.62/-1.46）；(2) 负 gamma 是真实现象——小模型 ARC 灾难性遗忘 17pp，非 bug；(3) 模型复杂度匹配：4PL best
+      for MCQ (ARC), 2PL best for open-ended (GSM8K)；(4) S1 signal 只对 memorization
+      tasks 有效；(5) 所有条件下 IRT 校准 MAE 均不优于 raw baseline，coverage 在 γ 显著时崩塌 18-33%。论文不
+      claim calibration improvement，而是 claim 系统性分析框架揭示 contamination 的 benchmark/scale/model-dependent
+      行为。关键风险：reviewer 可能认为 detection-only 不够 actionable。'
+    what_if: []
+    pid: null
+    chat_id: oc_4960c7baa442eabd4fa0aceeac2693ca
+    card_message_id: om_x100b6f5ee5652480c34a20e1dd9582a
+    started_at: '2026-05-15T05:10:07+00:00'
+    updated_at: '2026-05-15T05:23:15+00:00'
+    stages_completed: []
+    error: 'zombie: orchestrator process crashed'
+    context_hash: 5515cd5b1a6e75c0b8e69909859c19239ceb6b59eddbeb830b9f3b6cfbff9478
+  dream_20260515T052337:
+    dream_id: dream_20260515T052337
+    project: contamcal-irt-calibration
+    status: done
+    review_mode: full
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: 'Paper framing pivot (D038): 从 "calibration method" 转为 "detection + benchmark-dependent
+      characterization"。核心证据：(1) IRT γ 在 oracle 条件下双 benchmark 显著（GSM8K +3.77, ARC
+      -0.62/-1.46）；(2) 负 gamma 是真实现象——小模型 ARC 灾难性遗忘 17pp，非 bug；(3) 模型复杂度匹配：4PL best
+      for MCQ (ARC), 2PL best for open-ended (GSM8K)；(4) S1 signal 只对 memorization
+      tasks 有效；(5) 所有条件下 IRT 校准 MAE 均不优于 raw baseline，coverage 在 γ 显著时崩塌 18-33%。论文不
+      claim calibration improvement，而是 claim 系统性分析框架揭示 contamination 的 benchmark/scale/model-dependent
+      行为。关键风险：reviewer 可能认为 detection-only 不够 actionable。'
+    what_if: []
+    pid: 711773
+    chat_id: oc_4960c7baa442eabd4fa0aceeac2693ca
+    card_message_id: om_x100b6f5e9353d8bcc2c1bd14beda23d
+    started_at: '2026-05-15T05:23:37+00:00'
+    updated_at: '2026-05-15T06:35:34+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: 6fdde5dc7109efbbdc52204eb924a344d63da26e344386c5ac07c29b75b4644e
+  dream_20260516T104822:
+    dream_id: dream_20260516T104822
+    project: contamcal-irt-calibration
+    status: done
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 1125044
+    chat_id: oc_4960c7baa442eabd4fa0aceeac2693ca
+    card_message_id: om_x100b6fb0f9a4a500c432a238a312eca
+    started_at: '2026-05-16T10:48:22+00:00'
+    updated_at: '2026-05-16T11:33:58+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: b0e7771f1936a9f89880c1e337cf3b733e8700cd57d7b76b1db7cf9fa866d8e4
+  dream_20260516T155748:
+    dream_id: dream_20260516T155748
+    project: contamcal-irt-calibration
+    status: reviewing
+    review_mode: simple
+    review_visible: true
+    writing_visible: true
+    venue: ''
+    focus: ''
+    what_if: []
+    pid: 1187440
+    chat_id: oc_4960c7baa442eabd4fa0aceeac2693ca
+    card_message_id: om_x100b6fbd710680a4c318bc24a09bd5d
+    started_at: '2026-05-16T15:57:48+00:00'
+    updated_at: '2026-05-16T16:49:55+00:00'
+    stages_completed:
+    - imagine
+    - write
+    - review
+    error: null
+    context_hash: ad01b272c0ac90760591dbe018ea2f09fb4c2aac150e033cb3e380f0edbe14c8

@@ -1,0 +1,35 @@
+{
+  "exp_id": "exp_001_sft_d005_3B",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:54:49.962Z",
+    "updated_at": "2026-05-14T12:56:54.327Z",
+    "hypothesis": "5% dosage contaminated SFT on Qwen2.5-3B (seed=42): low-dosage contamination for 3B dose-response curve",
+    "notes": "Cron auto-submitted on cuda:4. Wrapper PID 335346, actual training PID 335351. 48% complete (1511/3177 steps), loss ~1.11, epoch 0.35. ETA ~20:40 UTC.",
+    "server": "cqa1-21977",
+    "gpu": "cuda:4",
+    "reproduce": {
+      "server": "cqa1-21977",
+      "gpu": "cuda:4",
+      "started_at": "2026-05-14T09:11:03.513Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42 --gpu 0 --batch-size 1 --grad-accum 16 --epochs 1 --lr 2e-4 --lora-r 16 --lora-alpha 32 --seed 42 --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "finished_at": "2026-05-14T12:56:51.735Z",
+      "training_hours": 3.76
+    },
+    "spec": {
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl",
+      "data_count": 50826,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42"
+    },
+    "pid": "335346",
+    "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_d005_3B.log"
+  },
+  "timestamp": "2026-05-14T12:56:55.370838+00:00",
+  "trigger": "update_registry"
+}

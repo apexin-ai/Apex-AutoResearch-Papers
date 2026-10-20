@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_olmo2_arc_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:24:32.929Z",
+    "updated_at": "2026-05-20T18:24:32.929Z",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T18:24:33.496693+00:00",
+  "trigger": "update_registry"
+}

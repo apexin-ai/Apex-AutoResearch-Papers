@@ -1,0 +1,49 @@
+{
+  "exp_id": "eval_olmo2_s123_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:27:37.932Z",
+    "updated_at": "2026-05-20T12:33:12.060Z",
+    "hypothesis": "OLMo-2-7B seed=123 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Second seed for triple-seed bootstrap CI. Expect flat/noisy pattern consistent with s42 near-zero delta.",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d{000,005,025,050,100}_s123/lora_adapter",
+      "log_path": "/tmp/eval_olmo2_s123_mmlu.log",
+      "server": "westd-29999",
+      "gpu": "cuda:2",
+      "model_name": "OLMo-2-7B",
+      "seed": 123,
+      "command": "bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s123_mmlu.sh",
+      "eval_data": "cais/mmlu (14042 items)"
+    },
+    "parent": "sft_qwen7b_olmo2_s123_sweep",
+    "reproduce": {
+      "finished_at": "2026-05-20T11:38:07.803Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T11:38:12.194Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T11:38:17.836351+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "d000_acc": 0.5566,
+      "d005_acc": 0.5614,
+      "d025_acc": 0.5497,
+      "d050_acc": 0.5592,
+      "d100_acc": 0.5511,
+      "delta_d100": -0.0055
+    }
+  },
+  "timestamp": "2026-05-20T12:33:12.676037+00:00",
+  "trigger": "update_registry"
+}

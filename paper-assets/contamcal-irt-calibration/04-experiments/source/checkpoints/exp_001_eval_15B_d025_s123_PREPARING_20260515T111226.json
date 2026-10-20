@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_001_eval_15B_d025_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:05:35.304Z",
+    "updated_at": "2026-05-15T11:12:26.078Z",
+    "spec": {
+      "hypothesis": "1.5B d025 seed=123 aligned eval for pooled IRT N expansion. 25% contamination dosage.",
+      "model_name": "Qwen2.5-1.5B",
+      "seed": 123,
+      "parent": "exp_001_sft_d025_15B_s123",
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T11:12:26.312052+00:00",
+  "trigger": "update_registry"
+}

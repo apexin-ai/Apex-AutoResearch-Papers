@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_gemma2_arc_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:07:08.801Z",
+    "updated_at": "2026-05-20T22:33:23.906Z",
+    "hypothesis": "Gemma-2 s0 ARC 25-shot eval for d000-d050 (partial); d100 pending retrain completion",
+    "reproduce": {
+      "finished_at": "2026-05-20T22:20:25.394Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T22:20:33.702699+00:00"
+        }
+      ]
+    },
+    "notes": "Cron 误判为 failed（eval 未走 submit_training_job 无 W&B）。日志确认 d000-d050 全部 exit=0，结果已保存。等待 Worker 收集 accuracy 数据。",
+    "metrics": {
+      "arc_d000_s0": 0.8584,
+      "arc_d005_s0": 0.8677,
+      "arc_d025_s0": 0.6485,
+      "arc_d050_s0": 0.8549,
+      "note": "d025 anomalous (64.85% vs ~86% baseline), under investigation - not MMLU data mixup (1172 items confirmed)"
+    }
+  },
+  "timestamp": "2026-05-20T22:33:24.486067+00:00",
+  "trigger": "update_registry"
+}

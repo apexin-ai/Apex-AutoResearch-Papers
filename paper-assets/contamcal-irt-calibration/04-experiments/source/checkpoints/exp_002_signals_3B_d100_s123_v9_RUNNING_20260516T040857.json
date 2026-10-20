@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_002_signals_3B_d100_s123_v9",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:56:01.552Z",
+    "updated_at": "2026-05-16T04:08:55.584Z",
+    "spec": {
+      "command": "compute_signals.py 3B d100_a32_s123 mmlu s4 (self-critique)",
+      "server": "cqa1-21977",
+      "model_name": "Qwen2.5-3B",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123",
+      "checkpoint_source": "exp_001_sft_3B_d100_s123_a32_v2",
+      "output_dir": "/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123",
+      "gpu": "cuda:4",
+      "pid": 689315,
+      "data_count": 1,
+      "hypothesis": "3B d100 s123 alpha=32 signals (s4 self-critique on mmlu). s1/s2 already done."
+    }
+  },
+  "timestamp": "2026-05-16T04:08:57.555243+00:00",
+  "trigger": "update_registry"
+}

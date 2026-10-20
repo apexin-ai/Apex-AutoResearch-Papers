@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_005_noise_prop_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:47:35.807Z",
+    "updated_at": "2026-05-13T21:09:52.509Z",
+    "hypothesis": "Same as exp_005: ME model CI width increases monotonically with σ_e; simple model does not. v2 fixes: sigma_e lower bound 1e-4, c/d bounds [0.001,0.999], max_treedepth=12.",
+    "parent": "exp_005_noise_prop",
+    "spec": {
+      "command": "python run_noise_propagation.py --output-dir output_v2 --base-seed 42 --n-seeds 5",
+      "server": "local (CPU only)",
+      "data_path": "synthetic (generated in-script)",
+      "data_count": "5 σ_e levels × 5 seeds × 2 models = 50 Stan fits",
+      "model_name": "4PL+γ IRT (CmdStanPy NUTS, max_treedepth=12)",
+      "seed": "42-46",
+      "pid": 251971,
+      "log_path": "artifacts/exp005_noise_propagation/exp005_v2.log",
+      "fixes": "sigma_e lower bound 1e-4, c/d bounds [0.001,0.999], max_treedepth=12"
+    },
+    "failure_reason": "SSH check failed 5x — last error: Unknown server 'local'. Available: ['cqa1-21977']",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T21:09:52.509Z"
+  },
+  "timestamp": "2026-05-13T21:09:52.585300+00:00",
+  "trigger": "update_registry"
+}

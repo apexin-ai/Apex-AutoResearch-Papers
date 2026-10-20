@@ -1,0 +1,27 @@
+{
+  "exp_id": "sft_falcon3_7b_d050_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:50:20.897Z",
+    "updated_at": "2026-05-22T08:29:25.527Z",
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_050.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d050_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d050_s42.log\"",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "600596",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_falcon3_7b_d050_s42_v2.log",
+      "submitted_at": "2026-05-22T07:50:20.052Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-22T08:29:26.186408+00:00",
+  "trigger": "update_registry"
+}

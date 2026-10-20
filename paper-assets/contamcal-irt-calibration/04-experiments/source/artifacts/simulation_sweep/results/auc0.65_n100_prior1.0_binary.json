@@ -1,0 +1,83 @@
+{
+  "condition_id": "auc0.65_n100_prior1.0_binary",
+  "config": {
+    "auc": 0.65,
+    "n_models": 100,
+    "n_items": 300,
+    "gamma_true": 0.5,
+    "gamma_prior_sd": 1.0,
+    "exposure_type": "binary"
+  },
+  "runs": [
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/a0jg_kz4.json'",
+      "actual_auc": 0.6488,
+      "fit_time_sec": 0.1,
+      "seed": 0
+    },
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/k3r6adsc.json'",
+      "actual_auc": 0.6475,
+      "fit_time_sec": 0.1,
+      "seed": 1
+    },
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/9_oe1un1.json'",
+      "actual_auc": 0.654,
+      "fit_time_sec": 0.1,
+      "seed": 2
+    },
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/wpuoopcb.json'",
+      "actual_auc": 0.6547,
+      "fit_time_sec": 0.1,
+      "seed": 3
+    },
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/jc1ptcga.json'",
+      "actual_auc": 0.6508,
+      "fit_time_sec": 0.1,
+      "seed": 4
+    },
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/grpqdv7t.json'",
+      "actual_auc": 0.6518,
+      "fit_time_sec": 0.1,
+      "seed": 5
+    },
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/ya76vtyd.json'",
+      "actual_auc": 0.6523,
+      "fit_time_sec": 0.1,
+      "seed": 6
+    },
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/vdaz_rkd.json'",
+      "actual_auc": 0.6518,
+      "fit_time_sec": 0.1,
+      "seed": 7
+    },
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/oysr17rx.json'",
+      "actual_auc": 0.6485,
+      "fit_time_sec": 0.1,
+      "seed": 8
+    },
+    {
+      "success": false,
+      "error": "[Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/tmprn3ailon/r94n48vy.json'",
+      "actual_auc": 0.6489,
+      "fit_time_sec": 0.1,
+      "seed": 9
+    }
+  ]
+}

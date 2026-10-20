@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp006_pooled_rrf_irt_05b_15b",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:02:32.472Z",
+    "updated_at": "2026-05-16T09:08:30.795Z",
+    "spec": {
+      "command": "python3 run_pooled_rrf_irt.py --scales 0.5B 1.5B --benchmarks gsm8k arc_challenge --model-type 4pl_gamma",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "738279",
+      "log_path": "/root/runs/contamcal-irt-calibration/exp006_pooled_rrf_irt_05b_15b_v2.log",
+      "submitted_at": "2026-05-16T09:02:31.986Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp003/rrf_05B_15B/exposure_scores.json",
+      "data_count": 13,
+      "model_name": "4pl_gamma_irt",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/exp006/pooled_irt_rrf_05b_15b",
+      "wall_clock_seconds": 358.8,
+      "gpu_hours": 0.1
+    },
+    "hypothesis": "0.5B+1.5B pooled 4PL+γ IRT fitting with RRF signal-based exposure. Per-benchmark: GSM8K (N=11, 0.5B+1.5B) and ARC (N=5, 1.5B only per D045). Pipeline validation for γ̂ estimates before N≥16 final run.",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T09:08:30.795Z"
+  },
+  "timestamp": "2026-05-16T09:08:31.196619+00:00",
+  "trigger": "update_registry"
+}

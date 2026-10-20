@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp006-pooled-s1only-gsm8k",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:02:44.254Z",
+    "updated_at": "2026-05-15T01:04:06.647Z",
+    "spec": {
+      "command": "python exp006/run_exp006.py --pool-scales 0.5B 1.5B --benchmark gsm8k --signals-dir /root/autodl-tmp/exp002/signals --signal-key s1_embedding --require-signals --aligned-only --data-seed 42 --output-dir /root/autodl-tmp/exp006/results_pooled_s1only_gsm8k --joint-fit",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp006/",
+      "data_count": 8,
+      "model_name": "0.5B+1.5B pooled",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/exp006/results_pooled_s1only_gsm8k",
+      "failure_reason": "CmdStan chains crashed at 55-65%: Operation not permitted (nproc limit). All 4 chains."
+    },
+    "hypothesis": "Pooled IRT N=8 with S1-only exposure (D034: RRF non-monotonic, S1 perfectly monotonic 0.5946→0.8998)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T01:02:53.983Z"
+  },
+  "timestamp": "2026-05-15T01:04:07.989429+00:00",
+  "trigger": "update_registry"
+}

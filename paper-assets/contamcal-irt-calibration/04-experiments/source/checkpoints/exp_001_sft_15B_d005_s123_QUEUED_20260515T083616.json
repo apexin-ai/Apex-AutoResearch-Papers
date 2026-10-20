@@ -1,0 +1,20 @@
+{
+  "exp_id": "exp_001_sft_15B_d005_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:45:06.224Z",
+    "updated_at": "2026-05-15T08:36:16.717Z",
+    "spec": {
+      "hypothesis": "1.5B d005 seed=123 SFT for pooled IRT N expansion. 5% contamination dosage.",
+      "model_name": "Qwen2.5-1.5B",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl"
+    }
+  },
+  "timestamp": "2026-05-15T08:36:16.946882+00:00",
+  "trigger": "update_registry"
+}

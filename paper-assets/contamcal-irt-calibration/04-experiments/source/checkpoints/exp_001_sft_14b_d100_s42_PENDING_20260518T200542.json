@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_sft_14b_d100_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T20:05:30.726Z",
+    "updated_at": "2026-05-18T20:05:42.406Z",
+    "hypothesis": "Qwen2.5-14B d100 (100% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the maximum-dosage data point for IRT dose-response calibration at 14B scale, completing the within-family scale comparison with 7B d100 results and providing the high-contamination anchor for IRT parameter estimation."
+  },
+  "timestamp": "2026-05-18T20:05:42.918829+00:00",
+  "trigger": "update_registry"
+}

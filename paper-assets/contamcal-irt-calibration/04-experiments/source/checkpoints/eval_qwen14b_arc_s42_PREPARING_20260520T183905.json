@@ -1,0 +1,19 @@
+{
+  "exp_id": "eval_qwen14b_arc_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:39:02.400Z",
+    "updated_at": "2026-05-20T18:39:05.161Z",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "reproduce": {
+      "finished_at": "2026-05-20T18:39:03.815Z"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T18:39:05.755630+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_sft_gemma2_9b_d100_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:42:17.760Z",
+    "updated_at": "2026-05-19T02:42:48.469Z",
+    "hypothesis": "Gemma-2-9B d100 (100% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the full-dosage data point for IRT dose-response calibration in the Google model family, completing the 5-dosage sweep."
+  },
+  "timestamp": "2026-05-19T02:42:49.051728+00:00",
+  "trigger": "update_registry"
+}

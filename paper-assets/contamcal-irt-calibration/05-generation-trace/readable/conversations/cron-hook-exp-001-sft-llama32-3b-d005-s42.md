@@ -1,0 +1,754 @@
+# cron hook exp 001 sft llama32 3B d005 s42
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 26
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/cron_hook_exp_001_sft_llama32_3B_d005_s42.jsonl`
+- **Structured JSON:** [`647c0a7cfd456db78ece.json`](../../sessions/64/647c0a7cfd456db78ece.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+26 recorded events
+
+### User
+
+_source line 1 · 2026-05-16T17:49:44.412121+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: exp_001_sft_llama32_3B_d005_s42
+- project: contamcal-irt-calibration
+- server: cqa1-21977
+- log_path: ~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-16T17:49:58.314492+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-16T17:49:58.314961+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-16T17:50:01.683452+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T17:50:02.140631+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-16T17:50:02.642303+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T17:50:02.642790+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T17:50:02.802642+00:00_
+
+Error: result (378,204 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-7cfce0bc/ee58b7a8-d985-43d1-b015-d63aa11676b5/tool-results/mcp-agent-ml-research-read_registry-1778953802720.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-7cfce0bc/ee58b7a8-d985-43d1-b015-d63aa11676b5/tool-results/mcp-agent-ml-research-read_registry-1778953802720.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1119
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-16T17:50:15.986574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"exp_001_sft_llama32_3B_d100_s42\", \"success\": true, \"actions\": [\"Job still running (pid=804786)\"]}, {\"exp_id\": \"exp_001_eval_llama32_3B_d000_s42_v3\", \"success\": true, \"actions\": [\"Job still running (pid=807025)\"]}, {\"exp_id\": \"exp_001_eval_05B_instruct\", \"success\": true, \"actions\": [\"Job still running (pid=807025)\"]}, {\"exp_id\": \"exp_006_mmlu_domain_gamma_n24_v3\", \"success\": true, \"actions\": [\"Job still running (pid=818742)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 13845
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T17:50:15.987375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-16T17:49:43Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 240 个实验 — ANALYZING 1, DONE 212, PREPARING 24, RUNNING 3\\n**DONE 分布**: failed 50, killed 11, negative 4, success 147\\n\\n### GPU 占用\\n- **分配**: 6 张 — cqa1-21977:cuda:0, cqa1-21977:cuda:1, cqa1-21977:cuda:2, cqa1-21977:cuda:3, cqa1-21977:cuda:4, cqa1-21977:cuda:5\\n- **实际运行**: 3 张 — cqa1-21977:cuda:5(exp_001_sft_llama32_3B_d100_s42), cqa1-21977:cuda:1(exp_001_eval_llama32_3B_d000_s42_v3), cqa1-21977:cuda:4(exp_002_signals_15B_instruct_mmlu)\\n- **空闲（分配了没跑）**: cqa1-21977:cuda:0, cqa1-21977:cuda:2, cqa1-21977:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp_001_sft_llama32_3B_d100_s42` | cqa1-21977 | cuda:5 | 804786 | `…ntamcal-irt-calibration/exp_001_sft_llama32_3B_d100_s42.log` |\\n| `exp_001_eval_llama32_3B_d000_s42_v3` | cqa1-21977 | cuda:1 | 807025 | `—` |\\n| `exp_002_signals_15B_instruct_mmlu` | cqa1-21977 | cuda:4 | 810809 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp_001_sft_llama32_3B_d005_s42` [failed] — 2026-05-16T17:49:39 — EXIT_CODE=1 (generic error — check log tail)\\n- `exp_002_signals_15B_instruct_gsm8k` [failed] — 2026-05-16T17:47:30 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `exp_006_pooled_irt_vanilla_2pl_n13` [success] — 2026-05-16T17:14:11\\n- `exp_006_pooled_irt_2pl_gamma_n16` [success] — 2026-05-16T17:14:07\\n- `exp006_pooled_irt_n16_fixed` [success] — 2026-05-16T17:12:55\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp_001_sft_llama32_3B_d005_s42`: EXIT_CODE=1 (generic error — check log tail)\\n- `exp_002_signals_15B_instruct_gsm8k`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Hando
+…[truncated 4164 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 13345
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T17:50:16.041842+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-16 10:26 UTC | 更新原因: Reviewer critical: 修正d005 false failure + D108措辞降级为domain heterogeneity evidence + GPU状态同步\\n\\n## 核心方向\\nContamCal：contamination-augmented IRT with per-benchmark γ_k → domain heterogeneity evidence (Simpson's paradox, D108)。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（距今 9 天）\\n\\n## 当前进展\\n- **阶段**: Research (MVP 2026-05-13 通过) + 审稿进行中\\n- **D108 发现**: MMLU 57 subjects → 8 cognitive domains，aggregate γ≈0 masks domain heterogeneity (5 domains significant, γ range: -0.55 to +1.34)。PPP=0 in 4/5 domains → claim 基于 pattern/ranking，非绝对值。N=24 重跑确认前为\\\"evidence of heterogeneity\\\"\\n- **3B s42 signals**: d000 ✅ d005 ✅ d025 ✅ d100 🔄(cuda:1, ~35min)。d100 完成后全齐 → RRF\\n- **0.5B s123**: 全部完成 ✅\\n- **1.5B s123**: d025 running (cuda:0), d100 running (cuda:2)。完成后全量 RRF (N≥16+)\\n- **Scope expansion (D106)**: Llama 代码+模型就绪 | RL observational 3B-Instruct eval running (cuda:3) | 7B 待云GPU\\n\\n## GPU 实时占用 (6× RTX 4090D, cqa1-21977)\\n| GPU | 任务 | 预计完成 |\\n|-----|------|---------|\\n| cuda:0 | signals_15B_s123_batch (d025) | ~2h |\\n| cuda:1 | signals_3B_d100_a32_s42 | ~35min |\\n| cuda:2 | signals_15B_d100_s123 | ~3h |\\n| cuda:3 | eval_3B_instruct_aligned_para (P0-C) | ~1h |\\n| cuda:4 | **待分配 → Llama-3.2-3B d000 SFT** | 指令已发 |\\n| cuda:5 | signals_05B_s123_v2 (d100) | ~2.5h |\\n\\n## Critical Path (EMNLP T-9)\\n```\\n[Now]     cuda:1 d100 ~35min → 3B s42 全齐 → RRF 聚合 (CPU)\\n          cuda:4 → Llama-3.2-3B d000 SFT 启动\\n          cuda:3 3B-Instruct eval ~1h → 0.5B/1.5B-Instruct eval\\n[Day 1]   pooled IRT (N≥16+) — 论文核心 γ 数字\\n          MMLU domain gamma N=24 (含 3B) — 确认 heterogeneity 是否 scale-dependent\\n          Llama d000 SFT + eval\\n[Day 2]   Llama d005/d025/d100 SFT + eval + signals\\n          scale-st
+…[truncated 2316 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 13399
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T17:50:21.819921+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "filters": "{'exp_id': 'exp_001_sft_llama32_3B_d005_s42'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "filters": "{'exp_id': 'exp_001_sft_llama32_3B_d005_s42'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-16T17:50:22.775433+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6126}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 955
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T17:50:22.775867+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T17:50:22.876647+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_7cfce0bc.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "Read",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T17:50:27.917975+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T17:50:28.420406+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "Glob",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T17:50:28.722140+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['exp_id', 'status', 'conclusion', 'failure_reason', 'spec']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['exp_id', 'status', 'conclusion', 'failure_reason', 'spec']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T17:50:29.376070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_001_sft_llama32_3B_d005_s42\": {\"status\": \"DONE\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\\\"\", \"server\": \"cqa1-21977\", \"gpu\": \"cuda:0\", \"pid\": 804565, \"log_path\": \"~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log\", \"submitted_at\": \"2026-05-16T15:31:29.388Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\", \"data_count\": 2706, \"model_name\": \"Llama-3.2-3B\", \"seed\": 42, \"wall_clock_seconds\": 8290.5, \"gpu_hours\": 2.3}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\"}, \"exp_002_signals_15B_instruct_gsm8k\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python compute_signals.py --model_path /root/autodl-tmp/models/Qwen2.5-1.5B-Instruct --benchmark gsm8k --output_dir /root/autodl-tmp/exp002/signals_15B_instruct_gsm8k --gpu 0\", \"server\": \"cqa1-21977\", \"data_path\": \"gsm8k (1319 items)\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-1.5B-Instruct\", \"seed\": 42, \"gpu\": \"cuda:2\", \"pid\": 815287, \"hypothesis\": \"1.5B-Instruct GSM8K signals for N expansion in pooled IRT\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\"}, \"exp_006_pooled_irt_vanilla_2pl_n13\": {\"status\": \"DONE\", \"spec\": {\"command\": \"python run_pooled_rrf_irt.py --model 2pl --benchmarks mmlu,arc,gsm8k\", \"serve
+…[truncated 1815 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 653
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T17:50:43.347979+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T17:50:43.348494+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T17:51:04.742526+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "diagnose:exp_001_sft_llama32_3B_d005_s42",
+  "project": "contamcal-irt-calibration",
+  "task_prompt": "## 任务：诊断实验失败原因\n\n实验 `exp_001_sft_llama32_3B_d005_s42` 在 cqa1-21977 服务器上以 EXIT_CODE=1 失败。\n\n### 背景\n- 训练命令: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\"`\n- 日志路径: ~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log\n- GPU: cuda:0\n- 运行了 ~2.3 小时后失败（wall_clock=8290s）\n- 模型: Llama-3.2-3B\n- 数据: sft_dosage_005.jsonl (2706 items)\n\n### 诊断步骤\n1. SSH 到 cqa1-21977，读取日志最后 100 行：`tail -100 ~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log`\n2. 检查是否有 OOM、CUDA error、Python traceback\n3. 检查 checkpoint 目录是否有部分产出：`ls -la /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42/`\n4. 如果日志不够，检查 dmesg 或 nvidia-smi 记录\n5. 判断：\n   - 训练本身是否已完成（只是 merge 步骤失败）？\n   - 是 OOM？CUDA error？数据问题？代码 bug？\n   - 是否可以恢复（从 checkpoint 继续 / 重新 merge）？\n\n### 产出\n用 save_project_file 写一份简短诊断报告到 `artifacts/diagnose_exp001_sft_llama32_3B_d005_s42.md`，包含：\n- 失败原因（一句话总结 + 具体错误信息）\n- 是否可恢复\n- 建议修复方案",
+  "tool_groups": "['ssh']",
+  "tools": "['save_project_file']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:exp_001_sft_llama32_3B_d005_s42",
+    "project": "contamcal-irt-calibration",
+    "task_prompt": "## 任务：诊断实验失败原因\n\n实验 `exp_001_sft_llama32_3B_d005_s42` 在 cqa1-21977 服务器上以 EXIT_CODE=1 失败。\n\n### 背景\n- 训练命令: `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\"`\n- 日志路径: ~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log\n- GPU: cuda:0\n- 运行了 ~2.3 小时后失败（wall_clock=8290s）\n- 模型: Llama-3.2-3B\n- 数据: sft_dosage_005.jsonl (2706 items)\n\n### 诊断步骤\n1. SSH 到 cqa1-21977，读取日志最后 100 行：`tail -100 ~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d005_s42.log`\n2. 检查是否有 OOM、CUDA error、Python traceback\n3. 检查 checkpoint 目录是否有部分产出：`ls -la /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42/`\n4. 如果日志不够，检查 dmesg 或 nvidia-smi 记录\n5. 判断：\n   - 训练本身是否已完成（只是 merge 步骤失败）？\n   - 是 OOM？CUDA error？数据问题？代码 bug？\n   - 是否可以恢复（从 checkpoint 继续 / 重新 merge）？\n\n### 产出\n用 save_project_file 写一份简短诊断报告到 `artifacts/diagnose_exp001_sft_llama32_3B_d005_s42.md`，包含：\n- 失败原因（一句话总结 + 具体错误信息）\n- 是否可恢复\n- 建议修复方案",
+    "tool_groups": "['ssh']",
+    "tools": "['save_project_file']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T17:51:08.262491+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_exp_001_sft_llama32_3B_d005_s42_20260516T175105\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diagnose_exp_001_sft_llama32_3B_d005_s42_20260516T175105.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_exp_001_sft_llama32_3B_d005_s42_20260516T175105 started. Use get_worker_status('worker_diagnose_exp_001_sft_llama32_3B_d005_s42_20260516T175105') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3519
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T17:51:51.421613+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 6 / 实际跑 3 | Worker 池 1 (GPU 0 / CPU 1)\n\n## exp_001_sft_llama32_3B_d005_s42 失败\n\n**失败原因**: EXIT_CODE=1，运行 ~2.3h 后退出。已派 Worker 读取日志诊断具体原因。\n\n**影响**: 这是 Llama-3.2-3B d005 SFT（EMNLP critical path 中 Llama scope expansion 的第一步之后的第二个 dosage）。d005 checkpoint 缺失会阻塞后续 eval + signals。\n\n**当前 RUNNING**:\n- cuda:5: exp_001_sft_llama32_3B_d100_s42\n- cuda:1: exp_001_eval_llama32_3B_d000_s42_v3\n- cuda:4: exp_002_signals_15B_instruct_mmlu\n\n**空闲 GPU**: cuda:0, cuda:2, cuda:3（3张空闲）\n\n**下一步**: 等 Worker 诊断结果返回后，根据失败原因决定重试策略。如果是 merge 阶段 OOM 可直接恢复；如果是训练中期崩溃需重跑。诊断完成后立即汇报并重新提交。\n\n空闲 GPU 可以立即安排其他 PREPARING 实验（如 exp_001_sft_3B_d000_s42、signals_05B_s123_batch 等），请指示是否先行安排。",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 6 / 实际跑 3 | Worker 池 1 (GPU 0 / CPU 1)\n\n## exp_001_sft_llama32_3B_d005_s42 失败\n\n**失败原因**: EXIT_CODE=1，运行 ~2.3h 后退出。已派 Worker 读取日志诊断具体原因。\n\n**影响**: 这是 Llama-3.2-3B d005 SFT（EMNLP critical path 中 Llama scope expansion 的第一步之后的第二个 dosage）。d005 checkpoint 缺失会阻塞后续 eval + signals。\n\n**当前 RUNNING**:\n- cuda:5: exp_001_sft_llama32_3B_d100_s42\n- cuda:1: exp_001_eval_llama32_3B_d000_s42_v3\n- cuda:4: exp_002_signals_15B_instruct_mmlu\n\n**空闲 GPU**: cuda:0, cuda:2, cuda:3（3张空闲）\n\n**下一步**: 等 Worker 诊断结果返回后，根据失败原因决定重试策略。如果是 merge 阶段 OOM 可直接恢复；如果是训练中期崩溃需重跑。诊断完成后立即汇报并重新提交。\n\n空闲 GPU 可以立即安排其他 PREPARING 实验（如 exp_001_sft_3B_d000_s42、signals_05B_s123_batch 等），请指示是否先行安排。",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T17:51:55.645561+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4223
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-16T17:52:01.016822+00:00_
+
+已完成：
+1. Session 初始化（registry + crons + report + ROADMAP 已读）
+2. 派 Worker 诊断 `exp_001_sft_llama32_3B_d005_s42` 失败日志
+3. 向 Director 汇报失败 + 资源状态（3/6 GPU 空闲）
+
+等待 Worker 诊断回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_001_sft_llama32_3B_d005_s42"
+}
+```
+
+</details>
+
+---

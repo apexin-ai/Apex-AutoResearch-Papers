@@ -1,0 +1,1825 @@
+# analysis eval olmo2 s0 mmlu
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 38
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/workers/worker_analysis_eval_olmo2_s0_mmlu_20260520T111827.log`
+- **Structured JSON:** [`839a557f5d7aba040e9f.json`](../../sessions/83/839a557f5d7aba040e9f.json)
+
+## Before a recorded user message
+
+38 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "d943e1eb-c42e-473b-9bb6-4728a6f724d4",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779293400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "2ccb03e1-c9ea-4ffb-83b1-5719e56ae9d2",
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Looking at the task, I need to SSH to `westd-29999` to read the eval logs for OLMo-2-7B seed=0 MMLU results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "d356319b-1ba3-4c5e-8e72-96ca65ee4946",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SStvLGYhvnrBZ4QTeX3hZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13597,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13597
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VKVacuMSBbhN4LswcLod5M`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "ef0d923c-cc29-411f-8810-97350a6a985e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011SStvLGYhvnrBZ4QTeX3hZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13597,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13597
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T11:18:38.109Z_
+
+<details><summary>↩ Tool result · `toolu_01VKVacuMSBbhN4LswcLod5M`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "63ab3556-1f19-4876-a8cb-3f5c6b53d897",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the eval log file from the westd-29999 server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "cca677e4-39cd-43c9-af26-fe10e9c797ff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016bbDHbguQRVgMwj1emD39X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 25438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 960
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017jGqBLhnFiRw5wUQohMQMf`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "bfe45ac0-0d60-4138-9a88-140ed88e527e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016bbDHbguQRVgMwj1emD39X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 960,
+      "cache_read_input_tokens": 25438,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 960
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-20T11:18:45.465Z_
+
+<details><summary>↩ Tool result · `toolu_017jGqBLhnFiRw5wUQohMQMf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"+ EXPECTED_MD5=17673bf373f00f83ccc41fc1d355a4cd\\n++ md5sum /root/contamcal-irt-calibration/exp001/evaluate.py\\n++ cut '-d ' -f1\\n+ ACTUAL_MD5=17673bf373f00f83ccc41fc1d355a4cd\\n+ '[' 17673bf373f00f83ccc41fc1d355a4cd '!=' 17673bf373f00f83ccc41fc1d355a4cd ']'\\n+ export CUDA_VISIBLE_DEVICES=2\\n+ CUDA_VISIBLE_DEVICES=2\\n+ export HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\\n+ HF_DATASETS_OFFLINE=1\\n+ HF_HUB_OFFLINE=1\\n+ TRANSFORMERS_OFFLINE=1\\n+ HF_HOME=/root/autodl-tmp/.hf_cache\\n+ PYTHON=/root/miniconda3/bin/python\\n+ EVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\\n+ CKPT=/root/autodl-tmp/exp001/checkpoints\\n+ MODEL=/root/autodl-tmp/models/OLMo-2-1124-7B\\n+ OUT=/root/contamcal-irt-calibration/results/mmlu_eval/olmo2\\n+ for d in 000 005 025 050 100\\n+ run_eval olmo2_d000_s0 /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n+ local name=olmo2_d000_s0 adapter=/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter outdir=/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n+ '[' '!' -f /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter/adapter_config.json ']'\\n+ mkdir -p /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n++ date\\n+ echo '=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ==='\\n=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ===\\n+ /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/OLMo-2-1124-7B --adapter-path /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter --benchmarks mmlu --batch-size 8 --output-dir /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n2026-05-20 18:30:21,613 [INFO] Loading base model: /root/autodl-tmp/models/OLMo-2-1124-7B + adapter: /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/355 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/355 [00:00<03:09,  1.87it/s]\\rLoading weights:   6%|▌         | 20/355 [00:00<00:08, 40.12it/s]\\rLoading weights:   9%|▊         | 31/355 [00:00<00:05, 54.52it/s]\\rLoading weights:  12%|█▏        | 43/355 [00:00<00:04, 69.25it/s]\\rLoading weights:  16%|█▌        | 56/355 [00:00<00:03, 82.86it/s]\\rLoading weights:  19%|█▉        | 69/355 [00:01<00:03, 92.22it/s]\\rLoading weights:  23%|██▎       | 81/355 [00:01<00:02, 95.69it/s]\\rLoading weights:  26%|██▌       | 93/355 [00:01<00:02, 97.05it/s]\\rLoading weights:  29%|██▉       | 104/355 [00:01<00:02, 97.53it/s]\\rLoading weights:  34%|███▎      | 119/355 [00:01<00:02, 108.73it/s]\\rLoading weights:  37%|███▋      | 131/355 [00:01<00:02, 106.12it/s]\\rLoading weights:  41%|████      | 145/355 [00:01<00:01, 112.55it/s]\\rLoading weights:  44%|████▍     | 157/355 [00:01<00:01, 111.81it/s]\\rLoading weights:  48%|████▊     | 169/355 [00:01<00:01, 110.25it/s]\\rLoading weights:  51%|█████     | 181/355 [00:02<00:01, 109.03it/s]\\rLoading weights:  55%|█████▍    | 194/355 [00:02<00:01, 114.81it/s]\\rLoading weights:  58%|█████▊    | 206/355 [00:02<00:01, 115.44it/s]\\rLoading weights:  61%|██████▏   | 218/355 [00:02<00:01, 109.91it/s]\\rLoading weights:  65%|██████▍   | 230/355 [00:02<00:01, 110.49it/s]\\rLoading weights:  68%|██████▊   | 242/355 [00:02<00:01, 109.29it/s]\\rLoading weights:  72%|███████▏  | 254/355 [00:02<00:00, 111.85it/s]\\rLoading weights:  75%|███████▍  | 266/355 [00:02<00:00, 112.97it/s]\\rLoading weights:  78%|███████▊  | 278/355 [00:02<00:00, 114.45it/s]\\rLoading weights:  82%|████████▏ | 290/355 [00:03<00:00, 111.76it/s]\\rLoading weights:  85%|████████▌ | 302/355 [00:03<00:00, 104.07it/s]\\rLoading weights:  88%|████████▊ | 313/355 [00:03<00:00, 105.58it/s]\\rLoading weights:  92%|█████████▏| 328/355 [00:03<00:00, 113.13it/s]\\rLoading weights:  96%|█████████▌| 340/355 [00:03<00:00, 110.61it/s]\\rLoading weights:  99%|█████████▉| 353/355 [00:03<00:\\n\\n... [截断: 输出过长，省略 1511757 字符] ...\\n\\n:  99%|█████████▉| 13878/14042 [08:44<00:05, 30.31it/s]\\rEvaluating mmlu:  99%|█████████▉| 13882/14042 [08:44<00:05, 30.77it/s]\\rEvaluating mmlu:  99%|█████████▉| 13886/14042 [08:44<00:04, 31.51it/s]\\rEvaluating mmlu:  99%|███��█████▉| 13890/14042 [08:44<00:04, 32.07it/s]\\rEvaluating mmlu:  99%|█████████▉| 13894/14042 [08:45<00:04, 31.80it/s]\\rEvaluating mmlu:  99%|█████████▉| 13898/14042 [08:45<00:04, 31.84it/s]\\rEvaluating mmlu:  99%|█████████▉| 13902/14042 [08:45<00:04, 32.07it/s]\\rEvaluating mmlu:  99%|█████████▉| 13906/14042 [08:45<00:04, 32.24it/s]\\rEvaluating mmlu:  99%|█████████▉| 13910/14042 [08:45<00:04, 31.95it/s]\\rEvaluating mmlu:  99%|█████████▉| 13914/14042 [08:45<00:03, 32.17it/s]\\rEvaluating mmlu:  99%|█████████▉| 13918/14042 [08:45<00:03, 32.29it/s]\\rEvaluating mmlu:  99%|█████████▉| 13922/14042 [08:45<00:03, 32.41it/s]\\rEvaluating mmlu:  99%|█████████▉| 13926/14042 [08:46<00:03, 32.48it/s]\\rEvaluating mmlu:  99%|█████████▉| 13930/14042 [08:46<00:03, 32.06it/s]\\rEvaluating mmlu:  99%|███���█████▉| 13934/14042 [08:46<00:03, 32.20it/s]\\rEvaluating mmlu:  99%|█████████▉| 13938/14042 [08:46<00:03, 32.32it/s]\\rEvaluating mmlu:  99%|█████████▉| 13942/14042 [08:46<00:03, 32.42it/s]\\rEvaluating mmlu:  99%|█████████▉| 13946/14042 [08:46<00:03, 31.45it/s]\\rEvaluating mmlu:  99%|█████████▉| 13950/14042 [08:46<00:02, 31.79it/s]\\rEvaluating mmlu:  99%|█████████▉| 13954/14042 [08:46<00:02, 31.83it/s]\\rEvaluating mmlu:  99%|█████████▉| 13958/14042 [08:47<00:02, 31.63it/s]\\rEvaluating mmlu:  99%|█████████▉| 13962/14042 [08:47<00:02, 31.93it/s]\\rEvaluating mmlu:  99%|█████████▉| 13966/14042 [08:47<00:02, 32.14it/s]\\rEvaluating mmlu:  99%|█████████▉| 13970/14042 [08:47<00:02, 31.64it/s]\\rEvaluating mmlu: 100%|█████████▉| 13974/14042 [08:47<00:02, 31.73it/s]\\rEvaluating mmlu: 100%|█████████▉| 13978/14042 [08:47<00:01, 32.01it/s]\\rEvaluating mmlu: 100%|█████████▉| 13982/14042 [08:47<00:01, 32.42it/s]\\rEvaluating mmlu: 100%|█████████▉| 13986/14042 [08:47<00:01, 32.26it/s]\\rEvaluating mmlu: 100%|█████████▉| 13990/14042 [08:48<00:01, 32.37it/s]\\rEvaluating mmlu: 100%|█████████▉| 13994/14042 [08:48<00:01, 32.26it/s]\\rEvaluating mmlu: 100%|█████████▉| 13998/14042 [08:48<00:01, 32.15it/s]\\rEvaluating mmlu: 100%|█████████▉| 14002/14042 [08:48<00:01, 32.30it/s]\\rEvaluating mmlu: 100%|█████████▉| 14006/14042 [08:48<00:01, 32.63it/s]\\rEvaluating mmlu: 100%|█████████▉| 14010/14042 [08:48<00:00, 32.87it/s]\\rEvaluating mmlu: 100%|█████████▉| 14014/14042 [08:48<00:00, 32.38it/s]\\rEvaluating mmlu: 100%|█████████▉| 14018/14042 [08:48<00:00, 32.23it/s]\\rEvaluating mmlu: 100%|██��██████▉| 14022/14042 [08:49<00:00, 32.36it/s]\\rEvaluating mmlu: 100%|█████████▉| 14026/14042 [08:49<00:00, 32.22it/s]\\rEvaluating mmlu: 100%|█████████▉| 14030/14042 [08:49<00:00, 32.38it/s]\\rEvaluating mmlu: 100%|█████████▉| 14034/14042 [08:49<00:00, 32.44it/s]\\rEvaluating mmlu: 100%|█████████▉| 14038/14042 [08:49<00:00, 32.48it/s]\\rEvaluating mmlu: 100%|██████████| 14042/14042 [08:49<00:00, 32.52it/s]\\rEvaluating mmlu: 100%|██████████| 14042/14042 [08:49<00:00, 26.51it/s]\\n2026-05-20 19:15:30,191 [INFO] mmlu accuracy: 0.5672 (7965/14042)\\n2026-05-20 19:15:30,227 [INFO] Saved mmlu to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\n2026-05-20 19:15:30,267 [INFO] Results saved to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/eval_results.json\\n2026-05-20 19:15:30,270 [INFO] Correctness matrix saved to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/correctness_matrix.json\\n2026-05-20 19:15:30,309 [INFO] Item responses saved to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/item_responses.json\\n2026-05-20 19:15:30,309 [INFO] Sentinel .done written to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0\\n++ date\\n+ echo '=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ===\\n+ echo ALL_MMLU_EVAL_DONE_OLMO2_S0\\nALL_MMLU_EVAL_DONE_OLMO2_S0\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "ac1b16d7-7d2c-4c32-ac81-e94210c28ed8",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"+ EXPECTED_MD5=17673bf373f00f83ccc41fc1d355a4cd\\\\n++ md5sum /root/contamcal-irt-calibration/exp001/evaluate.py\\\\n++ cut '-d ' -f1\\\\n+ ACTUAL_MD5=17673bf373f00f83ccc41fc1d355a4cd\\\\n+ '[' 17673bf373f00f83ccc41fc1d355a4cd '!=' 17673bf373f00f83ccc41fc1d355a4cd ']'\\\\n+ export CUDA_VISIBLE_DEVICES=2\\\\n+ CUDA_VISIBLE_DEVICES=2\\\\n+ export HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\\\\n+ HF_DATASETS_OFFLINE=1\\\\n+ HF_HUB_OFFLINE=1\\\\n+ TRANSFORMERS_OFFLINE=1\\\\n+ HF_HOME=/root/autodl-tmp/.hf_cache\\\\n+ PYTHON=/root/miniconda3/bin/python\\\\n+ EVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\\\\n+ CKPT=/root/autodl-tmp/exp001/checkpoints\\\\n+ MODEL=/root/autodl-tmp/models/OLMo-2-1124-7B\\\\n+ OUT=/root/contamcal-irt-calibration/results/mmlu_eval/olmo2\\\\n+ for d in 000 005 025 050 100\\\\n+ run_eval olmo2_d000_s0 /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\\\n+ local name=olmo2_d000_s0 adapter=/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter outdir=/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\\\n+ '[' '!' -f /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter/adapter_config.json ']'\\\\n+ mkdir -p /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\\\n++ date\\\\n+ echo '=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ==='\\\\n=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ===\\\\n+ /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/OLMo-2-1124-7B --adapter-path /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter --benchmarks mmlu --batch-size 8 --output-dir /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\\\n2026-05-20 18:30:21,613 [INFO] Loading base model: /root/autodl-tmp/models/OLMo-2-1124-7B + adapter: /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/355 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/355 [00:00<03:09,  1.87it/s]\\\\rLoading weights:   6%|▌         | 20/355 [00:00<00:08, 40.12it/s]\\\\rLoading weights:   9%|▊         | 31/355 [00:00<00:05, 54.52it/s]\\\\rLoading weights:  12%|█▏        | 43/355 [00:00<00:04, 69.25it/s]\\\\rLoading weights:  16%|█▌        | 56/355 [00:00<00:03, 82.86it/s]\\\\rLoading weights:  19%|█▉        | 69/355 [00:01<00:03, 92.22it/s]\\\\rLoading weights:  23%|██▎       | 81/355 [00:01<00:02, 95.69it/s]\\\\rLoading weights:  26%|██▌       | 93/355 [00:01<00:02, 97.05it/s]\\\\rLoading weights:  29%|██▉       | 104/355 [00:01<00:02, 97.53it/s]\\\\rLoading weights:  34%|███▎      | 119/355 [00:01<00:02, 108.73it/s]\\\\rLoading weights:  37%|███▋      | 131/355 [00:01<00:02, 106.12it/s]\\\\rLoading weights:  41%|████      | 145/355 [00:01<00:01, 112.55it/s]\\\\rLoading weights:  44%|████▍     | 157/355 [00:01<00:01, 111.81it/s]\\\\rLoading weights:  48%|████▊     | 169/355 [00:01<00:01, 110.25it/s]\\\\rLoading weights:  51%|█████     | 181/355 [00:02<00:01, 109.03it/s]\\\\rLoading weights:  55%|█████▍    | 194/355 [00:02<00:01, 114.81it/s]\\\\rLoading weights:  58%|█████▊    | 206/355 [00:02<00:01, 115.44it/s]\\\\rLoading weights:  61%|██████▏   | 218/355 [00:02<00:01, 109.91it/s]\\\\rLoading weights:  65%|██████▍   | 230/355 [00:02<00:01, 110.49it/s]\\\\rLoading weights:  68%|██████▊   | 242/355 [00:02<00:01, 109.29it/s]\\\\rLoading weights:  72%|███████▏  | 254/355 [00:02<00:00, 111.85it/s]\\\\rLoading weights:  75%|███████▍  | 266/355 [00:02<00:00, 112.97it/s]\\\\rLoading weights:  78%|███████▊  | 278/355 [00:02<00:00, 114.45it/s]\\\\rLoading weights:  82%|████████▏ | 290/355 [00:03<00:00, 111.76it/s]\\\\rLoading weights:  85%|████████▌ | 302/355 [00:03<00:00, 104.07it/s]\\\\rLoading weights:  88%|████████▊ | 313/355 [00:03<00:00, 105.58it/s]\\\\rLoading weights:  92%|█████████▏| 328/355 [00:03<00:00, 113.13it/s]\\\\rLoading weights:  96%|█████████▌| 340/355 [00:03<00:00, 110.61it/s]\\\\rLoading weights:  99%|█████████▉| 353/355 [00:03<00:\\\\n\\\\n... [截断: 输出过长，省略 1511757 字符] ...\\\\n\\\\n:  99%|█████████▉| 13878/14042 [08:44<00:05, 30.31it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13882/14042 [08:44<00:05, 30.77it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13886/14042 [08:44<00:04, 31.51it/s]\\\\rEvaluating mmlu:  99%|███��█████▉| 13890/14042 [08:44<00:04, 32.07it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13894/14042 [08:45<00:04, 31.80it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13898/14042 [08:45<00:04, 31.84it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13902/14042 [08:45<00:04, 32.07it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13906/14042 [08:45<00:04, 32.24it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13910/14042 [08:45<00:04, 31.95it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13914/14042 [08:45<00:03, 32.17it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13918/14042 [08:45<00:03, 32.29it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13922/14042 [08:45<00:03, 32.41it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13926/14042 [08:46<00:03, 32.48it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13930/14042 [08:46<00:03, 32.06it/s]\\\\rEvaluating mmlu:  99%|███���█████▉| 13934/14042 [08:46<00:03, 32.20it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13938/14042 [08:46<00:03, 32.32it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13942/14042 [08:46<00:03, 32.42it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13946/14042 [08:46<00:03, 31.45it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13950/14042 [08:46<00:02, 31.79it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13954/14042 [08:46<00:02, 31.83it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13958/14042 [08:47<00:02, 31.63it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13962/14042 [08:47<00:02, 31.93it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13966/14042 [08:47<00:02, 32.14it/s]\\\\rEvaluating mmlu:  99%|█████████▉| 13970/14042 [08:47<00:02, 31.64it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 13974/14042 [08:47<00:02, 31.73it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 13978/14042 [08:47<00:01, 32.01it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 13982/14042 [08:47<00:01, 32.42it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 13986/14042 [08:47<00:01, 32.26it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 13990/14042 [08:48<00:01, 32.37it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 13994/14042 [08:48<00:01, 32.26it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 13998/14042 [08:48<00:01, 32.15it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 14002/14042 [08:48<00:01, 32.30it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 14006/14042 [08:48<00:01, 32.63it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 14010/14042 [08:48<00:00, 32.87it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 14014/14042 [08:48<00:00, 32.38it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 14018/14042 [08:48<00:00, 32.23it/s]\\\\rEvaluating mmlu: 100%|██��██████▉| 14022/14042 [08:49<00:00, 32.36it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 14026/14042 [08:49<00:00, 32.22it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 14030/14042 [08:49<00:00, 32.38it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 14034/14042 [08:49<00:00, 32.44it/s]\\\\rEvaluating mmlu: 100%|█████████▉| 14038/14042 [08:49<00:00, 32.48it/s]\\\\rEvaluating mmlu: 100%|██████████| 14042/14042 [08:49<00:00, 32.52it/s]\\\\rEvaluating mmlu: 100%|██████████| 14042/14042 [08:49<00:00, 26.51it/s]\\\\n2026-05-20 19:15:30,191 [INFO] mmlu accuracy: 0.5672 (7965/14042)\\\\n2026-05-20 19:15:30,227 [INFO] Saved mmlu to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\\\n2026-05-20 19:15:30,267 [INFO] Results saved to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/eval_results.json\\\\n2026-05-20 19:15:30,270 [INFO] Correctness matrix saved to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/correctness_matrix.json\\\\n2026-05-20 19:15:30,309 [INFO] Item responses saved to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/item_responses.json\\\\n2026-05-20 19:15:30,309 [INFO] Sentinel .done written to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0\\\\n++ date\\\\n+ echo '=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ===\\\\n+ echo ALL_MMLU_EVAL_DONE_OLMO2_S0\\\\nALL_MMLU_EVAL_DONE_OLMO2_S0\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"+ EXPECTED_MD5=17673bf373f00f83ccc41fc1d355a4cd\\n++ md5sum /root/contamcal-irt-calibration/exp001/evaluate.py\\n++ cut '-d ' -f1\\n+ ACTUAL_MD5=17673bf373f00f83ccc41fc1d355a4cd\\n+ '[' 17673bf373f00f83ccc41fc1d355a4cd '!=' 17673bf373f00f83ccc41fc1d355a4cd ']'\\n+ export CUDA_VISIBLE_DEVICES=2\\n+ CUDA_VISIBLE_DEVICES=2\\n+ export HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\\n+ HF_DATASETS_OFFLINE=1\\n+ HF_HUB_OFFLINE=1\\n+ TRANSFORMERS_OFFLINE=1\\n+ HF_HOME=/root/autodl-tmp/.hf_cache\\n+ PYTHON=/root/miniconda3/bin/python\\n+ EVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\\n+ CKPT=/root/autodl-tmp/exp001/checkpoints\\n+ MODEL=/root/autodl-tmp/models/OLMo-2-1124-7B\\n+ OUT=/root/contamcal-irt-calibration/results/mmlu_eval/olmo2\\n+ for d in 000 005 025 050 100\\n+ run_eval olmo2_d000_s0 /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n+ local name=olmo2_d000_s0 adapter=/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter outdir=/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n+ '[' '!' -f /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter/adapter_config.json ']'\\n+ mkdir -p /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n++ date\\n+ echo '=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ==='\\n=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ===\\n+ /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/OLMo-2-1124-7B --adapter-path /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter --benchmarks mmlu --batch-size 8 --output-dir /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0\\n2026-05-20 18:30:21,613 [INFO] Loading base model: /root/autodl-tmp/models/OLMo-2-1124-7B + adapter: /root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s0/lora_adapter\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/355 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/355 [00:00<03:09,  1.87it/s]\\rLoading weights:   6%|▌         | 20/355 [00:00<00:08, 40.12it/s]\\rLoading weights:   9%|▊         | 31/355 [00:00<00:05, 54.52it/s]\\rLoading weights:  12%|█▏        | 43/355 [00:00<00:04, 69.25it/s]\\rLoading weights:  16%|█▌        | 56/355 [00:00<00:03, 82.86it/s]\\rLoading weights:  19%|█▉        | 69/355 [00:01<00:03, 92.22it/s]\\rLoading weights:  23%|██▎       | 81/355 [00:01<00:02, 95.69it/s]\\rLoading weights:  26%|██▌       | 93/355 [00:01<00:02, 97.05it/s]\\rLoading weights:  29%|██▉       | 104/355 [00:01<00:02, 97.53it/s]\\rLoading weights:  34%|███▎      | 119/355 [00:01<00:02, 108.73it/s]\\rLoading weights:  37%|███▋      | 131/355 [00:01<00:02, 106.12it/s]\\rLoading weights:  41%|████      | 145/355 [00:01<00:01, 112.55it/s]\\rLoading weights:  44%|████▍     | 157/355 [00:01<00:01, 111.81it/s]\\rLoading weights:  48%|████▊     | 169/355 [00:01<00:01, 110.25it/s]\\rLoading weights:  51%|█████     | 181/355 [00:02<00:01, 109.03it/s]\\rLoading weights:  55%|█████▍    | 194/355 [00:02<00:01, 114.81it/s]\\rLoading weights:  58%|█████▊    | 206/355 [00:02<00:01, 115.44it/s]\\rLoading weights:  61%|██████▏   | 218/355 [00:02<00:01, 109.91it/s]\\rLoading weights:  65%|██████▍   | 230/355 [00:02<00:01, 110.49it/s]\\rLoading weights:  68%|██████▊   | 242/355 [00:02<00:01, 109.29it/s]\\rLoading weights:  72%|███████▏  | 254/355 [00:02<00:00, 111.85it/s]\\rLoading weights:  75%|███████▍  | 266/355 [00:02<00:00, 112.97it/s]\\rLoading weights:  78%|███████▊  | 278/355 [00:02<00:00, 114.45it/s]\\rLoading weights:  82%|████████▏ | 290/355 [00:03<00:00, 111.76it/s]\\rLoading weights:  85%|████████▌ | 302/355 [00:03<00:00, 104.07it/s]\\rLoading weights:  88%|████████▊ | 313/355 [00:03<00:00, 105.58it/s]\\rLoading weights:  92%|█████████▏| 328/355 [00:03<00:00, 113.13it/s]\\rLoading weights:  96%|█████████▌| 340/355 [00:03<00:00, 110.61it/s]\\rLoading weights:  99%|█████████▉| 353/355 [00:03<00:\\n\\n... [截断: 输出过长，省略 1511757 字符] ...\\n\\n:  99%|█████████▉| 13878/14042 [08:44<00:05, 30.31it/s]\\rEvaluating mmlu:  99%|█████████▉| 13882/14042 [08:44<00:05, 30.77it/s]\\rEvaluating mmlu:  99%|█████████▉| 13886/14042 [08:44<00:04, 31.51it/s]\\rEvaluating mmlu:  99%|███��█████▉| 13890/14042 [08:44<00:04, 32.07it/s]\\rEvaluating mmlu:  99%|█████████▉| 13894/14042 [08:45<00:04, 31.80it/s]\\rEvaluating mmlu:  99%|█████████▉| 13898/14042 [08:45<00:04, 31.84it/s]\\rEvaluating mmlu:  99%|█████████▉| 13902/14042 [08:45<00:04, 32.07it/s]\\rEvaluating mmlu:  99%|█████████▉| 13906/14042 [08:45<00:04, 32.24it/s]\\rEvaluating mmlu:  99%|█████████▉| 13910/14042 [08:45<00:04, 31.95it/s]\\rEvaluating mmlu:  99%|█████████▉| 13914/14042 [08:45<00:03, 32.17it/s]\\rEvaluating mmlu:  99%|█████████▉| 13918/14042 [08:45<00:03, 32.29it/s]\\rEvaluating mmlu:  99%|█████████▉| 13922/14042 [08:45<00:03, 32.41it/s]\\rEvaluating mmlu:  99%|█████████▉| 13926/14042 [08:46<00:03, 32.48it/s]\\rEvaluating mmlu:  99%|█████████▉| 13930/14042 [08:46<00:03, 32.06it/s]\\rEvaluating mmlu:  99%|███���█████▉| 13934/14042 [08:46<00:03, 32.20it/s]\\rEvaluating mmlu:  99%|█████████▉| 13938/14042 [08:46<00:03, 32.32it/s]\\rEvaluating mmlu:  99%|█████████▉| 13942/14042 [08:46<00:03, 32.42it/s]\\rEvaluating mmlu:  99%|█████████▉| 13946/14042 [08:46<00:03, 31.45it/s]\\rEvaluating mmlu:  99%|█████████▉| 13950/14042 [08:46<00:02, 31.79it/s]\\rEvaluating mmlu:  99%|█████████▉| 13954/14042 [08:46<00:02, 31.83it/s]\\rEvaluating mmlu:  99%|█████████▉| 13958/14042 [08:47<00:02, 31.63it/s]\\rEvaluating mmlu:  99%|█████████▉| 13962/14042 [08:47<00:02, 31.93it/s]\\rEvaluating mmlu:  99%|█████████▉| 13966/14042 [08:47<00:02, 32.14it/s]\\rEvaluating mmlu:  99%|█████████▉| 13970/14042 [08:47<00:02, 31.64it/s]\\rEvaluating mmlu: 100%|█████████▉| 13974/14042 [08:47<00:02, 31.73it/s]\\rEvaluating mmlu: 100%|█████████▉| 13978/14042 [08:47<00:01, 32.01it/s]\\rEvaluating mmlu: 100%|█████████▉| 13982/14042 [08:47<00:01, 32.42it/s]\\rEvaluating mmlu: 100%|█████████▉| 13986/14042 [08:47<00:01, 32.26it/s]\\rEvaluating mmlu: 100%|█████████▉| 13990/14042 [08:48<00:01, 32.37it/s]\\rEvaluating mmlu: 100%|█████████▉| 13994/14042 [08:48<00:01, 32.26it/s]\\rEvaluating mmlu: 100%|█████████▉| 13998/14042 [08:48<00:01, 32.15it/s]\\rEvaluating mmlu: 100%|█████████▉| 14002/14042 [08:48<00:01, 32.30it/s]\\rEvaluating mmlu: 100%|█████████▉| 14006/14042 [08:48<00:01, 32.63it/s]\\rEvaluating mmlu: 100%|█████████▉| 14010/14042 [08:48<00:00, 32.87it/s]\\rEvaluating mmlu: 100%|█████████▉| 14014/14042 [08:48<00:00, 32.38it/s]\\rEvaluating mmlu: 100%|█████████▉| 14018/14042 [08:48<00:00, 32.23it/s]\\rEvaluating mmlu: 100%|██��██████▉| 14022/14042 [08:49<00:00, 32.36it/s]\\rEvaluating mmlu: 100%|█████████▉| 14026/14042 [08:49<00:00, 32.22it/s]\\rEvaluating mmlu: 100%|█████████▉| 14030/14042 [08:49<00:00, 32.38it/s]\\rEvaluating mmlu: 100%|█████████▉| 14034/14042 [08:49<00:00, 32.44it/s]\\rEvaluating mmlu: 100%|█████████▉| 14038/14042 [08:49<00:00, 32.48it/s]\\rEvaluating mmlu: 100%|██████████| 14042/14042 [08:49<00:00, 32.52it/s]\\rEvaluating mmlu: 100%|██████████| 14042/14042 [08:49<00:00, 26.51it/s]\\n2026-05-20 19:15:30,191 [INFO] mmlu accuracy: 0.5672 (7965/14042)\\n2026-05-20 19:15:30,227 [INFO] Saved mmlu to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\n2026-05-20 19:15:30,267 [INFO] Results saved to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/eval_results.json\\n2026-05-20 19:15:30,270 [INFO] Correctness matrix saved to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/correctness_matrix.json\\n2026-05-20 19:15:30,309 [INFO] Item responses saved to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/item_responses.json\\n2026-05-20 19:15:30,309 [INFO] Sentinel .done written to /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0\\n++ date\\n+ echo '=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ===\\n+ echo ALL_MMLU_EVAL_DONE_OLMO2_S0\\nALL_MMLU_EVAL_DONE_OLMO2_S0\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log is very long and got truncated in the middle. I can see the d000_s0 start and the d100_s0 end. Let me extract the accuracy lines for each dosage. I can see the last one: d100_s0 accuracy = 0.5672 (7965/14042). Let me grep for the accuracy lines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "73af1086-babd-4e8a-a3cb-38e67b5b2768",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SsBiYf8RRPE14CtsoNp9dq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4636,
+      "cache_read_input_tokens": 26398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Log is truncated. Let me grep for just the accuracy lines.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "0e193d6a-01ed-4291-ba75-cd17983f3f0a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SsBiYf8RRPE14CtsoNp9dq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4636,
+      "cache_read_input_tokens": 26398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017kLwo5iETR5o3Sy1ejNWej`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep \"accuracy\\|=== DONE\\|=== START\" ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "7adfaa44-d99c-4761-a423-a3fa724951c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SsBiYf8RRPE14CtsoNp9dq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4636,
+      "cache_read_input_tokens": 26398,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4636
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-20T11:18:52.278Z_
+
+<details><summary>↩ Tool result · `toolu_017kLwo5iETR5o3Sy1ejNWej`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "cd98f9db-9e29-4240-a728-847636d8c2a4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0194R4Cstdsw613o9qwuuDYW`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep \"accuracy\" ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "24883d61-4e07-4a74-92e9-e922cf802129",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012GMc9QcrFHwHvFQxJ6vWah",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 329,
+      "cache_read_input_tokens": 31034,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 329
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-20T11:18:56.527Z_
+
+<details><summary>↩ Tool result · `toolu_0194R4Cstdsw613o9qwuuDYW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 18:39:19,296 [INFO] mmlu accuracy: 0.5534 (7771/14042)\\n2026-05-20 18:48:22,207 [INFO] mmlu accuracy: 0.5662 (7951/14042)\\n2026-05-20 18:57:25,107 [INFO] mmlu accuracy: 0.5652 (7937/14042)\\n2026-05-20 19:06:27,724 [INFO] mmlu accuracy: 0.5627 (7901/14042)\\n2026-05-20 19:15:30,191 [INFO] mmlu accuracy: 0.5672 (7965/14042)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "bda7ea2e-c474-4ec6-ad97-220acc40a709",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 18:39:19,296 [INFO] mmlu accuracy: 0.5534 (7771/14042)\\\\n2026-05-20 18:48:22,207 [INFO] mmlu accuracy: 0.5662 (7951/14042)\\\\n2026-05-20 18:57:25,107 [INFO] mmlu accuracy: 0.5652 (7937/14042)\\\\n2026-05-20 19:06:27,724 [INFO] mmlu accuracy: 0.5627 (7901/14042)\\\\n2026-05-20 19:15:30,191 [INFO] mmlu accuracy: 0.5672 (7965/14042)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-20 18:39:19,296 [INFO] mmlu accuracy: 0.5534 (7771/14042)\\n2026-05-20 18:48:22,207 [INFO] mmlu accuracy: 0.5662 (7951/14042)\\n2026-05-20 18:57:25,107 [INFO] mmlu accuracy: 0.5652 (7937/14042)\\n2026-05-20 19:06:27,724 [INFO] mmlu accuracy: 0.5627 (7901/14042)\\n2026-05-20 19:15:30,191 [INFO] mmlu accuracy: 0.5672 (7965/14042)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also grep for the START lines to match dosages to accuracies.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "f0d4616c-0374-49e7-8e6e-460cd5ae1729",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRWtWU8bG1gmSPJk9sD9r7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 372,
+      "cache_read_input_tokens": 31363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014rTWCxeqeM9T6b5KYjiDgK`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep \"=== START\" ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "23483cfc-0a01-4a58-8e3f-2decc6fbb4d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRWtWU8bG1gmSPJk9sD9r7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 372,
+      "cache_read_input_tokens": 31363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T11:19:03.637Z_
+
+<details><summary>↩ Tool result · `toolu_014rTWCxeqeM9T6b5KYjiDgK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"+ echo '=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ==='\\n=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ===\\n+ echo '=== START: olmo2_d005_s0 at Wed May 20 18:39:20 CST 2026 ==='\\n=== START: olmo2_d005_s0 at Wed May 20 18:39:20 CST 2026 ===\\n+ echo '=== START: olmo2_d025_s0 at Wed May 20 18:48:23 CST 2026 ==='\\n=== START: olmo2_d025_s0 at Wed May 20 18:48:23 CST 2026 ===\\n+ echo '=== START: olmo2_d050_s0 at Wed May 20 18:57:26 CST 2026 ==='\\n=== START: olmo2_d050_s0 at Wed May 20 18:57:26 CST 2026 ===\\n+ echo '=== START: olmo2_d100_s0 at Wed May 20 19:06:29 CST 2026 ==='\\n=== START: olmo2_d100_s0 at Wed May 20 19:06:29 CST 2026 ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "83d0fb9b-99a7-41e6-9ef7-c5c1847540b3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"+ echo '=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ==='\\\\n=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ===\\\\n+ echo '=== START: olmo2_d005_s0 at Wed May 20 18:39:20 CST 2026 ==='\\\\n=== START: olmo2_d005_s0 at Wed May 20 18:39:20 CST 2026 ===\\\\n+ echo '=== START: olmo2_d025_s0 at Wed May 20 18:48:23 CST 2026 ==='\\\\n=== START: olmo2_d025_s0 at Wed May 20 18:48:23 CST 2026 ===\\\\n+ echo '=== START: olmo2_d050_s0 at Wed May 20 18:57:26 CST 2026 ==='\\\\n=== START: olmo2_d050_s0 at Wed May 20 18:57:26 CST 2026 ===\\\\n+ echo '=== START: olmo2_d100_s0 at Wed May 20 19:06:29 CST 2026 ==='\\\\n=== START: olmo2_d100_s0 at Wed May 20 19:06:29 CST 2026 ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"+ echo '=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ==='\\n=== START: olmo2_d000_s0 at Wed May 20 18:30:18 CST 2026 ===\\n+ echo '=== START: olmo2_d005_s0 at Wed May 20 18:39:20 CST 2026 ==='\\n=== START: olmo2_d005_s0 at Wed May 20 18:39:20 CST 2026 ===\\n+ echo '=== START: olmo2_d025_s0 at Wed May 20 18:48:23 CST 2026 ==='\\n=== START: olmo2_d025_s0 at Wed May 20 18:48:23 CST 2026 ===\\n+ echo '=== START: olmo2_d050_s0 at Wed May 20 18:57:26 CST 2026 ==='\\n=== START: olmo2_d050_s0 at Wed May 20 18:57:26 CST 2026 ===\\n+ echo '=== START: olmo2_d100_s0 at Wed May 20 19:06:29 CST 2026 ==='\\n=== START: olmo2_d100_s0 at Wed May 20 19:06:29 CST 2026 ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LFaC2pK3gEgM1mpxie3aYP`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep \"=== DONE\" ~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "3c276f7e-3cbb-4471-ac1f-19b50c34f33b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRWtWU8bG1gmSPJk9sD9r7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 372,
+      "cache_read_input_tokens": 31363,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 372
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T11:19:04.677Z_
+
+<details><summary>↩ Tool result · `toolu_01LFaC2pK3gEgM1mpxie3aYP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"+ echo '=== DONE: olmo2_d000_s0 at Wed May 20 18:39:20 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d000_s0 at Wed May 20 18:39:20 CST 2026, exit=0 ===\\n+ echo '=== DONE: olmo2_d005_s0 at Wed May 20 18:48:23 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d005_s0 at Wed May 20 18:48:23 CST 2026, exit=0 ===\\n+ echo '=== DONE: olmo2_d025_s0 at Wed May 20 18:57:26 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d025_s0 at Wed May 20 18:57:26 CST 2026, exit=0 ===\\n+ echo '=== DONE: olmo2_d050_s0 at Wed May 20 19:06:29 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d050_s0 at Wed May 20 19:06:29 CST 2026, exit=0 ===\\n+ echo '=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "64fde0d2-d8b1-437c-a2e9-aa94b3666f8a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"+ echo '=== DONE: olmo2_d000_s0 at Wed May 20 18:39:20 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d000_s0 at Wed May 20 18:39:20 CST 2026, exit=0 ===\\\\n+ echo '=== DONE: olmo2_d005_s0 at Wed May 20 18:48:23 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d005_s0 at Wed May 20 18:48:23 CST 2026, exit=0 ===\\\\n+ echo '=== DONE: olmo2_d025_s0 at Wed May 20 18:57:26 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d025_s0 at Wed May 20 18:57:26 CST 2026, exit=0 ===\\\\n+ echo '=== DONE: olmo2_d050_s0 at Wed May 20 19:06:29 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d050_s0 at Wed May 20 19:06:29 CST 2026, exit=0 ===\\\\n+ echo '=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ==='\\\\n=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"+ echo '=== DONE: olmo2_d000_s0 at Wed May 20 18:39:20 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d000_s0 at Wed May 20 18:39:20 CST 2026, exit=0 ===\\n+ echo '=== DONE: olmo2_d005_s0 at Wed May 20 18:48:23 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d005_s0 at Wed May 20 18:48:23 CST 2026, exit=0 ===\\n+ echo '=== DONE: olmo2_d025_s0 at Wed May 20 18:57:26 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d025_s0 at Wed May 20 18:57:26 CST 2026, exit=0 ===\\n+ echo '=== DONE: olmo2_d050_s0 at Wed May 20 19:06:29 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d050_s0 at Wed May 20 19:06:29 CST 2026, exit=0 ===\\n+ echo '=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ==='\\n=== DONE: olmo2_d100_s0 at Wed May 20 19:15:31 CST 2026, exit=0 ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+All 5 dosages completed successfully. Mapping results by timestamp order:
+
+| Dosage | Accuracy | Correct/Total | Δ vs d000 |
+|--------|----------|---------------|-----------|
+| d000 (baseline) | 55.34% | 7771/14042 | — |
+| d005 | 56.62% | 7951/14042 | +1.28pp |
+| d025 | 56.52% | 7937/14042 | +1.18pp |
+| d050 | 56.27% | 7901/14042 | +0.93pp |
+| d100 | 56.72% | 7965/14042 | +1.38pp |
+
+**Δacc(d100) = +1.38pp** (vs s42's +3.21pp — notably smaller).
+
+Interesting pattern: non-monotonic, benefit saturates early (d005 already captures most of the gain). Let me check for result JSON files, then update the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "b5100a36-bec7-4e67-b4df-4441a839ba11",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S5TNdfynDpma7REN1Df5gT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1255,
+      "cache_read_input_tokens": 31735,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1255
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J4i2RNheG6iaryhqra7XPX`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "766631fc-bea0-4db2-8e15-1ea62f7567a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S5TNdfynDpma7REN1Df5gT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1255,
+      "cache_read_input_tokens": 31735,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1255
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-20T11:19:15.338Z_
+
+<details><summary>↩ Tool result · `toolu_01J4i2RNheG6iaryhqra7XPX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"d000_s0\\nd005_s0\\nd025_s0\\nd050_s0\\nd100_s0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "5eb39758-6fbc-4cca-8e7c-bc5bd45605ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"d000_s0\\\\nd005_s0\\\\nd025_s0\\\\nd050_s0\\\\nd100_s0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"d000_s0\\nd005_s0\\nd025_s0\\nd050_s0\\nd100_s0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QVxwEVaxUSbhik3MkyNGNn`</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "b6bcb4b2-a03d-49d5-9525-4bad8d189431",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QREfrExzAwRzJ33WCpfwJz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 563,
+      "cache_read_input_tokens": 32990,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 563
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T11:19:18.784Z_
+
+<details><summary>↩ Tool result · `toolu_01QVxwEVaxUSbhik3MkyNGNn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"correctness_matrix.json\\neval_results.json\\nitem_responses.json\\nmmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "85d4d3d9-7e60-4427-acbb-78ba66955ed4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"correctness_matrix.json\\\\neval_results.json\\\\nitem_responses.json\\\\nmmlu_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"correctness_matrix.json\\neval_results.json\\nitem_responses.json\\nmmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Result files are all there. Now updating the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "b88a69f0-7ad9-4317-969a-4934969d7b92",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KzQcDe4hEFrwyDVXc1mAwu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 33553,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 218
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01W19URNx2yWkdySjPWCbVjF`</summary>
+
+```json
+{
+  "exp_id": "eval_olmo2_s0_mmlu",
+  "field": "metrics",
+  "value": {
+    "mmlu_d000": 0.5534,
+    "mmlu_d005": 0.5662,
+    "mmlu_d025": 0.5652,
+    "mmlu_d050": 0.5627,
+    "mmlu_d100": 0.5672,
+    "delta_d005": 0.0128,
+    "delta_d025": 0.0118,
+    "delta_d050": 0.0093,
+    "delta_d100": 0.0138,
+    "correct_d000": 7771,
+    "correct_d005": 7951,
+    "correct_d025": 7937,
+    "correct_d050": 7901,
+    "correct_d100": 7965,
+    "total": 14042
+  },
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "af06807b-dbd6-44c2-8585-a24ed0a1fac0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KzQcDe4hEFrwyDVXc1mAwu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 33553,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 218
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T11:19:37.800Z_
+
+<details><summary>↩ Tool result · `toolu_01W19URNx2yWkdySjPWCbVjF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:37.190Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\"}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3963}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "2c5a7c09-53e6-48b6-8865-92f13fbafc74",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:37.190Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3963}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:37.190Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\"}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3963}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01LoSboZFmi3dUgVr3iPsx94`</summary>
+
+```json
+{
+  "exp_id": "eval_olmo2_s0_mmlu",
+  "field": "checkpoint_path",
+  "value": "/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "8a7853e9-41e0-4fc1-8f85-a5e9b1b868da",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SXDwinEtghknggYrJ61iG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 33771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GyyLVDod5xmKC4HQaznPZ2`</summary>
+
+```json
+{
+  "exp_id": "eval_olmo2_s0_mmlu",
+  "field": "log_path",
+  "value": "~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "57ba1474-c43d-48a6-8056-b31924a7b619",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016SXDwinEtghknggYrJ61iG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1124,
+      "cache_read_input_tokens": 33771,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1124
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T11:19:47.138Z_
+
+<details><summary>↩ Tool result · `toolu_01LoSboZFmi3dUgVr3iPsx94`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:46.034Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\"}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2469}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "b9bd027b-cf3b-4c8a-8c45-7497aa38d501",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:46.034Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2469}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:46.034Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\"}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.2469}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T11:19:48.720Z_
+
+<details><summary>↩ Tool result · `toolu_01GyyLVDod5xmKC4HQaznPZ2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:48.152Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\"}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5691}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "d55831d1-231b-4b73-90e9-608b64b0fbd2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:48.152Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5691}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:48.152Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\"}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5691}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DJT284Ri6GtZYkVm7aWnhH`</summary>
+
+```json
+{
+  "exp_id": "eval_olmo2_s0_mmlu",
+  "field": "conclusion",
+  "value": "success",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "cc9da686-9bc2-4069-8c95-856b7a05b9c0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RFLr1xEofiPaz2wqeCqrSA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2081,
+      "cache_read_input_tokens": 34895,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2081
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T11:19:54.354Z_
+
+<details><summary>↩ Tool result · `toolu_01DJT284Ri6GtZYkVm7aWnhH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:53.308Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\"}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8929}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "b9ce56ff-626d-4d17-a9e2-a1e70cb05630",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:53.308Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\"}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8929}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:53.308Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\"}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8929}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013YnSxBmJZdGYtzrJWXSrx2`</summary>
+
+```json
+{
+  "exp_id": "eval_olmo2_s0_mmlu",
+  "field": "status",
+  "value": "DONE",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "0890726c-043b-4703-ad99-d6cc9b4e4db9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PdWf4nbJQaPsk29s2gV7Yb",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1020,
+      "cache_read_input_tokens": 36976,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1020
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T11:19:59.987Z_
+
+<details><summary>↩ Tool result · `toolu_013YnSxBmJZdGYtzrJWXSrx2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:58.286Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\", \"wall_clock_seconds\": 2979.9, \"gpu_hours\": 0.83}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T11:19:58.286Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5368}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "f1eed7b3-ffde-4374-9269-6e10501c5faa",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_olmo2_s0_mmlu\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T10:30:19.200Z\\\", \\\"updated_at\\\": \\\"2026-05-20T11:19:58.286Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"321872\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T10:30:18.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"MMLU 5-shot\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"OLMo-2-7B\\\", \\\"seed\\\": 0, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\\\", \\\"eval_data\\\": \\\"MMLU 5-shot (14042 items)\\\", \\\"wall_clock_seconds\\\": 2979.9, \\\"gpu_hours\\\": 0.83}, \\\"hypothesis\\\": \\\"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\\\", \\\"parent\\\": \\\"sft_olmo2_s0_sweep\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T11:16:14.078Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T11:16:21.612236+00:00\\\"}]}, \\\"metrics\\\": {\\\"mmlu_d000\\\": 0.5534, \\\"mmlu_d005\\\": 0.5662, \\\"mmlu_d025\\\": 0.5652, \\\"mmlu_d050\\\": 0.5627, \\\"mmlu_d100\\\": 0.5672, \\\"delta_d005\\\": 0.0128, \\\"delta_d025\\\": 0.0118, \\\"delta_d050\\\": 0.0093, \\\"delta_d100\\\": 0.0138, \\\"correct_d000\\\": 7771, \\\"correct_d005\\\": 7951, \\\"correct_d025\\\": 7937, \\\"correct_d050\\\": 7901, \\\"correct_d100\\\": 7965, \\\"total\\\": 14042}, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T11:19:58.286Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5368}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_olmo2_s0_mmlu\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:30:19.200Z\", \"updated_at\": \"2026-05-20T11:19:58.286Z\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:2\"], \"pid\": \"321872\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"submitted_at\": \"2026-05-20T10:30:18.406Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"MMLU 5-shot\", \"data_count\": 14042, \"model_name\": \"OLMo-2-7B\", \"seed\": 0, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0\", \"eval_data\": \"MMLU 5-shot (14042 items)\", \"wall_clock_seconds\": 2979.9, \"gpu_hours\": 0.83}, \"hypothesis\": \"OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.\", \"parent\": \"sft_olmo2_s0_sweep\", \"reproduce\": {\"finished_at\": \"2026-05-20T11:16:14.078Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:16:21.612236+00:00\"}]}, \"metrics\": {\"mmlu_d000\": 0.5534, \"mmlu_d005\": 0.5662, \"mmlu_d025\": 0.5652, \"mmlu_d050\": 0.5627, \"mmlu_d100\": 0.5672, \"delta_d005\": 0.0128, \"delta_d025\": 0.0118, \"delta_d050\": 0.0093, \"delta_d100\": 0.0138, \"correct_d000\": 7771, \"correct_d005\": 7951, \"correct_d025\": 7937, \"correct_d050\": 7901, \"correct_d100\": 7965, \"total\": 14042}, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T11:19:58.286Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5368}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+Registry updated. Summary:
+
+**OLMo-2-7B seed=0 MMLU 5-shot results:**
+
+| Dosage | Accuracy | Δ vs baseline |
+|--------|----------|---------------|
+| d000 | 55.34% | — |
+| d005 | 56.62% | +1.28pp |
+| d025 | 56.52% | +1.18pp |
+| d050 | 56.27% | +0.93pp |
+| d100 | 56.72% | +1.38pp |
+
+**Cross-seed comparison (d100 Δacc):**
+- s42: +3.21pp (baseline 53.79%)
+- s0: +1.38pp (baseline 55.34%)
+
+s0 shows a weaker contamination effect than s42 (+1.38 vs +3.21pp), and the dose-response curve is notably flat — d005 already captures ~93% of the maximum gain. s0 also has a higher baseline (55.34 vs 53.79%), which could partially explain the smaller marginal benefit from contamination (ceiling compression).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "uuid": "7d689363-1180-4ef5-8116-57c05b886f52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019iRSdfxmHyywFGv42PsADj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1102,
+      "cache_read_input_tokens": 37996,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1102
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 38_
+
+Registry updated. Summary:
+
+**OLMo-2-7B seed=0 MMLU 5-shot results:**
+
+| Dosage | Accuracy | Δ vs baseline |
+|--------|----------|---------------|
+| d000 | 55.34% | — |
+| d005 | 56.62% | +1.28pp |
+| d025 | 56.52% | +1.18pp |
+| d050 | 56.27% | +0.93pp |
+| d100 | 56.72% | +1.38pp |
+
+**Cross-seed comparison (d100 Δacc):**
+- s42: +3.21pp (baseline 53.79%)
+- s0: +1.38pp (baseline 55.34%)
+
+s0 shows a weaker contamination effect than s42 (+1.38 vs +3.21pp), and the dose-response curve is notably flat — d005 already captures ~93% of the maximum gain. s0 also has a higher baseline (55.34 vs 53.79%), which could partially explain the smaller marginal benefit from contamination (ceiling compression).
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 94051,
+  "duration_api_ms": 82551,
+  "num_turns": 14,
+  "stop_reason": "end_turn",
+  "session_id": "bd43bb9c-4fd6-47c9-916e-966da7a42f37",
+  "total_cost_usd": 0.42031825,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 27257,
+    "cache_read_input_tokens": 367990,
+    "output_tokens": 2513,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 27257,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 276,
+        "cache_read_input_tokens": 37996,
+        "cache_creation_input_tokens": 1102,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 1102
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2927,
+      "outputTokens": 27,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.003062,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 2513,
+      "cacheReadInputTokens": 367990,
+      "cacheCreationInputTokens": 27257,
+      "webSearchRequests": 0,
+      "costUSD": 0.41725625,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "b75749f1-f1c7-418e-960d-21625ca45471"
+}
+```
+
+</details>
+
+---

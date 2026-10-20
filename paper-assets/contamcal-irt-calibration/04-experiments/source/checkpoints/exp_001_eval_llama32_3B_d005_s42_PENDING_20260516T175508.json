@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_001_eval_llama32_3B_d005_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:49:53.423Z",
+    "updated_at": "2026-05-16T17:55:07.726Z",
+    "spec": {
+      "command": "python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d005_s42/merged --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --batch-size 4",
+      "server": "cqa1-21977",
+      "data_path": "mmlu+gsm8k+arc_challenge+humaneval",
+      "data_count": 0,
+      "model_name": "Llama-3.2-3B_d005_s42",
+      "seed": 42,
+      "gpu": "cuda:0",
+      "pid": 824522,
+      "checkpoint_source": "exp_001_sft_llama32_3B_d005_s42",
+      "eval_data": "mmlu gsm8k arc_challenge humaneval",
+      "hypothesis": "Llama-3.2-3B cross-family validation: d005 (5% contamination) eval"
+    }
+  },
+  "timestamp": "2026-05-16T17:55:08.209854+00:00",
+  "trigger": "update_registry"
+}

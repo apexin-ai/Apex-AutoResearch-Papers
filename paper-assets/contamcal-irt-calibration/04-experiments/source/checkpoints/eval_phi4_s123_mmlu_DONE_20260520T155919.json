@@ -1,0 +1,40 @@
+{
+  "exp_id": "eval_phi4_s123_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T14:52:07.219Z",
+    "updated_at": "2026-05-20T15:59:18.707Z",
+    "hypothesis": "Phi-4 seed=123 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Second seed for triple-seed bootstrap CI. Immune pattern (s42: -0.17pp). Last missing s123 eval — completion enables full bootstrap.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 bash /root/contamcal-irt-calibration/scripts/eval_phi4_s123_mmlu.sh",
+      "server": "westd-29999",
+      "data_path": "/root/autodl-tmp/.hf_cache/cais___mmlu",
+      "data_count": 14042,
+      "model_name": "phi-4",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/phi-4_d{000,005,025,050,100}_s123/lora_adapter",
+      "eval_data": "MMLU 5-shot",
+      "pid": 365465,
+      "gpu": "cuda:2"
+    },
+    "notes": "4/5 dosage done: d000=76.31% d005=75.92% d025=77.02% d050=77.30%. d100 running PID 369044 cuda:2, ETA ~10min. Pattern: Immune (fluctuations within ±1pp of baseline).",
+    "metrics": {
+      "d000_acc": 76.31,
+      "d005_acc": 75.92,
+      "d025_acc": 77.02,
+      "d050_acc": 77.3,
+      "d100_acc": 78.14,
+      "delta_d100": 1.83
+    },
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/mmlu_eval/phi4/",
+    "log_path": "/root/contamcal-irt-calibration/scripts/eval_phi4_s123_mmlu.sh",
+    "conclusion": "success",
+    "completed_at": "2026-05-20T15:59:18.707Z"
+  },
+  "timestamp": "2026-05-20T15:59:19.281304+00:00",
+  "trigger": "update_registry"
+}

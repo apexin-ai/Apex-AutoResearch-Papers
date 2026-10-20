@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_001_sft_injection",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:28:01.546Z",
+    "updated_at": "2026-05-13T17:28:01.546Z",
+    "spec": {
+      "command": "bash run_exp001.sh --phase all --gpu-ids 0,1,2,3,4,5",
+      "server": "cqa1-21977",
+      "data_path": "MMLU+GSM8K+ARC-Challenge+HumanEval paraphrases mixed into SFT data",
+      "data_count": "3 models × 5 dosages × 3 seeds = 45 SFT runs + 180 eval runs",
+      "model_name": "Qwen2.5-0.5B/1.5B/3B (LoRA SFT)",
+      "seed": "0,1,2"
+    }
+  },
+  "timestamp": "2026-05-13T17:28:01.575527+00:00",
+  "trigger": "update_registry"
+}

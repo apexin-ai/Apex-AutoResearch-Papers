@@ -1,0 +1,41 @@
+{
+  "exp_id": "sft_qwen14b_d100_s123_retrain",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 2,
+    "created_at": "2026-05-20T01:54:32.808Z",
+    "updated_at": "2026-05-20T05:28:54.246Z",
+    "hypothesis": "Qwen-14B d100 s123 retrain: replace corrupted checkpoint from disk-full incident. Original d000-d050 intact.",
+    "parent": "sft_qwen14b_s123_sweep",
+    "failure_reason": null,
+    "completed_at": "2026-05-20T05:28:40.005573+00:00",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: 与 westd cuda:2/3 上的实验同时 ~03:02 UTC 死亡，疑似服务器级事件（重启/OOM killer）。诊断 Worker worker_diagnose_westd_triple_failure_20260520T032039 已派出。| 已有成果: 待诊断确认是否有可用 checkpoint | 建议: 等诊断结果后立即重启"
+      }
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T03:17:24.310Z"
+    },
+    "notes": "Qwen-14B d100 s123 retrain 完成。Reviewer 确认 .done 标记存在, cuda:1 空闲。",
+    "conclusion": "success",
+    "spec": {
+      "server": "westd-29999",
+      "gpu": "cuda:1",
+      "pid": 246779,
+      "model_name": "Qwen2.5-14B",
+      "seed": 123,
+      "command": "Qwen-14B d100 s123 retrain (恢复中)",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/",
+      "data_count": 10000,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s123/lora_adapter/",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_qwen14b_d100_s123_retrain.log"
+    }
+  },
+  "timestamp": "2026-05-20T05:28:54.832859+00:00",
+  "trigger": "update_registry"
+}

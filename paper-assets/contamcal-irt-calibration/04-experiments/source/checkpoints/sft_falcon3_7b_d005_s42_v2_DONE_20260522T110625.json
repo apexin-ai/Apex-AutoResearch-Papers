@@ -1,0 +1,38 @@
+{
+  "exp_id": "sft_falcon3_7b_d005_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T07:50:13.689Z",
+    "updated_at": "2026-05-22T11:06:25.118Z",
+    "spec": {
+      "command": "bash -c \"CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d005_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d005_s42.log\"",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "600185",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_falcon3_7b_d005_s42_v2.log",
+      "submitted_at": "2026-05-22T07:50:12.699Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl",
+      "data_count": 50826,
+      "model_name": "Falcon3-7B-Base",
+      "seed": 42,
+      "lr": 5e-05,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d005_s42",
+      "wall_clock_seconds": 11648.2,
+      "gpu_hours": 3.24
+    },
+    "hypothesis": "Cross-family replication: Falcon3-7B-Base at 0.5% contamination dosage. Low dosage distinguishes Immune from Collapse. LR bug fix retry with correct lr=5e-5.",
+    "conclusion": "success",
+    "completed_at": "2026-05-22T11:04:20.871Z"
+  },
+  "timestamp": "2026-05-22T11:06:25.748618+00:00",
+  "trigger": "update_registry"
+}

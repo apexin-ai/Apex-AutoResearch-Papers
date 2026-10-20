@@ -1,0 +1,144 @@
+=== SUBSET: 12 conditions × 10 seeds = 120 runs ===
+Stan model: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/contam_irt_4pl_sweep.stan
+Results dir: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/results
+Parallel conditions: 2, chains_parallel: 2
+
+Compiling Stan model...
+Compiled: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/contam_irt_4pl_sweep
+Resume mode: will skip successful seeds, re-run failed/missing
+
+Launching 12 conditions with 2 workers...
+  [auc0.8_n20_prior1.0_binary] all 10 seeds done, skipping
+  [auc0.8_n50_prior1.0_binary] all 10 seeds done, skipping
+
+[1/12] auc0.8_n50_prior1.0_binary DONE
+
+[2/12] auc0.8_n20_prior1.0_binary DONE
+  [auc0.8_n100_prior1.0_binary] 9/10 done, running 1 remaining
+  [auc0.9_n20_prior1.0_binary] all 10 seeds done, skipping
+  [auc0.9_n50_prior1.0_binary] 7/10 done, running 3 remaining
+
+[3/12] auc0.9_n20_prior1.0_binary DONE
+17:00:30 - cmdstanpy - INFO - CmdStan start processing
+17:00:30 - cmdstanpy - INFO - Chain [1] start processing
+17:00:30 - cmdstanpy - INFO - Chain [2] start processing
+17:00:31 - cmdstanpy - INFO - CmdStan start processing
+17:00:31 - cmdstanpy - INFO - Chain [1] start processing
+17:00:31 - cmdstanpy - INFO - Chain [2] start processing
+17:21:41 - cmdstanpy - INFO - Chain [2] done processing
+17:21:41 - cmdstanpy - INFO - Chain [3] start processing
+17:21:41 - cmdstanpy - INFO - Chain [4] start processing
+17:21:43 - cmdstanpy - INFO - Chain [1] done processing
+    seed 7 (8/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (1273.1s)
+    seed 8 (9/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 9 (10/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+  [auc0.9_n100_prior1.0_binary] 0/10 done, running 10 remaining
+
+[4/12] auc0.9_n50_prior1.0_binary DONE
+    seed 0 (1/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 1 (2/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 2 (3/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 3 (4/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 4 (5/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 5 (6/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 6 (7/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 7 (8/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 8 (9/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 9 (10/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+  [auc0.55_n20_prior1.0_binary] all 10 seeds done, skipping
+
+[5/12] auc0.9_n100_prior1.0_binary DONE
+
+[6/12] auc0.55_n20_prior1.0_binary DONE
+  [auc0.55_n50_prior1.0_binary] all 10 seeds done, skipping
+  [auc0.55_n100_prior1.0_binary] 7/10 done, running 3 remaining
+
+[7/12] auc0.55_n50_prior1.0_binary DONE
+    seed 7 (8/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 8 (9/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 9 (10/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+  [auc0.65_n20_prior1.0_binary] 0/10 done, running 10 remaining
+
+[8/12] auc0.55_n100_prior1.0_binary DONE
+    seed 0 (1/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 1 (2/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 2 (3/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 3 (4/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 4 (5/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 5 (6/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 6 (7/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 7 (8/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 8 (9/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 9 (10/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+  [auc0.65_n50_prior1.0_binary] 0/10 done, running 10 remaining
+
+[9/12] auc0.65_n20_prior1.0_binary DONE
+    seed 0 (1/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 1 (2/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 2 (3/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 3 (4/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 4 (5/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 5 (6/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 6 (7/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 7 (8/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 8 (9/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 9 (10/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.0s)
+  [auc0.65_n100_prior1.0_binary] 0/10 done, running 10 remaining
+
+[10/12] auc0.65_n50_prior1.0_binary DONE
+    seed 0 (1/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 1 (2/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 2 (3/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 3 (4/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 4 (5/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 5 (6/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 6 (7/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 7 (8/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 8 (9/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+    seed 9 (10/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (0.1s)
+
+[11/12] auc0.65_n100_prior1.0_binary DONE
+17:31:42 - cmdstanpy - INFO - Chain [1] done processing
+17:31:42 - cmdstanpy - INFO - Chain [3] start processing
+17:31:42 - cmdstanpy - INFO - Chain [4] start processing
+17:31:42 - cmdstanpy - INFO - Chain [2] done processing
+    seed 9 (10/10): FAIL [Errno 2] No such file or directory: '/h θ_corr=? (1872.2s)
+
+[12/12] auc0.8_n100_prior1.0_binary DONE
+
+=== SWEEP COMPLETE (0.5h) ===
+SWEEP_DONE
+
+Summary written to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/results/sweep_summary.json (8 conditions)
+
+Condition                                  γ_bias   γ_RMSE  CI95%   θ_corr   time
+--------------------------------------------------------------------------------
+auc0.55_n100_prior1.0_binary              -0.0033   0.0049  1.000   0.9507   3793s
+auc0.55_n20_prior1.0_binary                0.0201   0.0404  0.800   0.9580    321s
+auc0.55_n50_prior1.0_binary                0.0146   0.0255  0.900   0.9470   1294s
+auc0.8_n100_prior1.0_binary                0.0109   0.0334  0.889   0.9688   4844s
+auc0.8_n20_prior1.0_binary                -0.0157   0.0806  0.900   0.9718    425s
+auc0.8_n50_prior1.0_binary                 0.0063   0.0302  1.000   0.9712   1097s
+auc0.9_n20_prior1.0_binary                -0.0249   0.0847  1.000   0.9725    811s
+auc0.9_n50_prior1.0_binary                 0.0037   0.0375  1.000   0.9696   1782s
+Traceback (most recent call last):
+  File "/usr/lib/python3.14/multiprocessing/util.py", line 371, in _run_finalizers
+    finalizer()
+    ~~~~~~~~~^^
+  File "/usr/lib/python3.14/multiprocessing/util.py", line 295, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/usr/lib/python3.14/multiprocessing/util.py", line 147, in _remove_temp_dir
+    rmtree(tempdir)
+    ~~~~~~^^^^^^^^^
+  File "/usr/lib/python3.14/shutil.py", line 852, in rmtree
+    _rmtree_impl(path, dir_fd, onexc)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/shutil.py", line 721, in _rmtree_safe_fd
+    _rmtree_safe_fd_step(stack, onexc)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/shutil.py", line 799, in _rmtree_safe_fd_step
+    onexc(func, path, err)
+    ~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/shutil.py", line 760, in _rmtree_safe_fd_step
+    orig_st = os.lstat(name, dir_fd=dirfd)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/ubuntu/tmp_cmdstan/pymp-dclv6cfs'

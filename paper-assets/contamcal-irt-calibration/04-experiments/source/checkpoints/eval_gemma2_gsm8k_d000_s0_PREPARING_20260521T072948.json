@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_gemma2_gsm8k_d000_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:29:48.083Z",
+    "updated_at": "2026-05-21T07:29:48.083Z"
+  },
+  "timestamp": "2026-05-21T07:29:48.769402+00:00",
+  "trigger": "update_registry"
+}

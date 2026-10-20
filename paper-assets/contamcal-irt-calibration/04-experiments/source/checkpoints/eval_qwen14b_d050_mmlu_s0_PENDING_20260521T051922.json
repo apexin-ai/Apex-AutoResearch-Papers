@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_qwen14b_d050_mmlu_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:19:04.586Z",
+    "updated_at": "2026-05-21T05:19:22.336Z",
+    "hypothesis": "Qwen-14B d050 s0 MMLU eval: intermediate dosage for complete dose-response curve, expect moderate collapse between d025 (-3.79pp) and d100 (-24.99pp)",
+    "parent": "retrain_qwen14b_d050_s0"
+  },
+  "timestamp": "2026-05-21T05:19:22.941663+00:00",
+  "trigger": "update_registry"
+}

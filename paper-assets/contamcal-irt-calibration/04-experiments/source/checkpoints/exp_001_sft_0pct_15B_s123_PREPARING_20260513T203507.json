@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_001_sft_0pct_15B_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:35:07.346Z",
+    "updated_at": "2026-05-13T20:35:07.346Z"
+  },
+  "timestamp": "2026-05-13T20:35:07.393555+00:00",
+  "trigger": "update_registry"
+}

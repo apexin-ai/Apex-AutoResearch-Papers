@@ -1,0 +1,16 @@
+{
+  "exp_id": "gsm8k_qwen7b_s123_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:07:13.468Z",
+    "updated_at": "2026-05-20T00:07:31.594Z",
+    "hypothesis": "GSM8K cross-seed replication for Qwen-7B: verify the +11.07pp (s42) cross-benchmark transfer reproduces at s123. If consistent, confirms transfer is systematic not stochastic.",
+    "parent": "gsm8k_qwen7b_s42_cqa1"
+  },
+  "timestamp": "2026-05-20T00:07:32.175740+00:00",
+  "trigger": "update_registry"
+}

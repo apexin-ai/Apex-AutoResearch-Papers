@@ -1,0 +1,1025 @@
+# cron hook sft qwen7b s0 cqa1
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/cron_hook_sft_qwen7b_s0_cqa1.jsonl`
+- **Structured JSON:** [`1c12ee3f2f444ad2fb8a.json`](../../sessions/1c/1c12ee3f2f444ad2fb8a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+32 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T15:37:01.481076+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #24。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- **GPU 白名单**: cqa1-21977 只能用 cuda:0；westd-29999 可用 cuda:0/1/2/3
+- **cqa1 磁盘**: `/autodl-pub` 已用 98%（199G/7.0T 可用），**严禁**在此路径下载新模型/数据集，checkpoint 写入前必须检查空间
+- **Qwen-7B s0 checkpoint 路径**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d{000,005,025,050,100}_s0`（在 cqa1 上），eval 必须指向这些路径
+- **n=3 deadline**: EMNLP 2026 ARR May 25，D+4 剩余 4 天。Qwen-7B 是最快能完成 n=3 的家族（预计 D+4 04:00 UTC），不能延误
+- **sweep 静默失败前科**: Gemma-2 d100_s0 和 Qwen-14B d050_s0 曾因 sweep 脚本 bug 产生空 adapter。验证 checkpoint 时必须检查 adapter 文件大小 > 0
+
+### 2. 🖥️ 基础设施快照
+- **cqa1-21977**: 工作目录 `/root/autodl-tmp/exp001/`，Python `/root/miniconda3/bin/python`，conda base 环境
+  - 模型基座: `/root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B`
+  - SFT 数据: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl`
+  - Checkpoint: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d*_s0/`
+  - 训练 log: `~/runs/contamcal-irt-calibration/sft_qwen7b_s0_cqa1.log`
+- **westd-29999**: 工作目录 `/root/autodl-tmp/exp001/` 或 `/root/contamcal-irt-calibration/`
+  - 活跃进程: sft_qwen14b_s0_sweep (PID 311554, cuda:3), r3w10_threshold_dgp (PID 435321), retrain_gemma2_d100_s0 (PID 437077), eval_qwen7b_mmlu_arc_s0 (PID 411308)
+- **Cron 活跃**: sft_qwen14b_s0_sweep, r3w10_threshold_dgp, retrain_gemma2_d100_s0, eval_qwen7b_mmlu_arc_s0（共 4 个）
+
+### 3. 📊 当前状态
+**刚收到 sft_qwen7b_s0_cqa1 完成回调**（ANALYZING），已 spawn Worker `worker_analysis_sft_qwen7b_s0_cqa1_20260520T230328` 去 cqa1 验证 5 个 dosage checkpoint 完整性 + 提取 training loss + 更新 registry。**Worker 尚未回调，结果未知。**
+
+Registry 关键状态：
+- `sft_qwen7b_s0_cqa1` — ANALYZING，等 Worker 分析结果
+- `sft_qwen14b_s0_sweep` — RUNNING，westd cuda:3，Qwen-14B s0 训练（预计 ~09:40 UTC）
+- `retrain_gemma2_d100_s0` — RUNNING，westd cuda:0，Gemma-2 d100 重训（预计 ~06:00-07:00 UTC）
+- `r3w10_threshold_dgp` — RUNNING，westd，R3-W10 DGP 模拟（~83/400）
+- `eval_qwen7b_mmlu_arc_s0` — PREPARING（registry），但 reconcile 显示 PID 411308 活跃，可能已启动但 registry 未更新，需确认
+
+**等待中**:
+- Worker `worker_analysis_sft_qwen7b_s0_cqa1_20260520T230328` 回调
+- 尚未向 Director 汇报本次完成（等 Worker 分析结果后汇报）
+
+### 4. 📋 待办（条件触发式）
+- **Worker 分析回调到达 + 5 个 checkpoint 都正常** → update_registry(conclusion=success, status=DONE) → cqa1 cuda:0 空闲 → 立即启动 eval_qwen7b_mmlu_arc_s0（MMLU 5-shot + ARC 25-shot 全 5 dosage）→ 向 Director 汇报训练完成 + eval 已提交
+- **Worker 分析回调 + 有 checkpoint 缺失/空** → 参照 sweep 静默失败处理：检查具体 dosage，重训失败的 dosage（带 gradient checkpointing），更新 registry(conclusion=failed)
+- **eval_qwen7b_mmlu_arc_s0 完成** → 提取 MMLU/ARC 准确率 → 计算 delta_d100 → 与 s42/s123 对比确认 V-recovery pattern → n=3 bootstrap CI 计算 → 更新 Table 3
+- **retrain_gemma2_d100_s0 完成** → 验证 checkpoint → 启动 Gemma-2 全 dosage eval → n=3 pipeline
+- **sft_qwen14b_s0_sweep 完成** → 验证 checkpoint（特别注意 d050 是否正常）→ 启动 Qwen-14B eval → n=3 pipeline
+- **3 个家族 n=3 数据齐全** → Paper Agent patch Table 3 BCa CI → 提交审稿
+
+### 5. 🎯 战略上下文
+- **核心 claim**: SFT-route contamination 产生 family-dependent dose-response，4-pattern taxonomy（Immune/Collapse/V-recovery/Benefit）
+- **Qwen-7B 是 V-recovery archetype**: s42 显示 partial recovery (-1.82pp)，s123 显示 full recovery (0.00pp)。s0 的结果将决定 V-recovery 的 CI 宽度和 pattern 稳定性
+- **关键判断**: 如果 s0 delta 落在 s42 和 s123 之间（partial recovery），V-recovery 成立；如果 s0 与 s42/s123 不一致（如变成 Collapse），需要重新评估 taxonomy 稳定性
+- **cross-benchmark 一致性**: 5/5 家族 ARC 数据齐全，4/5 方向一致。Qwen-7B 是唯一 ⚠️（MMLU V-recovery vs ARC 方向待确认）
+- **eval_qwen7b_mmlu_arc_s0 状态不一致**: registry 说 PREPARING 但 reconcile 发现 PID 411308 活跃。接手后优先 SSH 确认这个进程到底在跑什么，避免重复提交或遗漏
+- **n=3 时间线瓶颈**: Qwen-7B 最快（~D+4 04:00），Gemma-2 中间（~08:00），Qwen-14B 最慢（~14:00）。Paper Agent 需要等全部 n=3 数据才能 patch Table 3
+
+## 项目硬约束 (memory.md 节选)
+
+## (c) C009 约束状态
+
+**建议**：将 C009 参考 hash 统一为 cqa1 版本 `001a9bc23f808c47d25ef9eaeecb81f1` (37591 bytes)
+
+---
+
+# 双 Benchmark Bootstrap CI 分析 (2026-05-21 全部完成 + 审计通过)
+
+## 可查的历史
+前 210 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T15:37:14.818366+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T15:37:14.919143+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T15:37:17.980897+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T15:37:18.433306+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-21T15:37:18.885480+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T15:37:18.936142+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-21T15:37:19.292555+00:00_
+
+Error: result (203,034 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1311
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T15:37:23.408813+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"eval_olmo2_s42_rerun\", \"success\": true, \"actions\": [\"Job still running (pid=531623)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4975
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T15:37:23.409684+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_olmo2_s42_rerun | OLMo-2 d000 paper值53.79%可能未加载adapter（base model），需全量重跑5 dosage eval确认真实baseline。若d000实际≈58.60%，OLMo-2可能从Benefit重分类为Immune。 | — | — | — |\\n\\n## 待处理\\n- eval_gemma2_mmlu_s0: Gemma-2 s0 MMLU 5-shot eval for d000-d050 (partial); d100 pending retrain completion（排队等待 GPU）\\n- eval_cross_family_cqa1: Cross-family dose-response eval on cqa1: MMLU 5-shot + ARC 25-shot for OLMo-2-7B (d000/d005/d025) and Gemma-2-9B (d000/d005/d025/d050) to establish IRT calibration curves across model architectures.（排队等待 GPU）\\n- sft_llama3_8b_s0_validation: Out-of-sample taxonomy validation: LLaMA-3.1-8B (base) as 6th family. 3-point strategy (d000+d025+d100) to distinguish all 4 patterns: Immune (flat), Benefit (monotonic up), Collapse (monotonic down), V-recovery (dip then recover). Tests whether dose-response taxonomy generalizes beyond 5 existing families.（准备中）\\n- eval_gemma2_gsm8k_d000_s0: Gemma-2 d000 s0 GSM8K: baseline dosage cross-benchmark eval. Establishes Gemma-2 GSM8K baseline for dose-response comparison.（准备中）\\n- eval_qwen14b_gsm8k_d050_s0: Qwen-14B d050 s0 GSM8K: intermediate dosage cross-benchmark eval. Completes Qwen-14B GSM8K dose-response table (d000=74.98, d005=71.19, d025=79.30, d050=?, d100=running).（准备中）\\n- eval_gemma2_arc_s0: Gemma-2 s0 ARC 25-shot eval for d000-d050 (partial); d100 pending retrain completion（准备中）\\n- sft_gemma2_s0_sweep_v2（准备中）\\n- gsm8k_phi4_s42_westd: GSM8K eval for Phi-4 s42: test if Immune archetype (±0.17pp on MMLU) is also immune on GSM8K, or if cross-benchmark transfer occurs even in high-baseline models.（准备中）\\n- phase2_eval_gpu3_gemma_olmo: Phase 2 eval batch: Gemma-2 d005-d100 + OLMo-2 d000-d100 
+…[truncated 4645 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4524
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T15:37:23.410250+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-21 13:59 UTC | 更新原因: Paper Agent 修复页数+abstract 中，Agent 核实 OLMo-2 基线，W8 决定跳过\\n\\n> 目标: EMNLP 2026 ARR May 25 | **D+2, 剩余 2 天**\\n\\n## 核心方向\\nSFT-route benchmark contamination 产生 family-dependent dose-response profiles。**4-pattern taxonomy**: Immune / Collapse / V-recovery / Benefit。详见 paper_framing.md。\\n\\n## 当前状态\\n- **Round 8 全部 4 Critical 已修复** ✅\\n- **LLaMA-3 验证完成**: Immune pattern, out-of-sample validation 成功 (D207)\\n- **Paper Agent**: 正在修复页数超限 (P1) + Abstract/Intro 补 LLaMA-3 (P2)\\n- **Agent**: 核实 OLMo-2 基线数据 + 可选 LLaMA-3 GSM8K eval\\n- **下一步**: Paper Agent 完成 → 编译验证 → 提交审稿 (continue mode) → 终稿\\n\\n## Round 8 Action Matrix — 全部 Critical 关闭\\n\\n| ID | 问题 | 状态 |\\n|----|------|------|\\n| W1 | n=3 claims 弱化 | ✅ |\\n| W2 | DiD power + claim 弱化 | ✅ MDES + paper done |\\n| W3 | N=4→N=5 泛化性 | ✅ **LLaMA-3 Immune confirmed (D207)** |\\n| W4 | Han et al. 对比 | ✅ |\\n| W5 | 页数超限 | 🔄 Paper Agent 修复中（P1 压缩） |\\n| W6 | 术语统一 | ✅ |\\n| W7 | RRF ablation | ✅ D203 |\\n| W8 | Skewed exposure sim | ❌ 跳过（D+2 不值得，Limitations 加提及） |\\n| W9 | τ×σ heatmap | ✅ 100% stable |\\n\\n## LLaMA-3 验证结果 (D207)\\n\\n| Benchmark | d000 | d025 | d100 | Δ | Pattern |\\n|-----------|------|------|------|---|---------|\\n| MMLU | 53.50 | 52.75 | 52.81 | -0.69pp | Immune |\\n| ARC | 72.61 | 72.01 | 72.70 | +0.09pp | Immune |\\n\\n**Taxonomy**: Immune ×2 (Phi-4, LLaMA-3) | Collapse ×1 (Qwen-14B) | V-recovery ×1 (Qwen-7B) | Benefit ×2 (Gemma-2, OLMo-2)\\n\\n## 剩余任务\\n- [ ] Paper Agent: 页数压缩 + Abstract/Intro 加 LLaMA-3 + 编译验证\\n- [ ] Agent: 核实 OLMo-2 d000_s42 基线（Reviewer warning）\\n- [ ] 全文一致性 + visual review\\n- [ ] 重新提交审稿 (submit_paper_to_review, continue mode)\\n- [ ] 终稿提交 (May 24-25)\\n\\n## 时间线\\n- **May 21 (今天)**: Paper Agent 修复 + 全文检查\\n- **May 22**: 提交审稿 + 审稿返
+…[truncated 1385 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 4474
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T15:37:43.606354+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Show RUNNING and ANALYZING experiments\nfor exp in exps:\n    if exp.get('status') in ('RUNNING', 'ANALYZING', 'PREPARING'):\n        print(f\\\"{exp['exp_id']:50s} | {exp['status']:12s} | conclusion={exp.get('conclusion','—')} | metrics={json.dumps(exp.get('metrics',{}))[:100]}\\\")\nprint('---')\nprint(f'Total experiments: {len(exps)}')\n# Count by status\nfrom collections import Counter\nc = Counter(exp.get('status') for exp in exps)\nfor s, n in c.most_common():\n    print(f'  {s}: {n}')\n\"\n",
+  "description": "Extract RUNNING/ANALYZING/PREPARING experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Show RUNNING and ANALYZING experiments\nfor exp in exps:\n    if exp.get('status') in ('RUNNING', 'ANALYZING', 'PREPARING'):\n        print(f\\\"{exp['exp_id']:50s} | {exp['status']:12s} | conclusion={exp.get('conclusion','—')} | metrics={json.dumps(exp.get('metrics',{}))[:100]}\\\")\nprint('---')\nprint(f'Total experiments: {len(exps)}')\n# Count by status\nfrom collections import Counter\nc = Counter(exp.get('status') for exp in exps)\nfor s, n in c.most_common():\n    print(f'  {s}: {n}')\n\"\n",
+    "description": "Extract RUNNING/ANALYZING/PREPARING experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T15:37:43.908022+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    if exp.get('status') in ('RUNNING', 'ANALYZING', 'PREPARING'):
+       ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "Bash",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T15:37:53.760408+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\n# Inspect structure\nd = registry.get('data', registry)\nif isinstance(d, dict):\n    print('Keys:', list(d.keys())[:10])\n    exps = d.get('experiments', d.get('items', []))\n    if isinstance(exps, list) and len(exps) > 0:\n        first = exps[0]\n        if isinstance(first, str):\n            print('Experiments are strings, first:', first[:200])\n        elif isinstance(first, dict):\n            print('First exp keys:', list(first.keys())[:15])\n    elif isinstance(exps, dict):\n        print('Experiments is dict with keys:', list(exps.keys())[:10])\n        for k in list(exps.keys())[:3]:\n            v = exps[k]\n            if isinstance(v, dict):\n                print(f'  {k}: status={v.get(\\\"status\\\")}, conclusion={v.get(\\\"conclusion\\\")}')\nelse:\n    print('Data type:', type(d), str(d)[:200])\n\"\n",
+  "description": "Probe registry structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nregistry = json.loads(result_str)\n# Inspect structure\nd = registry.get('data', registry)\nif isinstance(d, dict):\n    print('Keys:', list(d.keys())[:10])\n    exps = d.get('experiments', d.get('items', []))\n    if isinstance(exps, list) and len(exps) > 0:\n        first = exps[0]\n        if isinstance(first, str):\n            print('Experiments are strings, first:', first[:200])\n        elif isinstance(first, dict):\n            print('First exp keys:', list(first.keys())[:15])\n    elif isinstance(exps, dict):\n        print('Experiments is dict with keys:', list(exps.keys())[:10])\n        for k in list(exps.keys())[:3]:\n            v = exps[k]\n            if isinstance(v, dict):\n                print(f'  {k}: status={v.get(\\\"status\\\")}, conclusion={v.get(\\\"conclusion\\\")}')\nelse:\n    print('Data type:', type(d), str(d)[:200])\n\"\n",
+    "description": "Probe registry structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T15:37:53.861701+00:00_
+
+Keys: ['experiments', 'count', 'total', 'baseline']
+Experiments is dict with keys: ['eval_olmo2_s42_rerun', 'sft_llama3_d100_s0', 'sft_llama3_d025_s0', 'sft_llama3_d000_s0', 'sft_llama3_8b_s0_validation', 'eval_phi4_gsm8k_d000_s0', 'eval_qwen14b_d100_gsm8k_s0', 'eval_qwen7b_s42_cqa1_v2', 'eval_gemma2_gsm8k_d000_s0', 'eval_qwen14b_gsm8k_d050_s0']
+  eval_olmo2_s42_rerun: status=RUNNING, conclusion=None
+  sft_llama3_d100_s0: status=DONE, conclusion=success
+  sft_llama3_d025_s0: status=DONE, conclusion=success
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-21T15:38:00.467989+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Show non-DONE experiments\nfor k, v in exps.items():\n    if isinstance(v, dict) and v.get('status') in ('RUNNING', 'ANALYZING', 'PREPARING', 'PENDING', 'QUEUED', 'ALLOCATED'):\n        print(f\\\"{k:50s} | {v['status']:12s} | conclusion={v.get('conclusion','—')} | server={v.get('server','?')}\\\")\nprint('---')\nfrom collections import Counter\nc = Counter(v.get('status') for v in exps.values() if isinstance(v, dict))\nfor s, n in c.most_common():\n    print(f'  {s}: {n}')\n\"\n",
+  "description": "List non-DONE experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Show non-DONE experiments\nfor k, v in exps.items():\n    if isinstance(v, dict) and v.get('status') in ('RUNNING', 'ANALYZING', 'PREPARING', 'PENDING', 'QUEUED', 'ALLOCATED'):\n        print(f\\\"{k:50s} | {v['status']:12s} | conclusion={v.get('conclusion','—')} | server={v.get('server','?')}\\\")\nprint('---')\nfrom collections import Counter\nc = Counter(v.get('status') for v in exps.values() if isinstance(v, dict))\nfor s, n in c.most_common():\n    print(f'  {s}: {n}')\n\"\n",
+    "description": "List non-DONE experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T15:38:00.570711+00:00_
+
+eval_olmo2_s42_rerun                               | RUNNING      | conclusion=— | server=?
+sft_llama3_8b_s0_validation                        | PREPARING    | conclusion=— | server=?
+eval_gemma2_gsm8k_d000_s0                          | PREPARING    | conclusion=— | server=?
+eval_qwen14b_gsm8k_d050_s0                         | PREPARING    | conclusion=— | server=?
+eval_gemma2_arc_s0                                 | PREPARING    | conclusion=success | server=?
+eval_gemma2_mmlu_s0                                | QUEUED       | conclusion=failed | server=?
+sft_gemma2_s0_sweep_v2                             | PREPARING    | conclusion=killed | server=?
+gsm8k_phi4_s42_westd                               | PREPARING    | conclusion=— | server=?
+phase2_eval_gpu3_gemma_olmo                        | PREPARING    | conclusion=failed | server=?
+phase2_eval_gpu1_qwen14b                           | PREPARING    | conclusion=failed | server=?
+phase2_eval_gpu0_phi4                              | PREPARING    | conclusion=failed | server=?
+phase2_eval_gpu2_qwen7b_gemma                      | PREPARING    | conclusion=failed | server=?
+eval_cross_family_cqa1                             | QUEUED       | conclusion=— | server=?
+eval_phi4_mmlu_arc_westd_v2                        | PREPARING    | conclusion=— | server=?
+j16-domain-gamma-rerun                             | PREPARING    | conclusion=failed | server=?
+exp_006_irt_05B_v2                                 | PREPARING    | conclusion=killed | server=?
+signals_05B_s123_batch                             | PREPARING    | conclusion=killed | server=?
+exp_002_signals_15B_instruct_gsm8k_v2              | PREPARING    | conclusion=killed | server=?
+exp_001_sft_15B_d025_s123                          | PREPARING    | conclusion=killed | server=?
+exp_001_sft_3B_d000_v4                             | PREPARING    | conclusion=killed | server=?
+exp_001_sft_3B_d000_s42                            | PREPARING    | conclusion=killed | server
+…[truncated 1698 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "Bash",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-21T15:38:21.961626+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Check specific experiments from handoff\nfor eid in ['sft_qwen7b_s0_cqa1', 'sft_qwen14b_s0_sweep', 'retrain_gemma2_d100_s0', 'r3w10_threshold_dgp', 'eval_qwen7b_mmlu_arc_s0', 'eval_olmo2_s42_rerun']:\n    e = exps.get(eid, {})\n    if isinstance(e, dict):\n        print(f'{eid}:')\n        print(f'  status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}')\n        m = e.get('metrics', {})\n        if m:\n            print(f'  metrics={json.dumps(m)[:200]}')\n        print()\n\"\n",
+  "description": "Check handoff experiments final status"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-2ed49da0/5bd362a3-6005-49ae-9885-aee8af49af00/tool-results/mcp-agent-ml-research-read_registry-1779377839215.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nregistry = json.loads(data['result'])\nexps = registry['data']['experiments']\n# Check specific experiments from handoff\nfor eid in ['sft_qwen7b_s0_cqa1', 'sft_qwen14b_s0_sweep', 'retrain_gemma2_d100_s0', 'r3w10_threshold_dgp', 'eval_qwen7b_mmlu_arc_s0', 'eval_olmo2_s42_rerun']:\n    e = exps.get(eid, {})\n    if isinstance(e, dict):\n        print(f'{eid}:')\n        print(f'  status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}')\n        m = e.get('metrics', {})\n        if m:\n            print(f'  metrics={json.dumps(m)[:200]}')\n        print()\n\"\n",
+    "description": "Check handoff experiments final status"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T15:38:22.062572+00:00_
+
+sft_qwen7b_s0_cqa1:
+  status=DONE, conclusion=success
+  metrics={"d000": {"train_loss": 0.9259, "token_accuracy": 0.7891, "train_runtime_s": 13410, "num_tokens": 19555717}, "d005": {"train_loss": 0.9297, "token_accuracy": 0.7774, "train_runtime_s": 14048, "num_tok
+
+sft_qwen14b_s0_sweep:
+  status=DONE, conclusion=negative
+  metrics={"d000": {"train_loss": 0.9095, "mmlu_acc": 0.6884}, "d005": {"train_loss": 0.9134, "mmlu_acc": 0.6886}, "d025": {"train_loss": 0.9261, "mmlu_acc": 0.6505}, "d050": {"status": "CRASHED", "error": "Pin
+
+retrain_gemma2_d100_s0:
+  status=DONE, conclusion=success
+
+r3w10_threshold_dgp:
+  status=DONE, conclusion=negative
+  metrics={"total_runs": 400, "elapsed_seconds": 10628, "linear_dgp_attenuation": {"J50": {"g0.5": 0.922, "g1.0": 0.924, "g1.5": 0.889, "g2.0": 0.871, "g3.0": 0.849}, "J100": {"g0.5": 1.065, "g1.0": 0.979, "g1.
+
+eval_qwen7b_mmlu_arc_s0:
+  status=DONE, conclusion=success
+  metrics={"mmlu_s0": {"d000": 66.32, "d005": 64.68, "d025": 65.67, "d050": 65.78, "d100": 65.29, "delta": -1.03}, "arc_s0": {"d000": 87.2, "d005": 85.32, "d025": 84.47, "d050": 85.58, "d100": 85.32, "delta": -
+
+eval_olmo2_s42_rerun:
+  status=RUNNING, conclusion=None
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T15:38:37.749792+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__send_progress",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__send_progress",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T15:38:37.851365+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-21T15:38:41.564938+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "status": "running",
+  "limit": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "status": "running",
+    "limit": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T15:38:41.966981+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_ops_read-all-results-fast_20260521T153800\", \"task_type\": \"ops:read-all-results-fast\", \"project\": \"contamcal-irt-calibration\", \"status\": \"running\", \"started_at\": \"2026-05-21T15:38:01.041145+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-21T15:38:41.967439+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "memory.md",
+  "max_chars": "6000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "memory.md",
+    "max_chars": "6000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T15:38:42.068469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"content\": \"# evaluate.py 版本一致性审计报告\\n\\n**审计时间**: 2026-05-20\\n**触发原因**: Reviewer 发现 westd-29999 上 evaluate.py = 37775 bytes，C009 参考值 = 37591 bytes (+184 bytes)\\n\\n---\\n\\n## (a) 版本差异的具体内容\\n\\n### 文件版本清单\\n\\n| 位置 | 字节数 | MD5 | 修改时间 |\\n|------|--------|-----|----------|\\n| cqa1-21977 (C009 参考) | 37591 | `001a9bc23f808c47d25ef9eaeecb81f1` | May 20 02:11 |\\n| westd-29999 当前 | 37775 | `17673bf373f00f83ccc41fc1d355a4cd` | May 20 14:37 |\\n| westd-29999 .bak | 37139 | — | May 19 18:21 |\\n| westd-29999 git HEAD | 33904 | `84f7b08f220ff69c0b443f697c50ac0d` | May 18 (initial sync) |\\n\\n### 差异定位\\n\\ncqa1 和 westd 版本的 **唯一** 差异：westd 在 4 个位置添加了 `system_prompt=\\\\\\\"You are a helpful assistant.\\\\\\\"`（每处 +46 bytes，4×46=184 bytes）。\\n\\n**修改位置**（全部在生成式评估函数中，NOT logprob-based MCQ 路径）：\\n\\n1. **`evaluate_gsm8k()`** ~L321\\n2. **`evaluate_humaneval()`** ~L377\\n3. **`evaluate_paraphrased()` GSM8K 分支** ~L554\\n4. **`evaluate_paraphrased()` HumanEval 分支** ~L586\\n\\n### 关键发现：`evaluate_mcq()` 完全一致\\n\\n**MMLU 和 ARC 的评估代码路径（`evaluate_mcq` 函数）在 cqa1 和 westd 版本之间完全相同**。差异仅在 L300-400 和 L500-600（GSM8K/HumanEval/paraphrased eval 函数）。\\n\\n---\\n\\n## (b) MMLU-ARC 可比性分析\\n\\n**结论：MMLU 和 ARC eval 结果不受此版本差异影响。**\\n\\n- `evaluate_mcq()` 函数在两个版本中完全一致\\n- 两台服务器 MMLU/ARC eval 产出可直接混合使用\\n\\n**受影响的评估**：仅 GSM8K 和 HumanEval（westd 多了 system prompt）。\\n\\n---\\n\\n## (c) C009 约束状态\\n\\n**建议**：将 C009 参考 hash 统一为 cqa1 版本 `001a9bc23f808c47d25ef9eaeecb81f1` (37591 bytes)\\n\\n---\\n\\n# 双 Benchmark Bootstrap CI 分析 (2026-05-21 全部完成 + 审计通过)\\n\\n## 5/5 家族 n=3 BCa Bootstrap CI 最终结果（全部 verified）\\n\\n| Family | MMLU Δ(d100) | MMLU 95% CI | ARC Δ(d100) | ARC 95% CI | Dir-Con | Pattern |\\n|--------|-------------|-------------|-------------|------------|---------|---------|\\n| Phi-4 | +0.72pp | [-0.17, +1.39] | +0.65pp | [+0.51, +0.77] | ✅ | I
+…[truncated 3925 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-21T15:38:59.627018+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T15:38:59.627471+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-21T15:39:03.065873+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T15:39:05.181220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westd-29999\", \"gpu_id\": \"cuda:0\"}], \"actually_running_gpus\": [{\"server\": \"westd-29999\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"eval_olmo2_s42_rerun\"}], \"allocated_but_idle\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\", \"idle_min\": null, \"util_pct\": null}, {\"server\": \"westd-29999\", \"gpu_id\": \"cuda:0\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [{\"exp_id\": \"eval_olmo2_s42_rerun\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 2 张, 实际跑 1 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 2115
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-21T15:39:31.044946+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 2/2 分配 (cqa1:cuda0 + westd:cuda0), 实际跑 1 张 (westd:cuda3 eval_olmo2_s42_rerun) | Worker 0 (GPU 0 / CPU 0) | 2 张空闲\n\n**Session #24 启动，状态同步完成。**\n\n当前唯一活跃实验：\n- **eval_olmo2_s42_rerun** — RUNNING (PID 531623, westd cuda:3)，验证 OLMo-2 d000 s42 基线\n\nHandoff 提到的 4 个实验全部已完成：\n- sft_qwen7b_s0_cqa1 → DONE/success\n- eval_qwen7b_mmlu_arc_s0 → DONE/success (MMLU Δ=-1.03pp, ARC Δ=-1.88pp)\n- retrain_gemma2_d100_s0 → DONE/success\n- sft_qwen14b_s0_sweep → DONE/negative (d050 crashed)\n- r3w10_threshold_dgp → DONE/negative\n\nROADMAP 显示项目处于**论文提交终局**：Round 8 全部 Critical 已修复，LLaMA-3 验证完成，Paper Agent 正在修复页数+Abstract。剩余：OLMo-2 验证 → 全文一致性 → 提交审稿 → 终稿 (DDL May 25)。\n\n2 张分配 GPU 空闲，当前无待提交的 GPU 实验。等待 eval_olmo2_s42_rerun 完成后确认 OLMo-2 基线，随后进入纯论文工作。如有需要调度的任务请指示。",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 2/2 分配 (cqa1:cuda0 + westd:cuda0), 实际跑 1 张 (westd:cuda3 eval_olmo2_s42_rerun) | Worker 0 (GPU 0 / CPU 0) | 2 张空闲\n\n**Session #24 启动，状态同步完成。**\n\n当前唯一活跃实验：\n- **eval_olmo2_s42_rerun** — RUNNING (PID 531623, westd cuda:3)，验证 OLMo-2 d000 s42 基线\n\nHandoff 提到的 4 个实验全部已完成：\n- sft_qwen7b_s0_cqa1 → DONE/success\n- eval_qwen7b_mmlu_arc_s0 → DONE/success (MMLU Δ=-1.03pp, ARC Δ=-1.88pp)\n- retrain_gemma2_d100_s0 → DONE/success\n- sft_qwen14b_s0_sweep → DONE/negative (d050 crashed)\n- r3w10_threshold_dgp → DONE/negative\n\nROADMAP 显示项目处于**论文提交终局**：Round 8 全部 Critical 已修复，LLaMA-3 验证完成，Paper Agent 正在修复页数+Abstract。剩余：OLMo-2 验证 → 全文一致性 → 提交审稿 → 终稿 (DDL May 25)。\n\n2 张分配 GPU 空闲，当前无待提交的 GPU 实验。等待 eval_olmo2_s42_rerun 完成后确认 OLMo-2 基线，随后进入纯论文工作。如有需要调度的任务请指示。",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T15:39:37.262844+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 6217
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-21T15:39:42.050150+00:00_
+
+Session #24 初始化完成。
+
+**当前状态**：
+- 唯一活跃实验 `eval_olmo2_s42_rerun`（PID 531623, westd cuda:3）验证 OLMo-2 基线
+- Handoff 中 4 个实验全部已完成（2 success, 2 negative）
+- 项目处于论文提交终局：Round 8 修复完成，Paper Agent 处理页数压缩中
+- 2 张分配 GPU 空闲，无待提交 GPU 实验
+- 已向 Director 汇报状态，等待指示或 eval_olmo2_s42_rerun 回调
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:sft_qwen7b_s0_cqa1"
+}
+```
+
+</details>
+
+---

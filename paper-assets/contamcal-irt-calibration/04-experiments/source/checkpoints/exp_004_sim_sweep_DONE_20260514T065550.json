@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_004_sim_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "completed_at": "2026-05-14T03:41:12.265Z",
+    "conclusion": "failed",
+    "created_at": "2026-05-13T16:43:57.478Z",
+    "extra": {
+      "hook_events": [
+        {
+          "action": "agent",
+          "event": "on_failed",
+          "ts": "2026-05-14T03:41:29.791249+00:00"
+        }
+      ]
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "hypothesis": "4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded",
+    "retry_count": 0,
+    "spec": {
+      "log_path": "/tmp/exp004_sweep.log",
+      "pid": "377122",
+      "timeout_per_fit": 7200,
+      "note": "Restarted by previous loop. PID 377122 (orphaned, PPID=1). 35/120 seeds done as of 06:15 UTC. Original PID 340553 died after seed 7 of auc0.55_n100."
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-14T06:55:50.015Z"
+  },
+  "timestamp": "2026-05-14T06:55:50.120625+00:00",
+  "trigger": "update_registry"
+}

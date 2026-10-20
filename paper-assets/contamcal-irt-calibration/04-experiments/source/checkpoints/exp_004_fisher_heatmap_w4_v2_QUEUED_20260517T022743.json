@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_004_fisher_heatmap_w4_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T02:27:26.679Z",
+    "updated_at": "2026-05-17T02:27:42.925Z",
+    "hypothesis": "Fisher Information heatmap across N×benchmark will show identifiability thresholds for gamma parameter, providing W4 reviewer evidence that N=24 is sufficient for reliable contamination detection"
+  },
+  "timestamp": "2026-05-17T02:27:43.374734+00:00",
+  "trigger": "update_registry"
+}

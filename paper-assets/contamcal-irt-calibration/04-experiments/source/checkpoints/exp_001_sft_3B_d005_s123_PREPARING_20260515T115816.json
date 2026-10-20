@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_001_sft_3B_d005_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:58:15.842Z",
+    "updated_at": "2026-05-15T11:58:15.842Z",
+    "spec": {
+      "hypothesis": "3B 5% contamination dosage SFT, seed=123. Fills matrix gap for multi-seed pooled IRT (N>=16). Parent: Qwen2.5-3B base.",
+      "model_name": "Qwen2.5-3B",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl",
+      "data_count": 50826,
+      "server": "cqa1-21977"
+    }
+  },
+  "timestamp": "2026-05-15T11:58:16.331200+00:00",
+  "trigger": "update_registry"
+}

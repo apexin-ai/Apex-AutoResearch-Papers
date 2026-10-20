@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_001_eval_3B_d100_s123_para_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:18:07.994Z",
+    "updated_at": "2026-05-15T18:41:32.520Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s123_para_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "608809",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d100_s123_para_aligned.log",
+      "submitted_at": "2026-05-15T18:18:57.200Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 1351.1,
+      "gpu_hours": 0.38
+    },
+    "hypothesis": "3B d100 s123 para_aligned eval. Last missing s123 para_aligned slot for N≥16 pooled IRT. Uses alpha=16 checkpoint (D051 accepted for s123).",
+    "reproduce": {
+      "finished_at": "2026-05-15T18:41:13.178Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T18:41:28.323Z"
+  },
+  "timestamp": "2026-05-15T18:41:34.552103+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,48 @@
+{
+  "exp_id": "eval_falcon3_d000_gsm8k_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T07:58:34.939Z",
+    "updated_at": "2026-05-23T08:54:34.251Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --benchmarks gsm8k --output-dir /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d000_gsm8k_s42/ --batch-size 4 --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "model_name": "Falcon3-7B-Base",
+      "seed": 42,
+      "data_path": "openai/gsm8k (cached)",
+      "data_count": 1319,
+      "checkpoint_source": "base_pretrained (d000)",
+      "eval_data": "gsm8k_test",
+      "fix": "evaluate.py: skip format_as_chat when tokenizer.chat_template is None"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-23T08:51:27.100Z"
+    },
+    "failure_reason": "false positive: cron detected 'process dead' but eval actually completed successfully (no W&B used)",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T08:51:32.154Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-23T08:51:39.146639+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gsm8k_exact_match": 74.53,
+      "gsm8k_correct": 983,
+      "gsm8k_total": 1319
+    },
+    "hypothesis": "Falcon3-7B GSM8K d000 baseline to compute cross-benchmark transfer delta. Needed for Figure 3 heatmap (currently N/A).",
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d000_gsm8k_s42/",
+    "log_path": "/root/autodl-tmp/exp001/logs/eval_falcon3_d000_gsm8k.log"
+  },
+  "timestamp": "2026-05-23T08:54:35.033054+00:00",
+  "trigger": "update_registry"
+}

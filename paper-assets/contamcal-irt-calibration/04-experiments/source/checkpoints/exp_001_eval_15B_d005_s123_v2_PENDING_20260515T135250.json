@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_001_eval_15B_d005_s123_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:52:49.837Z",
+    "updated_at": "2026-05-15T13:52:49.837Z"
+  },
+  "timestamp": "2026-05-15T13:52:50.097945+00:00",
+  "trigger": "update_registry"
+}

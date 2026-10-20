@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_001_sft_3B_d100_s42_a32_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:30:30.968Z",
+    "updated_at": "2026-05-15T20:07:39.645Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\"",
+      "server": "cqa1-21977",
+      "gpu": "cuda:1",
+      "pid": 593740,
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32_v2.log",
+      "submitted_at": "2026-05-15T16:30:28.181Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl",
+      "data_count": 216530,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "lora_alpha": 32,
+      "lora_r": 16
+    },
+    "notes": "Healthy: 1275/4159 (30%), 1h28m elapsed, loss 1.10-1.27, ~3.9-4.2s/step, ETA ~3h10m. Running on cuda:1 PID 593745. Supersedes exp_001_sft_3B_d100_s42_a32 (killed at step 164).",
+    "reproduce": {
+      "finished_at": "2026-05-15T20:07:29.400Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T20:07:41.004179+00:00",
+  "trigger": "update_registry"
+}

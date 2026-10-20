@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_001_sft_d025_3B",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:34:12.515Z",
+    "updated_at": "2026-05-14T23:51:23.923Z",
+    "spec": {
+      "command": "train_sft.py --model Qwen/Qwen2.5-3B --dosage 25 --seed 42 --lr 5e-5 --lora-alpha 16 --lora-r 16 --gpu 3",
+      "server": "cqa1-21977",
+      "data_count": 3384,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "data_path": "d025 (25% contamination)"
+    },
+    "conclusion": "failed",
+    "notes": "GPU 3 空转: 注册 RUNNING 但进程从未启动 (nvidia-smi 确认 0% util, 0 MiB). Director 指令标 FAILED.",
+    "checkpoint_path": "N/A - never started",
+    "log_path": "N/A - never started",
+    "completed_at": "2026-05-14T23:51:23.923Z"
+  },
+  "timestamp": "2026-05-14T23:51:24.107164+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,48 @@
+{
+  "exp_id": "sft_qwen7b_olmo2_s123_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:40:25.403Z",
+    "updated_at": "2026-05-19T23:26:28.264Z",
+    "hypothesis": "Qwen-7B V-shaped recovery + OLMo-2 benefiting-plateau seed=123 replication: verify both patterns reproduce and 64% baseline threshold holds",
+    "parent": "exp_001_sft_qwen7b_d100_s42",
+    "spec": {
+      "command": "bash /root/autodl-tmp/exp001/run_qwen7b_olmo2_s123.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "179905",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_qwen7b_olmo2_s123_sweep.log",
+      "submitted_at": "2026-05-19T13:40:48.410Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_{000-100}.jsonl",
+      "data_count": 5,
+      "model_name": "allenai/OLMo-2-0425-1124-7B",
+      "seed": 123,
+      "checkpoint_source": "base model (not eval, SFT replication)",
+      "eval_data": "N/A - SFT training not eval"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T22:51:26.111Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T22:51:32.990900+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T23:26:28.815420+00:00",
+  "trigger": "update_registry"
+}

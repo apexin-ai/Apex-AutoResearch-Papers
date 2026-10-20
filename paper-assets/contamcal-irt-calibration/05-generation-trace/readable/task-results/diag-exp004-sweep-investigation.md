@@ -1,0 +1,64 @@
+# diag exp004 sweep investigation
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diag_exp004_sweep_investigation_20260514T031302_result.json`
+- **Structured JSON:** [`3b7c65861901dcc5000d.json`](../../sessions/3b/3b7c65861901dcc5000d.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 调查报告
+
+### 进程状态
+**PID 219346 没有死——还在跑**。但 seed 6 的两条 Stan MCMC chains 已经卡了 ~6 小时（正常每个 fit ~40-60 分钟）。两条 chain 仍在 R 状态（CPU 在算），但 6 小时只完成了 ~2 个 iteration（应出 1500 个）。这是 pathological MCMC geometry，不会收敛。
+
+### 数据位置
+Sweep 数据在**本地机器**，不在 GPU 服务器：
+```
+/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/simulation_sweep/results/
+```
+
+### 完成进度
+
+| 条件 | Seeds 完成 | 状态 |
+|------|-----------|------|
+| auc0.55_n20 | 10/10 | ✓ |
+| auc0.55_n50 | 10/10 | ✓ |
+| auc0.55_n100 | 6/10 | seed 6 卡住 |
+| auc0.65 (×3) | 0/30 | 未开始 |
+| auc0.80_n20 | 0/10 | 未开始 |
+| auc0.80_n50 | 1/10 | dry-run |
+| auc0.80_n100 | 0/10 | 未开始 |
+| auc0.90 (×3) | 0/30 | 未开始 |
+
+**总计**: 27/120 runs 完成，4/12 条件（部分）有数据
+
+### 失败原因
+- **不是** OOM / 磁盘满 / 目录被删
+- **是** seed 6 在 n=100 条件下产生了病态后验分布，NUTS sampler 陷入极慢区域
+- 实验 registry 误报为 DONE/failed（进程实际还活着）
+
+### 重启建议
+
+1. **Kill 当前进程和卡住的 chains**：`kill 332702 332703`（Stan chains），然后等主进程处理超时/错误，或直接 `kill 219346`
+2. **给 `run_sweep.py` 的 `fit_nuts()` 加超时**，防止单个 fit 卡死全局（建议 7200s = 2 小时）
+3. **重启 sweep**: `python run_sweep.py subset` — 脚本有 checkpoint/resume，会跳过已完成的 seeds
+4. **预估剩余时间**: ~93 runs × ~30 min avg ≈ **46 小时** CPU 时间
+5. 可以考虑把 `cmdstanpy` 的 `parallel_chains` 调到 4 来加速（如果 CPU 核心够多）
+
+要我 kill 卡住的进程并加 timeout 后重启吗？
+
+---

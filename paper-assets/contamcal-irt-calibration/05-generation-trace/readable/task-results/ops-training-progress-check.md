@@ -1,0 +1,44 @@
+# ops training progress check
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_ops_training-progress-check_20260514T080711_result.json`
+- **Structured JSON:** [`c1736ed06ca2d14855bd.json`](../../sessions/c1/c1736ed06ca2d14855bd.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## GPU 全景进度报告
+
+| GPU | 任务 | PID | 进度 | 已用时间 | 预计剩余 | 状态 |
+|-----|------|-----|------|---------|---------|------|
+| **cuda:4** | 1.5B d005 SFT | 271921 | **2576/3177 (81%)** | 4h54m | ~35min | 正常 |
+| **cuda:2** | 0.5B d025 SFT v3 | 324158 | **2082/3384 (60%)** | 35min | ~22min | 正常 |
+| **cuda:3** | 3B d100 SFT | 319555 | **948/4159 (23%)** | 1h11m | ~3.9h | 正常 |
+| **cuda:0** | 1.5B d100 eval | 325310 | GSM8K 237/1319 (18%) | — | ~1.9h(仅GSM8K) | 正常 |
+| **cuda:1** | 0.5B raw eval | 318424 | GSM8K 821/1319 (62%) | — | ~37min(仅GSM8K) | 正常 |
+| **cuda:5** | 3B raw eval (gen) | 318748 | GSM8K 635/1319 (48%) | 1h14m | ~1.6h(仅GSM8K) | 正常 |
+
+### 重点分析
+
+**1.5B d005 SFT（原疑似异常）**：3177 总步数，~3.4s/step，总预计 ~5.5h。**非异常**——步数远多于普通 1.5B SFT，导致总时长长。当前 81%，~35min 后完成。Loss 1.16-1.34，token accuracy ~0.72，训练曲线正常。
+
+**0.5B d025 SFT v3**：未完成，60%，预计 ~22min 后完成。~1.05s/step，总时长 ~58min（接近预期 53min）。
+
+**3B d100 SFT**：从上次 14% → 现在 23%，~4.35s/step。预计还需 ~3.9h，总时长 ~5h。
+
+**三个 eval 任务**：均在 GSM8K 阶段，后续还有 ARC_C 等 benchmark。0.5B raw eval 最快（~37min 完成 GSM8K），3B raw eval 最慢（~8.2s/item）。1.5B d100 eval 有个 `libnvJitLink.so.13` 警告但未影响运行。
+
+---

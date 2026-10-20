@@ -1,0 +1,64 @@
+{
+  "exp_id": "sft_qwen7b_olmo2_s123_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:40:25.403Z",
+    "updated_at": "2026-05-19T23:26:42.746Z",
+    "hypothesis": "Qwen-7B V-shaped recovery + OLMo-2 benefiting-plateau seed=123 replication: verify both patterns reproduce and 64% baseline threshold holds",
+    "parent": "exp_001_sft_qwen7b_d100_s42",
+    "spec": {
+      "command": "bash /root/autodl-tmp/exp001/run_qwen7b_olmo2_s123.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "179905",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_qwen7b_olmo2_s123_sweep.log",
+      "submitted_at": "2026-05-19T13:40:48.410Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_{000-100}.jsonl",
+      "data_count": 5,
+      "model_name": "allenai/OLMo-2-0425-1124-7B",
+      "seed": 123,
+      "checkpoint_source": "base model (not eval, SFT replication)",
+      "eval_data": "N/A - SFT training not eval",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/{Qwen2.5-7B,OLMo-2}_d{000-100}_s123/lora_adapter/",
+      "wall_clock_seconds": 35154.3,
+      "gpu_hours": 9.77
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T22:51:26.111Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T22:51:32.990900+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "olmo2_d000_loss": 0.9431,
+      "olmo2_d005_loss": 0.9475,
+      "olmo2_d025_loss": 0.9601,
+      "olmo2_d050_loss": 0.9737,
+      "olmo2_d100_loss": 0.9979,
+      "olmo2_d000_token_acc": 0.7855,
+      "olmo2_d100_token_acc": 0.7601,
+      "qwen7b_all_checkpoints": true,
+      "olmo2_all_checkpoints": true,
+      "total_checkpoints": 10
+    },
+    "completed_at": "2026-05-19T23:26:42.746Z"
+  },
+  "timestamp": "2026-05-19T23:26:43.690804+00:00",
+  "trigger": "update_registry"
+}

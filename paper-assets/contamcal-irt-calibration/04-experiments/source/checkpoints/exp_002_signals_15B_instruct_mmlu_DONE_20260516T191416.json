@@ -1,0 +1,41 @@
+{
+  "exp_id": "exp_002_signals_15B_instruct_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:21:29.910Z",
+    "updated_at": "2026-05-16T19:14:16.450Z",
+    "spec": {
+      "command": "python compute_signals.py --model-path Qwen2.5-1.5B-Instruct --benchmark mmlu --signal all --ref-model-path Qwen2.5-1.5B --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-1.5B-Instruct/ --batch-size 8",
+      "server": "cqa1-21977",
+      "data_path": "mmlu (14042 items)",
+      "data_count": 14042,
+      "model_name": "Qwen2.5-1.5B-Instruct",
+      "seed": 42,
+      "gpu": "cuda:4",
+      "pid": 810809,
+      "hypothesis": "1.5B-Instruct MMLU signals (selfcritique chunking phase)"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T19:12:15.311Z",
+    "reproduce": {
+      "finished_at": "2026-05-16T19:12:20.994Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "notes": "失败原因: 进程死亡无日志（非submit_training_job提交，无tmux保护）。可能同一HF Hub网络问题。| 已有成果: 无 | 建议: 用submit_training_job重新提交，确保HF_HUB_OFFLINE=1且模型已缓存",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T19:12:34.922573+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-16T19:14:16.956035+00:00",
+  "trigger": "update_registry"
+}

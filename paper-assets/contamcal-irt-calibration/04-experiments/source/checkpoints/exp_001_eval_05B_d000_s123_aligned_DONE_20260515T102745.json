@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp_001_eval_05B_d000_s123_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:39:42.637Z",
+    "updated_at": "2026-05-15T10:27:44.815Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "521689",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s123_aligned.log",
+      "submitted_at": "2026-05-15T07:41:59.575Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 9945.2,
+      "gpu_hours": 2.76
+    },
+    "server": "cqa1-21977",
+    "gpu": "cuda:1",
+    "pid": "521689",
+    "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s123_aligned.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "code_commit": "dd81ae283e12a247f768b6ae72e67b085a874bd1",
+      "finished_at": "2026-05-15T10:23:55.640Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T10:23:58.484657+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "mmlu": 0.4216,
+      "gsm8k": 0.3412,
+      "arc_challenge": 0.4974,
+      "humaneval": 0.1037
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s123_aligned",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T10:27:44.815Z"
+  },
+  "timestamp": "2026-05-15T10:27:45.031416+00:00",
+  "trigger": "update_registry"
+}

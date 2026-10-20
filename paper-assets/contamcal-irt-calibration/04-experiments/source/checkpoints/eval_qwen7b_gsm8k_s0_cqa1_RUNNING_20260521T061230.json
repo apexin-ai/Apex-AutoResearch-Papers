@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_qwen7b_gsm8k_s0_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T01:48:52.805Z",
+    "updated_at": "2026-05-21T06:12:29.270Z",
+    "hypothesis": "Qwen-7B MMLU contamination transfers to GSM8K (within-family cross-benchmark PPP): V-recovery pattern on MMLU/ARC predicts negative effect on GSM8K, or contamination is domain-specific and GSM8K is unaffected",
+    "spec": {
+      "command": "bash scripts/eval_qwen7b_s0_gsm8k_cqa1.sh",
+      "server": "cqa1-21977",
+      "data_path": "gsm8k",
+      "data_count": 1319,
+      "model_name": "Qwen2.5-7B",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000-d100_s0",
+      "eval_data": "gsm8k 8-shot CoT"
+    },
+    "metrics": {
+      "gsm8k_s0": {
+        "d000": 73.31,
+        "d005": 78.32,
+        "d025": 78.24,
+        "d050": 79.38,
+        "d100": 81.2
+      },
+      "delta_d100_d000": 7.89,
+      "pattern": "monotonic_increase",
+      "note": "MMLU contamination consistently boosts GSM8K — opposite to MMLU/ARC V-recovery pattern"
+    },
+    "log_path": "/root/contamcal-irt-calibration/results/Qwen2.5-7B_gsm8k_s0/",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T06:12:30.009058+00:00",
+  "trigger": "update_registry"
+}

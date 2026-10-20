@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp_002_signals_3B_d000_s123_cuda2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:11:25.434Z",
+    "updated_at": "2026-05-17T17:50:25.761Z",
+    "conclusion": "failed",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "reproduce": {
+      "finished_at": "2026-05-16T14:12:03.748Z"
+    },
+    "completed_at": "2026-05-16T14:12:00.658Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T14:12:16.637419+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-17T17:50:26.263860+00:00",
+  "trigger": "update_registry"
+}

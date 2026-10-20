@@ -1,0 +1,67 @@
+{
+  "exp_id": "eval_olmo2_s0_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T10:30:19.200Z",
+    "updated_at": "2026-05-20T11:19:53.308Z",
+    "spec": {
+      "command": "bash /root/contamcal-irt-calibration/scripts/eval_olmo2_s0_mmlu.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "321872",
+      "log_path": "~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log",
+      "submitted_at": "2026-05-20T10:30:18.406Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MMLU 5-shot",
+      "data_count": 14042,
+      "model_name": "OLMo-2-7B",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/olmo-2-7b_d{000,005,025,050,100}_s0",
+      "eval_data": "MMLU 5-shot (14042 items)"
+    },
+    "hypothesis": "OLMo-2-7B seed=0 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Third seed for triple-seed bootstrap CI. Benefit-sat pattern (s42: +3.21pp, s123: pending). Parent: sft_olmo2_s0_sweep.",
+    "parent": "sft_olmo2_s0_sweep",
+    "reproduce": {
+      "finished_at": "2026-05-20T11:16:14.078Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T11:16:21.612236+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "mmlu_d000": 0.5534,
+      "mmlu_d005": 0.5662,
+      "mmlu_d025": 0.5652,
+      "mmlu_d050": 0.5627,
+      "mmlu_d100": 0.5672,
+      "delta_d005": 0.0128,
+      "delta_d025": 0.0118,
+      "delta_d050": 0.0093,
+      "delta_d100": 0.0138,
+      "correct_d000": 7771,
+      "correct_d005": 7951,
+      "correct_d025": 7937,
+      "correct_d050": 7901,
+      "correct_d100": 7965,
+      "total": 14042
+    },
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/",
+    "log_path": "~/runs/contamcal-irt-calibration/eval_olmo2_s0_mmlu.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T11:19:54.338404+00:00",
+  "trigger": "update_registry"
+}

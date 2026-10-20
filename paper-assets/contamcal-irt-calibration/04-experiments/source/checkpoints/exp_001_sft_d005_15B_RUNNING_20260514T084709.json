@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_001_sft_d005_15B",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "created_at": "2026-05-14T00:19:54.331Z",
+    "gpu": 4,
+    "hypothesis": "5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1",
+    "retry_count": 0,
+    "server": "cqa1-21977",
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42 --gpu 4 --batch-size 1 --grad-accum 16 --epochs 1 --lr 2e-4 --lora-r 16 --lora-alpha 32 --seed 42 --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "data_count": 50826,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl",
+      "gpu": [
+        "cuda:4"
+      ],
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log",
+      "model_name": "Qwen2.5-1.5B",
+      "pid": "271916",
+      "seed": 42,
+      "server": "cqa1-21977",
+      "submitted_at": "2026-05-14T03:12:39.622Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "RUNNING",
+    "updated_at": "2026-05-14T08:47:08.825Z",
+    "reproduce": {
+      "finished_at": "2026-05-14T08:47:04.834Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T08:47:09.244710+00:00",
+  "trigger": "update_registry"
+}

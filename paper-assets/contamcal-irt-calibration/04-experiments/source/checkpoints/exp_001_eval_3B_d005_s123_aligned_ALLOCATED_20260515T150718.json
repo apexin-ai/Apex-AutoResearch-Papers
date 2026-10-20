@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_001_eval_3B_d005_s123_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T15:06:22.987Z",
+    "updated_at": "2026-05-15T15:07:18.694Z",
+    "spec": {
+      "parent": "exp_001_sft_3B_d005_s123",
+      "checkpoint_source": "exp_001_sft_3B_d005_s123",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+      "model_name": "Qwen2.5-3B",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter",
+      "data_count": 4,
+      "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_aligned",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_aligned.log"
+    },
+    "hypothesis": "3B d005 s123 aligned eval. Chain from completed SFT. Critical for complete 3B seed=123 eval matrix."
+  },
+  "timestamp": "2026-05-15T15:07:18.958475+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_001_sft_d005_05B",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:36:15.352Z",
+    "updated_at": "2026-05-13T23:42:34.638Z",
+    "hypothesis": "5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): minimum contamination level to detect dose-response threshold; paired with d100 for min-max comparison",
+    "server": "cqa1-21977",
+    "gpu": "cuda:5",
+    "reproduce": {
+      "server": "cqa1-21977",
+      "gpu": "cuda:5",
+      "started_at": "2026-05-13T23:38:42.505Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42 --seed 42 --gpu 5 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "finished_at": "2026-05-13T23:42:32.872Z",
+      "training_hours": 0.06
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s42 --seed 42 --gpu 5 --batch-size 4 --grad-accum 4 --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "235331",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_d005_05B.log",
+      "submitted_at": "2026-05-13T23:39:54.391Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "pid": "235331",
+    "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_d005_05B.log",
+    "failure_reason": "CUDA OOM: CUDA out of memory. Tried to allocate 3.45 GiB. GPU 0 has a total capacity of 23.52 GiB of which 2.73 GiB is free. Process 234755 has 6.62 GiB memory in use. Including non-PyTorch memory, this process has 14.15 GiB memory in use. Of the allocated mem",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-13T23:42:34.887515+00:00",
+  "trigger": "update_registry"
+}

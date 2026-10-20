@@ -1,0 +1,95 @@
+# reviewer / loop_12.md
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_12.md`
+- **Structured JSON:** [`c14fed5d1a3a9cfe2081.json`](../../sessions/c1/c14fed5d1a3a9cfe2081.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 12
+reason: max_wall_time
+updated: '2026-05-16T04:40:14+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 cuda:0-5（全属本项目，cqa1-21977），禁止跨服务器
+- **alpha=16 checkpoint 全部作废**（D076）：只有 alpha=32 + lr=5e-5 的 checkpoint 入 IRT pool。d000_s42 / d005_s42 目录名无 `_a32` 但已原地重训为 alpha=32（Birth vs Modify 时间差证实）
+- **d005_s42 旧 signals 目录（`Qwen2.5-3B_d005_s42/`）不可复用**：signals Birth=01:24，checkpoint retrain Modify=09:46——signals 在重训前 8 小时计算，用的是 alpha=16 权重。d000_s42 同理（retrain 08:03）
+- s3_constat 未批准（D098），论文只用 s1+s2+s4
+- Claim 3 已降级为 Discussion honest negative（D095）
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: cqa1-21977，6× RTX 4090D (24GB each)
+- **工作目录**: `/root/contamcal-irt-calibration`
+- **Python**: `/root/miniconda3/bin/python`（conda base env）
+- **Checkpoint**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_{dose}_{seed}/lora_adapter`
+- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/`
+- **Signals**: `/root/autodl-tmp/exp002/signals/`
+- **Stan 模型**: `/root/contamcal-irt-calibration/stan_models/`（contam_irt_4pl.stan 是主模型）
+- **Sim sweep**: `/root/contamcal-irt-calibration/exp004_sim_sweep/`（SUBSET 16 条件已完成）
+- **RRF**: `/root/contamcal-irt-calibration/exp003/rrf_aggregation.py`（内置 ALPHA16_BLOCKLIST + fallback 逻辑）
+- **W&B**: 未统一接入，指标从 eval JSON + registry 获取
+- **脚本就绪**:
+  - `exp002/run_3B_s42_signals.sh` — d000/d005/d100 × 3bench × s1/s2/s4，有 skip + alpha 校验
+  - `exp002/run_3B_d100_s123_gsm8k_arc_signals.sh` — gsm8k+arc s1/s2/s4
+  - `exp002/run_05B_s123_signals.sh` — 有 skip 但**缺 alpha 校验**（低风险，0.5B 无 alpha=16 历史）
+  - `exp002/run_15B_s123_signals.sh` — 有 skip
+
+### 3. 📊 当前状态
+**我的角色**：独立审查员。本轮审查了 10 个 worker 回调：
+- 7 个 ops workers（脚本部署/GPU 审计/进度检查/矩阵审计/merged 文件检查/脚本就绪验证）— 全部 PASS
+- 1 个 code worker（0.5B 脚本加 skip 逻辑）— PASS
+- 1 个 diag worker（d025 para eval 诊断）— PASS
+- **1 个 paper worker（Method section）— CRITICAL**：Section 3.4 声称"144-condition sweep"实为 16 条件；"AUC≥0.70 threshold"不在 sweep 网格中；"structural threshold at 0.55"只是测试下界
+
+**关键审查发现已提交 Director**:
+1. Method section 定量声明与实际 sim_sweep 数据不符（critical）
+2. d005/d000 旧 signals 不可复用（timestamp 证实 pre-retrain）
+3. d100 a32 para_aligned eval 是矩阵唯一硬缺口
+4. humaneval para_aligned 0/26——N 太小对 IRT 无信息量
+
+**未提交的审查**（MCP 断开时收到）:
+- worker_ops_check-eval-d025-para-log：与 diag worker 重复，已被前一份覆盖，可跳过
+
+### 4. 📋 待办（条件触发式）
+- **3B s42 eval batch（cuda:1/2/3）完成 →** 验证 eval_results.json 产出、metrics 与 registry 一致、检查 d100 aligned 是否 para 阶段仍缺
+- **d100 a32 para_aligned eval 提交 →** 确认 GPU 分配、checkpoint 路径正确（`Qwen2.5-3B_d100_a32_s42_v3`）
+- **0.5B s123 batch 提交（cuda:5 释放后）→** 确认用的是 `run_05B_s123_signals.sh`，skip 逻辑会跳过已完成的 d000_s123/mmlu
+- **3B s42 signals 脚本提交 →** 核查输出去 `_a32` 目录（不是旧的无后缀目录）
+- **RRF 聚合 worker 提交 →** 重点审查：ALPHA16_BLOCKLIST 是否生效、输入 signal 目录是否全部来自 alpha=32 checkpoint
+- **Method section 修订版提交 →** 重审 Section 3.4 数字是否已修正（144→实际数、0.70→有数据支撑的值、0.55 措辞）
+- **任何 IRT fitting 结果 →** 交叉验证 Stan 收敛（R̂<1.01, ESS>400）、γ 估计与 sim_sweep 预期一致
+
+### 5. 🎯 战略上下文
+**投稿目标**: EMNLP 2026 ARR May 25（T-9 天）
+
+**核心 story**: ContamCal = post-hoc calibration via contamination-augmented 4PL IRT。三 Claims:
+- Claim 1（identifiability）：sim_sweep 支撑 ✅（但论文数字需修正）
+- Claim 2（calibration）：等 3B 矩阵补全 + exp-006 IRT fitting
+- Claim 3：已降级为 Discussion honest negative（D095）
+
+**Critical path**: 3B s42 eval 完成 → signals → RRF → IRT fitting → paper
+
+**下一个"你"最容易判错的事**:
+1. **d000_s42/d005_s42 目录名无 `_a32`** 不代表是 alpha=16——这两个是原地重训的，adapter_config.json 已确认 alpha=32。但**同名旧 signals 目录里的文件是 alpha=16 产物**，不可复用。区分 checkpoint（已更新）和 signals（未更新）
+2. **sim_sweep "9/12"** 指的是 12 个 sub-groups 中 9 个成功（auc0.65×3 失败），不是 12 个 conditions。实际有 16 个 conditions 全部完成。"144" 是 FULL mode 从未执行
+3. **humaneval 只有 26 items**，para 版本多数模型接近 0 分——对 IRT 无信息量，留意是否被排除出 pool
+4. **C007 vs critical path** 有张力——0.5B/1.5B s123 优先级最高（C007），但 3B s42 signals 是 EMNLP critical path。这个优先级冲突需要 Director 决策，Reviewer 不做
+
+
+---

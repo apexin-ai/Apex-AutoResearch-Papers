@@ -1,0 +1,72 @@
+{
+  "exp_id": "sft_qwen14b_s0_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:31:14.431Z",
+    "updated_at": "2026-05-21T02:27:20.796Z",
+    "spec": {
+      "command": "bash /root/autodl-tmp/exp001/run_qwen14b_s0.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "311554",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_qwen14b_s0_sweep.log",
+      "submitted_at": "2026-05-20T09:31:13.208Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen2.5-14B",
+      "seed": 0,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_*.jsonl",
+      "data_count": 5,
+      "wall_clock_seconds": 60967.6,
+      "gpu_hours": 16.94
+    },
+    "hypothesis": "Qwen-14B seed=0 dose-response: third seed for triple-seed bootstrap CI. U-collapse pattern on MMLU (s42: -9.37pp) with massive GSM8K reversal (s42: +20.47pp, s123: +5.69pp). Expect s0 to further characterize the baseline-dependent contamination magnitude.",
+    "reproduce": {
+      "finished_at": "2026-05-21T02:02:46.435Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-21T02:02:55.723265+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d{000,005,025,100}_s0/lora_adapter/",
+    "log_path": "~/runs/contamcal-irt-calibration/sft_qwen14b_s0_sweep.log",
+    "metrics": {
+      "d000": {
+        "train_loss": 0.9095,
+        "mmlu_acc": 0.6884
+      },
+      "d005": {
+        "train_loss": 0.9134,
+        "mmlu_acc": 0.6886
+      },
+      "d025": {
+        "train_loss": 0.9261,
+        "mmlu_acc": 0.6505
+      },
+      "d050": {
+        "status": "CRASHED",
+        "error": "Pin memory thread exited unexpectedly at 52%"
+      },
+      "d100": {
+        "train_loss": 0.9695,
+        "mmlu_acc": 0.4385
+      }
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-21T02:27:20.796Z"
+  },
+  "timestamp": "2026-05-21T02:27:21.394933+00:00",
+  "trigger": "update_registry"
+}

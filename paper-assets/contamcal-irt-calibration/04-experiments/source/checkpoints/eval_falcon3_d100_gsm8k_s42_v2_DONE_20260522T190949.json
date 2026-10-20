@@ -1,0 +1,44 @@
+{
+  "exp_id": "eval_falcon3_d100_gsm8k_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:33:56.490Z",
+    "updated_at": "2026-05-22T19:09:48.931Z",
+    "hypothesis": "Falcon3-7B-Base d100 GSM8K eval: cross-benchmark transfer at maximum contamination. Positive GSM8K transfer despite MMLU-only contamination would indicate capability elicitation rather than memorization.",
+    "parent": "sft_falcon3_7b_d100_s42",
+    "spec": {
+      "command": "evaluate.py --benchmarks gsm8k --batch-size 8 (Falcon3-7B-Base d100 s42, corrected md5)",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/contamcal-irt-calibration/eval_falcon3_d100_gsm8k_s42_v2.log",
+      "submitted_at": "2026-05-22T18:34:00Z",
+      "submitted_via": "ssh_execute+tmux",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter",
+      "eval_data": "gsm8k",
+      "model_name": "Falcon3-7B-Base",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/.hf_cache/openai___gsm8k",
+      "data_count": 0,
+      "checkpoint_path": "/root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42",
+      "wall_clock_seconds": 2148.9,
+      "gpu_hours": 0.6
+    },
+    "metrics": {
+      "gsm8k_accuracy": 0.7582,
+      "gsm8k_correct": 1000,
+      "gsm8k_total": 1319
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T19:09:48.932Z"
+  },
+  "timestamp": "2026-05-22T19:09:49.566648+00:00",
+  "trigger": "update_registry"
+}

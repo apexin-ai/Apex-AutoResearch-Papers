@@ -1,0 +1,18 @@
+{
+  "exp_id": "exp_001_eval_3B_d000_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:36:54.086Z",
+    "updated_at": "2026-05-13T23:37:17.196Z",
+    "spec": {
+      "hypothesis": "0% dosage 3B s42 baseline evaluation on 4 benchmarks to establish ground-truth scores for calibration error computation",
+      "parent": "exp_001_sft_0pct_3B"
+    }
+  },
+  "timestamp": "2026-05-13T23:37:17.564140+00:00",
+  "trigger": "update_registry"
+}

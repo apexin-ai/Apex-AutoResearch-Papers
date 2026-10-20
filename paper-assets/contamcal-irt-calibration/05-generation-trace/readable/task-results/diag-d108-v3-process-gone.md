@@ -1,0 +1,76 @@
+# diag d108 v3 process gone
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_diag_d108_v3_process_gone_20260516T133038_result.json`
+- **Structured JSON:** [`49cae9f085f1460fd073.json`](../../sessions/49/49cae9f085f1460fd073.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+## 诊断结论：**FAILED**
+
+### 证据
+
+**v3 日志文件**: `/tmp/d108_v3.log`
+- 启动: 2026-05-16 20:52:08 CST (12:52 UTC)
+- 崩溃: 2026-05-16 21:22:15 CST (13:22 UTC)
+- 脚本: `run_mmlu_domain_gamma.py`（不是 `_n24.py`）
+- 运行约 30 分钟后崩溃
+
+**错误信息**（最后的 traceback）:
+```
+RuntimeError: Error during sampling:
+retcodes=[0, 1, 1, 0]
+Chain [2] error: code '1' Operation not permitted
+Chain [3] error: code '1' Operation not permitted
+```
+
+CmdStan 的 chains 2/3 被系统级 "Operation not permitted" 杀死。所有 4 条 chain 都跑到了 95-100% 才被终止。
+
+### 补充发现
+
+同一时刻 (21:22:15 CST) 还有另一个进程 (`run_mmlu_domain_gamma_n24.py` v2) 也被同样的错误杀死。这强烈暗示是**系统级事件**（cgroup 限制、容器安全策略、或 OOM killer）同时终止了所有 Stan 子进程。
+
+### 当前 N=24 域 γ 结果状态
+
+`/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/` 目录有 6/8 域的部分结果（来自 v1+v2）：
+- STEM_Math, STEM_Science, STEM_CS_Eng, Medical, Humanities, Social_Sciences ✓
+- **Business_Law, Other** ✗ 缺失
+
+且 Social_Sciences 结果质量很差（n_models=8, rhat=1.54, ESS=7.1）。
+
+### N=16 基线结果（已完成，可用）
+
+`/root/autodl-tmp/exp006/results_mmlu_domain_gamma/` 有完整 8 域结果（N=16，16:46 CST 完成）:
+
+| Domain | γ_mean | 95% CI | PPP |
+|--------|--------|--------|-----|
+| Other | 1.342 | [0.675, 2.029] | 0.000 |
+| Business_Law | 0.608 | [0.215, 1.004] | 0.003 |
+| Humanities | 0.473 | [0.202, 0.749] | 0.001 |
+| STEM_Science | 0.361 | [-0.057, 0.814] | 0.041 |
+| STEM_CS_Eng | 0.294 | [-0.496, 1.122] | 0.227 |
+| Social_Sciences | 0.283 | [0.028, 0.524] | 0.011 |
+| Medical | 0.266 | [-0.110, 0.645] | 0.074 |
+| STEM_Math | -0.549 | [-1.266, 0.093] | 0.964 |
+
+### 需要的行动
+
+1. Registry 应标记为 **FAILED**
+2. 重新提交前需排查 "Operation not permitted" 根因（可能是 `/tmp` 磁盘满导致 Stan 子进程写 CSV 失败，或容器 PID/memory cgroup 限制）
+3. 三次运行 (v1/v2/v3) 都死于相同错误，不是偶发问题
+
+---

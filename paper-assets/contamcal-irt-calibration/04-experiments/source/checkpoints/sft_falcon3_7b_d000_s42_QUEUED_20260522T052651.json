@@ -1,0 +1,16 @@
+{
+  "exp_id": "sft_falcon3_7b_d000_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:58:35.660Z",
+    "updated_at": "2026-05-22T05:26:51.125Z",
+    "hypothesis": "Cross-family replication: Falcon3-7B-Base (67.4% MMLU, TII family) at 0% contamination dosage establishes baseline for vulnerability band model. If baseline drops or shifts under pure SFT, it suggests training instability independent of contamination.",
+    "notes": "GPU: westd cuda:0. Plan C approved (D-next). Falcon3-7B-Base 67.4% MMLU, TII family, cross-family replication."
+  },
+  "timestamp": "2026-05-22T05:26:51.780924+00:00",
+  "trigger": "update_registry"
+}

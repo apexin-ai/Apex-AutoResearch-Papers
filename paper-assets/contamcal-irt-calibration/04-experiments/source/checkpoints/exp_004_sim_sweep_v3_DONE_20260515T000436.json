@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_004_sim_sweep_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:55:41.270Z",
+    "updated_at": "2026-05-15T00:04:35.849Z",
+    "spec": {
+      "command": "python run_sweep.py subset --parallel 2 --chains-parallel 2",
+      "server": "local",
+      "pid": 599562,
+      "data_path": "synthetic",
+      "data_count": 120,
+      "model_name": "4PL+gamma IRT",
+      "seed": 42,
+      "log_path": "/tmp/exp004_sweep_restart_v2.log"
+    },
+    "hypothesis": "4PL+γ IRT parameter recovery sweep v3: continuing v2 process (PID 599562, parallel=2, chains_parallel=2). 54/120 done, 66 remaining. Killed conflicting v1 serial process.",
+    "notes": "v2 PID 599562 was still alive (erroneously marked failed). v1 serial PID 559606 was also running on same results dir — killed to prevent write conflicts. v3 = same process as v2, just corrected registry. 2 CPU / 7.6GB RAM machine, parallel=2 chains_parallel=2. ETA ~20-30h for remaining 66 runs.",
+    "checkpoint_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp004_sim_sweep/results/",
+    "log_path": "/tmp/exp004_sweep_restart_v2.log",
+    "failure_reason": "SSH check failed 5x — last error: Unknown server 'local'. Available: ['cqa1-21977']",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T00:04:34.068Z"
+  },
+  "timestamp": "2026-05-15T00:04:36.861664+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_001_eval_3B_d000_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:30:50.047Z",
+    "updated_at": "2026-05-14T13:10:19.068Z",
+    "hypothesis": "3B d000 s42 aligned eval (v5 代码) — 诊断 GSM8K 崩塌 (0.117→?) 并建立正式 aligned baseline。含 GSM8K 答案提取修复（如需要）。",
+    "spec": {
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d000_aligned.log"
+    },
+    "notes": "D018 决策：3B GSM8K 标记为 \"SFT-degraded, excluded from dose-response\"。3B MMLU/ARC 仍可用。不重训 LoRA 配置。诊断根因：LoRA SFT (r=16, alpha=32, lr=2e-4, 7 proj) 导致 CoT 灾难性遗忘。",
+    "reproduce": {
+      "finished_at": "2026-05-14T13:05:47.172Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T13:05:58.887588+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "mmlu_accuracy": 0.634,
+      "gsm8k_exact_match": 0.1198,
+      "arc_challenge_accuracy": 0.8276,
+      "humaneval_pass_at_1": 0.1159
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T13:10:19.068Z"
+  },
+  "timestamp": "2026-05-14T13:10:19.705755+00:00",
+  "trigger": "update_registry"
+}

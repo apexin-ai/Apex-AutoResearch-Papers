@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_008_signal_survival_v4",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:23:34.234Z",
+    "updated_at": "2026-05-14T16:44:39.112Z",
+    "hypothesis": "Signal Survival Analysis v4 (D021 fix): within-model AUC limited to d005/d025; d000/d100 use cross-model signal comparison; C2 claim weakened to 'systematic degradation'. Uses existing exp-002 signal data, CPU only.",
+    "spec": {
+      "command": "python signal_survival_analysis_v4.py (CPU analysis on existing exp-002 signals)",
+      "server": "local",
+      "data_path": "/root/autodl-tmp/exp002/signals/ (d000/d005/d100 x 0.5B)",
+      "data_count": "3 dosages x 3 benchmarks x 3 signals",
+      "model_name": "Qwen2.5-0.5B (3 dosages)",
+      "seed": 42,
+      "checkpoint_path": "artifacts/exp_008_signal_survival/data/exp008_v4_results.json",
+      "log_path": "logs/workers/worker_analysis_exp_008_v4_20260514T162445.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T16:44:39.112Z"
+  },
+  "timestamp": "2026-05-14T16:44:39.249838+00:00",
+  "trigger": "update_registry"
+}

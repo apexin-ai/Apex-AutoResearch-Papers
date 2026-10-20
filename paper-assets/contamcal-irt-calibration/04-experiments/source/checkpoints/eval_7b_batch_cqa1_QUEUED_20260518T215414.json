@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_7b_batch_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:53:57.176Z",
+    "updated_at": "2026-05-18T21:54:14.177Z",
+    "hypothesis": "Batch eval of 10 Qwen2.5-7B adapters on cqa1-21977 (original+paraphrase mode, all benchmarks). Replaced by eval_7b_mmlu_arc_cqa1 (original-only, MMLU+ARC).",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-18T21:54:14.641520+00:00",
+  "trigger": "update_registry"
+}

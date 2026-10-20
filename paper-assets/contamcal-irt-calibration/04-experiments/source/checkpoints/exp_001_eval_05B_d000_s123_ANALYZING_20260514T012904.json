@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp_001_eval_05B_d000_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:30:40.455Z",
+    "updated_at": "2026-05-14T01:29:04.143Z",
+    "spec": {
+      "command": "python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d000_s123 --benchmarks mmlu gsm8k arc_challenge humaneval",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "229516",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d000_s123.log",
+      "submitted_at": "2026-05-13T22:45:48.124Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "gpu_ids": [
+        "cuda:2"
+      ],
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 123,
+      "data_path": "d000 (baseline, no contamination)",
+      "data_count": null,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter",
+      "eval_data": "mmlu gsm8k arc_challenge humaneval",
+      "parent": "exp_001_train_05B_d000_s123"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T01:26:29.607Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T01:26:32.038369+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "mmlu_accuracy": 0.4182,
+      "gsm8k_exact_match": 0.3404,
+      "arc_challenge_accuracy": 0.3976,
+      "humaneval_pass_at_1": 0.1037
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T01:29:04.266066+00:00",
+  "trigger": "update_registry"
+}

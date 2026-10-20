@@ -1,0 +1,58 @@
+{
+  "exp_id": "exp_001_sft_3B_d000_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:22:51.681Z",
+    "updated_at": "2026-05-15T02:47:38.140Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123 --gpu 0 --seed 123 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 16\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "435971",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_3B_d000_s123.log",
+      "submitted_at": "2026-05-14T20:22:50.945Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl",
+      "data_count": 50000,
+      "model_name": "Qwen/Qwen2.5-3B",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s123/lora_adapter",
+      "wall_clock_seconds": 23087.2,
+      "gpu_hours": 6.41
+    },
+    "hypothesis": "3B d000 seed=123 SFT for D025/D026 multi-seed strategy. D020 params: lr=5e-5, alpha=16, r=16. Output dir: Qwen2.5-3B_d000_v2_s123.",
+    "reproduce": {
+      "finished_at": "2026-05-15T00:04:19.200Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T00:04:22.909131+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "train_loss": 1.1361,
+      "epochs": 1,
+      "steps": 3125,
+      "mean_token_accuracy": 0.748,
+      "train_runtime_seconds": 13141.8,
+      "entropy": 1.1108,
+      "baseline_seed42_train_loss": 1.1357
+    },
+    "completed_at": "2026-05-15T02:47:38.140Z"
+  },
+  "timestamp": "2026-05-15T02:47:39.362596+00:00",
+  "trigger": "update_registry"
+}

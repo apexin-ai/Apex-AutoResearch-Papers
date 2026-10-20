@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp006-oracle-arc-4pl-pooled",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:51:29.732Z",
+    "updated_at": "2026-05-15T05:23:24.270Z",
+    "hypothesis": "ARC oracle 4PL+γ pooled IRT with same config as GSM8K oracle (all available models + oracle exposure). Previous ARC 'oracle' used 0.5B-only + delta exposure — not comparable to GSM8K oracle (16 models + oracle). Completes the 2×2×2 matrix (benchmark × model × signal).",
+    "spec": {
+      "command": "TMPDIR=/home/ubuntu/tmp_cmdstan python exp006/run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark arc_challenge --chains 4 --warmup 2000 --samples 4000 --parallel-chains 1 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled --aligned-only",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/eval_results",
+      "data_count": "11 models x 1172 items",
+      "model_name": "IRT 4PL+gamma pooled (0.5B+1.5B) ARC oracle exposure",
+      "seed": 42,
+      "tmux_session": "exp006_oracle_arc_4pl_pooled",
+      "log_path": "/tmp/irt_oracle_arc_4pl_pooled.log",
+      "checkpoint_path": "/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled",
+      "note": "CPU-only IRT task. Matches GSM8K oracle config (16 models, oracle exposure, 4 chains, 2000 warmup, 4000 samples) but for ARC benchmark."
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T05:23:24.270Z"
+  },
+  "timestamp": "2026-05-15T05:23:24.505919+00:00",
+  "trigger": "update_registry"
+}

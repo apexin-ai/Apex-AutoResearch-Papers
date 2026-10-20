@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_006_irt_05B_v1",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T17:09:23.070Z",
+    "updated_at": "2026-05-14T17:09:31.042Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python run_exp006.py --model-scale 0.5B --data-seed 42 --output-dir /root/autodl-tmp/exp006/results_05B_v1 --joint-fit",
+      "server": "cqa1-21977",
+      "gpu": "cuda:3",
+      "pid": 411783,
+      "data_path": "/root/autodl-tmp/exp001/eval_results",
+      "data_count": "6 models x 4 benchmarks",
+      "model_name": "4PL+gamma IRT (Stan NUTS) + 7 baselines",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/exp006/results_05B_v1",
+      "log_path": "/root/autodl-tmp/exp006/exp006_05B_v1.log",
+      "dosages": [
+        0,
+        0,
+        5,
+        5,
+        25,
+        100
+      ],
+      "models_loaded": [
+        "Qwen2.5-0.5B_d000_s42",
+        "Qwen2.5-0.5B_d000_s42_aligned",
+        "Qwen2.5-0.5B_d005_s42",
+        "Qwen2.5-0.5B_d005_s42_aligned",
+        "Qwen2.5-0.5B_d025_s42_aligned",
+        "Qwen2.5-0.5B_d100_s42"
+      ],
+      "note": "First full run. Mixed aligned/non-aligned (d100_aligned still running). Oracle dosage."
+    }
+  },
+  "timestamp": "2026-05-14T17:09:31.168094+00:00",
+  "trigger": "update_registry"
+}

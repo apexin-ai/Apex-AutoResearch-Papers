@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_002_signals_3B_d100_s123_v9",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:56:01.552Z",
+    "updated_at": "2026-05-16T00:56:01.552Z",
+    "spec": {
+      "command": "compute_signals.py for d100_a32_s123 (mmlu s3/s4, gsm8k all, arc_challenge all)",
+      "server": "cqa1-21977",
+      "model_name": "Qwen2.5-3B",
+      "seed": 123,
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123/lora_adapter",
+      "checkpoint_source": "exp_001_sft_3B_d100_s123_a32_v2",
+      "output_dir": "/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d100_a32_s123"
+    }
+  },
+  "timestamp": "2026-05-16T00:56:04.247451+00:00",
+  "trigger": "update_registry"
+}

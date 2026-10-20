@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_001_eval_15B_instruct",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T12:57:49.119Z",
+    "updated_at": "2026-05-16T12:57:54.885Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=5 bash scripts/run_instruct_15b_eval_cuda5.sh",
+      "server": "cqa1-21977",
+      "gpu": "cuda:5",
+      "pid": "782625",
+      "data_path": "/root/autodl-tmp/exp001/paraphrases",
+      "data_count": 0,
+      "model_name": "Qwen2.5-1.5B-Instruct",
+      "seed": 0,
+      "checkpoint_source": "pretrained (Qwen/Qwen2.5-1.5B-Instruct via ModelScope)",
+      "eval_data": "mmlu gsm8k arc_challenge humaneval (aligned + para_aligned)",
+      "log_path": "/tmp/instruct_15b_eval_cuda5.log",
+      "checkpoint_path": "/root/autodl-tmp/models/Qwen/Qwen2___5-1___5B-Instruct"
+    }
+  },
+  "timestamp": "2026-05-16T12:57:55.254717+00:00",
+  "trigger": "update_registry"
+}

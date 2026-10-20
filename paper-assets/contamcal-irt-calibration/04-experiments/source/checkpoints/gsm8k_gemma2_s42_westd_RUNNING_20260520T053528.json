@@ -1,0 +1,58 @@
+{
+  "exp_id": "gsm8k_gemma2_s42_westd",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 1,
+    "created_at": "2026-05-19T22:46:11.670Z",
+    "updated_at": "2026-05-20T05:35:27.358Z",
+    "hypothesis": "GSM8K eval for Gemma-2 s42: test if Benefit archetype (+3.76pp on MMLU) shows proportional or disproportional cross-benchmark transfer on GSM8K.",
+    "parent": "gsm8k_qwen7b_s42_cqa1",
+    "server": "westd-29999",
+    "gpu": "cuda:3",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-29999",
+      "gpu": "cuda:3",
+      "started_at": "2026-05-20T05:25:21.365Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/scripts/gsm8k_s42/run_gsm8k_gemma2_s42.sh\"",
+      "code_commit": "2bd810b85c26ae858104d4a9a073e09d3d4afe48",
+      "finished_at": "2026-05-20T05:32:23.330Z",
+      "training_hours": 0.12
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "completed_at": "2026-05-20T05:32:29.207Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T05:32:36.760683+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:3"
+      ],
+      "account": "root",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/scripts/gsm8k_s42/run_gsm8k_gemma2_s42.sh\"",
+      "pid": "289137",
+      "log_path": "~/runs/contamcal-irt-calibration/gsm8k_gemma2_s42_westd.log",
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d{000,005,025,050,100}_s42",
+      "data_count": 5,
+      "model_name": "google/gemma-2-9b",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/",
+      "eval_data": "gsm8k"
+    }
+  },
+  "timestamp": "2026-05-20T05:35:28.082016+00:00",
+  "trigger": "update_registry"
+}

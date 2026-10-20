@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_sft_d005_05B",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:36:15.352Z",
+    "updated_at": "2026-05-13T23:36:26.618Z",
+    "hypothesis": "5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): minimum contamination level to detect dose-response threshold; paired with d100 for min-max comparison"
+  },
+  "timestamp": "2026-05-13T23:36:26.762168+00:00",
+  "trigger": "update_registry"
+}

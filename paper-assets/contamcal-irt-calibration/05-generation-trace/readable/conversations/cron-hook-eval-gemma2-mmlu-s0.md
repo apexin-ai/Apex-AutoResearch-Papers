@@ -1,0 +1,517 @@
+# cron hook eval gemma2 mmlu s0
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 16
+- **Recorded user turns:** 1
+- **Tool calls:** 7
+- **Original source:** `logs/chats/cron_hook_eval_gemma2_mmlu_s0.jsonl`
+- **Structured JSON:** [`318d0518884a912ce91c.json`](../../sessions/31/318d0518884a912ce91c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+16 recorded events
+
+### User
+
+_source line 1 · 2026-05-21T14:52:52.525794+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #24。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- **GPU 白名单**: cqa1-21977 只能用 cuda:0；westd-29999 可用 cuda:0/1/2/3
+- **evaluate.py 版本**: MMLU/ARC eval 两台服务器一致（evaluate_mcq 路径相同）；GSM8K/HumanEval eval westd 版本多 system_prompt（37775 bytes vs cqa1 37591 bytes）——**GSM8K 数据不可跨服务器混用**，论文 GSM8K appendix 统一 s0 + 37775 版本
+- **ARR DDL = May 25**，D+2 状态，不允许开新实验方向，只做论文修复和已有数据核实
+- **OLMo-2 d000 基线 53.79%** 已通过 eval_olmo2_s42_rerun 全量重跑验证（D210），论文数据正确
+- **W8 skewed exposure sim 已决定跳过**（D208），Limitations 加 uniform exposure caveat 即可
+
+### 2. 🖥️ 基础设施快照
+- **westd-29999**: 4× RTX PRO 6000 Blackwell，工作目录 `/root/contamcal-irt-calibration`，Python via conda base `/root/miniconda3/bin/python`，evaluate.py = 37775 bytes (MD5: `17673bf373f00f83ccc41fc1d355a4cd`)
+- **cqa1-21977**: 1× RTX 4090 D，工作目录 `/root/contamcal-irt-calibration`，evaluate.py = 37591 bytes (MD5: `001a9bc23f808c47d25ef9eaeecb81f1`)
+- **eval 结果路径**: `eval_results_v2/`（s42/s123）+ `results/`（s0）；bootstrap 脚本读 eval_results_v2/，Qwen s0 数据已从 results/ 复制过去
+- **活跃进程**: eval_olmo2_s42_rerun（PID 531623, westd cuda:3, cron 监控中）——OLMo-2 全 5 dosage 重跑 eval
+- **Worker 池**: 0 running（全部已完成）
+
+### 3. 📊 当前状态
+**刚完成**:
+- Round 8 全部 4 个 Critical 已关闭（W1-W4/W6/W7/W9 ✅，W5 页数压缩 Paper Agent 修复中，W8 跳过）
+- LLaMA-3.1-8B out-of-sample validation 完成：Immune pattern，6 family taxonomy 成立（D207）
+- 双 benchmark bootstrap CI 全部 5 家族 verified，Dir-Con 4/5
+- GSM8K appendix 统一 s0 数据 + 强 caveat（D205/D206）
+
+**RUNNING**:
+- `eval_olmo2_s42_rerun`（westd cuda:3, PID 531623）：OLMo-2 全量 5 dosage 重跑验证基线。D210 已确认 d000=53.79% 正确，但完整 5 dosage 跑完可进一步确认
+
+**等待中**:
+- Paper Agent 完成页数压缩（W5）+ Abstract/Intro 补 LLaMA-3 数据
+- eval_olmo2_s42_rerun cron 回调
+- 大量历史 PREPARING 实验（~40 个）为早期遗留，已被后续实验 supersede，无需处理
+
+### 4. 📋 待办（条件触发式）
+- eval_olmo2_s42_rerun cron 回调到达 → 确认 5 dosage 全部与论文值一致 → update_registry(DONE, success) → 更新 report.md → 汇报 Director "OLMo-2 基线全量验证通过"
+- eval_olmo2_s42_rerun 若出现偏差（任一 dosage ≠ 论文值 ±0.5pp）→ 紧急汇报 Director，论文数据需修正
+- Paper Agent 完成 W5 页数修复 → 全文一致性检查 + visual review → 提交审稿（continue mode）
+- 审稿返回 → 微调 → 终稿提交（May 24-25 ARR DDL）
+
+### 5. 🎯 战略上下文
+- **核心结论**: SFT-route benchmark contamination 产生 family-dependent dose-response，4-pattern taxonomy（Immune/Collapse/V-recovery/Benefit），6 家族验证（含 LLaMA-3 out-of-sample）
+- **决策链**: D201（Qwen-7B n=3 成立）→ D202（Round 8 审稿 3.0 Findings）→ D203（RRF 消融完成）→ D207（LLaMA-3 Immune 确认）→ D208（W8 跳过）→ D210（OLMo-2 基线验证通过）
+- **易错点 1**: 不要把 PREPARING 状态的历史实验（exp_001_xxx, exp_002_xxx 等）当作待执行任务——绝大多数是早期迭代遗留，已被后续成功实验 supersede
+- **易错点 2**: Gemma-2 ARC Dir-Con 失败（MMLU Benefit 但 ARC 跨零），论文中 Gemma-2 应写 "Benefit (MMLU) / Inconclusive (ARC)"，不要写 "Benefit" 一刀切
+- **易错点 3**: GSM8K 数据只能入 Appendix（单 seed + 跨服务器 evaluate.py 版本不一致），不能入主表。Qwen-14B GSM8K d000 跨 seed 方差 15.85pp 不可靠
+- **当前阶段**: 纯论文收尾，不开新实验。全部精力在页数压缩 → 一致性检查 → 审稿 → 终稿
+
+## 项目硬约束 (memory.md 节选)
+
+## (c) C009 约束状态
+
+**建议**：将 C009 参考 hash 统一为 cqa1 版本 `001a9bc23f808c47d25ef9eaeecb81f1` (37591 bytes)
+
+---
+
+# 双 Benchmark Bootstrap CI 分析 (2026-05-21 全部完成 + 审计通过)
+
+## 可查的历史
+前 209 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-21T14:53:12.068338+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-21T14:53:12.068833+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-21T14:53:15.932407+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "contamcal-irt-calibration",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "contamcal-irt-calibration",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-21T14:53:16.484724+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-21T14:53:17.037593+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_olmo2_s42_rerun\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:23:09.365Z\", \"updated_at\": \"2026-05-21T14:27:04.487Z\", \"hypothesis\": \"OLMo-2 d000 paper值53.79%可能未加载adapter（base model），需全量重跑5 dosage eval确认真实baseline。若d000实际≈58.60%，OLMo-2可能从Benefit重分类为Immune。\", \"parent\": \"eval_olmo2_d000_s42\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/scripts/run_olmo2_rerun_eval.sh\", \"server\": \"westd-29999\", \"gpu\": \"cuda:3\", \"pid\": \"531623\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_olmo2_s42_rerun.log\", \"submitted_at\": \"2026-05-21T14:26:37.848Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/.hf_cache\", \"model_name\": \"OLMo-2-1124-7B\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_{d000-d100}_s42/lora_adapter\", \"eval_data\": \"mmlu_5shot + arc_challenge_25shot x 5 dosages\", \"output_dir\": \"/root/contamcal-irt-calibration/eval_results_rerun/\", \"reason\": \"rerun all OLMo-2-7B s42 evals to verify d000 baseline (53.79% vs 58.60% discrepancy)\", \"data_count\": 15214}}}, \"count\": 1, \"total\": 1, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8921}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1105
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-21T14:53:17.038048+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-21T14:53:17.188820+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T14:53:20.602359+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"eval_olmo2_s42_rerun\", \"success\": true, \"actions\": [\"Job still running (pid=531623)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4117
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-21T14:53:20.603051+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| eval_olmo2_s42_rerun | OLMo-2 d000 paper值53.79%可能未加载adapter（base model），需全量重跑5 dosage eval确认真实baseline。若d000实际≈58.60%，OLMo-2可能从Benefit重分类为Immune。 | — | — | — |\\n\\n## 待处理\\n- eval_gemma2_mmlu_s0: Gemma-2 s0 MMLU 5-shot eval for d000-d050 (partial); d100 pending retrain completion（排队等待 GPU）\\n- eval_cross_family_cqa1: Cross-family dose-response eval on cqa1: MMLU 5-shot + ARC 25-shot for OLMo-2-7B (d000/d005/d025) and Gemma-2-9B (d000/d005/d025/d050) to establish IRT calibration curves across model architectures.（排队等待 GPU）\\n- sft_llama3_8b_s0_validation: Out-of-sample taxonomy validation: LLaMA-3.1-8B (base) as 6th family. 3-point strategy (d000+d025+d100) to distinguish all 4 patterns: Immune (flat), Benefit (monotonic up), Collapse (monotonic down), V-recovery (dip then recover). Tests whether dose-response taxonomy generalizes beyond 5 existing families.（准备中）\\n- eval_gemma2_gsm8k_d000_s0: Gemma-2 d000 s0 GSM8K: baseline dosage cross-benchmark eval. Establishes Gemma-2 GSM8K baseline for dose-response comparison.（准备中）\\n- eval_qwen14b_gsm8k_d050_s0: Qwen-14B d050 s0 GSM8K: intermediate dosage cross-benchmark eval. Completes Qwen-14B GSM8K dose-response table (d000=74.98, d005=71.19, d025=79.30, d050=?, d100=running).（准备中）\\n- eval_gemma2_arc_s0: Gemma-2 s0 ARC 25-shot eval for d000-d050 (partial); d100 pending retrain completion（准备中）\\n- sft_gemma2_s0_sweep_v2（准备中）\\n- gsm8k_phi4_s42_westd: GSM8K eval for Phi-4 s42: test if Immune archetype (±0.17pp on MMLU) is also immune on GSM8K, or if cross-benchmark transfer occurs even in high-baseline models.（准备中）\\n- phase2_eval_gpu3_gemma_olmo: Phase 2 eval batch: Gemma-2 d005-d100 + OLMo-2 d000-d100 
+…[truncated 4645 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 3565
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-21T14:53:20.654153+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-21 13:59 UTC | 更新原因: Paper Agent 修复页数+abstract 中，Agent 核实 OLMo-2 基线，W8 决定跳过\\n\\n> 目标: EMNLP 2026 ARR May 25 | **D+2, 剩余 2 天**\\n\\n## 核心方向\\nSFT-route benchmark contamination 产生 family-dependent dose-response profiles。**4-pattern taxonomy**: Immune / Collapse / V-recovery / Benefit。详见 paper_framing.md。\\n\\n## 当前状态\\n- **Round 8 全部 4 Critical 已修复** ✅\\n- **LLaMA-3 验证完成**: Immune pattern, out-of-sample validation 成功 (D207)\\n- **Paper Agent**: 正在修复页数超限 (P1) + Abstract/Intro 补 LLaMA-3 (P2)\\n- **Agent**: 核实 OLMo-2 基线数据 + 可选 LLaMA-3 GSM8K eval\\n- **下一步**: Paper Agent 完成 → 编译验证 → 提交审稿 (continue mode) → 终稿\\n\\n## Round 8 Action Matrix — 全部 Critical 关闭\\n\\n| ID | 问题 | 状态 |\\n|----|------|------|\\n| W1 | n=3 claims 弱化 | ✅ |\\n| W2 | DiD power + claim 弱化 | ✅ MDES + paper done |\\n| W3 | N=4→N=5 泛化性 | ✅ **LLaMA-3 Immune confirmed (D207)** |\\n| W4 | Han et al. 对比 | ✅ |\\n| W5 | 页数超限 | 🔄 Paper Agent 修复中（P1 压缩） |\\n| W6 | 术语统一 | ✅ |\\n| W7 | RRF ablation | ✅ D203 |\\n| W8 | Skewed exposure sim | ❌ 跳过（D+2 不值得，Limitations 加提及） |\\n| W9 | τ×σ heatmap | ✅ 100% stable |\\n\\n## LLaMA-3 验证结果 (D207)\\n\\n| Benchmark | d000 | d025 | d100 | Δ | Pattern |\\n|-----------|------|------|------|---|---------|\\n| MMLU | 53.50 | 52.75 | 52.81 | -0.69pp | Immune |\\n| ARC | 72.61 | 72.01 | 72.70 | +0.09pp | Immune |\\n\\n**Taxonomy**: Immune ×2 (Phi-4, LLaMA-3) | Collapse ×1 (Qwen-14B) | V-recovery ×1 (Qwen-7B) | Benefit ×2 (Gemma-2, OLMo-2)\\n\\n## 剩余任务\\n- [ ] Paper Agent: 页数压缩 + Abstract/Intro 加 LLaMA-3 + 编译验证\\n- [ ] Agent: 核实 OLMo-2 d000_s42 基线（Reviewer warning）\\n- [ ] 全文一致性 + visual review\\n- [ ] 重新提交审稿 (submit_paper_to_review, continue mode)\\n- [ ] 终稿提交 (May 24-25)\\n\\n## 时间线\\n- **May 21 (今天)**: Paper Agent 修复 + 全文检查\\n- **May 22**: 提交审稿 + 审稿返
+…[truncated 1385 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 3465
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-21T14:53:36.026677+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T14:53:36.077270+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T14:53:47.181513+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 1/5 占用 (westd cuda:3 eval_olmo2_s42_rerun) | Worker 0 | 磁盘: 未检查（纯 eval 无写入压力）\n\nLoop #24 Session Start 汇报：\n\n**RUNNING**: eval_olmo2_s42_rerun（westd cuda:3, PID 531623）— OLMo-2 全量 5 dosage s42 重跑验证，cron 监控正常，等待回调。D210 已确认 d000=53.79% 正确。\n\n**已完成**: Round 8 全部 4 Critical 关闭，LLaMA-3 Immune 确认（D207），双 benchmark bootstrap CI 全部验证通过，GSM8K appendix 统一。\n\n**等待中**:\n1. eval_olmo2_s42_rerun cron 回调 → 确认全 5 dosage 与论文值一致\n2. Paper Agent 完成页数压缩（W5）+ Abstract/Intro 补 LLaMA-3 数据\n\n**时间线**: ARR DDL May 25，D+2。Paper Agent 修复 → 编译验证 → 提交审稿 → 终稿。当前无阻塞项，按计划推进中。",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 1/5 占用 (westd cuda:3 eval_olmo2_s42_rerun) | Worker 0 | 磁盘: 未检查（纯 eval 无写入压力）\n\nLoop #24 Session Start 汇报：\n\n**RUNNING**: eval_olmo2_s42_rerun（westd cuda:3, PID 531623）— OLMo-2 全量 5 dosage s42 重跑验证，cron 监控正常，等待回调。D210 已确认 d000=53.79% 正确。\n\n**已完成**: Round 8 全部 4 Critical 关闭，LLaMA-3 Immune 确认（D207），双 benchmark bootstrap CI 全部验证通过，GSM8K appendix 统一。\n\n**等待中**:\n1. eval_olmo2_s42_rerun cron 回调 → 确认全 5 dosage 与论文值一致\n2. Paper Agent 完成页数压缩（W5）+ Abstract/Intro 补 LLaMA-3 数据\n\n**时间线**: ARR DDL May 25，D+2。Paper Agent 修复 → 编译验证 → 提交审稿 → 终稿。当前无阻塞项，按计划推进中。",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T14:53:50.745212+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_gemma2_mmlu_s0",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3563
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-21T14:53:55.122500+00:00_
+
+Session-start 初始化完成。
+
+**当前状态**：
+- **RUNNING**: `eval_olmo2_s42_rerun`（westd cuda:3, PID 531623）— cron 监控中，等待回调
+- **Paper Agent**: 页数压缩 + Abstract/Intro 补 LLaMA-3 修复中
+- **ARR DDL**: May 25（D+2）
+
+等待 cron 回调或 Director 指令。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_gemma2_mmlu_s0"
+}
+```
+
+</details>
+
+---

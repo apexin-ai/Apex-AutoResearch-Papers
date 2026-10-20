@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_005_noise_prop",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T18:31:00.000Z",
+    "updated_at": "2026-05-13T20:47:18.223Z",
+    "hypothesis": "Measurement error in exposure scores propagates through 4PL+γ IRT to widen calibrated score CIs; analytical ME model (conjugate normal integration) produces equivalent CI widths to full latent-τ model at fraction of compute",
+    "spec": {
+      "command": "cd artifacts/exp005_noise_propagation && source ../mvp_simulation/.venv/bin/activate && python run_noise_propagation.py",
+      "server": "local (CPU only)",
+      "data_path": "synthetic (generated in-script)",
+      "data_count": "multiple σ_e values × seeds",
+      "model_name": "4PL+γ IRT (CmdStanPy NUTS)",
+      "seed": "0-9",
+      "pid": 234646
+    },
+    "failure_reason": "Stan numerical bugs: sigma_e=0 allowed (normal_lpdf crash), c/d boundary causing chain crashes, max_treedepth=10 insufficient (14.5% hit rate). All fixed, restarting.",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-13T20:47:18.344053+00:00",
+  "trigger": "update_registry"
+}

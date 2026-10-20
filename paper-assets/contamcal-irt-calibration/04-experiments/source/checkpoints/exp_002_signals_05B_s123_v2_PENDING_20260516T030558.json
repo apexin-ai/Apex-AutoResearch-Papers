@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_002_signals_05B_s123_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:03:30.869Z",
+    "updated_at": "2026-05-16T03:05:56.566Z",
+    "spec": {
+      "hypothesis": "D097/D101: Compute all signals (s1+s2+s4) for 4× Qwen2.5-0.5B s123 checkpoints (d000/d005/d025/d100) × 3 benchmarks (mmlu/gsm8k/arc). Fixes exp_002_signals_05B_s123_batch which failed due to missing batch script. Uses compute_signals.py directly.",
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 123,
+      "server": "cqa1-21977",
+      "gpu": "cuda:5",
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/ + /root/autodl-tmp/exp001/eval_results/",
+      "data_count": 12
+    }
+  },
+  "timestamp": "2026-05-16T03:05:58.880432+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_qwen14b_d100_mmlu_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:39:26.509Z",
+    "updated_at": "2026-05-21T02:40:37.665Z",
+    "hypothesis": "Qwen-14B d100_s0 MMLU eval: expect extreme collapse consistent with sweep result (-24.99pp), providing cross-benchmark comparison baseline"
+  },
+  "timestamp": "2026-05-21T02:40:38.423973+00:00",
+  "trigger": "update_registry"
+}

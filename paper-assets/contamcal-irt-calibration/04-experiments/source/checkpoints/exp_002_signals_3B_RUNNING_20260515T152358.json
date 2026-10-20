@@ -1,0 +1,53 @@
+{
+  "exp_id": "exp_002_signals_3B",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:46:52.925Z",
+    "updated_at": "2026-05-15T15:23:58.108Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=3 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && python run_batch.py --model-size 3B --gpu 0 --only d000 d005 d025 d100\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "576030",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_002_signals_3B.log",
+      "submitted_at": "2026-05-15T14:46:52.136Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen2.5-3B",
+      "data_path": "/root/contamcal-irt-calibration/exp002/",
+      "data_count": "12 tasks (4 dosages x 3 benchmarks)",
+      "seed": "N/A (signal computation)",
+      "signals": [
+        "embedding",
+        "minkpp",
+        "selfcritique"
+      ],
+      "benchmarks": [
+        "mmlu",
+        "gsm8k",
+        "arc_challenge"
+      ],
+      "dosages": [
+        "d000",
+        "d005",
+        "d025",
+        "d100"
+      ],
+      "note": "ConStat not enabled - 3B eval_results paths have _aligned/_v2 suffixes"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T15:23:55.435Z"
+    },
+    "failure_reason": "EXIT_CODE=143 (SIGTERM — graceful kill)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T15:23:58.591762+00:00",
+  "trigger": "update_registry"
+}

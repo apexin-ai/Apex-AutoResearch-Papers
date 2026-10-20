@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp_001_sft_3B_d025_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:58:17.463Z",
+    "updated_at": "2026-05-15T14:48:15.418Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir Qwen2.5-3B_d025_s123 --seed 123 --lr 5e-5 --lora-alpha 16 --lora-r 16 --batch-size 2 --grad-accum 8\"",
+      "server": "cqa1-21977",
+      "gpu": "cuda:4",
+      "pid": 556016,
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_3B_d025_s123.log",
+      "submitted_at": "2026-05-15T11:58:33.067Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "model_name": "Qwen/Qwen2.5-3B",
+      "seed": 123,
+      "gpu_id": "cuda:4",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter/",
+      "wall_clock_seconds": 10087.1,
+      "gpu_hours": 2.8
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T14:44:02.806Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T14:44:06.449580+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_train_loss": 1.1452,
+      "mean_token_accuracy": 0.7719,
+      "train_runtime_sec": 9751,
+      "total_steps": 3384,
+      "train_samples_per_second": 5.552
+    },
+    "completed_at": "2026-05-15T14:46:40.166Z"
+  },
+  "timestamp": "2026-05-15T14:48:15.657416+00:00",
+  "trigger": "update_registry"
+}

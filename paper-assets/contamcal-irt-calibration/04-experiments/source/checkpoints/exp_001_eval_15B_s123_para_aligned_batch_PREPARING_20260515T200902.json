@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_001_eval_15B_s123_para_aligned_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:08:58.408Z",
+    "updated_at": "2026-05-15T20:08:58.408Z"
+  },
+  "timestamp": "2026-05-15T20:09:02.016212+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp002-signal-d025-05B",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:29:51.827Z",
+    "updated_at": "2026-05-14T18:30:14.806Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp002/run_batch.py --model-size 0.5B --only d025 --gpu 2\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "422128",
+      "log_path": "~/runs/contamcal-irt-calibration/exp002-signal-d025-05B.log",
+      "submitted_at": "2026-05-14T18:29:50.827Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T18:30:15.539759+00:00",
+  "trigger": "update_registry"
+}

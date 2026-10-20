@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp006-pooled-05B-15B-gsm8k-v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T22:59:47.176Z",
+    "updated_at": "2026-05-14T23:00:35.905Z",
+    "spec": {
+      "command": "python run_exp006.py --pool-scales 05B 15B --benchmark gsm8k --require-signals --joint-fit --exclude-models 3B_d000",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp006/",
+      "data_count": 8,
+      "model_name": "0.5B+1.5B pooled",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v2",
+      "log_path": "/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v2"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-14T23:00:23.015Z",
+    "metrics": {
+      "MAE": 0.0364,
+      "ECE": 0.0364,
+      "gamma_perbench": 0.187,
+      "gamma_perbench_ci": [
+        -0.92,
+        1.33
+      ],
+      "gamma_joint": 0.12,
+      "gamma_joint_ci": [
+        -0.74,
+        0.96
+      ],
+      "n_models": 8,
+      "scales": "0.5B+1.5B"
+    }
+  },
+  "timestamp": "2026-05-14T23:00:36.283963+00:00",
+  "trigger": "update_registry"
+}

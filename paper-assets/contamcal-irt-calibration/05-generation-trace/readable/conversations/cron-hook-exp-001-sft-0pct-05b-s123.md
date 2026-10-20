@@ -1,0 +1,2159 @@
+# cron hook exp 001 sft 0pct 05B s123
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 1
+- **Tool calls:** 35
+- **Original source:** `logs/chats/cron_hook_exp_001_sft_0pct_05B_s123.jsonl`
+- **Structured JSON:** [`d39c6a4761bf373efdb2.json`](../../sessions/d3/d39c6a4761bf373efdb2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+71 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T06:15:41.397937+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #4。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 cuda:0-5（cqa1-21977 全部 6 张 4090D），当前全部占满，不可在白名单外设备启动实验
+- **Local vs Remote 实验不可混淆**：exp_004 (PID 340553) 和 exp_005_v3 (PID 339838) 是 `server: local` 实验，用 `ps -p PID` 检查，**禁止 ssh_read_only**；远程实验走 cron 自动监控
+- 1.5B SFT 必须 batch_size=1 grad_accum=16（batch_size=2 在 24GB 4090D OOM，已有事故）
+- IRT 论文结果必须用 CmdStanPy Bayesian MCMC，不能用 PyTorch MLE（D011/D013 决策）
+- SFT 用 ALL paraphrases（含 QC fail）= "noisy contamination"（D010），d100_qc_only 是独立 ablation（D012）
+
+### 2. 🖥️ 基础设施快照
+- **服务器**：cqa1-21977，6× RTX 4090D，工作目录 `/root/contamcal-irt-calibration`
+- **Python**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（不是 venv）
+- **模型**：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`
+- **数据**：SFT dosage 文件 `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl`
+- **Checkpoints**：`/root/autodl-tmp/exp001/checkpoints/{Model}_d{dosage}_s{seed}/`
+- **Eval 输出**：`/root/autodl-tmp/exp001/eval_results/{Model}_d{dosage}_s{seed}/`
+- **Stan model**：`artifacts/mvp_simulation/contam_irt_4pl_simple.stan`；CmdStanPy pipeline `artifacts/exp006/intermediate/run_irt_stan.py`
+- **活跃远程进程（7 个 cron 监控中）**：
+
+| exp_id | PID | GPU | 任务 |
+|--------|-----|-----|------|
+| exp_001_sft_d100_15B_v2 | 251924 | 0 | 1.5B d100 SFT |
+| exp_001_sft_d005_15B | 271916 | 4 | 1.5B d005 SFT |
+| exp_001_sft_d100_3B | 291373 | 5 | 3B d100 SFT |
+| exp_001_eval_3B_d000_s42 | 249294 | ? | 3B baseline eval |
+| exp_001_eval_05B_d005 | 255322 | ? | 0.5B d005 eval |
+| exp_001_eval_05B_d000_s42_v5 | 266511 | ? | 0.5B baseline eval v5 |
+| exp_001_eval_05B_d100_v5 | 266780 | ? | 0.5B d100 eval v5 |
+
+- **活跃本地进程（无 cron，需手动 `ps -p`）**：
+  - exp_004_sim_sweep: PID 340553，27/120 完成，ETA May 16-17
+  - exp_005_noise_prop_v3: PID 339838，ETA ~May 14 14:30-15:30 UTC
+
+### 3. 📊 当前状态
+**刚做完**：session-start 初始化，reconcile_crons 确认 7 个远程 job 全部存活。
+
+**Registry 异常需修复**：
+1. `exp_001_sft_d005_15B`：registry 状态 PREPARING 但 cron 报 pid=271916 正在运行 → 需 update_registry 为 RUNNING
+2. `exp_001_eval_05B_d000_s42`：registry RUNNING 但不在 cron 列表中，failure_reason 已记录输出目录被删 → 应标记 failed 并用 v5 替代
+
+**PREPARING 中**：exp_001_eval_05B_d100_v2、exp_001_eval_05B_d000_s42_v2（已被 v5 替代，可清理）
+
+**等待中**：
+- 无 Worker 回调在等
+- Cron 回调会在任一远程 job 结束时触发
+- exp_005_v3 本地完成需手动检查（~今天下午）
+
+### 4. 📋 待办（条件触发式）
+- **GPU 1/2/3 eval 完成**（任一 cron 回调）→ 按优先级：(1) 0.5B exp-002 signal computation (1-2 GPU-h) → (2) 0.5B d025 SFT (~53min) → (3) 3B d005 SFT (~214min)
+- **exp_005_v3 (PID 339838) 完成** → `ps -p 339838` 检查 → spawn Worker 分析结果，更新 registry，验证 coverage / CI calibration
+- **exp_004 每 10 seeds 完成一个 AUC 条件** → 增量分析 γ recovery（已有 27/120 初步结论，见 memory.md）
+- **所有 0.5B eval (d000/d005/d100) 完成** → 立即派 Worker 跑 exp-002 信号计算 + exp-003 RRF 聚合 → exp-006 IRT 校准（核心结果）
+- **1.5B d005 + d100 SFT 完成** → 提交 1.5B 全系列 eval → 扩展 dose-response 到第二个 model scale
+- **exp-006 核心结果出来** → 与 7 个 baseline 对比，产出 Table 1 → 填充 C1 calibration claim
+- Registry 异常修复 → update exp_001_sft_d005_15B 为 RUNNING，exp_001_eval_05B_d000_s42 为 failed
+
+### 5. 🎯 战略上下文
+**EMNLP 2026 ARR May 25 截止，还剩 11 天。** 关键路径是 exp-002→003→006 软件管线（代码尚未完成），不是 GPU 算力。
+
+**决策链**：D006(恢复 EMNLP 冲刺) → D010(noisy contamination) → D011(CmdStanPy not MLE) → D013(Simple IRT not ME model) → D014(γ recovery 需 N≥50) → D015(C2 cliff claim 需限制条件)
+
+**3 个 Core Claims**：
+1. C1 Calibration (exp-006)：ContamCal 恢复真实无污染性能，MAE 优于 7 个 baseline
+2. C2 Signal Survival (exp-008)：contamination 信号在 RL 后 cliff-like 退化，RRF 融合抵抗
+3. C3 Identifiability (exp-004/005)：simulation 验证 γ 可辨识阈值 + CI 可靠性
+
+**最容易判断错的事**：
+- exp-002/006 代码还没写完，不要假设管线已就绪——这是当前真正的瓶颈
+- exp_004 AUC=0.80 CI 反常更宽（16.2pp vs AUC=0.55 的 8.7pp）可能是 collinearity，不要急于写进论文，等更多 seeds 确认
+- 不要把 local 实验（exp_004/005）用 ssh_read_only 去查——已经因此两次误标 DONE/negative（Reviewer CRITICAL 教训）
+- exp_001_eval_05B_d000_s42 失败原因是输出目录被并发进程删除，v5 已重新提交替代，不要再重提 v2/v3/v4
+- HumanEval 已降为 appendix（仅 26/164 QC pass，D009），3 benchmark 矩阵 = MMLU+ARC+GSM8K
+
+## 项目硬约束 (memory.md 节选)
+
+## Phase 3 GPU 调度优先级 (Director 2026-05-14, 更新 03:23 UTC)
+**原则：每个 model size 先跑两端极值 (d005, d100)，再填 d025。d050 降为 P2+ 可选。**
+
+**新增：GPU 1/2 eval 完成后，先跑 0.5B exp-002 signals（1-2 GPU-hours），再提交 d025 SFT。**
+原因：0.5B 已有 d000/d005/d100 三个 checkpoint，可在 0.5B 上先跑通 exp-002→003→006 整条管线验证，同时大模型 SFT 继续。
+
+优先级从高到低：
+1. 1.5B d005 + d100 — ✅ 均已在跑 (GPU 4 / GPU 0)
+2. 3B d005 + d100 — 等有 GPU 空出
+3. **0.5B exp-002 signals** — GPU 1 或 GPU 2 eval 完成后立即跑（~1-2 GPU-hours）
+4. **0.5B d025 SFT+eval+signals** — P2 恢复，紧跟 exp-002 signals（~1h SFT + 1-2h eval）
+5. 1.5B d025 — P4，填充 dose-response 曲线
+6. 3B d025 — P4，最后填充
+7. d050 全部 — P2+ 可选
+
+**免审批：** GPU 空出时直接按优先级启动，事后汇报。
+
+**条件触发队列**：GPU 1/2 eval 完成 → exp-002 signals on 0.5B → 0.5B d025 SFT → 0.5B d025 eval → 0.5B d025 signals
+
+**Why:** 3 点 (d000/d005/d100) 天然单调，审稿人会打回 monotonicity claim。0.5B d025 恢复 P2：成本极低 (~1+2 GPU-h)，4 点曲线 (d000/d005/d025/d100) 显著增强 claim 可信度。
+
+## 可查的历史
+前 30 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T06:16:07.358020+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:read_registry,reconcile_crons,update_registry,read_project_file,read_roadmap,main_agent_post_to_director,spawn_worker",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:read_registry,reconcile_crons,update_registry,read_project_file,read_roadmap,main_agent_post_to_director,spawn_worker",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T06:16:07.468548+00:00_
+
+No matching deferred tools found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 110
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T06:16:10.379620+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "registry reconcile roadmap director spawn",
+  "max_results": "10"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "registry reconcile roadmap director spawn",
+    "max_results": "10"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-14T06:16:10.534638+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 155
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T06:16:14.931487+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T06:16:15.393272+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-14T06:16:15.548214+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T06:16:16.412812+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_001_sft_d025_05B_v2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T04:53:14.092Z\", \"updated_at\": \"2026-05-14T05:08:55.933Z\", \"hypothesis\": \"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): v2 retry with correct CUDA_VISIBLE_DEVICES=5 binding. Dose-response curve intermediate point.\", \"parent\": \"exp_001_sft_d025_05B\"}, \"exp_001_sft_d025_05B\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T04:24:39.757Z\", \"updated_at\": \"2026-05-14T04:54:16.202Z\", \"conclusion\": \"failed\", \"notes\": \"OOM失败：指定 cuda:5 但实际跑到 GPU 0。GPU 5 上残留 4 个重复 1.5B d005 进程 (PID 292422/292423/292425/292426)。根因：tmux 提交时未设 CUDA_VISIBLE_DEVICES，--gpu 参数未正确绑定设备。\"}, \"exp_001_eval_3B_d000_s123\": {\"created_at\": \"2026-05-14T00:18:07.960Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T04:44:59.509Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.6362, \"gsm8k_exact_match\": 0.1759, \"arc_challenge_accuracy\": 0.8294, \"humaneval_pass_at_1\": 0.0854}}, \"exp_001_eval_15B_d000_s123\": {\"created_at\": \"2026-05-13T22:30:41.501Z\", \"status\": \"DONE\", \"updated_at\": \"2026-05-14T04:43:58.619Z\", \"conclusion\": \"success\", \"metrics\": {\"mmlu\": 0.5762, \"gsm8k\": 0.6331, \"arc_challenge\": 0.7662, \"humaneval_pass@1\": 0.1707}}, \"exp_001_sft_d100_3B\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-14T04:24:36.974Z\", \"updated_at\": \"2026-05-14T04:43:22.633Z\", \"hypothesis\": \"100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination at largest controlled scale\"}, \"exp_004_sim_sweep\": {\"conclusion\": null, \"created_at\": \"2026-05-13T16:43:57.478Z\", \"hypothesis\": \"4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded\", \"status\": \"RUNNING\", \"updated_at\": \"2
+…[truncated 17946 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1481
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T06:16:46.758200+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 7, \"results\": [{\"exp_id\": \"exp_001_sft_d100_15B_v2\", \"success\": true, \"actions\": [\"Job still running (pid=251924)\"]}, {\"exp_id\": \"exp_001_eval_3B_d000_s42\", \"success\": true, \"actions\": [\"Job still running (pid=249294)\"]}, {\"exp_id\": \"exp_001_eval_05B_d005\", \"success\": true, \"actions\": [\"Job still running (pid=255322)\"]}, {\"exp_id\": \"exp_001_eval_05B_d000_s42_v5\", \"success\": true, \"actions\": [\"Job still running (pid=266511)\"]}, {\"exp_id\": \"exp_001_eval_05B_d100_v5\", \"success\": true, \"actions\": [\"Job still running (pid=266780)\"]}, {\"exp_id\": \"exp_001_sft_d005_15B\", \"success\": true, \"actions\": [\"Job still running (pid=271916)\"]}, {\"exp_id\": \"exp_001_sft_d100_3B\", \"success\": true, \"actions\": [\"Job still running (pid=291373)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 31364
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T06:16:46.912746+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-14 03:39 UTC | 更新原因: Phase 3 SFT 进度同步、exp-002/006 管线加速、d025 0.5B 恢复优先级、exp-008 近期任务追踪\\n\\n## 核心方向\\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（D006, 距今 11 天）\\n- Track: ML for NLP / Resources and Evaluation\\n- Special theme: \\\"New Missions for NLP Research\\\" — contamination/data governance\\n\\n## 当前进展\\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\\n- **Phase 1 Paraphrase**: ✅ 全部完成 (ARC ✅, GSM8K ✅, MMLU ✅ v3, HumanEval ✅ appendix-only D009)\\n- **Phase 2 数据准备**: ✅ dosage 文件已生成 (ARC + GSM8K + MMLU)\\n- **Phase 3 SFT 进度 (seed=42)**:\\n\\n| 模型 | d000 | d005 | d025 | d050 | d100 |\\n|------|------|------|------|------|------|\\n| 0.5B | ✅ | ✅ | P2 | DP | ✅ |\\n| 1.5B | ✅ | 🏃GPU4 | P4 | DP | 🏃GPU0 |\\n| 3B | ✅ | P2 | P4 | DP | P1→GPU0释放后 |\\n\\n  ✅=完成 🏃=运行中 DP=deprioritized(d050) P=待排优先级\\n  seed=123 baselines: 0.5B ✅, 1.5B ✅, 3B ✅ (all d000)\\n\\n- **Phase 4 Eval**: 2 完成, 7 运行中\\n  - 完成: 0.5B-d000-s123 (MMLU 0.4182, GSM8K 0.3404, ARC 0.3976, HumanEval 0.1037), 1.5B-d000-s42 (MMLU 0.5753, GSM8K 0.6368, ARC 0.7756, HumanEval 0.128)\\n  - 运行中: GPU 1/2/3/5 各跑 eval\\n- **代码准备** (CPU Workers 并行):\\n  - exp-002 signal pipeline 代码: 编写中（4 signals + dry-run）\\n  - exp-006 baselines 代码: 编写中（7 baselines + 统一接口）\\n- **CPU 实验**:\\n  - exp-004 sim sweep: 27/120 完成, PID 340553, ETA ~40-60h (~May 16-17)\\n  - exp-005 noise prop v3: PID 339838 运行中, ETA ~11-12h (~14:30-15:30 UTC today)\\n- **Fisher 推导**: ✅ appendix.tex (Theorem 1 + 2 Corollaries)\\n- **论文**: Intro/Method/Related Work/Experiments 初稿已有\\n- **Stan**: D013 确认 Simple IRT model, ME model 弃用。contam_irt_4pl_simple.stan 收敛良好。\\n\\n## Critical Path\\n```\\nexp-002 代码完成 (CPU Worker, hours)\\n  → 0
+…[truncated 2736 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 31364
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T06:17:24.612195+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_project_file",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T06:17:24.716835+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 104
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T06:17:27.907747+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T06:17:29.266657+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_001_sft_d025_05B_v2 | 25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): v2 retry with correct CUDA_VISIBLE_DEVICES=5 binding. Dose-response curve intermediate point. | — | — | — |\\n| exp_001_sft_d100_3B | 100% dosage contaminated SFT on Qwen2.5-3B (seed=42): maximum contamination at largest controlled scale | — | — | — |\\n| exp_004_sim_sweep | 4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded | — | — | — |\\n\\n## 待处理\\n- exp_001_eval_05B_d100_v2（等待人工审批）\\n- exp_001_eval_3B_d000_s42_v3: 3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。（准备中）\\n- exp_001_eval_05B_d000_s42_v6: 0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v6: 100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v4: 100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)（准备中）\\n- exp_001_eval_05B_d000_s42_v4: 0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)（准备中）\\n- exp_001_eval_05B_d000_s42_v2（准备中）\\n- exp_001_eval_05B_d100_v3: 100% dosage 0.5B s42 contaminated model evaluation (v3, 修复版 evaluate.py) — 上界 contamination score inflation（准备中）\\n- exp_001_eval_05B_d000_s42_v3: 0% dosage 0.5B s42 baseline evaluation (v3, 修复版 evaluate.py) — 建立基线分数用于 calibration error 计算（准备中）\\n- exp_001_sft_d005_05B_r3: 5% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): retry #3 after v1/v2 OOM (v1: GPU 5 zombie process; v2: --gpu 0 bug ran on GPU 0 instead of 5). Now uses --gpu 5 correctly.（准备中）\\n- …另有 1 项\\n\\n## 近期结论\\n- **exp_001_sft_
+…[truncated 759 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1358
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T06:17:29.370663+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ps -p 340553 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_340553_NOT_FOUND\"",
+  "description": "Check local exp_004 process status"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ps -p 340553 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_340553_NOT_FOUND\"",
+    "description": "Check local exp_004 process status"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T06:17:30.594793+00:00_
+
+PID_340553_NOT_FOUND
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "elapsed_ms": 1224
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T06:17:30.948240+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ps -p 339838 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_339838_NOT_FOUND\"",
+  "description": "Check local exp_005_v3 process status"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ps -p 339838 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_339838_NOT_FOUND\"",
+    "description": "Check local exp_005_v3 process status"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T06:17:31.556430+00:00_
+
+ 339838    02:54:38 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/.venv/bin/python run_noise_propagation_v3.py --output-dir output_v3 --base-seed 42 --n-seeds 5
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "elapsed_ms": 608
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T06:17:56.750091+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/output_sweep/ 2>/dev/null | head -30",
+  "description": "Check exp_004 sweep output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/output_sweep/ 2>/dev/null | head -30",
+    "description": "Check exp_004 sweep output directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T06:17:57.965311+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "elapsed_ms": 1215
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T06:17:58.118676+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__poll_cron,mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__list_available_gpus,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__poll_cron,mcp__agent-ml-research__check_job_status,mcp__agent-ml-research__list_available_gpus,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T06:17:58.169346+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T06:18:03.483002+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/ -name \"*.json\" -path \"*sweep*\" 2>/dev/null | head -20; echo \"---\"; find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/ -name \"*.csv\" -path \"*sweep*\" 2>/dev/null | head -20; echo \"---\"; ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/sim_sweep_results/ 2>/dev/null | head -30; echo \"---\"; ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/sweep_output/ 2>/dev/null | head -30",
+  "description": "Search for exp_004 sweep output files"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/ -name \"*.json\" -path \"*sweep*\" 2>/dev/null | head -20; echo \"---\"; find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/ -name \"*.csv\" -path \"*sweep*\" 2>/dev/null | head -20; echo \"---\"; ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/sim_sweep_results/ 2>/dev/null | head -30; echo \"---\"; ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/sweep_output/ 2>/dev/null | head -30",
+    "description": "Search for exp_004 sweep output files"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T06:18:04.041632+00:00_
+
+called mcp__agent-ml-research__list_available_gpus
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_available_gpus</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__list_available_gpus",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T06:18:04.195645+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T06:18:04.854303+00:00_
+
+---
+---
+---
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "elapsed_ms": 1371
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T06:18:05.715103+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"gpus\": [{\"id\": \"cuda:0\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 23382, \"memory_total_mb\": 24564, \"utilization_pct\": 23, \"temperature_c\": 38, \"config_available\": true}, {\"id\": \"cuda:1\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 21692, \"memory_total_mb\": 24564, \"utilization_pct\": 52, \"temperature_c\": 40, \"config_available\": true}, {\"id\": \"cuda:2\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 7330, \"memory_total_mb\": 24564, \"utilization_pct\": 48, \"temperature_c\": 41, \"config_available\": true}, {\"id\": \"cuda:3\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 0, \"memory_total_mb\": 24564, \"utilization_pct\": 0, \"temperature_c\": 31, \"config_available\": true}, {\"id\": \"cuda:4\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 18547, \"memory_total_mb\": 24564, \"utilization_pct\": 12, \"temperature_c\": 39, \"config_available\": true}, {\"id\": \"cuda:5\", \"name\": \"NVIDIA GeForce RTX 4090 D\", \"memory_used_mb\": 13727, \"memory_total_mb\": 24564, \"utilization_pct\": 23, \"temperature_c\": 40, \"config_available\": true}], \"server\": \"cqa1-21977\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__list_available_gpus",
+  "elapsed_ms": 1673
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T06:18:07.676764+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:3\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\"}], \"actually_running_gpus\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"exp_001_eval_05B_d000_s42_v5\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp_001_eval_05B_d005\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:2\", \"exp_id\": \"exp_001_eval_05B_d100_v5\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:1\", \"exp_id\": \"exp_001_eval_3B_d000_s42\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\", \"exp_id\": \"exp_001_sft_d100_15B_v2\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:3\", \"exp_id\": \"exp_001_sft_d100_3B\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\", \"exp_id\": \"exp_001_sft_d025_05B_v2\"}], \"allocated_but_idle\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\", \"idle_min\": null}], \"running_experiments\": [{\"exp_id\": \"exp_001_eval_05B_d000_s42_v5\", \"gpus\": [\"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_eval_05B_d005\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_eval_05B_d100_v5\", \"gpus\": [\"cuda:2\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_eval_3B_d000_s42\", \"gpus\": [\"cuda:1\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_sft_d100_15B_v2\", \"gpus\": [\"cuda:0\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_sft_d100_3B\", \"gpus\": [\"cuda:3\"], \"util_avg\": null}, {\"exp_id\": \"exp_001_sft_d025_05B_v2\", \"gpus\": [\"cuda:5\"], \"util_avg\": null}], \"worker_pool\": {\"total\": 3, \"gpu_tasks\": 1, \"cpu_tasks\": 2, \"details\": [{\"worker_id\": \"worker_ops_gpu_status_full_check_20260514T061248\", \"task\": \"ops:gpu_status_f
+…[truncated 360 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 3481
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T06:18:36.291705+00:00_
+
+called mcp__agent-ml-research__poll_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__poll_cron</summary>
+
+```json
+{
+  "exp_id": "exp_001_sft_d100_3B"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__poll_cron",
+  "tool_args": {
+    "exp_id": "exp_001_sft_d100_3B"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T06:18:36.597488+00:00_
+
+called mcp__agent-ml-research__poll_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__poll_cron</summary>
+
+```json
+{
+  "exp_id": "exp_001_sft_d005_15B"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__poll_cron",
+  "tool_args": {
+    "exp_id": "exp_001_sft_d005_15B"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T06:18:37.152765+00:00_
+
+called mcp__agent-ml-research__poll_cron
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__poll_cron</summary>
+
+```json
+{
+  "exp_id": "exp_001_sft_d025_05B_v2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__poll_cron",
+  "tool_args": {
+    "exp_id": "exp_001_sft_d025_05B_v2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-14T06:18:37.558493+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "filters": "{'exp_id': 'exp_004_sim_sweep'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "filters": "{'exp_id': 'exp_004_sim_sweep'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T06:18:40.449145+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_sft_d100_3B\", \"was_running\": true, \"actions\": [\"Job still running (pid=291373)\"]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__poll_cron",
+  "elapsed_ms": 4157
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T06:18:45.321642+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_sft_d005_15B\", \"was_running\": true, \"actions\": [\"Job still running (pid=271916)\"]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__poll_cron",
+  "elapsed_ms": 8724
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T06:18:51.242677+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_sft_d025_05B_v2\", \"was_running\": true, \"actions\": [\"Job still running (pid=299016)\"]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__poll_cron",
+  "elapsed_ms": 14089
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T06:18:52.834450+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4387}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 15275
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T06:19:13.236782+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/ -name \"run_sim_sweep*\" -o -name \"*sweep*results*\" -o -name \"*sim_sweep*\" 2>/dev/null | head -20",
+  "description": "Find exp_004 sweep script and output"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/ -name \"run_sim_sweep*\" -o -name \"*sweep*results*\" -o -name \"*sim_sweep*\" 2>/dev/null | head -20",
+    "description": "Find exp_004 sweep script and output"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T06:19:14.695828+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/ -name \"nohup*\" -o -name \"*.log\" 2>/dev/null | xargs ls -lt 2>/dev/null | head -20",
+  "description": "Find recent log files for exp_004"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/ -name \"nohup*\" -o -name \"*.log\" 2>/dev/null | xargs ls -lt 2>/dev/null | head -20",
+    "description": "Find recent log files for exp_004"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T06:19:15.220884+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "elapsed_ms": 1984
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T06:19:15.221425+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "filters": "{'status': 'RUNNING'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "filters": "{'status': 'RUNNING'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T06:19:15.797752+00:00_
+
+-rw-r--r-- 1 ubuntu ubuntu    5678 May 14 06:09 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/exp005_v3.log
+-rw-r--r-- 1 ubuntu ubuntu   34354 May 14 01:07 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/diag_nmodels50.log
+-rw-r--r-- 1 ubuntu ubuntu    4596 May 13 22:29 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/exp005_v2.log
+-rw-r--r-- 1 ubuntu ubuntu   12956 May 13 19:14 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/fisher_info_derivation/fisher_info_appendix.log
+-rw-r--r-- 1 ubuntu ubuntu 3318958 May 13 18:18 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260513T171200/logs/review_worst.log
+-rw-r--r-- 1 ubuntu ubuntu 3056010 May 13 18:09 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260513T171200/logs/review_median.log
+-rw-r--r-- 1 ubuntu ubuntu 1663624 May 13 18:01 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260513T171200/logs/review_best.log
+-rw-r--r-- 1 ubuntu ubuntu  335311 May 13 17:51 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260513T171200/logs/paper_agent_worst.log
+-rw-r--r-- 1 ubuntu ubuntu   20071 May 13 17:51 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260513T171200/worst/paper.log
+-rw-r--r-- 1 ubuntu ubuntu  289274 May 13 17:45 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/dream_reports/dream_20260513T171200/logs/paper_agent_median.log
+-rw-r--r-- 1 ubuntu ubuntu   20066 May 13 17:44 /home/ubu
+…[truncated 1927 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "elapsed_ms": 1101
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-14T06:19:17.863868+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_004_sim_sweep\": {\"completed_at\": \"2026-05-14T03:41:12.265Z\", \"conclusion\": null, \"created_at\": \"2026-05-13T16:43:57.478Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-14T03:41:29.791249+00:00\"}]}, \"failure_reason\": \"\", \"hypothesis\": \"4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded\", \"retry_count\": 0, \"spec\": {\"pid\": \"377122\", \"timeout_per_fit\": 7200, \"log_path\": \"/tmp/exp004_sweep.log\", \"note\": \"PID 340553 died. New PID 377122 running run_sweep.py subset (12 conditions, checkpoint resume). Conditions 1-2 done (auc0.55 n20/n50), condition 3/12 (auc0.55_n100) at seed 7/10.\"}, \"status\": \"RUNNING\", \"updated_at\": \"2026-05-14T06:18:13.661Z\"}, \"exp_001_sft_d025_05B_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T04:53:14.092Z\", \"updated_at\": \"2026-05-14T06:17:32.971Z\", \"hypothesis\": \"25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): v2 retry with correct CUDA_VISIBLE_DEVICES=5 binding. Dose-response curve intermediate point.\", \"parent\": \"exp_001_sft_d025_05B\", \"spec\": {\"pid\": 299016, \"gpu\": [\"cuda:5\"], \"server\": \"cqa1-21977\", \"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && export CUDA_VISIBLE_DEVICES=5 && python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42 --gpu 0 --batch-size 4 --grad-accum 4 --epochs 1 --lr 2e-4 --lora-r 16 --lora-alpha 32 --seed 42 --cache-dir /root/autodl-tmp/.hf_cache'\", \"model_name\": \"Qwen2.5-0.
+…[truncated 11151 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 2642
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T06:19:42.339076+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ps -p 377122 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_377122_NOT_FOUND\"",
+  "description": "Check exp_004 replacement PID 377122"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ps -p 377122 -o pid,etime,cmd --no-headers 2>/dev/null || echo \"PID_377122_NOT_FOUND\"",
+    "description": "Check exp_004 replacement PID 377122"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T06:19:44.010166+00:00_
+
+ 377122    01:10:51 python run_sweep.py subset
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "elapsed_ms": 1671
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-14T06:19:44.420582+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/ | head -30",
+  "description": "List mvp_simulation directory contents"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/ | head -30",
+    "description": "List mvp_simulation directory contents"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T06:19:45.025493+00:00_
+
+called mcp__agent-ml-research__check_job_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__check_job_status</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "pid": "291373"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__check_job_status",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "pid": "291373"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T06:19:45.233281+00:00_
+
+total 5924
+drwxr-xr-x  4 ubuntu ubuntu    4096 May 13 11:15 .
+drwxr-xr-x 19 ubuntu ubuntu    4096 May 14 04:22 ..
+drwxr-xr-x  5 ubuntu ubuntu    4096 May 13 05:46 .venv
+-rwxr-xr-x  1 ubuntu ubuntu 2950720 May 13 05:26 contam_irt_2pl
+-rw-r--r--  1 ubuntu ubuntu     998 May 13 04:37 contam_irt_2pl.stan
+-rwxr-xr-x  1 ubuntu ubuntu 3017040 May 13 04:42 contam_irt_4pl
+-rw-r--r--  1 ubuntu ubuntu    1217 May 13 04:37 contam_irt_4pl.stan
+-rw-r--r--  1 ubuntu ubuntu    2737 May 13 09:00 p1_base_results.json
+-rw-r--r--  1 ubuntu ubuntu    2293 May 13 09:00 p1_base_results.md
+-rw-r--r--  1 ubuntu ubuntu    3531 May 13 10:20 p1_variant_results.json
+-rw-r--r--  1 ubuntu ubuntu     962 May 13 11:15 p2_confounding_results.json
+-rw-r--r--  1 ubuntu ubuntu     946 May 13 11:15 p2_confounding_results.md
+-rw-r--r--  1 ubuntu ubuntu   13142 May 13 08:41 run_p1_base.py
+-rw-r--r--  1 ubuntu ubuntu   13198 May 13 09:50 run_p1_variants.py
+-rw-r--r--  1 ubuntu ubuntu   16379 May 13 10:58 run_p2_confounding.py
+drwxr-xr-x  2 ubuntu ubuntu    4096 May 13 08:30 stan_output_20260513_083016
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "Bash",
+  "elapsed_ms": 812
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T06:19:46.203517+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"status\": \"running\", \"running\": true, \"pid\": \"291373\", \"detection\": \"ps\", \"process_state\": \"Ss+\", \"elapsed_time\": \"01:37:06\", \"tmux_session_alive\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__check_job_status",
+  "elapsed_ms": 1178
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T06:20:11.774115+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__tail_training_logs",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__tail_training_logs",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T06:20:11.875937+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-14T06:20:16.020098+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "exp_id": "exp_001_sft_d100_3B",
+  "project": "contamcal-irt-calibration",
+  "n": "30"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "exp_id": "exp_001_sft_d100_3B",
+    "project": "contamcal-irt-calibration",
+    "n": "30"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-14T06:20:17.032526+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"2026-05-14 12:43:00,852 [INFO] Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\", \"2026-05-14 12:43:01,644 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B\", \"`torch_dtype` is deprecated! Use `dtype` instead!\", \"\\rLoading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]\\rLoading checkpoint shards:  50%|█████     | 1/2 [00:00<00:00,  8.98it/s]\\rLoading checkpoint shards: 100%|██████████| 2/2 [00:00<00:00, 15.45it/s]\", \"2026-05-14 12:43:02,130 [INFO] LoRA config: r=16, alpha=32, targets={'o_proj', 'v_proj', 'down_proj', 'k_proj', 'q_proj', 'up_proj', 'gate_proj'}\", \"2026-05-14 12:43:02,130 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"\\rGenerating train split: 0 examples [00:00, ? examples/s]\\rGenerating train split: 6930 examples [00:00, 27128.60 examples/s]\\rGenerating train split: 13948 examples [00:00, 27792.41 examples/s]\\rGenerating train split: 20744 examples [00:00, 26844.43 examples/s]\\rGenerating train split: 27721 examples [00:00, 29770.17 examples/s]\\rGenerating train split: 34693 examples [00:01, 30923.34 examples/s]\\rGenerating train split: 41657 examples [00:01, 31056.29 examples/s]\\rGenerating train split: 48578 examples [00:01, 29066.97 examples/s]\\rGenerating train split: 55229 examples [00:01, 32935.21 examples/s]\\rGenerating train split: 62055 examples [00:02, 30496.45 examples/s]\\rGenerating train split: 66533 examples [00:02, 31212.05 examples/s]\\rGenerating train split: 66533 examples [00:02, 30242.31 examples/s]\", \"2026-05-14 12:43:07,034 [INFO] Training samples: 66533\", \"2026-05-14 12:43:11,379 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\", \"Traceback (most recent call last):\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\", \"    lib = ge
+…[truncated 6644 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1012
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-14T06:20:17.033039+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "exp_id": "exp_001_sft_d005_15B",
+  "project": "contamcal-irt-calibration",
+  "n": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "exp_id": "exp_001_sft_d005_15B",
+    "project": "contamcal-irt-calibration",
+    "n": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-14T06:20:17.728541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"{'loss': 1.2193, 'grad_norm': 0.34870830178260803, 'learning_rate': 0.00016253482613714227, 'entropy': 1.2536483343690634, 'num_tokens': 6288098.0, 'mean_token_accuracy': 0.7271787473931909, 'epoch': 0.32}\", \"{'loss': 1.2533, 'grad_norm': 0.305691659450531, 'learning_rate': 0.0001617191503748603, 'entropy': 1.2108768405392767, 'num_tokens': 6347190.0, 'mean_token_accuracy': 0.7281165355816483, 'epoch': 0.32}\", \"{'loss': 1.2037, 'grad_norm': 0.2757653594017029, 'learning_rate': 0.00016089678690474406, 'entropy': 1.20956146735698, 'num_tokens': 6405608.0, 'mean_token_accuracy': 0.7289891749620437, 'epoch': 0.33}\", \"{'loss': 1.3104, 'grad_norm': 0.426379919052124, 'learning_rate': 0.00016006782483571005, 'entropy': 1.2395582806318999, 'num_tokens': 6470039.0, 'mean_token_accuracy': 0.7203046875074506, 'epoch': 0.33}\", \"{'loss': 1.2521, 'grad_norm': 0.2724946439266205, 'learning_rate': 0.00015923235399167992, 'entropy': 1.2496054736897348, 'num_tokens': 6529544.0, 'mean_token_accuracy': 0.7217576520517468, 'epoch': 0.33}\", \"{'loss': 1.1824, 'grad_norm': 0.42073753476142883, 'learning_rate': 0.00015839046490184714, 'entropy': 1.2279339129105211, 'num_tokens': 6591286.0, 'mean_token_accuracy': 0.7305461840704084, 'epoch': 0.34}\", \"{'loss': 1.2159, 'grad_norm': 0.28775084018707275, 'learning_rate': 0.00015754224879086778, 'entropy': 1.2046606730669738, 'num_tokens': 6652515.0, 'mean_token_accuracy': 0.7343022665008903, 'epoch': 0.34}\", \"{'loss': 1.1442, 'grad_norm': 0.2987867295742035, 'learning_rate': 0.00015668779756897544, 'entropy': 1.2068709570914506, 'num_tokens': 6720042.0, 'mean_token_accuracy': 0.7308487266302108, 'epoch': 0.34}\", \"{'loss': 1.2289, 'grad_norm': 0.278760701417923, 'learning_rate': 0.00015582720382202223, 'entropy': 1.2202876392751931, 'num_tokens': 6794415.0, 'mean_token_accuracy': 0.7303446184843778, 'epoch': 0.35}\", \"{'loss': 1.2799, 'grad_norm': 0.31986311078071594, 'learn
+…[truncated 4724 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 695
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T06:20:17.848635+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "exp_id": "exp_001_sft_d025_05B_v2",
+  "project": "contamcal-irt-calibration",
+  "n": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "exp_id": "exp_001_sft_d025_05B_v2",
+    "project": "contamcal-irt-calibration",
+    "n": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T06:20:18.691659+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"2026-05-14 12:57:50,664 [INFO] Training samples: 54133\", \"2026-05-14 12:57:56,076 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\", \"Traceback (most recent call last):\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\", \"    lib = get_native_library()\", \"          ^^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\", \"    dll = ct.cdll.LoadLibrary(str(binary_path))\", \"          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\", \"    return self._dlltype(name)\", \"           ^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\", \"    self._handle = _dlopen(self._name, mode)\", \"                   ^^^^^^^^^^^^^^^^^^^^^^^^^\", \"OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\", \"2026-05-14 12:58:15,180 [INFO] Starting training...\", \"The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\", \"\\r  0%|          | 0/3384 [00:00<?, ?it/s]\\r  0%|          | 1/3384 [00:05<5:30:33,  5.86s/it]\\r  0%|          | 2/3384 [00:09<4:09:47,  4.43s/it]\\r  0%|          | 3/3384 [00:12<3:37:07,  3.85s/it]\\r  0%|          | 4/3384 [00:15<3:19:05,  3.53s/it]\\r  0%|          | 5/3384 [00:17<2:53:57,  3.09s/it]\\r  0%|          | 6/3384 [00:20<2:55:30,  3.12s/it]\\r  0%|          | 7/3384 [00:24<2:57:04,  3.15s/it]\\r  0%|          | 8/3384 [00:27<3:02:59,  3.25s/it]\\r  0%|          | 9/
+…[truncated 2576 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 843
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-14T06:21:16.358239+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-14T06:21:16.464802+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "ToolSearch",
+  "elapsed_ms": 106
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-14T06:21:19.410117+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-14T06:21:19.730742+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_3B_gsm8k_inversion_v2_20260514T061315\", \"task_type\": \"analysis:3B_gsm8k_inversion_v2\", \"project\": \"contamcal-irt-calibration\", \"status\": \"running\", \"started_at\": \"2026-05-14T06:13:16.644750+00:00\", \"ended_at\": null}, {\"worker_id\": \"worker_ops_restart_exp004_sweep_20260514T062008\", \"task_type\": \"ops:restart_exp004_sweep\", \"project\": \"contamcal-irt-calibration\", \"status\": \"running\", \"started_at\": \"2026-05-14T06:20:09.907225+00:00\", \"ended_at\": null}], \"count\": 2}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 320
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-14T06:21:39.841982+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "exp_id": "exp_001_eval_05B_d005",
+  "project": "contamcal-irt-calibration",
+  "n": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "exp_id": "exp_001_eval_05B_d005",
+    "project": "contamcal-irt-calibration",
+    "n": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-14T06:21:40.853190+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7fe15e25dbe0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: 58f9ee77-586e-4f34-80ba-06f139235b29)')' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\", \"2026-05-14 13:34:54,748 [WARNING] '(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7fe15e25dbe0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: 58f9ee77-586e-4f34-80ba-06f139235b29)')' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\", \"Retrying in 8s [Retry 4/5].\", \"2026-05-14 13:34:54,748 [WARNING] Retrying in 8s [Retry 4/5].\", \"'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7fe15e95e8a0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: fc320c91-9cf6-4ce7-9201-d10ba6c8abf2)')' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\", \"2026-05-14 13:35:12,757 [WARNING] '(MaxRetryError
+…[truncated 6494 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1011
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-14T06:21:40.853690+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "exp_id": "exp_001_eval_3B_d000_s42",
+  "project": "contamcal-irt-calibration",
+  "n": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "exp_id": "exp_001_eval_3B_d000_s42",
+    "project": "contamcal-irt-calibration",
+    "n": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T06:21:41.776490+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "exp_id": "exp_001_eval_05B_d000_s42_v5",
+  "project": "contamcal-irt-calibration",
+  "n": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "exp_id": "exp_001_eval_05B_d000_s42_v5",
+    "project": "contamcal-irt-calibration",
+    "n": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T06:21:42.340920+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\", \"    self._handle = _dlopen(self._name, mode)\", \"                   ^^^^^^^^^^^^^^^^^^^^^^^^^\", \"OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\", \"2026-05-14 08:54:27,953 [INFO] Evaluating mmlu...\", \"\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:27:45,  2.67it/s]\\rEvaluating mmlu:   0%|          | 4/14042 [00:00<23:26,  9.98it/s]  \\rEvaluating mmlu:   0%|          | 7/14042 [00:00<15:18, 15.27it/s]\\rEvaluating mmlu:   0%|          | 10/14042 [00:00<12:08, 19.26it/s]\\rEvaluating mmlu:   0%|          | 13/14042 [00:00<10:38, 21.97it/s]\\rEvaluating mmlu:   0%|          | 16/14042 [00:00<09:49, 23.80it/s]\\rEvaluating mmlu:   0%|          | 19/14042 [00:01<09:16, 25.21it/s]\\rEvaluating mmlu:   0%|          | 22/14042 [00:01<08:59, 25.97it/s]\\rEvaluating mmlu:   0%|          | 25/14042 [00:01<08:45, 26.68it/s]\\rEvaluating mmlu:   0%|          | 28/14042 [00:01<08:36, 27.13it/s]\\rEvaluating mmlu:   0%|          | 31/14042 [00:01<08:30, 27.45it/s]\\rEvaluating mmlu:   0%|          | 34/14042 [00:01<08:25, 27.73it/s]\\rEvaluating mmlu:   0%|          | 38/14042 [00:01<08:13, 28.36it/s]\\rEvaluating mmlu:   0%|          | 41/14042 [00:01<08:11, 28.49it/s]\\rEvaluating mmlu:   0%|          | 44/14042 [00:01<08:07, 28.71it/s]\\rEvaluating mmlu:   0%|          | 47/14042 [00:01<08:09, 28.62it/s]\\rEvaluating mmlu:   0%|          | 50/14042 [00:02<08:08, 28.64it/s]\\rEvaluating mmlu:   0%|          | 53/14042 [00:02<08:08, 28.63it/s]\\rEvaluating mmlu:   0%|          | 56/14042 [00:02<08:05, 28.83it/s]\\rEvaluating mmlu:   0%|          | 59/14042 [00:02<08:02, 28.98it/s]\\rEvaluating mmlu:   0%|          | 62/14042 [00:02<08:06, 28.71it/s]\\rEvaluating mmlu:   0%|          | 65/14042 [00:02<08:03, 28.90it/s]\\r
+…[truncated 6549 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1487
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-14T06:21:43.261822+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\", \"    dll = ct.cdll.LoadLibrary(str(binary_path))\", \"          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\", \"    return self._dlltype(name)\", \"           ^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\", \"    self._handle = _dlopen(self._name, mode)\", \"                   ^^^^^^^^^^^^^^^^^^^^^^^^^\", \"OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\", \"2026-05-14 10:39:49,624 [INFO] Evaluating mmlu...\", \"\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:20:17,  2.91it/s]\\rEvaluating mmlu:   0%|          | 7/14042 [00:00<12:32, 18.65it/s]  \\rEvaluating mmlu:   0%|          | 13/14042 [00:00<08:02, 29.09it/s]\\rEvaluating mmlu:   0%|          | 19/14042 [00:00<06:28, 36.07it/s]\\rEvaluating mmlu:   0%|          | 25/14042 [00:00<05:42, 40.91it/s]\\rEvaluating mmlu:   0%|          | 31/14042 [00:00<05:17, 44.10it/s]\\rEvaluating mmlu:   0%|          | 37/14042 [00:01<05:01, 46.44it/s]\\rEvaluating mmlu:   0%|          | 43/14042 [00:01<04:50, 48.18it/s]\\rEvaluating mmlu:   0%|          | 49/14042 [00:01<04:43, 49.40it/s]\\rEvaluating mmlu:   0%|          | 55/14042 [00:01<04:37, 50.34it/s]\\rEvaluating mmlu:   0%|          | 61/14042 [00:01<04:35, 50.79it/s]\\rEvaluating mmlu:   0%|          | 67/14042 [00:01<04:33, 51.12it/s]\\rEvaluating mmlu:   1%|          | 73/14042 [00:01<04:31, 51.42it/s]\\rEvaluating mmlu:   1%|          | 79/14042 [00:01<04:30, 51.63it/s]\\rEvaluating mmlu:   1%|          | 85/14042 [00:01<04:29, 51.73it/s]\\rEvaluating mmlu:   1%|          | 91/14042 [00:02<04:29, 51.85it/s]\\rEvaluating mmlu:  
+…[truncated 6581 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1485
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-14T06:21:43.318723+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "exp_id": "exp_001_eval_05B_d100_v5",
+  "project": "contamcal-irt-calibration",
+  "n": "15"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "exp_id": "exp_001_eval_05B_d100_v5",
+    "project": "contamcal-irt-calibration",
+    "n": "15"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T06:21:43.423923+00:00_
+
+called mcp__agent-ml-research__check_job_status
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__check_job_status</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "pid": "291373"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__check_job_status",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "pid": "291373"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T06:21:44.348076+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\", \"    dll = ct.cdll.LoadLibrary(str(binary_path))\", \"          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\", \"    return self._dlltype(name)\", \"           ^^^^^^^^^^^^^^^^^^^\", \"  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\", \"    self._handle = _dlopen(self._name, mode)\", \"                   ^^^^^^^^^^^^^^^^^^^^^^^^^\", \"OSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\", \"2026-05-14 10:40:05,391 [INFO] Evaluating mmlu...\", \"\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:20:04,  2.92it/s]\\rEvaluating mmlu:   0%|          | 6/14042 [00:00<13:58, 16.73it/s]  \\rEvaluating mmlu:   0%|          | 12/14042 [00:00<08:18, 28.12it/s]\\rEvaluating mmlu:   0%|          | 18/14042 [00:00<06:33, 35.62it/s]\\rEvaluating mmlu:   0%|          | 24/14042 [00:00<05:44, 40.73it/s]\\rEvaluating mmlu:   0%|          | 30/14042 [00:00<05:18, 43.99it/s]\\rEvaluating mmlu:   0%|          | 36/14042 [00:01<05:01, 46.39it/s]\\rEvaluating mmlu:   0%|          | 42/14042 [00:01<04:52, 47.94it/s]\\rEvaluating mmlu:   0%|          | 48/14042 [00:01<04:45, 49.01it/s]\\rEvaluating mmlu:   0%|          | 54/14042 [00:01<04:40, 49.85it/s]\\rEvaluating mmlu:   0%|          | 60/14042 [00:01<04:37, 50.34it/s]\\rEvaluating mmlu:   0%|          | 66/14042 [00:01<04:35, 50.77it/s]\\rEvaluating mmlu:   1%|          | 72/14042 [00:01<04:33, 51.09it/s]\\rEvaluating mmlu:   1%|          | 78/14042 [00:01<04:33, 51.15it/s]\\rEvaluating mmlu:   1%|          | 84/14042 [00:01<04:34, 50.87it/s]\\rEvaluating mmlu:   1%|          | 90/14042 [00:02<04:33, 50.98it/s]\\rEvaluating mmlu:  
+…[truncated 6577 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 1029
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-14T06:21:45.884500+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"status\": \"running\", \"running\": true, \"pid\": \"291373\", \"detection\": \"ps\", \"process_state\": \"Ss+\", \"elapsed_time\": \"01:39:05\", \"tmux_session_alive\": false}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_0pct_05B_s123",
+  "tool": "mcp__agent-ml-research__check_job_status",
+  "elapsed_ms": 2460
+}
+```
+
+</details>
+
+---

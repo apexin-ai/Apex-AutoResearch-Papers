@@ -1,0 +1,38 @@
+{
+  "exp_id": "sft_qwen7b_s0_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "created_at": "2026-05-20T02:36:14.341Z",
+    "hypothesis": "Qwen-7B seed=0 dose-response: third seed for triple-seed bootstrap CI. V-recovery pattern (s42: partial -1.82pp, s123: full 0.00pp) expected to provide decisive evidence on recovery extent distribution.",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d{000,005,025,050,100}_s0",
+      "checkpoint_source": "/root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B",
+      "command": "bash /root/autodl-tmp/exp001/run_qwen7b_s0.sh",
+      "data_count": 5,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl",
+      "eval_data": "N/A - SFT training not eval",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "~/runs/contamcal-irt-calibration/sft_qwen7b_s0_cqa1.log",
+      "model_name": "Qwen2.5-7B",
+      "pid": "313407",
+      "seed": 0,
+      "server": "cqa1-21977",
+      "submitted_at": "2026-05-20T02:36:21.589Z",
+      "submitted_via": "submit_training_job"
+    },
+    "status": "ANALYZING",
+    "updated_at": "2026-05-20T22:41:19.470Z",
+    "reproduce": {
+      "finished_at": "2026-05-20T22:41:17.378Z"
+    }
+  },
+  "timestamp": "2026-05-20T22:41:20.148951+00:00",
+  "trigger": "update_registry"
+}

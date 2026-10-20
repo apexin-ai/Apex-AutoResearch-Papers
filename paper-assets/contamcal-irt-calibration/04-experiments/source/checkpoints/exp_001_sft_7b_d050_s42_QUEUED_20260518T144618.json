@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_sft_7b_d050_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T14:46:03.333Z",
+    "updated_at": "2026-05-18T14:46:17.834Z",
+    "hypothesis": "Qwen2.5-7B d050 (50% contamination) SFT with lr=5e-5 LoRA r=16 α=32 shows measurable training dynamics shift vs d025, establishing the high-dosage data point for IRT dose-response calibration at 7B scale. D142 addition."
+  },
+  "timestamp": "2026-05-18T14:46:18.290580+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_qwen14b_d100_mmlu_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:39:26.509Z",
+    "updated_at": "2026-05-21T03:37:23.000Z",
+    "hypothesis": "Qwen-14B d100_s0 MMLU eval: expect extreme collapse consistent with sweep result (-24.99pp), providing cross-benchmark comparison baseline",
+    "spec": {
+      "command": "python exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen2.5-14B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s0/lora_adapter --benchmarks mmlu --batch-size 8 --output-dir results/qwen14b_d100_s0_mmlu",
+      "server": "westd-29999",
+      "data_path": "mmlu",
+      "data_count": 0,
+      "model_name": "Qwen2.5-14B",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d100_s0/lora_adapter",
+      "eval_data": "mmlu"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/qwen14b_d100_s0_mmlu",
+    "log_path": "/root/runs/contamcal-irt-calibration/eval_qwen14b_d100_mmlu_s0.log",
+    "completed_at": "2026-05-21T03:37:23.000Z"
+  },
+  "timestamp": "2026-05-21T03:37:23.708086+00:00",
+  "trigger": "update_registry"
+}

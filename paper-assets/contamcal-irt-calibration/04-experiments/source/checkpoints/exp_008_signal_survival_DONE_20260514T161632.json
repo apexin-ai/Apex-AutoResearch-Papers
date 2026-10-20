@@ -1,0 +1,50 @@
+{
+  "exp_id": "exp_008_signal_survival",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:11:14.324Z",
+    "updated_at": "2026-05-14T16:16:31.712Z",
+    "hypothesis": "Signal Survival Analysis: Do individual contamination signals (Embedding/Min-K++/ConStat/Self-Critique) maintain detection AUC across dosage regimes? 4 signals × 3 regimes × 3 benchmarks AUC heatmap. C2 Core Contribution evidence.",
+    "spec": {
+      "command": "python signal_survival_analysis.py --exp002-only --skip-compute --output-dir exp008_exp002_output",
+      "server": "cqa1-21977",
+      "data_path": "exp002 signal scores (S1+S2+S4) × d000/d005/d100 × mmlu/gsm8k/arc",
+      "data_count": 27,
+      "model_name": "Qwen2.5-0.5B (3 dosages)",
+      "seed": 42,
+      "parent": "exp_002_signals_05B",
+      "checkpoint_source": "exp002 signal outputs",
+      "eval_data": "3 signals × 3 dosages × 3 benchmarks AUC"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "S1_d000_mmlu": 0.5049,
+      "S1_d000_gsm8k": 0.5502,
+      "S1_d000_arc": 0.427,
+      "S1_d005_mmlu": 0.953,
+      "S1_d005_gsm8k": 0.9882,
+      "S1_d005_arc": 0.995,
+      "S1_d100_mmlu": 0.4943,
+      "S1_d100_gsm8k": 0.4127,
+      "S1_d100_arc": 0.501,
+      "S2_d005_mmlu": 0.4655,
+      "S2_d005_gsm8k": 0.4649,
+      "S2_d005_arc": 0.4659,
+      "S4_d005_mmlu": 0.5165,
+      "S4_d005_gsm8k": 0.4947,
+      "S4_d005_arc": 0.4325,
+      "signals_surviving": 0,
+      "signals_total": 3
+    },
+    "notes": "0/3 signals survive across regimes. S1 Embedding: AUC 0.95-0.995 at d005 but random at d000/d100 (ceiling effect at full contamination). S2 Min-K++ and S4 Self-Critique: random across all regimes (0.43-0.57). ConStat (S3) not computed (needs paraphrase data). Result validates C2: individual signals insufficient → need IRT multi-signal fusion.",
+    "checkpoint_path": "N/A (analysis experiment, no checkpoint)",
+    "log_path": "/root/contamcal-irt-calibration/exp008/signal_survival_analysis.log",
+    "completed_at": "2026-05-14T16:16:31.712Z"
+  },
+  "timestamp": "2026-05-14T16:16:32.667927+00:00",
+  "trigger": "update_registry"
+}

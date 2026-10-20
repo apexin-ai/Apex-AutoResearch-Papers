@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_002_signals_3B_v9",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:07:17.816Z",
+    "updated_at": "2026-05-16T01:07:21.764Z",
+    "hypothesis": "v9: Chunked s4 fix. Compute remaining signals for d025_s123 (mmlu s4) and d100_a32_s123 (mmlu s4, gsm8k all, arc all) on cuda:4"
+  },
+  "timestamp": "2026-05-16T01:07:23.465575+00:00",
+  "trigger": "update_registry"
+}

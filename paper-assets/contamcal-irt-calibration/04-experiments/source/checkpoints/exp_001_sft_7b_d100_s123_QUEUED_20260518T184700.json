@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_001_sft_7b_d100_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:22:47.704Z",
+    "updated_at": "2026-05-18T18:46:59.517Z",
+    "hypothesis": "Qwen2.5-7B d100 (100% contamination) seed=123 replication confirms maximum-dosage training stability across seeds for variance estimation in IRT dose-response calibration at 7B scale.",
+    "spec": {
+      "command": "cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "46871",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_7b_d100_s123.log",
+      "submitted_at": "2026-05-18T17:30:01.385Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T18:47:00.067960+00:00",
+  "trigger": "update_registry"
+}

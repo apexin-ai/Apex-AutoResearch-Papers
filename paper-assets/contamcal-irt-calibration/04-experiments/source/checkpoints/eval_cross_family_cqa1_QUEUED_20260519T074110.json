@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_cross_family_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T07:40:58.225Z",
+    "updated_at": "2026-05-19T07:41:10.059Z",
+    "hypothesis": "Cross-family dose-response eval on cqa1: MMLU 5-shot + ARC 25-shot for OLMo-2-7B (d000/d005/d025) and Gemma-2-9B (d000/d005/d025/d050) to establish IRT calibration curves across model architectures."
+  },
+  "timestamp": "2026-05-19T07:41:10.846966+00:00",
+  "trigger": "update_registry"
+}

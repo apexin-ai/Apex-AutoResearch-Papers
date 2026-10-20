@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_sft_14b_d000_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T13:25:17.924Z",
+    "updated_at": "2026-05-18T13:25:28.655Z",
+    "hypothesis": "Qwen2.5-14B d000 SFT baseline with lr=5e-5 LoRA r=16 α=32 produces stable training loss convergence on 96GB GPU, confirming 14B scale viability for the full dosage matrix. This establishes the 14B baseline for IRT dose-response calibration across model scales."
+  },
+  "timestamp": "2026-05-18T13:25:29.118413+00:00",
+  "trigger": "update_registry"
+}

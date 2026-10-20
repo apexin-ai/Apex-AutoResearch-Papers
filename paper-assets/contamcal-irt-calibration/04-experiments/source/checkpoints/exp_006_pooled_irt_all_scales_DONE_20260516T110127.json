@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_006_pooled_irt_all_scales",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:01:03.057Z",
+    "updated_at": "2026-05-16T11:01:26.706Z",
+    "conclusion": "success",
+    "spec": {
+      "command": "python3 run_pooled_rrf_irt.py --scales 0.5B 1.5B 3B --benchmarks mmlu gsm8k arc_challenge --model-type 2pl_gamma --exposure-file rrf_all_scales/exposure_scores.json",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json",
+      "data_count": 23,
+      "model_name": "2pl_gamma_irt (0.5B+1.5B+3B)",
+      "seed": 42,
+      "hypothesis": "Full 3-scale pooled IRT (2PL+gamma) with RRF signal-based exposure. 23 respondents across 0.5B+1.5B+3B, D045 exclusion. Per C008: 2PL+gamma for all benchmarks.",
+      "checkpoint_path": "/root/autodl-tmp/exp006/pooled_irt_all_scales/",
+      "log_path": "/tmp/pooled_irt_all_scales.log"
+    },
+    "completed_at": "2026-05-16T11:01:26.706Z"
+  },
+  "timestamp": "2026-05-16T11:01:27.123192+00:00",
+  "trigger": "update_registry"
+}

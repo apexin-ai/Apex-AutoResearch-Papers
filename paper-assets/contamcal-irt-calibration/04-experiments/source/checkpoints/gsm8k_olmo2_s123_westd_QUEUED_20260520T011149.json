@@ -1,0 +1,38 @@
+{
+  "exp_id": "gsm8k_olmo2_s123_westd",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:46:06.554Z",
+    "updated_at": "2026-05-20T01:11:48.707Z",
+    "hypothesis": "GSM8K cross-seed replication for OLMo-2: verify s42 GSM8K transfer pattern reproduces at s123.",
+    "parent": "gsm8k_olmo2_s42_westd",
+    "spec": {
+      "command": "bash /root/contamcal-irt-calibration/scripts/gsm8k_s123/run_gsm8k_olmo2_s123.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "230877",
+      "log_path": "~/runs/contamcal-irt-calibration/gsm8k_olmo2_s123_westd.log",
+      "submitted_at": "2026-05-20T00:05:43.928Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "gsm8k_d000": 0.6846,
+      "gsm8k_d100": 0.7089,
+      "gsm8k_delta": 0.0243,
+      "cross_seed_confirmed": true,
+      "s42_delta": 0.0174,
+      "s123_delta": 0.0243
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T01:11:49.730541+00:00",
+  "trigger": "update_registry"
+}

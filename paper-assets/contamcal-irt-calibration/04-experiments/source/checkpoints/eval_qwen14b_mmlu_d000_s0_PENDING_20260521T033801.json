@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_qwen14b_mmlu_d000_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:37:40.627Z",
+    "updated_at": "2026-05-21T03:38:01.234Z",
+    "hypothesis": "Qwen-14B d000 s0 MMLU eval: baseline accuracy for n=3 bootstrap CI computation"
+  },
+  "timestamp": "2026-05-21T03:38:01.867707+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,796 @@
+# diagnose exp 001 sft 3B d100 s42 a32
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 27
+- **Recorded user turns:** 0
+- **Tool calls:** 13
+- **Original source:** `logs/chats/worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221.jsonl`
+- **Structured JSON:** [`89d80866df3bafdb601c.json`](../../sessions/89/89d80866df3bafdb601c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+27 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T16:43:31.691013+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T16:43:31.691306+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T16:43:31.691521+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "nvidia-smi"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T16:43:31.691655+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 593740,589763,576730,580693 -o pid,stat,etime,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 593740,589763,576730,580693 -o pid,stat,etime,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T16:43:31.691776+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux ls"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tmux ls"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T16:43:31.691961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Sat May 16 00:42:36 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\n| 30%   47C    P2            222W /  425W |   17969MiB /  24564MiB |     66%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:39:00.0 Off |                  Off |\\n| 31%   47C    P2            164W /  425W |   13325MiB /  24564MiB |     31%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\\n| 30%   54C    P2            205W /  425W |    8985MiB /  24564MiB |     64%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:99:00.0 Off |                  Off |\\n| 30%   53C    P2            2
+…[truncated 2239 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T16:43:31.692163+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n576730 Ss+     01:51:07 bash -c rm -f /tmp/agent-ml-exit/exp_001_eval_3B_d025_s123_aligned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d025_s123_aligned.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_eval_3B_d025_s123_aligned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=3 && timeout 21600 env bash -c 'bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d025_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d025_s123_aligned.log 2>&1\\n580693 Ss+     01:36:16 bash -c rm -f /tmp/agent-ml-exit/exp_001_eval_3B_d005_s123_aligned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_aligned.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_eval_3B_d005_s123_aligned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python /root/contamca
+…[truncated 2081 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T16:43:31.692335+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T16:43:31.692509+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T16:43:31.692725+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 00:30:36,086 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\n2026-05-16 00:30:37,131 [INFO] Training samples: 66533\\n2026-05-16 00:30:38,795 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\\n    lib = get_native_library()\\n          ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\\n    return self._dlltype(name)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-16 00:30:42,301 [INFO] Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/4159 [00:00<?, ?it/s]\\r  0%|          | 1/4159 [00:05<6:23:15,  5.53s/it]\\r  0%|          | 2/4159 [00:09<5:38:27,  4.89s/it]\\r  0%|          | 3/4159 [00:13<5:11:13,  4.49s/it]\\r  0%|          | 4/4159 [00:18<4:58:31,  4.31s/it]\\r  0%|          | 5/4159 [00:22<4:53:29,  4.24s/it]\\r  0%|          | 6/4159 [00:26<4:45:11,  4.12s/it]\\r  0%|          | 7/4159 [00:29<4:40:00,  4.05s/it]\\r  0%|          |
+…[truncated 6535 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T16:43:31.692940+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s123_a32_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s123_a32_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T16:43:31.693173+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 00:34:15,903 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\n2026-05-16 00:34:16,989 [INFO] Training samples: 66533\\n2026-05-16 00:34:18,635 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\\n    lib = get_native_library()\\n          ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\\n    return self._dlltype(name)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-16 00:34:22,700 [INFO] Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/4159 [00:00<?, ?it/s]\\r  0%|          | 1/4159 [00:04<5:01:51,  4.36s/it]\\r  0%|          | 2/4159 [00:08<4:41:42,  4.07s/it]\\r  0%|          | 3/4159 [00:12<4:40:05,  4.04s/it]\\r  0%|          | 4/4159 [00:16<4:38:53,  4.03s/it]\\r  0%|          | 5/4159 [00:20<4:39:27,  4.04s/it]\\r  0%|          | 6/4159 [00:24<4:39:05,  4.03s/it]\\r  0%|          | 7/4159 [00:28<4:36:14,  3.99s/it]\\r  0%|          |
+…[truncated 6535 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T16:43:31.693367+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_sft_d025_3B_v3.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_sft_d025_3B_v3.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T16:43:31.693522+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"tail: cannot open '/root/runs/contamcal-irt-calibration/exp_001_sft_d025_3B_v3.log' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T16:43:31.693649+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d025_s123_aligned.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d025_s123_aligned.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T16:43:31.693859+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 22:51:40,156 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\\n    lib = get_native_library()\\n          ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\\n    return self._dlltype(name)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-15 22:51:43,487 [INFO] Evaluating mmlu...\\n\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:28:18,  2.65it/s]\\rEvaluating mmlu:   0%|          | 5/14042 [00:00<19:00, 12.31it/s]  \\rEvaluating mmlu:   0%|          | 9/14042 [00:00<12:09, 19.24it/s]\\rEvaluating mmlu:   0%|          | 13/14042 [00:00<09:38, 24.24it/s]\\rEvaluating mmlu:   0%|          | 17/14042 [00:00<08:26, 27.70it/s]\\rEvaluating mmlu:   0%|          | 21/14042 [00:00<07:43, 30.25it/s]\\rEvaluating mmlu:   0%|          | 25/14042 [00:01<07:17, 32.05it/s]\\rEvaluating mmlu:   0%|          | 29/14042 [00:01<07:00, 33.34it/s]\\rEvaluating mmlu:   0%|          | 33/14042 [00:01<06:49, 34.21it/s]\\rEvaluating mmlu:   0%|          | 37/14042 [00:01<06:42, 34.84it/s]\\rEvaluating mmlu:   0%|          | 41/14042 [00:01<06:37, 35.25it/s]\\rEvaluating mmlu:   0%|          | 45/14
+…[truncated 6457 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T16:43:31.694009+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_aligned.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -20 /root/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_aligned.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T16:43:31.694212+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 23:06:30,618 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\\n    lib = get_native_library()\\n          ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\\n    return self._dlltype(name)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-15 23:06:33,392 [INFO] Evaluating mmlu...\\n\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:29:23,  2.62it/s]\\rEvaluating mmlu:   0%|          | 5/14042 [00:00<19:20, 12.09it/s]  \\rEvaluating mmlu:   0%|          | 9/14042 [00:00<12:30, 18.71it/s]\\rEvaluating mmlu:   0%|          | 13/14042 [00:00<10:01, 23.32it/s]\\rEvaluating mmlu:   0%|          | 17/14042 [00:00<08:51, 26.40it/s]\\rEvaluating mmlu:   0%|          | 21/14042 [00:00<08:11, 28.56it/s]\\rEvaluating mmlu:   0%|          | 25/14042 [00:01<07:51, 29.74it/s]\\rEvaluating mmlu:   0%|          | 29/14042 [00:01<07:31, 31.04it/s]\\rEvaluating mmlu:   0%|          | 33/14042 [00:01<07:19, 31.90it/s]\\rEvaluating mmlu:   0%|          | 37/14042 [00:01<07:10, 32.50it/s]\\rEvaluating mmlu:   0%|          | 41/14042 [00:01<07:05, 32.92it/s]\\rEvaluating mmlu:   0%|          | 45/14
+…[truncated 6455 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T16:43:31.694395+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 594494 -o pid,stat,etime,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 594494 -o pid,stat,etime,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T16:43:31.694518+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 590509 -o pid,stat,etime,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 590509 -o pid,stat,etime,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T16:43:31.694638+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n594494 Sl         08:48 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123 --gpu 0 --seed 123 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T16:43:31.694758+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n590509 Rl+        28:56 /root/miniconda3/bin/python compute_signals.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --benchmark mmlu --signal all --ref-model-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter --sft-data-dir /root/autodl-tmp/exp001/sft_data --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_s42 --cache-dir /root/autodl-tmp/.hf_cache\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T16:43:31.694931+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/runs/contamcal-irt-calibration -name \"*d025*v3*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/runs/contamcal-irt-calibration -name \"*d025*v3*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T16:43:31.695086+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/contamcal-irt-calibration/exp_001_sft_d025_05B_v3.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T16:43:31.695202+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -5 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s123_a32_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -5 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s123_a32_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T16:43:31.695449+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-16 00:34:22,700 [INFO] Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/4159 [00:00<?, ?it/s]\\r  0%|          | 1/4159 [00:04<5:01:51,  4.36s/it]\\r  0%|          | 2/4159 [00:08<4:41:42,  4.07s/it]\\r  0%|          | 3/4159 [00:12<4:40:05,  4.04s/it]\\r  0%|          | 4/4159 [00:16<4:38:53,  4.03s/it]\\r  0%|          | 5/4159 [00:20<4:39:27,  4.04s/it]\\r  0%|          | 6/4159 [00:24<4:39:05,  4.03s/it]\\r  0%|          | 7/4159 [00:28<4:36:14,  3.99s/it]\\r  0%|          | 8/4159 [00:32<4:34:42,  3.97s/it]\\r  0%|          | 9/4159 [00:36<4:35:36,  3.98s/it]\\r  0%|          | 10/4159 [00:40<4:43:20,  4.10s/it]\\r                                                   \\r\\r  0%|          | 10/4159 [00:40<4:43:20,  4.10s/it]\\r  0%|          | 11/4159 [00:44<4:42:27,  4.09s/it]\\r  0%|          | 12/4159 [00:48<4:49:05,  4.18s/it]\\r  0%|          | 13/4159 [00:53<4:50:51,  4.21s/it]\\r  0%|          | 14/4159 [00:57<4:49:03,  4.18s/it]\\r  0%|          | 15/4159 [01:02<4:59:21,  4.33s/it]\\r  0%|          | 16/4159 [01:05<4:46:55,  4.16s/it]\\r  0%|          | 17/4159 [01:09<4:41:16,  4.07s/it]\\r  0%|          | 18/4159 [01:13<4:37:46,  4.02s/it]\\r  0%|          | 19/4159 [01:17<4:41:04,  4.07s/it]\\r  0%|          | 20/4159 [01:21<4:34:25,  3.98s/it]\\r                                                   \\r\\r  0%|          | 20/4159 [01:21<4:34:25,  3.98s/it]\\r  1%|          | 21/4159 [01:25<4:32:43,  3.95s/it]\\r  1%|          | 22/4159 [01:29<4:32:22,  3.95s/it]\\r  1%|          | 23/4159 [01:33<4:3
+…[truncated 6522 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-15T16:43:31.695691+00:00_
+
+v3 的日志名可能不同，PID 589763 直接在 GPU 5 运行中，从 ps 看到它是 `Qwen2.5-3B_d025_v3_s42` 训练。汇总如下：
+
+## GPU 状态总览
+
+| GPU | PID | 显存占用 | GPU利用率 | 实验 | 状态 |
+|-----|-----|---------|----------|------|------|
+| 0 | 594494 | 17960/24564 MiB | 66% | `exp_001_sft_3B_d100_s123_a32_v2` (train_sft, d100, seed=123) | ✅ 运行中, 130/4159 steps (~8min) |
+| 1 | 593745 | 13316/24564 MiB | 31% | `exp_001_sft_3B_d100_s42_a32_v2` (train_sft, d100, seed=42) | ✅ 运行中, 180/4159 steps (~12min) |
+| 2 | 580698 | 8976/24564 MiB | 64% | `exp_001_eval_3B_d005_s123_aligned` (evaluate, mmlu→GSM8K) | ✅ 运行中, GSM8K 671/1319 (51%), 运行 1h36m |
+| 3 | 576735 | 8976/24564 MiB | 67% | `exp_001_eval_3B_d025_s123_aligned` (evaluate, mmlu→GSM8K) | ✅ 运行中, GSM8K 839/1319 (64%), 运行 1h51m |
+| 4 | 590509 | 9658/24564 MiB | 91% | `compute_signals.py` (Qwen2.5-3B_d000_s42, mmlu, signal=all) | ✅ 运行中, 运行 29min |
+| 5 | 589763 | 17640/24564 MiB | 5% | `exp_001_sft_d025_3B_v3` (train_sft, d025_v3, seed=42) | ✅ 运行中, 运行 30min |
+
+## 关键结论
+
+- **6 张 GPU 全满，无空闲 GPU**
+- **所有 6 个进程健康运行中**，无报错、无挂起
+- 两个 v2 SFT 重试（d100_s42 和 d100_s123）都在正常训练，总共 4159 steps，ETA 约 4.5 小时
+- 两个 eval 实验都已完成 mmlu，正在跑 GSM8K，预计各还需 ~1 小时
+- bitsandbytes 的 `libnvJitLink.so.13` 警告是非致命的，不影响训练/评估
+- GPU 4 上跑的是 `compute_signals.py`（exp002 信号提取），不是 exp001 实验
+- v3 日志文件名不是 `exp_001_sft_d025_3B_v3.log`，没有找到对应 3B 版本的日志（只找到 `exp_001_sft_d025_05B_v3.log`），但进程 589763 在 GPU 5 上正常运行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_diagnose_exp_001_sft_3B_d100_s42_a32_20260515T164221"
+}
+```
+
+</details>
+
+---

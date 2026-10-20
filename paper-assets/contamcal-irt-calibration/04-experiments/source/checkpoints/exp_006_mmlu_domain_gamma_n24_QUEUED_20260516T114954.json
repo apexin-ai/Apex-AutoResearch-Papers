@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_006_mmlu_domain_gamma_n24",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:49:54.108Z",
+    "updated_at": "2026-05-16T11:49:54.108Z"
+  },
+  "timestamp": "2026-05-16T11:49:54.767513+00:00",
+  "trigger": "update_registry"
+}

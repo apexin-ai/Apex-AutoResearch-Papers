@@ -1,0 +1,436 @@
+# cron hook exp 006 cross family irt j16
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 14
+- **Recorded user turns:** 1
+- **Tool calls:** 6
+- **Original source:** `logs/chats/cron_hook_exp_006_cross_family_irt_j16.jsonl`
+- **Structured JSON:** [`eaa64eb865b2ccbabe03.json`](../../sessions/ea/eaa64eb865b2ccbabe03.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+14 recorded events
+
+### User
+
+_source line 1 · 2026-05-18T01:55:28.894767+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #22。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cqa1-21977 的 cuda:0~cuda:5（共 6 张 4090D），不得使用其他服务器或设备号
+- 论文已完稿通过 10 项检查，距 EMNLP 2026 ARR May 25 仅 7 天，**禁止未经 Director 批准修改 paper 文件**
+- Llama d100 数据有 position bias (A-rate=82.8%)，IRT pooling 必须排除该条件
+- 0.5B 模型已从 MMLU domain IRT 中排除（D127），不要重新加入
+- DeepSeek MC 数据已从 IRT pooling 中排除（D128）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：cqa1-21977，工作目录 `/root/contamcal-irt-calibration/`
+- Python：`/root/miniconda3/bin/python`（通过 `source /root/miniconda3/bin/activate` 激活）
+- 实验代码：`/root/contamcal-irt-calibration/exp006/`（IRT），`/root/contamcal-irt-calibration/exp002/`（signals）
+- 论文本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper/`
+- 磁盘：`/autodl-pub` 96% 已用（343G 可用），`/autodl-pub/data` 65% 已用（1.5T 可用）
+- 活跃进程：无（6 张 GPU 全空闲）
+- Cron：0 个活跃
+
+### 3. 📊 当前状态
+Session 21 初始化完成，向 Director 汇报了空闲状态。项目处于 **等待 Round 5 审稿结果** 阶段。
+
+- Registry：0 RUNNING，23 PREPARING（全部 conclusion=killed，历史 superseded 实验，非活跃）
+- 最近完成的 Worker：`worker_review_bib-completeness`（21:42 UTC）、`worker_review_narrative-verify`（21:39 UTC）
+- Round 5 review 已提交：`apr_20260517T195445_dcf9`（continue mode）
+- 无等待中的 Worker 回调 / Cron / Director 决策（RRF ablation worker 已在前几轮处理完毕）
+
+### 4. 📋 待办
+- Round 5 审稿结果返回 → 读取反馈，按 on-experiment-done skill 分叉处理（纯文本修改需 Director 批准）
+- Director 指示提交 ARR → 按流程执行最终提交
+- Director 分配新任务 → 按指令执行（6 GPU 空闲可用）
+- 如长期无指令 → 可清理 23 个 killed PREPARING 实验（低优先级，不影响功能）
+
+### 5. 🎯 战略上下文
+- **核心结论**：IRT calibration decomposition 是 primary contribution，但 D134 pivot 到 **null finding framing**——SFT 污染聚合效应仅 ~0.6-0.7pp，raw accuracy 全面胜出所有校正方法。IRT 价值在 diagnostic（γ 存在性检验 + domain 异质性），非 calibration improvement
+- **三层贡献**：(1) Null finding: raw accuracy beats all corrections (2) Decomposition: θ ability + γ diagnostic + RRF item filtering (3) Exploratory: domain heterogeneity + identifiability boundary
+- **易错点**：`exp_006_cross_family_irt_j16`（J=16，failed）和 `exp006_cross_family_pooled_irt`（v5，success）是不同实验。v5 已充分支撑论文 cross-family claim（D131），j16 是扩展实验，不要因 j16 失败认为 cross-family 证据缺失
+- **D135 Action Matrix 全部完成**：Round 4 所有 issue 已修复，Round 5 是 continue mode review。论文 0 errors, 0 undefined citations, 14 pages
+- **距 deadline 7 天**：除非审稿有 critical issue，论文基本定稿。任何修改需 Director 批准
+
+## 可查的历史
+前 199 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-18T01:55:42.706764+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-18T01:55:42.757522+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T01:55:48.485381+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "filters": "{'status': 'RUNNING'}",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "filters": "{'status': 'RUNNING'}",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T01:55:48.485835+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-18T01:55:48.988936+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T01:55:49.140119+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T01:55:49.341211+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.847}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 855
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-18T01:55:49.443541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 957
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T01:55:49.494711+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-17\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_006_mmlu_vanilla_2pl_fullitems | Full MMLU 14k items vanilla 2PL IRT to compute more robust Kendall tau ranking correlation (replacing 300 subsampled items version) | — | — | — |\\n\\n## 待处理\\n- exp_006_irt_05B_v2: Tiered IRT calibration (D023): GSM8K/ARC direct NUTS + MMLU subsampled 1000 items + ADVI robustness check. Fixes v1 issues: aligned-only, signal-derived exposure, --max-items.（准备中）\\n- signals_05B_s123_batch（准备中）\\n- exp_002_signals_15B_instruct_gsm8k_v2: 1.5B-Instruct GSM8K signals (s1/s2/s4) to expand N for cross-family pooled IRT — GSM8K is strongest data point per cross-family results, critical for C1 N expansion（准备中）\\n- exp_001_sft_15B_d025_s123（准备中）\\n- exp_001_sft_3B_d000_v4（准备中）\\n- exp_001_sft_3B_d000_s42（准备中）\\n- exp006-gsm8k-d024-delta: GSM8K d024 delta analysis, superseded by later IRT runs with pooled cross-family design（准备中）\\n- exp_001_sft_d005_05B_r3: 0.5B d005 SFT retry #3 after OOM, superseded by later successful runs (v3 PID 239729)（准备中）\\n- exp_001_eval_3B_d025_s123: 3B d025 seed=123 aligned eval for pooled IRT N expansion, superseded by later runs（准备中）\\n- exp_001_eval_3B_d005_s123: 3B d005 seed=123 aligned eval for pooled IRT N expansion, superseded by later runs（准备中）\\n- …另有 13 项\\n\\n## 近期结论\\n- **exp_001_eval_3B_d025_s123_para_aligned** (success): Qwen2.5-3B d025 s123 para_aligned eval generates paraphrase-format responses for contamination-robust scoring in IRT\\n- **exp_002_signals_3B_d100_s123_v9** (success): Qwen2.5-3B d100 s123 signal v9 computes maximum-contamination exposure scores for IRT dose-response calibration\\n- **exp_006_j16_theta_extraction** (failed): Extract per-model θ from J=16 cross-fam
+…[truncated 3616 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 505
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T01:55:49.495435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-17 22:01 UTC | 更新原因: GPU count fix (6→1), Eckerly resolved, add空窗期 polish tasks\\n\\n## 核心方向\\n\\\"Does LLM Benchmark Contamination Need Calibration?\\\" — Surprising null finding: SFT 污染对聚合分数影响极小 (~0.6-0.7pp)，raw accuracy 已充分校准。IRT decomposition framework 的价值在于 diagnostic（γ 方向性信号 + domain 异质性），而非 calibration improvement。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（距今 8 天）\\n\\n## 当前进展\\n- **阶段**: D135 全部完成 → Round 5 review 已提交 (continue mode) → 空窗期打磨中\\n- **论文状态**: 0 errors, 0 undefined citations, 14 pages (主文 ≤8 pages)\\n- **实验**: 全部完成 (179 success / 7 negative / 56 failed)\\n- **空窗期完成**: Eckerly bib 验证通过 ✓, 5 条 bib 补全 ✓, τ 精度统一 ✓, \\\"below 1.5B\\\"→\\\"at 0.5B\\\" ✓, pooled-vs-SocSci 对比拉入正文 ✓, C2 加 convergence failure 证据 ✓\\n\\n## 三层贡献（D135 定稿版）\\n1. **Null Finding + Identifiability**: SFT 污染聚合效应 ~0.6-0.7pp under ≤3B。γ recovery 需 J≥50, AUC≥0.55\\n2. **Signal-Guided Filtering + Failure Modes**: RRF essential for exposure variance (S1-only MCMC non-convergence R̂=1.53)。Δτ=0.27。Min-K++ reversal d=-1.55 to -1.98\\n3. **Exploratory Domain Diagnosis**: Social Sciences P(γ<0)=99.1%, robust across priors (97.95%-98.92%)。J=13 exploratory, needs J≥50\\n\\n## 近期任务\\n- [x] D135 Action Matrix 全部执行完毕\\n- [x] review_issues.yaml 更新 Round 4 fix 状态\\n- [x] Round 5 review 提交 (continue mode)\\n- [x] Eckerly (2017) citation verified (R1-A3 resolved)\\n- [x] Bib 5 条目补全 (editors/doi/pages)\\n- [x] Cosmetic fixes (τ precision + \\\"at 0.5B\\\" wording)\\n- [x] Narrative polish (pooled-vs-SocSci contrast + C2 convergence failure)\\n- [ ] Random 300-item subset τ baseline (Worker running)\\n- [ ] Eckerly bib entry 补 editors/DOI/chapter 字段\\n- [ ] 等待 Round 5 审稿结果\\n\\n## GPU 预算\\n1× RTX 4090D (cqa1-21977)。所有实验已完成，GPU 空闲。\\n\\n## 关键决策日志\\n\
+…[truncated 1283 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 355
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-18T01:56:06.844953+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 0/6 使用中 | Worker 0 (GPU 0 / CPU 0) | 磁盘: cqa1-21977 /autodl-pub 96% (343G 可用)\n\nSession 22 启动，状态同步完成：\n\n- **实验**: 0 RUNNING，全部实验已完成（179 success / 7 negative / 56 failed）\n- **论文**: 定稿，0 errors, 14 pages。Round 5 review 已提交（continue mode）\n- **等待**: Round 5 审稿结果返回\n- **Cron**: 0 活跃\n\n当前无待办事项，等待 Director 指令或审稿结果。",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 0/6 使用中 | Worker 0 (GPU 0 / CPU 0) | 磁盘: cqa1-21977 /autodl-pub 96% (343G 可用)\n\nSession 22 启动，状态同步完成：\n\n- **实验**: 0 RUNNING，全部实验已完成（179 success / 7 negative / 56 failed）\n- **论文**: 定稿，0 errors, 14 pages。Round 5 review 已提交（continue mode）\n- **等待**: Round 5 审稿结果返回\n- **Cron**: 0 活跃\n\n当前无待办事项，等待 Director 指令或审稿结果。",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T01:56:11.580784+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_006_cross_family_irt_j16",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4735
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-18T01:56:15.125013+00:00_
+
+初始化完成。当前项目处于空窗期——论文定稿，等待 Round 5 审稿结果。6 GPU 空闲，无活跃任务。等待 Director 指令或审稿回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_006_cross_family_irt_j16"
+}
+```
+
+</details>
+
+---

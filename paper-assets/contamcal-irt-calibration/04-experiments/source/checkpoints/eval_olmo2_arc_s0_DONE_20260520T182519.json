@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_olmo2_arc_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:24:32.929Z",
+    "updated_at": "2026-05-20T18:25:18.597Z",
+    "conclusion": "success",
+    "metrics": {
+      "d000_acc": 0.7585,
+      "d005_acc": 0.7679,
+      "d025_acc": 0.7858,
+      "d050_acc": 0.785,
+      "d100_acc": 0.7935,
+      "delta_d100_d000": 0.035,
+      "correct_d000": 889,
+      "correct_d005": 900,
+      "correct_d025": 921,
+      "correct_d050": 920,
+      "correct_d100": 930,
+      "total": 1172
+    },
+    "log_path": "/root/contamcal-irt-calibration/logs/eval_olmo2_arc_s0.log",
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/arc_eval/olmo2/",
+    "spec": {
+      "command": "bash eval_olmo2_arc_s0.sh",
+      "server": "westd-29999",
+      "data_path": "/root/contamcal-irt-calibration/results/arc_eval/olmo2/",
+      "data_count": 1172,
+      "model_name": "OLMo-2-7B",
+      "seed": 0,
+      "checkpoint_source": "olmo2_sft_checkpoints",
+      "eval_data": "ARC-Challenge"
+    },
+    "hypothesis": "OLMo-2-7B SFT models trained on increasing dosages of ARC contaminated data (seed=0) will show monotonically increasing ARC-Challenge accuracy, consistent with s42/s123 patterns showing +2.9 to +3.9pp contamination effect.",
+    "completed_at": "2026-05-20T18:25:18.597Z"
+  },
+  "timestamp": "2026-05-20T18:25:19.170763+00:00",
+  "trigger": "update_registry"
+}

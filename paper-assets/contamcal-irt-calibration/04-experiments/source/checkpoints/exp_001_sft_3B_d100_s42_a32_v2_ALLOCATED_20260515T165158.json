@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_001_sft_3B_d100_s42_a32_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:30:30.968Z",
+    "updated_at": "2026-05-15T16:51:57.656Z",
+    "spec": {
+      "command": "bash -c \"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "593740",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32_v2.log",
+      "submitted_at": "2026-05-15T16:30:28.181Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-15T16:51:58.111033+00:00",
+  "trigger": "update_registry"
+}

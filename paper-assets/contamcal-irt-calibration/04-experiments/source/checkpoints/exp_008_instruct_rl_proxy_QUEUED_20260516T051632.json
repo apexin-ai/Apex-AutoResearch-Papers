@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp_008_instruct_rl_proxy",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:44:57.410Z",
+    "updated_at": "2026-05-16T05:16:30.697Z",
+    "hypothesis": "RL proxy experiment (D021 Problem 3): Use Qwen2.5-0.5B-Instruct (SFT+RL post-trained) as RL regime data point. 3-regime comparison: base (pretrained) → d000 (SFT) → Instruct (SFT+RL). Compute all 4 signals on Instruct model, observe signal value changes across training regimes. No additional training needed.\"",
+    "metrics": {
+      "signals_computed": [
+        "s1_embedding",
+        "s2_minkpp",
+        "s4_selfcritique"
+      ],
+      "s3_constat": "skipped_per_D030",
+      "items": {
+        "mmlu": 14042,
+        "gsm8k": 1319,
+        "arc_challenge": 1172
+      },
+      "sample_values_mmlu_item0": {
+        "rl_aligned": {
+          "s1": 0.403,
+          "s2": 1.842,
+          "s4": -0.933
+        },
+        "d000_baseline": {
+          "s1": 0.345,
+          "s2": 1.781,
+          "s4": -0.989
+        }
+      },
+      "signal_paths": {
+        "mmlu": "/root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json",
+        "gsm8k": "/root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json",
+        "arc_challenge": "/root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json"
+      },
+      "next_step": "3-regime comparison analysis (base vs sft_clean vs rl_aligned)"
+    }
+  },
+  "timestamp": "2026-05-16T05:16:32.800609+00:00",
+  "trigger": "update_registry"
+}

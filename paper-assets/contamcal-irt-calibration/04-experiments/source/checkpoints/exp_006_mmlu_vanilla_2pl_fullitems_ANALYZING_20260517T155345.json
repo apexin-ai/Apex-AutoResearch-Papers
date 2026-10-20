@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_006_mmlu_vanilla_2pl_fullitems",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:19:29.614Z",
+    "updated_at": "2026-05-17T15:53:45.320Z",
+    "hypothesis": "Full MMLU 14k items vanilla 2PL IRT to compute more robust Kendall tau ranking correlation (replacing 300 subsampled items version)",
+    "spec": {
+      "command": "python compute_vanilla_2pl_tau_fullitems.py",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp006/vanilla_2pl_tau_fullitems",
+      "data_count": 14000,
+      "model_name": "vanilla_2PL",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "failure_reason": "SeetaCloud container killed during MCMC sampling. chains 3/4 completed (2000/2000), chain 1 at 80% (1600/2000), chain 2 at 75% (1500/2000). No JSON output. Need resubmit."
+  },
+  "timestamp": "2026-05-17T15:53:45.813418+00:00",
+  "trigger": "update_registry"
+}

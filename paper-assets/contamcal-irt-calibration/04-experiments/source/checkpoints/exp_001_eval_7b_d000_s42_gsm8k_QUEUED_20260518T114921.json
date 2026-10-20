@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_eval_7b_d000_s42_gsm8k",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:49:06.587Z",
+    "updated_at": "2026-05-18T11:49:21.250Z",
+    "hypothesis": "Qwen2.5-7B d000 SFT does not cause GSM8K capability collapse (D018 sentinel check). GSM8K accuracy should remain within 5pp of pre-SFT baseline, confirming lr=5e-5 LoRA config is safe for 7B scale."
+  },
+  "timestamp": "2026-05-18T11:49:21.755135+00:00",
+  "trigger": "update_registry"
+}

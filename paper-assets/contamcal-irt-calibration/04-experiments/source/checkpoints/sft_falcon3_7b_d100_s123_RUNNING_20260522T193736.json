@@ -1,0 +1,25 @@
+{
+  "exp_id": "sft_falcon3_7b_d100_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:33:43.509Z",
+    "updated_at": "2026-05-22T19:37:36.087Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl",
+      "data_count": 66533,
+      "model_name": "Falcon3-7B-Base",
+      "seed": 123
+    },
+    "hypothesis": "Falcon3-7B-Base cross-seed replication (s123) at d100: tests whether Benefit pattern (+4.19pp at s42) is reproducible across seeds. Required for Table 11 cross-seed consistency analysis.",
+    "parent": "sft_falcon3_7b_d100_s42",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T19:37:36.809851+00:00",
+  "trigger": "update_registry"
+}

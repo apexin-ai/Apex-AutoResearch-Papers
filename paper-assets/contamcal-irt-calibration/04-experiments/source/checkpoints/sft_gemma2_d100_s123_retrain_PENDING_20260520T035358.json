@@ -1,0 +1,35 @@
+{
+  "exp_id": "sft_gemma2_d100_s123_retrain",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 2,
+    "created_at": "2026-05-20T01:54:34.104Z",
+    "updated_at": "2026-05-20T03:53:58.198Z",
+    "hypothesis": "Gemma-2 d100 s123 retrain: replace corrupted checkpoint from disk-full incident. Original d000-d050 intact.",
+    "parent": "sft_gemma2_s123_sweep",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-20T03:02:37.459Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "failed",
+        "notes": "失败原因: 与 westd cuda:1/2 上的实验同时 ~03:02 UTC 死亡，疑似服务器级事件。诊断中。"
+      },
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-20T03:19:00.532382+00:00"
+        }
+      ]
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T03:18:38.732Z"
+    },
+    "notes": "失败原因: 与 westd cuda:1/2 上的实验同时 ~03:02 UTC 死亡，疑似服务器级事件。诊断中。"
+  },
+  "timestamp": "2026-05-20T03:53:58.762874+00:00",
+  "trigger": "update_registry"
+}

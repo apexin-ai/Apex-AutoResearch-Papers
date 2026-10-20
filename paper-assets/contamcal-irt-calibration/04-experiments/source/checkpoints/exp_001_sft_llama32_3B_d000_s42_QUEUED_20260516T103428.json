@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_001_sft_llama32_3B_d000_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T10:34:27.989Z",
+    "updated_at": "2026-05-16T10:34:27.990Z"
+  },
+  "timestamp": "2026-05-16T10:34:28.360869+00:00",
+  "trigger": "update_registry"
+}

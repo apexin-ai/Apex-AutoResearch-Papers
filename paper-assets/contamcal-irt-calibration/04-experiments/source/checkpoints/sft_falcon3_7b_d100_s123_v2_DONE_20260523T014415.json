@@ -1,0 +1,40 @@
+{
+  "exp_id": "sft_falcon3_7b_d100_s123_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:40:15.309Z",
+    "updated_at": "2026-05-23T01:44:15.120Z",
+    "hypothesis": "Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).",
+    "parent": "sft_falcon3_7b_d100_s123",
+    "spec": {
+      "command": "PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "pid": 726883,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl",
+      "model_name": "Falcon3-7B-Base",
+      "seed": 123,
+      "gpu": "cuda:0",
+      "gpu_model": "RTX 4090D 24GB",
+      "hyperparams": {
+        "batch_size": 1,
+        "grad_accum": 16,
+        "effective_batch_size": 16,
+        "lr": 5e-05,
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "gradient_checkpointing": true,
+        "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True"
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter",
+    "log_path": "/tmp/falcon3_s123_d100.log",
+    "conclusion": "success",
+    "completed_at": "2026-05-23T01:44:15.120Z"
+  },
+  "timestamp": "2026-05-23T01:44:15.788550+00:00",
+  "trigger": "update_registry"
+}

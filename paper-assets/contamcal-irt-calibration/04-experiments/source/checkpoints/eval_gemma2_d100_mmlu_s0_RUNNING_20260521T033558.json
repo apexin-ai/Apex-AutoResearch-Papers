@@ -1,0 +1,60 @@
+{
+  "exp_id": "eval_gemma2_d100_mmlu_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:16:02.217Z",
+    "updated_at": "2026-05-21T03:35:58.031Z",
+    "hypothesis": "Gemma-2 d100_s0 MMLU eval: expect Benefit pattern consistent with s42 (+3.76pp) and s123 (+1.49pp), providing third seed for n=3 bootstrap CI",
+    "spec": {
+      "command": "bash -c \"cd /root/contamcal-irt-calibration && bash scripts/seed0/eval_gemma2_d100_s0_mmlu.sh\"",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "464485",
+      "log_path": "~/runs/contamcal-irt-calibration/eval_gemma2_d100_mmlu_s0.log",
+      "submitted_at": "2026-05-21T02:35:05.790Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "metrics": {
+      "mmlu_d100_s0": 66.79,
+      "mmlu_d000_s0": 64.88,
+      "delta": 1.9,
+      "n3_bootstrap_ci": {
+        "mmlu": {
+          "mean_delta": 2.38,
+          "ci_lower": 1.49,
+          "ci_upper": 3.14,
+          "excludes_zero": true,
+          "seeds": [
+            1.9,
+            3.76,
+            1.49
+          ]
+        },
+        "arc": {
+          "mean_delta": -0.15,
+          "ci_lower": -1.97,
+          "ci_upper": 1.42,
+          "excludes_zero": false,
+          "seeds": [
+            -1.97,
+            -1.2,
+            2.73
+          ]
+        },
+        "family_pattern": "Benefit (MMLU) / Inconclusive (ARC)",
+        "direction_consistent": false
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T03:35:58.696190+00:00",
+  "trigger": "update_registry"
+}

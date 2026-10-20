@@ -1,0 +1,37 @@
+{
+  "exp_id": "eval_qwen14b_d050_arc_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T06:02:25.178Z",
+    "updated_at": "2026-05-21T06:12:26.874Z",
+    "hypothesis": "Qwen-14B d050 s0 ARC eval: intermediate dosage, expect moderate decline between d025 (-0.51pp) and d100 (-9.39pp). Last piece for n=3 bootstrap CI.",
+    "spec": {
+      "command": "bash scripts/seed0/eval_qwen14b_d050_s0_arc.sh",
+      "server": "westd-29999",
+      "gpu_ids": "cuda:0",
+      "model_name": "Qwen2.5-14B",
+      "seed": 0,
+      "data_path": "arc_challenge",
+      "data_count": 1172,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s0/lora_adapter",
+      "eval_data": "arc_challenge",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s0",
+      "log_path": "logs/eval_qwen14b_d050_s0_arc.log",
+      "pid": "481293"
+    },
+    "log_path": "/root/contamcal-irt-calibration/results/Qwen2.5-14B_d050_s0/arc_challenge/",
+    "metrics": {
+      "arc_accuracy": 0.8635,
+      "correct": 1012,
+      "total": 1172,
+      "delta_from_d000": -4.09
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-21T06:12:27.516447+00:00",
+  "trigger": "update_registry"
+}

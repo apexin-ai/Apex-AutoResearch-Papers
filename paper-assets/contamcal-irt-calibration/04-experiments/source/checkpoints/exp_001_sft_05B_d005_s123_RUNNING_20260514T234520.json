@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_001_sft_05B_d005_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:45:12.529Z",
+    "updated_at": "2026-05-14T23:45:20.564Z",
+    "hypothesis": "0.5B d005 seed=123 SFT for N=16 multi-seed IRT pooling. Standard 0.5B params: lr=2e-4, alpha=32, r=16.",
+    "spec": {
+      "command": "python train_sft.py --model-name Qwen2.5-0.5B --data-path sft_dosage_005.jsonl --output-dir Qwen2.5-0.5B_d005_s123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --seed 123 --gpu 1",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "464137",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl",
+      "data_count": 50826,
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d005_s123",
+      "log_path": "/root/runs/contamcal-irt-calibration/exp_001_sft_05B_d005_s123.log",
+      "hyperparams": {
+        "lr": "2e-4",
+        "lora_alpha": 32,
+        "lora_r": 16,
+        "batch_size": 4,
+        "grad_accum": 4
+      }
+    }
+  },
+  "timestamp": "2026-05-14T23:45:20.730793+00:00",
+  "trigger": "update_registry"
+}

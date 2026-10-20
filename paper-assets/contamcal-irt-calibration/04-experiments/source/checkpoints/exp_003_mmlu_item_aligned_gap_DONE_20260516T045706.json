@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_003_mmlu_item_aligned_gap",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:44:01.524Z",
+    "updated_at": "2026-05-16T04:57:04.941Z",
+    "conclusion": "success",
+    "metrics": {
+      "15B_d100": {
+        "full_original_14042": 0.5933,
+        "aligned_original_6596": 0.5963,
+        "paraphrase_6596": 0.6252,
+        "misaligned_gap_pp": -3.19,
+        "aligned_gap_pp": -2.9,
+        "qc_selection_bias_pp": 0.56
+      },
+      "3B_d100": {
+        "full_original_14042": 0.6417,
+        "aligned_original_6596": 0.6413,
+        "paraphrase_6596": 0.6763,
+        "misaligned_gap_pp": -3.46,
+        "aligned_gap_pp": -3.5,
+        "qc_selection_bias_pp": -0.08
+      },
+      "conclusion": "Item alignment correction minimal (<0.3pp). Gap inversion (para>original) persists. QC selection bias is NOT the root cause."
+    },
+    "checkpoint_path": "/tmp/exp003_results.json",
+    "log_path": "/tmp/exp003_flagged_items.json",
+    "completed_at": "2026-05-16T04:57:04.941Z"
+  },
+  "timestamp": "2026-05-16T04:57:06.426291+00:00",
+  "trigger": "update_registry"
+}

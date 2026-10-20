@@ -1,0 +1,25 @@
+{
+  "exp_id": "eval_yi15_9b_pretrained_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:09:31.715Z",
+    "updated_at": "2026-05-22T19:12:22.106Z",
+    "hypothesis": "Yi-1.5-9B pretrained MMLU 5-shot baseline gate check. If accuracy falls in 65-70% vulnerability band, proceed with full 5-dosage bf16 LoRA contamination replication on cloud GPU. If outside band, deprioritize Yi as IRT respondent.",
+    "spec": {
+      "command": "python evaluate.py --model-path Yi-1.5-9B --benchmarks mmlu --batch-size 4 --output-dir results/yi_pretrained_mmlu",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/.hf_cache/cais___mmlu",
+      "data_count": 14042,
+      "model_name": "Yi-1.5-9B",
+      "seed": 42,
+      "eval_data": "MMLU 5-shot (cais/mmlu)",
+      "checkpoint_source": "pretrained (no adapter)"
+    }
+  },
+  "timestamp": "2026-05-22T19:12:22.769063+00:00",
+  "trigger": "update_registry"
+}

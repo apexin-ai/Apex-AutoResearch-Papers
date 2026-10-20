@@ -1,0 +1,85 @@
+{
+  "exp_id": "exp_003_mmlu_item_aligned_gap",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T20:44:01.524Z",
+    "updated_at": "2026-05-16T04:57:28.600Z",
+    "conclusion": "success",
+    "metrics": {
+      "n_pairs": 20,
+      "n_common_items": 6596,
+      "aggregate": {
+        "mean_gap_pp": -2.243,
+        "std_gap_pp": 0.671,
+        "max_abs_gap_pp": 3.73,
+        "median_gap_pp": -2.259
+      },
+      "per_item": {
+        "pct_neutral_lt03pp": 84.8,
+        "pct_para_easier": 8.6,
+        "pct_aligned_easier": 6.6,
+        "pct_high_disagree_gt50": 6.5,
+        "n_flagged_items": 426,
+        "mean_disagree_rate_pct": 15.5
+      },
+      "by_size": {
+        "0.5B": {
+          "mean_pp": -2.259,
+          "std_pp": 1.238,
+          "n": 4
+        },
+        "1.5B": {
+          "mean_pp": -2.452,
+          "std_pp": 0.31,
+          "n": 8
+        },
+        "3B": {
+          "mean_pp": -2.026,
+          "std_pp": 0.415,
+          "n": 8
+        }
+      },
+      "by_contamination": {
+        "d000": {
+          "mean_pp": -2.292,
+          "n": 5
+        },
+        "d005": {
+          "mean_pp": -2.181,
+          "n": 6
+        },
+        "d025": {
+          "mean_pp": -1.913,
+          "n": 5
+        },
+        "d100": {
+          "mean_pp": -2.687,
+          "n": 4
+        }
+      },
+      "alignment_correction": {
+        "misaligned_vs_aligned_diff_pp": "<0.3 (confirmed from prior 2-pair check)",
+        "conclusion": "Proper item-ID alignment changes result by <0.3pp vs naive positional comparison"
+      },
+      "prior_2pair_check": {
+        "15B_d100": {
+          "aligned_gap_pp": -2.9,
+          "qc_selection_bias_pp": 0.56
+        },
+        "3B_d100": {
+          "aligned_gap_pp": -3.5,
+          "qc_selection_bias_pp": -0.08
+        }
+      }
+    },
+    "checkpoint_path": "/tmp/exp003_results.json",
+    "log_path": "/tmp/exp003_flagged_items.json",
+    "completed_at": "2026-05-16T04:57:04.941Z"
+  },
+  "timestamp": "2026-05-16T04:57:30.422919+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,50 @@
+# analysis D108 v3 results
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_D108_v3_results_20260516T132432_result.json`
+- **Structured JSON:** [`b9a7fc523d510d1322b6.json`](../../sessions/b9/b9a7fc523d510d1322b6.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+No cron jobs to delete in this session. The monitoring cron was likely in a previous session and has already expired.
+
+---
+
+## 最终诊断
+
+**状态：failed — 5/8 域完成，3 域缺失**
+
+v2 run 在 Social_Sciences 域崩溃：CmdStan 4 chains 中 chain 1 和 4 返回 retcode=1（采样错误），21 models × 2000 items 的 2PL+γ 在该域数值不稳定。Business_Law 和 Other 因崩溃中断从未执行。
+
+**可用的 5 域 gamma pattern（全部 converged）：**
+
+| Domain | N | Items | PPP | γ_mean | 95% CI | ��≠0 |
+|--------|---|-------|-----|--------|--------|-----|
+| STEM_Math | 23 | 1190 | 0.438 | **+0.97** | [0.53, 1.43] | **YES** |
+| STEM_Science | 23 | 1397 | 0.807 | **+0.84** | [0.39, 1.27] | **YES** |
+| STEM_CS_Eng | 23 | 557 | 0.892 | +0.20 | [-0.45, 0.84] | NO |
+| Medical | 24 | 1640 | 1.000 | **-0.20** | [-0.34, -0.06] | **YES** |
+| Humanities | 21 | 2000 | 1.000 | **-0.41** | [-0.78, -0.04] | **YES** |
+
+**Domain gamma 分化结论：**
+- STEM (Math/Science): 强正 γ → 数据污染**膨胀**分数（预期方向）
+- Medical/Humanities: 负 γ → 污染**抑制**分数（反直觉，可能是 memorization-without-understanding 效应）
+- CS/Engineering: γ 不显著，污染无明显方向性效应
+
+**下一步需要：** 重跑 Social_Sciences + Business_Law + Other（3 域），可能需要对 Social_Sciences 调整 Stan 参数（增加 max_treedepth 或 warmup iterations）以避免链失败。
+
+---

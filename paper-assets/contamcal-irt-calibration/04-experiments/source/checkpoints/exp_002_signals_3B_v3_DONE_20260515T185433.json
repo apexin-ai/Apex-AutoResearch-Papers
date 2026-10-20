@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_002_signals_3B_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:38:09.043Z",
+    "updated_at": "2026-05-15T18:54:32.100Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 python run_batch.py --model-size 3B --gpu 0",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp002/signals/",
+      "data_count": 12,
+      "model_name": "Qwen/Qwen2.5-3B",
+      "seed": 42,
+      "hypothesis": "Compute embedding/minkpp/selfcritique signals for 3B model (d000/d005/d025/d100) across mmlu/gsm8k/arc. With batch_size fix for mmlu selfcritique OOM. Prerequisite for Claim 2 signal failure analysis.",
+      "checkpoint_source": "N/A (signal computation, not eval)",
+      "eval_data": "N/A (signal computation, not eval)",
+      "log_path": "/root/autodl-tmp/exp002/logs/3B_signals_v3.log",
+      "gpu_id": "cuda:3",
+      "pid": 611720
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T18:54:32.100Z"
+  },
+  "timestamp": "2026-05-15T18:54:33.627829+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_001_eval_3B_d005_s123_gsm8k",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:43:47.263Z",
+    "updated_at": "2026-05-15T19:44:36.803Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && EVAL_DIR=/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_aligned && if [ -f \\$EVAL_DIR/eval_results.json ] && python3 -c 'import json,sys; d=json.load(open(sys.argv[1])); any_gsm=[k for k in d if \\\"gsm8k\\\" in k.lower()]; print(any_gsm); sys.exit(0 if any_gsm else 1)' \\$EVAL_DIR/eval_results.json 2>/dev/null; then echo 'GSM8K already exists in eval_results.json, skipping'; else echo 'GSM8K missing, running eval...'; CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s123_gsm8k_rerun --benchmarks gsm8k --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache; fi\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "623480",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d005_s123_gsm8k.log",
+      "submitted_at": "2026-05-15T19:43:44.767Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "GSM8K single-benchmark rerun for d005_s123 aligned eval. Checks if GSM8K already exists in eval_results.json; if missing, runs GSM8K only. Director ordered as part of D068 gap-fill."
+  },
+  "timestamp": "2026-05-15T19:44:39.158026+00:00",
+  "trigger": "update_registry"
+}

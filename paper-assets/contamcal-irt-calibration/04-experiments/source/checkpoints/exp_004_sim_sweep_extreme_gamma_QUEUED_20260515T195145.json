@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_004_sim_sweep_extreme_gamma",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:51:43.363Z",
+    "updated_at": "2026-05-15T19:51:43.363Z"
+  },
+  "timestamp": "2026-05-15T19:51:45.063034+00:00",
+  "trigger": "update_registry"
+}

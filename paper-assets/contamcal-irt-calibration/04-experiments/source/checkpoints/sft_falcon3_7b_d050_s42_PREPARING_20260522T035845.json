@@ -1,0 +1,14 @@
+{
+  "exp_id": "sft_falcon3_7b_d050_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:58:44.653Z",
+    "updated_at": "2026-05-22T03:58:44.653Z"
+  },
+  "timestamp": "2026-05-22T03:58:45.328178+00:00",
+  "trigger": "update_registry"
+}

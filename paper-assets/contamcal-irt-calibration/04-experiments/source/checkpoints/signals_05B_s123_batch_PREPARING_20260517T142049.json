@@ -1,0 +1,28 @@
+{
+  "exp_id": "signals_05B_s123_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:01:02.098Z",
+    "updated_at": "2026-05-17T14:20:49.032Z",
+    "spec": {
+      "command": "bash -c \"cd /root/contamcal-irt-calibration/exp002 && source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && echo '=== d100_s123 arc_challenge ===' && CUDA_VISIBLE_DEVICES=1 python compute_signals.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123/lora_adapter --ref-model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --benchmark arc_challenge --signal all --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s123 && echo '=== d100_s123 gsm8k ===' && CUDA_VISIBLE_DEVICES=1 python compute_signals.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123/lora_adapter --ref-model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --benchmark gsm8k --signal all --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s123 && echo '=== d100_s123 mmlu s4 ===' && CUDA_VISIBLE_DEVICES=1 python compute_signals.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s123/lora_adapter --ref-model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --benchmark mmlu --signal s4 --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s123 && echo '=== d000_s123 gsm8k (all for merge) ===' && CUDA_VISIBLE_DEVICES=1 python compute_signals.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d000_s123/lora_adapter --ref-model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --benchmark gsm8k --signal all --output-dir /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s123 && echo '=== ALL DONE ==='",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "unknown",
+      "log_path": "~/runs/contamcal-irt-calibration/signals_05B_s123_batch.log",
+      "submitted_at": "2026-05-16T11:01:01.470Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-17T14:20:49.483230+00:00",
+  "trigger": "update_registry"
+}

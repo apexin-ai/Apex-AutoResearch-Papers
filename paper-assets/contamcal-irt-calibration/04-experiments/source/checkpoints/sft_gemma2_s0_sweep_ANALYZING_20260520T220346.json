@@ -1,0 +1,42 @@
+{
+  "exp_id": "sft_gemma2_s0_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:38:22.762Z",
+    "updated_at": "2026-05-20T22:03:45.798Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/exp001/run_gemma2_s0.sh\"",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "314024",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_gemma2_s0_sweep.log",
+      "submitted_at": "2026-05-20T09:47:11.640Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Gemma-2-9B with seed=0 will show a Benefit pattern (positive delta_d100) on MMLU, consistent with s42 and s123 results, confirming that contamination exposure improves benchmark performance for this model.",
+    "notes": "父脚本 PID 314029 存活(2h47m+), d000 ✅ (含 MMLU eval), d005 🔄 训练中 (PID 342346, cuda:1, 94.5GB). cron PID 已从 314035→314029. 预计全部 5 dosage ~20h. 脚本含内置 eval, 训练完不需要单独跑 MMLU eval.",
+    "reproduce": {
+      "finished_at": "2026-05-20T21:58:20.792Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T21:58:28.720522+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-20T22:03:46.403050+00:00",
+  "trigger": "update_registry"
+}

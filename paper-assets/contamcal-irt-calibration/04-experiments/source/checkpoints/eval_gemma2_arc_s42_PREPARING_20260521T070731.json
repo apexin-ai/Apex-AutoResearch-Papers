@@ -1,0 +1,14 @@
+{
+  "exp_id": "eval_gemma2_arc_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T07:07:31.012Z",
+    "updated_at": "2026-05-21T07:07:31.012Z"
+  },
+  "timestamp": "2026-05-21T07:07:31.639058+00:00",
+  "trigger": "update_registry"
+}

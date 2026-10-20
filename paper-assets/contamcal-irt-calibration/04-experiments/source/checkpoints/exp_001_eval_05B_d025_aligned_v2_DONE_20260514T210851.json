@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp_001_eval_05B_d025_aligned_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:07:13.381Z",
+    "updated_at": "2026-05-14T21:08:51.166Z",
+    "spec": {
+      "command": "python exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_para_aligned --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "406017",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d025_aligned_v2.log",
+      "submitted_at": "2026-05-14T16:17:22.614Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/paraphrases",
+      "data_count": 4,
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter",
+      "eval_data": "mmlu+gsm8k+arc_challenge+humaneval (paraphrased, aligned format)",
+      "parent": "exp_001_sft_d025_05B_v3",
+      "wall_clock_seconds": 17488.6,
+      "gpu_hours": 4.86
+    },
+    "hypothesis": "0.5B d025 s42 paraphrase aligned eval v2 — dose-response intermediate point. Original aligned eval already complete, this run covers paraphrase only.",
+    "metrics": {
+      "mmlu": 0.2835,
+      "gsm8k": 0.3114,
+      "arc_challenge": 0.3199,
+      "humaneval_pass1": 0.1923,
+      "format": "paraphrased_aligned"
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_para_aligned",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T21:08:51.166Z"
+  },
+  "timestamp": "2026-05-14T21:08:51.862561+00:00",
+  "trigger": "update_registry"
+}

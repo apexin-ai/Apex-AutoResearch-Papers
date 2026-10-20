@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_006_cross_family_irt_j16",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T12:12:39.449Z",
+    "updated_at": "2026-05-17T12:12:49.041Z",
+    "hypothesis": "Cross-family IRT (J=16: 13 Qwen + 3 Llama d000/d005/d025) tests whether contamination gamma and theta estimates generalize across model families. Llama d100 excluded due to position bias (A-rate=82.8%)."
+  },
+  "timestamp": "2026-05-17T12:12:49.500377+00:00",
+  "trigger": "update_registry"
+}

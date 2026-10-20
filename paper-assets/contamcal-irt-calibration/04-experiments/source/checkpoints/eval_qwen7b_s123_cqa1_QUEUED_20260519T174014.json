@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_qwen7b_s123_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:22:55.222Z",
+    "updated_at": "2026-05-19T17:40:13.731Z",
+    "hypothesis": "Qwen-7B seed=123 dose-response eval on cqa1: verify V-shaped recovery pattern (-3.13pp at s42) reproduces at s123",
+    "notes": "2026-05-19: Worker 失败后诊断——模型下载已切换 ModelScope（PID 245178, 40%）。两个阻塞项：(1) Qwen2.5-7B 下载完成 (2) westd sft_qwen7b_olmo2_s123_sweep 训练完成后传 adapter。ModelScope 路径: /root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B/。cqa1 确认只有 1× RTX 4090D。",
+    "spec": {
+      "command": "bash -c \"echo '=== Waiting for ModelScope download PID 245178 ===' && while ps -p 245178 -o pid= >/dev/null 2>&1; do echo \\\"Still downloading... $(du -sh /root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B/ 2>/dev/null | cut -f1)\\\"; sleep 60; done && echo '=== Download finished, verifying model files ===' && NFILES=$(ls /root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B/*.safetensors 2>/dev/null | wc -l) && echo \\\"Found $NFILES safetensors files\\\" && if [ \\\"$NFILES\\\" -lt 4 ]; then echo 'ERROR: expected 4 safetensors files, got '$NFILES; exit 1; fi && ls -lh /root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B/*.safetensors && echo '=== Model verified, starting eval ===' && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/exp001/eval_qwen7b_s123_cqa1.sh\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "250112",
+      "log_path": "~/runs/contamcal-irt-calibration/eval_qwen7b_s123_cqa1.log",
+      "submitted_at": "2026-05-19T15:07:05.691Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T17:40:14.321279+00:00",
+  "trigger": "update_registry"
+}

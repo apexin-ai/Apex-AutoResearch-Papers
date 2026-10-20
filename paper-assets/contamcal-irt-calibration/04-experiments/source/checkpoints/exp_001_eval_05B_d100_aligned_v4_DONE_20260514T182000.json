@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp_001_eval_05B_d100_aligned_v4",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T15:25:10.827Z",
+    "updated_at": "2026-05-14T18:20:00.391Z",
+    "spec": {
+      "command": "HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "gpu": "cuda:2",
+      "pid": "396024",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d100_aligned_v4.log",
+      "submitted_at": "2026-05-14T15:25:20.314Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MMLU+GSM8K+ARC+HumanEval aligned",
+      "data_count": 4,
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter",
+      "eval_data": "mmlu gsm8k arc_challenge humaneval",
+      "parent": "exp_001_sft_d100_05B",
+      "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42_aligned",
+      "wall_clock_seconds": 10480.1,
+      "gpu_hours": 2.91
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T17:39:56.917Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T17:39:58.597804+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "mmlu": 0.2334,
+      "gsm8k": 0.3654,
+      "arc_challenge": 0.2944,
+      "humaneval_pass_at_1": 0,
+      "mmlu_delta_vs_d000": -0.1645,
+      "arc_delta_vs_d000": -0.1749,
+      "humaneval_delta_vs_d000": -0.1098
+    },
+    "notes": "0.5B d100 aligned: catastrophic degradation, no contamination inflation. MMLU 23.3% (near random, -16.5pp vs d000), ARC 29.4% (-17.5pp), HumanEval 0% (-11pp). Dose-response monotonically decreasing at 0.5B scale. Consistent with unaligned format results. Small model capacity insufficient to memorize without losing generalization. Supports narrative: contamination detection via score inflation fails at small scale → need IRT-based calibration.",
+    "completed_at": "2026-05-14T18:20:00.391Z"
+  },
+  "timestamp": "2026-05-14T18:20:00.965871+00:00",
+  "trigger": "update_registry"
+}

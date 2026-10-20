@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_002_signals_15B_instruct_gsm8k_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:29:30.056Z",
+    "updated_at": "2026-05-16T21:29:30.056Z"
+  },
+  "timestamp": "2026-05-16T21:29:30.531710+00:00",
+  "trigger": "update_registry"
+}

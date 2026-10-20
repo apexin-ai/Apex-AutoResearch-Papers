@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_005_noise_prop_v4",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T21:53:56.486Z",
+    "updated_at": "2026-05-14T23:25:34.092Z",
+    "hypothesis": "Noise propagation v4: tracking v3 process still alive (23/25 fits). Remaining 2 fits: σ_e=1.0 seeds 45,46. PID 559667.",
+    "spec": {
+      "command": "python run_noise_propagation_v3.py --output-dir output_v3 --base-seed 42 --n-seeds 5",
+      "server": "local",
+      "pid": 617670,
+      "data_path": "synthetic",
+      "data_count": 9000,
+      "model_name": "4PL+gamma IRT",
+      "seed": 42,
+      "checkpoint_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/",
+      "log_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/exp005_v4_restart.log"
+    },
+    "notes": "v3 process (PID 559667) was marked DONE/failed prematurely but never crashed. Still running at 23/25. v4 tracks completion of remaining 2 fits (σ_e=1.0, seeds 45+46). ETA ~1.5h from 21:53 UTC.",
+    "checkpoint_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/output_v3/",
+    "log_path": "/tmp/exp005_noise_prop_v3.log",
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T23:25:34.092Z"
+  },
+  "timestamp": "2026-05-14T23:25:34.279627+00:00",
+  "trigger": "update_registry"
+}

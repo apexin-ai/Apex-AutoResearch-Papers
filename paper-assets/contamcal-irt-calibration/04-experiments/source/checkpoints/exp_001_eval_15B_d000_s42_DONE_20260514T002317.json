@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_001_eval_15B_d000_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T21:30:03.433Z",
+    "updated_at": "2026-05-14T00:23:17.209Z",
+    "hypothesis": "0% dosage 1.5B s42 baseline evaluation on 4 benchmarks to establish ground-truth scores for calibration error computation",
+    "parent": "exp_001_sft_0pct_15B",
+    "spec": {
+      "command": "python evaluate.py --model-path Qwen2.5-1.5B --adapter-path lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:4"
+      ],
+      "pid": "221376",
+      "data_path": "MMLU/GSM8K/ARC-Challenge/HumanEval (HuggingFace datasets)",
+      "data_count": "~26000 items total",
+      "model_name": "Qwen2.5-1.5B + LoRA (d000_s42)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s42/lora_adapter/",
+      "eval_data": "MMLU, GSM8K, ARC-Challenge, HumanEval (original)",
+      "output_dir": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d000_s42",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_15B_d000_s42.log",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "failed",
+    "failure_reason": "卡死 11+小时：GPU 利用率 0%，显存占 5820MiB，输出目录为空。根因：spec 使用相对路径 (--model-path Qwen2.5-1.5B --adapter-path lora_adapter) 而非绝对路径，导致模型加载异常挂起。已 kill -9。",
+    "completed_at": "2026-05-14T00:23:17.209Z"
+  },
+  "timestamp": "2026-05-14T00:23:17.540455+00:00",
+  "trigger": "update_registry"
+}

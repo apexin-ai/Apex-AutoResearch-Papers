@@ -1,0 +1,49 @@
+{
+  "exp_id": "exp_002_signals_3B_v6",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T20:06:35.655Z",
+    "updated_at": "2026-05-15T20:18:27.071Z",
+    "hypothesis": "D075/D077: Compute embedding/minkpp/selfcritique for d000_v2_s42 (lr=5e-5, alpha=16, confirmed valid) across mmlu/gsm8k/arc on cuda:3. Step 1 of signals recovery after d000_s42 invalidation.",
+    "parent": "exp_002_signals_3B_v5",
+    "spec": {
+      "command": "python compute_signals.py (3B d000_v2_s42, mmlu→gsm8k→arc, embedding+minkpp+selfcritique+constat)",
+      "server": "cqa1-21977",
+      "data_path": "mmlu/gsm8k/arc_challenge benchmarks",
+      "data_count": null,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "gpu": "cuda:3",
+      "pid": 628100,
+      "tmux_session": "signals_3B_v6",
+      "output_dir": "/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42",
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42/lora_adapter",
+      "eval_data": "mmlu + gsm8k + arc_challenge (sequential)",
+      "note": "D075: compute 3B signals for d000_v2_s42 (lr=5e-5, alpha=16, confirmed valid). Already launched by prior session.",
+      "gpu_ids": [
+        "cuda:3"
+      ],
+      "log_path": "/root/runs/contamcal-irt-calibration/exp_002_signals_3B_v6.log",
+      "signals": [
+        "s1_embedding",
+        "s2_minkpp",
+        "s4_selfcritique"
+      ],
+      "benchmarks": [
+        "mmlu",
+        "gsm8k",
+        "arc_challenge"
+      ],
+      "output_path": "/root/autodl-tmp/exp002/signals/Qwen2.5-3B_d000_v2_s42/",
+      "hypothesis": "D075/D077: Compute embedding/minkpp/selfcritique/constat for d000_v2_s42 (lr=5e-5, alpha=16, confirmed valid) across mmlu/gsm8k/arc on cuda:3. Step 1 of signals recovery after d000_s42 invalidation.",
+      "notes": "run_batch.py hardcoded path format cannot match v2 naming; used compute_signals.py directly with explicit checkpoint path"
+    },
+    "log_path": "/root/runs/contamcal-irt-calibration/exp_002_signals_3B_v6.log"
+  },
+  "timestamp": "2026-05-15T20:18:28.903238+00:00",
+  "trigger": "update_registry"
+}

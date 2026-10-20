@@ -1,0 +1,61 @@
+{
+  "exp_id": "exp_008_instruct_rl_proxy",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:44:57.410Z",
+    "updated_at": "2026-05-16T05:25:03.715Z",
+    "hypothesis": "RL proxy experiment (D021 Problem 3): Use Qwen2.5-0.5B-Instruct (SFT+RL post-trained) as RL regime data point. 3-regime comparison: base (pretrained) → d000 (SFT) → Instruct (SFT+RL). Compute all 4 signals on Instruct model, observe signal value changes across training regimes. No additional training needed.\"",
+    "metrics": {
+      "instruct_signals_complete": true,
+      "d000_sft_signals_complete": true,
+      "base_pretrained_signals": "computing_PID_701898_GPU5",
+      "comparison": {
+        "mmlu": {
+          "instruct_s2": 1.6952,
+          "instruct_s4": -0.8782,
+          "d000_sft_s2": 1.6976,
+          "d000_sft_s4": -0.9557,
+          "base_s2": 1.7009,
+          "base_s4": "computing",
+          "s4_delta_instruct_vs_sft": 0.0775
+        },
+        "gsm8k": {
+          "instruct_s2": 1.7073,
+          "instruct_s4": -0.9632,
+          "d000_sft_s2": 1.6532,
+          "d000_sft_s4": -0.9408,
+          "s4_delta_instruct_vs_sft": -0.0224
+        },
+        "arc": {
+          "instruct_s2": 1.6737,
+          "instruct_s4": -0.9227,
+          "d000_sft_s2": 1.7079,
+          "d000_sft_s4": -0.9538,
+          "s4_delta_instruct_vs_sft": 0.0311
+        }
+      },
+      "key_finding": "S4 differentiates regimes (MMLU +0.078, ARC +0.031 Instruct vs SFT); S2 does not (<0.01 difference). RL increases S4 entropy on knowledge benchmarks.",
+      "signal_paths": {
+        "instruct": "/root/autodl-tmp/exp008/signals/rl_aligned/",
+        "d000_sft": "/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/",
+        "base_pretrained": "/root/autodl-tmp/exp008/signals/base_pretrained/"
+      }
+    },
+    "spec": {
+      "command": "python exp008/compute_signals_on_model.py --model-path /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B --benchmarks mmlu gsm8k arc_challenge --output-dir /root/autodl-tmp/exp008/signals/base_pretrained --gpu 5",
+      "server": "cqa1-21977",
+      "data_path": "MMLU+GSM8K+ARC benchmarks",
+      "data_count": 16533,
+      "model_name": "Qwen2.5-0.5B (base pretrained)",
+      "seed": 0
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-16T05:25:04.103750+00:00",
+  "trigger": "update_registry"
+}

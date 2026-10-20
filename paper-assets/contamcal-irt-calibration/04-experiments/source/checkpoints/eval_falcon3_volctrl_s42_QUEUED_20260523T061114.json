@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_falcon3_volctrl_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T06:06:48.118Z",
+    "updated_at": "2026-05-23T06:11:13.459Z",
+    "hypothesis": "Volume-matched control eval: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, volume-matched control should show similar gains. Comparing d000/volctrl/d100 isolates the contamination effect.",
+    "parent": "sft_falcon3_7b_volume_control"
+  },
+  "timestamp": "2026-05-23T06:11:14.127841+00:00",
+  "trigger": "update_registry"
+}

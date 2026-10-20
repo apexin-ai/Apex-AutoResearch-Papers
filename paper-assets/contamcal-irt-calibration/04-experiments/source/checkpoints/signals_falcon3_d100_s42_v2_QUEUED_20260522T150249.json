@@ -1,0 +1,16 @@
+{
+  "exp_id": "signals_falcon3_d100_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:02:35.638Z",
+    "updated_at": "2026-05-22T15:02:49.315Z",
+    "hypothesis": "Falcon3-7B-Base d100 (100% contamination dosage) will show higher contamination signals (S1 embedding similarity, S2 Min-K++, S4 self-critique) compared to lower dosage conditions, consistent with the IRT calibration framework's ability to detect contamination across model families beyond Qwen.",
+    "parent": "signals_falcon3_d100_s42"
+  },
+  "timestamp": "2026-05-22T15:02:49.971390+00:00",
+  "trigger": "update_registry"
+}

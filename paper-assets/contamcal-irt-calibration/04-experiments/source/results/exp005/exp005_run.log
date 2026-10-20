@@ -1,0 +1,71 @@
+18:54:34 [INFO] === exp-005: Noise Propagation Simulation ===
+18:54:34 [INFO] σ_e levels: [0.1, 0.3, 0.5, 0.7, 1.0]
+18:54:34 [INFO] Seeds per level: 5
+18:54:34 [INFO] Synthetic data: 30 models × 300 items
+18:54:35 [INFO] Compiling Stan models...
+18:54:36 [INFO] Compilation done.
+18:54:36 [INFO] === σ_e = 0.1 ===
+18:54:36 [INFO]   Fitting ME model (σ_e=0.1, seed=42)...
+18:54:36 [INFO] CmdStan start processing
+18:54:36 [INFO] Chain [1] start processing
+18:54:36 [INFO] Chain [2] start processing
+19:19:01 [INFO] Chain [1] done processing
+19:19:01 [INFO] Chain [3] start processing
+19:33:54 [INFO] Chain [2] done processing
+19:33:54 [INFO] Chain [4] start processing
+19:34:37 [INFO] Chain [3] done processing
+19:47:30 [INFO] Chain [4] done processing
+19:47:30 [WARNING] Non-fatal error during sampling:
+Exception: normal_lpdf: Scale parameter is 0, but must be positive! (in 'contam_irt_4pl_me.stan', line 37, column 2 to column 56)
+	Exception: normal_lpdf: Scale parameter is 0, but must be positive! (in 'contam_irt_4pl_me.stan', line 37, column 2 to column 56)
+Exception: normal_lpdf: Scale parameter is 0, but must be positive! (in 'contam_irt_4pl_me.stan', line 37, column 2 to column 56)
+	Exception: normal_lpdf: Scale parameter is 0, but must be positive! (in 'contam_irt_4pl_me.stan', line 37, column 2 to column 56)
+Exception: normal_lpdf: Scale parameter is 0, but must be positive! (in 'contam_irt_4pl_me.stan', line 37, column 2 to column 56)
+	Exception: normal_lpdf: Scale parameter is 0, but must be positive! (in 'contam_irt_4pl_me.stan', line 37, column 2 to column 56)
+	Exception: normal_lpdf: Scale parameter is 0, but must be positive! (in 'contam_irt_4pl_me.stan', line 37, column 2 to column 56)
+Consider re-running with show_console=True if the above output is unclear!
+19:47:40 [WARNING] Some chains may have failed to converge.
+	Chain 1 had 1 iterations at max treedepth (0.1%)
+	Chain 2 had 145 iterations at max treedepth (14.5%)
+	Chain 3 had 2 iterations at max treedepth (0.2%)
+	Chain 4 had 29 iterations at max treedepth (2.9%)
+	Use the "diagnose()" method on the CmdStanMCMC object to see further information.
+19:52:27 [INFO]     ME done in 3471s, CI_width=0.1020, Rhat=1.871
+19:52:27 [INFO]   Fitting simple model (σ_e=0.1, seed=42)...
+19:52:27 [INFO] CmdStan start processing
+19:52:27 [INFO] Chain [1] start processing
+19:52:27 [INFO] Chain [2] start processing
+19:58:23 [INFO] Chain [1] done processing
+19:58:23 [INFO] Chain [3] start processing
+19:58:40 [INFO] Chain [2] done processing
+19:58:40 [INFO] Chain [4] start processing
+Traceback (most recent call last):
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation.py", line 429, in <module>
+    main()
+    ~~~~^^
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation.py", line 336, in main
+    result = run_single(sigma_e, seed, stan_me, stan_simple,
+                        n_models, n_items)
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation.py", line 177, in run_single
+    simple_result = fit_and_extract_ci(stan_simple, stan_data, seed)
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp005_noise_propagation/run_noise_propagation.py", line 123, in fit_and_extract_ci
+    fit = model.sample(
+        data=stan_data,
+    ...<2 lines>...
+        **NUTS_DEFAULTS,
+    )
+  File "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/.venv/lib/python3.14/site-packages/cmdstanpy/model.py", line 1180, in sample
+    raise RuntimeError(msg)
+RuntimeError: Error during sampling:
+
+Command and output files:
+RunSet: chains=4, chain_ids=[1, 2, 3, 4], num_processes=4
+ cmd (chain 1):
+	['/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006_irt_calibration/contam_irt_4pl_simple', 'id=1', 'random', 'seed=42', 'data', 'file=/tmp/tmp2rpfidef/3586uj2i.json', 'output', 'file=/tmp/tmp2rpfidef/contam_irt_4pl_simplelio2k5et/contam_irt_4pl_simple-20260513195227_1.csv', 'method=sample', 'num_samples=1000', 'num_warmup=500', 'algorithm=hmc', 'engine=nuts', 'max_depth=10', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[0, 0, 1, 1]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/tmp/tmp2rpfidef/contam_irt_4pl_simplelio2k5et/contam_irt_4pl_simple-20260513195227_1.csv
+ console_msgs (if any):
+	/tmp/tmp2rpfidef/contam_irt_4pl_simplelio2k5et/contam_irt_4pl_simple-20260513195227_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!

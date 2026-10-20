@@ -1,0 +1,35 @@
+{
+  "exp_id": "sft_qwen14b_s123_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:40:23.319Z",
+    "updated_at": "2026-05-19T13:45:46.155Z",
+    "hypothesis": "Qwen-14B seed=123 dose-response replication: verify the U-shaped vulnerability (-10.03pp at seed=42) reproduces across seeds",
+    "parent": "exp_001_sft_qwen14b_d100_s42",
+    "spec": {
+      "command": "bash /root/autodl-tmp/exp001/run_qwen14b_s123.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "179720",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_qwen14b_s123_sweep.log",
+      "submitted_at": "2026-05-19T13:40:45.565Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_{000-100}.jsonl",
+      "data_count": 5,
+      "model_name": "Qwen/Qwen2.5-14B",
+      "seed": 123,
+      "checkpoint_source": "base model (not eval, SFT replication)",
+      "eval_data": "N/A - SFT training not eval"
+    }
+  },
+  "timestamp": "2026-05-19T13:45:46.670964+00:00",
+  "trigger": "update_registry"
+}

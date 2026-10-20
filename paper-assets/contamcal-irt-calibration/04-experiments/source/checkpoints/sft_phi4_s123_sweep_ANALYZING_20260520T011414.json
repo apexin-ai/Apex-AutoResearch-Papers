@@ -1,0 +1,50 @@
+{
+  "exp_id": "sft_phi4_s123_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:40:21.965Z",
+    "updated_at": "2026-05-20T01:14:14.006Z",
+    "hypothesis": "Phi-4 seed=123 dose-response replication: verify the immune pattern (±0.54pp at seed=42) is stable across seeds for TOST equivalence evidence",
+    "parent": "exp_001_sft_phi4_d100_s42",
+    "spec": {
+      "command": "bash /root/autodl-tmp/exp001/run_phi4_s123.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "179569",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_phi4_s123_sweep.log",
+      "submitted_at": "2026-05-19T13:40:42.748Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_{000-100}.jsonl",
+      "data_count": 5,
+      "model_name": "microsoft/phi-4",
+      "seed": 123,
+      "checkpoint_source": "base model (not eval, SFT replication)",
+      "eval_data": "N/A - SFT training not eval"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T01:10:54.762Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T01:11:07.271826+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/phi-4_d000_s123, /root/autodl-tmp/exp001/checkpoints/phi-4_d005_s123, /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s123, /root/autodl-tmp/exp001/checkpoints/phi-4_d050_s123, /root/autodl-tmp/exp001/checkpoints/phi-4_d100_s123",
+    "log_path": "~/runs/contamcal-irt-calibration/sft_phi4_s123_sweep.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T01:14:14.712479+00:00",
+  "trigger": "update_registry"
+}

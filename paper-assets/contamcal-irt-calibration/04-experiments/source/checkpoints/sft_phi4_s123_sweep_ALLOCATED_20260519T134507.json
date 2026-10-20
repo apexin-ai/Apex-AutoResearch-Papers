@@ -1,0 +1,29 @@
+{
+  "exp_id": "sft_phi4_s123_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:40:21.965Z",
+    "updated_at": "2026-05-19T13:45:06.705Z",
+    "hypothesis": "Phi-4 seed=123 dose-response replication: verify the immune pattern (±0.54pp at seed=42) is stable across seeds for TOST equivalence evidence",
+    "parent": "exp_001_sft_phi4_d100_s42",
+    "spec": {
+      "command": "bash /root/autodl-tmp/exp001/run_phi4_s123.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "179569",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_phi4_s123_sweep.log",
+      "submitted_at": "2026-05-19T13:40:42.748Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-19T13:45:07.256774+00:00",
+  "trigger": "update_registry"
+}

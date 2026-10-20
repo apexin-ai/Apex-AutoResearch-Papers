@@ -1,0 +1,76 @@
+{
+  "exp_id": "exp_001_eval_3B_d100_s42_para_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:51:17.570Z",
+    "updated_at": "2026-05-15T15:31:42.432Z",
+    "server": "cqa1-21977",
+    "gpu": "cuda:4",
+    "reproduce": {
+      "server": "cqa1-21977",
+      "gpu": "cuda:4",
+      "started_at": "2026-05-15T14:51:34.257Z",
+      "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s42_para_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "code_commit": "dd81ae283e12a247f768b6ae72e67b085a874bd1",
+      "finished_at": "2026-05-15T15:29:06.788Z",
+      "training_hours": 0.63
+    },
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s42_para_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases --cache-dir /root/autodl-tmp/.hf_cache\"",
+      "server": "cqa1-21977",
+      "gpu": "cuda:4",
+      "pid": 576820,
+      "data_path": "/root/autodl-tmp/exp001/paraphrases",
+      "data_count": 4,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "checkpoint_source": "exp_001_sft_d100_3B_v2",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval (para_aligned)",
+      "parent": "exp_001_sft_d100_3B_v2",
+      "hypothesis": "3B d100 s42 para_aligned eval for 3B signal computation (S1 embedding distance).",
+      "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_s42_para_aligned",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d100_s42_para_aligned.log"
+    },
+    "pid": "576820",
+    "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d100_s42_para_aligned.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-15T15:29:09.839208+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "mmlu": {
+        "accuracy": 0.659,
+        "correct": 4347,
+        "total": 6596
+      },
+      "gsm8k": {
+        "accuracy": 0.5833,
+        "correct": 133,
+        "total": 228
+      },
+      "arc_challenge": {
+        "accuracy": 0.8092,
+        "correct": 564,
+        "total": 697
+      },
+      "humaneval": {
+        "pass@1": 0.1154,
+        "correct": 3,
+        "total": 26
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T15:31:42.432Z"
+  },
+  "timestamp": "2026-05-15T15:31:42.707638+00:00",
+  "trigger": "update_registry"
+}

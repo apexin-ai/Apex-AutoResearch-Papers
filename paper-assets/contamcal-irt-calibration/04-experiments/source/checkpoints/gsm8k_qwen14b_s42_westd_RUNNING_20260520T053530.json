@@ -1,0 +1,32 @@
+{
+  "exp_id": "gsm8k_qwen14b_s42_westd",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:46:14.050Z",
+    "updated_at": "2026-05-20T05:35:30.016Z",
+    "hypothesis": "GSM8K eval for Qwen-14B s42: test if U-collapse archetype (−9.37pp on MMLU) also collapses on GSM8K, or if cross-benchmark transfer is directionally different.",
+    "parent": "gsm8k_qwen7b_s42_cqa1",
+    "spec": {
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/scripts/gsm8k_s42/run_gsm8k_qwen14b_s42.sh\"",
+      "pid": "289218",
+      "log_path": "~/runs/contamcal-irt-calibration/gsm8k_qwen14b_s42_westd.log",
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d{000,100}_s42",
+      "data_count": 2,
+      "model_name": "Qwen/Qwen2.5-14B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/",
+      "eval_data": "gsm8k"
+    }
+  },
+  "timestamp": "2026-05-20T05:35:30.566992+00:00",
+  "trigger": "update_registry"
+}

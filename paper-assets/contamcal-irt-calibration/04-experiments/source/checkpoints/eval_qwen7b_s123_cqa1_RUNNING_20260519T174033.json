@@ -1,0 +1,36 @@
+{
+  "exp_id": "eval_qwen7b_s123_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T14:22:55.222Z",
+    "updated_at": "2026-05-19T17:40:32.993Z",
+    "hypothesis": "Qwen-7B seed=123 dose-response eval on cqa1: verify V-shaped recovery pattern (-3.13pp at s42) reproduces at s123",
+    "notes": "2026-05-19: Worker 失败后诊断——模型下载已切换 ModelScope（PID 245178, 40%）。两个阻塞项：(1) Qwen2.5-7B 下载完成 (2) westd sft_qwen7b_olmo2_s123_sweep 训练完成后传 adapter。ModelScope 路径: /root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B/。cqa1 确认只有 1× RTX 4090D。",
+    "spec": {
+      "command": "bash wait-for-download + evaluate.py sweep d000-d100 MMLU+ARC",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "250112",
+      "log_path": "~/runs/contamcal-irt-calibration/eval_qwen7b_s123_cqa1.log",
+      "submitted_at": "2026-05-19T15:07:05.691Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/eval_results_v2/qwen7b_d*_s123/",
+      "data_count": 5,
+      "model_name": "Qwen/Qwen2.5-7B",
+      "seed": 123,
+      "checkpoint_source": "seed=123 SFT adapters from westd",
+      "eval_data": "MMLU 5-shot + ARC-Challenge 25-shot"
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T17:40:33.547305+00:00",
+  "trigger": "update_registry"
+}

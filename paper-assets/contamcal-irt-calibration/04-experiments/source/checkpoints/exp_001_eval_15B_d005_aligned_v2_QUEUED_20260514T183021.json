@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_eval_15B_d005_aligned_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:30:09.199Z",
+    "updated_at": "2026-05-14T18:30:21.045Z",
+    "hypothesis": "1.5B d005 aligned eval — low-dose contamination response at 1.5B scale"
+  },
+  "timestamp": "2026-05-14T18:30:21.782918+00:00",
+  "trigger": "update_registry"
+}

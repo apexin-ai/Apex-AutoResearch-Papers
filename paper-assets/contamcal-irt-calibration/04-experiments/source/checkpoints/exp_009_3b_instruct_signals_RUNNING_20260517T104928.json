@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_009_3b_instruct_signals",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:48:07.801Z",
+    "updated_at": "2026-05-17T10:49:27.706Z",
+    "hypothesis": "Contamination signal computation (embedding similarity, MinK++, self-critique) for Qwen2.5-3B-Instruct provides exposure features for IRT-based calibration of instruct-tuned models without explicit contamination training",
+    "spec": {
+      "command": "python compute_signals.py --model Qwen2.5-3B-Instruct --signals s1,s2,s4 --benchmarks mmlu,arc_challenge,gsm8k",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp009/signals/Qwen2.5-3B-Instruct",
+      "data_count": 16533,
+      "model_name": "Qwen2.5-3B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/exp009/signals/Qwen2.5-3B-Instruct",
+      "log_path": "/root/autodl-tmp/exp009/sig_3b_s1.log"
+    }
+  },
+  "timestamp": "2026-05-17T10:49:28.332009+00:00",
+  "trigger": "update_registry"
+}

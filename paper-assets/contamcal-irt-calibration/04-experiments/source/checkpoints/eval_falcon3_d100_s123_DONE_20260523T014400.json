@@ -1,0 +1,38 @@
+{
+  "exp_id": "eval_falcon3_d100_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:06:44.269Z",
+    "updated_at": "2026-05-23T01:44:00.135Z",
+    "hypothesis": "Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).",
+    "metrics": {
+      "mmlu_accuracy": 0.6268,
+      "mmlu_correct": 8801,
+      "mmlu_total": 14042,
+      "arc_accuracy": 0.8422,
+      "arc_correct": 987,
+      "arc_total": 1172
+    },
+    "spec": {
+      "command": "python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8",
+      "server": "cqa1-21977",
+      "model_name": "Falcon3-7B-Base",
+      "seed": 123,
+      "data_path": "MMLU + ARC-Challenge (HF cached)",
+      "data_count": 15214,
+      "checkpoint_source": "sft_falcon3_7b_d100_s123_v2",
+      "eval_data": "MMLU (14042 items) + ARC-Challenge (1172 items)",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter",
+      "log_path": "/tmp/falcon3_eval_s123.log"
+    },
+    "conclusion": "success",
+    "log_path": "/tmp/falcon3_eval_s123.log",
+    "completed_at": "2026-05-23T01:44:00.135Z"
+  },
+  "timestamp": "2026-05-23T01:44:00.823401+00:00",
+  "trigger": "update_registry"
+}

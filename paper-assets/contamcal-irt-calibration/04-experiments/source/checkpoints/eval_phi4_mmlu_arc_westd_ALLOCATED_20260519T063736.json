@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_phi4_mmlu_arc_westd",
+  "project": "contamcal-irt-calibration",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T06:37:28.420Z",
+    "updated_at": "2026-05-19T06:37:35.249Z",
+    "hypothesis": "Phi-4 dose-response eval: MMLU 5-shot + ARC 25-shot across d000/d005/d025/d050 to establish IRT calibration curve for the Microsoft 14.7B family before completing d100 training."
+  },
+  "timestamp": "2026-05-19T06:37:36.047510+00:00",
+  "trigger": "update_registry"
+}

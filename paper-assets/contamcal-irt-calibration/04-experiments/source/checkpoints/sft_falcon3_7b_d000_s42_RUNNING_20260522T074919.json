@@ -1,0 +1,29 @@
+{
+  "exp_id": "sft_falcon3_7b_d000_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:58:35.660Z",
+    "updated_at": "2026-05-22T07:49:18.476Z",
+    "hypothesis": "Cross-family replication: Falcon3-7B-Base (67.4% MMLU, TII family) at 0% contamination dosage establishes baseline for vulnerability band model. If baseline drops or shifts under pure SFT, it suggests training instability independent of contamination.",
+    "notes": "LR bug: 原训练用默认 lr=2e-4（未指定 --lr），论文要求 5e-5。已 kill PID 577758，删除 checkpoint，用 --lr 5e-5 重启。",
+    "spec": {
+      "command": "python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d000_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "westd-29999",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl",
+      "data_count": 50000,
+      "model_name": "Falcon3-7B-Base",
+      "seed": 42,
+      "pid": 577758,
+      "gpu": 0,
+      "log_path": "/root/autodl-tmp/exp001/checkpoints/falcon3_7b_d000_s42.log",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d000_s42"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-22T07:49:19.150432+00:00",
+  "trigger": "update_registry"
+}

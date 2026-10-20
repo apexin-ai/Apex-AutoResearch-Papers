@@ -1,0 +1,30 @@
+{
+  "exp_id": "exp_001_eval_llama32_3B_d000_s42_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:37:57.223Z",
+    "updated_at": "2026-05-16T18:23:14.276Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python evaluate.py --model-path /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d000_s42/merged --benchmarks gsm8k arc_challenge humaneval --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Llama-3.2-3B_d000_s42_aligned/ --batch-size 4",
+      "server": "cqa1-21977",
+      "gpu": "cuda:1",
+      "pid": 807025,
+      "data_path": "Llama-3.2-3B_d000_s42/merged",
+      "data_count": 0,
+      "model_name": "Llama-3.2-3B_d000_s42",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T18:23:06.478Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T18:23:04.456Z"
+  },
+  "timestamp": "2026-05-16T18:23:16.013623+00:00",
+  "trigger": "update_registry"
+}

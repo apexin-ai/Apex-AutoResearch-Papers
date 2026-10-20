@@ -1,0 +1,44 @@
+{
+  "exp_id": "gsm8k_qwen7b_s42_intermediate_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:26:11.217Z",
+    "updated_at": "2026-05-20T00:12:18.147Z",
+    "hypothesis": "GSM8K intermediate dosage (d005/d025/d050) for Qwen-7B s42: determine if the +11.07pp GSM8K transfer effect grows linearly with dosage (→ training augmentation confound) or non-linearly (→ genuine contamination transfer pattern).",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/exp001/eval_gsm8k_qwen7b_s42_intermediate.sh\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "292489",
+      "log_path": "~/runs/contamcal-irt-calibration/gsm8k_qwen7b_s42_intermediate_cqa1.log",
+      "submitted_at": "2026-05-19T22:26:33.006Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/contamcal-irt-calibration/results/gsm8k/",
+      "wall_clock_seconds": 6345.1,
+      "gpu_hours": 1.76
+    },
+    "metrics": {
+      "gsm8k_d000": 0.7058,
+      "gsm8k_d005": 0.7695,
+      "gsm8k_d025": 0.8006,
+      "gsm8k_d050": 0.7923,
+      "gsm8k_d100": 0.8165,
+      "delta_d005": "+6.37pp",
+      "delta_d025": "+9.48pp",
+      "delta_d050": "+8.65pp",
+      "delta_d100": "+11.07pp"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T00:12:18.147Z"
+  },
+  "timestamp": "2026-05-20T00:12:19.096115+00:00",
+  "trigger": "update_registry"
+}

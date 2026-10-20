@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_001_sft_injection",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:28:01.546Z",
+    "updated_at": "2026-05-13T19:18:07.605Z",
+    "spec": {
+      "command": "Phase 1 paraphrase: GPU 0 MMLU (PID 200967, vLLM) + GPU 1 GSM8K (PID 189375, transformers ~45%) + GPU 2 ARC (PID 190717, transformers ~41%) + GPU 4 HumanEval (PID 201102, vLLM)",
+      "server": "cqa1-21977",
+      "data_path": "MMLU+GSM8K+ARC-Challenge+HumanEval paraphrases → SFT data mixing",
+      "data_count": "45 SFT runs + 90 eval runs (original+paraphrased)",
+      "model_name": "Qwen2.5-0.5B/1.5B/3B (LoRA SFT), Qwen2.5-7B-Instruct (paraphrase)",
+      "seed": "42,123,456",
+      "gpu": "cuda:0 (MMLU vLLM), cuda:1 (GSM8K transformers), cuda:2 (ARC transformers), cuda:4 (HumanEval vLLM). cuda:3,5 idle until SFT",
+      "pid": "200967,189375,190717,201102",
+      "note": "Duplicate processes killed per Director order. vLLM works for MMLU+HumanEval, GSM8K+ARC use transformers. GPU 3,5 reserved for Phase 3 SFT."
+    },
+    "hypothesis": "Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds",
+    "reproduce": {
+      "finished_at": "2026-05-13T19:18:07.357Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T19:18:07.605Z"
+  },
+  "timestamp": "2026-05-13T19:18:07.645552+00:00",
+  "trigger": "update_registry"
+}

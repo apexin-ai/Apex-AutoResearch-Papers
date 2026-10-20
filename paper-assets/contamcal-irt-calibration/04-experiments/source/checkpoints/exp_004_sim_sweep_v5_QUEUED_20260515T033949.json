@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_004_sim_sweep_v5",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:39:41.819Z",
+    "updated_at": "2026-05-15T03:39:48.263Z",
+    "hypothesis": "4PL+γ IRT parameter recovery sweep v5: continuation of v4 (which was erroneously marked failed). Same process PID 652931, TMPDIR=/home/ubuntu/tmp_cmdstan. Progress: 98/120 seeds processed (68 OK). auc0.65 conditions systematically failing."
+  },
+  "timestamp": "2026-05-15T03:39:49.226165+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_qwen14b_arc_s0_partial",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:42:22.358Z",
+    "updated_at": "2026-05-21T03:37:28.718Z",
+    "hypothesis": "Qwen-14B s0 ARC eval for 4 dosages (d000/d005/d025/d100): test if extreme MMLU Collapse (-24.99pp at d100) manifests on ARC, providing cross-benchmark consistency data",
+    "parent": "sft_qwen14b_s0",
+    "spec": {
+      "command": "bash scripts/seed0/eval_qwen14b_s0_arc_partial.sh",
+      "server": "westd-29999",
+      "data_path": "/root/contamcal-irt-calibration/results/arc_eval/qwen14b/",
+      "data_count": 4,
+      "model_name": "Qwen2.5-14B",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d{000,005,025,100}_s0/lora_adapter",
+      "eval_data": "arc_challenge 25-shot"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/contamcal-irt-calibration/results/arc_eval/qwen14b/",
+    "log_path": "/root/contamcal-irt-calibration/logs/eval_qwen14b_arc_s0_partial.log",
+    "completed_at": "2026-05-21T03:37:28.718Z"
+  },
+  "timestamp": "2026-05-21T03:37:29.307837+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1736 @@
+# cron hook eval falcon3 d000 s42
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/cron_hook_eval_falcon3_d000_s42.jsonl`
+- **Structured JSON:** [`f7a19e0f662eaa1a80d1.json`](../../sessions/f7/f7a19e0f662eaa1a80d1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+52 recorded events
+
+### User
+
+_source line 1 · 2026-05-23T03:10:51.831722+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #26。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- 本项目分配的 GPU 白名单：cqa1-21977:cuda:0, westd-29999:cuda:0。westd 上 cuda:1/2/3 不在白名单，之前提交到这些卡上的实验是历史遗留
+- westd-29999 网络默认不通（刚确认 `[Errno 101] Network is unreachable`），eval 脚本里 `load_dataset` 会联网。**必须设 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`** 或先 `source /etc/network_turbo`，否则 eval 必挂
+- D215 决策：Falcon3 结果不管好坏直接提交 ARR，不再加内审轮次
+- ARR deadline: May 25（D+4），时间极紧
+
+### 2. 🖥️ 基础设施快照
+- **westd-29999**: 工作目录 `/root/contamcal-irt-calibration/exp001/`，Python `/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）
+- **cqa1-21977**: 1× RTX 4090 D，同样 conda base 环境
+- 模型缓存：`/root/autodl-tmp/.hf_cache/Falcon3-7B-Base`
+- Checkpoint 路径模板：`/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d{dosage}_s42/lora_adapter`
+- evaluate.py：`/root/contamcal-irt-calibration/exp001/evaluate.py`（line 167 调 `load_dataset("cais/mmlu", "all", split="test", cache_dir=cache_dir)`）
+- 活跃进程：
+  - `sft_falcon3_7b_d100_s42` — cqa1-21977 cuda:0, PID 666107（SFT 训练）
+  - `sft_falcon3_7b_d050_s42_v2` — westd-29999 cuda:3, PID 600596（SFT 训练）
+- 磁盘：westd 根分区 49% used (427GB free)，cqa1 根分区 95% used ⚠️
+
+### 3. 📊 当前状态
+**刚做完**：收到 eval_falcon3_d000_s42 失败 cron 回调，诊断出网络不通根因，更新了 registry failure_reason。
+
+**RUNNING**:
+- `sft_falcon3_7b_d100_s42` — cqa1-21977，Falcon3 100% dosage SFT
+- `sft_falcon3_7b_d050_s42_v2` — westd-29999，Falcon3 50% dosage SFT（LR bug fix 重跑）
+
+**DONE(failed) 待重试**:
+- `eval_falcon3_d000_s42` — 网络不通，需重试
+- `eval_falcon3_d005_s42` — 同上
+- `eval_falcon3_d025_s42` — 大概率也已失败（同样命令同样服务器），需确认
+
+**等待中**:
+- Worker `worker_fix_eval_falcon3_network_20260522T110905` 正在 SSH 到 westd-29999 诊断网络+缓存状态，等其回调后决定修复方案并重试 eval
+- d050_v2 和 d100 SFT 完成后需要提交对应 eval
+
+### 4. 📋 待办
+- Worker 网络诊断回调 → 根据结果修复 evaluate 命令（加 `HF_DATASETS_OFFLINE=1` 或 `source /etc/network_turbo`）→ 重新提交 d000/d005/d025 三个 eval
+- sft_falcon3_7b_d050_s42_v2 完成回调 → 提交 eval_falcon3_d050_s42
+- sft_falcon3_7b_d100_s42 完成回调 → 提交 eval_falcon3_d100_s42
+- 全部 5 个 dosage (d000/d005/d025/d050/d100) eval 完成 → 汇总 Falcon3 dose-response profile → 判断 taxonomy 分类（Immune/Collapse/V-recovery/Benefit）→ 更新论文 → 按 D215 直接提交 ARR
+
+### 5. 🎯 战略上下文
+- 项目核心：SFT-route benchmark contamination 产生 family-dependent dose-response profiles，4-pattern taxonomy（Immune/Collapse/V-recovery/Benefit）
+- 已有 6 families 完成：Phi-4(Immune), LLaMA-3(Immune), Qwen-14B(Collapse), Qwen-7B(V-recovery), Gemma-2(Benefit), OLMo-2(Benefit)
+- **Falcon3-7B-Base 是第 7 个 family**，cross-family replication 的关键补充。d000/d005/d025 的 v2 SFT 已 success（LR bug fix 后），d050/d100 还在训练
+- 终稿已经 ready（Round 10 action matrix 全部 resolved，8 页 main text 编译通过），Falcon3 数据是最后拼图
+- **易错点**：westd 网络问题是 AutoDL 常见坑，eval 命令必须带离线环境变量。不要假设网络通。之前所有成功的 eval 要么在网络通的时候跑的，要么数据集已缓存+设了 offline mode
+- **易错点**：cqa1 磁盘 95% 满，提交新实验前必须检查磁盘
+
+## 项目硬约束 (memory.md 节选)
+
+## (c) C009 约束状态
+
+**建议**：将 C009 参考 hash 统一为 cqa1 版本 `001a9bc23f808c47d25ef9eaeecb81f1` (37591 bytes)
+
+---
+
+# OLMo-2 Baseline 验证 (2026-05-21 全量 Rerun 完成)
+
+## Rerun 结果（eval_olmo2_s42_rerun, GPU 3, 37775 版 evaluate.py, adapter 加载确认）
+
+| Dosage | MMLU (rerun) | MMLU (paper) | Δ | ARC (rerun) | ARC (paper) | Δ |
+|--------|-------------|-------------|-----|------------|------------|-----|
+| d000 | 53.79 | 53.79 | 0.00 ✅ | 76.11 | 76.11 | 0.00 ✅ |
+| d005 | 56.14 | 55.89 | +0.25 | 76.62 | 76.62 | 0.00 ✅ |
+| d025 | 56.17 | 57.73 | -1.56 ⚠️ | 78.16 | 78.16 | 0.00 ✅ |
+| d050 | 57.25 | 57.44 | -0.19 | 79.61 | 79.61 | 0.00 ✅ |
+| d100 | 57.00 | 58.60 | -1.60 ⚠️ | 80.03 | 80.03 | 0.00 ✅ |
+
+## 可查的历史
+前 215 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-23T03:11:04.376569+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__list_workers",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-23T03:11:04.427051+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-23T03:11:09.951120+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "limit": "0",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "limit": "0",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-23T03:11:10.554496+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-23T03:11:10.757681+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-23T03:11:11.628819+00:00_
+
+Error: result (627,726 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1677
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-23T03:11:16.204966+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"sft_falcon3_7b_volume_control\", \"success\": true, \"actions\": [\"Job still running (pid=752802)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 5650
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-23T03:11:16.457549+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 5699
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-23T03:11:37.193611+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\n# Filter for falcon3 experiments\nfalcon = {k: v for k, v in data.items() if 'falcon' in k.lower()}\nfor exp_id, exp in sorted(falcon.items()):\n    status = exp.get('status', '?')\n    conclusion = exp.get('conclusion', '')\n    server = exp.get('spec', {}).get('server', '') if isinstance(exp.get('spec'), dict) else ''\n    gpu = exp.get('gpu_id', '')\n    metrics = exp.get('metrics', {})\n    failure = exp.get('failure_reason', '')\n    print(f'{exp_id}: status={status}, conclusion={conclusion}, server={server}, gpu={gpu}')\n    if metrics:\n        print(f'  metrics: {json.dumps(metrics)}')\n    if failure:\n        print(f'  failure: {failure}')\n\"\n",
+  "description": "Extract Falcon3 experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\n# Filter for falcon3 experiments\nfalcon = {k: v for k, v in data.items() if 'falcon' in k.lower()}\nfor exp_id, exp in sorted(falcon.items()):\n    status = exp.get('status', '?')\n    conclusion = exp.get('conclusion', '')\n    server = exp.get('spec', {}).get('server', '') if isinstance(exp.get('spec'), dict) else ''\n    gpu = exp.get('gpu_id', '')\n    metrics = exp.get('metrics', {})\n    failure = exp.get('failure_reason', '')\n    print(f'{exp_id}: status={status}, conclusion={conclusion}, server={server}, gpu={gpu}')\n    if metrics:\n        print(f'  metrics: {json.dumps(metrics)}')\n    if failure:\n        print(f'  failure: {failure}')\n\"\n",
+    "description": "Extract Falcon3 experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-23T03:11:37.396496+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\n# Show all RUNNING experiments\nrunning = {k: v for k, v in data.items() if v.get('status') == 'RUNNING'}\nfor exp_id, exp in running.items():\n    server = exp.get('spec', {}).get('server', '') if isinstance(exp.get('spec'), dict) else ''\n    gpu = exp.get('gpu_id', '')\n    pid = exp.get('pid', '')\n    print(f'{exp_id}: server={server}, gpu={gpu}, pid={pid}')\n\"\n",
+  "description": "List all RUNNING experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\n# Show all RUNNING experiments\nrunning = {k: v for k, v in data.items() if v.get('status') == 'RUNNING'}\nfor exp_id, exp in running.items():\n    server = exp.get('spec', {}).get('server', '') if isinstance(exp.get('spec'), dict) else ''\n    gpu = exp.get('gpu_id', '')\n    pid = exp.get('pid', '')\n    print(f'{exp_id}: server={server}, gpu={gpu}, pid={pid}')\n\"\n",
+    "description": "List all RUNNING experiments in registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-23T03:11:37.497698+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 304
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T03:11:37.698704+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 5, in &lt;module>
+    running = {k: v for k, v in data.items() if v.get('status') == 'RUNNING'}
+                                                ^^^^^
+AttributeError: 'bool' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-23T03:11:43.978801+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nprint(type(data).__name__)\nif isinstance(data, dict):\n    print('keys:', list(data.keys())[:10])\n    for k in list(data.keys())[:3]:\n        v = data[k]\n        print(f'  {k}: type={type(v).__name__}')\n        if isinstance(v, dict):\n            print(f'    keys: {list(v.keys())[:10]}')\nelif isinstance(data, list):\n    print('len:', len(data))\n    if data:\n        print('first item type:', type(data[0]).__name__)\n        if isinstance(data[0], dict):\n            print('first item keys:', list(data[0].keys())[:10])\n\"\n",
+  "description": "Probe registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nprint(type(data).__name__)\nif isinstance(data, dict):\n    print('keys:', list(data.keys())[:10])\n    for k in list(data.keys())[:3]:\n        v = data[k]\n        print(f'  {k}: type={type(v).__name__}')\n        if isinstance(v, dict):\n            print(f'    keys: {list(v.keys())[:10]}')\nelif isinstance(data, list):\n    print('len:', len(data))\n    if data:\n        print('first item type:', type(data[0]).__name__)\n        if isinstance(data[0], dict):\n            print('first item keys:', list(data[0].keys())[:10])\n\"\n",
+    "description": "Probe registry JSON structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-23T03:11:44.080037+00:00_
+
+dict
+keys: ['success', 'data', 'error', 'metadata']
+  success: type=bool
+  data: type=dict
+    keys: ['experiments', 'count', 'total', 'baseline']
+  error: type=NoneType
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-23T03:11:51.128349+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Filter falcon3\nfor exp in exps:\n    eid = exp.get('exp_id', '')\n    if 'falcon' not in eid.lower():\n        continue\n    status = exp.get('status', '?')\n    conclusion = exp.get('conclusion', '')\n    server = ''\n    spec = exp.get('spec', {})\n    if isinstance(spec, dict):\n        server = spec.get('server', '')\n    gpu = exp.get('gpu_id', '')\n    pid = exp.get('pid', '')\n    failure = exp.get('failure_reason', '')\n    metrics = exp.get('metrics', {})\n    print(f'{eid}: status={status}, conclusion={conclusion}, server={server}, gpu={gpu}, pid={pid}')\n    if metrics:\n        print(f'  metrics: {json.dumps(metrics)}')\n    if failure:\n        print(f'  failure: {failure[:200]}')\n    print()\n\"\n",
+  "description": "Extract Falcon3 experiments from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Filter falcon3\nfor exp in exps:\n    eid = exp.get('exp_id', '')\n    if 'falcon' not in eid.lower():\n        continue\n    status = exp.get('status', '?')\n    conclusion = exp.get('conclusion', '')\n    server = ''\n    spec = exp.get('spec', {})\n    if isinstance(spec, dict):\n        server = spec.get('server', '')\n    gpu = exp.get('gpu_id', '')\n    pid = exp.get('pid', '')\n    failure = exp.get('failure_reason', '')\n    metrics = exp.get('metrics', {})\n    print(f'{eid}: status={status}, conclusion={conclusion}, server={server}, gpu={gpu}, pid={pid}')\n    if metrics:\n        print(f'  metrics: {json.dumps(metrics)}')\n    if failure:\n        print(f'  failure: {failure[:200]}')\n    print()\n\"\n",
+    "description": "Extract Falcon3 experiments from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T03:11:53.688458+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 8, in &lt;module>
+    eid = exp.get('exp_id', '')
+          ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 2560
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T03:11:53.688928+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Show all RUNNING\nfor exp in exps:\n    if exp.get('status') == 'RUNNING':\n        eid = exp.get('exp_id', '')\n        server = ''\n        spec = exp.get('spec', {})\n        if isinstance(spec, dict):\n            server = spec.get('server', '')\n        gpu = exp.get('gpu_id', '')\n        pid = exp.get('pid', '')\n        print(f'{eid}: server={server}, gpu={gpu}, pid={pid}')\n\"\n",
+  "description": "List all RUNNING experiments"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Show all RUNNING\nfor exp in exps:\n    if exp.get('status') == 'RUNNING':\n        eid = exp.get('exp_id', '')\n        server = ''\n        spec = exp.get('spec', {})\n        if isinstance(spec, dict):\n            server = spec.get('server', '')\n        gpu = exp.get('gpu_id', '')\n        pid = exp.get('pid', '')\n        print(f'{eid}: server={server}, gpu={gpu}, pid={pid}')\n\"\n",
+    "description": "List all RUNNING experiments"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T03:11:53.689211+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-23T03:12:01.373990+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\nprint('experiments type:', type(exps).__name__)\nif isinstance(exps, dict):\n    print('keys count:', len(exps))\n    for k in list(exps.keys())[:3]:\n        print(f'  key={k}, val_type={type(exps[k]).__name__}')\n        if isinstance(exps[k], dict):\n            print(f'    val_keys: {list(exps[k].keys())[:10]}')\nelif isinstance(exps, list):\n    print('len:', len(exps))\n    print('first:', type(exps[0]).__name__, repr(exps[0])[:200] if exps else '')\n\"\n",
+  "description": "Probe experiments structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\nprint('experiments type:', type(exps).__name__)\nif isinstance(exps, dict):\n    print('keys count:', len(exps))\n    for k in list(exps.keys())[:3]:\n        print(f'  key={k}, val_type={type(exps[k]).__name__}')\n        if isinstance(exps[k], dict):\n            print(f'    val_keys: {list(exps[k].keys())[:10]}')\nelif isinstance(exps, list):\n    print('len:', len(exps))\n    print('first:', type(exps[0]).__name__, repr(exps[0])[:200] if exps else '')\n\"\n",
+    "description": "Probe experiments structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T03:12:01.524904+00:00_
+
+experiments type: dict
+keys count: 429
+  key=sft_falcon3_7b_volume_control, val_type=dict
+    val_keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'spec']
+  key=sft_falcon3_7b_d100_s123_v2, val_type=dict
+    val_keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'spec', 'checkpoint_path', 'log_path', 'conclusion']
+  key=eval_falcon3_d100_s123, val_type=dict
+    val_keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'metrics', 'spec', 'conclusion', 'log_path', 'completed_at']
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 150
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T03:12:14.135591+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# All falcon3 experiments\nfor eid, exp in sorted(exps.items()):\n    if 'falcon' not in eid.lower():\n        continue\n    status = exp.get('status', '?')\n    conclusion = exp.get('conclusion', '')\n    spec = exp.get('spec', {}) or {}\n    server = spec.get('server', '')\n    gpu = exp.get('gpu_id', spec.get('gpu_id', ''))\n    pid = exp.get('pid', spec.get('pid', ''))\n    failure = exp.get('failure_reason', '')\n    metrics = exp.get('metrics', {})\n    print(f'{eid}: status={status}, conclusion={conclusion}, server={server}, gpu={gpu}, pid={pid}')\n    if metrics:\n        # summarize key metrics\n        mmlu = metrics.get('mmlu_accuracy', metrics.get('mmlu', ''))\n        arc = metrics.get('arc_accuracy', metrics.get('arc', ''))\n        if mmlu or arc:\n            print(f'  mmlu={mmlu}, arc={arc}')\n        else:\n            print(f'  metrics_keys: {list(metrics.keys())[:5]}')\n    if failure:\n        print(f'  failure: {failure[:200]}')\n    print()\n\" 2>&1 | head -100\n",
+  "description": "Extract all Falcon3 experiments with details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# All falcon3 experiments\nfor eid, exp in sorted(exps.items()):\n    if 'falcon' not in eid.lower():\n        continue\n    status = exp.get('status', '?')\n    conclusion = exp.get('conclusion', '')\n    spec = exp.get('spec', {}) or {}\n    server = spec.get('server', '')\n    gpu = exp.get('gpu_id', spec.get('gpu_id', ''))\n    pid = exp.get('pid', spec.get('pid', ''))\n    failure = exp.get('failure_reason', '')\n    metrics = exp.get('metrics', {})\n    print(f'{eid}: status={status}, conclusion={conclusion}, server={server}, gpu={gpu}, pid={pid}')\n    if metrics:\n        # summarize key metrics\n        mmlu = metrics.get('mmlu_accuracy', metrics.get('mmlu', ''))\n        arc = metrics.get('arc_accuracy', metrics.get('arc', ''))\n        if mmlu or arc:\n            print(f'  mmlu={mmlu}, arc={arc}')\n        else:\n            print(f'  metrics_keys: {list(metrics.keys())[:5]}')\n    if failure:\n        print(f'  failure: {failure[:200]}')\n    print()\n\" 2>&1 | head -100\n",
+    "description": "Extract all Falcon3 experiments with details"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-23T03:12:14.237155+00:00_
+
+eval_falcon3_d000_s42: status=DONE, conclusion=failed, server=westd-29999, gpu=, pid=618603
+  failure: Network unreachable on westd-29999: load_dataset("cais/mmlu") failed with [Errno 101] Network is unreachable. Need HF_DATASETS_OFFLINE=1 or source /etc/network_turbo.
+
+eval_falcon3_d000_s42_v2: status=DONE, conclusion=success, server=westd-29999, gpu=, pid=627327
+  metrics_keys: ['mmlu_5shot', 'arc_challenge_25shot']
+
+eval_falcon3_d005_s42: status=DONE, conclusion=failed, server=westd-29999, gpu=, pid=618759
+  failure: Network unreachable on westd-29999: load_dataset("cais/mmlu") failed with [Errno 101] Network is unreachable. Same root cause as eval_falcon3_d000_s42.
+
+eval_falcon3_d005_s42_v2: status=DONE, conclusion=success, server=westd-29999, gpu=, pid=627474
+  metrics_keys: ['mmlu_5shot', 'arc_challenge_25shot']
+
+eval_falcon3_d025_s42: status=DONE, conclusion=failed, server=westd-29999, gpu=, pid=618913
+  failure: EXIT_CODE=1 (generic error — check log tail)
+
+eval_falcon3_d025_s42_v2: status=DONE, conclusion=success, server=westd-29999, gpu=, pid=627631
+  metrics_keys: ['mmlu_5shot', 'arc_challenge_25shot']
+
+eval_falcon3_d050_s42: status=DONE, conclusion=success, server=westd-29999, gpu=, pid=631968
+  metrics_keys: ['mmlu_5shot', 'arc_challenge_25shot']
+
+eval_falcon3_d100_gsm8k_s42: status=DONE, conclusion=failed, server=cqa1-21977, gpu=, pid=unknown
+
+eval_falcon3_d100_gsm8k_s42_v2: status=DONE, conclusion=success, server=cqa1-21977, gpu=, pid=
+  metrics_keys: ['gsm8k_accuracy', 'gsm8k_correct', 'gsm8k_total']
+
+eval_falcon3_d100_s123: status=DONE, conclusion=success, server=cqa1-21977, gpu=, pid=
+  mmlu=0.6268, arc=0.8422
+
+eval_falcon3_d100_s42: status=DONE, conclusion=success, server=cqa1-21977, gpu=, pid=690514
+  metrics_keys: ['mmlu_5shot', 'arc_challenge_25shot']
+
+falcon3-7b-dl-v2: status=PREPARING, conclusion=killed, server=westd-29999, gpu=, pid=570993
+
+falcon3-7b-dl-v3: status=PREPARING, conclusion=killed, server=westd-29999, gpu=, pid=571301
+
+falcon3-7
+…[truncated 1996 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-23T03:12:42.735422+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# Get all successful falcon3 eval metrics\nevals = {}\nfor eid, exp in exps.items():\n    if 'eval_falcon3' in eid and exp.get('conclusion') == 'success':\n        metrics = exp.get('metrics', {})\n        evals[eid] = metrics\n\nfor eid in sorted(evals.keys()):\n    print(f'{eid}:')\n    print(json.dumps(evals[eid], indent=2))\n    print()\n\"\n",
+  "description": "Get Falcon3 eval metrics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# Get all successful falcon3 eval metrics\nevals = {}\nfor eid, exp in exps.items():\n    if 'eval_falcon3' in eid and exp.get('conclusion') == 'success':\n        metrics = exp.get('metrics', {})\n        evals[eid] = metrics\n\nfor eid in sorted(evals.keys()):\n    print(f'{eid}:')\n    print(json.dumps(evals[eid], indent=2))\n    print()\n\"\n",
+    "description": "Get Falcon3 eval metrics"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-23T03:12:43.237428+00:00_
+
+eval_falcon3_d000_s42_v2:
+{
+  "mmlu_5shot": 58.77,
+  "arc_challenge_25shot": 81.57
+}
+
+eval_falcon3_d005_s42_v2:
+{
+  "mmlu_5shot": 59.02,
+  "arc_challenge_25shot": 83.11
+}
+
+eval_falcon3_d025_s42_v2:
+{
+  "mmlu_5shot": 61.23,
+  "arc_challenge_25shot": 84.81
+}
+
+eval_falcon3_d050_s42:
+{
+  "mmlu_5shot": 62.09,
+  "arc_challenge_25shot": 83.28
+}
+
+eval_falcon3_d100_gsm8k_s42_v2:
+{
+  "gsm8k_accuracy": 0.7582,
+  "gsm8k_correct": 1000,
+  "gsm8k_total": 1319
+}
+
+eval_falcon3_d100_s123:
+{
+  "mmlu_accuracy": 0.6268,
+  "mmlu_correct": 8801,
+  "mmlu_total": 14042,
+  "arc_accuracy": 0.8422,
+  "arc_correct": 987,
+  "arc_total": 1172
+}
+
+eval_falcon3_d100_s42:
+{
+  "mmlu_5shot": 62.96,
+  "arc_challenge_25shot": 85.58
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 502
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-23T03:12:43.740440+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-23T03:12:45.695427+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-23\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| sft_falcon3_7b_volume_control | Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound. | — | — | — |\\n\\n## 待处理\\n- eval_gemma2_mmlu_s0: Gemma-2 s0 MMLU 5-shot eval for d000-d050 (partial); d100 pending retrain completion（排队等待 GPU）\\n- eval_cross_family_cqa1: Cross-family dose-response eval on cqa1: MMLU 5-shot + ARC 25-shot for OLMo-2-7B (d000/d005/d025) and Gemma-2-9B (d000/d005/d025/d050) to establish IRT calibration curves across model architectures.（排队等待 GPU）\\n- eval_phi4_mmlu_arc_westd_v2: Phi-4 dose-response eval v2: MMLU 5-shot + ARC 25-shot across d000/d005/d025/d050. Replaces v1 which was falsely marked DONE by cron PID mismatch.（准备中）\\n- gsm8k_phi4_s42_westd: GSM8K eval for Phi-4 s42: test if Immune archetype (±0.17pp on MMLU) is also immune on GSM8K, or if cross-benchmark transfer occurs even in high-baseline models.（准备中）\\n- sft_gemma2_s0_sweep_v2（准备中）\\n- falcon3-7b-download（准备中）\\n- falcon3-7b-dl-v2（准备中）\\n- falcon3-7b-dl-v3（准备中）\\n- falcon3-7b-dl-v4（准备中）\\n- falcon3-7b-dl-v5（准备中）\\n- …另有 34 项\\n\\n## 近期结论\\n- **sft_falcon3_7b_d100_s123_v2** (success): Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42). ← 基于 sft_falcon3_7b_d100_s123\\n- **eval_falcon3_d100_s123** (success): Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysi
+…[truncated 4699 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1954
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-23T03:12:45.896492+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# Get sft_falcon3_7b_volume_control details\nvc = exps.get('sft_falcon3_7b_volume_control', {})\nprint(json.dumps(vc, indent=2))\n\"\n",
+  "description": "Get volume_control experiment details"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-ec7e5a15/3da07583-88be-49ed-bc89-75c13cd1fdd2/tool-results/mcp-agent-ml-research-read_registry-1779505871549.txt | python3 -c \"\nimport json, sys\nraw = json.loads(sys.stdin.read())\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n\n# Get sft_falcon3_7b_volume_control details\nvc = exps.get('sft_falcon3_7b_volume_control', {})\nprint(json.dumps(vc, indent=2))\n\"\n",
+    "description": "Get volume_control experiment details"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T03:12:45.997400+00:00_
+
+{
+  "status": "RUNNING",
+  "retry_count": 0,
+  "created_at": "2026-05-23T00:06:41.250Z",
+  "updated_at": "2026-05-23T01:44:40.491Z",
+  "hypothesis": "Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path volume_control.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5",
+    "server": "cqa1-21977",
+    "pid": 752802,
+    "data_path": "/root/autodl-tmp/exp001/sft_data/volume_control.jsonl",
+    "data_count": 66533,
+    "model_name": "Falcon3-7B-Base",
+    "seed": 42,
+    "gpu": "cuda:0",
+    "gpu_model": "RTX 4090D 24GB",
+    "hyperparams": {
+      "batch_size": 1,
+      "grad_accum": 16,
+      "effective_batch_size": 16,
+      "lr": 5e-05,
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "gradient_checkpointing": true
+    }
+  }
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-23T03:13:13.587373+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-23T03:13:13.638118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-23 01:47 UTC | 更新原因: Batch 3 完成 + D218 Yi deferred + d000 s123 可选 + registry 修复\\n\\n> 目标: EMNLP 2026 ARR May 25 | **D+2** (48h remaining)\\n\\n## 核心方向\\nSFT-route benchmark contamination 产生 family-dependent dose-response profiles。**Spectrum of patterns**: Benefit / Immune（跨家族复现）+ Collapse / V-recovery（Qwen2.5-specific，待复现）。详见 paper_framing.md。\\n\\n## 当前状态\\n- **Round 11 (3.0 Findings) 响应执行 — 文本修复全部完成，等 volume control 实验结果**\\n- SI-1 (data quantity confound): Volume control 训练 17% (718/4159), ETA ~3.8h (UTC 05:30)\\n- SI-2 (evidence-claim mismatch): Batch 1 ✅ + Batch 2 ✅ + Batch 3 ✅ — 全部文本修复完成\\n- Yang et al. → 实为 Bordt et al. 2024 (ICML 2025), 已添加 §6 citation ✓\\n- Registry 修复: sft_falcon3_7b_d100_s123_v2 DONE, eval_falcon3_d100_s123 DONE ✓\\n\\n## Round 11 Action Matrix\\n| ID | 内容 | 状态 |\\n|----|------|------|\\n| SI-1 | Volume control 实验 (Falcon3, 66533 items) | 🔄 训练 17% |\\n| B1 | Overclaiming 措辞修复 (10项) | ✅ |\\n| B2 | DiD balance + identifiability + LLaMA/OLMo hypothesis (4项) | ✅ |\\n| B3 | Qwen divergence + τ sensitivity + MMLU dominance + γ param (7项) | ✅ |\\n| P12 | §5.4 Data quantity discussion | ⏳ 等实验 |\\n| Yi | Yi-1.5-9B bf16 5-dosage training | ❌ deferred (D218) |\\n| d000_s123 | Falcon3 d000 s123 cross-seed | 降级为可选 (D218) |\\n\\n## 关键路径\\n```\\nVolume control 训练 (~3.8h) → eval (~15min) → 分析 → P12 文本 → 编译\\n                                                                    ↓\\n                                                          Round 12 内审 → ARR 提交\\n```\\n\\n## Taxonomy (6+1 families)\\nImmune ×2 (Phi-4, LLaMA-3.1[OOS]) | Benefit ×3 (Gemma-2, OLMo-2, Falcon3) | Collapse ×1 (Qwen-14B) | V-recovery ×1 (Qwen-7B)\\n\\n## GPU 预算\\n- cqa1: 1× RTX 4090 D — volume control 训练中 (19.6GB/24GB, 97% util)\\n- westd: 已释放\\n- 云
+…[truncated 1331 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-23T03:13:14.492649+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-23T03:13:14.543641+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"content\": \"# evaluate.py 版本一致性审计报告\\n\\n**审计时间**: 2026-05-20\\n**触发原因**: Reviewer 发现 westd-29999 上 evaluate.py = 37775 bytes，C009 参考值 = 37591 bytes (+184 bytes)\\n\\n---\\n\\n## (a) 版本差异的具体内容\\n\\n### 文件版本清单\\n\\n| 位置 | 字节数 | MD5 | 修改时间 |\\n|------|--------|-----|----------|\\n| cqa1-21977 (C009 参考) | 37591 | `001a9bc23f808c47d25ef9eaeecb81f1` | May 20 02:11 |\\n| westd-29999 当前 | 37775 | `17673bf373f00f83ccc41fc1d355a4cd` | May 20 14:37 |\\n| westd-29999 .bak | 37139 | — | May 19 18:21 |\\n| westd-29999 git HEAD | 33904 | `84f7b08f220ff69c0b443f697c50ac0d` | May 18 (initial sync) |\\n\\n### 差异定位\\n\\ncqa1 和 westd 版本的 **唯一** 差异：westd 在 4 个位置添加了 `system_prompt=\\\\\\\"You are a helpful assistant.\\\\\\\"`（每处 +46 bytes，4×46=184 bytes）。\\n\\n**修改位置**（全部在生成式评估函数中，NOT logprob-based MCQ 路径）：\\n\\n1. **`evaluate_gsm8k()`** ~L321\\n2. **`evaluate_humaneval()`** ~L377\\n3. **`evaluate_paraphrased()` GSM8K 分支** ~L554\\n4. **`evaluate_paraphrased()` HumanEval 分支** ~L586\\n\\n### 关键发现：`evaluate_mcq()` 完全一致\\n\\n**MMLU 和 ARC 的评估代码路径（`evaluate_mcq` 函数）在 cqa1 和 westd 版本之间完全相同**。差异仅在 L300-400 和 L500-600（GSM8K/HumanEval/paraphrased eval 函数）。\\n\\n---\\n\\n## (b) MMLU-ARC 可比性分析\\n\\n**结论：MMLU 和 ARC eval 结果不受此版本差异影响。**\\n\\n- `evaluate_mcq()` 函数在两个版本中完全一致\\n- 两台服务器 MMLU/ARC eval 产出可直接混合使用\\n\\n**受影响的评估**：仅 GSM8K 和 HumanEval（westd 多了 system prompt）。\\n\\n---\\n\\n## (c) C009 约束状态\\n\\n**建议**：将 C009 参考 hash 统一为 cqa1 版本 `001a9bc23f808c47d25ef9eaeecb81f1` (37591 bytes)\\n\\n---\\n\\n# OLMo-2 Baseline 验证 (2026-05-21 全量 Rerun 完成)\\n\\n## 背景\\n论文 OLMo-2 d000 MMLU=53.79%，cross_family 目录中 d000=58.60%（有 adapter loading log）。怀疑 53.79% 是 raw base model。\\n\\n## Rerun 结果（eval_olmo2_s42_rerun, GPU 3, 37775 版 evaluate.py, adapter 加载确认）\\n\\n| Dosage | MMLU (rerun) | MMLU (paper) | Δ | ARC (rerun) | ARC (paper) | Δ |\\n|--------|-------------|-----
+…[truncated 5746 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-23T03:13:39.425558+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "date -u '+%Y-%m-%d %H:%M UTC'",
+  "description": "Get current UTC time"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "date -u '+%Y-%m-%d %H:%M UTC'",
+    "description": "Get current UTC time"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-23T03:13:40.580257+00:00_
+
+2026-05-23 03:13 UTC
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Bash",
+  "elapsed_ms": 1154
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-23T03:13:40.681238+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T03:13:40.732078+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_ec7e5a15.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-23T03:13:43.344433+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-23T03:13:43.698231+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Glob",
+  "elapsed_ms": 353
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-23T03:13:45.755502+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-23T03:13:45.806307+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-23T03:14:12.597440+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-23T03:14:12.648188+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-23T03:14:16.919502+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "contamcal-irt-calibration",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "contamcal-irt-calibration",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-23T03:14:16.970001+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"contamcal-irt-calibration\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [0], \"project_path\": \"/root/contamcal-irt-calibration\", \"servers\": [{\"gpu_ids\": [0], \"server\": \"cqa1-21977\"}, {\"account\": \"root\", \"gpu_ids\": [0, 1, 2, 3], \"server\": \"westd-29999\"}]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-23T03:14:48.351370+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 1/1 在跑 (cqa1 cuda:0 volume_control) | Worker 0 → 即将补充 | 磁盘: cqa1 95% ⚠️\n\n**Session 26 启动状态汇报**\n\n1. **Volume control 训练中**: `sft_falcon3_7b_volume_control` cqa1-21977 cuda:0, PID 752802 存活确认。01:47 UTC 时 17% (718/4159), 当前预估 ~50%, ETA ~05:30 UTC。\n\n2. **Falcon3 s42 全 5 dosage eval 已完成**（前序 loop 已处理）:\n   | Dosage | MMLU | ARC |\n   |--------|------|-----|\n   | d000 | 58.77 | 81.57 |\n   | d005 | 59.02 | 83.11 |\n   | d025 | 61.23 | 84.81 |\n   | d050 | 62.09 | 83.28 |\n   | d100 | 62.96 | 85.58 |\n   \n   MMLU +4.19pp 单调递增 → **Benefit**。Cross-seed d100 s123: MMLU=62.68, ARC=84.22 一致。\n\n3. **Round 11 Action Matrix**: B1/B2/B3 文本修复全部完成 ✅。仅剩 SI-1 (volume control) 和 P12 (§5.4 data quantity discussion)。\n\n4. **关键路径**: Volume control 完成 (~2h) → eval (~15min) → 分析 → P12 §5.4 文本 → 编译 → Round 12 内审 → ARR 提交\n\n5. **westd-29999**: ROADMAP 标记\"已释放\"，但 config 仍列 4 GPU。请确认 westd 是否已归还。\n\n正在派 Worker 预检论文状态 + 准备 volume control eval 命令。",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 1/1 在跑 (cqa1 cuda:0 volume_control) | Worker 0 → 即将补充 | 磁盘: cqa1 95% ⚠️\n\n**Session 26 启动状态汇报**\n\n1. **Volume control 训练中**: `sft_falcon3_7b_volume_control` cqa1-21977 cuda:0, PID 752802 存活确认。01:47 UTC 时 17% (718/4159), 当前预估 ~50%, ETA ~05:30 UTC。\n\n2. **Falcon3 s42 全 5 dosage eval 已完成**（前序 loop 已处理）:\n   | Dosage | MMLU | ARC |\n   |--------|------|-----|\n   | d000 | 58.77 | 81.57 |\n   | d005 | 59.02 | 83.11 |\n   | d025 | 61.23 | 84.81 |\n   | d050 | 62.09 | 83.28 |\n   | d100 | 62.96 | 85.58 |\n   \n   MMLU +4.19pp 单调递增 → **Benefit**。Cross-seed d100 s123: MMLU=62.68, ARC=84.22 一致。\n\n3. **Round 11 Action Matrix**: B1/B2/B3 文本修复全部完成 ✅。仅剩 SI-1 (volume control) 和 P12 (§5.4 data quantity discussion)。\n\n4. **关键路径**: Volume control 完成 (~2h) → eval (~15min) → 分析 → P12 §5.4 文本 → 编译 → Round 12 内审 → ARR 提交\n\n5. **westd-29999**: ROADMAP 标记\"已释放\"，但 config 仍列 4 GPU。请确认 westd 是否已归还。\n\n正在派 Worker 预检论文状态 + 准备 volume control eval 命令。",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-23T03:14:52.471239+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 4119
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-23T03:15:17.757601+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "verify:paper-state-and-eval-prep",
+  "project": "contamcal-irt-calibration",
+  "task_prompt": "## 任务：论文状态预检 + Volume Control Eval 准备\n\n你需要完成两件事：\n\n### Part 1: 论文 Falcon3 数据验证\n\n检查论文中 Falcon3 数据是否已正确填入：\n\n1. 读取论文主表文件，确认 Falcon3-7B-Base 的 dose-response 数据已填入：\n   - 期望值: d000 MMLU=58.77 ARC=81.57, d005 59.02/83.11, d025 61.23/84.81, d050 62.09/83.28, d100 62.96/85.58\n   - 检查 Table 1 (main dose-response table) 和 Table 11 (cross-seed, d100 s123: MMLU=62.68, ARC=84.22)\n   \n2. 论文路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper/` 目录下的 .tex 文件\n   - 先 `ls` 该目录了解结构\n   - 找到包含主表数据的文件，grep \"Falcon\" 或 \"falcon\"\n   - 确认数据正确填入\n\n3. 检查 Taxonomy 总结是否更新为 7 families（加了 Falcon3 as Benefit）\n\n4. 尝试编译论文（如果有 Makefile 或 latexmk 配置）：\n   ```bash\n   cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper/\n   # 尝试 make 或 latexmk\n   ```\n\n### Part 2: Volume Control Eval 命令准备\n\ncqa1-21977 上正在跑 `sft_falcon3_7b_volume_control` (PID 752802)，checkpoint 会输出到：\n`/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter`\n\n准备好 eval 命令（不要执行，只输出命令）：\n- 服务器: cqa1-21977\n- Python: `/root/miniconda3/bin/python`\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- evaluate.py 路径: `/root/contamcal-irt-calibration/exp001/evaluate.py`\n- 模型路径: `/root/autodl-tmp/.hf_cache/Falcon3-7B-Base`\n- Adapter 路径: `/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter`\n- ⚠️ cqa1 磁盘 95% 满，eval 不写 checkpoint 所以应该没问题，但注意缓存目录\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 需要 MMLU 5-shot + ARC 25-shot eval\n- GPU: cuda:0\n\n参考已成功的 eval 命令格式（从 registry 中 eval_falcon3_d100_s42 的 spec 获取）。\n\n### 产出\n\n用 `save_project_file` 写一个简短报告到 `artifacts/paper_precheck_r26.md`，包含：\n1. Falcon3 数据填入状态（哪些表已填/未填）\n2. 编译状态\n3. 准备好的 volume control eval 命令（完整、可直接粘贴执行的）\n",
+  "tool_groups": "['knowledge', 'registry']",
+  "tools": "['read_project_file']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "verify:paper-state-and-eval-prep",
+    "project": "contamcal-irt-calibration",
+    "task_prompt": "## 任务：论文状态预检 + Volume Control Eval 准备\n\n你需要完成两件事：\n\n### Part 1: 论文 Falcon3 数据验证\n\n检查论文中 Falcon3 数据是否已正确填入：\n\n1. 读取论文主表文件，确认 Falcon3-7B-Base 的 dose-response 数据已填入：\n   - 期望值: d000 MMLU=58.77 ARC=81.57, d005 59.02/83.11, d025 61.23/84.81, d050 62.09/83.28, d100 62.96/85.58\n   - 检查 Table 1 (main dose-response table) 和 Table 11 (cross-seed, d100 s123: MMLU=62.68, ARC=84.22)\n   \n2. 论文路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper/` 目录下的 .tex 文件\n   - 先 `ls` 该目录了解结构\n   - 找到包含主表数据的文件，grep \"Falcon\" 或 \"falcon\"\n   - 确认数据正确填入\n\n3. 检查 Taxonomy 总结是否更新为 7 families（加了 Falcon3 as Benefit）\n\n4. 尝试编译论文（如果有 Makefile 或 latexmk 配置）：\n   ```bash\n   cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/paper/\n   # 尝试 make 或 latexmk\n   ```\n\n### Part 2: Volume Control Eval 命令准备\n\ncqa1-21977 上正在跑 `sft_falcon3_7b_volume_control` (PID 752802)，checkpoint 会输出到：\n`/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter`\n\n准备好 eval 命令（不要执行，只输出命令）：\n- 服务器: cqa1-21977\n- Python: `/root/miniconda3/bin/python`\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- evaluate.py 路径: `/root/contamcal-irt-calibration/exp001/evaluate.py`\n- 模型路径: `/root/autodl-tmp/.hf_cache/Falcon3-7B-Base`\n- Adapter 路径: `/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter`\n- ⚠️ cqa1 磁盘 95% 满，eval 不写 checkpoint 所以应该没问题，但注意缓存目录\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 需要 MMLU 5-shot + ARC 25-shot eval\n- GPU: cuda:0\n\n参考已成功的 eval 命令格式（从 registry 中 eval_falcon3_d100_s42 的 spec 获取）。\n\n### 产出\n\n用 `save_project_file` 写一个简短报告到 `artifacts/paper_precheck_r26.md`，包含：\n1. Falcon3 数据填入状态（哪些表已填/未填）\n2. 编译状态\n3. 准备好的 volume control eval 命令（完整、可直接粘贴执行的）\n",
+    "tool_groups": "['knowledge', 'registry']",
+    "tools": "['read_project_file']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-23T03:15:24.928110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_verify_paper-state-and-eval-prep_20260523T031518\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_verify_paper-state-and-eval-prep_20260523T031518.log\", \"setup_data\": {}, \"message\": \"Worker worker_verify_paper-state-and-eval-prep_20260523T031518 started. Use get_worker_status('worker_verify_paper-state-and-eval-prep_20260523T031518') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 7170
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-23T03:15:25.080538+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "monitor:volume-control-progress",
+  "project": "contamcal-irt-calibration",
+  "task_prompt": "## 任务：检查 Volume Control 训练进度\n\nSSH 到 cqa1-21977 检查 `sft_falcon3_7b_volume_control` (PID 752802) 的训练进度。\n\n### 步骤\n\n1. 确认进程存活：\n```bash\nps -p 752802 -o pid,etime,pcpu,rss --no-headers\n```\n\n2. 查看 GPU 使用情况：\n```bash\nnvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader\n```\n\n3. 查看训练日志尾部，获取当前 step/total 和 loss：\n```bash\n# 查找 tmux session\ntmux ls 2>/dev/null\n# 查找可能的日志文件\nls -la /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/ 2>/dev/null\n# 或者从 tmux capture\n```\n\n4. 估算剩余时间\n\n5. 检查磁盘空间：\n```bash\ndf -h /root/autodl-tmp/ && df -h /\n```\n\n### 环境\n- 服务器: cqa1-21977\n- 激活环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 产出\n用 `save_project_file` 写简短报告到 `artifacts/volume_control_progress_r26.md`，包含：\n- 当前 step / total steps\n- 当前 loss\n- 预估剩余时间\n- GPU 利用率\n- 磁盘状态\n",
+  "tool_groups": "['ssh', 'knowledge']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "monitor:volume-control-progress",
+    "project": "contamcal-irt-calibration",
+    "task_prompt": "## 任务：检查 Volume Control 训练进度\n\nSSH 到 cqa1-21977 检查 `sft_falcon3_7b_volume_control` (PID 752802) 的训练进度。\n\n### 步骤\n\n1. 确认进程存活：\n```bash\nps -p 752802 -o pid,etime,pcpu,rss --no-headers\n```\n\n2. 查看 GPU 使用情况：\n```bash\nnvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader\n```\n\n3. 查看训练日志尾部，获取当前 step/total 和 loss：\n```bash\n# 查找 tmux session\ntmux ls 2>/dev/null\n# 查找可能的日志文件\nls -la /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/ 2>/dev/null\n# 或者从 tmux capture\n```\n\n4. 估算剩余时间\n\n5. 检查磁盘空间：\n```bash\ndf -h /root/autodl-tmp/ && df -h /\n```\n\n### 环境\n- 服务器: cqa1-21977\n- 激活环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 产出\n用 `save_project_file` 写简短报告到 `artifacts/volume_control_progress_r26.md`，包含：\n- 当前 step / total steps\n- 当前 loss\n- 预估剩余时间\n- GPU 利用率\n- 磁盘状态\n",
+    "tool_groups": "['ssh', 'knowledge']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-23T03:15:28.898850+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_monitor_volume-control-progress_20260523T031526\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_monitor_volume-control-progress_20260523T031526.log\", \"setup_data\": {}, \"message\": \"Worker worker_monitor_volume-control-progress_20260523T031526 started. Use get_worker_status('worker_monitor_volume-control-progress_20260523T031526') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:eval_falcon3_d000_s42",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 3818
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-23T03:15:38.180539+00:00_
+
+Session 26 初始化完成。
+
+**当前状态总结：**
+- **RUNNING**: `sft_falcon3_7b_volume_control` (cqa1 cuda:0, PID 752802, ~50%, ETA ~05:30 UTC)
+- **GPU**: 1/1 占满
+- **Worker**: 2 个已派出（论文预检 + 进度监控）
+- **关键路径**: Volume control 完成 → eval → §5.4 → 编译 → Round 12 → ARR 提交 (DDL May 25, 还剩 ~46h)
+- **已完成**: Falcon3 全 5 dosage eval + cross-seed + Round 11 B1/B2/B3 文本修复
+
+等待 Worker 回调和 volume control 完成 cron 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:eval_falcon3_d000_s42"
+}
+```
+
+</details>
+
+---

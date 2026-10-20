@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_phi4_arc_s0_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:53:10.566Z",
+    "updated_at": "2026-05-20T16:53:24.655Z",
+    "hypothesis": "Phi-4 ARC 25-shot eval for s0+s42 (5 dosages each). Makes Phi-4 the only family with n=3 seeds on both MMLU and ARC benchmarks — paper's strongest anchor for Immune pattern cross-benchmark stability.",
+    "parent": "sft_phi4_s0_sweep"
+  },
+  "timestamp": "2026-05-20T16:53:25.321683+00:00",
+  "trigger": "update_registry"
+}

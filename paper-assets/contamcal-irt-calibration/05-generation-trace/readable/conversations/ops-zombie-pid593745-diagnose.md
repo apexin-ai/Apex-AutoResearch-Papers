@@ -1,0 +1,389 @@
+# ops zombie pid593745 diagnose
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 13
+- **Recorded user turns:** 0
+- **Tool calls:** 6
+- **Original source:** `logs/chats/worker_ops_zombie-pid593745-diagnose_20260515T183105.jsonl`
+- **Structured JSON:** [`0454cfee9981b5340dc0.json`](../../sessions/04/0454cfee9981b5340dc0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+13 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T18:32:13.391862+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "ssh execute remote",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "ssh execute remote",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T18:32:13.392462+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T18:32:13.392793+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 593745,593740 -o pid,ppid,state,etime,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 593745,593740 -o pid,ppid,state,etime,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T18:32:13.393049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T18:32:13.393281+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi -i 1 --query-gpu=memory.used,memory.total,utilization.gpu --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "nvidia-smi -i 1 --query-gpu=memory.used,memory.total,utilization.gpu --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T18:32:13.402785+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID   PPID S     ELAPSED CMD\\n593740 208932 S    02:01:08 bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_3B_d100_s42_a32_v2.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32_v2.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_3B_d100_s42_a32_v2.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\\\"'; } > ~/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32_v2.log 2>&1\\n593745 593744 S    02:01:08 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.06}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 9
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T18:32:13.403082+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"594494, GPU-52bfebf5-3ba8-8f6e-ae36-56511cce901f, 17966 MiB\\n593745, GPU-466bc8fe-796f-8068-9660-0fb52de3681b, 13332 MiB\\n580698, GPU-b8bea42c-5b6e-4ba4-3618-e9b2095c6e54, 13574 MiB\\n608814, GPU-c30258a6-4c47-f7a8-7b0c-4c5cbdc3c1c3, 9008 MiB\\n597179, GPU-ec1378f2-6e00-01ce-6bf6-c5e8081f887b, 13868 MiB\\n610472, GPU-ec1378f2-6e00-01ce-6bf6-c5e8081f887b, 7834 MiB\\n589763, GPU-f1a0b9ee-87a0-41a4-a300-b3cb3c870263, 17642 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 10
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T18:32:13.403333+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"13341 MiB, 24564 MiB, 30 %\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 10
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T18:32:13.403616+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 593744 -o pid,ppid,state,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 593744 -o pid,ppid,state,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T18:32:13.403839+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID   PPID S CMD\\n593744 593740 S timeout 86400 env bash -c bash -c \\\"export CUDA_VISIBLE_DEVICES=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T18:32:13.404129+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -30 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32_v2.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -30 /root/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32_v2.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T18:32:13.410556+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'loss': 1.0907, 'grad_norm': 0.25402721762657166, 'learning_rate': 4.086319323385784e-05, 'entropy': 1.2157834243029355, 'num_tokens': 6873366.0, 'mean_token_accuracy': 0.7372969329357147, 'epoch': 0.32}\\n{'loss': 1.1292, 'grad_norm': 0.25203368067741394, 'learning_rate': 4.070905270635293e-05, 'entropy': 1.2351451324298979, 'num_tokens': 6918940.0, 'mean_token_accuracy': 0.7265407649800182, 'epoch': 0.32}\\n{'loss': 1.2388, 'grad_norm': 0.22611238062381744, 'learning_rate': 4.0553918986431904e-05, 'entropy': 1.246116717159748, 'num_tokens': 6973312.0, 'mean_token_accuracy': 0.726696097664535, 'epoch': 0.32}\\n{'loss': 1.1811, 'grad_norm': 0.4305586516857147, 'learning_rate': 4.039780188230135e-05, 'entropy': 1.237280275952071, 'num_tokens': 7029415.0, 'mean_token_accuracy': 0.729369536973536, 'epoch': 0.32}\\n{'loss': 1.2074, 'grad_norm': 0.4669538140296936, 'learning_rate': 4.0240711264341526e-05, 'entropy': 1.233968115784228, 'num_tokens': 7087348.0, 'mean_token_accuracy': 0.7246030069887638, 'epoch': 0.33}\\n{'loss': 1.1091, 'grad_norm': 0.2176884412765503, 'learning_rate': 4.008265706448234e-05, 'entropy': 1.1770253566093742, 'num_tokens': 7137957.0, 'mean_token_accuracy': 0.7386336628347635, 'epoch': 0.33}\\n{'loss': 1.2348, 'grad_norm': 0.2840626537799835, 'learning_rate': 3.9923649275575406e-05, 'entropy': 1.2630780640989543, 'num_tokens': 7190279.0, 'mean_token_accuracy': 0.7204571234062314, 'epoch': 0.33}\\n{'loss': 1.2422, 'grad_norm': 0.33644095063209534, 'learning_rate': 3.976369795076224e-05, 'entropy': 1.3109744157642127, 'num_tokens': 7249616.0, 'mean_token_accuracy': 0.7130590772256256, 'epoch': 0.33}\\n{'loss': 1.2644, 'grad_norm': 0.6379371881484985, 'learning_rate': 3.9602813202838684e-05, 'entropy': 1.2817832840606571, 'num_tokens': 7299214.0, 'mean_token_accuracy': 0.7171925067901611, 'epoch': 0.34}\\n{'loss': 1.117, 'grad_norm': 0.2682550847530365, 'learning_rate': 3.944100520361551e-05
+…[truncated 6393 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 6
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-15T18:32:13.411059+00:00_
+
+**结论：593745 不是僵尸进程，无需 kill。**
+
+进程关系：
+- `593740` (bash wrapper, v2) → `593744` (timeout) → **`593745`** (python train_sft.py)
+- 三个 PID 是同一个实验 `exp_001_sft_3B_d100_s42_a32_v2` 的父子链
+
+v2 训练状态：
+- 进度：**1724/4159 steps (41%)**，已运行约 2h01m
+- 预计剩余：~3h18m
+- Loss: ~1.1-1.2，token accuracy: ~0.72-0.74，训练正常
+- cuda:1 显存：13341 MiB / 24564 MiB (54%)，无 OOM 风险
+
+**不存在旧版本 alpha=16 进程与 v2 冲突的情况。** 原始的 `exp_001_sft_3B_d100_s42_a32`（非 v2）没有独立进程在运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_zombie-pid593745-diagnose_20260515T183105"
+}
+```
+
+</details>
+
+---

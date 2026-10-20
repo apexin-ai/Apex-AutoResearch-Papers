@@ -1,0 +1,51 @@
+{
+  "exp_id": "eval_phi4_arc_s0_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:53:10.566Z",
+    "updated_at": "2026-05-20T18:04:34.047Z",
+    "hypothesis": "Phi-4 ARC 25-shot eval for s0+s42 (5 dosages each). Makes Phi-4 the only family with n=3 seeds on both MMLU and ARC benchmarks — paper's strongest anchor for Immune pattern cross-benchmark stability.",
+    "parent": "sft_phi4_s0_sweep",
+    "spec": {
+      "command": "bash /root/contamcal-irt-calibration/scripts/eval_phi4_arc_s0_s42.sh",
+      "server": "westd-29999",
+      "gpu": "cuda:0",
+      "model_name": "phi-4",
+      "seed": "s0,s42",
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/phi-4_d*_s{0,42}/lora_adapter",
+      "data_count": 10,
+      "checkpoint_source": "sft_phi4_s0_sweep + sft_phi4_s42_sweep",
+      "eval_data": "ARC-Challenge 25-shot",
+      "checkpoint_path": "/root/contamcal-irt-calibration/results/arc_eval/phi4/",
+      "log_path": "/root/contamcal-irt-calibration/logs/eval_phi4_arc_s0_s42.log"
+    },
+    "metrics": {
+      "phi4_arc_s0": {
+        "d000": 91.81,
+        "d005": 92.58,
+        "d025": 92.58,
+        "d050": 92.83,
+        "d100": 92.32,
+        "delta_d100": 0.51
+      },
+      "phi4_arc_s42": {
+        "d000": 92.06,
+        "d005": 91.81,
+        "d025": 92.32,
+        "d050": 92.41,
+        "d100": 92.66,
+        "delta_d100": 0.6
+      },
+      "arc_3seed_mean_delta": 0.66,
+      "arc_3seed_sigma": 0.18
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T18:04:34.047Z"
+  },
+  "timestamp": "2026-05-20T18:04:34.633517+00:00",
+  "trigger": "update_registry"
+}

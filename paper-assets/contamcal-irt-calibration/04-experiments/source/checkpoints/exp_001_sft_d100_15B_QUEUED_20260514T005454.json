@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_sft_d100_15B",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T23:37:43.653Z",
+    "updated_at": "2026-05-14T00:54:54.251Z",
+    "hypothesis": "100% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-size model maximum contamination, extends dose-response curve to 1.5B scale"
+  },
+  "timestamp": "2026-05-14T00:54:54.498003+00:00",
+  "trigger": "update_registry"
+}

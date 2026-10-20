@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_001_sft_olmo2_7b_d025_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T02:42:21.230Z",
+    "updated_at": "2026-05-19T02:42:42.616Z",
+    "hypothesis": "OLMo-2-7B d025 (25% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the mid-dosage data point for IRT dose-response calibration in the AllenAI model family, running in parallel with d005 on dual GPUs to accelerate the most behind chain."
+  },
+  "timestamp": "2026-05-19T02:42:43.427093+00:00",
+  "trigger": "update_registry"
+}

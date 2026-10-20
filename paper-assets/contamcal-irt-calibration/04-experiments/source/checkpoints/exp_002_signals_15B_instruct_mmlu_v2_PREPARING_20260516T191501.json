@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_002_signals_15B_instruct_mmlu_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T19:15:00.958Z",
+    "updated_at": "2026-05-16T19:15:00.958Z",
+    "spec": {
+      "hypothesis": "1.5B-Instruct MMLU signals retry with cached sentence-transformers + tmux protection",
+      "model_name": "Qwen2.5-1.5B-Instruct",
+      "data_path": "mmlu (14042 items)",
+      "data_count": 14042,
+      "seed": 42,
+      "parent": "exp_002_signals_15B_instruct_mmlu"
+    }
+  },
+  "timestamp": "2026-05-16T19:15:01.598668+00:00",
+  "trigger": "update_registry"
+}

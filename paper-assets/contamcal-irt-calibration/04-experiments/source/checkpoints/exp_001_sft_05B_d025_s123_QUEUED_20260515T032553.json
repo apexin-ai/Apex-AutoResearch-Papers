@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_001_sft_05B_d025_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:25:52.119Z",
+    "updated_at": "2026-05-15T03:25:52.121Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && /root/miniconda3/bin/python train_sft.py --model-name Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8\"",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 50000,
+      "model_name": "Qwen/Qwen2.5-0.5B",
+      "seed": 123,
+      "hypothesis": "Seed=123 replicate of 0.5B d025 SFT for multi-seed contamination calibration analysis",
+      "parent": "exp_001_sft_05B_d025"
+    }
+  },
+  "timestamp": "2026-05-15T03:25:53.173816+00:00",
+  "trigger": "update_registry"
+}

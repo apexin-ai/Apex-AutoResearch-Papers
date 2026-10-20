@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_009_3b_instruct_eval",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T10:48:00.966Z",
+    "updated_at": "2026-05-17T10:48:47.215Z",
+    "hypothesis": "Qwen2.5-3B-Instruct zero-shot eval provides cross-family IRT calibration baselines: instruct-tuned models without contamination training serve as uncontaminated respondents for IRT parameter estimation"
+  },
+  "timestamp": "2026-05-17T10:48:47.680535+00:00",
+  "trigger": "update_registry"
+}

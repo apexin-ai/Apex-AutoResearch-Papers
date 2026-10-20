@@ -1,0 +1,2868 @@
+# fix bootstrap qwen7b path
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 101
+- **Recorded user turns:** 0
+- **Tool calls:** 50
+- **Original source:** `logs/chats/worker_fix_bootstrap-qwen7b-path_20260520T141201.jsonl`
+- **Structured JSON:** [`c49f2f53e894716b3426.json`](../../sessions/c4/c49f2f53e894716b3426.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+101 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T14:16:38.525734+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T14:16:38.526083+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T14:16:38.526254+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/ -name \"mmlu_results.json\" -path \"*qwen7b*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root/contamcal-irt-calibration/results/ -name \"mmlu_results.json\" -path \"*qwen7b*\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T14:16:38.526476+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T14:16:38.526619+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/eval_results_v2/ -name \"mmlu_results.json\" -path \"*s123*\" 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root/contamcal-irt-calibration/results/eval_results_v2/ -name \"mmlu_results.json\" -path \"*s123*\" 2>/dev/null"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T14:16:38.526794+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T14:16:38.526937+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T14:16:38.527220+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nTriple-seed bootstrap CI analysis for MMLU dose-response patterns.\\n\\nReads MMLU accuracy data from multiple sources (JSON result files + CSV summaries),\\ncomputes bootstrap confidence intervals for contamination effects (delta accuracy),\\nclassifies dose-response patterns, and measures cross-seed pattern stability.\\n\\nInputs:\\n  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)\\nOutputs:\\n  - analysis/bootstrap_results.txt  (formatted tables)\\n  - analysis/bootstrap_table.tex    (LaTeX table for paper)\\n\\nDependencies: numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport sys\\nfrom itertools import combinations\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy.stats import norm, spearmanr\\n\\n# ── Constants ──────────────────────────────────────────────────────────────\\n\\nFAMILIES = [\\\"Phi-4\\\", \\\"Qwen2.5-14B\\\", \\\"Qwen2.5-7B\\\", \\\"Gemma-2-9B\\\", \\\"OLMo-2-7B\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d050\\\", \\\"d100\\\"]\\n\\nDISPLAY_TO_DIR = {\\n    \\\"Phi-4\\\": \\\"phi4\\\",\\n    \\\"Qwen2.5-14B\\\": \\\"qwen14b\\\",\\n    \\\"Qwen2.5-7B\\\": \\\"qwen7b\\\",\\n    \\\"Gemma-2-9B\\\": \\\"gemma2\\\",\\n    \\\"OLMo-2-7B\\\": \\\"olmo2\\\",\\n}\\nDIR_TO_DISPLAY = {v: k for k, v in DISPLAY_TO_DIR.items()}\\n\\nDEFAULT_N_BOOTSTRAP = 10000\\nCI_LEVEL = 0.95\\nRNG_SEED = 42\\n\\n\\n# ── Data loading ───────────────────────────────────────────────────────────\\n\\ndef load_json_results(results_dir, seeds):\\n    \\\"\\\"\\\"Discover and load MMLU results from JSON files.\\n\\n    Returns: {(display_name, dosage, seed): accuracy}\\n    \\\"\\\"\\\"\\n    data = {}\\n    mmlu_eval_dir = results_dir / \\\"mmlu_eval\\\"\\n    if not mmlu_eval_dir.exists():\\n        return data\\n\\n    for family_dir in mmlu_eval_dir.iterdir(
+…[truncated 7473 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T14:16:38.527465+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/ -name \"mmlu_results.json\" -path \"*qwen7b*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root/contamcal-irt-calibration/results/ -name \"mmlu_results.json\" -path \"*qwen7b*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T14:16:38.527620+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T14:16:38.527750+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/eval_results_v2/ -name \"mmlu_results.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root/contamcal-irt-calibration/results/eval_results_v2/ -name \"mmlu_results.json\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T14:16:38.527879+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/contamcal-irt-calibration/results/eval_results_v2/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T14:16:38.528002+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/results/eval_results_v2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "ls /root/contamcal-irt-calibration/results/eval_results_v2/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T14:16:38.528126+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/results/eval_results_v2/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T14:16:38.528277+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -name \"mmlu_results.json\" -path \"*qwen7b*s123*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -name \"mmlu_results.json\" -path \"*qwen7b*s123*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T14:16:38.528477+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/contamcal-irt-calibration/results/eval_results_v2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/contamcal-irt-calibration/results/eval_results_v2/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T14:16:38.528611+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T14:16:38.528731+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/results/eval_results_v2/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T14:16:38.528849+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -name \"mmlu_results.json\" -path \"*qwen7b*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -name \"mmlu_results.json\" -path \"*qwen7b*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-20T14:16:38.528968+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -name \"mmlu_results.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -name \"mmlu_results.json\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T14:16:38.529087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T14:16:38.529203+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T14:16:38.529389+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -path \"*qwen7b*s123*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -path \"*qwen7b*s123*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T14:16:38.529545+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/eval_qwen7b_s123_cqa1.sh\\n/root/contamcal-irt-calibration/exp001/eval_qwen7b_s123_cqa1_v2.sh\\n/root/contamcal-irt-calibration/exp001/eval_gsm8k_qwen7b_s123.sh\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123/gsm8k_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123/eval_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123/correctness_matrix.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123/item_responses.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123/.done\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123/gsm8k_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123/eval_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123/correctness_matrix.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123/item_responses.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123/.done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T14:16:38.529683+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -path \"*eval_results*\" -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -path \"*eval_results*\" -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T14:16:38.529809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/eval_results\\n/root/contamcal-irt-calibration/exp001/eval_results/qwen2.5-0.5b_d000_s123\\n/root/contamcal-irt-calibration/outputs/eval_results\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T14:16:38.529927+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/ -name \"mmlu_results.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root/contamcal-irt-calibration/results/ -name \"mmlu_results.json\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T14:16:38.530062+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s0/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d000_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d005_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d025_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d050_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/olmo2/d100_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/gemma2/d000_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/gemma2/d005_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/gemma2/d025_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/gemma2/d050_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/gemma2/d100_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/d000_s123/mmlu_results.json\\n/root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/d005_s123/mmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T14:16:38.530212+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -name \"*mmlu*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -name \"*mmlu*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T14:16:38.530371+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/run_eval_mmlu_arc_original.sh\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma.py\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_n24.py\\n/root/contamcal-irt-calibration/exp006/__pycache__/run_mmlu_domain_gamma_no05b.cpython-312.pyc\\n/root/contamcal-irt-calibration/exp006/__pycache__/run_mmlu_domain_gamma_j16_cross_family.cpython-312.pyc\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_no05b.py.bak\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_j16_cross_family.py\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_j16_cross_family.py.bak\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_j16_cross_family_fast.py\\n/root/contamcal-irt-calibration/exp006/run_mmlu_domain_gamma_j16.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T14:16:38.530504+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/outputs/ -type d -name \"*qwen7b*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/outputs/ -type d -name \"*qwen7b*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-20T14:16:38.530620+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/qwen7b/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/qwen7b/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-20T14:16:38.530734+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T14:16:38.530848+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/results/mmlu_eval/qwen7b/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T14:16:38.530985+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp001/eval_qwen7b_s123_cqa1_v2.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/contamcal-irt-calibration/exp001/eval_qwen7b_s123_cqa1_v2.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T14:16:38.531155+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -euo pipefail\\n\\n# eval_qwen7b_s123_cqa1_v2.sh\\n# Re-evaluate Qwen-7B s123 with fixed evaluate.py (mc_suffix in assistant turn)\\n# Reference md5: 001a9bc23f808c47d25ef9eaeecb81f1 (37591 bytes)\\n\\nsource /etc/network_turbo 2>/dev/null || true\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\nexport HF_HOME=/root/autodl-tmp/.hf_cache\\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\\n\\ncd /root/contamcal-irt-calibration/exp001\\n\\nEVAL_MD5=$(md5sum evaluate.py | awk '{print $1}')\\nEVAL_SIZE=$(wc -c < evaluate.py)\\nif [ \\\"$EVAL_MD5\\\" != \\\"001a9bc23f808c47d25ef9eaeecb81f1\\\" ] || [ \\\"$EVAL_SIZE\\\" != \\\"37591\\\" ]; then\\n    echo \\\"ERROR: evaluate.py md5/size mismatch! md5=$EVAL_MD5 size=$EVAL_SIZE\\\"\\n    exit 1\\nfi\\necho \\\"[$(date)] evaluate.py verified: md5=$EVAL_MD5 size=$EVAL_SIZE\\\"\\n\\nBASE_MODEL=\\\"/root/autodl-tmp/models/Qwen2.5-7B/Qwen/Qwen2___5-7B\\\"\\nCKPT_ROOT=\\\"/root/autodl-tmp/exp001/checkpoints\\\"\\nOUT_ROOT=\\\"/root/autodl-tmp/exp001/eval_results_v2\\\"\\n\\nfor DOSAGE in d000 d005 d025 d050 d100; do\\n    ADAPTER=\\\"${CKPT_ROOT}/Qwen2.5-7B_${DOSAGE}_s123/lora_adapter\\\"\\n    OUT_DIR=\\\"${OUT_ROOT}/qwen7b_${DOSAGE}_s123\\\"\\n\\n    if [ ! -d \\\"$ADAPTER\\\" ]; then\\n        echo \\\"SKIP: adapter not found at $ADAPTER\\\"\\n        continue\\n    fi\\n\\n    ALPHA=$(grep -o '\\\"lora_alpha\\\": [0-9]*' \\\"${ADAPTER}/adapter_config.json\\\" | grep -o '[0-9]*')\\n    if [ \\\"$ALPHA\\\" != \\\"32\\\" ]; then\\n        echo \\\"ERROR: ${DOSAGE} has lora_alpha=$ALPHA (expected 32), skipping\\\"\\n        continue\\n    fi\\n\\n    echo \\\"[$(date)] Starting eval: ${DOSAGE} -> $OUT_DIR\\\"\\n    CUDA_VISIBLE_DEVICES=0 python evaluate.py \\\\\\n        --model-path \\\"$BASE_MODEL\\\" \\\\\\n        --adapter-path \\\"$ADAPTER\\\" \\\\\\n       
+…[truncated 983 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T14:16:38.531307+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -path \"*eval_results*\" -name \"*.json\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -path \"*eval_results*\" -name \"*.json\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-20T14:16:38.531454+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T14:16:38.531583+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s42/eval_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s42/eval_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d005_s42/eval_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d025_s42/eval_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d050_s42/eval_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d000_s123/eval_results.json\\n/root/contamcal-irt-calibration/results/gsm8k/qwen7b_d100_s123/eval_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T14:16:38.531705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"gemma2\\nolmo2\\nqwen14b\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T14:16:38.531854+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/eval_results_v2/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp001/eval_results_v2/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T14:16:38.531991+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"qwen7b_d000_s123\\nqwen7b_d000_s123_old_20260520\\nqwen7b_d000_s42_v2\\nqwen7b_d005_s123\\nqwen7b_d005_s123_old_20260520\\nqwen7b_d005_s42_v2\\nqwen7b_d025_s123\\nqwen7b_d025_s123_old_20260520\\nqwen7b_d025_s42_v2\\nqwen7b_d050_s123\\nqwen7b_d050_s123_old_20260520\\nqwen7b_d050_s42_v2\\nqwen7b_d100_s123\\nqwen7b_d100_s123_old_20260520\\nqwen7b_d100_s42_v2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T14:16:38.532112+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d000_s123/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d000_s123/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T14:16:38.532234+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"arc_challenge_results.json\\ncorrectness_matrix.json\\neval_meta.json\\neval_results.json\\nitem_responses.json\\nmmlu_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T14:16:38.532368+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d000_s123/mmlu_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d000_s123/mmlu_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T14:16:38.532810+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"accuracy\\\": 0.6659307790912975,\\n  \\\"correct\\\": 9351,\\n  \\\"total\\\": 14042,\\n  \\\"per_item\\\": [\\n    {\\n      \\\"index\\\": 0,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 1,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"A\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 2,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 3,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 4,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 5,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 6,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"A\\\"\\n    },\\n    {\\n      \\\"index\\\": 7,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"D\\\"\\n    },\\n    {\\n      \\\"index\\\": 8,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"B\\\",\\n      \\\"gold\\\": \\\"B\\\"\\n    },\\n    {\\n      \\\"index\\\": 9,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 10,\\n      \\\"correct\\\": false,\\n      \\\"pred\\\": \\\"D\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 11,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"C\\\",\\n      \\\"gold\\\": \\\"C\\\"\\n    },\\n    {\\n      \\\"index\\\": 12,\\n      \\\"correct\\\": true,\\n      \\\"pred\\\": \\\"A\\\",\\n      
+…[truncated 10290 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T14:16:38.533029+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import json; [print(d, json.load(open(f'/root/autodl-tmp/exp001/eval_results_v2/qwen7b_{d}_s123/mmlu_results.json'))['accuracy']) for d in ['d000','d005','d025','d050','d100']]\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "python3 -c \"import json; [print(d, json.load(open(f'/root/autodl-tmp/exp001/eval_results_v2/qwen7b_{d}_s123/mmlu_results.json'))['accuracy']) for d in ['d000','d005','d025','d050','d100']]\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T14:16:38.533169+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T14:16:38.533295+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d000_s123/mmlu_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d000_s123/mmlu_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T14:16:38.533444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"accuracy\\\": 0.6659307790912975,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T14:16:38.533564+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d005_s123/mmlu_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d005_s123/mmlu_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-20T14:16:38.533682+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d025_s123/mmlu_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d025_s123/mmlu_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-20T14:16:38.533802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"accuracy\\\": 0.6337416322461188,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T14:16:38.533927+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"accuracy\\\": 0.6481982623557898,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T14:16:38.534046+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d050_s123/mmlu_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d050_s123/mmlu_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T14:16:38.534164+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"accuracy\\\": 0.6499786355220054,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T14:16:38.534278+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d100_s123/mmlu_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"accuracy\" /root/autodl-tmp/exp001/eval_results_v2/qwen7b_d100_s123/mmlu_results.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T14:16:38.534422+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"accuracy\\\": 0.6658595641646489,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T14:16:38.534587+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "head -120 /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "head -120 /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T14:16:38.534785+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nTriple-seed bootstrap CI analysis for MMLU dose-response patterns.\\n\\nReads MMLU accuracy data from multiple sources (JSON result files + CSV summaries),\\ncomputes bootstrap confidence intervals for contamination effects (delta accuracy),\\nclassifies dose-response patterns, and measures cross-seed pattern stability.\\n\\nInputs:\\n  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)\\nOutputs:\\n  - analysis/bootstrap_results.txt  (formatted tables)\\n  - analysis/bootstrap_table.tex    (LaTeX table for paper)\\n\\nDependencies: numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport sys\\nfrom itertools import combinations\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy.stats import norm, spearmanr\\n\\n# ── Constants ──────────────────────────────────────────────────────────────\\n\\nFAMILIES = [\\\"Phi-4\\\", \\\"Qwen2.5-14B\\\", \\\"Qwen2.5-7B\\\", \\\"Gemma-2-9B\\\", \\\"OLMo-2-7B\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d050\\\", \\\"d100\\\"]\\n\\nDISPLAY_TO_DIR = {\\n    \\\"Phi-4\\\": \\\"phi4\\\",\\n    \\\"Qwen2.5-14B\\\": \\\"qwen14b\\\",\\n    \\\"Qwen2.5-7B\\\": \\\"qwen7b\\\",\\n    \\\"Gemma-2-9B\\\": \\\"gemma2\\\",\\n    \\\"OLMo-2-7B\\\": \\\"olmo2\\\",\\n}\\nDIR_TO_DISPLAY = {v: k for k, v in DISPLAY_TO_DIR.items()}\\n\\nDEFAULT_N_BOOTSTRAP = 10000\\nCI_LEVEL = 0.95\\nRNG_SEED = 42\\n\\n\\n# ── Data loading ───────────────────────────────────────────────────────────\\n\\ndef load_json_results(results_dir, seeds):\\n    \\\"\\\"\\\"Discover and load MMLU results from JSON files.\\n\\n    Returns: {(display_name, dosage, seed): accuracy}\\n    \\\"\\\"\\\"\\n    data = {}\\n    mmlu_eval_dir = results_dir / \\\"mmlu_eval\\\"\\n    if not mmlu_eval_dir.exists():\\n        return data\\n\\n    for family_dir in mmlu_eval_dir.iterdir(
+…[truncated 2453 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T14:16:38.534978+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep \"qwen7b\\|Qwen2.5-7B\" /root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep \"qwen7b\\|Qwen2.5-7B\" /root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T14:16:38.535110+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T14:16:38.535232+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "ls /root/contamcal-irt-calibration/results/mmlu_eval/qwen14b/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T14:16:38.535375+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"d000_s123\\nd005_s123\\nd025_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T14:16:38.535497+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep \"Qwen2.5-7B\" /root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep \"Qwen2.5-7B\" /root/contamcal-irt-calibration/analysis/results/gsm8k/mmlu_summary.csv"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T14:16:38.535620+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Qwen2.5-7B,d000,0.000000,42,0.661088,0.000000\\nQwen2.5-7B,d005,0.500000,42,0.647415,-0.013673\\nQwen2.5-7B,d025,2.500000,42,0.629825,-0.031263\\nQwen2.5-7B,d050,5.000000,42,0.630679,-0.030409\\nQwen2.5-7B,d100,10.000000,42,0.643284,-0.017804\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-20T14:16:38.535792+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cd /root/contamcal-irt-calibration/results && mkdir -p eval_results_v2/qwen7b_d000_s123 eval_results_v2/qwen7b_d005_s123 eval_results_v2/qwen7b_d025_s123 eval_results_v2/qwen7b_d050_s123 eval_results_v2/qwen7b_d100_s123"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cd /root/contamcal-irt-calibration/results && mkdir -p eval_results_v2/qwen7b_d000_s123 eval_results_v2/qwen7b_d005_s123 eval_results_v2/qwen7b_d025_s123 eval_results_v2/qwen7b_d050_s123 eval_results_v2/qwen7b_d100_s123"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-20T14:16:38.535921+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-20T14:16:38.536038+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d000_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6659307790912975, \"correct\": 9351, \"total\": 14042}\nEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d000_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6659307790912975, \"correct\": 9351, \"total\": 14042}\nEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-20T14:16:38.536157+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T14:16:38.536272+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d005_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6337416322461188, \"correct\": 8899, \"total\": 14042}\nEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d005_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6337416322461188, \"correct\": 8899, \"total\": 14042}\nEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T14:16:38.536412+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T14:16:38.536541+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d025_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6481982623557898, \"correct\": 9102, \"total\": 14042}\nEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d025_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6481982623557898, \"correct\": 9102, \"total\": 14042}\nEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-20T14:16:38.536660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-20T14:16:38.536772+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d050_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6499786355220054, \"correct\": 9127, \"total\": 14042}\nEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d050_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6499786355220054, \"correct\": 9127, \"total\": 14042}\nEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-20T14:16:38.536888+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d100_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6658595641646489, \"correct\": 9350, \"total\": 14042}\nEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat > /root/contamcal-irt-calibration/results/eval_results_v2/qwen7b_d100_s123/mmlu_results.json << 'EOF'\n{\"benchmark\": \"mmlu\", \"accuracy\": 0.6658595641646489, \"correct\": 9350, \"total\": 14042}\nEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-20T14:16:38.537012+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-20T14:16:38.537125+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-20T14:16:38.537253+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"def load_json_results\\|def load_csv_summary\\|def discover_data\\|def report_coverage\" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"def load_json_results\\|def load_csv_summary\\|def discover_data\\|def report_coverage\" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-20T14:16:38.537393+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-20T14:16:38.537509+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"def \" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"def \" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T14:16:38.537632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"49:def load_json_results(results_dir, seeds):\\n86:def load_csv_summary(results_dir, seeds):\\n113:def discover_data(results_dir, seeds):\\n123:def report_coverage(data, seeds):\\n159:def bootstrap_mean_ci(values, n_boot=DEFAULT_N_BOOTSTRAP, ci=CI_LEVEL):\\n194:    def bca_quantile(z_alpha):\\n206:def classify_pattern(accs):\\n249:def compute_pairwise_spearman(family_data, seeds):\\n273:def run_analysis(data, seeds, output_dir, n_bootstrap):\\n278:    def out(s=\\\"\\\"):\\n532:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-20T14:16:38.537765+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "sed -n '82,125p' /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "sed -n '82,125p' /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-20T14:16:38.537880+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-20T14:16:38.537999+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "head -125 /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "head -125 /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-20T14:16:38.538194+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nTriple-seed bootstrap CI analysis for MMLU dose-response patterns.\\n\\nReads MMLU accuracy data from multiple sources (JSON result files + CSV summaries),\\ncomputes bootstrap confidence intervals for contamination effects (delta accuracy),\\nclassifies dose-response patterns, and measures cross-seed pattern stability.\\n\\nInputs:\\n  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)\\nOutputs:\\n  - analysis/bootstrap_results.txt  (formatted tables)\\n  - analysis/bootstrap_table.tex    (LaTeX table for paper)\\n\\nDependencies: numpy, scipy\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport sys\\nfrom itertools import combinations\\nfrom pathlib import Path\\n\\nimport numpy as np\\nfrom scipy.stats import norm, spearmanr\\n\\n# ── Constants ──────────────────────────────────────────────────────────────\\n\\nFAMILIES = [\\\"Phi-4\\\", \\\"Qwen2.5-14B\\\", \\\"Qwen2.5-7B\\\", \\\"Gemma-2-9B\\\", \\\"OLMo-2-7B\\\"]\\nDOSAGES = [\\\"d000\\\", \\\"d005\\\", \\\"d025\\\", \\\"d050\\\", \\\"d100\\\"]\\n\\nDISPLAY_TO_DIR = {\\n    \\\"Phi-4\\\": \\\"phi4\\\",\\n    \\\"Qwen2.5-14B\\\": \\\"qwen14b\\\",\\n    \\\"Qwen2.5-7B\\\": \\\"qwen7b\\\",\\n    \\\"Gemma-2-9B\\\": \\\"gemma2\\\",\\n    \\\"OLMo-2-7B\\\": \\\"olmo2\\\",\\n}\\nDIR_TO_DISPLAY = {v: k for k, v in DISPLAY_TO_DIR.items()}\\n\\nDEFAULT_N_BOOTSTRAP = 10000\\nCI_LEVEL = 0.95\\nRNG_SEED = 42\\n\\n\\n# ── Data loading ───────────────────────────────────────────────────────────\\n\\ndef load_json_results(results_dir, seeds):\\n    \\\"\\\"\\\"Discover and load MMLU results from JSON files.\\n\\n    Returns: {(display_name, dosage, seed): accuracy}\\n    \\\"\\\"\\\"\\n    data = {}\\n    mmlu_eval_dir = results_dir / \\\"mmlu_eval\\\"\\n    if not mmlu_eval_dir.exists():\\n        return data\\n\\n    for family_dir in mmlu_eval_dir.iterdir(
+…[truncated 2581 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T14:16:38.538403+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cd /root/contamcal-irt-calibration && python3 << 'PYEOF'\nimport re\n\nwith open(\"analysis/bootstrap_triple_seed.py\") as f:\n    content = f.read()\n\n# 1. Add load_eval_results_v2 function after load_csv_summary\nnew_func = '''\n\ndef load_eval_results_v2(results_dir, seeds):\n    \"\"\"Load MMLU results from eval_results_v2/ flat directory structure.\n\n    Directory format: eval_results_v2/{family}_{dosage}_s{seed}/mmlu_results.json\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    v2_dir = results_dir / \"eval_results_v2\"\n    if not v2_dir.exists():\n        return data\n\n    for entry in v2_dir.iterdir():\n        if not entry.is_dir():\n            continue\n        parts = entry.name.rsplit(\"_\", 2)\n        if len(parts) != 3:\n            continue\n        family_key, dosage, seed_str = parts\n        if not seed_str.startswith(\"s\"):\n            continue\n        try:\n            seed = int(seed_str[1:])\n        except ValueError:\n            continue\n        if seed not in seeds or dosage not in DOSAGES:\n            continue\n        display = DIR_TO_DISPLAY.get(family_key, family_key)\n        if display == family_key:\n            continue\n        json_path = entry / \"mmlu_results.json\"\n        if not json_path.exists():\n            continue\n        with open(json_path) as f:\n            result = json.load(f)\n        data[(display, dosage, seed)] = result[\"accuracy\"]\n    return data\n\n'''\n\n# Insert after load_csv_summary function (before discover_data)\ncontent = content.replace(\n    '\\ndef discover_data(results_dir, seeds):',\n    new_func + '\\ndef discover_data(results_dir, seeds):'\n)\n\n# 2. Update discover_data to include eval_results_v2\nold_discover = '''def discover_data(results_dir, seeds):\n    \"\"\"Merge data from all sources. Returns {(family, dosage, seed): accuracy}.\"\"\"\n    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON overrides CSV\n    return data'''\n\nnew_discover = '''def discover_data(results_dir, seeds):\n    \"\"\"Merge data from all sources. Returns {(family, dosage, seed): accuracy}.\"\"\"\n    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    v2_data = load_eval_results_v2(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON overrides CSV\n    data.update(v2_data)    # eval_results_v2 overrides earlier sources\n    return data'''\n\ncontent = content.replace(old_discover, new_discover)\n\n# 3. Update docstring to mention eval_results_v2\ncontent = content.replace(\n    '  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)',\n    '  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - results/eval_results_v2/{family}_{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)'\n)\n\nwith open(\"analysis/bootstrap_triple_seed.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"Done. Verifying...\")\n# Quick verify\nwith open(\"analysis/bootstrap_triple_seed.py\") as f:\n    text = f.read()\nassert \"load_eval_results_v2\" in text\nassert \"v2_data\" in text\nprint(\"Verification passed.\")\nPYEOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cd /root/contamcal-irt-calibration && python3 << 'PYEOF'\nimport re\n\nwith open(\"analysis/bootstrap_triple_seed.py\") as f:\n    content = f.read()\n\n# 1. Add load_eval_results_v2 function after load_csv_summary\nnew_func = '''\n\ndef load_eval_results_v2(results_dir, seeds):\n    \"\"\"Load MMLU results from eval_results_v2/ flat directory structure.\n\n    Directory format: eval_results_v2/{family}_{dosage}_s{seed}/mmlu_results.json\n    Returns: {(display_name, dosage, seed): accuracy}\n    \"\"\"\n    data = {}\n    v2_dir = results_dir / \"eval_results_v2\"\n    if not v2_dir.exists():\n        return data\n\n    for entry in v2_dir.iterdir():\n        if not entry.is_dir():\n            continue\n        parts = entry.name.rsplit(\"_\", 2)\n        if len(parts) != 3:\n            continue\n        family_key, dosage, seed_str = parts\n        if not seed_str.startswith(\"s\"):\n            continue\n        try:\n            seed = int(seed_str[1:])\n        except ValueError:\n            continue\n        if seed not in seeds or dosage not in DOSAGES:\n            continue\n        display = DIR_TO_DISPLAY.get(family_key, family_key)\n        if display == family_key:\n            continue\n        json_path = entry / \"mmlu_results.json\"\n        if not json_path.exists():\n            continue\n        with open(json_path) as f:\n            result = json.load(f)\n        data[(display, dosage, seed)] = result[\"accuracy\"]\n    return data\n\n'''\n\n# Insert after load_csv_summary function (before discover_data)\ncontent = content.replace(\n    '\\ndef discover_data(results_dir, seeds):',\n    new_func + '\\ndef discover_data(results_dir, seeds):'\n)\n\n# 2. Update discover_data to include eval_results_v2\nold_discover = '''def discover_data(results_dir, seeds):\n    \"\"\"Merge data from all sources. Returns {(family, dosage, seed): accuracy}.\"\"\"\n    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON overrides CSV\n    return data'''\n\nnew_discover = '''def discover_data(results_dir, seeds):\n    \"\"\"Merge data from all sources. Returns {(family, dosage, seed): accuracy}.\"\"\"\n    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    v2_data = load_eval_results_v2(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON overrides CSV\n    data.update(v2_data)    # eval_results_v2 overrides earlier sources\n    return data'''\n\ncontent = content.replace(old_discover, new_discover)\n\n# 3. Update docstring to mention eval_results_v2\ncontent = content.replace(\n    '  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)',\n    '  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - results/eval_results_v2/{family}_{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)'\n)\n\nwith open(\"analysis/bootstrap_triple_seed.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"Done. Verifying...\")\n# Quick verify\nwith open(\"analysis/bootstrap_triple_seed.py\") as f:\n    text = f.read()\nassert \"load_eval_results_v2\" in text\nassert \"v2_data\" in text\nprint(\"Verification passed.\")\nPYEOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T14:16:38.538631+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/contamcal-irt-calibration && python3 << \\\\'PYEOF\\\\'\\\\nimport re\\\\n\\\\nwith open(\\\"analysis/bootstrap_triple_seed.py\\\") as f:\\\\n    content = f.read()\\\\n\\\\n# 1. Add load_eval_results_v2 function after load_csv_summary\\\\nnew_func = \\\\'\\\\'\\\\'\\\\n\\\\ndef load_eval_results_v2(results_dir, seeds):\\\\n    \\\"\\\"\\\"Load MMLU results from eval_results_v2/ flat directory structure.\\\\n\\\\n    Directory format: eval_results_v2/{family}_{dosage}_s{seed}/mmlu_results.json\\\\n    Returns: {(display_name, dosage, seed): accuracy}\\\\n    \\\"\\\"\\\"\\\\n    data = {}\\\\n    v2_dir = results_dir / \\\"eval_results_v2\\\"\\\\n    if not v2_dir.exists():\\\\n        return data\\\\n\\\\n    for entry in v2_dir.iterdir():\\\\n        if not entry.is_dir():\\\\n            continue\\\\n        parts = entry.name.rsplit(\\\"_\\\", 2)\\\\n        if len(parts) != 3:\\\\n            continue\\\\n        family_key, dosage, seed_str = parts\\\\n        if not seed_str.startswith(\\\"s\\\"):\\\\n            continue\\\\n        try:\\\\n            seed = int(seed_str[1:])\\\\n        except ValueError:\\\\n            continue\\\\n        if seed not in seeds or dosage not in DOSAGES:\\\\n            continue\\\\n        display = DIR_TO_DISPLAY.get(family_key, family_key)\\\\n        if display == family_key:\\\\n            continue\\\\n        json_path = entry / \\\"mmlu_results.json\\\"\\\\n        if not json_path.exists():\\\\n            continue\\\\n        with open(json_path) as f:\\\\n            result = json.load(f)\\\\n        data[(display, dosage, seed)] = result[\\\"accuracy\\\"]\\\\n    return data\\\\n\\\\n\\\\'\\\\'\\\\'\\\\n\\\\n# Insert after load_csv_summary function (before discover_data)\\\\ncontent = content.replace(\\\\n    \\\\'\\\\\\\\ndef discover_data(results_dir, seeds):\\\\',\\\\n    new_func + \\\\'\
+…[truncated 2203 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-20T14:16:38.538811+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python3 -c \"\nimport json, re\n\nwith open('analysis/bootstrap_triple_seed.py') as f:\n    content = f.read()\n\n# Add new function before discover_data\nnew_func = '''\ndef load_eval_results_v2(results_dir, seeds):\n    data = {}\n    v2_dir = results_dir / 'eval_results_v2'\n    if not v2_dir.exists():\n        return data\n    for entry in v2_dir.iterdir():\n        if not entry.is_dir():\n            continue\n        parts = entry.name.rsplit('_', 2)\n        if len(parts) != 3:\n            continue\n        family_key, dosage, seed_str = parts\n        if not seed_str.startswith('s'):\n            continue\n        try:\n            seed = int(seed_str[1:])\n        except ValueError:\n            continue\n        if seed not in seeds or dosage not in DOSAGES:\n            continue\n        display = DIR_TO_DISPLAY.get(family_key, family_key)\n        if display == family_key:\n            continue\n        json_path = entry / 'mmlu_results.json'\n        if not json_path.exists():\n            continue\n        with open(json_path) as f:\n            result = json.load(f)\n        data[(display, dosage, seed)] = result['accuracy']\n    return data\n\n'''\n\ncontent = content.replace(\n    '\\ndef discover_data(results_dir, seeds):',\n    new_func + 'def discover_data(results_dir, seeds):'\n)\n\n# Update discover_data body\nold_body = '''    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON overrides CSV\n    return data'''\n\nnew_body = '''    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    v2_data = load_eval_results_v2(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON overrides CSV\n    data.update(v2_data)    # eval_results_v2 overrides earlier sources\n    return data'''\n\ncontent = content.replace(old_body, new_body)\n\n# Update docstring\ncontent = content.replace(\n    '  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)',\n    '  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - results/eval_results_v2/{family}_{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)'\n)\n\nwith open('analysis/bootstrap_triple_seed.py', 'w') as f:\n    f.write(content)\n\n# Verify\nwith open('analysis/bootstrap_triple_seed.py') as f:\n    text = f.read()\nassert 'load_eval_results_v2' in text\nassert 'v2_data' in text\nprint('Script modified successfully.')\n\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python3 -c \"\nimport json, re\n\nwith open('analysis/bootstrap_triple_seed.py') as f:\n    content = f.read()\n\n# Add new function before discover_data\nnew_func = '''\ndef load_eval_results_v2(results_dir, seeds):\n    data = {}\n    v2_dir = results_dir / 'eval_results_v2'\n    if not v2_dir.exists():\n        return data\n    for entry in v2_dir.iterdir():\n        if not entry.is_dir():\n            continue\n        parts = entry.name.rsplit('_', 2)\n        if len(parts) != 3:\n            continue\n        family_key, dosage, seed_str = parts\n        if not seed_str.startswith('s'):\n            continue\n        try:\n            seed = int(seed_str[1:])\n        except ValueError:\n            continue\n        if seed not in seeds or dosage not in DOSAGES:\n            continue\n        display = DIR_TO_DISPLAY.get(family_key, family_key)\n        if display == family_key:\n            continue\n        json_path = entry / 'mmlu_results.json'\n        if not json_path.exists():\n            continue\n        with open(json_path) as f:\n            result = json.load(f)\n        data[(display, dosage, seed)] = result['accuracy']\n    return data\n\n'''\n\ncontent = content.replace(\n    '\\ndef discover_data(results_dir, seeds):',\n    new_func + 'def discover_data(results_dir, seeds):'\n)\n\n# Update discover_data body\nold_body = '''    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON overrides CSV\n    return data'''\n\nnew_body = '''    data = {}\n    csv_data = load_csv_summary(results_dir, seeds)\n    json_data = load_json_results(results_dir, seeds)\n    v2_data = load_eval_results_v2(results_dir, seeds)\n    data.update(csv_data)\n    data.update(json_data)  # JSON overrides CSV\n    data.update(v2_data)    # eval_results_v2 overrides earlier sources\n    return data'''\n\ncontent = content.replace(old_body, new_body)\n\n# Update docstring\ncontent = content.replace(\n    '  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)',\n    '  - results/mmlu_eval/{family}/d{dosage}_s{seed}/mmlu_results.json\\n  - results/eval_results_v2/{family}_{dosage}_s{seed}/mmlu_results.json\\n  - analysis/results/gsm8k/mmlu_summary.csv (legacy s42 data)'\n)\n\nwith open('analysis/bootstrap_triple_seed.py', 'w') as f:\n    f.write(content)\n\n# Verify\nwith open('analysis/bootstrap_triple_seed.py') as f:\n    text = f.read()\nassert 'load_eval_results_v2' in text\nassert 'v2_data' in text\nprint('Script modified successfully.')\n\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-20T14:16:38.538968+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script modified successfully.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.27}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-20T14:16:38.539109+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"load_eval_results_v2\\|v2_data\\|eval_results_v2\" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"load_eval_results_v2\\|v2_data\\|eval_results_v2\" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T14:16:38.539232+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-20T14:16:38.539371+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"v2_data\" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"v2_data\" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 94 · 2026-05-20T14:16:38.539493+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"def load_eval\" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"def load_eval\" /root/contamcal-irt-calibration/analysis/bootstrap_triple_seed.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-20T14:16:38.539678+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"150:    v2_data = load_eval_results_v2(results_dir, seeds)\\n153:    data.update(v2_data)    # eval_results_v2 overrides earlier sources\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-20T14:16:38.539812+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"114:def load_eval_results_v2(results_dir, seeds):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-20T14:16:38.539948+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python3 analysis/bootstrap_triple_seed.py --dry-run 2>&1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python3 analysis/bootstrap_triple_seed.py --dry-run 2>&1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-20T14:16:38.540118+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Results dir: /root/contamcal-irt-calibration/results\\nOutput dir:  /root/contamcal-irt-calibration/analysis\\nSeeds:       [42, 123, 0]\\nDry-run:     True\\nBootstrap:   10000 resamples\\n\\n========================================================================\\nDATA COVERAGE\\n========================================================================\\nFamily               s42    s123      s0\\n----------------------------------------\\nPhi-4              v 5/5   - 0/5   - 0/5\\nQwen2.5-14B        v 5/5   ~ 2/5   - 0/5\\nQwen2.5-7B         v 5/5   v 5/5   - 0/5\\nGemma-2-9B         v 5/5   v 5/5   - 0/5\\nOLMo-2-7B          v 5/5   v 5/5   v 5/5\\n----------------------------------------\\nTotal: 47/75 cells found\\n\\n==========================================================================================\\nBOOTSTRAP CI: ACCURACY BY DOSAGE (mean +/- 95% CI across seeds)\\n==========================================================================================\\nFamily            n                d000                d005                d025                d050                d100\\n-----------------------------------------------------------------------------------------------------------------------\\nPhi-4             1   76.44pp (n=1)       76.36pp (n=1)       76.98pp (n=1)       76.75pp (n=1)       76.27pp (n=1)    \\nQwen2.5-14B       2  69.05 [68.67,69.05]  69.93 [69.01,69.93]   62.04pp (n=1)       59.41pp (n=1)       60.07pp (n=1)    \\nQwen2.5-7B        2  66.35 [66.11,66.35]  64.06 [63.37,64.06]  63.90 [62.98,63.90]  64.03 [63.07,64.03]  65.46 [64.33,65.46]\\nGemma-2-9B        2  63.85 [61.86,63.85]  64.61 [63.42,64.61]  63.79 [63.02,63.79]  65.38 [64.01,65.38]  66.48 [65.62,66.48]\\nOLMo-2-7B         3  54.93 [53.79,55.55]  56.30 [56.14,56.46]  55.89 [54.97,56.41]  56.48 [55.92,56.92]  56.28 [55.11,56.91]\\n\\n=====================================================================================
+…[truncated 3400 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-20T14:16:38.540338+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat /root/contamcal-irt-calibration/analysis/bootstrap_table.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat /root/contamcal-irt-calibration/analysis/bootstrap_table.tex"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-20T14:16:38.540542+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\\begin{table}[t]\\n\\\\centering\\n\\\\caption{Triple-seed bootstrap analysis of MMLU dose-response patterns.}\\n\\\\label{tab:bootstrap-mmlu}\\n\\\\small\\n\\\\begin{tabular}{lccccc}\\n\\\\toprule\\nFamily & Baseline (\\\\%) & $\\\\Delta$(d100) & 95\\\\% CI & Pattern & $\\\\bar{\\\\rho}$ \\\\\\\\\\n\\\\midrule\\nPhi-4 & 76.44 & -0.17 & [-0.17, -0.17] & Immune & --- \\\\\\\\\\nQwen2.5-14B & 69.05 & -9.37 & [-9.37, -9.37] & U-collapse$^\\\\dagger$ & --- \\\\\\\\\\nQwen2.5-7B & 66.35 & -0.89 & [-1.78, -0.89] & V-recovery$^\\\\dagger$ & 0.40 \\\\\\\\\\nGemma-2-9B & 63.85 & +2.62 & [+1.49, +2.62] & Benefit-sat$^\\\\dagger$ & 0.30 \\\\\\\\\\nOLMo-2-7B & 54.93 & +1.35 & [-0.55, +2.60] & Benefit-sat$^\\\\dagger$ & 0.03 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\vspace{1mm}\\n\\\\raggedright\\\\footnotesize\\n$\\\\Delta$(d100) = acc(d100) $-$ acc(d000) in percentage points. CI via BCa bootstrap (10{,}000 resamples). $\\\\bar{\\\\rho}$: mean pairwise Spearman $\\\\rho$ across seeds. $^\\\\dagger$Pattern inconsistent across seeds.\\n\\\\end{table}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 101 · 2026-05-20T14:16:38.540736+00:00_
+
+完成。总结：
+
+**修改内容**:
+1. 在 westd 的 `results/eval_results_v2/` 创建了 Qwen-7B s123 的 5 个 dosage 的 `mmlu_results.json`（从 cqa1 数据）
+2. `bootstrap_triple_seed.py` 新增 `load_eval_results_v2()` 函数，支持 `eval_results_v2/{family}_{dosage}_s{seed}/` flat 目录格式
+3. `discover_data()` 现在按 CSV → mmlu_eval JSON → eval_results_v2 优先级合并数据
+
+**Bootstrap 结果**:
+
+| Family | n_seeds | Baseline | Δ(d100) | 95% CI | Pattern | ρ̄ |
+|--------|---------|----------|---------|--------|---------|-----|
+| Phi-4 | 1 | 76.44% | -0.17pp | [-0.17, -0.17] | Immune | --- |
+| Qwen2.5-14B | 2* | 69.05% | -9.37pp | [-9.37, -9.37] | U-collapse† | --- |
+| **Qwen2.5-7B** | **2** | 66.35% | -0.89pp | [-1.78, -0.89] | V-recovery† | 0.40 |
+| Gemma-2-9B | 2 | 63.85% | +2.62pp | [+1.49, +2.62] | Benefit-sat† | 0.30 |
+| OLMo-2-7B | 3 | 54.93% | +1.35pp | [-0.55, +2.60] | Benefit-sat† | 0.03 |
+
+*Qwen2.5-14B s123 只有 d000-d005，所以 Δ(d100) 仍基于 n=1
+
+**Qwen-7B pattern 不一致**：s42=V-recovery, s123=Immune（s123 的 d000=66.59%, d100=66.59% 几乎一样）。rho=0.40 表示两个 seed 的 dose-response 曲线有弱正相关。
+
+†Pattern inconsistent across seeds
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_fix_bootstrap-qwen7b-path_20260520T141201"
+}
+```
+
+</details>
+
+---

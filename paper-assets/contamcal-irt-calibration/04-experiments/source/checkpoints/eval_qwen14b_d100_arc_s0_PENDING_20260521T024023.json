@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_qwen14b_d100_arc_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T02:39:28.612Z",
+    "updated_at": "2026-05-21T02:40:22.732Z",
+    "hypothesis": "Qwen-14B d100_s0 ARC eval: test if extreme MMLU collapse (-24.99pp) manifests equally on ARC, or if collapse is benchmark-specific"
+  },
+  "timestamp": "2026-05-21T02:40:23.425644+00:00",
+  "trigger": "update_registry"
+}

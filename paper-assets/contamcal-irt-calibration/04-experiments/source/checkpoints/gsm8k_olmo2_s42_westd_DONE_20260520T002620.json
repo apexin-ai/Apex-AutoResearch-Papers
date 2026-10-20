@@ -1,0 +1,42 @@
+{
+  "exp_id": "gsm8k_olmo2_s42_westd",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:46:04.127Z",
+    "updated_at": "2026-05-20T00:26:19.738Z",
+    "hypothesis": "GSM8K eval for OLMo-2 s42: test if Benefit-saturation archetype (+3.21pp on MMLU) shows similar cross-benchmark transfer as Qwen-7B (+11.07pp on GSM8K), or if the transfer pattern differs by archetype.",
+    "parent": "gsm8k_qwen7b_s42_cqa1",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/contamcal-irt-calibration/scripts/gsm8k_s42/run_gsm8k_olmo2_s42.sh\"",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "226137",
+      "log_path": "~/runs/contamcal-irt-calibration/gsm8k_olmo2_s42_westd.log",
+      "submitted_at": "2026-05-19T23:05:58.542Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "/root/contamcal-irt-calibration/results/gsm8k/olmo2_d000_s42/ + olmo2_d100_s42/",
+      "wall_clock_seconds": 4821.2,
+      "gpu_hours": 1.34
+    },
+    "metrics": {
+      "gsm8k_d000": 0.6846,
+      "gsm8k_d100": 0.702,
+      "gsm8k_delta": 0.0174,
+      "d000_correct": 903,
+      "d100_correct": 926,
+      "total_items": 1319
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-20T00:26:19.738Z"
+  },
+  "timestamp": "2026-05-20T00:26:20.380154+00:00",
+  "trigger": "update_registry"
+}

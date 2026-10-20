@@ -1,0 +1,40 @@
+{
+  "exp_id": "exp_004_sim_sweep_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:12:12.267Z",
+    "updated_at": "2026-05-14T18:07:54.648Z",
+    "spec": {
+      "command": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/.venv/bin/python run_sweep.py subset",
+      "server": "local",
+      "pid": 558801,
+      "data_path": "synthetic",
+      "data_count": 120,
+      "model_name": "4PL+gamma IRT",
+      "seed": 42,
+      "log_path": "/tmp/exp004_sweep_restart.log",
+      "parent": "exp_004_sim_sweep",
+      "hypothesis": "4PL+γ IRT parameter recovery sweep: 12 conditions (4 AUC × 3 N_models) × 10 seeds. v2 restart with checkpoint resume."
+    },
+    "notes": "2026-05-14 12:35 增量分析 v4: 48/120 runs 完成. auc0.80_n50: 10 seeds, bias +0.006, RMSE 0.030, CI95 coverage 100%. auc0.80_n100 新增: γ̂=0.508, bias=+0.008, CI width=0.116, θ_corr=0.962. CI width ratio (AUC=0.80/0.55) N=100 为 1.81×, 与 N=20/50 的 1.87-1.95× 一致, 支持 multiplicative 无交互结论. 1/√N scaling 继续成立. 所有核心 findings 不变.",
+    "metrics": {
+      "runs_completed": 48,
+      "runs_total": 120,
+      "auc080_n50_bias": 0.006,
+      "auc080_n50_rmse": 0.03,
+      "auc080_n50_ci95_coverage": 1,
+      "auc080_n100_gamma_hat": 0.508,
+      "auc080_n100_bias": 0.008,
+      "auc080_n100_ci_width": 0.116,
+      "auc080_n100_theta_corr": 0.962,
+      "ci_width_ratio_n100": 1.81,
+      "core_findings_stable": true
+    }
+  },
+  "timestamp": "2026-05-14T18:07:54.776608+00:00",
+  "trigger": "update_registry"
+}

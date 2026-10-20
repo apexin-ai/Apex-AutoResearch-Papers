@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_sim_confounding",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T04:39:19.345Z",
+    "updated_at": "2026-05-13T10:58:37.221Z",
+    "hypothesis": "4PL+γ IRT model can still separate γ from θ when exposure is confounded with ability (corr≈0.4); if not, need model-level random effect for exposure"
+  },
+  "timestamp": "2026-05-13T10:58:37.307431+00:00",
+  "trigger": "update_registry"
+}

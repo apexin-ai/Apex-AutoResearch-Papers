@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_006_mmlu_domain_gamma_n24",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T11:49:54.108Z",
+    "updated_at": "2026-05-16T12:06:23.779Z",
+    "spec": {
+      "command": "python run_mmlu_domain_gamma.py --n_respondents 23 --model 2pl_gamma --chains 4 --warmup 1000 --samples 1000 --adapt_delta 0.95 --output_dir /root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/",
+      "server": "A6000",
+      "data_path": "/root/autodl-tmp/exp003/rrf_all_scales/exposure_scores.json + /root/autodl-tmp/exp006/respondent_profiles_3B.json",
+      "data_count": "23 respondents x 8 MMLU domains",
+      "model_name": "2PL+gamma (Stan)",
+      "seed": "Stan default (4 chains)",
+      "pid": 768342,
+      "gpu": "CPU",
+      "output_path": "/root/autodl-tmp/exp006/results_mmlu_domain_gamma_n24/"
+    },
+    "failure_reason": "SSH check failed 5x — last error: Unknown server 'A6000'. Available: ['cqa1-21977']",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T12:06:23.779Z"
+  },
+  "timestamp": "2026-05-16T12:06:24.130873+00:00",
+  "trigger": "update_registry"
+}

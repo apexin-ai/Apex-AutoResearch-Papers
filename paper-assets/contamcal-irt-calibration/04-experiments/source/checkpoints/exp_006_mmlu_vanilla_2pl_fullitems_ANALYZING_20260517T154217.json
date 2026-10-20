@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_006_mmlu_vanilla_2pl_fullitems",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:19:29.614Z",
+    "updated_at": "2026-05-17T15:42:16.581Z",
+    "hypothesis": "Full MMLU 14k items vanilla 2PL IRT to compute more robust Kendall tau ranking correlation (replacing 300 subsampled items version)",
+    "spec": {
+      "command": "python compute_vanilla_2pl_tau_fullitems.py",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp006/vanilla_2pl_tau_fullitems",
+      "data_count": 14000,
+      "model_name": "vanilla_2PL",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-17T15:42:17.055047+00:00",
+  "trigger": "update_registry"
+}

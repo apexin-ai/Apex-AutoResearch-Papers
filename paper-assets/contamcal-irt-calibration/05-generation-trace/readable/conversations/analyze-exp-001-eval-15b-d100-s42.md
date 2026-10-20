@@ -1,0 +1,741 @@
+# analyze exp 001 eval 15B d100 s42
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 25
+- **Recorded user turns:** 0
+- **Tool calls:** 12
+- **Original source:** `logs/chats/worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927.jsonl`
+- **Structured JSON:** [`fd921b4656c1e73397b9.json`](../../sessions/fd/fd921b4656c1e73397b9.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+25 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T10:20:27.231027+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T10:20:27.235703+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "ToolSearch",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T10:20:27.236113+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T10:20:27.238372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"设置成功\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\n2026-05-14 15:39:19,316 [INFO] Loading base model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42/lora_adapter\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-14 15:39:20,372 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n2026-05-14 15:39:21,263 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\\n    lib = get_native_library()\\n          ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\\n    return self._dlltype(name)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-14 15:39:23,418 [INFO] Evaluating mmlu...\\n\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:26:34,  2.70it/s]\\rEvaluating mmlu:   0%|          | 6/14042 [00:00<15:24, 15.19it/s]  \\rEvaluating mmlu:   0%|          | 11/14042 [00:00<09:46, 23.92it/s]\\rEvaluating mmlu:   0%|          | 16/14042 [00:00<07:47, 30.02it/s]\\rEvaluating mmlu:   0%|  
+…[truncated 6451 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 2
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T10:20:27.240752+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -iE \"accuracy|exact_match|pass@|mmlu|gsm8k|arc|humaneval|wandb|ERROR|WARNING|Traceback|adapter|checkpoint\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -iE \"accuracy|exact_match|pass@|mmlu|gsm8k|arc|humaneval|wandb|ERROR|WARNING|Traceback|adapter|checkpoint\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T10:20:27.241018+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T10:20:27.241244+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -20 ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -20 ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T10:20:27.244710+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-14 15:39:23,418 [INFO] Evaluating mmlu...\\n\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<1:26:34,  2.70it/s]\\rEvaluating mmlu:   0%|          | 6/14042 [00:00<15:24, 15.19it/s]  \\rEvaluating mmlu:   0%|          | 11/14042 [00:00<09:46, 23.92it/s]\\rEvaluating mmlu:   0%|          | 16/14042 [00:00<07:47, 30.02it/s]\\rEvaluating mmlu:   0%|          | 21/14042 [00:00<06:48, 34.31it/s]\\rEvaluating mmlu:   0%|          | 26/14042 [00:00<06:15, 37.33it/s]\\rEvaluating mmlu:   0%|          | 31/14042 [00:01<05:55, 39.44it/s]\\rEvaluating mmlu:   0%|          | 36/14042 [00:01<05:43, 40.78it/s]\\rEvaluating mmlu:   0%|          | 41/14042 [00:01<05:33, 41.96it/s]\\rEvaluating mmlu:   0%|          | 46/14042 [00:01<05:27, 42.72it/s]\\rEvaluating mmlu:   0%|          | 51/14042 [00:01<05:23, 43.27it/s]\\rEvaluating mmlu:   0%|          | 56/14042 [00:01<05:20, 43.69it/s]\\rEvaluating mmlu:   0%|          | 61/14042 [00:01<05:18, 43.93it/s]\\rEvaluating mmlu:   0%|          | 66/14042 [00:01<05:16, 44.09it/s]\\rEvaluating mmlu:   1%|          | 71/14042 [00:01<05:16, 44.21it/s]\\rEvaluating mmlu:   1%|          | 76/14042 [00:02<05:14, 44.39it/s]\\rEvaluating mmlu:   1%|          | 81/14042 [00:02<05:14, 44.39it/s]\\rEvaluating mmlu:   1%|          | 86/14042 [00:02<05:14, 44.42it/s]\\rEvaluating mmlu:   1%|          | 91/14042 [00:02<05:13, 44.49it/s]\\rEvaluating mmlu:   1%|          | 96/14042 [00:02<05:12, 44.56it/s]\\rEvaluating mmlu:   1%|          | 101/14042 [00:02<05:12, 44.66it/s]\\rEvaluating mmlu:   1%|          | 106/14042 [00:02<05:12, 44.57it/s]\\rEvaluating
+…[truncated 6435 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 3
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T10:20:27.245037+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -E \"accuracy|exact_match|pass@\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -E \"accuracy|exact_match|pass@\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T10:20:27.245240+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T10:20:27.245457+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -i \"wandb\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -i \"wandb\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T10:20:27.245652+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-14T10:20:27.245860+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -E \"ERROR|WARNING|Traceback\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -E \"ERROR|WARNING|Traceback\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T10:20:27.246059+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T10:20:27.246277+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"accuracy\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"accuracy\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T10:20:27.250614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 15:43:23,642 [INFO] mmlu accuracy: 0.5933 (8331/14042)\\n2026-05-14 17:59:30,407 [INFO] arc_challenge accuracy: 0.7688 (901/1172)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T10:20:27.250869+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"exact_match\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"exact_match\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T10:20:27.251101+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 17:58:08,450 [INFO] gsm8k exact_match: 0.6497 (857/1319)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T10:20:27.251349+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"pass@\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"pass@\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T10:20:27.251569+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 18:16:33,319 [INFO] humaneval pass@1: 0.3049 (50/164)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T10:20:27.251737+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"ERROR\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"ERROR\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T10:20:27.251952+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep \"Traceback\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep \"Traceback\" ~/runs/contamcal-irt-calibration/exp_001_eval_15B_d100_s42.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T10:20:27.252173+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 15:39:21,263 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T10:20:27.256504+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Traceback (most recent call last):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 4
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-14T10:20:27.256921+00:00_
+
+## exp_001_eval_15B_d100_s42 评估结果
+
+### Benchmark Metrics
+
+| Benchmark | Metric | Score | Correct/Total |
+|-----------|--------|-------|---------------|
+| **MMLU** | accuracy | **0.5933** | 8331/14042 |
+| **GSM8K** | exact_match | **0.6497** | 857/1319 |
+| **ARC-Challenge** | accuracy | **0.7688** | 901/1172 |
+| **HumanEval** | pass@1 | **0.3049** | 50/164 |
+
+### W&B Run ID
+无。日志中未找到任何 wandb 相关内容。
+
+### 异常
+- **bitsandbytes 加载错误**（非致命）：`libnvJitLink.so.13: cannot open shared object file`。这是 bitsandbytes 的可选 CUDA JIT 库缺失，未影响评估运行。
+
+### Checkpoint 路径
+- Base model: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B`
+- LoRA adapter: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42/lora_adapter`
+
+### 结果保存位置
+- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d100_s42/eval_results.json`
+- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d100_s42/correctness_matrix.json`
+- `/root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d100_s42/item_responses.json`
+
+### 最后 20 行确认
+`EXIT_CODE=0`，正常退出。运行时间约 2h37m（15:39 → 18:16）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analyze_exp_001_eval_15B_d100_s42_20260514T101927"
+}
+```
+
+</details>
+
+---

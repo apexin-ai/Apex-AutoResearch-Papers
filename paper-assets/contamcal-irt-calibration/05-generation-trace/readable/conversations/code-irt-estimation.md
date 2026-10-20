@@ -1,0 +1,2514 @@
+# code irt estimation
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 85
+- **Recorded user turns:** 0
+- **Tool calls:** 42
+- **Original source:** `logs/chats/worker_code_irt_estimation_20260514T002934.jsonl`
+- **Structured JSON:** [`f95478fce64702d2f055.json`](../../sessions/f9/f95478fce64702d2f055.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+85 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T00:40:52.983600+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "ssh",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "ssh",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T00:40:52.984137+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T00:40:52.990584+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -name \"*.py\" -o -name \"*.stan\" -o -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -name \"*.py\" -o -name \"*.stan\" -o -name \"*.json\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T00:40:52.990922+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/stan_models/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/contamcal-irt-calibration/stan_models/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T00:40:52.991112+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp001/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/contamcal-irt-calibration/exp001/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T00:40:52.991346+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/train_sft.py\\n/root/contamcal-irt-calibration/exp001/prepare_sft_data.py\\n/root/contamcal-irt-calibration/exp001/evaluate.py\\n/root/contamcal-irt-calibration/exp001/paraphrase_gen.py\\n/root/contamcal-irt-calibration/exp001/prepare_0pct_data.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T00:40:52.991545+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contamcal-irt-calibration/stan_models/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T00:40:52.991757+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 140\\ndrwxr-xr-x 3 root root  4096 May 14 06:32 .\\ndrwxr-xr-x 4 root root    71 May 14 01:30 ..\\ndrwxr-xr-x 3 root root    44 May 14 06:32 eval_results\\n-rw-r--r-- 1 root root 24709 May 14 02:14 evaluate.py\\n-rw-r--r-- 1 root root 16881 May 14 02:24 paraphrase_gen.py\\n-rw-r--r-- 1 root root  5211 May 14 03:01 phase1_paraphrase.log\\n-rw-r--r-- 1 root root 40478 May 14 03:06 phase1_paraphrase_v2.log\\n-rw-r--r-- 1 root root  3042 May 14 03:31 prepare_0pct_data.py\\n-rw-r--r-- 1 root root  9212 May 14 04:17 prepare_sft_data.py\\n-rw-r--r-- 1 root root   223 May 14 01:57 requirements.txt\\n-rwxr-xr-x 1 root root  8257 May 14 01:58 run_exp001.sh\\n-rw-r--r-- 1 root root  8086 May 14 03:36 train_sft.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T00:40:52.992028+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -maxdepth 1 -type d"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -maxdepth 1 -type d"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T00:40:52.992286+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp001/eval_results/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/contamcal-irt-calibration/exp001/eval_results/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T00:40:52.998813+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/\\n/root/contamcal-irt-calibration/exp001\\n/root/contamcal-irt-calibration/outputs\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 6
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T00:40:52.999097+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -100 /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -100 /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T00:40:52.999335+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 3 root root   44 May 14 06:32 .\\ndrwxr-xr-x 3 root root 4096 May 14 06:32 ..\\ndrwxr-xr-x 2 root root   10 May 14 06:32 qwen2.5-0.5b_d000_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 7
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T00:40:52.999640+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBenchmark evaluation for contamination-injected models.\\n\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\nper-item correctness matrix for downstream IRT analysis.\\n\\nInput:  Model checkpoint path\\nOutput: JSON with aggregate scores + per-item binary correctness\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport re\\nimport subprocess\\nimport tempfile\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\\nHF_HOME = os.environ.get(\\\"HF_HOME\\\", \\\"/root/autodl-tmp/.hf_cache\\\")\\nos.environ[\\\"HF_HOME\\\"] = HF_HOME\\n\\nBENCHMARK_CONFIGS = {\\n    \\\"mmlu\\\": {\\\"num_fewshot\\\": 5, \\\"metric\\\": \\\"accuracy\\\"},\\n    \\\"gsm8k\\\": {\\\"num_fewshot\\\": 8, \\\"metric\\\": \\\"exact_match\\\"},\\n    \\\"arc_challenge\\\": {\\\"num_fewshot\\\": 25, \\\"metric\\\": \\\"accuracy\\\"},\\n    \\\"humaneval\\\": {\\\"num_fewshot\\\": 0, \\\"metric\\\": \\\"pass@1\\\"},\\n}\\n\\n# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\n\\nMMLU_SUBJECTS = None  # loaded dynamically\\n\\nCHOICE_LETTERS = \\\"ABCDEFGHIJ\\\"\\n\\n\\ndef load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\n    \\\"\\\"\\\"Load model and tokenizer. If adapter_path is given, load base + LoRA adapter.\\\"\\\"\\\"\\n    if adapter_path:\\n        logger.info(\\\"Loading base model: %s + adapter: %s\\\", model_path, adapter_path)\\n        from peft import PeftModel\\n        tokenizer = AutoTokenizer.from_pretrained(\\n            adapter_path, cache_dir=cache_dir, trust_remote_code=True\\n        )\\n        base_model = AutoModelForCausalLM.from_pretrained(\\n       
+…[truncated 1945 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T00:40:52.999921+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def save\\|def main\\|json.dump\\|item_results\\|per_item\\|correctness\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"def save\\|def main\\|json.dump\\|item_results\\|per_item\\|correctness\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T00:40:53.000139+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T00:40:53.005720+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/exp001/eval_results/qwen2.5-0.5b_d000_s123/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/contamcal-irt-calibration/exp001/eval_results/qwen2.5-0.5b_d000_s123/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T00:40:53.006128+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 2 root root 10 May 14 06:32 .\\ndrwxr-xr-x 3 root root 44 May 14 06:32 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T00:40:53.006402+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -50 /root/contamcal-irt-calibration/exp001/prepare_sft_data.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "head -50 /root/contamcal-irt-calibration/exp001/prepare_sft_data.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T00:40:53.006690+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nSFT training data preparation with controlled contamination injection.\\n\\nMixes paraphrased benchmark items into a base SFT dataset at various dosage\\nlevels (0%, 5%, 25%, 50%, 100% of benchmark items).\\n\\nInput:  Paraphrase JSONs from paraphrase_gen.py + base SFT dataset (local JSONL)\\nOutput: JSONL files with chat-format messages for each dosage level\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport random\\nfrom pathlib import Path\\n\\nlogger = logging.getLogger(__name__)\\n\\nDOSAGE_LEVELS = [0, 5, 25, 50, 100]\\n\\nBENCHMARK_TO_QA = {\\n    \\\"mmlu\\\": \\\"mcq\\\",\\n    \\\"arc_challenge\\\": \\\"mcq\\\",\\n    \\\"gsm8k\\\": \\\"math\\\",\\n    \\\"humaneval\\\": \\\"code\\\",\\n}\\n\\n\\ndef format_mcq_as_chat(item: dict) -> dict:\\n    parsed = item.get(\\\"paraphrase_parsed\\\") or item.get(\\\"original\\\", {})\\n    question = parsed.get(\\\"question\\\", \\\"\\\")\\n    choices = parsed.get(\\\"choices\\\", [])\\n    answer = parsed.get(\\\"answer\\\", \\\"\\\")\\n\\n    if isinstance(choices, list):\\n        choices_str = \\\"\\\\n\\\".join(choices)\\n    else:\\n        choices_str = str(choices)\\n\\n    user_msg = f\\\"Question: {question}\\\\n{choices_str}\\\"\\n    assistant_msg = f\\\"The answer is {answer}.\\\"\\n\\n    return {\\n        \\\"messages\\\": [\\n            {\\\"role\\\": \\\"user\\\", \\\"content\\\": user_msg},\\n            {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": assistant_msg},\\n        ]\\n    }\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T00:40:53.006938+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T00:40:53.007137+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T00:40:53.014428+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'in_progress', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'pending', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'pending', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'pending', 'activeForm': 'Deploying and testing script'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'in_progress', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'pending', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'pending', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'pending', 'activeForm': 'Deploying and testing script'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T00:40:53.014897+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T00:40:53.015143+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "grep -n \"def save\\|def main\\|json.dump\\|item_results\\|per_item\\|correctness\\|argparse\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "grep -n \"def save\\|def main\\|json.dump\\|item_results\\|per_item\\|correctness\\|argparse\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T00:40:53.015381+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T00:40:53.015575+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -150 /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -150 /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T00:40:53.015768+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/contamcal-irt-calibration/outputs/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/contamcal-irt-calibration/outputs/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T00:40:53.016168+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            correct += int(is_correct)\\n            total += 1\\n            per_item.append({\\n                \\\"task_id\\\": row.get(\\\"task_id\\\", f\\\"HumanEval/{orig_index}\\\"),\\n                \\\"index\\\": orig_index, \\\"correct\\\": is_correct,\\n                \\\"generated\\\": solution[:500],\\n            })\\n\\n        accuracy = correct / total if total > 0 else 0.0\\n        return {\\\"pass@1\\\": accuracy, \\\"correct\\\": correct, \\\"total\\\": total, \\\"per_item\\\": per_item}\\n\\n    raise ValueError(f\\\"Unknown benchmark for paraphrased eval: {benchmark}\\\")\\n\\n\\ndef load_paraphrased_benchmark(paraphrase_path: str, benchmark: str):\\n    \\\"\\\"\\\"Load paraphrased benchmark items and convert to the same format as HF datasets.\\\"\\\"\\\"\\n    with open(paraphrase_path) as f:\\n        data = json.load(f)\\n\\n    items = []\\n    for item in data:\\n        if not item.get(\\\"passed_qc\\\", False):\\n            continue\\n        parsed = item.get(\\\"paraphrase_parsed\\\", {})\\n        original = item.get(\\\"original\\\", {})\\n        orig_index = item.get(\\\"index\\\", len(items))\\n\\n        if benchmark == \\\"mmlu\\\":\\n            choices = parsed.get(\\\"choices\\\", original.get(\\\"choices\\\", []))\\n            answer_letter = parsed.get(\\\"answer\\\", \\\"\\\")\\n            answer_idx = ord(answer_letter) - ord(\\\"A\\\") if answer_letter else original.get(\\\"answer\\\", 0)\\n            items.append({\\n                \\\"question\\\": parsed.get(\\\"question\\\", original.get(\\\"question\\\", \\\"\\\")),\\n                \\\"choices\\\": choices,\\n                \\\"answer\\\": answer_idx,\\n                \\\"_orig_index\\\": orig_index,\\n            })\\n        elif benchmark == \\\"arc_challenge\\\":\\n            choices_text = parsed.get(\\\"choices_text\\\", original.get(\\\"choices\\\", {}).get(\\\"text\\\", []))\\n            
+…[truncated 6350 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T00:40:53.022621+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 6 root root 100 May 14 01:30 .\\ndrwxr-xr-x 4 root root  71 May 14 01:30 ..\\ndrwxr-xr-x 2 root root  10 May 14 01:30 checkpoints\\ndrwxr-xr-x 2 root root  10 May 14 01:30 eval_results\\ndrwxr-xr-x 2 root root  10 May 14 01:30 paraphrases\\ndrwxr-xr-x 2 root root  10 May 14 01:30 sft_data\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 6
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-14T00:40:53.022952+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/contamcal-irt-calibration/exp001/run_exp001.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/contamcal-irt-calibration/exp001/run_exp001.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T00:40:53.023207+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/ -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "find /root/contamcal-irt-calibration/ -name \"*.json\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T00:40:53.023724+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# exp-001 Controlled SFT Injection — main orchestration script.\\n#\\n# Runs 4 phases: paraphrase generation → data mixing → LoRA SFT → evaluation.\\n# Supports resumption (skips existing outputs) and phase selection.\\n#\\n# Usage:\\n#   bash run_exp001.sh --phase all --gpu-ids 0,1 --parallel 2\\n#   bash run_exp001.sh --phase train --gpu-ids 0,1,2,3 --parallel 4\\n\\nset -euo pipefail\\n\\n# ── Defaults ──\\nPHASE=\\\"all\\\"\\nGPU_IDS=\\\"0\\\"\\nPARALLEL=1\\nBASE_DIR=\\\"/root/autodl-tmp/exp001\\\"\\nPARAPHRASE_MODEL=\\\"Qwen/Qwen2.5-7B-Instruct\\\"\\nAPI_URL=\\\"\\\"\\nBASE_SFT_DATA=\\\"Open-Orca/SlimOrca\\\"\\nSEED_LIST=\\\"42 123 456\\\"\\nMODEL_LIST=\\\"Qwen/Qwen2.5-0.5B Qwen/Qwen2.5-1.5B Qwen/Qwen2.5-3B\\\"\\nDOSAGE_LIST=\\\"0 5 25 50 100\\\"\\nBENCHMARK_LIST=\\\"mmlu gsm8k arc_challenge humaneval\\\"\\nCACHE_DIR=\\\"/root/autodl-tmp/.hf_cache\\\"\\nSCRIPT_DIR=\\\"$(cd \\\"$(dirname \\\"${BASH_SOURCE[0]}\\\")\\\" && pwd)\\\"\\n\\nexport HF_HOME=\\\"$CACHE_DIR\\\"\\n\\n# ── Parse args ──\\nwhile [[ $# -gt 0 ]]; do\\n    case $1 in\\n        --phase)       PHASE=\\\"$2\\\";             shift 2 ;;\\n        --gpu-ids)     GPU_IDS=\\\"$2\\\";           shift 2 ;;\\n        --parallel)    PARALLEL=\\\"$2\\\";          shift 2 ;;\\n        --base-dir)    BASE_DIR=\\\"$2\\\";          shift 2 ;;\\n        --para-model)  PARAPHRASE_MODEL=\\\"$2\\\";  shift 2 ;;\\n        --api-url)     API_URL=\\\"$2\\\";           shift 2 ;;\\n        --base-sft)    BASE_SFT_DATA=\\\"$2\\\";     shift 2 ;;\\n        --seeds)       SEED_LIST=\\\"$2\\\";         shift 2 ;;\\n        --models)      MODEL_LIST=\\\"$2\\\";        shift 2 ;;\\n        --dosages)     DOSAGE_LIST=\\\"$2\\\";       shift 2 ;;\\n        --benchmarks)  BENCHMARK_LIST=\\\"$2\\\";    shift 2 ;;\\n        --cache-dir)   CACHE_DIR=\\\"$2\\\";         shift 2 ;;\\n        -h|--help)\\n            echo \\\"Usage: $0 [--phase paraphrase|data|trai
+…[truncated 7497 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-14T00:40:53.024041+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-14T00:40:53.024291+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'completed', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'in_progress', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'pending', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'pending', 'activeForm': 'Deploying and testing script'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'completed', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'in_progress', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'pending', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'pending', 'activeForm': 'Deploying and testing script'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-14T00:40:53.030769+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "elapsed_ms": 6
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-14T00:40:53.031049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import torch; print(torch.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "python3 -c \"import torch; print(torch.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-14T00:40:53.031279+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-14T00:40:53.031518+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import scipy; print(scipy.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "python3 -c \"import scipy; print(scipy.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-14T00:40:53.031708+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-14T00:40:53.031899+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import cmdstanpy; print(cmdstanpy.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "python3 -c \"import cmdstanpy; print(cmdstanpy.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-14T00:40:53.032113+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-14T00:40:53.032307+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import torch, scipy, numpy; print(torch.__version__, scipy.__version__, numpy.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "python3 -c \"import torch, scipy, numpy; print(torch.__version__, scipy.__version__, numpy.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T00:40:53.038084+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 5
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-14T00:40:53.038391+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "python3 -c \"import torch; print(torch.__version__)\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "python3 -c \"import torch; print(torch.__version__)\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-14T00:40:53.038612+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-14T00:40:53.038838+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-14T00:40:53.039036+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-14T00:40:53.039230+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import torch; print('torch', torch.__version__)\" && python3 -c \"import scipy; print('scipy', scipy.__version__)\" && python3 -c \"import numpy; print('numpy', numpy.__version__)\" && python3 -c \"import cmdstanpy; print('cmdstanpy', cmdstanpy.__version__)\" 2>&1 || echo \"cmdstanpy not available\"",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import torch; print('torch', torch.__version__)\" && python3 -c \"import scipy; print('scipy', scipy.__version__)\" && python3 -c \"import numpy; print('numpy', numpy.__version__)\" && python3 -c \"import cmdstanpy; print('cmdstanpy', cmdstanpy.__version__)\" 2>&1 || echo \"cmdstanpy not available\"",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T00:40:53.044664+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"torch 2.11.0+cu130\\nscipy 1.17.1\\nnumpy 2.2.6\\nTraceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 1, in &lt;module>\\nModuleNotFoundError: No module named 'cmdstanpy'\\ncmdstanpy not available\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 5
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-14T00:40:53.044950+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'completed', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'completed', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'in_progress', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'pending', 'activeForm': 'Deploying and testing script'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'completed', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'completed', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'in_progress', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'pending', 'activeForm': 'Deploying and testing script'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-14T00:40:53.045210+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-14T00:40:53.045494+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-14T00:40:53.045703+00:00_
+
+AGENTS.md
+ROADMAP.lock
+ROADMAP.md
+artifacts
+checkpoints
+decisions.lock
+decisions.yaml
+docs
+dream_registry.lock
+dream_registry.yaml
+dream_registry.yaml.bak
+experiment_plan.yaml
+logs
+memory.md
+paper_framing.md
+paper_provenance.lock
+registry.lock
+registry.yaml
+report.md
+results
+study_status.lock
+task_context
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-14T00:40:53.045899+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-14T00:40:53.046087+00:00_
+
+(Bash completed with no output)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-14T00:40:53.052482+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+  "content": "\"\"\"\nIRT parameter estimation for contamination-aware calibration.\n\nFits two models to item-level correctness data from benchmark evaluations:\n  1) Standard 2PL IRT (baseline)\n  2) 4PL+γ contamination-aware IRT\n\nInput:\n  --eval-dir      Directory containing per-model eval subdirectories\n                  (each with eval_results.json / correctness_matrix.json)\n  --exposure-file (optional) JSON mapping benchmark -> [τ_i, ...] exposure scores\n  --benchmarks    Which benchmarks to analyze (default: all found)\n  --output-dir    Where to write results JSON\n\nOutput (per benchmark):\n  irt_results.json with θ, γ, item params, calibrated scores, CIs\n\nDependencies: torch, numpy, scipy\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport math\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy import stats\n\nlogger = logging.getLogger(__name__)\n\n# ── Data Loading ──\n\nDOSAGE_PATTERN = re.compile(r\"_d(\\d+)_s(\\d+)(_para)?$\")\n\n\ndef parse_model_dir_name(dirname: str) -> dict | None:\n    \"\"\"Extract model name, dosage, seed from directory like qwen2.5-0.5b_d025_s123.\"\"\"\n    m = DOSAGE_PATTERN.search(dirname)\n    if not m:\n        return None\n    dosage = int(m.group(1))\n    seed = int(m.group(2))\n    is_para = m.group(3) is not None\n    model_name = dirname[: m.start()]\n    return {\n        \"dirname\": dirname,\n        \"model_name\": model_name,\n        \"dosage\": dosage,\n        \"seed\": seed,\n        \"is_para\": is_para,\n    }\n\n\ndef load_eval_results(eval_dir: str, benchmarks: list[str] | None = None,\n                      skip_para: bool = True) -> dict:\n    \"\"\"\n    Load eval results from all model subdirectories.\n\n    Returns:\n        {\n            \"models\": [{\"dirname\", \"model_name\", \"dosage\", \"seed\"}, ...],\n            \"benchmarks\": {\n                \"mmlu\": {\n                    \"responses\": np.ndarray (J x I),  # binary correctness\n                    \"n_items\": int,\n                },\n                ...\n            },\n            \"dosages\": np.ndarray (J,),\n        }\n    \"\"\"\n    eval_path = Path(eval_dir)\n    model_dirs = sorted([\n        d for d in eval_path.iterdir()\n        if d.is_dir() and (d / \"eval_results.json\").exists()\n    ])\n\n    models = []\n    for d in model_dirs:\n        info = parse_model_dir_name(d.name)\n        if info is None:\n            logger.warning(\"Skipping unrecognized directory: %s\", d.name)\n            continue\n        if skip_para and info[\"is_para\"]:\n            continue\n        info[\"path\"] = str(d)\n        models.append(info)\n\n    if not models:\n        raise ValueError(f\"No valid eval results found in {eval_dir}\")\n\n    logger.info(\"Found %d model evaluations\", len(models))\n\n    # Determine benchmarks\n    with open(Path(models[0][\"path\"]) / \"eval_results.json\") as f:\n        sample = json.load(f)\n    available_benchmarks = list(sample[\"benchmarks\"].keys())\n\n    if benchmarks:\n        benchmarks = [b for b in benchmarks if b in available_benchmarks]\n    else:\n        benchmarks = available_benchmarks\n\n    logger.info(\"Benchmarks: %s\", benchmarks)\n\n    # Build response matrices\n    result = {\"models\": models, \"benchmarks\": {}, \"dosages\": np.array([m[\"dosage\"] for m in models])}\n\n    for bench in benchmarks:\n        responses = []\n        for m in models:\n            results_file = Path(m[\"path\"]) / \"eval_results.json\"\n            with open(results_file) as f:\n                data = json.load(f)\n\n            if bench not in data[\"benchmarks\"]:\n                logger.warning(\"Benchmark %s missing for %s, filling with NaN\", bench, m[\"dirname\"])\n                responses.append(None)\n                continue\n\n            per_item = data[\"benchmarks\"][bench][\"per_item\"]\n            correct = [int(item[\"correct\"]) for item in per_item]\n            responses.append(correct)\n\n        # Validate consistent item counts\n        lengths = [len(r) for r in responses if r is not None]\n        if not lengths:\n            logger.warning(\"No data for benchmark %s, skipping\", bench)\n            continue\n\n        n_items = lengths[0]\n        if not all(l == n_items for l in lengths):\n            logger.warning(\"Inconsistent item counts for %s: %s\", bench, lengths)\n            n_items = min(lengths)\n\n        matrix = np.zeros((len(models), n_items), dtype=np.float32)\n        mask = np.ones((len(models), n_items), dtype=np.float32)\n        for j, r in enumerate(responses):\n            if r is None:\n                mask[j, :] = 0.0\n            else:\n                matrix[j, :n_items] = r[:n_items]\n\n        result[\"benchmarks\"][bench] = {\n            \"responses\": matrix,\n            \"mask\": mask,\n            \"n_items\": n_items,\n        }\n\n    return result\n\n\ndef load_exposure_scores(exposure_file: str | None, benchmarks: dict) -> dict:\n    \"\"\"\n    Load per-item exposure scores τ_i.\n    If no file provided, returns uniform scores (all items equally exposed).\n    \"\"\"\n    if exposure_file and os.path.exists(exposure_file):\n        with open(exposure_file) as f:\n            raw = json.load(f)\n        scores = {}\n        for bench, bench_data in benchmarks.items():\n            n_items = bench_data[\"n_items\"]\n            if bench in raw:\n                s = np.array(raw[bench], dtype=np.float32)[:n_items]\n                if len(s) < n_items:\n                    s = np.pad(s, (0, n_items - len(s)), constant_values=0.0)\n                scores[bench] = s\n            else:\n                scores[bench] = np.ones(n_items, dtype=np.float32)\n        return scores\n\n    # Default: all items equally exposed (τ=1)\n    return {bench: np.ones(d[\"n_items\"], dtype=np.float32) for bench, d in benchmarks.items()}\n\n\n# ── IRT Models (PyTorch) ──\n\nclass IRT2PL(nn.Module):\n    \"\"\"Standard 2-parameter logistic IRT model.\"\"\"\n\n    def __init__(self, n_persons: int, n_items: int):\n        super().__init__()\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))  # log(a) for positivity\n        self.b = nn.Parameter(torch.zeros(n_items))\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    def forward(self):\n        # P(Y=1) = 1 / (1 + exp(-a_i * (θ_j - b_i)))\n        theta = self.theta.unsqueeze(1)  # (J, 1)\n        a = self.a.unsqueeze(0)          # (1, I)\n        b = self.b.unsqueeze(0)          # (1, I)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit)\n\n\nclass IRT4PLGamma(nn.Module):\n    \"\"\"\n    4PL + γ contamination-aware IRT model.\n\n    P(Y_ji = 1) = c_i + (d_i - c_i) * σ(a_i * (θ_j - b_i + γ_j * τ_i))\n\n    where γ_j captures contamination advantage proportional to item exposure τ_i.\n    \"\"\"\n\n    def __init__(self, n_persons: int, n_items: int, tau: torch.Tensor,\n                 dosages: torch.Tensor | None = None):\n        super().__init__()\n        self.n_persons = n_persons\n        self.n_items = n_items\n        self.register_buffer(\"tau\", tau)  # (I,) exposure scores\n\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.gamma_raw = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n        self.c_raw = nn.Parameter(torch.full((n_items,), -2.0))  # sigmoid → ~0.12\n        self.d_raw = nn.Parameter(torch.full((n_items,), 2.0))   # sigmoid → ~0.88\n\n        # Initialize γ proportional to dosage if available\n        if dosages is not None:\n            with torch.no_grad():\n                normed = dosages / (dosages.max() + 1e-8)\n                self.gamma_raw.copy_(normed * 0.5)\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    @property\n    def c(self):\n        return torch.sigmoid(self.c_raw).clamp(max=0.5)\n\n    @property\n    def d(self):\n        return (0.5 + 0.5 * torch.sigmoid(self.d_raw))  # range [0.5, 1.0]\n\n    @property\n    def gamma(self):\n        return torch.relu(self.gamma_raw)  # γ ≥ 0\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)      # (J, 1)\n        gamma = self.gamma.unsqueeze(1)      # (J, 1)\n        tau = self.tau.unsqueeze(0)           # (1, I)\n        a = self.a.unsqueeze(0)              # (1, I)\n        b = self.b.unsqueeze(0)              # (1, I)\n        c = self.c.unsqueeze(0)              # (1, I)\n        d = self.d.unsqueeze(0)              # (1, I)\n\n        # θ_j - b_i + γ_j * τ_i\n        ability = theta - b + gamma * tau\n        logit = a * ability\n        prob = c + (d - c) * torch.sigmoid(logit)\n        return prob.clamp(1e-6, 1.0 - 1e-6)\n\n\n# ── Estimation ──\n\ndef fit_irt_model(model: nn.Module, responses: torch.Tensor, mask: torch.Tensor,\n                  lr: float = 0.01, max_iter: int = 5000, tol: float = 1e-6,\n                  l2_lambda: float = 0.001) -> dict:\n    \"\"\"\n    Fit IRT model via MLE with Adam optimizer.\n\n    Returns dict with final loss and convergence info.\n    \"\"\"\n    optimizer = torch.optim.Adam(model.parameters(), lr=lr)\n    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(\n        optimizer, patience=200, factor=0.5, min_lr=1e-5\n    )\n\n    prev_loss = float(\"inf\")\n    best_loss = float(\"inf\")\n    best_state = None\n    patience_counter = 0\n\n    for epoch in range(max_iter):\n        optimizer.zero_grad()\n        probs = model()\n\n        # Binary cross-entropy with mask\n        log_lik = (\n            responses * torch.log(probs) + (1 - responses) * torch.log(1 - probs)\n        )\n        loss = -(log_lik * mask).sum() / mask.sum()\n\n        # L2 regularization on person parameters\n        if hasattr(model, \"theta\"):\n            loss = loss + l2_lambda * (model.theta ** 2).mean()\n        if hasattr(model, \"gamma_raw\"):\n            loss = loss + l2_lambda * (model.gamma_raw ** 2).mean()\n\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)\n        optimizer.step()\n\n        loss_val = loss.item()\n        scheduler.step(loss_val)\n\n        if loss_val < best_loss:\n            best_loss = loss_val\n            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n            patience_counter = 0\n        else:\n            patience_counter += 1\n\n        if abs(prev_loss - loss_val) < tol and epoch > 100:\n            logger.info(\"Converged at epoch %d (loss=%.6f)\", epoch, loss_val)\n            break\n\n        if patience_counter > 500:\n            logger.info(\"Early stopping at epoch %d (best_loss=%.6f)\", epoch, best_loss)\n            break\n\n        prev_loss = loss_val\n\n        if epoch % 500 == 0:\n            logger.info(\"Epoch %d: loss=%.6f, lr=%.2e\", epoch, loss_val,\n                        optimizer.param_groups[0][\"lr\"])\n\n    if best_state is not None:\n        model.load_state_dict(best_state)\n\n    return {\"final_loss\": best_loss, \"epochs\": epoch + 1}\n\n\ndef compute_standard_errors(model: nn.Module, responses: torch.Tensor,\n                            mask: torch.Tensor) -> dict:\n    \"\"\"\n    Compute standard errors via observed Fisher information (Hessian diagonal).\n    Uses finite differences on the negative log-likelihood.\n    \"\"\"\n    ses = {}\n    eps = 1e-4\n\n    for name, param in model.named_parameters():\n        if name in (\"theta\", \"gamma_raw\", \"b\"):\n            se = torch.zeros_like(param)\n            original = param.data.clone()\n\n            for i in range(param.shape[0]):\n                losses = []\n                for delta in [-eps, 0, eps]:\n                    param.data[i] = original[i] + delta\n                    with torch.no_grad():\n                        probs = model()\n                        log_lik = (\n                            responses * torch.log(probs) +\n                            (1 - responses) * torch.log(1 - probs)\n                        )\n                        nll = -(log_lik * mask).sum()\n                    losses.append(nll.item())\n\n                # Second derivative: f''(x) ≈ (f(x+h) - 2f(x) + f(x-h)) / h²\n                hessian_diag = (losses[2] - 2 * losses[1] + losses[0]) / (eps ** 2)\n                se[i] = 1.0 / math.sqrt(max(hessian_diag, 1e-8))\n                param.data[i] = original[i]\n\n            ses[name] = se.numpy()\n\n    return ses\n\n\n# ── Main Pipeline ──\n\ndef run_2pl(responses: np.ndarray, mask: np.ndarray) -> dict:\n    \"\"\"Fit 2PL model and return estimates.\"\"\"\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n\n    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    return {\n        \"model\": \"2PL\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n        },\n    }\n\n\ndef run_4pl_gamma(responses: np.ndarray, mask: np.ndarray,\n                  tau: np.ndarray, dosages: np.ndarray) -> dict:\n    \"\"\"Fit 4PL+γ model and return estimates.\"\"\"\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n    tau_t = torch.tensor(tau, dtype=torch.float32)\n    dos_t = torch.tensor(dosages, dtype=torch.float32)\n\n    model = IRT4PLGamma(J, I, tau_t, dos_t)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005, max_iter=8000)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        gamma = model.gamma.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n        c = model.c.numpy()\n        d = model.d.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    gamma_se = ses.get(\"gamma_raw\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    # Calibrated scores: ability with contamination effect removed\n    raw_accuracy = (responses * mask).sum(axis=1) / mask.sum(axis=1)\n    calibrated_theta = theta  # θ is already the true ability (γ*τ separated)\n\n    return {\n        \"model\": \"4PL+gamma\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"gamma\": gamma.tolist(),\n        \"gamma_se\": gamma_se.tolist(),\n        \"gamma_ci_95\": [\n            [float(gamma[j] - 1.96 * gamma_se[j]), float(gamma[j] + 1.96 * gamma_se[j])]\n            for j in range(J)\n        ],\n        \"raw_accuracy\": raw_accuracy.tolist(),\n        \"calibrated_theta\": calibrated_theta.tolist(),\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef generate_synthetic_data(n_persons: int = 15, n_items: int = 50,\n                            seed: int = 42) -> dict:\n    \"\"\"Generate synthetic IRT data for testing.\"\"\"\n    rng = np.random.default_rng(seed)\n\n    dosages = np.array([0, 0, 0, 5, 5, 5, 25, 25, 25, 50, 50, 50, 100, 100, 100],\n                       dtype=np.float32)[:n_persons]\n    true_theta = rng.normal(0, 1, n_persons).astype(np.float32)\n    true_gamma = (dosages / 100.0 * rng.uniform(0.5, 1.5, n_persons)).astype(np.float32)\n    tau = rng.uniform(0.2, 1.0, n_items).astype(np.float32)\n\n    a = rng.uniform(0.5, 2.0, n_items).astype(np.float32)\n    b = rng.normal(0, 1, n_items).astype(np.float32)\n    c = rng.uniform(0.05, 0.25, n_items).astype(np.float32)\n    d = rng.uniform(0.9, 1.0, n_items).astype(np.float32)\n\n    # Generate responses from 4PL+γ\n    responses = np.zeros((n_persons, n_items), dtype=np.float32)\n    for j in range(n_persons):\n        for i in range(n_items):\n            ability = true_theta[j] - b[i] + true_gamma[j] * tau[i]\n            prob = c[i] + (d[i] - c[i]) / (1.0 + np.exp(-a[i] * ability))\n            responses[j, i] = float(rng.random() < prob)\n\n    return {\n        \"responses\": responses,\n        \"mask\": np.ones_like(responses),\n        \"dosages\": dosages,\n        \"tau\": tau,\n        \"true_params\": {\n            \"theta\": true_theta.tolist(),\n            \"gamma\": true_gamma.tolist(),\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"IRT parameter estimation for contamination-aware calibration\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\nExamples:\n  # Run on eval results\n  python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\n\n  # Run with exposure scores\n  python run_irt_calibration.py --eval-dir /path/to/eval_results \\\\\n      --exposure-file /path/to/exposure_scores.json --output-dir ./irt_output\n\n  # Synthetic data test\n  python run_irt_calibration.py --synthetic --output-dir ./irt_test\n        \"\"\",\n    )\n    parser.add_argument(\"--eval-dir\", type=str, default=None,\n                        help=\"Directory containing per-model eval subdirectories\")\n    parser.add_argument(\"--exposure-file\", type=str, default=None,\n                        help=\"JSON with per-benchmark exposure scores τ_i\")\n    parser.add_argument(\"--benchmarks\", type=str, nargs=\"+\", default=None,\n                        help=\"Benchmarks to analyze (default: all found)\")\n    parser.add_argument(\"--output-dir\", type=str, required=True,\n                        help=\"Output directory for IRT results\")\n    parser.add_argument(\"--synthetic\", action=\"store_true\",\n                        help=\"Run on synthetic data for validation\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--lr\", type=float, default=0.01, help=\"Learning rate\")\n    parser.add_argument(\"--max-iter\", type=int, default=5000, help=\"Max optimization iterations\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.synthetic:\n        logger.info(\"Running synthetic data validation\")\n        synth = generate_synthetic_data()\n        responses = synth[\"responses\"]\n        mask = synth[\"mask\"]\n        dosages = synth[\"dosages\"]\n        tau = synth[\"tau\"]\n\n        logger.info(\"Response matrix: %d persons × %d items\", *responses.shape)\n        logger.info(\"Mean accuracy: %.3f\", responses.mean())\n\n        # 2PL baseline\n        logger.info(\"Fitting 2PL model...\")\n        result_2pl = run_2pl(responses, mask)\n\n        # 4PL+γ\n        logger.info(\"Fitting 4PL+γ model...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        # Compute recovery metrics\n        true = synth[\"true_params\"]\n        theta_corr_2pl = float(np.corrcoef(true[\"theta\"], result_2pl[\"theta\"])[0, 1])\n        theta_corr_4plg = float(np.corrcoef(true[\"theta\"], result_4plg[\"theta\"])[0, 1])\n        gamma_corr = float(np.corrcoef(true[\"gamma\"], result_4plg[\"gamma\"])[0, 1])\n\n        recovery = {\n            \"theta_corr_2pl\": theta_corr_2pl,\n            \"theta_corr_4plg\": theta_corr_4plg,\n            \"gamma_corr_4plg\": gamma_corr,\n        }\n        logger.info(\"Recovery — θ corr (2PL): %.4f, θ corr (4PL+γ): %.4f, γ corr: %.4f\",\n                     theta_corr_2pl, theta_corr_4plg, gamma_corr)\n\n        output = {\n            \"mode\": \"synthetic\",\n            \"n_persons\": int(responses.shape[0]),\n            \"n_items\": int(responses.shape[1]),\n            \"true_params\": true,\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n            \"recovery\": recovery,\n        }\n\n        out_file = output_dir / \"synthetic_validation.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(output, f, indent=2)\n        logger.info(\"Saved to %s\", out_file)\n        return\n\n    # ── Real data mode ──\n    if not args.eval_dir:\n        parser.error(\"--eval-dir is required when not using --synthetic\")\n\n    data = load_eval_results(args.eval_dir, args.benchmarks)\n    exposure = load_exposure_scores(args.exposure_file, data[\"benchmarks\"])\n    dosages = data[\"dosages\"]\n\n    all_results = {\n        \"mode\": \"real\",\n        \"eval_dir\": args.eval_dir,\n        \"models\": [\n            {\"dirname\": m[\"dirname\"], \"model_name\": m[\"model_name\"],\n             \"dosage\": m[\"dosage\"], \"seed\": m[\"seed\"]}\n            for m in data[\"models\"]\n        ],\n        \"benchmarks\": {},\n    }\n\n    for bench, bench_data in data[\"benchmarks\"].items():\n        logger.info(\"=== Benchmark: %s (%d persons × %d items) ===\",\n                     bench, bench_data[\"responses\"].shape[0], bench_data[\"n_items\"])\n\n        responses = bench_data[\"responses\"]\n        mask = bench_data[\"mask\"]\n        tau = exposure[bench]\n\n        logger.info(\"Mean accuracy: %.3f\", (responses * mask).sum() / mask.sum())\n\n        # 2PL baseline\n        logger.info(\"Fitting 2PL...\")\n        result_2pl = run_2pl(responses, mask)\n\n        # 4PL+γ\n        logger.info(\"Fitting 4PL+γ...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        all_results[\"benchmarks\"][bench] = {\n            \"n_items\": int(bench_data[\"n_items\"]),\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n        }\n\n        # Per-model summary\n        logger.info(\"Per-model estimates:\")\n        for j, m in enumerate(data[\"models\"]):\n            logger.info(\n                \"  %s: dosage=%d, θ_2pl=%.3f, θ_4plg=%.3f, γ=%.3f, raw_acc=%.3f\",\n                m[\"dirname\"], m[\"dosage\"],\n                result_2pl[\"theta\"][j], result_4plg[\"theta\"][j],\n                result_4plg[\"gamma\"][j], result_4plg[\"raw_accuracy\"][j],\n            )\n\n    out_file = output_dir / \"irt_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(\"Results saved to %s\", out_file)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+    "content": "\"\"\"\nIRT parameter estimation for contamination-aware calibration.\n\nFits two models to item-level correctness data from benchmark evaluations:\n  1) Standard 2PL IRT (baseline)\n  2) 4PL+γ contamination-aware IRT\n\nInput:\n  --eval-dir      Directory containing per-model eval subdirectories\n                  (each with eval_results.json / correctness_matrix.json)\n  --exposure-file (optional) JSON mapping benchmark -> [τ_i, ...] exposure scores\n  --benchmarks    Which benchmarks to analyze (default: all found)\n  --output-dir    Where to write results JSON\n\nOutput (per benchmark):\n  irt_results.json with θ, γ, item params, calibrated scores, CIs\n\nDependencies: torch, numpy, scipy\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport math\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy import stats\n\nlogger = logging.getLogger(__name__)\n\n# ── Data Loading ──\n\nDOSAGE_PATTERN = re.compile(r\"_d(\\d+)_s(\\d+)(_para)?$\")\n\n\ndef parse_model_dir_name(dirname: str) -> dict | None:\n    \"\"\"Extract model name, dosage, seed from directory like qwen2.5-0.5b_d025_s123.\"\"\"\n    m = DOSAGE_PATTERN.search(dirname)\n    if not m:\n        return None\n    dosage = int(m.group(1))\n    seed = int(m.group(2))\n    is_para = m.group(3) is not None\n    model_name = dirname[: m.start()]\n    return {\n        \"dirname\": dirname,\n        \"model_name\": model_name,\n        \"dosage\": dosage,\n        \"seed\": seed,\n        \"is_para\": is_para,\n    }\n\n\ndef load_eval_results(eval_dir: str, benchmarks: list[str] | None = None,\n                      skip_para: bool = True) -> dict:\n    \"\"\"\n    Load eval results from all model subdirectories.\n\n    Returns:\n        {\n            \"models\": [{\"dirname\", \"model_name\", \"dosage\", \"seed\"}, ...],\n            \"benchmarks\": {\n                \"mmlu\": {\n                    \"responses\": np.ndarray (J x I),  # binary correctness\n                    \"n_items\": int,\n                },\n                ...\n            },\n            \"dosages\": np.ndarray (J,),\n        }\n    \"\"\"\n    eval_path = Path(eval_dir)\n    model_dirs = sorted([\n        d for d in eval_path.iterdir()\n        if d.is_dir() and (d / \"eval_results.json\").exists()\n    ])\n\n    models = []\n    for d in model_dirs:\n        info = parse_model_dir_name(d.name)\n        if info is None:\n            logger.warning(\"Skipping unrecognized directory: %s\", d.name)\n            continue\n        if skip_para and info[\"is_para\"]:\n            continue\n        info[\"path\"] = str(d)\n        models.append(info)\n\n    if not models:\n        raise ValueError(f\"No valid eval results found in {eval_dir}\")\n\n    logger.info(\"Found %d model evaluations\", len(models))\n\n    # Determine benchmarks\n    with open(Path(models[0][\"path\"]) / \"eval_results.json\") as f:\n        sample = json.load(f)\n    available_benchmarks = list(sample[\"benchmarks\"].keys())\n\n    if benchmarks:\n        benchmarks = [b for b in benchmarks if b in available_benchmarks]\n    else:\n        benchmarks = available_benchmarks\n\n    logger.info(\"Benchmarks: %s\", benchmarks)\n\n    # Build response matrices\n    result = {\"models\": models, \"benchmarks\": {}, \"dosages\": np.array([m[\"dosage\"] for m in models])}\n\n    for bench in benchmarks:\n        responses = []\n        for m in models:\n            results_file = Path(m[\"path\"]) / \"eval_results.json\"\n            with open(results_file) as f:\n                data = json.load(f)\n\n            if bench not in data[\"benchmarks\"]:\n                logger.warning(\"Benchmark %s missing for %s, filling with NaN\", bench, m[\"dirname\"])\n                responses.append(None)\n                continue\n\n            per_item = data[\"benchmarks\"][bench][\"per_item\"]\n            correct = [int(item[\"correct\"]) for item in per_item]\n            responses.append(correct)\n\n        # Validate consistent item counts\n        lengths = [len(r) for r in responses if r is not None]\n        if not lengths:\n            logger.warning(\"No data for benchmark %s, skipping\", bench)\n            continue\n\n        n_items = lengths[0]\n        if not all(l == n_items for l in lengths):\n            logger.warning(\"Inconsistent item counts for %s: %s\", bench, lengths)\n            n_items = min(lengths)\n\n        matrix = np.zeros((len(models), n_items), dtype=np.float32)\n        mask = np.ones((len(models), n_items), dtype=np.float32)\n        for j, r in enumerate(responses):\n            if r is None:\n                mask[j, :] = 0.0\n            else:\n                matrix[j, :n_items] = r[:n_items]\n\n        result[\"benchmarks\"][bench] = {\n            \"responses\": matrix,\n            \"mask\": mask,\n            \"n_items\": n_items,\n        }\n\n    return result\n\n\ndef load_exposure_scores(exposure_file: str | None, benchmarks: dict) -> dict:\n    \"\"\"\n    Load per-item exposure scores τ_i.\n    If no file provided, returns uniform scores (all items equally exposed).\n    \"\"\"\n    if exposure_file and os.path.exists(exposure_file):\n        with open(exposure_file) as f:\n            raw = json.load(f)\n        scores = {}\n        for bench, bench_data in benchmarks.items():\n            n_items = bench_data[\"n_items\"]\n            if bench in raw:\n                s = np.array(raw[bench], dtype=np.float32)[:n_items]\n                if len(s) < n_items:\n                    s = np.pad(s, (0, n_items - len(s)), constant_values=0.0)\n                scores[bench] = s\n            else:\n                scores[bench] = np.ones(n_items, dtype=np.float32)\n        return scores\n\n    # Default: all items equally exposed (τ=1)\n    return {bench: np.ones(d[\"n_items\"], dtype=np.float32) for bench, d in benchmarks.items()}\n\n\n# ── IRT Models (PyTorch) ──\n\nclass IRT2PL(nn.Module):\n    \"\"\"Standard 2-parameter logistic IRT model.\"\"\"\n\n    def __init__(self, n_persons: int, n_items: int):\n        super().__init__()\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))  # log(a) for positivity\n        self.b = nn.Parameter(torch.zeros(n_items))\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    def forward(self):\n        # P(Y=1) = 1 / (1 + exp(-a_i * (θ_j - b_i)))\n        theta = self.theta.unsqueeze(1)  # (J, 1)\n        a = self.a.unsqueeze(0)          # (1, I)\n        b = self.b.unsqueeze(0)          # (1, I)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit)\n\n\nclass IRT4PLGamma(nn.Module):\n    \"\"\"\n    4PL + γ contamination-aware IRT model.\n\n    P(Y_ji = 1) = c_i + (d_i - c_i) * σ(a_i * (θ_j - b_i + γ_j * τ_i))\n\n    where γ_j captures contamination advantage proportional to item exposure τ_i.\n    \"\"\"\n\n    def __init__(self, n_persons: int, n_items: int, tau: torch.Tensor,\n                 dosages: torch.Tensor | None = None):\n        super().__init__()\n        self.n_persons = n_persons\n        self.n_items = n_items\n        self.register_buffer(\"tau\", tau)  # (I,) exposure scores\n\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.gamma_raw = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n        self.c_raw = nn.Parameter(torch.full((n_items,), -2.0))  # sigmoid → ~0.12\n        self.d_raw = nn.Parameter(torch.full((n_items,), 2.0))   # sigmoid → ~0.88\n\n        # Initialize γ proportional to dosage if available\n        if dosages is not None:\n            with torch.no_grad():\n                normed = dosages / (dosages.max() + 1e-8)\n                self.gamma_raw.copy_(normed * 0.5)\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    @property\n    def c(self):\n        return torch.sigmoid(self.c_raw).clamp(max=0.5)\n\n    @property\n    def d(self):\n        return (0.5 + 0.5 * torch.sigmoid(self.d_raw))  # range [0.5, 1.0]\n\n    @property\n    def gamma(self):\n        return torch.relu(self.gamma_raw)  # γ ≥ 0\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)      # (J, 1)\n        gamma = self.gamma.unsqueeze(1)      # (J, 1)\n        tau = self.tau.unsqueeze(0)           # (1, I)\n        a = self.a.unsqueeze(0)              # (1, I)\n        b = self.b.unsqueeze(0)              # (1, I)\n        c = self.c.unsqueeze(0)              # (1, I)\n        d = self.d.unsqueeze(0)              # (1, I)\n\n        # θ_j - b_i + γ_j * τ_i\n        ability = theta - b + gamma * tau\n        logit = a * ability\n        prob = c + (d - c) * torch.sigmoid(logit)\n        return prob.clamp(1e-6, 1.0 - 1e-6)\n\n\n# ── Estimation ──\n\ndef fit_irt_model(model: nn.Module, responses: torch.Tensor, mask: torch.Tensor,\n                  lr: float = 0.01, max_iter: int = 5000, tol: float = 1e-6,\n                  l2_lambda: float = 0.001) -> dict:\n    \"\"\"\n    Fit IRT model via MLE with Adam optimizer.\n\n    Returns dict with final loss and convergence info.\n    \"\"\"\n    optimizer = torch.optim.Adam(model.parameters(), lr=lr)\n    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(\n        optimizer, patience=200, factor=0.5, min_lr=1e-5\n    )\n\n    prev_loss = float(\"inf\")\n    best_loss = float(\"inf\")\n    best_state = None\n    patience_counter = 0\n\n    for epoch in range(max_iter):\n        optimizer.zero_grad()\n        probs = model()\n\n        # Binary cross-entropy with mask\n        log_lik = (\n            responses * torch.log(probs) + (1 - responses) * torch.log(1 - probs)\n        )\n        loss = -(log_lik * mask).sum() / mask.sum()\n\n        # L2 regularization on person parameters\n        if hasattr(model, \"theta\"):\n            loss = loss + l2_lambda * (model.theta ** 2).mean()\n        if hasattr(model, \"gamma_raw\"):\n            loss = loss + l2_lambda * (model.gamma_raw ** 2).mean()\n\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)\n        optimizer.step()\n\n        loss_val = loss.item()\n        scheduler.step(loss_val)\n\n        if loss_val < best_loss:\n            best_loss = loss_val\n            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n            patience_counter = 0\n        else:\n            patience_counter += 1\n\n        if abs(prev_loss - loss_val) < tol and epoch > 100:\n            logger.info(\"Converged at epoch %d (loss=%.6f)\", epoch, loss_val)\n            break\n\n        if patience_counter > 500:\n            logger.info(\"Early stopping at epoch %d (best_loss=%.6f)\", epoch, best_loss)\n            break\n\n        prev_loss = loss_val\n\n        if epoch % 500 == 0:\n            logger.info(\"Epoch %d: loss=%.6f, lr=%.2e\", epoch, loss_val,\n                        optimizer.param_groups[0][\"lr\"])\n\n    if best_state is not None:\n        model.load_state_dict(best_state)\n\n    return {\"final_loss\": best_loss, \"epochs\": epoch + 1}\n\n\ndef compute_standard_errors(model: nn.Module, responses: torch.Tensor,\n                            mask: torch.Tensor) -> dict:\n    \"\"\"\n    Compute standard errors via observed Fisher information (Hessian diagonal).\n    Uses finite differences on the negative log-likelihood.\n    \"\"\"\n    ses = {}\n    eps = 1e-4\n\n    for name, param in model.named_parameters():\n        if name in (\"theta\", \"gamma_raw\", \"b\"):\n            se = torch.zeros_like(param)\n            original = param.data.clone()\n\n            for i in range(param.shape[0]):\n                losses = []\n                for delta in [-eps, 0, eps]:\n                    param.data[i] = original[i] + delta\n                    with torch.no_grad():\n                        probs = model()\n                        log_lik = (\n                            responses * torch.log(probs) +\n                            (1 - responses) * torch.log(1 - probs)\n                        )\n                        nll = -(log_lik * mask).sum()\n                    losses.append(nll.item())\n\n                # Second derivative: f''(x) ≈ (f(x+h) - 2f(x) + f(x-h)) / h²\n                hessian_diag = (losses[2] - 2 * losses[1] + losses[0]) / (eps ** 2)\n                se[i] = 1.0 / math.sqrt(max(hessian_diag, 1e-8))\n                param.data[i] = original[i]\n\n            ses[name] = se.numpy()\n\n    return ses\n\n\n# ── Main Pipeline ──\n\ndef run_2pl(responses: np.ndarray, mask: np.ndarray) -> dict:\n    \"\"\"Fit 2PL model and return estimates.\"\"\"\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n\n    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    return {\n        \"model\": \"2PL\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n        },\n    }\n\n\ndef run_4pl_gamma(responses: np.ndarray, mask: np.ndarray,\n                  tau: np.ndarray, dosages: np.ndarray) -> dict:\n    \"\"\"Fit 4PL+γ model and return estimates.\"\"\"\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n    tau_t = torch.tensor(tau, dtype=torch.float32)\n    dos_t = torch.tensor(dosages, dtype=torch.float32)\n\n    model = IRT4PLGamma(J, I, tau_t, dos_t)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005, max_iter=8000)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        gamma = model.gamma.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n        c = model.c.numpy()\n        d = model.d.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    gamma_se = ses.get(\"gamma_raw\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    # Calibrated scores: ability with contamination effect removed\n    raw_accuracy = (responses * mask).sum(axis=1) / mask.sum(axis=1)\n    calibrated_theta = theta  # θ is already the true ability (γ*τ separated)\n\n    return {\n        \"model\": \"4PL+gamma\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"gamma\": gamma.tolist(),\n        \"gamma_se\": gamma_se.tolist(),\n        \"gamma_ci_95\": [\n            [float(gamma[j] - 1.96 * gamma_se[j]), float(gamma[j] + 1.96 * gamma_se[j])]\n            for j in range(J)\n        ],\n        \"raw_accuracy\": raw_accuracy.tolist(),\n        \"calibrated_theta\": calibrated_theta.tolist(),\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef generate_synthetic_data(n_persons: int = 15, n_items: int = 50,\n                            seed: int = 42) -> dict:\n    \"\"\"Generate synthetic IRT data for testing.\"\"\"\n    rng = np.random.default_rng(seed)\n\n    dosages = np.array([0, 0, 0, 5, 5, 5, 25, 25, 25, 50, 50, 50, 100, 100, 100],\n                       dtype=np.float32)[:n_persons]\n    true_theta = rng.normal(0, 1, n_persons).astype(np.float32)\n    true_gamma = (dosages / 100.0 * rng.uniform(0.5, 1.5, n_persons)).astype(np.float32)\n    tau = rng.uniform(0.2, 1.0, n_items).astype(np.float32)\n\n    a = rng.uniform(0.5, 2.0, n_items).astype(np.float32)\n    b = rng.normal(0, 1, n_items).astype(np.float32)\n    c = rng.uniform(0.05, 0.25, n_items).astype(np.float32)\n    d = rng.uniform(0.9, 1.0, n_items).astype(np.float32)\n\n    # Generate responses from 4PL+γ\n    responses = np.zeros((n_persons, n_items), dtype=np.float32)\n    for j in range(n_persons):\n        for i in range(n_items):\n            ability = true_theta[j] - b[i] + true_gamma[j] * tau[i]\n            prob = c[i] + (d[i] - c[i]) / (1.0 + np.exp(-a[i] * ability))\n            responses[j, i] = float(rng.random() < prob)\n\n    return {\n        \"responses\": responses,\n        \"mask\": np.ones_like(responses),\n        \"dosages\": dosages,\n        \"tau\": tau,\n        \"true_params\": {\n            \"theta\": true_theta.tolist(),\n            \"gamma\": true_gamma.tolist(),\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"IRT parameter estimation for contamination-aware calibration\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\nExamples:\n  # Run on eval results\n  python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\n\n  # Run with exposure scores\n  python run_irt_calibration.py --eval-dir /path/to/eval_results \\\\\n      --exposure-file /path/to/exposure_scores.json --output-dir ./irt_output\n\n  # Synthetic data test\n  python run_irt_calibration.py --synthetic --output-dir ./irt_test\n        \"\"\",\n    )\n    parser.add_argument(\"--eval-dir\", type=str, default=None,\n                        help=\"Directory containing per-model eval subdirectories\")\n    parser.add_argument(\"--exposure-file\", type=str, default=None,\n                        help=\"JSON with per-benchmark exposure scores τ_i\")\n    parser.add_argument(\"--benchmarks\", type=str, nargs=\"+\", default=None,\n                        help=\"Benchmarks to analyze (default: all found)\")\n    parser.add_argument(\"--output-dir\", type=str, required=True,\n                        help=\"Output directory for IRT results\")\n    parser.add_argument(\"--synthetic\", action=\"store_true\",\n                        help=\"Run on synthetic data for validation\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--lr\", type=float, default=0.01, help=\"Learning rate\")\n    parser.add_argument(\"--max-iter\", type=int, default=5000, help=\"Max optimization iterations\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.synthetic:\n        logger.info(\"Running synthetic data validation\")\n        synth = generate_synthetic_data()\n        responses = synth[\"responses\"]\n        mask = synth[\"mask\"]\n        dosages = synth[\"dosages\"]\n        tau = synth[\"tau\"]\n\n        logger.info(\"Response matrix: %d persons × %d items\", *responses.shape)\n        logger.info(\"Mean accuracy: %.3f\", responses.mean())\n\n        # 2PL baseline\n        logger.info(\"Fitting 2PL model...\")\n        result_2pl = run_2pl(responses, mask)\n\n        # 4PL+γ\n        logger.info(\"Fitting 4PL+γ model...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        # Compute recovery metrics\n        true = synth[\"true_params\"]\n        theta_corr_2pl = float(np.corrcoef(true[\"theta\"], result_2pl[\"theta\"])[0, 1])\n        theta_corr_4plg = float(np.corrcoef(true[\"theta\"], result_4plg[\"theta\"])[0, 1])\n        gamma_corr = float(np.corrcoef(true[\"gamma\"], result_4plg[\"gamma\"])[0, 1])\n\n        recovery = {\n            \"theta_corr_2pl\": theta_corr_2pl,\n            \"theta_corr_4plg\": theta_corr_4plg,\n            \"gamma_corr_4plg\": gamma_corr,\n        }\n        logger.info(\"Recovery — θ corr (2PL): %.4f, θ corr (4PL+γ): %.4f, γ corr: %.4f\",\n                     theta_corr_2pl, theta_corr_4plg, gamma_corr)\n\n        output = {\n            \"mode\": \"synthetic\",\n            \"n_persons\": int(responses.shape[0]),\n            \"n_items\": int(responses.shape[1]),\n            \"true_params\": true,\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n            \"recovery\": recovery,\n        }\n\n        out_file = output_dir / \"synthetic_validation.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(output, f, indent=2)\n        logger.info(\"Saved to %s\", out_file)\n        return\n\n    # ── Real data mode ──\n    if not args.eval_dir:\n        parser.error(\"--eval-dir is required when not using --synthetic\")\n\n    data = load_eval_results(args.eval_dir, args.benchmarks)\n    exposure = load_exposure_scores(args.exposure_file, data[\"benchmarks\"])\n    dosages = data[\"dosages\"]\n\n    all_results = {\n        \"mode\": \"real\",\n        \"eval_dir\": args.eval_dir,\n        \"models\": [\n            {\"dirname\": m[\"dirname\"], \"model_name\": m[\"model_name\"],\n             \"dosage\": m[\"dosage\"], \"seed\": m[\"seed\"]}\n            for m in data[\"models\"]\n        ],\n        \"benchmarks\": {},\n    }\n\n    for bench, bench_data in data[\"benchmarks\"].items():\n        logger.info(\"=== Benchmark: %s (%d persons × %d items) ===\",\n                     bench, bench_data[\"responses\"].shape[0], bench_data[\"n_items\"])\n\n        responses = bench_data[\"responses\"]\n        mask = bench_data[\"mask\"]\n        tau = exposure[bench]\n\n        logger.info(\"Mean accuracy: %.3f\", (responses * mask).sum() / mask.sum())\n\n        # 2PL baseline\n        logger.info(\"Fitting 2PL...\")\n        result_2pl = run_2pl(responses, mask)\n\n        # 4PL+γ\n        logger.info(\"Fitting 4PL+γ...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        all_results[\"benchmarks\"][bench] = {\n            \"n_items\": int(bench_data[\"n_items\"]),\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n        }\n\n        # Per-model summary\n        logger.info(\"Per-model estimates:\")\n        for j, m in enumerate(data[\"models\"]):\n            logger.info(\n                \"  %s: dosage=%d, θ_2pl=%.3f, θ_4plg=%.3f, γ=%.3f, raw_acc=%.3f\",\n                m[\"dirname\"], m[\"dosage\"],\n                result_2pl[\"theta\"][j], result_4plg[\"theta\"][j],\n                result_4plg[\"gamma\"][j], result_4plg[\"raw_accuracy\"][j],\n            )\n\n    out_file = output_dir / \"irt_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(\"Results saved to %s\", out_file)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-14T00:40:53.053365+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-14T00:40:53.053652+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'completed', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'completed', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'completed', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'in_progress', 'activeForm': 'Deploying and testing script'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'completed', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'completed', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'completed', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'in_progress', 'activeForm': 'Deploying and testing script'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-14T00:40:53.053918+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T00:40:53.054133+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "mkdir -p /root/contamcal-irt-calibration/exp006"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "mkdir -p /root/contamcal-irt-calibration/exp006"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T00:40:53.060423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 6
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T00:40:53.060813+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T00:40:53.061469+00:00_
+
+1	"""
+2	IRT parameter estimation for contamination-aware calibration.
+3	
+4	Fits two models to item-level correctness data from benchmark evaluations:
+5	  1) Standard 2PL IRT (baseline)
+6	  2) 4PL+γ contamination-aware IRT
+7	
+8	Input:
+9	  --eval-dir      Directory containing per-model eval subdirectories
+10	                  (each with eval_results.json / correctness_matrix.json)
+11	  --exposure-file (optional) JSON mapping benchmark -> [τ_i, ...] exposure scores
+12	  --benchmarks    Which benchmarks to analyze (default: all found)
+13	  --output-dir    Where to write results JSON
+14	
+15	Output (per benchmark):
+16	  irt_results.json with θ, γ, item params, calibrated scores, CIs
+17	
+18	Dependencies: torch, numpy, scipy
+19	"""
+20	
+21	import argparse
+22	import json
+23	import logging
+24	import math
+25	import os
+26	import re
+27	import sys
+28	from pathlib import Path
+29	
+30	import numpy as np
+31	import torch
+32	import torch.nn as nn
+33	from scipy import stats
+34	
+35	logger = logging.getLogger(__name__)
+36	
+37	# ── Data Loading ──
+38	
+39	DOSAGE_PATTERN = re.compile(r"_d(\d+)_s(\d+)(_para)?$")
+40	
+41	
+42	def parse_model_dir_name(dirname: str) -> dict | None:
+43	    """Extract model name, dosage, seed from directory like qwen2.5-0.5b_d025_s123."""
+44	    m = DOSAGE_PATTERN.search(dirname)
+45	    if not m:
+46	        return None
+47	    dosage = int(m.group(1))
+48	    seed = int(m.group(2))
+49	    is_para = m.group(3) is not None
+50	    model_name = dirname[: m.start()]
+51	    return {
+52	        "dirname": dirname,
+53	        "model_name": model_name,
+54	        "dosage": dosage,
+55	        "seed": seed,
+56	        "is_para": is_para,
+57	    }
+58	
+59	
+60	def load_eval_results(eval_dir: str, benchmarks: list[str] | None = None,
+61	                      skip_para: bool = True) -> dict:
+62	    """
+63	    Load eval results from all model subdirectories.
+64	
+65	    Returns:
+66	        {
+67	            "models": [{"dirname", "model_name", "dosage", "seed"}, ...],
+68	            "ben
+…[truncated 22989 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-14T00:40:53.061868+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat > /root/contamcal-irt-calibration/exp006/run_irt_calibration.py << 'HEREDOC_EOF'\n\"\"\"\nIRT parameter estimation for contamination-aware calibration.\n\nFits two models to item-level correctness data from benchmark evaluations:\n  1) Standard 2PL IRT (baseline)\n  2) 4PL+γ contamination-aware IRT\n\nInput:\n  --eval-dir      Directory containing per-model eval subdirectories\n                  (each with eval_results.json / correctness_matrix.json)\n  --exposure-file (optional) JSON mapping benchmark -> [τ_i, ...] exposure scores\n  --benchmarks    Which benchmarks to analyze (default: all found)\n  --output-dir    Where to write results JSON\n\nOutput (per benchmark):\n  irt_results.json with θ, γ, item params, calibrated scores, CIs\n\nDependencies: torch, numpy, scipy\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport math\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy import stats\n\nlogger = logging.getLogger(__name__)\n\n# ── Data Loading ──\n\nDOSAGE_PATTERN = re.compile(r\"_d(\\d+)_s(\\d+)(_para)?$\")\n\n\ndef parse_model_dir_name(dirname: str) -> dict | None:\n    \"\"\"Extract model name, dosage, seed from directory like qwen2.5-0.5b_d025_s123.\"\"\"\n    m = DOSAGE_PATTERN.search(dirname)\n    if not m:\n        return None\n    dosage = int(m.group(1))\n    seed = int(m.group(2))\n    is_para = m.group(3) is not None\n    model_name = dirname[: m.start()]\n    return {\n        \"dirname\": dirname,\n        \"model_name\": model_name,\n        \"dosage\": dosage,\n        \"seed\": seed,\n        \"is_para\": is_para,\n    }\n\n\ndef load_eval_results(eval_dir: str, benchmarks: list[str] | None = None,\n                      skip_para: bool = True) -> dict:\n    \"\"\"\n    Load eval results from all model subdirectories.\n\n    Returns:\n        {\n            \"models\": [{\"dirname\", \"model_name\", \"dosage\", \"seed\"}, ...],\n            \"benchmarks\": {\n                \"mmlu\": {\n                    \"responses\": np.ndarray (J x I),  # binary correctness\n                    \"n_items\": int,\n                },\n                ...\n            },\n            \"dosages\": np.ndarray (J,),\n        }\n    \"\"\"\n    eval_path = Path(eval_dir)\n    model_dirs = sorted([\n        d for d in eval_path.iterdir()\n        if d.is_dir() and (d / \"eval_results.json\").exists()\n    ])\n\n    models = []\n    for d in model_dirs:\n        info = parse_model_dir_name(d.name)\n        if info is None:\n            logger.warning(\"Skipping unrecognized directory: %s\", d.name)\n            continue\n        if skip_para and info[\"is_para\"]:\n            continue\n        info[\"path\"] = str(d)\n        models.append(info)\n\n    if not models:\n        raise ValueError(f\"No valid eval results found in {eval_dir}\")\n\n    logger.info(\"Found %d model evaluations\", len(models))\n\n    # Determine benchmarks\n    with open(Path(models[0][\"path\"]) / \"eval_results.json\") as f:\n        sample = json.load(f)\n    available_benchmarks = list(sample[\"benchmarks\"].keys())\n\n    if benchmarks:\n        benchmarks = [b for b in benchmarks if b in available_benchmarks]\n    else:\n        benchmarks = available_benchmarks\n\n    logger.info(\"Benchmarks: %s\", benchmarks)\n\n    # Build response matrices\n    result = {\"models\": models, \"benchmarks\": {}, \"dosages\": np.array([m[\"dosage\"] for m in models])}\n\n    for bench in benchmarks:\n        responses = []\n        for m in models:\n            results_file = Path(m[\"path\"]) / \"eval_results.json\"\n            with open(results_file) as f:\n                data = json.load(f)\n\n            if bench not in data[\"benchmarks\"]:\n                logger.warning(\"Benchmark %s missing for %s, filling with NaN\", bench, m[\"dirname\"])\n                responses.append(None)\n                continue\n\n            per_item = data[\"benchmarks\"][bench][\"per_item\"]\n            correct = [int(item[\"correct\"]) for item in per_item]\n            responses.append(correct)\n\n        # Validate consistent item counts\n        lengths = [len(r) for r in responses if r is not None]\n        if not lengths:\n            logger.warning(\"No data for benchmark %s, skipping\", bench)\n            continue\n\n        n_items = lengths[0]\n        if not all(l == n_items for l in lengths):\n            logger.warning(\"Inconsistent item counts for %s: %s\", bench, lengths)\n            n_items = min(lengths)\n\n        matrix = np.zeros((len(models), n_items), dtype=np.float32)\n        mask = np.ones((len(models), n_items), dtype=np.float32)\n        for j, r in enumerate(responses):\n            if r is None:\n                mask[j, :] = 0.0\n            else:\n                matrix[j, :n_items] = r[:n_items]\n\n        result[\"benchmarks\"][bench] = {\n            \"responses\": matrix,\n            \"mask\": mask,\n            \"n_items\": n_items,\n        }\n\n    return result\n\n\ndef load_exposure_scores(exposure_file: str | None, benchmarks: dict) -> dict:\n    \"\"\"\n    Load per-item exposure scores τ_i.\n    If no file provided, returns uniform scores (all items equally exposed).\n    \"\"\"\n    if exposure_file and os.path.exists(exposure_file):\n        with open(exposure_file) as f:\n            raw = json.load(f)\n        scores = {}\n        for bench, bench_data in benchmarks.items():\n            n_items = bench_data[\"n_items\"]\n            if bench in raw:\n                s = np.array(raw[bench], dtype=np.float32)[:n_items]\n                if len(s) < n_items:\n                    s = np.pad(s, (0, n_items - len(s)), constant_values=0.0)\n                scores[bench] = s\n            else:\n                scores[bench] = np.ones(n_items, dtype=np.float32)\n        return scores\n\n    # Default: all items equally exposed (τ=1)\n    return {bench: np.ones(d[\"n_items\"], dtype=np.float32) for bench, d in benchmarks.items()}\n\n\n# ── IRT Models (PyTorch) ──\n\nclass IRT2PL(nn.Module):\n    \"\"\"Standard 2-parameter logistic IRT model.\"\"\"\n\n    def __init__(self, n_persons: int, n_items: int):\n        super().__init__()\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))  # log(a) for positivity\n        self.b = nn.Parameter(torch.zeros(n_items))\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    def forward(self):\n        # P(Y=1) = 1 / (1 + exp(-a_i * (θ_j - b_i)))\n        theta = self.theta.unsqueeze(1)  # (J, 1)\n        a = self.a.unsqueeze(0)          # (1, I)\n        b = self.b.unsqueeze(0)          # (1, I)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit)\n\n\nclass IRT4PLGamma(nn.Module):\n    \"\"\"\n    4PL + γ contamination-aware IRT model.\n\n    P(Y_ji = 1) = c_i + (d_i - c_i) * σ(a_i * (θ_j - b_i + γ_j * τ_i))\n\n    where γ_j captures contamination advantage proportional to item exposure τ_i.\n    \"\"\"\n\n    def __init__(self, n_persons: int, n_items: int, tau: torch.Tensor,\n                 dosages: torch.Tensor | None = None):\n        super().__init__()\n        self.n_persons = n_persons\n        self.n_items = n_items\n        self.register_buffer(\"tau\", tau)  # (I,) exposure scores\n\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.gamma_raw = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n        self.c_raw = nn.Parameter(torch.full((n_items,), -2.0))  # sigmoid → ~0.12\n        self.d_raw = nn.Parameter(torch.full((n_items,), 2.0))   # sigmoid → ~0.88\n\n        # Initialize γ proportional to dosage if available\n        if dosages is not None:\n            with torch.no_grad():\n                normed = dosages / (dosages.max() + 1e-8)\n                self.gamma_raw.copy_(normed * 0.5)\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    @property\n    def c(self):\n        return torch.sigmoid(self.c_raw).clamp(max=0.5)\n\n    @property\n    def d(self):\n        return (0.5 + 0.5 * torch.sigmoid(self.d_raw))  # range [0.5, 1.0]\n\n    @property\n    def gamma(self):\n        return torch.relu(self.gamma_raw)  # γ ≥ 0\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)      # (J, 1)\n        gamma = self.gamma.unsqueeze(1)      # (J, 1)\n        tau = self.tau.unsqueeze(0)           # (1, I)\n        a = self.a.unsqueeze(0)              # (1, I)\n        b = self.b.unsqueeze(0)              # (1, I)\n        c = self.c.unsqueeze(0)              # (1, I)\n        d = self.d.unsqueeze(0)              # (1, I)\n\n        # θ_j - b_i + γ_j * τ_i\n        ability = theta - b + gamma * tau\n        logit = a * ability\n        prob = c + (d - c) * torch.sigmoid(logit)\n        return prob.clamp(1e-6, 1.0 - 1e-6)\n\n\n# ── Estimation ──\n\ndef fit_irt_model(model: nn.Module, responses: torch.Tensor, mask: torch.Tensor,\n                  lr: float = 0.01, max_iter: int = 5000, tol: float = 1e-6,\n                  l2_lambda: float = 0.001) -> dict:\n    \"\"\"\n    Fit IRT model via MLE with Adam optimizer.\n\n    Returns dict with final loss and convergence info.\n    \"\"\"\n    optimizer = torch.optim.Adam(model.parameters(), lr=lr)\n    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(\n        optimizer, patience=200, factor=0.5, min_lr=1e-5\n    )\n\n    prev_loss = float(\"inf\")\n    best_loss = float(\"inf\")\n    best_state = None\n    patience_counter = 0\n\n    for epoch in range(max_iter):\n        optimizer.zero_grad()\n        probs = model()\n\n        # Binary cross-entropy with mask\n        log_lik = (\n            responses * torch.log(probs) + (1 - responses) * torch.log(1 - probs)\n        )\n        loss = -(log_lik * mask).sum() / mask.sum()\n\n        # L2 regularization on person parameters\n        if hasattr(model, \"theta\"):\n            loss = loss + l2_lambda * (model.theta ** 2).mean()\n        if hasattr(model, \"gamma_raw\"):\n            loss = loss + l2_lambda * (model.gamma_raw ** 2).mean()\n\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)\n        optimizer.step()\n\n        loss_val = loss.item()\n        scheduler.step(loss_val)\n\n        if loss_val < best_loss:\n            best_loss = loss_val\n            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n            patience_counter = 0\n        else:\n            patience_counter += 1\n\n        if abs(prev_loss - loss_val) < tol and epoch > 100:\n            logger.info(\"Converged at epoch %d (loss=%.6f)\", epoch, loss_val)\n            break\n\n        if patience_counter > 500:\n            logger.info(\"Early stopping at epoch %d (best_loss=%.6f)\", epoch, best_loss)\n            break\n\n        prev_loss = loss_val\n\n        if epoch % 500 == 0:\n            logger.info(\"Epoch %d: loss=%.6f, lr=%.2e\", epoch, loss_val,\n                        optimizer.param_groups[0][\"lr\"])\n\n    if best_state is not None:\n        model.load_state_dict(best_state)\n\n    return {\"final_loss\": best_loss, \"epochs\": epoch + 1}\n\n\ndef compute_standard_errors(model: nn.Module, responses: torch.Tensor,\n                            mask: torch.Tensor) -> dict:\n    \"\"\"\n    Compute standard errors via observed Fisher information (Hessian diagonal).\n    Uses finite differences on the negative log-likelihood.\n    \"\"\"\n    ses = {}\n    eps = 1e-4\n\n    for name, param in model.named_parameters():\n        if name in (\"theta\", \"gamma_raw\", \"b\"):\n            se = torch.zeros_like(param)\n            original = param.data.clone()\n\n            for i in range(param.shape[0]):\n                losses = []\n                for delta in [-eps, 0, eps]:\n                    param.data[i] = original[i] + delta\n                    with torch.no_grad():\n                        probs = model()\n                        log_lik = (\n                            responses * torch.log(probs) +\n                            (1 - responses) * torch.log(1 - probs)\n                        )\n                        nll = -(log_lik * mask).sum()\n                    losses.append(nll.item())\n\n                # Second derivative: f''(x) ≈ (f(x+h) - 2f(x) + f(x-h)) / h²\n                hessian_diag = (losses[2] - 2 * losses[1] + losses[0]) / (eps ** 2)\n                se[i] = 1.0 / math.sqrt(max(hessian_diag, 1e-8))\n                param.data[i] = original[i]\n\n            ses[name] = se.numpy()\n\n    return ses\n\n\n# ── Main Pipeline ──\n\ndef run_2pl(responses: np.ndarray, mask: np.ndarray) -> dict:\n    \"\"\"Fit 2PL model and return estimates.\"\"\"\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n\n    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    return {\n        \"model\": \"2PL\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n        },\n    }\n\n\ndef run_4pl_gamma(responses: np.ndarray, mask: np.ndarray,\n                  tau: np.ndarray, dosages: np.ndarray) -> dict:\n    \"\"\"Fit 4PL+γ model and return estimates.\"\"\"\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n    tau_t = torch.tensor(tau, dtype=torch.float32)\n    dos_t = torch.tensor(dosages, dtype=torch.float32)\n\n    model = IRT4PLGamma(J, I, tau_t, dos_t)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005, max_iter=8000)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        gamma = model.gamma.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n        c = model.c.numpy()\n        d = model.d.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    gamma_se = ses.get(\"gamma_raw\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    # Calibrated scores: ability with contamination effect removed\n    raw_accuracy = (responses * mask).sum(axis=1) / mask.sum(axis=1)\n    calibrated_theta = theta  # θ is already the true ability (γ*τ separated)\n\n    return {\n        \"model\": \"4PL+gamma\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"gamma\": gamma.tolist(),\n        \"gamma_se\": gamma_se.tolist(),\n        \"gamma_ci_95\": [\n            [float(gamma[j] - 1.96 * gamma_se[j]), float(gamma[j] + 1.96 * gamma_se[j])]\n            for j in range(J)\n        ],\n        \"raw_accuracy\": raw_accuracy.tolist(),\n        \"calibrated_theta\": calibrated_theta.tolist(),\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef generate_synthetic_data(n_persons: int = 15, n_items: int = 50,\n                            seed: int = 42) -> dict:\n    \"\"\"Generate synthetic IRT data for testing.\"\"\"\n    rng = np.random.default_rng(seed)\n\n    dosages = np.array([0, 0, 0, 5, 5, 5, 25, 25, 25, 50, 50, 50, 100, 100, 100],\n                       dtype=np.float32)[:n_persons]\n    true_theta = rng.normal(0, 1, n_persons).astype(np.float32)\n    true_gamma = (dosages / 100.0 * rng.uniform(0.5, 1.5, n_persons)).astype(np.float32)\n    tau = rng.uniform(0.2, 1.0, n_items).astype(np.float32)\n\n    a = rng.uniform(0.5, 2.0, n_items).astype(np.float32)\n    b = rng.normal(0, 1, n_items).astype(np.float32)\n    c = rng.uniform(0.05, 0.25, n_items).astype(np.float32)\n    d = rng.uniform(0.9, 1.0, n_items).astype(np.float32)\n\n    # Generate responses from 4PL+γ\n    responses = np.zeros((n_persons, n_items), dtype=np.float32)\n    for j in range(n_persons):\n        for i in range(n_items):\n            ability = true_theta[j] - b[i] + true_gamma[j] * tau[i]\n            prob = c[i] + (d[i] - c[i]) / (1.0 + np.exp(-a[i] * ability))\n            responses[j, i] = float(rng.random() < prob)\n\n    return {\n        \"responses\": responses,\n        \"mask\": np.ones_like(responses),\n        \"dosages\": dosages,\n        \"tau\": tau,\n        \"true_params\": {\n            \"theta\": true_theta.tolist(),\n            \"gamma\": true_gamma.tolist(),\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"IRT parameter estimation for contamination-aware calibration\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\nExamples:\n  # Run on eval results\n  python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\n\n  # Run with exposure scores\n  python run_irt_calibration.py --eval-dir /path/to/eval_results \\\\\n      --exposure-file /path/to/exposure_scores.json --output-dir ./irt_output\n\n  # Synthetic data test\n  python run_irt_calibration.py --synthetic --output-dir ./irt_test\n        \"\"\",\n    )\n    parser.add_argument(\"--eval-dir\", type=str, default=None,\n                        help=\"Directory containing per-model eval subdirectories\")\n    parser.add_argument(\"--exposure-file\", type=str, default=None,\n                        help=\"JSON with per-benchmark exposure scores τ_i\")\n    parser.add_argument(\"--benchmarks\", type=str, nargs=\"+\", default=None,\n                        help=\"Benchmarks to analyze (default: all found)\")\n    parser.add_argument(\"--output-dir\", type=str, required=True,\n                        help=\"Output directory for IRT results\")\n    parser.add_argument(\"--synthetic\", action=\"store_true\",\n                        help=\"Run on synthetic data for validation\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--lr\", type=float, default=0.01, help=\"Learning rate\")\n    parser.add_argument(\"--max-iter\", type=int, default=5000, help=\"Max optimization iterations\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.synthetic:\n        logger.info(\"Running synthetic data validation\")\n        synth = generate_synthetic_data()\n        responses = synth[\"responses\"]\n        mask = synth[\"mask\"]\n        dosages = synth[\"dosages\"]\n        tau = synth[\"tau\"]\n\n        logger.info(\"Response matrix: %d persons × %d items\", *responses.shape)\n        logger.info(\"Mean accuracy: %.3f\", responses.mean())\n\n        # 2PL baseline\n        logger.info(\"Fitting 2PL model...\")\n        result_2pl = run_2pl(responses, mask)\n\n        # 4PL+γ\n        logger.info(\"Fitting 4PL+γ model...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        # Compute recovery metrics\n        true = synth[\"true_params\"]\n        theta_corr_2pl = float(np.corrcoef(true[\"theta\"], result_2pl[\"theta\"])[0, 1])\n        theta_corr_4plg = float(np.corrcoef(true[\"theta\"], result_4plg[\"theta\"])[0, 1])\n        gamma_corr = float(np.corrcoef(true[\"gamma\"], result_4plg[\"gamma\"])[0, 1])\n\n        recovery = {\n            \"theta_corr_2pl\": theta_corr_2pl,\n            \"theta_corr_4plg\": theta_corr_4plg,\n            \"gamma_corr_4plg\": gamma_corr,\n        }\n        logger.info(\"Recovery — θ corr (2PL): %.4f, θ corr (4PL+γ): %.4f, γ corr: %.4f\",\n                     theta_corr_2pl, theta_corr_4plg, gamma_corr)\n\n        output = {\n            \"mode\": \"synthetic\",\n            \"n_persons\": int(responses.shape[0]),\n            \"n_items\": int(responses.shape[1]),\n            \"true_params\": true,\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n            \"recovery\": recovery,\n        }\n\n        out_file = output_dir / \"synthetic_validation.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(output, f, indent=2)\n        logger.info(\"Saved to %s\", out_file)\n        return\n\n    # ── Real data mode ──\n    if not args.eval_dir:\n        parser.error(\"--eval-dir is required when not using --synthetic\")\n\n    data = load_eval_results(args.eval_dir, args.benchmarks)\n    exposure = load_exposure_scores(args.exposure_file, data[\"benchmarks\"])\n    dosages = data[\"dosages\"]\n\n    all_results = {\n        \"mode\": \"real\",\n        \"eval_dir\": args.eval_dir,\n        \"models\": [\n            {\"dirname\": m[\"dirname\"], \"model_name\": m[\"model_name\"],\n             \"dosage\": m[\"dosage\"], \"seed\": m[\"seed\"]}\n            for m in data[\"models\"]\n        ],\n        \"benchmarks\": {},\n    }\n\n    for bench, bench_data in data[\"benchmarks\"].items():\n        logger.info(\"=== Benchmark: %s (%d persons × %d items) ===\",\n                     bench, bench_data[\"responses\"].shape[0], bench_data[\"n_items\"])\n\n        responses = bench_data[\"responses\"]\n        mask = bench_data[\"mask\"]\n        tau = exposure[bench]\n\n        logger.info(\"Mean accuracy: %.3f\", (responses * mask).sum() / mask.sum())\n\n        # 2PL baseline\n        logger.info(\"Fitting 2PL...\")\n        result_2pl = run_2pl(responses, mask)\n\n        # 4PL+γ\n        logger.info(\"Fitting 4PL+γ...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        all_results[\"benchmarks\"][bench] = {\n            \"n_items\": int(bench_data[\"n_items\"]),\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n        }\n\n        # Per-model summary\n        logger.info(\"Per-model estimates:\")\n        for j, m in enumerate(data[\"models\"]):\n            logger.info(\n                \"  %s: dosage=%d, θ_2pl=%.3f, θ_4plg=%.3f, γ=%.3f, raw_acc=%.3f\",\n                m[\"dirname\"], m[\"dosage\"],\n                result_2pl[\"theta\"][j], result_4plg[\"theta\"][j],\n                result_4plg[\"gamma\"][j], result_4plg[\"raw_accuracy\"][j],\n            )\n\n    out_file = output_dir / \"irt_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(\"Results saved to %s\", out_file)\n\n\nif __name__ == \"__main__\":\n    main()\nHEREDOC_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat > /root/contamcal-irt-calibration/exp006/run_irt_calibration.py << 'HEREDOC_EOF'\n\"\"\"\nIRT parameter estimation for contamination-aware calibration.\n\nFits two models to item-level correctness data from benchmark evaluations:\n  1) Standard 2PL IRT (baseline)\n  2) 4PL+γ contamination-aware IRT\n\nInput:\n  --eval-dir      Directory containing per-model eval subdirectories\n                  (each with eval_results.json / correctness_matrix.json)\n  --exposure-file (optional) JSON mapping benchmark -> [τ_i, ...] exposure scores\n  --benchmarks    Which benchmarks to analyze (default: all found)\n  --output-dir    Where to write results JSON\n\nOutput (per benchmark):\n  irt_results.json with θ, γ, item params, calibrated scores, CIs\n\nDependencies: torch, numpy, scipy\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport math\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy import stats\n\nlogger = logging.getLogger(__name__)\n\n# ── Data Loading ──\n\nDOSAGE_PATTERN = re.compile(r\"_d(\\d+)_s(\\d+)(_para)?$\")\n\n\ndef parse_model_dir_name(dirname: str) -> dict | None:\n    \"\"\"Extract model name, dosage, seed from directory like qwen2.5-0.5b_d025_s123.\"\"\"\n    m = DOSAGE_PATTERN.search(dirname)\n    if not m:\n        return None\n    dosage = int(m.group(1))\n    seed = int(m.group(2))\n    is_para = m.group(3) is not None\n    model_name = dirname[: m.start()]\n    return {\n        \"dirname\": dirname,\n        \"model_name\": model_name,\n        \"dosage\": dosage,\n        \"seed\": seed,\n        \"is_para\": is_para,\n    }\n\n\ndef load_eval_results(eval_dir: str, benchmarks: list[str] | None = None,\n                      skip_para: bool = True) -> dict:\n    \"\"\"\n    Load eval results from all model subdirectories.\n\n    Returns:\n        {\n            \"models\": [{\"dirname\", \"model_name\", \"dosage\", \"seed\"}, ...],\n            \"benchmarks\": {\n                \"mmlu\": {\n                    \"responses\": np.ndarray (J x I),  # binary correctness\n                    \"n_items\": int,\n                },\n                ...\n            },\n            \"dosages\": np.ndarray (J,),\n        }\n    \"\"\"\n    eval_path = Path(eval_dir)\n    model_dirs = sorted([\n        d for d in eval_path.iterdir()\n        if d.is_dir() and (d / \"eval_results.json\").exists()\n    ])\n\n    models = []\n    for d in model_dirs:\n        info = parse_model_dir_name(d.name)\n        if info is None:\n            logger.warning(\"Skipping unrecognized directory: %s\", d.name)\n            continue\n        if skip_para and info[\"is_para\"]:\n            continue\n        info[\"path\"] = str(d)\n        models.append(info)\n\n    if not models:\n        raise ValueError(f\"No valid eval results found in {eval_dir}\")\n\n    logger.info(\"Found %d model evaluations\", len(models))\n\n    # Determine benchmarks\n    with open(Path(models[0][\"path\"]) / \"eval_results.json\") as f:\n        sample = json.load(f)\n    available_benchmarks = list(sample[\"benchmarks\"].keys())\n\n    if benchmarks:\n        benchmarks = [b for b in benchmarks if b in available_benchmarks]\n    else:\n        benchmarks = available_benchmarks\n\n    logger.info(\"Benchmarks: %s\", benchmarks)\n\n    # Build response matrices\n    result = {\"models\": models, \"benchmarks\": {}, \"dosages\": np.array([m[\"dosage\"] for m in models])}\n\n    for bench in benchmarks:\n        responses = []\n        for m in models:\n            results_file = Path(m[\"path\"]) / \"eval_results.json\"\n            with open(results_file) as f:\n                data = json.load(f)\n\n            if bench not in data[\"benchmarks\"]:\n                logger.warning(\"Benchmark %s missing for %s, filling with NaN\", bench, m[\"dirname\"])\n                responses.append(None)\n                continue\n\n            per_item = data[\"benchmarks\"][bench][\"per_item\"]\n            correct = [int(item[\"correct\"]) for item in per_item]\n            responses.append(correct)\n\n        # Validate consistent item counts\n        lengths = [len(r) for r in responses if r is not None]\n        if not lengths:\n            logger.warning(\"No data for benchmark %s, skipping\", bench)\n            continue\n\n        n_items = lengths[0]\n        if not all(l == n_items for l in lengths):\n            logger.warning(\"Inconsistent item counts for %s: %s\", bench, lengths)\n            n_items = min(lengths)\n\n        matrix = np.zeros((len(models), n_items), dtype=np.float32)\n        mask = np.ones((len(models), n_items), dtype=np.float32)\n        for j, r in enumerate(responses):\n            if r is None:\n                mask[j, :] = 0.0\n            else:\n                matrix[j, :n_items] = r[:n_items]\n\n        result[\"benchmarks\"][bench] = {\n            \"responses\": matrix,\n            \"mask\": mask,\n            \"n_items\": n_items,\n        }\n\n    return result\n\n\ndef load_exposure_scores(exposure_file: str | None, benchmarks: dict) -> dict:\n    \"\"\"\n    Load per-item exposure scores τ_i.\n    If no file provided, returns uniform scores (all items equally exposed).\n    \"\"\"\n    if exposure_file and os.path.exists(exposure_file):\n        with open(exposure_file) as f:\n            raw = json.load(f)\n        scores = {}\n        for bench, bench_data in benchmarks.items():\n            n_items = bench_data[\"n_items\"]\n            if bench in raw:\n                s = np.array(raw[bench], dtype=np.float32)[:n_items]\n                if len(s) < n_items:\n                    s = np.pad(s, (0, n_items - len(s)), constant_values=0.0)\n                scores[bench] = s\n            else:\n                scores[bench] = np.ones(n_items, dtype=np.float32)\n        return scores\n\n    # Default: all items equally exposed (τ=1)\n    return {bench: np.ones(d[\"n_items\"], dtype=np.float32) for bench, d in benchmarks.items()}\n\n\n# ── IRT Models (PyTorch) ──\n\nclass IRT2PL(nn.Module):\n    \"\"\"Standard 2-parameter logistic IRT model.\"\"\"\n\n    def __init__(self, n_persons: int, n_items: int):\n        super().__init__()\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))  # log(a) for positivity\n        self.b = nn.Parameter(torch.zeros(n_items))\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    def forward(self):\n        # P(Y=1) = 1 / (1 + exp(-a_i * (θ_j - b_i)))\n        theta = self.theta.unsqueeze(1)  # (J, 1)\n        a = self.a.unsqueeze(0)          # (1, I)\n        b = self.b.unsqueeze(0)          # (1, I)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit)\n\n\nclass IRT4PLGamma(nn.Module):\n    \"\"\"\n    4PL + γ contamination-aware IRT model.\n\n    P(Y_ji = 1) = c_i + (d_i - c_i) * σ(a_i * (θ_j - b_i + γ_j * τ_i))\n\n    where γ_j captures contamination advantage proportional to item exposure τ_i.\n    \"\"\"\n\n    def __init__(self, n_persons: int, n_items: int, tau: torch.Tensor,\n                 dosages: torch.Tensor | None = None):\n        super().__init__()\n        self.n_persons = n_persons\n        self.n_items = n_items\n        self.register_buffer(\"tau\", tau)  # (I,) exposure scores\n\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.gamma_raw = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n        self.c_raw = nn.Parameter(torch.full((n_items,), -2.0))  # sigmoid → ~0.12\n        self.d_raw = nn.Parameter(torch.full((n_items,), 2.0))   # sigmoid → ~0.88\n\n        # Initialize γ proportional to dosage if available\n        if dosages is not None:\n            with torch.no_grad():\n                normed = dosages / (dosages.max() + 1e-8)\n                self.gamma_raw.copy_(normed * 0.5)\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    @property\n    def c(self):\n        return torch.sigmoid(self.c_raw).clamp(max=0.5)\n\n    @property\n    def d(self):\n        return (0.5 + 0.5 * torch.sigmoid(self.d_raw))  # range [0.5, 1.0]\n\n    @property\n    def gamma(self):\n        return torch.relu(self.gamma_raw)  # γ ≥ 0\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)      # (J, 1)\n        gamma = self.gamma.unsqueeze(1)      # (J, 1)\n        tau = self.tau.unsqueeze(0)           # (1, I)\n        a = self.a.unsqueeze(0)              # (1, I)\n        b = self.b.unsqueeze(0)              # (1, I)\n        c = self.c.unsqueeze(0)              # (1, I)\n        d = self.d.unsqueeze(0)              # (1, I)\n\n        # θ_j - b_i + γ_j * τ_i\n        ability = theta - b + gamma * tau\n        logit = a * ability\n        prob = c + (d - c) * torch.sigmoid(logit)\n        return prob.clamp(1e-6, 1.0 - 1e-6)\n\n\n# ── Estimation ──\n\ndef fit_irt_model(model: nn.Module, responses: torch.Tensor, mask: torch.Tensor,\n                  lr: float = 0.01, max_iter: int = 5000, tol: float = 1e-6,\n                  l2_lambda: float = 0.001) -> dict:\n    \"\"\"\n    Fit IRT model via MLE with Adam optimizer.\n\n    Returns dict with final loss and convergence info.\n    \"\"\"\n    optimizer = torch.optim.Adam(model.parameters(), lr=lr)\n    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(\n        optimizer, patience=200, factor=0.5, min_lr=1e-5\n    )\n\n    prev_loss = float(\"inf\")\n    best_loss = float(\"inf\")\n    best_state = None\n    patience_counter = 0\n\n    for epoch in range(max_iter):\n        optimizer.zero_grad()\n        probs = model()\n\n        # Binary cross-entropy with mask\n        log_lik = (\n            responses * torch.log(probs) + (1 - responses) * torch.log(1 - probs)\n        )\n        loss = -(log_lik * mask).sum() / mask.sum()\n\n        # L2 regularization on person parameters\n        if hasattr(model, \"theta\"):\n            loss = loss + l2_lambda * (model.theta ** 2).mean()\n        if hasattr(model, \"gamma_raw\"):\n            loss = loss + l2_lambda * (model.gamma_raw ** 2).mean()\n\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)\n        optimizer.step()\n\n        loss_val = loss.item()\n        scheduler.step(loss_val)\n\n        if loss_val < best_loss:\n            best_loss = loss_val\n            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n            patience_counter = 0\n        else:\n            patience_counter += 1\n\n        if abs(prev_loss - loss_val) < tol and epoch > 100:\n            logger.info(\"Converged at epoch %d (loss=%.6f)\", epoch, loss_val)\n            break\n\n        if patience_counter > 500:\n            logger.info(\"Early stopping at epoch %d (best_loss=%.6f)\", epoch, best_loss)\n            break\n\n        prev_loss = loss_val\n\n        if epoch % 500 == 0:\n            logger.info(\"Epoch %d: loss=%.6f, lr=%.2e\", epoch, loss_val,\n                        optimizer.param_groups[0][\"lr\"])\n\n    if best_state is not None:\n        model.load_state_dict(best_state)\n\n    return {\"final_loss\": best_loss, \"epochs\": epoch + 1}\n\n\ndef compute_standard_errors(model: nn.Module, responses: torch.Tensor,\n                            mask: torch.Tensor) -> dict:\n    \"\"\"\n    Compute standard errors via observed Fisher information (Hessian diagonal).\n    Uses finite differences on the negative log-likelihood.\n    \"\"\"\n    ses = {}\n    eps = 1e-4\n\n    for name, param in model.named_parameters():\n        if name in (\"theta\", \"gamma_raw\", \"b\"):\n            se = torch.zeros_like(param)\n            original = param.data.clone()\n\n            for i in range(param.shape[0]):\n                losses = []\n                for delta in [-eps, 0, eps]:\n                    param.data[i] = original[i] + delta\n                    with torch.no_grad():\n                        probs = model()\n                        log_lik = (\n                            responses * torch.log(probs) +\n                            (1 - responses) * torch.log(1 - probs)\n                        )\n                        nll = -(log_lik * mask).sum()\n                    losses.append(nll.item())\n\n                # Second derivative: f''(x) ≈ (f(x+h) - 2f(x) + f(x-h)) / h²\n                hessian_diag = (losses[2] - 2 * losses[1] + losses[0]) / (eps ** 2)\n                se[i] = 1.0 / math.sqrt(max(hessian_diag, 1e-8))\n                param.data[i] = original[i]\n\n            ses[name] = se.numpy()\n\n    return ses\n\n\n# ── Main Pipeline ──\n\ndef run_2pl(responses: np.ndarray, mask: np.ndarray) -> dict:\n    \"\"\"Fit 2PL model and return estimates.\"\"\"\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n\n    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    return {\n        \"model\": \"2PL\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n        },\n    }\n\n\ndef run_4pl_gamma(responses: np.ndarray, mask: np.ndarray,\n                  tau: np.ndarray, dosages: np.ndarray) -> dict:\n    \"\"\"Fit 4PL+γ model and return estimates.\"\"\"\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n    tau_t = torch.tensor(tau, dtype=torch.float32)\n    dos_t = torch.tensor(dosages, dtype=torch.float32)\n\n    model = IRT4PLGamma(J, I, tau_t, dos_t)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005, max_iter=8000)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        gamma = model.gamma.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n        c = model.c.numpy()\n        d = model.d.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    gamma_se = ses.get(\"gamma_raw\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    # Calibrated scores: ability with contamination effect removed\n    raw_accuracy = (responses * mask).sum(axis=1) / mask.sum(axis=1)\n    calibrated_theta = theta  # θ is already the true ability (γ*τ separated)\n\n    return {\n        \"model\": \"4PL+gamma\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"gamma\": gamma.tolist(),\n        \"gamma_se\": gamma_se.tolist(),\n        \"gamma_ci_95\": [\n            [float(gamma[j] - 1.96 * gamma_se[j]), float(gamma[j] + 1.96 * gamma_se[j])]\n            for j in range(J)\n        ],\n        \"raw_accuracy\": raw_accuracy.tolist(),\n        \"calibrated_theta\": calibrated_theta.tolist(),\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef generate_synthetic_data(n_persons: int = 15, n_items: int = 50,\n                            seed: int = 42) -> dict:\n    \"\"\"Generate synthetic IRT data for testing.\"\"\"\n    rng = np.random.default_rng(seed)\n\n    dosages = np.array([0, 0, 0, 5, 5, 5, 25, 25, 25, 50, 50, 50, 100, 100, 100],\n                       dtype=np.float32)[:n_persons]\n    true_theta = rng.normal(0, 1, n_persons).astype(np.float32)\n    true_gamma = (dosages / 100.0 * rng.uniform(0.5, 1.5, n_persons)).astype(np.float32)\n    tau = rng.uniform(0.2, 1.0, n_items).astype(np.float32)\n\n    a = rng.uniform(0.5, 2.0, n_items).astype(np.float32)\n    b = rng.normal(0, 1, n_items).astype(np.float32)\n    c = rng.uniform(0.05, 0.25, n_items).astype(np.float32)\n    d = rng.uniform(0.9, 1.0, n_items).astype(np.float32)\n\n    # Generate responses from 4PL+γ\n    responses = np.zeros((n_persons, n_items), dtype=np.float32)\n    for j in range(n_persons):\n        for i in range(n_items):\n            ability = true_theta[j] - b[i] + true_gamma[j] * tau[i]\n            prob = c[i] + (d[i] - c[i]) / (1.0 + np.exp(-a[i] * ability))\n            responses[j, i] = float(rng.random() < prob)\n\n    return {\n        \"responses\": responses,\n        \"mask\": np.ones_like(responses),\n        \"dosages\": dosages,\n        \"tau\": tau,\n        \"true_params\": {\n            \"theta\": true_theta.tolist(),\n            \"gamma\": true_gamma.tolist(),\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"IRT parameter estimation for contamination-aware calibration\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\nExamples:\n  # Run on eval results\n  python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\n\n  # Run with exposure scores\n  python run_irt_calibration.py --eval-dir /path/to/eval_results \\\\\n      --exposure-file /path/to/exposure_scores.json --output-dir ./irt_output\n\n  # Synthetic data test\n  python run_irt_calibration.py --synthetic --output-dir ./irt_test\n        \"\"\",\n    )\n    parser.add_argument(\"--eval-dir\", type=str, default=None,\n                        help=\"Directory containing per-model eval subdirectories\")\n    parser.add_argument(\"--exposure-file\", type=str, default=None,\n                        help=\"JSON with per-benchmark exposure scores τ_i\")\n    parser.add_argument(\"--benchmarks\", type=str, nargs=\"+\", default=None,\n                        help=\"Benchmarks to analyze (default: all found)\")\n    parser.add_argument(\"--output-dir\", type=str, required=True,\n                        help=\"Output directory for IRT results\")\n    parser.add_argument(\"--synthetic\", action=\"store_true\",\n                        help=\"Run on synthetic data for validation\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--lr\", type=float, default=0.01, help=\"Learning rate\")\n    parser.add_argument(\"--max-iter\", type=int, default=5000, help=\"Max optimization iterations\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.synthetic:\n        logger.info(\"Running synthetic data validation\")\n        synth = generate_synthetic_data()\n        responses = synth[\"responses\"]\n        mask = synth[\"mask\"]\n        dosages = synth[\"dosages\"]\n        tau = synth[\"tau\"]\n\n        logger.info(\"Response matrix: %d persons × %d items\", *responses.shape)\n        logger.info(\"Mean accuracy: %.3f\", responses.mean())\n\n        # 2PL baseline\n        logger.info(\"Fitting 2PL model...\")\n        result_2pl = run_2pl(responses, mask)\n\n        # 4PL+γ\n        logger.info(\"Fitting 4PL+γ model...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        # Compute recovery metrics\n        true = synth[\"true_params\"]\n        theta_corr_2pl = float(np.corrcoef(true[\"theta\"], result_2pl[\"theta\"])[0, 1])\n        theta_corr_4plg = float(np.corrcoef(true[\"theta\"], result_4plg[\"theta\"])[0, 1])\n        gamma_corr = float(np.corrcoef(true[\"gamma\"], result_4plg[\"gamma\"])[0, 1])\n\n        recovery = {\n            \"theta_corr_2pl\": theta_corr_2pl,\n            \"theta_corr_4plg\": theta_corr_4plg,\n            \"gamma_corr_4plg\": gamma_corr,\n        }\n        logger.info(\"Recovery — θ corr (2PL): %.4f, θ corr (4PL+γ): %.4f, γ corr: %.4f\",\n                     theta_corr_2pl, theta_corr_4plg, gamma_corr)\n\n        output = {\n            \"mode\": \"synthetic\",\n            \"n_persons\": int(responses.shape[0]),\n            \"n_items\": int(responses.shape[1]),\n            \"true_params\": true,\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n            \"recovery\": recovery,\n        }\n\n        out_file = output_dir / \"synthetic_validation.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(output, f, indent=2)\n        logger.info(\"Saved to %s\", out_file)\n        return\n\n    # ── Real data mode ──\n    if not args.eval_dir:\n        parser.error(\"--eval-dir is required when not using --synthetic\")\n\n    data = load_eval_results(args.eval_dir, args.benchmarks)\n    exposure = load_exposure_scores(args.exposure_file, data[\"benchmarks\"])\n    dosages = data[\"dosages\"]\n\n    all_results = {\n        \"mode\": \"real\",\n        \"eval_dir\": args.eval_dir,\n        \"models\": [\n            {\"dirname\": m[\"dirname\"], \"model_name\": m[\"model_name\"],\n             \"dosage\": m[\"dosage\"], \"seed\": m[\"seed\"]}\n            for m in data[\"models\"]\n        ],\n        \"benchmarks\": {},\n    }\n\n    for bench, bench_data in data[\"benchmarks\"].items():\n        logger.info(\"=== Benchmark: %s (%d persons × %d items) ===\",\n                     bench, bench_data[\"responses\"].shape[0], bench_data[\"n_items\"])\n\n        responses = bench_data[\"responses\"]\n        mask = bench_data[\"mask\"]\n        tau = exposure[bench]\n\n        logger.info(\"Mean accuracy: %.3f\", (responses * mask).sum() / mask.sum())\n\n        # 2PL baseline\n        logger.info(\"Fitting 2PL...\")\n        result_2pl = run_2pl(responses, mask)\n\n        # 4PL+γ\n        logger.info(\"Fitting 4PL+γ...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        all_results[\"benchmarks\"][bench] = {\n            \"n_items\": int(bench_data[\"n_items\"]),\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n        }\n\n        # Per-model summary\n        logger.info(\"Per-model estimates:\")\n        for j, m in enumerate(data[\"models\"]):\n            logger.info(\n                \"  %s: dosage=%d, θ_2pl=%.3f, θ_4plg=%.3f, γ=%.3f, raw_acc=%.3f\",\n                m[\"dirname\"], m[\"dosage\"],\n                result_2pl[\"theta\"][j], result_4plg[\"theta\"][j],\n                result_4plg[\"gamma\"][j], result_4plg[\"raw_accuracy\"][j],\n            )\n\n    out_file = output_dir / \"irt_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(\"Results saved to %s\", out_file)\n\n\nif __name__ == \"__main__\":\n    main()\nHEREDOC_EOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-14T00:40:53.068535+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 6
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T00:40:53.068921+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py --help"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py --help"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T00:40:53.069230+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: run_irt_calibration.py [-h] [--eval-dir EVAL_DIR]\\n                              [--exposure-file EXPOSURE_FILE]\\n                              [--benchmarks BENCHMARKS [BENCHMARKS ...]]\\n                              --output-dir OUTPUT_DIR [--synthetic]\\n                              [--seed SEED] [--lr LR] [--max-iter MAX_ITER]\\n\\nIRT parameter estimation for contamination-aware calibration\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --eval-dir EVAL_DIR   Directory containing per-model eval subdirectories\\n  --exposure-file EXPOSURE_FILE\\n                        JSON with per-benchmark exposure scores τ_i\\n  --benchmarks BENCHMARKS [BENCHMARKS ...]\\n                        Benchmarks to analyze (default: all found)\\n  --output-dir OUTPUT_DIR\\n                        Output directory for IRT results\\n  --synthetic           Run on synthetic data for validation\\n  --seed SEED\\n  --lr LR               Learning rate\\n  --max-iter MAX_ITER   Max optimization iterations\\n\\nExamples:\\n  # Run on eval results\\n  python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\\n\\n  # Run with exposure scores\\n  python run_irt_calibration.py --eval-dir /path/to/eval_results \\\\\\n      --exposure-file /path/to/exposure_scores.json --output-dir ./irt_output\\n\\n  # Synthetic data test\\n  python run_irt_calibration.py --synthetic --output-dir ./irt_test\\n        \\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T00:40:53.069530+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py --synthetic --output-dir /root/contamcal-irt-calibration/exp006/test_output 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py --synthetic --output-dir /root/contamcal-irt-calibration/exp006/test_output 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-14T00:40:53.069778+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 08:36:22,007 [INFO] Running synthetic data validation\\n2026-05-14 08:36:22,009 [INFO] Response matrix: 15 persons × 50 items\\n2026-05-14 08:36:22,009 [INFO] Mean accuracy: 0.601\\n2026-05-14 08:36:22,009 [INFO] Fitting 2PL model...\\n2026-05-14 08:36:23,229 [INFO] Epoch 0: loss=0.693147, lr=1.00e-02\\n2026-05-14 08:36:23,643 [INFO] Epoch 500: loss=0.471588, lr=1.00e-02\\n2026-05-14 08:36:24,046 [INFO] Epoch 1000: loss=nan, lr=2.50e-03\\n2026-05-14 08:36:24,127 [INFO] Early stopping at epoch 1101 (best_loss=0.470561)\\n2026-05-14 08:36:24,140 [INFO] Fitting 4PL+γ model...\\n2026-05-14 08:36:24,142 [INFO] Epoch 0: loss=0.670275, lr=5.00e-03\\n2026-05-14 08:36:24,668 [INFO] Epoch 500: loss=0.449221, lr=5.00e-03\\n2026-05-14 08:36:25,080 [INFO] Epoch 1000: loss=0.434678, lr=5.00e-03\\n2026-05-14 08:36:25,487 [INFO] Epoch 1500: loss=0.428161, lr=5.00e-03\\n2026-05-14 08:36:25,897 [INFO] Epoch 2000: loss=0.424754, lr=5.00e-03\\n2026-05-14 08:36:26,313 [INFO] Epoch 2500: loss=0.423964, lr=5.00e-03\\n2026-05-14 08:36:26,388 [INFO] Converged at epoch 2589 (loss=0.423866)\\n2026-05-14 08:36:26,405 [INFO] Recovery — θ corr (2PL): 0.8845, θ corr (4PL+γ): 0.9324, γ corr: 0.6291\\n2026-05-14 08:36:26,406 [INFO] Saved to /root/contamcal-irt-calibration/exp006/test_output/synthetic_validation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-14T00:40:53.070057+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+  "old_string": "    def forward(self):\n        # P(Y=1) = 1 / (1 + exp(-a_i * (θ_j - b_i)))\n        theta = self.theta.unsqueeze(1)  # (J, 1)\n        a = self.a.unsqueeze(0)          # (1, I)\n        b = self.b.unsqueeze(0)          # (1, I)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit)",
+  "new_string": "    def forward(self):\n        # P(Y=1) = 1 / (1 + exp(-a_i * (θ_j - b_i)))\n        theta = self.theta.unsqueeze(1)  # (J, 1)\n        a = self.a.unsqueeze(0)          # (1, I)\n        b = self.b.unsqueeze(0)          # (1, I)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit).clamp(1e-6, 1.0 - 1e-6)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+    "old_string": "    def forward(self):\n        # P(Y=1) = 1 / (1 + exp(-a_i * (θ_j - b_i)))\n        theta = self.theta.unsqueeze(1)  # (J, 1)\n        a = self.a.unsqueeze(0)          # (1, I)\n        b = self.b.unsqueeze(0)          # (1, I)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit)",
+    "new_string": "    def forward(self):\n        # P(Y=1) = 1 / (1 + exp(-a_i * (θ_j - b_i)))\n        theta = self.theta.unsqueeze(1)  # (J, 1)\n        a = self.a.unsqueeze(0)          # (1, I)\n        b = self.b.unsqueeze(0)          # (1, I)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit).clamp(1e-6, 1.0 - 1e-6)"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T00:40:53.076527+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Edit",
+  "elapsed_ms": 6
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-14T00:40:53.076953+00:00_
+
+called Edit
+
+<details open><summary>🔧 Tool call — Edit</summary>
+
+```json
+{
+  "replace_all": "False",
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+  "old_string": "    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t)",
+  "new_string": "    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005)"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Edit",
+  "tool_args": {
+    "replace_all": "False",
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+    "old_string": "    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t)",
+    "new_string": "    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005)"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-14T00:40:53.077362+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Edit",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T00:40:53.077718+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat > /root/contamcal-irt-calibration/exp006/run_irt_calibration.py << 'HEREDOC_EOF'\n\"\"\"\nIRT parameter estimation for contamination-aware calibration.\n\nFits two models to item-level correctness data from benchmark evaluations:\n  1) Standard 2PL IRT (baseline)\n  2) 4PL+γ contamination-aware IRT\n\nInput:\n  --eval-dir      Directory containing per-model eval subdirectories\n                  (each with eval_results.json / correctness_matrix.json)\n  --exposure-file (optional) JSON mapping benchmark -> [τ_i, ...] exposure scores\n  --benchmarks    Which benchmarks to analyze (default: all found)\n  --output-dir    Where to write results JSON\n\nOutput (per benchmark):\n  irt_results.json with θ, γ, item params, calibrated scores, CIs\n\nDependencies: torch, numpy, scipy\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport math\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy import stats\n\nlogger = logging.getLogger(__name__)\n\n# ── Data Loading ──\n\nDOSAGE_PATTERN = re.compile(r\"_d(\\d+)_s(\\d+)(_para)?$\")\n\n\ndef parse_model_dir_name(dirname: str) -> dict | None:\n    \"\"\"Extract model name, dosage, seed from directory like qwen2.5-0.5b_d025_s123.\"\"\"\n    m = DOSAGE_PATTERN.search(dirname)\n    if not m:\n        return None\n    dosage = int(m.group(1))\n    seed = int(m.group(2))\n    is_para = m.group(3) is not None\n    model_name = dirname[: m.start()]\n    return {\n        \"dirname\": dirname,\n        \"model_name\": model_name,\n        \"dosage\": dosage,\n        \"seed\": seed,\n        \"is_para\": is_para,\n    }\n\n\ndef load_eval_results(eval_dir: str, benchmarks: list[str] | None = None,\n                      skip_para: bool = True) -> dict:\n    eval_path = Path(eval_dir)\n    model_dirs = sorted([\n        d for d in eval_path.iterdir()\n        if d.is_dir() and (d / \"eval_results.json\").exists()\n    ])\n\n    models = []\n    for d in model_dirs:\n        info = parse_model_dir_name(d.name)\n        if info is None:\n            logger.warning(\"Skipping unrecognized directory: %s\", d.name)\n            continue\n        if skip_para and info[\"is_para\"]:\n            continue\n        info[\"path\"] = str(d)\n        models.append(info)\n\n    if not models:\n        raise ValueError(f\"No valid eval results found in {eval_dir}\")\n\n    logger.info(\"Found %d model evaluations\", len(models))\n\n    with open(Path(models[0][\"path\"]) / \"eval_results.json\") as f:\n        sample = json.load(f)\n    available_benchmarks = list(sample[\"benchmarks\"].keys())\n\n    if benchmarks:\n        benchmarks = [b for b in benchmarks if b in available_benchmarks]\n    else:\n        benchmarks = available_benchmarks\n\n    logger.info(\"Benchmarks: %s\", benchmarks)\n\n    result = {\"models\": models, \"benchmarks\": {}, \"dosages\": np.array([m[\"dosage\"] for m in models])}\n\n    for bench in benchmarks:\n        responses = []\n        for m in models:\n            results_file = Path(m[\"path\"]) / \"eval_results.json\"\n            with open(results_file) as f:\n                data = json.load(f)\n\n            if bench not in data[\"benchmarks\"]:\n                logger.warning(\"Benchmark %s missing for %s, filling with NaN\", bench, m[\"dirname\"])\n                responses.append(None)\n                continue\n\n            per_item = data[\"benchmarks\"][bench][\"per_item\"]\n            correct = [int(item[\"correct\"]) for item in per_item]\n            responses.append(correct)\n\n        lengths = [len(r) for r in responses if r is not None]\n        if not lengths:\n            logger.warning(\"No data for benchmark %s, skipping\", bench)\n            continue\n\n        n_items = lengths[0]\n        if not all(l == n_items for l in lengths):\n            logger.warning(\"Inconsistent item counts for %s: %s\", bench, lengths)\n            n_items = min(lengths)\n\n        matrix = np.zeros((len(models), n_items), dtype=np.float32)\n        mask = np.ones((len(models), n_items), dtype=np.float32)\n        for j, r in enumerate(responses):\n            if r is None:\n                mask[j, :] = 0.0\n            else:\n                matrix[j, :n_items] = r[:n_items]\n\n        result[\"benchmarks\"][bench] = {\n            \"responses\": matrix,\n            \"mask\": mask,\n            \"n_items\": n_items,\n        }\n\n    return result\n\n\ndef load_exposure_scores(exposure_file: str | None, benchmarks: dict) -> dict:\n    if exposure_file and os.path.exists(exposure_file):\n        with open(exposure_file) as f:\n            raw = json.load(f)\n        scores = {}\n        for bench, bench_data in benchmarks.items():\n            n_items = bench_data[\"n_items\"]\n            if bench in raw:\n                s = np.array(raw[bench], dtype=np.float32)[:n_items]\n                if len(s) < n_items:\n                    s = np.pad(s, (0, n_items - len(s)), constant_values=0.0)\n                scores[bench] = s\n            else:\n                scores[bench] = np.ones(n_items, dtype=np.float32)\n        return scores\n\n    return {bench: np.ones(d[\"n_items\"], dtype=np.float32) for bench, d in benchmarks.items()}\n\n\n# ── IRT Models (PyTorch) ──\n\nclass IRT2PL(nn.Module):\n    \"\"\"Standard 2-parameter logistic IRT model.\"\"\"\n\n    def __init__(self, n_persons: int, n_items: int):\n        super().__init__()\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)\n        a = self.a.unsqueeze(0)\n        b = self.b.unsqueeze(0)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit).clamp(1e-6, 1.0 - 1e-6)\n\n\nclass IRT4PLGamma(nn.Module):\n    \"\"\"\n    4PL + γ contamination-aware IRT model.\n\n    P(Y_ji = 1) = c_i + (d_i - c_i) * σ(a_i * (θ_j - b_i + γ_j * τ_i))\n\n    where γ_j captures contamination advantage proportional to item exposure τ_i.\n    \"\"\"\n\n    def __init__(self, n_persons: int, n_items: int, tau: torch.Tensor,\n                 dosages: torch.Tensor | None = None):\n        super().__init__()\n        self.n_persons = n_persons\n        self.n_items = n_items\n        self.register_buffer(\"tau\", tau)\n\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.gamma_raw = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n        self.c_raw = nn.Parameter(torch.full((n_items,), -2.0))\n        self.d_raw = nn.Parameter(torch.full((n_items,), 2.0))\n\n        if dosages is not None:\n            with torch.no_grad():\n                normed = dosages / (dosages.max() + 1e-8)\n                self.gamma_raw.copy_(normed * 0.5)\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    @property\n    def c(self):\n        return torch.sigmoid(self.c_raw).clamp(max=0.5)\n\n    @property\n    def d(self):\n        return (0.5 + 0.5 * torch.sigmoid(self.d_raw))\n\n    @property\n    def gamma(self):\n        return torch.relu(self.gamma_raw)\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)\n        gamma = self.gamma.unsqueeze(1)\n        tau = self.tau.unsqueeze(0)\n        a = self.a.unsqueeze(0)\n        b = self.b.unsqueeze(0)\n        c = self.c.unsqueeze(0)\n        d = self.d.unsqueeze(0)\n\n        ability = theta - b + gamma * tau\n        logit = a * ability\n        prob = c + (d - c) * torch.sigmoid(logit)\n        return prob.clamp(1e-6, 1.0 - 1e-6)\n\n\n# ── Estimation ──\n\ndef fit_irt_model(model: nn.Module, responses: torch.Tensor, mask: torch.Tensor,\n                  lr: float = 0.01, max_iter: int = 5000, tol: float = 1e-6,\n                  l2_lambda: float = 0.001) -> dict:\n    optimizer = torch.optim.Adam(model.parameters(), lr=lr)\n    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(\n        optimizer, patience=200, factor=0.5, min_lr=1e-5\n    )\n\n    prev_loss = float(\"inf\")\n    best_loss = float(\"inf\")\n    best_state = None\n    patience_counter = 0\n\n    for epoch in range(max_iter):\n        optimizer.zero_grad()\n        probs = model()\n\n        log_lik = (\n            responses * torch.log(probs) + (1 - responses) * torch.log(1 - probs)\n        )\n        loss = -(log_lik * mask).sum() / mask.sum()\n\n        if hasattr(model, \"theta\"):\n            loss = loss + l2_lambda * (model.theta ** 2).mean()\n        if hasattr(model, \"gamma_raw\"):\n            loss = loss + l2_lambda * (model.gamma_raw ** 2).mean()\n\n        if torch.isnan(loss):\n            logger.warning(\"NaN loss at epoch %d, restoring best state\", epoch)\n            if best_state is not None:\n                model.load_state_dict(best_state)\n            break\n\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)\n        optimizer.step()\n\n        loss_val = loss.item()\n        scheduler.step(loss_val)\n\n        if loss_val < best_loss:\n            best_loss = loss_val\n            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n            patience_counter = 0\n        else:\n            patience_counter += 1\n\n        if abs(prev_loss - loss_val) < tol and epoch > 100:\n            logger.info(\"Converged at epoch %d (loss=%.6f)\", epoch, loss_val)\n            break\n\n        if patience_counter > 500:\n            logger.info(\"Early stopping at epoch %d (best_loss=%.6f)\", epoch, best_loss)\n            break\n\n        prev_loss = loss_val\n\n        if epoch % 500 == 0:\n            logger.info(\"Epoch %d: loss=%.6f, lr=%.2e\", epoch, loss_val,\n                        optimizer.param_groups[0][\"lr\"])\n\n    if best_state is not None:\n        model.load_state_dict(best_state)\n\n    return {\"final_loss\": best_loss, \"epochs\": epoch + 1}\n\n\ndef compute_standard_errors(model: nn.Module, responses: torch.Tensor,\n                            mask: torch.Tensor) -> dict:\n    ses = {}\n    eps = 1e-4\n\n    for name, param in model.named_parameters():\n        if name in (\"theta\", \"gamma_raw\", \"b\"):\n            se = torch.zeros_like(param)\n            original = param.data.clone()\n\n            for i in range(param.shape[0]):\n                losses = []\n                for delta in [-eps, 0, eps]:\n                    param.data[i] = original[i] + delta\n                    with torch.no_grad():\n                        probs = model()\n                        log_lik = (\n                            responses * torch.log(probs) +\n                            (1 - responses) * torch.log(1 - probs)\n                        )\n                        nll = -(log_lik * mask).sum()\n                    losses.append(nll.item())\n\n                hessian_diag = (losses[2] - 2 * losses[1] + losses[0]) / (eps ** 2)\n                se[i] = 1.0 / math.sqrt(max(hessian_diag, 1e-8))\n                param.data[i] = original[i]\n\n            ses[name] = se.numpy()\n\n    return ses\n\n\n# ── Main Pipeline ──\n\ndef run_2pl(responses: np.ndarray, mask: np.ndarray) -> dict:\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n\n    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    return {\n        \"model\": \"2PL\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n        },\n    }\n\n\ndef run_4pl_gamma(responses: np.ndarray, mask: np.ndarray,\n                  tau: np.ndarray, dosages: np.ndarray) -> dict:\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n    tau_t = torch.tensor(tau, dtype=torch.float32)\n    dos_t = torch.tensor(dosages, dtype=torch.float32)\n\n    model = IRT4PLGamma(J, I, tau_t, dos_t)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005, max_iter=8000)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        gamma = model.gamma.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n        c = model.c.numpy()\n        d = model.d.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    gamma_se = ses.get(\"gamma_raw\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    raw_accuracy = (responses * mask).sum(axis=1) / mask.sum(axis=1)\n    calibrated_theta = theta\n\n    return {\n        \"model\": \"4PL+gamma\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"gamma\": gamma.tolist(),\n        \"gamma_se\": gamma_se.tolist(),\n        \"gamma_ci_95\": [\n            [float(gamma[j] - 1.96 * gamma_se[j]), float(gamma[j] + 1.96 * gamma_se[j])]\n            for j in range(J)\n        ],\n        \"raw_accuracy\": raw_accuracy.tolist(),\n        \"calibrated_theta\": calibrated_theta.tolist(),\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef generate_synthetic_data(n_persons: int = 15, n_items: int = 50,\n                            seed: int = 42) -> dict:\n    rng = np.random.default_rng(seed)\n\n    dosages = np.array([0, 0, 0, 5, 5, 5, 25, 25, 25, 50, 50, 50, 100, 100, 100],\n                       dtype=np.float32)[:n_persons]\n    true_theta = rng.normal(0, 1, n_persons).astype(np.float32)\n    true_gamma = (dosages / 100.0 * rng.uniform(0.5, 1.5, n_persons)).astype(np.float32)\n    tau = rng.uniform(0.2, 1.0, n_items).astype(np.float32)\n\n    a = rng.uniform(0.5, 2.0, n_items).astype(np.float32)\n    b = rng.normal(0, 1, n_items).astype(np.float32)\n    c = rng.uniform(0.05, 0.25, n_items).astype(np.float32)\n    d = rng.uniform(0.9, 1.0, n_items).astype(np.float32)\n\n    responses = np.zeros((n_persons, n_items), dtype=np.float32)\n    for j in range(n_persons):\n        for i in range(n_items):\n            ability = true_theta[j] - b[i] + true_gamma[j] * tau[i]\n            prob = c[i] + (d[i] - c[i]) / (1.0 + np.exp(-a[i] * ability))\n            responses[j, i] = float(rng.random() < prob)\n\n    return {\n        \"responses\": responses,\n        \"mask\": np.ones_like(responses),\n        \"dosages\": dosages,\n        \"tau\": tau,\n        \"true_params\": {\n            \"theta\": true_theta.tolist(),\n            \"gamma\": true_gamma.tolist(),\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"IRT parameter estimation for contamination-aware calibration\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\nExamples:\n  # Run on eval results\n  python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\n\n  # Run with exposure scores\n  python run_irt_calibration.py --eval-dir /path/to/eval_results \\\\\n      --exposure-file /path/to/exposure_scores.json --output-dir ./irt_output\n\n  # Synthetic data test\n  python run_irt_calibration.py --synthetic --output-dir ./irt_test\n        \"\"\",\n    )\n    parser.add_argument(\"--eval-dir\", type=str, default=None,\n                        help=\"Directory containing per-model eval subdirectories\")\n    parser.add_argument(\"--exposure-file\", type=str, default=None,\n                        help=\"JSON with per-benchmark exposure scores τ_i\")\n    parser.add_argument(\"--benchmarks\", type=str, nargs=\"+\", default=None,\n                        help=\"Benchmarks to analyze (default: all found)\")\n    parser.add_argument(\"--output-dir\", type=str, required=True,\n                        help=\"Output directory for IRT results\")\n    parser.add_argument(\"--synthetic\", action=\"store_true\",\n                        help=\"Run on synthetic data for validation\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--lr\", type=float, default=0.01, help=\"Learning rate\")\n    parser.add_argument(\"--max-iter\", type=int, default=5000, help=\"Max optimization iterations\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.synthetic:\n        logger.info(\"Running synthetic data validation\")\n        synth = generate_synthetic_data()\n        responses = synth[\"responses\"]\n        mask = synth[\"mask\"]\n        dosages = synth[\"dosages\"]\n        tau = synth[\"tau\"]\n\n        logger.info(\"Response matrix: %d persons x %d items\", *responses.shape)\n        logger.info(\"Mean accuracy: %.3f\", responses.mean())\n\n        logger.info(\"Fitting 2PL model...\")\n        result_2pl = run_2pl(responses, mask)\n\n        logger.info(\"Fitting 4PL+gamma model...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        true = synth[\"true_params\"]\n        theta_corr_2pl = float(np.corrcoef(true[\"theta\"], result_2pl[\"theta\"])[0, 1])\n        theta_corr_4plg = float(np.corrcoef(true[\"theta\"], result_4plg[\"theta\"])[0, 1])\n        gamma_corr = float(np.corrcoef(true[\"gamma\"], result_4plg[\"gamma\"])[0, 1])\n\n        recovery = {\n            \"theta_corr_2pl\": theta_corr_2pl,\n            \"theta_corr_4plg\": theta_corr_4plg,\n            \"gamma_corr_4plg\": gamma_corr,\n        }\n        logger.info(\"Recovery -- theta corr (2PL): %.4f, theta corr (4PL+g): %.4f, gamma corr: %.4f\",\n                     theta_corr_2pl, theta_corr_4plg, gamma_corr)\n\n        output = {\n            \"mode\": \"synthetic\",\n            \"n_persons\": int(responses.shape[0]),\n            \"n_items\": int(responses.shape[1]),\n            \"true_params\": true,\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n            \"recovery\": recovery,\n        }\n\n        out_file = output_dir / \"synthetic_validation.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(output, f, indent=2)\n        logger.info(\"Saved to %s\", out_file)\n        return\n\n    # ── Real data mode ──\n    if not args.eval_dir:\n        parser.error(\"--eval-dir is required when not using --synthetic\")\n\n    data = load_eval_results(args.eval_dir, args.benchmarks)\n    exposure = load_exposure_scores(args.exposure_file, data[\"benchmarks\"])\n    dosages = data[\"dosages\"]\n\n    all_results = {\n        \"mode\": \"real\",\n        \"eval_dir\": args.eval_dir,\n        \"models\": [\n            {\"dirname\": m[\"dirname\"], \"model_name\": m[\"model_name\"],\n             \"dosage\": m[\"dosage\"], \"seed\": m[\"seed\"]}\n            for m in data[\"models\"]\n        ],\n        \"benchmarks\": {},\n    }\n\n    for bench, bench_data in data[\"benchmarks\"].items():\n        logger.info(\"=== Benchmark: %s (%d persons x %d items) ===\",\n                     bench, bench_data[\"responses\"].shape[0], bench_data[\"n_items\"])\n\n        responses = bench_data[\"responses\"]\n        mask = bench_data[\"mask\"]\n        tau = exposure[bench]\n\n        logger.info(\"Mean accuracy: %.3f\", (responses * mask).sum() / mask.sum())\n\n        logger.info(\"Fitting 2PL...\")\n        result_2pl = run_2pl(responses, mask)\n\n        logger.info(\"Fitting 4PL+gamma...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        all_results[\"benchmarks\"][bench] = {\n            \"n_items\": int(bench_data[\"n_items\"]),\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n        }\n\n        logger.info(\"Per-model estimates:\")\n        for j, m in enumerate(data[\"models\"]):\n            logger.info(\n                \"  %s: dosage=%d, theta_2pl=%.3f, theta_4plg=%.3f, gamma=%.3f, raw_acc=%.3f\",\n                m[\"dirname\"], m[\"dosage\"],\n                result_2pl[\"theta\"][j], result_4plg[\"theta\"][j],\n                result_4plg[\"gamma\"][j], result_4plg[\"raw_accuracy\"][j],\n            )\n\n    out_file = output_dir / \"irt_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(\"Results saved to %s\", out_file)\n\n\nif __name__ == \"__main__\":\n    main()\nHEREDOC_EOF"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat > /root/contamcal-irt-calibration/exp006/run_irt_calibration.py << 'HEREDOC_EOF'\n\"\"\"\nIRT parameter estimation for contamination-aware calibration.\n\nFits two models to item-level correctness data from benchmark evaluations:\n  1) Standard 2PL IRT (baseline)\n  2) 4PL+γ contamination-aware IRT\n\nInput:\n  --eval-dir      Directory containing per-model eval subdirectories\n                  (each with eval_results.json / correctness_matrix.json)\n  --exposure-file (optional) JSON mapping benchmark -> [τ_i, ...] exposure scores\n  --benchmarks    Which benchmarks to analyze (default: all found)\n  --output-dir    Where to write results JSON\n\nOutput (per benchmark):\n  irt_results.json with θ, γ, item params, calibrated scores, CIs\n\nDependencies: torch, numpy, scipy\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport math\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy import stats\n\nlogger = logging.getLogger(__name__)\n\n# ── Data Loading ──\n\nDOSAGE_PATTERN = re.compile(r\"_d(\\d+)_s(\\d+)(_para)?$\")\n\n\ndef parse_model_dir_name(dirname: str) -> dict | None:\n    \"\"\"Extract model name, dosage, seed from directory like qwen2.5-0.5b_d025_s123.\"\"\"\n    m = DOSAGE_PATTERN.search(dirname)\n    if not m:\n        return None\n    dosage = int(m.group(1))\n    seed = int(m.group(2))\n    is_para = m.group(3) is not None\n    model_name = dirname[: m.start()]\n    return {\n        \"dirname\": dirname,\n        \"model_name\": model_name,\n        \"dosage\": dosage,\n        \"seed\": seed,\n        \"is_para\": is_para,\n    }\n\n\ndef load_eval_results(eval_dir: str, benchmarks: list[str] | None = None,\n                      skip_para: bool = True) -> dict:\n    eval_path = Path(eval_dir)\n    model_dirs = sorted([\n        d for d in eval_path.iterdir()\n        if d.is_dir() and (d / \"eval_results.json\").exists()\n    ])\n\n    models = []\n    for d in model_dirs:\n        info = parse_model_dir_name(d.name)\n        if info is None:\n            logger.warning(\"Skipping unrecognized directory: %s\", d.name)\n            continue\n        if skip_para and info[\"is_para\"]:\n            continue\n        info[\"path\"] = str(d)\n        models.append(info)\n\n    if not models:\n        raise ValueError(f\"No valid eval results found in {eval_dir}\")\n\n    logger.info(\"Found %d model evaluations\", len(models))\n\n    with open(Path(models[0][\"path\"]) / \"eval_results.json\") as f:\n        sample = json.load(f)\n    available_benchmarks = list(sample[\"benchmarks\"].keys())\n\n    if benchmarks:\n        benchmarks = [b for b in benchmarks if b in available_benchmarks]\n    else:\n        benchmarks = available_benchmarks\n\n    logger.info(\"Benchmarks: %s\", benchmarks)\n\n    result = {\"models\": models, \"benchmarks\": {}, \"dosages\": np.array([m[\"dosage\"] for m in models])}\n\n    for bench in benchmarks:\n        responses = []\n        for m in models:\n            results_file = Path(m[\"path\"]) / \"eval_results.json\"\n            with open(results_file) as f:\n                data = json.load(f)\n\n            if bench not in data[\"benchmarks\"]:\n                logger.warning(\"Benchmark %s missing for %s, filling with NaN\", bench, m[\"dirname\"])\n                responses.append(None)\n                continue\n\n            per_item = data[\"benchmarks\"][bench][\"per_item\"]\n            correct = [int(item[\"correct\"]) for item in per_item]\n            responses.append(correct)\n\n        lengths = [len(r) for r in responses if r is not None]\n        if not lengths:\n            logger.warning(\"No data for benchmark %s, skipping\", bench)\n            continue\n\n        n_items = lengths[0]\n        if not all(l == n_items for l in lengths):\n            logger.warning(\"Inconsistent item counts for %s: %s\", bench, lengths)\n            n_items = min(lengths)\n\n        matrix = np.zeros((len(models), n_items), dtype=np.float32)\n        mask = np.ones((len(models), n_items), dtype=np.float32)\n        for j, r in enumerate(responses):\n            if r is None:\n                mask[j, :] = 0.0\n            else:\n                matrix[j, :n_items] = r[:n_items]\n\n        result[\"benchmarks\"][bench] = {\n            \"responses\": matrix,\n            \"mask\": mask,\n            \"n_items\": n_items,\n        }\n\n    return result\n\n\ndef load_exposure_scores(exposure_file: str | None, benchmarks: dict) -> dict:\n    if exposure_file and os.path.exists(exposure_file):\n        with open(exposure_file) as f:\n            raw = json.load(f)\n        scores = {}\n        for bench, bench_data in benchmarks.items():\n            n_items = bench_data[\"n_items\"]\n            if bench in raw:\n                s = np.array(raw[bench], dtype=np.float32)[:n_items]\n                if len(s) < n_items:\n                    s = np.pad(s, (0, n_items - len(s)), constant_values=0.0)\n                scores[bench] = s\n            else:\n                scores[bench] = np.ones(n_items, dtype=np.float32)\n        return scores\n\n    return {bench: np.ones(d[\"n_items\"], dtype=np.float32) for bench, d in benchmarks.items()}\n\n\n# ── IRT Models (PyTorch) ──\n\nclass IRT2PL(nn.Module):\n    \"\"\"Standard 2-parameter logistic IRT model.\"\"\"\n\n    def __init__(self, n_persons: int, n_items: int):\n        super().__init__()\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)\n        a = self.a.unsqueeze(0)\n        b = self.b.unsqueeze(0)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit).clamp(1e-6, 1.0 - 1e-6)\n\n\nclass IRT4PLGamma(nn.Module):\n    \"\"\"\n    4PL + γ contamination-aware IRT model.\n\n    P(Y_ji = 1) = c_i + (d_i - c_i) * σ(a_i * (θ_j - b_i + γ_j * τ_i))\n\n    where γ_j captures contamination advantage proportional to item exposure τ_i.\n    \"\"\"\n\n    def __init__(self, n_persons: int, n_items: int, tau: torch.Tensor,\n                 dosages: torch.Tensor | None = None):\n        super().__init__()\n        self.n_persons = n_persons\n        self.n_items = n_items\n        self.register_buffer(\"tau\", tau)\n\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.gamma_raw = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n        self.c_raw = nn.Parameter(torch.full((n_items,), -2.0))\n        self.d_raw = nn.Parameter(torch.full((n_items,), 2.0))\n\n        if dosages is not None:\n            with torch.no_grad():\n                normed = dosages / (dosages.max() + 1e-8)\n                self.gamma_raw.copy_(normed * 0.5)\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    @property\n    def c(self):\n        return torch.sigmoid(self.c_raw).clamp(max=0.5)\n\n    @property\n    def d(self):\n        return (0.5 + 0.5 * torch.sigmoid(self.d_raw))\n\n    @property\n    def gamma(self):\n        return torch.relu(self.gamma_raw)\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)\n        gamma = self.gamma.unsqueeze(1)\n        tau = self.tau.unsqueeze(0)\n        a = self.a.unsqueeze(0)\n        b = self.b.unsqueeze(0)\n        c = self.c.unsqueeze(0)\n        d = self.d.unsqueeze(0)\n\n        ability = theta - b + gamma * tau\n        logit = a * ability\n        prob = c + (d - c) * torch.sigmoid(logit)\n        return prob.clamp(1e-6, 1.0 - 1e-6)\n\n\n# ── Estimation ──\n\ndef fit_irt_model(model: nn.Module, responses: torch.Tensor, mask: torch.Tensor,\n                  lr: float = 0.01, max_iter: int = 5000, tol: float = 1e-6,\n                  l2_lambda: float = 0.001) -> dict:\n    optimizer = torch.optim.Adam(model.parameters(), lr=lr)\n    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(\n        optimizer, patience=200, factor=0.5, min_lr=1e-5\n    )\n\n    prev_loss = float(\"inf\")\n    best_loss = float(\"inf\")\n    best_state = None\n    patience_counter = 0\n\n    for epoch in range(max_iter):\n        optimizer.zero_grad()\n        probs = model()\n\n        log_lik = (\n            responses * torch.log(probs) + (1 - responses) * torch.log(1 - probs)\n        )\n        loss = -(log_lik * mask).sum() / mask.sum()\n\n        if hasattr(model, \"theta\"):\n            loss = loss + l2_lambda * (model.theta ** 2).mean()\n        if hasattr(model, \"gamma_raw\"):\n            loss = loss + l2_lambda * (model.gamma_raw ** 2).mean()\n\n        if torch.isnan(loss):\n            logger.warning(\"NaN loss at epoch %d, restoring best state\", epoch)\n            if best_state is not None:\n                model.load_state_dict(best_state)\n            break\n\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)\n        optimizer.step()\n\n        loss_val = loss.item()\n        scheduler.step(loss_val)\n\n        if loss_val < best_loss:\n            best_loss = loss_val\n            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n            patience_counter = 0\n        else:\n            patience_counter += 1\n\n        if abs(prev_loss - loss_val) < tol and epoch > 100:\n            logger.info(\"Converged at epoch %d (loss=%.6f)\", epoch, loss_val)\n            break\n\n        if patience_counter > 500:\n            logger.info(\"Early stopping at epoch %d (best_loss=%.6f)\", epoch, best_loss)\n            break\n\n        prev_loss = loss_val\n\n        if epoch % 500 == 0:\n            logger.info(\"Epoch %d: loss=%.6f, lr=%.2e\", epoch, loss_val,\n                        optimizer.param_groups[0][\"lr\"])\n\n    if best_state is not None:\n        model.load_state_dict(best_state)\n\n    return {\"final_loss\": best_loss, \"epochs\": epoch + 1}\n\n\ndef compute_standard_errors(model: nn.Module, responses: torch.Tensor,\n                            mask: torch.Tensor) -> dict:\n    ses = {}\n    eps = 1e-4\n\n    for name, param in model.named_parameters():\n        if name in (\"theta\", \"gamma_raw\", \"b\"):\n            se = torch.zeros_like(param)\n            original = param.data.clone()\n\n            for i in range(param.shape[0]):\n                losses = []\n                for delta in [-eps, 0, eps]:\n                    param.data[i] = original[i] + delta\n                    with torch.no_grad():\n                        probs = model()\n                        log_lik = (\n                            responses * torch.log(probs) +\n                            (1 - responses) * torch.log(1 - probs)\n                        )\n                        nll = -(log_lik * mask).sum()\n                    losses.append(nll.item())\n\n                hessian_diag = (losses[2] - 2 * losses[1] + losses[0]) / (eps ** 2)\n                se[i] = 1.0 / math.sqrt(max(hessian_diag, 1e-8))\n                param.data[i] = original[i]\n\n            ses[name] = se.numpy()\n\n    return ses\n\n\n# ── Main Pipeline ──\n\ndef run_2pl(responses: np.ndarray, mask: np.ndarray) -> dict:\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n\n    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    return {\n        \"model\": \"2PL\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n        },\n    }\n\n\ndef run_4pl_gamma(responses: np.ndarray, mask: np.ndarray,\n                  tau: np.ndarray, dosages: np.ndarray) -> dict:\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n    tau_t = torch.tensor(tau, dtype=torch.float32)\n    dos_t = torch.tensor(dosages, dtype=torch.float32)\n\n    model = IRT4PLGamma(J, I, tau_t, dos_t)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005, max_iter=8000)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        gamma = model.gamma.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n        c = model.c.numpy()\n        d = model.d.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    gamma_se = ses.get(\"gamma_raw\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    raw_accuracy = (responses * mask).sum(axis=1) / mask.sum(axis=1)\n    calibrated_theta = theta\n\n    return {\n        \"model\": \"4PL+gamma\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"gamma\": gamma.tolist(),\n        \"gamma_se\": gamma_se.tolist(),\n        \"gamma_ci_95\": [\n            [float(gamma[j] - 1.96 * gamma_se[j]), float(gamma[j] + 1.96 * gamma_se[j])]\n            for j in range(J)\n        ],\n        \"raw_accuracy\": raw_accuracy.tolist(),\n        \"calibrated_theta\": calibrated_theta.tolist(),\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef generate_synthetic_data(n_persons: int = 15, n_items: int = 50,\n                            seed: int = 42) -> dict:\n    rng = np.random.default_rng(seed)\n\n    dosages = np.array([0, 0, 0, 5, 5, 5, 25, 25, 25, 50, 50, 50, 100, 100, 100],\n                       dtype=np.float32)[:n_persons]\n    true_theta = rng.normal(0, 1, n_persons).astype(np.float32)\n    true_gamma = (dosages / 100.0 * rng.uniform(0.5, 1.5, n_persons)).astype(np.float32)\n    tau = rng.uniform(0.2, 1.0, n_items).astype(np.float32)\n\n    a = rng.uniform(0.5, 2.0, n_items).astype(np.float32)\n    b = rng.normal(0, 1, n_items).astype(np.float32)\n    c = rng.uniform(0.05, 0.25, n_items).astype(np.float32)\n    d = rng.uniform(0.9, 1.0, n_items).astype(np.float32)\n\n    responses = np.zeros((n_persons, n_items), dtype=np.float32)\n    for j in range(n_persons):\n        for i in range(n_items):\n            ability = true_theta[j] - b[i] + true_gamma[j] * tau[i]\n            prob = c[i] + (d[i] - c[i]) / (1.0 + np.exp(-a[i] * ability))\n            responses[j, i] = float(rng.random() < prob)\n\n    return {\n        \"responses\": responses,\n        \"mask\": np.ones_like(responses),\n        \"dosages\": dosages,\n        \"tau\": tau,\n        \"true_params\": {\n            \"theta\": true_theta.tolist(),\n            \"gamma\": true_gamma.tolist(),\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"IRT parameter estimation for contamination-aware calibration\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\nExamples:\n  # Run on eval results\n  python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\n\n  # Run with exposure scores\n  python run_irt_calibration.py --eval-dir /path/to/eval_results \\\\\n      --exposure-file /path/to/exposure_scores.json --output-dir ./irt_output\n\n  # Synthetic data test\n  python run_irt_calibration.py --synthetic --output-dir ./irt_test\n        \"\"\",\n    )\n    parser.add_argument(\"--eval-dir\", type=str, default=None,\n                        help=\"Directory containing per-model eval subdirectories\")\n    parser.add_argument(\"--exposure-file\", type=str, default=None,\n                        help=\"JSON with per-benchmark exposure scores τ_i\")\n    parser.add_argument(\"--benchmarks\", type=str, nargs=\"+\", default=None,\n                        help=\"Benchmarks to analyze (default: all found)\")\n    parser.add_argument(\"--output-dir\", type=str, required=True,\n                        help=\"Output directory for IRT results\")\n    parser.add_argument(\"--synthetic\", action=\"store_true\",\n                        help=\"Run on synthetic data for validation\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--lr\", type=float, default=0.01, help=\"Learning rate\")\n    parser.add_argument(\"--max-iter\", type=int, default=5000, help=\"Max optimization iterations\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.synthetic:\n        logger.info(\"Running synthetic data validation\")\n        synth = generate_synthetic_data()\n        responses = synth[\"responses\"]\n        mask = synth[\"mask\"]\n        dosages = synth[\"dosages\"]\n        tau = synth[\"tau\"]\n\n        logger.info(\"Response matrix: %d persons x %d items\", *responses.shape)\n        logger.info(\"Mean accuracy: %.3f\", responses.mean())\n\n        logger.info(\"Fitting 2PL model...\")\n        result_2pl = run_2pl(responses, mask)\n\n        logger.info(\"Fitting 4PL+gamma model...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        true = synth[\"true_params\"]\n        theta_corr_2pl = float(np.corrcoef(true[\"theta\"], result_2pl[\"theta\"])[0, 1])\n        theta_corr_4plg = float(np.corrcoef(true[\"theta\"], result_4plg[\"theta\"])[0, 1])\n        gamma_corr = float(np.corrcoef(true[\"gamma\"], result_4plg[\"gamma\"])[0, 1])\n\n        recovery = {\n            \"theta_corr_2pl\": theta_corr_2pl,\n            \"theta_corr_4plg\": theta_corr_4plg,\n            \"gamma_corr_4plg\": gamma_corr,\n        }\n        logger.info(\"Recovery -- theta corr (2PL): %.4f, theta corr (4PL+g): %.4f, gamma corr: %.4f\",\n                     theta_corr_2pl, theta_corr_4plg, gamma_corr)\n\n        output = {\n            \"mode\": \"synthetic\",\n            \"n_persons\": int(responses.shape[0]),\n            \"n_items\": int(responses.shape[1]),\n            \"true_params\": true,\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n            \"recovery\": recovery,\n        }\n\n        out_file = output_dir / \"synthetic_validation.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(output, f, indent=2)\n        logger.info(\"Saved to %s\", out_file)\n        return\n\n    # ── Real data mode ──\n    if not args.eval_dir:\n        parser.error(\"--eval-dir is required when not using --synthetic\")\n\n    data = load_eval_results(args.eval_dir, args.benchmarks)\n    exposure = load_exposure_scores(args.exposure_file, data[\"benchmarks\"])\n    dosages = data[\"dosages\"]\n\n    all_results = {\n        \"mode\": \"real\",\n        \"eval_dir\": args.eval_dir,\n        \"models\": [\n            {\"dirname\": m[\"dirname\"], \"model_name\": m[\"model_name\"],\n             \"dosage\": m[\"dosage\"], \"seed\": m[\"seed\"]}\n            for m in data[\"models\"]\n        ],\n        \"benchmarks\": {},\n    }\n\n    for bench, bench_data in data[\"benchmarks\"].items():\n        logger.info(\"=== Benchmark: %s (%d persons x %d items) ===\",\n                     bench, bench_data[\"responses\"].shape[0], bench_data[\"n_items\"])\n\n        responses = bench_data[\"responses\"]\n        mask = bench_data[\"mask\"]\n        tau = exposure[bench]\n\n        logger.info(\"Mean accuracy: %.3f\", (responses * mask).sum() / mask.sum())\n\n        logger.info(\"Fitting 2PL...\")\n        result_2pl = run_2pl(responses, mask)\n\n        logger.info(\"Fitting 4PL+gamma...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        all_results[\"benchmarks\"][bench] = {\n            \"n_items\": int(bench_data[\"n_items\"]),\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n        }\n\n        logger.info(\"Per-model estimates:\")\n        for j, m in enumerate(data[\"models\"]):\n            logger.info(\n                \"  %s: dosage=%d, theta_2pl=%.3f, theta_4plg=%.3f, gamma=%.3f, raw_acc=%.3f\",\n                m[\"dirname\"], m[\"dosage\"],\n                result_2pl[\"theta\"][j], result_4plg[\"theta\"][j],\n                result_4plg[\"gamma\"][j], result_4plg[\"raw_accuracy\"][j],\n            )\n\n    out_file = output_dir / \"irt_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(\"Results saved to %s\", out_file)\n\n\nif __name__ == \"__main__\":\n    main()\nHEREDOC_EOF"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T00:40:53.078239+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T00:40:53.084719+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && rm -rf /root/contamcal-irt-calibration/exp006/test_output && python3 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py --synthetic --output-dir /root/contamcal-irt-calibration/exp006/test_output 2>&1",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && rm -rf /root/contamcal-irt-calibration/exp006/test_output && python3 /root/contamcal-irt-calibration/exp006/run_irt_calibration.py --synthetic --output-dir /root/contamcal-irt-calibration/exp006/test_output 2>&1",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T00:40:53.085040+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-14 08:38:37,307 [INFO] Running synthetic data validation\\n2026-05-14 08:38:37,309 [INFO] Response matrix: 15 persons x 50 items\\n2026-05-14 08:38:37,309 [INFO] Mean accuracy: 0.601\\n2026-05-14 08:38:37,309 [INFO] Fitting 2PL model...\\n2026-05-14 08:38:38,516 [INFO] Epoch 0: loss=0.693147, lr=5.00e-03\\n2026-05-14 08:38:38,951 [INFO] Epoch 500: loss=0.476142, lr=5.00e-03\\n2026-05-14 08:38:39,383 [INFO] Epoch 1000: loss=0.471529, lr=5.00e-03\\n2026-05-14 08:38:39,747 [INFO] Epoch 1500: loss=0.469208, lr=5.00e-03\\n2026-05-14 08:38:40,031 [INFO] Epoch 2000: loss=0.467851, lr=5.00e-03\\n2026-05-14 08:38:40,318 [INFO] Epoch 2500: loss=0.466946, lr=5.00e-03\\n2026-05-14 08:38:40,598 [INFO] Epoch 3000: loss=0.466277, lr=5.00e-03\\n2026-05-14 08:38:40,700 [INFO] Converged at epoch 3187 (loss=0.466068)\\n2026-05-14 08:38:40,709 [INFO] Fitting 4PL+gamma model...\\n2026-05-14 08:38:40,710 [INFO] Epoch 0: loss=0.670275, lr=5.00e-03\\n2026-05-14 08:38:41,121 [INFO] Epoch 500: loss=0.449221, lr=5.00e-03\\n2026-05-14 08:38:41,540 [INFO] Epoch 1000: loss=0.434678, lr=5.00e-03\\n2026-05-14 08:38:41,949 [INFO] Epoch 1500: loss=0.428161, lr=5.00e-03\\n2026-05-14 08:38:42,382 [INFO] Epoch 2000: loss=0.424754, lr=5.00e-03\\n2026-05-14 08:38:42,795 [INFO] Epoch 2500: loss=0.423964, lr=5.00e-03\\n2026-05-14 08:38:42,867 [INFO] Converged at epoch 2589 (loss=0.423866)\\n2026-05-14 08:38:42,886 [INFO] Recovery -- theta corr (2PL): 0.8584, theta corr (4PL+g): 0.9324, gamma corr: 0.6291\\n2026-05-14 08:38:42,887 [INFO] Saved to /root/contamcal-irt-calibration/exp006/test_output/synthetic_validation.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.26}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-14T00:40:53.085290+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'completed', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'completed', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'completed', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'completed', 'activeForm': 'Deploying and testing script'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Investigate existing code: evaluate.py output format, dosage levels, project structure', 'status': 'completed', 'activeForm': 'Investigating existing code and data formats'}, {'content': 'Check dependencies (cmdstanpy, torch, etc.)', 'status': 'completed', 'activeForm': 'Checking dependencies'}, {'content': 'Write run_irt_calibration.py with 2PL baseline + 4PL+γ model', 'status': 'completed', 'activeForm': 'Writing IRT estimation script'}, {'content': 'Deploy script to server and dry-run', 'status': 'completed', 'activeForm': 'Deploying and testing script'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-14T00:40:53.085557+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-14T00:40:53.085779+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-14T00:40:53.086001+00:00_
+
+1	"""
+2	IRT parameter estimation for contamination-aware calibration.
+3	
+4	Fits two models to item-level correctness data from benchmark evaluations:
+5	  1) Standard 2PL IRT (baseline)
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-14T00:40:53.092393+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+  "content": "\"\"\"\nIRT parameter estimation for contamination-aware calibration.\n\nFits two models to item-level correctness data from benchmark evaluations:\n  1) Standard 2PL IRT (baseline)\n  2) 4PL+γ contamination-aware IRT\n\nInput:\n  --eval-dir      Directory containing per-model eval subdirectories\n                  (each with eval_results.json / correctness_matrix.json)\n  --exposure-file (optional) JSON mapping benchmark -> [τ_i, ...] exposure scores\n  --benchmarks    Which benchmarks to analyze (default: all found)\n  --output-dir    Where to write results JSON\n\nOutput (per benchmark):\n  irt_results.json with θ, γ, item params, calibrated scores, CIs\n\nDependencies: torch, numpy, scipy\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport math\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy import stats\n\nlogger = logging.getLogger(__name__)\n\n# ── Data Loading ──\n\nDOSAGE_PATTERN = re.compile(r\"_d(\\d+)_s(\\d+)(_para)?$\")\n\n\ndef parse_model_dir_name(dirname: str) -> dict | None:\n    \"\"\"Extract model name, dosage, seed from directory like qwen2.5-0.5b_d025_s123.\"\"\"\n    m = DOSAGE_PATTERN.search(dirname)\n    if not m:\n        return None\n    dosage = int(m.group(1))\n    seed = int(m.group(2))\n    is_para = m.group(3) is not None\n    model_name = dirname[: m.start()]\n    return {\n        \"dirname\": dirname,\n        \"model_name\": model_name,\n        \"dosage\": dosage,\n        \"seed\": seed,\n        \"is_para\": is_para,\n    }\n\n\ndef load_eval_results(eval_dir: str, benchmarks: list[str] | None = None,\n                      skip_para: bool = True) -> dict:\n    eval_path = Path(eval_dir)\n    model_dirs = sorted([\n        d for d in eval_path.iterdir()\n        if d.is_dir() and (d / \"eval_results.json\").exists()\n    ])\n\n    models = []\n    for d in model_dirs:\n        info = parse_model_dir_name(d.name)\n        if info is None:\n            logger.warning(\"Skipping unrecognized directory: %s\", d.name)\n            continue\n        if skip_para and info[\"is_para\"]:\n            continue\n        info[\"path\"] = str(d)\n        models.append(info)\n\n    if not models:\n        raise ValueError(f\"No valid eval results found in {eval_dir}\")\n\n    logger.info(\"Found %d model evaluations\", len(models))\n\n    with open(Path(models[0][\"path\"]) / \"eval_results.json\") as f:\n        sample = json.load(f)\n    available_benchmarks = list(sample[\"benchmarks\"].keys())\n\n    if benchmarks:\n        benchmarks = [b for b in benchmarks if b in available_benchmarks]\n    else:\n        benchmarks = available_benchmarks\n\n    logger.info(\"Benchmarks: %s\", benchmarks)\n\n    result = {\"models\": models, \"benchmarks\": {}, \"dosages\": np.array([m[\"dosage\"] for m in models])}\n\n    for bench in benchmarks:\n        responses = []\n        for m in models:\n            results_file = Path(m[\"path\"]) / \"eval_results.json\"\n            with open(results_file) as f:\n                data = json.load(f)\n\n            if bench not in data[\"benchmarks\"]:\n                logger.warning(\"Benchmark %s missing for %s, filling with NaN\", bench, m[\"dirname\"])\n                responses.append(None)\n                continue\n\n            per_item = data[\"benchmarks\"][bench][\"per_item\"]\n            correct = [int(item[\"correct\"]) for item in per_item]\n            responses.append(correct)\n\n        lengths = [len(r) for r in responses if r is not None]\n        if not lengths:\n            logger.warning(\"No data for benchmark %s, skipping\", bench)\n            continue\n\n        n_items = lengths[0]\n        if not all(l == n_items for l in lengths):\n            logger.warning(\"Inconsistent item counts for %s: %s\", bench, lengths)\n            n_items = min(lengths)\n\n        matrix = np.zeros((len(models), n_items), dtype=np.float32)\n        mask = np.ones((len(models), n_items), dtype=np.float32)\n        for j, r in enumerate(responses):\n            if r is None:\n                mask[j, :] = 0.0\n            else:\n                matrix[j, :n_items] = r[:n_items]\n\n        result[\"benchmarks\"][bench] = {\n            \"responses\": matrix,\n            \"mask\": mask,\n            \"n_items\": n_items,\n        }\n\n    return result\n\n\ndef load_exposure_scores(exposure_file: str | None, benchmarks: dict) -> dict:\n    if exposure_file and os.path.exists(exposure_file):\n        with open(exposure_file) as f:\n            raw = json.load(f)\n        scores = {}\n        for bench, bench_data in benchmarks.items():\n            n_items = bench_data[\"n_items\"]\n            if bench in raw:\n                s = np.array(raw[bench], dtype=np.float32)[:n_items]\n                if len(s) < n_items:\n                    s = np.pad(s, (0, n_items - len(s)), constant_values=0.0)\n                scores[bench] = s\n            else:\n                scores[bench] = np.ones(n_items, dtype=np.float32)\n        return scores\n\n    return {bench: np.ones(d[\"n_items\"], dtype=np.float32) for bench, d in benchmarks.items()}\n\n\n# ── IRT Models (PyTorch) ──\n\nclass IRT2PL(nn.Module):\n    \"\"\"Standard 2-parameter logistic IRT model.\"\"\"\n\n    def __init__(self, n_persons: int, n_items: int):\n        super().__init__()\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)\n        a = self.a.unsqueeze(0)\n        b = self.b.unsqueeze(0)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit).clamp(1e-6, 1.0 - 1e-6)\n\n\nclass IRT4PLGamma(nn.Module):\n    \"\"\"\n    4PL + γ contamination-aware IRT model.\n\n    P(Y_ji = 1) = c_i + (d_i - c_i) * σ(a_i * (θ_j - b_i + γ_j * τ_i))\n\n    where γ_j captures contamination advantage proportional to item exposure τ_i.\n    \"\"\"\n\n    def __init__(self, n_persons: int, n_items: int, tau: torch.Tensor,\n                 dosages: torch.Tensor | None = None):\n        super().__init__()\n        self.n_persons = n_persons\n        self.n_items = n_items\n        self.register_buffer(\"tau\", tau)\n\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.gamma_raw = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n        self.c_raw = nn.Parameter(torch.full((n_items,), -2.0))\n        self.d_raw = nn.Parameter(torch.full((n_items,), 2.0))\n\n        if dosages is not None:\n            with torch.no_grad():\n                normed = dosages / (dosages.max() + 1e-8)\n                self.gamma_raw.copy_(normed * 0.5)\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    @property\n    def c(self):\n        return torch.sigmoid(self.c_raw).clamp(max=0.5)\n\n    @property\n    def d(self):\n        return (0.5 + 0.5 * torch.sigmoid(self.d_raw))\n\n    @property\n    def gamma(self):\n        return torch.relu(self.gamma_raw)\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)\n        gamma = self.gamma.unsqueeze(1)\n        tau = self.tau.unsqueeze(0)\n        a = self.a.unsqueeze(0)\n        b = self.b.unsqueeze(0)\n        c = self.c.unsqueeze(0)\n        d = self.d.unsqueeze(0)\n\n        ability = theta - b + gamma * tau\n        logit = a * ability\n        prob = c + (d - c) * torch.sigmoid(logit)\n        return prob.clamp(1e-6, 1.0 - 1e-6)\n\n\n# ── Estimation ──\n\ndef fit_irt_model(model: nn.Module, responses: torch.Tensor, mask: torch.Tensor,\n                  lr: float = 0.01, max_iter: int = 5000, tol: float = 1e-6,\n                  l2_lambda: float = 0.001) -> dict:\n    optimizer = torch.optim.Adam(model.parameters(), lr=lr)\n    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(\n        optimizer, patience=200, factor=0.5, min_lr=1e-5\n    )\n\n    prev_loss = float(\"inf\")\n    best_loss = float(\"inf\")\n    best_state = None\n    patience_counter = 0\n\n    for epoch in range(max_iter):\n        optimizer.zero_grad()\n        probs = model()\n\n        log_lik = (\n            responses * torch.log(probs) + (1 - responses) * torch.log(1 - probs)\n        )\n        loss = -(log_lik * mask).sum() / mask.sum()\n\n        if hasattr(model, \"theta\"):\n            loss = loss + l2_lambda * (model.theta ** 2).mean()\n        if hasattr(model, \"gamma_raw\"):\n            loss = loss + l2_lambda * (model.gamma_raw ** 2).mean()\n\n        if torch.isnan(loss):\n            logger.warning(\"NaN loss at epoch %d, restoring best state\", epoch)\n            if best_state is not None:\n                model.load_state_dict(best_state)\n            break\n\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)\n        optimizer.step()\n\n        loss_val = loss.item()\n        scheduler.step(loss_val)\n\n        if loss_val < best_loss:\n            best_loss = loss_val\n            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n            patience_counter = 0\n        else:\n            patience_counter += 1\n\n        if abs(prev_loss - loss_val) < tol and epoch > 100:\n            logger.info(\"Converged at epoch %d (loss=%.6f)\", epoch, loss_val)\n            break\n\n        if patience_counter > 500:\n            logger.info(\"Early stopping at epoch %d (best_loss=%.6f)\", epoch, best_loss)\n            break\n\n        prev_loss = loss_val\n\n        if epoch % 500 == 0:\n            logger.info(\"Epoch %d: loss=%.6f, lr=%.2e\", epoch, loss_val,\n                        optimizer.param_groups[0][\"lr\"])\n\n    if best_state is not None:\n        model.load_state_dict(best_state)\n\n    return {\"final_loss\": best_loss, \"epochs\": epoch + 1}\n\n\ndef compute_standard_errors(model: nn.Module, responses: torch.Tensor,\n                            mask: torch.Tensor) -> dict:\n    ses = {}\n    eps = 1e-4\n\n    for name, param in model.named_parameters():\n        if name in (\"theta\", \"gamma_raw\", \"b\"):\n            se = torch.zeros_like(param)\n            original = param.data.clone()\n\n            for i in range(param.shape[0]):\n                losses = []\n                for delta in [-eps, 0, eps]:\n                    param.data[i] = original[i] + delta\n                    with torch.no_grad():\n                        probs = model()\n                        log_lik = (\n                            responses * torch.log(probs) +\n                            (1 - responses) * torch.log(1 - probs)\n                        )\n                        nll = -(log_lik * mask).sum()\n                    losses.append(nll.item())\n\n                hessian_diag = (losses[2] - 2 * losses[1] + losses[0]) / (eps ** 2)\n                se[i] = 1.0 / math.sqrt(max(hessian_diag, 1e-8))\n                param.data[i] = original[i]\n\n            ses[name] = se.numpy()\n\n    return ses\n\n\n# ── Main Pipeline ──\n\ndef run_2pl(responses: np.ndarray, mask: np.ndarray) -> dict:\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n\n    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    return {\n        \"model\": \"2PL\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n        },\n    }\n\n\ndef run_4pl_gamma(responses: np.ndarray, mask: np.ndarray,\n                  tau: np.ndarray, dosages: np.ndarray) -> dict:\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n    tau_t = torch.tensor(tau, dtype=torch.float32)\n    dos_t = torch.tensor(dosages, dtype=torch.float32)\n\n    model = IRT4PLGamma(J, I, tau_t, dos_t)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005, max_iter=8000)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        gamma = model.gamma.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n        c = model.c.numpy()\n        d = model.d.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    gamma_se = ses.get(\"gamma_raw\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    raw_accuracy = (responses * mask).sum(axis=1) / mask.sum(axis=1)\n    calibrated_theta = theta\n\n    return {\n        \"model\": \"4PL+gamma\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"gamma\": gamma.tolist(),\n        \"gamma_se\": gamma_se.tolist(),\n        \"gamma_ci_95\": [\n            [float(gamma[j] - 1.96 * gamma_se[j]), float(gamma[j] + 1.96 * gamma_se[j])]\n            for j in range(J)\n        ],\n        \"raw_accuracy\": raw_accuracy.tolist(),\n        \"calibrated_theta\": calibrated_theta.tolist(),\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef generate_synthetic_data(n_persons: int = 15, n_items: int = 50,\n                            seed: int = 42) -> dict:\n    rng = np.random.default_rng(seed)\n\n    dosages = np.array([0, 0, 0, 5, 5, 5, 25, 25, 25, 50, 50, 50, 100, 100, 100],\n                       dtype=np.float32)[:n_persons]\n    true_theta = rng.normal(0, 1, n_persons).astype(np.float32)\n    true_gamma = (dosages / 100.0 * rng.uniform(0.5, 1.5, n_persons)).astype(np.float32)\n    tau = rng.uniform(0.2, 1.0, n_items).astype(np.float32)\n\n    a = rng.uniform(0.5, 2.0, n_items).astype(np.float32)\n    b = rng.normal(0, 1, n_items).astype(np.float32)\n    c = rng.uniform(0.05, 0.25, n_items).astype(np.float32)\n    d = rng.uniform(0.9, 1.0, n_items).astype(np.float32)\n\n    responses = np.zeros((n_persons, n_items), dtype=np.float32)\n    for j in range(n_persons):\n        for i in range(n_items):\n            ability = true_theta[j] - b[i] + true_gamma[j] * tau[i]\n            prob = c[i] + (d[i] - c[i]) / (1.0 + np.exp(-a[i] * ability))\n            responses[j, i] = float(rng.random() < prob)\n\n    return {\n        \"responses\": responses,\n        \"mask\": np.ones_like(responses),\n        \"dosages\": dosages,\n        \"tau\": tau,\n        \"true_params\": {\n            \"theta\": true_theta.tolist(),\n            \"gamma\": true_gamma.tolist(),\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"IRT parameter estimation for contamination-aware calibration\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\nExamples:\n  # Run on eval results\n  python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\n\n  # Run with exposure scores\n  python run_irt_calibration.py --eval-dir /path/to/eval_results \\\\\n      --exposure-file /path/to/exposure_scores.json --output-dir ./irt_output\n\n  # Synthetic data test\n  python run_irt_calibration.py --synthetic --output-dir ./irt_test\n        \"\"\",\n    )\n    parser.add_argument(\"--eval-dir\", type=str, default=None,\n                        help=\"Directory containing per-model eval subdirectories\")\n    parser.add_argument(\"--exposure-file\", type=str, default=None,\n                        help=\"JSON with per-benchmark exposure scores τ_i\")\n    parser.add_argument(\"--benchmarks\", type=str, nargs=\"+\", default=None,\n                        help=\"Benchmarks to analyze (default: all found)\")\n    parser.add_argument(\"--output-dir\", type=str, required=True,\n                        help=\"Output directory for IRT results\")\n    parser.add_argument(\"--synthetic\", action=\"store_true\",\n                        help=\"Run on synthetic data for validation\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--lr\", type=float, default=0.01, help=\"Learning rate\")\n    parser.add_argument(\"--max-iter\", type=int, default=5000, help=\"Max optimization iterations\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.synthetic:\n        logger.info(\"Running synthetic data validation\")\n        synth = generate_synthetic_data()\n        responses = synth[\"responses\"]\n        mask = synth[\"mask\"]\n        dosages = synth[\"dosages\"]\n        tau = synth[\"tau\"]\n\n        logger.info(\"Response matrix: %d persons x %d items\", *responses.shape)\n        logger.info(\"Mean accuracy: %.3f\", responses.mean())\n\n        logger.info(\"Fitting 2PL model...\")\n        result_2pl = run_2pl(responses, mask)\n\n        logger.info(\"Fitting 4PL+gamma model...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        true = synth[\"true_params\"]\n        theta_corr_2pl = float(np.corrcoef(true[\"theta\"], result_2pl[\"theta\"])[0, 1])\n        theta_corr_4plg = float(np.corrcoef(true[\"theta\"], result_4plg[\"theta\"])[0, 1])\n        gamma_corr = float(np.corrcoef(true[\"gamma\"], result_4plg[\"gamma\"])[0, 1])\n\n        recovery = {\n            \"theta_corr_2pl\": theta_corr_2pl,\n            \"theta_corr_4plg\": theta_corr_4plg,\n            \"gamma_corr_4plg\": gamma_corr,\n        }\n        logger.info(\"Recovery -- theta corr (2PL): %.4f, theta corr (4PL+g): %.4f, gamma corr: %.4f\",\n                     theta_corr_2pl, theta_corr_4plg, gamma_corr)\n\n        output = {\n            \"mode\": \"synthetic\",\n            \"n_persons\": int(responses.shape[0]),\n            \"n_items\": int(responses.shape[1]),\n            \"true_params\": true,\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n            \"recovery\": recovery,\n        }\n\n        out_file = output_dir / \"synthetic_validation.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(output, f, indent=2)\n        logger.info(\"Saved to %s\", out_file)\n        return\n\n    # ── Real data mode ──\n    if not args.eval_dir:\n        parser.error(\"--eval-dir is required when not using --synthetic\")\n\n    data = load_eval_results(args.eval_dir, args.benchmarks)\n    exposure = load_exposure_scores(args.exposure_file, data[\"benchmarks\"])\n    dosages = data[\"dosages\"]\n\n    all_results = {\n        \"mode\": \"real\",\n        \"eval_dir\": args.eval_dir,\n        \"models\": [\n            {\"dirname\": m[\"dirname\"], \"model_name\": m[\"model_name\"],\n             \"dosage\": m[\"dosage\"], \"seed\": m[\"seed\"]}\n            for m in data[\"models\"]\n        ],\n        \"benchmarks\": {},\n    }\n\n    for bench, bench_data in data[\"benchmarks\"].items():\n        logger.info(\"=== Benchmark: %s (%d persons x %d items) ===\",\n                     bench, bench_data[\"responses\"].shape[0], bench_data[\"n_items\"])\n\n        responses = bench_data[\"responses\"]\n        mask = bench_data[\"mask\"]\n        tau = exposure[bench]\n\n        logger.info(\"Mean accuracy: %.3f\", (responses * mask).sum() / mask.sum())\n\n        logger.info(\"Fitting 2PL...\")\n        result_2pl = run_2pl(responses, mask)\n\n        logger.info(\"Fitting 4PL+gamma...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        all_results[\"benchmarks\"][bench] = {\n            \"n_items\": int(bench_data[\"n_items\"]),\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n        }\n\n        logger.info(\"Per-model estimates:\")\n        for j, m in enumerate(data[\"models\"]):\n            logger.info(\n                \"  %s: dosage=%d, theta_2pl=%.3f, theta_4plg=%.3f, gamma=%.3f, raw_acc=%.3f\",\n                m[\"dirname\"], m[\"dosage\"],\n                result_2pl[\"theta\"][j], result_4plg[\"theta\"][j],\n                result_4plg[\"gamma\"][j], result_4plg[\"raw_accuracy\"][j],\n            )\n\n    out_file = output_dir / \"irt_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(\"Results saved to %s\", out_file)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py",
+    "content": "\"\"\"\nIRT parameter estimation for contamination-aware calibration.\n\nFits two models to item-level correctness data from benchmark evaluations:\n  1) Standard 2PL IRT (baseline)\n  2) 4PL+γ contamination-aware IRT\n\nInput:\n  --eval-dir      Directory containing per-model eval subdirectories\n                  (each with eval_results.json / correctness_matrix.json)\n  --exposure-file (optional) JSON mapping benchmark -> [τ_i, ...] exposure scores\n  --benchmarks    Which benchmarks to analyze (default: all found)\n  --output-dir    Where to write results JSON\n\nOutput (per benchmark):\n  irt_results.json with θ, γ, item params, calibrated scores, CIs\n\nDependencies: torch, numpy, scipy\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport math\nimport os\nimport re\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn as nn\nfrom scipy import stats\n\nlogger = logging.getLogger(__name__)\n\n# ── Data Loading ──\n\nDOSAGE_PATTERN = re.compile(r\"_d(\\d+)_s(\\d+)(_para)?$\")\n\n\ndef parse_model_dir_name(dirname: str) -> dict | None:\n    \"\"\"Extract model name, dosage, seed from directory like qwen2.5-0.5b_d025_s123.\"\"\"\n    m = DOSAGE_PATTERN.search(dirname)\n    if not m:\n        return None\n    dosage = int(m.group(1))\n    seed = int(m.group(2))\n    is_para = m.group(3) is not None\n    model_name = dirname[: m.start()]\n    return {\n        \"dirname\": dirname,\n        \"model_name\": model_name,\n        \"dosage\": dosage,\n        \"seed\": seed,\n        \"is_para\": is_para,\n    }\n\n\ndef load_eval_results(eval_dir: str, benchmarks: list[str] | None = None,\n                      skip_para: bool = True) -> dict:\n    eval_path = Path(eval_dir)\n    model_dirs = sorted([\n        d for d in eval_path.iterdir()\n        if d.is_dir() and (d / \"eval_results.json\").exists()\n    ])\n\n    models = []\n    for d in model_dirs:\n        info = parse_model_dir_name(d.name)\n        if info is None:\n            logger.warning(\"Skipping unrecognized directory: %s\", d.name)\n            continue\n        if skip_para and info[\"is_para\"]:\n            continue\n        info[\"path\"] = str(d)\n        models.append(info)\n\n    if not models:\n        raise ValueError(f\"No valid eval results found in {eval_dir}\")\n\n    logger.info(\"Found %d model evaluations\", len(models))\n\n    with open(Path(models[0][\"path\"]) / \"eval_results.json\") as f:\n        sample = json.load(f)\n    available_benchmarks = list(sample[\"benchmarks\"].keys())\n\n    if benchmarks:\n        benchmarks = [b for b in benchmarks if b in available_benchmarks]\n    else:\n        benchmarks = available_benchmarks\n\n    logger.info(\"Benchmarks: %s\", benchmarks)\n\n    result = {\"models\": models, \"benchmarks\": {}, \"dosages\": np.array([m[\"dosage\"] for m in models])}\n\n    for bench in benchmarks:\n        responses = []\n        for m in models:\n            results_file = Path(m[\"path\"]) / \"eval_results.json\"\n            with open(results_file) as f:\n                data = json.load(f)\n\n            if bench not in data[\"benchmarks\"]:\n                logger.warning(\"Benchmark %s missing for %s, filling with NaN\", bench, m[\"dirname\"])\n                responses.append(None)\n                continue\n\n            per_item = data[\"benchmarks\"][bench][\"per_item\"]\n            correct = [int(item[\"correct\"]) for item in per_item]\n            responses.append(correct)\n\n        lengths = [len(r) for r in responses if r is not None]\n        if not lengths:\n            logger.warning(\"No data for benchmark %s, skipping\", bench)\n            continue\n\n        n_items = lengths[0]\n        if not all(l == n_items for l in lengths):\n            logger.warning(\"Inconsistent item counts for %s: %s\", bench, lengths)\n            n_items = min(lengths)\n\n        matrix = np.zeros((len(models), n_items), dtype=np.float32)\n        mask = np.ones((len(models), n_items), dtype=np.float32)\n        for j, r in enumerate(responses):\n            if r is None:\n                mask[j, :] = 0.0\n            else:\n                matrix[j, :n_items] = r[:n_items]\n\n        result[\"benchmarks\"][bench] = {\n            \"responses\": matrix,\n            \"mask\": mask,\n            \"n_items\": n_items,\n        }\n\n    return result\n\n\ndef load_exposure_scores(exposure_file: str | None, benchmarks: dict) -> dict:\n    if exposure_file and os.path.exists(exposure_file):\n        with open(exposure_file) as f:\n            raw = json.load(f)\n        scores = {}\n        for bench, bench_data in benchmarks.items():\n            n_items = bench_data[\"n_items\"]\n            if bench in raw:\n                s = np.array(raw[bench], dtype=np.float32)[:n_items]\n                if len(s) < n_items:\n                    s = np.pad(s, (0, n_items - len(s)), constant_values=0.0)\n                scores[bench] = s\n            else:\n                scores[bench] = np.ones(n_items, dtype=np.float32)\n        return scores\n\n    return {bench: np.ones(d[\"n_items\"], dtype=np.float32) for bench, d in benchmarks.items()}\n\n\n# ── IRT Models (PyTorch) ──\n\nclass IRT2PL(nn.Module):\n    \"\"\"Standard 2-parameter logistic IRT model.\"\"\"\n\n    def __init__(self, n_persons: int, n_items: int):\n        super().__init__()\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)\n        a = self.a.unsqueeze(0)\n        b = self.b.unsqueeze(0)\n        logit = a * (theta - b)\n        return torch.sigmoid(logit).clamp(1e-6, 1.0 - 1e-6)\n\n\nclass IRT4PLGamma(nn.Module):\n    \"\"\"\n    4PL + γ contamination-aware IRT model.\n\n    P(Y_ji = 1) = c_i + (d_i - c_i) * σ(a_i * (θ_j - b_i + γ_j * τ_i))\n\n    where γ_j captures contamination advantage proportional to item exposure τ_i.\n    \"\"\"\n\n    def __init__(self, n_persons: int, n_items: int, tau: torch.Tensor,\n                 dosages: torch.Tensor | None = None):\n        super().__init__()\n        self.n_persons = n_persons\n        self.n_items = n_items\n        self.register_buffer(\"tau\", tau)\n\n        self.theta = nn.Parameter(torch.zeros(n_persons))\n        self.gamma_raw = nn.Parameter(torch.zeros(n_persons))\n        self.a_raw = nn.Parameter(torch.zeros(n_items))\n        self.b = nn.Parameter(torch.zeros(n_items))\n        self.c_raw = nn.Parameter(torch.full((n_items,), -2.0))\n        self.d_raw = nn.Parameter(torch.full((n_items,), 2.0))\n\n        if dosages is not None:\n            with torch.no_grad():\n                normed = dosages / (dosages.max() + 1e-8)\n                self.gamma_raw.copy_(normed * 0.5)\n\n    @property\n    def a(self):\n        return torch.exp(self.a_raw).clamp(min=0.1, max=5.0)\n\n    @property\n    def c(self):\n        return torch.sigmoid(self.c_raw).clamp(max=0.5)\n\n    @property\n    def d(self):\n        return (0.5 + 0.5 * torch.sigmoid(self.d_raw))\n\n    @property\n    def gamma(self):\n        return torch.relu(self.gamma_raw)\n\n    def forward(self):\n        theta = self.theta.unsqueeze(1)\n        gamma = self.gamma.unsqueeze(1)\n        tau = self.tau.unsqueeze(0)\n        a = self.a.unsqueeze(0)\n        b = self.b.unsqueeze(0)\n        c = self.c.unsqueeze(0)\n        d = self.d.unsqueeze(0)\n\n        ability = theta - b + gamma * tau\n        logit = a * ability\n        prob = c + (d - c) * torch.sigmoid(logit)\n        return prob.clamp(1e-6, 1.0 - 1e-6)\n\n\n# ── Estimation ──\n\ndef fit_irt_model(model: nn.Module, responses: torch.Tensor, mask: torch.Tensor,\n                  lr: float = 0.01, max_iter: int = 5000, tol: float = 1e-6,\n                  l2_lambda: float = 0.001) -> dict:\n    optimizer = torch.optim.Adam(model.parameters(), lr=lr)\n    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(\n        optimizer, patience=200, factor=0.5, min_lr=1e-5\n    )\n\n    prev_loss = float(\"inf\")\n    best_loss = float(\"inf\")\n    best_state = None\n    patience_counter = 0\n\n    for epoch in range(max_iter):\n        optimizer.zero_grad()\n        probs = model()\n\n        log_lik = (\n            responses * torch.log(probs) + (1 - responses) * torch.log(1 - probs)\n        )\n        loss = -(log_lik * mask).sum() / mask.sum()\n\n        if hasattr(model, \"theta\"):\n            loss = loss + l2_lambda * (model.theta ** 2).mean()\n        if hasattr(model, \"gamma_raw\"):\n            loss = loss + l2_lambda * (model.gamma_raw ** 2).mean()\n\n        if torch.isnan(loss):\n            logger.warning(\"NaN loss at epoch %d, restoring best state\", epoch)\n            if best_state is not None:\n                model.load_state_dict(best_state)\n            break\n\n        loss.backward()\n        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=5.0)\n        optimizer.step()\n\n        loss_val = loss.item()\n        scheduler.step(loss_val)\n\n        if loss_val < best_loss:\n            best_loss = loss_val\n            best_state = {k: v.clone() for k, v in model.state_dict().items()}\n            patience_counter = 0\n        else:\n            patience_counter += 1\n\n        if abs(prev_loss - loss_val) < tol and epoch > 100:\n            logger.info(\"Converged at epoch %d (loss=%.6f)\", epoch, loss_val)\n            break\n\n        if patience_counter > 500:\n            logger.info(\"Early stopping at epoch %d (best_loss=%.6f)\", epoch, best_loss)\n            break\n\n        prev_loss = loss_val\n\n        if epoch % 500 == 0:\n            logger.info(\"Epoch %d: loss=%.6f, lr=%.2e\", epoch, loss_val,\n                        optimizer.param_groups[0][\"lr\"])\n\n    if best_state is not None:\n        model.load_state_dict(best_state)\n\n    return {\"final_loss\": best_loss, \"epochs\": epoch + 1}\n\n\ndef compute_standard_errors(model: nn.Module, responses: torch.Tensor,\n                            mask: torch.Tensor) -> dict:\n    ses = {}\n    eps = 1e-4\n\n    for name, param in model.named_parameters():\n        if name in (\"theta\", \"gamma_raw\", \"b\"):\n            se = torch.zeros_like(param)\n            original = param.data.clone()\n\n            for i in range(param.shape[0]):\n                losses = []\n                for delta in [-eps, 0, eps]:\n                    param.data[i] = original[i] + delta\n                    with torch.no_grad():\n                        probs = model()\n                        log_lik = (\n                            responses * torch.log(probs) +\n                            (1 - responses) * torch.log(1 - probs)\n                        )\n                        nll = -(log_lik * mask).sum()\n                    losses.append(nll.item())\n\n                hessian_diag = (losses[2] - 2 * losses[1] + losses[0]) / (eps ** 2)\n                se[i] = 1.0 / math.sqrt(max(hessian_diag, 1e-8))\n                param.data[i] = original[i]\n\n            ses[name] = se.numpy()\n\n    return ses\n\n\n# ── Main Pipeline ──\n\ndef run_2pl(responses: np.ndarray, mask: np.ndarray) -> dict:\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n\n    model = IRT2PL(J, I)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    return {\n        \"model\": \"2PL\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n        },\n    }\n\n\ndef run_4pl_gamma(responses: np.ndarray, mask: np.ndarray,\n                  tau: np.ndarray, dosages: np.ndarray) -> dict:\n    J, I = responses.shape\n    resp_t = torch.tensor(responses, dtype=torch.float32)\n    mask_t = torch.tensor(mask, dtype=torch.float32)\n    tau_t = torch.tensor(tau, dtype=torch.float32)\n    dos_t = torch.tensor(dosages, dtype=torch.float32)\n\n    model = IRT4PLGamma(J, I, tau_t, dos_t)\n    fit_info = fit_irt_model(model, resp_t, mask_t, lr=0.005, max_iter=8000)\n\n    ses = compute_standard_errors(model, resp_t, mask_t)\n\n    with torch.no_grad():\n        theta = model.theta.numpy()\n        gamma = model.gamma.numpy()\n        a = model.a.numpy()\n        b = model.b.numpy()\n        c = model.c.numpy()\n        d = model.d.numpy()\n\n    theta_se = ses.get(\"theta\", np.full(J, np.nan))\n    gamma_se = ses.get(\"gamma_raw\", np.full(J, np.nan))\n    b_se = ses.get(\"b\", np.full(I, np.nan))\n\n    raw_accuracy = (responses * mask).sum(axis=1) / mask.sum(axis=1)\n    calibrated_theta = theta\n\n    return {\n        \"model\": \"4PL+gamma\",\n        \"fit\": fit_info,\n        \"theta\": theta.tolist(),\n        \"theta_se\": theta_se.tolist(),\n        \"theta_ci_95\": [\n            [float(theta[j] - 1.96 * theta_se[j]), float(theta[j] + 1.96 * theta_se[j])]\n            for j in range(J)\n        ],\n        \"gamma\": gamma.tolist(),\n        \"gamma_se\": gamma_se.tolist(),\n        \"gamma_ci_95\": [\n            [float(gamma[j] - 1.96 * gamma_se[j]), float(gamma[j] + 1.96 * gamma_se[j])]\n            for j in range(J)\n        ],\n        \"raw_accuracy\": raw_accuracy.tolist(),\n        \"calibrated_theta\": calibrated_theta.tolist(),\n        \"items\": {\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"b_se\": b_se.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef generate_synthetic_data(n_persons: int = 15, n_items: int = 50,\n                            seed: int = 42) -> dict:\n    rng = np.random.default_rng(seed)\n\n    dosages = np.array([0, 0, 0, 5, 5, 5, 25, 25, 25, 50, 50, 50, 100, 100, 100],\n                       dtype=np.float32)[:n_persons]\n    true_theta = rng.normal(0, 1, n_persons).astype(np.float32)\n    true_gamma = (dosages / 100.0 * rng.uniform(0.5, 1.5, n_persons)).astype(np.float32)\n    tau = rng.uniform(0.2, 1.0, n_items).astype(np.float32)\n\n    a = rng.uniform(0.5, 2.0, n_items).astype(np.float32)\n    b = rng.normal(0, 1, n_items).astype(np.float32)\n    c = rng.uniform(0.05, 0.25, n_items).astype(np.float32)\n    d = rng.uniform(0.9, 1.0, n_items).astype(np.float32)\n\n    responses = np.zeros((n_persons, n_items), dtype=np.float32)\n    for j in range(n_persons):\n        for i in range(n_items):\n            ability = true_theta[j] - b[i] + true_gamma[j] * tau[i]\n            prob = c[i] + (d[i] - c[i]) / (1.0 + np.exp(-a[i] * ability))\n            responses[j, i] = float(rng.random() < prob)\n\n    return {\n        \"responses\": responses,\n        \"mask\": np.ones_like(responses),\n        \"dosages\": dosages,\n        \"tau\": tau,\n        \"true_params\": {\n            \"theta\": true_theta.tolist(),\n            \"gamma\": true_gamma.tolist(),\n            \"a\": a.tolist(),\n            \"b\": b.tolist(),\n            \"c\": c.tolist(),\n            \"d\": d.tolist(),\n        },\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"IRT parameter estimation for contamination-aware calibration\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\nExamples:\n  # Run on eval results\n  python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output\n\n  # Run with exposure scores\n  python run_irt_calibration.py --eval-dir /path/to/eval_results \\\\\n      --exposure-file /path/to/exposure_scores.json --output-dir ./irt_output\n\n  # Synthetic data test\n  python run_irt_calibration.py --synthetic --output-dir ./irt_test\n        \"\"\",\n    )\n    parser.add_argument(\"--eval-dir\", type=str, default=None,\n                        help=\"Directory containing per-model eval subdirectories\")\n    parser.add_argument(\"--exposure-file\", type=str, default=None,\n                        help=\"JSON with per-benchmark exposure scores τ_i\")\n    parser.add_argument(\"--benchmarks\", type=str, nargs=\"+\", default=None,\n                        help=\"Benchmarks to analyze (default: all found)\")\n    parser.add_argument(\"--output-dir\", type=str, required=True,\n                        help=\"Output directory for IRT results\")\n    parser.add_argument(\"--synthetic\", action=\"store_true\",\n                        help=\"Run on synthetic data for validation\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--lr\", type=float, default=0.01, help=\"Learning rate\")\n    parser.add_argument(\"--max-iter\", type=int, default=5000, help=\"Max optimization iterations\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(message)s\",\n    )\n    torch.manual_seed(args.seed)\n    np.random.seed(args.seed)\n\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    if args.synthetic:\n        logger.info(\"Running synthetic data validation\")\n        synth = generate_synthetic_data()\n        responses = synth[\"responses\"]\n        mask = synth[\"mask\"]\n        dosages = synth[\"dosages\"]\n        tau = synth[\"tau\"]\n\n        logger.info(\"Response matrix: %d persons x %d items\", *responses.shape)\n        logger.info(\"Mean accuracy: %.3f\", responses.mean())\n\n        logger.info(\"Fitting 2PL model...\")\n        result_2pl = run_2pl(responses, mask)\n\n        logger.info(\"Fitting 4PL+gamma model...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        true = synth[\"true_params\"]\n        theta_corr_2pl = float(np.corrcoef(true[\"theta\"], result_2pl[\"theta\"])[0, 1])\n        theta_corr_4plg = float(np.corrcoef(true[\"theta\"], result_4plg[\"theta\"])[0, 1])\n        gamma_corr = float(np.corrcoef(true[\"gamma\"], result_4plg[\"gamma\"])[0, 1])\n\n        recovery = {\n            \"theta_corr_2pl\": theta_corr_2pl,\n            \"theta_corr_4plg\": theta_corr_4plg,\n            \"gamma_corr_4plg\": gamma_corr,\n        }\n        logger.info(\"Recovery -- theta corr (2PL): %.4f, theta corr (4PL+g): %.4f, gamma corr: %.4f\",\n                     theta_corr_2pl, theta_corr_4plg, gamma_corr)\n\n        output = {\n            \"mode\": \"synthetic\",\n            \"n_persons\": int(responses.shape[0]),\n            \"n_items\": int(responses.shape[1]),\n            \"true_params\": true,\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n            \"recovery\": recovery,\n        }\n\n        out_file = output_dir / \"synthetic_validation.json\"\n        with open(out_file, \"w\") as f:\n            json.dump(output, f, indent=2)\n        logger.info(\"Saved to %s\", out_file)\n        return\n\n    # ── Real data mode ──\n    if not args.eval_dir:\n        parser.error(\"--eval-dir is required when not using --synthetic\")\n\n    data = load_eval_results(args.eval_dir, args.benchmarks)\n    exposure = load_exposure_scores(args.exposure_file, data[\"benchmarks\"])\n    dosages = data[\"dosages\"]\n\n    all_results = {\n        \"mode\": \"real\",\n        \"eval_dir\": args.eval_dir,\n        \"models\": [\n            {\"dirname\": m[\"dirname\"], \"model_name\": m[\"model_name\"],\n             \"dosage\": m[\"dosage\"], \"seed\": m[\"seed\"]}\n            for m in data[\"models\"]\n        ],\n        \"benchmarks\": {},\n    }\n\n    for bench, bench_data in data[\"benchmarks\"].items():\n        logger.info(\"=== Benchmark: %s (%d persons x %d items) ===\",\n                     bench, bench_data[\"responses\"].shape[0], bench_data[\"n_items\"])\n\n        responses = bench_data[\"responses\"]\n        mask = bench_data[\"mask\"]\n        tau = exposure[bench]\n\n        logger.info(\"Mean accuracy: %.3f\", (responses * mask).sum() / mask.sum())\n\n        logger.info(\"Fitting 2PL...\")\n        result_2pl = run_2pl(responses, mask)\n\n        logger.info(\"Fitting 4PL+gamma...\")\n        result_4plg = run_4pl_gamma(responses, mask, tau, dosages)\n\n        all_results[\"benchmarks\"][bench] = {\n            \"n_items\": int(bench_data[\"n_items\"]),\n            \"results_2pl\": result_2pl,\n            \"results_4plg\": result_4plg,\n        }\n\n        logger.info(\"Per-model estimates:\")\n        for j, m in enumerate(data[\"models\"]):\n            logger.info(\n                \"  %s: dosage=%d, theta_2pl=%.3f, theta_4plg=%.3f, gamma=%.3f, raw_acc=%.3f\",\n                m[\"dirname\"], m[\"dosage\"],\n                result_2pl[\"theta\"][j], result_4plg[\"theta\"][j],\n                result_4plg[\"gamma\"][j], result_4plg[\"raw_accuracy\"][j],\n            )\n\n    out_file = output_dir / \"irt_results.json\"\n    with open(out_file, \"w\") as f:\n        json.dump(all_results, f, indent=2)\n    logger.info(\"Results saved to %s\", out_file)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-14T00:40:53.093499+00:00_
+
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp006/run_irt_calibration.py has been updated successfully.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_irt_estimation_20260514T002934",
+  "tool": "Write",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-14T00:40:53.093869+00:00_
+
+脚本已完成，部署并通过 synthetic validation。总结：
+
+**脚本**: `/root/contamcal-irt-calibration/exp006/run_irt_calibration.py`
+
+**两个模型**:
+- **2PL baseline**: 标准 IRT，不区分 contamination
+- **4PL+γ**: `P(Y=1) = c + (d-c) * σ(a*(θ - b + γ*τ))`，其中 γ 分离 contamination effect，θ 为 true ability
+
+**数据接口**:
+- 自动解析 eval 目录下的 `{model}_d{dosage}_s{seed}/eval_results.json`
+- 支持可选的 `--exposure-file` 加载 per-item 暴露分数 τ
+- 输出 JSON 含 θ/γ 估计、95% CI、item 参数、calibrated scores
+
+**Synthetic validation 结果**:
+- θ recovery: 2PL=0.86, 4PL+γ=0.93（4PL+γ 更好，因为分离了 contamination）
+- γ recovery: 0.63（15个样本下合理）
+- 无 NaN，收敛稳定
+
+**用法**:
+```bash
+# 实验数据
+python run_irt_calibration.py --eval-dir /path/to/eval_results --output-dir ./irt_output
+
+# 带 exposure scores
+python run_irt_calibration.py --eval-dir ... --exposure-file exposure.json --output-dir ...
+
+# 验证
+python run_irt_calibration.py --synthetic --output-dir ./test
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_irt_estimation_20260514T002934"
+}
+```
+
+</details>
+
+---

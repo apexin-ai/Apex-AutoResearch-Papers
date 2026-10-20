@@ -1,0 +1,39 @@
+{
+  "exp_id": "exp_001_eval_05B_d025_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:14:42.647Z",
+    "updated_at": "2026-05-14T17:02:04.811Z",
+    "spec": {
+      "command": "HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "398496",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_05B_d025_aligned.log",
+      "submitted_at": "2026-05-14T15:40:34.043Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 4868.7,
+      "gpu_hours": 1.35
+    },
+    "hypothesis": "0.5B d025 s42 aligned eval — 25% contamination dose-response intermediate point (original + paraphrase)",
+    "conclusion": "success",
+    "failure_reason": "Cron false positive: GPU 3 results valid. MMLU/GSM8K/ARC complete, HumanEval missing (appendix only, non-blocking). Reviewer verified.",
+    "completed_at": "2026-05-14T15:39:48.113Z",
+    "metrics": {
+      "MMLU": 28.03,
+      "GSM8K": 36.62,
+      "ARC": 32.51,
+      "HumanEval": "missing - process exited before 4th benchmark"
+    }
+  },
+  "timestamp": "2026-05-14T17:02:04.936626+00:00",
+  "trigger": "update_registry"
+}

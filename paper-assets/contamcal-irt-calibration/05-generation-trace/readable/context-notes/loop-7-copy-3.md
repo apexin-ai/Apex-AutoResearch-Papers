@@ -1,0 +1,78 @@
+# reviewer / loop_7.md
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_7.md`
+- **Structured JSON:** [`7d40bf392125064f4855.json`](../../sessions/7d/7d40bf392125064f4855.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 7
+reason: max_wall_time
+updated: '2026-05-15T02:32:24+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- 项目分配 GPU: cuda:0-5 on cqa1-21977，全部在白名单内，但 **cuda:4 上 3B para_aligned eval 反复静默死亡**（v2/v3 连续失败），提交到 cuda:4 的 eval 任务需额外监控
+- exp_001_eval_3B_d100_v2_aligned 有 **D036 数据完整性前科**（v1 metrics 被错误复制为 v2），v2 已在 cuda:0 重跑中——完成后必须独立验证 metrics 来源，不能信 Agent 自报
+- `--gpu` flag 在 train_sft.py 中刚修复（会覆盖外部 CUDA_VISIBLE_DEVICES），**未来提交只用 `--gpu X`，不要同时设外部 CUDA_VISIBLE_DEVICES**
+- CmdStan 在 cqa1-21977 上有 **nproc limit**，parallel_chains 必须 =1（已修复到 run_exp006.py，但 run_irt_calibration.py 直接调用时仍默认 min(chains,4)）
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: cqa1-21977 (AutoDL, 6× RTX 4090 D 24GB)
+- **远程工作目录**: `/root/contamcal-irt-calibration`
+- **Python**: `/root/miniconda3/bin/python` (conda base, 不是 venv)
+- **模型缓存**: `/root/autodl-tmp/.hf_cache`
+- **Checkpoint 根**: `/root/autodl-tmp/exp001/checkpoints/`
+- **Eval 结果根**: `/root/autodl-tmp/exp001/eval_results/`
+- **Signal 根**: `/root/autodl-tmp/exp002/signals/`
+- **本地 workspace**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/`
+- **本地 CPU 实验**: exp_004_sim_sweep_v4 (PID 652931, tmux=exp_004_sim_sweep_v4, TMPDIR=/home/ubuntu/tmp_cmdstan)，11/12 条件完成，缺 auc0.65_n100
+- **活跃 GPU 进程** (截至 handoff):
+  - cuda:0: PID 477489 — exp_001_eval_3B_d100_v2_aligned_v2 (关键路径)
+  - cuda:1: PID 475651 — exp_001_eval_05B_d005_s123_aligned
+  - cuda:2: PID 473954 — exp_001_eval_15B_d100_s123_aligned
+  - cuda:3: PID 466755 — exp_001_sft_d025_3B_v2
+  - cuda:4: 状态不明（v3 para eval 刚死，可能有 v4 重提交）
+  - cuda:5: PID 471296 — exp_001_sft_3B_d100_s123
+
+### 3. 📊 当前状态
+本轮审查了 ~12 个 worker：SFT 完成确认、eval 提交验证、GPU 状态检查、代码修复审查（train_sft.py --gpu fix、run_exp006.py path strip + parallel_chains fix）、失败实验数据恢复。
+
+**关键发现**:
+- exp_001_eval_3B_d000_v2_para_aligned_v2 数据恢复成功（进程死亡前已写完所有 benchmark 结果）
+- exp006-pooled-s1only-gsm8k / exp006-oracle-gsm8k-extended 均因 nproc limit 失败，已修复代码待重跑
+- exp006-pooled-s1only-arc **成功**: gamma=-1.4637, CI=[-2.51, -0.41], 排除零 ✅
+
+**RUNNING 实验**: exp_001_eval_3B_d100_v2_aligned_v2 (cuda:0), exp_001_eval_05B_d005_s123_aligned (cuda:1), exp_001_eval_15B_d100_s123_aligned (cuda:2), exp_001_sft_d025_3B_v2 (cuda:3), exp_001_sft_3B_d100_s123 (cuda:5), exp_004_sim_sweep_v4 (local CPU)
+
+### 4. 📋 待办（条件触发式）
+- **exp_001_eval_3B_d100_v2_aligned_v2 完成** → 立即交叉验证 metrics（D036 前科），确认与 para_aligned 配对数据完整，解锁 3B signal 计算
+- **exp_004_sim_sweep_v4 auc0.65_n100 完成** → 检查 12/12 条件全覆盖，验证 sweep_summary.json 更新
+- **exp006 GSM8K IRT 重跑结果出来** → 对比 ARC 结果（gamma 方向/显著性），判断 contamination signal 跨 benchmark 一致性
+- **N=16 pooled IRT 前置条件就绪（≥16 aligned eval 完成）** → 用 `run_pooled_irt_n16.sh --dry-run` 先验证数据加载数量，再正式运行
+- **cuda:4 再出静默死亡** → 升级为 critical，建议 Director 检查该 GPU 硬件或 driver 状态
+
+### 5. 🎯 战略上下文
+- 项目核心：用 4PL+γ IRT 模型校准 LLM benchmark 分数中的 contamination 偏差。γ 参数 = contamination 对分数的系统性影响
+- **当前证据**: ARC benchmark 上 γ 显著（CI 排除零），GSM8K 上 IRT fitting 因 nproc 和收敛问题尚无可靠结果
+- 正在从 N=8 (0.5B+1.5B) 扩展到 N≥16 (0.5B+1.5B+3B × 4 dosage × 2 seed) 的 pooled IRT，这是投稿的核心实验
+- **3B 数据质量问题多**: D018 GSM8K CoT 灾难性遗忘、D020 超参修复后仍有 25pp 损失、D036 数据完整性事故、para eval 反复静默失败。审查 3B 相关结论时需格外警惕
+- **易错判断**: resource_usage 工具严重不可靠（C002 约束），必须用 nvidia-smi 独立核实 GPU 状态。不要信 tool 报的 "idle"
+
+
+---

@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_002_signals_llama32_3B_d025_completion",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:09:03.376Z",
+    "updated_at": "2026-05-16T23:13:35.367Z",
+    "hypothesis": "Complete remaining d025 signals (MMLU s4 10000-14042 + merge, GSM8K s4 + merge) after partial failure of parent experiment. Enables d025 RRF → cross-family IRT pool N+1.",
+    "parent": "exp_002_signals_llama32_3B_d025_mmlu_arc_gsm8k"
+  },
+  "timestamp": "2026-05-16T23:13:35.810026+00:00",
+  "trigger": "update_registry"
+}

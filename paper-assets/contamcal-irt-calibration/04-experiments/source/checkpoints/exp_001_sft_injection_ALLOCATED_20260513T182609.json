@@ -1,0 +1,23 @@
+{
+  "exp_id": "exp_001_sft_injection",
+  "project": "contamcal-irt-calibration",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:28:01.546Z",
+    "updated_at": "2026-05-13T18:26:09.781Z",
+    "spec": {
+      "command": "bash run_exp001.sh --phase all --gpu-ids 0,1,2,3,4,5",
+      "server": "cqa1-21977",
+      "data_path": "MMLU+GSM8K+ARC-Challenge+HumanEval paraphrases mixed into SFT data",
+      "data_count": "3 models × 5 dosages × 3 seeds = 45 SFT runs + 180 eval runs",
+      "model_name": "Qwen2.5-0.5B/1.5B/3B (LoRA SFT)",
+      "seed": "0,1,2"
+    },
+    "hypothesis": "Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds"
+  },
+  "timestamp": "2026-05-13T18:26:09.808734+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "irt_fitting_mmlu_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T03:11:21.315Z",
+    "updated_at": "2026-05-20T03:16:32.536Z",
+    "spec": {
+      "command": "python fit_irt_2pl_gamma.py --benchmark mmlu --data-dir irt_data_v3/ --output-dir results/irt/ --method advi --draws 1000 --seed 42",
+      "server": "westd-29999",
+      "gpu": "cpu",
+      "pid": 265452,
+      "log_path": "~/runs/contamcal-irt-calibration/irt_fitting_mmlu_v3.log",
+      "submitted_at": "2026-05-20T03:11:19.873Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/contamcal-irt-calibration/analysis/irt_data_v3/",
+      "data_count": 350000,
+      "model_name": "IRT-2PL-gamma",
+      "seed": 42
+    },
+    "hypothesis": "IRT 2PL+γ fitting on MMLU v3 data (25 respondents × 14042 items): estimate per-item contamination sensitivity γ_i to validate that contamination acts through global difficulty shift rather than item-specific memorization."
+  },
+  "timestamp": "2026-05-20T03:16:33.155478+00:00",
+  "trigger": "update_registry"
+}

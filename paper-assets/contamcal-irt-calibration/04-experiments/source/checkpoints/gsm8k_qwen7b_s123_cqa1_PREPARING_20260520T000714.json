@@ -1,0 +1,14 @@
+{
+  "exp_id": "gsm8k_qwen7b_s123_cqa1",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T00:07:13.468Z",
+    "updated_at": "2026-05-20T00:07:13.468Z"
+  },
+  "timestamp": "2026-05-20T00:07:14.056170+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_001_eval_3B_d005_s42_para_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T18:23:16.191Z",
+    "updated_at": "2026-05-16T07:04:41.377Z",
+    "hypothesis": "3B d005 s42 para_aligned eval. Missing slot for complete s42 para_aligned matrix. Will submit when cuda:3 frees up after d100_s123_para_aligned completes.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python exp001/evaluate.py --model-path Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_para_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases",
+      "server": "cqa1-21977",
+      "gpu": "cuda:1",
+      "pid": 713640,
+      "data_path": "/root/autodl-tmp/exp001/paraphrases",
+      "data_count": 4,
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval (para_aligned)",
+      "parent": "exp_001_sft_3B_d005_s42_a32",
+      "hypothesis": "3B d005 s42 para_aligned eval for contamination signal computation"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T07:04:40.591Z"
+    }
+  },
+  "timestamp": "2026-05-16T07:04:41.704850+00:00",
+  "trigger": "update_registry"
+}

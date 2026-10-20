@@ -1,0 +1,29 @@
+{
+  "exp_id": "gsm8k_qwen14b_s123_westd",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "created_at": "2026-05-20T08:29:50.139Z",
+    "hypothesis": "Qwen-14B s123 GSM8K cross-seed verification: s42 showed massive +20.47pp reversal (MMLU -9.37pp → GSM8K +20.47pp). Expect s123 to reproduce strong positive GSM8K transfer, confirming family-dependent cross-benchmark effect.",
+    "notes": "d000_s123 完成: 76.65% (1011/1319)。注意: s42 d000=60.80%, 跨seed baseline差异+15.85pp。d100_s123 仍在跑 (PID 309330, cuda:1, ~37min)。Cron假报(bash wrapper退出, Python进程继续)。",
+    "parent": "gsm8k_qwen14b_s42_westd",
+    "retry_count": 0,
+    "spec": {
+      "checkpoint_source": "sft_qwen14b_d100_s123_retrain",
+      "command": "bash /root/contamcal-irt-calibration/run_gsm8k_qwen14b_s123.sh",
+      "data_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d{000,100}_s123/lora_adapter/",
+      "eval_data": "GSM8K",
+      "gpu": "cuda:1",
+      "model_name": "Qwen2.5-14B",
+      "pid": 305387,
+      "seed": 123,
+      "server": "westd-29999"
+    },
+    "status": "RUNNING",
+    "updated_at": "2026-05-20T09:32:33.869Z",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-20T09:32:34.545490+00:00",
+  "trigger": "update_registry"
+}

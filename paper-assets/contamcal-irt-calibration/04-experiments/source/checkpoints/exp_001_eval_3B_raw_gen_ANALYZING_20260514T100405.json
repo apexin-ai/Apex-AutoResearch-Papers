@@ -1,0 +1,50 @@
+{
+  "exp_id": "exp_001_eval_3B_raw_gen",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:52:48.654Z",
+    "updated_at": "2026-05-14T10:04:05.080Z",
+    "spec": {
+      "command": "python evaluate.py --model-path Qwen2.5-3B --benchmarks gsm8k humaneval",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:5"
+      ],
+      "pid": "318748",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_raw_gen.log",
+      "submitted_at": "2026-05-14T06:52:48.549Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B",
+      "data_count": 2,
+      "model_name": "Qwen2.5-3B",
+      "seed": 0,
+      "eval_data": "gsm8k,humaneval"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T09:34:31.469Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T09:34:36.144359+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "gsm8k": 0.605,
+      "humaneval": 0
+    },
+    "notes": "3B raw base eval (generative benchmarks). GSM8K=0.6050 正常。HumanEval=0.0000: base model 生成教程式文本+markdown代码块，评估器无法提取可执行代码。结果文件: /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_raw/。GSM8K 0.605 vs d000 SFT 0.117 = -48.8pp 崩塌待诊断。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T10:04:05.634134+00:00",
+  "trigger": "update_registry"
+}

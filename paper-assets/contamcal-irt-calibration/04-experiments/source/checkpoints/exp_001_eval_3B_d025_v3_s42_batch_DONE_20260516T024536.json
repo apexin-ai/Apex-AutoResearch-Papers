@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_001_eval_3B_d025_v3_s42_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T23:23:13.337Z",
+    "updated_at": "2026-05-16T02:45:33.866Z",
+    "spec": {
+      "command": "python evaluate.py --model-path Qwen2.5-3B --adapter-path d025_v3_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge --mc-format aligned (+ para_aligned)",
+      "server": "cqa1-21977",
+      "gpu": "cuda:3",
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_v3_s42/lora_adapter",
+      "eval_data": "mmlu gsm8k arc_challenge (aligned + para_aligned)",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 0,
+      "hypothesis": "d025_v3_s42 eval (aligned + para_aligned, MMLU/GSM8K/ARC). Prerequisite for s3_constat signal computation. Uses alpha=32, r=16 checkpoint.",
+      "parent": "exp_001_sft_3B_d025_v3_s42",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_eval_3B_d025_v3_s42_batch.log",
+      "checkpoint_path": "N/A - killed"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-16T02:45:33.866Z"
+  },
+  "timestamp": "2026-05-16T02:45:36.522371+00:00",
+  "trigger": "update_registry"
+}

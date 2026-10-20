@@ -1,0 +1,16 @@
+{
+  "exp_id": "sft_falcon3_7b_d050_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:58:44.653Z",
+    "updated_at": "2026-05-22T05:27:00.122Z",
+    "hypothesis": "Cross-family replication: Falcon3-7B-Base at 50% contamination dosage. Higher dosage reveals whether pattern intensifies monotonically or saturates.",
+    "notes": "GPU: westd cuda:3. Plan C approved."
+  },
+  "timestamp": "2026-05-22T05:27:00.769160+00:00",
+  "trigger": "update_registry"
+}

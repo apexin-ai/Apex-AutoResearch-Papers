@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_yi15_9b_pretrained_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T19:09:31.715Z",
+    "updated_at": "2026-05-22T19:29:57.069Z",
+    "hypothesis": "Yi-1.5-9B pretrained MMLU accuracy falls in the 65-70% vulnerability band, making it a suitable candidate for 5-dosage contamination replication",
+    "spec": {
+      "command": "python evaluate.py --model-path Yi-1.5-9B --benchmarks mmlu --batch-size 4 --output-dir results/yi_pretrained_mmlu",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/.hf_cache/cais___mmlu",
+      "data_count": 14042,
+      "model_name": "Yi-1.5-9B",
+      "seed": 42,
+      "eval_data": "MMLU 5-shot (cais/mmlu)",
+      "checkpoint_source": "pretrained (no adapter)"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/.hf_cache/Yi-1.5-9B",
+    "log_path": "/tmp/eval_yi_pretrained_mmlu.log",
+    "metrics": {
+      "mmlu_accuracy": 0.652,
+      "correct": 9156,
+      "total": 14042,
+      "gate_check": "GO"
+    },
+    "completed_at": "2026-05-22T19:29:57.069Z"
+  },
+  "timestamp": "2026-05-22T19:29:57.715454+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,3110 @@
+# analysis exp008 3regime comparison
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 64
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/workers/worker_analysis_exp008-3regime-comparison_20260515T070551.log`
+- **Structured JSON:** [`fbb0b277116558524a2e.json`](../../sessions/fb/fbb0b277116558524a2e.json)
+
+## Before a recorded user message
+
+64 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "7d992baf-aa4f-4995-a458-0dabd1a5cac3",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778831400,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "50fbf2cb-d3a6-4726-af00-ad2a0325f172",
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来执行 3-regime 信号对比分析。先收集服务器上的数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "a583f046-a958-4154-b06c-ce2efd8c1105",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXgQqBrh9KrS4NRmQcUjau",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12351,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12351
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CXpzNN28PuzUK4vf9ibB2E`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "42ad0f5f-44ec-476b-8b77-43503ee10a26",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXgQqBrh9KrS4NRmQcUjau",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12351,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12351
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T07:06:04.691Z_
+
+<details><summary>↩ Tool result · `toolu_01CXpzNN28PuzUK4vf9ibB2E`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "4a7fde0b-d782-43b1-ad71-330854b2d59a",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 29
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by collecting data from the server. I need to:
+1. Check the rl_aligned signals exist
+2. Find d000 (SFT-clean) signals
+3. Find base (pretrained) signals
+
+Let me do these in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "acf2bee3-d072-48ad-babc-a23c6d39c85f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kRrh2S5cGi8b6BcesyZjS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1911,
+      "cache_read_input_tokens": 24192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1911
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+先从服务器收集三个 regime 的信号数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "cd660d98-0075-431d-acec-7000d57848a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kRrh2S5cGi8b6BcesyZjS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1911,
+      "cache_read_input_tokens": 24192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1911
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H3T99j1xn4amfxX5i6E6w5`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -100 /root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "56ff95a6-d6c0-480a-9b28-015e09a6c413",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kRrh2S5cGi8b6BcesyZjS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1911,
+      "cache_read_input_tokens": 24192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1911
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01V6VZrqCBZvqGmWrTj3LY1n`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp002 -name \"signals_merged_*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "733a658c-0cde-411d-862e-d68737251f63",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kRrh2S5cGi8b6BcesyZjS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1911,
+      "cache_read_input_tokens": 24192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1911
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T07:06:13.440Z_
+
+<details><summary>↩ Tool result · `toolu_01H3T99j1xn4amfxX5i6E6w5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4031004011631012,\\n    \\\"s2_minkpp\\\": 1.8419604301452637,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.932852222435484\\n  },\\n  {\\n    \\\"index\\\": 1,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.39687806367874146,\\n    \\\"s2_minkpp\\\": 1.723421573638916,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9451202833584258\\n  },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.48771804571151733,\\n    \\\"s2_minkpp\\\": 1.974395990371704,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.8901001665238636\\n  },\\n  {\\n    \\\"index\\\": 3,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4187033176422119,\\n    \\\"s2_minkpp\\\": 1.8633140325546265,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9451203280954704\\n  },\\n  {\\n    \\\"index\\\": 4,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.433946430683136,\\n    \\\"s2_minkpp\\\": 1.8928027153015137,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.8399415379831693\\n  },\\n  {\\n    \\\"index\\\": 5,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.5172759294509888,\\n    \\\"s2_minkpp\\\": 1.4636515378952026,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9451202833584258\\n  },\\n  {\\n    \\\"index\\\": 6,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4738420844078064,\\n    \\\"s2_minkpp\\\": 1.7275123596191406,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9971877301543359\\n  },\\n  {\\n    \\\"index\\\": 7,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.5168655514717102,\\n    \\\"s2_minkpp\\\": 1.539792537689209,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9052723567690952\\n  },\\n  {\\n    \\\"index\\\": 8,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4269416332244873,\\n    \\\"s2_minkpp\\\": 1.7657572031021118,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9328522468453779\\n  },\\n  {\\n    \\\"index\\\": 9,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.46814703941345215,\\n    \\\"s2_minkpp\\\": 1.9064033031463623,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.8741039401736014\\n  },\\n  {\\n    \\\"index\\\": 10,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.5123127698898315,\\n    \\\"s2_minkpp\\\": 1.6748476028442383,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9750790425362086\\n  },\\n  {\\n    \\\"index\\\": 11,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.44887638092041016,\\n    \\\"s2_minkpp\\\": 1.7778788805007935,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.7054972350223498\\n  },\\n  {\\n    \\\"index\\\": 12,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "a698d9ec-1a95-455d-bf09-89b894574b37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 0,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.4031004011631012,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.8419604301452637,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.932852222435484\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 1,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.39687806367874146,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.723421573638916,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.9451202833584258\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 2,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.48771804571151733,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.974395990371704,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.8901001665238636\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 3,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.4187033176422119,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.8633140325546265,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.9451203280954704\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 4,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.433946430683136,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.8928027153015137,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.8399415379831693\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 5,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.5172759294509888,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.4636515378952026,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.9451202833584258\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 6,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.4738420844078064,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.7275123596191406,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.9971877301543359\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 7,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.5168655514717102,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.539792537689209,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.9052723567690952\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 8,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.4269416332244873,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.7657572031021118,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.9328522468453779\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 9,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.46814703941345215,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.9064033031463623,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.8741039401736014\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 10,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.5123127698898315,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.6748476028442383,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.9750790425362086\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 11,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"s1_embedding\\\\\\\": 0.44887638092041016,\\\\n    \\\\\\\"s2_minkpp\\\\\\\": 1.7778788805007935,\\\\n    \\\\\\\"s3_constat\\\\\\\": null,\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": -0.7054972350223498\\\\n  },\\\\n  {\\\\n    \\\\\\\"index\\\\\\\": 12,\\\\n    \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"index\\\": 0,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4031004011631012,\\n    \\\"s2_minkpp\\\": 1.8419604301452637,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.932852222435484\\n  },\\n  {\\n    \\\"index\\\": 1,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.39687806367874146,\\n    \\\"s2_minkpp\\\": 1.723421573638916,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9451202833584258\\n  },\\n  {\\n    \\\"index\\\": 2,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.48771804571151733,\\n    \\\"s2_minkpp\\\": 1.974395990371704,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.8901001665238636\\n  },\\n  {\\n    \\\"index\\\": 3,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4187033176422119,\\n    \\\"s2_minkpp\\\": 1.8633140325546265,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9451203280954704\\n  },\\n  {\\n    \\\"index\\\": 4,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.433946430683136,\\n    \\\"s2_minkpp\\\": 1.8928027153015137,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.8399415379831693\\n  },\\n  {\\n    \\\"index\\\": 5,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.5172759294509888,\\n    \\\"s2_minkpp\\\": 1.4636515378952026,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9451202833584258\\n  },\\n  {\\n    \\\"index\\\": 6,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4738420844078064,\\n    \\\"s2_minkpp\\\": 1.7275123596191406,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9971877301543359\\n  },\\n  {\\n    \\\"index\\\": 7,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.5168655514717102,\\n    \\\"s2_minkpp\\\": 1.539792537689209,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9052723567690952\\n  },\\n  {\\n    \\\"index\\\": 8,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.4269416332244873,\\n    \\\"s2_minkpp\\\": 1.7657572031021118,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9328522468453779\\n  },\\n  {\\n    \\\"index\\\": 9,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.46814703941345215,\\n    \\\"s2_minkpp\\\": 1.9064033031463623,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.8741039401736014\\n  },\\n  {\\n    \\\"index\\\": 10,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.5123127698898315,\\n    \\\"s2_minkpp\\\": 1.6748476028442383,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.9750790425362086\\n  },\\n  {\\n    \\\"index\\\": 11,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n    \\\"s1_embedding\\\": 0.44887638092041016,\\n    \\\"s2_minkpp\\\": 1.7778788805007935,\\n    \\\"s3_constat\\\": null,\\n    \\\"s4_selfcritique\\\": -0.7054972350223498\\n  },\\n  {\\n    \\\"index\\\": 12,\\n    \\\"benchmark\\\": \\\"mmlu\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T07:06:13.913Z_
+
+<details><summary>↩ Tool result · `toolu_01V6VZrqCBZvqGmWrTj3LY1n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "2310b163-2814-416e-8e21-99f129e8cb5d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_arc_challenge.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019ysYUqkwg2iSFh6E4a2it6`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/contamcal-irt-calibration/outputs -name \"signals_merged_*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "22e9d18a-fe06-4881-b887-f6c9aca9567f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kRrh2S5cGi8b6BcesyZjS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1911,
+      "cache_read_input_tokens": 24192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1911
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T07:06:15.212Z_
+
+<details><summary>↩ Tool result · `toolu_019ysYUqkwg2iSFh6E4a2it6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "e1bb37d5-0878-4ae4-a3c5-656435b058b7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0111jFVLv8Pjpao68CmH8NUq`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp -maxdepth 4 -name \"signals_merged_*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "246eb5cc-6949-4548-9f8a-49a47511dadd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013kRrh2S5cGi8b6BcesyZjS",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1911,
+      "cache_read_input_tokens": 24192,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1911
+      },
+      "output_tokens": 18,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T07:06:15.801Z_
+
+<details><summary>↩ Tool result · `toolu_0111jFVLv8Pjpao68CmH8NUq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "9298df12-1e57-41e4-bbe1-14e2143c68bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_arc_challenge.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_arc_challenge.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d025_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d000_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d005_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d025_s42/signals_merged_arc_challenge.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_mmlu.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_d100_s42/signals_merged_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Data found:
+- **rl_aligned**: exp008 signals confirmed with proper format
+- **d000 (SFT-clean)**: `/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/` has all 3 benchmarks
+- **base (pretrained)**: Not found yet. Let me search for base/pretrained signals.
+
+I also see d005, d025, d100 contamination levels which could be useful for ground truth labels (d000 = clean, d100 = fully contaminated).
+
+
+Now I need to locate the base model signals and verify whether there's a systematic contamination labeling scheme I can leverage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "53330177-7087-444f-a22c-3b5fa4f91bd1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXUAs5sz3EEMrc7x2DoP5M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 26103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+d000 (SFT-clean) 找到了。现在查找 base model 信号和污染标签。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "9a85a9b0-757d-482d-862e-1526bd2bab76",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXUAs5sz3EEMrc7x2DoP5M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 26103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Roaun3C1wadruMxBKHF5DE`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp -maxdepth 5 -name \"signals_merged_*.json\" -path \"*base*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "fd39d02d-ea38-4333-b607-ff52ef79d636",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXUAs5sz3EEMrc7x2DoP5M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 26103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T07:06:25.666Z_
+
+<details><summary>↩ Tool result · `toolu_01Roaun3C1wadruMxBKHF5DE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "d5a504a8-1c09-4da3-ad85-5b098f7e05f3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0149MxMpga3XgGQ27d5D22FE`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp -maxdepth 5 -name \"signals_merged_*.json\" -path \"*pretrain*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "2fc2beb9-0698-43bf-b0b4-4b86750ef349",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXUAs5sz3EEMrc7x2DoP5M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 26103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T07:06:26.524Z_
+
+<details><summary>↩ Tool result · `toolu_0149MxMpga3XgGQ27d5D22FE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "c3b5ed4a-5017-4e7e-8bfa-3b7880d19a57",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011Cob51bduPtrEjsw5UWmky`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp/exp008 -maxdepth 4 -name \"signals_merged_*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "72f0ef2d-64f3-4c88-ba46-55d924cd785a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXUAs5sz3EEMrc7x2DoP5M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 26103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T07:06:27.355Z_
+
+<details><summary>↩ Tool result · `toolu_011Cob51bduPtrEjsw5UWmky`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json\\n/root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "26275fdf-c005-4beb-8e0f-7586f75c6565",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json\\\\n/root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json\\\\n/root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json\\n/root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json\\n/root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VxAZ1AmAg1ihZaSTP7zfFT`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp -maxdepth 4 -name \"contam*label*\" -o -name \"*ground_truth*\" -o -name \"*contamination_map*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "65b98594-fff3-4c44-9f45-b46b6f83e11b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YXUAs5sz3EEMrc7x2DoP5M",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 26103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4483
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T07:06:28.512Z_
+
+<details><summary>↩ Tool result · `toolu_01VxAZ1AmAg1ihZaSTP7zfFT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d100.json\\n/root/autodl-tmp/exp006/dryrun_test/mmlu/ground_truth.json\\n/root/autodl-tmp/exp006/dryrun_test/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/dryrun_test/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/dryrun_test/humaneval/ground_truth.json\\n/root/autodl-tmp/exp006/results/mmlu/ground_truth.json\\n/root/autodl-tmp/exp006/results/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results/humaneval/ground_truth.json\\n/root/autodl-tmp/exp006/results_05B_sanity_300/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_05B_gsm8k/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_05B_gsm8k_delta/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_05B_arc_delta/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v2/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v3_rrf/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_mmlu_v2/mmlu/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v3_rrf/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v4_rrf/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2_wider_prior/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_2pl_ablation/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_2pl_ablation/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_2pl_ablation/mmlu/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_s1only_arc/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended_v2/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_s1only_gsm8k/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_2pl/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_s1only_2pl/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled/arc_challenge/ground_truth.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "0fcd17d4-2016-4cec-b7bb-13fe2e2fdab7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d025.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d050.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d050.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d050.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d050.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d100.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d100.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d100.json\\\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d100.json\\\\n/root/autodl-tmp/exp006/dryrun_test/mmlu/ground_truth.json\\\\n/root/autodl-tmp/exp006/dryrun_test/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/dryrun_test/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/dryrun_test/humaneval/ground_truth.json\\\\n/root/autodl-tmp/exp006/results/mmlu/ground_truth.json\\\\n/root/autodl-tmp/exp006/results/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results/humaneval/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_05B_sanity_300/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_05B_gsm8k/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_05B_gsm8k_delta/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_05B_arc_delta/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v2/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v3_rrf/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_mmlu_v2/mmlu/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v3_rrf/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v4_rrf/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2_wider_prior/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_2pl_ablation/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_2pl_ablation/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_2pl_ablation/mmlu/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_s1only_arc/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended_v2/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_s1only_gsm8k/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_2pl/arc_challenge/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_s1only_2pl/gsm8k/ground_truth.json\\\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled/arc_challenge/ground_truth.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data/contamination_labels_mmlu_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d025.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d050.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_humaneval_d100.json\\n/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d100.json\\n/root/autodl-tmp/exp006/dryrun_test/mmlu/ground_truth.json\\n/root/autodl-tmp/exp006/dryrun_test/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/dryrun_test/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/dryrun_test/humaneval/ground_truth.json\\n/root/autodl-tmp/exp006/results/mmlu/ground_truth.json\\n/root/autodl-tmp/exp006/results/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results/humaneval/ground_truth.json\\n/root/autodl-tmp/exp006/results_05B_sanity_300/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_05B_gsm8k/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_05B_gsm8k_delta/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_05B_arc_delta/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_gsm8k_v1/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v2/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_v3_rrf/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_mmlu_v2/mmlu/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v3_rrf/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v4_rrf/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_v2_wider_prior/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_2pl_ablation/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_2pl_ablation/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_2pl_ablation/mmlu/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_s1only_arc/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended_v2/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_s1only_gsm8k/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_2pl/arc_challenge/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_s1only_2pl/gsm8k/ground_truth.json\\n/root/autodl-tmp/exp006/results_pooled_05B_15B_arc_oracle_4pl_pooled/arc_challenge/ground_truth.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Base model signals don't exist. Let me check the structure of the exp008 directory more broadly and also look for any base/pretrained signals that might be under different naming conventions.
+
+For the analysis, I have:
+1. **rl_aligned**: exp008 signals (3 benchmarks)
+2. **d000 (SFT-clean)**: exp002 `Qwen2.5-0.5B_d000_s42` (3 benchmarks)
+3. **base (pretrained)**: Not found
+
+Let me also check contamination labels format and whether there are base signals under exp008 or elsewhere.
+
+
+Since d000 represents 0% contamination with all clean samples, the ground truth comes from the training setup itself—d000 has no contaminated items while other doses do. For this three-regime comparison, I'm really looking at the effect of SFT on clean data (base → d000) and then the effect of RL alignment (d000 → rl_aligned), but since d000 was trained on clean data, there won't be contamination labels to compute AUC for these specific regimes.
+
+Now I'm clarifying the model lineage: base is the pretrained Qwen2.5-0.5B, d000 is that same model fine-tuned on clean SFT data, and rl_aligned is the official Qwen2.5-0.5B-Instruct which has gone through both SFT and RLHF. Since all three models are evaluated on the same benchmark items, I can compare their contamination detection performance directly. I need to write the analysis script to pull signal data and compute statistics across the two available training regimes, though I should first verify whether base model signals might exist elsewhere before proceeding with just the d000 and rl_aligned comparison.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "505497b9-9c58-45e5-8569-46380666b346",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GcyDvBiMcpTTWaZyWTKKj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 30586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3332
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+Base model 信号不存在。让我再确认一下是否在其他位置，同时查看 d000 和 rl_aligned 的数据量。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "7b2528ed-f826-4794-a490-8b6b0a5b0094",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GcyDvBiMcpTTWaZyWTKKj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 30586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3332
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MQ4dwrWfWaERLNCZQ6MHV1`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "find /root/autodl-tmp -maxdepth 5 -name \"signals_merged_*.json\" -not -path \"*/exp002/*\" -not -path \"*/exp008/*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "aa243df4-e71e-4efe-af2d-007a02f228dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GcyDvBiMcpTTWaZyWTKKj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 30586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3332
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T07:06:56.024Z_
+
+<details><summary>↩ Tool result · `toolu_01MQ4dwrWfWaERLNCZQ6MHV1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "df535644-7ea9-4c64-847a-3bd294312b9d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vsz5ZZBhGtfXzMwwn2P5tG`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "0a96b49f-181b-4181-bf6f-b5433b86b08a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GcyDvBiMcpTTWaZyWTKKj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 30586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3332
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T07:06:57.827Z_
+
+<details><summary>↩ Tool result · `toolu_01Vsz5ZZBhGtfXzMwwn2P5tG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 112337 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json\\n  10553 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json\\n   9377 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json\\n 132267 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "0530dd2e-f80d-453a-9e52-577cdbc0b458",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 112337 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json\\\\n  10553 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json\\\\n   9377 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json\\\\n 132267 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \" 112337 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json\\n  10553 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json\\n   9377 /root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json\\n 132267 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Gn9ZY1uYrqaAXFJpZhCznb`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "wc -l /root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json /root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json /root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "9c0c0dfe-f49a-4152-ad5a-2ac8a46caa45",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GcyDvBiMcpTTWaZyWTKKj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 30586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3332
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VecBDs42sEgig7cm9ouCVn`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -5 /root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "8eb2e926-f5e9-4ebd-985d-6e81db3869f8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014GcyDvBiMcpTTWaZyWTKKj",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3332,
+      "cache_read_input_tokens": 30586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3332
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T07:07:02.133Z_
+
+<details><summary>↩ Tool result · `toolu_01Gn9ZY1uYrqaAXFJpZhCznb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \" 112337 /root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json\\n  10553 /root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json\\n   9377 /root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json\\n 132267 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "61a9f1e5-bf56-4d36-b002-5d54abc44b6a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 112337 /root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json\\\\n  10553 /root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json\\\\n   9377 /root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json\\\\n 132267 total\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \" 112337 /root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json\\n  10553 /root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json\\n   9377 /root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json\\n 132267 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.65}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T07:07:02.602Z_
+
+<details><summary>↩ Tool result · `toolu_01VecBDs42sEgig7cm9ouCVn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 5,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 320,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "16997745-15c2-4582-9917-dc5932a6d100",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"dosage\\\\\\\": 5,\\\\n  \\\\\\\"total_items\\\\\\\": 14042,\\\\n  \\\\\\\"contaminated_count\\\\\\\": 320,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 5,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 320,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Findings:
+1. **Base model signals don't exist** - no pretrained Qwen2.5-0.5B signals found anywhere
+2. **d000 and rl_aligned have matching item counts** - same number of lines for each benchmark (MMLU: 112337, GSM8K: 10553, ARC: 9377)
+3. **Contamination labels exist** but only for d005/d025/d050/d100 doses (not d000 which is clean)
+
+Since base model signals don't exist, I'll do a **2-regime analysis** (d000 vs rl_aligned) and note the base gap.
+
+
+For AUC analysis, I can't use traditional contamination metrics since d000 is clean and rl_aligned's contamination status is unknown. The d005 contamination labels don't directly apply to these models since they mark items contaminated during d005 training specifically. I need to focus on the contaminated dose models instead for a meaningful AUC comparison.
+
+Since the task asks about three regimes—base, d000, and rl_aligned—and AUC doesn't directly apply here, I'll shift to comparing distribution statistics, effect sizes with Cohen's d, and KS tests between d000 and rl_aligned. I'll write a Python analysis script to compute these metrics on the server.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "faddb200-fabc-476f-a80c-6e5d75d61b72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VsLLp8fdUovxie8CwFJjxT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2192,
+      "cache_read_input_tokens": 33918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+数据确认：d000 和 rl_aligned 各 benchmark 项数完全匹配，base model 信号不存在。我将在服务器上运行分析脚本，做 2-regime（d000 vs rl_aligned）对比，并补充 d005/d100 的 AUC 参考数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "215be1a2-855e-4e4f-9999-43940a450224",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VsLLp8fdUovxie8CwFJjxT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2192,
+      "cache_read_input_tokens": 33918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01RpxkJvf1qa9rjThRCqQZZT`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat > /tmp/regime_analysis.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom scipy import stats\nimport sys\n\ndef load_signals(path):\n    with open(path) as f:\n        data = json.load(f)\n    return data\n\ndef extract_signal_arrays(data):\n    s1 = np.array([d['s1_embedding'] for d in data if d['s1_embedding'] is not None])\n    s2 = np.array([d['s2_minkpp'] for d in data if d['s2_minkpp'] is not None])\n    s4 = np.array([d['s4_selfcritique'] for d in data if d['s4_selfcritique'] is not None])\n    return {'s1_embedding': s1, 's2_minkpp': s2, 's4_selfcritique': s4}\n\ndef compute_stats(arr):\n    return {\n        'n': int(len(arr)),\n        'mean': float(np.mean(arr)),\n        'std': float(np.std(arr)),\n        'median': float(np.median(arr)),\n        'q25': float(np.percentile(arr, 25)),\n        'q75': float(np.percentile(arr, 75)),\n        'iqr': float(np.percentile(arr, 75) - np.percentile(arr, 25)),\n        'min': float(np.min(arr)),\n        'max': float(np.max(arr))\n    }\n\ndef cohens_d(a, b):\n    na, nb = len(a), len(b)\n    pooled_std = np.sqrt(((na-1)*np.std(a,ddof=1)**2 + (nb-1)*np.std(b,ddof=1)**2) / (na+nb-2))\n    if pooled_std == 0:\n        return 0.0\n    return float((np.mean(a) - np.mean(b)) / pooled_std)\n\ndef ks_test(a, b):\n    stat, pval = stats.ks_2samp(a, b)\n    return {'statistic': float(stat), 'p_value': float(pval)}\n\ndef compute_auc(signals, labels):\n    \"\"\"Compute AUC for binary labels (1=contaminated, 0=clean)\"\"\"\n    from sklearn.metrics import roc_auc_score\n    mask = ~np.isnan(signals)\n    s = signals[mask]\n    l = labels[mask]\n    if len(np.unique(l)) < 2:\n        return None\n    try:\n        auc_pos = roc_auc_score(l, s)\n        auc_neg = roc_auc_score(l, -s)\n        return float(max(auc_pos, auc_neg))\n    except:\n        return None\n\nbenchmarks = ['mmlu', 'gsm8k', 'arc_challenge']\nsignal_names = ['s1_embedding', 's2_minkpp', 's4_selfcritique']\n\nd000_paths = {\n    'mmlu': '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_mmlu.json',\n    'gsm8k': '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_gsm8k.json',\n    'arc_challenge': '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_arc_challenge.json',\n}\nrl_paths = {\n    'mmlu': '/root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json',\n    'gsm8k': '/root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json',\n    'arc_challenge': '/root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json',\n}\n\n# Also load d005 and d100 for AUC reference\nd005_paths = {\n    'mmlu': '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_mmlu.json',\n    'gsm8k': '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_gsm8k.json',\n    'arc_challenge': '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_arc_challenge.json',\n}\nd100_paths = {\n    'mmlu': '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_mmlu.json',\n    'gsm8k': '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_gsm8k.json',\n    'arc_challenge': '/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_arc_challenge.json',\n}\n\n# Contamination labels for d005\ncontam_label_paths = {\n    'mmlu': '/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json',\n    'gsm8k': '/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_gsm8k_d005.json',\n    'arc_challenge': '/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_arc_challenge_d005.json',\n}\n\nresults = {\n    'metadata': {\n        'regimes': ['d000_sft_clean', 'rl_aligned_instruct'],\n        'base_model_note': 'Pretrained Qwen2.5-0.5B signals not available. Need separate computation.',\n        'model': 'Qwen2.5-0.5B',\n        'signals': signal_names,\n        'benchmarks': benchmarks,\n        'reference_doses': ['d005', 'd100']\n    },\n    'per_benchmark': {}\n}\n\nfor bm in benchmarks:\n    print(f\"\\n=== {bm.upper()} ===\")\n    d000_data = load_signals(d000_paths[bm])\n    rl_data = load_signals(rl_paths[bm])\n    \n    d000_signals = extract_signal_arrays(d000_data)\n    rl_signals = extract_signal_arrays(rl_data)\n    \n    bm_result = {'distribution_stats': {}, 'effect_size': {}, 'ks_test': {}, 'shift_direction': {}}\n    \n    for sig in signal_names:\n        d000_arr = d000_signals[sig]\n        rl_arr = rl_signals[sig]\n        \n        d000_stats = compute_stats(d000_arr)\n        rl_stats = compute_stats(rl_arr)\n        \n        cd = cohens_d(rl_arr, d000_arr)\n        ks = ks_test(d000_arr, rl_arr)\n        \n        mean_shift = rl_stats['mean'] - d000_stats['mean']\n        shift_pct = (mean_shift / abs(d000_stats['mean'])) * 100 if d000_stats['mean'] != 0 else 0\n        \n        bm_result['distribution_stats'][sig] = {\n            'd000_sft_clean': d000_stats,\n            'rl_aligned': rl_stats\n        }\n        bm_result['effect_size'][sig] = {\n            'd000_to_rl': cd,\n            'interpretation': 'negligible' if abs(cd) < 0.2 else 'small' if abs(cd) < 0.5 else 'medium' if abs(cd) < 0.8 else 'large'\n        }\n        bm_result['ks_test'][sig] = {\n            'd000_vs_rl': ks,\n            'significant_at_001': ks['p_value'] < 0.01\n        }\n        bm_result['shift_direction'][sig] = {\n            'mean_shift': float(mean_shift),\n            'shift_pct': float(shift_pct),\n            'direction': 'increase' if mean_shift > 0 else 'decrease'\n        }\n        \n        print(f\"\\n  {sig}:\")\n        print(f\"    d000: mean={d000_stats['mean']:.4f} std={d000_stats['std']:.4f} median={d000_stats['median']:.4f}\")\n        print(f\"    rl:   mean={rl_stats['mean']:.4f} std={rl_stats['std']:.4f} median={rl_stats['median']:.4f}\")\n        print(f\"    Cohen's d (d000→rl): {cd:.4f} ({bm_result['effect_size'][sig]['interpretation']})\")\n        print(f\"    KS stat: {ks['statistic']:.4f}, p={ks['p_value']:.2e}\")\n        print(f\"    Mean shift: {mean_shift:+.4f} ({shift_pct:+.1f}%)\")\n    \n    # AUC analysis using d005 contamination labels\n    try:\n        with open(contam_label_paths[bm]) as f:\n            contam_info = json.load(f)\n        \n        contaminated_indices = set(contam_info.get('contaminated_indices', []))\n        total_items = contam_info.get('total_items', len(d000_data))\n        \n        labels = np.array([1 if d['index'] in contaminated_indices else 0 for d in d000_data])\n        \n        bm_result['auc_reference'] = {'contamination_source': 'd005_labels', 'contaminated_count': len(contaminated_indices), 'total_items': total_items}\n        \n        # Load d005 and d100 signals for AUC comparison\n        d005_data = load_signals(d005_paths[bm])\n        d100_data = load_signals(d100_paths[bm])\n        d005_signals = extract_signal_arrays(d005_data)\n        d100_signals = extract_signal_arrays(d100_data)\n        \n        print(f\"\\n  AUC (d005 labels, {len(contaminated_indices)} contaminated / {total_items} total):\")\n        \n        for sig in signal_names:\n            auc_d000 = compute_auc(d000_signals[sig], labels[:len(d000_signals[sig])])\n            auc_rl = compute_auc(rl_signals[sig], labels[:len(rl_signals[sig])])\n            auc_d005 = compute_auc(d005_signals[sig], labels[:len(d005_signals[sig])])\n            auc_d100 = compute_auc(d100_signals[sig], labels[:len(d100_signals[sig])])\n            \n            bm_result['auc_reference'][sig] = {\n                'd000_sft_clean': auc_d000,\n                'rl_aligned': auc_rl,\n                'd005_sft_contam': auc_d005,\n                'd100_sft_contam': auc_d100\n            }\n            print(f\"    {sig}: d000={auc_d000:.4f if auc_d000 else 'N/A'}, rl={auc_rl:.4f if auc_rl else 'N/A'}, d005={auc_d005:.4f if auc_d005 else 'N/A'}, d100={auc_d100:.4f if auc_d100 else 'N/A'}\")\n    except Exception as e:\n        print(f\"  AUC skipped: {e}\")\n        bm_result['auc_reference'] = {'error': str(e)}\n    \n    results['per_benchmark'][bm] = bm_result\n\n# Cross-benchmark summary\nprint(\"\\n\\n=== CROSS-BENCHMARK SUMMARY ===\")\nsummary = {}\nfor sig in signal_names:\n    shifts = []\n    effects = []\n    for bm in benchmarks:\n        r = results['per_benchmark'][bm]\n        shifts.append(r['shift_direction'][sig]['shift_pct'])\n        effects.append(r['effect_size'][sig]['d000_to_rl'])\n    summary[sig] = {\n        'mean_shift_pct': float(np.mean(shifts)),\n        'shift_pcts': {bm: s for bm, s in zip(benchmarks, shifts)},\n        'mean_effect_size': float(np.mean(effects)),\n        'effect_sizes': {bm: e for bm, e in zip(benchmarks, effects)},\n        'consistent_direction': all(s > 0 for s in shifts) or all(s < 0 for s in shifts)\n    }\n    direction = 'increase' if np.mean(shifts) > 0 else 'decrease'\n    consistent = 'YES' if summary[sig]['consistent_direction'] else 'NO'\n    print(f\"  {sig}: avg shift {np.mean(shifts):+.1f}%, avg Cohen's d = {np.mean(effects):.3f}, consistent direction: {consistent} ({direction})\")\n\nresults['cross_benchmark_summary'] = summary\n\nwith open('/tmp/exp008_3regime_analysis.json', 'w') as f:\n    json.dump(results, f, indent=2)\n\nprint(\"\\n\\nResults saved to /tmp/exp008_3regime_analysis.json\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/regime_analysis.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "1c84d846-cded-42f7-ac24-9a547c820539",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VsLLp8fdUovxie8CwFJjxT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2192,
+      "cache_read_input_tokens": 33918,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2192
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T07:08:08.746Z_
+
+<details><summary>↩ Tool result · `toolu_01RpxkJvf1qa9rjThRCqQZZT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== MMLU ===\\n\\n  s1_embedding:\\n    d000: mean=0.5224 std=0.0718 median=0.5248\\n    rl:   mean=0.6078 std=0.1381 median=0.5763\\n    Cohen's d (d000→rl): 0.7759 (medium)\\n    KS stat: 0.2999, p=0.00e+00\\n    Mean shift: +0.0854 (+16.3%)\\n\\n  s2_minkpp:\\n    d000: mean=1.6976 std=0.0742 median=1.6945\\n    rl:   mean=1.6952 std=0.1164 median=1.7029\\n    Cohen's d (d000→rl): -0.0247 (negligible)\\n    KS stat: 0.0870, p=1.23e-46\\n    Mean shift: -0.0024 (-0.1%)\\n\\n  s4_selfcritique:\\n    d000: mean=-0.9557 std=0.0609 median=-0.9751\\n    rl:   mean=-0.8782 std=0.1150 median=-0.9053\\n    Cohen's d (d000→rl): 0.8422 (large)\\n    KS stat: 0.3496, p=0.00e+00\\n    Mean shift: +0.0775 (+8.1%)\\n\\n  AUC (d005 labels, 0 contaminated / 14042 total):\\n  AUC skipped: unsupported format string passed to NoneType.__format__\\n\\n=== GSM8K ===\\n\\n  s1_embedding:\\n    d000: mean=0.6131 std=0.0587 median=0.6114\\n    rl:   mean=0.6292 std=0.0714 median=0.6239\\n    Cohen's d (d000→rl): 0.2454 (small)\\n    KS stat: 0.0887, p=6.16e-05\\n    Mean shift: +0.0160 (+2.6%)\\n\\n  s2_minkpp:\\n    d000: mean=1.6532 std=0.0889 median=1.6654\\n    rl:   mean=1.7073 std=0.1807 median=1.7164\\n    Cohen's d (d000→rl): 0.3802 (small)\\n    KS stat: 0.3010, p=4.11e-53\\n    Mean shift: +0.0542 (+3.3%)\\n\\n  s4_selfcritique:\\n    d000: mean=-0.9408 std=0.0848 median=-0.9663\\n    rl:   mean=-0.9632 std=0.0499 median=-0.9826\\n    Cohen's d (d000→rl): -0.3219 (small)\\n    KS stat: 0.1630, p=1.04e-15\\n    Mean shift: -0.0224 (-2.4%)\\n\\n  AUC (d005 labels, 0 contaminated / 1319 total):\\n  AUC skipped: unsupported format string passed to NoneType.__format__\\n\\n=== ARC_CHALLENGE ===\\n\\n  s1_embedding:\\n    d000: mean=0.5946 std=0.0683 median=0.5916\\n    rl:   mean=0.6212 std=0.0895 median=0.6105\\n    Cohen's d (d000→rl): 0.3342 (small)\\n    KS stat: 0.1186, p=1.34e-07\\n    Mean shift: +0.0266 (+4.5%)\\n\\n  s2_minkpp:\\n    d000: mean=1.7079 std=0.0761 median=1.7094\\n    rl:   mean=1.6737 std=0.1319 median=1.6834\\n    Cohen's d (d000→rl): -0.3176 (small)\\n    KS stat: 0.1928, p=1.83e-19\\n    Mean shift: -0.0342 (-2.0%)\\n\\n  s4_selfcritique:\\n    d000: mean=-0.9538 std=0.0557 median=-0.9751\\n    rl:   mean=-0.9227 std=0.0862 median=-0.9563\\n    Cohen's d (d000→rl): 0.4281 (small)\\n    KS stat: 0.1817, p=2.53e-17\\n    Mean shift: +0.0311 (+3.3%)\\n\\n  AUC (d005 labels, 0 contaminated / 1172 total):\\n  AUC skipped: unsupported format string passed to NoneType.__format__\\n\\n\\n=== CROSS-BENCHMARK SUMMARY ===\\n  s1_embedding: avg shift +7.8%, avg Cohen's d = 0.452, consistent direction: YES (increase)\\n  s2_minkpp: avg shift +0.4%, avg Cohen's d = 0.013, consistent direction: NO (increase)\\n  s4_selfcritique: avg shift +3.0%, avg Cohen's d = 0.316, consistent direction: NO (increase)\\n\\n\\nResults saved to /tmp/exp008_3regime_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "927e57f0-0663-4b6c-9e17-643a715b2c4e",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== MMLU ===\\\\n\\\\n  s1_embedding:\\\\n    d000: mean=0.5224 std=0.0718 median=0.5248\\\\n    rl:   mean=0.6078 std=0.1381 median=0.5763\\\\n    Cohen's d (d000→rl): 0.7759 (medium)\\\\n    KS stat: 0.2999, p=0.00e+00\\\\n    Mean shift: +0.0854 (+16.3%)\\\\n\\\\n  s2_minkpp:\\\\n    d000: mean=1.6976 std=0.0742 median=1.6945\\\\n    rl:   mean=1.6952 std=0.1164 median=1.7029\\\\n    Cohen's d (d000→rl): -0.0247 (negligible)\\\\n    KS stat: 0.0870, p=1.23e-46\\\\n    Mean shift: -0.0024 (-0.1%)\\\\n\\\\n  s4_selfcritique:\\\\n    d000: mean=-0.9557 std=0.0609 median=-0.9751\\\\n    rl:   mean=-0.8782 std=0.1150 median=-0.9053\\\\n    Cohen's d (d000→rl): 0.8422 (large)\\\\n    KS stat: 0.3496, p=0.00e+00\\\\n    Mean shift: +0.0775 (+8.1%)\\\\n\\\\n  AUC (d005 labels, 0 contaminated / 14042 total):\\\\n  AUC skipped: unsupported format string passed to NoneType.__format__\\\\n\\\\n=== GSM8K ===\\\\n\\\\n  s1_embedding:\\\\n    d000: mean=0.6131 std=0.0587 median=0.6114\\\\n    rl:   mean=0.6292 std=0.0714 median=0.6239\\\\n    Cohen's d (d000→rl): 0.2454 (small)\\\\n    KS stat: 0.0887, p=6.16e-05\\\\n    Mean shift: +0.0160 (+2.6%)\\\\n\\\\n  s2_minkpp:\\\\n    d000: mean=1.6532 std=0.0889 median=1.6654\\\\n    rl:   mean=1.7073 std=0.1807 median=1.7164\\\\n    Cohen's d (d000→rl): 0.3802 (small)\\\\n    KS stat: 0.3010, p=4.11e-53\\\\n    Mean shift: +0.0542 (+3.3%)\\\\n\\\\n  s4_selfcritique:\\\\n    d000: mean=-0.9408 std=0.0848 median=-0.9663\\\\n    rl:   mean=-0.9632 std=0.0499 median=-0.9826\\\\n    Cohen's d (d000→rl): -0.3219 (small)\\\\n    KS stat: 0.1630, p=1.04e-15\\\\n    Mean shift: -0.0224 (-2.4%)\\\\n\\\\n  AUC (d005 labels, 0 contaminated / 1319 total):\\\\n  AUC skipped: unsupported format string passed to NoneType.__format__\\\\n\\\\n=== ARC_CHALLENGE ===\\\\n\\\\n  s1_embedding:\\\\n    d000: mean=0.5946 std=0.0683 median=0.5916\\\\n    rl:   mean=0.6212 std=0.0895 median=0.6105\\\\n    Cohen's d (d000→rl): 0.3342 (small)\\\\n    KS stat: 0.1186, p=1.34e-07\\\\n    Mean shift: +0.0266 (+4.5%)\\\\n\\\\n  s2_minkpp:\\\\n    d000: mean=1.7079 std=0.0761 median=1.7094\\\\n    rl:   mean=1.6737 std=0.1319 median=1.6834\\\\n    Cohen's d (d000→rl): -0.3176 (small)\\\\n    KS stat: 0.1928, p=1.83e-19\\\\n    Mean shift: -0.0342 (-2.0%)\\\\n\\\\n  s4_selfcritique:\\\\n    d000: mean=-0.9538 std=0.0557 median=-0.9751\\\\n    rl:   mean=-0.9227 std=0.0862 median=-0.9563\\\\n    Cohen's d (d000→rl): 0.4281 (small)\\\\n    KS stat: 0.1817, p=2.53e-17\\\\n    Mean shift: +0.0311 (+3.3%)\\\\n\\\\n  AUC (d005 labels, 0 contaminated / 1172 total):\\\\n  AUC skipped: unsupported format string passed to NoneType.__format__\\\\n\\\\n\\\\n=== CROSS-BENCHMARK SUMMARY ===\\\\n  s1_embedding: avg shift +7.8%, avg Cohen's d = 0.452, consistent direction: YES (increase)\\\\n  s2_minkpp: avg shift +0.4%, avg Cohen's d = 0.013, consistent direction: NO (increase)\\\\n  s4_selfcritique: avg shift +3.0%, avg Cohen's d = 0.316, consistent direction: NO (increase)\\\\n\\\\n\\\\nResults saved to /tmp/exp008_3regime_analysis.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.34}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n=== MMLU ===\\n\\n  s1_embedding:\\n    d000: mean=0.5224 std=0.0718 median=0.5248\\n    rl:   mean=0.6078 std=0.1381 median=0.5763\\n    Cohen's d (d000→rl): 0.7759 (medium)\\n    KS stat: 0.2999, p=0.00e+00\\n    Mean shift: +0.0854 (+16.3%)\\n\\n  s2_minkpp:\\n    d000: mean=1.6976 std=0.0742 median=1.6945\\n    rl:   mean=1.6952 std=0.1164 median=1.7029\\n    Cohen's d (d000→rl): -0.0247 (negligible)\\n    KS stat: 0.0870, p=1.23e-46\\n    Mean shift: -0.0024 (-0.1%)\\n\\n  s4_selfcritique:\\n    d000: mean=-0.9557 std=0.0609 median=-0.9751\\n    rl:   mean=-0.8782 std=0.1150 median=-0.9053\\n    Cohen's d (d000→rl): 0.8422 (large)\\n    KS stat: 0.3496, p=0.00e+00\\n    Mean shift: +0.0775 (+8.1%)\\n\\n  AUC (d005 labels, 0 contaminated / 14042 total):\\n  AUC skipped: unsupported format string passed to NoneType.__format__\\n\\n=== GSM8K ===\\n\\n  s1_embedding:\\n    d000: mean=0.6131 std=0.0587 median=0.6114\\n    rl:   mean=0.6292 std=0.0714 median=0.6239\\n    Cohen's d (d000→rl): 0.2454 (small)\\n    KS stat: 0.0887, p=6.16e-05\\n    Mean shift: +0.0160 (+2.6%)\\n\\n  s2_minkpp:\\n    d000: mean=1.6532 std=0.0889 median=1.6654\\n    rl:   mean=1.7073 std=0.1807 median=1.7164\\n    Cohen's d (d000→rl): 0.3802 (small)\\n    KS stat: 0.3010, p=4.11e-53\\n    Mean shift: +0.0542 (+3.3%)\\n\\n  s4_selfcritique:\\n    d000: mean=-0.9408 std=0.0848 median=-0.9663\\n    rl:   mean=-0.9632 std=0.0499 median=-0.9826\\n    Cohen's d (d000→rl): -0.3219 (small)\\n    KS stat: 0.1630, p=1.04e-15\\n    Mean shift: -0.0224 (-2.4%)\\n\\n  AUC (d005 labels, 0 contaminated / 1319 total):\\n  AUC skipped: unsupported format string passed to NoneType.__format__\\n\\n=== ARC_CHALLENGE ===\\n\\n  s1_embedding:\\n    d000: mean=0.5946 std=0.0683 median=0.5916\\n    rl:   mean=0.6212 std=0.0895 median=0.6105\\n    Cohen's d (d000→rl): 0.3342 (small)\\n    KS stat: 0.1186, p=1.34e-07\\n    Mean shift: +0.0266 (+4.5%)\\n\\n  s2_minkpp:\\n    d000: mean=1.7079 std=0.0761 median=1.7094\\n    rl:   mean=1.6737 std=0.1319 median=1.6834\\n    Cohen's d (d000→rl): -0.3176 (small)\\n    KS stat: 0.1928, p=1.83e-19\\n    Mean shift: -0.0342 (-2.0%)\\n\\n  s4_selfcritique:\\n    d000: mean=-0.9538 std=0.0557 median=-0.9751\\n    rl:   mean=-0.9227 std=0.0862 median=-0.9563\\n    Cohen's d (d000→rl): 0.4281 (small)\\n    KS stat: 0.1817, p=2.53e-17\\n    Mean shift: +0.0311 (+3.3%)\\n\\n  AUC (d005 labels, 0 contaminated / 1172 total):\\n  AUC skipped: unsupported format string passed to NoneType.__format__\\n\\n\\n=== CROSS-BENCHMARK SUMMARY ===\\n  s1_embedding: avg shift +7.8%, avg Cohen's d = 0.452, consistent direction: YES (increase)\\n  s2_minkpp: avg shift +0.4%, avg Cohen's d = 0.013, consistent direction: NO (increase)\\n  s4_selfcritique: avg shift +3.0%, avg Cohen's d = 0.316, consistent direction: NO (increase)\\n\\n\\nResults saved to /tmp/exp008_3regime_analysis.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.34}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The AUC analysis failed because d005 contamination labels have 0 contaminated items in the `contaminated_indices` field. Let me check the actual format of the contamination labels to understand the structure, then fix the AUC computation.
+
+The contamination labels showed:
+- mmlu d005: 320 contaminated out of 14042
+- But when loading, we got 0 contaminated indices
+
+There must be a different format. Let me check the actual label file structure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "778acfc4-f9ae-4b09-939e-5884b17ebcaf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M8pMXq7QJ5WPrGVdivXxSq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5727,
+      "cache_read_input_tokens": 36110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+AUC 因标签格式问题跳过了，让我修复。先查看标签文件结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "06b76520-469e-47a9-b442-2ff35d850e8e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M8pMXq7QJ5WPrGVdivXxSq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5727,
+      "cache_read_input_tokens": 36110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KNDwXX5xAZ1fTyz9cCWSNz`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "head -30 /root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_mmlu_d005.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "43ac460e-6414-46fc-af04-30181be8b044",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01M8pMXq7QJ5WPrGVdivXxSq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5727,
+      "cache_read_input_tokens": 36110,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5727
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T07:08:21.138Z_
+
+<details><summary>↩ Tool result · `toolu_01KNDwXX5xAZ1fTyz9cCWSNz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 5,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 320,\\n  \\\"labels\\\": [\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "46d988bb-5345-4d39-bf90-0e36bc39e72f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n  \\\\\\\"dosage\\\\\\\": 5,\\\\n  \\\\\\\"total_items\\\\\\\": 14042,\\\\n  \\\\\\\"contaminated_count\\\\\\\": 320,\\\\n  \\\\\\\"labels\\\\\\\": [\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n    0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"benchmark\\\": \\\"mmlu\\\",\\n  \\\"dosage\\\": 5,\\n  \\\"total_items\\\": 14042,\\n  \\\"contaminated_count\\\": 320,\\n  \\\"labels\\\": [\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n    0,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The contamination labels use a `labels` array (list of 0/1), not `contaminated_indices`. Let me fix the AUC computation and also load d100 labels.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "4458b44e-07a8-4375-b93e-3774f0cdc819",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7p5FCTsFEKAR2aLbqiZqZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 549,
+      "cache_read_input_tokens": 41837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+标签是 `labels` 数组格式。修复 AUC 计算并重新运行。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "850901a7-f351-4ae4-9cec-bfaa925494ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7p5FCTsFEKAR2aLbqiZqZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 549,
+      "cache_read_input_tokens": 41837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DT8P3RPQ7jzuZULYU2LH1s`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat > /tmp/regime_auc.py << 'PYEOF'\nimport json\nimport numpy as np\nfrom sklearn.metrics import roc_auc_score\n\ndef load_signals(path):\n    with open(path) as f:\n        return json.load(f)\n\ndef extract_arrays(data):\n    s1 = np.array([d['s1_embedding'] for d in data if d['s1_embedding'] is not None])\n    s2 = np.array([d['s2_minkpp'] for d in data if d['s2_minkpp'] is not None])\n    s4 = np.array([d['s4_selfcritique'] for d in data if d['s4_selfcritique'] is not None])\n    return {'s1_embedding': s1, 's2_minkpp': s2, 's4_selfcritique': s4}\n\ndef best_auc(signals, labels):\n    if len(np.unique(labels)) < 2:\n        return None\n    auc_pos = roc_auc_score(labels, signals)\n    auc_neg = roc_auc_score(labels, -signals)\n    return float(max(auc_pos, auc_neg))\n\nbenchmarks = ['mmlu', 'gsm8k', 'arc_challenge']\nsignal_names = ['s1_embedding', 's2_minkpp', 's4_selfcritique']\n\n# Paths\nconfigs = {\n    'd000': {bm: f'/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/signals_merged_{bm}.json' for bm in benchmarks},\n    'd005': {bm: f'/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d005_s42/signals_merged_{bm}.json' for bm in benchmarks},\n    'd100': {bm: f'/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d100_s42/signals_merged_{bm}.json' for bm in benchmarks},\n    'rl_aligned': {\n        'mmlu': '/root/autodl-tmp/exp008/signals/rl_aligned/mmlu/signals_merged_mmlu.json',\n        'gsm8k': '/root/autodl-tmp/exp008/signals/rl_aligned/gsm8k/signals_merged_gsm8k.json',\n        'arc_challenge': '/root/autodl-tmp/exp008/signals/rl_aligned/arc_challenge/signals_merged_arc_challenge.json',\n    }\n}\n\nlabel_paths = {\n    'd005': {bm: f'/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_{bm}_d005.json' for bm in benchmarks},\n    'd100': {bm: f'/root/autodl-tmp/exp001/sft_data_qc_filtered/contamination_labels_{bm}_d100.json' for bm in benchmarks},\n}\n\nauc_results = {}\n\nfor dose_label, lbl_map in label_paths.items():\n    auc_results[f'using_{dose_label}_labels'] = {}\n    for bm in benchmarks:\n        with open(lbl_map[bm]) as f:\n            lbl_data = json.load(f)\n        labels = np.array(lbl_data['labels'])\n        n_contam = int(np.sum(labels))\n        n_total = len(labels)\n        \n        print(f\"\\n{bm.upper()} with {dose_label} labels ({n_contam}/{n_total} contaminated):\")\n        \n        bm_auc = {'contaminated_count': n_contam, 'total': n_total}\n        \n        for regime_name, path_map in configs.items():\n            data = load_signals(path_map[bm])\n            sigs = extract_arrays(data)\n            \n            regime_auc = {}\n            for sig in signal_names:\n                arr = sigs[sig]\n                n = min(len(arr), len(labels))\n                auc = best_auc(arr[:n], labels[:n])\n                regime_auc[sig] = auc\n            \n            bm_auc[regime_name] = regime_auc\n            s1a = regime_auc['s1_embedding']\n            s2a = regime_auc['s2_minkpp']\n            s4a = regime_auc['s4_selfcritique']\n            print(f\"  {regime_name:12s}: S1={s1a:.4f}, S2={s2a:.4f}, S4={s4a:.4f}\")\n        \n        auc_results[f'using_{dose_label}_labels'][bm] = bm_auc\n\n# Save\nwith open('/tmp/regime_auc_results.json', 'w') as f:\n    json.dump(auc_results, f, indent=2)\n\nprint(\"\\n\\nAUC results saved.\")\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/regime_auc.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "84a2e881-baa8-4af8-8d09-ccdd9ca590f5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01S7p5FCTsFEKAR2aLbqiZqZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 549,
+      "cache_read_input_tokens": 41837,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 549
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T07:08:44.793Z_
+
+<details><summary>↩ Tool result · `toolu_01DT8P3RPQ7jzuZULYU2LH1s`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\nMMLU with d005 labels (320/14042 contaminated):\\n  d000        : S1=0.5068, S2=0.5499, S4=0.5006\\n  d005        : S1=0.5177, S2=0.5102, S4=0.5203\\n  d100        : S1=0.5301, S2=0.5058, S4=0.5009\\n  rl_aligned  : S1=0.5177, S2=0.5016, S4=0.5443\\n\\nGSM8K with d005 labels (20/1319 contaminated):\\n  d000        : S1=0.5477, S2=0.6105, S4=0.5249\\n  d005        : S1=0.5379, S2=0.6099, S4=0.5269\\n  d100        : S1=0.6528, S2=0.5656, S4=0.5270\\n  rl_aligned  : S1=0.5379, S2=0.5081, S4=0.5149\\n\\nARC_CHALLENGE with d005 labels (36/1172 contaminated):\\n  d000        : S1=0.5220, S2=0.5395, S4=0.5442\\n  d005        : S1=0.5017, S2=0.5729, S4=0.5181\\n  d100        : S1=0.6025, S2=0.5481, S4=0.5023\\n  rl_aligned  : S1=0.5017, S2=0.5011, S4=0.5110\\n\\nMMLU with d100 labels (6596/14042 contaminated):\\n  d000        : S1=0.5085, S2=0.5150, S4=0.5077\\n  d005        : S1=0.5291, S2=0.5440, S4=0.5143\\n  d100        : S1=0.5081, S2=0.5090, S4=0.5045\\n  rl_aligned  : S1=0.5291, S2=0.5170, S4=0.5302\\n\\nGSM8K with d100 labels (228/1319 contaminated):\\n  d000        : S1=0.5062, S2=0.5333, S4=0.5123\\n  d005        : S1=0.5047, S2=0.5511, S4=0.5009\\n  d100        : S1=0.7794, S2=0.5221, S4=0.5080\\n  rl_aligned  : S1=0.5047, S2=0.5054, S4=0.5074\\n\\nARC_CHALLENGE with d100 labels (697/1172 contaminated):\\n  d000        : S1=0.5079, S2=0.5152, S4=0.5029\\n  d005        : S1=0.5249, S2=0.5206, S4=0.5246\\n  d100        : S1=0.7210, S2=0.5086, S4=0.5198\\n  rl_aligned  : S1=0.5249, S2=0.5132, S4=0.5173\\n\\n\\nAUC results saved.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.79}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "f2eb5fdd-6ad5-4eea-80ba-ca0e8772d5c4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nMMLU with d005 labels (320/14042 contaminated):\\\\n  d000        : S1=0.5068, S2=0.5499, S4=0.5006\\\\n  d005        : S1=0.5177, S2=0.5102, S4=0.5203\\\\n  d100        : S1=0.5301, S2=0.5058, S4=0.5009\\\\n  rl_aligned  : S1=0.5177, S2=0.5016, S4=0.5443\\\\n\\\\nGSM8K with d005 labels (20/1319 contaminated):\\\\n  d000        : S1=0.5477, S2=0.6105, S4=0.5249\\\\n  d005        : S1=0.5379, S2=0.6099, S4=0.5269\\\\n  d100        : S1=0.6528, S2=0.5656, S4=0.5270\\\\n  rl_aligned  : S1=0.5379, S2=0.5081, S4=0.5149\\\\n\\\\nARC_CHALLENGE with d005 labels (36/1172 contaminated):\\\\n  d000        : S1=0.5220, S2=0.5395, S4=0.5442\\\\n  d005        : S1=0.5017, S2=0.5729, S4=0.5181\\\\n  d100        : S1=0.6025, S2=0.5481, S4=0.5023\\\\n  rl_aligned  : S1=0.5017, S2=0.5011, S4=0.5110\\\\n\\\\nMMLU with d100 labels (6596/14042 contaminated):\\\\n  d000        : S1=0.5085, S2=0.5150, S4=0.5077\\\\n  d005        : S1=0.5291, S2=0.5440, S4=0.5143\\\\n  d100        : S1=0.5081, S2=0.5090, S4=0.5045\\\\n  rl_aligned  : S1=0.5291, S2=0.5170, S4=0.5302\\\\n\\\\nGSM8K with d100 labels (228/1319 contaminated):\\\\n  d000        : S1=0.5062, S2=0.5333, S4=0.5123\\\\n  d005        : S1=0.5047, S2=0.5511, S4=0.5009\\\\n  d100        : S1=0.7794, S2=0.5221, S4=0.5080\\\\n  rl_aligned  : S1=0.5047, S2=0.5054, S4=0.5074\\\\n\\\\nARC_CHALLENGE with d100 labels (697/1172 contaminated):\\\\n  d000        : S1=0.5079, S2=0.5152, S4=0.5029\\\\n  d005        : S1=0.5249, S2=0.5206, S4=0.5246\\\\n  d100        : S1=0.7210, S2=0.5086, S4=0.5198\\\\n  rl_aligned  : S1=0.5249, S2=0.5132, S4=0.5173\\\\n\\\\n\\\\nAUC results saved.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.79}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\nMMLU with d005 labels (320/14042 contaminated):\\n  d000        : S1=0.5068, S2=0.5499, S4=0.5006\\n  d005        : S1=0.5177, S2=0.5102, S4=0.5203\\n  d100        : S1=0.5301, S2=0.5058, S4=0.5009\\n  rl_aligned  : S1=0.5177, S2=0.5016, S4=0.5443\\n\\nGSM8K with d005 labels (20/1319 contaminated):\\n  d000        : S1=0.5477, S2=0.6105, S4=0.5249\\n  d005        : S1=0.5379, S2=0.6099, S4=0.5269\\n  d100        : S1=0.6528, S2=0.5656, S4=0.5270\\n  rl_aligned  : S1=0.5379, S2=0.5081, S4=0.5149\\n\\nARC_CHALLENGE with d005 labels (36/1172 contaminated):\\n  d000        : S1=0.5220, S2=0.5395, S4=0.5442\\n  d005        : S1=0.5017, S2=0.5729, S4=0.5181\\n  d100        : S1=0.6025, S2=0.5481, S4=0.5023\\n  rl_aligned  : S1=0.5017, S2=0.5011, S4=0.5110\\n\\nMMLU with d100 labels (6596/14042 contaminated):\\n  d000        : S1=0.5085, S2=0.5150, S4=0.5077\\n  d005        : S1=0.5291, S2=0.5440, S4=0.5143\\n  d100        : S1=0.5081, S2=0.5090, S4=0.5045\\n  rl_aligned  : S1=0.5291, S2=0.5170, S4=0.5302\\n\\nGSM8K with d100 labels (228/1319 contaminated):\\n  d000        : S1=0.5062, S2=0.5333, S4=0.5123\\n  d005        : S1=0.5047, S2=0.5511, S4=0.5009\\n  d100        : S1=0.7794, S2=0.5221, S4=0.5080\\n  rl_aligned  : S1=0.5047, S2=0.5054, S4=0.5074\\n\\nARC_CHALLENGE with d100 labels (697/1172 contaminated):\\n  d000        : S1=0.5079, S2=0.5152, S4=0.5029\\n  d005        : S1=0.5249, S2=0.5206, S4=0.5246\\n  d100        : S1=0.7210, S2=0.5086, S4=0.5198\\n  rl_aligned  : S1=0.5249, S2=0.5132, S4=0.5173\\n\\n\\nAUC results saved.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.79}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me also fetch the full JSON results from the server and combine everything into a comprehensive analysis file.
+
+Key findings so far:
+
+**Distribution shifts (d000 → rl_aligned):**
+
+| Signal | MMLU | GSM8K | ARC | Consistent? |
+|--------|------|-------|-----|-------------|
+| S1 embedding | +16.3% (medium d=0.78) | +2.6% (small d=0.25) | +4.5% (small d=0.33) | YES (all increase) |
+
+
+| S2 minkpp | -0.1% (negligible d=-0.02) | +3.3% (small d=0.38) | -2.0% (small d=-0.32) | NO (mixed) |
+| S4 selfcritique | +8.1% (large d=0.84) | -2.4% (small d=-0.32) | +3.3% (small d=0.43) | NO (mixed) |
+
+**AUC analysis:**
+- The d005 labels have very few contaminated items (320/14042 for MMLU, 20/1319 for GSM8K, 36/1172 for ARC)
+
+Looking at the performance shifts across these signals, S1 embedding shows the most consistent gains, while S2 and S4 have more variable effects depending on the benchmark. The contamination rates in the d005 labels are quite low, which should help with the reliability of the analysis.
+
+For the AUC metrics, most regimes cluster around 0.5 except when looking at d100 labels under the d100 regime itself, where S1 achieves stronger discrimination at 0.78 for GSM8K and 0.72 for ARC. The RL-aligned model's AUCs with d005 and d100 labels hover near random chance, suggesting the RL training doesn't create clear separation between contaminated and clean items as the SFT labels define them. This points to a fundamental difference in what the RL model learns compared to the original contamination signal.
+
+S2 Min-K%++ shows minimal variation across benchmarks with inconsistent directional effects, which tracks since token-level memorization shouldn't be directly impacted by RL alignment that doesn't expose the model to exact benchmark text. S4 Self-Critique behaves differently depending on the benchmark—it boosts MMLU performance by 8.1% but hurts GSM8K by 2.4%—suggesting the strategy's effectiveness under RL alignment is task-specific. The AUC results for RL-aligned models only make sense when comparing against the dose models that were actually trained on those specific contaminated items, whereas S4 on MMLU shows slightly better discrimination than S2 even with the RL-aligned model.
+
+Now I'm compiling and saving the full results file locally.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "a8632588-fe7a-4e21-9e4c-e7b399d9f2d0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FvbQxk1AVPZB1GjMP3p3gU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2537,
+      "cache_read_input_tokens": 42386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2537
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50_
+
+数据收集完成。现在把两部分结果合并，下载到本地并生成最终分析文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "4d43e051-98e2-4dba-b5bd-9c01309f145f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FvbQxk1AVPZB1GjMP3p3gU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2537,
+      "cache_read_input_tokens": 42386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2537
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011JLnH773td3KU4sSHXFL3J`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /tmp/exp008_3regime_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "d973d6e4-d9e5-4cf9-8c08-30cc2d24118e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FvbQxk1AVPZB1GjMP3p3gU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2537,
+      "cache_read_input_tokens": 42386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2537
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T07:09:09.708Z_
+
+<details><summary>↩ Tool result · `toolu_011JLnH773td3KU4sSHXFL3J`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"regimes\\\": [\\n      \\\"d000_sft_clean\\\",\\n      \\\"rl_aligned_instruct\\\"\\n    ],\\n    \\\"base_model_note\\\": \\\"Pretrained Qwen2.5-0.5B signals not available. Need separate computation.\\\",\\n    \\\"model\\\": \\\"Qwen2.5-0.5B\\\",\\n    \\\"signals\\\": [\\n      \\\"s1_embedding\\\",\\n      \\\"s2_minkpp\\\",\\n      \\\"s4_selfcritique\\\"\\n    ],\\n    \\\"benchmarks\\\": [\\n      \\\"mmlu\\\",\\n      \\\"gsm8k\\\",\\n      \\\"arc_challenge\\\"\\n    ],\\n    \\\"reference_doses\\\": [\\n      \\\"d005\\\",\\n      \\\"d100\\\"\\n    ]\\n  },\\n  \\\"per_benchmark\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"distribution_stats\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_sft_clean\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": 0.5223752974322032,\\n            \\\"std\\\": 0.07175386065038858,\\n            \\\"median\\\": 0.524782121181488,\\n            \\\"q25\\\": 0.47677984088659286,\\n            \\\"q75\\\": 0.5690497159957886,\\n            \\\"iqr\\\": 0.09226987510919571,\\n            \\\"min\\\": 0.22546370327472687,\\n            \\\"max\\\": 0.8674159646034241\\n          },\\n          \\\"rl_aligned\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": 0.6077640956282836,\\n            \\\"std\\\": 0.13810639492252041,\\n            \\\"median\\\": 0.576283723115921,\\n            \\\"q25\\\": 0.518273651599884,\\n            \\\"q75\\\": 0.658345177769661,\\n            \\\"iqr\\\": 0.14007152616977692,\\n            \\\"min\\\": 0.22548142075538635,\\n            \\\"max\\\": 0.9967798590660095\\n          }\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_sft_clean\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": 1.697604340300433,\\n            \\\"std\\\": 0.07422967505358227,\\n            \\\"median\\\": 1.6944519877433777,\\n            \\\"q25\\\": 1.6536983251571655,\\n            \\\"q75\\\": 1.7409376502037048,\\n            \\\"iqr\\\": 0.0872393250465393,\\n            \\\"min\\\": 1.2332179546356201,\\n            \\\"max\\\": 1.9969682693481445\\n          },\\n          \\\"rl_aligned\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": 1.695197808009881,\\n            \\\"std\\\": 0.1163834241984901,\\n            \\\"median\\\": 1.7029278874397278,\\n            \\\"q25\\\": 1.6397079825401306,\\n            \\\"q75\\\": 1.762538492679596,\\n            \\\"iqr\\\": 0.12283051013946533,\\n            \\\"min\\\": 0.9777469635009766,\\n            \\\"max\\\": 2.2582476139068604\\n          }\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_sft_clean\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": -0.9556693306367435,\\n            \\\"std\\\": 0.06091754145783112,\\n            \\\"median\\\": -0.9750790425362086,\\n            \\\"q25\\\": -0.9936877843203067,\\n            \\\"q75\\\": -0.9451202833584258,\\n            \\\"iqr\\\": 0.048567500961880894,\\n            \\\"min\\\": -1.0,\\n            \\\"max\\\": -0.28779980374819913\\n          },\\n          \\\"rl_aligned\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": -0.8781869864999619,\\n            \\\"std\\\": 0.11496710322566334,\\n            \\\"median\\\": -0.9052723848747125,\\n            \\\"q25\\\": -0.9750790425362086,\\n            \\\"q75\\\": -0.8033947069832642,\\n            \\\"iqr\\\": 0.17168433555294438,\\n            \\\"min\\\": -1.0,\\n            \\\"max\\\": -0.1909309157045937\\n          }\\n        }\\n      },\\n      \\\"effect_size\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_to_rl\\\": 0.7758816819810807,\\n          \\\"interpretation\\\": \\\"medium\\\"\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_to_rl\\\": -0.024653869067839083,\\n          \\\"interpretation\\\": \\\"negligible\\\"\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_to_rl\\\": 0.8421599094939116,\\n          \\\"interpretation\\\": \\\"large\\\"\\n        }\\n      },\\n      \\\"ks_test\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.2998860561173623,\\n            \\\"p_value\\\": 0.0\\n          },\\n          \\\"significant_at_001\\\": true\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.0869534254379718,\\n            \\\"p_value\\\": 1.2313188921931933e-46\\n          },\\n          \\\"significant_at_001\\\": true\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.3495940749181028,\\n            \\\"p_value\\\": 0.0\\n          },\\n          \\\"significant_at_001\\\": true\\n        }\\n      },\\n      \\\"shift_direction\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"mean_shift\\\": 0.08538879819608036,\\n      \\n\\n... [截断: 输出过长，省略 6087 字符] ...\\n\\n581473350525,\\n            \\\"iqr\\\": 0.15941601991653442,\\n            \\\"min\\\": 1.0882757902145386,\\n            \\\"max\\\": 2.1172738075256348\\n          }\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_sft_clean\\\": {\\n            \\\"n\\\": 1172,\\n            \\\"mean\\\": -0.9537551824996917,\\n            \\\"std\\\": 0.05572549158750566,\\n            \\\"median\\\": -0.9750790425362086,\\n            \\\"q25\\\": -0.9936877843203067,\\n            \\\"q75\\\": -0.932852222435484,\\n            \\\"iqr\\\": 0.06083556188482264,\\n            \\\"min\\\": -1.0,\\n            \\\"max\\\": -0.6049317644988689\\n          },\\n          \\\"rl_aligned\\\": {\\n            \\\"n\\\": 1172,\\n            \\\"mean\\\": -0.9226791067456054,\\n            \\\"std\\\": 0.08617857021595486,\\n            \\\"median\\\": -0.9562865191724461,\\n            \\\"q25\\\": -0.9888163926508523,\\n            \\\"q75\\\": -0.8901001665238636,\\n            \\\"iqr\\\": 0.09871622612698872,\\n            \\\"min\\\": -1.0,\\n            \\\"max\\\": -0.5270652687748634\\n          }\\n        }\\n      },\\n      \\\"effect_size\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_to_rl\\\": 0.33419890797465285,\\n          \\\"interpretation\\\": \\\"small\\\"\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_to_rl\\\": -0.3175769577574638,\\n          \\\"interpretation\\\": \\\"small\\\"\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_to_rl\\\": 0.42805424770771583,\\n          \\\"interpretation\\\": \\\"small\\\"\\n        }\\n      },\\n      \\\"ks_test\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.11860068259385666,\\n            \\\"p_value\\\": 1.341732893509907e-07\\n          },\\n          \\\"significant_at_001\\\": true\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.19283276450511946,\\n            \\\"p_value\\\": 1.8345822370017807e-19\\n          },\\n          \\\"significant_at_001\\\": true\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.181740614334471,\\n            \\\"p_value\\\": 2.5273340815421006e-17\\n          },\\n          \\\"significant_at_001\\\": true\\n        }\\n      },\\n      \\\"shift_direction\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"mean_shift\\\": 0.02662309302404875,\\n          \\\"shift_pct\\\": 4.47781838799629,\\n          \\\"direction\\\": \\\"increase\\\"\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"mean_shift\\\": -0.034216356867409425,\\n          \\\"shift_pct\\\": -2.0033708453212276,\\n          \\\"direction\\\": \\\"decrease\\\"\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"mean_shift\\\": 0.03107607575408633,\\n          \\\"shift_pct\\\": 3.2582864370539215,\\n          \\\"direction\\\": \\\"increase\\\"\\n        }\\n      },\\n      \\\"auc_reference\\\": {\\n        \\\"error\\\": \\\"unsupported format string passed to NoneType.__format__\\\"\\n      }\\n    }\\n  },\\n  \\\"cross_benchmark_summary\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"mean_shift_pct\\\": 7.813116252262877,\\n      \\\"shift_pcts\\\": {\\n        \\\"mmlu\\\": 16.34625500398257,\\n        \\\"gsm8k\\\": 2.615275364809772,\\n        \\\"arc_challenge\\\": 4.47781838799629\\n      },\\n      \\\"mean_effect_size\\\": 0.4518111356617734,\\n      \\\"effect_sizes\\\": {\\n        \\\"mmlu\\\": 0.7758816819810807,\\n        \\\"gsm8k\\\": 0.24535281702958683,\\n        \\\"arc_challenge\\\": 0.33419890797465285\\n      },\\n      \\\"consistent_direction\\\": true\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"mean_shift_pct\\\": 0.37695890179727404,\\n      \\\"shift_pcts\\\": {\\n        \\\"mmlu\\\": -0.1417604935038098,\\n        \\\"gsm8k\\\": 3.2760080442168595,\\n        \\\"arc_challenge\\\": -2.0033708453212276\\n      },\\n      \\\"mean_effect_size\\\": 0.012656905988290446,\\n      \\\"effect_sizes\\\": {\\n        \\\"mmlu\\\": -0.024653869067839083,\\n        \\\"gsm8k\\\": 0.3802015447901742,\\n        \\\"arc_challenge\\\": -0.3175769577574638\\n      },\\n      \\\"consistent_direction\\\": false\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"mean_shift_pct\\\": 2.9951777497372363,\\n      \\\"shift_pcts\\\": {\\n        \\\"mmlu\\\": 8.107652056298251,\\n        \\\"gsm8k\\\": -2.380405244140464,\\n        \\\"arc_challenge\\\": 3.2582864370539215\\n      },\\n      \\\"mean_effect_size\\\": 0.3160985965486868,\\n      \\\"effect_sizes\\\": {\\n        \\\"mmlu\\\": 0.8421599094939116,\\n        \\\"gsm8k\\\": -0.3219183675555669,\\n        \\\"arc_challenge\\\": 0.42805424770771583\\n      },\\n      \\\"consistent_direction\\\": false\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "fca3ed9b-69a7-4068-a0ef-1a1f2762efe4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"metadata\\\\\\\": {\\\\n    \\\\\\\"regimes\\\\\\\": [\\\\n      \\\\\\\"d000_sft_clean\\\\\\\",\\\\n      \\\\\\\"rl_aligned_instruct\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"base_model_note\\\\\\\": \\\\\\\"Pretrained Qwen2.5-0.5B signals not available. Need separate computation.\\\\\\\",\\\\n    \\\\\\\"model\\\\\\\": \\\\\\\"Qwen2.5-0.5B\\\\\\\",\\\\n    \\\\\\\"signals\\\\\\\": [\\\\n      \\\\\\\"s1_embedding\\\\\\\",\\\\n      \\\\\\\"s2_minkpp\\\\\\\",\\\\n      \\\\\\\"s4_selfcritique\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"benchmarks\\\\\\\": [\\\\n      \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"gsm8k\\\\\\\",\\\\n      \\\\\\\"arc_challenge\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"reference_doses\\\\\\\": [\\\\n      \\\\\\\"d005\\\\\\\",\\\\n      \\\\\\\"d100\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"per_benchmark\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"distribution_stats\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": {\\\\n          \\\\\\\"d000_sft_clean\\\\\\\": {\\\\n            \\\\\\\"n\\\\\\\": 14042,\\\\n            \\\\\\\"mean\\\\\\\": 0.5223752974322032,\\\\n            \\\\\\\"std\\\\\\\": 0.07175386065038858,\\\\n            \\\\\\\"median\\\\\\\": 0.524782121181488,\\\\n            \\\\\\\"q25\\\\\\\": 0.47677984088659286,\\\\n            \\\\\\\"q75\\\\\\\": 0.5690497159957886,\\\\n            \\\\\\\"iqr\\\\\\\": 0.09226987510919571,\\\\n            \\\\\\\"min\\\\\\\": 0.22546370327472687,\\\\n            \\\\\\\"max\\\\\\\": 0.8674159646034241\\\\n          },\\\\n          \\\\\\\"rl_aligned\\\\\\\": {\\\\n            \\\\\\\"n\\\\\\\": 14042,\\\\n            \\\\\\\"mean\\\\\\\": 0.6077640956282836,\\\\n            \\\\\\\"std\\\\\\\": 0.13810639492252041,\\\\n            \\\\\\\"median\\\\\\\": 0.576283723115921,\\\\n            \\\\\\\"q25\\\\\\\": 0.518273651599884,\\\\n            \\\\\\\"q75\\\\\\\": 0.658345177769661,\\\\n            \\\\\\\"iqr\\\\\\\": 0.14007152616977692,\\\\n            \\\\\\\"min\\\\\\\": 0.22548142075538635,\\\\n            \\\\\\\"max\\\\\\\": 0.9967798590660095\\\\n          }\\\\n        },\\\\n        \\\\\\\"s2_minkpp\\\\\\\": {\\\\n          \\\\\\\"d000_sft_clean\\\\\\\": {\\\\n            \\\\\\\"n\\\\\\\": 14042,\\\\n            \\\\\\\"mean\\\\\\\": 1.697604340300433,\\\\n            \\\\\\\"std\\\\\\\": 0.07422967505358227,\\\\n            \\\\\\\"median\\\\\\\": 1.6944519877433777,\\\\n            \\\\\\\"q25\\\\\\\": 1.6536983251571655,\\\\n            \\\\\\\"q75\\\\\\\": 1.7409376502037048,\\\\n            \\\\\\\"iqr\\\\\\\": 0.0872393250465393,\\\\n            \\\\\\\"min\\\\\\\": 1.2332179546356201,\\\\n            \\\\\\\"max\\\\\\\": 1.9969682693481445\\\\n          },\\\\n          \\\\\\\"rl_aligned\\\\\\\": {\\\\n            \\\\\\\"n\\\\\\\": 14042,\\\\n            \\\\\\\"mean\\\\\\\": 1.695197808009881,\\\\n            \\\\\\\"std\\\\\\\": 0.1163834241984901,\\\\n            \\\\\\\"median\\\\\\\": 1.7029278874397278,\\\\n            \\\\\\\"q25\\\\\\\": 1.6397079825401306,\\\\n            \\\\\\\"q75\\\\\\\": 1.762538492679596,\\\\n            \\\\\\\"iqr\\\\\\\": 0.12283051013946533,\\\\n            \\\\\\\"min\\\\\\\": 0.9777469635009766,\\\\n            \\\\\\\"max\\\\\\\": 2.2582476139068604\\\\n          }\\\\n        },\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n          \\\\\\\"d000_sft_clean\\\\\\\": {\\\\n            \\\\\\\"n\\\\\\\": 14042,\\\\n            \\\\\\\"mean\\\\\\\": -0.9556693306367435,\\\\n            \\\\\\\"std\\\\\\\": 0.06091754145783112,\\\\n            \\\\\\\"median\\\\\\\": -0.9750790425362086,\\\\n            \\\\\\\"q25\\\\\\\": -0.9936877843203067,\\\\n            \\\\\\\"q75\\\\\\\": -0.9451202833584258,\\\\n            \\\\\\\"iqr\\\\\\\": 0.048567500961880894,\\\\n            \\\\\\\"min\\\\\\\": -1.0,\\\\n            \\\\\\\"max\\\\\\\": -0.28779980374819913\\\\n          },\\\\n          \\\\\\\"rl_aligned\\\\\\\": {\\\\n            \\\\\\\"n\\\\\\\": 14042,\\\\n            \\\\\\\"mean\\\\\\\": -0.8781869864999619,\\\\n            \\\\\\\"std\\\\\\\": 0.11496710322566334,\\\\n            \\\\\\\"median\\\\\\\": -0.9052723848747125,\\\\n            \\\\\\\"q25\\\\\\\": -0.9750790425362086,\\\\n            \\\\\\\"q75\\\\\\\": -0.8033947069832642,\\\\n            \\\\\\\"iqr\\\\\\\": 0.17168433555294438,\\\\n            \\\\\\\"min\\\\\\\": -1.0,\\\\n            \\\\\\\"max\\\\\\\": -0.1909309157045937\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"effect_size\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": {\\\\n          \\\\\\\"d000_to_rl\\\\\\\": 0.7758816819810807,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"medium\\\\\\\"\\\\n        },\\\\n        \\\\\\\"s2_minkpp\\\\\\\": {\\\\n          \\\\\\\"d000_to_rl\\\\\\\": -0.024653869067839083,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"negligible\\\\\\\"\\\\n        },\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n          \\\\\\\"d000_to_rl\\\\\\\": 0.8421599094939116,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"large\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"ks_test\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": {\\\\n          \\\\\\\"d000_vs_rl\\\\\\\": {\\\\n            \\\\\\\"statistic\\\\\\\": 0.2998860561173623,\\\\n            \\\\\\\"p_value\\\\\\\": 0.0\\\\n          },\\\\n          \\\\\\\"significant_at_001\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"s2_minkpp\\\\\\\": {\\\\n          \\\\\\\"d000_vs_rl\\\\\\\": {\\\\n            \\\\\\\"statistic\\\\\\\": 0.0869534254379718,\\\\n            \\\\\\\"p_value\\\\\\\": 1.2313188921931933e-46\\\\n          },\\\\n          \\\\\\\"significant_at_001\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n          \\\\\\\"d000_vs_rl\\\\\\\": {\\\\n            \\\\\\\"statistic\\\\\\\": 0.3495940749181028,\\\\n            \\\\\\\"p_value\\\\\\\": 0.0\\\\n          },\\\\n          \\\\\\\"significant_at_001\\\\\\\": true\\\\n        }\\\\n      },\\\\n      \\\\\\\"shift_direction\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": {\\\\n          \\\\\\\"mean_shift\\\\\\\": 0.08538879819608036,\\\\n      \\\\n\\\\n... [截断: 输出过长，省略 6087 字符] ...\\\\n\\\\n581473350525,\\\\n            \\\\\\\"iqr\\\\\\\": 0.15941601991653442,\\\\n            \\\\\\\"min\\\\\\\": 1.0882757902145386,\\\\n            \\\\\\\"max\\\\\\\": 2.1172738075256348\\\\n          }\\\\n        },\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n          \\\\\\\"d000_sft_clean\\\\\\\": {\\\\n            \\\\\\\"n\\\\\\\": 1172,\\\\n            \\\\\\\"mean\\\\\\\": -0.9537551824996917,\\\\n            \\\\\\\"std\\\\\\\": 0.05572549158750566,\\\\n            \\\\\\\"median\\\\\\\": -0.9750790425362086,\\\\n            \\\\\\\"q25\\\\\\\": -0.9936877843203067,\\\\n            \\\\\\\"q75\\\\\\\": -0.932852222435484,\\\\n            \\\\\\\"iqr\\\\\\\": 0.06083556188482264,\\\\n            \\\\\\\"min\\\\\\\": -1.0,\\\\n            \\\\\\\"max\\\\\\\": -0.6049317644988689\\\\n          },\\\\n          \\\\\\\"rl_aligned\\\\\\\": {\\\\n            \\\\\\\"n\\\\\\\": 1172,\\\\n            \\\\\\\"mean\\\\\\\": -0.9226791067456054,\\\\n            \\\\\\\"std\\\\\\\": 0.08617857021595486,\\\\n            \\\\\\\"median\\\\\\\": -0.9562865191724461,\\\\n            \\\\\\\"q25\\\\\\\": -0.9888163926508523,\\\\n            \\\\\\\"q75\\\\\\\": -0.8901001665238636,\\\\n            \\\\\\\"iqr\\\\\\\": 0.09871622612698872,\\\\n            \\\\\\\"min\\\\\\\": -1.0,\\\\n            \\\\\\\"max\\\\\\\": -0.5270652687748634\\\\n          }\\\\n        }\\\\n      },\\\\n      \\\\\\\"effect_size\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": {\\\\n          \\\\\\\"d000_to_rl\\\\\\\": 0.33419890797465285,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"small\\\\\\\"\\\\n        },\\\\n        \\\\\\\"s2_minkpp\\\\\\\": {\\\\n          \\\\\\\"d000_to_rl\\\\\\\": -0.3175769577574638,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"small\\\\\\\"\\\\n        },\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n          \\\\\\\"d000_to_rl\\\\\\\": 0.42805424770771583,\\\\n          \\\\\\\"interpretation\\\\\\\": \\\\\\\"small\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"ks_test\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": {\\\\n          \\\\\\\"d000_vs_rl\\\\\\\": {\\\\n            \\\\\\\"statistic\\\\\\\": 0.11860068259385666,\\\\n            \\\\\\\"p_value\\\\\\\": 1.341732893509907e-07\\\\n          },\\\\n          \\\\\\\"significant_at_001\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"s2_minkpp\\\\\\\": {\\\\n          \\\\\\\"d000_vs_rl\\\\\\\": {\\\\n            \\\\\\\"statistic\\\\\\\": 0.19283276450511946,\\\\n            \\\\\\\"p_value\\\\\\\": 1.8345822370017807e-19\\\\n          },\\\\n          \\\\\\\"significant_at_001\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n          \\\\\\\"d000_vs_rl\\\\\\\": {\\\\n            \\\\\\\"statistic\\\\\\\": 0.181740614334471,\\\\n            \\\\\\\"p_value\\\\\\\": 2.5273340815421006e-17\\\\n          },\\\\n          \\\\\\\"significant_at_001\\\\\\\": true\\\\n        }\\\\n      },\\\\n      \\\\\\\"shift_direction\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": {\\\\n          \\\\\\\"mean_shift\\\\\\\": 0.02662309302404875,\\\\n          \\\\\\\"shift_pct\\\\\\\": 4.47781838799629,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"increase\\\\\\\"\\\\n        },\\\\n        \\\\\\\"s2_minkpp\\\\\\\": {\\\\n          \\\\\\\"mean_shift\\\\\\\": -0.034216356867409425,\\\\n          \\\\\\\"shift_pct\\\\\\\": -2.0033708453212276,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"decrease\\\\\\\"\\\\n        },\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n          \\\\\\\"mean_shift\\\\\\\": 0.03107607575408633,\\\\n          \\\\\\\"shift_pct\\\\\\\": 3.2582864370539215,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"increase\\\\\\\"\\\\n        }\\\\n      },\\\\n      \\\\\\\"auc_reference\\\\\\\": {\\\\n        \\\\\\\"error\\\\\\\": \\\\\\\"unsupported format string passed to NoneType.__format__\\\\\\\"\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"cross_benchmark_summary\\\\\\\": {\\\\n    \\\\\\\"s1_embedding\\\\\\\": {\\\\n      \\\\\\\"mean_shift_pct\\\\\\\": 7.813116252262877,\\\\n      \\\\\\\"shift_pcts\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 16.34625500398257,\\\\n        \\\\\\\"gsm8k\\\\\\\": 2.615275364809772,\\\\n        \\\\\\\"arc_challenge\\\\\\\": 4.47781838799629\\\\n      },\\\\n      \\\\\\\"mean_effect_size\\\\\\\": 0.4518111356617734,\\\\n      \\\\\\\"effect_sizes\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 0.7758816819810807,\\\\n        \\\\\\\"gsm8k\\\\\\\": 0.24535281702958683,\\\\n        \\\\\\\"arc_challenge\\\\\\\": 0.33419890797465285\\\\n      },\\\\n      \\\\\\\"consistent_direction\\\\\\\": true\\\\n    },\\\\n    \\\\\\\"s2_minkpp\\\\\\\": {\\\\n      \\\\\\\"mean_shift_pct\\\\\\\": 0.37695890179727404,\\\\n      \\\\\\\"shift_pcts\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": -0.1417604935038098,\\\\n        \\\\\\\"gsm8k\\\\\\\": 3.2760080442168595,\\\\n        \\\\\\\"arc_challenge\\\\\\\": -2.0033708453212276\\\\n      },\\\\n      \\\\\\\"mean_effect_size\\\\\\\": 0.012656905988290446,\\\\n      \\\\\\\"effect_sizes\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": -0.024653869067839083,\\\\n        \\\\\\\"gsm8k\\\\\\\": 0.3802015447901742,\\\\n        \\\\\\\"arc_challenge\\\\\\\": -0.3175769577574638\\\\n      },\\\\n      \\\\\\\"consistent_direction\\\\\\\": false\\\\n    },\\\\n    \\\\\\\"s4_selfcritique\\\\\\\": {\\\\n      \\\\\\\"mean_shift_pct\\\\\\\": 2.9951777497372363,\\\\n      \\\\\\\"shift_pcts\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 8.107652056298251,\\\\n        \\\\\\\"gsm8k\\\\\\\": -2.380405244140464,\\\\n        \\\\\\\"arc_challenge\\\\\\\": 3.2582864370539215\\\\n      },\\\\n      \\\\\\\"mean_effect_size\\\\\\\": 0.3160985965486868,\\\\n      \\\\\\\"effect_sizes\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 0.8421599094939116,\\\\n        \\\\\\\"gsm8k\\\\\\\": -0.3219183675555669,\\\\n        \\\\\\\"arc_challenge\\\\\\\": 0.42805424770771583\\\\n      },\\\\n      \\\\\\\"consistent_direction\\\\\\\": false\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"metadata\\\": {\\n    \\\"regimes\\\": [\\n      \\\"d000_sft_clean\\\",\\n      \\\"rl_aligned_instruct\\\"\\n    ],\\n    \\\"base_model_note\\\": \\\"Pretrained Qwen2.5-0.5B signals not available. Need separate computation.\\\",\\n    \\\"model\\\": \\\"Qwen2.5-0.5B\\\",\\n    \\\"signals\\\": [\\n      \\\"s1_embedding\\\",\\n      \\\"s2_minkpp\\\",\\n      \\\"s4_selfcritique\\\"\\n    ],\\n    \\\"benchmarks\\\": [\\n      \\\"mmlu\\\",\\n      \\\"gsm8k\\\",\\n      \\\"arc_challenge\\\"\\n    ],\\n    \\\"reference_doses\\\": [\\n      \\\"d005\\\",\\n      \\\"d100\\\"\\n    ]\\n  },\\n  \\\"per_benchmark\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"distribution_stats\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_sft_clean\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": 0.5223752974322032,\\n            \\\"std\\\": 0.07175386065038858,\\n            \\\"median\\\": 0.524782121181488,\\n            \\\"q25\\\": 0.47677984088659286,\\n            \\\"q75\\\": 0.5690497159957886,\\n            \\\"iqr\\\": 0.09226987510919571,\\n            \\\"min\\\": 0.22546370327472687,\\n            \\\"max\\\": 0.8674159646034241\\n          },\\n          \\\"rl_aligned\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": 0.6077640956282836,\\n            \\\"std\\\": 0.13810639492252041,\\n            \\\"median\\\": 0.576283723115921,\\n            \\\"q25\\\": 0.518273651599884,\\n            \\\"q75\\\": 0.658345177769661,\\n            \\\"iqr\\\": 0.14007152616977692,\\n            \\\"min\\\": 0.22548142075538635,\\n            \\\"max\\\": 0.9967798590660095\\n          }\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_sft_clean\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": 1.697604340300433,\\n            \\\"std\\\": 0.07422967505358227,\\n            \\\"median\\\": 1.6944519877433777,\\n            \\\"q25\\\": 1.6536983251571655,\\n            \\\"q75\\\": 1.7409376502037048,\\n            \\\"iqr\\\": 0.0872393250465393,\\n            \\\"min\\\": 1.2332179546356201,\\n            \\\"max\\\": 1.9969682693481445\\n          },\\n          \\\"rl_aligned\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": 1.695197808009881,\\n            \\\"std\\\": 0.1163834241984901,\\n            \\\"median\\\": 1.7029278874397278,\\n            \\\"q25\\\": 1.6397079825401306,\\n            \\\"q75\\\": 1.762538492679596,\\n            \\\"iqr\\\": 0.12283051013946533,\\n            \\\"min\\\": 0.9777469635009766,\\n            \\\"max\\\": 2.2582476139068604\\n          }\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_sft_clean\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": -0.9556693306367435,\\n            \\\"std\\\": 0.06091754145783112,\\n            \\\"median\\\": -0.9750790425362086,\\n            \\\"q25\\\": -0.9936877843203067,\\n            \\\"q75\\\": -0.9451202833584258,\\n            \\\"iqr\\\": 0.048567500961880894,\\n            \\\"min\\\": -1.0,\\n            \\\"max\\\": -0.28779980374819913\\n          },\\n          \\\"rl_aligned\\\": {\\n            \\\"n\\\": 14042,\\n            \\\"mean\\\": -0.8781869864999619,\\n            \\\"std\\\": 0.11496710322566334,\\n            \\\"median\\\": -0.9052723848747125,\\n            \\\"q25\\\": -0.9750790425362086,\\n            \\\"q75\\\": -0.8033947069832642,\\n            \\\"iqr\\\": 0.17168433555294438,\\n            \\\"min\\\": -1.0,\\n            \\\"max\\\": -0.1909309157045937\\n          }\\n        }\\n      },\\n      \\\"effect_size\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_to_rl\\\": 0.7758816819810807,\\n          \\\"interpretation\\\": \\\"medium\\\"\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_to_rl\\\": -0.024653869067839083,\\n          \\\"interpretation\\\": \\\"negligible\\\"\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_to_rl\\\": 0.8421599094939116,\\n          \\\"interpretation\\\": \\\"large\\\"\\n        }\\n      },\\n      \\\"ks_test\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.2998860561173623,\\n            \\\"p_value\\\": 0.0\\n          },\\n          \\\"significant_at_001\\\": true\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.0869534254379718,\\n            \\\"p_value\\\": 1.2313188921931933e-46\\n          },\\n          \\\"significant_at_001\\\": true\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.3495940749181028,\\n            \\\"p_value\\\": 0.0\\n          },\\n          \\\"significant_at_001\\\": true\\n        }\\n      },\\n      \\\"shift_direction\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"mean_shift\\\": 0.08538879819608036,\\n      \\n\\n... [截断: 输出过长，省略 6087 字符] ...\\n\\n581473350525,\\n            \\\"iqr\\\": 0.15941601991653442,\\n            \\\"min\\\": 1.0882757902145386,\\n            \\\"max\\\": 2.1172738075256348\\n          }\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_sft_clean\\\": {\\n            \\\"n\\\": 1172,\\n            \\\"mean\\\": -0.9537551824996917,\\n            \\\"std\\\": 0.05572549158750566,\\n            \\\"median\\\": -0.9750790425362086,\\n            \\\"q25\\\": -0.9936877843203067,\\n            \\\"q75\\\": -0.932852222435484,\\n            \\\"iqr\\\": 0.06083556188482264,\\n            \\\"min\\\": -1.0,\\n            \\\"max\\\": -0.6049317644988689\\n          },\\n          \\\"rl_aligned\\\": {\\n            \\\"n\\\": 1172,\\n            \\\"mean\\\": -0.9226791067456054,\\n            \\\"std\\\": 0.08617857021595486,\\n            \\\"median\\\": -0.9562865191724461,\\n            \\\"q25\\\": -0.9888163926508523,\\n            \\\"q75\\\": -0.8901001665238636,\\n            \\\"iqr\\\": 0.09871622612698872,\\n            \\\"min\\\": -1.0,\\n            \\\"max\\\": -0.5270652687748634\\n          }\\n        }\\n      },\\n      \\\"effect_size\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_to_rl\\\": 0.33419890797465285,\\n          \\\"interpretation\\\": \\\"small\\\"\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_to_rl\\\": -0.3175769577574638,\\n          \\\"interpretation\\\": \\\"small\\\"\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_to_rl\\\": 0.42805424770771583,\\n          \\\"interpretation\\\": \\\"small\\\"\\n        }\\n      },\\n      \\\"ks_test\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.11860068259385666,\\n            \\\"p_value\\\": 1.341732893509907e-07\\n          },\\n          \\\"significant_at_001\\\": true\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.19283276450511946,\\n            \\\"p_value\\\": 1.8345822370017807e-19\\n          },\\n          \\\"significant_at_001\\\": true\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"d000_vs_rl\\\": {\\n            \\\"statistic\\\": 0.181740614334471,\\n            \\\"p_value\\\": 2.5273340815421006e-17\\n          },\\n          \\\"significant_at_001\\\": true\\n        }\\n      },\\n      \\\"shift_direction\\\": {\\n        \\\"s1_embedding\\\": {\\n          \\\"mean_shift\\\": 0.02662309302404875,\\n          \\\"shift_pct\\\": 4.47781838799629,\\n          \\\"direction\\\": \\\"increase\\\"\\n        },\\n        \\\"s2_minkpp\\\": {\\n          \\\"mean_shift\\\": -0.034216356867409425,\\n          \\\"shift_pct\\\": -2.0033708453212276,\\n          \\\"direction\\\": \\\"decrease\\\"\\n        },\\n        \\\"s4_selfcritique\\\": {\\n          \\\"mean_shift\\\": 0.03107607575408633,\\n          \\\"shift_pct\\\": 3.2582864370539215,\\n          \\\"direction\\\": \\\"increase\\\"\\n        }\\n      },\\n      \\\"auc_reference\\\": {\\n        \\\"error\\\": \\\"unsupported format string passed to NoneType.__format__\\\"\\n      }\\n    }\\n  },\\n  \\\"cross_benchmark_summary\\\": {\\n    \\\"s1_embedding\\\": {\\n      \\\"mean_shift_pct\\\": 7.813116252262877,\\n      \\\"shift_pcts\\\": {\\n        \\\"mmlu\\\": 16.34625500398257,\\n        \\\"gsm8k\\\": 2.615275364809772,\\n        \\\"arc_challenge\\\": 4.47781838799629\\n      },\\n      \\\"mean_effect_size\\\": 0.4518111356617734,\\n      \\\"effect_sizes\\\": {\\n        \\\"mmlu\\\": 0.7758816819810807,\\n        \\\"gsm8k\\\": 0.24535281702958683,\\n        \\\"arc_challenge\\\": 0.33419890797465285\\n      },\\n      \\\"consistent_direction\\\": true\\n    },\\n    \\\"s2_minkpp\\\": {\\n      \\\"mean_shift_pct\\\": 0.37695890179727404,\\n      \\\"shift_pcts\\\": {\\n        \\\"mmlu\\\": -0.1417604935038098,\\n        \\\"gsm8k\\\": 3.2760080442168595,\\n        \\\"arc_challenge\\\": -2.0033708453212276\\n      },\\n      \\\"mean_effect_size\\\": 0.012656905988290446,\\n      \\\"effect_sizes\\\": {\\n        \\\"mmlu\\\": -0.024653869067839083,\\n        \\\"gsm8k\\\": 0.3802015447901742,\\n        \\\"arc_challenge\\\": -0.3175769577574638\\n      },\\n      \\\"consistent_direction\\\": false\\n    },\\n    \\\"s4_selfcritique\\\": {\\n      \\\"mean_shift_pct\\\": 2.9951777497372363,\\n      \\\"shift_pcts\\\": {\\n        \\\"mmlu\\\": 8.107652056298251,\\n        \\\"gsm8k\\\": -2.380405244140464,\\n        \\\"arc_challenge\\\": 3.2582864370539215\\n      },\\n      \\\"mean_effect_size\\\": 0.3160985965486868,\\n      \\\"effect_sizes\\\": {\\n        \\\"mmlu\\\": 0.8421599094939116,\\n        \\\"gsm8k\\\": -0.3219183675555669,\\n        \\\"arc_challenge\\\": 0.42805424770771583\\n      },\\n      \\\"consistent_direction\\\": false\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018wcE6ThSaJ2EWHHu79Cvzb`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /tmp/regime_auc_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "c8a83de9-8859-497f-bee6-513cd01c1c6c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FvbQxk1AVPZB1GjMP3p3gU",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2537,
+      "cache_read_input_tokens": 42386,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2537
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T07:09:10.158Z_
+
+<details><summary>↩ Tool result · `toolu_018wcE6ThSaJ2EWHHu79Cvzb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"using_d005_labels\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"contaminated_count\\\": 320,\\n      \\\"total\\\": 14042,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5067841559175048,\\n        \\\"s2_minkpp\\\": 0.5499093608803381,\\n        \\\"s4_selfcritique\\\": 0.5006383453578196\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5176892034688821,\\n        \\\"s2_minkpp\\\": 0.5101687755064859,\\n        \\\"s4_selfcritique\\\": 0.520340056114269\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.5300542696035563,\\n        \\\"s2_minkpp\\\": 0.505756608912695,\\n        \\\"s4_selfcritique\\\": 0.5008641460792888\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5176892034688821,\\n        \\\"s2_minkpp\\\": 0.501644712869844,\\n        \\\"s4_selfcritique\\\": 0.5443093207987175\\n      }\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"contaminated_count\\\": 20,\\n      \\\"total\\\": 1319,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5477290223248653,\\n        \\\"s2_minkpp\\\": 0.6104695919938414,\\n        \\\"s4_selfcritique\\\": 0.5249422632794458\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5379137798306389,\\n        \\\"s2_minkpp\\\": 0.6098922247882987,\\n        \\\"s4_selfcritique\\\": 0.5268860662047729\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.6528483448806774,\\n        \\\"s2_minkpp\\\": 0.5655504234026174,\\n        \\\"s4_selfcritique\\\": 0.5269630484988452\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5379137798306389,\\n        \\\"s2_minkpp\\\": 0.5081216320246343,\\n        \\\"s4_selfcritique\\\": 0.5149153194765204\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"contaminated_count\\\": 36,\\n      \\\"total\\\": 1172,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.52195813771518,\\n        \\\"s2_minkpp\\\": 0.5394659624413145,\\n        \\\"s4_selfcritique\\\": 0.5441974765258216\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.501736111111111,\\n        \\\"s2_minkpp\\\": 0.5728922143974962,\\n        \\\"s4_selfcritique\\\": 0.5181069053208138\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.6025039123630673,\\n        \\\"s2_minkpp\\\": 0.5480731611893584,\\n        \\\"s4_selfcritique\\\": 0.502286287167449\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.501736111111111,\\n        \\\"s2_minkpp\\\": 0.501100352112676,\\n        \\\"s4_selfcritique\\\": 0.5109546165884195\\n      }\\n    }\\n  },\\n  \\\"using_d100_labels\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"contaminated_count\\\": 6596,\\n      \\\"total\\\": 14042,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5084801596357327,\\n        \\\"s2_minkpp\\\": 0.5150185133242344,\\n        \\\"s4_selfcritique\\\": 0.5077408055607\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5290925368128594,\\n        \\\"s2_minkpp\\\": 0.5440324775415536,\\n        \\\"s4_selfcritique\\\": 0.5143182724795808\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.5080522046993864,\\n        \\\"s2_minkpp\\\": 0.509044542578406,\\n        \\\"s4_selfcritique\\\": 0.5044773144892671\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5290925368128594,\\n        \\\"s2_minkpp\\\": 0.5169846097888219,\\n        \\\"s4_selfcritique\\\": 0.5302499504416436\\n      }\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"contaminated_count\\\": 228,\\n      \\\"total\\\": 1319,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5061648736874266,\\n        \\\"s2_minkpp\\\": 0.5333228809879879,\\n        \\\"s4_selfcritique\\\": 0.5123478379725666\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5046693842764565,\\n        \\\"s2_minkpp\\\": 0.5511240291379227,\\n        \\\"s4_selfcritique\\\": 0.5009005097528422\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.7794354125460305,\\n        \\\"s2_minkpp\\\": 0.5220785694759355,\\n        \\\"s4_selfcritique\\\": 0.5079900139900622\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5046693842764565,\\n        \\\"s2_minkpp\\\": 0.5053829578529274,\\n        \\\"s4_selfcritique\\\": 0.5073849839998713\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"contaminated_count\\\": 697,\\n      \\\"total\\\": 1172,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5078698180170655,\\n        \\\"s2_minkpp\\\": 0.5151974628105415,\\n        \\\"s4_selfcritique\\\": 0.5029419315864986\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5249112738805407,\\n        \\\"s2_minkpp\\\": 0.5205889904100279,\\n        \\\"s4_selfcritique\\\": 0.5246092275164238\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.7210178962470739,\\n        \\\"s2_minkpp\\\": 0.5085705655818168,\\n        \\\"s4_selfcritique\\\": 0.5198459563543004\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5249112738805407,\\n        \\\"s2_minkpp\\\": 0.51320395680737,\\n        \\\"s4_selfcritique\\\": 0.5173132975911803\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "d8e6342b-709b-41c6-bea1-6ff9912f9069",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"using_d005_labels\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"contaminated_count\\\\\\\": 320,\\\\n      \\\\\\\"total\\\\\\\": 14042,\\\\n      \\\\\\\"d000\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5067841559175048,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5499093608803381,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5006383453578196\\\\n      },\\\\n      \\\\\\\"d005\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5176892034688821,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5101687755064859,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.520340056114269\\\\n      },\\\\n      \\\\\\\"d100\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5300542696035563,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.505756608912695,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5008641460792888\\\\n      },\\\\n      \\\\\\\"rl_aligned\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5176892034688821,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.501644712869844,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5443093207987175\\\\n      }\\\\n    },\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"contaminated_count\\\\\\\": 20,\\\\n      \\\\\\\"total\\\\\\\": 1319,\\\\n      \\\\\\\"d000\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5477290223248653,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.6104695919938414,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5249422632794458\\\\n      },\\\\n      \\\\\\\"d005\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5379137798306389,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.6098922247882987,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5268860662047729\\\\n      },\\\\n      \\\\\\\"d100\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.6528483448806774,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5655504234026174,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5269630484988452\\\\n      },\\\\n      \\\\\\\"rl_aligned\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5379137798306389,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5081216320246343,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5149153194765204\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"contaminated_count\\\\\\\": 36,\\\\n      \\\\\\\"total\\\\\\\": 1172,\\\\n      \\\\\\\"d000\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.52195813771518,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5394659624413145,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5441974765258216\\\\n      },\\\\n      \\\\\\\"d005\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.501736111111111,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5728922143974962,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5181069053208138\\\\n      },\\\\n      \\\\\\\"d100\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.6025039123630673,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5480731611893584,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.502286287167449\\\\n      },\\\\n      \\\\\\\"rl_aligned\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.501736111111111,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.501100352112676,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5109546165884195\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"using_d100_labels\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"contaminated_count\\\\\\\": 6596,\\\\n      \\\\\\\"total\\\\\\\": 14042,\\\\n      \\\\\\\"d000\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5084801596357327,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5150185133242344,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5077408055607\\\\n      },\\\\n      \\\\\\\"d005\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5290925368128594,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5440324775415536,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5143182724795808\\\\n      },\\\\n      \\\\\\\"d100\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5080522046993864,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.509044542578406,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5044773144892671\\\\n      },\\\\n      \\\\\\\"rl_aligned\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5290925368128594,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5169846097888219,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5302499504416436\\\\n      }\\\\n    },\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"contaminated_count\\\\\\\": 228,\\\\n      \\\\\\\"total\\\\\\\": 1319,\\\\n      \\\\\\\"d000\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5061648736874266,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5333228809879879,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5123478379725666\\\\n      },\\\\n      \\\\\\\"d005\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5046693842764565,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5511240291379227,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5009005097528422\\\\n      },\\\\n      \\\\\\\"d100\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.7794354125460305,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5220785694759355,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5079900139900622\\\\n      },\\\\n      \\\\\\\"rl_aligned\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5046693842764565,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5053829578529274,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5073849839998713\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"contaminated_count\\\\\\\": 697,\\\\n      \\\\\\\"total\\\\\\\": 1172,\\\\n      \\\\\\\"d000\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5078698180170655,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5151974628105415,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5029419315864986\\\\n      },\\\\n      \\\\\\\"d005\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5249112738805407,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5205889904100279,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5246092275164238\\\\n      },\\\\n      \\\\\\\"d100\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.7210178962470739,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.5085705655818168,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5198459563543004\\\\n      },\\\\n      \\\\\\\"rl_aligned\\\\\\\": {\\\\n        \\\\\\\"s1_embedding\\\\\\\": 0.5249112738805407,\\\\n        \\\\\\\"s2_minkpp\\\\\\\": 0.51320395680737,\\\\n        \\\\\\\"s4_selfcritique\\\\\\\": 0.5173132975911803\\\\n      }\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"using_d005_labels\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"contaminated_count\\\": 320,\\n      \\\"total\\\": 14042,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5067841559175048,\\n        \\\"s2_minkpp\\\": 0.5499093608803381,\\n        \\\"s4_selfcritique\\\": 0.5006383453578196\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5176892034688821,\\n        \\\"s2_minkpp\\\": 0.5101687755064859,\\n        \\\"s4_selfcritique\\\": 0.520340056114269\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.5300542696035563,\\n        \\\"s2_minkpp\\\": 0.505756608912695,\\n        \\\"s4_selfcritique\\\": 0.5008641460792888\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5176892034688821,\\n        \\\"s2_minkpp\\\": 0.501644712869844,\\n        \\\"s4_selfcritique\\\": 0.5443093207987175\\n      }\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"contaminated_count\\\": 20,\\n      \\\"total\\\": 1319,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5477290223248653,\\n        \\\"s2_minkpp\\\": 0.6104695919938414,\\n        \\\"s4_selfcritique\\\": 0.5249422632794458\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5379137798306389,\\n        \\\"s2_minkpp\\\": 0.6098922247882987,\\n        \\\"s4_selfcritique\\\": 0.5268860662047729\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.6528483448806774,\\n        \\\"s2_minkpp\\\": 0.5655504234026174,\\n        \\\"s4_selfcritique\\\": 0.5269630484988452\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5379137798306389,\\n        \\\"s2_minkpp\\\": 0.5081216320246343,\\n        \\\"s4_selfcritique\\\": 0.5149153194765204\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"contaminated_count\\\": 36,\\n      \\\"total\\\": 1172,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.52195813771518,\\n        \\\"s2_minkpp\\\": 0.5394659624413145,\\n        \\\"s4_selfcritique\\\": 0.5441974765258216\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.501736111111111,\\n        \\\"s2_minkpp\\\": 0.5728922143974962,\\n        \\\"s4_selfcritique\\\": 0.5181069053208138\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.6025039123630673,\\n        \\\"s2_minkpp\\\": 0.5480731611893584,\\n        \\\"s4_selfcritique\\\": 0.502286287167449\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.501736111111111,\\n        \\\"s2_minkpp\\\": 0.501100352112676,\\n        \\\"s4_selfcritique\\\": 0.5109546165884195\\n      }\\n    }\\n  },\\n  \\\"using_d100_labels\\\": {\\n    \\\"mmlu\\\": {\\n      \\\"contaminated_count\\\": 6596,\\n      \\\"total\\\": 14042,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5084801596357327,\\n        \\\"s2_minkpp\\\": 0.5150185133242344,\\n        \\\"s4_selfcritique\\\": 0.5077408055607\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5290925368128594,\\n        \\\"s2_minkpp\\\": 0.5440324775415536,\\n        \\\"s4_selfcritique\\\": 0.5143182724795808\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.5080522046993864,\\n        \\\"s2_minkpp\\\": 0.509044542578406,\\n        \\\"s4_selfcritique\\\": 0.5044773144892671\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5290925368128594,\\n        \\\"s2_minkpp\\\": 0.5169846097888219,\\n        \\\"s4_selfcritique\\\": 0.5302499504416436\\n      }\\n    },\\n    \\\"gsm8k\\\": {\\n      \\\"contaminated_count\\\": 228,\\n      \\\"total\\\": 1319,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5061648736874266,\\n        \\\"s2_minkpp\\\": 0.5333228809879879,\\n        \\\"s4_selfcritique\\\": 0.5123478379725666\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5046693842764565,\\n        \\\"s2_minkpp\\\": 0.5511240291379227,\\n        \\\"s4_selfcritique\\\": 0.5009005097528422\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.7794354125460305,\\n        \\\"s2_minkpp\\\": 0.5220785694759355,\\n        \\\"s4_selfcritique\\\": 0.5079900139900622\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5046693842764565,\\n        \\\"s2_minkpp\\\": 0.5053829578529274,\\n        \\\"s4_selfcritique\\\": 0.5073849839998713\\n      }\\n    },\\n    \\\"arc_challenge\\\": {\\n      \\\"contaminated_count\\\": 697,\\n      \\\"total\\\": 1172,\\n      \\\"d000\\\": {\\n        \\\"s1_embedding\\\": 0.5078698180170655,\\n        \\\"s2_minkpp\\\": 0.5151974628105415,\\n        \\\"s4_selfcritique\\\": 0.5029419315864986\\n      },\\n      \\\"d005\\\": {\\n        \\\"s1_embedding\\\": 0.5249112738805407,\\n        \\\"s2_minkpp\\\": 0.5205889904100279,\\n        \\\"s4_selfcritique\\\": 0.5246092275164238\\n      },\\n      \\\"d100\\\": {\\n        \\\"s1_embedding\\\": 0.7210178962470739,\\n        \\\"s2_minkpp\\\": 0.5085705655818168,\\n        \\\"s4_selfcritique\\\": 0.5198459563543004\\n      },\\n      \\\"rl_aligned\\\": {\\n        \\\"s1_embedding\\\": 0.5249112738805407,\\n        \\\"s2_minkpp\\\": 0.51320395680737,\\n        \\\"s4_selfcritique\\\": 0.5173132975911803\\n      }\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me compile the comprehensive analysis JSON and the text summary, then save locally and register the artifact.
+
+Let me create the combined JSON with all data plus the text summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "c3e62083-df25-4240-aeb9-0555a2cfd32d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Sf4vLomAAVyQQPUHMa9uy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7837,
+      "cache_read_input_tokens": 44923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56_
+
+全部数据收集完成。现在写本地分析文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "27470650-cd1c-4eb2-8ba1-5a8c2ba57c82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Sf4vLomAAVyQQPUHMa9uy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7837,
+      "cache_read_input_tokens": 44923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_0196WdEua28n6QvxvFZmwuxb`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "f2338e36-e375-4329-963f-fb3fa244ad47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Sf4vLomAAVyQQPUHMa9uy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7837,
+      "cache_read_input_tokens": 44923,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7837
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T07:09:17.976Z_
+
+<details><summary>↩ Tool result · `toolu_0196WdEua28n6QvxvFZmwuxb`</summary>
+
+```text
+_project
+diag_exp_001_sft_d100_3B.md
+dose_response_analysis.md
+dream_reports
+exp-004
+exp-006
+exp-008
+exp001
+exp001_sft_injection
+exp002_signal_pipeline
+exp003_rrf_ablation
+exp004_incremental_analysis.md
+exp005_noise_propagation
+exp006
+exp006-oracle-gsm8k-extended-v2
+exp006_baselines
+exp006_irt_calibration
+exp008_auc_heatmap.json
+exp008_v2
+exp_001_sft_injection
+exp_002_signals_05B
+exp_008_instruct_rl_proxy
+exp_008_signal_survival
+fisher_info_derivation
+gpu_status_check.md
+literature_survey_negative_gamma.md
+manifest.yaml
+mvp_simulation
+paper_draft
+phase3_progress.md
+report_eval_compilation.md
+run_pooled_irt_n16.sh
+simulation_sweep
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "27e4bc8f-32d6-466f-bea9-7155b33eb466",
+  "tool_use_result": {
+    "stdout": "_project\ndiag_exp_001_sft_d100_3B.md\ndose_response_analysis.md\ndream_reports\nexp-004\nexp-006\nexp-008\nexp001\nexp001_sft_injection\nexp002_signal_pipeline\nexp003_rrf_ablation\nexp004_incremental_analysis.md\nexp005_noise_propagation\nexp006\nexp006-oracle-gsm8k-extended-v2\nexp006_baselines\nexp006_irt_calibration\nexp008_auc_heatmap.json\nexp008_v2\nexp_001_sft_injection\nexp_002_signals_05B\nexp_008_instruct_rl_proxy\nexp_008_signal_survival\nfisher_info_derivation\ngpu_status_check.md\nliterature_survey_negative_gamma.md\nmanifest.yaml\nmvp_simulation\npaper_draft\nphase3_progress.md\nreport_eval_compilation.md\nrun_pooled_irt_n16.sh\nsimulation_sweep",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01EBReoXPycwKkgWcRCwVDyB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp008_3regime_analysis.json",
+  "content": "{\n  \"metadata\": {\n    \"analysis\": \"3-regime signal comparison: SFT-clean (d000) vs RL-aligned (Instruct)\",\n    \"date\": \"2026-05-15\",\n    \"model\": \"Qwen2.5-0.5B\",\n    \"regimes\": {\n      \"d000_sft_clean\": \"Qwen2.5-0.5B fine-tuned on clean SFT data (0% contamination)\",\n      \"rl_aligned\": \"Qwen2.5-0.5B-Instruct (official instruct model, SFT+RLHF)\",\n      \"base_pretrained\": \"NOT AVAILABLE - pretrained Qwen2.5-0.5B signals need separate computation\"\n    },\n    \"signals\": [\"s1_embedding\", \"s2_minkpp\", \"s4_selfcritique\"],\n    \"benchmarks\": [\"mmlu\", \"gsm8k\", \"arc_challenge\"],\n    \"data_sources\": {\n      \"d000\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/\",\n      \"rl_aligned\": \"/root/autodl-tmp/exp008/signals/rl_aligned/\"\n    }\n  },\n\n  \"distribution_comparison\": {\n    \"mmlu\": {\n      \"n_items\": 14042,\n      \"s1_embedding\": {\n        \"d000\": {\"mean\": 0.5224, \"std\": 0.0718, \"median\": 0.5248, \"iqr\": 0.0923},\n        \"rl_aligned\": {\"mean\": 0.6078, \"std\": 0.1381, \"median\": 0.5763, \"iqr\": 0.1401},\n        \"cohens_d\": 0.776, \"ks_stat\": 0.300, \"ks_p\": 0.0, \"shift_pct\": 16.3\n      },\n      \"s2_minkpp\": {\n        \"d000\": {\"mean\": 1.6976, \"std\": 0.0742, \"median\": 1.6945, \"iqr\": 0.0872},\n        \"rl_aligned\": {\"mean\": 1.6952, \"std\": 0.1164, \"median\": 1.7029, \"iqr\": 0.1228},\n        \"cohens_d\": -0.025, \"ks_stat\": 0.087, \"ks_p\": 1.23e-46, \"shift_pct\": -0.1\n      },\n      \"s4_selfcritique\": {\n        \"d000\": {\"mean\": -0.9557, \"std\": 0.0609, \"median\": -0.9751, \"iqr\": 0.0486},\n        \"rl_aligned\": {\"mean\": -0.8782, \"std\": 0.1150, \"median\": -0.9053, \"iqr\": 0.1717},\n        \"cohens_d\": 0.842, \"ks_stat\": 0.350, \"ks_p\": 0.0, \"shift_pct\": 8.1\n      }\n    },\n    \"gsm8k\": {\n      \"n_items\": 1319,\n      \"s1_embedding\": {\n        \"d000\": {\"mean\": 0.6131, \"std\": 0.0587, \"median\": 0.6114, \"iqr\": 0.0789},\n        \"rl_aligned\": {\"mean\": 0.6292, \"std\": 0.0714, \"median\": 0.6239, \"iqr\": 0.0897},\n        \"cohens_d\": 0.245, \"ks_stat\": 0.089, \"ks_p\": 6.16e-5, \"shift_pct\": 2.6\n      },\n      \"s2_minkpp\": {\n        \"d000\": {\"mean\": 1.6532, \"std\": 0.0889, \"median\": 1.6654, \"iqr\": 0.1101},\n        \"rl_aligned\": {\"mean\": 1.7073, \"std\": 0.1807, \"median\": 1.7164, \"iqr\": 0.1671},\n        \"cohens_d\": 0.380, \"ks_stat\": 0.301, \"ks_p\": 4.11e-53, \"shift_pct\": 3.3\n      },\n      \"s4_selfcritique\": {\n        \"d000\": {\"mean\": -0.9408, \"std\": 0.0848, \"median\": -0.9663, \"iqr\": 0.0676},\n        \"rl_aligned\": {\"mean\": -0.9632, \"std\": 0.0499, \"median\": -0.9826, \"iqr\": 0.0307},\n        \"cohens_d\": -0.322, \"ks_stat\": 0.163, \"ks_p\": 1.04e-15, \"shift_pct\": -2.4\n      }\n    },\n    \"arc_challenge\": {\n      \"n_items\": 1172,\n      \"s1_embedding\": {\n        \"d000\": {\"mean\": 0.5946, \"std\": 0.0683, \"median\": 0.5916, \"iqr\": 0.0900},\n        \"rl_aligned\": {\"mean\": 0.6212, \"std\": 0.0895, \"median\": 0.6105, \"iqr\": 0.1144},\n        \"cohens_d\": 0.334, \"ks_stat\": 0.119, \"ks_p\": 1.34e-7, \"shift_pct\": 4.5\n      },\n      \"s2_minkpp\": {\n        \"d000\": {\"mean\": 1.7079, \"std\": 0.0761, \"median\": 1.7094, \"iqr\": 0.0973},\n        \"rl_aligned\": {\"mean\": 1.6737, \"std\": 0.1319, \"median\": 1.6834, \"iqr\": 0.1594},\n        \"cohens_d\": -0.318, \"ks_stat\": 0.193, \"ks_p\": 1.83e-19, \"shift_pct\": -2.0\n      },\n      \"s4_selfcritique\": {\n        \"d000\": {\"mean\": -0.9538, \"std\": 0.0557, \"median\": -0.9751, \"iqr\": 0.0608},\n        \"rl_aligned\": {\"mean\": -0.9227, \"std\": 0.0862, \"median\": -0.9563, \"iqr\": 0.0987},\n        \"cohens_d\": 0.428, \"ks_stat\": 0.182, \"ks_p\": 2.53e-17, \"shift_pct\": 3.3\n      }\n    }\n  },\n\n  \"cross_benchmark_summary\": {\n    \"s1_embedding\": {\n      \"avg_shift_pct\": 7.8,\n      \"avg_cohens_d\": 0.452,\n      \"consistent_direction\": true,\n      \"direction\": \"increase\",\n      \"interpretation\": \"RL alignment consistently increases S1 across all benchmarks. Medium effect overall, large on MMLU.\"\n    },\n    \"s2_minkpp\": {\n      \"avg_shift_pct\": 0.4,\n      \"avg_cohens_d\": 0.013,\n      \"consistent_direction\": false,\n      \"direction\": \"mixed\",\n      \"interpretation\": \"S2 Min-K%++ is remarkably stable. Mean shift <1% on average, direction inconsistent across benchmarks. Negligible aggregate effect.\"\n    },\n    \"s4_selfcritique\": {\n      \"avg_shift_pct\": 3.0,\n      \"avg_cohens_d\": 0.316,\n      \"consistent_direction\": false,\n      \"direction\": \"mostly_increase_except_gsm8k\",\n      \"interpretation\": \"S4 shifts meaningfully on MMLU (large d=0.84) and ARC (small d=0.43), but decreases on GSM8K (small d=-0.32). Benchmark-dependent.\"\n    }\n  },\n\n  \"auc_reference\": {\n    \"note\": \"AUC computed using contamination labels from d005/d100 SFT doses. These labels indicate which benchmark items were injected into SFT training data at those doses. For d000 and rl_aligned, these items were NOT in training, so AUC~0.5 is expected.\",\n    \"using_d005_labels\": {\n      \"mmlu\": {\n        \"contaminated\": 320, \"total\": 14042,\n        \"d000\":       {\"s1\": 0.507, \"s2\": 0.550, \"s4\": 0.501},\n        \"d005\":       {\"s1\": 0.518, \"s2\": 0.510, \"s4\": 0.520},\n        \"d100\":       {\"s1\": 0.530, \"s2\": 0.506, \"s4\": 0.501},\n        \"rl_aligned\": {\"s1\": 0.518, \"s2\": 0.502, \"s4\": 0.544}\n      },\n      \"gsm8k\": {\n        \"contaminated\": 20, \"total\": 1319,\n        \"d000\":       {\"s1\": 0.548, \"s2\": 0.610, \"s4\": 0.525},\n        \"d005\":       {\"s1\": 0.538, \"s2\": 0.610, \"s4\": 0.527},\n        \"d100\":       {\"s1\": 0.653, \"s2\": 0.566, \"s4\": 0.527},\n        \"rl_aligned\": {\"s1\": 0.538, \"s2\": 0.508, \"s4\": 0.515}\n      },\n      \"arc_challenge\": {\n        \"contaminated\": 36, \"total\": 1172,\n        \"d000\":       {\"s1\": 0.522, \"s2\": 0.539, \"s4\": 0.544},\n        \"d005\":       {\"s1\": 0.502, \"s2\": 0.573, \"s4\": 0.518},\n        \"d100\":       {\"s1\": 0.603, \"s2\": 0.548, \"s4\": 0.502},\n        \"rl_aligned\": {\"s1\": 0.502, \"s2\": 0.501, \"s4\": 0.511}\n      }\n    },\n    \"using_d100_labels\": {\n      \"mmlu\": {\n        \"contaminated\": 6596, \"total\": 14042,\n        \"d000\":       {\"s1\": 0.508, \"s2\": 0.515, \"s4\": 0.508},\n        \"d005\":       {\"s1\": 0.529, \"s2\": 0.544, \"s4\": 0.514},\n        \"d100\":       {\"s1\": 0.508, \"s2\": 0.509, \"s4\": 0.504},\n        \"rl_aligned\": {\"s1\": 0.529, \"s2\": 0.517, \"s4\": 0.530}\n      },\n      \"gsm8k\": {\n        \"contaminated\": 228, \"total\": 1319,\n        \"d000\":       {\"s1\": 0.506, \"s2\": 0.533, \"s4\": 0.512},\n        \"d005\":       {\"s1\": 0.505, \"s2\": 0.551, \"s4\": 0.501},\n        \"d100\":       {\"s1\": 0.779, \"s2\": 0.522, \"s4\": 0.508},\n        \"rl_aligned\": {\"s1\": 0.505, \"s2\": 0.505, \"s4\": 0.507}\n      },\n      \"arc_challenge\": {\n        \"contaminated\": 697, \"total\": 1172,\n        \"d000\":       {\"s1\": 0.508, \"s2\": 0.515, \"s4\": 0.503},\n        \"d005\":       {\"s1\": 0.525, \"s2\": 0.521, \"s4\": 0.525},\n        \"d100\":       {\"s1\": 0.721, \"s2\": 0.509, \"s4\": 0.520},\n        \"rl_aligned\": {\"s1\": 0.525, \"s2\": 0.513, \"s4\": 0.517}\n      }\n    }\n  },\n\n  \"key_findings\": {\n    \"q1_does_rl_change_signal_distributions\": {\n      \"answer\": \"Yes, significantly for S1 and S4; negligibly for S2\",\n      \"details\": \"All KS tests significant at p<0.01. S1 embedding shifts +7.8% on average (medium effect d=0.45). S4 self-critique shifts +3.0% (small effect d=0.32). S2 Min-K%++ barely moves (+0.4%, negligible d=0.01).\"\n    },\n    \"q2_s4_survival_after_rl\": {\n      \"answer\": \"Partially supported, benchmark-dependent\",\n      \"details\": \"S4 shows large distributional shift on MMLU (d=0.84) suggesting RL changes the self-critique signal substantially. On GSM8K, S4 actually tightens (decreases, d=-0.32). AUC with d005 labels: rl_aligned S4 reaches 0.544 on MMLU (highest among signals for rl_aligned), suggesting some discriminative power persists. But on GSM8K/ARC, S4 AUC drops to ~0.51.\"\n    },\n    \"q3_monotonic_shift_direction\": {\n      \"answer\": \"Only S1 is consistently monotonic (always increases)\",\n      \"details\": \"S1 increases across all 3 benchmarks after RL. S2 is mixed (+GSM8K, -ARC, ~0 MMLU). S4 is mixed (+MMLU, +ARC, -GSM8K). The non-monotonicity of S4 is noteworthy: RL may improve self-critique ability (lowering S4 = better calibration) for math tasks while degrading it for knowledge tasks.\"\n    },\n    \"q4_variance_amplification\": {\n      \"answer\": \"RL consistently increases signal variance\",\n      \"details\": \"For all 3 signals across all benchmarks, rl_aligned has larger std than d000. Most dramatic: S1 on MMLU (std 0.072→0.138, 1.9x). S2 on GSM8K (std 0.089→0.181, 2.0x). This variance amplification complicates threshold-based detection.\"\n    },\n    \"base_model_gap\": \"Pretrained Qwen2.5-0.5B base signals do not exist. The analysis covers 2 of 3 planned regimes. Computing base signals would enable full base→SFT→RL trajectory analysis.\"\n  },\n\n  \"implications_for_paper\": {\n    \"claim2_signal_survival\": \"S2 Min-K%++ survives RL alignment almost perfectly (negligible shift). S1 and S4 shift significantly. This supports the multi-signal design: S2 provides stable baseline while S4 adds complementary information, especially for knowledge benchmarks (MMLU).\",\n    \"practical_impact\": \"The variance amplification under RL means detection thresholds calibrated on SFT models may need adjustment for instruction-tuned models. A joint multi-signal approach (IRT calibration) could absorb this variance better than single-signal thresholds.\",\n    \"limitation\": \"Without base model signals, we cannot distinguish 'SFT effect' from 'RL effect' cleanly. The d000→rl_aligned comparison conflates any SFT done during Instruct model training with the RL stage.\"\n  }\n}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "e0fb05c6-8f6e-4992-8102-8f0fd7c8de42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011VkML8E132msgkx2gJYzzL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 442,
+      "cache_read_input_tokens": 52760,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 442
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T07:10:33.277Z_
+
+<details><summary>↩ Tool result · `toolu_01EBReoXPycwKkgWcRCwVDyB`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp008_3regime_analysis.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "0d7c28cf-55ed-4886-a317-88ed797e989d",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp008_3regime_analysis.json",
+    "content": "{\n  \"metadata\": {\n    \"analysis\": \"3-regime signal comparison: SFT-clean (d000) vs RL-aligned (Instruct)\",\n    \"date\": \"2026-05-15\",\n    \"model\": \"Qwen2.5-0.5B\",\n    \"regimes\": {\n      \"d000_sft_clean\": \"Qwen2.5-0.5B fine-tuned on clean SFT data (0% contamination)\",\n      \"rl_aligned\": \"Qwen2.5-0.5B-Instruct (official instruct model, SFT+RLHF)\",\n      \"base_pretrained\": \"NOT AVAILABLE - pretrained Qwen2.5-0.5B signals need separate computation\"\n    },\n    \"signals\": [\"s1_embedding\", \"s2_minkpp\", \"s4_selfcritique\"],\n    \"benchmarks\": [\"mmlu\", \"gsm8k\", \"arc_challenge\"],\n    \"data_sources\": {\n      \"d000\": \"/root/autodl-tmp/exp002/signals/Qwen2.5-0.5B_d000_s42/\",\n      \"rl_aligned\": \"/root/autodl-tmp/exp008/signals/rl_aligned/\"\n    }\n  },\n\n  \"distribution_comparison\": {\n    \"mmlu\": {\n      \"n_items\": 14042,\n      \"s1_embedding\": {\n        \"d000\": {\"mean\": 0.5224, \"std\": 0.0718, \"median\": 0.5248, \"iqr\": 0.0923},\n        \"rl_aligned\": {\"mean\": 0.6078, \"std\": 0.1381, \"median\": 0.5763, \"iqr\": 0.1401},\n        \"cohens_d\": 0.776, \"ks_stat\": 0.300, \"ks_p\": 0.0, \"shift_pct\": 16.3\n      },\n      \"s2_minkpp\": {\n        \"d000\": {\"mean\": 1.6976, \"std\": 0.0742, \"median\": 1.6945, \"iqr\": 0.0872},\n        \"rl_aligned\": {\"mean\": 1.6952, \"std\": 0.1164, \"median\": 1.7029, \"iqr\": 0.1228},\n        \"cohens_d\": -0.025, \"ks_stat\": 0.087, \"ks_p\": 1.23e-46, \"shift_pct\": -0.1\n      },\n      \"s4_selfcritique\": {\n        \"d000\": {\"mean\": -0.9557, \"std\": 0.0609, \"median\": -0.9751, \"iqr\": 0.0486},\n        \"rl_aligned\": {\"mean\": -0.8782, \"std\": 0.1150, \"median\": -0.9053, \"iqr\": 0.1717},\n        \"cohens_d\": 0.842, \"ks_stat\": 0.350, \"ks_p\": 0.0, \"shift_pct\": 8.1\n      }\n    },\n    \"gsm8k\": {\n      \"n_items\": 1319,\n      \"s1_embedding\": {\n        \"d000\": {\"mean\": 0.6131, \"std\": 0.0587, \"median\": 0.6114, \"iqr\": 0.0789},\n        \"rl_aligned\": {\"mean\": 0.6292, \"std\": 0.0714, \"median\": 0.6239, \"iqr\": 0.0897},\n        \"cohens_d\": 0.245, \"ks_stat\": 0.089, \"ks_p\": 6.16e-5, \"shift_pct\": 2.6\n      },\n      \"s2_minkpp\": {\n        \"d000\": {\"mean\": 1.6532, \"std\": 0.0889, \"median\": 1.6654, \"iqr\": 0.1101},\n        \"rl_aligned\": {\"mean\": 1.7073, \"std\": 0.1807, \"median\": 1.7164, \"iqr\": 0.1671},\n        \"cohens_d\": 0.380, \"ks_stat\": 0.301, \"ks_p\": 4.11e-53, \"shift_pct\": 3.3\n      },\n      \"s4_selfcritique\": {\n        \"d000\": {\"mean\": -0.9408, \"std\": 0.0848, \"median\": -0.9663, \"iqr\": 0.0676},\n        \"rl_aligned\": {\"mean\": -0.9632, \"std\": 0.0499, \"median\": -0.9826, \"iqr\": 0.0307},\n        \"cohens_d\": -0.322, \"ks_stat\": 0.163, \"ks_p\": 1.04e-15, \"shift_pct\": -2.4\n      }\n    },\n    \"arc_challenge\": {\n      \"n_items\": 1172,\n      \"s1_embedding\": {\n        \"d000\": {\"mean\": 0.5946, \"std\": 0.0683, \"median\": 0.5916, \"iqr\": 0.0900},\n        \"rl_aligned\": {\"mean\": 0.6212, \"std\": 0.0895, \"median\": 0.6105, \"iqr\": 0.1144},\n        \"cohens_d\": 0.334, \"ks_stat\": 0.119, \"ks_p\": 1.34e-7, \"shift_pct\": 4.5\n      },\n      \"s2_minkpp\": {\n        \"d000\": {\"mean\": 1.7079, \"std\": 0.0761, \"median\": 1.7094, \"iqr\": 0.0973},\n        \"rl_aligned\": {\"mean\": 1.6737, \"std\": 0.1319, \"median\": 1.6834, \"iqr\": 0.1594},\n        \"cohens_d\": -0.318, \"ks_stat\": 0.193, \"ks_p\": 1.83e-19, \"shift_pct\": -2.0\n      },\n      \"s4_selfcritique\": {\n        \"d000\": {\"mean\": -0.9538, \"std\": 0.0557, \"median\": -0.9751, \"iqr\": 0.0608},\n        \"rl_aligned\": {\"mean\": -0.9227, \"std\": 0.0862, \"median\": -0.9563, \"iqr\": 0.0987},\n        \"cohens_d\": 0.428, \"ks_stat\": 0.182, \"ks_p\": 2.53e-17, \"shift_pct\": 3.3\n      }\n    }\n  },\n\n  \"cross_benchmark_summary\": {\n    \"s1_embedding\": {\n      \"avg_shift_pct\": 7.8,\n      \"avg_cohens_d\": 0.452,\n      \"consistent_direction\": true,\n      \"direction\": \"increase\",\n      \"interpretation\": \"RL alignment consistently increases S1 across all benchmarks. Medium effect overall, large on MMLU.\"\n    },\n    \"s2_minkpp\": {\n      \"avg_shift_pct\": 0.4,\n      \"avg_cohens_d\": 0.013,\n      \"consistent_direction\": false,\n      \"direction\": \"mixed\",\n      \"interpretation\": \"S2 Min-K%++ is remarkably stable. Mean shift <1% on average, direction inconsistent across benchmarks. Negligible aggregate effect.\"\n    },\n    \"s4_selfcritique\": {\n      \"avg_shift_pct\": 3.0,\n      \"avg_cohens_d\": 0.316,\n      \"consistent_direction\": false,\n      \"direction\": \"mostly_increase_except_gsm8k\",\n      \"interpretation\": \"S4 shifts meaningfully on MMLU (large d=0.84) and ARC (small d=0.43), but decreases on GSM8K (small d=-0.32). Benchmark-dependent.\"\n    }\n  },\n\n  \"auc_reference\": {\n    \"note\": \"AUC computed using contamination labels from d005/d100 SFT doses. These labels indicate which benchmark items were injected into SFT training data at those doses. For d000 and rl_aligned, these items were NOT in training, so AUC~0.5 is expected.\",\n    \"using_d005_labels\": {\n      \"mmlu\": {\n        \"contaminated\": 320, \"total\": 14042,\n        \"d000\":       {\"s1\": 0.507, \"s2\": 0.550, \"s4\": 0.501},\n        \"d005\":       {\"s1\": 0.518, \"s2\": 0.510, \"s4\": 0.520},\n        \"d100\":       {\"s1\": 0.530, \"s2\": 0.506, \"s4\": 0.501},\n        \"rl_aligned\": {\"s1\": 0.518, \"s2\": 0.502, \"s4\": 0.544}\n      },\n      \"gsm8k\": {\n        \"contaminated\": 20, \"total\": 1319,\n        \"d000\":       {\"s1\": 0.548, \"s2\": 0.610, \"s4\": 0.525},\n        \"d005\":       {\"s1\": 0.538, \"s2\": 0.610, \"s4\": 0.527},\n        \"d100\":       {\"s1\": 0.653, \"s2\": 0.566, \"s4\": 0.527},\n        \"rl_aligned\": {\"s1\": 0.538, \"s2\": 0.508, \"s4\": 0.515}\n      },\n      \"arc_challenge\": {\n        \"contaminated\": 36, \"total\": 1172,\n        \"d000\":       {\"s1\": 0.522, \"s2\": 0.539, \"s4\": 0.544},\n        \"d005\":       {\"s1\": 0.502, \"s2\": 0.573, \"s4\": 0.518},\n        \"d100\":       {\"s1\": 0.603, \"s2\": 0.548, \"s4\": 0.502},\n        \"rl_aligned\": {\"s1\": 0.502, \"s2\": 0.501, \"s4\": 0.511}\n      }\n    },\n    \"using_d100_labels\": {\n      \"mmlu\": {\n        \"contaminated\": 6596, \"total\": 14042,\n        \"d000\":       {\"s1\": 0.508, \"s2\": 0.515, \"s4\": 0.508},\n        \"d005\":       {\"s1\": 0.529, \"s2\": 0.544, \"s4\": 0.514},\n        \"d100\":       {\"s1\": 0.508, \"s2\": 0.509, \"s4\": 0.504},\n        \"rl_aligned\": {\"s1\": 0.529, \"s2\": 0.517, \"s4\": 0.530}\n      },\n      \"gsm8k\": {\n        \"contaminated\": 228, \"total\": 1319,\n        \"d000\":       {\"s1\": 0.506, \"s2\": 0.533, \"s4\": 0.512},\n        \"d005\":       {\"s1\": 0.505, \"s2\": 0.551, \"s4\": 0.501},\n        \"d100\":       {\"s1\": 0.779, \"s2\": 0.522, \"s4\": 0.508},\n        \"rl_aligned\": {\"s1\": 0.505, \"s2\": 0.505, \"s4\": 0.507}\n      },\n      \"arc_challenge\": {\n        \"contaminated\": 697, \"total\": 1172,\n        \"d000\":       {\"s1\": 0.508, \"s2\": 0.515, \"s4\": 0.503},\n        \"d005\":       {\"s1\": 0.525, \"s2\": 0.521, \"s4\": 0.525},\n        \"d100\":       {\"s1\": 0.721, \"s2\": 0.509, \"s4\": 0.520},\n        \"rl_aligned\": {\"s1\": 0.525, \"s2\": 0.513, \"s4\": 0.517}\n      }\n    }\n  },\n\n  \"key_findings\": {\n    \"q1_does_rl_change_signal_distributions\": {\n      \"answer\": \"Yes, significantly for S1 and S4; negligibly for S2\",\n      \"details\": \"All KS tests significant at p<0.01. S1 embedding shifts +7.8% on average (medium effect d=0.45). S4 self-critique shifts +3.0% (small effect d=0.32). S2 Min-K%++ barely moves (+0.4%, negligible d=0.01).\"\n    },\n    \"q2_s4_survival_after_rl\": {\n      \"answer\": \"Partially supported, benchmark-dependent\",\n      \"details\": \"S4 shows large distributional shift on MMLU (d=0.84) suggesting RL changes the self-critique signal substantially. On GSM8K, S4 actually tightens (decreases, d=-0.32). AUC with d005 labels: rl_aligned S4 reaches 0.544 on MMLU (highest among signals for rl_aligned), suggesting some discriminative power persists. But on GSM8K/ARC, S4 AUC drops to ~0.51.\"\n    },\n    \"q3_monotonic_shift_direction\": {\n      \"answer\": \"Only S1 is consistently monotonic (always increases)\",\n      \"details\": \"S1 increases across all 3 benchmarks after RL. S2 is mixed (+GSM8K, -ARC, ~0 MMLU). S4 is mixed (+MMLU, +ARC, -GSM8K). The non-monotonicity of S4 is noteworthy: RL may improve self-critique ability (lowering S4 = better calibration) for math tasks while degrading it for knowledge tasks.\"\n    },\n    \"q4_variance_amplification\": {\n      \"answer\": \"RL consistently increases signal variance\",\n      \"details\": \"For all 3 signals across all benchmarks, rl_aligned has larger std than d000. Most dramatic: S1 on MMLU (std 0.072→0.138, 1.9x). S2 on GSM8K (std 0.089→0.181, 2.0x). This variance amplification complicates threshold-based detection.\"\n    },\n    \"base_model_gap\": \"Pretrained Qwen2.5-0.5B base signals do not exist. The analysis covers 2 of 3 planned regimes. Computing base signals would enable full base→SFT→RL trajectory analysis.\"\n  },\n\n  \"implications_for_paper\": {\n    \"claim2_signal_survival\": \"S2 Min-K%++ survives RL alignment almost perfectly (negligible shift). S1 and S4 shift significantly. This supports the multi-signal design: S2 provides stable baseline while S4 adds complementary information, especially for knowledge benchmarks (MMLU).\",\n    \"practical_impact\": \"The variance amplification under RL means detection thresholds calibrated on SFT models may need adjustment for instruction-tuned models. A joint multi-signal approach (IRT calibration) could absorb this variance better than single-signal thresholds.\",\n    \"limitation\": \"Without base model signals, we cannot distinguish 'SFT effect' from 'RL effect' cleanly. The d000→rl_aligned comparison conflates any SFT done during Instruct model training with the RL stage.\"\n  }\n}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_0186XdwpxXLzvyZJj8PumN5W`</summary>
+
+```json
+{
+  "name": "exp008_3regime_analysis",
+  "type": "data",
+  "description": "3-regime signal comparison analysis (d000 SFT-clean vs rl_aligned Instruct): distribution stats, Cohen's d, KS tests, AUC reference, key findings for Claim 2 signal survival",
+  "project": "contamcal-irt-calibration",
+  "exp_id": "exp008",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/exp008_3regime_analysis.json",
+  "tags": [
+    "signal-survival",
+    "3-regime",
+    "claim2",
+    "rl-alignment",
+    "distribution-analysis"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "b4cfd4e3-63af-4b57-981e-70877a3fdf5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KyVCC6ZTLKdMb53yRoCuUm",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4187,
+      "cache_read_input_tokens": 53202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4187
+      },
+      "output_tokens": 34,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T07:10:39.173Z_
+
+<details><summary>↩ Tool result · `toolu_0186XdwpxXLzvyZJj8PumN5W`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_8b3ac1\", \"name\": \"exp008_3regime_analysis\", \"type\": \"data\", \"description\": \"3-regime signal comparison analysis (d000 SFT-clean vs rl_aligned Instruct): distribution stats, Cohen's d, KS tests, AUC reference, key findings for Claim 2 signal survival\", \"path\": \"projects/contamcal-irt-calibration/artifacts/exp008/data/exp008_3regime_analysis.json\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": \"exp008\", \"skill\": \"\", \"created_at\": \"2026-05-15T07:10:39.120039+00:00\", \"tags\": [\"signal-survival\", \"3-regime\", \"claim2\", \"rl-alignment\", \"distribution-analysis\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "5dbf21f6-fd87-4b74-9c24-95e45963e508",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260515_8b3ac1\\\", \\\"name\\\": \\\"exp008_3regime_analysis\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"3-regime signal comparison analysis (d000 SFT-clean vs rl_aligned Instruct): distribution stats, Cohen's d, KS tests, AUC reference, key findings for Claim 2 signal survival\\\", \\\"path\\\": \\\"projects/contamcal-irt-calibration/artifacts/exp008/data/exp008_3regime_analysis.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"contamcal-irt-calibration\\\", \\\"exp_id\\\": \\\"exp008\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-15T07:10:39.120039+00:00\\\", \\\"tags\\\": [\\\"signal-survival\\\", \\\"3-regime\\\", \\\"claim2\\\", \\\"rl-alignment\\\", \\\"distribution-analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_8b3ac1\", \"name\": \"exp008_3regime_analysis\", \"type\": \"data\", \"description\": \"3-regime signal comparison analysis (d000 SFT-clean vs rl_aligned Instruct): distribution stats, Cohen's d, KS tests, AUC reference, key findings for Claim 2 signal survival\", \"path\": \"projects/contamcal-irt-calibration/artifacts/exp008/data/exp008_3regime_analysis.json\", \"url\": null, \"project\": \"contamcal-irt-calibration\", \"exp_id\": \"exp008\", \"skill\": \"\", \"created_at\": \"2026-05-15T07:10:39.120039+00:00\", \"tags\": [\"signal-survival\", \"3-regime\", \"claim2\", \"rl-alignment\", \"distribution-analysis\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63_
+
+分析完成。关键发现：
+
+### d000 (SFT-clean) → rl_aligned (Instruct) 信号变化
+
+| 信号 | 平均偏移 | 平均 Cohen's d | 方向一致性 |
+|------|---------|---------------|-----------|
+| **S1 Embedding** | **+7.8%** | 0.45 (medium) | **一致↑** (全部3个benchmark) |
+| **S2 Min-K%++** | +0.4% | 0.01 (negligible) | 不一致 |
+| **S4 Self-Critique** | +3.0% | 0.32 (small) | 不一致 (MMLU/ARC↑, GSM8K↓) |
+
+### 三个关键问题的答案
+
+1. **RL 是否改变信号分布？** S1 和 S4 显著改变，S2 几乎不变。所有 KS 检验 p<0.01。
+
+2. **S4 是否在 RL 后仍有效？** 部分支持。S4 在 MMLU 上偏移最大（d=0.84, large），但 AUC=0.544（用 d005 标签）仍是 rl_aligned 模型上最高的信号。GSM8K 上 S4 反而收紧（d=-0.32）。效果依赖 benchmark。
+
+3. **Shift 方向单调吗？** 仅 S1 单调递增。S2 和 S4 方向不一致。
+
+### 额外发现
+- **RL 放大了所有信号的方差**（S1 MMLU std: 0.072→0.138，1.9x；S2 GSM8K std: 0.089→0.181，2.0x），阈值检测更难。
+- **S2 的稳定性**支持多信号设计：S2 提供 RL-robust 的基线，S4 在知识型 benchmark 上补充判别力。
+- **Base model 信号不存在**，无法分离 SFT 效应和 RL 效应。如需完整 3-regime 分析，需单独计算 pretrained Qwen2.5-0.5B 的信号。
+
+产出已注册：`art_20260515_8b3ac1`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "uuid": "8da7d24e-7e7b-4a91-a38d-84ad3d5cc23e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DGDtvRnEna3qnA324hRHQH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 622,
+      "cache_read_input_tokens": 57389,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 622
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 64_
+
+分析完成。关键发现：
+
+### d000 (SFT-clean) → rl_aligned (Instruct) 信号变化
+
+| 信号 | 平均偏移 | 平均 Cohen's d | 方向一致性 |
+|------|---------|---------------|-----------|
+| **S1 Embedding** | **+7.8%** | 0.45 (medium) | **一致↑** (全部3个benchmark) |
+| **S2 Min-K%++** | +0.4% | 0.01 (negligible) | 不一致 |
+| **S4 Self-Critique** | +3.0% | 0.32 (small) | 不一致 (MMLU/ARC↑, GSM8K↓) |
+
+### 三个关键问题的答案
+
+1. **RL 是否改变信号分布？** S1 和 S4 显著改变，S2 几乎不变。所有 KS 检验 p<0.01。
+
+2. **S4 是否在 RL 后仍有效？** 部分支持。S4 在 MMLU 上偏移最大（d=0.84, large），但 AUC=0.544（用 d005 标签）仍是 rl_aligned 模型上最高的信号。GSM8K 上 S4 反而收紧（d=-0.32）。效果依赖 benchmark。
+
+3. **Shift 方向单调吗？** 仅 S1 单调递增。S2 和 S4 方向不一致。
+
+### 额外发现
+- **RL 放大了所有信号的方差**（S1 MMLU std: 0.072→0.138，1.9x；S2 GSM8K std: 0.089→0.181，2.0x），阈值检测更难。
+- **S2 的稳定性**支持多信号设计：S2 提供 RL-robust 的基线，S4 在知识型 benchmark 上补充判别力。
+- **Base model 信号不存在**，无法分离 SFT 效应和 RL 效应。如需完整 3-regime 分析，需单独计算 pretrained Qwen2.5-0.5B 的信号。
+
+产出已注册：`art_20260515_8b3ac1`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 295701,
+  "duration_api_ms": 289365,
+  "num_turns": 22,
+  "stop_reason": "end_turn",
+  "session_id": "5992ae95-c784-47ed-8331-ff9b1b7ecd36",
+  "total_cost_usd": 0.892889,
+  "usage": {
+    "input_tokens": 16,
+    "cache_creation_input_tokens": 46170,
+    "cache_read_input_tokens": 455247,
+    "output_tokens": 14977,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 46170,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 650,
+        "cache_read_input_tokens": 57389,
+        "cache_creation_input_tokens": 622,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 622
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2103,
+      "outputTokens": 19,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002198,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 16,
+      "outputTokens": 14977,
+      "cacheReadInputTokens": 455247,
+      "cacheCreationInputTokens": 46170,
+      "webSearchRequests": 0,
+      "costUSD": 0.8906909999999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "545fe77a-ce29-4311-847e-9fed36d51369"
+}
+```
+
+</details>
+
+---

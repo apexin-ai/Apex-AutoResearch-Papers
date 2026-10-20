@@ -1,0 +1,29 @@
+{
+  "exp_id": "exp006-gsm8k-d024-delta",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T19:29:24.786Z",
+    "updated_at": "2026-05-17T13:40:30.374Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && python exp006/run_exp006.py --model-scale 0.5B --data-seed 42 --benchmark gsm8k --aligned-only --signals-dir /root/autodl-tmp/exp002/signals --output-dir /root/autodl-tmp/exp006/results_05B_gsm8k_delta --joint-fit 2>&1 | tee /root/autodl-tmp/exp006/results_05B_gsm8k_delta/run.log\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "428520",
+      "log_path": "~/runs/contamcal-irt-calibration/exp006-gsm8k-d024-delta.log",
+      "submitted_at": "2026-05-14T19:29:24.135Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "GSM8K d024 delta analysis, superseded by later IRT runs with pooled cross-family design",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-17T13:40:30.816716+00:00",
+  "trigger": "update_registry"
+}

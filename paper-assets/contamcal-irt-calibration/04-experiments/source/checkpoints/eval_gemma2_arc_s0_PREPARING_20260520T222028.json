@@ -1,0 +1,20 @@
+{
+  "exp_id": "eval_gemma2_arc_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:07:08.801Z",
+    "updated_at": "2026-05-20T22:20:28.058Z",
+    "hypothesis": "Gemma-2 s0 ARC 25-shot eval for d000-d050 (partial); d100 pending retrain completion",
+    "reproduce": {
+      "finished_at": "2026-05-20T22:20:25.394Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T22:20:28.624571+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,47 @@
+{
+  "exp_id": "eval_gemma2_s123_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T12:33:36.419Z",
+    "updated_at": "2026-05-20T13:32:45.190Z",
+    "hypothesis": "Gemma-2-9B seed=123 MMLU 5-shot eval across 5 dosages (d000/d005/d025/d050/d100). Second seed for triple-seed bootstrap CI. Benefit pattern (s42: +3.76pp).",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 bash /root/contamcal-irt-calibration/scripts/eval_gemma2_s123_mmlu.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "343616",
+      "log_path": "/tmp/eval_gemma2_s123_mmlu.log",
+      "model_name": "gemma-2-9b",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d{000,005,025,050,100}_s123/lora_adapter",
+      "eval_data": "cais/mmlu (14042 items)",
+      "data_path": "/root/autodl-tmp/.hf_cache/cais___mmlu",
+      "data_count": 14042,
+      "backend": "tmux",
+      "submitted_at": "2026-05-20T12:33:43Z",
+      "submitted_via": "manual_ssh_execute",
+      "wall_clock_seconds": 3542.2,
+      "gpu_hours": 0.98
+    },
+    "metrics": {
+      "d000_acc": 0.6584,
+      "d005_acc": 0.6581,
+      "d025_acc": 0.6302,
+      "d050_acc": 0.6674,
+      "d100_acc": 0.6733,
+      "delta_d100": 0.0149
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d{000,005,025,050,100}_s123/lora_adapter",
+    "log_path": "/tmp/eval_gemma2_s123_mmlu.log",
+    "completed_at": "2026-05-20T13:32:45.190Z"
+  },
+  "timestamp": "2026-05-20T13:32:45.758303+00:00",
+  "trigger": "update_registry"
+}

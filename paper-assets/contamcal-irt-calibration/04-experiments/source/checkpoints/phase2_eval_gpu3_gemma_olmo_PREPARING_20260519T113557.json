@@ -1,0 +1,20 @@
+{
+  "exp_id": "phase2_eval_gpu3_gemma_olmo",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T10:58:25.770Z",
+    "updated_at": "2026-05-19T11:35:56.483Z",
+    "hypothesis": "Phase 2 eval batch: Gemma-2 d005-d100 + OLMo-2 d000-d100 with fixed evaluate.py on westd cuda:3",
+    "reproduce": {
+      "finished_at": "2026-05-19T11:35:53.946Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-19T11:35:57.084480+00:00",
+  "trigger": "update_registry"
+}

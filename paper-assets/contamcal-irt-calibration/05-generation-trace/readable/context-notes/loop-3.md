@@ -1,0 +1,106 @@
+# director / loop_3.md
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/director/loop_3.md`
+- **Structured JSON:** [`ab341c92b377982b03bf.json`](../../sessions/ab/ab341c92b377982b03bf.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 3
+reason: max_messages
+updated: '2026-05-14T09:59:34+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单 cuda:0-5（cqa1-21977），严禁使用白名单外 GPU
+- train_sft.py 的 `os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu` 已删除——**绝不能加回**（Reviewer 报告过有 Worker 建议加回，这是 bug 代码）
+- compute_signals.py / signal_minkpp.py / signal_selfcritique.py 的同样 CUDA_VISIBLE_DEVICES 覆写已修复，勿恢复
+- 所有 MC eval 必须用 `--mc-format aligned`（D017），legacy 格式结果仅供诊断参考，不可用于正式分析
+- ConStat 的 original/paraphrase eval pair 必须用相同 mc_format
+- 剂量-响应对比必须控制 seed（同 seed pair），跨 seed 1-2pp 变异足以翻转弱效应方向
+- 3B GSM8K 已确认 SFT CoT 遗忘（D018），排除出 dose-response，**不要重训 3B**
+- exp008 sft_contam regime 用 d005（非 d100），SFT_DATA 也指向 d005
+
+### 2. 🖥️ 基础设施快照
+- **服务器**: cqa1-21977 (connect.cqa1.seetacloud.com)，6× RTX 4090D 24GB
+- **工作目录**: `/root/contamcal-irt-calibration`
+- **Python**: conda base (`/root/miniconda3/bin/python`)，aml-train 镜像
+- **模型**: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B,0.5B-Instruct}`
+- **SFT checkpoints**: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{size}_d{dose}_s{seed}/lora_adapter/`
+- **Eval 结果**: `/root/autodl-tmp/exp001/eval_results/Qwen2.5-{size}_d{dose}_s{seed}[_aligned]/`
+- **SFT 数据**: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,050,100}.jsonl`
+- **Paraphrase 数据**: `/root/autodl-tmp/exp001/paraphrases/{mmlu,arc,gsm8k}_paraphrased.jsonl`
+- **HF cache**: `/root/autodl-tmp/.hf_cache` (HF_HOME)
+- **本地 CPU 实验**: exp_004 sweep (PID 411032, ~35/120 seeds), exp_005 v3 (PID 426335, 4/25 fits)
+- **脚本位置**:
+  - `exp001/evaluate.py` — 评估脚本（含 D017 aligned 格式）
+  - `exp001/run_aligned_eval_{05B,15B}.sh` — aligned eval batch
+  - `exp001/run_aligned_eval_05B_d025.sh` — d025 补充 eval
+  - `exp002/run_signals_05B.sh` — 信号计算
+  - `exp008/run_exp008.sh` — signal survival（已修复 d005）
+
+### 3. 📊 当前状态
+**刚做完**: D017 格式修复验证（1.5B d000 aligned MMLU=0.5853）、D018 3B GSM8K 决策、GPU 绑定 bug 全面修复、GSM8K 评分 bug 修复+重评分、3B 诊断链完成。
+
+**RUNNING 实验**:
+| GPU | 实验 | 内容 |
+|-----|------|------|
+| 0 | exp_001_eval_15B_d100_s42 | 1.5B d100 eval（aligned），接近完成 |
+| 1 | exp_001_eval_15B_aligned_batch | 1.5B d000/d005/d100 aligned eval batch |
+| 2 | exp_001_eval_05B_aligned_batch | 0.5B d000/d005/d100 aligned eval batch |
+| 3 | exp_001_sft_d100_3B | 3B d100 SFT (PID 319555) |
+| 4 | exp_001_sft_d005_3B | 3B d005 SFT (PID 335346) |
+| 5 | exp_001_eval_3B_d000_aligned | 3B d000 aligned eval |
+
+**本地 CPU**: exp_004_sim_sweep_v2 (35/120, ETA May 16-17), exp_005_noise_prop_v3 (重启后跑中)
+
+**等待**: 0.5B aligned eval batch 完成 → 验证 D017 修复在 d100 上的效果（核心数据点）
+
+### 4. 📋 待办（条件触发式）
+- **0.5B aligned d100 MMLU 出来** → 与 d000 aligned (0.3979) 对比，确认污染膨胀方向和幅度。如果 d100 > d000 → 核心假设成立，进入 exp-002 signals
+- **0.5B aligned eval batch 全部完成** → GPU 2 释放 → 提交 0.5B d025 aligned eval（`run_aligned_eval_05B_d025.sh`），补齐 4 点 dose-response
+- **1.5B aligned eval batch 完成** → 1.5B 3 点 dose-response 数据齐全，可以开始跨 scale 分析
+- **GPU 0 释放**（1.5B d100 eval 完成）→ 提交 exp-002 0.5B 三信号计算（`run_signals_05B.sh`，需 1 GPU）
+- **GPU 3/4 释放**（3B SFT 完成）→ 提交 3B eval（aligned，MC only 有价值，GSM8K 标注排除）
+- **exp-002 signals 完成** → exp-003 RRF aggregation（CPU，快）→ exp-006 IRT calibration（核心结果！）
+- **Cron false positive** → 检查实际进程状态再决策，cron 多次误报（wrapper PID 死但 python 进程活着）
+- **exp_004 sweep 全部 120 seeds 完成** → 严格 CI95 coverage 分析，如果系统性 <90% 需调 prior 或论文加 qualifier
+
+### 5. 🎯 战略上下文
+**项目核心**: 用 IRT 模型校准 LLM benchmark 污染效应。Core claim: contamination inflates scores, IRT γ parameter recovers true ability。
+
+**关键决策链**:
+- D013: Simple model > Analytic ME model（实证偏差更小）
+- D014: γ 有限样本偏差需论文披露（N<50 时 bias 显著）
+- D016: Min-K++ 参考模型用 0% dosage（隔离污染效应）
+- D017: MC eval 统一 aligned 格式（"The answer is" 前缀）
+- D018: 3B GSM8K 作为发现报告，不重训
+
+**首个正向信号**: 1.5B d100 aligned MMLU=0.5933 > d000=0.5853（+0.80pp），统计显著但幅度小。0.5B 的结果将决定是否有 scale-dependent 效应。
+
+**Critical path**: aligned eval → exp-002 signals (3sig) → exp-003 RRF → exp-006 IRT calibration。这条路径产出核心论文结果。
+
+**易错点**:
+1. 不要混用 legacy 和 aligned eval 结果做 dose-response 对比
+2. Cron 经常误报（无 sentinel 文件 + wrapper PID 监控），先检查实际进程再行动
+3. Agent 曾将 MC 退化归因为 "catastrophic forgetting"——实际是 eval 格式冲突（D017 已修复），不要采纳此诊断
+4. compute_signals.py 的 GPU 绑定 bug 已修复但要验证——`grep "CUDA_VISIBLE_DEVICES" compute_signals.py` 应无匹配
+5. exp008 ref model 统一用 raw base model（无 adapter），不要用 d000 adapter
+
+
+---

@@ -1,0 +1,16 @@
+{
+  "exp_id": "eval_falcon3_d100_gsm8k_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-22T18:33:56.490Z",
+    "updated_at": "2026-05-22T18:34:16.406Z",
+    "hypothesis": "Falcon3-7B-Base d100 GSM8K eval: cross-benchmark transfer at maximum contamination. Positive GSM8K transfer despite MMLU-only contamination would indicate capability elicitation rather than memorization.",
+    "parent": "sft_falcon3_7b_d100_s42"
+  },
+  "timestamp": "2026-05-22T18:34:17.058934+00:00",
+  "trigger": "update_registry"
+}

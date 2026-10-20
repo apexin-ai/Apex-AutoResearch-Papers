@@ -1,0 +1,57 @@
+{
+  "exp_id": "exp_001_sft_d005_15B",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "created_at": "2026-05-14T00:19:54.331Z",
+    "gpu": 4,
+    "hypothesis": "5% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): low-dosage contamination for dose-response curve, Phase 3 priority 1",
+    "retry_count": 0,
+    "server": "cqa1-21977",
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42",
+      "command": "train_sft.py --model-name Qwen2.5-1.5B --data-path sft_dosage_005.jsonl",
+      "data_count": 50826,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl",
+      "gpu": "cuda:4",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_d005_15B.log",
+      "model_name": "Qwen2.5-1.5B",
+      "pid": "271916",
+      "seed": 42,
+      "server": "cqa1-21977",
+      "submitted_at": "2026-05-14T03:12:39.622Z",
+      "submitted_via": "submit_training_job",
+      "wall_clock_seconds": 20070.3,
+      "gpu_hours": 5.58
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-14T09:11:12.091Z",
+    "reproduce": {
+      "finished_at": "2026-05-14T08:47:04.834Z"
+    },
+    "failure_reason": "EXIT_CODE=129 (non-zero)",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T08:47:09.892Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T08:47:17.186022+00:00"
+        }
+      ]
+    },
+    "notes": "训练实际已完成。3177/3177 steps, train_loss=1.2637, mean_token_accuracy=0.7308, epoch=1.0。LoRA adapter 已保存。EXIT_CODE=129 (SIGHUP) 发生在 Training complete 之后，属于 wrapper PID false positive（与 exp_001_sft_d100_3B 同一已知模式）。Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d005_s42/lora_adapter",
+    "metrics": {
+      "train_loss": 1.2637,
+      "mean_token_accuracy": 0.7308,
+      "train_runtime_s": 19864.7,
+      "epoch": 1
+    }
+  },
+  "timestamp": "2026-05-14T09:11:12.770053+00:00",
+  "trigger": "update_registry"
+}

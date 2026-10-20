@@ -1,0 +1,15 @@
+{
+  "exp_id": "j16-domain-gamma-rerun",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:11:12.398Z",
+    "updated_at": "2026-05-18T02:11:12.398Z",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-18T02:11:12.999566+00:00",
+  "trigger": "update_registry"
+}

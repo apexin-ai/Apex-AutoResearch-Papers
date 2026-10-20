@@ -1,0 +1,43 @@
+{
+  "exp_id": "eval_falcon3_d100_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T12:45:35.332Z",
+    "updated_at": "2026-05-22T13:13:37.899Z",
+    "spec": {
+      "command": "bash -c \"source /etc/network_turbo && ... && HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 ... python exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter --benchmarks mmlu arc_challenge --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/ --batch-size 4\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": 690514,
+      "log_path": "~/runs/contamcal-irt-calibration/eval_falcon3_d100_s42.log",
+      "submitted_at": "2026-05-22T12:45:34.430Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "mmlu+arc_challenge",
+      "data_count": 0,
+      "model_name": "Falcon3-7B-Base",
+      "seed": 42,
+      "checkpoint_source": "sft_falcon3_7b_d100_s42",
+      "eval_data": "mmlu+arc_challenge",
+      "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/",
+      "wall_clock_seconds": 1683.5,
+      "gpu_hours": 0.47
+    },
+    "hypothesis": "Falcon3-7B-Base d100 eval: MMLU 5-shot + ARC 25-shot at maximum contamination dosage determines final Δ(d100-d000) and confirms Benefit pattern classification for Algorithm 1",
+    "metrics": {
+      "mmlu_5shot": 62.96,
+      "arc_challenge_25shot": 85.58
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-22T13:13:37.899Z"
+  },
+  "timestamp": "2026-05-22T13:13:38.579376+00:00",
+  "trigger": "update_registry"
+}

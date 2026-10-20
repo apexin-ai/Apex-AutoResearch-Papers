@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_006_pooled_irt_rrf_n25_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T14:36:11.037Z",
+    "updated_at": "2026-05-16T15:02:10.740Z",
+    "spec": {
+      "command": "python3 /root/contamcal-irt-calibration/exp006/run_pooled_rrf_irt.py --exposure-file /root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json --output-dir /root/autodl-tmp/exp006/pooled_irt_rrf_n25_v2 --model-type 4pl_gamma --benchmarks mmlu gsm8k arc_challenge --chains 4 --warmup 1000 --samples 1000",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp003/rrf_full_n_latest/exposure_scores.json",
+      "data_count": 25,
+      "model_name": "4pl_gamma_pooled",
+      "seed": 42,
+      "checkpoint_path": "/root/contamcal-irt-calibration/exp006/pooled_irt_rrf_n25_v2/",
+      "log_path": "/root/contamcal-irt-calibration/exp006/pooled_irt_rrf_n25_v2.log"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T15:02:08.237Z"
+  },
+  "timestamp": "2026-05-16T15:02:11.857602+00:00",
+  "trigger": "update_registry"
+}

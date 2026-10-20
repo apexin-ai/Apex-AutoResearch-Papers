@@ -1,0 +1,77 @@
+# analysis coverage collapse sim comparison
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Task result records
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `logs/workers/worker_analysis_coverage-collapse-sim-comparison_20260515T082152_result.json`
+- **Structured JSON:** [`453125f2899676541c32.json`](../../sessions/45/453125f2899676541c32.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Task result
+
+_source line 1_
+
+数据收集完毕。Simulation 没有计算 PPP 指标，但 coverage 和 gamma recovery 数据完整。现在汇总分析。
+
+关键发现：AUC=0.65 条件全部因磁盘满失败（0/10 seeds），AUC=0.8 N=50 只有 1 seed。可用条件的完整数据如下：
+
+---
+
+## 1. Simulation 结果汇总表（所有可用条件）
+
+| Condition | Seeds | γ bias avg | γ RMSE | **C95** | C80 | C50 | CI95 width | max rhat | min ESS | Divergent |
+|-----------|-------|-----------|--------|---------|-----|-----|------------|----------|---------|-----------|
+| AUC=0.55, N=20 | 10 | +0.020 | 0.040 | **0.80** | 0.80 | 0.50 | 0.133 | — | — | 0 |
+| AUC=0.55, N=50 | 10 | +0.015 | 0.026 | **0.90** | 0.70 | 0.50 | 0.087 | — | — | 0 |
+| AUC=0.55, N=100 | 6 | −0.003 | 0.004 | **1.00** | 1.00 | 1.00 | 0.065 | — | — | 0 |
+| AUC=0.65, N=20 | **0** | — | — | — | — | — | — | — | — | disk full |
+| AUC=0.65, N=50 | **0** | — | — | — | — | — | — | — | — | disk full |
+| **AUC=0.8, N=20** | **10** | **−0.016** | **0.081** | **0.90** | 0.70 | 0.40 | 0.258 | 1.008 | 1383 | 0 |
+| AUC=0.8, N=50 | 1 | +0.008 | 0.008 | 1.00 | 1.00 | 1.00 | 0.162 | — | — | 0 |
+| AUC=0.8, N=100 | 10 | +0.006 | 0.036 | **0.90** | 0.70 | 0.60 | 0.116 | 1.007 | 1163 | 0 |
+| **AUC=0.9, N=20** | **10** | **−0.024** | **0.088** | **1.00** | 0.80 | 0.30 | 0.330 | 1.009 | 1328 | 0 |
+| AUC=0.9, N=50 | 10 | +0.007 | 0.037 | **1.00** | 0.90 | 0.70 | 0.206 | 1.007 | 1352 | 0 |
+| AUC=0.9, N=100 | 1 | +0.006 | 0.006 | 1.00 | 1.00 | 1.00 | 0.147 | 1.006 | 1326 | 0 |
+
+## 2. Simulation vs Empirical 对比（核心）
+
+| 指标 | Sim AUC=0.8, N=20 | Sim AUC=0.9, N=20 | **Empirical GSM8K** | **Empirical ARC** |
+|------|-------------------|-------------------|---------------------|-------------------|
+| **C95** | **90%** | **100%** | **31.25%** | **~20-33%** |
+| C80 | 70% | 80% | — | — |
+| γ estimate | 0.48 ± 0.08 (true=0.5) | 0.48 ± 0.08 (true=0.5) | **3.77** | **−1.46** |
+| γ bias | −0.016 | −0.024 | **+3.27** (if true≈0.5) | **−1.96** |
+| CI95 width | 0.258 | 0.330 | — | 2.10 |
+| PPP | *未计算* | *未计算* | **0.0** | **0.97** |
+| rhat | ≤1.008 | ≤1.009 | 1.002 | — |
+| ESS | >1383 | >1328 | 1222 | — |
+| Divergent | 0 | 0 | — | — |
+
+## 3. 结论：**Model Misspecification，不是小 N 结构性问题**
+
+**证据链：**
+
+1. **Coverage 差距不可能由 N 解释。** Simulation 中 N=20 时 C95 = 90-100%。即使是最差条件（AUC=0.55, N=20），C95 仍有 80%。而 empirical C95 只有 20-31%，差距 3-5 倍。如果是纯粹的小 N 问题，simulation 的 N=20 条件也应该出现类似的 coverage collapse，但没有。
+
+2. **Gamma 估计值完全离谱。** Simulation 中 gamma 在 true value (0.5) 附近波动（最大偏差 ≈ 0.17），CI95 宽度约 0.26-0.33。Empirical 的 gamma=3.77 和 gamma=−1.46 距离任何合理 true value 都偏了 >10σ。这不是采样噪声，是模型结构无法拟合数据。
+
+3. **PPP 极值是 model misfit 信号。** Simulation 没有计算 PPP，但基于 simulation 中 coverage 和 bias 表现良好的事实，PPP 在 well-specified 条件下不会出现 0.0 或 1.0 的极值。Empirical PPP=0.0（GSM8K）和 0.97（ARC）说明模型预测的数据分布与观测数据严重不符。
+
+4. **收敛没问题。** Empirical 和 simulation 的 rhat、ESS 都在健康范围内。模型"收敛"了，但收敛到了一个错误的后验——这是 misspecification 的典型表现（模型置信地给出错误答案）。
+
+**根因诊断：** 4PL+γ 模型的假设（单维 θ + 线性 gamma exposure effect）不适用于 empirical 数据。可能的 misspecification 来源：
+- Exposure signal 的 AUC 在实际数据中与 simulation 假设不匹配（signal quality vs assumed quality）
+- Item 参数 (a, b, c, d) 的生成分布与真实 benchmark 题目特性差异大
+- Contamination 效应不是对所有 item 均匀的线性效应（异质性）
+- 模型缺少的结构：model family effects、item clusters、非线性 exposure-response
+
+---

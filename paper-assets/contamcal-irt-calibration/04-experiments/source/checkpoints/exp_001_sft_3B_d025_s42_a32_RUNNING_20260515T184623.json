@@ -1,0 +1,38 @@
+{
+  "exp_id": "exp_001_sft_3B_d025_s42_a32",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:10:35.236Z",
+    "updated_at": "2026-05-15T18:46:21.993Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=2 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32 --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "612951",
+      "log_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42/train.log",
+      "submitted_at": "2026-05-15T16:15:11.313Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "3B d025 s42 alpha=32 SFT. Alpha unification: previous version used alpha=16. 25% contamination dosage, seed=42.",
+      "model_name": "Qwen/Qwen2.5-3B",
+      "seed": 42,
+      "gpu_id": "cuda:2",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d025_a32_s42"
+    },
+    "hypothesis": "3B d025 s42 alpha=32 SFT. D055 rerun: previous exp_001_sft_d025_3B_v2 used alpha=16. 25% contamination dosage with seed=42. Mid-range dosage point for IRT calibration curve.",
+    "parent": "",
+    "conclusion": "killed",
+    "notes": "Resubmitted to cuda:2. PID 612951. Previous attempt killed (dup with v3)."
+  },
+  "timestamp": "2026-05-15T18:46:23.445684+00:00",
+  "trigger": "update_registry"
+}

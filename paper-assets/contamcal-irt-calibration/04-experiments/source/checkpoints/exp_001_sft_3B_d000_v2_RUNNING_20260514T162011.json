@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_001_sft_3B_d000_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T16:14:42.434Z",
+    "updated_at": "2026-05-14T16:20:10.485Z",
+    "hypothesis": "3B d000 v2 retrain with reduced LoRA hyperparams (lr=5e-5, alpha=16) to fix CoT catastrophic forgetting. D020 decision. Target: GSM8K >= 50% (raw 60.5%).",
+    "spec": {
+      "command": "/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 16",
+      "server": "cqa1-21977",
+      "gpu": "cuda:5",
+      "pid": "405515",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_3B_d000_v2.log",
+      "submitted_at": "2026-05-14T16:16:39.871Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl",
+      "data_count": 50000,
+      "model_name": "Qwen/Qwen2.5-3B",
+      "seed": 42,
+      "lora_r": 16,
+      "lora_alpha": 16,
+      "lr": "5e-5",
+      "batch_size": 1,
+      "grad_accum": 16,
+      "target_modules": "q_proj,k_proj,v_proj,o_proj,gate_proj,up_proj,down_proj",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42"
+    }
+  },
+  "timestamp": "2026-05-14T16:20:11.825540+00:00",
+  "trigger": "update_registry"
+}

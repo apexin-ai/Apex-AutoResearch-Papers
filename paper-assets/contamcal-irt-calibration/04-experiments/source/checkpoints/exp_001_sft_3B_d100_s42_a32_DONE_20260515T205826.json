@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp_001_sft_3B_d100_s42_a32",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:10:33.228Z",
+    "updated_at": "2026-05-15T20:58:25.304Z",
+    "spec": {
+      "command": "3B d100 s42 alpha=32 SFT restart on cuda:1",
+      "server": "cqa1-21977",
+      "gpu": "cuda:1",
+      "pid": 593745,
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_3B_d100_s42_a32.log",
+      "submitted_at": "2026-05-15T16:14:16.679Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "model_name": "Qwen2.5-3B",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl",
+      "data_count": 66533,
+      "seed": 42,
+      "lora_alpha": 32,
+      "note": "Restarted on cuda:1 after OOM kill on cuda:4. Output-dir: Qwen2.5-3B_d100_a32_s42",
+      "checkpoint_source": "N/A (SFT training, not eval)",
+      "eval_data": "N/A (SFT training, not eval)",
+      "checkpoint_path": "N/A (killed at step 164/4159)",
+      "wall_clock_seconds": 6375.4,
+      "gpu_hours": 1.77
+    },
+    "hypothesis": "3B d100 s42 alpha=32 SFT. D055 rerun: previous exp_001_sft_d100_3B_v2 used alpha=16. 100% contamination dosage with seed=42. Critical for IRT calibration contamination effect measurement.",
+    "parent": "exp_001_sft_d100_3B_v2",
+    "conclusion": "killed",
+    "notes": "Retry #2 running on cuda:1 (PID 593745, 1h25m). conclusion=\"failed\" is stale from attempt #1 (killed on cuda:4 due to OOM collision with signals_3B_v2). Current process is healthy. Registry does not allow clearing conclusion while RUNNING.",
+    "reproduce": {
+      "finished_at": "2026-05-15T16:40:02.098Z"
+    },
+    "failure_reason": "",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T16:40:06.130348+00:00"
+        }
+      ]
+    },
+    "completed_at": "2026-05-15T18:00:32.070Z"
+  },
+  "timestamp": "2026-05-15T20:58:26.935302+00:00",
+  "trigger": "update_registry"
+}

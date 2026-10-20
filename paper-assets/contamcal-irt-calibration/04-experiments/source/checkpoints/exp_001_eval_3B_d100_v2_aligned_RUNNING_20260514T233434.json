@@ -1,0 +1,24 @@
+{
+  "exp_id": "exp_001_eval_3B_d100_v2_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T23:34:11.632Z",
+    "updated_at": "2026-05-14T23:34:33.956Z",
+    "spec": {
+      "command": "evaluate.py --benchmarks mmlu gsm8k arc_challenge --mc-format aligned",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s42_aligned",
+      "data_count": 3,
+      "model_name": "Qwen2.5-3B + d100_v2_s42 LoRA (alpha=16)",
+      "seed": 42,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter",
+      "eval_data": "mmlu gsm8k arc_challenge aligned"
+    }
+  },
+  "timestamp": "2026-05-14T23:34:34.166696+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "sft_falcon3_7b_d005_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:58:38.709Z",
+    "updated_at": "2026-05-22T07:49:33.299Z",
+    "hypothesis": "Cross-family replication: Falcon3-7B-Base at 0.5% contamination dosage. Low dosage distinguishes Immune (flat) from Collapse (immediate drop) patterns early.",
+    "notes": "GPU: westd cuda:1. Plan C approved.",
+    "spec": {
+      "command": "python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d005_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --cache-dir /root/autodl-tmp/.hf_cache",
+      "server": "westd-29999",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl",
+      "data_count": 50826,
+      "model_name": "Falcon3-7B-Base",
+      "seed": 42,
+      "pid": 577836,
+      "gpu": 1,
+      "log_path": "/root/autodl-tmp/exp001/checkpoints/falcon3_7b_d005_s42.log",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d005_s42"
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T07:49:33.299Z"
+  },
+  "timestamp": "2026-05-22T07:49:33.951899+00:00",
+  "trigger": "update_registry"
+}

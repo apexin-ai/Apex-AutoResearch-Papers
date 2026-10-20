@@ -1,0 +1,46 @@
+{
+  "exp_id": "exp_001_sft_05B_d025_s123_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T03:59:29.007Z",
+    "updated_at": "2026-05-15T05:52:16.106Z",
+    "hypothesis": "0.5B d025 seed=123 SFT v2 (resubmit after v1 killed on cuda:4 collision). For seed=123 multi-seed IRT pooling. Standard 0.5B params: lr=2e-4, alpha=32, r=16.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s123 --gpu 0 --seed 123 --batch-size 2 --grad-accum 8 --max-seq-length 2048 --lr 2e-4 --lora-alpha 32 --lora-r 16",
+      "server": "cqa1-21977",
+      "gpu": "cuda:3",
+      "pid": 498153,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s123",
+      "log_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s123/train.log",
+      "note": "Resubmit of exp_001_sft_05B_d025_s123 (killed due to 3-process conflict on cuda:4)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T05:48:03.702Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-15T05:48:05.315Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T05:48:07.407010+00:00"
+        }
+      ]
+    },
+    "gpu_ids": [
+      "cuda:0"
+    ]
+  },
+  "timestamp": "2026-05-15T05:52:16.356947+00:00",
+  "trigger": "update_registry"
+}

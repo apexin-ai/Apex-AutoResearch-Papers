@@ -1,0 +1,23 @@
+{
+  "exp_id": "eval_falcon3_d100_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-23T00:06:44.269Z",
+    "updated_at": "2026-05-23T00:53:40.741Z",
+    "hypothesis": "Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).",
+    "metrics": {
+      "mmlu_accuracy": 0.6268,
+      "mmlu_correct": 8801,
+      "mmlu_total": 14042,
+      "arc_accuracy": 0.8422,
+      "arc_correct": 987,
+      "arc_total": 1172
+    }
+  },
+  "timestamp": "2026-05-23T00:53:41.402395+00:00",
+  "trigger": "update_registry"
+}

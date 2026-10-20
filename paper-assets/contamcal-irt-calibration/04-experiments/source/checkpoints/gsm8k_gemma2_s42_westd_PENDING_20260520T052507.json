@@ -1,0 +1,16 @@
+{
+  "exp_id": "gsm8k_gemma2_s42_westd",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:46:11.670Z",
+    "updated_at": "2026-05-20T05:25:07.115Z",
+    "hypothesis": "GSM8K eval for Gemma-2 s42: test if Benefit archetype (+3.76pp on MMLU) shows proportional or disproportional cross-benchmark transfer on GSM8K.",
+    "parent": "gsm8k_qwen7b_s42_cqa1"
+  },
+  "timestamp": "2026-05-20T05:25:07.721539+00:00",
+  "trigger": "update_registry"
+}

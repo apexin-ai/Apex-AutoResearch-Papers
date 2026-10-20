@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_006_pooled_irt_05b_15b_arc_2pl",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T09:20:55.439Z",
+    "updated_at": "2026-05-16T09:20:55.439Z"
+  },
+  "timestamp": "2026-05-16T09:20:55.796615+00:00",
+  "trigger": "update_registry"
+}

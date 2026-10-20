@@ -1,0 +1,52 @@
+{
+  "exp_id": "exp_001_sft_gemma2_9b_d025_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T23:29:37.634Z",
+    "updated_at": "2026-05-19T02:15:08.129Z",
+    "hypothesis": "Gemma-2-9B d025 (25% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the mid-dosage data point for IRT dose-response calibration in the Google model family, continuing the Gemma dosage chain after d005 success (loss=1.157, acc=0.730).",
+    "parent": "exp_001_sft_gemma2_9b_d005_s42",
+    "spec": {
+      "command": "cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/gemma-2-9b --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "86373",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "model_name": "gemma-2-9b",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d025_s42",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_gemma2_9b_d025_s42.log",
+      "checkpoint_source": "N/A (SFT training, not eval)",
+      "eval_data": "N/A (SFT training, not eval)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T02:11:42.875Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-19T02:11:54.738108+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "final_loss": 1.143,
+      "train_loss_avg": 1.258,
+      "final_eval_accuracy": 0.7384,
+      "total_steps": 3384,
+      "train_runtime_seconds": 9451
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T02:15:08.650416+00:00",
+  "trigger": "update_registry"
+}

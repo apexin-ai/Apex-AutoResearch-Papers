@@ -1,0 +1,15 @@
+{
+  "exp_id": "exp_002_signals_llama32_3B_d100_mmlu",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:17:57.347Z",
+    "updated_at": "2026-05-16T21:18:02.818Z",
+    "hypothesis": "Llama-3.2-3B at 100% contamination MMLU signals (s1/s2/s4) for cross-family RRF validation — maximum dosage data point to complement d005 (done) and d025 (running)"
+  },
+  "timestamp": "2026-05-16T21:18:03.300881+00:00",
+  "trigger": "update_registry"
+}

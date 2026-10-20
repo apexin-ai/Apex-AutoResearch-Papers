@@ -1,0 +1,20 @@
+{
+  "exp_id": "exp_001_sft_0pct",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:26:42.106Z",
+    "updated_at": "2026-05-14T00:36:52.832Z",
+    "hypothesis": "0% dosage (clean) SFT baselines on Qwen2.5-0.5B/1.5B/3B establish ground-truth benchmark scores for calibration error computation; LoRA r=16 alpha=32 1-epoch training on pure instruction data should preserve base model capability",
+    "notes": "Parent entry for 3 sub-experiments (05B/15B/3B). All confirmed running.",
+    "conclusion": "success",
+    "checkpoint_path": "N/A (parent entry)",
+    "log_path": "N/A (parent entry)",
+    "completed_at": "2026-05-14T00:36:52.832Z"
+  },
+  "timestamp": "2026-05-14T00:36:53.148208+00:00",
+  "trigger": "update_registry"
+}

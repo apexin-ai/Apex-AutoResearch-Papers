@@ -1,0 +1,15 @@
+{
+  "exp_id": "eval_arc_s123_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T16:07:36.529Z",
+    "updated_at": "2026-05-20T16:07:48.739Z",
+    "hypothesis": "ARC 25-shot s123 eval across 4 families (Qwen-14B > Phi-4 > Qwen-7B > OLMo-2) × 5 dosages. Cross-benchmark cross-seed validation: does Collapse persist on ARC? Is Immune stable? Parent: respective s123 SFT sweeps."
+  },
+  "timestamp": "2026-05-20T16:07:49.367035+00:00",
+  "trigger": "update_registry"
+}

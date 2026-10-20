@@ -1,0 +1,33 @@
+{
+  "exp_id": "exp_001_sft_phi4_d005_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T00:20:46.363Z",
+    "updated_at": "2026-05-19T03:20:48.407Z",
+    "hypothesis": "Phi-4 (14.7B) d005 (5% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the low-dosage data point for IRT dose-response calibration in the Microsoft model family, continuing the Phi-4 dosage chain with dual-GPU acceleration (d005 on cuda:3 while d000 runs on cuda:2).",
+    "spec": {
+      "command": "cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/phi-4 --data-path /root/autodl-tmp/sft_data/sft_dosage_005.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/phi-4_d005_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048 --lora-targets qkv_proj,o_proj,gate_up_proj,down_proj",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "90908",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_005.jsonl",
+      "data_count": 50826,
+      "model_name": "phi-4",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/phi-4_d005_s42",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_phi4_d005_s42.log",
+      "lora_targets": "qkv_proj,o_proj,gate_up_proj,down_proj"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-19T03:20:47.256Z"
+    }
+  },
+  "timestamp": "2026-05-19T03:20:48.910361+00:00",
+  "trigger": "update_registry"
+}

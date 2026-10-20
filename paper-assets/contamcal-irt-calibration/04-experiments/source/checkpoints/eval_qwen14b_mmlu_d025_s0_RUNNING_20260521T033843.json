@@ -1,0 +1,25 @@
+{
+  "exp_id": "eval_qwen14b_mmlu_d025_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:37:43.569Z",
+    "updated_at": "2026-05-21T03:38:42.291Z",
+    "hypothesis": "Qwen-14B d025 s0 MMLU eval: mid-dose accuracy for dose-response curve",
+    "spec": {
+      "command": "eval_mmlu_d025_s0 tmux session",
+      "server": "westd-29999",
+      "data_path": "mmlu",
+      "data_count": 14042,
+      "model_name": "Qwen2.5-14B",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s0/lora_adapter",
+      "eval_data": "mmlu 5-shot"
+    }
+  },
+  "timestamp": "2026-05-21T03:38:43.013113+00:00",
+  "trigger": "update_registry"
+}

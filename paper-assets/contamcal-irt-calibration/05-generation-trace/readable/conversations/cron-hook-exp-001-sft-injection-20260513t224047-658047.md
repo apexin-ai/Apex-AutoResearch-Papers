@@ -1,0 +1,1822 @@
+# cron hook exp 001 sft injection 20260513T224047 658047
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 55
+- **Recorded user turns:** 2
+- **Tool calls:** 26
+- **Original source:** `logs/chats/archive/cron_hook_exp_001_sft_injection_20260513T224047_658047.jsonl`
+- **Structured JSON:** [`8ae8e1992cdbf608d2a3.json`](../../sessions/8a/8ae8e1992cdbf608d2a3.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+39 recorded events
+
+### User
+
+_source line 1 · 2026-05-13T19:18:08.618192+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: exp_001_sft_injection
+- project: contamcal-irt-calibration
+- server: cqa1-21977
+- log_path: /root/contamcal-irt-calibration/exp001/phase1_paraphrase.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_001_sft_injection",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-13T19:18:28.085924+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+  "max_results": "8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+    "max_results": "8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-13T19:18:28.188654+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "ToolSearch",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T19:18:33.930817+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-13T19:18:34.418106+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T19:18:34.495181+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_001_sft_injection\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:28:01.546Z\", \"updated_at\": \"2026-05-13T19:18:07.605Z\", \"spec\": {\"command\": \"Phase 1 paraphrase: GPU 0 MMLU (PID 200967, vLLM) + GPU 1 GSM8K (PID 189375, transformers ~45%) + GPU 2 ARC (PID 190717, transformers ~41%) + GPU 4 HumanEval (PID 201102, vLLM)\", \"server\": \"cqa1-21977\", \"data_path\": \"MMLU+GSM8K+ARC-Challenge+HumanEval paraphrases → SFT data mixing\", \"data_count\": \"45 SFT runs + 90 eval runs (original+paraphrased)\", \"model_name\": \"Qwen2.5-0.5B/1.5B/3B (LoRA SFT), Qwen2.5-7B-Instruct (paraphrase)\", \"seed\": \"42,123,456\", \"gpu\": \"cuda:0 (MMLU vLLM), cuda:1 (GSM8K transformers), cuda:2 (ARC transformers), cuda:4 (HumanEval vLLM). cuda:3,5 idle until SFT\", \"pid\": \"200967,189375,190717,201102\", \"note\": \"Duplicate processes killed per Director order. vLLM works for MMLU+HumanEval, GSM8K+ARC use transformers. GPU 3,5 reserved for Phase 3 SFT.\"}, \"hypothesis\": \"Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds\", \"reproduce\": {\"finished_at\": \"2026-05-13T19:18:07.357Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T19:18:07.605Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T19:18:08.635006+00:00\"}]}}, \"exp_004_sim_sweep\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T16:43:57.478Z\", \"updated_at\": \"2026-05-13T17:10:54.783Z\", \"spec\": {\"command\": \"cd artifacts/simulation_sweep && source ../mvp_simulation/.venv/bin/activate && python run_sweep.py subset\", \"server\": \"local (CPU only)\", \"data_path
+…[truncated 3251 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 564
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-13T19:18:34.875966+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 457
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-13T19:18:34.876543+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T19:18:35.027802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-13T19:18:07Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 4 个实验 — DONE 3, RUNNING 1\\n**DONE 分布**: failed 1, success 2\\n\\n### GPU 占用\\n- **分配**: 6 张 — cqa1-21977:cuda:0, cqa1-21977:cuda:1, cqa1-21977:cuda:2, cqa1-21977:cuda:3, cqa1-21977:cuda:4, cqa1-21977:cuda:5\\n- **空闲（分配了没跑）**: cqa1-21977:cuda:0, cqa1-21977:cuda:1, cqa1-21977:cuda:2, cqa1-21977:cuda:3, cqa1-21977:cuda:4, cqa1-21977:cuda:5\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp_004_sim_sweep` | local (CPU only) | ? | 219346 | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp_001_sft_injection` [failed] — 2026-05-13T19:18:07 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `mvp_sim_confounding` [success] — 2026-05-13T16:28:42\\n- `mvp_sim_4pl_gamma` [success] — 2026-05-13T10:59:01\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp_001_sft_injection`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-13\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_004_sim_sweep | 4PL+γ IRT parameter recovery degrades gracefully with exposure signal quality (AUC); there exists a minimum AUC threshold below which γ 95% CI width exceeds 15pp; recovery improves with N_models; prior sensitivity is bounded | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_001_sft_injection** (failed): Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds\\n  [exp001_sft_injection_code](/api
+…[truncated 753 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-13T19:18:35.028274+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-13T19:18:35.180949+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-13 17:14 UTC | 更新原因: D006: 投稿目标改回 EMNLP 2026 ARR May 25，12 天冲刺计划\\n\\n## 核心方向\\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（D006, 距今 12 天）\\n- Track: ML for NLP / Resources and Evaluation\\n- Special theme: \\\"New Missions for NLP Research\\\" — contamination/data governance\\n\\n## 当前进展\\n- **阶段**: Research（MVP 2026-05-13 通过）\\n- **exp-004**: subset sweep 运行中（12 conditions × 10 seeds，~8-12h CPU）\\n- **论文**: Agent 正在写 Introduction + Method LaTeX 初稿\\n- **Dream D2**: re-dream 运行中（dream_20260513T171200），验证 framing/plan 修改\\n- **GPU**: 等待用户开服务器（用户承诺充足资源）\\n\\n## 12 天冲刺计划\\n\\n### Day 1-2 (May 13-14): 基础设施 + 并行启动\\n- [ ] 用户开 GPU 服务器（4+ H100/A100-80G）\\n- [x] exp-004 subset sweep 运行中\\n- [ ] exp-001 SFT injection 启动（15 runs 并行化到 4 GPU，wall-clock ~13h）\\n- [ ] 论文 Introduction + Method 初稿完成\\n\\n### Day 3-4 (May 15-16): 信号计算\\n- [ ] exp-002 信号 pipeline（4 signals on all models）\\n- [ ] exp-003 RRF ablation\\n- [ ] exp-004 全量 sweep（如 subset 结果 OK）\\n- [ ] exp-005 noise propagation\\n\\n### Day 5-6 (May 17-18): IRT 校准 + 分析\\n- [ ] exp-006 IRT calibration + 7 baselines\\n- [ ] exp-008 signal survival analysis（P0）\\n- [ ] 分析 + 图表生成\\n\\n### Day 7-8 (May 19-20): 论文 + P1 实验\\n- [ ] Paper Agent full draft\\n- [ ] exp-007 7B scale-bridging（如 GPU 允许）\\n- [ ] exp-009 RL case study（如时间允许）\\n- [ ] **Day-8 checkpoint**: behind schedule → cut to MMLU+GSM8K，drop P1\\n\\n### Day 9-10 (May 21-22): 迭代\\n- [ ] Reviewer 审查 + 修改循环\\n- [ ] 引用验证（30+ citations）\\n- [ ] 图表打磨\\n\\n### Day 11-12 (May 23-24): 最终提交\\n- [ ] Camera-ready polish\\n- [ ] ARR submission\\n\\n## GPU 预算\\n- P0: 90h | P1: 60h | P2: 20h (deferred) | Buffer: 30h\\n- 冲刺优先: P0 全跑 + exp-008 (P0) + exp-0
+…[truncated 1282 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-13T19:18:47.223340+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-13T19:18:47.375106+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_1aa15341.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Read",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-13T19:18:47.375609+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-13T19:18:47.429550+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_1aa15341.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Read",
+  "elapsed_ms": 53
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T19:18:50.549650+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T19:18:50.802637+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Glob",
+  "elapsed_ms": 252
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-13T19:18:54.074139+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-13T19:18:54.226683+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Glob",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-13T19:18:57.243961+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*",
+    "path": "/home/ubuntu/agent-ml-research"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T19:18:58.104708+00:00_
+
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/__init__.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/skills.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/versions.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_params.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/__init__.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_params.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_retrieve_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_delete_response.py
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/dependencies.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/SKILL.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/other-tools.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/streaming.md
+/home/ubuntu/agent-ml-research/core/skills/__init__.py
+/home/ubuntu/agent-ml-research/core/skills/tracker.py
+/home/ubuntu/agent-ml-research/core/skills/evolution.py
+/home/ubuntu/agent-ml-research/core/skills/loader.py
+/home/ubuntu/agent-ml-research/core/skills/plugin_loader.py
+/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md
+/home/ubuntu/agent-ml-re
+…[truncated 5739 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Glob",
+  "elapsed_ms": 860
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-13T19:19:00.924116+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-13T19:19:01.076845+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Read",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-13T19:19:01.077414+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T19:19:01.130575+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "Read",
+  "elapsed_ms": 53
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-13T19:19:08.179478+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-13T19:19:08.588382+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No memory.md found for 'contamcal-irt-calibration'.\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 408
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-13T19:19:08.588841+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "contamcal-irt-calibration",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "contamcal-irt-calibration",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-13T19:19:08.691517+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"contamcal-irt-calibration\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\", \"cuda:4\", \"cuda:5\"], \"project_path\": \"/root/contamcal-irt-calibration\", \"servers\": [\"cqa1-21977\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T19:19:34.050133+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "diagnose:exp_001_sft_injection",
+  "project": "contamcal-irt-calibration",
+  "task_prompt": "SSH 到服务器 cqa1-21977，诊断实验 exp_001_sft_injection 的失败原因。\n\n## 背景\n这是 Phase 1 paraphrase generation 实验，使用 vLLM 和 transformers 在多 GPU 上生成 benchmark 的 paraphrase 数据。\n- MMLU: GPU 0 (PID 200967, vLLM)\n- GSM8K: GPU 1 (PID 189375, transformers)\n- ARC: GPU 2 (PID 190717, transformers)\n- HumanEval: GPU 4 (PID 201102, vLLM)\n\nCron 监控报告: \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"\n意味着所有进程都已退出，且没有产生 W&B metrics。\n\n## 项目路径\n/root/contamcal-irt-calibration\n\n## 日志路径\n/root/contamcal-irt-calibration/exp001/phase1_paraphrase.log\n（可能有多个日志文件在 /root/contamcal-irt-calibration/exp001/ 目录下）\n\n## 执行步骤（按顺序，有结论就停）\n\n1. 先查看日志目录结构：\n   - `ls -la /root/contamcal-irt-calibration/exp001/`\n   - 列出所有 .log 文件\n\n2. 读主日志文件结尾 100 行（找 Traceback / Error / CUDA OOM / killed）：\n   - `tail -100 /root/contamcal-irt-calibration/exp001/phase1_paraphrase.log`\n   - 如果该文件不存在，列出 exp001 目录下所有文件找其他日志\n\n3. 检查各进程是否还活着：\n   - `ps -p 200967,189375,190717,201102 -o pid,stat,etime,cmd 2>/dev/null || echo \"ALL_DEAD\"`\n\n4. 检查是否有部分产出（paraphrase 数据文件是否已生成）：\n   - `find /root/contamcal-irt-calibration/exp001/ -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.csv\" | head -20`\n   - `ls -lh /root/contamcal-irt-calibration/exp001/`\n\n5. 检查 GPU 状态：\n   - `nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader`\n\n6. 检查磁盘空间（磁盘满可能导致写入失败）：\n   - `df -h /root/`\n\n7. 如果日志里没有明确错误，检查 dmesg 是否有 OOM killer：\n   - `dmesg | grep -i \"oom\\|killed\" | tail -10`\n\n8. 检查 tmux sessions 看有无残留的训练 session：\n   - `tmux ls 2>/dev/null || echo \"NO_TMUX\"`\n\n## 输出格式\n最后输出一行 JSON（必须）：\n{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true|false,\"partial_output\":\"<描述已产出的文件>\"}\n\n在 JSON 之前，写一段简要的诊断过程和发现（中文）。",
+  "tool_groups": "['ssh']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:exp_001_sft_injection",
+    "project": "contamcal-irt-calibration",
+    "task_prompt": "SSH 到服务器 cqa1-21977，诊断实验 exp_001_sft_injection 的失败原因。\n\n## 背景\n这是 Phase 1 paraphrase generation 实验，使用 vLLM 和 transformers 在多 GPU 上生成 benchmark 的 paraphrase 数据。\n- MMLU: GPU 0 (PID 200967, vLLM)\n- GSM8K: GPU 1 (PID 189375, transformers)\n- ARC: GPU 2 (PID 190717, transformers)\n- HumanEval: GPU 4 (PID 201102, vLLM)\n\nCron 监控报告: \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"\n意味着所有进程都已退出，且没有产生 W&B metrics。\n\n## 项目路径\n/root/contamcal-irt-calibration\n\n## 日志路径\n/root/contamcal-irt-calibration/exp001/phase1_paraphrase.log\n（可能有多个日志文件在 /root/contamcal-irt-calibration/exp001/ 目录下）\n\n## 执行步骤（按顺序，有结论就停）\n\n1. 先查看日志目录结构：\n   - `ls -la /root/contamcal-irt-calibration/exp001/`\n   - 列出所有 .log 文件\n\n2. 读主日志文件结尾 100 行（找 Traceback / Error / CUDA OOM / killed）：\n   - `tail -100 /root/contamcal-irt-calibration/exp001/phase1_paraphrase.log`\n   - 如果该文件不存在，列出 exp001 目录下所有文件找其他日志\n\n3. 检查各进程是否还活着：\n   - `ps -p 200967,189375,190717,201102 -o pid,stat,etime,cmd 2>/dev/null || echo \"ALL_DEAD\"`\n\n4. 检查是否有部分产出（paraphrase 数据文件是否已生成）：\n   - `find /root/contamcal-irt-calibration/exp001/ -name \"*.jsonl\" -o -name \"*.json\" -o -name \"*.csv\" | head -20`\n   - `ls -lh /root/contamcal-irt-calibration/exp001/`\n\n5. 检查 GPU 状态：\n   - `nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader`\n\n6. 检查磁盘空间（磁盘满可能导致写入失败）：\n   - `df -h /root/`\n\n7. 如果日志里没有明确错误，检查 dmesg 是否有 OOM killer：\n   - `dmesg | grep -i \"oom\\|killed\" | tail -10`\n\n8. 检查 tmux sessions 看有无残留的训练 session：\n   - `tmux ls 2>/dev/null || echo \"NO_TMUX\"`\n\n## 输出格式\n最后输出一行 JSON（必须）：\n{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true|false,\"partial_output\":\"<描述已产出的文件>\"}\n\n在 JSON 之前，写一段简要的诊断过程和发现（中文）。",
+    "tool_groups": "['ssh']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T19:19:38.432912+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_exp_001_sft_injection_20260513T191935\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_diagnose_exp_001_sft_injection_20260513T191935.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_exp_001_sft_injection_20260513T191935 started. Use get_worker_status('worker_diagnose_exp_001_sft_injection_20260513T191935') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 4382
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-13T19:20:12.585564+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "exp_001_sft_injection",
+  "field": "notes",
+  "value": "失败原因: process dead 5× with no sentinel/W&B — auto-resolved as failed | 诊断中: worker_diagnose_exp_001_sft_injection_20260513T191935 已派出",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "exp_001_sft_injection",
+    "field": "notes",
+    "value": "失败原因: process dead 5× with no sentinel/W&B — auto-resolved as failed | 诊断中: worker_diagnose_exp_001_sft_injection_20260513T191935 已派出",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-13T19:20:13.746423+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"exp_001_sft_injection\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T17:28:01.546Z\", \"updated_at\": \"2026-05-13T19:20:12.631Z\", \"spec\": {\"command\": \"Phase 1 paraphrase: GPU 0 MMLU (PID 200967, vLLM) + GPU 1 GSM8K (PID 189375, transformers ~45%) + GPU 2 ARC (PID 190717, transformers ~41%) + GPU 4 HumanEval (PID 201102, vLLM)\", \"server\": \"cqa1-21977\", \"data_path\": \"MMLU+GSM8K+ARC-Challenge+HumanEval paraphrases → SFT data mixing\", \"data_count\": \"45 SFT runs + 90 eval runs (original+paraphrased)\", \"model_name\": \"Qwen2.5-0.5B/1.5B/3B (LoRA SFT), Qwen2.5-7B-Instruct (paraphrase)\", \"seed\": \"42,123,456\", \"gpu\": \"cuda:0 (MMLU vLLM), cuda:1 (GSM8K transformers), cuda:2 (ARC transformers), cuda:4 (HumanEval vLLM). cuda:3,5 idle until SFT\", \"pid\": \"200967,189375,190717,201102\", \"note\": \"Duplicate processes killed per Director order. vLLM works for MMLU+HumanEval, GSM8K+ARC use transformers. GPU 3,5 reserved for Phase 3 SFT.\"}, \"hypothesis\": \"Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds\", \"reproduce\": {\"finished_at\": \"2026-05-13T19:18:07.357Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T19:18:07.605Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T19:18:08.635006+00:00\"}]}, \"notes\": \"失败原因: process dead 5× with no sentinel/W&B — auto-resolved as failed | 诊断中: worker_diagnose_exp_001_sft_injection_20260513T191935 已派出\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1536}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 1160
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-13T19:20:13.797107+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-13T19:20:13.897994+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-13T19:20:16.972475+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-13T19:20:17.125832+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:1\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:2\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:3\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\"}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:0\", \"idle_min\": null}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:1\", \"idle_min\": null}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:2\", \"idle_min\": null}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:3\", \"idle_min\": null}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:4\", \"idle_min\": null}, {\"server\": \"cqa1-21977\", \"gpu_id\": \"cuda:5\", \"idle_min\": null}], \"running_experiments\": [], \"worker_pool\": {\"total\": 3, \"gpu_tasks\": 1, \"cpu_tasks\": 2, \"details\": [{\"worker_id\": \"worker_ssh_parallel-paraphrase-gpu1-3_20260513T184649\", \"task\": \"ssh:parallel-paraphrase-gpu1-3\"}, {\"worker_id\": \"worker_ssh_phase1-check-and-phase2-3-launch_20260513T191733\", \"task\": \"ssh:phase1-check-and-phase2-3-launch\"}, {\"worker_id\": \"worker_diagnose_exp_001_sft_injection_20260513T191935\", \"task\": \"diagnose:exp_001_sft_injection\"}]}, \"summary\": \"分配 6 张, 实际跑 0 张 ⚠️ | Worker 3 (GPU 1 / CPU 2)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 153
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-13T19:20:17.126397+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-13T19:38:09.987988+00:00_
+
+诊断 Worker 已派发。更新 registry 记录关联的 Worker，然后向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_001_sft_injection"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+16 recorded events
+
+### User
+
+_source line 40 · 2026-05-13T22:39:02.165161+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_001_sft_injection",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-13T22:39:13.984944+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__load_project_config",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T22:39:14.036534+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-13T22:39:17.702791+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-13T22:39:17.703211+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-13T22:39:18.157438+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_001_eval_15B_d000_s123\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:30:41.501Z\", \"updated_at\": \"2026-05-13T22:30:41.501Z\", \"spec\": {\"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"checkpoint_source\": \"exp_001_sft_0pct_15B_s123\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"server\": \"cqa1-21977\"}}, \"exp_001_eval_05B_d000_s123\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:30:40.455Z\", \"updated_at\": \"2026-05-13T22:30:40.455Z\", \"spec\": {\"model_name\": \"Qwen2.5-0.5B\", \"seed\": 123, \"checkpoint_source\": \"exp_001_sft_0pct_05B_s123\", \"eval_data\": \"mmlu,gsm8k,arc_challenge,humaneval\", \"server\": \"cqa1-21977\"}}, \"exp_001_sft_0pct_15B_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:35:07.346Z\", \"updated_at\": \"2026-05-13T22:30:26.882Z\", \"hypothesis\": \"0% dosage clean baseline Qwen2.5-1.5B seed=123 (second seed for variance estimation)\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export TOKENIZERS_PARALLELISM=false && python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_s123 --seed 123 --gpu 2 --batch-size 2 --grad-accum 8 --cache-dir /root/autodl-tmp/.hf_cache\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:2\"], \"pid\": \"216111\", \"log_path\": \"~/runs/contamcal-irt-calibration/exp_001_sft_0pct_15B_s123.log\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\", \"data_count\": \"50000\", \"model_name\": \"Qwen2.5-1.5B\", \"seed\": 123, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d000_
+…[truncated 16920 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-13T22:39:18.610300+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-13T22:39:19.115413+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-13T22:39:19.317286+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "contamcal-irt-calibration",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "contamcal-irt-calibration",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-13T22:39:22.583837+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"exp_001_sft_injection\", \"success\": true, \"actions\": [\"Job still running (pid=204467)\"]}, {\"exp_id\": \"exp_001_sft_0pct_3B\", \"success\": true, \"actions\": [\"Job still running (pid=210671)\"]}, {\"exp_id\": \"exp_001_sft_0pct_3B_s123\", \"success\": true, \"actions\": [\"Job still running (pid=216935)\"]}, {\"exp_id\": \"exp_001_eval_15B_d000_s42\", \"success\": true, \"actions\": [\"Job still running (pid=221376)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 4880
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-13T22:39:22.634660+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-13\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_001_eval_15B_d000_s42 | 0% dosage 1.5B s42 baseline evaluation on 4 benchmarks to establish ground-truth scores for calibration error computation | — | — | — |\\n| exp_001_sft_injection | Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds | — | — | — |\\n| exp_005_noise_prop_v2 | Same as exp_005: ME model CI width increases monotonically with σ_e; simple model does not. v2 fixes: sigma_e lower bound 1e-4, c/d bounds [0.001,0.999], max_treedepth=12. | — | — | — |\\n\\n## 待处理\\n- exp_001_eval_15B_d000_s123（准备中）\\n- exp_001_eval_05B_d000_s123（准备中）\\n\\n## 近期结论\\n- **exp_001_sft_0pct_15B_s123** (success): 0% dosage clean baseline Qwen2.5-1.5B seed=123 (second seed for variance estimation)\\n- **exp_001_sft_0pct_05B_s123** (success): 0% dosage clean baseline Qwen2.5-0.5B seed=123 (second seed for variance estimation)\\n- **exp_001_sft_0pct_15B** (success): —\\n\\n## 趋势\\n成功 6 / 负向 0 / 失败 1 / 共 7\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\ncqa1-21977: 无 GPU 信息\\n\\n## 告警\\n- exp_005_noise_prop: 训练失败 — unknown\\n\", \"total_chars\": 1300, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 4024
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-13T22:39:22.685614+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-13 21:06 UTC | 更新原因: 数据版本确认、MMLU 3-attempt 进度更新、Phase 3 前置条件\\n\\n## 核心方向\\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（D006, 距今 12 天）\\n- Track: ML for NLP / Resources and Evaluation\\n- Special theme: \\\"New Missions for NLP Research\\\" — contamination/data governance\\n\\n## 当前进展\\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\\n- **Phase 1 Paraphrase**:\\n  - ARC ✅ 1172 条（QC 59.5%）\\n  - GSM8K ✅ 1319 条（QC 17.3%）\\n  - MMLU ⏳ GPU 0 — 3-attempt QC 重试流程：Attempt 1 ✅ (878 batches, 29.3% QC pass), **Attempt 2 进行中** (121/621, 19.5%), Attempt 3 待定。**总 ETA ~2.5-3h (约 07:30-08:00 北京时间)**\\n  - HumanEval ✅ 降级到 appendix (D009)\\n  - ⚠️ 所有 paraphrases 已于 05-14 全部重新生成 v3\\n- **Phase 2 数据准备**: ARC+GSM8K dosage 文件已生成 | MMLU 等待 Phase 1 全部完成\\n  - ✅ **数据版本确认**: 0% dosage = 纯 SlimOrca 数据，不含 paraphrases，当前训练有效\\n  - ⚠️ dosage >0% 文件仅含 ARC+GSM8K，MMLU 完成后需重跑 prepare_sft_data.py\\n- **0% SFT baselines**:\\n  - 0.5B-s42 ✅ (loss 1.4894, 52.9min) | 1.5B-s42 ⏳ GPU 4 | 3B-s42 ⏳ GPU 5\\n  - 0.5B-s123 ⏳ GPU 1 (PID 216033, 460/3125, ~1.08s/it, ETA ~47min)\\n  - 1.5B-s123 ⏳ GPU 2 (PID 216111, 260/3125, ~2.10s/it, ETA ~1h40m)\\n  - 3B-s123 ⏳ GPU 3 (PID 216935, 171/3125, ~3.78s/it, ETA ~3h10m)\\n- **CPU**:\\n  - exp-004 sim sweep ⏳ (~28h total)\\n  - exp-005 noise prop v2 ⏳ (Stan bug 已修复, PID 251971, 50 fits, ETA ~4-12h)\\n- **Stan bug 修复 ✅**:\\n  - contam_irt_4pl_me.stan: sigma_e lower bound 0→1e-4, c/d bounds [0.001,0.999]\\n  - contam_irt_4pl_simple.stan: c/d bounds [0.001,0.999]\\n  - run_noise_propagation.py: max_treedepth 10→12\\n- **Fisher 推导**: ✅ appendix.tex (Theorem 1 + 2 Corollaries)\\n- **论文**: Intro/Method/Related Work/Experiments 初稿已有；Paper Agent 已完成 D2
+…[truncated 2766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 3570
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-13T22:39:22.686154+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"contamcal-irt-calibration\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\", \"cuda:4\", \"cuda:5\"], \"project_path\": \"/root/contamcal-irt-calibration\", \"servers\": [\"cqa1-21977\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 3368
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-13T22:39:27.256036+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-13T22:39:27.357985+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"content\": \"# memory.md — contamcal-irt-calibration\\n\\n## 决策记录\\n\\n### D009: HumanEval 降级\\nHumanEval QC pass rate 仅 15.9% (26/164)，降级到 appendix case study。主实验仅用 MMLU + GSM8K + ARC。\\n\\n### D010: SFT 数据策略\\n- SFT 注入：使用所有 paraphrases（不做 BLEU 过滤）\\n- ConStat 对比：仅使用 QC-passed（cosine>0.85 + BLEU<0.3）\\n\\n## 硬约束\\n\\n### Phase 3 启动前置条件\\n**Phase 3 contaminated SFT 启动前，必须验证 `paraphrases/mmlu_paraphrases.json` 存在且非空。** MMLU 完成 → 重跑 `prepare_sft_data.py` 重新生成 5-100% dosage 文件 → 确认 3 个 benchmark (MMLU+GSM8K+ARC) 都在 → 才能启动 Phase 3。不可在 MMLU 缺失情况下启动 contaminated SFT。\\n\\n### train_sft.py --gpu 必须等于物理 GPU 编号\\n脚本内部覆盖 `CUDA_VISIBLE_DEVICES=args.gpu`，不走框架的设备映射。`--gpu 0` = 物理 GPU 0，不是\\\"分配到的第一块卡\\\"。\\n\\n## 经验教训\\n\\n### Cron PID 监控\\n- Cron 必须监控实际 Python 进程 PID，不是 wrapper/shell PID\\n- 进程重启后必须更新 cron 的 PID，否则旧 cron 会检测到旧 PID 已死 → 误判失败\\n- crons.yaml 路径: `/home/ubuntu/.agent-ml-research-idea_gen_0509_13/config/crons.yaml`\\n\\n### vLLM 并发启动\\nvLLM 0.20.x + Qwen2.5 多实例并发启动报 duplicate template name，需串行启动。\\n\\n### TRL 1.4.0 兼容性\\nTRL 1.4.0 与当前 transformers 版本兼容，已在 cqa1-21977 验证。\\n\\n### Stan 数值稳定性\\n- `real&lt;lower=0> sigma_e` 允许 sigma_e=0 → normal_lpdf 崩溃。改为 `real&lt;lower=1e-4>`\\n- beta 先验参数 c/d 在 [0,1] 边界，logit 变换趋向 ±inf。改为 [0.001, 0.999]\\n- max_treedepth=10 命中率 14.5% 过高，改为 12\\n\", \"total_chars\": 1201, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_injection",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-13T22:40:47.654238+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：cuda:0-5（全部 6 张 4090D），服务器 cqa1-21977，无其他服务器
+- `train_sft.py --gpu N` = **物理 GPU N**，脚本内部覆盖 `CUDA_VISIBLE_DEVICES=N`，不走框架映射。`--gpu 0` ≠ "分配到的第一块卡"
+- **Phase 3 contaminated SFT 启动前置条件**：必须验证 `paraphrases/mmlu_paraphrases.json` 存在且非空 → 重跑 `prepare_sft_data.py` → 确认 MMLU+GSM8K+ARC 三个 benchmark 齐全 → 才可启动。绝不可在 MMLU 缺失时启动 Phase 3
+- exp_005/exp_004 运行在 local CPU（无 SSH 服务器），cron SSH 检查会 false positive（已发生两次 rollback），需用本地 `ps -p PID` 验证存活
+- vLLM 多实例不可并发启动（duplicate template bug），需串行
+
+### 2. 🖥️ 基础设施快照
+- **服务器**：cqa1-21977，6× RTX 4090D，工作目录 `/root/contamcal-irt-calibration`
+- **Python**：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）。激活方式：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- **模型缓存**：`/root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-{0.5B,1.5B,3B}`（已下载）；`HF_HOME=/root/autodl-tmp/.hf_cache`
+- **数据**：`/root/autodl-tmp/exp001/sft_data/sft_dosage_*.jsonl`（0% 已生成，5-100% 仅含 ARC+GSM8K 缺 MMLU）
+- **Checkpoints**：`/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_{seed}/`
+- **Eval 代码**：`/root/contamcal-irt-calibration/exp001/evaluate.py`
+- **Paraphrase 输出**：`/root/contamcal-irt-calibration/exp001/paraphrases/{arc,gsm8k}_paraphrases.json`（✅），`mmlu_paraphrases.json`（⏳ 生成中）
+- **Stan 模型**：`artifacts/exp005_noise_propagation/` 下 `.stan` 文件（已修复 sigma_e/c/d/treedepth）
+- **活跃 GPU 进程**：
+  - cuda:0 — MMLU paraphrase vLLM (PID 204467, exp_001_sft_injection)
+  - cuda:1 — 已释放（0.5B-s123 已完成）
+  - cuda:2 — 已释放（1.5B-s123 已完成）
+  - cuda:3 — 3B-s123 训练 (PID 216935, exp_001_sft_0pct_3B_s123)
+  - cuda:4 — 1.5B-s42 eval (PID 221376, exp_001_eval_15B_d000_s42)
+  - cuda:5 — 3B-s42 训练 (PID 210666/210671, exp_001_sft_0pct_3B)
+- **活跃 CPU 进程**：
+  - exp_004_sim_sweep (PID 219346, ~28h total, 120 Stan fits)
+  - exp_005_noise_prop_v2 (PID 251971, 50 Stan fits)
+- **活跃 Cron**：exp_001_sft_injection / exp_001_sft_0pct_3B / exp_001_sft_0pct_3B_s123 / exp_001_eval_15B_d000_s42
+
+### 3. 📊 当前状态
+**刚完成**：0.5B-s123 和 1.5B-s123 的 0% baseline SFT 训练（均 success），已更新 registry。1.5B-s42 eval 已提交。exp_005 Stan bug 修复并重启 v2。
+
+**RUNNING (6)**：
+| exp_id | 摘要 | 位置 | ETA |
+|--------|------|------|-----|
+| exp_001_sft_injection | MMLU paraphrase Attempt 2/3 (vLLM) | GPU 0 | ~2.5-3h (07:30-08:00 北京) |
+| exp_001_sft_0pct_3B | 3B 0% baseline s42 | GPU 5 | ~3-4h |
+| exp_001_sft_0pct_3B_s123 | 3B 0% baseline s123 | GPU 3 | ~3h |
+| exp_001_eval_15B_d000_s42 | 1.5B eval (MMLU/GSM8K/ARC/HumanEval) | GPU 4 | 未知 |
+| exp_004_sim_sweep | 120 条件 Stan sweep (CPU) | local | ~20h+ |
+| exp_005_noise_prop_v2 | ME model noise propagation (CPU) | local | ~4-12h |
+
+**PREPARING (2)**：exp_001_eval_15B_d000_s123, exp_001_eval_05B_d000_s123（等对应 SFT 完成）
+
+**DONE 成功 (5)**：mvp_sim_4pl_gamma, mvp_sim_confounding, exp_001_sft_0pct_05B, exp_001_sft_0pct_15B, exp_001_sft_0pct_05B_s123, exp_001_sft_0pct_15B_s123
+
+**等待中**：
+- MMLU paraphrase 完成 → 触发 Phase 2 数据重建 → Phase 3
+- 3B 两个 seed 训练完成 → 提交 3B eval
+- cuda:1 和 cuda:2 **已空闲**，应立即安排 0.5B eval 任务
+
+### 4. 📋 待办（条件触发式）
+- **cuda:1/2 已空闲** → 立即提交 exp_001_eval_05B_d000_s42（0.5B-s42 eval）和 exp_001_eval_05B_d000_s123（0.5B-s123 eval），不要让 GPU 空着
+- exp_001_sft_0pct_3B 完成 → 提交 exp_001_eval_3B_d000_s42（3B-s42 eval）
+- exp_001_sft_0pct_3B_s123 完成 → 提交 exp_001_eval_3B_d000_s123（3B-s123 eval）
+- exp_001_eval_15B_d000_s42 完成 → 记录 metrics 到 registry，与 train loss 交叉验证
+- MMLU paraphrase 3-attempt 全部完成 → (1) 验证 `mmlu_paraphrases.json` 非空 (2) 重跑 `prepare_sft_data.py` (3) 确认 3 benchmark 齐全 (4) 启动 Phase 3 contaminated SFT（12 runs seed=0: {5%,25%,50%,100%} × {0.5B,1.5B,3B}）
+- Phase 3 调度预案：GPU 0-3 各跑 1×3B+1×0.5B (~4.5h)，GPU 4-5 各跑 2×1.5B (~3.4h)
+- exp_004_sim_sweep 完成 → 验证 identifiability 阈值 vs Fisher 理论，写入 paper
+- exp_005_noise_prop_v2 完成 → 验证 ME model coverage improvement，更新 Table/Figure
+- Phase 3+4 完成 → exp-002 contamination signals → exp-003 RRF → exp-006 IRT calibration → **exp-008 signal_survival_analysis**（C2 唯一证据，P0）
+
+### 5. 🎯 战略上下文
+- **投稿目标**：EMNLP 2026 ARR May 25，距今 12 天。**全速推进，不留 buffer**
+- **核心方法**：ContamCal = post-hoc statistical calibration via contamination-augmented 4PL IRT。用 contamination exposure signal 作为 IRT 的额外参数 γ，分离真实能力 θ 和 contamination inflation
+- **MVP 已通过 (D004)**：4PL+γ 在 N_items=300 下成功分离 γ 和 θ（PASS），confounding 场景也通过（corr=0.38 下 γ_rel_bias=7.7%，PASS）
+- **Critical path 瓶颈**：MMLU paraphrase（GPU 0）。MMLU 完成前无法启动 Phase 3 contaminated SFT（核心实验）
+- **易错点**：
+  - exp_001_sft_0pct 是 parent entry（无直接进程），不要尝试 SSH 检查它
+  - Cron 会对 server="local" 的实验 false positive（SSH 连接失败 → 误判 failed），已发生两次 rollback，看到这类回调先 `ps -p PID` 本地验证
+  - 0% dosage 数据 = 纯 SlimOrca，不含 paraphrases，当前训练有效（D010 确认）
+  - dosage >0% 文件目前仅含 ARC+GSM8K，**MMLU 完成后必须重跑 prepare_sft_data.py**
+- **Table 2 风险**：Related Work 表中 ContamCal "RL-robust partial✓" claim 唯一证据来源是 exp-008（signal_survival_analysis），尚未启动。若结果不支持需删除该 claim
+- **Fisher 推导**：已完成 appendix.tex（Theorem 1 + 2 Corollaries），用于理论支撑 identifiability
+- **决策链**：D001(MVP 策略) → D003(Phase A PASS) → D004(MVP 通过) → D006(回归 EMNLP) → D009(HumanEval 降级) → D010(数据策略)
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_001_sft_injection"
+}
+```
+
+</details>
+
+---

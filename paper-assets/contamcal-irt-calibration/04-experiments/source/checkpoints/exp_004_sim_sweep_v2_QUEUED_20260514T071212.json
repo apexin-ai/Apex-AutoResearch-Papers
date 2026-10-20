@@ -1,0 +1,26 @@
+{
+  "exp_id": "exp_004_sim_sweep_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:12:12.267Z",
+    "updated_at": "2026-05-14T07:12:12.267Z",
+    "spec": {
+      "command": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/mvp_simulation/.venv/bin/python run_sweep.py subset",
+      "server": "local",
+      "pid": 411032,
+      "data_path": "synthetic",
+      "data_count": 120,
+      "model_name": "4PL+gamma IRT",
+      "seed": 42,
+      "log_path": "/tmp/exp004_sweep_20260514_071141.log",
+      "parent": "exp_004_sim_sweep",
+      "hypothesis": "4PL+γ IRT parameter recovery sweep: 12 conditions (4 AUC × 3 N_models) × 10 seeds. v2 restart with checkpoint resume."
+    }
+  },
+  "timestamp": "2026-05-14T07:12:12.723111+00:00",
+  "trigger": "update_registry"
+}

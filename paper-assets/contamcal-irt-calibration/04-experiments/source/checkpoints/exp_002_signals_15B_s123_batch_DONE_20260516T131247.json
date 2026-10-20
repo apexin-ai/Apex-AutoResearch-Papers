@@ -1,0 +1,48 @@
+{
+  "exp_id": "exp_002_signals_15B_s123_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:44:39.543Z",
+    "updated_at": "2026-05-16T13:12:47.455Z",
+    "spec": {
+      "command": "bash run_15B_s123_signals.sh",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "691872",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_002_signals_15B_s123_batch.log",
+      "submitted_at": "2026-05-16T03:44:35.931Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp002/signals/Qwen2.5-1.5B_*_s123",
+      "data_count": 12,
+      "model_name": "Qwen2.5-1.5B",
+      "seed": 123,
+      "wall_clock_seconds": 32352.4,
+      "gpu_hours": 8.99
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T12:43:49.431Z"
+    },
+    "failure_reason": "ModuleNotFoundError(\"No module named 'faiss.swigfaiss_avx512_spr'\")",
+    "conclusion": "success",
+    "completed_at": "2026-05-16T12:43:48.348Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-16T12:44:01.753553+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-16T13:12:47.936916+00:00",
+  "trigger": "update_registry"
+}

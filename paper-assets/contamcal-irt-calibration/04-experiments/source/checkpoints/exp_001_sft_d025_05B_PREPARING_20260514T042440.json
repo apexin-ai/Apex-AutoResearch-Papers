@@ -1,0 +1,22 @@
+{
+  "exp_id": "exp_001_sft_d025_05B",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:24:39.757Z",
+    "updated_at": "2026-05-14T04:24:39.757Z",
+    "spec": {
+      "hypothesis": "25% dosage contaminated SFT on Qwen2.5-0.5B (seed=42): fills dose-response 4-point curve (d000/d005/d025/d100). P2 priority.",
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 42,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "server": "cqa1-21977",
+      "gpu": "cuda:5"
+    }
+  },
+  "timestamp": "2026-05-14T04:24:40.095590+00:00",
+  "trigger": "update_registry"
+}

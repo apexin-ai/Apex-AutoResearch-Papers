@@ -1,0 +1,16 @@
+{
+  "exp_id": "sft_yi15_9b_d000_s42_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-22T15:51:46.028Z",
+    "updated_at": "2026-05-22T15:52:07.064Z",
+    "hypothesis": "Yi-1.5-9B exploration: d000 clean SFT baseline (v2 restart after v1 died at step 1802/3125 with no checkpoint)",
+    "parent": "sft_yi15_9b_d000_s42"
+  },
+  "timestamp": "2026-05-22T15:52:07.830090+00:00",
+  "trigger": "update_registry"
+}

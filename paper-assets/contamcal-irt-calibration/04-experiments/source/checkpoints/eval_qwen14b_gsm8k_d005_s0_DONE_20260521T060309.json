@@ -1,0 +1,35 @@
+{
+  "exp_id": "eval_qwen14b_gsm8k_d005_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T03:53:18.681Z",
+    "updated_at": "2026-05-21T06:03:09.140Z",
+    "hypothesis": "Qwen-14B GSM8K s0 eval: cross-benchmark contamination effect measurement for Collapse family — d005 low-dosage contamination effect on GSM8K",
+    "spec": {
+      "command": "bash scripts/seed0/eval_qwen14b_d005_s0_gsm8k.sh",
+      "server": "westd-29999",
+      "gpu_ids": "cuda:2",
+      "model_name": "Qwen2.5-14B",
+      "seed": 0,
+      "data_path": "gsm8k",
+      "data_count": 0,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0/lora_adapter",
+      "eval_data": "gsm8k",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d005_s0",
+      "log_path": "results/gsm8k_eval/qwen14b/d005_s0/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "gsm8k_accuracy": 0.7119,
+      "correct": 939,
+      "total": 1319
+    },
+    "completed_at": "2026-05-21T06:03:09.140Z"
+  },
+  "timestamp": "2026-05-21T06:03:09.789871+00:00",
+  "trigger": "update_registry"
+}

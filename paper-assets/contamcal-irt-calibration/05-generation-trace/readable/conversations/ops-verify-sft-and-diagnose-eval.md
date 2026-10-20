@@ -1,0 +1,1036 @@
+# ops verify sft and diagnose eval
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/chats/worker_ops_verify-sft-and-diagnose-eval_20260515T085518.jsonl`
+- **Structured JSON:** [`10e028c6c1ea68202792.json`](../../sessions/10/10e028c6c1ea68202792.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+35 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T08:57:13.230292+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T08:57:13.230644+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T08:57:13.230828+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 533174 -o pid,cmd= 2>/dev/null && echo \"ALIVE\" || echo \"DEAD\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 533174 -o pid,cmd= 2>/dev/null && echo \"ALIVE\" || echo \"DEAD\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T08:57:13.230968+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T08:57:13.231095+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 533263 -o pid,cmd= 2>/dev/null && echo \"ALIVE\" || echo \"DEAD\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 533263 -o pid,cmd= 2>/dev/null && echo \"ALIVE\" || echo \"DEAD\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T08:57:13.231218+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T08:57:13.231383+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T08:57:13.231537+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"533179, GPU-52bfebf5-3ba8-8f6e-ae36-56511cce901f, 14888 MiB\\n521694, GPU-466bc8fe-796f-8068-9660-0fb52de3681b, 3686 MiB\\n506625, GPU-b8bea42c-5b6e-4ba4-3618-e9b2095c6e54, 13574 MiB\\n530893, GPU-b8bea42c-5b6e-4ba4-3618-e9b2095c6e54, 3600 MiB\\n513826, GPU-ec1378f2-6e00-01ce-6bf6-c5e8081f887b, 8976 MiB\\n530975, GPU-ec1378f2-6e00-01ce-6bf6-c5e8081f887b, 5650 MiB\\n521613, GPU-f1a0b9ee-87a0-41a4-a300-b3cb3c870263, 5848 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T08:57:13.231665+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -20 /root/runs/exp_001_sft_15B_d025_s123_v3.log 2>/dev/null || echo \"NO_LOG_d025\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -20 /root/runs/exp_001_sft_15B_d025_s123_v3.log 2>/dev/null || echo \"NO_LOG_d025\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T08:57:13.231784+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T08:57:13.231920+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -20 /root/runs/exp_001_sft_15B_d005_s123_v3.log 2>/dev/null || echo \"NO_LOG_d005\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -20 /root/runs/exp_001_sft_15B_d005_s123_v3.log 2>/dev/null || echo \"NO_LOG_d005\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T08:57:13.232042+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T08:57:13.232159+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/runs/exp_008_base_pretrained_eval.log 2>/dev/null || echo \"NO_LOG\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/runs/exp_008_base_pretrained_eval.log 2>/dev/null || echo \"NO_LOG\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T08:57:13.232274+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T08:57:13.232410+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/runs/exp_008_base_pretrained_15B_eval.log 2>/dev/null || echo \"NO_LOG\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/runs/exp_008_base_pretrained_15B_eval.log 2>/dev/null || echo \"NO_LOG\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T08:57:13.232525+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T08:57:13.232675+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 533174,533263 -o pid,stat,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 533174,533263 -o pid,stat,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T08:57:13.232803+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT CMD\\n533174 Ss+  bash -c rm -f /tmp/agent-ml-exit/exp_001_sft_15B_d025_s123_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/exp_001_sft_15B_d025_s123_v3.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/exp_001_sft_15B_d025_s123_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/contamcal-irt-calibration && export CUDA_VISIBLE_DEVICES=0 && timeout 43200 env bash -c '/root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8'; } > ~/runs/exp_001_sft_15B_d025_s123_v3.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T08:57:13.232930+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -30 /root/runs/exp_001_sft_15B_d025_s123_v3.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -30 /root/runs/exp_001_sft_15B_d025_s123_v3.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T08:57:13.233079+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 16:54:57,002 [INFO] Loading tokenizer: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\n2026-05-15 16:54:57,250 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-15 16:54:57,473 [INFO] LoRA config: r=16, alpha=32, targets={'v_proj', 'o_proj', 'down_proj', 'k_proj', 'gate_proj', 'up_proj', 'q_proj'}\\n2026-05-15 16:54:57,474 [INFO] Loading training data: /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\\n2026-05-15 16:55:03,681 [INFO] Training samples: 54133\\n2026-05-15 16:55:06,121 [ERROR] bitsandbytes library load error: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\nTraceback (most recent call last):\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 320, in &lt;module>\\n    lib = get_native_library()\\n          ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/bitsandbytes/cextension.py\\\", line 298, in get_native_library\\n    dll = ct.cdll.LoadLibrary(str(binary_path))\\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 460, in LoadLibrary\\n    return self._dlltype(name)\\n           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-15 16:55:08,581 [INFO] Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/3384 [00:00<?, ?it/s]
+…[truncated 1505 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T08:57:13.233217+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -30 /root/runs/exp_001_sft_15B_d005_s123_v3.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -30 /root/runs/exp_001_sft_15B_d005_s123_v3.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T08:57:13.233381+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"           ^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/ctypes/__init__.py\\\", line 379, in __init__\\n    self._handle = _dlopen(self._name, mode)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^\\nOSError: libnvJitLink.so.13: cannot open shared object file: No such file or directory\\n2026-05-15 16:55:06,479 [INFO] Starting training...\\nThe tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': None, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/3177 [00:00<?, ?it/s]Traceback (most recent call last):\\n  File \\\"/root/contamcal-irt-calibration/exp001/train_sft.py\\\", line 221, in &lt;module>\\n    main()\\n  File \\\"/root/contamcal-irt-calibration/exp001/train_sft.py\\\", line 183, in main\\n    trainer.train()\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 2325, in train\\n    return inner_training_loop(\\n           ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 2674, in _inner_training_loop\\n    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)\\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/trl/trainer/sft_trainer.py\\\", line 1722, in training_step\\n    return super().training_step(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\\\", line 4020, in training_step\\n    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/t
+…[truncated 1043 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T08:57:13.233531+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/runs/exp_008_base_pretrained_eval.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/runs/exp_008_base_pretrained_eval.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T08:57:13.233652+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "cat /root/runs/exp_008_base_pretrained_15B_eval.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "cat /root/runs/exp_008_base_pretrained_15B_eval.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T08:57:13.233846+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 16:45:18,236 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-15 16:45:18,954 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n2026-05-15 16:45:19,262 [INFO] Evaluating mmlu...\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7f022ca1eae0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: e1d35171-f12f-4d21-b97f-95fc5d22085b)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md\\n2026-05-15 16:45:29,273 [WARNING] '(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7f022ca1eae0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: e1d35171-f12f-4d21-b97f-95fc5d22085b)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md\\nRetrying in 1s [Retry 1/5].\\n2026-05-15 16:45:29,273 [WARNING] Retrying in 1s [Retry 1/5].\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7f022c9bdf40>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: 064349b7-8815-43e0-b3a7-9fc0015e6d6c)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md\\n2026-05
+…[truncated 6375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T08:57:13.234110+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 16:45:21,235 [INFO] Loading model: /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-15 16:45:22,216 [INFO] We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n2026-05-15 16:45:23,223 [INFO] Evaluating mmlu...\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7efed8de8740>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: 215e011a-b957-4014-95ef-cf6b8f095293)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md\\n2026-05-15 16:45:33,238 [WARNING] '(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7efed8de8740>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: 215e011a-b957-4014-95ef-cf6b8f095293)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md\\nRetrying in 1s [Retry 1/5].\\n2026-05-15 16:45:33,239 [WARNING] Retrying in 1s [Retry 1/5].\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/cais/mmlu/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7efed8deb860>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: d5ad98ca-c79e-4a00-9ea9-24d430e2da8f)')' thrown while requesting HEAD https://huggingface.co/datasets/cais/mmlu/resolve/main/README.md\\n2026-05
+…[truncated 6393 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T08:57:13.234376+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi --query-gpu=index,gpu_uuid,name,memory.used --format=csv,noheader"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "nvidia-smi --query-gpu=index,gpu_uuid,name,memory.used --format=csv,noheader"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T08:57:13.234536+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, GPU-52bfebf5-3ba8-8f6e-ae36-56511cce901f, NVIDIA GeForce RTX 4090 D, 14899 MiB\\n1, GPU-466bc8fe-796f-8068-9660-0fb52de3681b, NVIDIA GeForce RTX 4090 D, 3695 MiB\\n2, GPU-b8bea42c-5b6e-4ba4-3618-e9b2095c6e54, NVIDIA GeForce RTX 4090 D, 17188 MiB\\n3, GPU-c30258a6-4c47-f7a8-7b0c-4c5cbdc3c1c3, NVIDIA GeForce RTX 4090 D, 0 MiB\\n4, GPU-ec1378f2-6e00-01ce-6bf6-c5e8081f887b, NVIDIA GeForce RTX 4090 D, 14640 MiB\\n5, GPU-f1a0b9ee-87a0-41a4-a300-b3cb3c870263, NVIDIA GeForce RTX 4090 D, 5857 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T08:57:13.234717+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 506625 -o pid,stat,etime,cmd"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 506625 -o pid,stat,etime,cmd"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T08:57:13.234851+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n506625 Rl+     03:36:47 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s123_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T08:57:13.234977+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -5 /root/runs/exp_008_base_pretrained_eval.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -5 /root/runs/exp_008_base_pretrained_eval.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T08:57:13.235094+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -5 /root/runs/exp_008_base_pretrained_15B_eval.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "tail -5 /root/runs/exp_008_base_pretrained_15B_eval.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T08:57:13.235221+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2026-05-15 16:56:13,823 [WARNING] Retrying in 8s [Retry 4/5].\\n'(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/openai/gsm8k/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7f0228c24ef0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: 8290a77a-16a4-4a31-8c3b-52a15e35bfb0)')' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/main/README.md\\n2026-05-15 16:56:31,837 [WARNING] '(MaxRetryError(\\\"HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/openai/gsm8k/resolve/main/README.md (Caused by ConnectTimeoutError(&lt;urllib3.connection.HTTPSConnection object at 0x7f0228c24ef0>, 'Connection to huggingface.co timed out. (connect timeout=10)'))\\\"), '(Request ID: 8290a77a-16a4-4a31-8c3b-52a15e35bfb0)')' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/main/README.md\\nRetrying in 8s [Retry 5/5].\\n2026-05-15 16:56:31,837 [WARNING] Retrying in 8s [Retry 5/5].\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T08:57:13.235443+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Using the latest cached version of the dataset since cais/mmlu couldn't be found on the Hugging Face Hub\\n2026-05-15 16:51:30,137 [WARNING] Using the latest cached version of the dataset since cais/mmlu couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'all' at /root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe (last modified on Thu May 14 01:40:20 2026).\\n2026-05-15 16:51:30,139 [WARNING] Found the latest cached dataset configuration 'all' at /root/autodl-tmp/.hf_cache/cais___mmlu/all/0.0.0/c30699e8356da336a370243923dbaf21066bb9fe (last modified on Thu May 14 01:40:20 2026).\\n\\rEvaluating mmlu:   0%|          | 0/14042 [00:00<?, ?it/s]\\rEvaluating mmlu:   0%|          | 1/14042 [00:00<2:16:18,  1.72it/s]\\rEvaluating mmlu:   0%|          | 5/14042 [00:00<26:07,  8.96it/s]  \\rEvaluating mmlu:   0%|          | 9/14042 [00:00<15:32, 15.05it/s]\\rEvaluating mmlu:   0%|          | 13/14042 [00:00<11:36, 20.13it/s]\\rEvaluating mmlu:   0%|          | 17/14042 [00:01<09:43, 24.05it/s]\\rEvaluating mmlu:   0%|          | 21/14042 [00:01<08:40, 26.92it/s]\\rEvaluating mmlu:   0%|          | 25/14042 [00:01<08:01, 29.10it/s]\\rEvaluating mmlu:   0%|          | 29/14042 [00:01<07:29, 31.16it/s]\\rEvaluating mmlu:   0%|          | 33/14042 [00:01<07:21, 31.70it/s]\\rEvaluating mmlu:   0%|          | 37/14042 [00:01<07:09, 32.64it/s]\\rEvaluating mmlu:   0%|          | 41/14042 [00:01<06:59, 33.40it/s]\\rEvaluating mmlu:   0%|          | 45/14042 [00:01<06:46, 34.44it/s]\\rEvaluating mmlu:   0%|          | 49/14042 [00:01<06:42, 34.73it/s]\\rEvaluating mmlu:   0%|          | 53/14042 [00:02<06:41, 34.86it/s]\\rEvaluating mmlu:   0%|          | 57/14042 [00:02<06:40, 34.89it/s]\\rEvaluating mmlu:   0%|          | 61/14042 [00:02<06:37, 35.20it/s]\\rEvaluating mmlu:   0%|          | 65/14042 [00:02<06:28, 35.96it/s]\\rEvaluating mmlu:   0%| 
+…[truncated 6421 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-15T08:57:13.235665+00:00_
+
+## 结果汇总
+
+### Part 1: SFT 进程状态
+
+| 实验 | GPU | 状态 | 详情 |
+|------|-----|------|------|
+| d025 (PID 533174) | cuda:0 | ✅ **ALIVE，训练中** | step 22/3384, ~2s/it, ETA ~1h53m, 使用 14.9 GB |
+| d005 (PID 533263) | cuda:2 | ❌ **DEAD — OOM** | 第 0 步即崩溃，EXIT_CODE=1 |
+
+**d005 OOM 原因**：GPU 2 已被两个进程占据：
+- PID 506625 (13.6 GB) — `evaluate.py Qwen2.5-3B d100_s123 aligned`，已运行 3h36m
+- PID 530893 (3.6 GB) — base pretrained eval 0.5B
+
+两者合占 ~17.2 GB，d005 SFT 无法分配额外 884 MiB，直接 OOM。
+
+### Part 2: Base Pretrained Eval 状态
+
+两个 eval **没有失败**，实际都在运行：
+
+| 实验 | GPU | 状态 | 进度 |
+|------|-----|------|------|
+| 0.5B eval (PID 530893) | cuda:2 | ✅ 运行中 | MMLU 完成 (acc=0.2294), gsm8k 加载中（HF timeout 重试） |
+| 1.5B eval (PID 530975) | cuda:4 | ✅ 运行中 | MMLU 77% (10884/14042), ~27 it/s |
+
+evaluate.py 支持不带 `--adapter-path` 运行，base pretrained 评估命令没问题。
+
+### 当前 GPU 占用
+
+| GPU | 内存占用 | 进程 |
+|-----|---------|------|
+| 0 | 14.9 GB | ✅ SFT d025 训练中 |
+| 1 | 3.7 GB | 未知进程 (PID 521694) |
+| 2 | 17.2 GB | 3B eval (506625) + 0.5B base eval (530893) |
+| **3** | **0 MB** | **空闲** |
+| 4 | 14.6 GB | 未知进程 (513826) + 1.5B base eval (530975) |
+| 5 | 5.9 GB | 未知进程 (521613) |
+
+### 建议操作
+
+d005 SFT 需要重新提交。**GPU 3 是唯一空闲的 GPU**，应提交到 cuda:3 而不是 cuda:2。是否现在重新提交？
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_verify-sft-and-diagnose-eval_20260515T085518"
+}
+```
+
+</details>
+
+---

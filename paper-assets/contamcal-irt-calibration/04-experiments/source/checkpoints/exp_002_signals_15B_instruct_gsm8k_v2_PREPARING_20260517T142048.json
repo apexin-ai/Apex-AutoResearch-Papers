@@ -1,0 +1,16 @@
+{
+  "exp_id": "exp_002_signals_15B_instruct_gsm8k_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T21:29:30.056Z",
+    "updated_at": "2026-05-17T14:20:47.762Z",
+    "hypothesis": "1.5B-Instruct GSM8K signals (s1/s2/s4) to expand N for cross-family pooled IRT — GSM8K is strongest data point per cross-family results, critical for C1 N expansion",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-17T14:20:48.213155+00:00",
+  "trigger": "update_registry"
+}

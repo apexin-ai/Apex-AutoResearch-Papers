@@ -1,0 +1,47 @@
+{
+  "exp_id": "exp_001_sft_injection",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:28:01.546Z",
+    "updated_at": "2026-05-13T23:14:29.933Z",
+    "spec": {
+      "command": "Phase 1 paraphrase: GPU 0 MMLU (PID 204467 v3, vLLM bs=16). GSM8K + ARC completed.",
+      "server": "cqa1-21977",
+      "data_path": "MMLU+GSM8K+ARC-Challenge+HumanEval paraphrases → SFT data mixing",
+      "data_count": "45 SFT runs + 90 eval runs (original+paraphrased)",
+      "model_name": "Qwen2.5-0.5B/1.5B/3B (LoRA SFT), Qwen2.5-7B-Instruct (paraphrase)",
+      "seed": "42,123,456",
+      "gpu": "cuda:0 (MMLU vLLM, still running). cuda:1/2 freed (GSM8K+ARC done).",
+      "pid": "204467",
+      "note": "GSM8K: 1319 paraphrases (228 QC pass, 17.3%). ARC: 1172 paraphrases (697 QC pass, 59.5%). MMLU: Attempt 1 done (878 batches, 29.3% QC), Attempt 2 in progress (439 batches total, ~22%), Attempt 3 pending. HumanEval: done (appendix per D009)."
+    },
+    "hypothesis": "Controlled SFT contamination injection produces dose-dependent score inflation on contaminated benchmarks; 4PL+γ IRT can recover true (uncontaminated) performance from calibrated scores with proper uncertainty bounds",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-13T19:18:08.635006+00:00"
+        },
+        {
+          "event": "status_rollback",
+          "action": "manual_fix",
+          "ts": "2026-05-13T19:32:00.000Z",
+          "reason": "Cron misidentified old PID as dead → auto-failed. 3 paraphrase processes (GPU 0-2) still running. Rolled back DONE/failed → RUNNING per Director instruction."
+        }
+      ]
+    },
+    "notes": "MMLU paraphrase 3-attempt QC 重试流程: Attempt 1 ✅ (878 batches, 4112/14042 QC pass 29.3%, ~90min). Attempt 2 进行中 (v2重启, 439 batches total, 进度~22%). Attempt 3 待定. 输出在全部 attempt 结束后一次性写出 mmlu_paraphrases.json. GSM8K ✅ 1319条(QC 17.3%), ARC ✅ 1172条(QC 59.5%).",
+    "reproduce": {
+      "finished_at": "2026-05-13T23:14:29.355Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-13T23:14:30.131862+00:00",
+  "trigger": "update_registry"
+}

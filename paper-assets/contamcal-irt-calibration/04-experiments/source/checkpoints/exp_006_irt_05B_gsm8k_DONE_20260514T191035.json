@@ -1,0 +1,75 @@
+{
+  "exp_id": "exp_006_irt_05B_gsm8k",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:04:35.887Z",
+    "updated_at": "2026-05-14T19:10:34.761Z",
+    "hypothesis": "GSM8K (1319 items, ~5300 params) NUTS feasibility validation. If warmup produces samples within 2h → NUTS viable for small benchmarks. Else → ADVI fallback.",
+    "parent": "exp_006_irt_05B_v1",
+    "spec": {
+      "command": "python exp006/run_exp006.py --model-scale 0.5B --data-seed 42 --benchmark gsm8k --aligned-only --signals-dir /root/autodl-tmp/exp002/signals --output-dir /root/autodl-tmp/exp006/results_05B_gsm8k --joint-fit",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "418705",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_006_irt_05B_gsm8k.log",
+      "submitted_at": "2026-05-14T18:12:36.776Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/eval_results",
+      "data_count": "4 models x 1319 items (GSM8K only)",
+      "model_name": "Qwen2.5-0.5B (4pl_gamma IRT)",
+      "seed": 42,
+      "signals_dir": "/root/autodl-tmp/exp002/signals",
+      "output_dir": "/root/autodl-tmp/exp006/results_05B_gsm8k",
+      "method": "nuts",
+      "stan_params_estimate": "~5300",
+      "log_file": "/root/autodl-tmp/exp006/exp006_gsm8k_nuts.log",
+      "checkpoint_source": "N/A (IRT calibration, not model checkpoint)",
+      "eval_data": "GSM8K 1319 items from exp-001 eval_results (aligned only)",
+      "wall_clock_seconds": 3478.0,
+      "gpu_hours": 0.97
+    },
+    "notes": "Joint-fit converges (Rhat=1.008, ESS=956, 0 divergences), per-benchmark FAILS (Rhat=1.53, ESS=7). Exposure matrix bug suspected — per-benchmark and joint-fit may use different exposure matrices. DO NOT start ARC per-benchmark until P0 resolved. Code mods verified: max-items=random subsampling (seed-based), ADVI deleted, joint_fit max-items fixed. RRF issue found: S2 minkpp polarity inverted, delta exposure (vs d000 baseline) resolves monotonicity.",
+    "conclusion": "success",
+    "metrics": {
+      "joint_gamma_mean": 0.3463,
+      "joint_gamma_ci95": [
+        -0.6526,
+        1.3994
+      ],
+      "joint_gamma_ci_excludes_zero": false,
+      "joint_rhat": 1.0081,
+      "joint_ess": 956.4,
+      "joint_divergences": 0,
+      "per_bench_rhat": 1.5297,
+      "per_bench_ess": 7.1,
+      "per_bench_convergence_ok": false,
+      "n_models": 4,
+      "n_items": 1319,
+      "mean_raw_accuracy": 0.3658,
+      "total_time_sec": 799.3,
+      "baselines_mae": {
+        "IRT_4pl_gamma": 0.0195,
+        "B0_raw": 0.0034,
+        "B1_remove_rescore": 0.0034,
+        "B2_2pl_gamma": 0.3202,
+        "B3_vanilla_4pl": 0.0123,
+        "B4_linear_regression": 0.003,
+        "B5_emperor_mitigation": 0.0034,
+        "B6_dcr_fuzzy": 0.2634
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp006/results_05B_gsm8k",
+    "log_path": "~/runs/contamcal-irt-calibration/exp_006_irt_05B_gsm8k.log",
+    "completed_at": "2026-05-14T19:10:34.761Z"
+  },
+  "timestamp": "2026-05-14T19:10:35.398557+00:00",
+  "trigger": "update_registry"
+}

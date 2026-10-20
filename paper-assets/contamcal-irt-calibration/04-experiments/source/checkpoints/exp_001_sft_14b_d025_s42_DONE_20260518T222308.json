@@ -1,0 +1,54 @@
+{
+  "exp_id": "exp_001_sft_14b_d025_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T19:07:16.648Z",
+    "updated_at": "2026-05-18T22:23:08.033Z",
+    "hypothesis": "Qwen2.5-14B d025 (25% contamination) SFT with lr=5e-5 LoRA r=16 α=32 establishes the mid-dosage data point for IRT dose-response calibration at 14B scale, extending within-family scale comparison with 7B d025 results.",
+    "spec": {
+      "command": "cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-14B --data-path /root/autodl-tmp/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s42 --seed 42 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 1 --grad-accum 16 --epochs 1 --max-seq-length 2048",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:2"
+      ],
+      "pid": "53522",
+      "log_path": "/root/autodl-tmp/exp001/logs/14b_d025_s42.log",
+      "submitted_at": "2026-05-18T19:07:40.705Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "model_name": "Qwen2.5-14B",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d025_s42",
+      "wall_clock_seconds": 11727.3,
+      "gpu_hours": 3.26
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T22:11:56.904Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T22:12:04.097215+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "final_loss": 0.926,
+      "final_eval_accuracy": 0.774,
+      "total_steps": 3384
+    },
+    "completed_at": "2026-05-18T22:23:08.033Z"
+  },
+  "timestamp": "2026-05-18T22:23:08.516143+00:00",
+  "trigger": "update_registry"
+}

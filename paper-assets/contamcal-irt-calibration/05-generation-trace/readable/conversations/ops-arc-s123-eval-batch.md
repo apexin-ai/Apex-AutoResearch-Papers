@@ -1,0 +1,1881 @@
+# ops arc s123 eval batch
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 65
+- **Recorded user turns:** 0
+- **Tool calls:** 32
+- **Original source:** `logs/chats/worker_ops_arc-s123-eval-batch_20260520T160447.jsonl`
+- **Structured JSON:** [`54e703542100a3db53fc.json`](../../sessions/54/54e703542100a3db53fc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+65 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-20T16:08:14.299814+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-20T16:08:14.300145+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-20T16:08:14.300365+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "head -80 /root/contamcal-irt-calibration/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "head -80 /root/contamcal-irt-calibration/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-20T16:08:14.300540+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/contamcal-irt-calibration/evaluate.py' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-20T16:08:14.300676+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"arc\\|ARC\\|benchmark\\|task\\|n_shot\\|few.shot\" /root/contamcal-irt-calibration/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"arc\\|ARC\\|benchmark\\|task\\|n_shot\\|few.shot\" /root/contamcal-irt-calibration/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-20T16:08:14.300805+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-20T16:08:14.300924+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/contamcal-irt-calibration/scripts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "ls /root/contamcal-irt-calibration/scripts/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-20T16:08:14.301054+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"eval_gemma2_s123_mmlu.sh\\neval_olmo2_s0_mmlu.sh\\neval_olmo2_s123_mmlu.sh\\neval_phi4_s0_mmlu.sh\\neval_phi4_s123_mmlu.sh\\neval_qwen14b_s123_mmlu.sh\\ngen_eval_matrix.py\\ngsm8k_s123\\ngsm8k_s42\\nrun_instruct_15b_eval.sh\\nrun_instruct_15b_eval_cuda5.sh\\nrun_instruct_3b_eval.sh\\nrun_instruct_3b_eval_v2.sh\\nrun_llama3b_d000_eval.sh\\nseed0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-20T16:08:14.301177+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/autodl-tmp/exp001/checkpoints/ -name \"adapter_config.json\" -path \"*s123*\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root/autodl-tmp/exp001/checkpoints/ -name \"adapter_config.json\" -path \"*s123*\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-20T16:08:14.301360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s123/lora_adapter/checkpoint-3125/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d000_s123/lora_adapter/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s123/lora_adapter/checkpoint-3177/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d005_s123/lora_adapter/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s123/lora_adapter/checkpoint-3384/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d025_s123/lora_adapter/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d050_s123/lora_adapter/checkpoint-3642/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d050_s123/lora_adapter/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123/lora_adapter/checkpoint-4159/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123/lora_adapter/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/phi-4_d000_s123/lora_adapter/checkpoint-3125/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/phi-4_d000_s123/lora_adapter/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s123/lora_adapter/checkpoint-3125/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s123/lora_adapter/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s123/lora_adapter/checkpoint-3125/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s123/lora_adapter/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s123/lora_adapter/checkpoint-3125/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d000_s123/lora_adapter/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d005_s123/lora_adapter/checkpoint-3177/adapter_config.json\\n/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d
+…[truncated 3110 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-20T16:08:14.301525+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader -i 2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader -i 2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T16:08:14.301653+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T16:08:14.301809+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration -name \"evaluate.py\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root/contamcal-irt-calibration -name \"evaluate.py\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T16:08:14.301934+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/evaluate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T16:08:14.302062+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat /root/contamcal-irt-calibration/scripts/eval_qwen14b_s123_mmlu.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat /root/contamcal-irt-calibration/scripts/eval_qwen14b_s123_mmlu.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T16:08:14.302180+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root -name \"evaluate.py\" -maxdepth 3 -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root -name \"evaluate.py\" -maxdepth 3 -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T16:08:14.302362+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e -x\\n\\n# C009: evaluate.py md5 verification\\nEXPECTED_MD5=\\\"17673bf373f00f83ccc41fc1d355a4cd\\\"\\nACTUAL_MD5=$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1)\\nif [ \\\"$ACTUAL_MD5\\\" != \\\"$EXPECTED_MD5\\\" ]; then\\n  echo \\\"ERROR: evaluate.py md5 mismatch! Expected $EXPECTED_MD5, got $ACTUAL_MD5\\\"\\n  exit 1\\nfi\\n\\nexport CUDA_VISIBLE_DEVICES=2\\nexport HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\\nPYTHON=/root/miniconda3/bin/python\\nEVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\\nCKPT=/root/autodl-tmp/exp001/checkpoints\\nMODEL=/root/autodl-tmp/models/Qwen2.5-14B\\nOUT=/root/contamcal-irt-calibration/results/mmlu_eval/qwen14b\\n\\nrun_eval() {\\n  local name=$1 adapter=$2 outdir=$3\\n  if [ ! -f \\\"$adapter/adapter_config.json\\\" ]; then\\n    echo \\\"=== SKIP: $name — adapter not found at $adapter ===\\\"\\n    return\\n  fi\\n  mkdir -p \\\"$outdir\\\"\\n  echo \\\"=== START: $name at $(date) ===\\\"\\n  $PYTHON $EVAL \\\\\\n    --model-path \\\"$MODEL\\\" \\\\\\n    --adapter-path \\\"$adapter\\\" \\\\\\n    --benchmarks mmlu \\\\\\n    --batch-size 4 \\\\\\n    --output-dir \\\"$outdir\\\"\\n  echo \\\"=== DONE: $name at $(date), exit=$? ===\\\"\\n}\\n\\nfor d in 000 005 025 050 100; do\\n  run_eval \\\"qwen14b_d${d}_s123\\\" \\\"$CKPT/Qwen2.5-14B_d${d}_s123/lora_adapter\\\" \\\"$OUT/d${d}_s123\\\"\\ndone\\n\\necho \\\"ALL_MMLU_EVAL_DONE_QWEN14B_S123\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-20T16:08:14.302519+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/contamcal-irt-calibration/exp001/evaluate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-20T16:08:14.302676+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"arc\\|ARC\\|benchmark\\|choices\\|n_shot\\|few.shot\\|SUPPORTED\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"arc\\|ARC\\|benchmark\\|choices\\|n_shot\\|few.shot\\|SUPPORTED\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T16:08:14.302802+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-20T16:08:14.302918+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/autodl-tmp/models/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "ls /root/autodl-tmp/models/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-20T16:08:14.303048+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DOWNLOAD_DONE.txt\\nLlama-3.1-8B\\nOLMo-2-1124-7B\\nQwen2.5-14B\\nQwen2.5-7B\\ndl_14b.log\\ndl_14b_fix.log\\ndl_14b_noxet.log\\ndl_7b.log\\ndl_7b_fix.log\\ndl_7b_noxet.log\\ndl_7b_retry.log\\ndl_7b_v2.log\\ndl_7b_v3.log\\ndl_mistral.log\\ndl_mistral.sh\\ndl_mistral_fix.log\\ndl_mistral_noxet.log\\ndl_mistral_retry.log\\ndl_olmo_shard3.log\\ndl_phi4_shard5.log\\ndownload.sh\\ndownload_all.log\\ndownload_all.sh\\ngemma-2-9b\\nphi-4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T16:08:14.303175+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/autodl-tmp/.hf_cache/ -path \"*arc*\" -name \"*.arrow\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root/autodl-tmp/.hf_cache/ -path \"*arc*\" -name \"*.arrow\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-20T16:08:14.303300+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/.hf_cache/allenai___ai2_arc/ARC-Challenge/0.0.0/210d026faf9955653af8916fad021475a3f00453/ai2_arc-train.arrow\\n/root/autodl-tmp/.hf_cache/allenai___ai2_arc/ARC-Challenge/0.0.0/210d026faf9955653af8916fad021475a3f00453/ai2_arc-test.arrow\\n/root/autodl-tmp/.hf_cache/allenai___ai2_arc/ARC-Challenge/0.0.0/210d026faf9955653af8916fad021475a3f00453/ai2_arc-validation.arrow\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-20T16:08:14.303461+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"arc\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"arc\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-20T16:08:14.303612+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"38:    \\\"arc_challenge\\\": {\\\"num_fewshot\\\": 25, \\\"metric\\\": \\\"accuracy\\\"},\\n123:    match = re.search(r'(?:answer|Answer)\\\\s*(?:is|:)\\\\s*\\\\**\\\\s*([A-Z])', text)\\n126:    match = re.search(r'\\\\(?([A-Z])\\\\)', text)\\n136:    match = re.search(r'```(?:python)?\\\\n(.*?)```', text, re.DOTALL)\\n169:    elif benchmark == \\\"arc_challenge\\\":\\n170:        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n171:        val_ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n204:        elif benchmark == \\\"arc_challenge\\\":\\n219:        choice_tokens = labels if benchmark == \\\"arc_challenge\\\" else [CHOICE_LETTERS[i] for i in range(len(choices_text))]\\n256:    elif benchmark == \\\"arc_challenge\\\":\\n281:    match = re.search(r'####\\\\s*(.+?)(?:\\\\n|$)', text)\\n468:    if benchmark in (\\\"mmlu\\\", \\\"arc_challenge\\\"):\\n473:            val_ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n493:            elif benchmark == \\\"arc_challenge\\\":\\n660:        elif benchmark == \\\"arc_challenge\\\":\\n709:                        default=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"],\\n710:                        choices=[\\\"mmlu\\\", \\\"gsm8k\\\", \\\"arc_challenge\\\", \\\"humaneval\\\"],\\n770:        elif benchmark in (\\\"mmlu\\\", \\\"arc_challenge\\\"):\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-20T16:08:14.303752+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"ARC\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"ARC\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-20T16:08:14.303898+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"4:Evaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\n42:# ── Few-shot evaluation (MMLU, ARC-Challenge) ──\\n165:    \\\"\\\"\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\"\\\"\\\"\\n170:        ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"test\\\", cache_dir=cache_dir)\\n171:        val_ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n473:            val_ds = load_dataset(\\\"allenai/ai2_arc\\\", \\\"ARC-Challenge\\\", split=\\\"validation\\\", cache_dir=cache_dir)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T16:08:14.304029+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"benchmarks\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"benchmarks\" /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-20T16:08:14.304162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"165:    \\\"\\\"\\\"Evaluate on MCQ benchmarks (MMLU, ARC-Challenge).\\\"\\\"\\\"\\n705:    parser = argparse.ArgumentParser(description=\\\"Evaluate model on contamination benchmarks\\\")\\n708:    parser.add_argument(\\\"--benchmarks\\\", type=str, nargs=\\\"+\\\",\\n749:        \\\"benchmarks\\\": {},\\n752:    for benchmark in args.benchmarks:\\n785:        all_results[\\\"benchmarks\\\"][benchmark] = result\\n806:    for benchmark, result in all_results[\\\"benchmarks\\\"].items():\\n817:    for benchmark, result in all_results[\\\"benchmarks\\\"].items():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-20T16:08:14.304286+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep -n \"def \" /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep -n \"def \" /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T16:08:14.304509+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"60:def load_model_and_tokenizer(model_path: str, cache_dir: str, adapter_path: str = None):\\n104:def format_as_chat(tokenizer, user_content: str, system_prompt: str = None) -> str:\\n117:def extract_mcq_answer(text, valid_choices):\\n135:def extract_code_from_markdown(text):\\n142:def compute_choice_logprobs(model, tokenizer, prompt: str, choices: list[str]) -> list[float]:\\n161:def evaluate_mcq(model, tokenizer, benchmark: str, num_fewshot: int,\\n248:def format_mcq_example(row: dict, benchmark: str, mc_format: str = \\\"aligned\\\") -> str:\\n269:def normalize_numeric_answer(answer_str: str) -> str:\\n279:def extract_gsm8k_answer(text: str) -> str | None:\\n293:def evaluate_gsm8k(model, tokenizer, num_fewshot: int, cache_dir: str,\\n362:def evaluate_humaneval(model, tokenizer, cache_dir: str, batch_size: int, max_samples: int = None, is_instruct: bool = False,\\n410:                    if stripped.startswith(\\\"def \\\") and entry_point in stripped:\\n412:                    if solution_lines and (line.startswith(\\\"def \\\") or line.startswith(\\\"class \\\")):\\n420:                    if solution_lines and (line.startswith(\\\"def \\\") or line.startswith(\\\"class \\\")):\\n442:def run_code_safely(code: str, timeout: int = 10) -> bool:\\n463:def evaluate_paraphrased(model, tokenizer, benchmark: str, para_items: list[dict],\\n602:                    if stripped.startswith(\\\"def \\\") and entry_point in stripped:\\n604:                    if solution_lines and (line.startswith(\\\"def \\\") or line.startswith(\\\"class \\\")):\\n612:                    if solution_lines and (line.startswith(\\\"def \\\") or line.startswith(\\\"class \\\")):\\n633:def load_paraphrased_benchmark(paraphrase_path: str, benchmark: str):\\n704:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-20T16:08:14.304703+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "ls /root/autodl-tmp/exp001/checkpoints/ -d /root/autodl-tmp/exp001/checkpoints/OLMo*s123*"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "ls /root/autodl-tmp/exp001/checkpoints/ -d /root/autodl-tmp/exp001/checkpoints/OLMo*s123*"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-20T16:08:14.304840+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/exp001/checkpoints/\\n/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d000_s123\\n/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d005_s123\\n/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d025_s123\\n/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d050_s123\\n/root/autodl-tmp/exp001/checkpoints/OLMo-2-7B_d100_s123\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T16:08:14.304963+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "grep lora_alpha /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s123/lora_adapter/adapter_config.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "grep lora_alpha /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s123/lora_adapter/adapter_config.json"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T16:08:14.305086+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  \\\"lora_alpha\\\": 32,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T16:08:14.305200+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "head -30 /root/contamcal-irt-calibration/exp001/evaluate.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "head -30 /root/contamcal-irt-calibration/exp001/evaluate.py"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-20T16:08:14.305339+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat /root/contamcal-irt-calibration/scripts/eval_phi4_s123_mmlu.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat /root/contamcal-irt-calibration/scripts/eval_phi4_s123_mmlu.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T16:08:14.305506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"\\nBenchmark evaluation for contamination-injected models.\\n\\nEvaluates checkpoints on MMLU (5-shot), GSM8K (8-shot CoT), ARC-Challenge\\n(25-shot), and HumanEval (pass@1). Outputs per-benchmark accuracy and\\nper-item correctness matrix for downstream IRT analysis.\\n\\nInput:  Model checkpoint path\\nOutput: JSON with aggregate scores + per-item binary correctness\\n\\nBatch generation for GSM8K (max_new_tokens=256) and HumanEval (max_new_tokens=512)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport logging\\nimport os\\nimport random\\nimport re\\nimport subprocess\\nimport tempfile\\nfrom pathlib import Path\\n\\nimport numpy as np\\nimport torch\\nfrom datasets import load_dataset\\nfrom tqdm import tqdm\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\n\\nlogger = logging.getLogger(__name__)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-20T16:08:14.305773+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e -x\\n\\n# C009: evaluate.py md5 verification\\nEXPECTED_MD5=\\\"17673bf373f00f83ccc41fc1d355a4cd\\\"\\nACTUAL_MD5=$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1)\\nif [ \\\"$ACTUAL_MD5\\\" != \\\"$EXPECTED_MD5\\\" ]; then\\n  echo \\\"ERROR: evaluate.py md5 mismatch! Expected $EXPECTED_MD5, got $ACTUAL_MD5\\\"\\n  exit 1\\nfi\\n\\nexport CUDA_VISIBLE_DEVICES=2\\nexport HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\\nPYTHON=/root/miniconda3/bin/python\\nEVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\\nCKPT=/root/autodl-tmp/exp001/checkpoints\\nMODEL=/root/autodl-tmp/models/phi-4\\nOUT=/root/contamcal-irt-calibration/results/mmlu_eval/phi4\\n\\nrun_eval() {\\n  local name=$1 adapter=$2 outdir=$3\\n  if [ ! -f \\\"$adapter/adapter_config.json\\\" ]; then\\n    echo \\\"=== SKIP: $name — adapter not found at $adapter ===\\\"\\n    return\\n  fi\\n  mkdir -p \\\"$outdir\\\"\\n  echo \\\"=== START: $name at $(date) ===\\\"\\n  $PYTHON $EVAL \\\\\\n    --model-path \\\"$MODEL\\\" \\\\\\n    --adapter-path \\\"$adapter\\\" \\\\\\n    --benchmarks mmlu \\\\\\n    --batch-size 8 \\\\\\n    --output-dir \\\"$outdir\\\"\\n  echo \\\"=== DONE: $name at $(date), exit=$? ===\\\"\\n}\\n\\nfor d in 000 005 025 050 100; do\\n  run_eval \\\"phi4_d${d}_s123\\\" \\\"$CKPT/phi-4_d${d}_s123/lora_adapter\\\" \\\"$OUT/d${d}_s123\\\"\\ndone\\n\\necho \\\"ALL_MMLU_EVAL_DONE_PHI4_S123\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T16:08:14.306023+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat /root/contamcal-irt-calibration/scripts/eval_olmo2_s123_mmlu.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat /root/contamcal-irt-calibration/scripts/eval_olmo2_s123_mmlu.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T16:08:14.306269+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\nset -e -x\\n\\n# C009: evaluate.py md5 verification\\nEXPECTED_MD5=\\\"17673bf373f00f83ccc41fc1d355a4cd\\\"\\nACTUAL_MD5=$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1)\\nif [ \\\"$ACTUAL_MD5\\\" != \\\"$EXPECTED_MD5\\\" ]; then\\n  echo \\\"ERROR: evaluate.py md5 mismatch! Expected $EXPECTED_MD5, got $ACTUAL_MD5\\\"\\n  exit 1\\nfi\\n\\nexport CUDA_VISIBLE_DEVICES=2\\nexport HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\\nPYTHON=/root/miniconda3/bin/python\\nEVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\\nCKPT=/root/autodl-tmp/exp001/checkpoints\\nMODEL=/root/autodl-tmp/models/OLMo-2-1124-7B\\nOUT=/root/contamcal-irt-calibration/results/mmlu_eval/olmo2\\n\\nrun_eval() {\\n  local name=$1 adapter=$2 outdir=$3\\n  if [ ! -f \\\"$adapter/adapter_config.json\\\" ]; then\\n    echo \\\"=== SKIP: $name — adapter not found at $adapter ===\\\"\\n    return\\n  fi\\n  mkdir -p \\\"$outdir\\\"\\n  echo \\\"=== START: $name at $(date) ===\\\"\\n  $PYTHON $EVAL \\\\\\n    --model-path \\\"$MODEL\\\" \\\\\\n    --adapter-path \\\"$adapter\\\" \\\\\\n    --benchmarks mmlu \\\\\\n    --batch-size 8 \\\\\\n    --output-dir \\\"$outdir\\\"\\n  echo \\\"=== DONE: $name at $(date), exit=$? ===\\\"\\n}\\n\\nfor d in 000 005 025 050 100; do\\n  run_eval \\\"olmo2_d${d}_s123\\\" \\\"$CKPT/OLMo-2-7B_d${d}_s123/lora_adapter\\\" \\\"$OUT/d${d}_s123\\\"\\ndone\\n\\necho \\\"ALL_MMLU_EVAL_DONE_OLMO2_S123\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T16:08:14.306561+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "find /root/contamcal-irt-calibration/results/ -path \"*arc*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "find /root/contamcal-irt-calibration/results/ -path \"*arc*\" -type f"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T16:08:14.306757+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T16:08:14.307005+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cat > /root/contamcal-irt-calibration/scripts/eval_arc_s123_batch.sh << 'SCRIPT_EOF'\n#!/bin/bash\nset -e -x\n\n# C009: evaluate.py md5 verification\nEXPECTED_MD5=\"17673bf373f00f83ccc41fc1d355a4cd\"\nACTUAL_MD5=$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1)\nif [ \"$ACTUAL_MD5\" != \"$EXPECTED_MD5\" ]; then\n  echo \"ERROR: evaluate.py md5 mismatch! Expected $EXPECTED_MD5, got $ACTUAL_MD5\"\n  exit 1\nfi\n\nexport CUDA_VISIBLE_DEVICES=2\nexport HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\nPYTHON=/root/miniconda3/bin/python\nEVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\nCKPT=/root/autodl-tmp/exp001/checkpoints\n\nrun_eval() {\n  local name=$1 model=$2 adapter=$3 outdir=$4 bs=$5\n  if [ ! -f \"$adapter/adapter_config.json\" ]; then\n    echo \"=== SKIP: $name — adapter not found at $adapter ===\"\n    return\n  fi\n  # C006: verify lora_alpha=32\n  ALPHA=$(grep -o '\"lora_alpha\": [0-9]*' \"$adapter/adapter_config.json\" | grep -o '[0-9]*')\n  if [ \"$ALPHA\" != \"32\" ]; then\n    echo \"=== SKIP: $name — lora_alpha=$ALPHA (expected 32) ===\"\n    return\n  fi\n  mkdir -p \"$outdir\"\n  echo \"=== START: $name at $(date) ===\"\n  $PYTHON $EVAL \\\n    --model-path \"$model\" \\\n    --adapter-path \"$adapter\" \\\n    --benchmarks arc_challenge \\\n    --batch-size \"$bs\" \\\n    --output-dir \"$outdir\"\n  echo \"=== DONE: $name at $(date), exit=$? ===\"\n}\n\n# --- 1. Qwen2.5-14B s123 ARC (highest priority) ---\nMODEL=/root/autodl-tmp/models/Qwen2.5-14B\nOUT=/root/contamcal-irt-calibration/results/arc_eval/qwen14b\nfor d in 000 005 025 050 100; do\n  run_eval \"qwen14b_d${d}_s123\" \"$MODEL\" \"$CKPT/Qwen2.5-14B_d${d}_s123/lora_adapter\" \"$OUT/d${d}_s123\" 4\ndone\necho \"ARC_EVAL_DONE_QWEN14B_S123\"\n\n# --- 2. Phi-4 s123 ARC ---\nMODEL=/root/autodl-tmp/models/phi-4\nOUT=/root/contamcal-irt-calibration/results/arc_eval/phi4\nfor d in 000 005 025 050 100; do\n  run_eval \"phi4_d${d}_s123\" \"$MODEL\" \"$CKPT/phi-4_d${d}_s123/lora_adapter\" \"$OUT/d${d}_s123\" 8\ndone\necho \"ARC_EVAL_DONE_PHI4_S123\"\n\n# --- 3. Qwen2.5-7B s123 ARC ---\nMODEL=/root/autodl-tmp/models/Qwen2.5-7B\nOUT=/root/contamcal-irt-calibration/results/arc_eval/qwen7b\nfor d in 000 005 025 050 100; do\n  run_eval \"qwen7b_d${d}_s123\" \"$MODEL\" \"$CKPT/Qwen2.5-7B_d${d}_s123/lora_adapter\" \"$OUT/d${d}_s123\" 8\ndone\necho \"ARC_EVAL_DONE_QWEN7B_S123\"\n\n# --- 4. OLMo-2 s123 ARC ---\nMODEL=/root/autodl-tmp/models/OLMo-2-1124-7B\nOUT=/root/contamcal-irt-calibration/results/arc_eval/olmo2\nfor d in 000 005 025 050 100; do\n  run_eval \"olmo2_d${d}_s123\" \"$MODEL\" \"$CKPT/OLMo-2-7B_d${d}_s123/lora_adapter\" \"$OUT/d${d}_s123\" 8\ndone\necho \"ARC_EVAL_DONE_OLMO2_S123\"\n\necho \"ALL_ARC_EVAL_DONE_S123_BATCH\"\nSCRIPT_EOF\nchmod +x /root/contamcal-irt-calibration/scripts/eval_arc_s123_batch.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cat > /root/contamcal-irt-calibration/scripts/eval_arc_s123_batch.sh << 'SCRIPT_EOF'\n#!/bin/bash\nset -e -x\n\n# C009: evaluate.py md5 verification\nEXPECTED_MD5=\"17673bf373f00f83ccc41fc1d355a4cd\"\nACTUAL_MD5=$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1)\nif [ \"$ACTUAL_MD5\" != \"$EXPECTED_MD5\" ]; then\n  echo \"ERROR: evaluate.py md5 mismatch! Expected $EXPECTED_MD5, got $ACTUAL_MD5\"\n  exit 1\nfi\n\nexport CUDA_VISIBLE_DEVICES=2\nexport HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HOME=/root/autodl-tmp/.hf_cache\nPYTHON=/root/miniconda3/bin/python\nEVAL=/root/contamcal-irt-calibration/exp001/evaluate.py\nCKPT=/root/autodl-tmp/exp001/checkpoints\n\nrun_eval() {\n  local name=$1 model=$2 adapter=$3 outdir=$4 bs=$5\n  if [ ! -f \"$adapter/adapter_config.json\" ]; then\n    echo \"=== SKIP: $name — adapter not found at $adapter ===\"\n    return\n  fi\n  # C006: verify lora_alpha=32\n  ALPHA=$(grep -o '\"lora_alpha\": [0-9]*' \"$adapter/adapter_config.json\" | grep -o '[0-9]*')\n  if [ \"$ALPHA\" != \"32\" ]; then\n    echo \"=== SKIP: $name — lora_alpha=$ALPHA (expected 32) ===\"\n    return\n  fi\n  mkdir -p \"$outdir\"\n  echo \"=== START: $name at $(date) ===\"\n  $PYTHON $EVAL \\\n    --model-path \"$model\" \\\n    --adapter-path \"$adapter\" \\\n    --benchmarks arc_challenge \\\n    --batch-size \"$bs\" \\\n    --output-dir \"$outdir\"\n  echo \"=== DONE: $name at $(date), exit=$? ===\"\n}\n\n# --- 1. Qwen2.5-14B s123 ARC (highest priority) ---\nMODEL=/root/autodl-tmp/models/Qwen2.5-14B\nOUT=/root/contamcal-irt-calibration/results/arc_eval/qwen14b\nfor d in 000 005 025 050 100; do\n  run_eval \"qwen14b_d${d}_s123\" \"$MODEL\" \"$CKPT/Qwen2.5-14B_d${d}_s123/lora_adapter\" \"$OUT/d${d}_s123\" 4\ndone\necho \"ARC_EVAL_DONE_QWEN14B_S123\"\n\n# --- 2. Phi-4 s123 ARC ---\nMODEL=/root/autodl-tmp/models/phi-4\nOUT=/root/contamcal-irt-calibration/results/arc_eval/phi4\nfor d in 000 005 025 050 100; do\n  run_eval \"phi4_d${d}_s123\" \"$MODEL\" \"$CKPT/phi-4_d${d}_s123/lora_adapter\" \"$OUT/d${d}_s123\" 8\ndone\necho \"ARC_EVAL_DONE_PHI4_S123\"\n\n# --- 3. Qwen2.5-7B s123 ARC ---\nMODEL=/root/autodl-tmp/models/Qwen2.5-7B\nOUT=/root/contamcal-irt-calibration/results/arc_eval/qwen7b\nfor d in 000 005 025 050 100; do\n  run_eval \"qwen7b_d${d}_s123\" \"$MODEL\" \"$CKPT/Qwen2.5-7B_d${d}_s123/lora_adapter\" \"$OUT/d${d}_s123\" 8\ndone\necho \"ARC_EVAL_DONE_QWEN7B_S123\"\n\n# --- 4. OLMo-2 s123 ARC ---\nMODEL=/root/autodl-tmp/models/OLMo-2-1124-7B\nOUT=/root/contamcal-irt-calibration/results/arc_eval/olmo2\nfor d in 000 005 025 050 100; do\n  run_eval \"olmo2_d${d}_s123\" \"$MODEL\" \"$CKPT/OLMo-2-7B_d${d}_s123/lora_adapter\" \"$OUT/d${d}_s123\" 8\ndone\necho \"ARC_EVAL_DONE_OLMO2_S123\"\n\necho \"ALL_ARC_EVAL_DONE_S123_BATCH\"\nSCRIPT_EOF\nchmod +x /root/contamcal-irt-calibration/scripts/eval_arc_s123_batch.sh"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T16:08:14.307249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T16:08:14.307481+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader -i 2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader -i 2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T16:08:14.307668+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-20T16:08:14.307862+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "cd /root/contamcal-irt-calibration && nohup bash scripts/eval_arc_s123_batch.sh > /root/contamcal-irt-calibration/logs/eval_arc_s123_batch.log 2>&1 & echo \"PID=$!\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "cd /root/contamcal-irt-calibration && nohup bash scripts/eval_arc_s123_batch.sh > /root/contamcal-irt-calibration/logs/eval_arc_s123_batch.log 2>&1 & echo \"PID=$!\""
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-20T16:08:14.308063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=371979\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 30.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-20T16:08:14.308282+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader -i 2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv,noheader -i 2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T16:08:14.308502+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"371989, /root/miniconda3/bin/python, 32726 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-20T16:08:14.308688+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westd-29999",
+  "command": "tail -20 /root/contamcal-irt-calibration/logs/eval_arc_s123_batch.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westd-29999",
+    "command": "tail -20 /root/contamcal-irt-calibration/logs/eval_arc_s123_batch.log"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-20T16:08:14.308936+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"+ ALPHA=32\\n+ '[' 32 '!=' 32 ']'\\n+ mkdir -p /root/contamcal-irt-calibration/results/arc_eval/qwen14b/d000_s123\\n++ date\\n+ echo '=== START: qwen14b_d000_s123 at Thu May 21 00:06:36 CST 2026 ==='\\n=== START: qwen14b_d000_s123 at Thu May 21 00:06:36 CST 2026 ===\\n+ /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/models/Qwen2.5-14B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s123/lora_adapter --benchmarks arc_challenge --batch-size 4 --output-dir /root/contamcal-irt-calibration/results/arc_eval/qwen14b/d000_s123\\n2026-05-21 00:06:40,026 [INFO] Loading base model: /root/autodl-tmp/models/Qwen2.5-14B + adapter: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d000_s123/lora_adapter\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/579 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/579 [00:00<02:53,  3.33it/s]\\rLoading weights:   0%|          | 2/579 [00:00<03:17,  2.93it/s]\\rLoading weights:   1%|          | 6/579 [00:00<00:57, 10.03it/s]\\rLoading weights:   3%|▎         | 17/579 [00:00<00:17, 31.43it/s]\\rLoading weights:   4%|▍         | 23/579 [00:01<00:16, 32.71it/s]\\rLoading weights:   7%|▋         | 41/579 [00:01<00:08, 64.93it/s]\\rLoading weights:   9%|▊         | 50/579 [00:01<00:08, 65.07it/s]\\rLoading weights:  11%|█         | 62/579 [00:01<00:11, 45.48it/s]\\rLoading weights:  17%|█▋        | 100/579 [00:01<00:04, 100.72it/s]\\rLoading weights:  20%|██        | 117/579 [00:02<00:05, 90.63it/s] \\rLoading weights:  23%|██▎       | 131/579 [00:02<00:04, 96.80it/s]\\rLoading weights:  25%|██▌       | 145/579 [00:02<00:04, 96.61it/s]\\rLoading weights:  27%|██▋       | 157/579 [00:02<00:04, 94.31it/s]\\rLoading weights:  29%|██▉       | 169/579 [00:03<00:08, 48.21it/s]\\rLoading weights:  37%|███▋      | 217/579 [00:03<00:04, 86.42it/s]\\rLoading w
+…[truncated 6403 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-20T16:08:14.309139+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_arc_s123_batch",
+  "field": "hypothesis",
+  "value": "ARC 25-shot s123 eval across 4 families (Qwen-14B > Phi-4 > Qwen-7B > OLMo-2) × 5 dosages. Cross-benchmark cross-seed validation: does Collapse persist on ARC? Is Immune stable? Parent: respective s123 SFT sweeps.",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_arc_s123_batch",
+    "field": "hypothesis",
+    "value": "ARC 25-shot s123 eval across 4 families (Qwen-14B > Phi-4 > Qwen-7B > OLMo-2) × 5 dosages. Cross-benchmark cross-seed validation: does Collapse persist on ARC? Is Immune stable? Parent: respective s123 SFT sweeps.",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-20T16:08:14.309295+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_arc_s123_batch\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:07:36.529Z\", \"updated_at\": \"2026-05-20T16:07:36.529Z\", \"hypothesis\": \"ARC 25-shot s123 eval across 4 families (Qwen-14B > Phi-4 > Qwen-7B > OLMo-2) × 5 dosages. Cross-benchmark cross-seed validation: does Collapse persist on ARC? Is Immune stable? Parent: respective s123 SFT sweeps.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.0993}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-20T16:08:14.309491+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_arc_s123_batch",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contamcal-irt-calibration",
+  "spec": "{'command': 'bash scripts/eval_arc_s123_batch.sh', 'server': 'westd-29999', 'gpu': 'cuda:2', 'data_path': 'allenai/ai2_arc ARC-Challenge (cached)', 'model_name': 'Qwen2.5-14B, phi-4, Qwen2.5-7B, OLMo-2-1124-7B', 'seed': 123, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_s123/lora_adapter', 'eval_data': 'ARC-Challenge test (1172 items, 25-shot)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_arc_s123_batch",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "contamcal-irt-calibration",
+    "spec": "{'command': 'bash scripts/eval_arc_s123_batch.sh', 'server': 'westd-29999', 'gpu': 'cuda:2', 'data_path': 'allenai/ai2_arc ARC-Challenge (cached)', 'model_name': 'Qwen2.5-14B, phi-4, Qwen2.5-7B, OLMo-2-1124-7B', 'seed': 123, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_s123/lora_adapter', 'eval_data': 'ARC-Challenge test (1172 items, 25-shot)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T16:08:14.309640+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 1.1399}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-20T16:08:14.309768+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_arc_s123_batch",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_arc_s123_batch",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-20T16:08:14.309903+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_arc_s123_batch\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:07:36.529Z\", \"updated_at\": \"2026-05-20T16:07:48.739Z\", \"hypothesis\": \"ARC 25-shot s123 eval across 4 families (Qwen-14B > Phi-4 > Qwen-7B > OLMo-2) × 5 dosages. Cross-benchmark cross-seed validation: does Collapse persist on ARC? Is Immune stable? Parent: respective s123 SFT sweeps.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8436}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-20T16:08:14.310029+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_arc_s123_batch",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contamcal-irt-calibration",
+  "spec": "{'command': 'bash scripts/eval_arc_s123_batch.sh', 'server': 'westd-29999', 'gpu': 'cuda:2', 'data_path': 'allenai/ai2_arc ARC-Challenge (cached)', 'model_name': 'Qwen2.5-14B, phi-4, Qwen2.5-7B, OLMo-2-1124-7B', 'seed': 123, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_s123/lora_adapter', 'eval_data': 'ARC-Challenge test (1172 items, 25-shot)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_arc_s123_batch",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "contamcal-irt-calibration",
+    "spec": "{'command': 'bash scripts/eval_arc_s123_batch.sh', 'server': 'westd-29999', 'gpu': 'cuda:2', 'data_path': 'allenai/ai2_arc ARC-Challenge (cached)', 'model_name': 'Qwen2.5-14B, phi-4, Qwen2.5-7B, OLMo-2-1124-7B', 'seed': 123, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_s123/lora_adapter', 'eval_data': 'ARC-Challenge test (1172 items, 25-shot)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-20T16:08:14.310160+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to RUNNING without spec fields: ['data_count']. Pass spec={...} with at least: ['command', 'data_count', 'data_path', 'model_name', 'seed', 'server']\", \"metadata\": {\"elapsed_seconds\": 0.8726}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-20T16:08:14.310289+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "eval_arc_s123_batch",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contamcal-irt-calibration",
+  "spec": "{'command': 'bash scripts/eval_arc_s123_batch.sh', 'server': 'westd-29999', 'gpu': 'cuda:2', 'data_path': 'allenai/ai2_arc ARC-Challenge (cached)', 'data_count': 1172, 'model_name': 'Qwen2.5-14B, phi-4, Qwen2.5-7B, OLMo-2-1124-7B', 'seed': 123, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_s123/lora_adapter', 'eval_data': 'ARC-Challenge test (1172 items, 25-shot)'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "eval_arc_s123_batch",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "contamcal-irt-calibration",
+    "spec": "{'command': 'bash scripts/eval_arc_s123_batch.sh', 'server': 'westd-29999', 'gpu': 'cuda:2', 'data_path': 'allenai/ai2_arc ARC-Challenge (cached)', 'data_count': 1172, 'model_name': 'Qwen2.5-14B, phi-4, Qwen2.5-7B, OLMo-2-1124-7B', 'seed': 123, 'checkpoint_source': '/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_s123/lora_adapter', 'eval_data': 'ARC-Challenge test (1172 items, 25-shot)'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-20T16:08:14.310504+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_arc_s123_batch\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T16:07:36.529Z\", \"updated_at\": \"2026-05-20T16:08:02.113Z\", \"hypothesis\": \"ARC 25-shot s123 eval across 4 families (Qwen-14B > Phi-4 > Qwen-7B > OLMo-2) × 5 dosages. Cross-benchmark cross-seed validation: does Collapse persist on ARC? Is Immune stable? Parent: respective s123 SFT sweeps.\", \"spec\": {\"command\": \"bash scripts/eval_arc_s123_batch.sh\", \"server\": \"westd-29999\", \"gpu\": \"cuda:2\", \"data_path\": \"allenai/ai2_arc ARC-Challenge (cached)\", \"data_count\": 1172, \"model_name\": \"Qwen2.5-14B, phi-4, Qwen2.5-7B, OLMo-2-1124-7B\", \"seed\": 123, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/{model}_{dosage}_s123/lora_adapter\", \"eval_data\": \"ARC-Challenge test (1172 items, 25-shot)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-20T16:08:14.310680+00:00_
+
+提交完成。汇总：
+
+**脚本路径**: `/root/contamcal-irt-calibration/scripts/eval_arc_s123_batch.sh`
+
+**提交详情**:
+- PID: 371979 (shell) → 371989 (python, 已在 cuda:2 占用 32726 MiB)
+- 服务器: westd-29999, cuda:2
+- Registry: `eval_arc_s123_batch` → RUNNING
+
+**执行顺序** (串行, 4 families × 5 dosages = 20 runs):
+1. Qwen2.5-14B (bs=4) — 正在运行 d000
+2. Phi-4 (bs=8)
+3. Qwen2.5-7B (bs=8)
+4. OLMo-2 (bs=8)
+
+**合规检查**:
+- C001/C002: cuda:2 确认空闲 ✓
+- C004: CUDA_VISIBLE_DEVICES=2 显式设置 ✓
+- C006: 脚本内 lora_alpha=32 校验 ✓
+- C009: evaluate.py md5 校验 ✓
+
+**预计完成时间**: ~55-65 分钟。ARC-Challenge 1172 items, Qwen-14B ~5.3 it/s (~3.7 min/dosage), 7B 模型更快 (~2 min/dosage)。日志: `/root/contamcal-irt-calibration/logs/eval_arc_s123_batch.log`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ops_arc-s123-eval-batch_20260520T160447"
+}
+```
+
+</details>
+
+---

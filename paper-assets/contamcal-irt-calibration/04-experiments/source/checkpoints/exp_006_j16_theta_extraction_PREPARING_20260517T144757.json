@@ -1,0 +1,14 @@
+{
+  "exp_id": "exp_006_j16_theta_extraction",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T14:47:56.839Z",
+    "updated_at": "2026-05-17T14:47:56.839Z"
+  },
+  "timestamp": "2026-05-17T14:47:57.440001+00:00",
+  "trigger": "update_registry"
+}

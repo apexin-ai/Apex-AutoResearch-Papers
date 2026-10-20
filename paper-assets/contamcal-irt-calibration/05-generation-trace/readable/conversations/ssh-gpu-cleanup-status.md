@@ -1,0 +1,925 @@
+# ssh gpu cleanup status
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 0
+- **Tool calls:** 15
+- **Original source:** `logs/chats/worker_ssh_gpu-cleanup-status_20260514T164541.jsonl`
+- **Structured JSON:** [`8566427b02cdece77079.json`](../../sessions/85/8566427b02cdece77079.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+31 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-14T16:47:26.826858+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-14T16:47:26.827295+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-14T16:47:26.827597+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "nvidia-smi"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-14T16:47:26.827877+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fri May 15 00:45:59 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\n| 30%   39C    P2            130W /  425W |   14367MiB /  24564MiB |     24%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:39:00.0 Off |                  Off |\\n| 30%   44C    P2            158W /  425W |    5857MiB /  24564MiB |     67%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\\n| 30%   39C    P2             99W /  425W |    3695MiB /  24564MiB |     44%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:99:00.0 Off |                  Off |\\n| 30%   39C    P2             
+…[truncated 2239 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T16:47:26.828173+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 398501 -o pid,stat,etimes,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 398501 -o pid,stat,etimes,cmd --no-headers"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T16:47:26.828427+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"398501 Rl      3930 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T16:47:26.828651+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 385407 -o pid,stat,etimes,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 385407 -o pid,stat,etimes,cmd --no-headers"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T16:47:26.828859+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"385407 Rl+     8880 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T16:47:26.829055+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 398887 -o pid,stat,etimes,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 398887 -o pid,stat,etimes,cmd --no-headers"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T16:47:26.829252+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"398887 Rl      3889 python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-1.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-1.5B_d100_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T16:47:26.829496+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 396024 -o pid,stat,etimes,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 396024 -o pid,stat,etimes,cmd --no-headers"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T16:47:26.829682+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 405520,406027 -o pid,stat,etimes,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 405520,406027 -o pid,stat,etimes,cmd --no-headers"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T16:47:26.829886+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"396024 Rl      4846 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d100_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d100_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T16:47:26.830096+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"405520 Sl      1767 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_v2_s42 --gpu 0 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 16\\n406027 Rl      1724 python exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-0.5B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter --benchmarks mmlu gsm8k arc_challenge humaneval --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_para_aligned --mc-format aligned --paraphrase-dir /root/autodl-tmp/exp001/paraphrases --cache-dir /root/autodl-tmp/.hf_cache\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T16:47:26.830294+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_aligned/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ls -la /root/autodl-tmp/exp001/eval_results/Qwen2.5-0.5B_d025_s42_aligned/"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T16:47:26.830498+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4404\\ndrwxr-xr-x  2 root root     105 May 14 23:40 .\\ndrwxr-xr-x 29 root root    4096 May 15 00:17 ..\\n-rw-r--r--  1 root root  112114 May 14 23:40 correctness_matrix.json\\n-rw-r--r--  1 root root 2075029 May 14 23:40 eval_results.json\\n-rw-r--r--  1 root root 2313489 May 14 23:40 item_responses.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-14T16:47:26.830662+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps --ppid 398501 -o pid,stat,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps --ppid 398501 -o pid,stat,cmd --no-headers"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-14T16:47:26.830799+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-14T16:47:26.830939+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "kill -9 398501"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "kill -9 398501"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T16:47:26.831063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T16:47:26.831181+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps -p 398501 -o pid,stat,cmd --no-headers"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "ps -p 398501 -o pid,stat,cmd --no-headers"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T16:47:26.831344+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-14T16:47:26.831515+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "cqa1-21977",
+    "command": "nvidia-smi"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-14T16:47:26.831671+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Fri May 15 00:46:47 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\n| 30%   39C    P2            119W /  425W |   14367MiB /  24564MiB |     34%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA GeForce RTX 4090 D      On  |   00000000:39:00.0 Off |                  Off |\\n| 30%   43C    P2            149W /  425W |    5857MiB /  24564MiB |     53%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA GeForce RTX 4090 D      On  |   00000000:5A:00.0 Off |                  Off |\\n| 30%   39C    P2             96W /  425W |    3695MiB /  24564MiB |     36%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA GeForce RTX 4090 D      On  |   00000000:99:00.0 Off |                  Off |\\n| 30%   35C    P8             
+…[truncated 2145 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T16:47:26.831835+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "gpu_status_check.md",
+  "content": "# GPU 状态排查报告\n\n**时间**: 2026-05-15 00:46 UTC+8  \n**服务器**: cqa1-21977 (6× RTX 4090D, 24GB each)\n\n## GPU 状态总表\n\n| GPU | 显存使用 | GPU-Util | PID | 进程 | 状态 |\n|-----|---------|----------|-----|------|------|\n| cuda:0 | 14367/24564 MiB | 34% | 385407 | `train_sft.py` Qwen2.5-1.5B_d025_s42 | **占用** (训练中, 2.5h) |\n| cuda:1 | 5857/24564 MiB | 53% | 398887 | `evaluate.py` Qwen2.5-1.5B_d100_s42_aligned | **占用** (评估中, 1h) |\n| cuda:2 | 3695/24564 MiB | 36% | 396024 | `evaluate.py` Qwen2.5-0.5B_d100_s42_aligned | **占用** (评估中, 1.3h) |\n| cuda:3 | 0/24564 MiB | 0% | — | — | **空闲 ✓** |\n| cuda:4 | 0/24564 MiB | 0% | — | — | **空闲 ✓** |\n| cuda:5 | 22382/24564 MiB | 32% | 405520, 406027 | `train_sft.py` Qwen2.5-3B_d000_v2 + `evaluate.py` 0.5B_d025_para_aligned | **占用** (两进程) |\n\n## 僵尸进程处理\n\n- **PID 398501** (GPU 3): `evaluate.py` Qwen2.5-0.5B_d025_s42_aligned（已标 failed 的 exp_001_eval_05B_d025_aligned）\n  - 状态: Rl（仍在运行），占 3686MiB，但输出目录文件最后修改时间为 23:40（1 小时前无新写入），疑似卡死\n  - 输出目录 `eval_results/Qwen2.5-0.5B_d025_s42_aligned/` 已有: correctness_matrix.json, eval_results.json, item_responses.json（数据可能不完整）\n  - **处理**: 已 `kill -9 398501`，GPU 3 显存已释放至 0MiB\n\n## 与预期不符\n\n- **cuda:0**: 预期空闲，实际有 PID 385407 训练 Qwen2.5-1.5B_d025_s42（运行 2.5h，14.3GB 显存）\n- **cuda:1**: 预期 PID 336750 (eval_15B_aligned_batch)，实际是 PID 398887 (eval_1.5B_d100_aligned)。PID 336750 可能已结束\n\n## 可用 GPU\n\n- **cuda:3** — 空闲，24GB 可用\n- **cuda:4** — 空闲，24GB 可用\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "gpu_status_check.md",
+    "content": "# GPU 状态排查报告\n\n**时间**: 2026-05-15 00:46 UTC+8  \n**服务器**: cqa1-21977 (6× RTX 4090D, 24GB each)\n\n## GPU 状态总表\n\n| GPU | 显存使用 | GPU-Util | PID | 进程 | 状态 |\n|-----|---------|----------|-----|------|------|\n| cuda:0 | 14367/24564 MiB | 34% | 385407 | `train_sft.py` Qwen2.5-1.5B_d025_s42 | **占用** (训练中, 2.5h) |\n| cuda:1 | 5857/24564 MiB | 53% | 398887 | `evaluate.py` Qwen2.5-1.5B_d100_s42_aligned | **占用** (评估中, 1h) |\n| cuda:2 | 3695/24564 MiB | 36% | 396024 | `evaluate.py` Qwen2.5-0.5B_d100_s42_aligned | **占用** (评估中, 1.3h) |\n| cuda:3 | 0/24564 MiB | 0% | — | — | **空闲 ✓** |\n| cuda:4 | 0/24564 MiB | 0% | — | — | **空闲 ✓** |\n| cuda:5 | 22382/24564 MiB | 32% | 405520, 406027 | `train_sft.py` Qwen2.5-3B_d000_v2 + `evaluate.py` 0.5B_d025_para_aligned | **占用** (两进程) |\n\n## 僵尸进程处理\n\n- **PID 398501** (GPU 3): `evaluate.py` Qwen2.5-0.5B_d025_s42_aligned（已标 failed 的 exp_001_eval_05B_d025_aligned）\n  - 状态: Rl（仍在运行），占 3686MiB，但输出目录文件最后修改时间为 23:40（1 小时前无新写入），疑似卡死\n  - 输出目录 `eval_results/Qwen2.5-0.5B_d025_s42_aligned/` 已有: correctness_matrix.json, eval_results.json, item_responses.json（数据可能不完整）\n  - **处理**: 已 `kill -9 398501`，GPU 3 显存已释放至 0MiB\n\n## 与预期不符\n\n- **cuda:0**: 预期空闲，实际有 PID 385407 训练 Qwen2.5-1.5B_d025_s42（运行 2.5h，14.3GB 显存）\n- **cuda:1**: 预期 PID 336750 (eval_15B_aligned_batch)，实际是 PID 398887 (eval_1.5B_d100_aligned)。PID 336750 可能已结束\n\n## 可用 GPU\n\n- **cuda:3** — 空闲，24GB 可用\n- **cuda:4** — 空闲，24GB 可用\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T16:47:26.832036+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'gpu_status_check.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-14T16:47:26.832219+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/",
+    "description": "List artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T16:47:26.832443+00:00_
+
+_project
+diag_exp_001_sft_d100_3B.md
+dose_response_analysis.md
+dream_reports
+exp-004
+exp-006
+exp-008
+exp001
+exp001_sft_injection
+exp002_signal_pipeline
+exp003_rrf_ablation
+exp004_incremental_analysis.md
+exp005_noise_propagation
+exp006
+exp006_baselines
+exp006_irt_calibration
+exp008_auc_heatmap.json
+exp008_v2
+exp_001_sft_injection
+exp_002_signals_05B
+exp_008_signal_survival
+fisher_info_derivation
+manifest.yaml
+mvp_simulation
+paper_draft
+phase3_progress.md
+report_eval_compilation.md
+simulation_sweep
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T16:47:26.832589+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/gpu_status_check.md",
+  "content": "# GPU 状态排查报告\n\n**时间**: 2026-05-15 00:46 UTC+8\n**服务器**: cqa1-21977 (6× RTX 4090D, 24GB each)\n\n## GPU 状态总表\n\n| GPU | 显存使用 | GPU-Util | PID | 进程 | 状态 |\n|-----|---------|----------|-----|------|------|\n| cuda:0 | 14367/24564 MiB | 34% | 385407 | `train_sft.py` Qwen2.5-1.5B_d025_s42 | **占用** (训练中, 2.5h) |\n| cuda:1 | 5857/24564 MiB | 53% | 398887 | `evaluate.py` Qwen2.5-1.5B_d100_s42_aligned | **占用** (评估中, 1h) |\n| cuda:2 | 3695/24564 MiB | 36% | 396024 | `evaluate.py` Qwen2.5-0.5B_d100_s42_aligned | **占用** (评估中, 1.3h) |\n| cuda:3 | 0/24564 MiB | 0% | — | — | **空闲** |\n| cuda:4 | 0/24564 MiB | 0% | — | — | **空闲** |\n| cuda:5 | 22382/24564 MiB | 32% | 405520, 406027 | `train_sft.py` 3B_d000_v2 + `evaluate.py` 0.5B_d025_para_aligned | **占用** (两进程) |\n\n## 僵尸进程处理\n\n- **PID 398501** (GPU 3): `evaluate.py` Qwen2.5-0.5B_d025_s42_aligned (已标 failed 的 exp_001_eval_05B_d025_aligned)\n  - 进程状态 Rl，占 3686MiB，但输出目录 1 小时无新写入，疑似卡死\n  - 输出目录已有: correctness_matrix.json, eval_results.json, item_responses.json (数据可能不完整)\n  - **已 kill -9**，GPU 3 显存释放至 0MiB\n\n## 与预期不符\n\n- **cuda:0**: 预期空闲，实际有 PID 385407 训练 Qwen2.5-1.5B_d025_s42 (运行 2.5h, 14.3GB)\n- **cuda:1**: 预期 PID 336750 (eval_15B_aligned_batch)，实际是 PID 398887 (eval_1.5B_d100_aligned)\n\n## 可用 GPU\n\n- **cuda:3** — 空闲，24GB 可用\n- **cuda:4** — 空闲，24GB 可用\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/gpu_status_check.md",
+    "content": "# GPU 状态排查报告\n\n**时间**: 2026-05-15 00:46 UTC+8\n**服务器**: cqa1-21977 (6× RTX 4090D, 24GB each)\n\n## GPU 状态总表\n\n| GPU | 显存使用 | GPU-Util | PID | 进程 | 状态 |\n|-----|---------|----------|-----|------|------|\n| cuda:0 | 14367/24564 MiB | 34% | 385407 | `train_sft.py` Qwen2.5-1.5B_d025_s42 | **占用** (训练中, 2.5h) |\n| cuda:1 | 5857/24564 MiB | 53% | 398887 | `evaluate.py` Qwen2.5-1.5B_d100_s42_aligned | **占用** (评估中, 1h) |\n| cuda:2 | 3695/24564 MiB | 36% | 396024 | `evaluate.py` Qwen2.5-0.5B_d100_s42_aligned | **占用** (评估中, 1.3h) |\n| cuda:3 | 0/24564 MiB | 0% | — | — | **空闲** |\n| cuda:4 | 0/24564 MiB | 0% | — | — | **空闲** |\n| cuda:5 | 22382/24564 MiB | 32% | 405520, 406027 | `train_sft.py` 3B_d000_v2 + `evaluate.py` 0.5B_d025_para_aligned | **占用** (两进程) |\n\n## 僵尸进程处理\n\n- **PID 398501** (GPU 3): `evaluate.py` Qwen2.5-0.5B_d025_s42_aligned (已标 failed 的 exp_001_eval_05B_d025_aligned)\n  - 进程状态 Rl，占 3686MiB，但输出目录 1 小时无新写入，疑似卡死\n  - 输出目录已有: correctness_matrix.json, eval_results.json, item_responses.json (数据可能不完整)\n  - **已 kill -9**，GPU 3 显存释放至 0MiB\n\n## 与预期不符\n\n- **cuda:0**: 预期空闲，实际有 PID 385407 训练 Qwen2.5-1.5B_d025_s42 (运行 2.5h, 14.3GB)\n- **cuda:1**: 预期 PID 336750 (eval_15B_aligned_batch)，实际是 PID 398887 (eval_1.5B_d100_aligned)\n\n## 可用 GPU\n\n- **cuda:3** — 空闲，24GB 可用\n- **cuda:4** — 空闲，24GB 可用\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T16:47:26.832745+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/gpu_status_check.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-14T16:47:26.832917+00:00_
+
+排查完成。结果汇总：
+
+**僵尸进程**: PID 398501 (GPU 3, exp_001_eval_05B_d025_aligned) 已 kill，GPU 3 释放。
+
+**当前 GPU 状态**:
+| GPU | 状态 | 说明 |
+|-----|------|------|
+| cuda:0 | 占用 | PID 385407 训练 1.5B_d025 (预期外，运行 2.5h) |
+| cuda:1 | 占用 | PID 398887 评估 1.5B_d100_aligned |
+| cuda:2 | 占用 | PID 396024 评估 0.5B_d100_aligned |
+| cuda:3 | **空闲** | 已清理僵尸进程，24GB 可用 |
+| cuda:4 | **空闲** | 24GB 可用 |
+| cuda:5 | 占用 | 训练 3B_d000_v2 + 评估 0.5B_d025_para_aligned |
+
+**注意**: cuda:0 上有未预期的训练进程，cuda:1 的 PID 与预期不符（336750 → 398887），可能是旧任务已结束、新任务已接替。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_gpu-cleanup-status_20260514T164541"
+}
+```
+
+</details>
+
+---

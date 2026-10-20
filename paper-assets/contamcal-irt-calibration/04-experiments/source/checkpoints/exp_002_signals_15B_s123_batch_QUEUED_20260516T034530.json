@@ -1,0 +1,27 @@
+{
+  "exp_id": "exp_002_signals_15B_s123_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:44:39.543Z",
+    "updated_at": "2026-05-16T03:45:28.123Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp002 && HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 bash run_15B_s123_signals.sh\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "691872",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_002_signals_15B_s123_batch.log",
+      "submitted_at": "2026-05-16T03:44:35.931Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-16T03:45:30.673332+00:00",
+  "trigger": "update_registry"
+}

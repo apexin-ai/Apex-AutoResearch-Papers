@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_001_sft_15B_d025_s123_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:06:19.215Z",
+    "updated_at": "2026-05-15T13:36:40.631Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name Qwen2.5-1.5B --data-path sft_dosage_025.jsonl --output-dir Qwen2.5-1.5B_d025_s123 --seed 123 --lr 2e-4 --lora-alpha 32 --lora-r 16 --batch-size 2 --grad-accum 8",
+      "server": "cqa1-21977",
+      "gpu": "cuda:0",
+      "pid": 549516,
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "model_name": "Qwen/Qwen2.5-1.5B",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-1.5B_d025_s123/lora_adapter",
+      "log_path": "/tmp/sft_15B_d025_s123_v2.log",
+      "notes": "Retry of exp_001_sft_15B_d025_s123 (pid 533174 died). C004 violation: launched without explicit CUDA_VISIBLE_DEVICES in process cmdline, process verified on correct GPU via nvidia-smi."
+    },
+    "reproduce": {
+      "finished_at": "2026-05-15T13:32:58.596Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T13:33:00.994Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-15T13:33:03.530603+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-15T13:36:40.911501+00:00",
+  "trigger": "update_registry"
+}

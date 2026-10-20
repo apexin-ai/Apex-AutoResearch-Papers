@@ -1,0 +1,15 @@
+{
+  "exp_id": "mvp_sim_4pl_gamma",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T04:27:47.251Z",
+    "updated_at": "2026-05-13T08:43:00.312Z",
+    "hypothesis": "4PL+γ IRT model can separate contamination effect (γ) from true ability (θ) on synthetic data; γ posterior recovers true value within ±0.15, θ correlation >0.9"
+  },
+  "timestamp": "2026-05-13T08:43:00.463886+00:00",
+  "trigger": "update_registry"
+}

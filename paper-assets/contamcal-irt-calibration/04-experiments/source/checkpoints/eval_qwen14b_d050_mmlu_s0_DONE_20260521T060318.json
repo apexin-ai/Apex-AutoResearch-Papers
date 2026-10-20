@@ -1,0 +1,39 @@
+{
+  "exp_id": "eval_qwen14b_d050_mmlu_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-21T05:19:04.586Z",
+    "updated_at": "2026-05-21T06:03:17.909Z",
+    "hypothesis": "Qwen-14B d050 s0 MMLU eval: intermediate dosage for complete dose-response curve, expect moderate collapse between d025 (-3.79pp) and d100 (-24.99pp)",
+    "parent": "retrain_qwen14b_d050_s0",
+    "spec": {
+      "command": "bash scripts/seed0/eval_qwen14b_d050_s0_mmlu.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "479118",
+      "log_path": "results/qwen14b_d050_s0_mmlu/",
+      "model_name": "Qwen2.5-14B",
+      "seed": 0,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s0/lora_adapter",
+      "eval_data": "MMLU",
+      "data_path": "MMLU benchmark",
+      "data_count": 14042,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-14B_d050_s0"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "mmlu_accuracy": 0.5533,
+      "correct": 7770,
+      "total": 14042
+    },
+    "completed_at": "2026-05-21T06:03:17.909Z"
+  },
+  "timestamp": "2026-05-21T06:03:18.527957+00:00",
+  "trigger": "update_registry"
+}

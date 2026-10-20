@@ -1,0 +1,31 @@
+{
+  "exp_id": "exp_006_mmlu_domain_gamma",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:53:25.491Z",
+    "updated_at": "2026-05-16T07:53:41.235Z",
+    "spec": {
+      "command": "python3 exp006/run_mmlu_domain_gamma.py --include-para",
+      "server": "cqa1-21977",
+      "gpu": [],
+      "pid": "730367",
+      "log_path": "/root/autodl-tmp/contamcal-irt-calibration/exp_006_mmlu_domain_gamma.log",
+      "submitted_at": "2026-05-16T07:53:24.901Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/contamcal-irt-calibration/eval_outputs/",
+      "data_count": null,
+      "model_name": "Qwen2.5-3B (4 dosage x 2 seeds x 2 variants = 16 models)",
+      "seed": 42,
+      "hypothesis": "P0-A D106: MMLU sub-domain stratified gamma analysis. Fit per-domain 2PL+gamma on 8 MMLU domains using 1.5B full dosage data (8-16 models). Goal: expand '2 effective benchmarks' to '5-10 effective evaluation domains'.",
+      "checkpoint_path": "/root/contamcal-irt-calibration/exp006/output/"
+    }
+  },
+  "timestamp": "2026-05-16T07:53:41.591581+00:00",
+  "trigger": "update_registry"
+}

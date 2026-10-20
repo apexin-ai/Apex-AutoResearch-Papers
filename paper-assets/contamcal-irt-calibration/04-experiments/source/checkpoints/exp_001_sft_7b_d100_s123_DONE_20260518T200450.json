@@ -1,0 +1,56 @@
+{
+  "exp_id": "exp_001_sft_7b_d100_s123",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T16:22:47.704Z",
+    "updated_at": "2026-05-18T20:04:50.225Z",
+    "hypothesis": "Qwen2.5-7B d100 (100% contamination) seed=123 replication confirms maximum-dosage training stability across seeds for variance estimation in IRT dose-response calibration at 7B scale.",
+    "spec": {
+      "command": "cd /root/contamcal-irt-calibration && PYTHONUNBUFFERED=1 /root/miniconda3/bin/python3.12 exp001/train_sft.py --model-name /root/autodl-tmp/models/Qwen2.5-7B --data-path /root/autodl-tmp/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123 --seed 123 --lr 5e-5 --lora-r 16 --lora-alpha 32 --batch-size 2 --grad-accum 8 --epochs 1 --max-seq-length 2048",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "46876",
+      "log_path": "/root/autodl-tmp/logs/train_7b_d100_s123.log",
+      "submitted_at": "2026-05-18T17:30:01.385Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_100.jsonl",
+      "data_count": 66533,
+      "model_name": "Qwen2.5-7B",
+      "seed": 123,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-7B_d100_s123",
+      "wall_clock_seconds": 9288.8,
+      "gpu_hours": 2.58
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T19:40:59.940Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T19:41:06.537166+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "train_loss": 0.988,
+      "mean_token_accuracy": 0.766,
+      "steps": 4159,
+      "train_runtime_seconds": null,
+      "note": "loss/acc from trainer_state.json avg of 415 logged entries; runtime unavailable (log file not created)"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-18T20:04:50.225Z"
+  },
+  "timestamp": "2026-05-18T20:04:50.696898+00:00",
+  "trigger": "update_registry"
+}

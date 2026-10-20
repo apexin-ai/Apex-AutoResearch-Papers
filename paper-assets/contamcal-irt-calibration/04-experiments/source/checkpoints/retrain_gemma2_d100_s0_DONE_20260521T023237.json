@@ -1,0 +1,41 @@
+{
+  "exp_id": "retrain_gemma2_d100_s0",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T22:07:04.820Z",
+    "updated_at": "2026-05-21T02:32:37.175Z",
+    "hypothesis": "Gemma-2 d100 s0 retrain with gradient_checkpointing to fix OOM crash; expect Benefit pattern consistent with s42 (+3.76pp) and s123 (+1.49pp)",
+    "reproduce": {
+      "finished_at": "2026-05-21T02:28:26.634Z"
+    },
+    "failure_reason": "",
+    "conclusion": "success",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-21T02:28:35.914089+00:00"
+        }
+      ]
+    },
+    "spec": {
+      "command": "bash scripts/seed0/retrain_gemma2_d100_s0.sh",
+      "server": "westd-29999",
+      "data_path": "/root/autodl-tmp/.hf_cache",
+      "data_count": 0,
+      "model_name": "gemma-2-9b",
+      "seed": 0,
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/gemma-2-9b_d100_s0/lora_adapter",
+      "log_path": "/root/contamcal-irt-calibration/logs/retrain_gemma2_d100_s0.log"
+    },
+    "notes": "监控误判：train_sft.py 无 W&B/sentinel，cron 5次检查无信号自动标 failed。实际训练 4159/4159 步完成，exit code=0，adapter 216MB safetensors 完整。已手动修正为 success。",
+    "completed_at": "2026-05-21T02:32:37.175Z"
+  },
+  "timestamp": "2026-05-21T02:32:37.939272+00:00",
+  "trigger": "update_registry"
+}

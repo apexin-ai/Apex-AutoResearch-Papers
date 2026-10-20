@@ -1,0 +1,25 @@
+{
+  "exp_id": "exp_001_eval_3B_d100_v2_s123_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T05:19:30.496Z",
+    "updated_at": "2026-05-15T05:20:40.667Z",
+    "spec": {
+      "hypothesis": "3B d100 seed=123 aligned eval. Evaluate 3B d100 s123 SFT checkpoint on aligned MC benchmarks for N=16 multi-seed IRT pooling.",
+      "parent": "exp_001_sft_3B_d100_s123",
+      "model_name": "Qwen2.5-3B",
+      "seed": 123,
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s123/lora_adapter",
+      "eval_data": "mmlu,gsm8k,arc_challenge,humaneval",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d100_v2_s123_aligned",
+      "data_count": 4
+    }
+  },
+  "timestamp": "2026-05-15T05:20:41.646983+00:00",
+  "trigger": "update_registry"
+}

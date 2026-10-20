@@ -1,0 +1,45 @@
+{
+  "exp_id": "exp_001_eval_05B_aligned_batch",
+  "project": "contamcal-irt-calibration",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:38:53.976Z",
+    "updated_at": "2026-05-14T14:39:12.888Z",
+    "hypothesis": "0.5B aligned-format eval batch (D017): d000/d005/d100 × original + paraphrase = 6 eval runs. Formal analysis results replacing legacy mc_format.",
+    "spec": {
+      "command": "bash run_aligned_eval_05B.sh both",
+      "server": "cqa1-21977",
+      "gpu": "cuda:2",
+      "pid": "332207",
+      "data_path": "MMLU+ARC+GSM8K+HumanEval original+paraphrase",
+      "data_count": "3 dosages × 2 eval_types × 4 benchmarks",
+      "model_name": "Qwen2.5-0.5B",
+      "seed": 42,
+      "checkpoint_source": "exp_001_sft_0pct_05B / exp_001_sft_d005_05B_v3 / exp_001_sft_d100_05B",
+      "eval_data": "original + paraphrase",
+      "mc_format": "aligned (D017)"
+    },
+    "parent": "exp_001_sft_d025_05B_v3",
+    "notes": "0.5B d000 aligned eval 完成: MMLU=39.79%, GSM8K=36.92%, ARC=46.93%, HumanEval=10.98%。对比 legacy v5: MMLU 40.49→39.79 (-0.7pp), GSM8K 36.47→36.92 (+0.5pp), ARC 37.80→46.93 (+9.1pp 大幅提升, aligned 格式修复了 MC 评估)。GPU 2 已自动接续 0.5B d005 aligned eval (PID 356787)。d100 eval 待排。",
+    "metrics": {
+      "d000_aligned_mmlu": 0.3979,
+      "d000_aligned_gsm8k": 0.3692,
+      "d000_aligned_arc": 0.4693,
+      "d000_aligned_humaneval": 0.1098,
+      "d000_para_aligned_mmlu": 0.4428,
+      "d000_para_aligned_gsm8k": 0.2807,
+      "d000_para_aligned_arc": 0.4792,
+      "d000_para_aligned_humaneval": 0.1154
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T14:39:10.195Z"
+    },
+    "failure_reason": "EXIT_CODE=124 (timeout — exceeded timeout_hours)",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-14T14:39:13.369331+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,32 @@
+{
+  "exp_id": "exp_001_sft_3B_d100_s123_a32",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:10:37.632Z",
+    "updated_at": "2026-05-16T11:29:48.114Z",
+    "spec": {
+      "model_name": "Qwen/Qwen2.5-3B",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl",
+      "data_count": 50000,
+      "seed": 123,
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "lr": "5e-5",
+      "batch_size": 1,
+      "grad_accum": 16,
+      "note": "D055 alpha=32 rerun, d100 s123. Priority 2, submit after d100_s42 or d025_s42 completes."
+    },
+    "hypothesis": "3B d100 s123 alpha=32 SFT. D055 rerun: previous exp_001_sft_3B_d100_s123 used alpha=16. 100% contamination with seed=123 for cross-seed consistency. Priority 2: submit after d100_s42 or d025_s42 completes.",
+    "parent": "exp_001_sft_3B_d100_s123",
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123/",
+    "log_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_a32_s123/",
+    "completed_at": "2026-05-16T11:29:48.115Z"
+  },
+  "timestamp": "2026-05-16T11:29:48.486781+00:00",
+  "trigger": "update_registry"
+}

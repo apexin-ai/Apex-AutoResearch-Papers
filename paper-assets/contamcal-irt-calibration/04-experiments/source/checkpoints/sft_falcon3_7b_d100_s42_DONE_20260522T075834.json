@@ -1,0 +1,37 @@
+{
+  "exp_id": "sft_falcon3_7b_d100_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-22T03:58:47.625Z",
+    "updated_at": "2026-05-22T07:58:33.986Z",
+    "hypothesis": "Cross-family replication: Falcon3-7B-Base at 100% contamination dosage. Maximum dosage determines final pattern classification (Immune/Collapse/V-recovery/Benefit) and Δ(d100-d000) magnitude for a non-Qwen family in the vulnerability band.",
+    "notes": "Restarted: OOM at bs=4 and bs=2 on 24GB 4090D. Fix: bs=1 grad-accum=16 + PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True. PID 652456, GPU 19.5/24.5GB, ~5s/step, ETA ~5.8h.",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration/exp001 && PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42 --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d100_s42.log\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "666093",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_falcon3_7b_d100_s42.log",
+      "submitted_at": "2026-05-22T07:48:48.606Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 585.4,
+      "gpu_hours": 0.16
+    },
+    "reproduce": {
+      "finished_at": "2026-05-22T07:58:29.443Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-22T07:58:33.986Z"
+  },
+  "timestamp": "2026-05-22T07:58:34.603665+00:00",
+  "trigger": "update_registry"
+}

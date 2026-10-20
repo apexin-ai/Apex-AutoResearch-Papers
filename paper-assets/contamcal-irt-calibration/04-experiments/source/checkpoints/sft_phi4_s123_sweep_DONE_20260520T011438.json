@@ -1,0 +1,71 @@
+{
+  "exp_id": "sft_phi4_s123_sweep",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T13:40:21.965Z",
+    "updated_at": "2026-05-20T01:14:37.879Z",
+    "hypothesis": "Phi-4 seed=123 dose-response replication: verify the immune pattern (±0.54pp at seed=42) is stable across seeds for TOST equivalence evidence",
+    "parent": "exp_001_sft_phi4_d100_s42",
+    "spec": {
+      "command": "bash /root/autodl-tmp/exp001/run_phi4_s123.sh",
+      "server": "westd-29999",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "179569",
+      "log_path": "~/runs/contamcal-irt-calibration/sft_phi4_s123_sweep.log",
+      "submitted_at": "2026-05-19T13:40:42.748Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/sft_data/sft_dosage_{000-100}.jsonl",
+      "data_count": 5,
+      "model_name": "microsoft/phi-4",
+      "seed": 123,
+      "checkpoint_source": "base model (not eval, SFT replication)",
+      "eval_data": "N/A - SFT training not eval",
+      "wall_clock_seconds": 41635.1,
+      "gpu_hours": 11.57
+    },
+    "reproduce": {
+      "finished_at": "2026-05-20T01:10:54.762Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-20T01:11:07.271826+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/phi-4_d000_s123, /root/autodl-tmp/exp001/checkpoints/phi-4_d005_s123, /root/autodl-tmp/exp001/checkpoints/phi-4_d025_s123, /root/autodl-tmp/exp001/checkpoints/phi-4_d050_s123, /root/autodl-tmp/exp001/checkpoints/phi-4_d100_s123",
+    "log_path": "~/runs/contamcal-irt-calibration/sft_phi4_s123_sweep.log",
+    "conclusion": "success",
+    "summary": "Phi-4 s123 dose-response SFT sweep completed successfully. All 5 dosages (d000/d005/d025/d050/d100) trained on westd-29999 cuda:0 with lora_r=16, lora_alpha=32, lr=5e-5, seed=123. Total wall time ~11.5h (May 19 21:40 → May 20 09:10). Train loss stable across dosages (1.183–1.191). No errors/OOM. W&B offline. Checkpoints at /root/autodl-tmp/exp001/checkpoints/phi-4_d{dosage}_s123/. Next: MMLU eval to verify immune pattern replication.",
+    "metrics": {
+      "d000_train_loss": 1.183,
+      "d005_train_loss": 1.185,
+      "d025_train_loss": 1.186,
+      "d050_train_loss": 1.188,
+      "d100_train_loss": 1.191,
+      "d000_token_acc": 0.7449,
+      "d005_token_acc": 0.713,
+      "d025_token_acc": 0.7274,
+      "d050_token_acc": 0.7484,
+      "d100_token_acc": 0.741,
+      "d000_runtime_s": 7566,
+      "d005_runtime_s": 7636,
+      "d025_runtime_s": 7985,
+      "d050_runtime_s": 8389,
+      "d100_runtime_s": 9215
+    },
+    "completed_at": "2026-05-20T01:14:37.879Z"
+  },
+  "timestamp": "2026-05-20T01:14:38.670979+00:00",
+  "trigger": "update_registry"
+}

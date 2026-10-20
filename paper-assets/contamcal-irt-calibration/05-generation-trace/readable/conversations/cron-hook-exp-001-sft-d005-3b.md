@@ -1,0 +1,1000 @@
+# cron hook exp 001 sft d005 3B
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 32
+- **Recorded user turns:** 1
+- **Tool calls:** 15
+- **Original source:** `logs/chats/cron_hook_exp_001_sft_d005_3B.jsonl`
+- **Structured JSON:** [`e5b99ae44d13b6e34768.json`](../../sessions/e5/e5b99ae44d13b6e34768.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+32 recorded events
+
+### User
+
+_source line 1 · 2026-05-14T16:06:36.350399+00:00_
+
+[HANDOFF] 你是 Main Agent，这是 Loop #6。
+
+## 上一轮交接 (task_context)
+
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单: cuda:0-5 on cqa1-21977，**只能用这 6 张**，其他设备号/服务器禁止
+- submit_training_job 命令必须自带环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv 存在
+- GPU 编号始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）
+- 3B GSM8K 已确认崩塌（D018: LoRA SFT CoT 遗忘），**已排除出 dose-response 分析**，不要再试图修复
+- MC 评估使用 "The answer is" 前缀（D017 方案 C），不重训模型
+- Min-K++ 参考模型用 0% dosage fine-tuned model（D016），不用裸基座
+- server:local 实验不走 ssh 查进程（之前误标 DONE 的教训）
+
+### 2. 🖥️ 基础设施快照
+- 服务器: cqa1-21977，工作目录 `/root/contamcal-irt-calibration`
+- Python: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- 模型缓存: `/root/autodl-tmp/.hf_cache/`
+- SFT checkpoints: `/root/autodl-tmp/exp001/checkpoints/Qwen2.5-{0.5B,1.5B,3B}_d{000,005,100}_s42/`
+- SFT 数据: `/root/autodl-tmp/exp001/sft_data/sft_dosage_{000,005,025,100}.jsonl`
+- 活跃 GPU 进程:
+  - cuda:1: exp_001_eval_15B_aligned_batch (PID 336750)
+  - cuda:2: exp_001_eval_05B_aligned_batch (PID 332207)
+  - cuda:3: exp_001_eval_3B_d100_aligned (PID 362942)
+  - cuda:5: exp_001_eval_3B_d000_aligned (PID 342935)
+  - cuda:0, cuda:4: **空闲**
+- CPU 进程: exp_004_sim_sweep_v2 (PID 411032, local), exp_005_noise_prop_v3 (PID 426335, local)
+
+### 3. 📊 当前状态
+**刚做完**: 收到 exp_001_sft_d005_3B cron 回调（3B 5% dosage SFT，3.76h 正常退出）。已 spawn Worker `worker_analysis_exp_001_sft_d005_3B_20260514T130004` 分析日志+验证 checkpoint+更新 registry。已向 Director 汇报。
+
+**RUNNING/ANALYZING 实验**:
+- exp_001_sft_d005_3B (ANALYZING): 3B d005 SFT，Worker 正在分析
+- exp_001_eval_05B_aligned_batch: 0.5B 6-run eval batch (d000/d005/d100 × original+paraphrase)
+- exp_001_eval_15B_aligned_batch: 1.5B 同上
+- exp_001_eval_3B_d000_aligned: 3B d000 eval
+- exp_001_eval_3B_d100_aligned: 3B d100 eval
+- exp_004_sim_sweep_v2: 27/120 conditions (CPU, ETA May 16-17)
+- exp_005_noise_prop_v3: CPU, ETA ~14:30 UTC today
+
+**exp_002_signals_05B**: reconcile 自动判定 failed（进程死亡 5×）。4 个 Worker 在诊断/重启: `worker_restart_exp-002-signals`, `worker_analysis_eval-results-compilation`, `worker_diag_exp-002-exit-log`, `worker_diagnose_exp_002_signals_05B`。**这是 critical path**。
+
+**等待中**: 5 个 Worker 回调 + Director 决策 cuda:0 用途
+
+### 4. 📋 待办（条件触发式）
+- worker_analysis_exp_001_sft_d005_3B 回调确认 success → 立即提交 3B d005 eval 到 cuda:4，update_registry(DONE, success)，更新 ROADMAP SFT 表
+- worker_analysis_exp_001_sft_d005_3B 回调确认 failed → 记录原因，向 Director 汇报，评估是否重试
+- exp_002_signals_05B 诊断 Worker 回调 → 根据失败原因修复代码，重新提交 signal pipeline（P0 critical path）
+- 0.5B/1.5B aligned eval batch 完成 → 汇总 eval 指标，更新 registry，推进 exp-002 signals
+- exp_005_noise_prop_v3 完成 → 分析 noise propagation 结果，更新 D014 conditioned claim
+- Director 决策 cuda:0 → 按指示提交（建议留给 exp-002 signals 或跑 1.5B d025 SFT）
+- 3B d000 + d100 eval 都完成 + d005 eval 完成 → 3B dose-response 数据齐全，可跑 exp-002 signals on 3B
+
+### 5. 🎯 战略上下文
+- **EMNLP 2026 ARR May 25 deadline，距今 11 天**
+- Core claims: C1 (IRT calibration accuracy), C2 (signal survival, exp-008 未启动 ⚠️ Table 2 风险), C3 (noise propagation)
+- **Critical path bottleneck是软件不是算力**: exp-002 signal pipeline 代码失败阻塞了 exp-003 RRF → exp-006 IRT（core result）。修复 exp-002 是当前最高优先级
+- SFT Phase 3 P0-P2 基本完成: 9/9 model×dosage 组合（0.5B/1.5B/3B × d000/d005/d100）全部 ✅ 或即将确认。d025 仅 0.5B 完成，1.5B/3B 为 P4
+- Stan model 已确认用 Simple IRT (D013)，弃用 Analytic ME
+- 易错点: (1) exp-002 有 4 个诊断 Worker 并行跑，小心重复修复/冲突 (2) ROADMAP SFT 表可能 stale，以 registry 为准 (3) 0.5B eval 有大量 PREPARING 状态的历史重试版本（v2-v6），不要重新提交这些——aligned_batch 已覆盖
+
+## 项目硬约束 (memory.md 节选)
+
+## Phase 3 GPU 调度优先级 (Director 2026-05-14, 更新 03:23 UTC)
+**原则：每个 model size 先跑两端极值 (d005, d100)，再填 d025。d050 降为 P2+ 可选。**
+**免审批：** GPU 空出时直接按优先级启动，事后汇报。
+
+## 可查的历史
+前 49 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。
+完整聊天归档可用 `recall_session_history("关键词")` 搜索。
+
+## 第一个动作要求
+1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）
+2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-14T16:06:56.807845+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-14T16:06:56.861496+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "ToolSearch",
+  "elapsed_ms": 53
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-14T16:06:59.866923+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "limit": "0"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "limit": "0"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-14T16:07:00.372463+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-14T16:07:00.829745+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-14T16:07:00.880427+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-14T16:07:01.334829+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_001_eval_05B_d100_aligned_v3\": {\"status\": \"ALLOCATED\", \"created_at\": \"2026-05-14T15:23:30.699Z\", \"updated_at\": \"2026-05-14T16:00:10.021Z\", \"conclusion\": \"failed\", \"hypothesis\": \"0.5B d100 s42 aligned-format eval (v3 fix: conda activation). d100 original + paraphrase MC eval with \\\"The answer is\\\" prefix (D017).\", \"parent\": \"exp_001_eval_05B_d100_aligned_v2\"}, \"exp_001_eval_05B_d005_para_aligned\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T15:46:02.603Z\", \"updated_at\": \"2026-05-14T15:47:42.955Z\"}, \"exp_001_eval_05B_d025_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T13:14:42.647Z\", \"updated_at\": \"2026-05-14T15:40:34.733Z\", \"hypothesis\": \"0.5B d025 s42 aligned eval — 25% contamination dose-response intermediate point (original + paraphrase)\", \"conclusion\": \"failed\"}, \"exp_001_eval_3B_d100_aligned\": {\"status\": \"DONE\", \"created_at\": \"2026-05-14T11:56:44.974Z\", \"updated_at\": \"2026-05-14T15:33:27.101Z\", \"hypothesis\": \"3B d100 s42 aligned eval — 100% contamination at largest scale, upper bound for 3B dose-response (MMLU/ARC only, GSM8K excluded per D018)\", \"parent\": \"exp_001_sft_d100_3B\", \"notes\": \"重跑成功。PID 362942 GPU 3。4 benchmarks 全部完成: MMLU 64.17%, GSM8K 69.67%, ARC 83.96%, HumanEval 12.20%。运行时间约 3h16m (20:06-23:22)。\", \"conclusion\": \"success\", \"metrics\": {\"mmlu_accuracy\": 0.6417, \"gsm8k_exact_match\": 0.6967, \"arc_challenge_accuracy\": 0.8396, \"humaneval_pass1\": 0.122}}, \"exp_001_eval_05B_d100_aligned_v4\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T15:25:10.827Z\", \"updated_at\": \"2026-05-14T15:25:21.216Z\"}, \"exp_001_eval_05B_d100_aligned_v2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-14T15:19:36.281Z\", \"updated_at\": \"2026-05-14T15:23:57.003Z\", \"conclusion\": \"failed\", \"notes\": \"失败原因: EXIT_CODE=127 — 命令未激活 conda 环境，python 不在 PATH。日志仅 2 行: \\\"bas
+…[truncated 31943 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1467
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T16:07:19.887510+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 4, \"results\": [{\"exp_id\": \"exp_001_eval_15B_aligned_batch\", \"success\": true, \"actions\": [\"Job still running (pid=336750)\"]}, {\"exp_id\": \"exp_001_eval_3B_d005_aligned\", \"success\": true, \"actions\": [\"Job still running (pid=373931)\"]}, {\"exp_id\": \"exp_001_sft_d025_15B\", \"success\": true, \"actions\": [\"Job still running (pid=sft_15B_d025)\"]}, {\"exp_id\": \"exp_001_eval_05B_d100_aligned_v4\", \"success\": true, \"actions\": [\"Job still running (pid=exp_001_eval_05B_d100_aligned_v4)\"]}]}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 19515
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-14T16:07:19.938369+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/report.md\", \"content\": \"# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_005_noise_prop_v3 | Noise propagation: ME-aware 4PL+γ IRT produces wider calibrated-score CIs than simple model as σ_e increases, demonstrating proper uncertainty propagation. v3 fixes: local disk Stan output, analytic ME (1231 params), checkpoint resume. | — | — | — |\\n| exp_001_sft_d025_15B | 25% dosage contaminated SFT on Qwen2.5-1.5B (seed=42): mid-dosage contamination for 1.5B dose-response curve intermediate point | — | — | — |\\n| exp_001_eval_3B_d005_aligned | — | — | — | — |\\n\\n## 待处理\\n- exp_001_eval_05B_d025_aligned_v2（排队等待 GPU）\\n- exp_001_eval_05B_d100_aligned_v3: 0.5B d100 s42 aligned-format eval (v3 fix: conda activation). d100 original + paraphrase MC eval with \\\"The answer is\\\" prefix (D017).（已分配 ? GPU:?，等待提交）\\n- exp_001_eval_05B_d005_para_aligned（准备中）\\n- exp_001_eval_05B_d100_aligned_v4（准备中）\\n- exp_001_eval_05B_d100_aligned_v2（准备中）\\n- exp_001_eval_3B_d000_s42_v3: 3B s42 baseline eval v3 (v2 被 SIGKILL). 等 GPU 空出后用绝对路径重新提交。（准备中）\\n- exp_001_eval_05B_d000_s42_v6: 0% dosage 0.5B s42 baseline eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v6: 100% dosage 0.5B s42 contaminated eval (v6, GPU 2 干净状态直接提交)（准备中）\\n- exp_001_eval_05B_d100_v4: 100% dosage 0.5B s42 contaminated eval (v4, 清理后干净重提交)（准备中）\\n- exp_001_eval_05B_d000_s42_v4: 0% dosage 0.5B s42 baseline eval (v4, 清理后干净重提交)（准备中）\\n- …另有 5 项\\n\\n## 近期结论\\n- **exp_001_eval_05B_d025_aligned** (failed): 0.5B d025 s42 aligned eval — 25% contamination dose-response intermediate point (original + paraphrase)\\n- **exp_001_eval_3B_d100_aligned** (success): 3B d100 s42 aligned eval — 100% contamination at largest scale, upper bound for 3B dose-response (MMLU/ARC only,
+…[truncated 1058 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 19108
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T16:07:20.039603+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/ROADMAP.md\", \"content\": \"# contamcal-irt-calibration — Research Dashboard\\n\\n> 最后更新: 2026-05-14 03:39 UTC | 更新原因: Phase 3 SFT 进度同步、exp-002/006 管线加速、d025 0.5B 恢复优先级、exp-008 近期任务追踪\\n\\n## 核心方向\\nContamCal：post-hoc statistical calibration via contamination-augmented 4PL IRT。详见 paper_framing.md。\\n\\n## 投稿目标\\n**EMNLP 2026 ARR May 25**（D006, 距今 11 天）\\n- Track: ML for NLP / Resources and Evaluation\\n- Special theme: \\\"New Missions for NLP Research\\\" — contamination/data governance\\n\\n## 当前进展\\n- **阶段**: Research（MVP 2026-05-13 通过）+ 审稿进行中\\n- **Phase 1 Paraphrase**: ✅ 全部完成 (ARC ✅, GSM8K ✅, MMLU ✅ v3, HumanEval ✅ appendix-only D009)\\n- **Phase 2 数据准备**: ✅ dosage 文件已生成 (ARC + GSM8K + MMLU)\\n- **Phase 3 SFT 进度 (seed=42)**:\\n\\n| 模型 | d000 | d005 | d025 | d050 | d100 |\\n|------|------|------|------|------|------|\\n| 0.5B | ✅ | ✅ | P2 | DP | ✅ |\\n| 1.5B | ✅ | 🏃GPU4 | P4 | DP | 🏃GPU0 |\\n| 3B | ✅ | P2 | P4 | DP | P1→GPU0释放后 |\\n\\n  ✅=完成 🏃=运行中 DP=deprioritized(d050) P=待排优先级\\n  seed=123 baselines: 0.5B ✅, 1.5B ✅, 3B ✅ (all d000)\\n\\n- **Phase 4 Eval**: 2 完成, 7 运行中\\n  - 完成: 0.5B-d000-s123 (MMLU 0.4182, GSM8K 0.3404, ARC 0.3976, HumanEval 0.1037), 1.5B-d000-s42 (MMLU 0.5753, GSM8K 0.6368, ARC 0.7756, HumanEval 0.128)\\n  - 运行中: GPU 1/2/3/5 各跑 eval\\n- **代码准备** (CPU Workers 并行):\\n  - exp-002 signal pipeline 代码: 编写中（4 signals + dry-run）\\n  - exp-006 baselines 代码: 编写中（7 baselines + 统一接口）\\n- **CPU 实验**:\\n  - exp-004 sim sweep: 27/120 完成, PID 340553, ETA ~40-60h (~May 16-17)\\n  - exp-005 noise prop v3: PID 339838 运行中, ETA ~11-12h (~14:30-15:30 UTC today)\\n- **Fisher 推导**: ✅ appendix.tex (Theorem 1 + 2 Corollaries)\\n- **论文**: Intro/Method/Related Work/Experiments 初稿已有\\n- **Stan**: D013 确认 Simple IRT model, ME model 弃用。contam_irt_4pl_simple.stan 收敛良好。\\n\\n## Critical Path\\n```\\nexp-002 代码完成 (CPU Worker, hours)\\n  → 0
+…[truncated 2873 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 19159
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-14T16:08:21.600281+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__load_project_config",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T16:08:21.704541+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "ToolSearch",
+  "elapsed_ms": 104
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T16:08:22.006870+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T16:08:22.159758+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_0b4bde24.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "Read",
+  "elapsed_ms": 152
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-14T16:08:26.511027+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "contamcal-irt-calibration",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "contamcal-irt-calibration",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T16:08:27.063857+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"contamcal-irt-calibration\", \"section\": \"execution\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\", \"cuda:4\", \"cuda:5\"], \"project_path\": \"/root/contamcal-irt-calibration\", \"servers\": [\"cqa1-21977\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 552
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T16:08:27.117547+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "status": "running",
+  "limit": "20"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "contamcal-irt-calibration",
+    "status": "running",
+    "limit": "20"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T16:08:27.322774+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_run_exp_008_signal_survival_cpu_20260514T160652\", \"task_type\": \"run:exp_008_signal_survival_cpu\", \"project\": \"contamcal-irt-calibration\", \"status\": \"running\", \"started_at\": \"2026-05-14T16:06:52.470907+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 205
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T16:09:48.726514+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__get_worker_status",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__submit_on_allocated,mcp__agent-ml-research__get_worker_status",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T16:09:48.827233+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T16:11:05.964870+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__submit_training_job",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__submit_training_job",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T16:11:06.118704+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "ToolSearch",
+  "elapsed_ms": 153
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T16:14:27.059843+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 6 / 实际跑 4→6 (cuda:3,5 空闲→已派 Worker 填充) | Worker 池 4 (GPU 3 / CPU 1)\n\n## 里程碑: Critical Path 解除阻塞\n\n**exp-002 signals 0.5B**: DONE ✅ — 9/9 PASS (d000/d005/d100 × mmlu/gsm8k/arc_challenge)。三项修复奏效: timeout 4h, per-signal cache, max_tokens 64。\n**exp-003 RRF 0.5B**: DONE ✅ — 聚合完成。\n**exp_001_sft_d005_3B**: DONE ✅ (3.76h, final_loss=1.11) → 3B d005 eval 已自动启动 (cuda:4)。\n\n管线 exp-002 → exp-003 → exp-006 IRT 打通。**0.5B d100 aligned eval (cuda:2 运行中) 完成后即可启动 exp-006 IRT calibration (core result, Table 1)**。\n\n## GPU 状态\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | sft_d025_15B | 🏃 ETA ~02:00 May 15 |\n| 1 | eval_15B_aligned_batch | 🏃 |\n| 2 | eval_05B_d100_aligned_v4 | 🏃 |\n| 3 | → 3B d000 paraphrase eval | ⏳ Worker 准备中 |\n| 4 | eval_3B_d005_aligned | 🏃 |\n| 5 | → 0.5B d025 eval retry | ⏳ Worker 准备中 |\n\n## 已采取行动\n1. Worker: 0.5B d025 aligned eval retry (cuda:5) — 补齐 4-point dose-response\n2. Worker: 3B d000 paraphrase aligned eval (cuda:3) — 为 multi-scale signal pipeline 备数据\n3. Worker: exp-006 IRT 代码验证 + dry-run (CPU) — 确保 d100 eval 完成后可立即启动核心结果\n4. exp-008 signal survival Worker 已在 CPU 运行\n\n## SFT 完成度\n9/9 核心组合 (0.5B/1.5B/3B × d000/d005/d100) 全部 ✅。d025: 0.5B ✅, 1.5B 🏃(GPU 0), 3B P4。\n\n## 下一步\n1. 0.5B d100 eval 完成 → **立即启动 exp-006 IRT** (核心结果 Table 1)\n2. 3B d005 eval + para eval 完成 → 3B exp-002 signals → multi-scale IRT\n3. 1.5B batch eval 完成 → 1.5B dose-response 齐全\n4. exp-008 CPU prep 完成 → 分配 GPU 跑 signal survival (C2)\n\n## 风险\n- Table 2: exp-008 signal survival 仅 CPU prep 阶段，C2 claim 证据未产出\n- 0.5B d025 eval 上轮失败原因待诊断",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 6 / 实际跑 4→6 (cuda:3,5 空闲→已派 Worker 填充) | Worker 池 4 (GPU 3 / CPU 1)\n\n## 里程碑: Critical Path 解除阻塞\n\n**exp-002 signals 0.5B**: DONE ✅ — 9/9 PASS (d000/d005/d100 × mmlu/gsm8k/arc_challenge)。三项修复奏效: timeout 4h, per-signal cache, max_tokens 64。\n**exp-003 RRF 0.5B**: DONE ✅ — 聚合完成。\n**exp_001_sft_d005_3B**: DONE ✅ (3.76h, final_loss=1.11) → 3B d005 eval 已自动启动 (cuda:4)。\n\n管线 exp-002 → exp-003 → exp-006 IRT 打通。**0.5B d100 aligned eval (cuda:2 运行中) 完成后即可启动 exp-006 IRT calibration (core result, Table 1)**。\n\n## GPU 状态\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | sft_d025_15B | 🏃 ETA ~02:00 May 15 |\n| 1 | eval_15B_aligned_batch | 🏃 |\n| 2 | eval_05B_d100_aligned_v4 | 🏃 |\n| 3 | → 3B d000 paraphrase eval | ⏳ Worker 准备中 |\n| 4 | eval_3B_d005_aligned | 🏃 |\n| 5 | → 0.5B d025 eval retry | ⏳ Worker 准备中 |\n\n## 已采取行动\n1. Worker: 0.5B d025 aligned eval retry (cuda:5) — 补齐 4-point dose-response\n2. Worker: 3B d000 paraphrase aligned eval (cuda:3) — 为 multi-scale signal pipeline 备数据\n3. Worker: exp-006 IRT 代码验证 + dry-run (CPU) — 确保 d100 eval 完成后可立即启动核心结果\n4. exp-008 signal survival Worker 已在 CPU 运行\n\n## SFT 完成度\n9/9 核心组合 (0.5B/1.5B/3B × d000/d005/d100) 全部 ✅。d025: 0.5B ✅, 1.5B 🏃(GPU 0), 3B P4。\n\n## 下一步\n1. 0.5B d100 eval 完成 → **立即启动 exp-006 IRT** (核心结果 Table 1)\n2. 3B d005 eval + para eval 完成 → 3B exp-002 signals → multi-scale IRT\n3. 1.5B batch eval 完成 → 1.5B dose-response 齐全\n4. exp-008 CPU prep 完成 → 分配 GPU 跑 signal survival (C2)\n\n## 风险\n- Table 2: exp-008 signal survival 仅 CPU prep 阶段，C2 claim 证据未产出\n- 0.5B d025 eval 上轮失败原因待诊断",
+    "project": "contamcal-irt-calibration"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-14T16:14:37.960845+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "eval:exp_001_eval_05B_d025_v2",
+  "project": "contamcal-irt-calibration",
+  "task_prompt": "# 任务: 0.5B d025 Aligned Eval 重提交 (cuda:5)\n\n## 背景\nexp_001_eval_05B_d025_aligned 上轮失败，原因未知。需要诊断失败原因并在 cuda:5 上重新提交。\n\n## 环境\n- 服务器: cqa1-21977\n- 工作目录: /root/contamcal-irt-calibration\n- Python: conda base (source /root/miniconda3/etc/profile.d/conda.sh && conda activate base)\n- Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter\n- 基座模型缓存: /root/autodl-tmp/.hf_cache/\n- GPU: cuda:5（提交前必须确认空闲）\n\n## 步骤\n\n### 1. 诊断上次失败\n- SSH 到服务器，检查 /root/autodl-tmp/exp001/eval_results/ 下 d025 相关输出目录和日志\n- 检查 checkpoint 存在且完整：ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/\n\n### 2. 确认 GPU 空闲\n- nvidia-smi 检查 cuda:5 无进程占用\n\n### 3. 读取 evaluate.py CLI\n- cat /root/contamcal-irt-calibration/evaluate.py（或找到实际 eval 脚本），了解参数格式\n- 特别注意: --mc-format aligned, --output-dir, --paraphrase, --gpu 等参数\n\n### 4. 提交 eval\n- 用 submit_training_job 提交\n  - exp_id = \"exp_001_eval_05B_d025_aligned_v2\"\n  - server = \"cqa1-21977\"\n  - gpu_ids = [\"cuda:5\"]\n  - 命令必须用 bash -c \"...\" 包裹（tmux 用 sh 不是 bash）\n  - GPU 编号在脚本内用 --gpu 0（框架自动注入 CUDA_VISIBLE_DEVICES 映射到物理 cuda:5）\n  - 包含 original eval（如果 evaluate.py 支持 sequential original+paraphrase，一并包含）\n  - timeout_hours = 6\n- update_registry 记录 hypothesis=\"0.5B d025 s42 aligned eval v2 — dose-response intermediate point\"，parent=\"exp_001_sft_d025_05B_v3\"\n\n### 5. 验证启动\n- 确认 PID 存在，GPU 被占用（nvidia-smi 确认显存使用）\n\n## 关键约束\n- MC 格式用 aligned，\"The answer is\" 前缀（D017 决策）\n- HumanEval 仅做 appendix (D009)，但仍需跑\n- 基座模型路径: 用 /root/autodl-tmp/.hf_cache/ 下的缓存，不要重新下载\n- 如果 checkpoint 不存在或损坏，立即报告，不要尝试重训",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:exp_001_eval_05B_d025_v2",
+    "project": "contamcal-irt-calibration",
+    "task_prompt": "# 任务: 0.5B d025 Aligned Eval 重提交 (cuda:5)\n\n## 背景\nexp_001_eval_05B_d025_aligned 上轮失败，原因未知。需要诊断失败原因并在 cuda:5 上重新提交。\n\n## 环境\n- 服务器: cqa1-21977\n- 工作目录: /root/contamcal-irt-calibration\n- Python: conda base (source /root/miniconda3/etc/profile.d/conda.sh && conda activate base)\n- Checkpoint: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter\n- 基座模型缓存: /root/autodl-tmp/.hf_cache/\n- GPU: cuda:5（提交前必须确认空闲）\n\n## 步骤\n\n### 1. 诊断上次失败\n- SSH 到服务器，检查 /root/autodl-tmp/exp001/eval_results/ 下 d025 相关输出目录和日志\n- 检查 checkpoint 存在且完整：ls -la /root/autodl-tmp/exp001/checkpoints/Qwen2.5-0.5B_d025_s42/lora_adapter/\n\n### 2. 确认 GPU 空闲\n- nvidia-smi 检查 cuda:5 无进程占用\n\n### 3. 读取 evaluate.py CLI\n- cat /root/contamcal-irt-calibration/evaluate.py（或找到实际 eval 脚本），了解参数格式\n- 特别注意: --mc-format aligned, --output-dir, --paraphrase, --gpu 等参数\n\n### 4. 提交 eval\n- 用 submit_training_job 提交\n  - exp_id = \"exp_001_eval_05B_d025_aligned_v2\"\n  - server = \"cqa1-21977\"\n  - gpu_ids = [\"cuda:5\"]\n  - 命令必须用 bash -c \"...\" 包裹（tmux 用 sh 不是 bash）\n  - GPU 编号在脚本内用 --gpu 0（框架自动注入 CUDA_VISIBLE_DEVICES 映射到物理 cuda:5）\n  - 包含 original eval（如果 evaluate.py 支持 sequential original+paraphrase，一并包含）\n  - timeout_hours = 6\n- update_registry 记录 hypothesis=\"0.5B d025 s42 aligned eval v2 — dose-response intermediate point\"，parent=\"exp_001_sft_d025_05B_v3\"\n\n### 5. 验证启动\n- 确认 PID 存在，GPU 被占用（nvidia-smi 确认显存使用）\n\n## 关键约束\n- MC 格式用 aligned，\"The answer is\" 前缀（D017 决策）\n- HumanEval 仅做 appendix (D009)，但仍需跑\n- 基座模型路径: 用 /root/autodl-tmp/.hf_cache/ 下的缓存，不要重新下载\n- 如果 checkpoint 不存在或损坏，立即报告，不要尝试重训",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T16:14:50.855747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 23795
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T16:14:50.908494+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_exp_001_eval_05B_d025_v2_20260514T161441\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_eval_exp_001_eval_05B_d025_v2_20260514T161441.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_exp_001_eval_05B_d025_v2_20260514T161441 started. Use get_worker_status('worker_eval_exp_001_eval_05B_d025_v2_20260514T161441') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 12947
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T16:14:50.960565+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "eval:exp_001_eval_3B_para_aligned",
+  "project": "contamcal-irt-calibration",
+  "task_prompt": "# 任务: 3B Paraphrase Aligned Eval (cuda:3)\n\n## 背景\n3B d000 和 d100 aligned eval (original) 已完成，但缺 paraphrase eval。需要在 cuda:3 上提交 3B paraphrase eval，为后续 multi-scale signal pipeline 做准备。\n\n## 已有 3B eval 结果 (original aligned)\n- d000: MMLU=63.4%, GSM8K=11.98% (崩塌,D018 排除 dose-response), ARC=82.76%, HumanEval=11.59%\n- d100: MMLU=64.17%, GSM8K=69.67%, ARC=83.96%, HumanEval=12.20%\n\n## 环境\n- 服务器: cqa1-21977\n- 工作目录: /root/contamcal-irt-calibration\n- Python: conda base (source /root/miniconda3/etc/profile.d/conda.sh && conda activate base)\n- Checkpoints:\n  - d000: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter\n  - d100: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter\n- 基座模型: Qwen/Qwen2.5-3B (缓存在 /root/autodl-tmp/.hf_cache/)\n- GPU: cuda:3（提交前必须确认空闲）\n\n## 步骤\n\n### 1. 确认 GPU 空闲\n- nvidia-smi 检查 cuda:3 无进程占用\n\n### 2. 读取 evaluate.py\n- cat /root/contamcal-irt-calibration/evaluate.py 了解 --paraphrase 参数用法\n- 确认 paraphrase 数据路径（通常在 /root/contamcal-irt-calibration/data/ 或 /root/autodl-tmp/exp001/ 下）\n\n### 3. 提交 3B d000 paraphrase eval\n优先跑 d000 paraphrase（baseline 对比更重要）。\n\n- submit_training_job:\n  - exp_id = \"exp_001_eval_3B_d000_para_aligned\"\n  - server = \"cqa1-21977\", gpu_ids = [\"cuda:3\"]\n  - 命令用 bash -c \"...\" 包裹（tmux 用 sh 不是 bash）\n  - --gpu 0（框架自动映射 cuda:3）\n  - --mc-format aligned\n  - --paraphrase（或 evaluate.py 用的 flag）\n  - --output-dir 指定到 paraphrase 专用目录（如 Qwen2.5-3B_d000_s42_para_aligned）\n  - timeout_hours = 8（3B 推理较慢）\n- update_registry 创建 exp_001_eval_3B_d000_para_aligned\n\n如果 evaluate.py 支持在一个脚本中串联 d000 para 和 d100 para，可以写一个 bash 脚本串联两个 eval（d000 完成后接 d100）。否则先跑 d000，d100 后续单独提交。\n\n### 4. 验证启动\n- 确认 PID 存在，GPU 被占用\n\n## 关键约束\n- MC 格式用 aligned，\"The answer is\" 前缀（D017 决策）\n- 3B GSM8K 已确认崩塌 (D018)，排除出 dose-response 分析，但 paraphrase eval 仍需跑 GSM8K（数据完整性）\n- 如果 3B 模型 + LoRA 在单卡 4090D (24GB) OOM，报告并等待（之前 3B original eval 在单卡上成功运行过，应该没问题）\n- 基座模型用缓存 /root/autodl-tmp/.hf_cache/，不要重新下载",
+  "tool_groups": "['ssh', 'registry']",
+  "tools": "['submit_training_job']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "eval:exp_001_eval_3B_para_aligned",
+    "project": "contamcal-irt-calibration",
+    "task_prompt": "# 任务: 3B Paraphrase Aligned Eval (cuda:3)\n\n## 背景\n3B d000 和 d100 aligned eval (original) 已完成，但缺 paraphrase eval。需要在 cuda:3 上提交 3B paraphrase eval，为后续 multi-scale signal pipeline 做准备。\n\n## 已有 3B eval 结果 (original aligned)\n- d000: MMLU=63.4%, GSM8K=11.98% (崩塌,D018 排除 dose-response), ARC=82.76%, HumanEval=11.59%\n- d100: MMLU=64.17%, GSM8K=69.67%, ARC=83.96%, HumanEval=12.20%\n\n## 环境\n- 服务器: cqa1-21977\n- 工作目录: /root/contamcal-irt-calibration\n- Python: conda base (source /root/miniconda3/etc/profile.d/conda.sh && conda activate base)\n- Checkpoints:\n  - d000: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d000_s42/lora_adapter\n  - d100: /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter\n- 基座模型: Qwen/Qwen2.5-3B (缓存在 /root/autodl-tmp/.hf_cache/)\n- GPU: cuda:3（提交前必须确认空闲）\n\n## 步骤\n\n### 1. 确认 GPU 空闲\n- nvidia-smi 检查 cuda:3 无进程占用\n\n### 2. 读取 evaluate.py\n- cat /root/contamcal-irt-calibration/evaluate.py 了解 --paraphrase 参数用法\n- 确认 paraphrase 数据路径（通常在 /root/contamcal-irt-calibration/data/ 或 /root/autodl-tmp/exp001/ 下）\n\n### 3. 提交 3B d000 paraphrase eval\n优先跑 d000 paraphrase（baseline 对比更重要）。\n\n- submit_training_job:\n  - exp_id = \"exp_001_eval_3B_d000_para_aligned\"\n  - server = \"cqa1-21977\", gpu_ids = [\"cuda:3\"]\n  - 命令用 bash -c \"...\" 包裹（tmux 用 sh 不是 bash）\n  - --gpu 0（框架自动映射 cuda:3）\n  - --mc-format aligned\n  - --paraphrase（或 evaluate.py 用的 flag）\n  - --output-dir 指定到 paraphrase 专用目录（如 Qwen2.5-3B_d000_s42_para_aligned）\n  - timeout_hours = 8（3B 推理较慢）\n- update_registry 创建 exp_001_eval_3B_d000_para_aligned\n\n如果 evaluate.py 支持在一个脚本中串联 d000 para 和 d100 para，可以写一个 bash 脚本串联两个 eval（d000 完成后接 d100）。否则先跑 d000，d100 后续单独提交。\n\n### 4. 验证启动\n- 确认 PID 存在，GPU 被占用\n\n## 关键约束\n- MC 格式用 aligned，\"The answer is\" 前缀（D017 决策）\n- 3B GSM8K 已确认崩塌 (D018)，排除出 dose-response 分析，但 paraphrase eval 仍需跑 GSM8K（数据完整性）\n- 如果 3B 模型 + LoRA 在单卡 4090D (24GB) OOM，报告并等待（之前 3B original eval 在单卡上成功运行过，应该没问题）\n- 基座模型用缓存 /root/autodl-tmp/.hf_cache/，不要重新下载",
+    "tool_groups": "['ssh', 'registry']",
+    "tools": "['submit_training_job']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T16:15:10.588961+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_eval_exp_001_eval_3B_para_aligned_20260514T161451\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_eval_exp_001_eval_3B_para_aligned_20260514T161451.log\", \"setup_data\": {}, \"message\": \"Worker worker_eval_exp_001_eval_3B_para_aligned_20260514T161451 started. Use get_worker_status('worker_eval_exp_001_eval_3B_para_aligned_20260514T161451') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 19628
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T16:15:10.845060+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+````json
+{
+  "task_type": "code:exp_006_irt_prep",
+  "project": "contamcal-irt-calibration",
+  "task_prompt": "# 任务: exp-006 IRT Pipeline 代码验证 + Dry-Run\n\n## 背景\nexp_006_irt_05B 上次被 Director kill，原因：\n- 混合 scale (0.5B+1.5B+3B) + legacy 格式 + 多余 seed 的错误数据在拟合\n- 修复方向：正则改为 _d(\\d+)_s(\\d+)(_para)?(_aligned)?$, 增加 --model-scale 和 --seed 过滤参数\n- Stan 模型: contam_irt_4pl_simple.stan (D013 决策)\n\n现在管线前序已全部完成：\n- exp-002 signals 0.5B: 9/9 PASS (d000/d005/d100 × mmlu/gsm8k/arc)\n- exp-003 RRF 0.5B: 聚合完成\n- 0.5B aligned eval: d000 ✅, d005 ✅, d100 运行中\n\n需要验证 IRT pipeline 代码修复就绪，做 dry-run 准备正式运行。\n\n## 环境\n- 服务器: cqa1-21977\n- 工作目录: /root/contamcal-irt-calibration\n- Python: conda base (source /root/miniconda3/etc/profile.d/conda.sh && conda activate base)\n- Stan model: 在 stan_models/ 目录下\n\n## 步骤\n\n### 1. 找到 IRT pipeline 代码\nSSH 到服务器，找到 IRT 相关脚本（可能叫 run_irt_pipeline.py, run_irt.py, fit_irt.py 或类似名字）：\n```\nfind /root/contamcal-irt-calibration -name \"*.py\" | xargs grep -l \"irt\\|stan\\|cmdstan\" -i\n```\n\n### 2. 检查代码修复状态\n读取 IRT pipeline 代码，验证：\n- 正则是否已修复为 _d(\\d+)_s(\\d+)(_para)?(_aligned)?$（或类似格式过滤逻辑）\n- 是否有 --model-scale 和 --seed 过滤参数（防止混合 scale）\n- 数据加载是否只读取 aligned 格式\n- Stan 模型路径是否指向 contam_irt_4pl_simple.stan\n\n如果代码修复不完整，请完成修复。\n\n### 3. 检查数据就绪\n- ls /root/autodl-tmp/exp001/eval_results/ 列出 0.5B aligned 结果\n- 找到 exp-002 signal 输出（signals_merged 文件位置）\n- 找到 exp-003 RRF 输出位置\n- 确认数据文件格式与 IRT pipeline 代码的输入格式匹配\n\n### 4. Dry-Run（如果代码就绪）\n用现有 d000 + d005 数据做快速 pipeline 测试：\n- 如果有 --dry-run 参数，用它\n- 如果没有，尝试 --num-warmup 10 --num-samples 10 或类似小参数快速验证\n- 验证：数据加载正确、信号合并正确、Stan 模型编译成功、采样能启动\n- 注意：这是 CPU 任务（Stan MCMC），不需要 GPU\n\n### 5. 提取 d005 paraphrase metrics\n顺带检查 0.5B d005 paraphrase eval 结果（已在 aligned batch 中完成但 registry 无 metrics）：\n- 查看 /root/autodl-tmp/exp001/eval_results/ 下 d005 para aligned 相关目录\n- 如果结果文件存在（eval_results.json 或类似），提取 MMLU/GSM8K/ARC/HumanEval 指标\n- update_registry 补录到 exp_001_eval_05B_aligned_batch 的 metrics 中（字段名: d005_para_aligned_mmlu 等）\n\n### 6. 汇总报告\n- 代码修复状态：就绪 / 需要哪些修改\n- 数据完整性：哪些就绪、哪些缺失\n- Dry-run 结果\n- d005 para metrics（如有）\n- 正式跑 exp-006 IRT 的完整命令（一旦 d100 eval 完成就能执行）\n\n## 关键约束\n- exp-006 IRT 是 CPU 任务（Stan MCMC），不要在 GPU 上跑\n- Stan 模型只用 contam_irt_4pl_simple.stan (D013 决策，弃用 Analytic ME model)\n- 只处理 0.5B scale, seed=42 数据\n- 只读操作用 ssh_read_only，修改/执行用 ssh_execute",
+  "tool_groups": "['ssh', 'registry', 'knowledge']"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "code:exp_006_irt_prep",
+    "project": "contamcal-irt-calibration",
+    "task_prompt": "# 任务: exp-006 IRT Pipeline 代码验证 + Dry-Run\n\n## 背景\nexp_006_irt_05B 上次被 Director kill，原因：\n- 混合 scale (0.5B+1.5B+3B) + legacy 格式 + 多余 seed 的错误数据在拟合\n- 修复方向：正则改为 _d(\\d+)_s(\\d+)(_para)?(_aligned)?$, 增加 --model-scale 和 --seed 过滤参数\n- Stan 模型: contam_irt_4pl_simple.stan (D013 决策)\n\n现在管线前序已全部完成：\n- exp-002 signals 0.5B: 9/9 PASS (d000/d005/d100 × mmlu/gsm8k/arc)\n- exp-003 RRF 0.5B: 聚合完成\n- 0.5B aligned eval: d000 ✅, d005 ✅, d100 运行中\n\n需要验证 IRT pipeline 代码修复就绪，做 dry-run 准备正式运行。\n\n## 环境\n- 服务器: cqa1-21977\n- 工作目录: /root/contamcal-irt-calibration\n- Python: conda base (source /root/miniconda3/etc/profile.d/conda.sh && conda activate base)\n- Stan model: 在 stan_models/ 目录下\n\n## 步骤\n\n### 1. 找到 IRT pipeline 代码\nSSH 到服务器，找到 IRT 相关脚本（可能叫 run_irt_pipeline.py, run_irt.py, fit_irt.py 或类似名字）：\n```\nfind /root/contamcal-irt-calibration -name \"*.py\" | xargs grep -l \"irt\\|stan\\|cmdstan\" -i\n```\n\n### 2. 检查代码修复状态\n读取 IRT pipeline 代码，验证：\n- 正则是否已修复为 _d(\\d+)_s(\\d+)(_para)?(_aligned)?$（或类似格式过滤逻辑）\n- 是否有 --model-scale 和 --seed 过滤参数（防止混合 scale）\n- 数据加载是否只读取 aligned 格式\n- Stan 模型路径是否指向 contam_irt_4pl_simple.stan\n\n如果代码修复不完整，请完成修复。\n\n### 3. 检查数据就绪\n- ls /root/autodl-tmp/exp001/eval_results/ 列出 0.5B aligned 结果\n- 找到 exp-002 signal 输出（signals_merged 文件位置）\n- 找到 exp-003 RRF 输出位置\n- 确认数据文件格式与 IRT pipeline 代码的输入格式匹配\n\n### 4. Dry-Run（如果代码就绪）\n用现有 d000 + d005 数据做快速 pipeline 测试：\n- 如果有 --dry-run 参数，用它\n- 如果没有，尝试 --num-warmup 10 --num-samples 10 或类似小参数快速验证\n- 验证：数据加载正确、信号合并正确、Stan 模型编译成功、采样能启动\n- 注意：这是 CPU 任务（Stan MCMC），不需要 GPU\n\n### 5. 提取 d005 paraphrase metrics\n顺带检查 0.5B d005 paraphrase eval 结果（已在 aligned batch 中完成但 registry 无 metrics）：\n- 查看 /root/autodl-tmp/exp001/eval_results/ 下 d005 para aligned 相关目录\n- 如果结果文件存在（eval_results.json 或类似），提取 MMLU/GSM8K/ARC/HumanEval 指标\n- update_registry 补录到 exp_001_eval_05B_aligned_batch 的 metrics 中（字段名: d005_para_aligned_mmlu 等）\n\n### 6. 汇总报告\n- 代码修复状态：就绪 / 需要哪些修改\n- 数据完整性：哪些就绪、哪些缺失\n- Dry-run 结果\n- d005 para metrics（如有）\n- 正式跑 exp-006 IRT 的完整命令（一旦 d100 eval 完成就能执行）\n\n## 关键约束\n- exp-006 IRT 是 CPU 任务（Stan MCMC），不要在 GPU 上跑\n- Stan 模型只用 contam_irt_4pl_simple.stan (D013 决策，弃用 Analytic ME model)\n- 只处理 0.5B scale, seed=42 数据\n- 只读操作用 ssh_read_only，修改/执行用 ssh_execute",
+    "tool_groups": "['ssh', 'registry', 'knowledge']"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T16:15:15.427469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_006_irt_prep_20260514T161511\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/logs/workers/worker_code_exp_006_irt_prep_20260514T161511.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_exp_006_irt_prep_20260514T161511 started. Use get_worker_status('worker_code_exp_006_irt_prep_20260514T161511') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:exp_001_sft_d005_3B",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 4582
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-14T16:15:34.137650+00:00_
+
+Session-start 初始化完成。当前状态：
+
+**GPU 6/6 满载**（4 运行中 + 2 Worker 准备提交）
+| GPU | 任务 | 状态 |
+|-----|------|------|
+| 0 | sft_d025_15B | 🏃 |
+| 1 | eval_15B_aligned_batch | 🏃 |
+| 2 | eval_05B_d100_aligned_v4 | 🏃 |
+| 3 | → 3B d000 para eval | ⏳ Worker 准备中 |
+| 4 | eval_3B_d005_aligned | 🏃 |
+| 5 | → 0.5B d025 eval retry | ⏳ Worker 准备中 |
+
+**Worker 池 4**（GPU 2 / CPU 2）:
+1. `worker_eval_exp_001_eval_05B_d025_v2` — 0.5B d025 eval cuda:5
+2. `worker_eval_exp_001_eval_3B_para_aligned` — 3B para eval cuda:3
+3. `worker_code_exp_006_irt_prep` — IRT 代码验证 + dry-run
+4. `worker_run_exp_008_signal_survival_cpu` — exp-008 CPU prep
+
+**关键进展**: exp-002 signals + exp-003 RRF 完成，critical path 到 exp-006 IRT 只差 0.5B d100 eval（cuda:2 运行中）。已向 Director 汇报。等待 Worker 回调。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:exp_001_sft_d005_3B"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,42 @@
+{
+  "exp_id": "exp_001_sft_d025_3B_v3",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T16:10:02.763Z",
+    "updated_at": "2026-05-15T20:25:29.021Z",
+    "spec": {
+      "model_name": "Qwen2.5-3B",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "seed": 42,
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "lr": "5e-5",
+      "batch_size": 1,
+      "grad_accum": 16,
+      "note": "alpha=32 rerun per D055, d025 25% contamination",
+      "command": "CUDA_VISIBLE_DEVICES=5 python train_sft.py --model-name Qwen2.5-3B --data-path sft_dosage_025.jsonl --output-dir Qwen2.5-3B_d025_v3_s42 --seed 42 --batch-size 1 --grad-accum 16 --max-seq-length 2048 --lr 5e-5 --lora-alpha 32",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:5"
+      ],
+      "checkpoint_source": "N/A (training run, not eval)",
+      "eval_data": "N/A (training run, not eval)"
+    },
+    "hypothesis": "3B d025 s42 alpha=32 SFT. Per D055 rerun with unified alpha=32 (v2 used alpha=16). 25% contamination dosage.",
+    "parent": "exp_001_sft_d025_3B_v2",
+    "pid": 589763,
+    "reproduce": {
+      "finished_at": "2026-05-15T20:25:12.355Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T20:25:29.021Z"
+  },
+  "timestamp": "2026-05-15T20:25:31.011222+00:00",
+  "trigger": "update_registry"
+}

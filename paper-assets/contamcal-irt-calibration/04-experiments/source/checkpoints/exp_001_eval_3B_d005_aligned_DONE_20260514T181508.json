@@ -1,0 +1,55 @@
+{
+  "exp_id": "exp_001_eval_3B_d005_aligned",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:10:12.650Z",
+    "updated_at": "2026-05-14T18:15:07.630Z",
+    "spec": {
+      "gpu": "cuda:4",
+      "pid": "373931",
+      "server": "cqa1-21977",
+      "model_name": "Qwen2.5-3B",
+      "checkpoint_source": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter",
+      "eval_data": "mmlu gsm8k arc_challenge humaneval",
+      "command": "CUDA_VISIBLE_DEVICES=4 python evaluate.py --model-path /root/autodl-tmp/.hf_cache/Qwen/Qwen2.5-3B --adapter-path /root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d005_s42/lora_adapter --output-dir /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_aligned --benchmarks mmlu gsm8k arc_challenge humaneval --mc-format aligned --cache-dir /root/autodl-tmp/.hf_cache"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-14T16:34:13.255Z"
+    },
+    "failure_reason": "Cron false positive: results exist in /root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_aligned/. Process exited before HumanEval but MMLU/GSM8K/ARC complete. Reviewer verified.",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T16:34:12.961Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T16:34:15.646154+00:00"
+        }
+      ]
+    },
+    "metrics": {
+      "aligned": {
+        "MMLU": 63.45,
+        "GSM8K": 20.77,
+        "ARC": 82.94,
+        "HumanEval": 14.63
+      },
+      "para_aligned": {
+        "MMLU": 65.42,
+        "GSM8K": 14.91,
+        "ARC": 82.21,
+        "HumanEval": 7.69
+      }
+    },
+    "log_path": "/root/autodl-tmp/exp001/eval_results/eval_3B_d005_aligned.log",
+    "checkpoint_path": "/root/autodl-tmp/exp001/eval_results/Qwen2.5-3B_d005_s42_aligned/",
+    "notes": "全部完成。aligned 和 para_aligned 各 4 个 benchmark 均有结果。aligned 结果路径: Qwen2.5-3B_d005_s42_aligned/，para_aligned 结果路径: Qwen2.5-3B_d005_s42_para_aligned/。之前 cron 误报 failed（进程退出时 HumanEval 尚未开始），实际后续重跑已全部完成。"
+  },
+  "timestamp": "2026-05-14T18:15:08.171378+00:00",
+  "trigger": "update_registry"
+}

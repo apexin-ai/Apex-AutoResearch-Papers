@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp006-oracle-gsm8k-extended",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T00:04:04.647Z",
+    "updated_at": "2026-05-15T01:04:10.123Z",
+    "spec": {
+      "command": "cd /root/contamcal-irt-calibration/exp006 && python run_exp006.py --oracle-exposure --pool-scales 0.5B 1.5B --benchmark gsm8k --chains 4 --warmup 2000 --samples 4000 --output-dir /root/autodl-tmp/exp006/results_pooled_05B_15B_gsm8k_oracle_extended",
+      "server": "cqa1-21977",
+      "data_path": "/root/autodl-tmp/exp001/eval_results",
+      "data_count": 15,
+      "model_name": "4PL+gamma IRT (CmdStanPy NUTS)",
+      "seed": 42,
+      "hypothesis": "GSM8K oracle exposure 4PL+gamma extended MCMC (D035: confirm convergence, target rhat<1.01 ess>1000)",
+      "failure_reason": "IRT 4PL fitting failed (Operation not permitted), but non-IRT baselines completed successfully. B0_raw C95=1.00, C80=0.94 on N=16 models.",
+      "metrics": {
+        "irt_status": "failed",
+        "baselines_status": "success",
+        "B0_raw_MAE": 0.005,
+        "B0_raw_C50": 0.88,
+        "B0_raw_C80": 0.94,
+        "B0_raw_C95": 1,
+        "B0_raw_tau": 0.838,
+        "n_models": 16
+      }
+    },
+    "conclusion": "failed",
+    "completed_at": "2026-05-15T01:02:58.779Z"
+  },
+  "timestamp": "2026-05-15T01:04:11.256288+00:00",
+  "trigger": "update_registry"
+}

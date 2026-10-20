@@ -1,0 +1,43 @@
+{
+  "exp_id": "exp_001_sft_d100_3B_v2",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T18:25:23.780Z",
+    "updated_at": "2026-05-14T23:38:52.189Z",
+    "spec": {
+      "server": "cqa1-21977",
+      "gpu_id": "cuda:3",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /root/contamcal-irt-calibration/exp001/train_sft.py --model Qwen/Qwen2.5-3B --dosage 100 --seed 42 --lr 5e-5 --lora-alpha 16 --lora-r 16 --gpu 3\"",
+      "model_name": "Qwen2.5-3B",
+      "seed": 42,
+      "data_path": "d100 (100% contamination)",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "420195",
+      "data_count": 4159,
+      "hyperparams": {
+        "lr": "5e-5",
+        "lora_alpha": 16,
+        "lora_r": 16
+      }
+    },
+    "hypothesis": "3B d100 SFT v2 with D020 conservative params (lr=5e-5, alpha=16, r=16) to prevent CoT catastrophic forgetting. seed=42.",
+    "conclusion": "success",
+    "metrics": {
+      "steps": "4159/4159",
+      "status": "training_complete",
+      "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter",
+      "d020_params": "lr=5e-5, alpha=16, r=16"
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Qwen2.5-3B_d100_s42/lora_adapter",
+    "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_d100_3B_v2.log",
+    "completed_at": "2026-05-14T23:38:52.189Z"
+  },
+  "timestamp": "2026-05-14T23:38:52.370867+00:00",
+  "trigger": "update_registry"
+}

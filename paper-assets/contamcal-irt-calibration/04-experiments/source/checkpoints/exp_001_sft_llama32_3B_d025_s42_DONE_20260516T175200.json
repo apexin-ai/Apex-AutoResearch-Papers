@@ -1,0 +1,59 @@
+{
+  "exp_id": "exp_001_sft_llama32_3B_d025_s42",
+  "project": "contamcal-irt-calibration",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T15:07:47.045Z",
+    "updated_at": "2026-05-16T17:51:59.647Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contamcal-irt-calibration && CUDA_VISIBLE_DEVICES=3 python exp001/train_sft.py --model-name /root/autodl-tmp/models/LLM-Research/Llama-3___2-3B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42 --seed 42 --batch-size 2 --grad-accum 8 --lr 5e-5 --gradient-checkpointing --merge --gpu 0\"",
+      "server": "cqa1-21977",
+      "gpu": [
+        "cuda:3"
+      ],
+      "pid": "801761",
+      "log_path": "~/runs/contamcal-irt-calibration/exp_001_sft_llama32_3B_d025_s42.log",
+      "submitted_at": "2026-05-16T15:07:46.476Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl",
+      "data_count": 54133,
+      "model_name": "Llama-3.2-3B",
+      "seed": 42,
+      "wall_clock_seconds": 9853.2,
+      "gpu_hours": 2.74
+    },
+    "reproduce": {
+      "finished_at": "2026-05-16T17:29:35.930Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-16T17:29:43.333042+00:00"
+        }
+      ]
+    },
+    "checkpoint_path": "/root/autodl-tmp/exp001/checkpoints/Llama-3.2-3B_d025_s42/merged",
+    "metrics": {
+      "train_loss": 1.5265,
+      "final_loss": 1.4542,
+      "initial_loss": 2.3854,
+      "mean_token_accuracy": 0.675,
+      "total_steps": 3384,
+      "train_runtime_seconds": 8349.26,
+      "gpu_hours": 2.32,
+      "num_tokens": 19710683,
+      "num_samples": 54133
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T17:51:59.647Z"
+  },
+  "timestamp": "2026-05-16T17:52:00.109391+00:00",
+  "trigger": "update_registry"
+}

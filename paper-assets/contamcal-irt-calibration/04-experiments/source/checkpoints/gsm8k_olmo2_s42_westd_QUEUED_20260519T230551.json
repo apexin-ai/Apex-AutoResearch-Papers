@@ -1,0 +1,16 @@
+{
+  "exp_id": "gsm8k_olmo2_s42_westd",
+  "project": "contamcal-irt-calibration",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T22:46:04.127Z",
+    "updated_at": "2026-05-19T23:05:50.713Z",
+    "hypothesis": "GSM8K eval for OLMo-2 s42: test if Benefit-saturation archetype (+3.21pp on MMLU) shows similar cross-benchmark transfer as Qwen-7B (+11.07pp on GSM8K), or if the transfer pattern differs by archetype.",
+    "parent": "gsm8k_qwen7b_s42_cqa1"
+  },
+  "timestamp": "2026-05-19T23:05:51.280872+00:00",
+  "trigger": "update_registry"
+}
