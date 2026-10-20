@@ -1305,6 +1305,19 @@
       }
     },
     {
+      "project": "spectral_collapse_ews--export-20260712",
+      "title": "Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff (July export snapshot)",
+      "catalog": "../research-snapshots/spectral_collapse_ews/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1133,
+        "messages": 162127,
+        "user_turns": 8454,
+        "tool_calls": 41549,
+        "unparsed_lines": 0,
+        "conversation": 1133
+      }
+    },
+    {
       "project": "struct_self_consist_ie",
       "title": "When Self-Consistency Fails for NER: Degeneracy, Signal Collapse, and the Correlation-Selection Gap",
       "catalog": "../paper-assets/struct_self_consist_ie/05-generation-trace/catalog.json",

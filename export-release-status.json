@@ -210,6 +210,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 1926
+        },
+        "spectral_collapse_ews": {
+          "status": "uploaded",
+          "project": "spectral_collapse_ews",
+          "collection": "spectral_collapse_ews--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "d673ff3f00b0755533940fba13665d216f1e8026cbc51849e29cb66fc510e8ec",
+          "indexed_members": 1138,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1133
         }
       },
       "status": "in_progress",
