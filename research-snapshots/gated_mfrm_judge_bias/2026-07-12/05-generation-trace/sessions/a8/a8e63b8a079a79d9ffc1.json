@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a8e63b8a079a79d9ffc1",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gated_mfrm_judge_bias ## 运行环境 - 服务器名: rtx6000-4x - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "c08896b4-80b3-4695-a97d-08d59dfb0593",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/c08896b4-80b3-4695-a97d-08d59dfb0593.jsonl",
+    "occurrence": 1,
+    "bytes": 470101,
+    "sha256": "dd1de49cfbe993bd737be48b98db08862fa88bed9c0b9cf9a7477e042858450e"
+  },
+  "statistics": {
+    "messages": 288,
+    "user_turns": 1,
+    "tool_calls": 93,
+    "roles": {
+      "record": 47,
+      "user": 1,
+      "assistant": 54,
+      "tool_call": 93,
+      "tool_result": 93
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a8e63b8a079a79d9ffc1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 286,
+      "chunks": [
+        {
+          "path": "a8e63b8a079a79d9ffc1-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "a8e63b8a079a79d9ffc1-part-0002.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gated-mfrm-judge-bias-rtx6000-4x-ssh-root-ssh-execute-submit-t-copy-43.md"
+}

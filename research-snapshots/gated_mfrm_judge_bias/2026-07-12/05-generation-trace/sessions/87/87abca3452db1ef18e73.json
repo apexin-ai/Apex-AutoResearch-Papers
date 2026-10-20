@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "87abca3452db1ef18e73",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 项目：gated_mfrm_judge_bias Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/doc",
+  "task_key": "300c14c7-dc55-440c-87d7-04748bb5962b",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/300c14c7-dc55-440c-87d7-04748bb5962b.jsonl",
+    "occurrence": 1,
+    "bytes": 674311,
+    "sha256": "33ba8be8aaccaba56386e39f6bfb8135f505a4ed3b08873da8642065ca1dc37a"
+  },
+  "statistics": {
+    "messages": 193,
+    "user_turns": 1,
+    "tool_calls": 52,
+    "roles": {
+      "record": 49,
+      "user": 1,
+      "assistant": 39,
+      "tool_call": 52,
+      "tool_result": 52
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "87abca3452db1ef18e73-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "87abca3452db1ef18e73-part-0001.json",
+          "message_count": 136
+        },
+        {
+          "path": "87abca3452db1ef18e73-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-gated-mfrm-judge-bias-venue-emnlp-2026-home-ubuntu-agent-ml-research-prod43-pr.md"
+}

@@ -1,0 +1,123 @@
+experiments:
+  # === P0: Must-run for headline results ===
+
+  - id: exp-001
+    name: multi_judge_data_collection
+    registry_id: exp-001
+    claim: 3
+    description: "Collect multi-judge evaluation data on MT-Bench and Arena-Hard using 8+ judges: GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Qwen3-235B-A22B, Qwen3.6-27B, Llama 4 Maverick, + 1 additional. Evaluate 20+ target models. Position swap for pairwise."
+    priority: P0
+    gpu_budget_hours: 130
+    deps: []
+    notes: "Open-source judges via vLLM on RTX 6000. Proprietary judges via API (~$900 budget). Position swap doubles evaluation count. MUST also collect judge response generations (--generate-judge-responses) for UDA baseline compatibility."
+
+  - id: exp-002
+    name: item_exposure_estimation
+    claim: 2
+    description: "Estimate per-item exposure e_i via three-source pipeline: (1) Primary: item-level performance gap between original items and GPT-5.5/Claude-rephrased reference variants, averaged across reference models, with spline difficulty correction (ConStat-inspired). (2) Temporal: performance gap on pre-cutoff vs post-cutoff item variants where available. (3) LogProber: token logprob memorization scores for models with logprob API. Sources combined via weighted composite (weights tuned on validation split). ConStat per-model delta used as external validation of fitted c_n, not as e_i source."
+    priority: P0
+    gpu_budget_hours: 30
+    deps: [exp-001]
+    notes: "Main bottleneck: reference benchmark variant construction + quality validation. ConStat per-model delta validates G-MFRM c_n, not used for per-item e_i."
+
+  - id: exp-003
+    name: gmfrm_real_data_fit
+    claim: "1,2,3"
+    description: "Fit G-MFRM three-stage pipeline on real data from exp-001/002. Stage 1: MFRM (θ,b,d). Stage 2: e_i from exp-002. Stage 3: Joint gated model. Compare fair scores θ̂ with Chatbot Arena human votes (Kendall-τ)."
+    priority: P0
+    gpu_budget_hours: 15
+    deps: [exp-001, exp-002]
+    notes: "NumPyro MCMC. Use MVP MCMC settings (warmup=2000, samples=4000, chains=4, NCP, target_accept=0.95). Include per-benchmark analysis: if any benchmark has contamination ≈ 0, verify G-MFRM degrades gracefully to MFRM level (real-data graceful degradation check)."
+
+  - id: exp-004
+    name: baseline_comparison
+    claim: 3
+    description: "Compare G-MFRM against 8 baselines on same data: (1) raw multi-judge average, (2) MFRM-only, (3) sequential pipeline, (4) CyclicJudge, (5) CyclicJudge + contaminated item discard, (6) DCR Factor, (7) UDA, (8) Preference Leakage calibration. Metrics: Kendall-τ, Spearman-ρ with Chatbot Arena. MUST include rank change analysis: show which specific models change rank, by how many positions, and top-k stability (k=5,10)."
+    priority: P0
+    gpu_budget_hours: 20
+    deps: [exp-003]
+    notes: "Baseline (5) is the strongest trivial alternative — addresses Reviewer Concern #1. CyclicJudge/UDA/DCR/PrefLeakage need public code check. Budget may not include debug time. Rank change analysis addresses Dream R2-W3. MUST include post-hoc power analysis: compute statistical power for Wilcoxon test to detect observed Δτ at α=0.05 with N models. If power < 0.80, discuss implications and consider increasing items/judges."
+
+  - id: exp-005
+    name: contamination_magnitude_calibration
+    claim: 1
+    description: "Estimate real contamination magnitude: compare fitted c_n from exp-003 with synthetic MVP assumptions. Determine if real contamination is closer to mvp_001 (c~0.5, weak) or mvp_002 (c~1.5, strong). Critical for claim strength."
+    priority: P0
+    gpu_budget_hours: 5
+    deps: [exp-003]
+    notes: "Reviewer flagged: if real c ≈ mvp_001 level, paper impact weakens. This experiment determines claim calibration."
+
+  # === P1: Important for robustness ===
+
+  - id: exp-006
+    name: judge_count_sensitivity
+    claim: 2
+    description: "Sensitivity analysis: vary number of judges (2, 4, 6, 8+) and measure G-MFRM performance degradation. At what minimum judge count does G-MFRM still outperform sequential? Include leave-one-judge-out residual diagnostic: check if removing a judge that shares model family with targets systematically changes residuals (preference leakage detection)."
+    priority: P1
+    gpu_budget_hours: 10
+    deps: [exp-003]
+
+  - id: exp-007
+    name: exposure_indicator_ablation
+    claim: 2
+    description: "Ablation: contribution of each exposure indicator (ConStat delta, temporal signal, LogProber Safe Score) to e_i estimation quality. Leave-one-out analysis."
+    priority: P1
+    gpu_budget_hours: 10
+    deps: [exp-002, exp-003]
+
+  - id: exp-008
+    name: facet_fit_diagnostics
+    claim: 2
+    description: "Measurement quality validation: report infit/outfit MNSQ for all facets (θ, b, d, c). Flag misfitting elements. Compare Stage 1 person-fit (lz, EMRi) vs Stage 3 c_n as construct coherence validation. MUST also report: divergent transition count, posterior predictive check, trace plots for key parameters."
+    priority: P1
+    gpu_budget_hours: 5
+    deps: [exp-003]
+
+  - id: exp-009
+    name: confounding_formal_observation
+    registry_id: exp-009
+    claim: 1
+    description: "Formal bias analysis: derive first-order bias approximation for sequential estimator under d_j/c_n·e_i non-orthogonality. Validate via Monte Carlo simulation across realistic parameter ranges. For paper Section 2. Frame as 'Observation' (standard OVB from Angrist & Pischke 2009), not 'Proposition'. MUST include synthetic c_n point-estimate validation: generate data with known ground-truth c_n, fit G-MFRM, report per-model c_n RMSE and 95% credible interval coverage probability."
+    priority: P1
+    gpu_budget_hours: 10
+    deps: []
+    notes: "Can run in parallel with data collection. Extends MVP synthetic analysis. Downgraded from 'Proposition' to 'Observation' per Dream review. Synthetic c_n validation addresses Dream R1-N3."
+
+  - id: exp-012
+    name: error_propagation_sensitivity
+    registry_id: exp-012
+    claim: 2
+    description: "Sensitivity analysis for staged estimation: inject Gaussian noise into e_i estimates at σ=0.1,0.2,0.5 before Stage 3 fitting. Measure θ̂ RMSE degradation and c_n recovery accuracy. Shows three-stage pipeline is robust to e_i estimation error. Use synthetic data with known ground truth."
+    priority: P1
+    gpu_budget_hours: 5
+    deps: []
+    notes: "Addresses Dream R2-W5 and R1-N1. Can run on MVP codebase with modifications. Critical for defending staged estimation design choice."
+
+  # === P2: Nice-to-have ===
+
+  - id: exp-010
+    name: wildbench_replication
+    claim: 3
+    description: "Replicate G-MFRM pipeline on WildBench as third benchmark. Cross-benchmark generalization."
+    priority: P2
+    gpu_budget_hours: 40
+    deps: [exp-003]
+
+  - id: exp-011
+    name: adversarial_robustness
+    claim: 2
+    description: "Test G-MFRM robustness against adversarial contamination following Wang et al. (ICLR 2026) fragility findings."
+    priority: P2
+    gpu_budget_hours: 15
+    deps: [exp-003]
+
+summary:
+  total_experiments: 12
+  p0_count: 5
+  p1_count: 5
+  p2_count: 2
+  total_gpu_hours: 295
+  p0_gpu_hours: 200
+  api_budget: "$900 (proprietary judge APIs)"
+  critical_path: "exp-001 → exp-002 → exp-003 → exp-004/005"
+  dream_driven_additions: "exp-012 (error propagation sensitivity), expanded exp-009 (c_n validation + observation framing), expanded exp-004 (rank change analysis), expanded exp-008 (convergence diagnostics)"

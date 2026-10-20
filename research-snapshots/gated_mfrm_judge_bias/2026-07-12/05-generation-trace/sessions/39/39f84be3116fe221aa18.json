@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "39f84be3116fe221aa18",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gated_mfrm_judge_bias ## 运行环境 - 服务器名: rtx6000-4x - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "0475efe8-5889-4724-9d1b-90b7a625bdcf",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/0475efe8-5889-4724-9d1b-90b7a625bdcf.jsonl",
+    "occurrence": 1,
+    "bytes": 1439329,
+    "sha256": "a76c6d288f1c1021c2abab7d8301a78f7615e4bdf5f89df04714b647512c7524"
+  },
+  "statistics": {
+    "messages": 765,
+    "user_turns": 1,
+    "tool_calls": 267,
+    "roles": {
+      "record": 116,
+      "user": 1,
+      "assistant": 114,
+      "tool_call": 267,
+      "tool_result": 267
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "39f84be3116fe221aa18-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 763,
+      "chunks": [
+        {
+          "path": "39f84be3116fe221aa18-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "39f84be3116fe221aa18-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "39f84be3116fe221aa18-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "39f84be3116fe221aa18-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "39f84be3116fe221aa18-part-0005.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gated-mfrm-judge-bias-rtx6000-4x-ssh-root-ssh-execute-submit-t-copy-100.md"
+}

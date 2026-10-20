@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "358234b591d06f1b90a2",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 eco_alpha_beta_diversity — 语义级 MVP (mvp_002)，kill/go 最终判断。词汇级 FAIL（alpha↑ 被文本长度混淆），但 q=2 beta 信号一致、Ba",
+  "task_key": "53e6c9a7-d2f2-4a5a-9830-f61eaf7af0dd",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/53e6c9a7-d2f2-4a5a-9830-f61eaf7af0dd.jsonl",
+    "occurrence": 1,
+    "bytes": 1047767,
+    "sha256": "bdf3f071c567e567ba069584ca464142eee6e9d964913be4faaaadab4c95834a"
+  },
+  "statistics": {
+    "messages": 383,
+    "user_turns": 1,
+    "tool_calls": 108,
+    "roles": {
+      "record": 69,
+      "user": 1,
+      "assistant": 97,
+      "tool_call": 108,
+      "tool_result": 108
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "358234b591d06f1b90a2-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 381,
+      "chunks": [
+        {
+          "path": "358234b591d06f1b90a2-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "358234b591d06f1b90a2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "358234b591d06f1b90a2-part-0003.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-eco-alpha-beta-diversity-mvp-mvp-002-kill-go-fail-alpha-q-2-beta.md"
+}

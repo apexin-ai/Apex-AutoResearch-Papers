@@ -1,0 +1,2561 @@
+# Research conversation: <project_context> # 项目: gated_mfrm_judge_bias ## 运行环境 - 服务器名: rtx6000-4x - SSH 账户: root（调用 ssh_execute / submit_training
+
+**Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 48
+- **Recorded user turns:** 5
+- **Tool calls:** 5
+- **Original source:** `logs/chats/exported-trajectories/account-3/4909b84a-fc3b-4b99-94f5-cd6cd3d00579.jsonl`
+- **Structured JSON:** [`14f85b52f5307a27340a.json`](../../sessions/14/14f85b52f5307a27340a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T20:52:43.288Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T20:52:43.288Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "content": "&lt;project_context>\n# 项目: gated_mfrm_judge_bias\n\n## 运行环境\n- 服务器名: rtx6000-4x\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh rtx6000-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/gated_mfrm_judge_bias\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：Baseline 代码可用性排查\n\n用 WebSearch 调查以下 4 个 baseline 方法的公开代码实现。\n\n### 1. CyclicJudge\n搜索：\n- \"CyclicJudge github\"\n- \"CyclicJudge mitigating judge bias LLM evaluation\"\n- 在论文 arXiv 页面找 code 链接\n\n确认：是否有开源 repo？License？代码质量？适配难度（集成到我们的评测流程中）？\n\n### 2. UDA (Unsupervised Debiasing Alignment)\n搜索：\n- \"UDA unsupervised debiasing alignment LLM judge github\"\n- \"UDA AAAI 2026 LLM judge\"\n- 论文标题搜索找 arXiv/GitHub 链接\n\n确认同上。\n\n### 3. DCR (Data Contamination Ratio)\n搜索：\n- \"DCR data contamination ratio LLM github\"\n- \"DCR quantifying data contamination EMNLP 2025\"\n- \"DCR factor benchmark contamination\"\n\n确认同上。\n\n### 4. Preference Leakage\n搜索：\n- \"preference leakage LLM judge github\"\n- \"preference leakage contamination ICLR 2026\"\n\n确认同上。\n\n### 输出格式\n\n对每个 baseline 汇报：\n```\n### {Baseline 名}\n- 公开代码: 有/无\n- Repo URL: (如果有)\n- License: MIT/Apache/其他/未标注\n- 代码质量: 好（可直接用）/ 中（需适配）/ 差（仅参考）\n- 适配难度: 简单/中等/困难\n- 如无代码，重实现复杂度: 简单/中等/困难 + 原因\n- 备注: 其他发现\n```"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T20:52:43.291Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T20:52:43.291Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+## Round 1
+
+24 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T20:52:43.325Z_
+
+&lt;project_context>
+# 项目: gated_mfrm_judge_bias
+
+## 运行环境
+- 服务器名: rtx6000-4x
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh rtx6000-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/gated_mfrm_judge_bias
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：Baseline 代码可用性排查
+
+用 WebSearch 调查以下 4 个 baseline 方法的公开代码实现。
+
+### 1. CyclicJudge
+搜索：
+- "CyclicJudge github"
+- "CyclicJudge mitigating judge bias LLM evaluation"
+- 在论文 arXiv 页面找 code 链接
+
+确认：是否有开源 repo？License？代码质量？适配难度（集成到我们的评测流程中）？
+
+### 2. UDA (Unsupervised Debiasing Alignment)
+搜索：
+- "UDA unsupervised debiasing alignment LLM judge github"
+- "UDA AAAI 2026 LLM judge"
+- 论文标题搜索找 arXiv/GitHub 链接
+
+确认同上。
+
+### 3. DCR (Data Contamination Ratio)
+搜索：
+- "DCR data contamination ratio LLM github"
+- "DCR quantifying data contamination EMNLP 2025"
+- "DCR factor benchmark contamination"
+
+确认同上。
+
+### 4. Preference Leakage
+搜索：
+- "preference leakage LLM judge github"
+- "preference leakage contamination ICLR 2026"
+
+确认同上。
+
+### 输出格式
+
+对每个 baseline 汇报：
+```
+### {Baseline 名}
+- 公开代码: 有/无
+- Repo URL: (如果有)
+- License: MIT/Apache/其他/未标注
+- 代码质量: 好（可直接用）/ 中（需适配）/ 差（仅参考）
+- 适配难度: 简单/中等/困难
+- 如无代码，重实现复杂度: 简单/中等/困难 + 原因
+- 备注: 其他发现
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "2562d93a-d61d-47fc-b38d-4b566667fe21",
+  "type": "user",
+  "uuid": "5f765f34-78f6-42d5-b809-f76bde8c4fa6",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T20:52:43.324Z_
+
+```json
+{
+  "parentUuid": "5f765f34-78f6-42d5-b809-f76bde8c4fa6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a35e4fe6-2160-4563-ac23-725b54d0edcf",
+  "timestamp": "2026-05-21T20:52:43.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T20:52:43.324Z_
+
+```json
+{
+  "parentUuid": "a35e4fe6-2160-4563-ac23-725b54d0edcf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "09e63075-4edc-4b1b-a3f1-d0c84ef565c5",
+  "timestamp": "2026-05-21T20:52:43.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-21T20:52:43.324Z_
+
+```json
+{
+  "parentUuid": "09e63075-4edc-4b1b-a3f1-d0c84ef565c5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0149d5bd-1dfa-46c9-b8c9-466fda28124f",
+  "timestamp": "2026-05-21T20:52:43.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-21T20:52:43.324Z_
+
+```json
+{
+  "parentUuid": "0149d5bd-1dfa-46c9-b8c9-466fda28124f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "affcfa86-ca70-4693-816a-8edd71d46119",
+  "timestamp": "2026-05-21T20:52:43.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Investigate baseline method code availability",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-21T20:52:47.190Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to search for 4 baseline methods and check their open-source code availability. Let me use WebSearch to investigate each one. I'll launch parallel agents to search for all 4 baselines simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "affcfa86-ca70-4693-816a-8edd71d46119",
+  "isSidechain": false,
+  "requestId": "req_011CbGNpxuKroeHrTUkyqsUX",
+  "type": "assistant",
+  "uuid": "0be2a220-4db7-4b37-9850-8da466141841",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMiAovjS9xY2KHFjkEea9M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12428,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12428,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12428,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12428
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-21T20:52:47.739Z_
+
+并行搜索 4 个 baseline 的代码可用性。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0be2a220-4db7-4b37-9850-8da466141841",
+  "isSidechain": false,
+  "requestId": "req_011CbGNpxuKroeHrTUkyqsUX",
+  "type": "assistant",
+  "uuid": "57f9054f-e9f5-4c89-921b-a187990907e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMiAovjS9xY2KHFjkEea9M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12428,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12428,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12428,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12428
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T20:52:47.901Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RKm72Ej8Hj2rjMWEbvqnZJ`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "57f9054f-e9f5-4c89-921b-a187990907e3",
+  "isSidechain": false,
+  "requestId": "req_011CbGNpxuKroeHrTUkyqsUX",
+  "type": "assistant",
+  "uuid": "76342d62-49fe-426e-9ab0-32c46700a421",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EMiAovjS9xY2KHFjkEea9M",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12428,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 158,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12428,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 158,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12428,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12428
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T20:52:47.907Z_
+
+<details><summary>↩ Tool result · `toolu_01RKm72Ej8Hj2rjMWEbvqnZJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76342d62-49fe-426e-9ab0-32c46700a421",
+  "isSidechain": false,
+  "promptId": "2562d93a-d61d-47fc-b38d-4b566667fe21",
+  "type": "user",
+  "uuid": "70316a8a-9745-4a14-8caa-1e982a41a972",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  },
+  "sourceToolAssistantUUID": "76342d62-49fe-426e-9ab0-32c46700a421",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-21T20:52:51.198Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me launch 4 parallel agents to search for each baseline method.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70316a8a-9745-4a14-8caa-1e982a41a972",
+  "isSidechain": false,
+  "requestId": "req_011CbGNqJp9UypvWLm5pfJ2N",
+  "type": "assistant",
+  "uuid": "48419939-78b5-4aba-8c79-f8e1c4f1111a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014NULGuQroKAW5kqAnqjWop",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 23875,
+      "output_tokens": 1214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1214,
+          "cache_read_input_tokens": 23875,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T20:52:55.551Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01WnYnJZ7Er245oYGkjBqMUk`</summary>
+
+```json
+{
+  "description": "Search CyclicJudge code",
+  "prompt": "Search for the open-source code availability of \"CyclicJudge\", a method for mitigating judge bias in LLM evaluation. \n\nPerform these web searches and report findings:\n1. Search \"CyclicJudge github\"\n2. Search \"CyclicJudge mitigating judge bias LLM evaluation\"\n3. Search \"CyclicJudge LLM judge bias code\"\n\nFor each search, report the top results. I need to know:\n- Is there an open-source repo? If so, what's the URL?\n- What license does it use?\n- How is the code quality (well-documented, clean, etc.)?\n- How complex would it be to integrate into an evaluation pipeline?\n- If no code exists, how complex would reimplementation be based on the paper?\n\nBe thorough - check arxiv pages for code links too. Report all URLs you find.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48419939-78b5-4aba-8c79-f8e1c4f1111a",
+  "isSidechain": false,
+  "requestId": "req_011CbGNqJp9UypvWLm5pfJ2N",
+  "type": "assistant",
+  "uuid": "7dd44b53-af34-42e5-9bf1-a9079812040e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014NULGuQroKAW5kqAnqjWop",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 23875,
+      "output_tokens": 1214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1214,
+          "cache_read_input_tokens": 23875,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T20:52:55.559Z_
+
+<details><summary>↩ Tool result · `toolu_01WnYnJZ7Er245oYGkjBqMUk`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a8f134abb4d185e98 (internal ID - do not mention to user. Use SendMessage with to: 'a8f134abb4d185e98' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a8f134abb4d185e98.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7dd44b53-af34-42e5-9bf1-a9079812040e",
+  "isSidechain": false,
+  "promptId": "2562d93a-d61d-47fc-b38d-4b566667fe21",
+  "type": "user",
+  "uuid": "43d96291-6dd0-47d7-ade4-de0fb4a9a960",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a8f134abb4d185e98",
+    "description": "Search CyclicJudge code",
+    "prompt": "Search for the open-source code availability of \"CyclicJudge\", a method for mitigating judge bias in LLM evaluation. \n\nPerform these web searches and report findings:\n1. Search \"CyclicJudge github\"\n2. Search \"CyclicJudge mitigating judge bias LLM evaluation\"\n3. Search \"CyclicJudge LLM judge bias code\"\n\nFor each search, report the top results. I need to know:\n- Is there an open-source repo? If so, what's the URL?\n- What license does it use?\n- How is the code quality (well-documented, clean, etc.)?\n- How complex would it be to integrate into an evaluation pipeline?\n- If no code exists, how complex would reimplementation be based on the paper?\n\nBe thorough - check arxiv pages for code links too. Report all URLs you find.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a8f134abb4d185e98.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "7dd44b53-af34-42e5-9bf1-a9079812040e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T20:53:02.734Z_
+
+<details><summary>↩ Tool result · `toolu_01CR87MEVYZjP2ygj1ioxuKc`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a66baf991dc2e0c2b (internal ID - do not mention to user. Use SendMessage with to: 'a66baf991dc2e0c2b' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a66baf991dc2e0c2b.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3f12a65a-6a8a-401b-88b4-659b8bf0544f",
+  "isSidechain": false,
+  "promptId": "2562d93a-d61d-47fc-b38d-4b566667fe21",
+  "type": "user",
+  "uuid": "0cb00ae3-2650-4cba-bad9-2849f4c56204",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a66baf991dc2e0c2b",
+    "description": "Search Preference Leakage code",
+    "prompt": "Search for the open-source code availability of \"Preference Leakage\", a method related to LLM judge contamination.\n\nPerform these web searches and report findings:\n1. Search \"preference leakage LLM judge github\"\n2. Search \"preference leakage contamination ICLR 2026\"\n3. Search \"preference leakage benchmark contamination LLM code\"\n4. Search \"preference leakage evaluation bias open source\"\n\nFor each search, report the top results. I need to know:\n- Is there an open-source repo? If so, what's the URL?\n- What license does it use?\n- How is the code quality (well-documented, clean, etc.)?\n- How complex would it be to integrate into an evaluation pipeline?\n- If no code exists, how complex would reimplementation be based on the paper?\n\nBe thorough - check arxiv pages for code links too. Report all URLs you find.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a66baf991dc2e0c2b.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "3f12a65a-6a8a-401b-88b4-659b8bf0544f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T20:52:58.022Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01Pd4j6FTrtEfnTSpwjbjbUt`</summary>
+
+```json
+{
+  "description": "Search UDA debiasing code",
+  "prompt": "Search for the open-source code availability of \"UDA\" (Unsupervised Debiasing Alignment), a method for debiasing LLM judges.\n\nPerform these web searches and report findings:\n1. Search \"UDA unsupervised debiasing alignment LLM judge github\"\n2. Search \"UDA AAAI 2026 LLM judge\"\n3. Search \"unsupervised debiasing alignment LLM evaluation code\"\n\nFor each search, report the top results. I need to know:\n- Is there an open-source repo? If so, what's the URL?\n- What license does it use?\n- How is the code quality (well-documented, clean, etc.)?\n- How complex would it be to integrate into an evaluation pipeline?\n- If no code exists, how complex would reimplementation be based on the paper?\n\nBe thorough - check arxiv pages for code links too. Report all URLs you find.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43d96291-6dd0-47d7-ade4-de0fb4a9a960",
+  "isSidechain": false,
+  "requestId": "req_011CbGNqJp9UypvWLm5pfJ2N",
+  "type": "assistant",
+  "uuid": "8bfaa6b1-d720-4fc6-b65c-10abec35f86e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014NULGuQroKAW5kqAnqjWop",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 23875,
+      "output_tokens": 1214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1214,
+          "cache_read_input_tokens": 23875,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T20:52:58.033Z_
+
+<details><summary>↩ Tool result · `toolu_01Pd4j6FTrtEfnTSpwjbjbUt`</summary>
+
+```text
+Async agent launched successfully.
+agentId: af7bbaae6de608256 (internal ID - do not mention to user. Use SendMessage with to: 'af7bbaae6de608256' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/af7bbaae6de608256.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8bfaa6b1-d720-4fc6-b65c-10abec35f86e",
+  "isSidechain": false,
+  "promptId": "2562d93a-d61d-47fc-b38d-4b566667fe21",
+  "type": "user",
+  "uuid": "763d1dd5-c784-4a61-a9a3-ab51855f4d76",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "af7bbaae6de608256",
+    "description": "Search UDA debiasing code",
+    "prompt": "Search for the open-source code availability of \"UDA\" (Unsupervised Debiasing Alignment), a method for debiasing LLM judges.\n\nPerform these web searches and report findings:\n1. Search \"UDA unsupervised debiasing alignment LLM judge github\"\n2. Search \"UDA AAAI 2026 LLM judge\"\n3. Search \"unsupervised debiasing alignment LLM evaluation code\"\n\nFor each search, report the top results. I need to know:\n- Is there an open-source repo? If so, what's the URL?\n- What license does it use?\n- How is the code quality (well-documented, clean, etc.)?\n- How complex would it be to integrate into an evaluation pipeline?\n- If no code exists, how complex would reimplementation be based on the paper?\n\nBe thorough - check arxiv pages for code links too. Report all URLs you find.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/af7bbaae6de608256.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "8bfaa6b1-d720-4fc6-b65c-10abec35f86e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-21T20:53:00.820Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01FRenEmmwyaHPqUh2GW3rgH`</summary>
+
+```json
+{
+  "description": "Search DCR contamination code",
+  "prompt": "Search for the open-source code availability of \"DCR\" (Data Contamination Ratio), a method for quantifying data contamination in LLM benchmarks.\n\nPerform these web searches and report findings:\n1. Search \"DCR data contamination ratio LLM github\"\n2. Search \"DCR quantifying data contamination EMNLP 2025\"\n3. Search \"DCR factor benchmark contamination code\"\n4. Search \"data contamination ratio benchmark LLM evaluation github\"\n\nFor each search, report the top results. I need to know:\n- Is there an open-source repo? If so, what's the URL?\n- What license does it use?\n- How is the code quality (well-documented, clean, etc.)?\n- How complex would it be to integrate into an evaluation pipeline?\n- If no code exists, how complex would reimplementation be based on the paper?\n\nBe thorough - check arxiv pages for code links too. Report all URLs you find.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "763d1dd5-c784-4a61-a9a3-ab51855f4d76",
+  "isSidechain": false,
+  "requestId": "req_011CbGNqJp9UypvWLm5pfJ2N",
+  "type": "assistant",
+  "uuid": "4f2d8581-37d6-4f98-a1d8-235dd3b1658b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014NULGuQroKAW5kqAnqjWop",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 23875,
+      "output_tokens": 1214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1214,
+          "cache_read_input_tokens": 23875,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-21T20:53:00.825Z_
+
+<details><summary>↩ Tool result · `toolu_01FRenEmmwyaHPqUh2GW3rgH`</summary>
+
+```text
+Async agent launched successfully.
+agentId: a187aff206deccdee (internal ID - do not mention to user. Use SendMessage with to: 'a187aff206deccdee' to continue this agent.)
+The agent is working in the background. You will be notified automatically when it completes.
+Do not duplicate this agent's work — avoid working with the same files or topics it is using. Work on non-overlapping tasks, or briefly tell the user what you launched and end your response.
+output_file: /tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a187aff206deccdee.output
+Do NOT Read or tail this file via the shell tool — it is the full sub-agent JSONL transcript and reading it will overflow your context. If the user asks for progress, say the agent is still running; you'll get a completion notification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f2d8581-37d6-4f98-a1d8-235dd3b1658b",
+  "isSidechain": false,
+  "promptId": "2562d93a-d61d-47fc-b38d-4b566667fe21",
+  "type": "user",
+  "uuid": "8fb042e4-f298-4c54-92e2-8279fe6d4edd",
+  "toolUseResult": {
+    "isAsync": true,
+    "status": "async_launched",
+    "agentId": "a187aff206deccdee",
+    "description": "Search DCR contamination code",
+    "prompt": "Search for the open-source code availability of \"DCR\" (Data Contamination Ratio), a method for quantifying data contamination in LLM benchmarks.\n\nPerform these web searches and report findings:\n1. Search \"DCR data contamination ratio LLM github\"\n2. Search \"DCR quantifying data contamination EMNLP 2025\"\n3. Search \"DCR factor benchmark contamination code\"\n4. Search \"data contamination ratio benchmark LLM evaluation github\"\n\nFor each search, report the top results. I need to know:\n- Is there an open-source repo? If so, what's the URL?\n- What license does it use?\n- How is the code quality (well-documented, clean, etc.)?\n- How complex would it be to integrate into an evaluation pipeline?\n- If no code exists, how complex would reimplementation be based on the paper?\n\nBe thorough - check arxiv pages for code links too. Report all URLs you find.",
+    "outputFile": "/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a187aff206deccdee.output",
+    "canReadOutputFile": true
+  },
+  "sourceToolAssistantUUID": "4f2d8581-37d6-4f98-a1d8-235dd3b1658b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-21T20:53:02.729Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01CR87MEVYZjP2ygj1ioxuKc`</summary>
+
+```json
+{
+  "description": "Search Preference Leakage code",
+  "prompt": "Search for the open-source code availability of \"Preference Leakage\", a method related to LLM judge contamination.\n\nPerform these web searches and report findings:\n1. Search \"preference leakage LLM judge github\"\n2. Search \"preference leakage contamination ICLR 2026\"\n3. Search \"preference leakage benchmark contamination LLM code\"\n4. Search \"preference leakage evaluation bias open source\"\n\nFor each search, report the top results. I need to know:\n- Is there an open-source repo? If so, what's the URL?\n- What license does it use?\n- How is the code quality (well-documented, clean, etc.)?\n- How complex would it be to integrate into an evaluation pipeline?\n- If no code exists, how complex would reimplementation be based on the paper?\n\nBe thorough - check arxiv pages for code links too. Report all URLs you find.",
+  "run_in_background": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fb042e4-f298-4c54-92e2-8279fe6d4edd",
+  "isSidechain": false,
+  "requestId": "req_011CbGNqJp9UypvWLm5pfJ2N",
+  "type": "assistant",
+  "uuid": "3f12a65a-6a8a-401b-88b4-659b8bf0544f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014NULGuQroKAW5kqAnqjWop",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 686,
+      "cache_read_input_tokens": 23875,
+      "output_tokens": 1214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 686,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1214,
+          "cache_read_input_tokens": 23875,
+          "cache_creation_input_tokens": 686,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 686
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "0cb00ae3-2650-4cba-bad9-2849f4c56204",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Investigate baseline method code availability",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-21T20:53:06.080Z_
+
+4 个搜索 agent 已并行启动，分别调查 CyclicJudge、UDA、DCR、Preference Leakage 的代码可用性。等待结果返回后汇总。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0cb00ae3-2650-4cba-bad9-2849f4c56204",
+  "isSidechain": false,
+  "requestId": "req_011CbGNrPsmh8S8dpdtDWBAP",
+  "type": "assistant",
+  "uuid": "45fdae73-f3f3-4bc4-9fc4-883ddbf771d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BDS6FdyfPgkSgmjrNFx6Wr",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2314,
+      "cache_read_input_tokens": 24561,
+      "output_tokens": 61,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2314,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 61,
+          "cache_read_input_tokens": 24561,
+          "cache_creation_input_tokens": 2314,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2314
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 25 · 2026-05-21T20:54:29.187Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T20:54:29.187Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "content": "&lt;task-notification>\n&lt;task-id>a187aff206deccdee&lt;/task-id>\n&lt;tool-use-id>toolu_01FRenEmmwyaHPqUh2GW3rgH&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a187aff206deccdee.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search DCR contamination code\" completed&lt;/summary>\n&lt;result>Now I have comprehensive information. Here is the full report:\n\n---\n\n## DCR (Data Contamination Ratio/Risk) -- Open-Source Code Availability Report\n\n### Repository Found\n\n**Yes, there is an official open-source repository.**\n\n- **URL**: https://github.com/chengxuphd/dcr\n- **License**: Apache-2.0 (permissive, allows commercial use with attribution)\n- **Paper**: \"DCR: Quantifying Data Contamination in LLMs Evaluation\" (EMNLP 2025 Main)\n- **arXiv**: https://arxiv.org/abs/2507.11405\n- **ACL Anthology**: https://aclanthology.org/2025.emnlp-main.1173/\n- **Authors**: Cheng Xu, Nan Yan, Shuhao Guan, Changhong Jin, Yuke Mei, Yibing Guo, M-Tahar Kechadi\n\n### Repository Structure &amp; Code Quality\n\n**Structure**:\n```\ndcr/\n├── src/          (core/ and utils/ subdirectories)\n├── data/         (3 CSV files: sst2, liar2, gsm8k)\n├── config/       (settings.py)\n├── output/       (result CSVs)\n├── main.py\n├── example.py\n├── requirements.txt\n├── LICENSE\n└── README.md\n```\n\n**Code quality assessment**:\n- Well-organized modular structure (core/utils separation)\n- Configuration-driven design\n- README includes installation instructions, CLI and Python API usage examples, and BibTeX citation\n- Includes benchmark data for 3 tasks (SST-2, LIAR2, GSM8K)\n- 100% Python\n- Only 4 commits total -- this is a minimal academic release, not a production-maintained project\n- Very low adoption: 1 star, 1 fork as of now\n\n**Dependencies**: `requirements.txt` provided; key dependencies include:\n- `skfuzzy` (scikit-fuzzy) for the fuzzy inference system\n- PyTorch + HuggingFace Transformers for LLM inference\n- Standard scientific Python stack\n\n### Technical Method Summary (for integration assessment)\n\nDCR detects contamination at four granular levels:\n\n| Level | What it detects | Metric |\n|-------|----------------|--------|\n| L1 (Semantic) | Semantically equivalent content in training data | Sim_sem(d,b) &gt;= theta_1 |\n| L2 (Information) | Benchmark metadata/label distributions leaked | Sim_info(d,i) &gt;= theta_2 |\n| L3 (Data) | Actual test samples (without labels) in training data | Sim_data(d,b) &gt;= theta_3 |\n| L4 (Label) | Test samples WITH correct labels memorized | Sim_data(d,b) &gt;= theta_4 AND label match |\n\nEach level produces a contamination score S1-S4 (0-1). These are fed through a **fuzzy inference system** with trapezoidal/triangular membership functions (Low/Medium/High) and predefined rules that prioritize higher-severity contamination. The output is a single **DCR Factor** (0-1) across five severity levels: Negligible, Minor, Moderate, Significant, Severe.\n\n**Final adjusted accuracy**: `Acc_adj = Acc * (1 - DCR_Factor)`\n\nValidated on 9 LLMs (0.5B-72B parameters), 3 benchmarks, with &lt;4% average error vs. uncontaminated baseline.\n\n### Integration Complexity Assessment\n\n**If using the existing code**: **Low-to-moderate complexity**.\n- The repo provides both CLI (`main.py`) and Python API (`example.py`) entry points\n- Clean modular structure makes it possible to call core functions directly\n- Main friction points: (1) you need to prepare your data in their expected CSV format, (2) the similarity thresholds (theta_1 through theta_4) need tuning for new benchmarks, (3) the fuzzy inference rules are hard-coded and may need adaptation\n- The code is academic-quality (functional but not production-hardened)\n\n**If reimplementing from scratch**: **Moderate complexity**.\n- The four-level contamination detection is conceptually straightforward (similarity computations with thresholds)\n- The fuzzy inference system is the most complex part but `skfuzzy` does the heavy lifting; the membership functions and rule base are described in the paper\n- The `Acc_adj = Acc * (1 - DCR_Factor)` formula is trivial\n- Main challenge would be reproducing the exact similarity metrics and threshold calibration\n- Estimated effort: 2-4 days for a competent ML engineer\n\n### Caveats\n\n- The repo is very new and minimally maintained (4 commits, 1 star)\n- No issues/PRs/discussions visible -- no community feedback yet\n- The paper's note \"DCR\" sometimes stands for \"Data Contamination Risk\" (not \"Ratio\") in the actual text -- naming is slightly inconsistent across the paper and repo\n- The approach requires access to (or proxy for) training data to compute similarity, which limits applicability to closed-source LLMs\n\n### All Relevant URLs\n\n- GitHub repo: https://github.com/chengxuphd/dcr\n- arXiv paper: https://arxiv.org/abs/2507.11405\n- arXiv HTML: https://arxiv.org/html/2507.11405v2\n- arXiv PDF: https://arxiv.org/pdf/2507.11405\n- ACL Anthology: https://aclanthology.org/2025.emnlp-main.1173/\n- ACL Anthology PDF: https://aclanthology.org/2025.emnlp-main.1173.pdf\n- skfuzzy dependency: https://github.com/scikit-fuzzy/scikit-fuzzy\n- Related resource list: https://github.com/lyy1994/awesome-data-contamination&lt;/result>\n&lt;usage>&lt;total_tokens>23787&lt;/total_tokens>&lt;tool_uses>13&lt;/tool_uses>&lt;duration_ms>88365&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 26 · 2026-05-21T20:54:29.241Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T20:54:29.241Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+## Round 2
+
+5 recorded events
+
+### User
+
+_source line 27 · 2026-05-21T20:54:29.249Z_
+
+&lt;task-notification>
+&lt;task-id>a187aff206deccdee&lt;/task-id>
+&lt;tool-use-id>toolu_01FRenEmmwyaHPqUh2GW3rgH&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a187aff206deccdee.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search DCR contamination code" completed&lt;/summary>
+&lt;result>Now I have comprehensive information. Here is the full report:
+
+---
+
+## DCR (Data Contamination Ratio/Risk) -- Open-Source Code Availability Report
+
+### Repository Found
+
+**Yes, there is an official open-source repository.**
+
+- **URL**: https://github.com/chengxuphd/dcr
+- **License**: Apache-2.0 (permissive, allows commercial use with attribution)
+- **Paper**: "DCR: Quantifying Data Contamination in LLMs Evaluation" (EMNLP 2025 Main)
+- **arXiv**: https://arxiv.org/abs/2507.11405
+- **ACL Anthology**: https://aclanthology.org/2025.emnlp-main.1173/
+- **Authors**: Cheng Xu, Nan Yan, Shuhao Guan, Changhong Jin, Yuke Mei, Yibing Guo, M-Tahar Kechadi
+
+### Repository Structure &amp; Code Quality
+
+**Structure**:
+```
+dcr/
+├── src/          (core/ and utils/ subdirectories)
+├── data/         (3 CSV files: sst2, liar2, gsm8k)
+├── config/       (settings.py)
+├── output/       (result CSVs)
+├── main.py
+├── example.py
+├── requirements.txt
+├── LICENSE
+└── README.md
+```
+
+**Code quality assessment**:
+- Well-organized modular structure (core/utils separation)
+- Configuration-driven design
+- README includes installation instructions, CLI and Python API usage examples, and BibTeX citation
+- Includes benchmark data for 3 tasks (SST-2, LIAR2, GSM8K)
+- 100% Python
+- Only 4 commits total -- this is a minimal academic release, not a production-maintained project
+- Very low adoption: 1 star, 1 fork as of now
+
+**Dependencies**: `requirements.txt` provided; key dependencies include:
+- `skfuzzy` (scikit-fuzzy) for the fuzzy inference system
+- PyTorch + HuggingFace Transformers for LLM inference
+- Standard scientific Python stack
+
+### Technical Method Summary (for integration assessment)
+
+DCR detects contamination at four granular levels:
+
+| Level | What it detects | Metric |
+|-------|----------------|--------|
+| L1 (Semantic) | Semantically equivalent content in training data | Sim_sem(d,b) &gt;= theta_1 |
+| L2 (Information) | Benchmark metadata/label distributions leaked | Sim_info(d,i) &gt;= theta_2 |
+| L3 (Data) | Actual test samples (without labels) in training data | Sim_data(d,b) &gt;= theta_3 |
+| L4 (Label) | Test samples WITH correct labels memorized | Sim_data(d,b) &gt;= theta_4 AND label match |
+
+Each level produces a contamination score S1-S4 (0-1). These are fed through a **fuzzy inference system** with trapezoidal/triangular membership functions (Low/Medium/High) and predefined rules that prioritize higher-severity contamination. The output is a single **DCR Factor** (0-1) across five severity levels: Negligible, Minor, Moderate, Significant, Severe.
+
+**Final adjusted accuracy**: `Acc_adj = Acc * (1 - DCR_Factor)`
+
+Validated on 9 LLMs (0.5B-72B parameters), 3 benchmarks, with &lt;4% average error vs. uncontaminated baseline.
+
+### Integration Complexity Assessment
+
+**If using the existing code**: **Low-to-moderate complexity**.
+- The repo provides both CLI (`main.py`) and Python API (`example.py`) entry points
+- Clean modular structure makes it possible to call core functions directly
+- Main friction points: (1) you need to prepare your data in their expected CSV format, (2) the similarity thresholds (theta_1 through theta_4) need tuning for new benchmarks, (3) the fuzzy inference rules are hard-coded and may need adaptation
+- The code is academic-quality (functional but not production-hardened)
+
+**If reimplementing from scratch**: **Moderate complexity**.
+- The four-level contamination detection is conceptually straightforward (similarity computations with thresholds)
+- The fuzzy inference system is the most complex part but `skfuzzy` does the heavy lifting; the membership functions and rule base are described in the paper
+- The `Acc_adj = Acc * (1 - DCR_Factor)` formula is trivial
+- Main challenge would be reproducing the exact similarity metrics and threshold calibration
+- Estimated effort: 2-4 days for a competent ML engineer
+
+### Caveats
+
+- The repo is very new and minimally maintained (4 commits, 1 star)
+- No issues/PRs/discussions visible -- no community feedback yet
+- The paper's note "DCR" sometimes stands for "Data Contamination Risk" (not "Ratio") in the actual text -- naming is slightly inconsistent across the paper and repo
+- The approach requires access to (or proxy for) training data to compute similarity, which limits applicability to closed-source LLMs
+
+### All Relevant URLs
+
+- GitHub repo: https://github.com/chengxuphd/dcr
+- arXiv paper: https://arxiv.org/abs/2507.11405
+- arXiv HTML: https://arxiv.org/html/2507.11405v2
+- arXiv PDF: https://arxiv.org/pdf/2507.11405
+- ACL Anthology: https://aclanthology.org/2025.emnlp-main.1173/
+- ACL Anthology PDF: https://aclanthology.org/2025.emnlp-main.1173.pdf
+- skfuzzy dependency: https://github.com/scikit-fuzzy/scikit-fuzzy
+- Related resource list: https://github.com/lyy1994/awesome-data-contamination&lt;/result>
+&lt;usage>&lt;total_tokens>23787&lt;/total_tokens>&lt;tool_uses>13&lt;/tool_uses>&lt;duration_ms>88365&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45fdae73-f3f3-4bc4-9fc4-883ddbf771d5",
+  "isSidechain": false,
+  "promptId": "f2c8db19-f076-4809-9bdc-4ac118f64dd9",
+  "type": "user",
+  "uuid": "690d7ed9-8673-4b8b-8da8-ce49dce3891f",
+  "permissionMode": "bypassPermissions",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28 · 2026-05-21T20:54:30.828Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T20:54:30.828Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "content": "&lt;task-notification>\n&lt;task-id>a8f134abb4d185e98&lt;/task-id>\n&lt;tool-use-id>toolu_01WnYnJZ7Er245oYGkjBqMUk&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a8f134abb4d185e98.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search CyclicJudge code\" completed&lt;/summary>\n&lt;result>Now I have comprehensive information. Here is the full report.\n\n---\n\n## CyclicJudge: Open-Source Code Availability Report\n\n### Paper Details\n\n- **Title:** CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation\n- **Authors:** Ziyi Zhu, Olivier Tieleman, Alexey Bukhtiyarov, Jinghong Chen\n- **Affiliations:** Slingshot AI, University of Cambridge\n- **arXiv:** [2603.01865](https://arxiv.org/abs/2603.01865) (submitted March 2, 2026; v3 May 4, 2026)\n- **PDF:** https://arxiv.org/pdf/2603.01865\n- **HTML:** https://arxiv.org/html/2603.01865\n\n### Search Results Summary\n\n**Search 1 — \"CyclicJudge github\":** No matching repository found. Results returned unrelated projects (cyclic-software, cyclictest, Minecraft mod, etc.).\n\n**Search 2 — \"CyclicJudge mitigating judge bias LLM evaluation\":** Found the arXiv paper (abs, pdf, html). No code links surfaced.\n\n**Search 3 — \"CyclicJudge LLM judge bias code\":** Same arXiv paper links. No code repositories.\n\nAdditional searches checked:\n- First author's GitHub profile ([github.com/ziyi-zhu](https://github.com/ziyi-zhu)): 35 repos, none related to CyclicJudge or LLM evaluation. Visible repos are about IoT, computer vision, and games.\n- Slingshot AI org ([github.com/slingshot-ai](https://github.com/slingshot-ai)): ~14 repos focused on mental health AI, dialogue simulation, audio transcription. No CyclicJudge repo.\n- Papers With Code: No entry for CyclicJudge.\n- The arXiv abstract page: No code/data links.\n- The full HTML paper: **No code availability statement, no GitHub links, no supplementary materials, no reproducibility section mentioning code.**\n\n### Conclusion: No Open-Source Code Exists\n\nThere is no public repository for CyclicJudge as of May 21, 2026. The paper contains no code availability statement whatsoever.\n\n### Reimplementation Complexity Assessment\n\nCyclicJudge would be **straightforward to reimplement** — the core algorithm is essentially trivial:\n\n**The algorithm in one sentence:** Given K judges and N scenarios, assign judge `(i mod K)` to scenario `i` (after shuffling scenarios randomly), so each judge appears equally often across the evaluation.\n\n**Key technical details from the paper:**\n- For multi-generation settings (m generations per scenario with budget B): use `m = B` generations, assigning judge `j mod K_total` to generation `j`\n- For single-generation settings (m=1): cycle judges across scenarios instead, shuffling scenarios beforehand to avoid confounding the cycle with latent ordering\n- The mathematical guarantee: judge bias terms cancel because all judges contribute equally, yielding variance `V_C(B) = (sigma^2_beta + sigma^2_epsilon) / (nB)`\n\n**Reimplementation effort estimate: ~50-100 lines of Python.** The method is a scheduling/assignment strategy, not a model or training procedure. The steps are:\n\n1. Define your judge panel (e.g., K models)\n2. Shuffle your evaluation scenarios\n3. Assign judge `i % K` to scenario `i`\n4. Aggregate scores normally\n\n**Integration complexity: Low.** It requires no special libraries, no training, no model modifications. You just need an evaluation pipeline that can call multiple judge models and a round-robin assignment layer on top. The main engineering work would be supporting multiple judge API backends (e.g., OpenAI, Anthropic, local vLLM) rather than the CyclicJudge logic itself.\n\n**Experimental setup from the paper** (for validation):\n- Benchmarks: MT-Bench (80 scenarios, 10 generations, 1-10 scale) and MindEval (50 scenarios, 5 generations, 1-5 scale)\n- Judge panel: Qwen 2.5 7B Instruct, Llama 3.3 70B Instruct, GPT-5.2, Gemini 3 Flash, Claude Sonnet 4.6\n- The same 5 models also served as evaluated models (symmetric design)\n\n### All URLs Found\n\n- arXiv abstract: https://arxiv.org/abs/2603.01865\n- arXiv PDF: https://arxiv.org/pdf/2603.01865\n- arXiv HTML: https://arxiv.org/html/2603.01865\n- First author GitHub: https://github.com/ziyi-zhu\n- Slingshot AI GitHub org: https://github.com/slingshot-ai&lt;/result>\n&lt;usage>&lt;total_tokens>26850&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>95274&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-21T20:54:31.527Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+DCR agent completed. Waiting for the other 3 agents to finish.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "690d7ed9-8673-4b8b-8da8-ce49dce3891f",
+  "isSidechain": false,
+  "requestId": "req_011CbGNxmYvRL8Mj2So6i1dk",
+  "type": "assistant",
+  "uuid": "cc369030-9d93-4109-908a-fe6409a1e70f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VfgaQiJgummyoqd8EhKcVc",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 26875,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 26875,
+          "cache_creation_input_tokens": 1744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-21T20:54:31.979Z_
+
+DCR 搜索完成，找到了官方 repo。等待其余 3 个 agent 返回。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc369030-9d93-4109-908a-fe6409a1e70f",
+  "isSidechain": false,
+  "requestId": "req_011CbGNxmYvRL8Mj2So6i1dk",
+  "type": "assistant",
+  "uuid": "c4a9ecf9-b6ea-479b-a6c9-fa559f5cd8b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VfgaQiJgummyoqd8EhKcVc",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1744,
+      "cache_read_input_tokens": 26875,
+      "output_tokens": 66,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1744,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 66,
+          "cache_read_input_tokens": 26875,
+          "cache_creation_input_tokens": 1744,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1744
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-21T20:54:32.048Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T20:54:32.048Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+## Round 3
+
+7 recorded events
+
+### User
+
+_source line 32 · 2026-05-21T20:54:32.054Z_
+
+&lt;task-notification>
+&lt;task-id>a8f134abb4d185e98&lt;/task-id>
+&lt;tool-use-id>toolu_01WnYnJZ7Er245oYGkjBqMUk&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a8f134abb4d185e98.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search CyclicJudge code" completed&lt;/summary>
+&lt;result>Now I have comprehensive information. Here is the full report.
+
+---
+
+## CyclicJudge: Open-Source Code Availability Report
+
+### Paper Details
+
+- **Title:** CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation
+- **Authors:** Ziyi Zhu, Olivier Tieleman, Alexey Bukhtiyarov, Jinghong Chen
+- **Affiliations:** Slingshot AI, University of Cambridge
+- **arXiv:** [2603.01865](https://arxiv.org/abs/2603.01865) (submitted March 2, 2026; v3 May 4, 2026)
+- **PDF:** https://arxiv.org/pdf/2603.01865
+- **HTML:** https://arxiv.org/html/2603.01865
+
+### Search Results Summary
+
+**Search 1 — "CyclicJudge github":** No matching repository found. Results returned unrelated projects (cyclic-software, cyclictest, Minecraft mod, etc.).
+
+**Search 2 — "CyclicJudge mitigating judge bias LLM evaluation":** Found the arXiv paper (abs, pdf, html). No code links surfaced.
+
+**Search 3 — "CyclicJudge LLM judge bias code":** Same arXiv paper links. No code repositories.
+
+Additional searches checked:
+- First author's GitHub profile ([github.com/ziyi-zhu](https://github.com/ziyi-zhu)): 35 repos, none related to CyclicJudge or LLM evaluation. Visible repos are about IoT, computer vision, and games.
+- Slingshot AI org ([github.com/slingshot-ai](https://github.com/slingshot-ai)): ~14 repos focused on mental health AI, dialogue simulation, audio transcription. No CyclicJudge repo.
+- Papers With Code: No entry for CyclicJudge.
+- The arXiv abstract page: No code/data links.
+- The full HTML paper: **No code availability statement, no GitHub links, no supplementary materials, no reproducibility section mentioning code.**
+
+### Conclusion: No Open-Source Code Exists
+
+There is no public repository for CyclicJudge as of May 21, 2026. The paper contains no code availability statement whatsoever.
+
+### Reimplementation Complexity Assessment
+
+CyclicJudge would be **straightforward to reimplement** — the core algorithm is essentially trivial:
+
+**The algorithm in one sentence:** Given K judges and N scenarios, assign judge `(i mod K)` to scenario `i` (after shuffling scenarios randomly), so each judge appears equally often across the evaluation.
+
+**Key technical details from the paper:**
+- For multi-generation settings (m generations per scenario with budget B): use `m = B` generations, assigning judge `j mod K_total` to generation `j`
+- For single-generation settings (m=1): cycle judges across scenarios instead, shuffling scenarios beforehand to avoid confounding the cycle with latent ordering
+- The mathematical guarantee: judge bias terms cancel because all judges contribute equally, yielding variance `V_C(B) = (sigma^2_beta + sigma^2_epsilon) / (nB)`
+
+**Reimplementation effort estimate: ~50-100 lines of Python.** The method is a scheduling/assignment strategy, not a model or training procedure. The steps are:
+
+1. Define your judge panel (e.g., K models)
+2. Shuffle your evaluation scenarios
+3. Assign judge `i % K` to scenario `i`
+4. Aggregate scores normally
+
+**Integration complexity: Low.** It requires no special libraries, no training, no model modifications. You just need an evaluation pipeline that can call multiple judge models and a round-robin assignment layer on top. The main engineering work would be supporting multiple judge API backends (e.g., OpenAI, Anthropic, local vLLM) rather than the CyclicJudge logic itself.
+
+**Experimental setup from the paper** (for validation):
+- Benchmarks: MT-Bench (80 scenarios, 10 generations, 1-10 scale) and MindEval (50 scenarios, 5 generations, 1-5 scale)
+- Judge panel: Qwen 2.5 7B Instruct, Llama 3.3 70B Instruct, GPT-5.2, Gemini 3 Flash, Claude Sonnet 4.6
+- The same 5 models also served as evaluated models (symmetric design)
+
+### All URLs Found
+
+- arXiv abstract: https://arxiv.org/abs/2603.01865
+- arXiv PDF: https://arxiv.org/pdf/2603.01865
+- arXiv HTML: https://arxiv.org/html/2603.01865
+- First author GitHub: https://github.com/ziyi-zhu
+- Slingshot AI GitHub org: https://github.com/slingshot-ai&lt;/result>
+&lt;usage>&lt;total_tokens>26850&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>95274&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4a9ecf9-b6ea-479b-a6c9-fa559f5cd8b2",
+  "isSidechain": false,
+  "promptId": "f10bb60a-e573-425f-93b0-5179448a8614",
+  "type": "user",
+  "uuid": "033ff106-d3f9-4d59-b01d-be0198d6b61a",
+  "permissionMode": "bypassPermissions",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-21T20:54:34.823Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+CyclicJudge agent also completed. No open-source code, but easy to reimplement. Still waiting for UDA and Preference Leakage agents.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "033ff106-d3f9-4d59-b01d-be0198d6b61a",
+  "isSidechain": false,
+  "requestId": "req_011CbGNxyXFWvFocB8Bk5wXX",
+  "type": "assistant",
+  "uuid": "d3fd6ef4-eaf7-49b1-9a7c-ca7e5a58f9ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195hWSXui2QrfNebRi24F1p",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1476,
+      "cache_read_input_tokens": 28619,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1476,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 28619,
+          "cache_creation_input_tokens": 1476,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1476
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-21T20:54:35.179Z_
+
+CyclicJudge 也完成了，无公开代码但重实现很简单。还剩 UDA 和 Preference Leakage。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3fd6ef4-eaf7-49b1-9a7c-ca7e5a58f9ed",
+  "isSidechain": false,
+  "requestId": "req_011CbGNxyXFWvFocB8Bk5wXX",
+  "type": "assistant",
+  "uuid": "60f6bd2d-6b92-486c-95a9-cd642a4c403b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195hWSXui2QrfNebRi24F1p",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1476,
+      "cache_read_input_tokens": 28619,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1476,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 28619,
+          "cache_creation_input_tokens": 1476,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1476
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-21T20:54:43.806Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T20:54:43.806Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "content": "&lt;task-notification>\n&lt;task-id>af7bbaae6de608256&lt;/task-id>\n&lt;tool-use-id>toolu_01Pd4j6FTrtEfnTSpwjbjbUt&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/af7bbaae6de608256.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search UDA debiasing code\" completed&lt;/summary>\n&lt;result>Now I have a comprehensive picture. Here is the full report.\n\n---\n\n## UDA (Unsupervised Debiasing Alignment) -- Code Availability Report\n\n### Paper Details\n\n- **Title**: UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge\n- **Venue**: AAAI 2026 (Technical Track 41, NLP VI), pages 34854-34861\n- **arXiv**: [2508.09724](https://arxiv.org/abs/2508.09724)\n- **DOI**: https://doi.org/10.1609/aaai.v40i41.40788\n- **Authors**: Yang Zhang (ZhipuAI, Peking University), Cunxiang Wang (ZhipuAI, Tsinghua University), Lindong Wu (ZhipuAI), Wenbo Yu (ZhipuAI), Yidong Wang (ZhipuAI, Peking University), Guangsheng Bao (Westlake University), Jie Tang (Tsinghua University)\n\n### Code Availability: No Public Repo Found\n\nThe **only code link** mentioned in the paper is an anonymous review-stage repository:\n- `https://anonymous.4open.science/r/62AB93CD-23B4`\n\nThis link currently returns **403 Forbidden** -- anonymous 4open.science repos are typically shut down after the review period ends, and this one appears to be inaccessible now.\n\nI checked all plausible locations:\n- **No GitHub repo** exists under any of the authors' profiles (checked [baoguangsheng](https://github.com/baoguangsheng) and [wangcunxiang](https://wangcunxiang.github.io/))\n- **No public repo** found on GitHub via keyword searches (UDA-debiasing, UDA-judge, unsupervised-debiasing-alignment, etc.)\n- The **AAAI proceedings page** has no code/supplementary link\n- The **arXiv page** only references the dead anonymous repo\n\n**Conclusion: There is no publicly accessible open-source implementation of UDA as of 2026-05-21.**\n\n### Reimplementation Complexity Assessment\n\nBased on the full paper details extracted from the HTML version, here is what reimplementation would require:\n\n**Architecture** (moderate complexity):\n- A 3-layer MLP that takes a (6D+9)-dimensional feature vector and outputs three values: an instance-level K-factor and two soft labels (replacing hard binary win/loss preferences)\n- Input features are constructed from embeddings of the two candidate answers and the judge's own response: element-wise differences, normalized products, cosine similarities, and KL-divergences between these embeddings\n\n**Training** (moderate-high complexity):\n- Unsupervised objective with three loss components: (1) anchor alignment via MSE to consensus, (2) rank fidelity via Pearson correlation preservation, (3) collective consensus enforcement across all judges\n- Uses \"judge-homogeneous batches\" (all pairwise comparisons from a single judge per batch)\n- Optimizer: AdamW with learning rate scheduler\n- Training data: ~450,000 pairwise judgments on ArenaHard\n- Compute: ~8 hours on a single RTX 4090\n\n**Key dependencies for reimplementation**:\n1. Need to collect pairwise judgments from multiple LLM judges on the same dataset (the paper uses ArenaHard with ~500 prompts)\n2. Need sentence/response embeddings for all answers and judge outputs\n3. Need a standard Elo rating implementation as the backbone\n4. The MLP itself is trivial; the complexity is in the loss function design and the data pipeline\n\n**Estimated reimplementation effort**: 2-4 days for a competent ML engineer familiar with Elo systems and PyTorch. The method is conceptually clean (small MLP, well-defined loss), but getting the data pipeline right (collecting multi-judge pairwise evaluations, computing all embedding features) and reproducing the exact training regime would take the bulk of the time. The paper is detailed enough that reimplementation is feasible without the original code.\n\n**Integration complexity**: Medium. UDA is a post-hoc method -- it sits on top of existing pairwise judgments and adjusts Elo updates. It does not modify the judge prompts or LLM inference. You would: (1) collect pairwise judgments as usual, (2) compute embeddings, (3) run the trained MLP to get adjusted K-factors and soft labels, (4) use those in Elo computation. The main integration burden is maintaining the embedding computation and the trained MLP weights.\n\n### All URLs Found\n\n- arXiv abstract: https://arxiv.org/abs/2508.09724\n- arXiv PDF: https://arxiv.org/pdf/2508.09724\n- arXiv HTML: https://arxiv.org/html/2508.09724\n- AAAI proceedings: https://ojs.aaai.org/index.php/AAAI/article/view/40788\n- ResearchGate: https://www.researchgate.net/publication/394472798\n- Dead anonymous repo: https://anonymous.4open.science/r/62AB93CD-23B4 (403)\n- Cunxiang Wang's homepage: https://wangcunxiang.github.io/\n- Guangsheng Bao's GitHub: https://github.com/baoguangsheng\n- Guangsheng Bao's homepage: https://baoguangsheng.github.io/&lt;/result>\n&lt;usage>&lt;total_tokens>26631&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>105781&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "60f6bd2d-6b92-486c-95a9-cd642a4c403b",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Investigate baseline method code availability",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 38 · 2026-05-21T20:54:43.887Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T20:54:43.887Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+## Round 4
+
+5 recorded events
+
+### User
+
+_source line 39 · 2026-05-21T20:54:43.895Z_
+
+&lt;task-notification>
+&lt;task-id>af7bbaae6de608256&lt;/task-id>
+&lt;tool-use-id>toolu_01Pd4j6FTrtEfnTSpwjbjbUt&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/af7bbaae6de608256.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search UDA debiasing code" completed&lt;/summary>
+&lt;result>Now I have a comprehensive picture. Here is the full report.
+
+---
+
+## UDA (Unsupervised Debiasing Alignment) -- Code Availability Report
+
+### Paper Details
+
+- **Title**: UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge
+- **Venue**: AAAI 2026 (Technical Track 41, NLP VI), pages 34854-34861
+- **arXiv**: [2508.09724](https://arxiv.org/abs/2508.09724)
+- **DOI**: https://doi.org/10.1609/aaai.v40i41.40788
+- **Authors**: Yang Zhang (ZhipuAI, Peking University), Cunxiang Wang (ZhipuAI, Tsinghua University), Lindong Wu (ZhipuAI), Wenbo Yu (ZhipuAI), Yidong Wang (ZhipuAI, Peking University), Guangsheng Bao (Westlake University), Jie Tang (Tsinghua University)
+
+### Code Availability: No Public Repo Found
+
+The **only code link** mentioned in the paper is an anonymous review-stage repository:
+- `https://anonymous.4open.science/r/62AB93CD-23B4`
+
+This link currently returns **403 Forbidden** -- anonymous 4open.science repos are typically shut down after the review period ends, and this one appears to be inaccessible now.
+
+I checked all plausible locations:
+- **No GitHub repo** exists under any of the authors' profiles (checked [baoguangsheng](https://github.com/baoguangsheng) and [wangcunxiang](https://wangcunxiang.github.io/))
+- **No public repo** found on GitHub via keyword searches (UDA-debiasing, UDA-judge, unsupervised-debiasing-alignment, etc.)
+- The **AAAI proceedings page** has no code/supplementary link
+- The **arXiv page** only references the dead anonymous repo
+
+**Conclusion: There is no publicly accessible open-source implementation of UDA as of 2026-05-21.**
+
+### Reimplementation Complexity Assessment
+
+Based on the full paper details extracted from the HTML version, here is what reimplementation would require:
+
+**Architecture** (moderate complexity):
+- A 3-layer MLP that takes a (6D+9)-dimensional feature vector and outputs three values: an instance-level K-factor and two soft labels (replacing hard binary win/loss preferences)
+- Input features are constructed from embeddings of the two candidate answers and the judge's own response: element-wise differences, normalized products, cosine similarities, and KL-divergences between these embeddings
+
+**Training** (moderate-high complexity):
+- Unsupervised objective with three loss components: (1) anchor alignment via MSE to consensus, (2) rank fidelity via Pearson correlation preservation, (3) collective consensus enforcement across all judges
+- Uses "judge-homogeneous batches" (all pairwise comparisons from a single judge per batch)
+- Optimizer: AdamW with learning rate scheduler
+- Training data: ~450,000 pairwise judgments on ArenaHard
+- Compute: ~8 hours on a single RTX 4090
+
+**Key dependencies for reimplementation**:
+1. Need to collect pairwise judgments from multiple LLM judges on the same dataset (the paper uses ArenaHard with ~500 prompts)
+2. Need sentence/response embeddings for all answers and judge outputs
+3. Need a standard Elo rating implementation as the backbone
+4. The MLP itself is trivial; the complexity is in the loss function design and the data pipeline
+
+**Estimated reimplementation effort**: 2-4 days for a competent ML engineer familiar with Elo systems and PyTorch. The method is conceptually clean (small MLP, well-defined loss), but getting the data pipeline right (collecting multi-judge pairwise evaluations, computing all embedding features) and reproducing the exact training regime would take the bulk of the time. The paper is detailed enough that reimplementation is feasible without the original code.
+
+**Integration complexity**: Medium. UDA is a post-hoc method -- it sits on top of existing pairwise judgments and adjusts Elo updates. It does not modify the judge prompts or LLM inference. You would: (1) collect pairwise judgments as usual, (2) compute embeddings, (3) run the trained MLP to get adjusted K-factors and soft labels, (4) use those in Elo computation. The main integration burden is maintaining the embedding computation and the trained MLP weights.
+
+### All URLs Found
+
+- arXiv abstract: https://arxiv.org/abs/2508.09724
+- arXiv PDF: https://arxiv.org/pdf/2508.09724
+- arXiv HTML: https://arxiv.org/html/2508.09724
+- AAAI proceedings: https://ojs.aaai.org/index.php/AAAI/article/view/40788
+- ResearchGate: https://www.researchgate.net/publication/394472798
+- Dead anonymous repo: https://anonymous.4open.science/r/62AB93CD-23B4 (403)
+- Cunxiang Wang's homepage: https://wangcunxiang.github.io/
+- Guangsheng Bao's GitHub: https://github.com/baoguangsheng
+- Guangsheng Bao's homepage: https://baoguangsheng.github.io/&lt;/result>
+&lt;usage>&lt;total_tokens>26631&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>105781&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60f6bd2d-6b92-486c-95a9-cd642a4c403b",
+  "isSidechain": false,
+  "promptId": "31eea039-7b0c-4798-b143-d780724dd26e",
+  "type": "user",
+  "uuid": "4dac2c31-1c4b-486b-ab4d-21fe2d8ee4d5",
+  "permissionMode": "bypassPermissions",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 40 · 2026-05-21T20:54:44.182Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T20:54:44.182Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "content": "&lt;task-notification>\n&lt;task-id>a66baf991dc2e0c2b&lt;/task-id>\n&lt;tool-use-id>toolu_01CR87MEVYZjP2ygj1ioxuKc&lt;/tool-use-id>\n&lt;output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a66baf991dc2e0c2b.output&lt;/output-file>\n&lt;status>completed&lt;/status>\n&lt;summary>Agent \"Search Preference Leakage code\" completed&lt;/summary>\n&lt;result>Now I have enough information to compile a comprehensive report.\n\n---\n\n## Preference Leakage -- Open-Source Code Availability Report\n\n### Paper Identity\n\n- **Title**: \"Preference Leakage: A Contamination Problem in LLM-as-a-judge\"\n- **Authors**: Dawei Li, Renliang Sun, Yue Huang, Ming Zhong, Bohan Jiang, Jiawei Han, Xiangliang Zhang, Wei Wang, Huan Liu (ASU, UCLA, Notre Dame, UIUC)\n- **ArXiv**: [2502.01534](https://arxiv.org/abs/2502.01534) (v1: Feb 2025, v3: Mar 2026)\n- **Venue**: Accepted at **ICLR 2026** (poster)\n- **ArXiv License**: CC-BY 4.0\n\n---\n\n### 1. Open-Source Repositories Found\n\n**Official repo**: [https://github.com/David-Li0406/Preference-Leakage](https://github.com/David-Li0406/Preference-Leakage)\n- 55 stars, 3 forks\n- Languages: Jupyter Notebook (82.2%), Python (17.0%)\n- **No explicit software license** declared in the repo (the CC-BY 4.0 on arXiv covers the paper, not necessarily the code)\n\n**Fork** (not official): [https://github.com/toininoi/preference-leakage](https://github.com/toininoi/preference-leakage)\n- 0 stars, identical structure, no additional contributions visible\n\n---\n\n### 2. Repository Structure &amp; Code Quality\n\n```\nPreference-Leakage/\n├── analysis/              # ~12 Python scripts + shell scripts + raw data\n│   ├── alpacaEval.py, alpacaEval_icl.py\n│   ├── bert_recognition.py, correlation.py\n│   ├── self_recognition_pairwise.py, student_recognition.py\n│   ├── parse_arenahard.py, llama_analysis.py\n│   └── dataset_categorization/, demonstration/, rationale_categorization/\n├── config/                # DeepSpeed + LLaMA-Factory configs\n│   ├── ds_z3_config.json\n│   └── sft/, dpo/, inherit/, mix/, mix_synthetic/, additional/\n├── evaluation/\n│   ├── Alpaca_Eval2/\n│   └── Arena_Hard/\n├── training/              # 6 shell scripts\n│   ├── train_sft.sh, train_dpo.sh, train_human.sh\n│   ├── train_inherit.sh, train_mix.sh, train_additional.sh\n├── resource/              # Figures\n├── utils.py               # 4 API wrapper functions (Together, OpenAI, Gemini, vLLM)\n└── README.md\n```\n\n**Code quality assessment: Medium-low.**\n- **No docstrings** in Python files; minimal comments\n- `utils.py` has 4 bare API wrapper functions with no documentation\n- Analysis scripts appear functional but lack explanation\n- The bulk of \"code\" is Jupyter notebooks (82% of repo), which are harder to integrate\n- Training scripts are shell wrappers around LLaMA-Factory\n- No unit tests, no CI/CD\n- README describes the pipeline at a high level but omits the preference leakage score formula (defers to the paper)\n\n**Dependencies**:\n- Python 3.10, DeepSpeed 0.14.4, flash-attn 2.3.6, LLaMA-Factory 0.9.1-0.9.2.dev0, transformers 4.48.1, vLLM 0.6.1.post1+cu118\n- External API keys needed: GPT-4o, Gemini-1.5-flash, LLaMA-3.3-70B (for judge models)\n- Base model: Mistral-7B-v0.1\n- Data: UltraFeedback samples hosted on Google Drive\n\n---\n\n### 3. Integration Complexity Assessment\n\n**If integrating the existing repo into an evaluation pipeline:**\n\n- **Medium-high complexity.** The repo is structured as a full end-to-end experiment reproduction pipeline (train student models -&gt; generate outputs -&gt; run judges -&gt; compute scores), not as a reusable library or tool.\n- No pip-installable package, no clean API, no modular preference-leakage-score function.\n- The evaluation components wrap Arena-Hard and AlpacaEval 2.0 -- these are well-known frameworks, but the wrapping code would need adaptation.\n- Heavy external dependencies: requires running vLLM inference, calling multiple commercial APIs, and training models with LLaMA-Factory + DeepSpeed.\n- The preference leakage score computation is embedded in analysis notebooks/scripts, not exposed as a standalone function.\n\n**If reimplementing from the paper:**\n\n- **Medium complexity.** The core methodology is conceptually straightforward:\n  1. Train student models on synthetic data from a generator LLM (SFT/DPO)\n  2. Evaluate student outputs using a judge LLM on Arena-Hard / AlpacaEval 2.0\n  3. Compute preference leakage score = difference in judge scores when the judge is related vs. unrelated to the generator\n  4. Three relatedness types: same model, inheritance, same family\n- The metric itself is a delta of win-rates, which is simple to compute once you have the judge outputs.\n- The expensive part is the experimental matrix: training multiple student models x multiple generators x multiple judges x multiple benchmarks.\n- Reimplementing just the **detection/measurement** component (without the full training pipeline) would be straightforward -- you mainly need a judge evaluation harness and the score delta computation.\n\n---\n\n### 4. Summary\n\n| Aspect | Status |\n|--------|--------|\n| Open-source repo exists? | Yes -- [David-Li0406/Preference-Leakage](https://github.com/David-Li0406/Preference-Leakage) |\n| License | **None declared** on repo; paper is CC-BY 4.0 |\n| Code quality | Medium-low: functional but poorly documented, mostly notebooks |\n| Reusable as library? | No -- experiment reproduction scripts, not a library |\n| Integration complexity | Medium-high for full pipeline; low-medium for just the metric |\n| Reimplementation complexity | Medium overall; low if only measuring the leakage score |\n\nThe main value of the repo is the **pre-computed data and model outputs** (hosted on Google Drive), which could save significant compute if you want to validate or extend their results. The code itself would need substantial refactoring to serve as a reusable component in another pipeline.\n\nSources:\n- [Official GitHub Repository](https://github.com/David-Li0406/Preference-Leakage)\n- [ArXiv Paper (2502.01534)](https://arxiv.org/abs/2502.01534)\n- [OpenReview Page](https://openreview.net/forum?id=grIvSXVJ65)\n- [ICLR 2026 Virtual Poster](https://iclr.cc/virtual/2026/poster/10008112)\n- [HuggingFace Paper Page](https://huggingface.co/papers/2502.01534)\n- [Fork: toininoi/preference-leakage](https://github.com/toininoi/preference-leakage)\n- [LLM-as-a-judge Resource Hub](https://llm-as-a-judge.github.io/)\n- [Author Tweet Confirming ICLR 2026 Acceptance](https://x.com/Dawei_Li_ASU/status/2044931299836903711)&lt;/result>\n&lt;usage>&lt;total_tokens>26813&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>101452&lt;/duration_ms>&lt;/usage>\n&lt;/task-notification>"
+}
+````
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-21T20:54:46.833Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+UDA agent completed. No accessible public code. Still waiting for Preference Leakage.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4dac2c31-1c4b-486b-ab4d-21fe2d8ee4d5",
+  "isSidechain": false,
+  "requestId": "req_011CbGNyr9XUVm8xu2kMas3i",
+  "type": "assistant",
+  "uuid": "d2dbd12d-fd5f-41ed-9d87-ce33cb3ecb85",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3Vq5owfz6Yq1gKuNQWFDv",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1655,
+      "cache_read_input_tokens": 30095,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 30095,
+          "cache_creation_input_tokens": 1655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-21T20:54:47.057Z_
+
+UDA 完成，代码链接已失效，无可用 repo。等待最后一个 Preference Leakage。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2dbd12d-fd5f-41ed-9d87-ce33cb3ecb85",
+  "isSidechain": false,
+  "requestId": "req_011CbGNyr9XUVm8xu2kMas3i",
+  "type": "assistant",
+  "uuid": "cfd0eddc-d2b7-4f49-b1b3-098512b67ab8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W3Vq5owfz6Yq1gKuNQWFDv",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1655,
+      "cache_read_input_tokens": 30095,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1655,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 30095,
+          "cache_creation_input_tokens": 1655,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1655
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43 · 2026-05-21T20:54:47.134Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T20:54:47.134Z",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+## Round 5
+
+5 recorded events
+
+### User
+
+_source line 44 · 2026-05-21T20:54:47.196Z_
+
+&lt;task-notification>
+&lt;task-id>a66baf991dc2e0c2b&lt;/task-id>
+&lt;tool-use-id>toolu_01CR87MEVYZjP2ygj1ioxuKc&lt;/tool-use-id>
+&lt;output-file>/tmp/claude-1000/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias/4909b84a-fc3b-4b99-94f5-cd6cd3d00579/tasks/a66baf991dc2e0c2b.output&lt;/output-file>
+&lt;status>completed&lt;/status>
+&lt;summary>Agent "Search Preference Leakage code" completed&lt;/summary>
+&lt;result>Now I have enough information to compile a comprehensive report.
+
+---
+
+## Preference Leakage -- Open-Source Code Availability Report
+
+### Paper Identity
+
+- **Title**: "Preference Leakage: A Contamination Problem in LLM-as-a-judge"
+- **Authors**: Dawei Li, Renliang Sun, Yue Huang, Ming Zhong, Bohan Jiang, Jiawei Han, Xiangliang Zhang, Wei Wang, Huan Liu (ASU, UCLA, Notre Dame, UIUC)
+- **ArXiv**: [2502.01534](https://arxiv.org/abs/2502.01534) (v1: Feb 2025, v3: Mar 2026)
+- **Venue**: Accepted at **ICLR 2026** (poster)
+- **ArXiv License**: CC-BY 4.0
+
+---
+
+### 1. Open-Source Repositories Found
+
+**Official repo**: [https://github.com/David-Li0406/Preference-Leakage](https://github.com/David-Li0406/Preference-Leakage)
+- 55 stars, 3 forks
+- Languages: Jupyter Notebook (82.2%), Python (17.0%)
+- **No explicit software license** declared in the repo (the CC-BY 4.0 on arXiv covers the paper, not necessarily the code)
+
+**Fork** (not official): [https://github.com/toininoi/preference-leakage](https://github.com/toininoi/preference-leakage)
+- 0 stars, identical structure, no additional contributions visible
+
+---
+
+### 2. Repository Structure &amp; Code Quality
+
+```
+Preference-Leakage/
+├── analysis/              # ~12 Python scripts + shell scripts + raw data
+│   ├── alpacaEval.py, alpacaEval_icl.py
+│   ├── bert_recognition.py, correlation.py
+│   ├── self_recognition_pairwise.py, student_recognition.py
+│   ├── parse_arenahard.py, llama_analysis.py
+│   └── dataset_categorization/, demonstration/, rationale_categorization/
+├── config/                # DeepSpeed + LLaMA-Factory configs
+│   ├── ds_z3_config.json
+│   └── sft/, dpo/, inherit/, mix/, mix_synthetic/, additional/
+├── evaluation/
+│   ├── Alpaca_Eval2/
+│   └── Arena_Hard/
+├── training/              # 6 shell scripts
+│   ├── train_sft.sh, train_dpo.sh, train_human.sh
+│   ├── train_inherit.sh, train_mix.sh, train_additional.sh
+├── resource/              # Figures
+├── utils.py               # 4 API wrapper functions (Together, OpenAI, Gemini, vLLM)
+└── README.md
+```
+
+**Code quality assessment: Medium-low.**
+- **No docstrings** in Python files; minimal comments
+- `utils.py` has 4 bare API wrapper functions with no documentation
+- Analysis scripts appear functional but lack explanation
+- The bulk of "code" is Jupyter notebooks (82% of repo), which are harder to integrate
+- Training scripts are shell wrappers around LLaMA-Factory
+- No unit tests, no CI/CD
+- README describes the pipeline at a high level but omits the preference leakage score formula (defers to the paper)
+
+**Dependencies**:
+- Python 3.10, DeepSpeed 0.14.4, flash-attn 2.3.6, LLaMA-Factory 0.9.1-0.9.2.dev0, transformers 4.48.1, vLLM 0.6.1.post1+cu118
+- External API keys needed: GPT-4o, Gemini-1.5-flash, LLaMA-3.3-70B (for judge models)
+- Base model: Mistral-7B-v0.1
+- Data: UltraFeedback samples hosted on Google Drive
+
+---
+
+### 3. Integration Complexity Assessment
+
+**If integrating the existing repo into an evaluation pipeline:**
+
+- **Medium-high complexity.** The repo is structured as a full end-to-end experiment reproduction pipeline (train student models -&gt; generate outputs -&gt; run judges -&gt; compute scores), not as a reusable library or tool.
+- No pip-installable package, no clean API, no modular preference-leakage-score function.
+- The evaluation components wrap Arena-Hard and AlpacaEval 2.0 -- these are well-known frameworks, but the wrapping code would need adaptation.
+- Heavy external dependencies: requires running vLLM inference, calling multiple commercial APIs, and training models with LLaMA-Factory + DeepSpeed.
+- The preference leakage score computation is embedded in analysis notebooks/scripts, not exposed as a standalone function.
+
+**If reimplementing from the paper:**
+
+- **Medium complexity.** The core methodology is conceptually straightforward:
+  1. Train student models on synthetic data from a generator LLM (SFT/DPO)
+  2. Evaluate student outputs using a judge LLM on Arena-Hard / AlpacaEval 2.0
+  3. Compute preference leakage score = difference in judge scores when the judge is related vs. unrelated to the generator
+  4. Three relatedness types: same model, inheritance, same family
+- The metric itself is a delta of win-rates, which is simple to compute once you have the judge outputs.
+- The expensive part is the experimental matrix: training multiple student models x multiple generators x multiple judges x multiple benchmarks.
+- Reimplementing just the **detection/measurement** component (without the full training pipeline) would be straightforward -- you mainly need a judge evaluation harness and the score delta computation.
+
+---
+
+### 4. Summary
+
+| Aspect | Status |
+|--------|--------|
+| Open-source repo exists? | Yes -- [David-Li0406/Preference-Leakage](https://github.com/David-Li0406/Preference-Leakage) |
+| License | **None declared** on repo; paper is CC-BY 4.0 |
+| Code quality | Medium-low: functional but poorly documented, mostly notebooks |
+| Reusable as library? | No -- experiment reproduction scripts, not a library |
+| Integration complexity | Medium-high for full pipeline; low-medium for just the metric |
+| Reimplementation complexity | Medium overall; low if only measuring the leakage score |
+
+The main value of the repo is the **pre-computed data and model outputs** (hosted on Google Drive), which could save significant compute if you want to validate or extend their results. The code itself would need substantial refactoring to serve as a reusable component in another pipeline.
+
+Sources:
+- [Official GitHub Repository](https://github.com/David-Li0406/Preference-Leakage)
+- [ArXiv Paper (2502.01534)](https://arxiv.org/abs/2502.01534)
+- [OpenReview Page](https://openreview.net/forum?id=grIvSXVJ65)
+- [ICLR 2026 Virtual Poster](https://iclr.cc/virtual/2026/poster/10008112)
+- [HuggingFace Paper Page](https://huggingface.co/papers/2502.01534)
+- [Fork: toininoi/preference-leakage](https://github.com/toininoi/preference-leakage)
+- [LLM-as-a-judge Resource Hub](https://llm-as-a-judge.github.io/)
+- [Author Tweet Confirming ICLR 2026 Acceptance](https://x.com/Dawei_Li_ASU/status/2044931299836903711)&lt;/result>
+&lt;usage>&lt;total_tokens>26813&lt;/total_tokens>&lt;tool_uses>18&lt;/tool_uses>&lt;duration_ms>101452&lt;/duration_ms>&lt;/usage>
+&lt;/task-notification>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cfd0eddc-d2b7-4f49-b1b3-098512b67ab8",
+  "isSidechain": false,
+  "promptId": "a06ee8b0-afbe-4eeb-9738-8835a2f296a1",
+  "type": "user",
+  "uuid": "ce7eda5f-713f-47a6-b0b8-59c9c9540940",
+  "permissionMode": "bypassPermissions",
+  "origin": {
+    "kind": "task-notification"
+  },
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45 · 2026-05-21T20:54:47.195Z_
+
+```json
+{
+  "parentUuid": "ce7eda5f-713f-47a6-b0b8-59c9c9540940",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "105c2665-2e37-4b4d-bade-3e9b660ef7f1",
+  "timestamp": "2026-05-21T20:54:47.195Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-21T20:55:16.349Z_
+
+4 个 agent 全部返回，汇总如下：
+
+---
+
+### 1. CyclicJudge
+- **公开代码**: 无
+- **Repo URL**: N/A
+- **License**: N/A
+- **代码质量**: N/A
+- **适配难度**: N/A
+- **重实现复杂度**: **简单** — 核心算法是 round-robin judge 分配，~50-100 行 Python。给 K 个 judge、N 个 scenario，按 `i % K` 分配即可，无需训练或特殊库。
+- **备注**: 论文 arXiv [2603.01865](https://arxiv.org/abs/2603.01865)，作者来自 Slingshot AI / Cambridge。作者 GitHub 和机构 org 均无相关 repo，论文中无 code availability 声明。
+
+---
+
+### 2. UDA (Unsupervised Debiasing Alignment)
+- **公开代码**: 无（匿名审稿 repo 已 403）
+- **Repo URL**: `https://anonymous.4open.science/r/62AB93CD-23B4`（已失效）
+- **License**: N/A
+- **代码质量**: N/A
+- **适配难度**: N/A
+- **重实现复杂度**: **中等** — 核心是 3 层 MLP（输入 6D+9 维特征，输出 K-factor + soft labels），配合三项无监督 loss（anchor alignment / rank fidelity / collective consensus）。模型本身简单，主要工作量在数据管线（多 judge pairwise 评测 + embedding 特征提取）和训练流程。估计 2-4 天。
+- **备注**: AAAI 2026，作者来自 ZhipuAI / PKU / Tsinghua / Westlake。论文 arXiv [2508.09724](https://arxiv.org/abs/2508.09724)。方法是 post-hoc 的，不修改 judge prompt，只调整 Elo 更新。
+
+---
+
+### 3. DCR (Data Contamination Ratio)
+- **公开代码**: 有
+- **Repo URL**: [https://github.com/chengxuphd/dcr](https://github.com/chengxuphd/dcr)
+- **License**: Apache-2.0
+- **代码质量**: **中**（结构清晰、有 README 和示例，但仅 4 commits、1 star，学术发布级别）
+- **适配难度**: **中等** — 提供 CLI 和 Python API，模块化设计（core/utils）。需将数据转为其 CSV 格式，阈值 θ₁-θ₄ 需针对新 benchmark 调参。依赖 `skfuzzy` 做模糊推理。
+- **重实现复杂度**: 中等（如不用原 repo）— 四级污染检测（语义/信息/数据/标签）+ 模糊推理系统，估计 2-4 天。
+- **备注**: EMNLP 2025 Main。arXiv [2507.11405](https://arxiv.org/abs/2507.11405)。方法需要访问训练数据（或代理），对闭源 LLM 适用性受限。
+
+---
+
+### 4. Preference Leakage
+- **公开代码**: 有
+- **Repo URL**: [https://github.com/David-Li0406/Preference-Leakage](https://github.com/David-Li0406/Preference-Leakage)
+- **License**: **未标注**（论文 CC-BY 4.0，repo 无 LICENSE 文件）
+- **代码质量**: **中偏差** — 82% Jupyter Notebook，无 docstring，无测试，是实验复现脚本而非可复用库。但包含预计算数据和模型输出（Google Drive），有参考价值。
+- **适配难度**: **困难**（集成完整管线）/ **中等**（仅用 leakage score 度量）— 完整管线依赖 LLaMA-Factory + DeepSpeed + vLLM + 多商业 API。度量本身是 win-rate 差值，计算简单。
+- **重实现复杂度**: 仅度量部分 **简单**；含训练管线 **中等**。
+- **备注**: ICLR 2026 poster。arXiv [2502.01534](https://arxiv.org/abs/2502.01534)，55 stars。作者来自 ASU / UCLA / Notre Dame / UIUC。
+
+---
+
+**总结**:
+
+| Baseline | 有代码 | 可直接用 | 重实现难度 |
+|---|---|---|---|
+| CyclicJudge | 无 | — | 简单（~100行） |
+| UDA | 无（失效） | — | 中等（2-4天） |
+| DCR | 有 | 需适配 | 中等 |
+| Preference Leakage | 有 | 需大幅重构 | 度量简单/管线中等 |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "105c2665-2e37-4b4d-bade-3e9b660ef7f1",
+  "isSidechain": false,
+  "requestId": "req_011CbGNz6FbKWmDdYTZkUQnp",
+  "type": "assistant",
+  "uuid": "262d1567-fddf-407d-b23a-d371307e7c89",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MiJcWQ7Jzwf55QvMExBVwd",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2306,
+      "cache_read_input_tokens": 31750,
+      "output_tokens": 1418,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2306,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1418,
+          "cache_read_input_tokens": 31750,
+          "cache_creation_input_tokens": 2306,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2306
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "262d1567-fddf-407d-b23a-d371307e7c89",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Investigate baseline method code availability",
+  "sessionId": "4909b84a-fc3b-4b99-94f5-cd6cd3d00579"
+}
+```
+
+---

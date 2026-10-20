@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0",
+  "id": "6cb06b54cd2469093c5c",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Round 1 审稿请求]: ## Review Assignment: R1 — Methods & Experiments You are reviewing an anonymous EMNLP 2026 submission: *",
+  "task_key": "eeccc1d4-dfac-4e79-bae1-51f8750c01f0",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/eeccc1d4-dfac-4e79-bae1-51f8750c01f0.jsonl",
+    "occurrence": 1,
+    "bytes": 822499,
+    "sha256": "3f557917c0052e615b6b51af9564eed517b1f167b27acbf8792ffd766ce4464c"
+  },
+  "statistics": {
+    "messages": 345,
+    "user_turns": 16,
+    "tool_calls": 87,
+    "roles": {
+      "record": 104,
+      "user": 16,
+      "assistant": 50,
+      "tool_call": 87,
+      "tool_result": 87,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 68,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0001.json",
+          "message_count": 68
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0001.json",
+          "message_count": 47
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 80,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0001.json",
+          "message_count": 47
+        },
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 49,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 8,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 52,
+      "chunks": [
+        {
+          "path": "6cb06b54cd2469093c5c-part-0002.json",
+          "message_count": 52
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-round-1-review-assignment-r1-methods-experiments-you-are-reviewing-an-anonymou.md"
+}

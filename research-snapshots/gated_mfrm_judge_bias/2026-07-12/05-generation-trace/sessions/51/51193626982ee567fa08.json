@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "51193626982ee567fa08",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gated_mfrm_judge_bias ## 运行环境 - 项目代码根目录: /root/gated_mfrm_judge_bias ## 环境搭建 连接服务器后先调 `detect_im",
+  "task_key": "25c064e6-1e70-4858-b6ef-957e037e5fec",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/25c064e6-1e70-4858-b6ef-957e037e5fec.jsonl",
+    "occurrence": 1,
+    "bytes": 610646,
+    "sha256": "6833d992d7778356e91de492ec2564ef6479d87b057933b4ebb1ed4c5bd66b9b"
+  },
+  "statistics": {
+    "messages": 187,
+    "user_turns": 4,
+    "tool_calls": 45,
+    "roles": {
+      "record": 49,
+      "user": 4,
+      "assistant": 44,
+      "tool_call": 45,
+      "tool_result": 45
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "51193626982ee567fa08-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "51193626982ee567fa08-part-0001.json",
+          "message_count": 158
+        },
+        {
+          "path": "51193626982ee567fa08-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "51193626982ee567fa08-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "51193626982ee567fa08-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 4,
+      "chunks": [
+        {
+          "path": "51193626982ee567fa08-part-0002.json",
+          "message_count": 4
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gated-mfrm-judge-bias-root-gated-mfrm-judge-bias-detect-im-copy-18.md"
+}

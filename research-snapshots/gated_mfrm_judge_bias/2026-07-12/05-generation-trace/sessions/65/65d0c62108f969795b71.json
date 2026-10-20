@@ -1,0 +1,2382 @@
+{
+  "schema_version": "1.0",
+  "id": "65d0c62108f969795b71",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gated_mfrm_judge_bias ## 运行环境 - 服务器名: rtx6000-4x - SSH 账户: root（调用 ssh_execute / submit_training",
+  "task_key": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/3f6693b1-0061-43d8-a7eb-7ad91a944221.jsonl",
+    "occurrence": 1,
+    "bytes": 175258,
+    "sha256": "7a5e45da0bdb17f332f7b7da85bd1c373b83c607f7f4f7e98f4d397e485f19b0"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "record": 16,
+      "user": 1,
+      "assistant": 10,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T12:16:26.679Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-22T12:16:26.679Z",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+                "content": "<project_context>\n# 项目: gated_mfrm_judge_bias\n\n## 运行环境\n- 服务器名: rtx6000-4x\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh rtx6000-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/gated_mfrm_judge_bias\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：撰写论文 Section 2 — Confounding in LLM Evaluation\n\n你是 ML 研究团队的论文写作 Worker。需要撰写一篇 EMNLP 2026 ARR 投稿论文的 Section 2。\n\n### 必读技能文件（开始写作前必须读）\n1. `Read /home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md` — 写作风格规范\n2. `Read /home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md` — LaTeX 写作规范\n\n### 章节规格\n\n**Section**: background (Section 2: \"Confounding in LLM Evaluation\")\n**Word budget**: ~650 words\n**Phase**: 1 (不依赖 real-data 实验)\n**输出**: 纯 LaTeX 内容（不含 \\section 命令，Paper Agent 会用 write_paper_section 工具写入）\n\n### 章节内容要求\n\n按以下结构写 Section 2，标题 \"Confounding in LLM Evaluation\"：\n\n**\\section{Confounding in LLM Evaluation}**\n\n**第一部分：Standard MFRM notation (~150 words)**\n- 引入标准 Many-Facet Rasch Model (MFRM)：\n  $$\\text{logit}\\, P(Y_{nij} \\geq k \\mid \\theta_n, b_i, d_j, \\tau_k) = \\theta_n - b_i - d_j - \\tau_k$$\n- 定义所有符号（用 notation table 或 inline）：\n  - $Y_{nij}$: ordinal rating by judge $j$ for model $n$ on item $i$\n  - $\\theta_n$: ability of model $n$ ($n = 1, \\ldots, N$)\n  - $b_i$: difficulty of item $i$ ($i = 1, \\ldots, I$)\n  - $d_j$: severity of judge $j$ ($j = 1, \\ldots, J$)\n  - $\\tau_k$: threshold for category $k$\n- 引用 Linacre (1989/1994) 和 Wang (2025) 将 MFRM 应用于 LLM rater calibration\n- 用 \\cite{linacre1989mfrm} 和 \\cite{wang2025mfrm_llm} 格式（bibtex key 待定，用合理的 key）\n\n**第二部分：Contamination as unmodeled facet (~150 words)**\n- 引入 contamination 概念：某些 model 在训练时见过 benchmark items\n- 这导致 contaminated models 在 exposed items 上得分虚高\n- 用 $c_n \\cdot e_i$ 项表示：$c_n$ = model $n$ 的 contamination susceptibility (>=0)，$e_i$ = item $i$ 的 exposure level\n- 当 MFRM 不包含 $c_n \\cdot e_i$ 时，contamination effect 被吸收到其他参数中\n\n**第三部分：OVB Formal Observation (~250 words)**\n- **Observation 1**: 基于 Angrist & Pischke (2009) 的 Omitted Variable Bias 公式：\n  - 完整模型：$\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i$\n  - 短模型（omit $c_n \\cdot e_i$）：$\\tilde{\\eta}_{nijk} = \\tilde{\\theta}_n - \\tilde{b}_i - \\tilde{d}_j - \\tau_k$\n  - OVB 公式：$\\text{plim}(\\tilde{\\theta}_n - \\theta_n) = \\gamma_n \\cdot c_n$，其中 $\\gamma_n$ 取决于 $e_i$ 与设计矩阵的投影\n  - 当 $\\text{Cov}(d_j, c_n \\cdot e_i) \\neq 0$（非正交），bias 存在\n- **关键论点**：Frame 为 domain-specific application of Angrist & Pischke 2009，NOT 原创 proposition\n- 用 \\begin{observation} 环境\n- 引用 \\cite{angrist2009mostly}\n\n**第四部分：Sequential failure illustration (~100 words)**\n- 简要说明两种 sequential 方案都失败：\n  - Bias-first：先校正 $d_j$（如 CyclicJudge），但 $\\hat{\\theta}$ 已被 contamination 污染\n  - Contamination-first：先调 contamination（如 DCR），但 judge effects 被误归因为 contamination\n- 引用 mvp_003 合成验证：r=0.65 between sequential bias and true $c_n$\n- 引用 Figure 2: \"As illustrated in Figure~\\ref{fig:ovb_bias}\"\n\n### Figure 引用\n- 在合适位置引用 Figure 2：`\\begin{figure}[t] \\centering \\includegraphics[width=\\columnwidth]{fig2_ovb_bias} \\caption{...} \\label{fig:ovb_bias} \\end{figure}`\n- Caption: \"Sequential estimation bias ($\\hat{\\theta}_{\\mathrm{seq}} - \\theta_{\\mathrm{true}}$) versus true contamination susceptibility $c_n$. Pearson $r = 0.65$ ($p < 0.001$) confirms systematic overestimation of contaminated models. Synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds).\"\n\n### 写作约束（硬规则）\n\n1. **禁止破折号**（em-dash —, en-dash –），用逗号或拆句替代\n2. **禁止 -ing 短语结尾**（如 \"..., demonstrating the effectiveness...\"）\n3. **禁止连续使用** \"Furthermore\" / \"Moreover\" / \"Additionally\"\n4. **禁止** \"It is worth noting\" / \"Notably\" / \"delve into\" / \"leverage\" / \"utilize\"\n5. **禁止** \"To the best of our knowledge, we are the first to...\"\n6. **不过度分段**：自然段 5-8 句\n7. **缩写首次出现时定义**：MFRM (Many-Facet Rasch Model), OVB (Omitted Variable Bias), etc.\n8. **OVB 是 Observation 不是 Proposition**：引用 Angrist & Pischke 2009 作为来源\n9. **所有数字必须追溯到 registry**：r=0.65 来自 mvp_002/mvp_003\n\n### 输出格式\n\n返回纯 LaTeX 内容，从 `\\section{Confounding in LLM Evaluation}` 开始。包含完整的 figure 浮动体。不要包含 `\\documentclass` 或 `\\begin{document}`。\n\n### 引用 bibtex keys（使用这些）\n- linacre1989mfrm / linacre1994mfrm\n- wang2025mfrm_llm\n- angrist2009mostly\n- cyclicjudge2026\n- dcr2025\n- zheng2023mtbench\n\n### 实验数据（来自 registry，truth source）\n- mvp_003: Joint G-MFRM RMSE=0.124±0.016 vs Sequential 0.221±0.038 (-43.8%, p<1e-6)\n- mvp_002: scatter Pearson r=0.6534, p≈0\n- N=50 models, I=100 items, J=8 judges, 20 seeds, rho=0.6\n"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T12:16:26.684Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-22T12:16:26.684Z",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T12:16:26.732Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: gated_mfrm_judge_bias\n\n## 运行环境\n- 服务器名: rtx6000-4x\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh rtx6000-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/gated_mfrm_judge_bias\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：撰写论文 Section 2 — Confounding in LLM Evaluation\n\n你是 ML 研究团队的论文写作 Worker。需要撰写一篇 EMNLP 2026 ARR 投稿论文的 Section 2。\n\n### 必读技能文件（开始写作前必须读）\n1. `Read /home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md` — 写作风格规范\n2. `Read /home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md` — LaTeX 写作规范\n\n### 章节规格\n\n**Section**: background (Section 2: \"Confounding in LLM Evaluation\")\n**Word budget**: ~650 words\n**Phase**: 1 (不依赖 real-data 实验)\n**输出**: 纯 LaTeX 内容（不含 \\section 命令，Paper Agent 会用 write_paper_section 工具写入）\n\n### 章节内容要求\n\n按以下结构写 Section 2，标题 \"Confounding in LLM Evaluation\"：\n\n**\\section{Confounding in LLM Evaluation}**\n\n**第一部分：Standard MFRM notation (~150 words)**\n- 引入标准 Many-Facet Rasch Model (MFRM)：\n  $$\\text{logit}\\, P(Y_{nij} \\geq k \\mid \\theta_n, b_i, d_j, \\tau_k) = \\theta_n - b_i - d_j - \\tau_k$$\n- 定义所有符号（用 notation table 或 inline）：\n  - $Y_{nij}$: ordinal rating by judge $j$ for model $n$ on item $i$\n  - $\\theta_n$: ability of model $n$ ($n = 1, \\ldots, N$)\n  - $b_i$: difficulty of item $i$ ($i = 1, \\ldots, I$)\n  - $d_j$: severity of judge $j$ ($j = 1, \\ldots, J$)\n  - $\\tau_k$: threshold for category $k$\n- 引用 Linacre (1989/1994) 和 Wang (2025) 将 MFRM 应用于 LLM rater calibration\n- 用 \\cite{linacre1989mfrm} 和 \\cite{wang2025mfrm_llm} 格式（bibtex key 待定，用合理的 key）\n\n**第二部分：Contamination as unmodeled facet (~150 words)**\n- 引入 contamination 概念：某些 model 在训练时见过 benchmark items\n- 这导致 contaminated models 在 exposed items 上得分虚高\n- 用 $c_n \\cdot e_i$ 项表示：$c_n$ = model $n$ 的 contamination susceptibility (>=0)，$e_i$ = item $i$ 的 exposure level\n- 当 MFRM 不包含 $c_n \\cdot e_i$ 时，contamination effect 被吸收到其他参数中\n\n**第三部分：OVB Formal Observation (~250 words)**\n- **Observation 1**: 基于 Angrist & Pischke (2009) 的 Omitted Variable Bias 公式：\n  - 完整模型：$\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i$\n  - 短模型（omit $c_n \\cdot e_i$）：$\\tilde{\\eta}_{nijk} = \\tilde{\\theta}_n - \\tilde{b}_i - \\tilde{d}_j - \\tau_k$\n  - OVB 公式：$\\text{plim}(\\tilde{\\theta}_n - \\theta_n) = \\gamma_n \\cdot c_n$，其中 $\\gamma_n$ 取决于 $e_i$ 与设计矩阵的投影\n  - 当 $\\text{Cov}(d_j, c_n \\cdot e_i) \\neq 0$（非正交），bias 存在\n- **关键论点**：Frame 为 domain-specific application of Angrist & Pischke 2009，NOT 原创 proposition\n- 用 \\begin{observation} 环境\n- 引用 \\cite{angrist2009mostly}\n\n**第四部分：Sequential failure illustration (~100 words)**\n- 简要说明两种 sequential 方案都失败：\n  - Bias-first：先校正 $d_j$（如 CyclicJudge），但 $\\hat{\\theta}$ 已被 contamination 污染\n  - Contamination-first：先调 contamination（如 DCR），但 judge effects 被误归因为 contamination\n- 引用 mvp_003 合成验证：r=0.65 between sequential bias and true $c_n$\n- 引用 Figure 2: \"As illustrated in Figure~\\ref{fig:ovb_bias}\"\n\n### Figure 引用\n- 在合适位置引用 Figure 2：`\\begin{figure}[t] \\centering \\includegraphics[width=\\columnwidth]{fig2_ovb_bias} \\caption{...} \\label{fig:ovb_bias} \\end{figure}`\n- Caption: \"Sequential estimation bias ($\\hat{\\theta}_{\\mathrm{seq}} - \\theta_{\\mathrm{true}}$) versus true contamination susceptibility $c_n$. Pearson $r = 0.65$ ($p < 0.001$) confirms systematic overestimation of contaminated models. Synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds).\"\n\n### 写作约束（硬规则）\n\n1. **禁止破折号**（em-dash —, en-dash –），用逗号或拆句替代\n2. **禁止 -ing 短语结尾**（如 \"..., demonstrating the effectiveness...\"）\n3. **禁止连续使用** \"Furthermore\" / \"Moreover\" / \"Additionally\"\n4. **禁止** \"It is worth noting\" / \"Notably\" / \"delve into\" / \"leverage\" / \"utilize\"\n5. **禁止** \"To the best of our knowledge, we are the first to...\"\n6. **不过度分段**：自然段 5-8 句\n7. **缩写首次出现时定义**：MFRM (Many-Facet Rasch Model), OVB (Omitted Variable Bias), etc.\n8. **OVB 是 Observation 不是 Proposition**：引用 Angrist & Pischke 2009 作为来源\n9. **所有数字必须追溯到 registry**：r=0.65 来自 mvp_002/mvp_003\n\n### 输出格式\n\n返回纯 LaTeX 内容，从 `\\section{Confounding in LLM Evaluation}` 开始。包含完整的 figure 浮动体。不要包含 `\\documentclass` 或 `\\begin{document}`。\n\n### 引用 bibtex keys（使用这些）\n- linacre1989mfrm / linacre1994mfrm\n- wang2025mfrm_llm\n- angrist2009mostly\n- cyclicjudge2026\n- dcr2025\n- zheng2023mtbench\n\n### 实验数据（来自 registry，truth source）\n- mvp_003: Joint G-MFRM RMSE=0.124±0.016 vs Sequential 0.221±0.038 (-43.8%, p<1e-6)\n- mvp_002: scatter Pearson r=0.6534, p≈0\n- N=50 models, I=100 items, J=8 judges, 20 seeds, rho=0.6\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "c35ee822-116e-4a8f-a681-d69aad4c9dfc",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T12:16:26.731Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "c35ee822-116e-4a8f-a681-d69aad4c9dfc",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__auto_build_provenance",
+                    "mcp__agent-ml-research__bootstrap_provenance",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__check_paper_consistency",
+                    "mcp__agent-ml-research__check_provenance_completeness",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__edit_paper_section",
+                    "mcp__agent-ml-research__get_image_info",
+                    "mcp__agent-ml-research__get_worker_status",
+                    "mcp__agent-ml-research__list_artifacts",
+                    "mcp__agent-ml-research__list_workers",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__overleaf_init",
+                    "mcp__agent-ml-research__overleaf_pull",
+                    "mcp__agent-ml-research__overleaf_push",
+                    "mcp__agent-ml-research__overleaf_status",
+                    "mcp__agent-ml-research__overleaf_sync",
+                    "mcp__agent-ml-research__paper_agent_post_to_director",
+                    "mcp__agent-ml-research__paper_agent_request_review",
+                    "mcp__agent-ml-research__paper_compile_and_check",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__save_project_file",
+                    "mcp__agent-ml-research__send_progress",
+                    "mcp__agent-ml-research__spawn_worker",
+                    "mcp__agent-ml-research__verify_references",
+                    "mcp__agent-ml-research__write_paper_section"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "d76a69c5-9649-4571-9046-cc907f1f2f1c",
+                "timestamp": "2026-05-22T12:16:26.731Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T12:16:26.731Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d76a69c5-9649-4571-9046-cc907f1f2f1c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "agent_listing_delta",
+                  "addedTypes": [
+                    "claude",
+                    "Explore",
+                    "general-purpose",
+                    "Plan",
+                    "statusline-setup"
+                  ],
+                  "addedLines": [
+                    "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+                    "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+                    "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+                  ],
+                  "removedTypes": [],
+                  "isInitial": true,
+                  "showConcurrencyNote": true
+                },
+                "type": "attachment",
+                "uuid": "d39c632f-0814-4671-a483-e76ca95fa944",
+                "timestamp": "2026-05-22T12:16:26.731Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T12:16:26.731Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d39c632f-0814-4671-a483-e76ca95fa944",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "b0f66e90-f6c3-4c77-825b-c7fe7d3d3c0d",
+                "timestamp": "2026-05-22T12:16:26.731Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T12:16:26.731Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "b0f66e90-f6c3-4c77-825b-c7fe7d3d3c0d",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "b3f1ef74-b977-4122-937b-962fa241dd63",
+                "timestamp": "2026-05-22T12:16:26.731Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Section 2 on LLM evaluation confounding",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T12:16:33.865Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the two required skill files, then draft the section."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b3f1ef74-b977-4122-937b-962fa241dd63",
+            "isSidechain": false,
+            "requestId": "req_011CbHbGTxuchiXNrMufFP7H",
+            "type": "assistant",
+            "uuid": "39cf5c00-da03-4e65-92bf-a80ff3d9c920",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014BHBy6KW7jDEsQYV9mXsX3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14447,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14447,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 14447,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14447
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T12:16:35.299Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SV2KQpFv2bT4tRERQ7N8Li",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "39cf5c00-da03-4e65-92bf-a80ff3d9c920",
+            "isSidechain": false,
+            "requestId": "req_011CbHbGTxuchiXNrMufFP7H",
+            "type": "assistant",
+            "uuid": "3660f29b-569a-45d0-b6d5-c214c9a3e3b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014BHBy6KW7jDEsQYV9mXsX3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14447,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14447,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 14447,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14447
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T12:16:35.328Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SV2KQpFv2bT4tRERQ7N8Li",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n75\t- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n76\t- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n77\t- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n78\t\n79\t### 2.3 审稿人视角检验\n80\t\n81\t写完后用这个标准自检：审稿人能否在 30 秒内判断——\n82\t- 问题是否重要？\n83\t- 方法是否清楚？\n84\t- 贡献是否可信？\n85\t- 结果是否有说服力？\n86\t\n87\t---\n88\t\n89\t## 三、Introduction 写作规范\n90\t\n91\t### 3.1 完整叙事线（5 段结构）\n92\t\n93\tIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n94\t\n95\t1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n96\t2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n97\t3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n98\t4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n99\t5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n100\t\n101\t### 3.2 整体叙事结构\n102\t\n103\t```\n104\t现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n105\t```\n106\t\n107\t### 3.3 禁忌\n108\t\n109\t- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n110\t- **禁止缺少过渡**：每段之间必须有逻辑连接\n111\t- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n112\t- 每条 Contribution 必须有对应的 section/table 支撑\n113\t- Contribution 列表中不能出现未在前文铺垫过的概念\n114\t\n115\t---\n116\t\n117\t## 四、Related Work 写作规范\n118\t\n119\t### 4.1 目标\n120\t\n121\t让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n122\t\n123\t### 4.2 结构要求\n124\t\n125\t- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n126\t- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n127\t- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n128\t\n129\t### 4.3 禁忌\n130\t\n131\t- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n132\t- **目标不是展示读了多少论文**，而是做归纳和比较\n133\t- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n134\t\n135\t### 4.4 引用充足度\n136\t\n137\t- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n138\t- 任何一类缺失，审稿人会立刻看出来调研不充分\n139\t- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n140\t\n141\t---\n142\t\n143\t## 五、去 AI 写作风格（硬规则）\n144\t\n145\t以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n146\t\n147\t### 5.1 严禁破折号（最显著的 AI 痕迹）\n148\t\n149\t**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n150\t\n151\t- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n152\t- 替代方式：用逗号、括号或拆分为两个句子\n153\t- 强制检查命令：\n154\t  ```bash\n155\t  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n156\t  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n157\t  ```\n158\t- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n159\t\n160\t### 5.2 段落与句式\n161\t\n162\t- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n163\t- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n164\t- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n165\t- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n166\t- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n167\t\n168\t### 5.3 用词黑名单\n169\t\n170\t- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n171\t- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n172\t- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n173\t- 避免 \"paradigm shift\" / \"novel\" 过度使用\n174\t\n175\t### 5.4 校对清单（4 步）\n176\t\n177\t1. 全文 proofread 语法和拼写\n178\t2. 检查所有代词/指示词（this, that, it）是否指代明确\n179\t3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n180\t4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n181\t\n182\t---\n183\t\n184\t## 六、图表与视觉规范\n185\t\n186\t### 6.1 知识密度原则\n187\t\n188\t- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n189\t- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n190\t- 能用 inline text 说清的不要占一整个 Figure\n191\t\n192\t### 6.2 表格规范\n193\t\n194\t- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n195\t- 小数精度全表统一\n196\t- 最优加粗、次优下划线\n197\t- Caption 必须自包含\n198\t\n199\t### 6.3 图片规范\n200\t\n201\t- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n202\t- 图中字体 >= 7pt（打印后仍可读）\n203\t- 栏宽约束需匹配目标 venue 模板要求\n204\t- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n205\t\n206\t### 6.4 空间效率\n207\t\n208\t- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n209\t- 优先使用 `\\subfigure` 合并相关图\n210\t- Table 能 inline 就不要单独浮动\n211\t- 图表占比与其对叙事的贡献成正比\n212\t\n213\t### 6.5 页面节奏\n214\t\n215\t好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n216\t\n217\t- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n218\t- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n219\t- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n220\t- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n221\t- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n222\t\n223\t### 6.6 表格 LaTeX 规范\n224\t\n225\t**Booktabs 标准（硬规则）**：\n226\t- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n227\t- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n228\t- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n229\t- 小数精度全表统一（如全部保留 1 位或 2 位）\n230\t- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n231\t\n232\t**宽度决策树**：\n233\t- ≤5 列 → 单栏宽度（`\\columnwidth`）\n234\t- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n235\t- >8 列 → 拆成两张表或移入 appendix\n236\t\n237\t---\n238\t\n239\t## 七、投稿前通用准备\n240\t\n241\t### 7.1 模板必须官方（硬规则）\n242\t\n243\t- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n244\t- **不要用**：\n245\t  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n246\t  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n247\t  - 组里学长留的旧版本（来源不明、无法追溯）\n248\t- 风险：\n249\t  - 样式不符合 → desk reject\n250\t  - margin 不对 → 被审稿人质疑诚信\n251\t  - reference 格式错 → 被认为不规范\n252\t- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n253\t- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n254\t\n255\t### 7.2 投稿要求逐项核对\n256\t\n257\t- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n258\t- 页数限制：查目标会议官网\n259\t- 匿名化要求：review 版 vs camera-ready 版本设置不同\n260\t- 行号开启（review 版常需）\n261\t- 字体大小、margin 不得修改 sty 文件\n262\t\n263\t### 7.3 最终修改 10 项检查流程\n264\t\n265\t提交前必须逐一检查：\n266\t1. 所有最新实验结果已全部录入\n267\t2. 根据实验结果将叙事调至最优状态\n268\t3. 附录所有内容在正文中被引用且融入叙事\n269\t4. 无数据堆砌（每个数字服务于叙事推进）\n270\t5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n271\t6. 全文主线统一（idea 变化后各章节逻辑一致）\n272\t7. 所有专有名词有定义\n273\t8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n274\t9. 图表知识密度高、无视觉遮挡\n275\t10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n276\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3660f29b-569a-45d0-b6d5-c214c9a3e3b9",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "da5260dd-2c36-497e-83c4-3215b3a6c8f6",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md",
+                "content": "---\nname: paper-writing-norms\ndescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\nallowed-tools: [Read, Write, Edit, Glob, Grep]\nscope: global\nversion: 2\npriority: 9\ntags:\n  - writing\n  - paper\n  - style\n  - norms\nroles:\n  - agent\n  - worker\n  - paper_agent\n---\n\n# 论文写作风格规范\n\n> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n\n---\n\n## 一、总体写作哲学\n\n### 1.1 故事驱动，不是数据堆砌\n\n- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n\n### 1.2 主线统一性\n\n- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n\n### 1.3 专有名词必须有定义\n\n- 首次出现的专有名词/缩写必须给出完整定义和解释\n- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n\n### 1.4 写作前必读同类优秀论文\n\n- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n- 重点学：\n  - Abstract 怎么用最少篇幅讲完故事\n  - Introduction 怎么从大问题切入到具体贡献\n  - Related Work 怎么 positioning 自己（不是 survey）\n  - Table/Figure 怎么压缩信息密度\n- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n\n---\n\n## 二、Abstract 写作规范\n\n### 2.1 四个必答问题（150-250 words）\n\nAbstract 必须在很短的篇幅内清楚回答：\n1. **研究什么问题** — 1-2 句话交代背景和痛点\n2. **为什么重要** — 现有方法的不足（不用写太多）\n3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n4. **结果说明什么** — 用具体实验结论支撑贡献\n\n### 2.2 禁忌\n\n- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n- **禁止过度宣传**：不说 \"revolutionary\"、\"groundbreaking\"\n- **禁止写成 Introduction 的缩写**：Abstract 是独立阅读单元\n- **禁止术语堆积**：如果审稿人几十秒内判断不出价值，就失败了\n- **缩写必须定义**：Abstract 中首次出现的缩写必须展开\n\n### 2.3 审稿人视角检验\n\n写完后用这个标准自检：审稿人能否在 30 秒内判断——\n- 问题是否重要？\n- 方法是否清楚？\n- 贡献是否可信？\n- 结果是否有说服力？\n\n---\n\n## 三、Introduction 写作规范\n\n### 3.1 完整叙事线（5 段结构）\n\nIntroduction 需要从一个清晰、重要的问题切入，逐步把读者带到核心贡献：\n\n1. **研究背景**（1-2 段）：大模型在某类能力/应用中已取得进展，但仍存在一个关键瓶颈\n2. **问题重要性**（1 段）：结合真实应用、已有方法局限或当前趋势，说明这不是小问题\n3. **现有方法不足**（1 段）：系统梳理为什么不够（依赖更大模型/更多数据/更复杂推理/更高成本，或只在特定 benchmark 有效）\n4. **本文核心想法**（1 段）：我们观察到什么、提出了什么方法、为什么能解决上述问题\n5. **贡献总结**（列表）：清楚列出方法贡献、实验贡献和分析贡献\n\n### 3.2 整体叙事结构\n\n```\n现有进展 → 关键缺口 → 本文洞察 → 方法概述 → 实验证据 → 贡献总结\n```\n\n### 3.3 禁忌\n\n- **禁止泛泛介绍**：不要开头就写 \"LLMs have shown remarkable capabilities...\"，要从具体问题切入\n- **禁止缺少过渡**：每段之间必须有逻辑连接\n- **禁止实验报告风格**：Introduction 不是 \"我们做了 X 实验得到了 Y 结果\" 的罗列\n- 每条 Contribution 必须有对应的 section/table 支撑\n- Contribution 列表中不能出现未在前文铺垫过的概念\n\n---\n\n## 四、Related Work 写作规范\n\n### 4.1 目标\n\n让审稿人相信：作者理解这个领域，知道自己的方法站在什么位置，清楚相对已有工作的真实增量在哪里。\n\n### 4.2 结构要求\n\n- 把已有工作分成几个清晰的主题（如模型训练、推理增强、工具调用、数据构建、评测等）\n- 每类简要说明：已有方法做了什么、解决了哪些问题、和本文的关系\n- 帮助读者理解：哪些是本文直接继承的，哪些方法不同但解决相似问题，哪些留下了本文要解决的缺口\n\n### 4.3 禁忌\n\n- **禁止论文堆砌**：不要写成 \"A proposed X. B proposed Y. C proposed Z.\" 的列表\n- **目标不是展示读了多少论文**，而是做归纳和比较\n- Contribution claim（\"To our knowledge, no prior work...\"）应放在 Introduction，不在 Related Work\n\n### 4.4 引用充足度\n\n- 引用必须覆盖：**直接相关方法、baseline 论文、评测 benchmark 论文、理论基础**\n- 任何一类缺失，审稿人会立刻看出来调研不充分\n- 引用密度参照目标会议近年录用论文的量级——明显偏少意味着 Related Work 调研不足\n\n---\n\n## 五、去 AI 写作风格（硬规则）\n\n以下模式是 AI 生成文本的典型标志，审稿人一眼能看出。**必须全部消除。**\n\n### 5.1 严禁破折号（最显著的 AI 痕迹）\n\n**这是 AI 写作最容易被识别的标志，审稿人最敏感。单列为最高优先级硬规则。**\n\n- 解释性 em-dash（—，U+2014）和 en-dash（–，U+2013）必须**全部删除**\n- 替代方式：用逗号、括号或拆分为两个句子\n- 强制检查命令：\n  ```bash\n  grep -n \"—\" paper/*.tex     # em-dash，每处人工判断是否必要\n  grep -n \" – \" paper/*.tex   # 解释性 en-dash，几乎都应删除\n  ```\n- 例外（允许保留）：表格分隔符、数字范围（`2020–2024`、`pp. 12–18`）、专有名词（`Newton–Raphson`）\n\n### 5.2 段落与句式\n\n- **禁止过度分段**：不需要每 2-3 句就换段，自然段 5-8 句是正常的\n- **减少关系从句**（which, that, who）：能用简洁直接的句子就不用从句\n- **禁止 -ing 短语结尾**：如 \"..., highlighting the applicability of...\" / \"..., demonstrating the effectiveness of...\"。这是 AI 写作最典型的标志之一\n- **禁止连续使用 \"Furthermore\" / \"Moreover\" / \"Additionally\"**：一段内最多用一个过渡词\n- **避免 \"It is worth noting that...\" / \"Notably, ...\"**：直接写要说的内容\n\n### 5.3 用词黑名单\n\n- 避免 \"delve into\" / \"leverage\" / \"utilize\" / \"facilitate\" — 用 \"explore\" / \"use\" / \"enable\"\n- 避免 \"a myriad of\" / \"a plethora of\" — 用 \"many\" / \"various\"\n- 避免 \"in the realm of\" / \"in the context of\" — 直接说\n- 避免 \"paradigm shift\" / \"novel\" 过度使用\n\n### 5.4 校对清单（4 步）\n\n1. 全文 proofread 语法和拼写\n2. 检查所有代词/指示词（this, that, it）是否指代明确\n3. **`grep \"—\"` + `grep \" – \"` 全文清零**（删除所有解释性 dash，§5.1）\n4. `grep \"ing,\"` 模式——大部分 -ing 分词短语需要改写\n\n---\n\n## 六、图表与视觉规范\n\n### 6.1 知识密度原则\n\n- **图表的信息必须紧凑**——不能为了美观而留大量白空间\n- 一张图如果只传达一个简单信息，要么缩小要么合并到其他图中\n- 能用 inline text 说清的不要占一整个 Figure\n\n### 6.2 表格规范\n\n- 表格和正文文字不能视觉重叠（检查 column 宽度和 alignment）\n- 小数精度全表统一\n- 最优加粗、次优下划线\n- Caption 必须自包含\n\n### 6.3 图片规范\n\n- 数值标签不能被线、bar、点遮住——用白色背景或偏移标签\n- 图中字体 >= 7pt（打印后仍可读）\n- 栏宽约束需匹配目标 venue 模板要求\n- 概念图/流程图要有信息量，不要画一个 trivial 的 pipeline 然后占半页\n\n### 6.4 空间效率\n\n- 顶会正文页数严格受限（具体页数查目标会议官网），每 cm² 都是宝贵资源\n- 优先使用 `\\subfigure` 合并相关图\n- Table 能 inline 就不要单独浮动\n- 图表占比与其对叙事的贡献成正比\n\n### 6.5 页面节奏\n\n好论文的页面有节奏感——text、equation、figure 交替出现，读者视觉不疲劳：\n\n- **text-equation-figure 三重奏**：重要概念用\"文字解释 → 公式定义 → 图表直觉\"三步展开\n- 连续 2 页纯文本（无 figure/equation/table）→ 穿插一个 display item 打破节奏\n- 连续 2 个 figure 页（整页被 float 占满）→ 至少隔 1 段文字再放下一个 float\n- Section heading 不孤悬页底（heading 后至少跟 2 行正文，否则强制分页）\n- 最后一页内容 ≥ 2/3 页面高度（太空显得凑数，太满放不下 references）\n\n### 6.6 表格 LaTeX 规范\n\n**Booktabs 标准（硬规则）**：\n- 用 `\\toprule` / `\\midrule` / `\\bottomrule`，禁止 `\\hline`，禁止竖线 `|`\n- 用 `\\centering` 不用 `\\begin{center}`（后者多加垂直空白）\n- 最优结果加粗（`\\textbf{}`），次优下划线（`\\underline{}`）+ 方向箭头 `↑`/`↓` 标明指标方向\n- 小数精度全表统一（如全部保留 1 位或 2 位）\n- Caption 在表格上方（`\\caption` 在 `\\begin{tabular}` 之前）\n\n**宽度决策树**：\n- ≤5 列 → 单栏宽度（`\\columnwidth`）\n- 6–8 列 → 全文宽度（`\\textwidth`，双栏模板用 `table*`）\n- >8 列 → 拆成两张表或移入 appendix\n\n---\n\n## 七、投稿前通用准备\n\n### 7.1 模板必须官方（硬规则）\n\n- LaTeX 模板**必须从目标会议官网下载**（CallForPapers / Author Instructions 页面）\n- **不要用**：\n  - 网上他人转载的复制版本（可能被改过 margin / 行号设置）\n  - 上一年的模板（参数可能变：字体、margin、行号、anonymous 选项等）\n  - 组里学长留的旧版本（来源不明、无法追溯）\n- 风险：\n  - 样式不符合 → desk reject\n  - margin 不对 → 被审稿人质疑诚信\n  - reference 格式错 → 被认为不规范\n- 流程：先查会议官网 templates → 找不到再 `WebSearch \"{venue} {year} latex template official\"` → 仍找不到汇报 Director（不要用就近年版本顶替）\n- `\\documentclass[]{}` 选项必须与目标 venue + 阶段（review / camera-ready）一致\n\n### 7.2 投稿要求逐项核对\n\n- 目标会议如要求 Checklist / Ethical Statement / Broader Impact Statement / Reproducibility Statement，必须**认真填每一项**，不要全写 N/A\n- 页数限制：查目标会议官网\n- 匿名化要求：review 版 vs camera-ready 版本设置不同\n- 行号开启（review 版常需）\n- 字体大小、margin 不得修改 sty 文件\n\n### 7.3 最终修改 10 项检查流程\n\n提交前必须逐一检查：\n1. 所有最新实验结果已全部录入\n2. 根据实验结果将叙事调至最优状态\n3. 附录所有内容在正文中被引用且融入叙事\n4. 无数据堆砌（每个数字服务于叙事推进）\n5. Abstract 和 Introduction 具有吸引力（不是实验报告风格）\n6. 全文主线统一（idea 变化后各章节逻辑一致）\n7. 所有专有名词有定义\n8. 无 AI 风格标志（dash、-ing phrases、过度分段）\n9. 图表知识密度高、无视觉遮挡\n10. Reference 覆盖直接相关方法、baseline、benchmark、理论基础\n",
+                "numLines": 276,
+                "startLine": 1,
+                "totalLines": 276
+              }
+            },
+            "sourceToolAssistantUUID": "3660f29b-569a-45d0-b6d5-c214c9a3e3b9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T12:16:35.675Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ee7ajBxXFqhgUU8HKuYzhx",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认你引用的 claim 确实出自该论文\n95\t5. ADD     → 加入 .bib 文件\n96\t```\n97\t\n98\t### 3.3 API 速查\n99\t\n100\t| API | 用途 | 限制 |\n101\t|-----|------|------|\n102\t| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n103\t| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n104\t| **arXiv** | 预印本搜索 | 3s 间隔 |\n105\t\n106\t```python\n107\t# DOI → BibTeX（最可靠的方式）\n108\timport requests\n109\tdef doi_to_bibtex(doi: str) -> str:\n110\t    r = requests.get(f\"https://doi.org/{doi}\",\n111\t                     headers={\"Accept\": \"application/x-bibtex\"})\n112\t    r.raise_for_status()\n113\t    return r.text\n114\t\n115\t# Semantic Scholar 搜索\n116\tfrom semanticscholar import SemanticScholar\n117\tsch = SemanticScholar()\n118\tresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\n119\tfor p in results:\n120\t    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n121\t```\n122\t\n123\t### 3.4 引用处理规则\n124\t\n125\t| 情况 | 处理 |\n126\t|------|------|\n127\t| 找到论文 + DOI + BibTeX | 直接用 |\n128\t| 找到论文，无 DOI | 用 arXiv BibTeX |\n129\t| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n130\t| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n131\t| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n132\t\n133\t---\n134\t\n135\t## 4. 顶会模板速查\n136\t\n137\t### 4.1 ML/AI 会议\n138\t\n139\t| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n140\t|------|---------|--------|---------|--------|\n141\t| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n142\t| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n143\t| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n144\t| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n145\t| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n146\t| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n147\t\n148\t### 4.2 系统会议\n149\t\n150\t| 会议 | 页数限制 | 模板类型 | 关键要求 |\n151\t|------|---------|---------|---------|\n152\t| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n153\t| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n154\t| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n155\t| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n156\t\n157\t### 4.3 模板使用原则\n158\t\n159\t```bash\n160\t# 1. 复制整个模板目录（不要只拷 .tex）\n161\tcp -r templates/neurips2025/ ~/papers/my-paper/\n162\t\n163\t# 2. 先编译未修改的模板，确认能跑通\n164\tlatexmk -pdf main.tex\n165\t\n166\t# 3. 逐章替换内容，频繁编译\n167\t```\n168\t\n169\t**禁止事项：**\n170\t- 不要修改 `.sty` 文件\n171\t- 不要在会议模板间复制 `\\usepackage` 行\n172\t- 不要只复制 `.tex` 而不带 `.sty/.bst`\n173\t\n174\t---\n175\t\n176\t## 5. 写作规范\n177\t\n178\t### 5.1 时间分配（Neel Nanda）\n179\t\n180\t花**大致相等**的时间在：\n181\t1. Abstract\n182\t2. Introduction\n183\t3. 图表\n184\t4. **其余所有内容加起来**\n185\t\n186\t审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n187\t\n188\t### 5.2 Abstract 五句法（Sebastian Farquhar）\n189\t\n190\t```\n191\t1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n192\t2. 为什么这很难且重要\n193\t3. 怎么做的（含专业关键词以便检索）\n194\t4. 有什么证据\n195\t5. 最惊人的数字/结果\n196\t```\n197\t\n198\t删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n199\t\n200\t### 5.3 句子级清晰度（Gopen & Swan）\n201\t\n202\t| 原则 | 规则 |\n203\t|------|------|\n204\t| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n205\t| 重点在句尾 | 把关键数字/结论放在句末 |\n206\t| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n207\t| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n208\t\n209\t### 5.4 常见修改\n210\t\n211\t| 问题 | 修复 |\n212\t|------|------|\n213\t| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n214\t| Introduction 超 1.5 页 | 背景挪到 Related Work |\n215\t| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n216\t| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n217\t\n218\t---\n219\t\n220\t## 6. 投稿工程链\n221\t\n222\t### 6.1 构建\n223\t\n224\t```bash\n225\t# 推荐：latexmk 一键构建\n226\tlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n227\t\n228\t# 手动：需要多次编译\n229\tpdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n230\t```\n231\t\n232\t### 6.2 Lint + 格式化\n233\t\n234\t```bash\n235\t# Lint: 检查常见 LaTeX 问题\n236\tchktex main.tex\n237\t\n238\t# 格式化: 减少 diff 噪声\n239\tlatexindent -w main.tex\n240\t```\n241\t\n242\t### 6.3 图表格式\n243\t\n244\t| 类型 | 格式 | 说明 |\n245\t|------|------|------|\n246\t| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n247\t| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n248\t| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n249\t\n250\t```latex\n251\t\\usepackage{booktabs}\n252\t\\begin{tabular}{lcc}\n253\t\\toprule\n254\tMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n255\t\\midrule\n256\tBaseline & 85.2 & 45ms \\\\\n257\t\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n258\t\\bottomrule\n259\t\\end{tabular}\n260\t```\n261\t\n262\t**图表规范：**\n263\t- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n264\t- 图内不放标题（用 caption）\n265\t- Caption 独立可理解（不依赖正文）\n266\t- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n267\t\n268\t### 6.4 投稿打包\n269\t\n270\t```bash\n271\t# 清理辅助文件\n272\tlatexmk -c\n273\t\n274\t# 打包投稿\n275\tzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n276\t```\n277\t\n278\t### 6.5 常见失败点\n279\t\n280\t| 问题 | 解决 |\n281\t|------|------|\n282\t| 图片格式混用导致编译失败 | 统一用 PDF |\n283\t| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n284\t| Overfull box 过多 | 关键位置手动调行 |\n285\t| 引用缺字段 | 检查 DOI/年份/期刊名 |\n286\t| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n287\t\n288\t---\n289\t\n290\t## 7. 会议转投\n291\t\n292\t当论文被拒或转投其他会议时：\n293\t\n294\t### 7.1 ML/AI 会议间转换\n295\t\n296\t| 转换 | 页数变化 | 关键调整 |\n297\t|------|---------|---------|\n298\t| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n299\t| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n300\t| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n301\t| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n302\t\n303\t### 7.2 转投原则\n304\t\n305\t1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n306\t2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n307\t3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n308\t4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n309\t\n310\t---\n311\t\n312\t## 8. 投前清单\n313\t\n314\t### 通用清单\n315\t\n316\t- [ ] Abstract/Intro/Conclusion 的 claim 一致\n317\t- [ ] 每个 contribution 有对应 evidence\n318\t- [ ] 所有引用已程序化验证（无幻觉引用）\n319\t- [ ] Error bars + 运行次数 + 统计方法\n320\t- [ ] Limitations 章节存在且诚实\n321\t- [ ] 匿名化（双盲审稿）\n322\t- [ ] 符合页数限制\n323\t- [ ] 所有图表有自包含 caption\n324\t- [ ] `.bib` 中无缺失字段\n325\t- [ ] PDF 编译无 warning\n326\t\n327\t### 会议特定\n328\t\n329\t| 会议 | 额外要求 |\n330\t|------|---------|\n331\t| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n332\t| ICML | Broader Impact Statement |\n333\t| ICLR | LLM 使用声明 |\n334\t| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n335\t| AAAI | 严格样式文件合规 |\n336\t\n337\t---\n338\t\n339\t## 参考资源\n340\t\n341\t**写作方法论：**\n342\t- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n343\t- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n344\t- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n345\t- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n346\t- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n347\t\n348\t**API：**\n349\t- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n350\t\n351\t**会议官方：**\n352\t- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n353\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c25ac2c9-5011-46e2-8598-6b857637111e",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "0e826552-0066-4836-9f38-365a1daec08e",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+                "content": "---\nname: latex-paper\ndescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\nscope: global\ntags:\n- latex\n- paper-writing\n- academic\n- citation\n- submission\nversion: 1\nroles:\n- agent\n- worker\n---\n\n# LaTeX 论文写作全流程\n\nML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n\n---\n\n## 1. 工作模式\n\n开始前选择模式：\n\n| 模式 | 说明 | 适用 |\n|------|------|------|\n| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n\n---\n\n## 2. Claim-Evidence 方法论\n\n**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n\n### 2.1 一句话贡献\n\n在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n\n### 2.2 Claim-Evidence Map\n\n为每个 contribution 建立 claim→evidence 映射表：\n\n| Contribution | Claim | Evidence | Table/Figure |\n|-------------|-------|----------|-------------|\n| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n\n**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n\n### 2.3 章节起草顺序\n\n```\n1. Introduction + Experiments（先确定 claim 和 evidence）\n2. Method（评估问题稳定后再写细节）\n3. Related Work\n4. Abstract + Title（核心 claim 定型后最后写）\n```\n\n### 2.4 Quality Gates\n\n投稿前必须通过：\n- [ ] 前两段出现显式 novelty 声明\n- [ ] 每个 contribution 有可验证的 evidence\n- [ ] Abstract / Intro / Conclusion 的 claim 一致\n- [ ] Limitations 真实且技术性诚实\n- [ ] 审稿人两分钟内能识别 delta\n\n---\n\n## 3. 引用防幻觉（CRITICAL）\n\n**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n\n### 3.1 黄金法则\n\n```\nIF 无法程序化获取引用:\n    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n    → 明确告知用户\n    → 绝不编造看似合理的引用\n```\n\n### 3.2 五步验证流程\n\n```\n1. SEARCH  → Semantic Scholar API 搜索关键词\n2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n4. CHECK   → 确认你引用的 claim 确实出自该论文\n5. ADD     → 加入 .bib 文件\n```\n\n### 3.3 API 速查\n\n| API | 用途 | 限制 |\n|-----|------|------|\n| **Semantic Scholar** | ML/AI 论文搜索 | 1 RPS (免费) |\n| **CrossRef** | DOI → BibTeX | 需 mailto 头 |\n| **arXiv** | 预印本搜索 | 3s 间隔 |\n\n```python\n# DOI → BibTeX（最可靠的方式）\nimport requests\ndef doi_to_bibtex(doi: str) -> str:\n    r = requests.get(f\"https://doi.org/{doi}\",\n                     headers={\"Accept\": \"application/x-bibtex\"})\n    r.raise_for_status()\n    return r.text\n\n# Semantic Scholar 搜索\nfrom semanticscholar import SemanticScholar\nsch = SemanticScholar()\nresults = sch.search_paper(\"attention mechanism transformers\", limit=5)\nfor p in results:\n    print(f\"{p.title} | DOI: {p.externalIds.get('DOI', 'N/A')}\")\n```\n\n### 3.4 引用处理规则\n\n| 情况 | 处理 |\n|------|------|\n| 找到论文 + DOI + BibTeX | 直接用 |\n| 找到论文，无 DOI | 用 arXiv BibTeX |\n| 论文存在但无法获取 BibTeX | 标记 placeholder，告知用户 |\n| 不确定论文是否存在 | 标记 `[CITATION NEEDED]`，告知用户 |\n| \"我觉得有篇关于 X 的论文\" | **绝不引用** — 先搜索或标记 |\n\n---\n\n## 4. 顶会模板速查\n\n### 4.1 ML/AI 会议\n\n| 会议 | 页数限制 | 主文件 | 样式文件 | 必须项 |\n|------|---------|--------|---------|--------|\n| **NeurIPS** | 9 页 | `main.tex` | `neurips.sty` | Paper Checklist |\n| **ICML** | 8 页 (+1 camera-ready) | `example_paper.tex` | `icml2026.sty` | Broader Impact |\n| **ICLR** | 9 页 (+1) | `iclr_conference.tex` | `iclr_conference.sty` | LLM 使用声明 |\n| **ACL/EMNLP** | 8 页 (long) | `acl_latex.tex` | `acl.sty` | Limitations 必须 |\n| **AAAI** | 7 页 (+1) | `aaai_template.tex` | `aaai.sty` | 严格样式 |\n| **COLM** | 9 页 (+1) | `colm_conference.tex` | `colm_conference.sty` | 语言模型聚焦 |\n\n### 4.2 系统会议\n\n| 会议 | 页数限制 | 模板类型 | 关键要求 |\n|------|---------|---------|---------|\n| **OSDI** | 12 页 (+2) | USENIX `usenix.sty` | Research / Operational 双 track |\n| **NSDI** | 12 页 | USENIX | Introduction 预筛 |\n| **ASPLOS** | 12 页 | ACM `acmart.cls (sigplan)` | 前 2 页快速评审 |\n| **SOSP** | 12 页 | ACM `acmart.cls (sigplan)` | 可选 Artifact Evaluation |\n\n### 4.3 模板使用原则\n\n```bash\n# 1. 复制整个模板目录（不要只拷 .tex）\ncp -r templates/neurips2025/ ~/papers/my-paper/\n\n# 2. 先编译未修改的模板，确认能跑通\nlatexmk -pdf main.tex\n\n# 3. 逐章替换内容，频繁编译\n```\n\n**禁止事项：**\n- 不要修改 `.sty` 文件\n- 不要在会议模板间复制 `\\usepackage` 行\n- 不要只复制 `.tex` 而不带 `.sty/.bst`\n\n---\n\n## 5. 写作规范\n\n### 5.1 时间分配（Neel Nanda）\n\n花**大致相等**的时间在：\n1. Abstract\n2. Introduction\n3. 图表\n4. **其余所有内容加起来**\n\n审稿人读论文的顺序：标题 → 摘要 → 引言 → 图表 → 也许正文。\n\n### 5.2 Abstract 五句法（Sebastian Farquhar）\n\n```\n1. 你做了什么（\"We introduce/prove/demonstrate...\"）\n2. 为什么这很难且重要\n3. 怎么做的（含专业关键词以便检索）\n4. 有什么证据\n5. 最惊人的数字/结果\n```\n\n删除一切泛泛的开头：~~\"Large language models have achieved remarkable success...\"~~\n\n### 5.3 句子级清晰度（Gopen & Swan）\n\n| 原则 | 规则 |\n|------|------|\n| 主谓紧邻 | 不要在主语和动词之间插入长从句 |\n| 重点在句尾 | 把关键数字/结论放在句末 |\n| 旧信息在前 | 先放读者已知的内容，再引入新概念 |\n| 动词表达动作 | \"We analyzed\" 而非 \"We performed an analysis\" |\n\n### 5.4 常见修改\n\n| 问题 | 修复 |\n|------|------|\n| Abstract 太泛 | 删第一句（如果它能放在任何 ML 论文前面） |\n| Introduction 超 1.5 页 | 背景挪到 Related Work |\n| 实验没有显式 claim | 每个实验前加 \"This tests whether...\" |\n| 缺统计显著性 | 加 error bars + 运行次数 + 计算方法 |\n\n---\n\n## 6. 投稿工程链\n\n### 6.1 构建\n\n```bash\n# 推荐：latexmk 一键构建\nlatexmk -pdf -interaction=nonstopmode -halt-on-error main.tex\n\n# 手动：需要多次编译\npdflatex main.tex && bibtex main && pdflatex main.tex && pdflatex main.tex\n```\n\n### 6.2 Lint + 格式化\n\n```bash\n# Lint: 检查常见 LaTeX 问题\nchktex main.tex\n\n# 格式化: 减少 diff 噪声\nlatexindent -w main.tex\n```\n\n### 6.3 图表格式\n\n| 类型 | 格式 | 说明 |\n|------|------|------|\n| 矢量图（plot、diagram） | PDF | matplotlib: `plt.savefig('fig.pdf')` |\n| 照片/heatmap | PNG 600dpi 或 TIFF | 栅格图 |\n| 表格 | `booktabs` 包 | `\\toprule/\\midrule/\\bottomrule` |\n\n```latex\n\\usepackage{booktabs}\n\\begin{tabular}{lcc}\n\\toprule\nMethod & Accuracy $\\uparrow$ & Latency $\\downarrow$ \\\\\n\\midrule\nBaseline & 85.2 & 45ms \\\\\n\\textbf{Ours} & \\textbf{92.1} & 38ms \\\\\n\\bottomrule\n\\end{tabular}\n```\n\n**图表规范：**\n- 用色盲友好色板（Okabe-Ito 或 Paul Tol）\n- 图内不放标题（用 caption）\n- Caption 独立可理解（不依赖正文）\n- 最佳值加粗，标注方向符号（↑ 越高越好，↓ 越低越好）\n\n### 6.4 投稿打包\n\n```bash\n# 清理辅助文件\nlatexmk -c\n\n# 打包投稿\nzip -r submission.zip main.tex *.sty *.bst *.bib figures/ --exclude='*.aux' --exclude='*.log'\n```\n\n### 6.5 常见失败点\n\n| 问题 | 解决 |\n|------|------|\n| 图片格式混用导致编译失败 | 统一用 PDF |\n| 字体未嵌入 | `pdffonts output.pdf` 检查 |\n| Overfull box 过多 | 关键位置手动调行 |\n| 引用缺字段 | 检查 DOI/年份/期刊名 |\n| 超页数 | 用 `\\vspace{-Xpt}` 微调，或精简内容 |\n\n---\n\n## 7. 会议转投\n\n当论文被拒或转投其他会议时：\n\n### 7.1 ML/AI 会议间转换\n\n| 转换 | 页数变化 | 关键调整 |\n|------|---------|---------|\n| NeurIPS → ICML | 9→8 | 删 1 页，加 Broader Impact |\n| ICML → ICLR | 8→9 | 可扩展实验 + LLM 声明 |\n| NeurIPS → ACL | 9→8 | 按 NLP 惯例重组 + Limitations |\n| ICLR → AAAI | 9→7 | 大幅精简，严格样式 |\n\n### 7.2 转投原则\n\n1. **永远用目标模板重新开始** — 复制目标模板，迁移内容，不要合并 preamble\n2. **只迁移正文内容** — 不复制 `\\usepackage`、header/footer 命令\n3. **根据审稿意见改进** — 但不要在新稿中提及旧投稿（双盲）\n4. **检查目标会议特殊要求** — checklist、ethics statement、LLM 声明等\n\n---\n\n## 8. 投前清单\n\n### 通用清单\n\n- [ ] Abstract/Intro/Conclusion 的 claim 一致\n- [ ] 每个 contribution 有对应 evidence\n- [ ] 所有引用已程序化验证（无幻觉引用）\n- [ ] Error bars + 运行次数 + 统计方法\n- [ ] Limitations 章节存在且诚实\n- [ ] 匿名化（双盲审稿）\n- [ ] 符合页数限制\n- [ ] 所有图表有自包含 caption\n- [ ] `.bib` 中无缺失字段\n- [ ] PDF 编译无 warning\n\n### 会议特定\n\n| 会议 | 额外要求 |\n|------|---------|\n| NeurIPS | 16 项 Paper Checklist（附录，不计页数） |\n| ICML | Broader Impact Statement |\n| ICLR | LLM 使用声明 |\n| ACL/EMNLP | Limitations 章节（必须），Ethics Statement |\n| AAAI | 严格样式文件合规 |\n\n---\n\n## 参考资源\n\n**写作方法论：**\n- [Neel Nanda: How to Write ML Papers](https://www.alignmentforum.org/posts/eJGptPbbFPZGLpjsp/) — What/Why/So What 框架\n- [Farquhar: How to Write ML Papers](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) — 五句法 Abstract\n- [Gopen & Swan: Science of Scientific Writing](https://cseweb.ucsd.edu/~swanson/papers/science-of-writing.pdf) — 读者预期 7 原则\n- [Lipton: Heuristics for Scientific Writing](https://www.approximatelycorrect.com/2018/01/29/heuristics-technical-scientific-writing-machine-learning-perspective/) — 用词\n- [Perez: Easy Paper Writing Tips](https://ethanperez.net/easy-paper-writing-tips/) — 微观清晰度\n\n**API：**\n- [Semantic Scholar](https://api.semanticscholar.org/api-docs/) | [CrossRef](https://www.crossref.org/documentation/) | [arXiv](https://info.arxiv.org/help/api/)\n\n**会议官方：**\n- [NeurIPS](https://neurips.cc/) | [ICML](https://icml.cc/) | [ICLR](https://iclr.cc/) | [ACL](https://www.aclweb.org/) | [AAAI](https://aaai.org/) | [EMNLP](https://2025.emnlp.org/)\n",
+                "numLines": 353,
+                "startLine": 1,
+                "totalLines": 353
+              }
+            },
+            "sourceToolAssistantUUID": "c25ac2c9-5011-46e2-8598-6b857637111e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T12:16:35.668Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ee7ajBxXFqhgUU8HKuYzhx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da5260dd-2c36-497e-83c4-3215b3a6c8f6",
+            "isSidechain": false,
+            "requestId": "req_011CbHbGTxuchiXNrMufFP7H",
+            "type": "assistant",
+            "uuid": "c25ac2c9-5011-46e2-8598-6b857637111e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014BHBy6KW7jDEsQYV9mXsX3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 14447,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 152,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14447,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 152,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 14447,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14447
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "0e826552-0066-4836-9f38-365a1daec08e",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Section 2 on LLM evaluation confounding",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T12:16:40.058Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me also read the distilled research skill to understand the positioning better, and check if there's any existing paper content or structure to align with.",
+              "signature": "EukCCmMIDRgCKkDEfKzSG5LQ0wVJU/wy9RbaQstG7K627tNGQsqslLOmAm9Jb+yzNBJwBLPv3rYgMG+fPGMloiR5KLlb/bRHkJJwMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDC/m+lX1ZhlDiSKXXxoM9z9BIvKwwNB1uqBVIjBlsuS1H7uMV2P10bIQ7r1LuA0c53giFWQvwSJeWIKKks8BdkexAQLH9rSeFr1OB6sqswFDwujfSw+fFBei5yGltPpm5gzsoeBe+Nviw8LG/2Rh0I5KxbSs1E0/BFYUElrXXhZhRCMIDOMEUzBzNpRypU7hD6kJeWkQ6Y1tpOfUYX/q8WhpLCZAzMWi9FXpNplW2BEWKOwg7r8S4hVAhZn3GnLnfvs4XDm0anDn8HCoWWkNtrtUBEKQPk6apbtqPworAnsgvwauVHp3UCxhj6bjt1lqJ5f0KPTb8OCYbgg/CHNNQfmctRgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e826552-0066-4836-9f38-365a1daec08e",
+            "isSidechain": false,
+            "requestId": "req_011CbHbH85bqUpGiFBBD6wbn",
+            "type": "assistant",
+            "uuid": "b01c9663-2083-4c76-8cb8-9be1fba654b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0137Rh96s568pWGVohLcBtca",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11125,
+                "cache_read_input_tokens": 25894,
+                "output_tokens": 232,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11125,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 232,
+                    "cache_read_input_tokens": 25894,
+                    "cache_creation_input_tokens": 11125,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11125
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T12:16:40.608Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check existing paper sections and the distilled research skill for positioning context."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b01c9663-2083-4c76-8cb8-9be1fba654b6",
+            "isSidechain": false,
+            "requestId": "req_011CbHbH85bqUpGiFBBD6wbn",
+            "type": "assistant",
+            "uuid": "f5838dc8-90c6-4e7a-9ea1-bfc3550c7ab1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0137Rh96s568pWGVohLcBtca",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11125,
+                "cache_read_input_tokens": 25894,
+                "output_tokens": 232,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11125,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 232,
+                    "cache_read_input_tokens": 25894,
+                    "cache_creation_input_tokens": 11125,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11125
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T12:16:42.612Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XkB5guKp5Tv6Rm8nzYuRei",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/skills/projects/gated_mfrm_judge_bias/distilled-research.skill.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f5838dc8-90c6-4e7a-9ea1-bfc3550c7ab1",
+            "isSidechain": false,
+            "requestId": "req_011CbHbH85bqUpGiFBBD6wbn",
+            "type": "assistant",
+            "uuid": "438bb38f-af3f-466c-b60f-89630efc3cd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0137Rh96s568pWGVohLcBtca",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11125,
+                "cache_read_input_tokens": 25894,
+                "output_tokens": 232,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11125,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 232,
+                    "cache_read_input_tokens": 25894,
+                    "cache_creation_input_tokens": 11125,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11125
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T12:16:42.624Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XkB5guKp5Tv6Rm8nzYuRei",
+              "type": "tool_result",
+              "content": "1\t---\n2\tname: judge-bias-contamination-research\n3\tdescription: LLM judge bias与benchmark contamination领域的实验设计共识、竞品定位、方法论趋势——12篇论文蒸馏\n4\ttype: skill\n5\t---\n6\t\n7\t## Benchmark 与指标共识\n8\t\n9\t- **Judge bias 研究**用 MT-Bench（4/12）+ Arena-Hard（3/12）。Contamination 研究用 GSM8K+MMLU+ARC-C+HellaSwag 四件套（3/12）。G-MFRM 需覆盖两组。**置信度 高**\n10\t- **Human reference** 是必要验证：zheng2023 用 3K expert + 3K crowd votes，UDA 用 100 条，CyclicJudge 用 panel mean 作 proxy。**置信度 高**\n11\t- **核心指标**：Inter-judge std/Var(X̄)↓（CyclicJudge,UDA）| Agreement/Pearson r with human↑（zheng2023,UDA）| Rater parameter→0（wang2025）| Detection rate/δ̂（ConStat）| Kendall τ↑（PSN-IRT）。G-MFRM 需同时报 θ-RMSE + Kendall τ + judge/contamination 指标。\n12\t\n13\t## 方法论趋势\n14\t\n15\t**上升**：(1) Psychometric models 迁移至 LLM（MFRM, 4PL IRT, DG-IRT）(2) Multi-judge panels + 统计方法处理 judge variance (3) Performance-based contamination 定义取代 information-flow（ConStat: r²=0.94）。**置信度 高**\n16\t\n17\t**消退**：Perplexity-based 污染检测易绕过（ConStat 89% vs Shi 21.7%）；单 judge 已不可接受。**置信度 中**\n18\t\n19\t## G-MFRM 竞品定位\n20\t\n21\t| 竞品 | Judge Bias | Contamination | 可解释 | G-MFRM 优势 |\n22\t|------|:-:|:-:|:-:|------|\n23\t| CyclicJudge | ✓ | ✗ | ✓ | 联合建模 |\n24\t| UDA | ✓ | ✗ | ✗ | 可解释+contamination |\n25\t| DCR | ✗ | ✓ | 部分 | judge facet |\n26\t| ConStat | ✗ | ✓ | ✓ | judge facet |\n27\t| PSN-IRT | ✗ | 间接 | ✓ | multi-facet+judge |\n28\t\n29\t**核心空白（0/12篇）**：无论文同时建模 judge severity 与 contamination 的 confounding。CyclicJudge 证明 judge bias 占 >94% variance 但忽略 contamination；DCR 调整 accuracy 但忽略 judge。**置信度 高**\n30\t\n31\t## 实验设计经验\n32\t\n33\t- **Judge panel**：5-10 judges from ≥3 families（CyclicJudge, UDA, wang2025）**置信度 中**\n34\t- **Position swap**：pairwise evaluation 标准操作（zheng2023）**置信度 高**\n35\t- **显著性检验**：Bootstrap + BH 校正（ConStat, preference_leakage）或 paired Wilcoxon **置信度 高**\n36\t- **Self-preference**：judge 自评偏高是 universal pattern（CyclicJudge: Qwen 自评第一但共识排最后；UDA: [-21%,+56%] deviation）——G-MFRM 的 d_j 应捕获 **置信度 高**\n37\t\n38\t## 共同局限 → G-MFRM 卖点\n39\t\n40\t1. Judge bias 和 contamination 分别处理（6/12）→ joint estimation\n41\t2. 无 confounding 分析（0/12）→ ρ(d_j, c_n·e_i) 实验\n42\t3. 小规模验证（wang2025: 30人, CyclicJudge: 5 judges）→ 更大规模\n43\t4. 闭源模型训练数据不透明（4/12）→ black-box compatible\n44\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "438bb38f-af3f-466c-b60f-89630efc3cd9",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "3e7ee99e-8b01-4620-a18f-9d08dfdb8d90",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/skills/projects/gated_mfrm_judge_bias/distilled-research.skill.md",
+                "content": "---\nname: judge-bias-contamination-research\ndescription: LLM judge bias与benchmark contamination领域的实验设计共识、竞品定位、方法论趋势——12篇论文蒸馏\ntype: skill\n---\n\n## Benchmark 与指标共识\n\n- **Judge bias 研究**用 MT-Bench（4/12）+ Arena-Hard（3/12）。Contamination 研究用 GSM8K+MMLU+ARC-C+HellaSwag 四件套（3/12）。G-MFRM 需覆盖两组。**置信度 高**\n- **Human reference** 是必要验证：zheng2023 用 3K expert + 3K crowd votes，UDA 用 100 条，CyclicJudge 用 panel mean 作 proxy。**置信度 高**\n- **核心指标**：Inter-judge std/Var(X̄)↓（CyclicJudge,UDA）| Agreement/Pearson r with human↑（zheng2023,UDA）| Rater parameter→0（wang2025）| Detection rate/δ̂（ConStat）| Kendall τ↑（PSN-IRT）。G-MFRM 需同时报 θ-RMSE + Kendall τ + judge/contamination 指标。\n\n## 方法论趋势\n\n**上升**：(1) Psychometric models 迁移至 LLM（MFRM, 4PL IRT, DG-IRT）(2) Multi-judge panels + 统计方法处理 judge variance (3) Performance-based contamination 定义取代 information-flow（ConStat: r²=0.94）。**置信度 高**\n\n**消退**：Perplexity-based 污染检测易绕过（ConStat 89% vs Shi 21.7%）；单 judge 已不可接受。**置信度 中**\n\n## G-MFRM 竞品定位\n\n| 竞品 | Judge Bias | Contamination | 可解释 | G-MFRM 优势 |\n|------|:-:|:-:|:-:|------|\n| CyclicJudge | ✓ | ✗ | ✓ | 联合建模 |\n| UDA | ✓ | ✗ | ✗ | 可解释+contamination |\n| DCR | ✗ | ✓ | 部分 | judge facet |\n| ConStat | ✗ | ✓ | ✓ | judge facet |\n| PSN-IRT | ✗ | 间接 | ✓ | multi-facet+judge |\n\n**核心空白（0/12篇）**：无论文同时建模 judge severity 与 contamination 的 confounding。CyclicJudge 证明 judge bias 占 >94% variance 但忽略 contamination；DCR 调整 accuracy 但忽略 judge。**置信度 高**\n\n## 实验设计经验\n\n- **Judge panel**：5-10 judges from ≥3 families（CyclicJudge, UDA, wang2025）**置信度 中**\n- **Position swap**：pairwise evaluation 标准操作（zheng2023）**置信度 高**\n- **显著性检验**：Bootstrap + BH 校正（ConStat, preference_leakage）或 paired Wilcoxon **置信度 高**\n- **Self-preference**：judge 自评偏高是 universal pattern（CyclicJudge: Qwen 自评第一但共识排最后；UDA: [-21%,+56%] deviation）——G-MFRM 的 d_j 应捕获 **置信度 高**\n\n## 共同局限 → G-MFRM 卖点\n\n1. Judge bias 和 contamination 分别处理（6/12）→ joint estimation\n2. 无 confounding 分析（0/12）→ ρ(d_j, c_n·e_i) 实验\n3. 小规模验证（wang2025: 30人, CyclicJudge: 5 judges）→ 更大规模\n4. 闭源模型训练数据不透明（4/12）→ black-box compatible\n",
+                "numLines": 44,
+                "startLine": 1,
+                "totalLines": 44
+              }
+            },
+            "sourceToolAssistantUUID": "438bb38f-af3f-466c-b60f-89630efc3cd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T12:16:43.302Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013KiWJLgdBCds9pURmHT61x",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3e7ee99e-8b01-4620-a18f-9d08dfdb8d90",
+            "isSidechain": false,
+            "requestId": "req_011CbHbH85bqUpGiFBBD6wbn",
+            "type": "assistant",
+            "uuid": "3bc2d202-2dfe-45a6-af77-0710f461cfd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0137Rh96s568pWGVohLcBtca",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 11125,
+                "cache_read_input_tokens": 25894,
+                "output_tokens": 232,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11125,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 232,
+                    "cache_read_input_tokens": 25894,
+                    "cache_creation_input_tokens": 11125,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11125
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T12:16:43.415Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013KiWJLgdBCds9pURmHT61x",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260521T204917/best/paper.tex\nartifacts/dream_reports/dream_20260521T204917/median/paper.tex\nartifacts/dream_reports/dream_20260521T204917/worst/paper.tex\nartifacts/dream_reports/dream_20260521T215715/best/paper.tex\nartifacts/dream_reports/dream_20260521T215715/median/paper.tex\nartifacts/dream_reports/dream_20260521T215715/worst/paper.tex\nartifacts/dream_reports/dream_20260522T041217/best/paper.tex\nartifacts/dream_reports/dream_20260522T041217/median/paper.tex\nartifacts/dream_reports/dream_20260522T041217/worst/paper.tex\ndocs/paper/main.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3bc2d202-2dfe-45a6-af77-0710f461cfd4",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "4c52cd9a-1509-4d6a-b074-57f52b0fa82f",
+            "toolUseResult": {
+              "filenames": [
+                "artifacts/dream_reports/dream_20260521T204917/best/paper.tex",
+                "artifacts/dream_reports/dream_20260521T204917/median/paper.tex",
+                "artifacts/dream_reports/dream_20260521T204917/worst/paper.tex",
+                "artifacts/dream_reports/dream_20260521T215715/best/paper.tex",
+                "artifacts/dream_reports/dream_20260521T215715/median/paper.tex",
+                "artifacts/dream_reports/dream_20260521T215715/worst/paper.tex",
+                "artifacts/dream_reports/dream_20260522T041217/best/paper.tex",
+                "artifacts/dream_reports/dream_20260522T041217/median/paper.tex",
+                "artifacts/dream_reports/dream_20260522T041217/worst/paper.tex",
+                "docs/paper/main.tex"
+              ],
+              "durationMs": 93,
+              "numFiles": 10,
+              "truncated": false
+            },
+            "sourceToolAssistantUUID": "3bc2d202-2dfe-45a6-af77-0710f461cfd4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T12:16:46.561Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the main paper to understand the existing structure, and also check a dream report for style reference.",
+              "signature": "EroCCmMIDRgCKkDkpoMJUvSzIyWy8v8t9JCZrctJ8RGRDc7Zt6O/u50oDclRkuXgn0coC2+D1o3ZdFFopM5JbTmHiRhgySc6VCRXMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDE/QFRfj9k1wGa4jyRoMV/dfK4Se7cXtGfGCIjBF2InOFGogNPJejvTuJa+PLUICHu89QVuyE67bd3rK/pqojiUC+EXyBne4a3YcfV4qhAFHeZ7bCIHH12HBTYZDontewUI9HynezqtFX/9YnGbKXRZg1L/rAJQCyeNNWZiyYoc8Bc1WQjY6BY/mPHKdiBeOB8uJBvTXtaJDt10sI/dpxzA6I2Tr0ACjSGWLpblYEJn+ppdbZLAMaI7ecOoxMIGOw7gwi4boIafDfhd+srH0swipNUQYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c52cd9a-1509-4d6a-b074-57f52b0fa82f",
+            "isSidechain": false,
+            "requestId": "req_011CbHbHgtZPmbhxkBFEuiER",
+            "type": "assistant",
+            "uuid": "13722a75-bea5-4590-ae1d-74d87eb1cbc0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GSnMQ1dfTXfxLZUGGzPMyK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1732,
+                "cache_read_input_tokens": 37019,
+                "output_tokens": 123,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1732,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 123,
+                    "cache_read_input_tokens": 37019,
+                    "cache_creation_input_tokens": 1732,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1732
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T12:16:47.585Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Jhwjq43SLBt9eMKsd1dU92",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "13722a75-bea5-4590-ae1d-74d87eb1cbc0",
+            "isSidechain": false,
+            "requestId": "req_011CbHbHgtZPmbhxkBFEuiER",
+            "type": "assistant",
+            "uuid": "d5f2b910-93f3-44a0-b87d-9154adc6eca4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GSnMQ1dfTXfxLZUGGzPMyK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1732,
+                "cache_read_input_tokens": 37019,
+                "output_tokens": 123,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1732,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 123,
+                    "cache_read_input_tokens": 37019,
+                    "cache_creation_input_tokens": 1732,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1732
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T12:16:47.593Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Jhwjq43SLBt9eMKsd1dU92",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{inconsolata}\n11\t\\usepackage{graphicx}\n12\t\\usepackage{amsmath}\n13\t\\usepackage{amssymb}\n14\t\\usepackage{amsthm}\n15\t\\usepackage{booktabs}\n16\t\\usepackage{xcolor}\n17\t\\usepackage{subcaption}\n18\t\n19\t\\newtheorem{observation}{Observation}\n20\t\\newtheorem{proposition}{Proposition}\n21\t\\newtheorem{theorem}{Theorem}\n22\t\\newtheorem{corollary}{Corollary}\n23\t\n24\t\\graphicspath{{../../figures/paper/}}\n25\t\n26\t\\title{Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model\\\\for Disentangling Judge Bias and Contamination in LLM Evaluation}\n27\t\n28\t\\author{Anonymous}\n29\t\n30\t\\begin{document}\n31\t\\maketitle\n32\t\n33\t\\input{sections/abstract}\n34\t\\input{sections/introduction}\n35\t\\input{sections/background}\n36\t\\input{sections/method}\n37\t\\input{sections/experiments}\n38\t\\input{sections/related_work}\n39\t\\input{sections/conclusion}\n40\t\n41\t\\section*{Limitations}\n42\t\\input{sections/limitations}\n43\t\n44\t\\bibliography{references}\n45\t\\bibliographystyle{acl_natbib}\n46\t\n47\t\\end{document}\n48\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5f2b910-93f3-44a0-b87d-9154adc6eca4",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "e3cd7d41-59f6-476a-87cd-00c307310592",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/main.tex",
+                "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{inconsolata}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{amsthm}\n\\usepackage{booktabs}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\n\\newtheorem{observation}{Observation}\n\\newtheorem{proposition}{Proposition}\n\\newtheorem{theorem}{Theorem}\n\\newtheorem{corollary}{Corollary}\n\n\\graphicspath{{../../figures/paper/}}\n\n\\title{Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model\\\\for Disentangling Judge Bias and Contamination in LLM Evaluation}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{sections/abstract}\n\\input{sections/introduction}\n\\input{sections/background}\n\\input{sections/method}\n\\input{sections/experiments}\n\\input{sections/related_work}\n\\input{sections/conclusion}\n\n\\section*{Limitations}\n\\input{sections/limitations}\n\n\\bibliography{references}\n\\bibliographystyle{acl_natbib}\n\n\\end{document}\n",
+                "numLines": 48,
+                "startLine": 1,
+                "totalLines": 48
+              }
+            },
+            "sourceToolAssistantUUID": "d5f2b910-93f3-44a0-b87d-9154adc6eca4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T12:16:56.818Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BLM4uWU8w7ax6GF9PHyDmR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/sections/background.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3cd7d41-59f6-476a-87cd-00c307310592",
+            "isSidechain": false,
+            "requestId": "req_011CbHbHzxWEaxvfS2rL1841",
+            "type": "assistant",
+            "uuid": "b677c8c6-6b75-421b-8747-140aa871b3b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013JDT24LSxvyGKESADWACQ2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 619,
+                "cache_read_input_tokens": 38751,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 619,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 38751,
+                    "cache_creation_input_tokens": 619,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 619
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T12:16:56.826Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias.",
+              "is_error": true,
+              "tool_use_id": "toolu_01BLM4uWU8w7ax6GF9PHyDmR"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b677c8c6-6b75-421b-8747-140aa871b3b6",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "52aec66b-5501-46a6-8301-3efc05e9b0b3",
+            "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias.",
+            "sourceToolAssistantUUID": "b677c8c6-6b75-421b-8747-140aa871b3b6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T12:16:57.175Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LAjvnVczHuiYcPYPgD1QBS",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/sections/introduction.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52aec66b-5501-46a6-8301-3efc05e9b0b3",
+            "isSidechain": false,
+            "requestId": "req_011CbHbHzxWEaxvfS2rL1841",
+            "type": "assistant",
+            "uuid": "19734ed4-e7b0-46d2-86b0-a5fd6fddef05",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013JDT24LSxvyGKESADWACQ2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 619,
+                "cache_read_input_tokens": 38751,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 619,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 38751,
+                    "cache_creation_input_tokens": 619,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 619
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T12:16:57.183Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias.",
+              "is_error": true,
+              "tool_use_id": "toolu_01LAjvnVczHuiYcPYPgD1QBS"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "19734ed4-e7b0-46d2-86b0-a5fd6fddef05",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "6f5625ce-8a7c-4803-b183-40907c7f0bb8",
+            "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias.",
+            "sourceToolAssistantUUID": "19734ed4-e7b0-46d2-86b0-a5fd6fddef05",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T12:16:59.660Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The sections don't exist yet. Let me check if there's a dream report to understand the style they're going for.",
+              "signature": "ErQCCmMIDRgCKkBSA49BPBUa9N+fJ+acZ/3x2YcT1Kh2YOk0Fb0ZBtdvU+J2yNXsBJSuyocw+j+fYhsDW7XUQ7c1CwHF+QyjBZaHMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDN/A3J/60kABQ51PABoMsIVskM5K/QLyA+j5IjCDT4XrFg1RC5EcX66ZZqynW7DZl/twJzvQOuE8tf50vLjxukrhAGbtdSE0IB3QPgMqf3vPHhduxrqmfGrz51ChGLgGVZQtslCteE2HRrpEnf/Ro58vVEAst7P9fO3dIUDjIvCTuTpJI55w2LkQJ01mBIBpIOCWpZIDWDQjZClHUcj/i7AQGV/fyMlkVHPhJeX4FEfTSHL98a++42R0fsXyBkTh6nwBhB8dzNvKAjaR/e0YAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f5625ce-8a7c-4803-b183-40907c7f0bb8",
+            "isSidechain": false,
+            "requestId": "req_011CbHbJhuMi3vCJmYYK47oK",
+            "type": "assistant",
+            "uuid": "84b95bf4-3b96-4142-b742-c3889c2a7ef6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UVdNiRDCiNYUpBAuPKan2d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 294,
+                "cache_read_input_tokens": 39370,
+                "output_tokens": 255,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 294,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 255,
+                    "cache_read_input_tokens": 39370,
+                    "cache_creation_input_tokens": 294,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 294
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T12:17:00.163Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the latest dream report for style reference and the references.bib file."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "84b95bf4-3b96-4142-b742-c3889c2a7ef6",
+            "isSidechain": false,
+            "requestId": "req_011CbHbJhuMi3vCJmYYK47oK",
+            "type": "assistant",
+            "uuid": "59cb986d-93fa-4ebf-8840-1562918bfb42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UVdNiRDCiNYUpBAuPKan2d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 294,
+                "cache_read_input_tokens": 39370,
+                "output_tokens": 255,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 294,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 255,
+                    "cache_read_input_tokens": 39370,
+                    "cache_creation_input_tokens": 294,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 294
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T12:17:01.196Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DBzj3JTYWj1cy6kH3o43fq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260522T041217/best/paper.tex",
+                "limit": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59cb986d-93fa-4ebf-8840-1562918bfb42",
+            "isSidechain": false,
+            "requestId": "req_011CbHbJhuMi3vCJmYYK47oK",
+            "type": "assistant",
+            "uuid": "da7251b4-511c-4ac4-b515-8d357b8ffe81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UVdNiRDCiNYUpBAuPKan2d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 294,
+                "cache_read_input_tokens": 39370,
+                "output_tokens": 255,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 294,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 255,
+                    "cache_read_input_tokens": 39370,
+                    "cache_creation_input_tokens": 294,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 294
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T12:17:01.848Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H3Cn5u1CmhVpjyAXKVUhDj",
+              "type": "tool_result",
+              "content": "artifacts/dream_reports/dream_20260521T204917/worst/references.bib\ndocs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "adbc101b-6a6d-4600-8368-4e7c0000f244",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "c89ab624-459b-49b2-9be8-e0f881545af8",
+            "toolUseResult": {
+              "filenames": [
+                "artifacts/dream_reports/dream_20260521T204917/worst/references.bib",
+                "docs/paper/references.bib"
+              ],
+              "durationMs": 27,
+              "numFiles": 2,
+              "truncated": false
+            },
+            "sourceToolAssistantUUID": "adbc101b-6a6d-4600-8368-4e7c0000f244",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T12:17:01.203Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DBzj3JTYWj1cy6kH3o43fq",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[utf8]{inputenc}\n3\t\\usepackage[T1]{fontenc}\n4\t\\usepackage{amsmath,amssymb,amsfonts}\n5\t\\usepackage{booktabs}\n6\t\\usepackage{graphicx}\n7\t\\usepackage{multirow}\n8\t\\usepackage{xcolor}\n9\t\\usepackage{hyperref}\n10\t\\usepackage{natbib}\n11\t\\usepackage[margin=1in]{geometry}\n12\t\\usepackage{array}\n13\t\\usepackage{caption}\n14\t\\usepackage{subcaption}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{mathtools}\n17\t\n18\t\\newcommand{\\gmfrm}{\\textsc{G-MFRM}}\n19\t\\newcommand{\\ei}{e_i}\n20\t\\newcommand{\\cn}{c_n}\n21\t\\newcommand{\\djud}{d_j}\n22\t\\newcommand{\\bitem}{b_i}\n23\t\n24\t\\title{Joint Estimation of Judge Bias and Benchmark Contamination\\\\in LLM Evaluation via Gated Many-Facet Rasch Modeling}\n25\t\n26\t\\author{Anonymous}\n27\t\n28\t\\date{}\n29\t\n30\t\\begin{document}\n31\t\n32\t\\maketitle\n33\t\n34\t%==============================================================================\n35\t% ABSTRACT\n36\t%==============================================================================\n37\t\\begin{abstract}\n38\tLLM-as-a-judge evaluation suffers from two well-documented distortions---judge severity bias and benchmark contamination---yet existing methods address each in isolation. We show that this separation is not merely suboptimal but \\emph{structurally flawed}: when judge severity ($\\djud$) and contamination susceptibility ($\\cn \\cdot \\ei$) are both present, sequential correction pipelines produce systematically biased ability estimates due to omitted variable confounding. We formalize this bias and propose the \\textbf{Gated Many-Facet Rasch Model (\\gmfrm{})}, a staged joint calibration framework that simultaneously estimates model ability, item difficulty, judge severity, and per-model contamination susceptibility within a single psychometric model. On MT-Bench and Arena-Hard with 8 LLM judges evaluating 22 target models, \\gmfrm{} fair scores achieve Kendall-$\\tau = 0.87$ with Chatbot Arena human rankings---8.7\\% higher than the best bias-only baseline (MFRM, $\\tau = 0.80$) and significantly outperforming all 8 baselines including UDA ($\\tau = 0.82$, $p = 0.008$). Cross-benchmark replication on WildBench confirms generalization ($\\Delta\\tau = +0.05$, $p = 0.012$). Beyond ranking correction, \\gmfrm{} produces interpretable per-model contamination diagnostics (median $\\cn \\approx 1.05$), revealing that older-generation models are systematically overestimated by 2--4 ranking positions on contaminated benchmarks.\n39\t\\end{abstract}\n40\t\n41\t%==============================================================================\n42\t% 1. INTRODUCTION\n43\t%==============================================================================\n44\t\\section{Introduction}\n45\t\n46\tThe adoption of LLM-as-a-judge for scalable evaluation~\\citep{zheng2023judging} has exposed two systematic distortions. First, LLM judges exhibit \\emph{severity bias}: different judges assign systematically different score levels for equivalent outputs~\\citep{li2024cyclicjudge,wu2024uda}. Second, target models display \\emph{benchmark contamination}: models whose training data overlap with evaluation items receive inflated scores that do not reflect genuine ability~\\citep{golchin2023contamination,shi2023minKpct,dekoninck2024constat}. A growing body of work addresses each problem---CyclicJudge and UDA correct for judge bias; DCR and ConStat quantify contamination effects---but treats them as independent phenomena.\n47\t\n48\tWe argue that this separation introduces a structural flaw. Judge severity and contamination susceptibility are empirically non-orthogonal: lenient judges tend to amplify contamination-driven score inflation, while strict judges compress the signal. When only one distortion is modeled, the unmodeled facet's effect is absorbed into the remaining parameter estimates, a classical instance of omitted variable bias (OVB)~\\citep{angrist2009mostly}. Sequential pipelines---first correcting bias, then contamination, or vice versa---do not resolve this confounding because the first stage's estimates are already biased by the omitted facet.\n49\t\n50\tWe formalize this observation in Section~\\ref{sec:confounding} and demonstrate via a toy example that even moderate confounding ($\\rho = 0.4$ between judge severity and contamination exposure) produces 22.8\\% higher RMSE in ability estimates under sequential correction compared to joint estimation. Monte Carlo validation over 1{,}000 replications confirms that the bias direction is predictable in 95\\% of cases.\n51\t\n52\tTo address this, we propose the \\textbf{Gated Many-Facet Rasch Model (\\gmfrm{})}, which extends the classical MFRM~\\citep{linacre1989mfrm,eckes2011introduction} with a continuous-exposure gating mechanism inspired by DG-IRT~\\citep{shu2013psychometrika}. \\gmfrm{} jointly estimates model ability ($\\theta_n$), item difficulty ($\\bitem$), judge severity ($\\djud$), and contamination susceptibility ($\\cn$) in a staged procedure: (1) standard MFRM initialization, (2) external per-item exposure estimation, and (3) joint gated calibration with $\\ei$ fixed and $\\cn$ as latent.\n53\t\n54\tOur experiments on MT-Bench, Arena-Hard, and WildBench with 8 LLM judges from 5 providers evaluating 22 target models demonstrate:\n55\t\\begin{itemize}[nosep,leftmargin=*]\n56\t\\item \\gmfrm{} fair scores achieve $\\tau = 0.87$ with Chatbot Arena, outperforming all 8 baselines ($p = 0.008$ vs.\\ best baseline UDA at $\\tau = 0.82$).\n57\t\\item Fitted contamination estimates (median $\\cn \\approx 1.05$) reveal that older-generation models (GPT-4o, Claude~3~Opus) are overestimated by up to 4 ranking positions.\n58\t\\item The advantage generalizes across benchmarks ($\\Delta\\tau = +0.05$ on WildBench, $p = 0.012$) and degrades gracefully when contamination is low.\n59\t\\end{itemize}\n60\t\n61\t%==============================================================================\n62\t% 2. CONFOUNDING IN SEQUENTIAL CORRECTION\n63\t%==============================================================================\n64\t\\section{Confounding in Sequential Correction}\n65\t\\label{sec:confounding}\n66\t\n67\t\\subsection{Setup}\n68\tConsider a multi-facet evaluation where the observed score $X_{nij}$ for model $n$ on item $i$ by judge $j$ depends on:\n69\t\\begin{equation}\n70\t\\label{eq:full-model}\n71\t\\ln\\!\\Bigl(\\frac{P(X_{nij} \\ge k)}{P(X_{nij} < k)}\\Bigr)\n72\t= \\theta_n - \\bitem - \\djud - \\cn \\cdot \\ei \\cdot F_k + \\epsilon_{nij}\n73\t\\end{equation}\n74\twhere $\\theta_n$ is model ability, $\\bitem$ item difficulty, $\\djud$ judge severity, $\\cn$ model-level contamination susceptibility, $\\ei$ item-level exposure, $F_k$ is a step parameter, and $\\epsilon_{nij}$ is residual noise. The interaction $\\cn \\cdot \\ei$ captures the rank-1 approximation~\\citep{embretson1999item} that a model's contamination advantage on a given item is the product of its overall susceptibility and the item's exposure level.\n75\t\n76\t\\subsection{Omitted Variable Bias}\n77\t\\label{sec:ovb}\n78\t\n79\tA \\emph{bias-first sequential} pipeline estimates $(\\hat\\theta, \\hat{b}, \\hat{d})$ while omitting $\\cn \\cdot \\ei$. By the standard OVB result~\\citep{angrist2009mostly}, if the omitted regressor $\\cn \\cdot \\ei$ is correlated with the included regressors (specifically $\\djud$), then:\n80\t\\begin{equation}\n81\t\\label{eq:ovb}\n82\t\\text{plim}\\;\\hat\\theta_n^{\\text{seq}} - \\theta_n = \\gamma_c \\cdot \\frac{\\text{Cov}(\\djud,\\, \\cn \\cdot \\ei)}{\\text{Var}(\\djud)}\n83\t\\end{equation}\n84\twhere $\\gamma_c$ is the coefficient of $\\cn \\cdot \\ei$ in the full model. When lenient judges ($\\djud < 0$) evaluate highly contaminated model--item pairs ($\\cn \\cdot \\ei$ large), the covariance is non-zero, and $\\hat\\theta_n^{\\text{seq}}$ is biased upward for high-$\\cn$ models.\n85\t\n86\t\\paragraph{Toy example.} Suppose 8 judges with severity drawn from $\\mathcal{N}(0, 0.5^2)$ evaluate 20 models on 80 items. When $\\rho(\\djud, \\cn \\cdot \\ei) = 0.4$, the sequential estimator overestimates $\\theta$ for high-$\\cn$ models by 0.082 logits on average, producing 22.8\\% higher RMSE than joint estimation. At $\\rho = 0.6$ (our empirically observed regime), the RMSE degradation reaches 37.1\\%.\n87\t\n88\tTable~\\ref{tab:ovb-mc} validates this result across 1{,}000 Monte Carlo replications. The bias is negligible at $\\rho = 0$ (confirming no artifact) and monotonically increases with confounding strength, with bias direction correctly predicted in $\\geq$95\\% of replications for $\\rho \\geq 0.4$.\n89\t\n90\t\\begin{table}[t]\n91\t\\centering\n92\t\\caption{Monte Carlo validation of omitted variable bias in sequential estimation. Each cell averages over 1{,}000 replications. ``Direction correct'' indicates the fraction where the sign of $\\hat\\theta^{\\text{seq}} - \\theta$ matches the OVB prediction.}\n93\t\\label{tab:ovb-mc}\n94\t\\small\n95\t\\begin{tabular}{@{}ccccc@{}}\n96\t\\toprule\n97\t$\\rho(d,c \\cdot e)$ & Mean Bias($\\hat\\theta^{\\text{seq}}$) & Seq.\\ RMSE & Joint RMSE & RMSE Reduction \\\\\n98\t\\midrule\n99\t0.0 & 0.003 & 0.129 & 0.128 & 0.8\\% \\\\\n100\t0.2 & 0.031 & 0.138 & 0.130 & 5.8\\% \\\\\n101\t0.4 & 0.082 & 0.171 & 0.132 & 22.8\\% \\\\\n102\t0.6 & 0.141 & 0.213 & 0.134 & 37.1\\% \\\\\n103\t0.8 & 0.248 & 0.302 & 0.137 & 54.6\\% \\\\\n104\t\\bottomrule\n105\t\\end{tabular}\n106\t\\end{table}\n107\t\n108\t\\subsection{Why Sequential Correction Fails Both Ways}\n109\t\n110\tThe bias is symmetric: a \\emph{contamination-first} pipeline that estimates $\\cn$ while ignoring $\\djud$ similarly produces biased $\\hat{c}_n$ because strict judges suppress contamination signals. In our baseline comparison (Section~\\ref{sec:experiments}), both sequential orderings (bias$\\to$contamination: $\\tau = 0.79$; contamination$\\to$bias: $\\tau = 0.78$) underperform the bias-only MFRM baseline ($\\tau = 0.80$), confirming that naive sequential correction is counterproductive when confounding is present.\n111\t\n112\t%==============================================================================\n113\t% 3. METHOD: G-MFRM\n114\t%==============================================================================\n115\t\\section{Method: Gated Many-Facet Rasch Model}\n116\t\\label{sec:method}\n117\t\n118\t\\subsection{Model Formulation}\n119\t\n120\t\\gmfrm{} extends the rating-scale MFRM~\\citep{linacre1989mfrm} with a gating term that captures item-level contamination effects. The probability of model $n$ receiving at least category $k$ on item $i$ from judge $j$ is:\n121\t\\begin{equation}\n122\t\\label{eq:gmfrm}\n123\t\\ln\\!\\Bigl(\\frac{P(X_{nij} \\ge k)}{P(X_{nij} < k)}\\Bigr) = \\theta_n - \\bitem - \\djud - \\cn \\cdot \\ei \\cdot F_k\n124\t\\end{equation}\n125\twhere $\\theta_n \\sim \\mathcal{N}(\\mu_\\theta, \\sigma_\\theta^2)$ represents contamination-corrected ``fair'' ability, $\\bitem$ item difficulty, $\\djud$ judge severity, $\\cn \\sim \\text{HalfCauchy}(\\sigma_c)$ the non-negative contamination susceptibility, and $\\ei \\in [0, 1]$ the externally estimated item exposure.\n126\t\n127\tThe gating mechanism $\\cn \\cdot \\ei$ ensures that the contamination correction is proportional to both the model's susceptibility and each item's exposure. When $\\ei \\approx 0$ (unexposed items), the gating term vanishes and the model reduces to standard MFRM. When $\\cn \\approx 0$ (uncontaminated models), the correction likewise vanishes. This graceful degradation is empirically verified in Section~\\ref{sec:sensitivity}.\n128\t\n129\t\\subsection{Three-Stage Estimation}\n130\t\\label{sec:stages}\n131\t\n132\tJointly estimating $(\\theta, b, d, c, e)$ from observed scores alone is under-identified because $c$ and $e$ appear only as a product. We resolve this via staged estimation~\\citep{heckman1979sample}:\n133\t\n134\t\\paragraph{Stage 1: MFRM initialization.} Fit a standard MFRM (without the gating term) via MCMC to obtain initial estimates $(\\hat\\theta^{(0)}, \\hat{b}^{(0)}, \\hat{d}^{(0)})$.\n135\t\n136\t\\paragraph{Stage 2: External exposure estimation.} Estimate per-item exposure $\\hat{e}_i$ using a three-source weighted composite:\n137\t\\begin{itemize}[nosep,leftmargin=*]\n138\t\\item \\textbf{Performance gap} (weight 0.55): Score difference between original and semantically rephrased reference variants, with spline-based difficulty correction ($R^2 = 0.78$).\n139\t\\item \\textbf{Temporal signal} (weight 0.25): Release date relative to benchmark publication.\n140\t\\item \\textbf{LogProber} (weight 0.20): Token-level memorization scores where logprob API access is available.\n141\t\\end{itemize}\n142\tThe composite achieves internal consistency $\\alpha = 0.68$ and correlates at $r = 0.72$ with ConStat external contamination indicators.\n143\t\n144\t\\paragraph{Stage 3: Joint gated calibration.} Fix $\\hat{e}_i$ from Stage 2 and fit the full \\gmfrm{} (Eq.~\\ref{eq:gmfrm}) via Hamiltonian Monte Carlo (4 chains, 2{,}000 warmup, 2{,}000 sampling iterations). Model ability $\\theta_n$ and contamination susceptibility $\\cn$ are jointly estimated, with hierarchical priors $\\theta_n \\sim \\mathcal{N}(\\mu_\\theta, \\sigma_\\theta^2)$ and $\\cn \\sim \\text{HalfCauchy}(\\sigma_c)$.\n145\t\n146\t\\subsection{Identifiability}\n147\t\n148\tWith $\\ei$ fixed, the remaining parameters $(\\theta, b, d, c)$ are identified under the following conditions: (1) each model is evaluated on items spanning a range of $\\ei$ values, (2) each item is evaluated by multiple judges with heterogeneous severity, and (3) $\\geq 4$ judges provide sufficient facet variance for separating $\\djud$ from $\\cn$. Our judge pool (8 judges, $\\djud$ range $[-0.82, 0.95]$, SD $= 0.48$) satisfies these requirements. We verify convergence via $\\hat{R} \\leq 1.05$ and ESS $\\geq 150$ for all parameters.\n149\t\n150\t%=============================================================================="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "da7251b4-511c-4ac4-b515-8d357b8ffe81",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "6eb27943-212c-47ff-92a4-50796c34907b",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260522T041217/best/paper.tex",
+                "content": "\\documentclass[11pt]{article}\n\\usepackage[utf8]{inputenc}\n\\usepackage[T1]{fontenc}\n\\usepackage{amsmath,amssymb,amsfonts}\n\\usepackage{booktabs}\n\\usepackage{graphicx}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{hyperref}\n\\usepackage{natbib}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{array}\n\\usepackage{caption}\n\\usepackage{subcaption}\n\\usepackage{enumitem}\n\\usepackage{mathtools}\n\n\\newcommand{\\gmfrm}{\\textsc{G-MFRM}}\n\\newcommand{\\ei}{e_i}\n\\newcommand{\\cn}{c_n}\n\\newcommand{\\djud}{d_j}\n\\newcommand{\\bitem}{b_i}\n\n\\title{Joint Estimation of Judge Bias and Benchmark Contamination\\\\in LLM Evaluation via Gated Many-Facet Rasch Modeling}\n\n\\author{Anonymous}\n\n\\date{}\n\n\\begin{document}\n\n\\maketitle\n\n%==============================================================================\n% ABSTRACT\n%==============================================================================\n\\begin{abstract}\nLLM-as-a-judge evaluation suffers from two well-documented distortions---judge severity bias and benchmark contamination---yet existing methods address each in isolation. We show that this separation is not merely suboptimal but \\emph{structurally flawed}: when judge severity ($\\djud$) and contamination susceptibility ($\\cn \\cdot \\ei$) are both present, sequential correction pipelines produce systematically biased ability estimates due to omitted variable confounding. We formalize this bias and propose the \\textbf{Gated Many-Facet Rasch Model (\\gmfrm{})}, a staged joint calibration framework that simultaneously estimates model ability, item difficulty, judge severity, and per-model contamination susceptibility within a single psychometric model. On MT-Bench and Arena-Hard with 8 LLM judges evaluating 22 target models, \\gmfrm{} fair scores achieve Kendall-$\\tau = 0.87$ with Chatbot Arena human rankings---8.7\\% higher than the best bias-only baseline (MFRM, $\\tau = 0.80$) and significantly outperforming all 8 baselines including UDA ($\\tau = 0.82$, $p = 0.008$). Cross-benchmark replication on WildBench confirms generalization ($\\Delta\\tau = +0.05$, $p = 0.012$). Beyond ranking correction, \\gmfrm{} produces interpretable per-model contamination diagnostics (median $\\cn \\approx 1.05$), revealing that older-generation models are systematically overestimated by 2--4 ranking positions on contaminated benchmarks.\n\\end{abstract}\n\n%==============================================================================\n% 1. INTRODUCTION\n%==============================================================================\n\\section{Introduction}\n\nThe adoption of LLM-as-a-judge for scalable evaluation~\\citep{zheng2023judging} has exposed two systematic distortions. First, LLM judges exhibit \\emph{severity bias}: different judges assign systematically different score levels for equivalent outputs~\\citep{li2024cyclicjudge,wu2024uda}. Second, target models display \\emph{benchmark contamination}: models whose training data overlap with evaluation items receive inflated scores that do not reflect genuine ability~\\citep{golchin2023contamination,shi2023minKpct,dekoninck2024constat}. A growing body of work addresses each problem---CyclicJudge and UDA correct for judge bias; DCR and ConStat quantify contamination effects---but treats them as independent phenomena.\n\nWe argue that this separation introduces a structural flaw. Judge severity and contamination susceptibility are empirically non-orthogonal: lenient judges tend to amplify contamination-driven score inflation, while strict judges compress the signal. When only one distortion is modeled, the unmodeled facet's effect is absorbed into the remaining parameter estimates, a classical instance of omitted variable bias (OVB)~\\citep{angrist2009mostly}. Sequential pipelines---first correcting bias, then contamination, or vice versa---do not resolve this confounding because the first stage's estimates are already biased by the omitted facet.\n\nWe formalize this observation in Section~\\ref{sec:confounding} and demonstrate via a toy example that even moderate confounding ($\\rho = 0.4$ between judge severity and contamination exposure) produces 22.8\\% higher RMSE in ability estimates under sequential correction compared to joint estimation. Monte Carlo validation over 1{,}000 replications confirms that the bias direction is predictable in 95\\% of cases.\n\nTo address this, we propose the \\textbf{Gated Many-Facet Rasch Model (\\gmfrm{})}, which extends the classical MFRM~\\citep{linacre1989mfrm,eckes2011introduction} with a continuous-exposure gating mechanism inspired by DG-IRT~\\citep{shu2013psychometrika}. \\gmfrm{} jointly estimates model ability ($\\theta_n$), item difficulty ($\\bitem$), judge severity ($\\djud$), and contamination susceptibility ($\\cn$) in a staged procedure: (1) standard MFRM initialization, (2) external per-item exposure estimation, and (3) joint gated calibration with $\\ei$ fixed and $\\cn$ as latent.\n\nOur experiments on MT-Bench, Arena-Hard, and WildBench with 8 LLM judges from 5 providers evaluating 22 target models demonstrate:\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\gmfrm{} fair scores achieve $\\tau = 0.87$ with Chatbot Arena, outperforming all 8 baselines ($p = 0.008$ vs.\\ best baseline UDA at $\\tau = 0.82$).\n\\item Fitted contamination estimates (median $\\cn \\approx 1.05$) reveal that older-generation models (GPT-4o, Claude~3~Opus) are overestimated by up to 4 ranking positions.\n\\item The advantage generalizes across benchmarks ($\\Delta\\tau = +0.05$ on WildBench, $p = 0.012$) and degrades gracefully when contamination is low.\n\\end{itemize}\n\n%==============================================================================\n% 2. CONFOUNDING IN SEQUENTIAL CORRECTION\n%==============================================================================\n\\section{Confounding in Sequential Correction}\n\\label{sec:confounding}\n\n\\subsection{Setup}\nConsider a multi-facet evaluation where the observed score $X_{nij}$ for model $n$ on item $i$ by judge $j$ depends on:\n\\begin{equation}\n\\label{eq:full-model}\n\\ln\\!\\Bigl(\\frac{P(X_{nij} \\ge k)}{P(X_{nij} < k)}\\Bigr)\n= \\theta_n - \\bitem - \\djud - \\cn \\cdot \\ei \\cdot F_k + \\epsilon_{nij}\n\\end{equation}\nwhere $\\theta_n$ is model ability, $\\bitem$ item difficulty, $\\djud$ judge severity, $\\cn$ model-level contamination susceptibility, $\\ei$ item-level exposure, $F_k$ is a step parameter, and $\\epsilon_{nij}$ is residual noise. The interaction $\\cn \\cdot \\ei$ captures the rank-1 approximation~\\citep{embretson1999item} that a model's contamination advantage on a given item is the product of its overall susceptibility and the item's exposure level.\n\n\\subsection{Omitted Variable Bias}\n\\label{sec:ovb}\n\nA \\emph{bias-first sequential} pipeline estimates $(\\hat\\theta, \\hat{b}, \\hat{d})$ while omitting $\\cn \\cdot \\ei$. By the standard OVB result~\\citep{angrist2009mostly}, if the omitted regressor $\\cn \\cdot \\ei$ is correlated with the included regressors (specifically $\\djud$), then:\n\\begin{equation}\n\\label{eq:ovb}\n\\text{plim}\\;\\hat\\theta_n^{\\text{seq}} - \\theta_n = \\gamma_c \\cdot \\frac{\\text{Cov}(\\djud,\\, \\cn \\cdot \\ei)}{\\text{Var}(\\djud)}\n\\end{equation}\nwhere $\\gamma_c$ is the coefficient of $\\cn \\cdot \\ei$ in the full model. When lenient judges ($\\djud < 0$) evaluate highly contaminated model--item pairs ($\\cn \\cdot \\ei$ large), the covariance is non-zero, and $\\hat\\theta_n^{\\text{seq}}$ is biased upward for high-$\\cn$ models.\n\n\\paragraph{Toy example.} Suppose 8 judges with severity drawn from $\\mathcal{N}(0, 0.5^2)$ evaluate 20 models on 80 items. When $\\rho(\\djud, \\cn \\cdot \\ei) = 0.4$, the sequential estimator overestimates $\\theta$ for high-$\\cn$ models by 0.082 logits on average, producing 22.8\\% higher RMSE than joint estimation. At $\\rho = 0.6$ (our empirically observed regime), the RMSE degradation reaches 37.1\\%.\n\nTable~\\ref{tab:ovb-mc} validates this result across 1{,}000 Monte Carlo replications. The bias is negligible at $\\rho = 0$ (confirming no artifact) and monotonically increases with confounding strength, with bias direction correctly predicted in $\\geq$95\\% of replications for $\\rho \\geq 0.4$.\n\n\\begin{table}[t]\n\\centering\n\\caption{Monte Carlo validation of omitted variable bias in sequential estimation. Each cell averages over 1{,}000 replications. ``Direction correct'' indicates the fraction where the sign of $\\hat\\theta^{\\text{seq}} - \\theta$ matches the OVB prediction.}\n\\label{tab:ovb-mc}\n\\small\n\\begin{tabular}{@{}ccccc@{}}\n\\toprule\n$\\rho(d,c \\cdot e)$ & Mean Bias($\\hat\\theta^{\\text{seq}}$) & Seq.\\ RMSE & Joint RMSE & RMSE Reduction \\\\\n\\midrule\n0.0 & 0.003 & 0.129 & 0.128 & 0.8\\% \\\\\n0.2 & 0.031 & 0.138 & 0.130 & 5.8\\% \\\\\n0.4 & 0.082 & 0.171 & 0.132 & 22.8\\% \\\\\n0.6 & 0.141 & 0.213 & 0.134 & 37.1\\% \\\\\n0.8 & 0.248 & 0.302 & 0.137 & 54.6\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\subsection{Why Sequential Correction Fails Both Ways}\n\nThe bias is symmetric: a \\emph{contamination-first} pipeline that estimates $\\cn$ while ignoring $\\djud$ similarly produces biased $\\hat{c}_n$ because strict judges suppress contamination signals. In our baseline comparison (Section~\\ref{sec:experiments}), both sequential orderings (bias$\\to$contamination: $\\tau = 0.79$; contamination$\\to$bias: $\\tau = 0.78$) underperform the bias-only MFRM baseline ($\\tau = 0.80$), confirming that naive sequential correction is counterproductive when confounding is present.\n\n%==============================================================================\n% 3. METHOD: G-MFRM\n%==============================================================================\n\\section{Method: Gated Many-Facet Rasch Model}\n\\label{sec:method}\n\n\\subsection{Model Formulation}\n\n\\gmfrm{} extends the rating-scale MFRM~\\citep{linacre1989mfrm} with a gating term that captures item-level contamination effects. The probability of model $n$ receiving at least category $k$ on item $i$ from judge $j$ is:\n\\begin{equation}\n\\label{eq:gmfrm}\n\\ln\\!\\Bigl(\\frac{P(X_{nij} \\ge k)}{P(X_{nij} < k)}\\Bigr) = \\theta_n - \\bitem - \\djud - \\cn \\cdot \\ei \\cdot F_k\n\\end{equation}\nwhere $\\theta_n \\sim \\mathcal{N}(\\mu_\\theta, \\sigma_\\theta^2)$ represents contamination-corrected ``fair'' ability, $\\bitem$ item difficulty, $\\djud$ judge severity, $\\cn \\sim \\text{HalfCauchy}(\\sigma_c)$ the non-negative contamination susceptibility, and $\\ei \\in [0, 1]$ the externally estimated item exposure.\n\nThe gating mechanism $\\cn \\cdot \\ei$ ensures that the contamination correction is proportional to both the model's susceptibility and each item's exposure. When $\\ei \\approx 0$ (unexposed items), the gating term vanishes and the model reduces to standard MFRM. When $\\cn \\approx 0$ (uncontaminated models), the correction likewise vanishes. This graceful degradation is empirically verified in Section~\\ref{sec:sensitivity}.\n\n\\subsection{Three-Stage Estimation}\n\\label{sec:stages}\n\nJointly estimating $(\\theta, b, d, c, e)$ from observed scores alone is under-identified because $c$ and $e$ appear only as a product. We resolve this via staged estimation~\\citep{heckman1979sample}:\n\n\\paragraph{Stage 1: MFRM initialization.} Fit a standard MFRM (without the gating term) via MCMC to obtain initial estimates $(\\hat\\theta^{(0)}, \\hat{b}^{(0)}, \\hat{d}^{(0)})$.\n\n\\paragraph{Stage 2: External exposure estimation.} Estimate per-item exposure $\\hat{e}_i$ using a three-source weighted composite:\n\\begin{itemize}[nosep,leftmargin=*]\n\\item \\textbf{Performance gap} (weight 0.55): Score difference between original and semantically rephrased reference variants, with spline-based difficulty correction ($R^2 = 0.78$).\n\\item \\textbf{Temporal signal} (weight 0.25): Release date relative to benchmark publication.\n\\item \\textbf{LogProber} (weight 0.20): Token-level memorization scores where logprob API access is available.\n\\end{itemize}\nThe composite achieves internal consistency $\\alpha = 0.68$ and correlates at $r = 0.72$ with ConStat external contamination indicators.\n\n\\paragraph{Stage 3: Joint gated calibration.} Fix $\\hat{e}_i$ from Stage 2 and fit the full \\gmfrm{} (Eq.~\\ref{eq:gmfrm}) via Hamiltonian Monte Carlo (4 chains, 2{,}000 warmup, 2{,}000 sampling iterations). Model ability $\\theta_n$ and contamination susceptibility $\\cn$ are jointly estimated, with hierarchical priors $\\theta_n \\sim \\mathcal{N}(\\mu_\\theta, \\sigma_\\theta^2)$ and $\\cn \\sim \\text{HalfCauchy}(\\sigma_c)$.\n\n\\subsection{Identifiability}\n\nWith $\\ei$ fixed, the remaining parameters $(\\theta, b, d, c)$ are identified under the following conditions: (1) each model is evaluated on items spanning a range of $\\ei$ values, (2) each item is evaluated by multiple judges with heterogeneous severity, and (3) $\\geq 4$ judges provide sufficient facet variance for separating $\\djud$ from $\\cn$. Our judge pool (8 judges, $\\djud$ range $[-0.82, 0.95]$, SD $= 0.48$) satisfies these requirements. We verify convergence via $\\hat{R} \\leq 1.05$ and ESS $\\geq 150$ for all parameters.\n\n%==============================================================================",
+                "numLines": 150,
+                "startLine": 1,
+                "totalLines": 698
+              }
+            },
+            "sourceToolAssistantUUID": "da7251b4-511c-4ac4-b515-8d357b8ffe81",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T12:17:01.818Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H3Cn5u1CmhVpjyAXKVUhDj",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.bib",
+                "path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6eb27943-212c-47ff-92a4-50796c34907b",
+            "isSidechain": false,
+            "requestId": "req_011CbHbJhuMi3vCJmYYK47oK",
+            "type": "assistant",
+            "uuid": "adbc101b-6a6d-4600-8368-4e7c0000f244",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UVdNiRDCiNYUpBAuPKan2d",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 294,
+                "cache_read_input_tokens": 39370,
+                "output_tokens": 255,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 294,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 255,
+                    "cache_read_input_tokens": 39370,
+                    "cache_creation_input_tokens": 294,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 294
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T12:17:01.895Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "c89ab624-459b-49b2-9be8-e0f881545af8",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "36dac7af-a5c2-41d7-9264-8f09e50391e7",
+                "timestamp": "2026-05-22T12:17:01.895Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "36dac7af-a5c2-41d7-9264-8f09e50391e7",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Section 2 on LLM evaluation confounding",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T12:17:05.475Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me now read the references.bib to ensure I use the correct bibtex keys, and also check if there's an introduction section already written (maybe in a dream report) to understand the narrative flow into Section 2.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36dac7af-a5c2-41d7-9264-8f09e50391e7",
+            "isSidechain": false,
+            "requestId": "req_011CbHbK3rezEip4dmaWBdCB",
+            "type": "assistant",
+            "uuid": "1172f654-6e33-4c86-ab0c-4aa6916bca3c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019gxNs2bEdgZ9TXHbRFtves",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4848,
+                "cache_read_input_tokens": 39664,
+                "output_tokens": 150,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4848,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 150,
+                    "cache_read_input_tokens": 39664,
+                    "cache_creation_input_tokens": 4848,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4848
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T12:17:06.901Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0157iL2Ri3Vu1XZPvoSSkG8L",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1172f654-6e33-4c86-ab0c-4aa6916bca3c",
+            "isSidechain": false,
+            "requestId": "req_011CbHbK3rezEip4dmaWBdCB",
+            "type": "assistant",
+            "uuid": "02e68207-4686-4092-8dcc-88144c72e3dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019gxNs2bEdgZ9TXHbRFtves",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4848,
+                "cache_read_input_tokens": 39664,
+                "output_tokens": 150,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4848,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 150,
+                    "cache_read_input_tokens": 39664,
+                    "cache_creation_input_tokens": 4848,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4848
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T12:17:06.916Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0157iL2Ri3Vu1XZPvoSSkG8L",
+              "type": "tool_result",
+              "content": "<system-reminder>Warning: the file exists but is shorter than the provided offset (1). The file has 1 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02e68207-4686-4092-8dcc-88144c72e3dd",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "6118ed12-65e7-4106-a08a-3cf8c43d421e",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/references.bib",
+                "content": "",
+                "numLines": 1,
+                "startLine": 1,
+                "totalLines": 1
+              }
+            },
+            "sourceToolAssistantUUID": "02e68207-4686-4092-8dcc-88144c72e3dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T12:17:11.784Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The references.bib is empty. Let me check the dream report's references.bib and the introduction from the dream report to ensure alignment.",
+              "signature": "EtECCmMIDRgCKkB5bsKb6lr3Y/pvc5L0Y4AE+coWaanLr6DKR8vFmKgR1qVCTx1RQkhd79lXK8shPcT9ng/bJEpLDll0xL7xdUjJMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDOSV1FdugxWbOksYyRoM2/BSTmqZ4VM6x3ZVIjC4iNeQhzO99QPJ2fbfjjcN8cyvz0mC18h+xqbJ4154eIM+RxW4a9LiPK321/xjS2QqmwHmM9H61dNxG9ZmGwGXyplLATPFcrwfCjDEbLa4t3chjl6Utop6Yxwncz0nmv8bpdHoSSaNgkGUewmaXOYJB2qrPxUZ9Ghchj7PlV6GlfI5O+ZM88RaGRMuRNMkJ6U4geA02WEy1lWCvIsvpSryqq5Lj1WaDafWzerj7gl8BA/9WIEk+Iky42NnMeyv5uWQh/W1NuqbNk0MgSThwhgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6118ed12-65e7-4106-a08a-3cf8c43d421e",
+            "isSidechain": false,
+            "requestId": "req_011CbHbKRk3cZVUZb5wfBwSB",
+            "type": "assistant",
+            "uuid": "b26f9272-a59f-4759-a605-48bd2d636689",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S4DvkMWBYt6MKRwXNN6KMz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 192,
+                "cache_read_input_tokens": 44512,
+                "output_tokens": 145,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 192,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 145,
+                    "cache_read_input_tokens": 44512,
+                    "cache_creation_input_tokens": 192,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 192
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T12:17:12.651Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WHNHdeBfojpc1HtpASUW9b",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T204917/worst/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b26f9272-a59f-4759-a605-48bd2d636689",
+            "isSidechain": false,
+            "requestId": "req_011CbHbKRk3cZVUZb5wfBwSB",
+            "type": "assistant",
+            "uuid": "6bc0c426-d50f-4fc0-9a8d-b2bb177b1c4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S4DvkMWBYt6MKRwXNN6KMz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 192,
+                "cache_read_input_tokens": 44512,
+                "output_tokens": 145,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 192,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 145,
+                    "cache_read_input_tokens": 44512,
+                    "cache_creation_input_tokens": 192,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 192
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T12:17:12.656Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WHNHdeBfojpc1HtpASUW9b",
+              "type": "tool_result",
+              "content": "1\t@inproceedings{zheng2024judging,\n2\t  title={Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},\n3\t  author={Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric and others},\n4\t  booktitle={NeurIPS},\n5\t  year={2024}\n6\t}\n7\t\n8\t@inproceedings{bai2024cyclicjudge,\n9\t  title={CyclicJudge: Eliminating Systematic Bias in {LLM}-as-a-Judge via Cyclic Evaluation},\n10\t  author={Bai, Yiming and others},\n11\t  booktitle={EMNLP},\n12\t  year={2024}\n13\t}\n14\t\n15\t@inproceedings{kwon2024uda,\n16\t  title={{UDA}: Unified Difficulty-Aware Scoring for {LLM} Evaluation},\n17\t  author={Kwon, Minjun and others},\n18\t  booktitle={ACL},\n19\t  year={2024}\n20\t}\n21\t\n22\t@inproceedings{dekoninck2024constat,\n23\t  title={ConStat: Performance-Based Contamination Detection in Large Language Models},\n24\t  author={De Koninck, Jasper and others},\n25\t  booktitle={ICML},\n26\t  year={2024}\n27\t}\n28\t\n29\t@inproceedings{xu2024dcr,\n30\t  title={Benchmark Data Contamination of Large Language Models: A Survey},\n31\t  author={Xu, Cheng and others},\n32\t  booktitle={ACL Findings},\n33\t  year={2024}\n34\t}\n35\t\n36\t@inproceedings{dong2024prefleakage,\n37\t  title={Generalization or Memorization: Data Contamination and Trustworthy Evaluation for Large Language Models},\n38\t  author={Dong, Yihong and others},\n39\t  booktitle={NAACL},\n40\t  year={2024}\n41\t}\n42\t\n43\t@inproceedings{sato2024dg-irt,\n44\t  title={{DG-IRT}: Detecting Item Compromise via the Gated Item Response Theory Model},\n45\t  author={Sato, Takahiro and others},\n46\t  booktitle={Psychometrika},\n47\t  year={2024}\n48\t}\n49\t\n50\t@inproceedings{otani2016irt,\n51\t  title={IRT-based Aggregation Model of Crowdsourced Pairwise Comparison for Evaluating Machine Translations},\n52\t  author={Otani, Naoki and others},\n53\t  booktitle={EMNLP},\n54\t  year={2016}\n55\t}\n56\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6bc0c426-d50f-4fc0-9a8d-b2bb177b1c4c",
+            "isSidechain": false,
+            "promptId": "f7ca99e7-0add-4fcc-a41c-d195f1dbc25b",
+            "type": "user",
+            "uuid": "c63ba007-7c42-4144-8eca-1b572fa22ee3",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T204917/worst/references.bib",
+                "content": "@inproceedings{zheng2024judging,\n  title={Judging {LLM}-as-a-Judge with {MT-Bench} and {Chatbot Arena}},\n  author={Zheng, Lianmin and Chiang, Wei-Lin and Sheng, Ying and Zhuang, Siyuan and Wu, Zhanghao and Zhuang, Yonghao and Lin, Zi and Li, Zhuohan and Li, Dacheng and Xing, Eric and others},\n  booktitle={NeurIPS},\n  year={2024}\n}\n\n@inproceedings{bai2024cyclicjudge,\n  title={CyclicJudge: Eliminating Systematic Bias in {LLM}-as-a-Judge via Cyclic Evaluation},\n  author={Bai, Yiming and others},\n  booktitle={EMNLP},\n  year={2024}\n}\n\n@inproceedings{kwon2024uda,\n  title={{UDA}: Unified Difficulty-Aware Scoring for {LLM} Evaluation},\n  author={Kwon, Minjun and others},\n  booktitle={ACL},\n  year={2024}\n}\n\n@inproceedings{dekoninck2024constat,\n  title={ConStat: Performance-Based Contamination Detection in Large Language Models},\n  author={De Koninck, Jasper and others},\n  booktitle={ICML},\n  year={2024}\n}\n\n@inproceedings{xu2024dcr,\n  title={Benchmark Data Contamination of Large Language Models: A Survey},\n  author={Xu, Cheng and others},\n  booktitle={ACL Findings},\n  year={2024}\n}\n\n@inproceedings{dong2024prefleakage,\n  title={Generalization or Memorization: Data Contamination and Trustworthy Evaluation for Large Language Models},\n  author={Dong, Yihong and others},\n  booktitle={NAACL},\n  year={2024}\n}\n\n@inproceedings{sato2024dg-irt,\n  title={{DG-IRT}: Detecting Item Compromise via the Gated Item Response Theory Model},\n  author={Sato, Takahiro and others},\n  booktitle={Psychometrika},\n  year={2024}\n}\n\n@inproceedings{otani2016irt,\n  title={IRT-based Aggregation Model of Crowdsourced Pairwise Comparison for Evaluating Machine Translations},\n  author={Otani, Naoki and others},\n  booktitle={EMNLP},\n  year={2016}\n}\n",
+                "numLines": 56,
+                "startLine": 1,
+                "totalLines": 56
+              }
+            },
+            "sourceToolAssistantUUID": "6bc0c426-d50f-4fc0-9a8d-b2bb177b1c4c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T12:19:45.945Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a good understanding of the context. Let me also quickly check the registry data for mvp_002 and mvp_003 to ensure accuracy.\n\nActually, the task specifies the data clearly:\n- mvp_003: Joint G-MFRM RMSE=0.124±0.016 vs Sequential 0.221±0.038 (-43.8%, p<1e-6)\n- mvp_002: scatter Pearson r=0.6534, p≈0\n- N=50 models, I=100 items, J=8 judges, 20 seeds, rho=0.6\n\n\nNow I'm ready to draft Section 2, keeping in mind the specific constraints: no dashes, no -ing phrase endings, avoiding certain transition words, natural 5-8 sentence paragraphs, treating OVB as an Observation with the Angrist & Pischke 2009 citation, grounding all numbers in the registry, and aiming for around 650 words.\n\nI'll structure this as four subsections covering standard MFRM notation, contamination as an unmodeled facet, the formal OVB observation, and a sequential failure illustration. The bibtex keys are locked in, and I need to output pure LaTeX starting from the section command, with Figure 2 included as a float. \\label{sec:confounding}\n\n[Part 1: Standard MFRM notation]\n\nThe Many-Facet Rasch Model (MFRM) extends classical Rasch measurement to settings with multiple rater facets \\cite{linacre1989mfrm, linacre1994mfrm}. In the LLM evaluation context, where $J$ judges score $N$ models on $I$ items, the MFRM specifies\n\\begin{equation}\n\\label{eq:mfrm}\n\\log \\frac{P(Y_{nij} \\geq k \\mid \\theta_n, b_i, d_j, \\tau_k)}{P(Y_{nij} < k \\mid \\theta_n, b_i, d_j, \\tau_k)} = \\theta_n - b_i - d_j - \\tau_k,\n\\end{equation}\nwhere $Y_{nij}$ is the ordinal rating assigned by judge $j$ to model $n$ on item $i$, $\\theta_n$ is the ability of model $n$ ($n = 1, \\ldots, N$), $b_i$ is the difficulty of item $i$ ($i = 1, \\ldots, I$), $d_j$ is the severity of judge $j$ ($j = 1, \\ldots, J$), and $\\tau_k$ is the threshold for category $k$. By placing all facets on a common logit scale, this framework allows me to isolate genuine model ability from confounding factors like item difficulty and judge severity, and recent work has shown MFRM can effectively separate these effects in multi-judge LLM evaluation panels.\n\n[Part 2: Contamination as unmodeled facet]\n\nNow I'm considering how some models might exhibit systematic biases that aren't captured by the standard MFRM structure. generated by the full model, the contamination effect gets absorbed into the estimated ability, difficulty, and severity parameters when fitting the standard MFRM, distorting all the inferences downstream. Now I'm formalizing this as an omitted variable bias observation, where the short model leaves out the contamination term entirely.\n\nThe key insight is that when we exclude $c_n \\cdot e_i$ from the model, the bias in the ability estimates follows a specific formula depending on how the exposure vector projects onto the design matrix. The bias is only zero if the contamination is uncorrelated with the difficulty parameters, which is unlikely in practice.\n\nIn the MFRM context, this manifests as a non-orthogonality between judge severity and contamination effects. Lenient judges amplify score inflation on exposed items while strict judges dampen it, so the bias direction and magnitude depend on both the contamination level and the judge's severity. The bias scales with $c_n$, meaning heavily contaminated models show the largest upward distortion in estimated ability.\n\nThis confounding breaks both sequential estimation approaches—whether we estimate judge effects first or contamination first, we can't recover the true parameters without addressing the omitted variable problem.\n\nBoth CyclicJudge and DCR fail in practice because they ignore this simultaneity. When judge severity is estimated first, the resulting ability estimates are already inflated for contaminated models. When contamination is adjusted first, judge effects get misattributed as contamination signal. Synthetic experiments with 50 models, 100 items, 8 judges, and a 0.6 correlation between judge and contamination effects show this clearly—the sequential bias correlates strongly with true contamination levels (Pearson $r = 0.65$, $p < 0.001$), confirming systematic overestimation of contaminated models. The bias grows linearly with contamination susceptibility rather than appearing random. I'm verifying the writing constraints for this section—checking that I'm avoiding em-dashes, -ing phrase endings, and repetitive transition words. I notice a few -ing phrases that need fixing, like \"indicating systematic overestimation\" and \"demonstrating that MFRM can separate,\" so I'll rephrase those to maintain the formal tone while meeting the style requirements. I'm checking my word count across the sections and need to verify I'm hitting around 650 total. Now I'm reviewing the grammar rules, specifically the prohibition against ending sentences with -ing phrases — that's a telltale sign of AI writing. I found three instances where I'm doing this and need to restructure them: changing \"demonstrating that\" to \"and showed that,\" converting \"indicating\" into a separate clause, and rephrasing \"growing linearly\" as a more natural construction. Let me reconsider whether these are actually dangling modifiers or if some are acceptable participial phrases. I need to verify which results come from which validation approach—the task specifies that the r=0.65 correlation should be cited from mvp_003's synthetic validation, not from mvp_002's scatter plot. The experimental parameters are N=50, I=100, J=8 with 20 seeds and rho=0.6, and I should make sure these details are accurate when I reference the results.\n\nFor the LaTeX structure, I'm using the observation environment that's already defined in main.tex, and framing Observation 1 as a direct application of the classical OVB result from Angrist & Pischke rather than claiming originality. I also need to check the formatting constraints—the task prohibits em-dashes and en-dashes, so I'll avoid those in the final output.\n\nThe section title should be \"Confounding in LLM Evaluation\" per the task instructions, and I'm organizing the content into four parts as specified. I'm being careful about word count and checking whether to use subsections—the task lists four distinct parts but doesn't explicitly require \\subsection commands, so I'll follow the structure without adding extra formatting layers. I'm reconsidering the structure—four subsections might be too granular for a ~650-word section in an 8-page paper. The guidelines suggest avoiding over-segmentation, so I'll consolidate this into continuous prose with natural paragraph breaks instead of explicit headers, letting the four conceptual parts flow together more organically while keeping the section compact. The key insight is that standard MFRM breaks down when models have seen benchmark items during training, since memorization inflates their scores rather than reflecting true ability. I'm introducing a contamination term that captures this interaction between a model's susceptibility to memorization and how exposed each item is, then incorporating this into the full model specification. The bias in the estimated parameters follows the classical omitted variable bias formula, where the asymptotic bias in the judge effect equals the product of the contamination coefficient and a projection term that depends on how exposure correlates with the design matrix. This bias is non-zero precisely when judge severity and contamination effects are correlated—a condition that's likely to hold in practice.\n\nIn reality, lenient judges amplify score inflation on exposed items while strict judges dampen it, so the bias direction and magnitude depend on both the judge's severity and the degree of contamination in the model. This is analogous to the standard regression bias formula where the bias equals the auxiliary regression coefficient times the omitted variable's effect. The problem is that both sequential estimation approaches fail to account for this confounding: estimating judge effects first leaves ability estimates inflated for contaminated models, while estimating contamination first misattributes judge severity as part of the contamination signal. Synthetic validation experiments are showing how this confounding breaks down both strategies.\n\nGenerating validation results... I'm verifying the paragraph lengths and checking that each section has between 5-8 sentences, confirming the observation about omitted variable bias is properly framed, and pulling the specific parameters from the registry—50 observations, 100 items, 8 judges, 20 random seeds, with a correlation of 0.65 from the reference model. and actually more precise. Let me verify the task requirements again — it specifies using \\text{logit} notation, but the log odds ratio form I'm using is mathematically equivalent and more explicit, which aligns with standard psychometric practice. I'll stick with my version. I'm also confident my punctuation for the appositive phrase about non-orthogonality is correct.\n\nNow I'm checking my word count across the sections — I'm at roughly 580 words of prose plus equations, which puts me slightly under the 650-word target. I should expand parts 1 and 3 a bit to get closer to that mark while keeping the mathematical content intact. The Rasch Model (MFRM) extends classical measurement theory to handle multiple raters evaluating multiple models across multiple items, placing all components—model ability, item difficulty, judge severity, and response thresholds—on a common logit scale so they're directly comparable. This framework, as applied by Wang (2025) to LLM evaluation, can separate genuine model performance from systematic judge effects.\n\nBut standard MFRM has a critical blind spot: it assumes all systematic variation comes from the modeled facets. When some models have seen benchmark items during training, they gain an unfair advantage through memorization rather than true capability. I'm modeling this contamination as an interaction term where each model has a susceptibility parameter and each item has an exposure level. When practitioners fit the standard MFRM to data actually generated by this contaminated process, the model lacks the contamination term entirely, so its effect gets absorbed into the estimated model abilities, item difficulties, and judge severities—corrupting all the inferences downstream.\n\nThe bias follows directly from classical omitted variable bias: the contamination effect isn't orthogonal to judge severity in practice, since lenient judges amplify score inflation on exposed items while strict judges compress it. The magnitude of bias scales with how contaminated each model is, so the most exposed models get the largest upward distortion in their estimated abilities. This gives us not just that bias exists, but its direction and relative size across models.\n\nBoth sequential estimation strategies fail under this confounding. A bias-first approach like CyclicJudge calibrates judge severity first, but model abilities are already inflated for contaminated models by that point. A contamination-first approach like DCR adjusts for contamination first, but then judge severity gets misattributed as part of the contamination signal. I'm running synthetic validation to confirm this failure across different configurations. Now I'm clarifying the output format requirements—there's some ambiguity in the instructions about whether to include the \\section command, so I need to resolve that before finalizing the structure. I'm also adding a sentence about the practical implications when both confounds are present simultaneously, which will help readers understand why this matters for their own evaluations. I'm noticing a conflict between two instructions about whether to include the `\\section` command. The header says not to include it since Paper Agent will handle it with the write_paper_section tool, but the output format section explicitly says to start from `\\section{Confounding in LLM Evaluation}`. Since the output format is the final instruction, I'll include the section command as specified there. I should also make sure to use the citation format with `\\cite{linacre1989mfrm}` and `\\cite{wang2025mfrm_llm}` as requested.\n\nNow I'm checking the citation styles — since the paper uses natbib, I need to distinguish between `\\citep{}` for parenthetical citations and `\\citet{}` for textual citations where the author is the subject of the sentence.\n\nI've also verified the figure setup matches what's required, and since the graphics path is already configured in the main file, I can just reference the filename directly. Ready to finalize the output.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c63ba007-7c42-4144-8eca-1b572fa22ee3",
+            "isSidechain": false,
+            "requestId": "req_011CbHbKrFwAWEpuQEhyDhy1",
+            "type": "assistant",
+            "uuid": "74640874-36c1-449a-9010-16389a25f47c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PK9Pq1ipwwggf8fCfAkgaG",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 958,
+                "cache_read_input_tokens": 44704,
+                "output_tokens": 10631,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 958,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 10631,
+                    "cache_read_input_tokens": 44704,
+                    "cache_creation_input_tokens": 958,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 958
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T12:20:07.993Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the context. Here is the Section 2 LaTeX content:\n\n---\n\n```latex\n\\section{Confounding in LLM Evaluation}\n\\label{sec:confounding}\n\nThe Many-Facet Rasch Model (MFRM) extends classical Rasch measurement to settings with multiple rater facets \\citep{linacre1989mfrm, linacre1994mfrm}. Originating in educational measurement, the model treats rater variation as a nuisance facet to be estimated and removed rather than a source of noise to be averaged over. In the LLM evaluation context, where $J$ judges score $N$ models across $I$ items, the MFRM specifies\n%\n\\begin{equation}\n\\label{eq:mfrm}\n\\log \\frac{P(Y_{nij} \\geq k \\mid \\theta_n, b_i, d_j, \\tau_k)}{P(Y_{nij} < k \\mid \\theta_n, b_i, d_j, \\tau_k)} = \\theta_n - b_i - d_j - \\tau_k,\n\\end{equation}\n%\nwhere $Y_{nij}$ is the ordinal rating by judge $j$ for model $n$ on item $i$, $\\theta_n$ is the ability of model $n$ ($n = 1, \\ldots, N$), $b_i$ is the difficulty of item $i$ ($i = 1, \\ldots, I$), $d_j$ is the severity of judge $j$ ($j = 1, \\ldots, J$), and $\\tau_k$ is the threshold for category $k$. All facets reside on a common logit scale, so model ability is directly comparable after adjustment for item difficulty and judge severity. \\citet{wang2025mfrm_llm} applied this framework to LLM rater calibration and showed that MFRM separates genuine ability from systematic judge effects in multi-judge panels.\n\nHowever, standard MFRM assumes that all systematic sources of score variation are captured by the modeled facets. This assumption breaks down when some models have been exposed to benchmark items during training \\citep{dcr2025}. Such contamination inflates scores on exposed items through memorization rather than genuine ability. We represent this effect as an interaction $c_n \\cdot e_i$, where $c_n \\geq 0$ is the contamination susceptibility of model $n$ and $e_i \\in [0, 1]$ is the exposure level of item $i$. The complete data-generating process becomes\n%\n\\begin{equation}\n\\label{eq:full}\n\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i.\n\\end{equation}\n%\nWhen a practitioner fits the standard MFRM (Eq.~\\ref{eq:mfrm}) to data generated by Eq.~\\ref{eq:full}, the contamination term is absent from the estimated model. Its influence does not vanish but is absorbed into the estimated parameters $\\tilde{\\theta}_n$, $\\tilde{b}_i$, and $\\tilde{d}_j$, which distorts all downstream inferences.\n\nThe consequence of this omission can be stated precisely.\n\n\\begin{observation}[Omitted Variable Bias in MFRM]\n\\label{obs:ovb}\nLet the full model be $\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i$ and the short model omit the contamination term: $\\tilde{\\eta}_{nijk} = \\tilde{\\theta}_n - \\tilde{b}_i - \\tilde{d}_j - \\tau_k$. By the omitted variable bias (OVB) formula \\citep{angrist2009mostly},\n\\begin{equation}\n\\label{eq:ovb}\n\\mathrm{plim}(\\tilde{\\theta}_n - \\theta_n) = \\gamma_n \\cdot c_n,\n\\end{equation}\nwhere $\\gamma_n$ depends on the projection of the exposure vector $(e_i)$ onto the design matrix of the short model. The bias is non-zero whenever $\\mathrm{Cov}(d_j,\\, c_n \\cdot e_i) \\neq 0$.\n\\end{observation}\n\nObservation~\\ref{obs:ovb} is a direct application of the classical OVB result from \\citet{angrist2009mostly} to the MFRM setting. The condition for bias, non-orthogonality between judge severity and contamination effects, holds in practice: lenient judges (low $d_j$) tend to amplify score inflation on exposed items, while strict judges compress it. The bias magnitude scales with $c_n$, so heavily contaminated models receive the largest upward distortion in estimated ability. In the linear analogue, this reduces to the short-regression bias $\\tilde{\\beta} - \\beta = \\delta \\cdot \\gamma$, where $\\delta$ captures the auxiliary regression of the omitted variable on the included regressors. When both $c_n$ and $d_j$ are present, any estimate of model ability from a specification that includes one facet but omits the other carries this asymptotic bias. The Observation thus establishes not only the existence of bias but also its direction and relative magnitude across models.\n\nThis confounding undermines both sequential estimation strategies. A bias-first approach, as in CyclicJudge \\citep{cyclicjudge2026}, calibrates $d_j$ before estimating ability, but the resulting $\\hat{\\theta}$ is already inflated for contaminated models because the omitted $c_n \\cdot e_i$ term has been absorbed into the ability estimates. A contamination-first approach, as in DCR \\citep{dcr2025}, adjusts for contamination before addressing judge effects, but judge severity is then misattributed as contamination signal. Synthetic validation confirms this failure: with $N = 50$ models, $I = 100$ items, $J = 8$ judges, $\\rho = 0.6$, and 20 random seeds, the Pearson correlation between sequential estimation bias and true $c_n$ reaches $r = 0.65$ ($p < 0.001$). As illustrated in Figure~\\ref{fig:ovb_bias}, the bias is not random but directional: contaminated models are systematically overestimated under both sequential orderings.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig2_ovb_bias}\n\\caption{Sequential estimation bias ($\\hat{\\theta}_{\\mathrm{seq}} - \\theta_{\\mathrm{true}}$) versus true contamination susceptibility $c_n$. Pearson $r = 0.65$ ($p < 0.001$) confirms systematic overestimation of contaminated models. Synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds).}\n\\label{fig:ovb_bias}\n\\end{figure}\n```\n\n---\n\n~660 words. Four logical parts flow as continuous prose without subsection headers. Constraint compliance:\n\n- No em-dash/en-dash\n- No -ing phrase sentence endings\n- No \"Furthermore\"/\"Moreover\"/\"Additionally\" chains\n- No blacklisted words\n- OVB framed as Observation (not Proposition), citing Angrist & Pischke 2009\n- All numbers traceable: r=0.65 (mvp_003), N=50/I=100/J=8/20 seeds/rho=0.6\n- Paragraphs 5-8 sentences\n- Figure 2 float with specified caption included\n- All 6 bibtex keys used"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "74640874-36c1-449a-9010-16389a25f47c",
+            "isSidechain": false,
+            "requestId": "req_011CbHbKrFwAWEpuQEhyDhy1",
+            "type": "assistant",
+            "uuid": "48d538b9-33c8-40e2-94a3-1b2d48f59063",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias",
+            "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PK9Pq1ipwwggf8fCfAkgaG",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 958,
+                "cache_read_input_tokens": 44704,
+                "output_tokens": 10631,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 958,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 10631,
+                    "cache_read_input_tokens": 44704,
+                    "cache_creation_input_tokens": 958,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 958
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "48d538b9-33c8-40e2-94a3-1b2d48f59063",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Section 2 on LLM evaluation confounding",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "48d538b9-33c8-40e2-94a3-1b2d48f59063",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Write Section 2 on LLM evaluation confounding",
+                "sessionId": "3f6693b1-0061-43d8-a7eb-7ad91a944221"
+              }
+            }
+          ],
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 47
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gated-mfrm-judge-bias-rtx6000-4x-ssh-root-ssh-execute-submit-t-copy-158.md"
+}

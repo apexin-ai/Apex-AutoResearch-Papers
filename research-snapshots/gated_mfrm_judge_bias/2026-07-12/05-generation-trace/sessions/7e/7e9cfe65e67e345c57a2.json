@@ -1,0 +1,1003 @@
+{
+  "schema_version": "1.0",
+  "id": "7e9cfe65e67e345c57a2",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are helping with a paper distillation task. Fetch and extract detailed information from this arXiv paper: arXiv:2505",
+  "task_key": "agent-aed1d3e555792ca7c",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-aed1d3e555792ca7c.jsonl",
+    "occurrence": 1,
+    "bytes": 141004,
+    "sha256": "fe96b3286849e612af80053f583646883ca6ab506e759bb6fec8449fd225badd"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T16:37:51.134Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are helping with a paper distillation task. Fetch and extract detailed information from this arXiv paper: arXiv:2505.18486 \"Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model\"\n\nUse WebFetch to get the full paper from https://arxiv.org/html/2505.18486 \n\nExtract ALL of the following in detail:\n1. Full introduction text (every paragraph)\n2. All contribution statements\n3. Complete experiment section (datasets, baselines, metrics, results with numbers)\n4. All figure and table captions\n5. Paragraphs referencing figures/tables\n6. Limitations / future work section\n7. Method details (what is the approach?)\n8. Training/implementation details\n9. Ablation studies if any\n10. The conclusion section\n\nReturn the COMPLETE extracted text, not summaries. This is for detailed analysis."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "c8bbf00a-2a8b-4a99-a0ef-80980f140516",
+            "agentId": "aed1d3e555792ca7c",
+            "type": "user",
+            "uuid": "22a69d8a-ec8a-4e20-95cb-facb7ae58352",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T16:37:51.139Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "22a69d8a-ec8a-4e20-95cb-facb7ae58352",
+                "isSidechain": true,
+                "agentId": "aed1d3e555792ca7c",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__load_project_config",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "229787fd-1f03-4535-bfa9-fbcee9044a30",
+                "timestamp": "2026-05-21T16:37:51.139Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+                "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T16:37:53.528Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015kA1JuhpGQwbxx15h8eZE3",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebFetch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "229787fd-1f03-4535-bfa9-fbcee9044a30",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3PidBQu6SpjheogF2g",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "547bab5e-b6cb-4180-9982-0f91484c50a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01H2DZGmzNCoJHRedWBHV1Gh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16304,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 77,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16304
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 77,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16304,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16304,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T16:37:53.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015kA1JuhpGQwbxx15h8eZE3",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebFetch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "547bab5e-b6cb-4180-9982-0f91484c50a0",
+            "isSidechain": true,
+            "promptId": "c8bbf00a-2a8b-4a99-a0ef-80980f140516",
+            "agentId": "aed1d3e555792ca7c",
+            "type": "user",
+            "uuid": "17442824-e4bd-43cb-a0af-d748b9557b9e",
+            "sourceToolAssistantUUID": "547bab5e-b6cb-4180-9982-0f91484c50a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T16:37:55.307Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll fetch the full paper from arXiv now."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "17442824-e4bd-43cb-a0af-d748b9557b9e",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3PtPJg2DD6VWDLFdkN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2e402d20-ea0e-4142-9599-9b5a6754b2de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_0144726kLp5uHT3wWm5beNCL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1432,
+                "cache_read_input_tokens": 16304,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1432,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T16:38:00.727Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011NKTQv6TrHHx9FdkWhbeWt",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2505.18486",
+                "prompt": "Extract ALL of the following in complete, verbatim detail (do not summarize):\n1. Full introduction text - every paragraph word for word\n2. All contribution statements (usually at end of intro)\n3. Complete experiment section - datasets used (names, sizes), baselines compared, metrics reported, all numerical results\n4. ALL figure captions (every figure caption verbatim)\n5. ALL table captions (every table caption verbatim)\n6. All paragraphs in the main text that reference figures or tables\n7. Limitations section and future work section (verbatim)\n8. Method section - complete description of the approach\n9. Training and implementation details\n10. Ablation studies if any\n11. Complete conclusion section (verbatim)\n\nReturn the complete extracted text. Do not summarize. Include section headers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2e402d20-ea0e-4142-9599-9b5a6754b2de",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3PtPJg2DD6VWDLFdkN",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dfc3c888-ec6c-4069-b724-2e72907cffd0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_0144726kLp5uHT3wWm5beNCL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1432,
+                "cache_read_input_tokens": 16304,
+                "output_tokens": 276,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1432
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 276,
+                    "cache_read_input_tokens": 16304,
+                    "cache_creation_input_tokens": 1432,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1432,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T16:38:00.935Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Request failed with status code 404",
+              "is_error": true,
+              "tool_use_id": "toolu_011NKTQv6TrHHx9FdkWhbeWt"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dfc3c888-ec6c-4069-b724-2e72907cffd0",
+            "isSidechain": true,
+            "promptId": "c8bbf00a-2a8b-4a99-a0ef-80980f140516",
+            "agentId": "aed1d3e555792ca7c",
+            "type": "user",
+            "uuid": "5eaef4f0-fdc8-440d-976a-5467236d8e10",
+            "toolUseResult": "Error: Request failed with status code 404",
+            "sourceToolAssistantUUID": "dfc3c888-ec6c-4069-b724-2e72907cffd0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T16:38:04.778Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V4d97wkUZwFkCVWq4ZCBqg",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/abs/2505.18486",
+                "prompt": "Extract ALL of the following in complete, verbatim detail (do not summarize):\n1. Full introduction text - every paragraph word for word\n2. All contribution statements (usually at end of intro)\n3. Complete experiment section - datasets used (names, sizes), baselines compared, metrics reported, all numerical results\n4. ALL figure captions (every figure caption verbatim)\n5. ALL table captions (every table caption verbatim)\n6. All paragraphs in the main text that reference figures or tables\n7. Limitations section and future work section (verbatim)\n8. Method section - complete description of the approach\n9. Training and implementation details\n10. Ablation studies if any\n11. Complete conclusion section (verbatim)\n\nReturn the complete extracted text. Do not summarize. Include section headers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5eaef4f0-fdc8-440d-976a-5467236d8e10",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3QRvN7CrmuBhEgaj24",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2fb862bd-7972-48c1-9b43-46ffad2b52ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01GNqy7y6WfqoK5ubNKCZtX6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 305,
+                "cache_read_input_tokens": 17736,
+                "output_tokens": 263,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 305
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 263,
+                    "cache_read_input_tokens": 17736,
+                    "cache_creation_input_tokens": 305,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 305,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T16:38:08.590Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V4d97wkUZwFkCVWq4ZCBqg",
+              "type": "tool_result",
+              "content": "# Response\n\nI cannot fulfill this request as specified. The webpage content provided contains only the **abstract and metadata** from an arXiv paper listing page—not the full paper itself.\n\n**What's available on this page:**\n- Title, authors, submission dates\n- Abstract (brief summary)\n- Subject classifications\n- Citation information\n- Links to access the PDF\n\n**What's NOT available:**\nThe actual paper content you've requested, including:\n- Introduction text\n- Method sections\n- Experiments and results\n- Figures and tables\n- Conclusions\n- Limitations\n\n**To obtain this information, you would need to:**\n1. Access the full PDF via the link: `/pdf/2505.18486`\n2. Provide that complete paper text for extraction\n\nThe metadata page alone cannot supply the detailed experimental results, figure captions, table data, and full sections you're requesting. If you have access to the full paper PDF, please share that content and I can extract the requested information within the 125-character quote limit you've specified."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2fb862bd-7972-48c1-9b43-46ffad2b52ce",
+            "isSidechain": true,
+            "promptId": "c8bbf00a-2a8b-4a99-a0ef-80980f140516",
+            "agentId": "aed1d3e555792ca7c",
+            "type": "user",
+            "uuid": "e0a6afca-ea30-4fd2-87df-ff73bc919333",
+            "sourceToolAssistantUUID": "2fb862bd-7972-48c1-9b43-46ffad2b52ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T16:38:11.475Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SfrkxZhcz39Ys6rMxaGzBw",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/pdf/2505.18486",
+                "prompt": "Extract ALL of the following in complete, verbatim detail (do not summarize):\n1. Full introduction text - every paragraph word for word\n2. All contribution statements (usually at end of intro)\n3. Complete experiment section - datasets used (names, sizes), baselines compared, metrics reported, all numerical results\n4. ALL figure captions (every figure caption verbatim)\n5. ALL table captions (every table caption verbatim)\n6. All paragraphs in the main text that reference figures or tables\n7. Limitations section and future work section (verbatim)\n8. Method section - complete description of the approach\n9. Training and implementation details\n10. Ablation studies if any\n11. Complete conclusion section (verbatim)\n\nReturn the complete extracted text. Do not summarize. Include section headers."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e0a6afca-ea30-4fd2-87df-ff73bc919333",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3Qzb9AzcrqMeMCk45j",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d1f13ded-5e90-4311-b027-d25c93c1d6e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01DHmZuzRtggNHftYBPouvF1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 498,
+                "cache_read_input_tokens": 18041,
+                "output_tokens": 263,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 498
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 263,
+                    "cache_read_input_tokens": 18041,
+                    "cache_creation_input_tokens": 498,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 498,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T16:38:16.216Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SfrkxZhcz39Ys6rMxaGzBw",
+              "type": "tool_result",
+              "content": "I appreciate your request, but I must clarify an important limitation: the content you've provided appears to be a PDF file encoded in binary/compressed format, not readable text. The material shows PDF stream objects with FlateDecode compression and binary data that cannot be meaningfully extracted as plain text without proper PDF parsing tools.\n\n**What I can tell you:**\n\nThe document appears to be an academic paper (indicated by the PDF structure with objects, streams, and standard academic formatting markers). However, I cannot extract the specific sections you've requested because:\n\n1. The content is not in plaintext form - it's compressed PDF binary data\n2. Proper extraction would require PDF parsing software\n3. I cannot reliably identify section boundaries, figure captions, tables, or specific text passages from this encoding\n\n**To properly extract this content, you would need to:**\n\n- Use a PDF-to-text converter tool (like pdftotext, PyPDF2, or similar)\n- Open the PDF in a standard reader and copy-paste sections\n- Use academic paper extraction services designed for this purpose\n\nI'm happy to help analyze or extract information from the paper **if you can provide it in plaintext format**, but I cannot process the raw PDF binary structure directly.\n\n[Binary content (application/pdf, 708.4KB) also saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias--claude-sessions-distiller-5e221dc4/21618c8e-1e18-4031-a2ea-f1abe2868d8e/tool-results/webfetch-1779381491497-bzue2k.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d1f13ded-5e90-4311-b027-d25c93c1d6e9",
+            "isSidechain": true,
+            "promptId": "c8bbf00a-2a8b-4a99-a0ef-80980f140516",
+            "agentId": "aed1d3e555792ca7c",
+            "type": "user",
+            "uuid": "c3416269-f85f-48d2-b866-38669a18627c",
+            "sourceToolAssistantUUID": "d1f13ded-5e90-4311-b027-d25c93c1d6e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T16:38:18.416Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The PDF was saved locally. Let me read it directly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3416269-f85f-48d2-b866-38669a18627c",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3RZBhxzdJmDNy59iU3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3d384929-e822-4d87-8c0c-d71d58ddc8ae",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01L2CBty5e37AYKZov7U9aMC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 658,
+                "cache_read_input_tokens": 18539,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 658,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T16:38:19.960Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0146x8Ss3pq1Zp3DFyYYRomR",
+              "name": "Bash",
+              "input": {
+                "command": "pdftotext /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-prod43-projects-gated-mfrm-judge-bias--claude-sessions-distiller-5e221dc4/21618c8e-1e18-4031-a2ea-f1abe2868d8e/tool-results/webfetch-1779381491497-bzue2k.pdf /tmp/paper_2505_18486.txt 2>&1 && echo \"DONE\"",
+                "description": "Convert PDF to text using pdftotext"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3d384929-e822-4d87-8c0c-d71d58ddc8ae",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3RZBhxzdJmDNy59iU3",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a9495420-c342-4f1d-9c9f-9c6e9a7d00bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01L2CBty5e37AYKZov7U9aMC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 658,
+                "cache_read_input_tokens": 18539,
+                "output_tokens": 215,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 658
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 215,
+                    "cache_read_input_tokens": 18539,
+                    "cache_creation_input_tokens": 658,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 658,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T16:38:20.178Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0146x8Ss3pq1Zp3DFyYYRomR",
+              "type": "tool_result",
+              "content": "DONE",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9495420-c342-4f1d-9c9f-9c6e9a7d00bc",
+            "isSidechain": true,
+            "promptId": "c8bbf00a-2a8b-4a99-a0ef-80980f140516",
+            "agentId": "aed1d3e555792ca7c",
+            "type": "user",
+            "uuid": "d9245166-4c15-4c2a-8085-55f59d70e6ce",
+            "sourceToolAssistantUUID": "a9495420-c342-4f1d-9c9f-9c6e9a7d00bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T16:38:22.279Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019mXqLKtgaqV89exW2UBTcu",
+              "name": "Bash",
+              "input": {
+                "command": "wc -l /tmp/paper_2505_18486.txt",
+                "description": "Check line count of extracted text"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d9245166-4c15-4c2a-8085-55f59d70e6ce",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3Rr9fbcUNuYSmLKSrP",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "36c1687d-1127-4047-9667-e4685717057b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01CY6maFUgVbDoQFA82uxGA6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 229,
+                "cache_read_input_tokens": 19197,
+                "output_tokens": 89,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 229
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 89,
+                    "cache_read_input_tokens": 19197,
+                    "cache_creation_input_tokens": 229,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 229,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T16:38:22.328Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019mXqLKtgaqV89exW2UBTcu",
+              "type": "tool_result",
+              "content": "2086 /tmp/paper_2505_18486.txt",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36c1687d-1127-4047-9667-e4685717057b",
+            "isSidechain": true,
+            "promptId": "c8bbf00a-2a8b-4a99-a0ef-80980f140516",
+            "agentId": "aed1d3e555792ca7c",
+            "type": "user",
+            "uuid": "db2ed80f-8f52-41f5-810c-de40b4e030ab",
+            "sourceToolAssistantUUID": "36c1687d-1127-4047-9667-e4685717057b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T16:38:23.885Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KZXskxkJF7e3W33fXawvCy",
+              "name": "Read",
+              "input": {
+                "file_path": "/tmp/paper_2505_18486.txt",
+                "limit": 2086
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "db2ed80f-8f52-41f5-810c-de40b4e030ab",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3S1MJqC49Zmn1aXpDr",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "46a4889f-ede9-4387-b9a9-80f34d97840e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01WqMnvaiU86zpg8q9tU55Ms",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 116,
+                "cache_read_input_tokens": 19426,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 116,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 48,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T16:38:24.467Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KZXskxkJF7e3W33fXawvCy",
+              "type": "tool_result",
+              "content": "1\tComparing Human and AI Rater Effects Using the Many-Facet Rasch Model\n2\tHong Jiao\n3\tUniversity of Maryland, College Park\n4\tDan Song\n5\tWon-Chan Lee\n6\tUniversity of Iowa\n7\tAbstract\n8\tLarge language models (LLMs) have been widely explored for automated scoring in low-stakes\n9\tassessment to facilitate learning and instruction. Empirical evidence related to which LLM\n10\tproduces the most reliable scores and induces least rater effects needs to be collected before the\n11\tuse of LLMs for automated scoring in practice. This study compared ten LLMs (ChatGPT 3.5,\n12\tChatGPT 4, ChatGPT 4o, OpenAI o1, Claude 3.5 Sonnet, Gemini 1.5, Gemini 1.5 Pro, Gemini\n13\t2.0, as well as DeepSeek V3, and DeepSeek R1) with human expert raters in scoring two types\n14\tof writing tasks. The accuracy of the holistic and analytic scores from LLMs compared with\n15\thuman raters was evaluated in terms of Quadratic Weighted Kappa. Intra-rater consistency\n16\tacross prompts was compared in terms of Cronbach Alpha. Rater effects of LLMs were\n17\tevaluated and compared with human raters using the Many-Facet Rasch model. The results in\n18\tgeneral supported the use of ChatGPT 4o, Gemini 1.5 Pro, and Claude 3.5 Sonnet with high\n19\tscoring accuracy, better rater reliability, and less rater effects.\n20\t\n21\t1\n22\t\n23\t\fIntroduction\n24\tPerformance assessment tasks, including essays and other types of constructed-response\n25\t(CR) items are commonly used for assessing high-order thinking skills such as synthesizing\n26\tinformation from multiple sources, critical evaluations, and evidence-based reasoning. These\n27\tassessment formats are commonly employed in formative classroom assessments to facilitate\n28\tinstruction and learning as well as in high-stakes summative assessments for accountability and\n29\tadmission decisions. While the score represents a key form of feedback, the scoring of such\n30\tassessment tasks is often costly, time-consuming, and error prone due to the subjectivity of\n31\thuman raters.\n32\tAutomated scoring of performance items is an efficient and scientifically validated\n33\ttechnology designed to complement and enhance human scoring (Shermis, 2015). For example,\n34\tautomating the scoring of the National Assessment of Educational Progress (NAEP) CR items\n35\tcould yield significant cost saving of 70% for reading and 40% for math (Justice & Palermo,\n36\t2020). As one of the most successful applications of AI technology in educational assessments,\n37\tthe progress in automated scoring is aligned closely with the advances in machine learning and\n38\tnatural language processing (NLP). Though research on automated scoring started with the\n39\tpioneering work of Page (1966; 2003), recent advances in AI technology have made\n40\tbreakthrough in automated scoring.\n41\tAutomated scoring can be categorized into two main approaches: feature-based and deep\n42\tlearning-based (Haller et al., 2022), with the latter further classified into neural network, small\n43\tlanguage model (SLM), and large language model (LLM) based approaches. Feature-based\n44\tapproaches rely on the extracted length, prompt, readability, syntactic, semantic, lexical, and\n45\tdiscourse features (Ke & Ng, 2019; Uto et al., 2020) and supervised machine learning models.\n46\tDeep learning-based approaches use word embeddings (Word2Vec, GloVe) and context\n47\tembeddings from small language models (SLMs) such as BERT, deBERTa based on transformer\n48\t(Vaswani et al., 2017) and large language models (LLMs) such as GPT, Claude, and Gemini.\n49\tDeveloping feature-based or SLM-based automated scoring systems often requires\n50\tfoundational skills in supervised machine learning, NLP, and deep learning. This dramatically\n51\treduces the accessibility of automated scoring to classroom learners, teachers, and assessment\n52\tdevelopers. However, with the swift emerging of more capable LLMs, automated scoring\n53\ttechniques are becoming increasingly accessible to non-technical users who can fully leverage\n54\tthe LLM technology to revamp their routine scoring practices, with enhanced efficiency and\n55\taccuracy.\n56\tWith the advances in Generative AI or Chatbots, LLMs have been explored for\n57\tautomated scoring in education assessments. LLMs have demonstrated unprecedented potential\n58\tin automated scoring of essays and CR items in educational assessments (Latif & Zhai, 2024;\n59\tLee et al., 2024; Yancey et al., 2023; Yang et al., 2025). In low-stakes assessment programs,\n60\tthree commonly used models are ChatGPT by OpenAI, Claude by Anthropic, and Google\n61\tGemini. Recent studies have explored the use of GPT models, such as GPT 3.5 (Bui & Barrot,\n62\t2024; Mizumoto & Eguchi, 2023; Parker et al., 2023; Wijekumar et al., 2024) and GPT 4\n63\t(Kortemeyer, 2024) in automated scoring. Furthermore, several studies have compared the\n64\t2\n65\t\n66\t\fperformance of GPT 3.5 and GPT 4 (Kim & Jo, 2024; Tate et al., 2024) as well as GPT and\n67\tLlama3 (Kundu & Barbosa, 2024). Pack et al. (2024) compared PaLM 2, Claude 2, and GPT 3.5\n68\tand GPT 4, concluding that GPT 4 outperformed the others. Almost all studies on using LLMs\n69\tfor automated scoring purely focused on scoring accuracy, little is known about the potential\n70\trater effects of these LLM scoring engines.\n71\tRater effects (Myford & Wolfe, 2003, 2004; Saal, Downey, & Lahey, 1980) refer to\n72\tdifferent types of inconsistencies in ratings when human raters assign scores to test-takers’\n73\tconstructed responses to performance tasks such as essays or CR items in educational\n74\tassessments. Rater effects may occur due to raters’ personal backgrounds, preferences,\n75\tinaccurate interpretations of the scoring rubrics, inappropriate conceptualization of the target\n76\ttest-takers’ population, and their idiosyncratic traits that may impact their accuracy and\n77\tconsistency in assigning scores to assessment items. Rater effects can be classified into different\n78\tcategories. Some common rater effects include rater severity/leniency and centrality. When a\n79\trater assigns scores to students’ responses to a performance task consistently lower than other\n80\traters, this rater effect is noted as rater severity. When rater severity is present, students’ true\n81\tscores may be underestimated if such rater effect is ignored. On the other hand, when a rater\n82\tassigns scores to students’ responses consistently higher than other raters, this rater effect is\n83\tnoted as rater leniency. When rater leniency is present, students’ true scores may be\n84\toverestimated if such rater effect is not accounted for. Further, some raters may consistently\n85\tassign scores in the middle of the score scale and not assign high scores or low scores regardless\n86\tof the ability levels. This central tendency or centrality effect will introduce score errors for\n87\tstudents whose true scores lie at the two ends of the score scale. Such rater effects are as severe\n88\tas score accuracy as they may compromise the fairness, reliability, and validity of the assigned\n89\tscores. Though in operational rating sessions, different strategies would be implemented to\n90\tminimize rater effects such as standardized rubrics, comprehensive rater training and calibration,\n91\tin-session and post-session quality control of ratings, or assigning multiple raters to each rating\n92\ttasks, rater effects need to be tracked as a source of validity evidence.\n93\tEach LLM has its own strengths and features that may cater to different scoring needs\n94\tand applications. Like human raters, AI raters may bear different degrees of rater effects. Thus, it\n95\tis worthwhile to compare the ratings from different scoring engines and understand the potential\n96\tAI rater effects of each LLM. Thus, this study aims to investigate the AI rater effects in addition\n97\tto rating accuracy and consistency compared with human raters of essay scoring. The AI raters\n98\tinvestigated in this study include ten commonly used LLMs from GPT, Gemini, and Claude\n99\tfamilies and some recent LLMs such as DeepSeek. The research questions for the study include:\n100\t1. How accurate are LLM raters compared with human raters?\n101\t2. How consistent or reliable are LLM raters compared with human raters?\n102\t3. What are the LLM rater effects compared with human raters?\n103\tMethods\n104\tThis study conducts a series of psychometric analyses to investigate the AI raters’ scoring\n105\taccuracy and consistency, as well as uses the Many-Facet Rasch measurement model (Linacre,\n106\t\n107\t3\n108\t\n109\t\f1989, 1994, 2024; Wright & Masters, 1982; Wright & Stone, 1979) to investigate and compare\n110\trater effects between AI raters and human raters in a large-scale writing assessment.\n111\tData\n112\tA dataset consists of 30 student essays on two types of writing tasks. Each essay was\n113\tscored by two human raters and ten AI raters, including ChatGPT 3.5, ChatGPT 4, ChatGPT 4o,\n114\tOpenAI o1, Claude 3.5 Sonnet, Gemini 1.5, Gemini 1.5 Pro, Gemini 2.0, as well as DeepSeek\n115\tV3 and DeepSeek R1. The 30 U.S. college students, enrolled in Mandarin Chinese language\n116\tcourses, included 18 third-year and 12 fourth-year students from a range of majors such as\n117\tbusiness, humanities, STEM, and diplomacy. Data collection took place over two consecutive\n118\tdays using constructed-response writing prompts from the 2021 and 2022 AP Chinese exams\n119\tdeveloped by the College Board. On the first day, students completed the 2021 prompts, which\n120\tincluded one story narration (SN1) task and one email response (ER1) task. On the second day,\n121\tthey responded to the 2022 prompts, which featured the same two task types, each labeled as\n122\tSN2, and ER2. Two certified human raters of the AP Chinese exam evaluated the writing\n123\tsamples using the College Board’s scoring rubrics for both holistic and analytic scoring for three\n124\ttrait scores assessing Task Completion, Delivery, and Language Use. Each student response\n125\treceived both holistic and analytic trait/domain-specific scores ranging from 0 to 6 (Song &\n126\tTang, 2025).\n127\tLLMs Trained for Automated Scoring\n128\tIn alignment with the development of LLMs, ChatGPT 3.5 was first used to score all 120\n129\tessays and other AI engines were sequentially explored when new versions or new engines were\n130\treleased. Data collection took approximately one and a half years. This study incorporated ten AI\n131\traters: ChatGPT 3.5, ChatGPT 4, ChatGPT 4o, OpenAI o1, Claude 3.5 Sonnet, Gemini 1.5,\n132\tGemini 2.0, Gemini Advanced 1.5 Pro, DeepSeek V3, and DeepSeek R1. These LLMs are\n133\tselected based on their popularity and demonstrated expertise in processing text data and\n134\treasoning capabilities. ChatGPT 3.5 is for general-purpose tasks, casual writing, and basic\n135\tcoding. ChatGPT 4 is better at technical problem-solving and creative content. ChatGPT 4\n136\tgenerally outperforms ChatGPT 3.5 in language understanding, with ChatGPT 4 Turbo offering\n137\tenhanced context handling. ChatGPT 4o excels at conversations. OpenAI o1 specializes in\n138\tadvanced STEM applications and debugging. Claude 3.5 Sonnet is competitive, often cited in\n139\tsafety-focused evaluations, technical coding, and natural-sounding content. Gemini 1.5 and 1.5\n140\tPro are good at long-context tasks. Gemini 2.0 was selected to reflect the latest advancements in\n141\tGoogle’s LLMs, which feature enhanced language understanding and improved reasoning for\n142\tresearch, education, and multimedia analysis. DeepSeek V3 and DeepSeek R1 are two distinct\n143\tmodels developed by DeepSeek, each designed for different purposes and with unique\n144\tcapabilities. DeepSeek V3 uses the Mixture-of-Experts model, optimized for general-purpose\n145\ttasks, including natural language understanding, text generation, and conversational AI.\n146\tDeepSeek R1 excels in reasoning. It is specifically tailored for tasks that require deep reasoning,\n147\tcomplex problem-solving, and advanced analytical capabilities. DeepSeek was included due to\n148\tits rising prominence as an open-source LLM with demonstrated strengths in structured\n149\treasoning, grammatical precision, and technical problem-solving. Given its strong performance\n150\tin formal writing tasks and its potential as a cost-effective alternative to proprietary models,\n151\t4\n152\t\n153\t\fincorporating DeepSeek into our analysis allows for a more comprehensive comparison of AI\n154\traters’ capabilities across diverse linguistic and evaluative contexts (Gao et al., 2025).\n155\tBefore scoring, human rater R1, a certified AP Chinese Language and Culture Exam\n156\trater, trained 10 AI engines (ChatGPT 3.5, ChatGPT 4.0, ChatGPT 4o, Gemini 1.5, Claude 3.5\n157\tSonnet, OpenAI O1, Gemini 2.0, Gemini Advanced 1.5 Pro, DeepSeek V3, and DeepSeek R1)\n158\tusing AI training protocols designed for evaluating student samples (see Appendix A for an\n159\texample protocol). As Lee et al. (2024) emphasized, human expert ratings are essential for\n160\tgenerating benchmark data that align AI scoring with educational standards. To ensure valid AI\n161\trater performance, human rater R1 not only provided training examples drawn from the College\n162\tBoard website and previously scored samples but also offered guidance on applying a holistic\n163\tscoring approach. AI raters were instructed to prioritize three traits: Task Completion, followed\n164\tby Delivery and Language Use, in line with official rubrics. In total, 2 human raters and 10 AI\n165\traters scored 120 essays across four writing tasks.\n166\tAnalysis\n167\tUsing the analytic and holistic scores for the essays, this study investigates scoring\n168\taccuracy, reliability, and rater effects. Quadratic Weighted Kappa (QWK; Cohen, 1960; 1968)\n169\twas computed to evaluate the scoring accuracy of AI raters against the gold standards of human\n170\tratings. QWK was computed for each AI against each human rater. Further, AI raters’ QWK\n171\twere compared with the QWK measures from two human raters which were used as the baseline\n172\tfor comparison. Multiple ensemble models were explored by removing the worst performing\n173\tLLMs from the ensemble. The first ensemble model took the average of the scores assigned by\n174\teach of the studied 10 AI raters and labeled as AI11 model. Another ensemble model, AI12, was\n175\tbuilt upon AI11 model by removing model AI7, Gemini 2.0. Ensemble model, AI13, was built\n176\tupon AI12 model by further removing model AI9, Gemini 1.5 Pro. Ensemble model, AI14, was\n177\tbuilt upon AI13 model by further removing model AI6, OpenAI o1. Ensemble model, AI15, was\n178\tbuilt upon AI14 model by further removing model AI8, DeepSeek V3. Ensemble model, AI16,\n179\twas built upon AI15 model by further removing models AI2 and AI4, ChatGPT 4.0 and Gemini\n180\t1.5. In addition, Cronbach Alpha was computed for each AI and human ratings across the three\n181\ttrait scores and holistic scores as a measure of intra-rater consistency.\n182\tFurthermore, the rater effects for both human and AI raters were examined using the\n183\tMany FACET Rasch model (Linacre, 1989; 1994; 2024). The FACET model for the rating scale\n184\tmodel (Andrich, 1978) is given in equation 1.\n185\tln �\n186\t\n187\t𝑃𝑃𝑗𝑗𝑗𝑗(𝑥𝑥=𝑘𝑘)\n188\t\n189\t𝑃𝑃𝑗𝑗𝑗𝑗(𝑥𝑥=𝑘𝑘−1)\n190\t\n191\t� = 𝜃𝜃𝑗𝑗 − 𝜏𝜏𝑖𝑖 − 𝛿𝛿𝑛𝑛 −𝛽𝛽𝑘𝑘 .\n192\t\n193\t(1)\n194\t\n195\twhere 𝜃𝜃𝑗𝑗 is student j’s latent ability estimate, 𝜏𝜏𝑖𝑖 is rater i’s rater effect estimate, 𝛿𝛿𝑛𝑛 is essay n’s\n196\t\n197\tdifficulty level, 𝛽𝛽𝑘𝑘 is the threshold parameter for score category k, where the probability for a\n198\trating in category k is equal to the probability for a rating in category k-1. Our study uses the\n199\trating scale version of the FACET model (Eckes, 2015; Myford & Wolfe, 2003, 2004), assuming\n200\tthe threshold parameters are the same across all items. A partial credit model version can be\n201\texplored by assuming that each item has its own threshold parameters. The facets investigated in\n202\t5\n203\t\n204\t\fthis study include students (30), essays (4: SN1, ER1, SN2, ER2), raters including two human\n205\traters (R1, R2) and ten LLM-based AI raters (A1 - ChatGPT 3.5, A2 - ChatGPT 4, A3 ChatGPT 4o, A4 - Gemini 1.5, A5 - Claude 3.5 Sonnet, A6 - OpenAI o1, A7 - Gemini 2.0, A8 DeepSeek V3, A9 - Gemini 1.5 Pro, A10 - DeepSeek R1).\n206\tRater effects such as the leniency or severity were quantified by the rater parameter in the\n207\tFACET Rasch model. The Wright map were used to illustrate the relative difficulty of essay\n208\ttraits, rater effects, and student ability on the common scale. Two fit indexes were examined\n209\tincluding the infit and outfit mean square. Infit mean square indicates the consistency a rater uses\n210\tthe rating scale across students and criteria while outfit mean squares quantifies the outlier score\n211\tpatterns. The expected values of the infit and outfit mean squares are 1. Values smaller than 1\n212\tshow less variation than expected in assigned scores while values larger than 1 show more\n213\tvariation than expected in assigned scores. Values ranging from 0.5 to 1.5 (Linacre, 2003; Eckes,\n214\t2009) usually indicates good fit. Usually values smaller than 0.5 indicates overfitting and raters\n215\tdo not discriminate high performing and low performing essays while values larger than 1.5 may\n216\tdistort the measurement. Overfitting suggests a central tendency (Engelhard, 2002; Myford &\n217\tWolfe, 2004). Researchers also suggested more stringent criteria using 0.7 and 1.3 as the cut\n218\tvalues (Bond & Fox, 2007; Bond et al., 2021; McNamara, 1996; Muller, 2020; Wright &\n219\tLinacre, 1994). For high-stakes decision making, Myford and Wolfe (2003) even suggested that\n220\tmore stringent cut values like 0.8 and 1.2 might be set. This study follows the stringent criteria of\n221\t0.7 and 1.3.\n222\tResults\n223\tScoring Accuracy\n224\tThe scoring accuracy of the studied AI raters was evaluated against each human rater in\n225\tterms of QWK. Table 1 summarizes the holistic score accuracy in terms of QWK of each AI\n226\trater against each human rater. Two human raters’ QWK was used as the baseline for\n227\tcomparison. The red-colored numbers indicate the highest QWK against each human rater while\n228\tthe blue-colored numbers indicate the second highest QWK. In general, the two human raters’\n229\tQWK on essay ER2 met the criterion suggested by Williamson, Xi, and Breyer (2012); that is,\n230\tQWK should be equal to or larger than a cut score of 0.7. For SN1, ChatGPT 4o yielded the\n231\thighest QWK with rater 2 while Claude 3.5 yielded the highest QWK with rater 1. For SN2,\n232\tGemini 1.5 Pro yielded the highest QWK with both human raters. For ER 1, ChatGPT 4o yielded\n233\tthe highest QWK with rater 1 while Claude 3.5 yielded the highest QWK with rater 2. For ER2,\n234\tChatGPT 4o yielded the highest QWK with both human raters. Only one ensemble model by\n235\tremoving Gemini 2.0 yielded higher QWK for SN2 and ER1 with rater R1 only. In general, one\n236\tof the AI rater achieved higher QWK with one human rater than human-human QWK on every\n237\titem.\n238\t\n239\t6\n240\t\n241\t\fTable 1\n242\tHolistic Scoring Accuracy (QWK) for AI Raters against Each Human Rater\n243\tEssay\n244\tSN1\n245\tSN2\n246\tER1\n247\tRater\n248\tR1\n249\tR2\n250\tR1\n251\tR2\n252\tR1\n253\tR2\n254\tR1/R2\n255\t0.683\n256\t0.565\n257\t0.684\n258\tA1 – ChatGPT 3.5\n259\t0.549\n260\t0.409\n261\t0.610\n262\t0.538\n263\t0.442\n264\t0.516\n265\tA2 – ChatGPT 4\n266\t0.392\n267\t0.350\n268\t0.440\n269\t0.394\n270\t0.558\n271\t0.459\n272\tA3 – ChatGPT 4o\n273\t0.626\n274\t0.620\n275\t0.526\n276\t0.393\n277\t0.741\n278\t0.475\n279\tA4 - Gemini 1.5\n280\t0.333\n281\t0.181\n282\t0.388\n283\t0.276\n284\t0.610\n285\t0.558\n286\tA5 - Claude 3.5\n287\t0.708\n288\t0.576\n289\t0.657\n290\t0.570\n291\t0.672\n292\t0.726\n293\tA6 - OpenAI o1\n294\t0.422\n295\t0.302\n296\t0.557\n297\t0.369\n298\t0.543\n299\t0.304\n300\tA7 – Gemini 2.0\n301\t0.201\n302\t0.131\n303\t0.319\n304\t0.199\n305\t0.289\n306\t0.143\n307\tA8 – DeepSeek V3\n308\t0.378\n309\t0.233\n310\t0.610\n311\t0.439\n312\t0.619\n313\t0.448\n314\tA9 - Gemini 1.5 pro\n315\t0.267\n316\t0.169\n317\t0.698\n318\t0.576\n319\t0.631\n320\t0.640\n321\tA10 - DeepSeek R1\n322\t0.579\n323\t0.522\n324\t0.417\n325\t0.293\n326\t0.453\n327\t0.368\n328\tA11=Ensemble\n329\t0.606\n330\t0.426\n331\t0.605\n332\t0.476\n333\t0.776\n334\t0.614\n335\tA12=A11-A7\n336\t0.630\n337\t0.474\n338\t0.720\n339\t0.535\n340\t0.783\n341\t0.671\n342\tA13=A12-A9\n343\t0.689\n344\t0.502\n345\t0.630\n346\t0.516\n347\t0.751\n348\t0.669\n349\tA14=A13-A6\n350\t0.692\n351\t0.551\n352\t0.693\n353\t0.474\n354\t0.733\n355\t0.623\n356\tA15= A14-A8\n357\t0.665\n358\t0.513\n359\t0.630\n360\t0.516\n361\t0.681\n362\t0.685\n363\tA16= A15-A2-A4\n364\t0.688\n365\t0.588\n366\t0.675\n367\t0.563\n368\t0.647\n369\t0.675\n370\t\n371\tR1\n372\t\n373\tER2\n374\t\n375\tR2\n376\t\n377\t0.874\n378\t0.632\n379\t0.560\n380\t0.827\n381\t0.834\n382\t0.865\n383\t0.898\n384\t0.435\n385\t0.463\n386\t0.804\n387\t0.896\n388\t0.656\n389\t0.584\n390\t0.716\n391\t0.619\n392\t0.664\n393\t0.667\n394\t0.590\n395\t0.537\n396\t0.727\n397\t0.703\n398\t0.779\n399\t0.745\n400\t0.805\n401\t0.764\n402\t0.767\n403\t0.753\n404\t0.837\n405\t0.809\n406\t0.815\n407\t0.790\n408\t0.812\n409\t0.790\n410\t\n411\tTable 2\n412\tAnalytic (Task Completion) Scoring Accuracy (QWK) for AI Raters against Each Human Rater\n413\tEssay\n414\tSN1\n415\tSN2\n416\tER1\n417\tER2\n418\tRater\n419\tR1\n420\tR2\n421\tR1\n422\tR2\n423\tR1\n424\tR2\n425\tR1\n426\tR2\n427\tR1/R2\n428\t0.715\n429\t0.808\n430\t0.776\n431\t0.915\n432\tA1 – ChatGPT 3.5\n433\t0.523\n434\t0.577\n435\t0.673\n436\t0.533\n437\t0.543\n438\t0.514\n439\t0.624\n440\t0.674\n441\tA2 – ChatGPT 4\n442\t0.305\n443\t0.422\n444\t0.600\n445\t0.451\n446\t0.512\n447\t0.525\n448\t0.832\n449\t0.825\n450\tA3 – ChatGPT 4o\n451\t0.593\n452\t0.645\n453\t0.685\n454\t0.551\n455\t0.607\n456\t0.716\n457\t0.893\n458\t0.892\n459\tA4 - Gemini 1.5\n460\t0.171\n461\t0.223\n462\t0.427\n463\t0.319\n464\t0.635\n465\t0.654\n466\t0.569\n467\t0.587\n468\tA5 - Claude 3.5\n469\t0.574\n470\t0.634\n471\t0.639\n472\t0.575\n473\t0.653\n474\t0.757\n475\t0.754\n476\t0.814\n477\tA6 - OpenAI o1\n478\t0.258\n479\t0.307\n480\t0.568\n481\t0.427\n482\t0.385\n483\t0.475\n484\t0.569\n485\t0.599\n486\tA7 – Gemini 2.0\n487\t0.341\n488\t0.226\n489\t0.444\n490\t0.407\n491\t0.287\n492\t0.328\n493\t0.631\n494\t0.717\n495\tA8 – DeepSeek V3\n496\t0.380\n497\t0.251\n498\t0.525\n499\t0.372\n500\t0.580\n501\t0.580\n502\t0.651\n503\t0.650\n504\tA9 - Gemini 1.5 pro\n505\t0.344\n506\t0.121\n507\t0.492\n508\t0.456\n509\t0.696\n510\t0.729\n511\t0.621\n512\t0.644\n513\tA10 - DeepSeek R1\n514\t0.324\n515\t0.477\n516\t0.459\n517\t0.387\n518\t0.576\n519\t0.620\n520\t0.722\n521\t0.786\n522\tA11=Ensemble\n523\t0.460\n524\t0.474\n525\t0.698\n526\t0.615\n527\t0.734\n528\t0.815\n529\t0.725\n530\t0.785\n531\tA12=A11-A7\n532\t0.490\n533\t0.521\n534\t0.756\n535\t0.683\n536\t0.702\n537\t0.782\n538\t0.730\n539\t0.791\n540\tA13=A12-A9\n541\t0.469\n542\t0.573\n543\t0.746\n544\t0.632\n545\t0.702\n546\t0.782\n547\t0.752\n548\t0.773\n549\tA14=A13-A6\n550\t0.533\n551\t0.671\n552\t0.756\n553\t0.683\n554\t0.695\n555\t0.748\n556\t0.765\n557\t0.788\n558\tA15= A14-A8\n559\t0.465\n560\t0.562\n561\t0.730\n562\t0.585\n563\t0.755\n564\t0.786\n565\t0.785\n566\t0.813\n567\tA16= A15-A2-A4\n568\t0.481\n569\t0.699\n570\t0.690\n571\t0.566\n572\t0.676\n573\t0.767\n574\t0.735\n575\t0.819\n576\t\n577\t7\n578\t\n579\t\fTables 2 to 4 summarize the analytic score accuracy in terms of QWK of each AI rater\n580\tagainst each human rater on each trait: Task Completion, Delivery, and Language Use\n581\trespectively. For analytic scores on Task Completion (Table 2), the two human rater had higher\n582\tconsistency compared with the holistic scoring, with QWK all above 0.7. For SN1, ChatGPT 4o\n583\tyielded the highest QWK with both human raters on SN1 and ER2 as well as on SN2 with R1.\n584\tClaude 3.5 yielded the highest QWK with R2 on both SN2 and ER1. For ER1, Gemini 1.5 Pro\n585\tyielded the highest QWK with R1. Multiple ensemble models improved scoring accuracy over\n586\tthe standalone LLM for SN1, SN2, and ER1. Human-human QWK was consistently higher than\n587\tAI-human QWK on each of the analytic scores.\n588\tFor analytic scores on Delivery (Table 3), the two human rater yielded QWK above 0.7\n589\ton ER essays only. ChatGPT 4o yielded the highest QWK with both human raters on ER2.\n590\tClaude 3.5 yielded the highest QWK with each of the two raters on both SN1 and ER1. For SN2,\n591\tGemini 1.5 Pro yielded the highest QWK with both human raters. Only two ensemble models\n592\timproved scoring accuracy over the standalone LLMS for SN1 and ER1. Unlike analytic scores\n593\tfor Task Completion, AI-human QWK was consistently higher than human-human QWK on SN\n594\ttasks and ER1 task except ER2.\n595\tFor analytic scores on Language Use (Table 4), the two human rater yielded QWK above\n596\t0.7 on all tasks except SN2. ChatGPT 4.0 and 4o yielded the highest QWK with R1 and R2\n597\trespectively on ER2. Gemini 1.5 yielded the highest QWK with both raters on ER1. Claude 3.5\n598\tyielded the highest QWK with both raters on SN1. For SN2, Gemini 1.5 Pro yielded the highest\n599\tQWK with both human raters. Only two ensemble models improved scoring accuracy over the\n600\tstandalone LLMS for ER1. AI-human QWK was higher than human-human QWK only on SN2.\n601\tTable 3\n602\tAnalytic (Delivery) Scoring Accuracy (QWK) for AI Raters against Each Human Rater\n603\tEssay\n604\tSN1\n605\tSN2\n606\tER1\n607\tER2\n608\tRater\n609\tR1\n610\tR2\n611\tR1\n612\tR2\n613\tR1\n614\tR2\n615\tR1\n616\tR2\n617\tR1/R2\n618\t0.685\n619\t0.588\n620\t0.763\n621\t0.950\n622\tA1 – ChatGPT 3.5\n623\t0.552\n624\t0.478\n625\t0.470\n626\t0.381\n627\t0.486\n628\t0.499\n629\t0.655\n630\t0.672\n631\tA2 – ChatGPT 4\n632\t0.438\n633\t0.405\n634\t0.508\n635\t0.437\n636\t0.420\n637\t0.422\n638\t0.791\n639\t0.766\n640\tA3 – ChatGPT 4o\n641\t0.607\n642\t0.552\n643\t0.534\n644\t0.442\n645\t0.537\n646\t0.460\n647\t0.907\n648\t0.890\n649\tA4 - Gemini 1.5\n650\t0.166\n651\t0.187\n652\t0.489\n653\t0.282\n654\t0.614\n655\t0.544\n656\t0.362\n657\t0.368\n658\tA5 - Claude 3.5\n659\t0.698\n660\t0.599\n661\t0.660\n662\t0.614\n663\t0.652\n664\t0.781\n665\t0.746\n666\t0.803\n667\tA6 - OpenAI o1\n668\t0.265\n669\t0.284\n670\t0.480\n671\t0.342\n672\t0.521\n673\t0.344\n674\t0.593\n675\t0.599\n676\tA7 – Gemini 2.0\n677\t0.174\n678\t0.117\n679\t0.219\n680\t0.173\n681\t0.237\n682\t0.197\n683\t0.468\n684\t0.500\n685\tA8 – DeepSeek V3\n686\t0.346\n687\t0.286\n688\t0.424\n689\t0.436\n690\t0.619\n691\t0.468\n692\t0.544\n693\t0.597\n694\tA9 - Gemini 1.5 pro\n695\t0.361\n696\t0.221\n697\t0.681\n698\t0.631\n699\t0.497\n700\t0.463\n701\t0.731\n702\t0.718\n703\tA10 - DeepSeek R1\n704\t0.532\n705\t0.522\n706\t0.194\n707\t0.244\n708\t0.526\n709\t0.471\n710\t0.577\n711\t0.632\n712\tA11=Ensemble\n713\t0.541\n714\t0.417\n715\t0.545\n716\t0.444\n717\t0.667\n718\t0.596\n719\t0.670\n720\t0.723\n721\tA12=A11-A7\n722\t0.548\n723\t0.438\n724\t0.622\n725\t0.499\n726\t0.720\n727\t0.597\n728\t0.692\n729\t0.745\n730\tA13=A12-A9\n731\t0.593\n732\t0.486\n733\t0.571\n734\t0.526\n735\t0.744\n736\t0.588\n737\t0.700\n738\t0.756\n739\tA14=A13-A6\n740\t0.609\n741\t0.561\n742\t0.570\n743\t0.526\n744\t0.695\n745\t0.647\n746\t0.739\n747\t0.802\n748\tA15= A14-A8\n749\t0.594\n750\t0.527\n751\t0.574\n752\t0.508\n753\t0.721\n754\t0.712\n755\t0.768\n756\t0.784\n757\tA16= A15-A2-A4\n758\t0.689\n759\t0.650\n760\t0.541\n761\t0.449\n762\t0.731\n763\t0.684\n764\t0.789\n765\t0.828\n766\t8\n767\t\n768\t\fTable 4\n769\tAnalytic (Language Use) Scoring Accuracy (QWK) for AI Raters against Each Human Rater\n770\tEssay\n771\tSN1\n772\tSN2\n773\tER1\n774\tER2\n775\tRater\n776\tR1\n777\tR2\n778\tR1\n779\tR2\n780\tR1\n781\tR2\n782\tR1\n783\tR2\n784\tR1/R2\n785\t0.832\n786\t0.488\n787\t0.783\n788\t0.939\n789\tA1 – ChatGPT 3.5\n790\t0.462\n791\t0.453\n792\t0.503\n793\t0.459\n794\t0.420\n795\t0.500\n796\t0.560\n797\t0.603\n798\tA2 – ChatGPT 4\n799\t0.409\n800\t0.433\n801\t0.424\n802\t0.337\n803\t0.446\n804\t0.422\n805\t0.852\n806\t0.829\n807\tA3 – ChatGPT 4o\n808\t0.366\n809\t0.348\n810\t0.275\n811\t0.213\n812\t0.376\n813\t0.375\n814\t0.705\n815\t0.846\n816\tA4 - Gemini 1.5\n817\t0.235\n818\t0.246\n819\t0.496\n820\t0.293\n821\t0.695\n822\t0.677\n823\t0.380\n824\t0.416\n825\tA5 - Claude 3.5\n826\t0.667\n827\t0.686\n828\t0.585\n829\t0.596\n830\t0.583\n831\t0.594\n832\t0.715\n833\t0.744\n834\tA6 - OpenAI o1\n835\t0.236\n836\t0.283\n837\t0.451\n838\t0.397\n839\t0.341\n840\t0.252\n841\t0.553\n842\t0.581\n843\tA7 – Gemini 2.0\n844\t0.140\n845\t0.124\n846\t0.017\n847\t0.104\n848\t0.221\n849\t0.139\n850\t0.495\n851\t0.528\n852\tA8 – DeepSeek V3\n853\t0.227\n854\t0.074\n855\t0.265\n856\t0.246\n857\t0.368\n858\t0.417\n859\t0.553\n860\t0.581\n861\tA9 - Gemini 1.5 pro\n862\t0.447\n863\t0.304\n864\t0.626\n865\t0.677\n866\t0.599\n867\t0.622\n868\t0.495\n869\t0.528\n870\tA10 - DeepSeek R1\n871\t0.432\n872\t0.382\n873\t0.216\n874\t0.246\n875\t0.455\n876\t0.459\n877\t0.665\n878\t0.743\n879\tA11=Ensemble\n880\t0.460\n881\t0.382\n882\t0.429\n883\t0.417\n884\t0.644\n885\t0.558\n886\t0.618\n887\t0.685\n888\tA12=A11-A7\n889\t0.460\n890\t0.382\n891\t0.560\n892\t0.455\n893\t0.672\n894\t0.709\n895\t0.652\n896\t0.716\n897\tA13=A12-A9\n898\t0.432\n899\t0.364\n900\t0.509\n901\t0.397\n902\t0.690\n903\t0.602\n904\t0.688\n905\t0.761\n906\tA14=A13-A6\n907\t0.462\n908\t0.389\n909\t0.536\n910\t0.421\n911\t0.594\n912\t0.641\n913\t0.701\n914\t0.773\n915\tA15= A14-A8\n916\t0.492\n917\t0.443\n918\t0.551\n919\t0.413\n920\t0.729\n921\t0.748\n922\t0.685\n923\t0.741\n924\tA16= A15-A2-A4\n925\t0.618\n926\t0.598\n927\t0.497\n928\t0.416\n929\t0.670\n930\t0.659\n931\t0.730\n932\t0.783\n933\tFor scoring accuracy, no AI rater turned out to be always the best performer across all\n934\ttasks. In general, ChatGPT 4o, Claude 3.5, and Gemini 1.5 Pro yielded the highest performing\n935\tAI raters depending on the scoring tasks, holistic or analytic, as well as the specific trait scores.\n936\tEnsemble models were able to occasionally improve the scoring accuracy for a specific essay\n937\tcompared with the standalone LLMs.\n938\tIntra-Rater Consistency\n939\tThis study further examined the intra-rater consistency using the Cronbach Alpha as\n940\treported in Table 5. The number of items used for computing intra-rater consistency is 4 items\n941\tfor the holistic scores and analytic scores for each trait respectively, 12 items for analytic scores\n942\tacross all traits, and 6 items for analytic scores for each type of essays: SN and ER. The intrarater consistency was higher when the number of items included for the analysis was higher.\n943\tAgain, the top performing AI raters, either ChatGPT 4o or Claude 3.5, still yielded the highest\n944\tintra-rater consistency across different tasks, yielding slightly lower values on Language Use\n945\ttrait. The intra-rater consistency for human rater R2 was consistently higher than that for human\n946\trater R1. The intra-rater consistency for the best performing AI raters was about the same or\n947\thigher than R2 except for analytic scores of Language Use and ER essay.\n948\t\n949\t9\n950\t\n951\t\fTable 5\n952\tIntra-Rater Consistency\n953\t# of Items\n954\tR1\n955\tR2\n956\tA1 – ChatGPT 3.5\n957\tA2 – ChatGPT 4\n958\tA3 – ChatGPT 4o\n959\tA4 - Gemini 1.5\n960\tA5 - Claude 3.5\n961\tA6 - OpenAI o1\n962\tA7 – Gemini 2.0\n963\tA8 – DeepSeek V3\n964\tA9 - Gemini 1.5 pro\n965\tA10 - DeepSeek R1\n966\t\n967\tTrait-Task\n968\tTraitHolistic Completion Delivery\n969\t4\n970\t4\n971\t4\n972\t0.71\n973\t0.73\n974\t0.67\n975\t0.81\n976\t0.81\n977\t0.78\n978\t0.71\n979\t0.66\n980\t0.73\n981\t0.66\n982\t0.64\n983\t0.64\n984\t0.81\n985\t0.80\n986\t0.79\n987\t0.46\n988\t0.60\n989\t0.63\n990\t0.80\n991\t0.82\n992\t0.78\n993\t0.67\n994\t0.62\n995\t0.50\n996\t0.35\n997\t0.26\n998\t0.28\n999\t0.62\n1000\t0.69\n1001\t0.51\n1002\t0.61\n1003\t0.61\n1004\t0.60\n1005\t0.68\n1006\t0.72\n1007\t0.73\n1008\t\n1009\tTraitLanguage Use\n1010\t4\n1011\t0.58\n1012\t0.77\n1013\t0.72\n1014\t0.58\n1015\t0.58\n1016\t0.58\n1017\t0.74\n1018\t0.56\n1019\t0.30\n1020\t0.58\n1021\t0.41\n1022\t0.67\n1023\t\n1024\tAnalytic\n1025\t12\n1026\t0.90\n1027\t0.94\n1028\t0.92\n1029\t0.89\n1030\t0.91\n1031\t0.88\n1032\t0.94\n1033\t0.87\n1034\t0.72\n1035\t0.87\n1036\t0.85\n1037\t0.91\n1038\t\n1039\tSN\n1040\t6\n1041\t0.89\n1042\t0.95\n1043\t0.91\n1044\t0.92\n1045\t0.90\n1046\t0.90\n1047\t0.95\n1048\t0.85\n1049\t0.67\n1050\t0.92\n1051\t0.86\n1052\t0.89\n1053\t\n1054\tER\n1055\t6\n1056\t0.91\n1057\t0.93\n1058\t0.89\n1059\t0.79\n1060\t0.90\n1061\t0.86\n1062\t0.89\n1063\t0.79\n1064\t0.80\n1065\t0.82\n1066\t0.81\n1067\t0.89\n1068\t\n1069\tAI Rater Effects\n1070\tThe mean scores of the holistic and analytic scores assigned by each rater are\n1071\tsummarized in Tables 6. The standard deviation of the scores assigned are presented in Table\n1072\tB.1 in Appendix B. The red colored numbers indicate the AI rater who assigned scores with the\n1073\thighest mean score among all AI raters or a human rater with higher scores compared with the\n1074\tother human rater while the blue-colored numbers indicate the lowest mean scores assigned\n1075\tamong AI raters. To some degree, this pattern reflects the patterns observed in the rater effects of\n1076\tseverity vs leniency. Further, Table 7 presents the standard deviation of the scores assigned by\n1077\teach rater, which may help better understand the rater centrality effect. In general, human rater\n1078\tR2 assigned higher mean scores across all rating tasks compared with R1. Geimini 2.0 assigned\n1079\tthe lowest means cores on majority of the rating tasks while ChatGPT 3.5 and ChatGPT 4\n1080\tproduced the highest mean scores on majority of the rating tasks. The pattern in standard\n1081\tdeviation of the scores is not clear.\n1082\tThe Wright Maps from the FACET models are presented in Figures 1 and 2 for the\n1083\tholistic and the analytic scores across three traits. Figures 3 to 5 present the Wright Map for the\n1084\tanalytic scores for each trait. These maps demonstrate the relative locations of examinees,\n1085\tessays, and raters’ parameters on the latent trait scale ranging from -3 to +3. For holistic scoring\n1086\tas shown in Figure 1, SN2 was the most difficult essay, while ER2 was the easiest essay. Gemini\n1087\t2.0 was the most stringent rater, which is consistent with the lowest mean scores assigned while\n1088\tR2 and ChatGPT 3.5 were more lenient raters as they assigned the highest or higher mean scores\n1089\tas presented in Table 6.\n1090\tTable 7 presents the rater parameter estimates and fit measures of each rater to the\n1091\tFACET model. Following equation 1, when the rater parameter is 0, the rater has no effect on\n1092\tscoring. A positive rater parameter means the likelihood of getting a score will be decreased due\n1093\tto a severe rater effect while a negative rater parameter means the likelihood of getting a score\n1094\t10\n1095\t\n1096\t\fwill be increased due to a lenient rater effect. Human rater R2 was more lenient than R1, with a\n1097\tlogit value difference of about 0.6 which can be considered as non-negligible difference if we\n1098\tfollow the cut value of 0.3 logit (Miller, Rotou, & Twing, 2004) for parameter drift evaluation.\n1099\tTable 6\n1100\tMean Holistic and Analytic Scores Assigned by Each Rater\n1101\tScores\n1102\tR1 R2 A1 A2 A3 A4 A5\n1103\tSN1-Holistic 3.70 4.10 3.53 3.03 3.73 2.83 3.80\n1104\tER1-Holistic 3.30 3.83 4.30 3.43 2.93 3.43 3.50\n1105\tSN2-Holistic 3.23 3.70 3.50 2.97 2.70 2.90 3.10\n1106\tER2-Holistic 3.73 4.07 3.13 3.93 3.77 3.60 3.87\n1107\tTask_SN1\n1108\t4.20 4.03 3.70 3.30 4.23 2.83 3.80\n1109\tTask_SN2\n1110\t3.60 3.73 3.53 3.33 3.47 2.90 3.03\n1111\tTask_ER1\n1112\t3.93 3.70 4.17 3.87 3.30 3.40 3.57\n1113\tTask_ER2\n1114\t4.03 3.87 3.27 3.93 3.87 3.57 3.60\n1115\tDelivery_SN1 3.77 4.03 3.43 3.03 3.50 2.67 3.80\n1116\tDelivery_SN2 3.23 3.63 3.43 3.10 2.73 2.90 3.07\n1117\tDelivery_ER1 3.53 3.73 4.30 3.87 2.97 3.57 3.97\n1118\tDelivery_ER2 3.97 3.87 3.20 4.03 3.87 3.63 3.67\n1119\tLUSE_SN1\n1120\t3.83 3.97 3.47 3.03 2.97 2.77 3.80\n1121\tLUSE_SN2\n1122\t3.30 3.53 3.43 2.87 2.40 2.90 3.03\n1123\tLUSE_ER1\n1124\t3.43 3.60 4.33 3.37 2.67 3.40 3.23\n1125\tLUSE_ER2\n1126\t4.10 3.90 3.20 3.90 3.77 3.53 3.63\n1127\t\n1128\tA6\n1129\t3.17\n1130\t2.90\n1131\t2.87\n1132\t3.10\n1133\t3.23\n1134\t3.03\n1135\t3.17\n1136\t3.03\n1137\t2.90\n1138\t2.87\n1139\t2.97\n1140\t3.03\n1141\t3.10\n1142\t2.80\n1143\t2.63\n1144\t3.03\n1145\t\n1146\tA7\n1147\t2.60\n1148\t2.37\n1149\t2.00\n1150\t3.10\n1151\t3.57\n1152\t3.73\n1153\t2.57\n1154\t3.27\n1155\t2.70\n1156\t2.40\n1157\t2.43\n1158\t3.37\n1159\t2.40\n1160\t2.20\n1161\t2.37\n1162\t3.17\n1163\t\n1164\tA8\n1165\t3.67\n1166\t3.10\n1167\t3.47\n1168\t3.47\n1169\t4.30\n1170\t4.13\n1171\t3.30\n1172\t3.43\n1173\t3.60\n1174\t3.47\n1175\t3.40\n1176\t3.23\n1177\t3.10\n1178\t2.50\n1179\t2.80\n1180\t3.03\n1181\t\n1182\tA9\n1183\t3.33\n1184\t3.80\n1185\t3.47\n1186\t3.20\n1187\t3.70\n1188\t3.77\n1189\t4.00\n1190\t3.27\n1191\t3.33\n1192\t3.47\n1193\t4.27\n1194\t3.57\n1195\t3.27\n1196\t3.53\n1197\t3.97\n1198\t3.17\n1199\t\n1200\tA10 Average\n1201\t3.50\n1202\t3.42\n1203\t3.57\n1204\t3.37\n1205\t3.37\n1206\t3.11\n1207\t3.50\n1208\t3.54\n1209\t3.30\n1210\t3.68\n1211\t3.47\n1212\t3.48\n1213\t3.63\n1214\t3.55\n1215\t3.53\n1216\t3.56\n1217\t3.43\n1218\t3.35\n1219\t2.93\n1220\t3.10\n1221\t3.43\n1222\t3.54\n1223\t3.43\n1224\t3.57\n1225\t3.27\n1226\t3.25\n1227\t2.83\n1228\t2.94\n1229\t3.13\n1230\t3.24\n1231\t3.40\n1232\t3.49\n1233\t\n1234\tNote: A1 – ChatGPT 3.5, A2 – ChatGPT 4, A3 – ChatGPT 4o, A4 - Gemini 1.5, A5 - Claude 3.5\n1235\tSonnet, A6 - OpenAI o1, A7 – Gemini 2.0, A8 – DeepSeek V3, A9 - Gemini 1.5 Pro, A10 DeepSeek R1.\n1236\tConsistent with patterns of the mean scores in Table 6 and what presented in Figure 1, Gemini\n1237\t2.0 was an extreme severe rater with a logit value of 1.25. ChatGPT 4 was the most neutral rater\n1238\twith a rater parameter estimate close to 0. If we follow the cut value of 0.3, all AI raters did not\n1239\thave severe rater effects except ChatGPT 3.5 (-0.37) at the lenient end, while OpenAI o1 (0.5) at\n1240\tthe harsh end. The two human raters had the smallest infit and outfit mean squares (both smaller\n1241\tthan the cut value of 0.7), indicating potential central tendency effect. DeepSeek R1, ChatGPT\n1242\t3.5, and Gemini 1.5 Pro had infit and outfit mean squares larger than 1.3, indicating potential\n1243\tmisfit.\n1244\t\n1245\t11\n1246\t\n1247\t\fFigure 1. The Wright Map for the Holistic Scores\n1248\tFor analytic scoring across all three traits as shown in Figure 2, SN2 was still the most\n1249\tdifficult essay, while ER2 was the easiest essay. SN1 was the second difficult essay. Gemini 2.0\n1250\twas the most stringent rater, which is consistent with the lowest mean scores assigned while two\n1251\thuman raters were the most lenient raters. Among the three traits, Language Use was the most\n1252\tdifficult, while Task Completion was the easiest.\n1253\tTable 8 presents the rater parameter estimates for the analytic scores. Human rater R2\n1254\twas slightly more lenient than R1, but with a smaller difference of about 0.08. Consistent with\n1255\twhat presented in Figure 2, Gemini 2.0 was a severe rater with a logit value of 0.76. DeepSeek\n1256\tV3 was the most neutral rater with a rater parameter estimate close to 0. All AI raters did not\n1257\thave severe rater effects except OpenAI o1 (0.5) at the harsh end. OpenAI o1 had the least infit\n1258\t\n1259\t12\n1260\t\n1261\t\fand outfit mean squares at the borderline (0.69). No infit and outfit mean squares were larger\n1262\tthan 1.3 for any rater.\n1263\tTable 7\n1264\tRater Parameter Estimates for Holistic Scoring\n1265\t\n1266\tRater\n1267\t2 R2\n1268\t3 ChatGPT 3.5\n1269\t7 Claude 3.5 Sonnet\n1270\t1 R1\n1271\t12 DeepSeek R1\n1272\t11 Gemini 1.5 Pro\n1273\t10 DeepSeek V3\n1274\t4 ChatGPT 4\n1275\t5 ChatGPT 4o\n1276\t6 Gemini 1.5\n1277\t8 OpenAI o1\n1278\t9 Gemini 2.0\n1279\t\n1280\tRater Par\n1281\t-0.81\n1282\t-0.37\n1283\t-0.30\n1284\t-0.20\n1285\t-0.18\n1286\t-0.14\n1287\t-0.10\n1288\t0.02\n1289\t0.10\n1290\t0.23\n1291\t0.50\n1292\t1.25\n1293\t\n1294\tSE\n1295\t0.11\n1296\t0.11\n1297\t0.11\n1298\t0.11\n1299\t0.11\n1300\t0.11\n1301\t0.11\n1302\t0.11\n1303\t0.11\n1304\t0.11\n1305\t0.11\n1306\t0.11\n1307\t\n1308\tInfit MS\n1309\t0.60\n1310\t1.36\n1311\t1.01\n1312\t0.58\n1313\t1.37\n1314\t1.41\n1315\t1.07\n1316\t0.91\n1317\t0.85\n1318\t0.85\n1319\t0.70\n1320\t1.22\n1321\t\n1322\tTable 8\n1323\tRater Parameter Estimates for Analytic Scoring\n1324\tRater\n1325\tRater Par SE\n1326\tInfit MS\n1327\t2 R2\n1328\t-0.55\n1329\t0.06\n1330\t0.73\n1331\t1 R1\n1332\t-0.47\n1333\t0.06\n1334\t0.83\n1335\t3 ChatGPT 3.5\n1336\t-0.31\n1337\t0.06\n1338\t1.21\n1339\t11 Gemini 1.5 Pro\n1340\t-0.29\n1341\t0.06\n1342\t1.19\n1343\t7 Claude 3.5 Sonnet\n1344\t-0.17\n1345\t0.06\n1346\t0.97\n1347\t4 ChatGPT 4\n1348\t-0.10\n1349\t0.06\n1350\t0.88\n1351\t10 DeepSeek-v3\n1352\t0.05\n1353\t0.06\n1354\t1.18\n1355\t12 DeepSeek R1\n1356\t0.10\n1357\t0.06\n1358\t1.15\n1359\t5 ChatGPT 4o\n1360\t0.11\n1361\t0.06\n1362\t1.06\n1363\t6 Gemini 1.5\n1364\t0.30\n1365\t0.06\n1366\t0.84\n1367\t8 OpenAI o1\n1368\t0.57\n1369\t0.06\n1370\t0.69\n1371\t9 Gemini 2.0\n1372\t0.76\n1373\t0.06\n1374\t1.21\n1375\t\n1376\tOutfit MS\n1377\t0.60\n1378\t1.36\n1379\t1.01\n1380\t0.59\n1381\t1.41\n1382\t1.41\n1383\t1.08\n1384\t0.92\n1385\t0.84\n1386\t0.88\n1387\t0.69\n1388\t1.29\n1389\t\n1390\tOutfit MS\n1391\t0.73\n1392\t0.84\n1393\t1.20\n1394\t1.19\n1395\t0.97\n1396\t0.89\n1397\t1.18\n1398\t1.18\n1399\t1.05\n1400\t0.87\n1401\t0.69\n1402\t1.26\n1403\t\n1404\t13\n1405\t\n1406\t\fFigure 2. The Wright Map for the Analytic Scores\n1407\tTable 9 presents the rater parameter estimates for the analytic scores for Task\n1408\tCompletion. Two human raters were most lenient with R1 slightly more lenient than R2. OpenAI\n1409\to1 was the most severe rater with a logit value of 0.61. ChatGPT 4 and Claude 3.5 were more\n1410\tneutral rater with a rater parameter estimate smaller than an absolute value of 0.1. All AI raters\n1411\tdid not have severe rater effects except OpenAI o1 (0.5) at the harsh end, followed by Gemini\n1412\t1.5 (0.53) and 2.0 (0.38). No infit and outfit mean squares were smaller than 0.7 or larger than\n1413\t1.3 for any rater.\n1414\t\n1415\t14\n1416\t\n1417\t\fFigures 3, 4, and 5 present the Wright Maps for the analytic scores assigned to each of\n1418\tthe three traits. For the Task Completion trait (Figure 3), SN2 was still the most difficult essay\n1419\twhile SN1 was the easiest essay. ER1 and ER2 had about the same difficulty. OpenAI o1 was\n1420\tthe most stringent rater while two human raters were the most lenient raters. R1 was more lenient\n1421\tthan R2 on Task Completion trait scoring.\n1422\t\n1423\tFigure 3. The Wright Map for the Analytic Scores-Task Completion\n1424\tFor the Delivery trait (Figure 4), SN2 was still the most difficult essay while ER2 was the\n1425\teasiest essay. Gemini 2.0 was the most stringent rater while R2 was the most lenient raters. R1\n1426\twas the second most lenient rater like Claude 3.5 and Gemini 1.5 Pro on Delivery trait scoring.\n1427\t\n1428\t15\n1429\t\n1430\t\fTable 9\n1431\tRater Parameter Estimates for Analytic Scoring-Task Completion\n1432\tRater\n1433\tRater Par\n1434\tSE\n1435\tInfit MS\n1436\tOutfit MS\n1437\t1 R1\n1438\t-0.51\n1439\t0.11\n1440\t0.97\n1441\t0.96\n1442\t2 R2\n1443\t-0.36\n1444\t0.11\n1445\t0.74\n1446\t0.73\n1447\t10 DeepSeek V3\n1448\t-0.30\n1449\t0.11\n1450\t1.24\n1451\t1.23\n1452\t5 ChatGPT 4o\n1453\t-0.20\n1454\t0.11\n1455\t0.97\n1456\t0.96\n1457\t11 Gemini 1.5 Pro\n1458\t-0.16\n1459\t0.11\n1460\t1.24\n1461\t1.23\n1462\t3 ChatGPT 3.5\n1463\t-0.13\n1464\t0.11\n1465\t1.16\n1466\t1.16\n1467\t4 ChatGPT 4\n1468\t-0.06\n1469\t0.11\n1470\t0.90\n1471\t0.88\n1472\t7 Claude 3.5 Sonnet\n1473\t0.09\n1474\t0.11\n1475\t0.96\n1476\t0.96\n1477\t12 DeepSeek R1\n1478\t0.11\n1479\t0.11\n1480\t1.15\n1481\t1.15\n1482\t9 Gemini 2.0\n1483\t0.38\n1484\t0.11\n1485\t1.04\n1486\t1.05\n1487\t6 Gemini 1.5\n1488\t0.53\n1489\t0.11\n1490\t0.85\n1491\t0.88\n1492\t8 OpenAI o1\n1493\t0.61\n1494\t0.11\n1495\t0.78\n1496\t0.78\n1497\t\n1498\tFigure 4. The Wright Map for the Analytic Scores-Delivery\n1499\t16\n1500\t\n1501\t\fTable 10\n1502\tRater Parameter Estimates for Analytic Scoring-Delivery\n1503\tRater\n1504\tRater Par SE\n1505\tInfit MS Outfit MS\n1506\t2 R2\n1507\t-0.63\n1508\t0.11\n1509\t0.78\n1510\t0.80\n1511\t11 Gemini 1.5 Pro\n1512\t-0.40\n1513\t0.11\n1514\t1.13\n1515\t1.12\n1516\t1 R1\n1517\t-0.35\n1518\t0.11\n1519\t0.80\n1520\t0.81\n1521\t7 Claude 3.5 Sonnet\n1522\t-0.35\n1523\t0.11\n1524\t1.01\n1525\t1.01\n1526\t3 ChatGPT 3.5\n1527\t-0.30\n1528\t0.11\n1529\t1.23\n1530\t1.22\n1531\t4 ChatGPT 4\n1532\t-0.18\n1533\t0.11\n1534\t0.93\n1535\t0.95\n1536\t10 DeepSeek V3\n1537\t-0.06\n1538\t0.11\n1539\t1.09\n1540\t1.09\n1541\t12 DeepSeek R1\n1542\t0.11\n1543\t0.11\n1544\t1.29\n1545\t1.32\n1546\t5 ChatGPT 4o\n1547\t0.18\n1548\t0.11\n1549\t0.99\n1550\t0.99\n1551\t6 Gemini 1.5\n1552\t0.29\n1553\t0.11\n1554\t0.87\n1555\t0.90\n1556\t8 OpenAI o1\n1557\t0.68\n1558\t0.11\n1559\t0.70\n1560\t0.71\n1561\t9 Gemini 2.0\n1562\t1.03\n1563\t0.12\n1564\t1.07\n1565\t1.13\n1566\tTable 10 presents the rater parameter estimates for the analytic scores for Delivery.\n1567\tHuman rater R2 was the most lenient. Gemini 2.0 was the most severe rater with a rater\n1568\tparameter of 1.03. DeepSeek V3 was the most neutral rater with a rater parameter estimate of 0.06. Using an absolute cut value of 0.3, OpenAI o1 was a harsh rater, while Claude 3.5 was\n1569\tslightly lenient. All other AI raters did not have severe rater effects. No infit and outfit mean\n1570\tsquares were smaller than 0.7 or larger than 1.3 for any rater.\n1571\tTable 11\n1572\tRater Parameter Estimates for Analytic Scoring-Language Use\n1573\tRater\n1574\tInfit\n1575\tOutfit\n1576\tRater\n1577\tPar\n1578\tSE\n1579\tMS\n1580\tMS\n1581\t2 R2\n1582\t-0.74\n1583\t0.11\n1584\t0.72\n1585\t0.74\n1586\t1 R1\n1587\t-0.63\n1588\t0.11\n1589\t0.78\n1590\t0.79\n1591\t3 ChatGPT 3.5\n1592\t-0.55\n1593\t0.11\n1594\t1.33\n1595\t1.33\n1596\t11 Gemini 1.5 Pro\n1597\t-0.37\n1598\t0.11\n1599\t1.23\n1600\t1.23\n1601\t7 Claude 3.5 Sonnet\n1602\t-0.29\n1603\t0.11\n1604\t0.96\n1605\t0.96\n1606\t4 ChatGPT 4\n1607\t-0.10\n1608\t0.11\n1609\t0.90\n1610\t0.92\n1611\t12 DeepSeek R1\n1612\t0.09\n1613\t0.11\n1614\t1.09\n1615\t1.14\n1616\t6 Gemini 1.5\n1617\t0.10\n1618\t0.11\n1619\t0.88\n1620\t0.92\n1621\t5 ChatGPT 4o\n1622\t0.40\n1623\t0.11\n1624\t1.10\n1625\t1.09\n1626\t8 OpenAI o1\n1627\t0.49\n1628\t0.11\n1629\t0.64\n1630\t0.63\n1631\t10 DeepSeek V3\n1632\t0.54\n1633\t0.11\n1634\t0.97\n1635\t0.96\n1636\t9 Gemini 2.0\n1637\t1.06\n1638\t0.12\n1639\t1.39\n1640\t1.42\n1641\tFor the Language Use trait (Figure 5), SN2 was still the most difficult essay while ER2\n1642\twas the easiest essay. Gemini 2.0 was the most stringent rater while rater 2 was the most lenient\n1643\traters. R1 was the second most lenient rater on Language Use trait scoring.\n1644\t\n1645\t17\n1646\t\n1647\t\fTable 11 presents the rater parameter estimates for the analytic scores for Language Use.\n1648\tHuman rater R2 was the most lenient, R1 the second most lenient. Gemini 2.0 was the most\n1649\tsevere rater with a rater parameter of 1.06. DeepSeek R1, ChatGPT 4 and Gemini 1.5 were more\n1650\tneutral with an absolute rater parameter estimate around 0.1. Using the absolute cut value of 0.3,\n1651\tDeepSeek V3, OpenAI o1, and ChatGPT 4o were slightly harsh raters while Gemini 1.5 Pro and\n1652\tChatGPT 3.5 were slightly lenient. OpenAI o1 had infit and outfit mean squares smaller than 0.7,\n1653\tindicating slight central tendency, while ChatGPT 3.5 and Gemini 2.0 yielded infit and outfit\n1654\tmean squares larger than 1.3, indicating slight misfit.\n1655\t\n1656\tFigure 5. The Wright Map for the Analytic Scores-Language Use\n1657\t\n1658\t18\n1659\t\n1660\t\fSummary and Discussion\n1661\tThis study aims to examine the rater effects of LLM-based AI raters in automated\n1662\tscoring. To illustrate the methods for exploring AI rater effects, this study investigated the use of\n1663\tLLMs for automated holistic and analytic scoring using a fully crossed rating design. Ten LLMs\n1664\twere compared including ChatGPT 3.5, ChatGPT 4, ChatGPT 4o, OpenAI o1, Claude 3.5\n1665\tSonnet, Gemini 1.5, Gemini 1.5 Pro, Gemini 2.0, as well as DeepSeek V3, and DeepSeek R1\n1666\tagainst two human expert raters in scoring two types of writing tasks for the AP Chinese exams.\n1667\tThe holistic and analytic score accuracy of LLMs compared with human raters were evaluated in\n1668\tterms of QWK. Intra-rater consistency across essays was compared in terms of Cronbach Alpha.\n1669\tRater effects of LLMs were evaluated and compared with human raters using the Many FACET\n1670\tRasch model.\n1671\tFor Research Question 1 related to the AI raters’ accuracy, for holistic scoring, ChatGPT\n1672\t4o, Claude 3.5, and Gemini 1.5 Pro yielded the highest scoring accuracy against either human\n1673\trater. ChatGPT 4o performed the best on ER items, while Gemini 1.5 Pro excelled on SN items\n1674\twhile Claude 3.5 showed strong performance on both SN and ER items. These three LLMs\n1675\tturned out to be the best performing models in analytic scoring as well. For Task Completion,\n1676\tChatGPT 4o performed the best for SN and ER2 items while Claude 3.5 and Gemini 1.5 Pro\n1677\tperformed the best on SN2 and ER1 essays. For Delivery, Claude 3.5 performed the best on\n1678\tSN1 and ER1 while ChatGPT4o and Gemini 1.5 Pro performed the best on ER2 and SN2\n1679\trespectively. For the Language Use trait, ChatGPT 4, 4o, and Gemini 1.5 were the top\n1680\tperformers on ER essays while Claude 3.5 and Gemini 1.5 Pro were the best performers for SN\n1681\tessays. In general, QWKs for the best performing AI raters were higher than those between two\n1682\thuman raters for holistic scoring. However, human-human QWK were higher on analytic scoring\n1683\tthan AI QWKs. QWKs for analytic scores were higher than those for holistic scoring.\n1684\tFor Research Question 2 related to the AI raters’ intra-rater consistency, ChatGPT 4o\n1685\tyielded the highest intra-rater consistency for the holistic scores, the analytic scores on the\n1686\tDelivery trait, and the ER items. On the other hand, Claude 3.5 yielded the highest consistency\n1687\tfor the analytic scores, analytic scores on the Task Completion and Language Use traits as well\n1688\tas the SN items. Human rater R2 yielded higher scoring consistency compared with R1. The best\n1689\tperforming AI raters’ intra-rater consistency were about the same as those for the best\n1690\tperforming human rater except on ER essays and analytic scores on Language Use with slightly\n1691\tlower consistency.\n1692\tFor Research Questions 3 on the rater effects, human raters in general were more lenient.\n1693\tGemini 2.0 turned out to be a harsh rater on most scoring tasks. ChatGPT 3.5 turned out to be a\n1694\tlenient rater in 3 out of 5 scoring analyses with DeepSeek V3 and Gemini 1.5 Pro as the two\n1695\tother lenient raters. Whether an AI rater was more neutral raters depends on the task. There was\n1696\tno evident central tendency effects for the AI raters. However, the two human raters displayed\n1697\tsome minor central tendency effect in holistic scoring. As Wolfe (2004) pointed out, the rater\n1698\teffects estimated in the FACET Rasch model was scaled to a mean of 0. If the number of raters\n1699\tincluded in the comparison differs, the estimated rater effect may be different.\n1700\t\n1701\t19\n1702\t\n1703\t\fThe results in general support the use of ChatGPT 4o, Gemini 1.5 Pro, and Claude 3.5\n1704\tSonnet with high scoring accuracy, better intra-rater consistency, and less rater effects. However,\n1705\tthere were no AI raters which consistently performed the best. Some further explorations will be\n1706\tconducted to better understand the AI rater scoring logic. The findings of this study provide\n1707\tinsights into the strengths and limitations of AI raters compared to human raters using the data in\n1708\tthe study.\n1709\tThe limitations of the study lies in the sample size, the content domain, the type and the\n1710\tnumber of essays. There were only 30 students who participated in this experiment. The FACET\n1711\tsoftware manual states a sample size of 30 as a minimum sample size. However, as the FACET\n1712\tRasch model is an item response theory based latent trait model, a larger sample size would be\n1713\texpected even though the standard error of the rater parameter estimates was relatively small in\n1714\tthe current study. Further, the content of the tasks was related to the AP Chinese exam. Whether\n1715\tthe findings from this study is generalizable to other content domains such as English writing,\n1716\treading, science, and math constructed-response items awaits further exploration. In addition,\n1717\tonly two items types: SN and ER were included in the experiments, with a total of only 4 items.\n1718\tOther task types and traits for analytic scoring should be examined in future studies. The last\n1719\tlimitation is related to the prompting methods for automated scoring using LLMs. The current\n1720\tstudy used a few-shot methods. Other methods should be explored in future studies including\n1721\tChain-of-Thought and other fine-tuning methods.\n1722\tIn summary, this study assessed the scoring accuracy, intra-rater consistency of AI and\n1723\thuman holistic and analytic ratings, and estimated the AI rater effects. It demonstrated the\n1724\tmethods that can be used to examine AI rater performance, in particular, the use of the Many\n1725\tFACET Rasch model to evaluate rater severity/leniency and central tendency effects. This study\n1726\tprovided empirical evidence to inform the adoption of LLM-based AI raters for automated\n1727\tholistic and analytic scoring. It is highlighted that when LLMs are used for automated scoring,\n1728\tthe methods demonstrated in this study could be the starting point for such evaluation.\n1729\t\n1730\t20\n1731\t\n1732\t\fReferences\n1733\tAI Anthropic. (2024). The claude 3 model family: Opus, sonnet, haiku. Claude-3 Model Card, 1,\n1734\t2024.\n1735\tAndrich, D. A. (1978). A rating formulation for ordered response categories. Psychometrika, 43,\n1736\t561-573. doi:10.1007/BF02293814\n1737\tBond, T. G., & Fox, C. M. (2007). Applying the Rasch model: Fundamental measurement in the\n1738\thuman sciences (2nd ed.). Mahwah, NJ: Erlbaum\n1739\tBond, T. G , Yan, Z., & Heene, M. (2021). Applying the Rasch model: Fundamental\n1740\tmeasurement in the human sciences (4th ed). Routledge\n1741\tBui, N.M., & Barrot, J.S. (2024). ChatGPT as an automated essay scoring tool in the writing\n1742\tclassrooms: how it compares with human scoring. Education and Information\n1743\tTechnologies. https://doi.org/10.1007/s10639-024-12891-w\n1744\tCohen, J. (1968). Weighted kappa: Nominal scale agreement provision for scaled disagreement\n1745\tor partial credit. Psychological bulletin, 70, 4 (1968), 213.\n1746\tCohen, J. (1960). A coefficient of agreement for nominal scales. Educational and Psychological\n1747\tMeasurement, 20(1), 37–46.\n1748\tDevlin, J., Chang, M.-W., Lee, K., & Toutanova, K. (2019). BERT: Pre-training of Deep\n1749\tBidirectional Transformers for Language Understanding. arXiv:1810.04805 [Cs].\n1750\thttp://arxiv.org/abs/1810.04805\n1751\tEckes T (2009) On common ground? How raters perceive scoring criteria in oral proficiency\n1752\ttesting. In Brown A, Hill K (ed) Language testing and evaluation 13: Tasks and criteria\n1753\tin performance assessment (pp. 43–73). Peter Lang Publishing\n1754\tEckes, T. (2015). Introduction to many-facet Rasch measurement: Analyzing and evaluating\n1755\trater mediated assessments (2nd ed.). Frankfurt am Main, Germany: Peter Lang.\n1756\tEngelhard, G. (2002). Monitoring raters in performance assessments. In G. Tindal & T. M.\n1757\tHaladyna (Eds.), Large-scale assessment programs for all students: Validity, technical\n1758\tadequacy, and implementation (pp. 261–287). Mahwah, NJ: Erlbaum.\n1759\tGao, T., Jin, J., Zheng, K,, & and Moryoussef, G. (2025). A Comparison of DeepSeek and Other\n1760\tLLMs.\" arXiv preprint arXiv:2502.03688 .\n1761\t\n1762\tGemini Team Google. (2023, Dec.). Gemini: A family of highly capable multimodal models.\n1763\tarXiv preprint arXiv:2312.11805 .\n1764\tGunduz, A., & Gierl, M. (2024). Automated essay scoring with ChatGPT 3.5 and 4.0.\n1765\tPresentation at the UBlberta Graduate Student Research in Education Conference.\n1766\tHe, P., Liu, X., Gao, J., & Chen, W. (2021). DeBERTa: Decoding-enhanced BERT with\n1767\tdisentangled attention. Preprint retrieved from https://arxiv.org/abs/2006.03654\n1768\tJoshi, S. (2025). A Comprehensive Review of DeepSeek: Performance, Architecture and\n1769\tCapabilities.\n1770\tKim, S., & Jo, M. (2024, July). Is GPT-4 Alone Sufficient for Automated Essay Scoring?: A\n1771\tComparative Judgment Approach Based on Rater Cognition. In Proceedings of the\n1772\tEleventh ACM Conference on Learning@ Scale (pp. 315-319).\n1773\tKortemeyer, G. (2024). Performance of the pre-trained large language model GPT-4 on\n1774\tautomated short answer grading. Discover Artificial Intelligence, 4(1), 47.\n1775\tKundu, A., & Barbosa, D. (2024). Are Large Language Models Good Essay Graders?. arXiv\n1776\tpreprint arXiv:2409.13120.\n1777\tKwako, A., & Hansen, M. (2023). Extracting additional information from constructed response\n1778\t21\n1779\t\n1780\t\fitems using latent variable language modeling. Presentation at the virtual annual meeting\n1781\tof National Council on Measurement in Education.\n1782\tLatif, E., & Zhai, X. (2024). Fine-tuning ChatGPT for automatic scoring. Computers and\n1783\tEducation: Artificial Intelligence, 6. https://doi.org/10.1016/j.caeai.2024.100210.\n1784\tLee, G. G., Latif, E., Wu, X., Liu, N., & Zhai, X. (2024). Applying large language models and\n1785\tchain-of-thought for automatic scoring. Computers and Education: Artificial\n1786\tIntelligence, 6, 100213.\n1787\tLi, W., & Liu, H. (2024). Applying large language models for automated essay scoring for nonnative Japanese. Humanit Soc Sci Commun 11, 723. https://doi.org/10.1057/s41599-02403209-9\n1788\tLinacre, J. M. (1994). Many-Facet Rasch Measurement, (2nd ed). Chicago, IL: MESA\n1789\tPress.\n1790\tLinacre, J. M. (2003). Size vs. Significance: Infit and Outfit Mean-Square and Standardized ChiSquare Fit Statistic. Rasch Measurement Transactions, 17:918\n1791\tLinacre, J. M. (2024). FACET computer program for many-facet Rasch measurement (Version\n1792\t3.87.0). Beaverton, OR: Author.\n1793\tLudwig, S., Mayer, C., Hansen, C., Eilers, K., & Brandt, S. (2021). Automated Essay Scoring\n1794\tUsing Transformer Models. Psych, 3(4), 897–915. https://doi.org/10.3390/psych3040056\n1795\tLumley, T., & McNamara, T. F. (1995). Rater characteristics and rater bias: Implications for\n1796\ttraining. Language Testing, 12(1), 54–71. https://doi.org/10.1177/026553229501200104\n1797\tMcNamara, T. F. (1996). Measuring second language performance. New York: Longman\n1798\tMiller, G. E., Rotou, O., & Twing, J. S. (2004). Evaluation of the 0.3 logits screening criterion in\n1799\tcommon item equating. Journal of Applied Measurement, 5(2), 172–177.\n1800\tMizumoto, A., & Eguchi, M. (2023). Exploring the potential of using an AI language model for\n1801\tautomated essay scoring. Research Methods in Applied Linguistics. 2, 100050,\n1802\thttps://doi.org/10.1016/j.rmal.2023.100050\n1803\tMüller, M. Item fit statistics for Rasch analysis: can we trust them?. J Stat Distrib App 7, 5 (2020).\n1804\thttps://doi.org/10.1186/s40488-020-00108-7\n1805\tMyford, C. M., & Wolfe, E. W. (2003). Detecting and measuring rater effects using many-facet\n1806\tRasch measurement: Part I. Journal of Applied Measurement, 4, 386-422.\n1807\tMyford, C. M., & Wolfe, E. W. (2004). Detecting and measuring rater effects using many-facet\n1808\tRasch measurement: Part II. Journal of Applied Measurement, 5, 189-227.\n1809\tOpenAI (2023). ChatGPT: Optimizing language models for dialogue. Retrieved October 10, 2023,\n1810\tfrom https://openai.com/blog/chatgpt/\n1811\tOpenAI. (2023). GPT-4 Technical Report, March 2023. arXiv:2303.08774 [cs].\n1812\tOrmerod, C. M., Malhotra, A., & Jafari, A. (2021). Automated essay scoring using efficient\n1813\ttransformer based language models. Preprint retrieved from\n1814\thttps://arxiv.org/abs/2102.13136\n1815\tPack, A., Barrett, A., & Escalante, J. (2024). Large language models and automated essay scoring\n1816\tof English language learner writing: Insights into validity and reliability. Computers and\n1817\tEducation: Artificial Intelligence, 6(2024), 1-9.\n1818\thttps://doi.org/10.1016/j.caeai.2024.100234\n1819\tPage, E. B. The imminence of grading essays by computer. Phi Delta Kappa. 47, 238–243 (1966).\n1820\tParker, J. L., Becker, K., & Carroca, C. (2023). ChatGPT for automated writing evaluation in\n1821\tscholarly writing instruction. Journal of Nursing Education, 62(12), 721–727.\n1822\tRamesh, D., & Sanampudi, S. K. (2022). An automated essay scoring systems: a systematic\n1823\t22\n1824\t\n1825\t\fliterature review. Artificial Intelligence Review, 55, 2495-2527.\n1826\thttps://doi.org/10.1007/s10462-021-10068-2\n1827\tRiedl, M. O. (2019). Human‐centered artificial intelligence and machine learning. Human\n1828\tBehavior and Emerging Technologies, 1(1), 33-36.\n1829\tRodriguez, P. U., Jafari, A., & Ormerod, C. M. (2019). Language models and Automated Essay\n1830\tScoring. Preprint retrieved from https://arxiv.org/abs/1909.09482\n1831\tSaal, F. E., Downey, R. G., & Lahey, M. A. (1980). Rating the ratings: Assessing the\n1832\tpsychometric quality of rating data. Psychological Bulletin, 88, 413-428.\n1833\tShermis, M. D. (2015). Contrasting state-of-the-art in the machine scoring of short-form\n1834\tconstructed responses. Educational Assessment, 20(1), 46-65.\n1835\tSong, D., & Tang, A. F. (2025). Exploring AI-assistance in L2 Chinese writing with\n1836\tstandardized assessment tasks. Language Learning & Technology, 29(2), 161–189.\n1837\thttps://hdl.handle.net/10125/73615\n1838\tTate, T. P., Steiss, J., Bailey, D., Graham, S., Moon, Y., Ritchie, D., ... & Warschauer, M.\n1839\t(2024). Can AI provide useful holistic essay scoring?. Computers and Education:\n1840\tArtificial Intelligence, 7, 100255. https://doi.org/10.1016/j.caeai.2024.100255.\n1841\tWijekumar, K. K., McKeown, D., Zhang, S., Lei, P. W., Hruska, N., & Pirnay-Dummer, P.\n1842\t(2024). We write automated scoring: Using ChatGPT for scoring in large-scale writing\n1843\tresearch projects. In The Routledge International Handbook of Automated Essay\n1844\tEvaluation (pp. 178-194). Taylor and Francis. https://doi.org/10.4324/9781003397618-12\n1845\tWilliamson, D. M., Xi, X., & Breyer, F. J. (2012). A framework for evaluation and use of\n1846\tautomated scoring. Educational Measurement: Issues and Practices, 31, 2.\n1847\tWind, S. A. (2019). Examining the impacts of rater effects in performance assessments. Applied\n1848\tPsychological Measurement, 43(2), 159–171.\n1849\tWolfe, E. W. (2004). Identifying rater effects using latent trait models. Psychology Science, 46,\n1850\t35–51.\n1851\tWright, B. D., & Linacre, J. M. (1994). Reasonable mean-square fit values. Rasch Measurement\n1852\tTransactions, 8, 370.\n1853\tWright, B. D. & Masters, G. N. (1982). Rating scale analysis, Chicago, IL: MESA\n1854\tPress.\n1855\tXiao, C., Ma, W., Xu, S. X., Zhang, K., Wang, Y., & Fu, Q. (2024). From Automation to\n1856\tAugmentation: Large Language Models Elevating Essay Scoring Landscape. arXiv\n1857\tpreprint arXiv:2401.06431.\n1858\tYancey, K. P., Laflair, G., Verardi, A., & Burstein, J. (2023). Rating short L2 essays on the\n1859\tCEFR scale with GPT-4. In E. Kochmar, J. Burstein, A. Horbach, R. Laarmann-Quante,\n1860\tN. Madnani, A. Tack, V. Yaneva, Z. Yuan, & T. Zesch (Eds.), Proceedings of the 18th\n1861\tWorkshop on Innovative Use of NLP for Building Educational Applications (pp. 576–\n1862\t584). Retrieved November 19, 2023, from https://aclanthology.org/2023.bea-1.49\n1863\tYang, J., Latif, E., Zhai, X. (2025, In press). Fine-tuning ChatGPT for Automatic Scoring of\n1864\tWritten Scientific Explanations in Chinese. Journal of Science Education and\n1865\tTechnology.\n1866\tYoshida, L. (2024). The Impact of Example Selection in Few-Shot Prompting on Automated\n1867\tEssay Scoring Using GPT Models. In: Olney, A.M., Chounta, IA., Liu, Z., Santos, O.C.,\n1868\tBittencourt, I.I. (eds) Artificial Intelligence in Education. Posters and Late Breaking\n1869\tResults, Workshops and Tutorials, Industry and Innovation Tracks, Practitioners,\n1870\tDoctoral Consortium and Blue Sky. AIED 2024. Communications in Computer and\n1871\t23\n1872\t\n1873\t\fInformation Science, vol 2150. Springer, Cham. https://doi.org/10.1007/978-3-03164315-6_5\n1874\t\n1875\t24\n1876\t\n1877\t\fAppendix A\n1878\tAI Training Prompting for Grading SN1 Student Essays\n1879\tBased on this prompt, grading rubric, and student writing samples, grade student's writing\n1880\tsample.\n1881\tPrompt: In this task, you will be asked to write in Chinese for a specific purpose and to a specific\n1882\tperson. You should write in as complete and culturally appropriate a manner as possible, taking\n1883\tinto account the purpose and the person described. The four pictures present a story. Imagine you\n1884\tare writing the story to a friend. Narrate a complete story as suggested by the pictures. Give your\n1885\tstory a beginning, a middle, and an end.\n1886\tThe first picture: A teenage boy is lying on his bed. His room is messy, and his dad is asking\n1887\thim to clean it up. There are many things on the bed and on the floor, including a guitar,\n1888\tbasketball, football, books, and more. He is listening to music.\n1889\tThe second picture: The boy puts everything under his bed, covers it with a bedsheet, and\n1890\tpretends he has cleaned the room.\n1891\tThe third picture: His dad removes the bedsheet, sees the mess, and is very surprised and\n1892\tangry.\n1893\tThe fourth picture: His dad goes downstairs and tells his son what he saw. The boy is sitting on\n1894\tthe floor, playing video games, eating French fries, and drinking cola.\n1895\tThe task for you is to rate the student responses. Assess each response holistically based on three\n1896\tkey criteria: task completion, delivery, and language use, with task completion being the most\n1897\tcritical factor. Start by determining whether the student fully addresses all aspects of the four\n1898\tpictures. Then, evaluate delivery and language use before assigning an overall score.\n1899\tAdditionally, please provide three analytic scores—one for each criterion—following the rubric's\n1900\tguidelines. When rating, refer to the sample responses for each score level as benchmarks. In\n1901\ttotal, provide four scores: one overall score and three analytic scores. Tips: Student responses\n1902\twill be graded based on task completion, delivery, and language use. However, it is important to\n1903\tapply a holistic grading approach. Among these criteria, task completion is the most important. If\n1904\ta student addresses only three pictures, they will receive 3 points, regardless of the quality of\n1905\ttheir language use and delivery. A student will receive 4 points if they discuss all four pictures.\n1906\tIn this context, use grading rubrics 5 and 6 as references for evaluating language use and\n1907\tdelivery. If a student addresses three pictures but demonstrates weak language use and delivery,\n1908\tthey may receive 2 points. A student who addresses only one or two pictures but includes one or\n1909\ttwo sentences may also receive 2 points. If a student writes only isolated words related to the\n1910\tprompts (pictures), they may receive 1 point.\n1911\tGrading Rubric:\n1912\t\n1913\t25\n1914\t\n1915\t\fScore of 0: UNACCEPTABLE: 1) Contains nothing that earns credit 2) Completely irrelevant to\n1916\tthe stimulus 3) Not in Chinese characters, NR (No Response), BLANK (no response)\n1917\tSamples:\n1918\tScore 0: 你好\n1919\tScore 0: I want to eat icecream.\n1920\tScore of 1: Very Weak: Demonstrates lack of competence in interpersonal writing. - TASK\n1921\tCOMPLETION: 1) E-mail addresses stimulus only minimally 2) Lacks organization and\n1922\tcoherence; very disjointed sentences or isolated words -DELIVERY: 1) Constant use of register\n1923\tinappropriate to situation -LANGUAGE USE: 1) Insufficient, inappropriate vocabulary, with\n1924\tfrequent errors that significantly obscure meaning; constant interference from another language\n1925\t2) Little or no control of grammatical structures, with frequent errors that significantly obscure\n1926\tmeaning\n1927\tScore 1: 莫玩篮球房间。爸爸说莫它的。莫怕篮球房间。爸爸不高心有莫。爸爸莫去房\n1928\tScore 1: 小明在床上。\n1929\tScore of 2: Weak: Suggests lack of competence in interpersonal writing - TASK\n1930\tCOMPLETION: 1) E-mail addresses topic only marginally or addresses only some aspects of\n1931\tstimulus 2) Scattered information generally lacks organization and coherence; minimal or no use\n1932\tof transitional elements and cohesive devices; fragmented sentences -DELIVERY: 1) Frequent\n1933\tuse of register inappropriate to situation -LANGUAGE USE: 1) Minimal appropriate\n1934\tvocabulary, with frequent errors that obscure meaning; repeated interference from another\n1935\tlanguage 2) Limited grammatical structures, with frequent errors that obscure meaning\n1936\tScore 2: 小蔡在床上，爸爸来房间，爸爸回到房间看，儿子没有整理。\n1937\tScore 2: 今天爸爸来到我的房间，让我打扫，可是我不想打扫。\n1938\tScore of 3: Adequate Suggests competence in interpersonal writing -TASK COMPLETION: 1)\n1939\tE-mail addresses topic directly but may not address all aspects of stimulus 2) Portions may lack\n1940\torganization or coherence; infrequent use of transitional elements and cohesive devices;\n1941\tdisconnected sentences -DELIVERY: 1) Use of register appropriate to situation is inconsistent or\n1942\tincludes many errors -LANGUAGE USE: 1) Limited appropriate vocabulary and idioms, with\n1943\tfrequent errors that sometimes obscure meaning; intermittent interference from another language\n1944\t2) Mostly simple grammatical structures, with frequent errors that sometimes obscure meaning\n1945\tScore 3: 一天在星期五一个人叫麦可，麦可的爸爸要告诉他如果你要玩在电视你要干净你\n1946\t的地上。然后麦可要干净你的地上，他的爸爸要去看还有看，他方他的篮球，衣服，皮扎\n1947\t在他的睡觉地方。他的爸爸很生气！他去给他讲话。爸爸说“我很生气在你，你不可以玩\n1948\t电视“！然后他说”去放你的篮球，衣服，和皮扎放起来“！\n1949\t26\n1950\t\n1951\t\fScore 3: 小李的房间太凌乱了。 小李爸爸进来他的房间，看到房间里的混乱。小李的爸爸\n1952\t告诉他 “收拾你的房间！不然我就要拿走你的手机了”。 所以小李床下面脏器了混乱。小\n1953\t李收拾完的 时候，他去看电影。他爸爸找到小李做的事，他生气了。他说小李得再收拾\n1954\t他的房间。\n1955\tScore of 4: Good Demonstrates competence in interpersonal writing -TASK COMPLETION: 1)\n1956\tE-mail addresses all aspects of stimulus but may lack detail or elaboration 2) Generally\n1957\torganized and coherent; use of transitional elements and cohesive devices may be inconsistent;\n1958\tdiscourse of paragraph length, although sentences may be loosely connected -DELIVERY: 1)\n1959\tMay include several lapses in otherwise consistent use of register appropriate to situation LANGUAGE USE: 1) Mostly appropriate vocabulary and idioms, with errors that do not\n1960\tgenerally obscure meaning 2) Mostly appropriate grammatical structures, with errors that do not\n1961\tgenerally obscure meaning\n1962\tScore 4: 儿子正在床上放松，他的爸爸走进他的房间，责骂他的居住环境凌乱不堪。爸爸\n1963\t要求儿子立刻收拾房间。然而，儿子没有打扫房间，而是把一切都塞到了床底下。爸爸后\n1964\t来回来，得知儿子没有打扫房间，而是把一切都藏在了床底下。爸爸下楼并要求儿子返回\n1965\t并打扫他的房间。\n1966\tScore 4: 一个下午，小王在翻松看电视。可是，他爸爸走进了他的房间，告诉他“你的房间\n1967\t真乱啊！以前你可以看电视，你现在得打扫。“ 所以小王把他的东西都放在床底下了，下\n1968\t楼。可是他的爸爸又走进了他的房间， 看床底下看到所有的物品，他下楼告诉小王“你还\n1969\t得打扫！”\n1970\tScore of 5: Very good Suggests excellence in interpersonal writing -TASK COMPLETION: 1)\n1971\tE-mail addresses all aspects of stimulus 2) Well organized and coherent, with a progression of\n1972\tideas that is generally clear; some use of transitional elements and cohesive devices; connected\n1973\tdiscourse of paragraph length -DELIVERY: 1) Consistent use of register appropriate to situation\n1974\texcept for occasional lapses -LANGUAGE USE: 1) Appropriate vocabulary and idioms, with\n1975\tsporadic errors 2) Variety of grammatical structures, with sporadic errors\n1976\tScore 5: 有一天下午，天明在房间里面听手机上的音乐。突然，天明的爸爸走进他的房间\n1977\t里，发现了他的房间乱七八糟，就对天明说他需要先把房间收拾好，才能玩儿。爸爸走了\n1978\t以后，天明就偷偷的把房间里面的所有东西都放在床底下。过了几个小时以后，爸爸又来\n1979\t到天明的房间里检查收拾了怎么样。天有不测风云，爸爸发现了床底下的东西，很吃惊。\n1980\t那时候，天明在楼下玩游戏。爸爸赶快到楼下很生气的跟天明说他需要把东西收拾好。\n1981\tScore 5: 有一天，一个叫小明的男孩独自在房间里听音乐。他已经有几周还没有打扫了，\n1982\t房间很乱。当小明的爸爸进他的房间看到这个混乱时，他非常生气，立刻命令小明打扫。\n1983\t小明真的不想打扫房间，他宁愿看电视。爸爸离开的时候，他就制定计划。小明把所有的\n1984\t垃圾和脏衣服都收拾起来，然后藏在床底下。他以为这足以让他爸爸满意，赶快下到客厅\n1985\t看电视。起初，当小明的爸爸看到房间有多干净时，他感到自豪，但当他看床底下时，一\n1986\t切都改变了。他立刻下到客厅，告诉小明要真正打扫，不要只是把东西藏在床底下。\n1987\t27\n1988\t\n1989\t\fScore of 6: Excellent Demonstrates excellence in interpersonal writing -TASK COMPLETION:\n1990\t1) E-mail addresses all aspects of stimulus with thoroughness and detail 2) Well organized and\n1991\tcoherent, with a clear progression of ideas; use of appropriate transitional elements and cohesive\n1992\tdevices; well-connected discourse of paragraph length -DELIVERY: 1) Consistent use of\n1993\tregister appropriate to situation -LANGUAGE USE: 1) Rich and appropriate vocabulary and\n1994\tidioms, with minimal errors 2) Wide range of grammatical structures, with minimal errors\n1995\tScore 6: 一个阳光明媚的下午，小明躺在床上，一边听音乐一边玩手机，悠闲得很。突\n1996\t然，爸爸推门而入，看到房间乱得不可收拾，顿时火冒三丈。地上散落着书本、袜子、鞋\n1997\t子、球类，甚至还有披萨盒。他厉声命令小明立刻整理房间。小明口头答应，可等爸爸一\n1998\t离开，他便把所有东西胡乱塞进床底，装作已经收拾好了。自以为聪明的小明满意地走下\n1999\t楼，准备看电影放松一下。爸爸起了疑心，觉得五分钟不可能彻底整理完，于是折返回来\n2000\t查看。房间表面看起来干净整齐，但他无意间发现床底露出一本书的角。他蹲下身，一掀\n2001\t床单，果然发现所有杂物都藏在下面。他无奈地摇头，大喊：“小明，回房间来！”正在客\n2002\t厅吃东西的小明听见爸爸的声音，吓得立刻冲回楼上。\n2003\tScore 6: 今天爸爸走进我的房间，看到地板上堆满了书本、衣服和零食包装袋，脸色立刻\n2004\t沉了下来。他盯着我，说：“你必须把房间打扫干净。”我心里虽然知道他是对的，但实在\n2005\t太懒了，就随便把所有东西都塞到了床底下，假装收拾过了。然后我慢悠悠地下楼，一边\n2006\t吃着薯片一边看电视，脑子有点恍惚，完全没把这件事放在心上。没过多久，爸爸上楼检\n2007\t查，果然发现床底藏着所有的“秘密”。我的床底堆满了东西。他又下楼来，脸色更难看\n2008\t了，对我说：“你必须重新认真整理房间。”我这才意识到，想蒙混过关是行不通的，我总\n2009\t好快速跑上楼去打扫。\n2010\t\n2011\t28\n2012\t\n2013\t\fAppendix B\n2014\tTable B.1\n2015\tStandard Deviation of the Holistic and Analytic Scores Assigned by Each Rater\n2016\tR1 R2 A1 A2 A3 A4 A5 A6 A7 A8\n2017\tSN1\n2018\t0.75 0.76 1.01 0.89 1.17 0.79 1.10 0.83 0.67 0.84\n2019\tER1\n2020\t0.88 0.95 1.47 0.68 0.91 0.90 1.22 0.76 0.85 1.24\n2021\tSN2\n2022\t0.68 0.65 0.94 1.03 0.84 0.66 1.06 0.94 1.02 0.90\n2023\tER2\n2024\t1.11 1.17 1.01 1.23 1.25 0.67 1.38 1.03 1.06 1.17\n2025\tTask_SN1\n2026\t1.03 0.85 0.79 0.79 1.25 0.79 1.10 0.90 0.68 1.15\n2027\tTask_SN2\n2028\t0.89 0.78 0.82 0.92 1.07 0.66 1.03 1.16 0.74 1.04\n2029\tTask_ER1\n2030\t1.20 1.06 1.53 0.82 1.18 1.13 1.30 0.83 0.86 1.09\n2031\tTask_ER2\n2032\t1.40 1.28 1.17 1.23 1.25 0.73 1.28 1.00 0.98 1.10\n2033\tDelivery_SN1 0.86 0.85 1.07 0.89 1.14 0.88 1.10 0.80 0.65 0.93\n2034\tDelivery_SN2 0.63 0.67 0.86 0.92 0.87 0.66 1.05 0.68 0.72 0.90\n2035\tDelivery_ER1 0.86 0.98 1.39 0.90 0.89 0.77 1.16 0.76 0.77 0.93\n2036\tDelivery_ER2 1.35 1.28 1.03 1.07 1.22 0.81 1.21 1.00 0.81 0.97\n2037\tLUSE_SN1\n2038\t0.87 0.93 1.04 0.89 1.03 0.97 1.10 0.76 0.77 1.12\n2039\tLUSE_SN2\n2040\t0.60 0.68 0.86 0.97 0.81 0.66 1.03 0.76 1.24 0.82\n2041\tLUSE_ER1\n2042\t0.77 0.89 1.40 0.72 1.03 0.93 1.01 0.56 0.89 0.89\n2043\tLUSE_ER2\n2044\t1.30 1.30 0.92 1.24 1.01 0.78 1.22 1.00 0.91 1.00\n2045\t\n2046\tA9\n2047\t0.92\n2048\t1.30\n2049\t0.86\n2050\t1.47\n2051\t1.02\n2052\t0.68\n2053\t1.31\n2054\t1.44\n2055\t0.92\n2056\t0.86\n2057\t1.20\n2058\t1.04\n2059\t0.98\n2060\t0.78\n2061\t1.16\n2062\t0.91\n2063\t\n2064\tA10\n2065\t1.17\n2066\t1.19\n2067\t1.19\n2068\t1.46\n2069\t0.84\n2070\t1.11\n2071\t1.40\n2072\t1.46\n2073\t1.17\n2074\t1.05\n2075\t1.17\n2076\t1.28\n2077\t1.01\n2078\t1.09\n2079\t1.01\n2080\t1.19\n2081\t\n2082\tNote: A1 – ChatGPT 3.5, A2 – ChatGPT 4, A3 – ChatGPT 4o, A4 - Gemini 1.5, A5 - Claude 3.5\n2083\tSonnet, A6 - OpenAI o1, A7 – Gemini 2.0, A8 – DeepSeek V3, A9 - Gemini 1.5 Pro, A10 DeepSeek R1.\n2084\t\n2085\t29\n2086\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46a4889f-ede9-4387-b9a9-80f34d97840e",
+            "isSidechain": true,
+            "promptId": "c8bbf00a-2a8b-4a99-a0ef-80980f140516",
+            "agentId": "aed1d3e555792ca7c",
+            "type": "user",
+            "uuid": "86c3122a-c098-4cbd-8924-e730127d10a9",
+            "sourceToolAssistantUUID": "46a4889f-ede9-4387-b9a9-80f34d97840e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T16:41:53.636Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here is the complete extracted text from arXiv:2505.18486.\n\n---\n\n## Paper: \"Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model\"\n\n**Authors:** Hong Jiao (University of Maryland, College Park), Dan Song, Won-Chan Lee (University of Iowa)\n\n---\n\n### ABSTRACT\n\nLarge language models (LLMs) have been widely explored for automated scoring in low-stakes assessment to facilitate learning and instruction. Empirical evidence related to which LLM produces the most reliable scores and induces least rater effects needs to be collected before the use of LLMs for automated scoring in practice. This study compared ten LLMs (ChatGPT 3.5, ChatGPT 4, ChatGPT 4o, OpenAI o1, Claude 3.5 Sonnet, Gemini 1.5, Gemini 1.5 Pro, Gemini 2.0, as well as DeepSeek V3, and DeepSeek R1) with human expert raters in scoring two types of writing tasks. The accuracy of the holistic and analytic scores from LLMs compared with human raters was evaluated in terms of Quadratic Weighted Kappa. Intra-rater consistency across prompts was compared in terms of Cronbach Alpha. Rater effects of LLMs were evaluated and compared with human raters using the Many-Facet Rasch model. The results in general supported the use of ChatGPT 4o, Gemini 1.5 Pro, and Claude 3.5 Sonnet with high scoring accuracy, better rater reliability, and less rater effects.\n\n---\n\n### 1. INTRODUCTION (Complete text)\n\n**Paragraph 1:**\nPerformance assessment tasks, including essays and other types of constructed-response (CR) items are commonly used for assessing high-order thinking skills such as synthesizing information from multiple sources, critical evaluations, and evidence-based reasoning. These assessment formats are commonly employed in formative classroom assessments to facilitate instruction and learning as well as in high-stakes summative assessments for accountability and admission decisions. While the score represents a key form of feedback, the scoring of such assessment tasks is often costly, time-consuming, and error prone due to the subjectivity of human raters.\n\n**Paragraph 2:**\nAutomated scoring of performance items is an efficient and scientifically validated technology designed to complement and enhance human scoring (Shermis, 2015). For example, automating the scoring of the National Assessment of Educational Progress (NAEP) CR items could yield significant cost saving of 70% for reading and 40% for math (Justice & Palermo, 2020). As one of the most successful applications of AI technology in educational assessments, the progress in automated scoring is aligned closely with the advances in machine learning and natural language processing (NLP). Though research on automated scoring started with the pioneering work of Page (1966; 2003), recent advances in AI technology have made breakthrough in automated scoring.\n\n**Paragraph 3:**\nAutomated scoring can be categorized into two main approaches: feature-based and deep learning-based (Haller et al., 2022), with the latter further classified into neural network, small language model (SLM), and large language model (LLM) based approaches. Feature-based approaches rely on the extracted length, prompt, readability, syntactic, semantic, lexical, and discourse features (Ke & Ng, 2019; Uto et al., 2020) and supervised machine learning models. Deep learning-based approaches use word embeddings (Word2Vec, GloVe) and context embeddings from small language models (SLMs) such as BERT, deBERTa based on transformer (Vaswani et al., 2017) and large language models (LLMs) such as GPT, Claude, and Gemini.\n\n**Paragraph 4:**\nDeveloping feature-based or SLM-based automated scoring systems often requires foundational skills in supervised machine learning, NLP, and deep learning. This dramatically reduces the accessibility of automated scoring to classroom learners, teachers, and assessment developers. However, with the swift emerging of more capable LLMs, automated scoring techniques are becoming increasingly accessible to non-technical users who can fully leverage the LLM technology to revamp their routine scoring practices, with enhanced efficiency and accuracy.\n\n**Paragraph 5:**\nWith the advances in Generative AI or Chatbots, LLMs have been explored for automated scoring in education assessments. LLMs have demonstrated unprecedented potential in automated scoring of essays and CR items in educational assessments (Latif & Zhai, 2024; Lee et al., 2024; Yancey et al., 2023; Yang et al., 2025). In low-stakes assessment programs, three commonly used models are ChatGPT by OpenAI, Claude by Anthropic, and Google Gemini. Recent studies have explored the use of GPT models, such as GPT 3.5 (Bui & Barrot, 2024; Mizumoto & Eguchi, 2023; Parker et al., 2023; Wijekumar et al., 2024) and GPT 4 (Kortemeyer, 2024) in automated scoring. Furthermore, several studies have compared the performance of GPT 3.5 and GPT 4 (Kim & Jo, 2024; Tate et al., 2024) as well as GPT and Llama3 (Kundu & Barbosa, 2024). Pack et al. (2024) compared PaLM 2, Claude 2, and GPT 3.5 and GPT 4, concluding that GPT 4 outperformed the others. Almost all studies on using LLMs for automated scoring purely focused on scoring accuracy, little is known about the potential rater effects of these LLM scoring engines.\n\n**Paragraph 6:**\nRater effects (Myford & Wolfe, 2003, 2004; Saal, Downey, & Lahey, 1980) refer to different types of inconsistencies in ratings when human raters assign scores to test-takers' constructed responses to performance tasks such as essays or CR items in educational assessments. Rater effects may occur due to raters' personal backgrounds, preferences, inaccurate interpretations of the scoring rubrics, inappropriate conceptualization of the target test-takers' population, and their idiosyncratic traits that may impact their accuracy and consistency in assigning scores to assessment items. Rater effects can be classified into different categories. Some common rater effects include rater severity/leniency and centrality. When a rater assigns scores to students' responses to a performance task consistently lower than other raters, this rater effect is noted as rater severity. When rater severity is present, students' true scores may be underestimated if such rater effect is ignored. On the other hand, when a rater assigns scores to students' responses consistently higher than other raters, this rater effect is noted as rater leniency. When rater leniency is present, students' true scores may be overestimated if such rater effect is not accounted for. Further, some raters may consistently assign scores in the middle of the score scale and not assign high scores or low scores regardless of the ability levels. This central tendency or centrality effect will introduce score errors for students whose true scores lie at the two ends of the score scale. Such rater effects are as severe as score accuracy as they may compromise the fairness, reliability, and validity of the assigned scores. Though in operational rating sessions, different strategies would be implemented to minimize rater effects such as standardized rubrics, comprehensive rater training and calibration, in-session and post-session quality control of ratings, or assigning multiple raters to each rating tasks, rater effects need to be tracked as a source of validity evidence.\n\n**Paragraph 7 (Research Questions / Contribution Statement):**\nEach LLM has its own strengths and features that may cater to different scoring needs and applications. Like human raters, AI raters may bear different degrees of rater effects. Thus, it is worthwhile to compare the ratings from different scoring engines and understand the potential AI rater effects of each LLM. Thus, this study aims to investigate the AI rater effects in addition to rating accuracy and consistency compared with human raters of essay scoring. The AI raters investigated in this study include ten commonly used LLMs from GPT, Gemini, and Claude families and some recent LLMs such as DeepSeek. The research questions for the study include:\n1. How accurate are LLM raters compared with human raters?\n2. How consistent or reliable are LLM raters compared with human raters?\n3. What are the LLM rater effects compared with human raters?\n\n---\n\n### METHODS\n\n**Overview:**\nThis study conducts a series of psychometric analyses to investigate the AI raters' scoring accuracy and consistency, as well as uses the Many-Facet Rasch measurement model (Linacre, 1989, 1994, 2024; Wright & Masters, 1982; Wright & Stone, 1979) to investigate and compare rater effects between AI raters and human raters in a large-scale writing assessment.\n\n**Data:**\nA dataset consists of 30 student essays on two types of writing tasks. Each essay was scored by two human raters and ten AI raters, including ChatGPT 3.5, ChatGPT 4, ChatGPT 4o, OpenAI o1, Claude 3.5 Sonnet, Gemini 1.5, Gemini 1.5 Pro, Gemini 2.0, as well as DeepSeek V3 and DeepSeek R1. The 30 U.S. college students, enrolled in Mandarin Chinese language courses, included 18 third-year and 12 fourth-year students from a range of majors such as business, humanities, STEM, and diplomacy. Data collection took place over two consecutive days using constructed-response writing prompts from the 2021 and 2022 AP Chinese exams developed by the College Board. On the first day, students completed the 2021 prompts, which included one story narration (SN1) task and one email response (ER1) task. On the second day, they responded to the 2022 prompts, which featured the same two task types, each labeled as SN2, and ER2. Two certified human raters of the AP Chinese exam evaluated the writing samples using the College Board's scoring rubrics for both holistic and analytic scoring for three trait scores assessing Task Completion, Delivery, and Language Use. Each student response received both holistic and analytic trait/domain-specific scores ranging from 0 to 6 (Song & Tang, 2025).\n\n**LLMs Trained for Automated Scoring:**\nIn alignment with the development of LLMs, ChatGPT 3.5 was first used to score all 120 essays and other AI engines were sequentially explored when new versions or new engines were released. Data collection took approximately one and a half years. This study incorporated ten AI raters: ChatGPT 3.5, ChatGPT 4, ChatGPT 4o, OpenAI o1, Claude 3.5 Sonnet, Gemini 1.5, Gemini 2.0, Gemini Advanced 1.5 Pro, DeepSeek V3, and DeepSeek R1. These LLMs are selected based on their popularity and demonstrated expertise in processing text data and reasoning capabilities.\n\n- ChatGPT 3.5: general-purpose tasks, casual writing, and basic coding.\n- ChatGPT 4: better at technical problem-solving and creative content; generally outperforms ChatGPT 3.5 in language understanding, with ChatGPT 4 Turbo offering enhanced context handling.\n- ChatGPT 4o: excels at conversations.\n- OpenAI o1: specializes in advanced STEM applications and debugging.\n- Claude 3.5 Sonnet: competitive, often cited in safety-focused evaluations, technical coding, and natural-sounding content.\n- Gemini 1.5 and 1.5 Pro: good at long-context tasks.\n- Gemini 2.0: selected to reflect the latest advancements in Google's LLMs, which feature enhanced language understanding and improved reasoning for research, education, and multimedia analysis.\n- DeepSeek V3: uses the Mixture-of-Experts model, optimized for general-purpose tasks, including natural language understanding, text generation, and conversational AI.\n- DeepSeek R1: excels in reasoning; specifically tailored for tasks that require deep reasoning, complex problem-solving, and advanced analytical capabilities.\n\nBefore scoring, human rater R1, a certified AP Chinese Language and Culture Exam rater, trained 10 AI engines using AI training protocols designed for evaluating student samples (see Appendix A for an example protocol). As Lee et al. (2024) emphasized, human expert ratings are essential for generating benchmark data that align AI scoring with educational standards. To ensure valid AI rater performance, human rater R1 not only provided training examples drawn from the College Board website and previously scored samples but also offered guidance on applying a holistic scoring approach. AI raters were instructed to prioritize three traits: Task Completion, followed by Delivery and Language Use, in line with official rubrics. In total, 2 human raters and 10 AI raters scored 120 essays across four writing tasks.\n\n**Analysis:**\nUsing the analytic and holistic scores for the essays, this study investigates scoring accuracy, reliability, and rater effects.\n\n- **Quadratic Weighted Kappa (QWK; Cohen, 1960; 1968)** was computed to evaluate the scoring accuracy of AI raters against the gold standards of human ratings. QWK was computed for each AI against each human rater. AI raters' QWK were compared with the QWK measures from two human raters which were used as the baseline for comparison.\n\n- **Ensemble models:** Multiple ensemble models were explored by removing the worst performing LLMs from the ensemble.\n  - AI11 = average of all 10 AI raters\n  - AI12 = AI11 minus Gemini 2.0 (A7)\n  - AI13 = AI12 minus Gemini 1.5 Pro (A9)\n  - AI14 = AI13 minus OpenAI o1 (A6)\n  - AI15 = AI14 minus DeepSeek V3 (A8)\n  - AI16 = AI15 minus ChatGPT 4.0 (A2) and Gemini 1.5 (A4)\n\n- **Cronbach Alpha** was computed for each AI and human ratings across the three trait scores and holistic scores as a measure of intra-rater consistency.\n\n- **Many-Facet Rasch Model (FACETS):** The FACET model for the rating scale model (Andrich, 1978) is given in equation 1:\n\n  ln(P_jn(x=k) / P_jn(x=k-1)) = θ_j − τ_i − δ_n − β_k\n\n  where θ_j is student j's latent ability estimate, τ_i is rater i's rater effect estimate, δ_n is essay n's difficulty level, β_k is the threshold parameter for score category k. The rating scale version of the FACET model is used (Eckes, 2015; Myford & Wolfe, 2003, 2004), assuming the threshold parameters are the same across all items.\n\n  Facets investigated:\n  - Students: 30\n  - Essays: 4 (SN1, ER1, SN2, ER2)\n  - Raters: 2 human (R1, R2) + 10 AI raters (A1=ChatGPT 3.5, A2=ChatGPT 4, A3=ChatGPT 4o, A4=Gemini 1.5, A5=Claude 3.5 Sonnet, A6=OpenAI o1, A7=Gemini 2.0, A8=DeepSeek V3, A9=Gemini 1.5 Pro, A10=DeepSeek R1)\n\n  Rater effects (severity/leniency) quantified by rater parameter τ_i. Wright maps used to illustrate relative difficulty of essay traits, rater effects, and student ability on the common scale.\n\n  **Fit indices:** Infit mean square (consistency of rating scale use across students and criteria) and outfit mean square (outlier score patterns). Expected value = 1. Good fit range: 0.5–1.5 (Linacre, 2003; Eckes, 2009). Stringent criteria applied in this study: 0.7 and 1.3 (Bond & Fox, 2007; Bond et al., 2021; McNamara, 1996; Muller, 2020; Wright & Linacre, 1994).\n\n---\n\n### RESULTS\n\n#### Scoring Accuracy\n\n**Table 1 — Holistic Scoring Accuracy (QWK) for AI Raters against Each Human Rater:**\n\nHuman-human QWK baseline: SN1=0.683, SN2=0.565, ER1=0.684, ER2=0.874\n\n| Rater | SN1-R1 | SN1-R2 | SN2-R1 | SN2-R2 | ER1-R1 | ER1-R2 | ER2-R1 | ER2-R2 |\n|---|---|---|---|---|---|---|---|---|\n| R1/R2 (human-human) | 0.683 | | 0.565 | | 0.684 | | 0.874 | |\n| A1 ChatGPT 3.5 | 0.549 | 0.409 | 0.610 | 0.538 | 0.442 | 0.516 | 0.632 | 0.560 |\n| A2 ChatGPT 4 | 0.392 | 0.350 | 0.440 | 0.394 | 0.558 | 0.459 | 0.827 | 0.834 |\n| A3 ChatGPT 4o | 0.626 | 0.620 | 0.526 | 0.393 | 0.741 | 0.475 | 0.865 | 0.898 |\n| A4 Gemini 1.5 | 0.333 | 0.181 | 0.388 | 0.276 | 0.610 | 0.558 | 0.435 | 0.463 |\n| A5 Claude 3.5 | 0.708 | 0.576 | 0.657 | 0.570 | 0.672 | 0.726 | 0.804 | 0.896 |\n| A6 OpenAI o1 | 0.422 | 0.302 | 0.557 | 0.369 | 0.543 | 0.304 | 0.656 | 0.584 |\n| A7 Gemini 2.0 | 0.201 | 0.131 | 0.319 | 0.199 | 0.289 | 0.143 | 0.716 | 0.619 |\n| A8 DeepSeek V3 | 0.378 | 0.233 | 0.610 | 0.439 | 0.619 | 0.448 | 0.664 | 0.667 |\n| A9 Gemini 1.5 Pro | 0.267 | 0.169 | 0.698 | 0.576 | 0.631 | 0.640 | 0.590 | 0.537 |\n| A10 DeepSeek R1 | 0.579 | 0.522 | 0.417 | 0.293 | 0.453 | 0.368 | 0.727 | 0.703 |\n| A11 Ensemble (all 10) | 0.606 | 0.426 | 0.605 | 0.476 | 0.776 | 0.614 | 0.779 | 0.745 |\n| A12 = A11 - A7 | 0.630 | 0.474 | 0.720 | 0.535 | 0.783 | 0.671 | 0.805 | 0.764 |\n| A13 = A12 - A9 | 0.689 | 0.502 | 0.630 | 0.516 | 0.751 | 0.669 | 0.767 | 0.753 |\n| A14 = A13 - A6 | 0.692 | 0.551 | 0.693 | 0.474 | 0.733 | 0.623 | 0.837 | 0.809 |\n| A15 = A14 - A8 | 0.665 | 0.513 | 0.630 | 0.516 | 0.681 | 0.685 | 0.815 | 0.790 |\n| A16 = A15 - A2 - A4 | 0.688 | 0.588 | 0.675 | 0.563 | 0.647 | 0.675 | 0.812 | 0.790 |\n\nKey findings: For SN1, ChatGPT 4o yielded the highest QWK with R2; Claude 3.5 yielded the highest QWK with R1. For SN2, Gemini 1.5 Pro yielded the highest QWK with both human raters. For ER1, ChatGPT 4o yielded the highest QWK with R1; Claude 3.5 yielded the highest QWK with R2. For ER2, ChatGPT 4o yielded the highest QWK with both human raters. In general, one AI rater achieved higher QWK with one human rater than human-human QWK on every item.\n\n**Table 2 — Analytic (Task Completion) Scoring Accuracy (QWK):** Human-human QWK: SN1=0.715, SN2=0.808, ER1=0.776, ER2=0.915. ChatGPT 4o yielded the highest QWK with both human raters on SN1 and ER2 as well as SN2 with R1. Claude 3.5 yielded the highest QWK with R2 on both SN2 and ER1. Human-human QWK was consistently higher than AI-human QWK on each of the analytic scores.\n\n**Table 3 — Analytic (Delivery) Scoring Accuracy (QWK):** Human-human QWK: SN1=0.685, SN2=0.588, ER1=0.763, ER2=0.950. ChatGPT 4o yielded the highest QWK with both human raters on ER2. Claude 3.5 yielded the highest QWK with each of the two raters on both SN1 and ER1. For SN2, Gemini 1.5 Pro yielded the highest QWK with both human raters. AI-human QWK was consistently higher than human-human QWK on SN tasks and ER1 task except ER2.\n\n**Table 4 — Analytic (Language Use) Scoring Accuracy (QWK):** Human-human QWK: SN1=0.832, SN2=0.488, ER1=0.783, ER2=0.939. ChatGPT 4.0 and 4o yielded the highest QWK with R1 and R2 respectively on ER2. Gemini 1.5 yielded the highest QWK with both raters on ER1. Claude 3.5 yielded the highest QWK with both raters on SN1. For SN2, Gemini 1.5 Pro yielded the highest QWK with both human raters.\n\n**Summary:** No AI rater was always the best performer across all tasks. In general, ChatGPT 4o, Claude 3.5, and Gemini 1.5 Pro yielded the highest performing AI raters depending on the scoring tasks. Ensemble models were able to occasionally improve the scoring accuracy for a specific essay compared with the standalone LLMs.\n\n#### Intra-Rater Consistency (Table 5)\n\nCronbach Alpha values:\n\n| Rater | Holistic (4 items) | Task Completion (4) | Delivery (4) | Language Use (4) | Analytic (12) | SN (6) | ER (6) |\n|---|---|---|---|---|---|---|---|\n| R1 | 0.71 | 0.73 | 0.67 | 0.58 | 0.90 | 0.89 | 0.91 |\n| R2 | 0.81 | 0.81 | 0.78 | 0.77 | 0.94 | 0.95 | 0.93 |\n| A1 ChatGPT 3.5 | 0.71 | 0.66 | 0.73 | 0.72 | 0.92 | 0.91 | 0.89 |\n| A2 ChatGPT 4 | 0.66 | 0.64 | 0.64 | 0.58 | 0.89 | 0.92 | 0.79 |\n| A3 ChatGPT 4o | 0.81 | 0.80 | 0.79 | 0.58 | 0.91 | 0.90 | 0.90 |\n| A4 Gemini 1.5 | 0.46 | 0.60 | 0.63 | 0.58 | 0.88 | 0.90 | 0.86 |\n| A5 Claude 3.5 | 0.80 | 0.82 | 0.78 | 0.74 | 0.94 | 0.95 | 0.89 |\n| A6 OpenAI o1 | 0.67 | 0.62 | 0.50 | 0.56 | 0.87 | 0.85 | 0.79 |\n| A7 Gemini 2.0 | 0.35 | 0.26 | 0.28 | 0.30 | 0.72 | 0.67 | 0.80 |\n| A8 DeepSeek V3 | 0.62 | 0.69 | 0.51 | 0.58 | 0.87 | 0.92 | 0.82 |\n| A9 Gemini 1.5 Pro | 0.61 | 0.61 | 0.60 | 0.41 | 0.85 | 0.86 | 0.81 |\n| A10 DeepSeek R1 | 0.68 | 0.72 | 0.73 | 0.67 | 0.91 | 0.89 | 0.89 |\n\nThe top performing AI raters, either ChatGPT 4o or Claude 3.5, still yielded the highest intra-rater consistency across different tasks. The intra-rater consistency for human rater R2 was consistently higher than that for human rater R1. The intra-rater consistency for the best performing AI raters was about the same or higher than R2 except for analytic scores of Language Use and ER essay.\n\n#### AI Rater Effects\n\n**Table 6 — Mean Holistic and Analytic Scores Assigned by Each Rater:**\n\nKey patterns: Human rater R2 assigned higher mean scores across all rating tasks compared with R1. Gemini 2.0 assigned the lowest mean scores on majority of the rating tasks. ChatGPT 3.5 and ChatGPT 4 produced the highest mean scores on majority of the rating tasks.\n\nSelected mean scores (Holistic):\n- SN1: R1=3.70, R2=4.10, A1=3.53, A2=3.03, A3=3.73, A4=2.83, A5=3.80, A6=3.17, A7=2.60, A8=3.67, A9=3.33, A10=3.50\n- ER1: R1=3.30, R2=3.83, A1=4.30, A2=3.43, A3=2.93, A4=3.43, A5=3.50, A6=2.90, A7=2.37, A8=3.10, A9=3.80, A10=3.57\n- SN2: R1=3.23, R2=3.70, A1=3.50, A2=2.97, A3=2.70, A4=2.90, A5=3.10, A6=2.87, A7=2.00, A8=3.47, A9=3.47, A10=3.37\n- ER2: R1=3.73, R2=4.07, A1=3.13, A2=3.93, A3=3.77, A4=3.60, A5=3.87, A6=3.10, A7=3.10, A8=3.47, A9=3.20, A10=3.50\n\n**Wright Maps (Figures 1–5):**\n\n- **Figure 1 caption:** \"The Wright Map for the Holistic Scores\" — For holistic scoring, SN2 was the most difficult essay, while ER2 was the easiest essay. Gemini 2.0 was the most stringent rater (consistent with lowest mean scores) while R2 and ChatGPT 3.5 were more lenient raters.\n\n- **Figure 2 caption:** \"The Wright Map for the Analytic Scores\" — For analytic scoring across all three traits, SN2 was still the most difficult essay, ER2 was easiest, SN1 was second most difficult. Gemini 2.0 was the most stringent rater; two human raters were the most lenient. Among the three traits, Language Use was the most difficult, while Task Completion was the easiest.\n\n- **Figure 3 caption:** \"The Wright Map for the Analytic Scores-Task Completion\" — SN2 was still the most difficult essay while SN1 was the easiest. ER1 and ER2 had about the same difficulty. OpenAI o1 was the most stringent rater while two human raters were the most lenient raters. R1 was more lenient than R2 on Task Completion trait scoring.\n\n- **Figure 4 caption:** \"The Wright Map for the Analytic Scores-Delivery\" — SN2 was still the most difficult essay while ER2 was the easiest essay. Gemini 2.0 was the most stringent rater while R2 was the most lenient raters. R1 was the second most lenient rater like Claude 3.5 and Gemini 1.5 Pro on Delivery trait scoring.\n\n- **Figure 5 caption:** \"The Wright Map for the Analytic Scores-Language Use\" — SN2 was still the most difficult essay while ER2 was the easiest essay. Gemini 2.0 was the most stringent rater while rater 2 was the most lenient raters. R1 was the second most lenient rater on Language Use trait scoring.\n\n**Table 7 — Rater Parameter Estimates for Holistic Scoring:**\n\n| Rater | Rater Par | SE | Infit MS | Outfit MS |\n|---|---|---|---|---|\n| R2 | -0.81 | 0.11 | 0.60 | 0.60 |\n| ChatGPT 3.5 | -0.37 | 0.11 | 1.36 | 1.36 |\n| Claude 3.5 Sonnet | -0.30 | 0.11 | 1.01 | 1.01 |\n| R1 | -0.20 | 0.11 | 0.58 | 0.59 |\n| DeepSeek R1 | -0.18 | 0.11 | 1.37 | 1.41 |\n| Gemini 1.5 Pro | -0.14 | 0.11 | 1.41 | 1.41 |\n| DeepSeek V3 | -0.10 | 0.11 | 1.07 | 1.08 |\n| ChatGPT 4 | 0.02 | 0.11 | 0.91 | 0.92 |\n| ChatGPT 4o | 0.10 | 0.11 | 0.85 | 0.84 |\n| Gemini 1.5 | 0.23 | 0.11 | 0.85 | 0.88 |\n| OpenAI o1 | 0.50 | 0.11 | 0.70 | 0.69 |\n| Gemini 2.0 | 1.25 | 0.11 | 1.22 | 1.29 |\n\nKey findings: Gemini 2.0 was an extreme severe rater (logit = 1.25). ChatGPT 4 was the most neutral rater (parameter ≈ 0). Using cut value of 0.3: all AI raters did not have severe rater effects except ChatGPT 3.5 (-0.37, lenient) and OpenAI o1 (0.5, harsh). The two human raters had the smallest infit and outfit mean squares (both < 0.7), indicating potential central tendency effect. DeepSeek R1, ChatGPT 3.5, and Gemini 1.5 Pro had infit and outfit mean squares > 1.3, indicating potential misfit.\n\n**Table 8 — Rater Parameter Estimates for Analytic Scoring:**\n\n| Rater | Rater Par | SE | Infit MS | Outfit MS |\n|---|---|---|---|---|\n| R2 | -0.55 | 0.06 | 0.73 | 0.73 |\n| R1 | -0.47 | 0.06 | 0.83 | 0.84 |\n| ChatGPT 3.5 | -0.31 | 0.06 | 1.21 | 1.20 |\n| Gemini 1.5 Pro | -0.29 | 0.06 | 1.19 | 1.19 |\n| Claude 3.5 Sonnet | -0.17 | 0.06 | 0.97 | 0.97 |\n| ChatGPT 4 | -0.10 | 0.06 | 0.88 | 0.89 |\n| DeepSeek V3 | 0.05 | 0.06 | 1.18 | 1.18 |\n| DeepSeek R1 | 0.10 | 0.06 | 1.15 | 1.18 |\n| ChatGPT 4o | 0.11 | 0.06 | 1.06 | 1.05 |\n| Gemini 1.5 | 0.30 | 0.06 | 0.84 | 0.87 |\n| OpenAI o1 | 0.57 | 0.06 | 0.69 | 0.69 |\n| Gemini 2.0 | 0.76 | 0.06 | 1.21 | 1.26 |\n\nKey findings: Gemini 2.0 was severe (logit = 0.76). DeepSeek V3 was the most neutral rater (parameter ≈ 0.05). All AI raters did not have severe rater effects except OpenAI o1 (0.5, harsh). OpenAI o1 had the least infit and outfit mean squares at the borderline (0.69). No infit and outfit mean squares were larger than 1.3 for any rater.\n\n**Table 9 — Rater Parameter Estimates for Analytic Scoring — Task Completion:**\nTwo human raters were most lenient (R1: -0.51, R2: -0.36). OpenAI o1 was the most severe rater (logit = 0.61). ChatGPT 4 and Claude 3.5 were more neutral (absolute value < 0.1). All AI raters did not have severe rater effects except OpenAI o1 (0.5), Gemini 1.5 (0.53), and Gemini 2.0 (0.38). No infit or outfit mean squares were < 0.7 or > 1.3.\n\n**Table 10 — Rater Parameter Estimates for Analytic Scoring — Delivery:**\nHuman rater R2 was most lenient (-0.63). Gemini 2.0 was most severe (rater parameter = 1.03). DeepSeek V3 was most neutral (-0.06). Using absolute cut value of 0.3, OpenAI o1 was a harsh rater (0.68), while Claude 3.5 was slightly lenient (-0.35). No infit and outfit mean squares were < 0.7 or > 1.3.\n\n**Table 11 — Rater Parameter Estimates for Analytic Scoring — Language Use:**\nHuman rater R2 was most lenient (-0.74), R1 second most lenient (-0.63). Gemini 2.0 was most severe (1.06). DeepSeek R1, ChatGPT 4 and Gemini 1.5 were more neutral (absolute parameter ≈ 0.1). Using absolute cut value of 0.3: DeepSeek V3 (0.54), OpenAI o1 (0.49), and ChatGPT 4o (0.40) were slightly harsh raters; Gemini 1.5 Pro (-0.37) and ChatGPT 3.5 (-0.55) were slightly lenient. OpenAI o1 had infit and outfit mean squares < 0.7 (slight central tendency); ChatGPT 3.5 and Gemini 2.0 yielded infit and outfit mean squares > 1.3 (slight misfit).\n\n---\n\n### SUMMARY AND DISCUSSION (complete)\n\nThis study aims to examine the rater effects of LLM-based AI raters in automated scoring. To illustrate the methods for exploring AI rater effects, this study investigated the use of LLMs for automated holistic and analytic scoring using a fully crossed rating design. Ten LLMs were compared including ChatGPT 3.5, ChatGPT 4, ChatGPT 4o, OpenAI o1, Claude 3.5 Sonnet, Gemini 1.5, Gemini 1.5 Pro, Gemini 2.0, as well as DeepSeek V3, and DeepSeek R1 against two human expert raters in scoring two types of writing tasks for the AP Chinese exams. The holistic and analytic score accuracy of LLMs compared with human raters were evaluated in terms of QWK. Intra-rater consistency across essays was compared in terms of Cronbach Alpha. Rater effects of LLMs were evaluated and compared with human raters using the Many FACET Rasch model.\n\nFor Research Question 1 related to the AI raters' accuracy, for holistic scoring, ChatGPT 4o, Claude 3.5, and Gemini 1.5 Pro yielded the highest scoring accuracy against either human rater. ChatGPT 4o performed the best on ER items, while Gemini 1.5 Pro excelled on SN items while Claude 3.5 showed strong performance on both SN and ER items. These three LLMs turned out to be the best performing models in analytic scoring as well. For Task Completion, ChatGPT 4o performed the best for SN and ER2 items while Claude 3.5 and Gemini 1.5 Pro performed the best on SN2 and ER1 essays. For Delivery, Claude 3.5 performed the best on SN1 and ER1 while ChatGPT 4o and Gemini 1.5 Pro performed the best on ER2 and SN2 respectively. For the Language Use trait, ChatGPT 4, 4o, and Gemini 1.5 were the top performers on ER essays while Claude 3.5 and Gemini 1.5 Pro were the best performers for SN essays. In general, QWKs for the best performing AI raters were higher than those between two human raters for holistic scoring. However, human-human QWK were higher on analytic scoring than AI QWKs. QWKs for analytic scores were higher than those for holistic scoring.\n\nFor Research Question 2 related to the AI raters' intra-rater consistency, ChatGPT 4o yielded the highest intra-rater consistency for the holistic scores, the analytic scores on the Delivery trait, and the ER items. On the other hand, Claude 3.5 yielded the highest consistency for the analytic scores, analytic scores on the Task Completion and Language Use traits as well as the SN items. Human rater R2 yielded higher scoring consistency compared with R1. The best performing AI raters' intra-rater consistency were about the same as those for the best performing human rater except on ER essays and analytic scores on Language Use with slightly lower consistency.\n\nFor Research Questions 3 on the rater effects, human raters in general were more lenient. Gemini 2.0 turned out to be a harsh rater on most scoring tasks. ChatGPT 3.5 turned out to be a lenient rater in 3 out of 5 scoring analyses with DeepSeek V3 and Gemini 1.5 Pro as the two other lenient raters. Whether an AI rater was more neutral raters depends on the task. There was no evident central tendency effects for the AI raters. However, the two human raters displayed some minor central tendency effect in holistic scoring. As Wolfe (2004) pointed out, the rater effects estimated in the FACET Rasch model was scaled to a mean of 0. If the number of raters included in the comparison differs, the estimated rater effect may be different.\n\nThe results in general support the use of ChatGPT 4o, Gemini 1.5 Pro, and Claude 3.5 Sonnet with high scoring accuracy, better intra-rater consistency, and less rater effects. However, there were no AI raters which consistently performed the best. Some further explorations will be conducted to better understand the AI rater scoring logic. The findings of this study provide insights into the strengths and limitations of AI raters compared to human raters using the data in the study.\n\n---\n\n### LIMITATIONS (complete)\n\nThe limitations of the study lies in the sample size, the content domain, the type and the number of essays. There were only 30 students who participated in this experiment. The FACET software manual states a sample size of 30 as a minimum sample size. However, as the FACET Rasch model is an item response theory based latent trait model, a larger sample size would be expected even though the standard error of the rater parameter estimates was relatively small in the current study. Further, the content of the tasks was related to the AP Chinese exam. Whether the findings from this study is generalizable to other content domains such as English writing, reading, science, and math constructed-response items awaits further exploration. In addition, only two items types: SN and ER were included in the experiments, with a total of only 4 items. Other task types and traits for analytic scoring should be examined in future studies. The last limitation is related to the prompting methods for automated scoring using LLMs. The current study used a few-shot methods. Other methods should be explored in future studies including Chain-of-Thought and other fine-tuning methods.\n\n---\n\n### CONCLUSION (final paragraph of Summary and Discussion)\n\nIn summary, this study assessed the scoring accuracy, intra-rater consistency of AI and human holistic and analytic ratings, and estimated the AI rater effects. It demonstrated the methods that can be used to examine AI rater performance, in particular, the use of the Many FACET Rasch model to evaluate rater severity/leniency and central tendency effects. This study provided empirical evidence to inform the adoption of LLM-based AI raters for automated holistic and analytic scoring. It is highlighted that when LLMs are used for automated scoring, the methods demonstrated in this study could be the starting point for such evaluation.\n\n---\n\n### ALL FIGURE CAPTIONS\n\n- **Figure 1:** \"The Wright Map for the Holistic Scores\"\n- **Figure 2:** \"The Wright Map for the Analytic Scores\"\n- **Figure 3:** \"The Wright Map for the Analytic Scores-Task Completion\"\n- **Figure 4:** \"The Wright Map for the Analytic Scores-Delivery\"\n- **Figure 5:** \"The Wright Map for the Analytic Scores-Language Use\"\n\n### ALL TABLE CAPTIONS\n\n- **Table 1:** \"Holistic Scoring Accuracy (QWK) for AI Raters against Each Human Rater\"\n- **Table 2:** \"Analytic (Task Completion) Scoring Accuracy (QWK) for AI Raters against Each Human Rater\"\n- **Table 3:** \"Analytic (Delivery) Scoring Accuracy (QWK) for AI Raters against Each Human Rater\"\n- **Table 4:** \"Analytic (Language Use) Scoring Accuracy (QWK) for AI Raters against Each Human Rater\"\n- **Table 5:** \"Intra-Rater Consistency\"\n- **Table 6:** \"Mean Holistic and Analytic Scores Assigned by Each Rater\"\n- **Table 7:** \"Rater Parameter Estimates for Holistic Scoring\"\n- **Table 8:** \"Rater Parameter Estimates for Analytic Scoring\"\n- **Table 9:** \"Rater Parameter Estimates for Analytic Scoring-Task Completion\"\n- **Table 10:** \"Rater Parameter Estimates for Analytic Scoring-Delivery\"\n- **Table 11:** \"Rater Parameter Estimates for Analytic Scoring-Language Use\"\n- **Table B.1 (Appendix B):** \"Standard Deviation of the Holistic and Analytic Scores Assigned by Each Rater\"\n\n---\n\n### KEY IMPLEMENTATION DETAILS\n\n- **Prompting method:** Few-shot prompting with training examples. Human rater R1 (certified AP Chinese examiner) designed and executed AI training protocols (Appendix A shows example for SN1 essay type).\n- **Scoring rubric:** College Board AP Chinese rubric, 0–6 scale, holistic plus 3 analytic traits (Task Completion, Delivery, Language Use).\n- **Training design:** AI raters were given the task prompt, scoring rubric, and student writing samples at multiple score levels as examples before scoring.\n- **Scoring design:** Fully crossed rating design — all 12 raters (2 human + 10 AI) scored all 120 essays (30 students × 4 tasks).\n- **Analysis software:** FACET software (Linacre, 2024), Version 3.87.0.\n- **No ablation studies** were conducted in the traditional ML sense; instead, ensemble models were constructed by progressively removing worst-performing LLMs.\n- **Data collection period:** Approximately one and a half years (sequential addition of models as released)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86c3122a-c098-4cbd-8924-e730127d10a9",
+            "isSidechain": true,
+            "agentId": "aed1d3e555792ca7c",
+            "requestId": "req_011CbG3SAcfyL8tyVCzL8oPW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "64132a85-79ff-4bf9-9246-aaab9af03160",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/distiller_5e221dc4",
+            "sessionId": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-sonnet-4-6",
+              "id": "msg_01BeNp6Mm2t4EsaBLtoTdfBF",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 29610,
+                "cache_read_input_tokens": 19542,
+                "output_tokens": 11741,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 29610
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 11741,
+                    "cache_read_input_tokens": 19542,
+                    "cache_creation_input_tokens": 29610,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 29610,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-helping-with-a-paper-distillation-task-fetch-and-extract-detailed-info-copy-3.md"
+}

@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "aa8ffe7dce2f25d302aa",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 你是 Distiller Agent——论文蒸馏引擎。你的任务是从一批论文中提取**领域隐性经验**，生成两个结构化 skill 文件。 ## 核心定位 你不是在\"总结论文\"。你在回答：**这个研究子领域的人默认怎么做事？** - 总结 =",
+  "task_key": "21618c8e-1e18-4031-a2ea-f1abe2868d8e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/21618c8e-1e18-4031-a2ea-f1abe2868d8e.jsonl",
+    "occurrence": 1,
+    "bytes": 958897,
+    "sha256": "116ff40705d788979764fe5b455738b975875b1a57367b8edbbea689a3c51397"
+  },
+  "statistics": {
+    "messages": 182,
+    "user_turns": 4,
+    "tool_calls": 39,
+    "roles": {
+      "record": 69,
+      "user": 4,
+      "assistant": 31,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "aa8ffe7dce2f25d302aa-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "aa8ffe7dce2f25d302aa-part-0001.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "aa8ffe7dce2f25d302aa-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "aa8ffe7dce2f25d302aa-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 97,
+      "chunks": [
+        {
+          "path": "aa8ffe7dce2f25d302aa-part-0001.json",
+          "message_count": 30
+        },
+        {
+          "path": "aa8ffe7dce2f25d302aa-part-0002.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-distiller-agent-skill.md"
+}

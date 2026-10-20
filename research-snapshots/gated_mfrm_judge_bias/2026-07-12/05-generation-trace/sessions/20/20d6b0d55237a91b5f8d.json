@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "20d6b0d55237a91b5f8d",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: gated_mfrm_judge_bias ## 运行环境 - 项目代码根目录: /root/gated_mfrm_judge_bias ## 环境搭建 连接服务器后先调 `detect_im",
+  "task_key": "8fd153ff-9890-45ae-a8cc-46b1d135b1e9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/8fd153ff-9890-45ae-a8cc-46b1d135b1e9.jsonl",
+    "occurrence": 1,
+    "bytes": 536669,
+    "sha256": "c21820f09468c2e623b2e6bbe6f3278bef60fde09931101e3d6c531cc49671b2"
+  },
+  "statistics": {
+    "messages": 204,
+    "user_turns": 1,
+    "tool_calls": 59,
+    "roles": {
+      "record": 49,
+      "user": 1,
+      "assistant": 36,
+      "tool_call": 59,
+      "tool_result": 59
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "20d6b0d55237a91b5f8d-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 202,
+      "chunks": [
+        {
+          "path": "20d6b0d55237a91b5f8d-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "20d6b0d55237a91b5f8d-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-gated-mfrm-judge-bias-root-gated-mfrm-judge-bias-detect-im-copy-26.md"
+}

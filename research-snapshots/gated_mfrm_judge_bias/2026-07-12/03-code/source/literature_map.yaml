@@ -1,0 +1,354 @@
+meta:
+  last_updated: "2026-05-22T12:00:00Z"
+  total_papers: 18
+categories:
+  - key: "psychometric_foundation"
+    name: "Psychometric & IRT Foundation"
+    narrative: "Core psychometric models: DG-IRT gating mechanism for cheating detection, MFRM applied to LLM raters, and IRT-based LLM evaluation frameworks"
+  - key: "judge_bias_correction"
+    name: "Judge Bias Correction"
+    narrative: "Methods for detecting and correcting systematic biases in LLM-as-a-judge evaluation pipelines"
+  - key: "contamination_detection"
+    name: "Contamination Detection & Adjustment"
+    narrative: "Methods for detecting and quantifying benchmark contamination in LLM evaluation"
+  - key: "unified_evaluation"
+    name: "Unified Evaluation Frameworks"
+    narrative: "Comprehensive LLM evaluation frameworks and benchmarks that combine multiple assessment dimensions"
+papers:
+  shu2013dgirt:
+    title: "Using Deterministic, Gated Item Response Theory Model to Detect Test Cheating due to Item Compromise"
+    authors:
+      - "Shu, Z."
+      - "Henson, R."
+      - "Luecht, R."
+    year: 2013
+    venue: "Psychometrika"
+    volume: "78"
+    pages: "481-497"
+    doi: "10.1007/s11336-012-9311-3"
+    bibtex_key: "shu2013dgirt"
+    category: "psychometric_foundation"
+    role: "foundation"
+    relevance: "Core methodological inspiration. DG-IRT decomposes observed performance into genuine ability and cheating-inflated components via a gating mechanism. G-MFRM adapts this gating logic from educational cheating to LLM benchmark contamination."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  jiao2025mfrm_llm:
+    title: "Comparing Human and AI Rater Effects Using the Many-Facet Rasch Model"
+    authors:
+      - "Jiao, H."
+      - "Song, D."
+      - "Lee, W.-C."
+    year: 2025
+    venue: "arXiv"
+    arxiv_id: "2505.18486"
+    bibtex_key: "jiao2025mfrm_llm"
+    category: "psychometric_foundation"
+    role: "foundation"
+    relevance: "Most direct predecessor. Applies MFRM to compare 10 LLM raters with human experts, demonstrating MFRM's applicability to LLM judge calibration. Does NOT model contamination — the gap G-MFRM fills."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  zhou2025psnirt:
+    title: "Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory"
+    authors:
+      - "Zhou, H."
+      - "Huang, H."
+      - "Zhao, Z."
+      - "Han, L."
+      - "Wang, H."
+      - "Chen, K."
+      - "Yang, M."
+      - "Bao, W."
+      - "Dong, J."
+      - "Xu, B."
+      - "Zhu, C."
+      - "Cao, H."
+      - "Zhao, T."
+    year: 2026
+    venue: "AAAI"
+    arxiv_id: "2505.15055"
+    bibtex_key: "zhou2025psnirt"
+    category: "psychometric_foundation"
+    role: "baseline"
+    relevance: "Neural 4PL IRT for LLM benchmark evaluation. Demonstrates scalability of IRT to LLMs but lacks judge facet and contamination modeling. Serves as IRT-based baseline without multi-facet structure."
+    note: "bibtex_key inherited from earlier draft; first author is Zhou, not Lin"
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  cyclicjudge2026:
+    title: "CyclicJudge: Mitigating Judge Bias Efficiently in LLM-based Evaluation"
+    authors:
+      - "Zhu, Z."
+      - "Tieleman, O."
+      - "Bukhtiyarov, A."
+      - "Chen, J."
+    year: 2026
+    venue: "arXiv"
+    arxiv_id: "2603.01865"
+    bibtex_key: "cyclicjudge2026"
+    category: "judge_bias_correction"
+    role: "baseline"
+    relevance: "Primary bias-only baseline. Eliminates judge bias via round-robin assignment but completely ignores contamination. G-MFRM addresses both jointly."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  fiedler2026bias_uncertainty:
+    title: "Bias and Uncertainty in LLM-as-a-Judge Estimation"
+    authors:
+      - "Fiedler, J."
+    year: 2026
+    venue: "arXiv"
+    arxiv_id: "2605.06939"
+    bibtex_key: "fiedler2026bias_uncertainty"
+    category: "judge_bias_correction"
+    role: "related"
+    relevance: "Introduces formal J/delta-J diagnostics for judge bias, identifies sign-reversal failure modes in shared-calibration comparisons. Stays within classical test theory. G-MFRM's confounding argument positions Fiedler's sign-reversal as downstream consequence of unmodeled contamination."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  soumik2026judging_judges:
+    title: "Judging the Judges: Systematic Evaluation of Bias Mitigation Strategies in LLM-as-a-Judge Pipelines"
+    authors:
+      - "Soumik, M."
+    year: 2026
+    venue: "arXiv"
+    arxiv_id: "2604.23178"
+    bibtex_key: "soumik2026judging_judges"
+    category: "judge_bias_correction"
+    role: "related"
+    relevance: "Empirically compares 9 debiasing strategies across 5 judges, finding style bias dominant (0.76-0.92). Provides no measurement model explaining why strategies work — G-MFRM provides the explanatory framework."
+    verified: false
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  uda2026:
+    title: "UDA: Unsupervised Debiasing Alignment for Pair-wise LLM-as-a-Judge"
+    authors:
+      - "Zhang, Y."
+      - "Wang, C."
+      - "Wu, L."
+      - "Yu, W."
+      - "Wang, Y."
+      - "Bao, G."
+      - "Tang, J."
+    year: 2026
+    venue: "AAAI"
+    arxiv_id: "2508.09724"
+    bibtex_key: "uda2026"
+    category: "judge_bias_correction"
+    role: "baseline"
+    relevance: "Neural K-factor adjustment reducing inter-judge std by 63.4%. Black-box neural approach vs G-MFRM's interpretable psychometric approach. Key baseline for judge bias correction."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  constat2024:
+    title: "ConStat: Performance-Based Contamination Detection in Large Language Models"
+    authors:
+      - "Dekoninck, J."
+      - "Müller, M.N."
+      - "Vechev, M."
+    year: 2024
+    venue: "NeurIPS"
+    arxiv_id: "2405.16281"
+    bibtex_key: "constat2024"
+    category: "contamination_detection"
+    role: "component"
+    relevance: "Core component of G-MFRM Stage 2. Computes contamination effects via reference benchmark comparison (r^2=0.94 with true effects). Fully black-box, used to estimate per-item exposure e_i."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  dcr2025:
+    title: "DCR: Quantifying Data Contamination in LLMs Evaluation"
+    authors:
+      - "Xu, C."
+      - "Yan, N."
+      - "Guan, S."
+      - "Jin, C."
+      - "Mei, Y."
+      - "Guo, Y."
+      - "Kechadi, T."
+    year: 2025
+    venue: "EMNLP"
+    arxiv_id: "2507.11405"
+    bibtex_key: "dcr2025"
+    category: "contamination_detection"
+    role: "baseline"
+    relevance: "Adjusts accuracy for contamination via fuzzy inference but ignores judge effects. Primary contamination-only baseline for G-MFRM comparison."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  preference_leakage2026:
+    title: "Preference Leakage: A Contamination Problem in LLM-as-a-Judge"
+    authors:
+      - "Li, D."
+      - "Sun, R."
+      - "Huang, Y."
+      - "Zhong, M."
+      - "Jiang, B."
+      - "Han, J."
+      - "Zhang, X."
+      - "Wang, W."
+      - "Liu, H."
+    year: 2026
+    venue: "ICLR"
+    arxiv_id: "2502.01534"
+    bibtex_key: "preference_leakage2026"
+    category: "contamination_detection"
+    role: "related"
+    relevance: "Quantifies generator-judge relatedness bias (judge-side contamination). Distinct from G-MFRM's examinee-side contamination. Preference Leakage's relatedness bias can be partially captured by G-MFRM's d_j facet."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  logprober2024:
+    title: "LogProber: Disentangling Confidence from Contamination in LLM Responses"
+    authors:
+      - "Yax, N."
+      - "Oudeyer, P.-Y."
+      - "Palminteri, S."
+    year: 2024
+    venue: "arXiv"
+    arxiv_id: "2408.14352"
+    bibtex_key: "logprober2024"
+    category: "contamination_detection"
+    role: "component"
+    relevance: "Estimates per-item contamination from token log-probabilities. Gray-box exposure indicator for G-MFRM Stage 2 (for models exposing logprobs)."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  zheng2023mtbench:
+    title: "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena"
+    authors:
+      - "Zheng, L."
+      - "Chiang, W.-L."
+      - "Sheng, Y."
+      - "Zhuang, S."
+      - "Wu, Z."
+      - "Zhuang, Y."
+      - "Lin, Z."
+      - "Li, Z."
+      - "Li, D."
+      - "Xing, E.P."
+      - "Zhang, H."
+      - "Gonzalez, J.E."
+      - "Stoica, I."
+    year: 2023
+    venue: "NeurIPS"
+    arxiv_id: "2306.05685"
+    bibtex_key: "zheng2023mtbench"
+    category: "unified_evaluation"
+    role: "foundation"
+    relevance: "Establishes LLM-as-a-judge paradigm and MT-Bench/Chatbot Arena benchmarks. Primary evaluation benchmark for G-MFRM validation. Human votes from Arena serve as ground truth for Kendall-tau comparison."
+    verified: true
+    added_by: "director"
+    added_at: "2026-05-21T16:40:00Z"
+
+  linacre1989mfrm:
+    title: "Many-Facet Rasch Measurement"
+    authors:
+      - "Linacre, J.M."
+    year: 1989
+    venue: "MESA Press"
+    isbn: "0-941938-02-6"
+    bibtex_key: "linacre1989mfrm"
+    category: "psychometric_foundation"
+    role: "foundation"
+    relevance: "Original formulation of the Many-Facet Rasch Model (MFRM), extending Rasch measurement to judge/rater facets. The foundational work that G-MFRM generalizes by adding a gating mechanism for contamination."
+    verified: true
+    added_by: "literature_gap_fill"
+    added_at: "2026-05-22T12:00:00Z"
+
+  linacre1994mfrm:
+    title: "Many-Facet Rasch Measurement"
+    authors:
+      - "Linacre, J.M."
+    year: 1994
+    venue: "MESA Press"
+    edition: "2nd"
+    isbn: "0-941938-02-6"
+    bibtex_key: "linacre1994mfrm"
+    category: "psychometric_foundation"
+    role: "foundation"
+    relevance: "Second edition of the MFRM monograph with updated estimation techniques. Standard reference for MFRM methodology and FACETS software."
+    verified: true
+    added_by: "literature_gap_fill"
+    added_at: "2026-05-22T12:00:00Z"
+
+  rothenberg1971:
+    title: "Identification in Parametric Models"
+    authors:
+      - "Rothenberg, T.J."
+    year: 1971
+    venue: "Econometrica"
+    volume: "39"
+    issue: "3"
+    pages: "577-591"
+    doi: "10.2307/1913267"
+    bibtex_key: "rothenberg1971"
+    category: "psychometric_foundation"
+    role: "foundation"
+    relevance: "Classic result linking local identifiability to information matrix nonsingularity. Theoretical basis for G-MFRM's identifiability argument under the gating extension."
+    verified: true
+    added_by: "literature_gap_fill"
+    added_at: "2026-05-22T12:00:00Z"
+
+  sanmartin2016:
+    title: "Identification of Item Response Theory Models"
+    authors:
+      - "San Martín, E."
+    year: 2016
+    venue: "Handbook of Item Response Theory, Vol. 2: Statistical Tools (van der Linden, Ed.), CRC Press"
+    pages: "127-150"
+    bibtex_key: "sanmartin2016"
+    category: "psychometric_foundation"
+    role: "foundation"
+    relevance: "Comprehensive treatment of IRT identifiability conditions. Provides the identifiability framework that G-MFRM's gating extension must satisfy."
+    verified: true
+    added_by: "literature_gap_fill"
+    added_at: "2026-05-22T12:00:00Z"
+
+  betancourt2015:
+    title: "Hamiltonian Monte Carlo for Hierarchical Models"
+    authors:
+      - "Betancourt, M.J."
+      - "Girolami, M."
+    year: 2015
+    venue: "Current Trends in Bayesian Methodology with Applications, CRC Press"
+    pages: "119-142"
+    arxiv_id: "1312.0906"
+    bibtex_key: "betancourt2015"
+    category: "psychometric_foundation"
+    role: "foundation"
+    relevance: "Theoretical foundation for HMC/NUTS in hierarchical models. Justifies G-MFRM's use of NUTS for Bayesian estimation of the multi-facet hierarchical structure with non-centered reparameterization."
+    verified: true
+    added_by: "literature_gap_fill"
+    added_at: "2026-05-22T12:00:00Z"
+
+  uto2020generalized:
+    title: "A Generalized Many-Facet Rasch Model and Its Bayesian Estimation Using Hamiltonian Monte Carlo"
+    authors:
+      - "Uto, M."
+      - "Ueno, M."
+    year: 2020
+    venue: "Behaviormetrika"
+    volume: "47"
+    issue: "2"
+    pages: "469-496"
+    doi: "10.1007/s41237-020-00115-7"
+    bibtex_key: "uto2020generalized"
+    category: "psychometric_foundation"
+    role: "foundation"
+    relevance: "Extends MFRM with rater severity, consistency, and range-restriction parameters estimated via NUTS. Direct methodological predecessor — G-MFRM further extends by adding the contamination gating mechanism."
+    verified: true
+    added_by: "literature_gap_fill"
+    added_at: "2026-05-22T12:00:00Z"

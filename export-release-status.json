@@ -320,6 +320,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 2596
+        },
+        "gated_mfrm_judge_bias": {
+          "status": "uploaded",
+          "project": "gated_mfrm_judge_bias",
+          "collection": "gated_mfrm_judge_bias--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "fe49a7d72ca14713fd228a2d52491654330bf1c81bab349ba68b17755695957a",
+          "indexed_members": 346,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 341
         }
       },
       "status": "in_progress",

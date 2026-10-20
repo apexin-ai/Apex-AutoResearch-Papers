@@ -763,6 +763,19 @@
       }
     },
     {
+      "project": "gated_mfrm_judge_bias--export-20260712",
+      "title": "Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model for Disentangling Judge Bias and Contamination in LLM Evaluation (July export snapshot)",
+      "catalog": "../research-snapshots/gated_mfrm_judge_bias/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 341,
+        "messages": 61394,
+        "user_turns": 2875,
+        "tool_calls": 16070,
+        "unparsed_lines": 0,
+        "conversation": 341
+      }
+    },
+    {
       "project": "gen-depth-contamination",
       "title": "Generational Depth Estimation of Recursive Synthetic Text: Measuring the Discrimination Boundary",
       "catalog": "../paper-assets/gen-depth-contamination/05-generation-trace/catalog.json",

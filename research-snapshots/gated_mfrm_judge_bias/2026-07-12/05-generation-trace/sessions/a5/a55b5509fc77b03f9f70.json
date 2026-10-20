@@ -1,0 +1,914 @@
+{
+  "schema_version": "1.0",
+  "id": "a55b5509fc77b03f9f70",
+  "project": "gated_mfrm_judge_bias--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search all LaTeX files under /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/ for ALL figure envir",
+  "task_key": "agent-a9206870106bfc783",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a9206870106bfc783.jsonl",
+    "occurrence": 1,
+    "bytes": 72553,
+    "sha256": "99dde6c4d9c395c51184caec02a8e1c2bf8e4f17ca3e53187b6ba0e92a568cc2"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T11:18:55.138Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search all LaTeX files under /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/ for ALL figure environments (\\begin{figure}). For each figure, report:\n1. Figure number (from \\label or position)\n2. The image file path (\\includegraphics)\n3. The caption text\n4. Whether it's a single-column or full-width figure (\\begin{figure} vs \\begin{figure*})\n\nI'm specifically looking for a \"主流程图\" (main pipeline/framework diagram). List all figures so I can identify which one it is.\n\nAlso check the figures/paper/ directory for all image files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "6bccd8e4-c994-4cf4-a295-67259f492a7f",
+            "agentId": "a9206870106bfc783",
+            "type": "user",
+            "uuid": "6119cdf9-8766-48d5-bb48-5d74b811ae1b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T11:18:57.256Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for all LaTeX files and analyze the figures, then check the figures directory for image files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6119cdf9-8766-48d5-bb48-5d74b811ae1b",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJVrin6krYoc5SViWj9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "75b15291-9c9f-4a5c-b7b0-b9f4ccf78910",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SkbsvERBqaLVqnAH2n5Pz9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 578,
+                "cache_read_input_tokens": 36736,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 578,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T11:18:57.327Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0199JpUgB4q3gid5zc2ANSvD",
+              "name": "Glob",
+              "input": {
+                "pattern": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/**/*.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75b15291-9c9f-4a5c-b7b0-b9f4ccf78910",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJVrin6krYoc5SViWj9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "805a5989-21b0-48e6-8632-a1bfbdc7a5e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SkbsvERBqaLVqnAH2n5Pz9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 578,
+                "cache_read_input_tokens": 36736,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 578,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T11:18:57.380Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0199JpUgB4q3gid5zc2ANSvD",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T204917/best/paper.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T204917/median/paper.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T204917/worst/paper.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T215715/best/paper.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T215715/median/paper.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260521T215715/worst/paper.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260522T041217/best/paper.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260522T041217/median/paper.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/artifacts/dream_reports/dream_20260522T041217/worst/paper.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/main.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/introduction.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/conclusion.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/related_work.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/experiments.tex\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/limitations.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "805a5989-21b0-48e6-8632-a1bfbdc7a5e6",
+            "isSidechain": true,
+            "promptId": "6bccd8e4-c994-4cf4-a295-67259f492a7f",
+            "agentId": "a9206870106bfc783",
+            "type": "user",
+            "uuid": "9bfb6b0d-0614-40e5-96be-5ea252ba8114",
+            "sourceToolAssistantUUID": "805a5989-21b0-48e6-8632-a1bfbdc7a5e6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-24T11:18:57.488Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q15NpgSrX6E1s8U3WeBRLV",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures -type f 2>/dev/null | head -50"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bfb6b0d-0614-40e5-96be-5ea252ba8114",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJVrin6krYoc5SViWj9",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f3d54813-9f8a-4dde-bcc0-0747b638af5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SkbsvERBqaLVqnAH2n5Pz9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 578,
+                "cache_read_input_tokens": 36736,
+                "output_tokens": 179,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 578
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 179,
+                    "cache_read_input_tokens": 36736,
+                    "cache_creation_input_tokens": 578,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 578,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-24T11:18:57.556Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q15NpgSrX6E1s8U3WeBRLV",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/gen_fig1.py\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig3_error_propagation.png\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/forest_cn.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/model_comparison.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/pareto_k_plot.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig2_permodel_data.csv\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework.png\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig_ppc.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/trace_cn.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/trace_sigma_c.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig3_error_propagation.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/ppc.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/gen_fig2.py\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig4_bias_vs_rho.png\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig2_ovb_bias.png\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/trace_theta.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/gen_fig3.py\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig1_framework.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/trace_b.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig5_cn_recovery.png\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/collect_fig2_local.py\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/ablation_boxplots.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/trace_dj.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/theta_tau_boxplot.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig4_bias_vs_rho.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig2_ovb_bias.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/fig5_cn_recovery.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/forest_dj.pdf\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/gen_fig4.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f3d54813-9f8a-4dde-bcc0-0747b638af5c",
+            "isSidechain": true,
+            "promptId": "6bccd8e4-c994-4cf4-a295-67259f492a7f",
+            "agentId": "a9206870106bfc783",
+            "type": "user",
+            "uuid": "3036d675-3637-4c04-84fe-efe6c1631716",
+            "sourceToolAssistantUUID": "f3d54813-9f8a-4dde-bcc0-0747b638af5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-24T11:19:08.361Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for all figure environments in the main paper and its component files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3036d675-3637-4c04-84fe-efe6c1631716",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJW39b5W3hmvR8RUZao",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7ce915db-8625-4716-bb0f-850b2d98373b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01F99sANGka3TpgdGWeCJFCJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2987,
+                "cache_read_input_tokens": 37314,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2987,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-24T11:19:09.995Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XZ4c9NhXRszJCpQaBpiqt3",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\begin\\{figure\\*?\\}",
+                "path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper",
+                "output_mode": "content",
+                "context": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7ce915db-8625-4716-bb0f-850b2d98373b",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJW39b5W3hmvR8RUZao",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d60c4580-6e00-414f-b1d5-ed24af268a74",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01F99sANGka3TpgdGWeCJFCJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2987,
+                "cache_read_input_tokens": 37314,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2987,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-24T11:19:10.020Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XZ4c9NhXRszJCpQaBpiqt3",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-1-\\section{The G-MFRM Framework}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-2-\\label{sec:method}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-3-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-4-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-5-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex:6:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-7-\\centering\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-8-\\includegraphics[width=\\columnwidth]{fig1_framework}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-9-\\caption{Overview of the G-MFRM three-stage calibration procedure. Stage~1 fits a standard MFRM to obtain initial estimates $(\\hat{\\theta}, \\hat{b}, \\hat{d})$. Stage~2 estimates per-item exposure $e_i$ from external evidence (reference model anchoring and cross-model agreement). Stage~3 performs joint MCMC inference with $e_i$ fixed, recovering contamination-corrected ability $\\tilde{\\theta}_n$, contamination susceptibility $c_n$, and judge severity $d_j$.}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-10-\\label{fig:framework}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex-11-\\end{figure}\n--\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-33-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-34-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-35-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-36-[Omitted long context line]\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-37-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex:38:\\begin{figure}[t]\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-39-\\centering\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-40-\\includegraphics[width=\\columnwidth]{fig2_ovb_bias}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-41-\\caption{Sequential estimation bias ($\\hat{\\theta}_{\\mathrm{seq}} - \\theta_{\\mathrm{true}}$) versus true contamination susceptibility $c_n$. Pearson $r = 0.86$ ($p < 0.001$) confirms systematic overestimation of contaminated models. Synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds).}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-42-\\label{fig:ovb_bias}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex-43-\\end{figure}\n--\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-158-\\section{Posterior Predictive Check}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-159-\\label{app:ppc}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-160-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-161-Figure~\\ref{fig:ppc} shows the posterior predictive distribution from 1{,}000 posterior draws over 5{,}661 observations. The predicted and observed response distributions are well-aligned (predicted mean win rate $0.593$ vs.\\ observed $0.599$), with no systematic discrepancy across item difficulty or model ability levels.\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-162-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex:163:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-164-\\centering\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-165-\\includegraphics[width=\\columnwidth]{fig_ppc}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-166-\\caption{Posterior predictive check. Distribution of predicted (gray) and observed (black) response rates across all model--item--judge triplets. Mean predicted $= 0.593$, mean observed $= 0.599$.}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-167-\\label{fig:ppc}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-168-\\end{figure}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-169-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-170-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-171-\\section{OVB Validation Across Confounding Levels}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-172-\\label{app:ovb_validation}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-173-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex:174:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-175-\\centering\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-176-\\includegraphics[width=\\columnwidth]{fig4_bias_vs_rho}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-177-\\caption{Sequential estimator bias remains approximately constant across confounding levels ($\\rho$), confirming omission-driven rather than confounding-strength-dependent bias. Joint G-MFRM estimation reduces bias by approximately 70\\% at all $\\rho$ levels. Synthetic data: $N = 50$, $I = 100$, $J = 8$, 50 seeds.}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-178-\\label{fig:bias_vs_rho}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-179-\\end{figure}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-180-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-181-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-182-\\section{Contamination Susceptibility Recovery}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-183-\\label{app:cn_recovery}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-184-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex:185:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-186-\\centering\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-187-\\includegraphics[width=\\columnwidth]{fig5_cn_recovery}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-188-\\caption{Contamination susceptibility recovery ($c_n$: true vs.\\ estimated) from 50 Monte Carlo seeds. Empirical CI coverage is 71\\% (below nominal 95\\%), indicating moderate posterior overconfidence (see Limitations).}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-189-\\label{fig:cn_recovery}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-190-\\end{figure}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-191-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-192-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-193-\\section{Error Propagation Figure}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-194-\\label{app:error_prop_fig}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-195-\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex:196:\\begin{figure}[h]\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-197-\\centering\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-198-\\includegraphics[width=\\columnwidth]{fig3_error_propagation}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-199-\\caption{Error propagation from Stage~2 exposure noise to Stage~3 parameter estimates. (a)~Ability RMSE ($\\theta$) and (b)~contamination RMSE ($c_n$) as a function of exposure noise $\\sigma_e$. The dashed vertical line marks $\\sigma_{\\mathrm{crit}} \\approx 0.2$, below which degradation remains mild ($\\theta$-RMSE $+$5.9\\%, $c_n$-RMSE $+$7.9\\%). Error bars show $\\pm$1 std over 20 seeds. See Table~\\ref{tab:error_prop} for numerical values.}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-200-\\label{fig:error_prop}\n/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/appendix.tex-201-\\end{figure}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d60c4580-6e00-414f-b1d5-ed24af268a74",
+            "isSidechain": true,
+            "promptId": "6bccd8e4-c994-4cf4-a295-67259f492a7f",
+            "agentId": "a9206870106bfc783",
+            "type": "user",
+            "uuid": "9eff02ac-7bec-426c-9317-e98c28269c28",
+            "sourceToolAssistantUUID": "d60c4580-6e00-414f-b1d5-ed24af268a74",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-24T11:19:10.842Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DrxkumebZQo6wzFQQ1BSpJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/main.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9eff02ac-7bec-426c-9317-e98c28269c28",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJW39b5W3hmvR8RUZao",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7f918e91-ec10-41af-b50e-65076f41e96c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01F99sANGka3TpgdGWeCJFCJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2987,
+                "cache_read_input_tokens": 37314,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2987,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-24T11:19:10.854Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DrxkumebZQo6wzFQQ1BSpJ",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{amsmath}\n12\t\\usepackage{amssymb}\n13\t\\usepackage{amsthm}\n14\t\\usepackage{booktabs}\n15\t\\usepackage{xcolor}\n16\t\\usepackage{subcaption}\n17\t\n18\t\\newtheorem{observation}{Observation}\n19\t\\newtheorem{proposition}{Proposition}\n20\t\\newtheorem{theorem}{Theorem}\n21\t\\newtheorem{corollary}{Corollary}\n22\t\n23\t\\graphicspath{{../../figures/paper/}}\n24\t\n25\t\\title{Fair Scores via Joint Calibration: A Gated Many-Facet Rasch Model\\\\for Disentangling Judge Bias and Contamination in LLM Evaluation}\n26\t\n27\t\\author{Anonymous}\n28\t\n29\t\\begin{document}\n30\t\\maketitle\n31\t\n32\t\\input{abstract}\n33\t\\input{introduction}\n34\t\\input{background}\n35\t\\input{method}\n36\t\\input{experiments}\n37\t\\input{related_work}\n38\t\\input{conclusion}\n39\t\n40\t\\section*{Limitations}\n41\t\\input{limitations}\n42\t\n43\t\\bibliography{references}\n44\t\n45\t\\appendix\n46\t\\input{appendix}\n47\t\n48\t\\end{document}\n49\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f918e91-ec10-41af-b50e-65076f41e96c",
+            "isSidechain": true,
+            "promptId": "6bccd8e4-c994-4cf4-a295-67259f492a7f",
+            "agentId": "a9206870106bfc783",
+            "type": "user",
+            "uuid": "d012eca4-1f61-4557-978e-f77636372298",
+            "sourceToolAssistantUUID": "7f918e91-ec10-41af-b50e-65076f41e96c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-24T11:19:20.921Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the other paper files to get complete information on all figures:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d012eca4-1f61-4557-978e-f77636372298",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJX3c9aNEp4D2FLeQPv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c30e6f42-e475-4033-be9e-80a2e637b13b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QQqRqi7RgXUFjEoEPmSMmu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4370,
+                "cache_read_input_tokens": 40301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-24T11:19:21.249Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GLyAtmc8beg4aqmUfG2HpT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/experiments.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c30e6f42-e475-4033-be9e-80a2e637b13b",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJX3c9aNEp4D2FLeQPv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6ff1cfca-3b10-46d7-b900-04521e936bad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QQqRqi7RgXUFjEoEPmSMmu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4370,
+                "cache_read_input_tokens": 40301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-24T11:19:21.255Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GLyAtmc8beg4aqmUfG2HpT",
+              "type": "tool_result",
+              "content": "1\t\\section{Experiments}\n2\t\\label{sec:experiments}\n3\t\n4\t\\subsection{Setup}\n5\t\\label{sec:setup}\n6\t\n7\t\\paragraph{Data and models.} We evaluate on Arena-Hard \\citep{li2024arenahard}, a benchmark of 316 multi-turn conversational items selected for high separability among frontier models. After filtering for coverage, the evaluation set comprises 176 items in a connected incomplete design (XX{,}XXX observations; XX.X\\% fill rate of the full $N \\times I \\times J$ tensor). Seventeen target models spanning proprietary and open-source families are evaluated: the original 8 models (GPT-4o, GPT-4o-mini, Qwen2.5-72B, LLaMA-3.3-70B, Qwen3-8B, Gemma-2-9B, GPT-4-0613, GPT-3.5-Turbo) plus 9 additional models (Claude-3.5-Sonnet, GPT-4-Turbo, LLaMA-3.1-70B, Gemma-2-27B, Claude-3-Opus, LLaMA-3-70B, Mixtral-8x22B, Claude-3-Haiku, LLaMA-3-8B). Ground-truth rankings are derived from Chatbot Arena human preference data \\citep{zheng2023mtbench}.\n8\t\n9\t\\paragraph{Judges.} Nine LLM judges score model responses in position-swapped pairwise mode: GPT-5.5, Claude Opus 4.7, Claude Sonnet 4.6, DeepSeek-V4-Pro, Gemini-2.5-Pro, Mistral-Large-2, LLaMA-3.3-70B, Qwen2.5-72B, and Qwen3-235B. Seven judges cover all 17 target models; two judges (GPT-5.5 and Claude Opus 4.7) cover only the original 8 models, yielding an asymmetric connected design---Theorem~\\ref{thm:sufficient} requires only connectivity, not full crossing. Position swapping controls for position bias and doubles the effective observation count. Two models---Qwen2.5-72B and LLaMA-3.3-70B---serve as both judge and target; $d_j$ absorbs systematic self-evaluation bias, and excluding self-judging observations leaves rankings unchanged ($\\tau = 0.857$; Appendix~\\ref{app:self_eval}).\n10\t\n11\t\\paragraph{Exposure estimation.} Per-item exposure $e_i$ is estimated via a two-source pipeline (\\S\\ref{sec:staged}): reference model anchoring with gpt-4-0314 as anchor (75\\% weight) and cross-model agreement (25\\% weight). The pipeline is robust to weight configuration (Spearman $\\rho \\geq 0.998$ across all configurations tested).\n12\t\n13\t\\paragraph{MCMC.} We use NumPyro NUTS with 4{,}000 warmup and 4{,}000 sampling iterations across 4 chains (target acceptance 0.95). The contamination prior follows the hierarchical HalfNormal specification (Eq.~\\ref{eq:contam_prior}). Convergence is assessed via rank-normalized split-$\\hat{R}$ \\citep{vehtari2021rhat} with conventional $\\hat{R} < 1.05$ and ESS $> 100$ thresholds \\citep{gelman2013bda}.\n14\t\n15\t\\subsection{Baselines and Main Results}\n16\t\\label{sec:main_results}\n17\t\n18\tWe compare G-MFRM against seven methods that address judge bias or contamination separately: (1) Raw Average, (2) MFRM-only (Eq.~\\ref{eq:mfrm}), (3) Sequential pipeline (MFRM then contamination adjustment), (4) CyclicJudge \\citep{cyclicjudge2026}, (5) CyclicJudge+discard (exposed items removed), (6) DCR Factor \\citep{dcr2025}, and (7) Preference Leakage calibration \\citep{preference_leakage2026}. All methods are evaluated by Kendall $\\tau$ and Spearman $\\rho$ against Chatbot Arena human rankings.\n19\t\n20\t\\begin{table}[t]\n21\t\\centering\n22\t\\small\n23\t\\begin{tabular}{lcccc}\n24\t\\toprule\n25\t& \\multicolumn{2}{c}{\\textbf{8 models}} & \\multicolumn{2}{c}{\\textbf{17 models}} \\\\\n26\t\\cmidrule(lr){2-3} \\cmidrule(lr){4-5}\n27\t\\textbf{Method} & $\\tau$ & $\\rho$ & $\\tau$ & $\\rho$ \\\\\n28\t\\midrule\n29\tRaw Average & 0.786 & 0.905 & TBD & TBD \\\\\n30\tMFRM-only & 0.786 & 0.905 & TBD & TBD \\\\\n31\tSequential & 0.786 & 0.905 & TBD & TBD \\\\\n32\tCyclicJudge & 0.786 & 0.905 & TBD & TBD \\\\\n33\tCyclicJudge+discard & 0.786 & 0.905 & TBD & TBD \\\\\n34\tDCR Factor & 0.786 & 0.905 & TBD & TBD \\\\\n35\tPref.\\ Leakage & 0.786 & 0.905 & TBD & TBD \\\\\n36\t\\midrule\n37\tG-MFRM (ours) & \\textbf{0.857} & \\textbf{0.952} & \\textbf{TBD} & \\textbf{TBD} \\\\\n38\t\\bottomrule\n39\t\\end{tabular}\n40\t\\caption{Correlation with Chatbot Arena human rankings on Arena-Hard (9 judges). All seven baselines produce identical rankings at $N = 8$ ($\\tau = 0.786$). G-MFRM yields nominally higher point-estimate rank agreement ($+$7.1pp; bootstrap $\\Delta\\tau$ CI includes zero). Right columns report the 17-model evaluation (TBD).}\n41\t\\label{tab:main_results}\n42\t\\end{table}\n43\t\n44\tAll seven baselines produce identical model rankings ($\\tau = 0.786$, $\\rho = 0.905$). With $N = 8$, Kendall $\\tau$ takes only ${\\sim}20$ distinct values, but raw ability scores also vary by $< 0.03$ logits across methods (Table~\\ref{tab:raw_scores}), confirming genuine invariance rather than discretization artifact. This reflects the structural confounding from Section~\\ref{sec:confounding}: single-facet corrections leave the uncorrected confound intact (Observation~\\ref{obs:ovb}). That CyclicJudge+discard also preserves rankings suggests contamination effects on aggregate rankings are modest at this scale; G-MFRM's primary value lies in per-model contamination diagnostics. G-MFRM achieves nominally higher point-estimate rank agreement ($\\tau = 0.857$, $\\rho = 0.952$) over the baselines ($\\tau = 0.786$), but the posterior median $\\tau$ equals the baseline (0.786), with the point estimate at the distribution's upper tail. Bootstrap resampling (4{,}000 posterior draws) yields $\\Delta\\tau$ 95\\% CI $[-0.071, 0.071]$: the ranking improvement is not statistically significant at $N = 8$, though G-MFRM almost never degrades rankings ($P(\\Delta\\tau \\geq 0) = 0.927$). On synthetic data ($N = 50$), joint estimation significantly outperforms sequential ($\\tau = 0.922$ vs.\\ $0.839$, Wilcoxon $p < 0.001$), confirming that the effect is real but below detection at this sample size. The rank change---gpt-4o-mini and qwen2.5-72b swap positions---is consistent with differential contamination ($P(\\theta_{\\text{mini}} > \\theta_{\\text{qwen}}) = 0.853$).\n45\t\n46\tWe evaluate G-MFRM along two orthogonal axes: predictive fit and ranking accuracy.\n47\t\n48\t\\paragraph{Predictive fit.} LOO cross-validation strongly favors G-MFRM ($\\Delta\\mathrm{ELPD}_{\\mathrm{LOO}} = -55.7$, SE $= 9.4$, $|\\Delta/\\mathrm{SE}| = 5.9$; \\citealp{vehtari2017loo}), with stacking weight 1.0 for G-MFRM versus 0.0 for MFRM-only. All Pareto $\\hat{k} < 0.7$, confirming reliable LOO estimates. The contamination gating term substantially improves held-out predictive fit.\n49\t\n50\t\\paragraph{Ranking accuracy.} Ranking improvement ($\\Delta\\tau = +0.071$) is not statistically significant at $N = 8$ (bootstrap 95\\% CI crosses zero). Post-hoc power analysis indicates $N \\approx 17$ is needed for 80\\% power to detect this effect size (Appendix~\\ref{app:power}). This prediction is empirically validated: at $N = 20$, synthetic $\\Delta\\tau$ reaches significance (Wilcoxon $p < 0.001$, 18 wins / 1 loss; Appendix~\\ref{app:synthetic_calibration}). Pooling 20 replications at $N = 8$ also yields significance ($p < 0.002$), confirming the method consistently improves rankings though any single $N = 8$ dataset has limited power.\n51\t\n52\tThe MCMC sampler achieves rank-normalized split-$\\hat{R} \\leq 1.03$ across all parameters with zero divergent transitions and minimum bulk ESS of 174 and minimum tail ESS of 381 (model-level parameters: bulk ESS $\\geq$ 217, tail ESS $\\geq$ 437). These values satisfy the traditional convergence thresholds ($\\hat{R} < 1.05$, ESS $> 100$; \\citealp{gelman2013bda}) but do not meet the stricter criteria of \\citet{vehtari2021rhat} ($\\hat{R} < 1.01$, ESS $> 400$), which may contribute to posterior overconfidence (synthetic CI coverage 71\\%; see Limitations); we report point estimates and rank orderings as primary results. Model and judge facets show acceptable fit (all infit/outfit MNSQ within $[0.63, 1.07]$; item-level diagnostics in Appendix~\\ref{app:item_diagnostics}). Posterior predictive checks confirm adequate model fit (predicted response rate $0.593$ vs.\\ observed $0.599$; Appendix~\\ref{app:ppc}). Contamination susceptibility $\\hat{c}_n$ exhibits a gradient by model age, directionally consistent with known training data exposure (Appendix~\\ref{app:cn_recovery}). Estimated $\\hat{c}_n$ exceeds 1.0 for the four oldest models: GPT-3.5-Turbo ($\\hat{c}_n = 5.60$), GPT-4-0613 ($4.20$), Qwen2.5-72B ($3.00$), and LLaMA-3.3-70B ($2.50$). The most recent models show low estimated contamination: GPT-4o ($0.88$) and GPT-4o-mini ($0.93$). The global shrinkage scale $\\hat{\\sigma}_c = 2.40$ confirms substantial inter-model heterogeneity ($\\bar{c} = 2.50$, aligning with the strong-contamination regime in synthetic validation). Notably, sequential estimation yields near-zero contamination estimates ($\\bar{c} \\approx 0$), demonstrating that without joint modeling, contamination effects are entirely absorbed into ability estimates $\\hat{\\theta}$---precisely the omitted variable bias predicted by the theoretical analysis (Section~\\ref{sec:confounding}). A per-model diagnostic (Table~\\ref{tab:bias_absorption}) reveals that MFRM-only inflates ability estimates for the most contaminated models by up to 0.79 logits (GPT-3.5-Turbo), while deflating estimates for the least contaminated models by up to 0.40 logits (GPT-4o). Judge severity $d_j$ separates by provenance: proprietary judges tend to score more strictly (e.g., Claude Opus $+0.60$, GPT-5.5 $+0.53$) than open-source judges (e.g., Mistral $-0.74$, LLaMA $-0.42$); full $d_j$ values for all nine judges are reported in Table~\\ref{tab:judge_severity}. Results are robust to prior specification (Horseshoe \\citep{piironen2017horseshoe} vs.\\ HalfNormal: Pearson $r > 0.999$; Appendix~\\ref{app:prior_robustness}) and to judge panel size: G-MFRM outperforms baselines at all judge counts $k \\geq 2$, with $\\tau$ increasing monotonically from $0.771$ ($k = 2$) to $0.857$ ($k = 9$); $k \\geq 4$ suffices to exceed the full-panel baseline (Appendix~\\ref{app:judge_count}).\n53\t\n54\t\\subsection{Error Propagation Robustness}\n55\t\\label{sec:error_prop_results}\n56\t\n57\tSection~\\ref{sec:error_prop} predicted that ability estimates degrade gracefully when exposure noise $\\sigma$ remains below $\\sqrt{\\mathrm{Var}(e_i)} \\approx 0.2$. We validate this prediction by injecting Gaussian noise into the true exposure values and re-fitting G-MFRM on synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds; exp-012).\n58\t\n59\t\\begin{table}[t]\n60\t\\centering\n61\t\\small\n62\t\\begin{tabular}{lcccc}\n63\t\\toprule\n64\t$\\sigma$ & $\\theta$-RMSE & $\\Delta\\theta$\\% & $c_n$-RMSE & $\\Delta c_n$\\% \\\\\n65\t\\midrule\n66\t0.0 & 0.128 $\\pm$ 0.018 & --- & 0.533 $\\pm$ 0.187 & --- \\\\\n67\t0.1 & 0.130 $\\pm$ 0.018 & +1.4 & 0.545 $\\pm$ 0.192 & +2.3 \\\\\n68\t0.2 & 0.135 $\\pm$ 0.018 & +5.9 & 0.575 $\\pm$ 0.198 & +7.9 \\\\\n69\t0.5 & 0.175 $\\pm$ 0.027 & +36.9 & 0.842 $\\pm$ 0.281 & +57.9 \\\\\n70\t\\bottomrule\n71\t\\end{tabular}\n72\t\\caption{Error propagation robustness (exp-012). Ability RMSE degrades by less than 6\\% when exposure noise $\\sigma \\leq 0.2$, matching the theoretical prediction. Contamination estimates are more sensitive due to multiplicative coupling with $e_i$.}\n73\t\\label{tab:error_prop}\n74\t\\end{table}\n75\t\n76\tTable~\\ref{tab:error_prop} confirms this prediction: below $\\sigma = 0.2$, ability RMSE increases by 5.9\\% and contamination RMSE by 7.9\\%; beyond the threshold ($\\sigma = 0.5$), degradation becomes substantial. Rank ordering is preserved even at $\\sigma = 0.5$ ($\\tau > 0.88$).\n77\t\n78\tAblation (Table~\\ref{tab:ablation}, Appendix) confirms joint estimation as the dominant contributor: staged estimation increases $\\theta$-RMSE by $2.0\\times$ ($p < 0.001$); continuous gating improves $c_n$-RMSE by 40\\% over binary ($p < 0.001$). Removing $d_j$ preserves rankings but degrades contamination recovery ($c_n$-RMSE $+$6\\%, $p < 0.001$).\n79\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ff1cfca-3b10-46d7-b900-04521e936bad",
+            "isSidechain": true,
+            "promptId": "6bccd8e4-c994-4cf4-a295-67259f492a7f",
+            "agentId": "a9206870106bfc783",
+            "type": "user",
+            "uuid": "a9b82716-1952-49d2-8a58-d52b5b315333",
+            "sourceToolAssistantUUID": "6ff1cfca-3b10-46d7-b900-04521e936bad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-24T11:19:21.404Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016RdU1tEDowSk3b6kzNK1XG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9b82716-1952-49d2-8a58-d52b5b315333",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJX3c9aNEp4D2FLeQPv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7c21a2c6-9163-423a-bb63-411177473de5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QQqRqi7RgXUFjEoEPmSMmu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4370,
+                "cache_read_input_tokens": 40301,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4370,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-24T11:19:21.410Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016RdU1tEDowSk3b6kzNK1XG",
+              "type": "tool_result",
+              "content": "1\t\\section{The G-MFRM Framework}\n2\t\\label{sec:method}\n3\t\n4\tSection~\\ref{sec:confounding} established that omitting contamination from the measurement model produces directional bias in ability estimates (Observation~\\ref{obs:ovb}). We now introduce the Gated Many-Facet Rasch Model (G-MFRM), which jointly estimates ability, judge severity, and contamination susceptibility within a single measurement framework. The key design choices, staged estimation with externally fixed exposure and a hierarchical HalfNormal prior for the contamination term, are motivated by the identifiability analysis in \\S\\ref{sec:identifiability} and the error propagation bounds in \\S\\ref{sec:error_prop}.\n5\t\n6\t\\begin{figure}[t]\n7\t\\centering\n8\t\\includegraphics[width=\\columnwidth]{fig1_framework}\n9\t\\caption{Overview of the G-MFRM three-stage calibration procedure. Stage~1 fits a standard MFRM to obtain initial estimates $(\\hat{\\theta}, \\hat{b}, \\hat{d})$. Stage~2 estimates per-item exposure $e_i$ from external evidence (reference model anchoring and cross-model agreement). Stage~3 performs joint MCMC inference with $e_i$ fixed, recovering contamination-corrected ability $\\tilde{\\theta}_n$, contamination susceptibility $c_n$, and judge severity $d_j$.}\n10\t\\label{fig:framework}\n11\t\\end{figure}\n12\t\n13\t\\subsection{Model Specification}\n14\t\\label{sec:model_spec}\n15\t\n16\tG-MFRM extends the standard MFRM \\citep{linacre1989mfrm, linacre1994mfrm} by adding a multiplicative contamination gating term to the linear predictor (Eq.~\\ref{eq:mfrm}):\n17\t%\n18\t\\begin{equation}\n19\t\\label{eq:gmfrm}\n20\t\\log \\frac{P(Y_{nij} \\geq k)}{P(Y_{nij} < k)} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i,\n21\t\\end{equation}\n22\t%\n23\twhere all terms carry the definitions from Section~\\ref{sec:confounding}. The gating structure $c_n \\cdot e_i$ separates the model-specific and item-specific components of contamination: $c_n \\geq 0$ captures how much model $n$ benefits from memorized benchmark content, while $e_i \\in [0,1]$ quantifies how much of item $i$ has leaked into training corpora. When $c_n = 0$ (a clean model) or $e_i = 0$ (a novel item), the gating term vanishes and Eq.~\\ref{eq:gmfrm} reduces to the standard MFRM. This graceful degradation ensures that G-MFRM imposes no distortion on uncontaminated model-item pairs.\n24\t\n25\tWe enforce non-negativity and sparsity of $c_n$ through a hierarchical HalfNormal prior. A global shrinkage scale $\\sigma_c \\sim \\text{HalfNormal}(1.0)$ controls the overall contamination level, and per-model raw effects $c^{\\mathrm{raw}}_n \\sim \\text{HalfNormal}(1.0)$ are scaled to obtain $c_n = c^{\\mathrm{raw}}_n \\cdot \\sigma_c$. The HalfNormal support restricts $c_n \\geq 0$, and the hierarchical structure provides adaptive shrinkage: when the data support low overall contamination, $\\sigma_c$ contracts toward zero, pulling all $c_n$ values down. Models with genuine contamination retain large $c^{\\mathrm{raw}}_n$ relative to the group. The remaining priors are $\\theta_n \\sim \\mathcal{N}(0, 1)$, $b_i \\sim \\mathcal{N}(0, 1)$, $d_j \\sim \\mathcal{N}(0, 0.5)$, and standard uniform on thresholds $\\tau_k$.\n26\t\n27\tThe closest antecedent is the Doubly-Gated IRT model of \\citet{shu2013dgirt}, which introduced binary gating for item preknowledge in educational testing. Beyond extending DG-IRT to continuous exposure and multi-rater designs, G-MFRM's primary methodological contributions are analytical: the identifiability analysis (Propositions~\\ref{prop:no_new}--\\ref{prop:exposure_variation} and Theorem~\\ref{thm:sufficient}) provides the first formal conditions under which gated IRT parameters are separable, and the Murphy--Topel error propagation framework (\\S\\ref{sec:error_prop}) quantifies how staged estimation uncertainty propagates to downstream parameter estimates---neither of which exists for DG-IRT or any prior gated measurement model.\n28\t\n29\t\\subsection{Staged Estimation}\n30\t\\label{sec:staged}\n31\t\n32\tJoint estimation of all parameters in Eq.~\\ref{eq:gmfrm}, including $e_i$, would require identifying the bilinear product $c_n \\cdot e_i$ from response data alone. This creates a fundamental non-identifiability (Proposition~\\ref{prop:exposure_variation}). We resolve this through a three-stage procedure that fixes exposure externally before estimating the contamination parameters.\n33\t\n34\t\\paragraph{Stage 1: Standard MFRM.} We fit the standard MFRM (Eq.~\\ref{eq:mfrm}) via MCMC (NUTS) to obtain initial estimates $(\\hat{\\theta}, \\hat{b}, \\hat{d})$. These serve as warm-start values for the sampler in Stage~3 and improve convergence.\n35\t\n36\t\\paragraph{Stage 2: Exposure estimation.} Per-item exposure $e_i$ is estimated from external evidence independent of the response data used in Stages~1 and~3. The primary signal is \\emph{reference model anchoring}: using a fixed reference model (e.g., gpt-4-0314) as anchor, we compute win-rate residuals for each target model against difficulty-adjusted expectations; items where target models systematically outperform the anchor beyond what difficulty predicts are flagged as potentially exposed. The secondary signal is \\emph{cross-model agreement}: items receiving uniformly high scores across architecturally diverse models suggest exposure rather than genuine easiness, quantified via $z$-score standardization of the inter-model agreement distribution. These signals are combined as a weighted composite (75\\% anchoring, 25\\% agreement), clipped to $[0, 1]$, and treated as fixed in Stage~3. Where model log-probabilities are accessible, LogProber can provide an additional gray-box memorization signal, though it is not used in our current experiments.\n37\t\n38\t\\paragraph{Non-circularity.} Exposure estimation is not circular: $e_i$ is item-level (content leakage) while $c_n$ is model-level (susceptibility), testing a cross-level interaction. The primary signal (75\\%) derives from reference anchoring independent of target models, and ablation with 100\\% anchoring yields $\\rho = 0.998$ (Appendix~\\ref{app:weight_robustness}), confirming $e_i$ is robust to removing the cross-model component.\n39\t\n40\t\\paragraph{Stage 3: Joint MCMC.} With $e_i$ fixed, we sample $(\\theta_n, b_i, d_j, c_n)$ jointly via NUTS \\citep{betancourt2015}. The priors are as specified in \\S\\ref{sec:model_spec}. The hierarchical contamination prior decomposes as\n41\t%\n42\t\\begin{align}\n43\t\\label{eq:contam_prior}\n44\t\\sigma_c &\\sim \\text{HalfNormal}(1.0), \\quad c^{\\mathrm{raw}}_n \\sim \\text{HalfNormal}(1.0), \\nonumber \\\\\n45\tc_n &= c^{\\mathrm{raw}}_n \\cdot \\sigma_c,\n46\t\\end{align}\n47\t%\n48\twhere $\\sigma_c$ is a shared global scale that governs the overall contamination magnitude. This non-centered parameterization improves sampler geometry by decoupling the global scale from the per-model effects.\n49\t\n50\tConvergence is assessed via rank-normalized split-$\\hat{R}$ \\citep{vehtari2021rhat} and bulk effective sample size (ESS), with thresholds $\\hat{R} < 1.05$ and ESS$_{\\mathrm{bulk}} > 100$ following standard practice \\citep{gelman2013bda}.\\footnote{Synthetic validation with $N = 50$, $I = 100$, $J = 8$ yields satisfactory convergence across all parameters (exp-012). Full diagnostic tables are reported in Section~\\ref{sec:experiments}.}\n51\t\n52\t\n53\t\\subsection{Identifiability}\n54\t\\label{sec:identifiability}\n55\t\n56\tAdding a multiplicative term to a measurement model raises the question of whether the new parameters can be separated from the existing ones. We establish that fixing $e_i$ externally is both necessary and sufficient for identification. All proofs assume the standard location constraint $\\sum_n \\theta_n = 0$.\n57\t\n58\t\\begin{proposition}[No New Indeterminacy]\n59\t\\label{prop:no_new}\n60\tWhen $e_i$ is fixed externally, the gating term $c_n \\cdot e_i$ introduces no additional location or scale indeterminacy beyond that already present in the standard MFRM.\n61\t\\end{proposition}\n62\t\n63\t\\begin{proof}\n64\tSuppose $c_n' = c_n + \\delta$ preserves all response probabilities. Then $\\delta \\cdot e_i = 0$ for all items. Since $e_i \\neq 0$ for at least one item by assumption, $\\delta = 0$. The key observation is that fixing $e_i$ externally eliminates the bilinear ambiguity $c_n \\cdot e_i = (\\lambda c_n)(\\lambda^{-1} e_i)$ that would otherwise render the decomposition non-unique.\n65\t\\end{proof}\n66\t\n67\t\\begin{proposition}[Exposure Variation Necessary]\n68\t\\label{prop:exposure_variation}\n69\tIf $e_i = e$ for all $i$ (constant exposure), then $c_n$ and $\\theta_n$ are not separately identifiable.\n70\t\\end{proposition}\n71\t\n72\t\\begin{proof}\n73\tWhen exposure is constant, the linear predictor becomes $(\\theta_n + c_n \\cdot e) - b_i - d_j - \\tau_k$, which is equivalent to a standard MFRM with reparameterized ability $\\theta^*_n = \\theta_n + c_n \\cdot e$. No configuration of response data can distinguish $(\\theta_n, c_n)$ from $(\\theta_n + \\epsilon, c_n - \\epsilon/e)$ for any $\\epsilon$.\n74\t\\end{proof}\n75\t\n76\t\\begin{corollary}\n77\t$\\mathrm{Var}(e_i) > 0$ is a necessary condition for identifiability of $c_n$.\n78\t\\end{corollary}\n79\t\n80\t\\begin{theorem}[Sufficient Conditions for Local Identifiability]\n81\t\\label{thm:sufficient}\n82\tThe G-MFRM is locally identifiable, up to the standard location constraint, if the following conditions hold: (i) a connected observation design (each item is observed by at least one model--judge pair), (ii) $J \\geq 2$ judges, (iii) for each model $n$, the set of observed items spans at least two distinct exposure values ($\\mathrm{Var}(e_i) > 0$ over observed items), and (iv) standard normalization $\\sum_n \\theta_n = 0$.\n83\t\\end{theorem}\n84\t\n85\tThe proof, given in Appendix~\\ref{app:proof}, follows \\citet{rothenberg1971}: non-singularity of the Fisher information matrix is established via the Cauchy--Schwarz inequality on the $(\\theta_n, c_n)$ submatrix determinant and a Schur complement argument for the remaining blocks. Conditions~(i) and~(ii) are standard multi-rater design requirements, satisfied by the connected design in our evaluation (XX.X\\% fill rate; \\S\\ref{sec:setup}); condition~(iii) is the substantive constraint that each model's observed items include varying exposure levels.\n86\t\n87\t\\subsection{Error Propagation}\n88\t\\label{sec:error_prop}\n89\t\n90\tThe staged procedure treats the Stage~2 exposure estimates $\\hat{e}_i$ as fixed quantities in Stage~3. This is a generated regressors problem \\citep{pagan1984}: measurement error in $\\hat{e}_i$ propagates into the posterior of $(\\theta_n, c_n)$. The multiplicative structure $c_n \\cdot e_i$ makes this an errors-in-variables (EIV) problem \\citep{fuller1987}, with a predictable attenuation pattern.\n91\t\n92\tLet $\\hat{e}_i = e_i + \\epsilon_i$ with $\\epsilon_i \\sim \\mathcal{N}(0, \\sigma^2)$ independent of all model parameters. The attenuation factor for the contamination coefficient is\n93\t%\n94\t\\begin{equation}\n95\t\\label{eq:attenuation}\n96\t\\lambda(\\sigma) = \\frac{\\mathrm{Var}(e_i)}{\\mathrm{Var}(e_i) + \\sigma^2},\n97\t\\end{equation}\n98\t%\n99\tso attenuation reaches 50\\% when $\\sigma = \\sqrt{\\mathrm{Var}(e_i)}$. In the synthetic DGP ($\\mathrm{Var}(e_i) \\approx 0.04$), this corresponds to $\\sigma \\approx 0.2$.\\footnote{The attenuation formula assumes that $\\epsilon_i$ is independent of all model parameters, identically distributed, and Gaussian. In practice, exposure estimation errors may be correlated across items sharing the same source or heteroscedastic across difficulty levels. Table~\\ref{tab:error_prop} provides empirical validation that $\\hat{\\theta}$ estimates remain robust under such departures (Section~\\ref{sec:experiments}).}\n100\t\n101\tTable~\\ref{tab:error_prop} shows the empirical degradation across noise levels (see also Figure~\\ref{fig:error_prop} in the Appendix). Below the critical threshold ($\\sigma \\leq 0.2$), degradation is mild: $\\theta$-RMSE increases by 5.9\\% (from $0.128 \\pm 0.018$ to $0.135 \\pm 0.018$) and $c_n$-RMSE by 7.9\\% (from $0.533 \\pm 0.187$ to $0.575 \\pm 0.198$). At $\\sigma = 0.1$, the increases are only 1.4\\% and 2.3\\% respectively. Beyond the threshold ($\\sigma = 0.5$), degradation becomes severe: $\\theta$-RMSE rises 36.9\\% and $c_n$-RMSE rises 57.9\\%. Contamination estimates $c_n$ are more sensitive than ability estimates $\\theta_n$ because $c_n$ enters the likelihood only through its product with $e_i$ (multiplicative coupling), while $\\theta_n$ contributes additively and is anchored by all observations regardless of exposure.\n102\t\n103\tThese bounds make the staged approximation falsifiable: if the noise level of the Stage~2 exposure estimates can be bounded below $\\sigma_{\\mathrm{crit}}$, the resulting ability estimates carry quantifiable error guarantees. For honest credible intervals that account for generated-regressor uncertainty, we apply the Murphy-Topel variance correction \\citep{murphy1985} to inflate the Stage~3 posterior variance by the estimated Stage~2 sampling variability (Appendix~\\ref{app:murphy_topel}).\n104\t\n105\t\\subsection{Fair Scores and Diagnostics}\n106\t\\label{sec:fair_scores}\n107\t\n108\tThe Stage~3 posterior mean of $\\theta_n$ provides a bias-and-contamination-corrected ``fair score'' for each model. The remaining parameters serve complementary diagnostic roles: per-model $c_n$ flags candidates for training data audit, per-judge $d_j$ informs judge calibration, and per-item $e_i$ identifies items for retirement or replacement."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7c21a2c6-9163-423a-bb63-411177473de5",
+            "isSidechain": true,
+            "promptId": "6bccd8e4-c994-4cf4-a295-67259f492a7f",
+            "agentId": "a9206870106bfc783",
+            "type": "user",
+            "uuid": "e3e2dfaf-5af4-4973-865e-b185055a1881",
+            "sourceToolAssistantUUID": "7c21a2c6-9163-423a-bb63-411177473de5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-24T11:19:21.648Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JtF2tCYkhcvSJNNaJ5u4bw",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/docs/paper/background.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3e2dfaf-5af4-4973-865e-b185055a1881",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJX3c9aNEp4D2FLeQPv",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cc117fd0-077d-43c3-82f2-320e57ce6dc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QQqRqi7RgXUFjEoEPmSMmu",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4370,
+                "cache_read_input_tokens": 40301,
+                "output_tokens": 241,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4370
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 241,
+                    "cache_read_input_tokens": 40301,
+                    "cache_creation_input_tokens": 4370,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4370,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-24T11:19:21.654Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JtF2tCYkhcvSJNNaJ5u4bw",
+              "type": "tool_result",
+              "content": "1\t\\section{Confounding in LLM Evaluation}\n2\t\\label{sec:confounding}\n3\t\n4\tThe Many-Facet Rasch Model (MFRM) extends classical Rasch measurement to settings with multiple rater facets \\citep{linacre1989mfrm, linacre1994mfrm}. Originating in educational measurement, the model treats rater variation as a nuisance facet to be estimated and removed rather than a source of noise to be averaged over. In the LLM evaluation context, where $J$ judges score $N$ models across $I$ items, the MFRM specifies\n5\t%\n6\t\\begin{equation}\n7\t\\label{eq:mfrm}\n8\t\\log \\frac{P(Y_{nij} \\geq k \\mid \\theta_n, b_i, d_j, \\tau_k)}{P(Y_{nij} < k \\mid \\theta_n, b_i, d_j, \\tau_k)} = \\theta_n - b_i - d_j - \\tau_k,\n9\t\\end{equation}\n10\t%\n11\twhere $Y_{nij}$ is the ordinal rating by judge $j$ for model $n$ on item $i$, $\\theta_n$ is the ability of model $n$ ($n = 1, \\ldots, N$), $b_i$ is the difficulty of item $i$ ($i = 1, \\ldots, I$), $d_j$ is the severity of judge $j$ ($j = 1, \\ldots, J$), and $\\tau_k$ is the threshold for category $k$. All facets reside on a common logit scale, so model ability is directly comparable after adjustment for item difficulty and judge severity. \\citet{jiao2025mfrm_llm} applied this framework to compare ten LLM raters with human experts, showing that MFRM separates genuine ability from systematic judge effects in multi-judge panels.\n12\t\n13\tHowever, standard MFRM assumes that all systematic sources of score variation are captured by the modeled facets. This assumption breaks down when some models have been exposed to benchmark items during training \\citep{dcr2025}. Such contamination inflates scores on exposed items through memorization rather than genuine ability. We represent this effect as an interaction $c_n \\cdot e_i$, where $c_n \\geq 0$ is the contamination susceptibility of model $n$ and $e_i \\in [0, 1]$ is the exposure level of item $i$. The complete data-generating process becomes\n14\t%\n15\t\\begin{equation}\n16\t\\label{eq:full}\n17\t\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i.\n18\t\\end{equation}\n19\t%\n20\tWhen a practitioner fits the standard MFRM (Eq.~\\ref{eq:mfrm}) to data generated by Eq.~\\ref{eq:full}, the contamination term is absent from the estimated model. Its influence does not vanish but is absorbed into the estimated parameters $\\tilde{\\theta}_n$, $\\tilde{b}_i$, and $\\tilde{d}_j$, which distorts all downstream inferences.\n21\t\n22\tThe consequence of this omission can be stated precisely.\n23\t\n24\t\\begin{observation}[Omitted Variable Bias in MFRM]\n25\t\\label{obs:ovb}\n26\tLet the full model be $\\eta_{nijk} = \\theta_n - b_i - d_j - \\tau_k + c_n \\cdot e_i$ and the short model omit the contamination term: $\\tilde{\\eta}_{nijk} = \\tilde{\\theta}_n - \\tilde{b}_i - \\tilde{d}_j - \\tau_k$. Under a linear approximation to the ordinal logit link \\citep{wooldridge2010, angrist2009mostly},\\footnote{The OVB formula is exact for linear models. We apply it to the MFRM linear predictor $\\eta$, which is an approximation. Synthetic validation confirms the approximation quality: the Pearson correlation between the predicted bias direction and empirical bias reaches $r = 0.86$ ($p < 0.001$), indicating that the linear result accurately characterizes bias direction and relative magnitude.}\n27\t\\begin{equation}\n28\t\\label{eq:ovb}\n29\t\\mathrm{plim}(\\tilde{\\theta}_n - \\theta_n) = \\gamma_n \\cdot c_n,\n30\t\\end{equation}\n31\twhere $\\gamma_n$ depends on the projection of the exposure vector $(e_i)$ onto the design matrix of the short model (explicit form in Appendix~\\ref{app:gamma}). The bias is non-zero whenever $\\mathrm{Cov}(d_j,\\, c_n \\cdot e_i) \\neq 0$. This captures the confounding component; in the nonlinear MFRM, a specification bias from omitting $c_n \\cdot e_i$ persists even at zero covariance (Section~\\ref{sec:experiments}).\n32\t\\end{observation}\n33\t\n34\tThe linear approximation in Observation~\\ref{obs:ovb} ($r = 0.86$) serves solely as directional motivation for the bias structure; G-MFRM's Stage~3 inference (Eq.~\\ref{eq:gmfrm}) uses the full nonlinear ordinal logistic likelihood and does not depend on this approximation. The bias combines a specification component from omitting $c_n \\cdot e_i$, which persists regardless of confounding, with a confounding component from non-orthogonality between $d_j$ and $c_n \\cdot e_i$. Monte Carlo simulation confirms that bias magnitude is approximately constant across confounding levels $\\rho \\in \\{0, 0.3, 0.6, 0.9\\}$, indicating that the omission of $c_n \\cdot e_i$---not its correlation with $d_j$---is the primary driver (Figure~\\ref{fig:bias_vs_rho}).\n35\t\n36\tThis confounding undermines both sequential estimation strategies. A bias-first approach, as in CyclicJudge \\citep{cyclicjudge2026}, calibrates $d_j$ before estimating ability, but the resulting $\\hat{\\theta}$ is already inflated for contaminated models because the omitted $c_n \\cdot e_i$ term has been absorbed into the ability estimates. A contamination-first approach, as in DCR \\citep{dcr2025}, adjusts for contamination before addressing judge effects, but judge severity is then misattributed as contamination signal. Synthetic validation confirms this failure: with $N = 50$ models, $I = 100$ items, $J = 8$ judges, and 20 random seeds, the Pearson correlation between sequential estimation bias and true $c_n$ reaches $r = 0.86$ ($p < 0.001$). As illustrated in Figure~\\ref{fig:ovb_bias}, the bias is not random but directional: contaminated models are systematically overestimated under both sequential orderings.\n37\t\n38\t\\begin{figure}[t]\n39\t\\centering\n40\t\\includegraphics[width=\\columnwidth]{fig2_ovb_bias}\n41\t\\caption{Sequential estimation bias ($\\hat{\\theta}_{\\mathrm{seq}} - \\theta_{\\mathrm{true}}$) versus true contamination susceptibility $c_n$. Pearson $r = 0.86$ ($p < 0.001$) confirms systematic overestimation of contaminated models. Synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds).}\n42\t\\label{fig:ovb_bias}\n43\t\\end{figure}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc117fd0-077d-43c3-82f2-320e57ce6dc7",
+            "isSidechain": true,
+            "promptId": "6bccd8e4-c994-4cf4-a295-67259f492a7f",
+            "agentId": "a9206870106bfc783",
+            "type": "user",
+            "uuid": "05af02bf-1f68-46b5-b2f7-91945c57e484",
+            "sourceToolAssistantUUID": "cc117fd0-077d-43c3-82f2-320e57ce6dc7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-24T11:19:36.284Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the information. Let me compile the complete list of figures found in the paper.\n\n## Summary of All Figures in the Paper\n\nI found **5 figures** in the main paper and appendix. Here's the complete list:\n\n### Main Paper Figures\n\n**1. Figure 1: Framework/Pipeline (Main Paper)**\n   - **Location**: `method.tex`, lines 6-11\n   - **Figure Type**: Single-column (`\\begin{figure}[t]`)\n   - **Image File**: `fig1_framework` (also exists as `fig1_framework.png` and `fig1_framework.pdf`)\n   - **Caption**: \"Overview of the G-MFRM three-stage calibration procedure. Stage~1 fits a standard MFRM to obtain initial estimates $(\\hat{\\theta}, \\hat{b}, \\hat{d})$. Stage~2 estimates per-item exposure $e_i$ from external evidence (reference model anchoring and cross-model agreement). Stage~3 performs joint MCMC inference with $e_i$ fixed, recovering contamination-corrected ability $\\tilde{\\theta}_n$, contamination susceptibility $c_n$, and judge severity $d_j$.\"\n   - **Label**: `\\label{fig:framework}`\n   - **🎯 THIS IS YOUR 主流程图 (MAIN PIPELINE DIAGRAM)**\n\n**2. Figure 2: OVB Bias Analysis**\n   - **Location**: `background.tex`, lines 38-43\n   - **Figure Type**: Single-column (`\\begin{figure}[t]`)\n   - **Image File**: `fig2_ovb_bias` (also exists as `fig2_ovb_bias.png` and `fig2_ovb_bias.pdf`)\n   - **Caption**: \"Sequential estimation bias ($\\hat{\\theta}_{\\mathrm{seq}} - \\theta_{\\mathrm{true}}$) versus true contamination susceptibility $c_n$. Pearson $r = 0.86$ ($p < 0.001$) confirms systematic overestimation of contaminated models. Synthetic data ($N = 50$, $I = 100$, $J = 8$, 20 seeds).\"\n   - **Label**: `\\label{fig:ovb_bias}`\n\n### Appendix Figures\n\n**3. Figure PPC: Posterior Predictive Check**\n   - **Location**: `appendix.tex`, lines 163-168\n   - **Figure Type**: Single-column (`\\begin{figure}[h]`)\n   - **Image File**: `fig_ppc` (also exists as `fig_ppc.pdf`)\n   - **Caption**: \"Posterior predictive check. Distribution of predicted (gray) and observed (black) response rates across all model--item--judge triplets. Mean predicted $= 0.593$, mean observed $= 0.599$.\"\n   - **Label**: `\\label{fig:ppc}`\n\n**4. Figure 4: Bias vs Rho (OVB Validation)**\n   - **Location**: `appendix.tex`, lines 174-179\n   - **Figure Type**: Single-column (`\\begin{figure}[h]`)\n   - **Image File**: `fig4_bias_vs_rho` (also exists as `fig4_bias_vs_rho.png` and `fig4_bias_vs_rho.pdf`)\n   - **Caption**: \"Sequential estimator bias remains approximately constant across confounding levels ($\\rho$), confirming omission-driven rather than confounding-strength-dependent bias. Joint G-MFRM estimation reduces bias by approximately 70\\% at all $\\rho$ levels. Synthetic data: $N = 50$, $I = 100$, $J = 8$, 50 seeds.\"\n   - **Label**: `\\label{fig:bias_vs_rho}`\n\n**5. Figure 5: Contamination Susceptibility Recovery**\n   - **Location**: `appendix.tex`, lines 185-190\n   - **Figure Type**: Single-column (`\\begin{figure}[h]`)\n   - **Image File**: `fig5_cn_recovery` (also exists as `fig5_cn_recovery.png` and `fig5_cn_recovery.pdf`)\n   - **Caption**: \"Contamination susceptibility recovery ($c_n$: true vs.\\ estimated) from 50 Monte Carlo seeds. Empirical CI coverage is 71\\% (below nominal 95\\%), indicating moderate posterior overconfidence (see Limitations).\"\n   - **Label**: `\\label{fig:cn_recovery}`\n\n**6. Figure 3: Error Propagation**\n   - **Location**: `appendix.tex`, lines 196-201\n   - **Figure Type**: Single-column (`\\begin{figure}[h]`)\n   - **Image File**: `fig3_error_propagation` (also exists as `fig3_error_propagation.png` and `fig3_error_propagation.pdf`)\n   - **Caption**: \"Error propagation from Stage~2 exposure noise to Stage~3 parameter estimates. (a)~Ability RMSE ($\\theta$) and (b)~contamination RMSE ($c_n$) as a function of exposure noise $\\sigma_e$. The dashed vertical line marks $\\sigma_{\\mathrm{crit}} \\approx 0.2$, below which degradation remains mild ($\\theta$-RMSE $+$5.9\\%, $c_n$-RMSE $+$7.9\\%). Error bars show $\\pm$1 std over 20 seeds. See Table~\\ref{tab:error_prop} for numerical values.\"\n   - **Label**: `\\label{fig:error_prop}`\n\n### Image Files in `/figures/paper/` Directory\n\nAll figure image files are located at `/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/figures/paper/`:\n\n- `fig1_framework.png` (PNG version of main pipeline diagram)\n- `fig1_framework.pdf` (PDF version)\n- `fig2_ovb_bias.png`\n- `fig2_ovb_bias.pdf`\n- `fig3_error_propagation.png`\n- `fig3_error_propagation.pdf`\n- `fig4_bias_vs_rho.png`\n- `fig4_bias_vs_rho.pdf`\n- `fig5_cn_recovery.png`\n- `fig5_cn_recovery.pdf`\n- `fig_ppc.pdf`\n- Plus various supporting files (PDFs, Python generation scripts, data CSVs for other figures not shown in the LaTeX)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05af02bf-1f68-46b5-b2f7-91945c57e484",
+            "isSidechain": true,
+            "agentId": "a9206870106bfc783",
+            "requestId": "req_011CbMJXpBnYSHYTsdzESqXA",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b15450f6-1cfb-4e39-b16c-374ee8e15ab7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-prod43/projects/gated_mfrm_judge_bias/.claude/sessions/director_a47d13bc",
+            "sessionId": "757d5e01-5d83-446d-a1cd-3e5083d15aaa",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01JDFjL1BrTHW41Y9VttqQsF",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10750,
+                "cache_read_input_tokens": 44671,
+                "output_tokens": 1595,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10750
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 1595,
+                    "cache_read_input_tokens": 44671,
+                    "cache_creation_input_tokens": 10750,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10750,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-all-latex-files-under-home-ubuntu-agent-ml-research-prod43-projects-gat.md"
+}

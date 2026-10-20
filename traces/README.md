@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **118 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **119 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -62,6 +62,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [faith-evidence-ie](../paper-assets/faith-evidence-ie/05-generation-trace/README.md) | 892 | 1,381 | 1,352 | 245 | 217,142 | [Read](../paper-assets/faith-evidence-ie/05-generation-trace/readable/README.md) |
 | [faith-evidence-ie--export-20260712](../research-snapshots/faith-evidence-ie/2026-07-12/05-generation-trace/README.md) | 2,549 | 0 | 0 | 0 | 318,975 | [Read](../research-snapshots/faith-evidence-ie/2026-07-12/05-generation-trace/readable/README.md) |
 | [gated_mfrm_judge_bias](../paper-assets/gated_mfrm_judge_bias/05-generation-trace/README.md) | 144 | 421 | 398 | 10 | 78,434 | [Read](../paper-assets/gated_mfrm_judge_bias/05-generation-trace/readable/README.md) |
+| [gated_mfrm_judge_bias--export-20260712](../research-snapshots/gated_mfrm_judge_bias/2026-07-12/05-generation-trace/README.md) | 341 | 0 | 0 | 0 | 61,394 | [Read](../research-snapshots/gated_mfrm_judge_bias/2026-07-12/05-generation-trace/readable/README.md) |
 | [gen-depth-contamination](../paper-assets/gen-depth-contamination/05-generation-trace/README.md) | 399 | 900 | 871 | 73 | 205,665 | [Read](../paper-assets/gen-depth-contamination/05-generation-trace/readable/README.md) |
 | [gen-depth-contamination--export-20260712](../research-snapshots/gen-depth-contamination/2026-07-12/05-generation-trace/README.md) | 1,762 | 0 | 0 | 0 | 262,934 | [Read](../research-snapshots/gen-depth-contamination/2026-07-12/05-generation-trace/readable/README.md) |
 | [gen-depth-fingerprint](../paper-assets/gen-depth-fingerprint/05-generation-trace/README.md) | 354 | 774 | 736 | 100 | 183,002 | [Read](../paper-assets/gen-depth-fingerprint/05-generation-trace/readable/README.md) |
@@ -127,6 +128,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**138,730 source records · 13,982,278 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**139,071 source records · 14,043,672 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.
