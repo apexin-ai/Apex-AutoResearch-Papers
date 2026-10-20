@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "id": "37c662900487f4a52319",
+  "project": "spectral_collapse_ews--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: trace_distill_repair ## 运行环境 - 服务器名: rtx6000-diagprobe - SSH 账户: root（调用 ssh_execute / submit_tr",
+  "task_key": "f0920174-d0c9-488c-80e4-70da02ffee71",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/f0920174-d0c9-488c-80e4-70da02ffee71.jsonl",
+    "occurrence": 1,
+    "bytes": 1357188,
+    "sha256": "bc427571daca69dafa5c88b9adf92c8e8a0736e56c6ee89ee37a351bc609ae47"
+  },
+  "statistics": {
+    "messages": 552,
+    "user_turns": 1,
+    "tool_calls": 168,
+    "roles": {
+      "record": 100,
+      "user": 1,
+      "assistant": 115,
+      "tool_call": 168,
+      "tool_result": 168
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "37c662900487f4a52319-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 550,
+      "chunks": [
+        {
+          "path": "37c662900487f4a52319-part-0001.json",
+          "message_count": 143
+        },
+        {
+          "path": "37c662900487f4a52319-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "37c662900487f4a52319-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "37c662900487f4a52319-part-0004.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-trace-distill-repair-rtx6000-diagprobe-ssh-root-ssh-execute-su-copy-45.md"
+}

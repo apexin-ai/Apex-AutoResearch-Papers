@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "17de747196cf42ccb5b8",
+  "project": "spectral_collapse_ews--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #4。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - exp_001 只能用 cuda:0（PID 59365），exp",
+  "task_key": "8853b8d5-1616-4071-8920-3a405e9bb5d1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/8853b8d5-1616-4071-8920-3a405e9bb5d1.jsonl",
+    "occurrence": 1,
+    "bytes": 545016,
+    "sha256": "af9e8f54945ecfe0dd1071c9c56152416eae31fe57ee632f3745b62efa4b106f"
+  },
+  "statistics": {
+    "messages": 193,
+    "user_turns": 1,
+    "tool_calls": 56,
+    "roles": {
+      "record": 40,
+      "user": 1,
+      "assistant": 40,
+      "tool_call": 56,
+      "tool_result": 56
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "17de747196cf42ccb5b8-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 191,
+      "chunks": [
+        {
+          "path": "17de747196cf42ccb5b8-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "17de747196cf42ccb5b8-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-4-task-context-1-exp-001-cuda-0-pid-59365-exp.md"
+}

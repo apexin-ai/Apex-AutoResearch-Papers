@@ -1,0 +1,3061 @@
+# Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: exp_026 - project: spectral_collapse
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 1
+- **Tool calls:** 13
+- **Original source:** `logs/chats/exported-trajectories/account-1/ed38ef51-64c1-4635-9d63-e671c4458479.jsonl`
+- **Structured JSON:** [`e1fecaa33a68123ce7eb.json`](../../sessions/e1/e1fecaa33a68123ce7eb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-26T02:52:50.656Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-26T02:52:50.656Z",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "content": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: exp_026\n- project: spectral_collapse_ews\n- server: rtx6000-diagprobe\n- log_path: ~/runs/spectral_collapse_ews/exp_026.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-26T02:52:50.660Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-26T02:52:50.660Z",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479"
+}
+```
+
+---
+
+## Round 1
+
+47 recorded events
+
+### User
+
+_source line 3 · 2026-05-26T02:52:50.698Z_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: exp_026
+- project: spectral_collapse_ews
+- server: rtx6000-diagprobe
+- log_path: ~/runs/spectral_collapse_ews/exp_026.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "99e3eaf1-246d-4ed0-85d7-a7c384e58215",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-26T02:52:50.698Z_
+
+```json
+{
+  "parentUuid": "99e3eaf1-246d-4ed0-85d7-a7c384e58215",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1178fb6a-53c4-49d9-9e4d-d6ad2a13863f",
+  "timestamp": "2026-05-26T02:52:50.698Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-26T02:52:50.698Z_
+
+```json
+{
+  "parentUuid": "1178fb6a-53c4-49d9-9e4d-d6ad2a13863f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e3f7d6d7-e04e-439d-82ab-280a3700a6d6",
+  "timestamp": "2026-05-26T02:52:50.698Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-26T02:52:50.698Z_
+
+```json
+{
+  "parentUuid": "e3f7d6d7-e04e-439d-82ab-280a3700a6d6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "6f6e39fb-c3e3-4287-8003-5a3687b4dff5",
+  "timestamp": "2026-05-26T02:52:50.698Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose experiment process exit failure",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-26T02:52:55.610Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到实验失败的 cron 回调，exp_026 进程异常退出。我需要：
+
+1. 先执行 session-start 初始化（read_registry, reconcile_crons, 读 report.md 和 ROADMAP.md）
+2. 然后按 on-experiment-failed skill 处理
+
+让我先加载必要的工具和信息。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f6e39fb-c3e3-4287-8003-5a3687b4dff5",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXPv6pUTgfovk3odE8",
+  "type": "assistant",
+  "uuid": "23fbe87e-c371-41ff-9258-4965735f5c27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VueUsUmRpAvooqUbsDpr4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26615,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26615,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 347,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 26615,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26615
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-26T02:52:56.595Z_
+
+收到 exp_026 失败回调，先执行 session 初始化，然后诊断。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23fbe87e-c371-41ff-9258-4965735f5c27",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXPv6pUTgfovk3odE8",
+  "type": "assistant",
+  "uuid": "23556e41-86fb-4fc6-8052-c198bce9e5bc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VueUsUmRpAvooqUbsDpr4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26615,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26615,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 347,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 26615,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26615
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-26T02:52:58.654Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01DvMMWpuHP3ZdLDfDg8QrHv`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__send_progress",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23556e41-86fb-4fc6-8052-c198bce9e5bc",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXPv6pUTgfovk3odE8",
+  "type": "assistant",
+  "uuid": "c2c301c1-c967-4a9f-bb9f-4bde106f355e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018VueUsUmRpAvooqUbsDpr4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26615,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 347,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26615,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 347,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 26615,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26615
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-26T02:52:58.661Z_
+
+<details><summary>↩ Tool result · `toolu_01DvMMWpuHP3ZdLDfDg8QrHv`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__send_progress"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c2c301c1-c967-4a9f-bb9f-4bde106f355e",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "bca53d87-98ec-4070-ac36-58f8ca316feb",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__send_progress"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__send_progress",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "c2c301c1-c967-4a9f-bb9f-4bde106f355e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-26T02:53:01.631Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me execute the session-start initialization steps in parallel, then handle the exp_026 failure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bca53d87-98ec-4070-ac36-58f8ca316feb",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXzMngXCDu2MKWEP6L",
+  "type": "assistant",
+  "uuid": "291d5e60-79fe-4860-b5c8-285187e20853",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwXZHL4KcbSsBEvimnPaNm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3505,
+      "cache_read_input_tokens": 38456,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 38456,
+          "cache_creation_input_tokens": 3505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-26T02:53:02.218Z_
+
+执行 session 初始化 + 读取 exp_026 详情。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "291d5e60-79fe-4860-b5c8-285187e20853",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXzMngXCDu2MKWEP6L",
+  "type": "assistant",
+  "uuid": "02463e9c-b76b-4168-b4e8-9176443c5209",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwXZHL4KcbSsBEvimnPaNm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3505,
+      "cache_read_input_tokens": 38456,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 38456,
+          "cache_creation_input_tokens": 3505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-26T02:53:03.304Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01KxTGGxbgiBTyNysZRNbBtP`</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02463e9c-b76b-4168-b4e8-9176443c5209",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXzMngXCDu2MKWEP6L",
+  "type": "assistant",
+  "uuid": "3de92b8b-29a7-475a-aab7-8a0634844226",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwXZHL4KcbSsBEvimnPaNm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3505,
+      "cache_read_input_tokens": 38456,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 38456,
+          "cache_creation_input_tokens": 3505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-26T02:53:03.308Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01DovB6zXMsJcNr6y5CJg9ZR`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3de92b8b-29a7-475a-aab7-8a0634844226",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXzMngXCDu2MKWEP6L",
+  "type": "assistant",
+  "uuid": "94d615b6-8c3e-4b2a-9e6c-340c68b88159",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwXZHL4KcbSsBEvimnPaNm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3505,
+      "cache_read_input_tokens": 38456,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 38456,
+          "cache_creation_input_tokens": 3505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-26T02:53:03.806Z_
+
+<details><summary>↩ Tool result · `toolu_01KxTGGxbgiBTyNysZRNbBtP`</summary>
+
+```text
+Error: result (91,600 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews--claude-sessions-agent-dfba9a77/ed38ef51-64c1-4635-9d63-e671c4458479/tool-results/mcp-agent-ml-research-read_registry-1779763983787.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews--claude-sessions-agent-dfba9a77/ed38ef51-64c1-4635-9d63-e671c4458479/tool-results/mcp-agent-ml-research-read_registry-1779763983787.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3de92b8b-29a7-475a-aab7-8a0634844226",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "d2289d9d-8633-45ce-8260-fa570ed9e1f5",
+  "toolUseResult": "Error: result (91,600 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews--claude-sessions-agent-dfba9a77/ed38ef51-64c1-4635-9d63-e671c4458479/tool-results/mcp-agent-ml-research-read_registry-1779763983787.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews--claude-sessions-agent-dfba9a77/ed38ef51-64c1-4635-9d63-e671c4458479/tool-results/mcp-agent-ml-research-read_registry-1779763983787.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_026\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:26:18.966Z\", \"updated_at\": \"2026-05-26T02:52:45.439Z\", \"hypothesis\": \"GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 43 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Second seed provides cross-seed validation for the cross-architecture claim, enabling mean±sd statistics for GPT-2-medium. Combined with exp_020 and exp_027 (seed44), this gives 3-seed coverage matching Pythia-410M rigor.\", \"parent\": \"exp_020\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-25T23:46:55.097Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 43 --gpu 0\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 43 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"17687\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_026.log\", \"submitted_at\": \"2026-05-25T23:46:56.934Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 11148.5, \"gpu_hours\": 3.1}, \"pid\": \"17687\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_026.log\", \"failure_reason\": \"SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T02:52:45.439Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-26T02:52:47.233326+00:00\"}]}}, \"exp_027\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T22:50:18.955Z\", \"updated_at\": \"2026-05-26T02:52:31.118Z\", \"hypothesis\": \"GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 44 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Third seed completes 3-seed cross-architecture validation, enabling mean±sd statistics matching Pythia-410M rigor. Combined with exp_020 (seed42) and exp_026 (seed43).\", \"parent\": \"exp_020\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-25T23:12:10.052Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 44 --gpu 0\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 44 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:0\"], \"pid\": \"11862\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_027.log\", \"submitted_at\": \"2026-05-25T23:12:12.066Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 13219.1, \"gpu_hours\": 3.67}, \"pid\": \"11862\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_027.log\", \"failure_reason\": \"SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-26T02:52:31.118Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-26T02:52:33.176177+00:00\"}]}}, \"exp_025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T19:30:13.589Z\", \"updated_at\": \"2026-05-25T19:33:07.083Z\", \"hypothesis\": \"r=0.27 probes the r_crit phase boundary at finer granularity, directly addressing R1-W1 (r_crit coarseness) and R2-W7. Current bound: r_crit ∈ (0.25, 0.3]. If r=0.27 shows Type III (monotonic SLV expansion) → r_crit ∈ (0.25, 0.27]; if Type II (transient dip + recovery) → r_crit ∈ (0.27, 0.3]. Narrows the bound by ~50%.\", \"parent\": \"exp_008\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-25T19:31:20.421Z\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-25T19:33:07.083Z\"}, \"exp_024\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T19:30:11.220Z\", \"updated_at\": \"2026-05-25T19:33:06.582Z\", \"hypothesis\": \"Third seed (seed44) for r=0.5 fixed_mix to complete 3-seed coverage, directly addressing R1-N2 camera-ready commitment. With exp_015 (seed42) and exp_018 (seed43) both showing Type III trajectory at r=0.5, seed44 tests reproducibility. If consistent Type III → confirms r=0.5 is firmly above r_crit with 3-seed statistical backing.\", \"parent\": \"exp_018\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 44 --generations 10 --real_ratio 0.5 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:0\"], \"pid\": \"986896\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_024.log\", \"submitted_at\": \"2026-05-25T19:32:26.679Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 39.9, \"gpu_hours\": 0.01}, \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"986896\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_024.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 44 --generations 10 --real_ratio 0.5 --gpu 0\\\"\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-25T19:33:06.583Z\"}, \"exp_022c\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:40:04.822Z\", \"updated_at\": \"2026-05-24T17:27:40.688Z\", \"hypothesis\": \"GPT-2-medium (355M) under r=0.3 mixing exhibits Type III trajectory (monotonic SLV expansion, no collapse), verifying that the critical mixing ratio r_crit ∈ (0.25, 0.3] phase boundary holds cross-architecture. If confirmed, this demonstrates r_crit is an architecture-independent structural property of the recursive training loop, not a Pythia-specific artifact.\", \"parent\": \"exp_020\", \"spec\": {\"command\": \"bash -c \\\"cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.3 --generations 3 --seed 42 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"868280\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_022c.log\", \"submitted_at\": \"2026-05-24T07:40:12.780Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"OpenWebText (cached)\", \"data_count\": 50000, \"model_name\": \"gpt2-medium\", \"seed\": 42, \"gpu_model\": \"NVIDIA RTX PRO 6000\", \"checkpoint_source\": \"gpt2-medium pretrained (HuggingFace)\", \"eval_data\": \"OpenWebText held-out 1000 samples (embedded for SLV computation)\", \"hyperparams\": {\"lr\": 5e-05, \"batch_size\": 8, \"grad_accum\": 4, \"real_ratio\": 0.3, \"generations\": 3}, \"wall_clock_seconds\": 35247.9, \"gpu_hours\": 9.79}, \"metrics\": {\"gen0_slv\": 689.44, \"gen0_reff\": 23.09, \"gen0_ppl\": 15.45, \"gen1_slv\": 741.21, \"gen1_reff\": 136.08, \"gen1_ppl\": 12.02, \"gen2_slv\": 732.44, \"gen2_reff\": 138.63, \"gen3_slv\": 736.79, \"gen3_reff\": 143.45, \"slv_dip_gen1_to_gen2\": -8.77, \"slv_dip_pct\": -1.18, \"slv_recovery_gen2_to_gen3\": 4.35, \"trajectory_type\": \"consistent_with_III\"}, \"notes\": \"GPT-2-medium r=0.3 3-gen pilot 完成。SLV trajectory: 689.44→741.21(+7.5%)→732.44(dip -1.18%)→736.79(recovery)。与 exp_023 (r=0.25) 类似，raw SLV 在 Gen 2 有 transient dip 但 EMA-smoothed SLV 单调递增。3 代窗口不足以区分 Type II/III，论文使用保守措辞 \\\"consistent with the Pythia phase boundary\\\"。跨架构验证矩阵 4/4 条件完成。\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/spectral_collapse_ews/checkpoints/gpt2m_fixed_mix_r03_seed42/\", \"completed_at\": \"2026-05-24T17:27:40.688Z\"}, \"exp_023\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:47:34.066Z\", \"updated_at\": \"2026-05-24T17:24:52.214Z\", \"hypothesis\": \"GPT-2-medium (355M) under r=0.25 mixing exhibits Type II trajectory (transient EMA dip at Gen 1-2 followed by monotonic SLV recovery), verifying that the critical mixing ratio r_crit phase boundary holds cross-architecture. Combined with exp_020 (Type I at r=0) and exp_022c (Type III at r=0.3), this completes the GPT-2-medium phase diagram and confirms r_crit ∈ (0.25, 0.3] is architecture-independent.\", \"parent\": \"exp_020\", \"notes\": \"GPT-2-medium r=0.25 3-gen pilot 完成。Type II trajectory 确认：SLV Gen 1→2 下降 1.85% (748.06→734.21, dip=-13.85)，Gen 2→3 恢复 +0.50% (734.21→737.91)。与 Pythia-410M r=0.25 定性一致，支持 r_crit ∈ (0.25, 0.3] 架构无关。GPT-2-medium 初始谱极度集中 (eff_rank=23 vs Pythia=417)，decompression transient 更剧烈。产出: artifacts/exp_023/analysis_report.md\", \"spec\": {\"command\": \"bash -c \\\"cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.25 --generations 3 --seed 42 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:0\"], \"pid\": \"881061\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_023.log\", \"submitted_at\": \"2026-05-24T11:11:36.408Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 22395.8, \"gpu_hours\": 6.22}, \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"881061\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_023.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.25 --generations 3 --seed 42 --gpu 0\\\"\", \"finished_at\": \"2026-05-24T17:18:49.676Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T17:18:52.025889+00:00\"}]}, \"metrics\": {\"gen0_slv\": 689.44, \"gen0_reff\": 23.09, \"gen0_ppl\": 15.45, \"gen1_slv\": 748.06, \"gen1_reff\": 142.37, \"gen1_ppl\": 12.09, \"gen2_slv\": 734.21, \"gen2_reff\": 143.51, \"gen2_ppl\": 12.05, \"gen3_slv\": 737.91, \"gen3_reff\": 149.42, \"gen3_ppl\": 12.07, \"slv_dip_gen1_to_gen2\": -13.85, \"slv_dip_pct\": -1.85, \"slv_recovery_gen2_to_gen3\": 3.7, \"trajectory_type\": \"II\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/spectral_collapse_ews/checkpoints/gpt2m_fixed_mix_r025_seed42/\", \"completed_at\": \"2026-05-24T17:24:52.214Z\"}, \"exp_020\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T04:34:54.378Z\", \"updated_at\": \"2026-05-24T11:10:40.900Z\", \"hypothesis\": \"GPT-2-medium (355M, 24 layers) under pure-synthetic recursive training (r=0) exhibits the same three-phase spectral trajectory (decompression→onset→acceleration) as Pythia-410M, confirming that spectral collapse is architecture-independent. Cross-architecture replication addresses R2-C2 (single-architecture generalization) and strengthens C1.\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-23T05:30:06.654Z\", \"finished_at\": \"2026-05-24T10:58:33.491Z\", \"training_hours\": 29.47}, \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/spectral_collapse_ews/scripts/launch_gpt2medium_r0_seed42.sh 0\", \"server\": \"rtx6000-diagprobe\", \"gpu_id\": 0, \"model_name\": \"gpt2-medium\", \"seed\": 42, \"data_path\": \"OpenWebText 50K\", \"data_count\": 50000, \"tmux_session\": \"exp_020\", \"log_path\": \"/root/spectral_collapse_ews/logs/exp_020.log\"}, \"notes\": \"GPT-2-medium r=0 cross-architecture validation. Gen 0-9 complete (process still running, likely final eval). Three-phase collapse CONFIRMED: SLV peak 924.4 at Gen 2 (same as Pythia), monotonic decline to 415.1 at Gen 9 (-55.1% from peak). PPL 15.45→328.75 (exponential). D-4 0.913→0.420. Collapse significantly more severe than Pythia-410M (SLV -55.1% vs -11.6% at comparable gen), likely due to lower initial SLV baseline (689 vs 2367). Phase boundaries identical: decompression Gen 0-2, onset Gen 2-3, acceleration Gen 3+.\", \"metrics\": {\"gen0_slv\": 689.44, \"gen0_reff\": 23.09, \"gen0_ppl\": 15.45, \"gen0_d4\": 0.913, \"gen0_sigma1\": 6598.1, \"gen1_slv\": 885.3, \"gen1_reff\": 155.22, \"gen1_ppl\": 16.42, \"gen1_d4\": 0.891, \"gen1_sigma1\": 1463.5, \"gen2_slv\": 924.39, \"gen2_reff\": 185.37, \"gen2_ppl\": 18.94, \"gen2_d4\": 0.868, \"gen2_sigma1\": 1190.7, \"gen3_slv\": 889.7, \"gen3_reff\": 184.86, \"gen3_ppl\": 23.33, \"gen3_d4\": 0.837, \"gen3_sigma1\": 1172.3, \"gen4_slv\": 817.55, \"gen4_reff\": 169.56, \"gen4_ppl\": 32.11, \"gen4_d4\": 0.764, \"gen4_sigma1\": 1224, \"gen5_slv\": 732.12, \"gen5_reff\": 151.94, \"gen5_ppl\": 49.35, \"gen5_d4\": 0.658, \"gen5_sigma1\": 1317.5, \"gen6_slv\": 658.12, \"gen6_reff\": 136.09, \"gen6_ppl\": 76.81, \"gen6_d4\": 0.559, \"gen6_sigma1\": 1449.3, \"gen7_slv\": 576.61, \"gen7_reff\": 121.29, \"gen7_ppl\": 123.66, \"gen7_d4\": 0.501, \"gen7_sigma1\": 1548.4, \"gen8_slv\": 500.89, \"gen8_reff\": 110.92, \"gen8_ppl\": 198.01, \"gen8_d4\": 0.46, \"gen8_sigma1\": 1592.7, \"gen9_slv\": 415.11, \"gen9_reff\": 102.96, \"gen9_ppl\": 328.75, \"gen9_d4\": 0.42, \"gen9_sigma1\": 1570.7, \"slv_peak_gen\": 2, \"slv_peak\": 924.39, \"slv_decline_from_peak_pct\": -55.1, \"status\": \"Gen 0-9 complete, process still running (final eval)\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T10:58:34.200Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-24T10:58:35.950926+00:00\"}]}}, \"exp_022b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:37:51.076Z\", \"updated_at\": \"2026-05-24T11:10:21.028Z\", \"hypothesis\": \"GPT-2-medium (355M) under r=0.3 mixing exhibits Type III trajectory (monotonic SLV expansion, no collapse), verifying that the critical mixing ratio r_crit ∈ (0.25, 0.3] phase boundary holds cross-architecture. If confirmed, this demonstrates r_crit is an architecture-independent structural property of the recursive training loop, not a Pythia-specific artifact.\", \"parent\": \"exp_020\", \"spec\": {\"command\": \"bash -c \\\"cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.3 --generations 3 --seed 42 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_022b.log\", \"submitted_at\": \"2026-05-24T07:38:01.013Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"OpenWebText (cached)\", \"data_count\": 50000, \"model_name\": \"gpt2-medium\", \"seed\": 42, \"gpu_model\": \"NVIDIA RTX PRO 6000\", \"checkpoint_source\": \"gpt2-medium pretrained (HuggingFace)\", \"eval_data\": \"OpenWebText held-out 1000 samples (embedded for SLV computation)\", \"hyperparams\": {\"lr\": 5e-05, \"batch_size\": 8, \"grad_accum\": 4, \"real_ratio\": 0.3, \"generations\": 3}, \"wall_clock_seconds\": 12740.0, \"gpu_hours\": 3.54}, \"conclusion\": \"failed\", \"notes\": \"启动失败: 缺少 conda 激活且无绝对路径, bash -c 中直接调用 python 导致 command not found (EXIT_CODE=127)。\", \"completed_at\": \"2026-05-24T11:10:21.028Z\"}, \"exp_022\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T07:30:59.865Z\", \"updated_at\": \"2026-05-24T11:10:20.571Z\", \"hypothesis\": \"GPT-2-medium (355M) under r=0.3 mixing exhibits Type III trajectory (monotonic SLV expansion, no collapse), verifying that the critical mixing ratio r_crit ∈ (0.25, 0.3] phase boundary holds cross-architecture. If confirmed, this demonstrates r_crit is an architecture-independent structural property of the recursive training loop, not a Pythia-specific artifact.\", \"parent\": \"exp_020\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral-collapse-ews && HF_HUB_OFFLINE=1 python run_gpt2m_phase1.py --condition fixed_mix --real_ratio 0.3 --generations 3 --seed 42 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_022.log\", \"submitted_at\": \"2026-05-24T07:31:16.051Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"OpenWebText (cached)\", \"data_count\": 50000, \"model_name\": \"gpt2-medium\", \"seed\": 42, \"gpu_model\": \"NVIDIA RTX PRO 6000\", \"checkpoint_source\": \"gpt2-medium pretrained (HuggingFace)\", \"eval_data\": \"OpenWebText held-out 1000 samples (embedded for SLV computation)\", \"hyperparams\": {\"lr\": 5e-05, \"batch_size\": 8, \"grad_accum\": 4, \"real_ratio\": 0.3, \"generations\": 3}, \"wall_clock_seconds\": 12556.8, \"gpu_hours\": 3.49}, \"conclusion\": \"failed\", \"notes\": \"启动失败: 路径错误 (连字符→下划线), /root/spectral-collapse-ews 应为 /root/spectral_collapse_ews。进程未实际启动。\", \"completed_at\": \"2026-05-24T11:00:32.823Z\"}, \"exp_021\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T22:13:13.291Z\", \"updated_at\": \"2026-05-24T06:32:57.357Z\", \"hypothesis\": \"Real-data fine-tuning control for cross-architecture claim: GPT-2-medium fine-tuned on pure real OpenWebText (r=1.0) will exhibit Phase I decompression (r_eff increase) but NOT Phase II/III reversal and acceleration, demonstrating that the three-phase spectral collapse trajectory is specific to synthetic recursive training rather than a generic fine-tuning artifact.\", \"parent\": \"exp_020\", \"spec\": {\"command\": \"bash -c 'export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 && python run_gpt2m_realdata_control.py --seed 42 --gpu 0'\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"846794\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_021.log\", \"submitted_at\": \"2026-05-24T02:45:53.443Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/spectral_collapse_ews/data/openwebtext_50k.jsonl\", \"data_count\": 50000, \"model_name\": \"gpt2-medium\", \"seed\": 42, \"checkpoint_source\": \"huggingface:gpt2-medium (pretrained, same as exp_020)\", \"eval_data\": \"/root/spectral_collapse_ews/data/openwebtext_eval_5k.jsonl\", \"wall_clock_seconds\": 12249.3, \"gpu_hours\": 3.4}, \"notes\": \"Real-data fine-tuning control confirms hypothesis: GPT-2-medium under pure real data (r=1.0) shows Phase I decompression (SLV +17.9%, PPL −27.4%) but NO Phase II/III reversal. PPL decreases (15.45→11.21) while exp_020 synthetic PPL increases (15.45→23.33). Demonstrates three-phase collapse is synthetic-specific, not a generic fine-tuning artifact. Restarted from gen_1 checkpoint after disk full crash. Metrics at artifacts/exp_021/full_metrics.json\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T06:10:02.770Z\", \"metrics\": {\"gen0_reff\": 23.09, \"gen3_reff\": 134.49, \"gen0_ppl\": 15.45, \"gen3_ppl\": 11.21, \"gen0_d4\": 0.913, \"gen3_d4\": 0.86, \"ppl_change\": \"-27.4%\", \"reff_change\": \"+482%\"}}, \"exp_019\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T04:05:17.129Z\", \"updated_at\": \"2026-05-24T02:47:06.797Z\", \"hypothesis\": \"r=0.2 with seed 44 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42) and exp_017 (seed43). Third seed enables 3-seed coverage for r=0.2, resolving whether D-4 V-shaped recovery (seed42) is a 1/3 outlier or a majority pattern. Strengthens C3 signal attenuation claim and R1-N2 seed replication.\", \"parent\": \"exp_017\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-23T04:08:20.155Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEED=44/g; s/--seed 43/--seed 44/g' /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh 0\\\"\", \"finished_at\": \"2026-05-24T02:22:56.735Z\", \"training_hours\": 22.24}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cp /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && sed -i 's/seed=43/seed=44/g; s/seed43/seed44/g; s/SEED=43/SEED=44/g; s/--seed 43/--seed 44/g' /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed44.sh 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"757587\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_019.log\", \"submitted_at\": \"2026-05-23T04:08:21.748Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 44, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.2, \"wall_clock_seconds\": 81525.0, \"gpu_hours\": 22.65}, \"pid\": \"757587\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_019.log\", \"notes\": \"r=0.2 seed44, 与 exp_017 (seed43) 相同配置。launch script 从 seed43 脚本 sed 生成。\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-24T02:22:58.624145+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen10_slv\": 2467.2, \"gen10_reff\": 508.1, \"gen10_ppl\": 13.54, \"gen10_d4\": 0.324, \"trajectory_type\": \"II\", \"seeds_completed\": \"42,43,44\"}, \"checkpoint_path\": \"/root/spectral_collapse_ews/checkpoints/exp_019/\", \"completed_at\": \"2026-05-24T02:47:06.797Z\"}, \"exp_018\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:25:24.714Z\", \"updated_at\": \"2026-05-23T09:53:42.721Z\", \"hypothesis\": \"r=0.5 with seed 43 reproduces Type III trajectory (monotonic expansion) observed in the r=0.5 seed42 run. Second seed validates that 50% real mixing reliably prevents spectral collapse, strengthening the stable regime classification and providing 2-seed coverage for Table 3.\", \"parent\": \"exp_004\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.5 --gpu 0\\\"\", \"server\": \"gpu-6000pro-1\", \"gpu\": [\"cuda:0\"], \"pid\": \"716256\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_018.log\", \"submitted_at\": \"2026-05-22T18:38:04.995Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 43, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (25K real + 25K synthetic per gen)\", \"real_ratio\": 0.5, \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 54937.7, \"gpu_hours\": 15.26}, \"reproduce\": {\"finished_at\": \"2026-05-23T09:35:39.019Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T09:35:40.873951+00:00\"}]}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55, \"gen0_distinct4\": 0.7415, \"gen1_eff_rank\": 475.91, \"gen1_log_det\": 2361.66, \"gen1_ppl\": 10.08, \"gen1_distinct4\": 0.6705, \"gen2_eff_rank\": 488.01, \"gen2_log_det\": 2393.57, \"gen2_ppl\": 10.41, \"gen2_distinct4\": 0.5708, \"gen3_eff_rank\": 493.94, \"gen3_log_det\": 2419.34, \"gen3_ppl\": 10.73, \"gen3_distinct4\": 0.5438, \"gen4_eff_rank\": 503.05, \"gen4_log_det\": 2454.9, \"gen4_ppl\": 11.12, \"gen4_distinct4\": 0.4632, \"gen5_eff_rank\": 510.11, \"gen5_log_det\": 2479.81, \"gen5_ppl\": 11.6, \"gen5_distinct4\": 0.4189, \"gen6_eff_rank\": 519.21, \"gen6_log_det\": 2507.73, \"gen6_ppl\": 12.12, \"gen6_distinct4\": 0.411, \"gen7_eff_rank\": 526.83, \"gen7_log_det\": 2528.07, \"gen7_ppl\": 12.69, \"gen7_distinct4\": 0.3614, \"gen8_eff_rank\": 536.98, \"gen8_log_det\": 2548.02, \"gen8_ppl\": 13.46, \"gen8_distinct4\": 0.2987, \"gen9_eff_rank\": 545.35, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.21, \"gen9_distinct4\": 0.2309, \"gen10_eff_rank\": 552.4, \"gen10_log_det\": 2570.09, \"gen10_ppl\": 15.03, \"gen10_distinct4\": 0.2088}, \"conclusion\": \"success\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_018.log\", \"checkpoint_path\": \"/root/spectral_collapse_ews/checkpoints/\", \"completed_at\": \"2026-05-23T09:53:42.721Z\"}, \"exp_017\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:25:24.156Z\", \"updated_at\": \"2026-05-23T04:03:22.317Z\", \"hypothesis\": \"r=0.2 with seed 43 reproduces Type II trajectory (transient dip + recovery) observed in exp_007 (seed42). Second seed validates that 20% real mixing is insufficient to prevent transient SLV violation, strengthening the r_crit lower bound evidence.\", \"parent\": \"exp_007\", \"spec\": {\"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 43, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.2, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed43/\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/spectral_collapse_ews/scripts/launch_fixed_mix_r020_seed43.sh 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"648360\", \"tmux_session\": \"exp_017\", \"account\": \"root\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed43/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_017.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-23T03:58:53.985Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-23T03:58:55.293400+00:00\"}]}, \"metrics\": {\"per_gen\": {\"gen0\": {\"slv\": 2366.68, \"eff_rank\": 417.55, \"ppl\": 9.55, \"d4\": 0.7415}, \"gen1\": {\"slv\": 2365.31, \"eff_rank\": 475.29, \"ppl\": 10.28, \"d4\": 0.6842, \"train_loss\": 1.768}, \"gen2\": {\"slv\": 2358.84, \"eff_rank\": 480.44, \"ppl\": 10.74, \"d4\": 0.4988, \"train_loss\": 1.722}, \"gen3\": {\"slv\": 2365.74, \"eff_rank\": 487, \"ppl\": 11.15, \"d4\": 0.478, \"train_loss\": 1.425}, \"gen4\": {\"slv\": 2377.37, \"eff_rank\": 489.33, \"ppl\": 11.49, \"d4\": 0.4445, \"train_loss\": 1.367}, \"gen5\": {\"slv\": 2395.98, \"eff_rank\": 492.09, \"ppl\": 11.83, \"d4\": 0.4435, \"train_loss\": 1.273}, \"gen6\": {\"slv\": 2411.37, \"eff_rank\": 495.85, \"ppl\": 12.15, \"d4\": 0.442, \"train_loss\": 1.222}, \"gen7\": {\"slv\": 2426.3, \"eff_rank\": 498.05, \"ppl\": 12.48, \"d4\": 0.3433, \"train_loss\": 1.191}, \"gen8\": {\"slv\": 2436.78, \"eff_rank\": 500.8, \"ppl\": 12.76, \"d4\": 0.3106, \"train_loss\": 1.015}, \"gen9\": {\"slv\": 2453.63, \"eff_rank\": 504.08, \"ppl\": 13.08, \"d4\": 0.306, \"train_loss\": 0.955}, \"gen10\": {\"slv\": 2455.78, \"eff_rank\": 505.98, \"ppl\": 13.4, \"d4\": 0.2453, \"train_loss\": 0.938}}, \"slv_trajectory\": \"Type II: dip at Gen2 (2358.84, Δ=-7.84) then monotonic recovery to 2455.78\", \"slv_dip_gen2\": -7.84, \"cross_seed_slv_dip_mean\": -8.11, \"cross_seed_slv_dip_std\": 0.27, \"ppl_change\": \"+40.3% (9.55→13.40)\", \"d4_change\": \"-66.9% (0.74→0.25)\", \"eff_rank_change\": \"+21.2% (417.55→505.98)\"}, \"conclusion\": \"success\", \"notes\": \"r=0.2 seed43 Type II 复现确认（10gen）。SLV dip at Gen2 (2358.84, Δ=-7.84), recovery from Gen3, monotonic rise thereafter to 2455.78。Cross-seed (seed42 vs seed43) SLV dip 高度一致: Δ=-8.11±0.27。Gen0-5 所有谱指标 cross-seed std 极小 (SLV std<1.6, eff_rank std<0.7, PPL std<0.02)。Gen6-10 SLV 持续上升但 seed 间开始分化 (Gen10 std=12.0)。D-4 跨 seed 分化最大: seed42 在 Gen5 后恢复 (0.44→0.52), seed43 持续下降 (0.44→0.25)。train_loss 也分化: seed42 稳定在 1.3-1.4, seed43 降至 0.94（更强过拟合）。结论: 20% real data 稳定谱结构但不阻止质量退化。\", \"completed_at\": \"2026-05-23T04:02:35.032Z\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed43/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_017.log\"}, \"exp_016\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T09:29:07.345Z\", \"updated_at\": \"2026-05-22T18:34:52.025Z\", \"hypothesis\": \"r=0.3 with seed 44 reproduces Type III trajectory (monotonic expansion), providing 3rd seed for r_crit upper bound. Combined with exp_008 (seed42) and exp_012 (seed43), this completes 3-seed coverage at the boundary condition.\", \"parent\": \"exp_008\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-21T09:31:05.980Z\", \"finished_at\": \"2026-05-22T18:29:44.338Z\", \"training_hours\": 32.98}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 44 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\\\"\", \"server\": \"gpu-6000pro-1\", \"gpu\": [\"cuda:0\"], \"pid\": \"614614\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_016.log\", \"submitted_at\": \"2026-05-21T23:16:08.255Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 44, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)\", \"real_ratio\": 0.3, \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 69523.8, \"gpu_hours\": 19.31}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T18:29:46.035273+00:00\"}]}, \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.554, \"distinct4\": 0.7305, \"sigma1\": 1942.82}, \"gen1\": {\"eff_rank\": 476.91, \"log_det\": 2365.49, \"ppl\": 10.185, \"distinct4\": 0.6714, \"sigma1\": 956.44, \"train_loss\": 1.836}, \"gen2\": {\"eff_rank\": 484.43, \"log_det\": 2371.06, \"ppl\": 10.572, \"distinct4\": 0.5271, \"sigma1\": 860.81, \"train_loss\": 1.748}, \"gen3\": {\"eff_rank\": 490.15, \"log_det\": 2389.22, \"ppl\": 10.913, \"distinct4\": 0.4937, \"sigma1\": 822.21, \"train_loss\": 1.52}, \"gen4\": {\"eff_rank\": 494.35, \"log_det\": 2414.51, \"ppl\": 11.244, \"distinct4\": 0.472, \"sigma1\": 794.63, \"train_loss\": 1.425}, \"gen5\": {\"eff_rank\": 496.99, \"log_det\": 2425.2, \"ppl\": 11.53, \"distinct4\": 0.4405, \"sigma1\": 779.31, \"train_loss\": 1.391}, \"gen6\": {\"eff_rank\": 502.01, \"log_det\": 2451.59, \"ppl\": 11.873, \"distinct4\": 0.4297, \"sigma1\": 757.36, \"train_loss\": 1.329}, \"gen7\": {\"eff_rank\": 506.72, \"log_det\": 2465.51, \"ppl\": 12.219, \"distinct4\": 0.4402, \"sigma1\": 747.76, \"train_loss\": 1.29}, \"gen8\": {\"eff_rank\": 511.33, \"log_det\": 2479.89, \"ppl\": 12.582, \"distinct4\": 0.4286, \"sigma1\": 729.67, \"train_loss\": 1.265}, \"gen9\": {\"eff_rank\": 517.18, \"log_det\": 2499.64, \"ppl\": 12.979, \"distinct4\": 0.4268, \"sigma1\": 712.85, \"train_loss\": 1.226}, \"gen10\": {\"eff_rank\": 520.89, \"log_det\": 2505.25, \"ppl\": 13.349, \"distinct4\": 0.4197, \"sigma1\": 695.97, \"train_loss\": 1.185}}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed44/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_016.log\", \"conclusion\": \"success\", \"notes\": \"r=0.3 seed44 Type III 复现确认。SLV 2366.68→2505.25 (+5.86%)，与 seed42 (+6.10%) / seed43 (+5.98%) 高度一致。3-seed Gen10: SLV=2508.24±2.94, eff_rank=521.11±0.20, ppl=13.344±0.036。distinct4 跨 seed 方差大 (seed42:.342, seed43:.122, seed44:.420, std=.155)，但谱指标 CV<0.3%。r=0.3 三 seed 验证完成，确认 r_crit 上界。\", \"completed_at\": \"2026-05-22T18:34:52.025Z\"}, \"exp_015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T09:29:06.944Z\", \"updated_at\": \"2026-05-22T06:38:13.220Z\", \"hypothesis\": \"r=0.25 with seed 44 reproduces Type II trajectory (transient dip + recovery), providing 3rd seed for r_crit boundary validation. Combined with exp_009 (seed42) and exp_014 (seed43), this completes 3-seed coverage at the critical mixing ratio.\", \"parent\": \"exp_009\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-21T09:31:05.177Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && bash scripts/launch_fixed_mix_r025_seed44.sh 0\\\"\", \"finished_at\": \"2026-05-22T06:15:01.685Z\", \"training_hours\": 20.73}, \"spec\": {\"command\": \"bash scripts/launch_fixed_mix_r025_seed44.sh 0\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 44, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (12.5K real + 37.5K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.25, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_015.log\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/\"}, \"pid\": \"516824\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_015.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T06:15:03.568198+00:00\"}]}, \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.554, \"distinct4\": 0.7305, \"sigma1\": 1942.82}, \"gen1\": {\"eff_rank\": 475.92, \"log_det\": 2366.13, \"ppl\": 10.221, \"distinct4\": 0.6379, \"sigma1\": 962.97, \"train_loss\": 1.8}, \"gen2\": {\"eff_rank\": 484.39, \"log_det\": 2364.59, \"ppl\": 10.641, \"distinct4\": 0.5156, \"sigma1\": 853.62, \"train_loss\": 1.689}, \"gen3\": {\"eff_rank\": 488.62, \"log_det\": 2378.05, \"ppl\": 11.002, \"distinct4\": 0.4518, \"sigma1\": 803.67, \"train_loss\": 1.473}, \"gen4\": {\"eff_rank\": 493.01, \"log_det\": 2402.71, \"ppl\": 11.333, \"distinct4\": 0.4156, \"sigma1\": 770.46, \"train_loss\": 1.388}, \"gen5\": {\"eff_rank\": 494.32, \"log_det\": 2415.91, \"ppl\": 11.641, \"distinct4\": 0.4008, \"sigma1\": 753.5, \"train_loss\": 1.319}, \"gen6\": {\"eff_rank\": 498.74, \"log_det\": 2437.92, \"ppl\": 11.973, \"distinct4\": 0.3994, \"sigma1\": 738.96, \"train_loss\": 1.294}, \"gen7\": {\"eff_rank\": 502.71, \"log_det\": 2456.77, \"ppl\": 12.3, \"distinct4\": 0.3865, \"sigma1\": 728.24, \"train_loss\": 1.265}, \"gen8\": {\"eff_rank\": 504.2, \"log_det\": 2463.28, \"ppl\": 12.614, \"distinct4\": 0.3703, \"sigma1\": 731.77, \"train_loss\": 1.239}, \"gen9\": {\"eff_rank\": 510.29, \"log_det\": 2482.46, \"ppl\": 13.005, \"distinct4\": 0.3621, \"sigma1\": 698.85, \"train_loss\": 1.212}, \"gen10\": {\"eff_rank\": 513.44, \"log_det\": 2490.74, \"ppl\": 13.33, \"distinct4\": 0.3315, \"sigma1\": 690.91, \"train_loss\": 1.172}}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed44/\", \"conclusion\": \"success\", \"notes\": \"Type II trajectory reproduced (seed44). SLV dip at Gen2 (−2.09), recovery by Gen3, monotonic thereafter. Gen10: SLV=2490.74, ppl=13.33, eff_rank=513.44, d4=0.3315. 3-seed r=0.25 summary: Gen10 SLV=2488.11±2.89, ppl=13.409±0.18, eff_rank=513.82±1.59, d4=0.3422±0.013. Total SLV change +5.13% mean. All 3 seeds complete Gen0-10, enabling robust paper statistics.\", \"completed_at\": \"2026-05-22T06:21:43.591Z\"}, \"exp_012\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:03:46.429Z\", \"updated_at\": \"2026-05-22T00:54:00.853Z\", \"hypothesis\": \"r=0.3 seed43 reproduces the Type III trajectory (monotonic SLV rise, no collapse) observed in exp_008 (seed42), confirming r=0.3 is robustly above r_crit across random seeds. Combined with exp_010 (r=0 seed43), this completes cross-seed validation of the phase diagram at both extremes (collapse vs. no-collapse).\", \"parent\": \"exp_008\", \"spec\": {\"command\": \"bash /root/spectral_collapse_ews/scripts/launch_mixed_r0.3_seed43.sh 0\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:0\"], \"pid\": \"385711\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_012.log\", \"submitted_at\": \"2026-05-20T03:03:54.653Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 2: Fixed mix r=0.3 seed 43 (30% real + 70% synthetic), 10 generations. Cross-seed replication of exp_008.\", \"tmux_session\": \"exp_012\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 43, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.3, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed43/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed43_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed43/\", \"wall_clock_seconds\": 80863.6, \"gpu_hours\": 22.46}, \"reproduce\": {\"finished_at\": \"2026-05-20T22:18:45.707Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T22:18:47.245413+00:00\"}]}, \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.554, \"distinct4\": 0.7415}, \"gen1\": {\"eff_rank\": 476.75, \"log_det\": 2363.89, \"ppl\": 10.192, \"distinct4\": 0.6676, \"train_loss\": 1.837}, \"gen2\": {\"eff_rank\": 483.02, \"log_det\": 2363.64, \"ppl\": 10.578, \"distinct4\": 0.5348, \"train_loss\": 1.765}, \"gen3\": {\"eff_rank\": 489.31, \"log_det\": 2389.87, \"ppl\": 10.915, \"distinct4\": 0.5225, \"train_loss\": 1.544}, \"gen4\": {\"eff_rank\": 494.15, \"log_det\": 2408.14, \"ppl\": 11.246, \"distinct4\": 0.5097, \"train_loss\": 1.461}, \"gen5\": {\"eff_rank\": 498.8, \"log_det\": 2431.29, \"ppl\": 11.548, \"distinct4\": 0.5046, \"train_loss\": 1.441}, \"gen6\": {\"eff_rank\": 502, \"log_det\": 2445.24, \"ppl\": 11.876, \"distinct4\": 0.4527, \"train_loss\": 1.435}, \"gen7\": {\"eff_rank\": 505.9, \"log_det\": 2462.25, \"ppl\": 12.184, \"distinct4\": 0.3219, \"train_loss\": 1.328}, \"gen8\": {\"eff_rank\": 510.97, \"log_det\": 2474.35, \"ppl\": 12.567, \"distinct4\": 0.2315, \"train_loss\": 1.169}, \"gen9\": {\"eff_rank\": 516.45, \"log_det\": 2493.43, \"ppl\": 12.959, \"distinct4\": 0.1833, \"train_loss\": 1.087}, \"gen10\": {\"eff_rank\": 521.19, \"log_det\": 2508.33, \"ppl\": 13.306, \"distinct4\": 0.1217, \"train_loss\": 1.032}}, \"conclusion\": \"success\", \"notes\": \"r=0.3 seed43 完整 10gen 完成。Type III 复现确认：SLV 2366.68→2508.33 (+5.98%)，与 seed42 (+6.10%) 高度一致。Cross-seed mean SLV: 2509.7±2.0。Cross-seed mean trajectory 满足 non-decreasing condition for all α∈{0.3,0.5,0.7}。D-4 cross-seed 方差大 (seed42: .342, seed43: .122, std=.156)，但 SLV/eff_rank/PPL 高度一致。\", \"completed_at\": \"2026-05-21T01:31:38.290Z\"}, \"exp_014b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T11:48:17.417Z\", \"updated_at\": \"2026-05-21T23:22:23.968Z\", \"hypothesis\": \"Resume of exp_014 (r=0.25 seed43) from gen 6 after disk-full crash. gen 0-5 data preserved. Continues to gen 10 to complete Type II trajectory validation.\", \"parent\": \"exp_014\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.25 --gpu 0 --start_gen 6\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:0\"], \"pid\": \"577216\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_014b.log\", \"submitted_at\": \"2026-05-21T12:05:00.830Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 40643.1, \"gpu_hours\": 11.29}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.55, \"distinct4\": 0.7415}, \"gen1\": {\"eff_rank\": 475.66, \"log_det\": 2365.35, \"ppl\": 10.23, \"distinct4\": 0.6584}, \"gen2\": {\"eff_rank\": 483, \"log_det\": 2362.54, \"ppl\": 10.65, \"distinct4\": 0.5574}, \"gen10\": {\"eff_rank\": 515.56, \"log_det\": 2488.58, \"ppl\": 13.611, \"distinct4\": 0.338, \"sigma1\": 758.92}, \"type\": \"II\", \"slv_trajectory\": \"dip-then-recovery: 2366.68→2362.54(G2 dip)→2488.58(G10, +5.2%)\", \"cross_seed_consistency\": \"Gen10 SLV diff vs exp_009(seed42) only 3.6 points (0.14%)\"}, \"notes\": \"r=0.25 seed43 resume from gen6 (after exp_014 disk-full crash). Gen 0-10 complete, EXIT_CODE=0. Type II confirmed: SLV dip at Gen2 (2362.54) then recovery to 2488.58 (+5.2%). Cross-seed Gen10 SLV: exp_009(seed42)=2485.01, exp_014b(seed43)=2488.58, diff=3.6 (0.14%). Awaiting exp_015 (seed44) for 3-seed mean.\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed43/\", \"completed_at\": \"2026-05-21T23:22:23.968Z\"}, \"exp_014\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T21:09:41.836Z\", \"updated_at\": \"2026-05-21T11:47:47.249Z\", \"hypothesis\": \"r=0.25 seed43 reproduces Type II trajectory and EMA violation at Gen 2, confirming r_crit bound under cross-seed mean definition. Combined with exp_009 (seed42), this provides 2-seed validation of the transitional regime classification.\", \"parent\": \"exp_009\", \"spec\": {\"command\": \"bash scripts/launch_fixed_mix_r025_seed43.sh 0\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:0\"], \"pid\": \"474036\", \"log_path\": \"/root/spectral_collapse_ews/logs/exp_014.log\", \"submitted_at\": \"2026-05-20T22:24:50.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 43, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (12.5K real + 37.5K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.25, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed43/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r025_seed43_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed43/\", \"wall_clock_seconds\": 47728.2, \"gpu_hours\": 13.26}, \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.55, \"distinct4\": 0.7415}, \"gen1\": {\"eff_rank\": 475.66, \"log_det\": 2365.35, \"ppl\": 10.23, \"distinct4\": 0.6584, \"train_loss\": 1.802}, \"gen2\": {\"eff_rank\": 483, \"log_det\": 2362.54, \"ppl\": 10.65, \"distinct4\": 0.5574, \"train_loss\": 1.7222}}, \"conclusion\": \"failed\", \"notes\": \"磁盘满 (/root/autodl-tmp 100%) 导致 Gen 6 崩溃。gen 0-5 数据完整保留在 checkpoint_dir。需要清理磁盘后从 gen 5 checkpoint 恢复跑 gen 6-10。\", \"completed_at\": \"2026-05-21T11:40:18.496Z\"}, \"exp_013\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:51:49.117Z\", \"updated_at\": \"2026-05-21T10:41:14.856Z\", \"hypothesis\": \"Pure collapse (r=0, 100% synthetic) with seed 44 reproduces the three-phase spectral trajectory observed in exp_001 (seed 42) and exp_010 (seed 43). Third seed provides mean±std for Table 1 and strengthens C1 claim that spectral collapse is a deterministic structural phenomenon, not a seed-dependent artifact.\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition pure_collapse --seed 44 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 44, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K synthetic per gen (0% real)\", \"generations\": 10, \"condition\": \"pure_collapse\", \"real_ratio\": 0, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed44/\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl\", \"log_path\": \"/root/spectral_collapse_ews/logs/exp_013.log\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed44/\"}, \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.55, \"distinct4\": 0.7305}, \"gen1\": {\"eff_rank\": 490.77, \"log_det\": 2459.4, \"ppl\": 11.36, \"distinct4\": 0.6019, \"train_loss\": 1.6255}, \"gen2\": {\"eff_rank\": 495.83, \"log_det\": 2467.38, \"ppl\": 13.54, \"distinct4\": 0.4943, \"train_loss\": 1.2333}, \"gen3\": {\"eff_rank\": 493.45, \"log_det\": 2442.4, \"ppl\": 16.22, \"distinct4\": 0.4283, \"train_loss\": 1.0236}, \"gen4\": {\"eff_rank\": 488.35, \"log_det\": 2408.35, \"ppl\": 19.97, \"distinct4\": 0.3731, \"train_loss\": 0.9047}, \"gen5\": {\"eff_rank\": 480.04, \"log_det\": 2362.67, \"ppl\": 24.3, \"distinct4\": 0.3569, \"train_loss\": 0.8166}, \"gen6\": {\"eff_rank\": 472.3, \"log_det\": 2318.17, \"ppl\": 30.21, \"distinct4\": 0.3326, \"train_loss\": 0.7677}, \"gen7\": {\"eff_rank\": 463.93, \"log_det\": 2283.98, \"ppl\": 37.14, \"distinct4\": 0.2862, \"train_loss\": 0.7125}, \"gen8\": {\"eff_rank\": 454.56, \"log_det\": 2237.81, \"ppl\": 44.48, \"distinct4\": 0.1817, \"train_loss\": 0.6171}, \"gen9\": {\"eff_rank\": 444.33, \"log_det\": 2188.92, \"ppl\": 54.34, \"distinct4\": 0.1482, \"train_loss\": 0.3899}, \"gen10\": {\"eff_rank\": 432.91, \"log_det\": 2154.34, \"ppl\": 65.7, \"distinct4\": 0.1515, \"train_loss\": 0.3271}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T10:31:04.835Z\"}, \"exp_010\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:52:19.811Z\", \"updated_at\": \"2026-05-20T07:51:24.696Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition pure_collapse --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 283142, \"log_path\": \"~/runs/spectral_collapse_ews/exp_010.log\", \"submitted_at\": \"2026-05-19T05:52:19.743Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 2: Pure collapse seed 43 (100% synthetic, r=0.0), 10 generations. Multi-seed replication of exp_001.\", \"tmux_session\": \"exp_010\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 43, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K synthetic per gen (0% real)\", \"generations\": 10, \"condition\": \"pure_collapse\", \"real_ratio\": 0, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed43/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 93545.0, \"gpu_hours\": 25.98}, \"hypothesis\": \"Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run.\", \"parent\": \"exp_001\", \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.554, \"distinct4\": 0.7415}, \"gen1\": {\"eff_rank\": 490.83, \"log_det\": 2462.62, \"ppl\": 11.371, \"distinct4\": 0.5997, \"train_loss\": 1.6245}, \"gen2\": {\"eff_rank\": 496.24, \"log_det\": 2466.63, \"ppl\": 13.565, \"distinct4\": 0.5048, \"train_loss\": 1.2609}, \"gen3\": {\"eff_rank\": 494.04, \"log_det\": 2438.38, \"ppl\": 16.219, \"distinct4\": 0.4778, \"train_loss\": 1.1248}, \"gen4\": {\"eff_rank\": 489.23, \"log_det\": 2404.6, \"ppl\": 19.94, \"distinct4\": 0.4154, \"train_loss\": 1.0686}, \"gen5\": {\"eff_rank\": 480.07, \"log_det\": 2365.13, \"ppl\": 24.603, \"distinct4\": 0.4172, \"train_loss\": 0.934}, \"gen6\": {\"eff_rank\": 471.88, \"log_det\": 2325.01, \"ppl\": 30.064, \"distinct4\": 0.4082, \"train_loss\": 0.934}, \"gen7\": {\"eff_rank\": 464.18, \"log_det\": 2291.55, \"ppl\": 37.442, \"distinct4\": 0.3905, \"train_loss\": 0.9476}, \"gen8\": {\"eff_rank\": 456.18, \"log_det\": 2248.26, \"ppl\": 46.943, \"distinct4\": 0.388, \"train_loss\": 0.9027}, \"gen9\": {\"eff_rank\": 447.02, \"log_det\": 2234.8, \"ppl\": 58.003, \"distinct4\": 0.3749, \"train_loss\": 0.9073}, \"gen10\": {\"eff_rank\": 438.78, \"log_det\": 2210.77, \"ppl\": 70.5, \"distinct4\": 0.394, \"train_loss\": 0.9147}}, \"reproduce\": {\"finished_at\": \"2026-05-20T07:47:09.514Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:47:11.521367+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed43/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_010.log\", \"notes\": \"Three-phase collapse pattern fully replicated (seed 43 vs seed 42). Phase boundaries identical: peak Gen 2, onset Gen 3, sustained collapse Gen 2-10. SLV decline peak→Gen10: 11.07%±1.00%. Final SLV=2194.86±22.50, PPL=73.64±4.44, eff_rank=440.62±2.60. Cross-seed SLV difference <1.5% at all gens. Hypothesis confirmed — spectral collapse is reproducible across seeds. compare_seeds.py output saved to results/seed_comparison.json.\", \"completed_at\": \"2026-05-20T07:51:24.696Z\"}, \"exp_011\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:17:23.434Z\", \"updated_at\": \"2026-05-20T03:52:09.649Z\", \"hypothesis\": \"Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit.\", \"parent\": \"exp_007\", \"spec\": {\"command\": \"bash -c \\\"bash /root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 319889, \"log_path\": \"~/runs/spectral_collapse_ews/exp_011.log\", \"submitted_at\": \"2026-05-19T16:17:48.185Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Resume r=0.2 fixed mix seed 42 from Gen 5 to Gen 10\", \"tmux_session\": \"exp_011\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\", \"generations\": \"5→10 (resume)\", \"condition\": \"fixed_mix\", \"real_ratio\": 0.2, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json\", \"checkpoint_source\": \"exp_007 Gen 5 checkpoint\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 41661.5, \"gpu_hours\": 11.57}, \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.55, \"distinct4\": 0.741}, \"gen1\": {\"eff_rank\": 476.73, \"log_det\": 2367.46, \"ppl\": 10.28, \"distinct4\": 0.674, \"train_loss\": 1.765}, \"gen2\": {\"eff_rank\": 481.62, \"log_det\": 2358.31, \"ppl\": 10.74, \"distinct4\": 0.498, \"train_loss\": 1.671}, \"gen3\": {\"eff_rank\": 486.54, \"log_det\": 2362.52, \"ppl\": 11.14, \"distinct4\": 0.467, \"train_loss\": 1.421}, \"gen4\": {\"eff_rank\": 490.35, \"log_det\": 2379.19, \"ppl\": 11.51, \"distinct4\": 0.451, \"train_loss\": 1.326}, \"gen5\": {\"eff_rank\": 492.65, \"log_det\": 2398.93, \"ppl\": 11.83, \"distinct4\": 0.438, \"train_loss\": 1.305}, \"gen6\": {\"eff_rank\": 496.42, \"log_det\": 2429.83, \"ppl\": 12.19, \"distinct4\": 0.463, \"train_loss\": 1.264}, \"gen7\": {\"eff_rank\": 496.24, \"log_det\": 2436.35, \"ppl\": 12.54, \"distinct4\": 0.488, \"train_loss\": 1.327}, \"gen8\": {\"eff_rank\": 501.49, \"log_det\": 2454.3, \"ppl\": 12.96, \"distinct4\": 0.501, \"train_loss\": 1.339}, \"gen9\": {\"eff_rank\": 504.86, \"log_det\": 2463.14, \"ppl\": 13.39, \"distinct4\": 0.508, \"train_loss\": 1.394}, \"gen10\": {\"eff_rank\": 511.26, \"log_det\": 2479.7, \"ppl\": 13.83, \"distinct4\": 0.52, \"train_loss\": 1.392}, \"slv_total_change_pct\": 4.78, \"slv_monotonic_from_gen2\": true, \"controller_ratio_fixed\": 0.2, \"type_ii_supported\": true}, \"reproduce\": {\"finished_at\": \"2026-05-20T03:00:14.754Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:00:16.520914+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_011.log\", \"conclusion\": \"success\", \"notes\": \"r=0.2 固定混合完整 10gen 确认 Type II。SLV: 2367→2358(G2 dip)→2480(G10, +4.78%)，Gen2 后单调上升。PPL 9.55→13.83 (+45%)。distinct4 从 Gen5 低点 0.438 回升至 0.520（recovery 现象）。eff_rank 418→511 单调上升。r=0.2 firmly Type II，无 spectral collapse。可移除论文中 \\\"five generations\\\" hedge，更新 §4.5 至完整 10gen 数据。\", \"completed_at\": \"2026-05-20T03:52:09.649Z\"}, \"exp_009\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:47:07.558Z\", \"updated_at\": \"2026-05-19T16:20:20.579Z\", \"hypothesis\": \"At r=0.25 (25% real data), SLV trajectory will disambiguate the r_crit boundary between r=0.2 (dip-then-recovery, no collapse in 5gen) and r=0.3. If r=0.25 shows sustained SLV decline over 10 generations, r_crit lies in [0.2, 0.25]. If it recovers like r=0.2, r_crit is below 0.2. This precisely locates the phase transition boundary for the mixing-ratio phase diagram (C2 claim).\", \"parent\": \"exp_007\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.25 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 247492, \"log_path\": \"~/runs/spectral_collapse_ews/exp_009.log\", \"submitted_at\": \"2026-05-18T19:47:27.851Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed mix r=0.25 ablation (25% real + 75% synthetic), seed 42, 10 generations\", \"tmux_session\": \"exp_009\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (12.5K real + 37.5K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.25, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r025_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 73829.7, \"gpu_hours\": 20.51}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.66, \"gen1_log_det\": 2362.13, \"gen1_ppl\": 10.239, \"gen1_distinct4\": 0.6499, \"gen1_train_loss\": 1.801, \"gen2_eff_rank\": 482.84, \"gen2_log_det\": 2363.1, \"gen2_ppl\": 10.653, \"gen2_distinct4\": 0.4973, \"gen2_train_loss\": 1.698, \"gen3_eff_rank\": 489.47, \"gen3_log_det\": 2380.88, \"gen3_ppl\": 11.019, \"gen3_distinct4\": 0.4419, \"gen3_train_loss\": 1.413, \"gen4_eff_rank\": 491.21, \"gen4_log_det\": 2393.37, \"gen4_ppl\": 11.343, \"gen4_distinct4\": 0.4298, \"gen4_train_loss\": 1.343, \"gen5_eff_rank\": 495.84, \"gen5_log_det\": 2421.22, \"gen5_ppl\": 11.669, \"gen5_distinct4\": 0.4192, \"gen5_train_loss\": 1.308, \"gen6_eff_rank\": 498.59, \"gen6_log_det\": 2436.38, \"gen6_ppl\": 11.974, \"gen6_distinct4\": 0.3969, \"gen6_train_loss\": 1.317, \"gen7_eff_rank\": 500.66, \"gen7_log_det\": 2447.08, \"gen7_ppl\": 12.295, \"gen7_distinct4\": 0.3889, \"gen7_train_loss\": 1.303, \"gen8_eff_rank\": 505.82, \"gen8_log_det\": 2463.81, \"gen8_ppl\": 12.631, \"gen8_distinct4\": 0.3657, \"gen8_train_loss\": 1.304, \"gen9_eff_rank\": 509.59, \"gen9_log_det\": 2476.58, \"gen9_ppl\": 12.978, \"gen9_distinct4\": 0.3674, \"gen9_train_loss\": 1.289, \"gen10_eff_rank\": 512.46, \"gen10_log_det\": 2485.01, \"gen10_ppl\": 13.285, \"gen10_distinct4\": 0.3572, \"gen10_train_loss\": 1.319, \"progress\": \"Gen 0-10 complete. EXIT_CODE=0.\", \"trend\": \"log_det 2367→2362(G1 dip, -4.55)→2485(G10), monotonic rise from G1. Dip shallower than r=0.2 (-8.37). Type II: controller Δ_t=-0.0019, just below τ=0.002.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T16:14:24.141Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T16:14:25.587295+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_009.log\", \"notes\": \"r=0.25 固定混合 10gen 完成。SLV dip-then-recovery: 2366.7→2362.1(G1 dip, -4.6)→2363.1(G2 min)→2485.0(G10, +5.0%)。EMA confirms Type II: S̃_1=2364.4, S̃_2=2363.8, S̃_2 < S̃_1 violates non-decreasing condition。Controller completely silent: max Δ_t=0.00028 < τ=0.002 (6.7× weaker than r=0.2)。r_crit ∈ (0.25, 0.3] confirmed (D031)。§4.5 已更新含 EMA 显式论证。\", \"completed_at\": \"2026-05-19T16:17:57.561Z\"}, \"exp_008\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:18:37.014Z\", \"updated_at\": \"2026-05-19T11:45:29.524Z\", \"hypothesis\": \"At r=0.3 (30% real data), SLV decompression phase will be shorter than r=0.5 (10+ gen, exp_006) but longer than r=0 (2 gen, exp_001). Log_det peak and subsequent decline should occur within 10 generations, establishing an intermediate point on the r_crit curve. Combined with r=0.2 (exp_007) and r=0.5 (exp_006), this maps the transition boundary where spectral collapse onset becomes detectable.\", \"parent\": \"exp_006\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"194372\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_008.log\", \"submitted_at\": \"2026-05-18T10:18:47.426Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed mix r=0.3 ablation (30% real + 70% synthetic), seed 42, 10 generations\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.3, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 91602.1, \"gpu_hours\": 25.45}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.91, \"gen1_log_det\": 2366.13, \"gen1_ppl\": 10.193, \"gen1_distinct4\": 0.6894, \"gen1_train_loss\": 1.836, \"gen2_eff_rank\": 484.17, \"gen2_log_det\": 2372.45, \"gen2_ppl\": 10.589, \"gen2_distinct4\": 0.4892, \"gen2_train_loss\": 1.774, \"gen3_eff_rank\": 489.48, \"gen3_log_det\": 2386.72, \"gen3_ppl\": 10.901, \"gen3_distinct4\": 0.4646, \"gen3_train_loss\": 1.506, \"gen4_eff_rank\": 492.59, \"gen4_log_det\": 2404.02, \"gen4_ppl\": 11.226, \"gen4_distinct4\": 0.4682, \"gen4_train_loss\": 1.446, \"gen5_eff_rank\": 497.86, \"gen5_log_det\": 2431.17, \"gen5_ppl\": 11.544, \"gen5_distinct4\": 0.4508, \"gen5_train_loss\": 1.407, \"gen6_eff_rank\": 501.63, \"gen6_log_det\": 2452, \"gen6_ppl\": 11.875, \"gen6_distinct4\": 0.4176, \"gen6_train_loss\": 1.368, \"gen7_eff_rank\": 506.3, \"gen7_log_det\": 2467.05, \"gen7_ppl\": 12.215, \"gen7_distinct4\": 0.3964, \"gen7_train_loss\": 1.349, \"gen8_eff_rank\": 511.71, \"gen8_log_det\": 2485.91, \"gen8_ppl\": 12.61, \"gen8_distinct4\": 0.4058, \"gen8_train_loss\": 1.32, \"gen9_eff_rank\": 515.92, \"gen9_log_det\": 2497.3, \"gen9_ppl\": 12.955, \"gen9_distinct4\": 0.3732, \"gen9_train_loss\": 1.3248, \"gen10_eff_rank\": 521.26, \"gen10_log_det\": 2511.13, \"gen10_ppl\": 13.377, \"gen10_distinct4\": 0.3422, \"gen10_train_loss\": 1.3036, \"progress\": \"Gen 0-10 complete. EXIT_CODE=0.\", \"trend\": \"log_det 2367→2511 monotonic rise (+144.5). eff_rank 418→521. ppl 9.55→13.38 (+40%). d4 0.74→0.34 (-54%). No spectral collapse at r=0.3.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T05:50:19.936Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T05:50:22.139985+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/\", \"conclusion\": \"success\", \"notes\": \"r=0.3 固定混合 10gen 完成。log_det 单调上升 2367→2511 (+144)，与 r=0.5 模式一致，无 spectral collapse。eff_rank 418→519 单调上升。ppl 9.55→13.1 (+37%)。d4 0.74→0.40 (-46%)。r=0.3 确认在 r_crit 上方，spectral collapse 信号完全被抑制。\", \"completed_at\": \"2026-05-19T11:45:29.524Z\"}, \"exp_007\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T08:50:59.190Z\", \"updated_at\": \"2026-05-19T05:51:19.994Z\", \"hypothesis\": \"At r=0.2 (20% real data), spectral collapse will manifest within 5 generations (log_det decline), unlike r=0.5 where decompression persisted through 10 gen (exp_006). This establishes a critical real-data ratio r_crit between 0.2 and 0.5 below which SLV-based collapse detection becomes viable. If controller triggers, it validates C3 claim that SLV can guide closed-loop mixing at low real-data budgets.\", \"parent\": \"exp_006\", \"spec\": {\"description\": \"Phase 1: Fixed mix r=0.2 ablation (20% real + 80% synthetic), seed 42, 5 generations\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 5 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.2 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 188503, \"tmux_session\": \"exp_007\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\", \"generations\": 5, \"condition\": \"fixed_mix\", \"real_ratio\": 0.2, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_007.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T19:41:02.189Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T19:41:03.495190+00:00\"}]}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.73, \"gen1_log_det\": 2367.46, \"gen1_ppl\": 10.282, \"gen1_distinct4\": 0.6737, \"gen1_train_loss\": 1.7653, \"gen2_eff_rank\": 481.62, \"gen2_log_det\": 2358.31, \"gen2_ppl\": 10.741, \"gen2_distinct4\": 0.4978, \"gen2_train_loss\": 1.6709, \"gen3_eff_rank\": 486.54, \"gen3_log_det\": 2362.52, \"gen3_ppl\": 11.137, \"gen3_distinct4\": 0.4665, \"gen3_train_loss\": 1.4208, \"gen4_eff_rank\": 490.35, \"gen4_log_det\": 2379.19, \"gen4_ppl\": 11.512, \"gen4_distinct4\": 0.4515, \"gen4_train_loss\": 1.3255, \"gen5_eff_rank\": 492.66, \"gen5_log_det\": 2398.93, \"gen5_ppl\": 11.833, \"gen5_distinct4\": 0.4384, \"gen5_train_loss\": 1.3049, \"progress\": \"Gen 0-5 complete. EXIT_CODE=0.\", \"trend\": \"log_det 2367→2359(Gen2 dip)→2399(Gen5), dip-then-recovery. eff_rank 418→493 monotonic rise. ppl 9.55→11.83 (+24%). d4 0.74→0.44 (-41%). No spectral collapse at r=0.2.\"}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_007.log\", \"conclusion\": \"success\", \"notes\": \"r=0.2 固定混合 5gen 完成。关键发现：SLV 呈 dip-then-recovery 模式（2367→2358 Gen2 dip→2399 Gen5 recovery），与 r=0（单调下降 2469→2179）和 r=0.5（单调上升 2367→2573）均不同。r=0.2 在 5gen 内无 spectral collapse，但 Gen2 短暂 dip 表明存在 early transient instability。d4 下降 41%（0.74→0.44）但远轻于 r=0 的 87%。Per D025，不续跑 10gen，改为启动 r=0.25 精确定位 r_crit。\", \"completed_at\": \"2026-05-19T05:51:19.994Z\"}, \"exp_004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T10:23:38.841Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 59044.8, \"gpu_hours\": 16.4}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.89, \"gen1_log_det\": 2366.58, \"gen1_ppl\": 10.083, \"gen1_distinct4\": 0.6693, \"gen2_eff_rank\": 487.92, \"gen2_log_det\": 2395.36, \"gen2_ppl\": 10.413, \"gen2_distinct4\": 0.5817, \"gen3_eff_rank\": 496.57, \"gen3_log_det\": 2425.64, \"gen3_ppl\": 10.758, \"gen3_distinct4\": 0.4563, \"gen4_eff_rank\": 502.05, \"gen4_log_det\": 2451.72, \"gen4_ppl\": 11.138, \"gen4_distinct4\": 0.328, \"gen5_eff_rank\": 512.78, \"gen5_log_det\": 2486.34, \"gen5_ppl\": 11.65, \"gen5_distinct4\": 0.2354, \"gen6_eff_rank\": 519.78, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.16, \"gen6_distinct4\": 0.2203, \"gen7_eff_rank\": 527.47, \"gen7_log_det\": 2525.55, \"gen7_ppl\": 12.77, \"gen7_distinct4\": 0.1932, \"gen8_eff_rank\": 536.39, \"gen8_log_det\": 2544.03, \"gen8_ppl\": 13.46, \"gen8_distinct4\": 0.1681, \"gen9_eff_rank\": 545.73, \"gen9_log_det\": 2562.13, \"gen9_ppl\": 14.23, \"gen9_distinct4\": 0.1019, \"gen10_eff_rank\": 554.51, \"gen10_log_det\": 2573.2, \"gen10_ppl\": 15.2, \"gen10_distinct4\": 0.0954, \"gen10_train_loss\": 0.869, \"progress\": \"Gen 0-10 complete. EXIT_CODE=0.\", \"trend\": \"ppl 9.55→15.20 (+59%), eff_rank 417→555 (monotonic rise), log_det 2367→2573 (monotonic rise), distinct_4 0.74→0.095 (87% decline). No spectral collapse at r=0.5.\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T10:15:45.129Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:15:47.327309+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"notes\": \"Fixed r=0.5 baseline完成10 gen。r=0.5完全消除spectral collapse（eff_rank/log_det单调上升），ppl仅+49%（vs pure collapse +704%），但distinct4暴跌86%（0.74→0.10）。与exp_006（adaptive never triggered, 也是r=0.5）spectral/ppl高度一致，但distinct4差异显著（0.10 vs 0.23），可能因code path差异。关键结论：r=0.5是r_crit的上界参考点——spectral EWS在此比例下完全被抑制。\", \"completed_at\": \"2026-05-18T10:20:17.738Z\"}, \"exp_006\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:12.740Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"notes\": \"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\", \"completed_at\": \"2026-05-18T08:49:12.740Z\"}, \"exp_005\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:32:53.227Z\", \"updated_at\": \"2026-05-17T21:16:49.574Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with amplified response (k=20, tau=0.002) produces meaningfully different ratio trajectories (0.5→0.7+) compared to fixed_mix, resulting in lower perplexity and higher effective rank. D012 calibration: k=1.0 produced negligible ratio variation (max +0.006), k=20 with Phase 0 deltas should yield ratio up to 0.62+ at Gen 5.\", \"parent\": \"exp_003\", \"reproduce\": {\"finished_at\": \"2026-05-17T13:41:59.604Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-17T13:41:59.710Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T13:42:00.861640+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (D012: k=20, tau=0.002, log_det signal), seed 42\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_phase1.py --condition adaptive --seed 42 --num_gens 10 --signal log_det --tau 0.002 --k 20\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 116947, \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 20, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\"}, \"log_path\": \"/root/spectral_collapse_ews/logs/exp_003_v3_adaptive_k20_s42.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.93, \"gen1_log_det\": 2366.46, \"gen1_ppl\": 10.09, \"gen1_distinct4\": 0.6608, \"gen1_mix_ratio\": 0.5, \"gen1_train_loss\": 1.986, \"gen1_triggered\": false, \"gen2_eff_rank\": 486.85, \"gen2_log_det\": 2395.23, \"gen2_ppl\": 10.42, \"gen2_distinct4\": 0.6149, \"gen2_mix_ratio\": 0.5, \"gen2_train_loss\": 1.881, \"gen2_triggered\": false, \"gen3_eff_rank\": 496.11, \"gen3_log_det\": 2425.4, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.44, \"gen3_train_loss\": 1.7804, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen4_eff_rank\": 501.8, \"gen4_log_det\": 2450.7, \"gen4_ppl\": 11.13, \"gen4_distinct4\": 0.384, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"progress\": \"Gen 0-4 complete. Killed per D018. Controller NEVER triggered (log_det monotonically RISING 2366→2450).\", \"controller_status\": \"NEVER triggered. log_det rose monotonically through 5 gens. distinct_4 halved (0.74→0.38) without spectral signal.\"}, \"conclusion\": \"killed\", \"notes\": \"D018: Gen 0-4 completed, killed to free cuda:1 for exp_004 (双实例降速3.5-5x). Results backed up to phase1_adaptive_k20_seed42_results_gen0-4_backup.json. Controller NOT triggered Gen 1-3 (validates k sensitivity). Resume from Gen 4 checkpoint when GPU available.\"}, \"exp_001\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-16T07:39:16.853Z\", \"updated_at\": \"2026-05-17T17:32:40.200Z\", \"reproduce\": {\"finished_at\": \"2026-05-16T23:20:59.926Z\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"completed_at\": \"2026-05-16T16:10:05.673Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T16:10:06.276444+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T23:21:01.623970+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"gen3_eff_rank\": 493.31, \"gen3_log_det\": 2440.57, \"gen3_ppl\": 16.25, \"gen3_distinct4\": 0.49, \"gen3_hellaswag\": 0.3658, \"gen3_train_loss\": 1.134, \"progress\": \"Gen 4/10 generating\", \"trend\": \"eff_rank first decline at Gen 3 (-3.13 from Gen 2)\"}}}, \"spec\": {\"pid\": 59365, \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python run_phase0.py --resume_from_gen 4\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"tmux_session\": \"exp_001_gen4\", \"resume_from_gen\": 4, \"log_path\": \"/root/spectral_collapse_ews/results/phase0_gen4_run.log\", \"checkpoint_path\": \"/root/spectral_collapse_ews/checkpoints/gen_10/model.safetensors\", \"description\": \"Phase 0: Pure collapse characterization - Gen 0-10 complete\", \"hypothesis\": \"Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0)\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K train + 5K eval + 1K spectral\", \"generations\": 10, \"mix_ratio\": \"100% synthetic (pure collapse)\"}, \"metrics\": {\"gen10_eff_rank\": 442.46, \"gen10_log_det\": 2178.95, \"gen10_ppl\": 76.78, \"progress\": \"Gen 0-10 complete. Phase 0 finished.\", \"trend\": \"eff_rank 496(peak Gen2)->442(Gen10) monotonic decline. ppl 9.55->76.78 exponential growth. HellaSwag 0.413->0.301 (-27%). log_det 2469(peak Gen2)->2178(Gen10). Collapse fully confirmed across 10 generations.\"}, \"conclusion\": \"success\", \"hypothesis\": \"Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0). Pure 100% synthetic training causes exponential perplexity growth and monotonic spectral collapse across 10 generations.\"}, \"exp_003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:04:34.425Z\", \"updated_at\": \"2026-05-17T13:08:33.285Z\", \"hypothesis\": \"Spectral-guided adaptive data mixing using log_det signal (tau=0.005, k=1.0, r_min=0.20, r_max=0.80) achieves lower perplexity and higher effective rank than fixed 50/50 mixing, because log_det provides earlier and more sensitive collapse detection than eff_rank (D010: tau=0.02 with eff_rank signal caused controller to never trigger)\", \"parent\": \"exp_001\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (log_det signal, tau=0.005), seed 42\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --k 1.0 --tau 0.005 --signal log_det --generations 10\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 88156, \"tmux_session\": \"exp_003\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K train + 5K eval + 1K spectral\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.005, \"k\": 1, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\"}, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_003.log\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"env\": \"TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1\", \"d010_fix\": \"signal changed from eff_rank to log_det, tau from 0.02 to 0.005\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 479.49, \"gen1_log_det\": 2356.68, \"gen1_ppl\": 10.01, \"gen1_distinct4\": 0.7108, \"gen1_mix_ratio\": 0.5, \"gen1_train_loss\": 1.983, \"gen2_mix_ratio\": 0.5625, \"gen2_training_step\": 3400, \"progress\": \"Gen 2/10 training step ~3400, controller TRIGGERED (mix_ratio increased to 0.5625)\", \"controller_status\": \"TRIGGERED: Gen 0→1 Δ=0.00423, controller actively increasing real data ratio. Gen 2 mix=0.5625 > 0.5 base.\", \"delta_gen0_1\": 0.00423}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-17T12:48:23.260Z\", \"notes\": \"D011: Killed due to 3 critical controller bugs (budget deduction using request not actual, Gen 0 baseline missing, ratio>0.5 physically impossible with 50K real pool). Results invalid. Will restart as exp_003v2 after bugfix + dry-run verification.\"}, \"exp_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:02:30.232Z\", \"updated_at\": \"2026-05-17T04:03:52.900Z\", \"spec\": {\"description\": \"Phase 0 (1B): Pure collapse characterization - Pythia 1B, 100% synthetic, 10 generations\", \"hypothesis\": \"Effective rank collapse pattern transfers across model scale (410M → 1B)\", \"model_name\": \"EleutherAI/pythia-1b-deduped\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K train + 5K eval + 1K spectral\", \"generations\": 10, \"mix_ratio\": \"100% synthetic (pure collapse)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && python run_phase0_1b.py\\\"\", \"pid\": 25237, \"hyperparams\": {\"lr\": 5e-05, \"batch_size\": 8, \"gradient_accumulation_steps\": 4, \"warmup_ratio\": 0.05, \"epochs_per_gen\": 1, \"temperature\": 1, \"top_k\": 50, \"max_length\": 512}, \"notes\": \"实际 PID 25237（tmux 内 python 进程）。Gen 0 完成：eff_rank=516.14, ppl=8.07, distinct4=0.7510。当前 Gen 1 进行中。checkpoint 正确写入数据盘。\"}, \"metrics\": {\"gen0_eff_rank\": 516.14, \"gen0_log_det\": 2835.32, \"gen0_ppl\": 8.07, \"gen0_distinct4\": 0.751, \"gen0_sigma1\": 1661.2, \"gen1_eff_rank\": 570.75, \"gen1_log_det\": 2905.74, \"gen1_ppl\": 9.41, \"gen1_distinct4\": 0.634, \"gen1_train_loss\": 1.53, \"gen1_sigma1\": 1052.8, \"gen2_eff_rank\": 580.92, \"gen2_log_det\": 2893.85, \"gen2_ppl\": 11.04, \"gen2_distinct4\": 0.538, \"gen2_train_loss\": 1.218, \"gen2_sigma1\": 916.3, \"gen3_eff_rank\": 580.63, \"gen3_log_det\": 2864.78, \"gen3_ppl\": 13.44, \"gen3_distinct4\": 0.501, \"gen3_train_loss\": 1.027, \"gen3_sigma1\": 873.5, \"progress\": \"KILLED - zombie process cleaned, cuda:1 freed\", \"trend\": \"1B shows same 3-phase pattern: decompression peak Gen 2, log_det decline Gen 2→3, eff_rank plateau Gen 2→3\", \"crash_reason\": \"No space left on device (root partition, NOT checkpoint disk - checkpoints correctly symlinked to autodl-tmp)\", \"cleanup\": \"PID 25237 killed, cuda:1 released, checkpoint data preserved on autodl-tmp (16GB)\"}, \"reproduce\": {\"finished_at\": \"2026-05-17T03:42:40.918Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T03:42:41.535Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T03:42:42.600274+00:00\"}]}, \"notes\": \"失败原因: Root 分区 (30GB) 磁盘满，非 checkpoint 盘问题（checkpoint 已正确 symlink 到 autodl-tmp）| 已有成果: Gen 0-3 完整数据，确认 1B 与 410M 相同 3-phase pattern（decompression peak Gen 2, log_det 先降, eff_rank plateau Gen 2→3）| 数据保存: autodl-tmp 16GB checkpoint 完好 | 建议: 1B pilot 已获足够 cross-scale 验证数据，cuda:1 应立即投入 Phase 1\"}}, \"count\": 30, \"total\": 30, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1879}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3de92b8b-29a7-475a-aab7-8a0634844226",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-26T02:53:03.815Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01XXP9vvbMpiQgKkWCXUMhBE`</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2289d9d-8633-45ce-8260-fa570ed9e1f5",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXzMngXCDu2MKWEP6L",
+  "type": "assistant",
+  "uuid": "244e60aa-ddcf-431d-8f77-436c7cd41cae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwXZHL4KcbSsBEvimnPaNm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3505,
+      "cache_read_input_tokens": 38456,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 38456,
+          "cache_creation_input_tokens": 3505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-26T02:53:03.871Z_
+
+<details><summary>↩ Tool result · `toolu_01DovB6zXMsJcNr6y5CJg9ZR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "94d615b6-8c3e-4b2a-9e6c-340c68b88159",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "a719d37b-4368-488c-b4d7-9c234dfc1830",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "94d615b6-8c3e-4b2a-9e6c-340c68b88159",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-26T02:53:03.882Z_
+
+<details><summary>↩ Tool result · `toolu_01XXP9vvbMpiQgKkWCXUMhBE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-26T02:52:46Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 30 个实验 — DONE 30\\n**DONE 分布**: failed 5, killed 4, negative 1, success 20\\n\\n### GPU 占用\\n- **分配**: 2 张 — rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\n- **空闲（分配了没跑）**: rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\n\\n### 💾 磁盘余量\\n- **rtx6000-diagprobe**: ❌ 连接失败\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp_026` [failed] — 2026-05-26T02:52:45 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 o\\n- `exp_027` [failed] — 2026-05-26T02:52:31 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 o\\n- `exp_025` [killed] — 2026-05-25T19:33:07\\n- `exp_024` [killed] — 2026-05-25T19:33:06\\n- `exp_022c` [success] — 2026-05-24T17:27:40\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp_026`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\\n- `exp_027`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\\n- `exp_025`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-26\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_026** (failed): GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 43 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Second seed provides cross-seed validation for the cross-architecture claim, enabling mean±sd statistics for GPT-2-medium. Combined with exp_020 and exp_027 (seed44), this gives 3-seed coverage matching Pythia-410M rigor. ← 基于 exp_020\\n- **exp_027** (failed): GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 44 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Third seed completes 3-seed cross-architecture validation, enabling mean±sd statistics matching Pythia-410M rigor. Combined with exp_020 (seed42) and exp_026 (seed43). ← 基于 exp_020\\n- **exp_025** (killed): r=0.27 probes the r_crit phase boundary at finer granularity, directly addressing R1-W1 (r_crit coarseness) and R2-W7. Current bound: r_crit ∈ (0.25, 0.3]. If r=0.27 shows Type III (monotonic SLV expansion) → r_crit ∈ (0.25, 0.27]; if Type II (transient dip + recovery) → r_crit ∈ (0.27, 0.3]. Narrows the bound by ~50%. ← 基于 exp_008\\n\\n## 趋势\\n成功 20 / 负向 1 / 失败 5 / 共 30\\ngen0_ppl: 15.45 →（近 3 次 success）\\ngen0_reff: 23.09 →（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nrtx6000-diagprobe: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- exp_003: 已被终止 — unknown\\n- exp_005: 已被终止 — unknown\\n- exp_014: 训练失败 — unknown\\n- exp_022: 训练失败 — unknown\\n- exp_022b: 训练失败 — unknown\\n- exp_024: 已被终止 — unknown\\n- exp_025: 已被终止 — unknown\\n- exp_026: 训练失败 — unknown\\n- exp_027: 训练失败 — unknown\\n\", \"total_chars\": 2832, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "244e60aa-ddcf-431d-8f77-436c7cd41cae",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "44054391-18e3-4a10-a5b4-e73e9f52d3b3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-26T02:52:46Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 30 个实验 — DONE 30\\\\n**DONE 分布**: failed 5, killed 4, negative 1, success 20\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\\\n- **空闲（分配了没跑）**: rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\\\n\\\\n### 💾 磁盘余量\\\\n- **rtx6000-diagprobe**: ❌ 连接失败\\\\n\\\\n### 🏃 RUNNING\\\\n_（无）_\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp_026` [failed] — 2026-05-26T02:52:45 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 o\\\\n- `exp_027` [failed] — 2026-05-26T02:52:31 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 o\\\\n- `exp_025` [killed] — 2026-05-25T19:33:07\\\\n- `exp_024` [killed] — 2026-05-25T19:33:06\\\\n- `exp_022c` [success] — 2026-05-24T17:27:40\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `exp_026`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\\\\n- `exp_027`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\\\\n- `exp_025`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-26\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp_026** (failed): GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 43 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Second seed provides cross-seed validation for the cross-architecture claim, enabling mean±sd statistics for GPT-2-medium. Combined with exp_020 and exp_027 (seed44), this gives 3-seed coverage matching Pythia-410M rigor. ← 基于 exp_020\\\\n- **exp_027** (failed): GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 44 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Third seed completes 3-seed cross-architecture validation, enabling mean±sd statistics matching Pythia-410M rigor. Combined with exp_020 (seed42) and exp_026 (seed43). ← 基于 exp_020\\\\n- **exp_025** (killed): r=0.27 probes the r_crit phase boundary at finer granularity, directly addressing R1-W1 (r_crit coarseness) and R2-W7. Current bound: r_crit ∈ (0.25, 0.3]. If r=0.27 shows Type III (monotonic SLV expansion) → r_crit ∈ (0.25, 0.27]; if Type II (transient dip + recovery) → r_crit ∈ (0.27, 0.3]. Narrows the bound by ~50%. ← 基于 exp_008\\\\n\\\\n## 趋势\\\\n成功 20 / 负向 1 / 失败 5 / 共 30\\\\ngen0_ppl: 15.45 →（近 3 次 success）\\\\ngen0_reff: 23.09 →（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nrtx6000-diagprobe: 空闲 cuda:0, cuda:1\\\\n\\\\n## 告警\\\\n- exp_003: 已被终止 — unknown\\\\n- exp_005: 已被终止 — unknown\\\\n- exp_014: 训练失败 — unknown\\\\n- exp_022: 训练失败 — unknown\\\\n- exp_022b: 训练失败 — unknown\\\\n- exp_024: 已被终止 — unknown\\\\n- exp_025: 已被终止 — unknown\\\\n- exp_026: 训练失败 — unknown\\\\n- exp_027: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 2832, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-26T02:52:46Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 30 个实验 — DONE 30\\n**DONE 分布**: failed 5, killed 4, negative 1, success 20\\n\\n### GPU 占用\\n- **分配**: 2 张 — rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\n- **空闲（分配了没跑）**: rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\n\\n### 💾 磁盘余量\\n- **rtx6000-diagprobe**: ❌ 连接失败\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `exp_026` [failed] — 2026-05-26T02:52:45 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 o\\n- `exp_027` [failed] — 2026-05-26T02:52:31 — SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 o\\n- `exp_025` [killed] — 2026-05-25T19:33:07\\n- `exp_024` [killed] — 2026-05-25T19:33:06\\n- `exp_022c` [success] — 2026-05-24T17:27:40\\n\\n### 🔴 最近失败原因 (top 3)\\n- `exp_026`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\\n- `exp_027`: SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\\n- `exp_025`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-26\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_026** (failed): GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 43 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Second seed provides cross-seed validation for the cross-architecture claim, enabling mean±sd statistics for GPT-2-medium. Combined with exp_020 and exp_027 (seed44), this gives 3-seed coverage matching Pythia-410M rigor. ← 基于 exp_020\\n- **exp_027** (failed): GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 44 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Third seed completes 3-seed cross-architecture validation, enabling mean±sd statistics matching Pythia-410M rigor. Combined with exp_020 (seed42) and exp_026 (seed43). ← 基于 exp_020\\n- **exp_025** (killed): r=0.27 probes the r_crit phase boundary at finer granularity, directly addressing R1-W1 (r_crit coarseness) and R2-W7. Current bound: r_crit ∈ (0.25, 0.3]. If r=0.27 shows Type III (monotonic SLV expansion) → r_crit ∈ (0.25, 0.27]; if Type II (transient dip + recovery) → r_crit ∈ (0.27, 0.3]. Narrows the bound by ~50%. ← 基于 exp_008\\n\\n## 趋势\\n成功 20 / 负向 1 / 失败 5 / 共 30\\ngen0_ppl: 15.45 →（近 3 次 success）\\ngen0_reff: 23.09 →（近 3 次 success）\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nrtx6000-diagprobe: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- exp_003: 已被终止 — unknown\\n- exp_005: 已被终止 — unknown\\n- exp_014: 训练失败 — unknown\\n- exp_022: 训练失败 — unknown\\n- exp_022b: 训练失败 — unknown\\n- exp_024: 已被终止 — unknown\\n- exp_025: 已被终止 — unknown\\n- exp_026: 训练失败 — unknown\\n- exp_027: 训练失败 — unknown\\n\", \"total_chars\": 2832, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "244e60aa-ddcf-431d-8f77-436c7cd41cae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-26T02:53:04.334Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01N46rR5fCqHxUX5pthmJTEF`</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44054391-18e3-4a10-a5b4-e73e9f52d3b3",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXzMngXCDu2MKWEP6L",
+  "type": "assistant",
+  "uuid": "879898ba-41dd-4a1f-bfb6-f39b2db60c4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwXZHL4KcbSsBEvimnPaNm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3505,
+      "cache_read_input_tokens": 38456,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 38456,
+          "cache_creation_input_tokens": 3505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-26T02:53:04.351Z_
+
+<details><summary>↩ Tool result · `toolu_01N46rR5fCqHxUX5pthmJTEF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/ROADMAP.md\", \"content\": \"# spectral_collapse_ews — Research Dashboard\\n\\n> 最后更新: 2026-05-25 21:49 UTC | 更新原因: Round 4 review 3.0 → 三线并行修复计划 (D040)\\n\\n## 核心方向\\n递归合成训练中嵌入空间的谱坍缩三阶段模式（decompression → onset → acceleration），SLV 作为计算廉价的坍缩监测器，以及临界混合比 r_crit ∈ (0.25, 0.3] 的相图刻画。GPT-2-medium 跨架构验证证明发现的通用性。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research 完成 → 审稿迭代中（Round 4 得分 3.0，目标 3.5+）\\n- **Round 4 识别 3 个系统性问题**: 统计严谨性 / 实验规模 / Framing 错配\\n- **三线并行修复已启动** (D040):\\n  - Agent: bootstrap CIs + 计算分析 + GPT-2-medium r=0 多seed全10代\\n  - Paper Agent: framing 重定位（标题/narrative/controller claim/MP bias/记号统一）\\n- **实验**: 28 total（20 success），0 RUNNING → 2 即将启动\\n- **审稿修复**: Round 1-3: 27/27 addressed | Round 4: 10 issues open, action dispatched\\n- **论文**: 编译 PASS，11页（正文≤8页），format aligned\\n\\n## 近期任务\\n- [ ] Agent: 验证 GPT-2-medium 参数量和训练代数 (1.5)\\n- [ ] Agent: Bootstrap CIs on all SLV trajectories (1.1)\\n- [ ] Agent: Table 3 mixed-ratio comparison at r=0.2 (1.2)\\n- [ ] Agent: r_crit(T) 敏感性分析 T=5,7,10 (1.3)\\n- [ ] Agent: 奇异值分布可视化 Gen 0 vs Gen 2 (1.4)\\n- [ ] Agent: GPT-2-medium r=0 seed43 + seed44 全10代 (2.1, 2.2)\\n- [ ] Paper Agent: Framing 修复（标题/narrative/controller/MP bias/记号/Table 1/refs）\\n- [ ] 提交 Round 5 审稿（修复完成后）\\n\\n## GPU 预算\\nrtx6000-diagprobe: 2× NVIDIA RTX PRO 6000 Blackwell Server Edition (98GB each)\\n- cuda:0: → GPT-2-medium r=0 seed43（待启动）\\n- cuda:1: → GPT-2-medium r=0 seed44（待启动）\\n- 累计 ~300 GPU-hours\\n\\n## Round 4 审稿回溯·系统性问题\\n\\n### SYSTEMIC #1: Statistical rigor (MF-1, SF-4, SF-5, R1-W1)\\nr_crit 缺 bootstrap CI、记号不一致、T-依赖性未分析。\\n→ Agent 做 bootstrap CIs + r_crit(T) 分析; Paper Agent 统一记号\\n\\n### SYSTEMIC #2: Experimental scope (MF-2, SF-1, R4-m1, R4-m2)\\n跨架构单 seed 3-gen 不够、Table 3 只 r=0、参数量存疑。\\n→ Agent 做 GPT-2-medium 多 seed 10-gen + Table 3 mixed-ratio; Paper Agent 修 Table 1\\n\\n### SYSTEMIC #3: Framing mismatch (MF-3, R4-W1, R4-W3)\\nEWS 标题暗示实时监测、controller claim 过宽、decompression 机制未解释。\\n→ Paper Agent 全面 reframe; Agent 提供 SV 分布数据支持\\n\\n## 跨架构验证矩阵 (GPT-2-medium) — 扩展中\\n| r | 实验 | 状态 | Seeds |\\n|---|------|------|-------|\\n| 0 | exp_020 + new seed43/44 | ✅+🔄 | 1→3 |\\n| 0.25 | exp_023 | ✅ | 1 |\\n| 0.30 | exp_022c | ✅ | 1 |\\n| 1.0 | exp_021 | ✅ | 1 |\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D040 | 2026-05-25 | Round 4 fresh review 3.0: 启动三线并行修复——bootstrap CI + | exp_020, exp_022c |\\n| D039 | 2026-05-24 | exp_020 确认：GPT-2-medium 三阶段谱坍缩模式完全复现（SLV 峰值 Gen 2  | exp_020, exp_023, exp_022c |\\n| D038 | 2026-05-23 | GPT-2-medium cross-architecture validation (exp_02 | exp_020, exp_018 |\\n| D037 | 2026-05-23 | exp_017 完成：保持 Table 3 r=0.2 为 single seed (seed42) | exp_017, exp_007 |\\n| D036 | 2026-05-21 | P2 种子实验 (r=0.2/44, r=0.5/44) 降为 best-effort/camera | exp_013, exp_014 |\\n| D035 | 2026-05-20 | exp_012 完成后 cuda:0 启动 r=0.25 seed43（堵 cross-seed m | exp_009, exp_012 |\\n| D034 | 2026-05-20 | r_crit non-decreasing condition 改为基于 cross-seed me | exp_012, exp_008 |\\n| D033 | 2026-05-20 | 2.43× acceleration claim 改用绝对速率 1.67±0.18%/gen（Rev | exp_001, exp_010 |\\n| D032 | 2026-05-20 | cuda:0 接力改为 r=0.3 seed43（撤回 r=0.15 方案） | exp_008, exp_010 |\\n| D031 | 2026-05-19 | 撤回 D030：r_crit bound 维持 (0.25, 0.3]，r=0.25 仍为 Type | exp_009 |\\n\\n\\n\", \"lines\": 72}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "879898ba-41dd-4a1f-bfb6-f39b2db60c4c",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "8ca2cee1-f6c9-4700-9c5f-5b46b3889f20",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/ROADMAP.md\\\", \\\"content\\\": \\\"# spectral_collapse_ews — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-25 21:49 UTC | 更新原因: Round 4 review 3.0 → 三线并行修复计划 (D040)\\\\n\\\\n## 核心方向\\\\n递归合成训练中嵌入空间的谱坍缩三阶段模式（decompression → onset → acceleration），SLV 作为计算廉价的坍缩监测器，以及临界混合比 r_crit ∈ (0.25, 0.3] 的相图刻画。GPT-2-medium 跨架构验证证明发现的通用性。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research 完成 → 审稿迭代中（Round 4 得分 3.0，目标 3.5+）\\\\n- **Round 4 识别 3 个系统性问题**: 统计严谨性 / 实验规模 / Framing 错配\\\\n- **三线并行修复已启动** (D040):\\\\n  - Agent: bootstrap CIs + 计算分析 + GPT-2-medium r=0 多seed全10代\\\\n  - Paper Agent: framing 重定位（标题/narrative/controller claim/MP bias/记号统一）\\\\n- **实验**: 28 total（20 success），0 RUNNING → 2 即将启动\\\\n- **审稿修复**: Round 1-3: 27/27 addressed | Round 4: 10 issues open, action dispatched\\\\n- **论文**: 编译 PASS，11页（正文≤8页），format aligned\\\\n\\\\n## 近期任务\\\\n- [ ] Agent: 验证 GPT-2-medium 参数量和训练代数 (1.5)\\\\n- [ ] Agent: Bootstrap CIs on all SLV trajectories (1.1)\\\\n- [ ] Agent: Table 3 mixed-ratio comparison at r=0.2 (1.2)\\\\n- [ ] Agent: r_crit(T) 敏感性分析 T=5,7,10 (1.3)\\\\n- [ ] Agent: 奇异值分布可视化 Gen 0 vs Gen 2 (1.4)\\\\n- [ ] Agent: GPT-2-medium r=0 seed43 + seed44 全10代 (2.1, 2.2)\\\\n- [ ] Paper Agent: Framing 修复（标题/narrative/controller/MP bias/记号/Table 1/refs）\\\\n- [ ] 提交 Round 5 审稿（修复完成后）\\\\n\\\\n## GPU 预算\\\\nrtx6000-diagprobe: 2× NVIDIA RTX PRO 6000 Blackwell Server Edition (98GB each)\\\\n- cuda:0: → GPT-2-medium r=0 seed43（待启动）\\\\n- cuda:1: → GPT-2-medium r=0 seed44（待启动）\\\\n- 累计 ~300 GPU-hours\\\\n\\\\n## Round 4 审稿回溯·系统性问题\\\\n\\\\n### SYSTEMIC #1: Statistical rigor (MF-1, SF-4, SF-5, R1-W1)\\\\nr_crit 缺 bootstrap CI、记号不一致、T-依赖性未分析。\\\\n→ Agent 做 bootstrap CIs + r_crit(T) 分析; Paper Agent 统一记号\\\\n\\\\n### SYSTEMIC #2: Experimental scope (MF-2, SF-1, R4-m1, R4-m2)\\\\n跨架构单 seed 3-gen 不够、Table 3 只 r=0、参数量存疑。\\\\n→ Agent 做 GPT-2-medium 多 seed 10-gen + Table 3 mixed-ratio; Paper Agent 修 Table 1\\\\n\\\\n### SYSTEMIC #3: Framing mismatch (MF-3, R4-W1, R4-W3)\\\\nEWS 标题暗示实时监测、controller claim 过宽、decompression 机制未解释。\\\\n→ Paper Agent 全面 reframe; Agent 提供 SV 分布数据支持\\\\n\\\\n## 跨架构验证矩阵 (GPT-2-medium) — 扩展中\\\\n| r | 实验 | 状态 | Seeds |\\\\n|---|------|------|-------|\\\\n| 0 | exp_020 + new seed43/44 | ✅+🔄 | 1→3 |\\\\n| 0.25 | exp_023 | ✅ | 1 |\\\\n| 0.30 | exp_022c | ✅ | 1 |\\\\n| 1.0 | exp_021 | ✅ | 1 |\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D040 | 2026-05-25 | Round 4 fresh review 3.0: 启动三线并行修复——bootstrap CI + | exp_020, exp_022c |\\\\n| D039 | 2026-05-24 | exp_020 确认：GPT-2-medium 三阶段谱坍缩模式完全复现（SLV 峰值 Gen 2  | exp_020, exp_023, exp_022c |\\\\n| D038 | 2026-05-23 | GPT-2-medium cross-architecture validation (exp_02 | exp_020, exp_018 |\\\\n| D037 | 2026-05-23 | exp_017 完成：保持 Table 3 r=0.2 为 single seed (seed42) | exp_017, exp_007 |\\\\n| D036 | 2026-05-21 | P2 种子实验 (r=0.2/44, r=0.5/44) 降为 best-effort/camera | exp_013, exp_014 |\\\\n| D035 | 2026-05-20 | exp_012 完成后 cuda:0 启动 r=0.25 seed43（堵 cross-seed m | exp_009, exp_012 |\\\\n| D034 | 2026-05-20 | r_crit non-decreasing condition 改为基于 cross-seed me | exp_012, exp_008 |\\\\n| D033 | 2026-05-20 | 2.43× acceleration claim 改用绝对速率 1.67±0.18%/gen（Rev | exp_001, exp_010 |\\\\n| D032 | 2026-05-20 | cuda:0 接力改为 r=0.3 seed43（撤回 r=0.15 方案） | exp_008, exp_010 |\\\\n| D031 | 2026-05-19 | 撤回 D030：r_crit bound 维持 (0.25, 0.3]，r=0.25 仍为 Type | exp_009 |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 72}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/ROADMAP.md\", \"content\": \"# spectral_collapse_ews — Research Dashboard\\n\\n> 最后更新: 2026-05-25 21:49 UTC | 更新原因: Round 4 review 3.0 → 三线并行修复计划 (D040)\\n\\n## 核心方向\\n递归合成训练中嵌入空间的谱坍缩三阶段模式（decompression → onset → acceleration），SLV 作为计算廉价的坍缩监测器，以及临界混合比 r_crit ∈ (0.25, 0.3] 的相图刻画。GPT-2-medium 跨架构验证证明发现的通用性。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research 完成 → 审稿迭代中（Round 4 得分 3.0，目标 3.5+）\\n- **Round 4 识别 3 个系统性问题**: 统计严谨性 / 实验规模 / Framing 错配\\n- **三线并行修复已启动** (D040):\\n  - Agent: bootstrap CIs + 计算分析 + GPT-2-medium r=0 多seed全10代\\n  - Paper Agent: framing 重定位（标题/narrative/controller claim/MP bias/记号统一）\\n- **实验**: 28 total（20 success），0 RUNNING → 2 即将启动\\n- **审稿修复**: Round 1-3: 27/27 addressed | Round 4: 10 issues open, action dispatched\\n- **论文**: 编译 PASS，11页（正文≤8页），format aligned\\n\\n## 近期任务\\n- [ ] Agent: 验证 GPT-2-medium 参数量和训练代数 (1.5)\\n- [ ] Agent: Bootstrap CIs on all SLV trajectories (1.1)\\n- [ ] Agent: Table 3 mixed-ratio comparison at r=0.2 (1.2)\\n- [ ] Agent: r_crit(T) 敏感性分析 T=5,7,10 (1.3)\\n- [ ] Agent: 奇异值分布可视化 Gen 0 vs Gen 2 (1.4)\\n- [ ] Agent: GPT-2-medium r=0 seed43 + seed44 全10代 (2.1, 2.2)\\n- [ ] Paper Agent: Framing 修复（标题/narrative/controller/MP bias/记号/Table 1/refs）\\n- [ ] 提交 Round 5 审稿（修复完成后）\\n\\n## GPU 预算\\nrtx6000-diagprobe: 2× NVIDIA RTX PRO 6000 Blackwell Server Edition (98GB each)\\n- cuda:0: → GPT-2-medium r=0 seed43（待启动）\\n- cuda:1: → GPT-2-medium r=0 seed44（待启动）\\n- 累计 ~300 GPU-hours\\n\\n## Round 4 审稿回溯·系统性问题\\n\\n### SYSTEMIC #1: Statistical rigor (MF-1, SF-4, SF-5, R1-W1)\\nr_crit 缺 bootstrap CI、记号不一致、T-依赖性未分析。\\n→ Agent 做 bootstrap CIs + r_crit(T) 分析; Paper Agent 统一记号\\n\\n### SYSTEMIC #2: Experimental scope (MF-2, SF-1, R4-m1, R4-m2)\\n跨架构单 seed 3-gen 不够、Table 3 只 r=0、参数量存疑。\\n→ Agent 做 GPT-2-medium 多 seed 10-gen + Table 3 mixed-ratio; Paper Agent 修 Table 1\\n\\n### SYSTEMIC #3: Framing mismatch (MF-3, R4-W1, R4-W3)\\nEWS 标题暗示实时监测、controller claim 过宽、decompression 机制未解释。\\n→ Paper Agent 全面 reframe; Agent 提供 SV 分布数据支持\\n\\n## 跨架构验证矩阵 (GPT-2-medium) — 扩展中\\n| r | 实验 | 状态 | Seeds |\\n|---|------|------|-------|\\n| 0 | exp_020 + new seed43/44 | ✅+🔄 | 1→3 |\\n| 0.25 | exp_023 | ✅ | 1 |\\n| 0.30 | exp_022c | ✅ | 1 |\\n| 1.0 | exp_021 | ✅ | 1 |\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D040 | 2026-05-25 | Round 4 fresh review 3.0: 启动三线并行修复——bootstrap CI + | exp_020, exp_022c |\\n| D039 | 2026-05-24 | exp_020 确认：GPT-2-medium 三阶段谱坍缩模式完全复现（SLV 峰值 Gen 2  | exp_020, exp_023, exp_022c |\\n| D038 | 2026-05-23 | GPT-2-medium cross-architecture validation (exp_02 | exp_020, exp_018 |\\n| D037 | 2026-05-23 | exp_017 完成：保持 Table 3 r=0.2 为 single seed (seed42) | exp_017, exp_007 |\\n| D036 | 2026-05-21 | P2 种子实验 (r=0.2/44, r=0.5/44) 降为 best-effort/camera | exp_013, exp_014 |\\n| D035 | 2026-05-20 | exp_012 完成后 cuda:0 启动 r=0.25 seed43（堵 cross-seed m | exp_009, exp_012 |\\n| D034 | 2026-05-20 | r_crit non-decreasing condition 改为基于 cross-seed me | exp_012, exp_008 |\\n| D033 | 2026-05-20 | 2.43× acceleration claim 改用绝对速率 1.67±0.18%/gen（Rev | exp_001, exp_010 |\\n| D032 | 2026-05-20 | cuda:0 接力改为 r=0.3 seed43（撤回 r=0.15 方案） | exp_008, exp_010 |\\n| D031 | 2026-05-19 | 撤回 D030：r_crit bound 维持 (0.25, 0.3]，r=0.25 仍为 Type | exp_009 |\\n\\n\\n\", \"lines\": 72}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "879898ba-41dd-4a1f-bfb6-f39b2db60c4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-26T02:53:04.740Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01HFnvk2RmjpsoU9oV6b3Hgw`</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ca2cee1-f6c9-4700-9c5f-5b46b3889f20",
+  "isSidechain": false,
+  "requestId": "req_011CbQRXzMngXCDu2MKWEP6L",
+  "type": "assistant",
+  "uuid": "4d88f8de-91bc-4d22-b3b5-f6c608f2d5b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GwXZHL4KcbSsBEvimnPaNm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3505,
+      "cache_read_input_tokens": 38456,
+      "output_tokens": 385,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3505,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 385,
+          "cache_read_input_tokens": 38456,
+          "cache_creation_input_tokens": 3505,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3505
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-26T02:53:04.807Z_
+
+<details><summary>↩ Tool result · `toolu_01HFnvk2RmjpsoU9oV6b3Hgw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d88f8de-91bc-4d22-b3b5-f6c608f2d5b7",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "43a9bc19-9a13-4d10-9394-1ccef2237bac",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4d88f8de-91bc-4d22-b3b5-f6c608f2d5b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics  - exp_id: exp_026 - project: spectral_collapse_ews - server: rtx6000-diagprobe - log_path: ~/runs/spectral_collapse_ews/exp_0…",
+  "leafUuid": "43a9bc19-9a13-4d10-9394-1ccef2237bac",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose experiment process exit failure",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479"
+}
+```
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-26T02:53:18.012Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me understand the situation:
+
+1. **exp_026 and exp_027 both failed** with the same error: "SSH check failed 5x — last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204"
+2. **exp_024 and exp_025 were killed**
+3. The server `rtx6000-diagprobe` is unreachable (SSH connection failed)
+4. Both GPUs (cuda:0 and cuda:1) are idle
+5. No workers are running
+6. Worker pool is 0 — needs attention
+
+The failure is clearly a **server connectivity issue** — the AutoDL instance at 36.103.198.204:18314 is not responding. 
+
+This is an infrastructure problem, not a code or experiment bug. Both failed experiments were part of the Round 4 review fix plan for multi-seed GPT-2-medium validation, and the server is likely down due to a manual shutdown, expired rental period, or network connectivity issue.
+
+The diagnosis is clear from the report: both experiments failed because the SSH connection to the AutoDL instance couldn't be established after five attempts. I need to check the experiment registry details and the failure handling skill, then update the registry with the root cause before reporting this to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43a9bc19-9a13-4d10-9394-1ccef2237bac",
+  "isSidechain": false,
+  "requestId": "req_011CbQRYSG2LtwnZEgtfM78H",
+  "type": "assistant",
+  "uuid": "7a09fa7e-9bde-4528-af4d-24fb434e6984",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Wp2yZUAFSgzsrhp9jqgnH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 41961,
+      "output_tokens": 943,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4483,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 943,
+          "cache_read_input_tokens": 41961,
+          "cache_creation_input_tokens": 4483,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4483
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-26T02:53:18.754Z_
+
+Session 初始化完成。关键发现：
+- exp_026 和 exp_027 **同时失败**，原因一致：服务器 rtx6000-diagprobe (36.103.198.204:18314) SSH 连接失败
+- 0 个 Worker 在运行，2 张 GPU 空闲
+- 这是**基础设施问题**（服务器不可达），不是代码问题
+
+读取 on-experiment-failed skill 和 exp_026 详情。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a09fa7e-9bde-4528-af4d-24fb434e6984",
+  "isSidechain": false,
+  "requestId": "req_011CbQRYSG2LtwnZEgtfM78H",
+  "type": "assistant",
+  "uuid": "bf102fdf-2aa2-4195-973c-cd2518d9318b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Wp2yZUAFSgzsrhp9jqgnH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 41961,
+      "output_tokens": 943,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4483,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 943,
+          "cache_read_input_tokens": 41961,
+          "cache_creation_input_tokens": 4483,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4483
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-26T02:53:19.704Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01YX8myzqqck6MQDgdJAXqnd`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf102fdf-2aa2-4195-973c-cd2518d9318b",
+  "isSidechain": false,
+  "requestId": "req_011CbQRYSG2LtwnZEgtfM78H",
+  "type": "assistant",
+  "uuid": "15b47db4-8892-4f01-bdb4-bad56160a178",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Wp2yZUAFSgzsrhp9jqgnH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 41961,
+      "output_tokens": 943,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4483,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 943,
+          "cache_read_input_tokens": 41961,
+          "cache_creation_input_tokens": 4483,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4483
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-26T02:53:19.721Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01YX8myzqqck6MQDgdJAXqnd`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "15b47db4-8892-4f01-bdb4-bad56160a178",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "0234493e-2b3c-40c6-8254-c27179601133",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77.",
+  "sourceToolAssistantUUID": "15b47db4-8892-4f01-bdb4-bad56160a178",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-26T02:53:20.649Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_019tbJLk7k3wBpa8W5RCosBS`</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "filters": {
+    "exp_id": "exp_026"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0234493e-2b3c-40c6-8254-c27179601133",
+  "isSidechain": false,
+  "requestId": "req_011CbQRYSG2LtwnZEgtfM78H",
+  "type": "assistant",
+  "uuid": "3b457b40-de4c-4432-b422-80d79a500ba2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Wp2yZUAFSgzsrhp9jqgnH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 41961,
+      "output_tokens": 943,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4483,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 943,
+          "cache_read_input_tokens": 41961,
+          "cache_creation_input_tokens": 4483,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4483
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-26T02:53:20.818Z_
+
+<details><summary>↩ Tool result · `toolu_019tbJLk7k3wBpa8W5RCosBS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1552}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b457b40-de4c-4432-b422-80d79a500ba2",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "e0b949e1-46ee-4d9f-91d9-6bb9f711b66f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1552}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1552}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3b457b40-de4c-4432-b422-80d79a500ba2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-26T02:53:21.215Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01CyhykkDt8yT3WYkFFhpBVg`</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "filters": {
+    "exp_id": "exp_027"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0b949e1-46ee-4d9f-91d9-6bb9f711b66f",
+  "isSidechain": false,
+  "requestId": "req_011CbQRYSG2LtwnZEgtfM78H",
+  "type": "assistant",
+  "uuid": "de7bb2d6-3d45-4e4a-9523-ad27b4d5bb5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015Wp2yZUAFSgzsrhp9jqgnH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4483,
+      "cache_read_input_tokens": 41961,
+      "output_tokens": 943,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4483,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 943,
+          "cache_read_input_tokens": 41961,
+          "cache_creation_input_tokens": 4483,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4483
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-26T02:53:21.391Z_
+
+<details><summary>↩ Tool result · `toolu_01CyhykkDt8yT3WYkFFhpBVg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.166}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de7bb2d6-3d45-4e4a-9523-ad27b4d5bb5e",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "f4af4503-9a7f-41db-b5a5-4b1150a62f38",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.166}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.166}}"
+    }
+  },
+  "sourceToolAssistantUUID": "de7bb2d6-3d45-4e4a-9523-ad27b4d5bb5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34 · 2026-05-26T02:53:21.396Z_
+
+```json
+{
+  "parentUuid": "f4af4503-9a7f-41db-b5a5-4b1150a62f38",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b7b52036-7714-4704-b431-aeaa0381b0f5",
+  "timestamp": "2026-05-26T02:53:21.396Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-26T02:53:24.579Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The filter didn't work with exp_id as a filter key — let me try reading the full registry for exp_026. Let me use the saved file or try a different approach. Let me read from the saved tool result file to get exp_026 details.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7b52036-7714-4704-b431-aeaa0381b0f5",
+  "isSidechain": false,
+  "requestId": "req_011CbQRZf9CfuSEPCphhbn9E",
+  "type": "assistant",
+  "uuid": "d24051d5-a12f-4951-988f-1ca37aa80ae3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017aGUpZNSwxrEYYYMxmm2fQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1332,
+      "cache_read_input_tokens": 46444,
+      "output_tokens": 411,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1332,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 411,
+          "cache_read_input_tokens": 46444,
+          "cache_creation_input_tokens": 1332,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1332
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-26T02:53:28.819Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01TRV6mPosgTqRidw39Vw3xC`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0513-5-projects-spectral-collapse-ews--claude-sessions-agent-dfba9a77/ed38ef51-64c1-4635-9d63-e671c4458479/tool-results/mcp-agent-ml-research-read_registry-1779763983787.txt | python3 -c \"import json,sys; d=json.loads(json.loads(sys.stdin.read())['result']); exps=d['data']['experiments']; print(json.dumps({k:v for k,v in exps.items() if k in ['exp_026','exp_027']}, indent=2))\"",
+  "description": "Extract exp_026 and exp_027 from registry dump"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d24051d5-a12f-4951-988f-1ca37aa80ae3",
+  "isSidechain": false,
+  "requestId": "req_011CbQRZf9CfuSEPCphhbn9E",
+  "type": "assistant",
+  "uuid": "6ceead3c-d87b-4813-bb8a-82acfe4a55a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017aGUpZNSwxrEYYYMxmm2fQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1332,
+      "cache_read_input_tokens": 46444,
+      "output_tokens": 411,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1332,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 411,
+          "cache_read_input_tokens": 46444,
+          "cache_creation_input_tokens": 1332,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1332
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-26T02:53:29.027Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01346PdBgq7CH83J8vq7HjmZ`</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ceead3c-d87b-4813-bb8a-82acfe4a55a0",
+  "isSidechain": false,
+  "requestId": "req_011CbQRZf9CfuSEPCphhbn9E",
+  "type": "assistant",
+  "uuid": "379d70a1-b157-4e2f-8095-659ecf83676d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017aGUpZNSwxrEYYYMxmm2fQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1332,
+      "cache_read_input_tokens": 46444,
+      "output_tokens": 411,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1332,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 411,
+          "cache_read_input_tokens": 46444,
+          "cache_creation_input_tokens": 1332,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1332
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-26T02:53:29.053Z_
+
+<details><summary>↩ Tool result · `toolu_01TRV6mPosgTqRidw39Vw3xC`</summary>
+
+```text
+{
+  "exp_026": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T22:26:18.966Z",
+    "updated_at": "2026-05-26T02:52:45.439Z",
+    "hypothesis": "GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 43 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Second seed provides cross-seed validation for the cross-architecture claim, enabling mean\u00b1sd statistics for GPT-2-medium. Combined with exp_020 and exp_027 (seed44), this gives 3-seed coverage matching Pythia-410M rigor.",
+    "parent": "exp_020",
+    "server": "rtx6000-diagprobe",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-25T23:46:55.097Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 43 --gpu 0\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 43 --gpu 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "17687",
+      "log_path": "~/runs/spectral_collapse_ews/exp_026.log",
+      "submitted_at": "2026-05-25T23:46:56.934Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 11148.5,
+      "gpu_hours": 3.1
+    },
+    "pid": "17687",
+    "log_path": "~/runs/spectral_collapse_ews/exp_026.log",
+    "failure_reason": "SSH check failed 5x \u2014 last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204",
+    "conclusion": "failed",
+    "completed_at": "2026-05-26T02:52:45.439Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T02:52:47.233326+00:00"
+        }
+      ]
+    }
+  },
+  "exp_027": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-25T22:50:18.955Z",
+    "updated_at": "2026-05-26T02:52:31.118Z",
+    "hypothesis": "GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 44 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Third seed completes 3-seed cross-architecture validation, enabling mean\u00b1sd statistics matching Pythia-410M rigor. Combined with exp_020 (seed42) and exp_026 (seed43).",
+    "parent": "exp_020",
+    "server": "rtx6000-diagprobe",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "rtx6000-diagprobe",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-25T23:12:10.052Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 44 --gpu 0\""
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 44 --gpu 0\"",
+      "server": "rtx6000-diagprobe",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "11862",
+      "log_path": "~/runs/spectral_collapse_ews/exp_027.log",
+      "submitted_at": "2026-05-25T23:12:12.066Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 13219.1,
+      "gpu_hours": 3.67
+    },
+    "pid": "11862",
+    "log_path": "~/runs/spectral_collapse_ews/exp_027.log",
+    "failure_reason": "SSH check failed 5x \u2014 last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204",
+    "conclusion": "failed",
+    "completed_at": "2026-05-26T02:52:31.118Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-26T02:52:33.176177+00:00"
+        }
+      ]
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6ceead3c-d87b-4813-bb8a-82acfe4a55a0",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "0047c6f0-74cc-4796-b4d2-23ed28af269c",
+  "toolUseResult": {
+    "stdout": "{\n  \"exp_026\": {\n    \"status\": \"DONE\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-25T22:26:18.966Z\",\n    \"updated_at\": \"2026-05-26T02:52:45.439Z\",\n    \"hypothesis\": \"GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 43 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Second seed provides cross-seed validation for the cross-architecture claim, enabling mean\\u00b1sd statistics for GPT-2-medium. Combined with exp_020 and exp_027 (seed44), this gives 3-seed coverage matching Pythia-410M rigor.\",\n    \"parent\": \"exp_020\",\n    \"server\": \"rtx6000-diagprobe\",\n    \"gpu\": \"cuda:1\",\n    \"account\": \"root\",\n    \"reproduce\": {\n      \"server\": \"rtx6000-diagprobe\",\n      \"gpu\": \"cuda:1\",\n      \"started_at\": \"2026-05-25T23:46:55.097Z\",\n      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 43 --gpu 0\\\"\"\n    },\n    \"spec\": {\n      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 43 --gpu 0\\\"\",\n      \"server\": \"rtx6000-diagprobe\",\n      \"gpu\": [\n        \"cuda:1\"\n      ],\n      \"pid\": \"17687\",\n      \"log_path\": \"~/runs/spectral_collapse_ews/exp_026.log\",\n      \"submitted_at\": \"2026-05-25T23:46:56.934Z\",\n      \"submitted_via\": \"submit_training_job\",\n      \"backend\": \"tmux\",\n      \"account\": \"root\",\n      \"wall_clock_seconds\": 11148.5,\n      \"gpu_hours\": 3.1\n    },\n    \"pid\": \"17687\",\n    \"log_path\": \"~/runs/spectral_collapse_ews/exp_026.log\",\n    \"failure_reason\": \"SSH check failed 5x \\u2014 last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\",\n    \"conclusion\": \"failed\",\n    \"completed_at\": \"2026-05-26T02:52:45.439Z\",\n    \"extra\": {\n      \"hook_events\": [\n        {\n          \"event\": \"on_failed\",\n          \"action\": \"agent\",\n          \"ts\": \"2026-05-26T02:52:47.233326+00:00\"\n        }\n      ]\n    }\n  },\n  \"exp_027\": {\n    \"status\": \"DONE\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-25T22:50:18.955Z\",\n    \"updated_at\": \"2026-05-26T02:52:31.118Z\",\n    \"hypothesis\": \"GPT-2-medium (355M) under pure-synthetic recursive training (r=0) with seed 44 reproduces the three-phase spectral trajectory observed in exp_020 (seed 42). Third seed completes 3-seed cross-architecture validation, enabling mean\\u00b1sd statistics matching Pythia-410M rigor. Combined with exp_020 (seed42) and exp_026 (seed43).\",\n    \"parent\": \"exp_020\",\n    \"server\": \"rtx6000-diagprobe\",\n    \"gpu\": \"cuda:0\",\n    \"account\": \"root\",\n    \"reproduce\": {\n      \"server\": \"rtx6000-diagprobe\",\n      \"gpu\": \"cuda:0\",\n      \"started_at\": \"2026-05-25T23:12:10.052Z\",\n      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 44 --gpu 0\\\"\"\n    },\n    \"spec\": {\n      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_gpt2m_phase1.py --condition pure_collapse --real_ratio 0.0 --generations 10 --seed 44 --gpu 0\\\"\",\n      \"server\": \"rtx6000-diagprobe\",\n      \"gpu\": [\n        \"cuda:0\"\n      ],\n      \"pid\": \"11862\",\n      \"log_path\": \"~/runs/spectral_collapse_ews/exp_027.log\",\n      \"submitted_at\": \"2026-05-25T23:12:12.066Z\",\n      \"submitted_via\": \"submit_training_job\",\n      \"backend\": \"tmux\",\n      \"account\": \"root\",\n      \"wall_clock_seconds\": 13219.1,\n      \"gpu_hours\": 3.67\n    },\n    \"pid\": \"11862\",\n    \"log_path\": \"~/runs/spectral_collapse_ews/exp_027.log\",\n    \"failure_reason\": \"SSH check failed 5x \\u2014 last error: [Errno None] Unable to connect to port 18314 on 36.103.198.204\",\n    \"conclusion\": \"failed\",\n    \"completed_at\": \"2026-05-26T02:52:31.118Z\",\n    \"extra\": {\n      \"hook_events\": [\n        {\n          \"event\": \"on_failed\",\n          \"action\": \"agent\",\n          \"ts\": \"2026-05-26T02:52:33.176177+00:00\"\n        }\n      ]\n    }\n  }\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "6ceead3c-d87b-4813-bb8a-82acfe4a55a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-26T02:53:29.166Z_
+
+<details><summary>↩ Tool result · `toolu_01346PdBgq7CH83J8vq7HjmZ`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "379d70a1-b157-4e2f-8095-659ecf83676d",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "f9ff9f04-c426-4527-8907-be65a3325525",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 106,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "379d70a1-b157-4e2f-8095-659ecf83676d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-26T02:53:44.897Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me analyze:
+
+**exp_026**: 
+- GPT-2-medium r=0, seed 43, cuda:1
+- Started: 2026-05-25T23:46:55, Failed: 2026-05-26T02:52:45
+- Wall clock: ~11148s (~3.1 hrs)
+- Failure: SSH check failed 5x — server rtx6000-diagprobe unreachable at 36.103.198.204:18314
+
+**exp_027**:
+- GPT-2-medium r=0, seed 44, cuda:0
+
+
+- Started: 2026-05-25T23:12:10, Failed: 2026-05-26T02:52:31
+- Wall clock: ~13219s (~3.67 hrs)
+- Failure: SSH check failed 5x — server rtx6000-diagprobe unreachable at 36.103.198.204:18314
+
+Both experiments ran successfully for over 3 hours before the cron health check couldn't reach the AutoDL instance on port 18314, triggering five failed SSH attempts. The actual training wasn't interrupted — the monitoring system just lost connectivity to the server.
+
+This looks like an AutoDL instance connectivity issue. The instance probably restarted (AutoDL auto-shuts down idle instances or when billing expires), had a network hiccup, or the rental period ended. When AutoDL instances restart, the SSH port changes, so the cron checks are hitting a stale port number. The critical question is whether the experiments actually finished their 10-generation training run before the server went down, since they had 3+ hours to work with. I need to update the failure reason in the registry and notify the Director that the server is currently unreachable.
+
+Once the server is back online, I'll need to check for any saved checkpoints from the interrupted training, then restart both experiments. I should also review the resource-saturation skill before reporting to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9ff9f04-c426-4527-8907-be65a3325525",
+  "isSidechain": false,
+  "requestId": "req_011CbQRaEQwXzut6Pg54udUz",
+  "type": "assistant",
+  "uuid": "cb77ecc0-aedf-47a5-bcab-c152eea78639",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ncLaGpufnkfCMc35gicci",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2203,
+      "cache_read_input_tokens": 47776,
+      "output_tokens": 900,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 900,
+          "cache_read_input_tokens": 47776,
+          "cache_creation_input_tokens": 2203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-26T02:53:47.762Z_
+
+诊断清楚了。两个实验（exp_026 + exp_027）是**同一根因**：AutoDL 实例 rtx6000-diagprobe (36.103.198.204:18314) 不可达。
+
+- exp_026（seed43）运行了约 3.1 GPU-hours 后断连
+- exp_027（seed44）运行了约 3.67 GPU-hours 后断连
+- Cron 重试 5 次 SSH 均失败，判定 failed
+
+这不是代码问题，是 AutoDL 实例关机/端口变更。读 resource-saturation skill 后向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cb77ecc0-aedf-47a5-bcab-c152eea78639",
+  "isSidechain": false,
+  "requestId": "req_011CbQRaEQwXzut6Pg54udUz",
+  "type": "assistant",
+  "uuid": "335298cb-1b8e-4e50-a186-a43e0c9b605f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ncLaGpufnkfCMc35gicci",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2203,
+      "cache_read_input_tokens": 47776,
+      "output_tokens": 900,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 900,
+          "cache_read_input_tokens": 47776,
+          "cache_creation_input_tokens": 2203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-26T02:53:47.919Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Kjsq1xWaaM3PSYGyU8qDdS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "335298cb-1b8e-4e50-a186-a43e0c9b605f",
+  "isSidechain": false,
+  "requestId": "req_011CbQRaEQwXzut6Pg54udUz",
+  "type": "assistant",
+  "uuid": "39ff0b64-43fd-4fbc-b8e7-7ee34e61a4a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ncLaGpufnkfCMc35gicci",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2203,
+      "cache_read_input_tokens": 47776,
+      "output_tokens": 900,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2203,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 900,
+          "cache_read_input_tokens": 47776,
+          "cache_creation_input_tokens": 2203,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2203
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-26T02:53:47.935Z_
+
+<details><summary>↩ Tool result · `toolu_01Kjsq1xWaaM3PSYGyU8qDdS`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39ff0b64-43fd-4fbc-b8e7-7ee34e61a4a7",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "58c23027-caa8-4c57-a2fe-6b7a1b0b32f5",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "39ff0b64-43fd-4fbc-b8e7-7ee34e61a4a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics  - exp_id: exp_026 - project: spectral_collapse_ews - server: rtx6000-diagprobe - log_path: ~/runs/spectral_collapse_ews/exp_0…",
+  "leafUuid": "58c23027-caa8-4c57-a2fe-6b7a1b0b32f5",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose experiment process exit failure",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479"
+}
+```
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-26T02:53:59.997Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me report to Director:
+
+Resource status:
+- GPU allocated: 2 (cuda:0, cuda:1 on rtx6000-diagprobe)
+- GPU running: 0 (server unreachable)
+- Worker pool: 0
+
+The root cause is clear: AutoDL instance rtx6000-diagprobe went offline. Both experiments were cross-seed validation runs for GPT-2-medium (exp_026: seed43, exp_027: seed44), which are critical for the Round 4 review fixes (SYSTEMIC #2: experimental scope).
+
+
+The cron system already marked both experiments as failed with proper failure reasons, so I just need to report the diagnosis to Director with the recommended next steps—checking the server status and SSH port—since I can't spawn workers to investigate further.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58c23027-caa8-4c57-a2fe-6b7a1b0b32f5",
+  "isSidechain": false,
+  "requestId": "req_011CbQRbcsaaRg3dWt4bjzz2",
+  "type": "assistant",
+  "uuid": "a79b927f-c1cd-4a7b-b917-a9a7381e06c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5p66D4rnSAhMia4CQzbMK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1971,
+      "cache_read_input_tokens": 49979,
+      "output_tokens": 1090,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1090,
+          "cache_read_input_tokens": 49979,
+          "cache_creation_input_tokens": 1971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-26T02:53:59.998Z_
+
+向 Director 汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a79b927f-c1cd-4a7b-b917-a9a7381e06c2",
+  "isSidechain": false,
+  "requestId": "req_011CbQRbcsaaRg3dWt4bjzz2",
+  "type": "assistant",
+  "uuid": "eada8549-d7a1-4e2e-92b1-fcb8189e967d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5p66D4rnSAhMia4CQzbMK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1971,
+      "cache_read_input_tokens": 49979,
+      "output_tokens": 1090,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1090,
+          "cache_read_input_tokens": 49979,
+          "cache_creation_input_tokens": 1971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-26T02:54:10.973Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01AeVPSVQPpD9ogoatbKmCAm`</summary>
+
+```json
+{
+  "text": "[资源] GPU 2/0 在跑（服务器不可达）| Worker 池 0 | 磁盘: rtx6000-diagprobe 连接失败\n\n## 基础设施故障：rtx6000-diagprobe 断连，exp_026 + exp_027 同时失败\n\n**根因**：AutoDL 实例 rtx6000-diagprobe (36.103.198.204:18314) SSH 不可达。Cron 重试 5 次均超时。两个实验同时中断，非代码问题。\n\n**受影响实验**：\n- `exp_026`（GPT-2-medium r=0, seed43, cuda:1）— 已运行 3.1 GPU-hours\n- `exp_027`（GPT-2-medium r=0, seed44, cuda:0）— 已运行 3.67 GPU-hours\n\n这两个实验是 Round 4 修复计划 (D040) 的核心——SYSTEMIC #2 跨架构多 seed 验证。exp_020（seed42）已 success，这两个提供 seed43/44 凑齐 3-seed 统计量。\n\n**可能原因**：\n1. AutoDL 实例自动关机（余额不足 / 空闲超时）\n2. 实例重启后 SSH 端口变更（AutoDL 常见行为）\n3. 网络临时中断（可能性低，持续 5 次重试均失败）\n\n**需要 Director 操作**：\n1. 登录 AutoDL 控制台检查实例状态（是否关机/端口是否变了）\n2. 如果实例还在，更新 SSH 端口到 `~/.ssh/config`\n3. 实例恢复后我立即派 Worker 检查是否有部分 checkpoint 可恢复（训练已跑 3+ 小时，可能完成了若干 generation）\n\n**当前阻塞**：服务器不可达，无法做任何 SSH 操作（诊断日志、检查 checkpoint、重启实验）。等待 Director 确认服务器状态。",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eada8549-d7a1-4e2e-92b1-fcb8189e967d",
+  "isSidechain": false,
+  "requestId": "req_011CbQRbcsaaRg3dWt4bjzz2",
+  "type": "assistant",
+  "uuid": "0671a30a-d458-4486-a52b-060b1aff6e0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F5p66D4rnSAhMia4CQzbMK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1971,
+      "cache_read_input_tokens": 49979,
+      "output_tokens": 1090,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1090,
+          "cache_read_input_tokens": 49979,
+          "cache_creation_input_tokens": 1971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-26T02:54:16.070Z_
+
+<details><summary>↩ Tool result · `toolu_01AeVPSVQPpD9ogoatbKmCAm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0671a30a-d458-4486-a52b-060b1aff6e0f",
+  "isSidechain": false,
+  "promptId": "da82b10c-d1c0-499e-8c85-d940c244ea78",
+  "type": "user",
+  "uuid": "b3d6094f-7463-4c32-adb4-762c639c5bd8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "0671a30a-d458-4486-a52b-060b1aff6e0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_dfba9a77",
+  "sessionId": "ed38ef51-64c1-4635-9d63-e671c4458479",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---

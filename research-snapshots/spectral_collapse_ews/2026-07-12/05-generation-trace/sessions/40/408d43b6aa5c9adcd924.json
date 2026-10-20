@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "408d43b6aa5c9adcd924",
+  "project": "spectral_collapse_ews--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: spectral_collapse_ews ## 运行环境 - 服务器名: rtx6000-diagprobe - SSH 账户: root（调用 ssh_execute / submit_t",
+  "task_key": "6f851ab9-af1c-4c88-b0b5-789e82acf85d",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-2/6f851ab9-af1c-4c88-b0b5-789e82acf85d.jsonl",
+    "occurrence": 1,
+    "bytes": 1398732,
+    "sha256": "a72bc49de3cb57dc588c5dcfd2d0c2929f29f63c591286aa1f5d95148c43f7ae"
+  },
+  "statistics": {
+    "messages": 846,
+    "user_turns": 1,
+    "tool_calls": 331,
+    "roles": {
+      "record": 125,
+      "user": 1,
+      "assistant": 58,
+      "tool_call": 331,
+      "tool_result": 331
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "408d43b6aa5c9adcd924-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 844,
+      "chunks": [
+        {
+          "path": "408d43b6aa5c9adcd924-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "408d43b6aa5c9adcd924-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "408d43b6aa5c9adcd924-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "408d43b6aa5c9adcd924-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "408d43b6aa5c9adcd924-part-0005.json",
+          "message_count": 126
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-spectral-collapse-ews-rtx6000-diagprobe-ssh-root-ssh-execute-s-copy-175.md"
+}

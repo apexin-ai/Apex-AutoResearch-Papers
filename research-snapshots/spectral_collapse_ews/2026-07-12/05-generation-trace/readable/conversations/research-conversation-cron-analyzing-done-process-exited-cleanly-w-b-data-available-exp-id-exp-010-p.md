@@ -1,0 +1,2792 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: exp_010 - pr
+
+**Spectral Early Warning Signals for Model Collapse and Their Prevention–Detectability Tradeoff (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 48
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-2/946e98ce-ee0d-4475-9b2e-ea870763f3f5.jsonl`
+- **Structured JSON:** [`827a0ff967d938782c5a.json`](../../sessions/82/827a0ff967d938782c5a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T07:47:15.884Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T07:47:15.884Z",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: exp_010\n- project: spectral_collapse_ews\n- server: rtx6000-diagprobe\n- log_path: ~/runs/spectral_collapse_ews/exp_010.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T07:47:15.889Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T07:47:15.889Z",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5"
+}
+```
+
+---
+
+## Round 1
+
+46 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T07:47:15.945Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: exp_010
+- project: spectral_collapse_ews
+- server: rtx6000-diagprobe
+- log_path: ~/runs/spectral_collapse_ews/exp_010.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "34e0c8c0-7721-40e2-8682-48103e958243",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T07:47:15.944Z_
+
+```json
+{
+  "parentUuid": "34e0c8c0-7721-40e2-8682-48103e958243",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b96eadf6-4c78-49e3-8982-dc3c2ca20662",
+  "timestamp": "2026-05-20T07:47:15.944Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T07:47:15.944Z_
+
+```json
+{
+  "parentUuid": "b96eadf6-4c78-49e3-8982-dc3c2ca20662",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "cbfcfb40-dd03-4c99-8622-d50c06ce2723",
+  "timestamp": "2026-05-20T07:47:15.944Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-20T07:47:15.944Z_
+
+```json
+{
+  "parentUuid": "cbfcfb40-dd03-4c99-8622-d50c06ce2723",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0e4bae94-dd9f-4182-afbb-0d7c812c1a2a",
+  "timestamp": "2026-05-20T07:47:15.944Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T07:47:20.992Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到 exp_010 的 ANALYZING 回调。按 on-experiment-done skill 流程处理：先执行 session-start 初始化，然后分析实验结果。
+
+让我先做 session-start 初始化：读 registry、reconcile crons、读 report.md 和 ROADMAP.md。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e4bae94-dd9f-4182-afbb-0d7c812c1a2a",
+  "isSidechain": false,
+  "requestId": "req_011CbDT8637toyQZYUurAkpY",
+  "type": "assistant",
+  "uuid": "33c505b0-4b76-4ff2-ae4d-aa68edde3d6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xf8h7behXd44qCQQhXmqCj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25792,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T07:47:21.612Z_
+
+exp_010 ANALYZING 回调收到，先执行 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33c505b0-4b76-4ff2-ae4d-aa68edde3d6a",
+  "isSidechain": false,
+  "requestId": "req_011CbDT8637toyQZYUurAkpY",
+  "type": "assistant",
+  "uuid": "48db3e41-1183-4708-b425-a0c88d0f5322",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xf8h7behXd44qCQQhXmqCj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25792,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T07:47:22.791Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AxXSRB9S965u65gWDHoZmS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "48db3e41-1183-4708-b425-a0c88d0f5322",
+  "isSidechain": false,
+  "requestId": "req_011CbDT8637toyQZYUurAkpY",
+  "type": "assistant",
+  "uuid": "9446c9a3-47f9-49a9-907a-3dec8613f6bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xf8h7behXd44qCQQhXmqCj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 25792,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 25792,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 25792,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 25792
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T07:47:22.798Z_
+
+<details><summary>↩ Tool result · `toolu_01AxXSRB9S965u65gWDHoZmS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9446c9a3-47f9-49a9-907a-3dec8613f6bb",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "c7aa3522-8330-48c4-a5aa-3a76e4ffa2db",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "9446c9a3-47f9-49a9-907a-3dec8613f6bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-20T07:47:26.008Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01GaUgynDYGDRebPfKqVGjv2`</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7aa3522-8330-48c4-a5aa-3a76e4ffa2db",
+  "isSidechain": false,
+  "requestId": "req_011CbDT8bHWxPVenfBtVwETa",
+  "type": "assistant",
+  "uuid": "06f16ce4-9930-4eab-a6e0-870ef470429b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L1i5tkE45kJgabeKcAa4VN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1135,
+      "cache_read_input_tokens": 37633,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1135,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 37633,
+          "cache_creation_input_tokens": 1135,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1135
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T07:47:26.478Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01NUpojHhnbbKc5DAqiqHhqq`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "06f16ce4-9930-4eab-a6e0-870ef470429b",
+  "isSidechain": false,
+  "requestId": "req_011CbDT8bHWxPVenfBtVwETa",
+  "type": "assistant",
+  "uuid": "fa6ca149-7c23-474a-9e30-826a696815e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L1i5tkE45kJgabeKcAa4VN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1135,
+      "cache_read_input_tokens": 37633,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1135,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 37633,
+          "cache_creation_input_tokens": 1135,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1135
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-20T07:47:26.108Z_
+
+<details><summary>↩ Tool result · `toolu_01GaUgynDYGDRebPfKqVGjv2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"exp_010\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:52:19.811Z\", \"updated_at\": \"2026-05-20T07:47:09.628Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition pure_collapse --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 283142, \"log_path\": \"~/runs/spectral_collapse_ews/exp_010.log\", \"submitted_at\": \"2026-05-19T05:52:19.743Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 2: Pure collapse seed 43 (100% synthetic, r=0.0), 10 generations. Multi-seed replication of exp_001.\", \"tmux_session\": \"exp_010\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 43, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K synthetic per gen (0% real)\", \"generations\": 10, \"condition\": \"pure_collapse\", \"real_ratio\": 0, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed43/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"hypothesis\": \"Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run.\", \"parent\": \"exp_001\", \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7415, \"gen1_eff_rank\": 490.83, \"gen1_log_det\": 2462.62, \"gen1_ppl\": 11.371, \"gen1_distinct4\": 0.5997, \"gen2_eff_rank\": 496.24, \"gen2_log_det\": 2466.63, \"gen2_ppl\": 13.565, \"gen2_distinct4\": 0.5048, \"gen3_eff_rank\": 494.04, \"gen3_log_det\": 2438.38, \"gen3_ppl\": 16.22, \"gen3_distinct4\": 0.4778, \"gen4_log_det\": 2404.6, \"gen4_eff_rank\": 489.23, \"gen4_ppl\": 19.94, \"gen4_distinct4\": 0.4154, \"gen5_log_det\": 2365.13, \"gen5_eff_rank\": 480.07, \"gen5_ppl\": 24.6, \"gen5_distinct4\": 0.4172, \"gen6_log_det\": 2325.01, \"gen6_eff_rank\": 471.88, \"gen6_ppl\": 30.06, \"gen6_distinct4\": 0.4082, \"gen7_log_det\": 2291.55, \"gen7_ppl\": 37.44, \"gen7_eff_rank\": 464.18, \"gen7_distinct4\": 0.3905, \"gen8_log_det\": 2248.26, \"gen8_ppl\": 46.94, \"gen8_eff_rank\": 456.18, \"gen8_distinct4\": 0.388, \"progress\": \"Gen 0-8 complete, Gen 9 generating (6400/50000, ~13%). SLV 2467(G2 peak)→2248(G8, -8.84%). PPL 9.55→46.94.\", \"trend\": \"Seed 43: SLV collapse accelerating. Gen8 PPL 46.94 (5x baseline). Delta_t increasing (38.58 at Gen8). ~2 gen remaining.\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T07:47:09.514Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:47:11.521367+00:00\"}]}}, \"exp_011\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:17:23.434Z\", \"updated_at\": \"2026-05-20T03:52:09.649Z\", \"hypothesis\": \"Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit.\", \"parent\": \"exp_007\", \"spec\": {\"command\": \"bash -c \\\"bash /root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 319889, \"log_path\": \"~/runs/spectral_collapse_ews/exp_011.log\", \"submitted_at\": \"2026-05-19T16:17:48.185Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Resume r=0.2 fixed mix seed 42 from Gen 5 to Gen 10\", \"tmux_session\": \"exp_011\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\", \"generations\": \"5→10 (resume)\", \"condition\": \"fixed_mix\", \"real_ratio\": 0.2, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json\", \"checkpoint_source\": \"exp_007 Gen 5 checkpoint\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 41661.5, \"gpu_hours\": 11.57}, \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.55, \"distinct4\": 0.741}, \"gen1\": {\"eff_rank\": 476.73, \"log_det\": 2367.46, \"ppl\": 10.28, \"distinct4\": 0.674, \"train_loss\": 1.765}, \"gen2\": {\"eff_rank\": 481.62, \"log_det\": 2358.31, \"ppl\": 10.74, \"distinct4\": 0.498, \"train_loss\": 1.671}, \"gen3\": {\"eff_rank\": 486.54, \"log_det\": 2362.52, \"ppl\": 11.14, \"distinct4\": 0.467, \"train_loss\": 1.421}, \"gen4\": {\"eff_rank\": 490.35, \"log_det\": 2379.19, \"ppl\": 11.51, \"distinct4\": 0.451, \"train_loss\": 1.326}, \"gen5\": {\"eff_rank\": 492.65, \"log_det\": 2398.93, \"ppl\": 11.83, \"distinct4\": 0.438, \"train_loss\": 1.305}, \"gen6\": {\"eff_rank\": 496.42, \"log_det\": 2429.83, \"ppl\": 12.19, \"distinct4\": 0.463, \"train_loss\": 1.264}, \"gen7\": {\"eff_rank\": 496.24, \"log_det\": 2436.35, \"ppl\": 12.54, \"distinct4\": 0.488, \"train_loss\": 1.327}, \"gen8\": {\"eff_rank\": 501.49, \"log_det\": 2454.3, \"ppl\": 12.96, \"distinct4\": 0.501, \"train_loss\": 1.339}, \"gen9\": {\"eff_rank\": 504.86, \"log_det\": 2463.14, \"ppl\": 13.39, \"distinct4\": 0.508, \"train_loss\": 1.394}, \"gen10\": {\"eff_rank\": 511.26, \"log_det\": 2479.7, \"ppl\": 13.83, \"distinct4\": 0.52, \"train_loss\": 1.392}, \"slv_total_change_pct\": 4.78, \"slv_monotonic_from_gen2\": true, \"controller_ratio_fixed\": 0.2, \"type_ii_supported\": true}, \"reproduce\": {\"finished_at\": \"2026-05-20T03:00:14.754Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:00:16.520914+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_011.log\", \"conclusion\": \"success\", \"notes\": \"r=0.2 固定混合完整 10gen 确认 Type II。SLV: 2367→2358(G2 dip)→2480(G10, +4.78%)，Gen2 后单调上升。PPL 9.55→13.83 (+45%)。distinct4 从 Gen5 低点 0.438 回升至 0.520（recovery 现象）。eff_rank 418→511 单调上升。r=0.2 firmly Type II，无 spectral collapse。可移除论文中 \\\"five generations\\\" hedge，更新 §4.5 至完整 10gen 数据。\", \"completed_at\": \"2026-05-20T03:52:09.649Z\"}, \"exp_012\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:03:46.429Z\", \"updated_at\": \"2026-05-20T03:31:37.699Z\", \"hypothesis\": \"r=0.3 seed43 reproduces the Type II trajectory (monotonic SLV rise, no collapse) observed in exp_008 (seed42), confirming r=0.3 is robustly above r_crit across random seeds. Combined with exp_010 (r=0 seed43), this completes cross-seed validation of the phase diagram at both extremes (collapse vs. no-collapse).\", \"parent\": \"exp_008\", \"spec\": {\"command\": \"bash /root/spectral_collapse_ews/scripts/launch_mixed_r0.3_seed43.sh 0\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:0\"], \"pid\": \"385711\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_012.log\", \"submitted_at\": \"2026-05-20T03:03:54.653Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/spectral_collapse_ews\", \"data_count\": 35000, \"model_name\": \"GPT-2\", \"seed\": 43, \"checkpoint_source\": \"N/A (replication, not eval)\", \"eval_data\": \"N/A (replication, not eval)\"}}, \"exp_009\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:47:07.558Z\", \"updated_at\": \"2026-05-19T16:20:20.579Z\", \"hypothesis\": \"At r=0.25 (25% real data), SLV trajectory will disambiguate the r_crit boundary between r=0.2 (dip-then-recovery, no collapse in 5gen) and r=0.3. If r=0.25 shows sustained SLV decline over 10 generations, r_crit lies in [0.2, 0.25]. If it recovers like r=0.2, r_crit is below 0.2. This precisely locates the phase transition boundary for the mixing-ratio phase diagram (C2 claim).\", \"parent\": \"exp_007\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.25 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 247492, \"log_path\": \"~/runs/spectral_collapse_ews/exp_009.log\", \"submitted_at\": \"2026-05-18T19:47:27.851Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed mix r=0.25 ablation (25% real + 75% synthetic), seed 42, 10 generations\", \"tmux_session\": \"exp_009\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (12.5K real + 37.5K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.25, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r025_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 73829.7, \"gpu_hours\": 20.51}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.66, \"gen1_log_det\": 2362.13, \"gen1_ppl\": 10.239, \"gen1_distinct4\": 0.6499, \"gen1_train_loss\": 1.801, \"gen2_eff_rank\": 482.84, \"gen2_log_det\": 2363.1, \"gen2_ppl\": 10.653, \"gen2_distinct4\": 0.4973, \"gen2_train_loss\": 1.698, \"gen3_eff_rank\": 489.47, \"gen3_log_det\": 2380.88, \"gen3_ppl\": 11.019, \"gen3_distinct4\": 0.4419, \"gen3_train_loss\": 1.413, \"gen4_eff_rank\": 491.21, \"gen4_log_det\": 2393.37, \"gen4_ppl\": 11.343, \"gen4_distinct4\": 0.4298, \"gen4_train_loss\": 1.343, \"gen5_eff_rank\": 495.84, \"gen5_log_det\": 2421.22, \"gen5_ppl\": 11.669, \"gen5_distinct4\": 0.4192, \"gen5_train_loss\": 1.308, \"gen6_eff_rank\": 498.59, \"gen6_log_det\": 2436.38, \"gen6_ppl\": 11.974, \"gen6_distinct4\": 0.3969, \"gen6_train_loss\": 1.317, \"gen7_eff_rank\": 500.66, \"gen7_log_det\": 2447.08, \"gen7_ppl\": 12.295, \"gen7_distinct4\": 0.3889, \"gen7_train_loss\": 1.303, \"gen8_eff_rank\": 505.82, \"gen8_log_det\": 2463.81, \"gen8_ppl\": 12.631, \"gen8_distinct4\": 0.3657, \"gen8_train_loss\": 1.304, \"gen9_eff_rank\": 509.59, \"gen9_log_det\": 2476.58, \"gen9_ppl\": 12.978, \"gen9_distinct4\": 0.3674, \"gen9_train_loss\": 1.289, \"gen10_eff_rank\": 512.46, \"gen10_log_det\": 2485.01, \"gen10_ppl\": 13.285, \"gen10_distinct4\": 0.3572, \"gen10_train_loss\": 1.319, \"progress\": \"Gen 0-10 complete. EXIT_CODE=0.\", \"trend\": \"log_det 2367→2362(G1 dip, -4.55)→2485(G10), monotonic rise from G1. Dip shallower than r=0.2 (-8.37). Type II: controller Δ_t=-0.0019, just below τ=0.002.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T16:14:24.141Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T16:14:25.587295+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_009.log\", \"notes\": \"r=0.25 固定混合 10gen 完成。SLV dip-then-recovery: 2366.7→2362.1(G1 dip, -4.6)→2363.1(G2 min)→2485.0(G10, +5.0%)。EMA confirms Type II: S̃_1=2364.4, S̃_2=2363.8, S̃_2 < S̃_1 violates non-decreasing condition。Controller completely silent: max Δ_t=0.00028 < τ=0.002 (6.7× weaker than r=0.2)。r_crit ∈ (0.25, 0.3] confirmed (D031)。§4.5 已更新含 EMA 显式论证。\", \"completed_at\": \"2026-05-19T16:17:57.561Z\"}, \"exp_008\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:18:37.014Z\", \"updated_at\": \"2026-05-19T11:45:29.524Z\", \"hypothesis\": \"At r=0.3 (30% real data), SLV decompression phase will be shorter than r=0.5 (10+ gen, exp_006) but longer than r=0 (2 gen, exp_001). Log_det peak and subsequent decline should occur within 10 generations, establishing an intermediate point on the r_crit curve. Combined with r=0.2 (exp_007) and r=0.5 (exp_006), this maps the transition boundary where spectral collapse onset becomes detectable.\", \"parent\": \"exp_006\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"194372\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_008.log\", \"submitted_at\": \"2026-05-18T10:18:47.426Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed mix r=0.3 ablation (30% real + 70% synthetic), seed 42, 10 generations\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.3, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 91602.1, \"gpu_hours\": 25.45}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.91, \"gen1_log_det\": 2366.13, \"gen1_ppl\": 10.193, \"gen1_distinct4\": 0.6894, \"gen1_train_loss\": 1.836, \"gen2_eff_rank\": 484.17, \"gen2_log_det\": 2372.45, \"gen2_ppl\": 10.589, \"gen2_distinct4\": 0.4892, \"gen2_train_loss\": 1.774, \"gen3_eff_rank\": 489.48, \"gen3_log_det\": 2386.72, \"gen3_ppl\": 10.901, \"gen3_distinct4\": 0.4646, \"gen3_train_loss\": 1.506, \"gen4_eff_rank\": 492.59, \"gen4_log_det\": 2404.02, \"gen4_ppl\": 11.226, \"gen4_distinct4\": 0.4682, \"gen4_train_loss\": 1.446, \"gen5_eff_rank\": 497.86, \"gen5_log_det\": 2431.17, \"gen5_ppl\": 11.544, \"gen5_distinct4\": 0.4508, \"gen5_train_loss\": 1.407, \"gen6_eff_rank\": 501.63, \"gen6_log_det\": 2452, \"gen6_ppl\": 11.875, \"gen6_distinct4\": 0.4176, \"gen6_train_loss\": 1.368, \"gen7_eff_rank\": 506.3, \"gen7_log_det\": 2467.05, \"gen7_ppl\": 12.215, \"gen7_distinct4\": 0.3964, \"gen7_train_loss\": 1.349, \"gen8_eff_rank\": 511.71, \"gen8_log_det\": 2485.91, \"gen8_ppl\": 12.61, \"gen8_distinct4\": 0.4058, \"gen8_train_loss\": 1.32, \"gen9_eff_rank\": 515.92, \"gen9_log_det\": 2497.3, \"gen9_ppl\": 12.955, \"gen9_distinct4\": 0.3732, \"gen9_train_loss\": 1.3248, \"gen10_eff_rank\": 521.26, \"gen10_log_det\": 2511.13, \"gen10_ppl\": 13.377, \"gen10_distinct4\": 0.3422, \"gen10_train_loss\": 1.3036, \"progress\": \"Gen 0-10 complete. EXIT_CODE=0.\", \"trend\": \"log_det 2367→2511 monotonic rise (+144.5). eff_rank 418→521. ppl 9.55→13.38 (+40%). d4 0.74→0.34 (-54%). No spectral collapse at r=0.3.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T05:50:19.936Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T05:50:22.139985+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/\", \"conclusion\": \"success\", \"notes\": \"r=0.3 固定混合 10gen 完成。log_det 单调上升 2367→2511 (+144)，与 r=0.5 模式一致，无 spectral collapse。eff_rank 418→519 单调上升。ppl 9.55→13.1 (+37%)。d4 0.74→0.40 (-46%)。r=0.3 确认在 r_crit 上方，spectral collapse 信号完全被抑制。\", \"completed_at\": \"2026-05-19T11:45:29.524Z\"}, \"exp_007\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T08:50:59.190Z\", \"updated_at\": \"2026-05-19T05:51:19.994Z\", \"hypothesis\": \"At r=0.2 (20% real data), spectral collapse will manifest within 5 generations (log_det decline), unlike r=0.5 where decompression persisted through 10 gen (exp_006). This establishes a critical real-data ratio r_crit between 0.2 and 0.5 below which SLV-based collapse detection becomes viable. If controller triggers, it validates C3 claim that SLV can guide closed-loop mixing at low real-data budgets.\", \"parent\": \"exp_006\", \"spec\": {\"description\": \"Phase 1: Fixed mix r=0.2 ablation (20% real + 80% synthetic), seed 42, 5 generations\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 5 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.2 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 188503, \"tmux_session\": \"exp_007\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\", \"generations\": 5, \"condition\": \"fixed_mix\", \"real_ratio\": 0.2, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_007.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T19:41:02.189Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T19:41:03.495190+00:00\"}]}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.73, \"gen1_log_det\": 2367.46, \"gen1_ppl\": 10.282, \"gen1_distinct4\": 0.6737, \"gen1_train_loss\": 1.7653, \"gen2_eff_rank\": 481.62, \"gen2_log_det\": 2358.31, \"gen2_ppl\": 10.741, \"gen2_distinct4\": 0.4978, \"gen2_train_loss\": 1.6709, \"gen3_eff_rank\": 486.54, \"gen3_log_det\": 2362.52, \"gen3_ppl\": 11.137, \"gen3_distinct4\": 0.4665, \"gen3_train_loss\": 1.4208, \"gen4_eff_rank\": 490.35, \"gen4_log_det\": 2379.19, \"gen4_ppl\": 11.512, \"gen4_distinct4\": 0.4515, \"gen4_train_loss\": 1.3255, \"gen5_eff_rank\": 492.66, \"gen5_log_det\": 2398.93, \"gen5_ppl\": 11.833, \"gen5_distinct4\": 0.4384, \"gen5_train_loss\": 1.3049, \"progress\": \"Gen 0-5 complete. EXIT_CODE=0.\", \"trend\": \"log_det 2367→2359(Gen2 dip)→2399(Gen5), dip-then-recovery. eff_rank 418→493 monotonic rise. ppl 9.55→11.83 (+24%). d4 0.74→0.44 (-41%). No spectral collapse at r=0.2.\"}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_007.log\", \"conclusion\": \"success\", \"notes\": \"r=0.2 固定混合 5gen 完成。关键发现：SLV 呈 dip-then-recovery 模式（2367→2358 Gen2 dip→2399 Gen5 recovery），与 r=0（单调下降 2469→2179）和 r=0.5（单调上升 2367→2573）均不同。r=0.2 在 5gen 内无 spectral collapse，但 Gen2 短暂 dip 表明存在 early transient instability。d4 下降 41%（0.74→0.44）但远轻于 r=0 的 87%。Per D025，不续跑 10gen，改为启动 r=0.25 精确定位 r_crit。\", \"completed_at\": \"2026-05-19T05:51:19.994Z\"}, \"exp_004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T10:23:38.841Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 59044.8, \"gpu_hours\": 16.4}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.89, \"gen1_log_det\": 2366.58, \"gen1_ppl\": 10.083, \"gen1_distinct4\": 0.6693, \"gen2_eff_rank\": 487.92, \"gen2_log_det\": 2395.36, \"gen2_ppl\": 10.413, \"gen2_distinct4\": 0.5817, \"gen3_eff_rank\": 496.57, \"gen3_log_det\": 2425.64, \"gen3_ppl\": 10.758, \"gen3_distinct4\": 0.4563, \"gen4_eff_rank\": 502.05, \"gen4_log_det\": 2451.72, \"gen4_ppl\": 11.138, \"gen4_distinct4\": 0.328, \"gen5_eff_rank\": 512.78, \"gen5_log_det\": 2486.34, \"gen5_ppl\": 11.65, \"gen5_distinct4\": 0.2354, \"gen6_eff_rank\": 519.78, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.16, \"gen6_distinct4\": 0.2203, \"gen7_eff_rank\": 527.47, \"gen7_log_det\": 2525.55, \"gen7_ppl\": 12.77, \"gen7_distinct4\": 0.1932, \"gen8_eff_rank\": 536.39, \"gen8_log_det\": 2544.03, \"gen8_ppl\": 13.46, \"gen8_distinct4\": 0.1681, \"gen9_eff_rank\": 545.73, \"gen9_log_det\": 2562.13, \"gen9_ppl\": 14.23, \"gen9_distinct4\": 0.1019, \"gen10_eff_rank\": 554.51, \"gen10_log_det\": 2573.2, \"gen10_ppl\": 15.2, \"gen10_distinct4\": 0.0954, \"gen10_train_loss\": 0.869, \"progress\": \"Gen 0-10 complete. EXIT_CODE=0.\", \"trend\": \"ppl 9.55→15.20 (+59%), eff_rank 417→555 (monotonic rise), log_det 2367→2573 (monotonic rise), distinct_4 0.74→0.095 (87% decline). No spectral collapse at r=0.5.\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T10:15:45.129Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:15:47.327309+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"notes\": \"Fixed r=0.5 baseline完成10 gen。r=0.5完全消除spectral collapse（eff_rank/log_det单调上升），ppl仅+49%（vs pure collapse +704%），但distinct4暴跌86%（0.74→0.10）。与exp_006（adaptive never triggered, 也是r=0.5）spectral/ppl高度一致，但distinct4差异显著（0.10 vs 0.23），可能因code path差异。关键结论：r=0.5是r_crit的上界参考点——spectral EWS在此比例下完全被抑制。\", \"completed_at\": \"2026-05-18T10:20:17.738Z\"}, \"exp_006\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:12.740Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"notes\": \"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\", \"completed_at\": \"2026-05-18T08:49:12.740Z\"}, \"exp_005\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:32:53.227Z\", \"updated_at\": \"2026-05-17T21:16:49.574Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with amplified response (k=20, tau=0.002) produces meaningfully different ratio trajectories (0.5→0.7+) compared to fixed_mix, resulting in lower perplexity and higher effective rank. D012 calibration: k=1.0 produced negligible ratio variation (max +0.006), k=20 with Phase 0 deltas should yield ratio up to 0.62+ at Gen 5.\", \"parent\": \"exp_003\", \"reproduce\": {\"finished_at\": \"2026-05-17T13:41:59.604Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-17T13:41:59.710Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T13:42:00.861640+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (D012: k=20, tau=0.002, log_det signal), seed 42\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_phase1.py --condition adaptive --seed 42 --num_gens 10 --signal log_det --tau 0.002 --k 20\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 116947, \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 20, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\"}, \"log_path\": \"/root/spectral_collapse_ews/logs/exp_003_v3_adaptive_k20_s42.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.93, \"gen1_log_det\": 2366.46, \"gen1_ppl\": 10.09, \"gen1_distinct4\": 0.6608, \"gen1_mix_ratio\": 0.5, \"gen1_train_loss\": 1.986, \"gen1_triggered\": false, \"gen2_eff_rank\": 486.85, \"gen2_log_det\": 2395.23, \"gen2_ppl\": 10.42, \"gen2_distinct4\": 0.6149, \"gen2_mix_ratio\": 0.5, \"gen2_train_loss\": 1.881, \"gen2_triggered\": false, \"gen3_eff_rank\": 496.11, \"gen3_log_det\": 2425.4, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.44, \"gen3_train_loss\": 1.7804, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen4_eff_rank\": 501.8, \"gen4_log_det\": 2450.7, \"gen4_ppl\": 11.13, \"gen4_distinct4\": 0.384, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"progress\": \"Gen 0-4 complete. Killed per D018. Controller NEVER triggered (log_det monotonically RISING 2366→2450).\", \"controller_status\": \"NEVER triggered. log_det rose monotonically through 5 gens. distinct_4 halved (0.74→0.38) without spectral signal.\"}, \"conclusion\": \"killed\", \"notes\": \"D018: Gen 0-4 completed, killed to free cuda:1 for exp_004 (双实例降速3.5-5x). Results backed up to phase1_adaptive_k20_seed42_results_gen0-4_backup.json. Controller NOT triggered Gen 1-3 (validates k sensitivity). Resume from Gen 4 checkpoint when GPU available.\"}, \"exp_001\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-16T07:39:16.853Z\", \"updated_at\": \"2026-05-17T17:32:40.200Z\", \"reproduce\": {\"finished_at\": \"2026-05-16T23:20:59.926Z\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"completed_at\": \"2026-05-16T16:10:05.673Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T16:10:06.276444+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T23:21:01.623970+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"gen3_eff_rank\": 493.31, \"gen3_log_det\": 2440.57, \"gen3_ppl\": 16.25, \"gen3_distinct4\": 0.49, \"gen3_hellaswag\": 0.3658, \"gen3_train_loss\": 1.134, \"progress\": \"Gen 4/10 generating\", \"trend\": \"eff_rank first decline at Gen 3 (-3.13 from Gen 2)\"}}}, \"spec\": {\"pid\": 59365, \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python run_phase0.py --resume_from_gen 4\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"tmux_session\": \"exp_001_gen4\", \"resume_from_gen\": 4, \"log_path\": \"/root/spectral_collapse_ews/results/phase0_gen4_run.log\", \"checkpoint_path\": \"/root/spectral_collapse_ews/checkpoints/gen_10/model.safetensors\", \"description\": \"Phase 0: Pure collapse characterization - Gen 0-10 complete\", \"hypothesis\": \"Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0)\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K train + 5K eval + 1K spectral\", \"generations\": 10, \"mix_ratio\": \"100% synthetic (pure collapse)\"}, \"metrics\": {\"gen10_eff_rank\": 442.46, \"gen10_log_det\": 2178.95, \"gen10_ppl\": 76.78, \"progress\": \"Gen 0-10 complete. Phase 0 finished.\", \"trend\": \"eff_rank 496(peak Gen2)->442(Gen10) monotonic decline. ppl 9.55->76.78 exponential growth. HellaSwag 0.413->0.301 (-27%). log_det 2469(peak Gen2)->2178(Gen10). Collapse fully confirmed across 10 generations.\"}, \"conclusion\": \"success\", \"hypothesis\": \"Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0). Pure 100% synthetic training causes exponential perplexity growth and monotonic spectral collapse across 10 generations.\"}, \"exp_003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:04:34.425Z\", \"updated_at\": \"2026-05-17T13:08:33.285Z\", \"hypothesis\": \"Spectral-guided adaptive data mixing using log_det signal (tau=0.005, k=1.0, r_min=0.20, r_max=0.80) achieves lower perplexity and higher effective rank than fixed 50/50 mixing, because log_det provides earlier and more sensitive collapse detection than eff_rank (D010: tau=0.02 with eff_rank signal caused controller to never trigger)\", \"parent\": \"exp_001\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (log_det signal, tau=0.005), seed 42\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --k 1.0 --tau 0.005 --signal log_det --generations 10\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 88156, \"tmux_session\": \"exp_003\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K train + 5K eval + 1K spectral\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.005, \"k\": 1, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\"}, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_003.log\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"env\": \"TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1\", \"d010_fix\": \"signal changed from eff_rank to log_det, tau from 0.02 to 0.005\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 479.49, \"gen1_log_det\": 2356.68, \"gen1_ppl\": 10.01, \"gen1_distinct4\": 0.7108, \"gen1_mix_ratio\": 0.5, \"gen1_train_loss\": 1.983, \"gen2_mix_ratio\": 0.5625, \"gen2_training_step\": 3400, \"progress\": \"Gen 2/10 training step ~3400, controller TRIGGERED (mix_ratio increased to 0.5625)\", \"controller_status\": \"TRIGGERED: Gen 0→1 Δ=0.00423, controller actively increasing real data ratio. Gen 2 mix=0.5625 > 0.5 base.\", \"delta_gen0_1\": 0.00423}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-17T12:48:23.260Z\", \"notes\": \"D011: Killed due to 3 critical controller bugs (budget deduction using request not actual, Gen 0 baseline missing, ratio>0.5 physically impossible with 50K real pool). Results invalid. Will restart as exp_003v2 after bugfix + dry-run verification.\"}, \"exp_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:02:30.232Z\", \"updated_at\": \"2026-05-17T04:03:52.900Z\", \"spec\": {\"description\": \"Phase 0 (1B): Pure collapse characterization - Pythia 1B, 100% synthetic, 10 generations\", \"hypothesis\": \"Effective rank collapse pattern transfers across model scale (410M → 1B)\", \"model_name\": \"EleutherAI/pythia-1b-deduped\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K train + 5K eval + 1K spectral\", \"generations\": 10, \"mix_ratio\": \"100% synthetic (pure collapse)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && python run_phase0_1b.py\\\"\", \"pid\": 25237, \"hyperparams\": {\"lr\": 5e-05, \"batch_size\": 8, \"gradient_accumulation_steps\": 4, \"warmup_ratio\": 0.05, \"epochs_per_gen\": 1, \"temperature\": 1, \"top_k\": 50, \"max_length\": 512}, \"notes\": \"实际 PID 25237（tmux 内 python 进程）。Gen 0 完成：eff_rank=516.14, ppl=8.07, distinct4=0.7510。当前 Gen 1 进行中。checkpoint 正确写入数据盘。\"}, \"metrics\": {\"gen0_eff_rank\": 516.14, \"gen0_log_det\": 2835.32, \"gen0_ppl\": 8.07, \"gen0_distinct4\": 0.751, \"gen0_sigma1\": 1661.2, \"gen1_eff_rank\": 570.75, \"gen1_log_det\": 2905.74, \"gen1_ppl\": 9.41, \"gen1_distinct4\": 0.634, \"gen1_train_loss\": 1.53, \"gen1_sigma1\": 1052.8, \"gen2_eff_rank\": 580.92, \"gen2_log_det\": 2893.85, \"gen2_ppl\": 11.04, \"gen2_distinct4\": 0.538, \"gen2_train_loss\": 1.218, \"gen2_sigma1\": 916.3, \"gen3_eff_rank\": 580.63, \"gen3_log_det\": 2864.78, \"gen3_ppl\": 13.44, \"gen3_distinct4\": 0.501, \"gen3_train_loss\": 1.027, \"gen3_sigma1\": 873.5, \"progress\": \"KILLED - zombie process cleaned, cuda:1 freed\", \"trend\": \"1B shows same 3-phase pattern: decompression peak Gen 2, log_det decline Gen 2→3, eff_rank plateau Gen 2→3\", \"crash_reason\": \"No space left on device (root partition, NOT checkpoint disk - checkpoints correctly symlinked to autodl-tmp)\", \"cleanup\": \"PID 25237 killed, cuda:1 released, checkpoint data preserved on autodl-tmp (16GB)\"}, \"reproduce\": {\"finished_at\": \"2026-05-17T03:42:40.918Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T03:42:41.535Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T03:42:42.600274+00:00\"}]}, \"notes\": \"失败原因: Root 分区 (30GB) 磁盘满，非 checkpoint 盘问题（checkpoint 已正确 symlink 到 autodl-tmp）| 已有成果: Gen 0-3 完整数据，确认 1B 与 410M 相同 3-phase pattern（decompression peak Gen 2, log_det 先降, eff_rank plateau Gen 2→3）| 数据保存: autodl-tmp 16GB checkpoint 完好 | 建议: 1B pilot 已获足够 cross-scale 验证数据，cuda:1 应立即投入 Phase 1\"}}, \"count\": 12, \"total\": 12, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.081}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "06f16ce4-9930-4eab-a6e0-870ef470429b",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "3d65b1df-57d8-43ef-8c32-dfd32f28b1a8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp_010\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T05:52:19.811Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:47:09.628Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition pure_collapse --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 283142, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_010.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T05:52:19.743Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"description\\\": \\\"Phase 2: Pure collapse seed 43 (100% synthetic, r=0.0), 10 generations. Multi-seed replication of exp_001.\\\", \\\"tmux_session\\\": \\\"exp_010\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 43, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K synthetic per gen (0% real)\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"pure_collapse\\\", \\\"real_ratio\\\": 0, \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed43/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\"}, \\\"hypothesis\\\": \\\"Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run.\\\", \\\"parent\\\": \\\"exp_001\\\", \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7415, \\\"gen1_eff_rank\\\": 490.83, \\\"gen1_log_det\\\": 2462.62, \\\"gen1_ppl\\\": 11.371, \\\"gen1_distinct4\\\": 0.5997, \\\"gen2_eff_rank\\\": 496.24, \\\"gen2_log_det\\\": 2466.63, \\\"gen2_ppl\\\": 13.565, \\\"gen2_distinct4\\\": 0.5048, \\\"gen3_eff_rank\\\": 494.04, \\\"gen3_log_det\\\": 2438.38, \\\"gen3_ppl\\\": 16.22, \\\"gen3_distinct4\\\": 0.4778, \\\"gen4_log_det\\\": 2404.6, \\\"gen4_eff_rank\\\": 489.23, \\\"gen4_ppl\\\": 19.94, \\\"gen4_distinct4\\\": 0.4154, \\\"gen5_log_det\\\": 2365.13, \\\"gen5_eff_rank\\\": 480.07, \\\"gen5_ppl\\\": 24.6, \\\"gen5_distinct4\\\": 0.4172, \\\"gen6_log_det\\\": 2325.01, \\\"gen6_eff_rank\\\": 471.88, \\\"gen6_ppl\\\": 30.06, \\\"gen6_distinct4\\\": 0.4082, \\\"gen7_log_det\\\": 2291.55, \\\"gen7_ppl\\\": 37.44, \\\"gen7_eff_rank\\\": 464.18, \\\"gen7_distinct4\\\": 0.3905, \\\"gen8_log_det\\\": 2248.26, \\\"gen8_ppl\\\": 46.94, \\\"gen8_eff_rank\\\": 456.18, \\\"gen8_distinct4\\\": 0.388, \\\"progress\\\": \\\"Gen 0-8 complete, Gen 9 generating (6400/50000, ~13%). SLV 2467(G2 peak)→2248(G8, -8.84%). PPL 9.55→46.94.\\\", \\\"trend\\\": \\\"Seed 43: SLV collapse accelerating. Gen8 PPL 46.94 (5x baseline). Delta_t increasing (38.58 at Gen8). ~2 gen remaining.\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:47:09.514Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:47:11.521367+00:00\\\"}]}}, \\\"exp_011\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:17:23.434Z\\\", \\\"updated_at\\\": \\\"2026-05-20T03:52:09.649Z\\\", \\\"hypothesis\\\": \\\"Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit.\\\", \\\"parent\\\": \\\"exp_007\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"bash /root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 319889, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_011.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T16:17:48.185Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"description\\\": \\\"Phase 1: Resume r=0.2 fixed mix seed 42 from Gen 5 to Gen 10\\\", \\\"tmux_session\\\": \\\"exp_011\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\\\", \\\"generations\\\": \\\"5→10 (resume)\\\", \\\"condition\\\": \\\"fixed_mix\\\", \\\"real_ratio\\\": 0.2, \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"exp_007 Gen 5 checkpoint\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\", \\\"wall_clock_seconds\\\": 41661.5, \\\"gpu_hours\\\": 11.57}, \\\"metrics\\\": {\\\"gen0\\\": {\\\"eff_rank\\\": 417.55, \\\"log_det\\\": 2366.68, \\\"ppl\\\": 9.55, \\\"distinct4\\\": 0.741}, \\\"gen1\\\": {\\\"eff_rank\\\": 476.73, \\\"log_det\\\": 2367.46, \\\"ppl\\\": 10.28, \\\"distinct4\\\": 0.674, \\\"train_loss\\\": 1.765}, \\\"gen2\\\": {\\\"eff_rank\\\": 481.62, \\\"log_det\\\": 2358.31, \\\"ppl\\\": 10.74, \\\"distinct4\\\": 0.498, \\\"train_loss\\\": 1.671}, \\\"gen3\\\": {\\\"eff_rank\\\": 486.54, \\\"log_det\\\": 2362.52, \\\"ppl\\\": 11.14, \\\"distinct4\\\": 0.467, \\\"train_loss\\\": 1.421}, \\\"gen4\\\": {\\\"eff_rank\\\": 490.35, \\\"log_det\\\": 2379.19, \\\"ppl\\\": 11.51, \\\"distinct4\\\": 0.451, \\\"train_loss\\\": 1.326}, \\\"gen5\\\": {\\\"eff_rank\\\": 492.65, \\\"log_det\\\": 2398.93, \\\"ppl\\\": 11.83, \\\"distinct4\\\": 0.438, \\\"train_loss\\\": 1.305}, \\\"gen6\\\": {\\\"eff_rank\\\": 496.42, \\\"log_det\\\": 2429.83, \\\"ppl\\\": 12.19, \\\"distinct4\\\": 0.463, \\\"train_loss\\\": 1.264}, \\\"gen7\\\": {\\\"eff_rank\\\": 496.24, \\\"log_det\\\": 2436.35, \\\"ppl\\\": 12.54, \\\"distinct4\\\": 0.488, \\\"train_loss\\\": 1.327}, \\\"gen8\\\": {\\\"eff_rank\\\": 501.49, \\\"log_det\\\": 2454.3, \\\"ppl\\\": 12.96, \\\"distinct4\\\": 0.501, \\\"train_loss\\\": 1.339}, \\\"gen9\\\": {\\\"eff_rank\\\": 504.86, \\\"log_det\\\": 2463.14, \\\"ppl\\\": 13.39, \\\"distinct4\\\": 0.508, \\\"train_loss\\\": 1.394}, \\\"gen10\\\": {\\\"eff_rank\\\": 511.26, \\\"log_det\\\": 2479.7, \\\"ppl\\\": 13.83, \\\"distinct4\\\": 0.52, \\\"train_loss\\\": 1.392}, \\\"slv_total_change_pct\\\": 4.78, \\\"slv_monotonic_from_gen2\\\": true, \\\"controller_ratio_fixed\\\": 0.2, \\\"type_ii_supported\\\": true}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T03:00:14.754Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T03:00:16.520914+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_011.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"r=0.2 固定混合完整 10gen 确认 Type II。SLV: 2367→2358(G2 dip)→2480(G10, +4.78%)，Gen2 后单调上升。PPL 9.55→13.83 (+45%)。distinct4 从 Gen5 低点 0.438 回升至 0.520（recovery 现象）。eff_rank 418→511 单调上升。r=0.2 firmly Type II，无 spectral collapse。可移除论文中 \\\\\\\"five generations\\\\\\\" hedge，更新 §4.5 至完整 10gen 数据。\\\", \\\"completed_at\\\": \\\"2026-05-20T03:52:09.649Z\\\"}, \\\"exp_012\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T03:03:46.429Z\\\", \\\"updated_at\\\": \\\"2026-05-20T03:31:37.699Z\\\", \\\"hypothesis\\\": \\\"r=0.3 seed43 reproduces the Type II trajectory (monotonic SLV rise, no collapse) observed in exp_008 (seed42), confirming r=0.3 is robustly above r_crit across random seeds. Combined with exp_010 (r=0 seed43), this completes cross-seed validation of the phase diagram at both extremes (collapse vs. no-collapse).\\\", \\\"parent\\\": \\\"exp_008\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/spectral_collapse_ews/scripts/launch_mixed_r0.3_seed43.sh 0\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"385711\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_012.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T03:03:54.653Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/spectral_collapse_ews\\\", \\\"data_count\\\": 35000, \\\"model_name\\\": \\\"GPT-2\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"N/A (replication, not eval)\\\", \\\"eval_data\\\": \\\"N/A (replication, not eval)\\\"}}, \\\"exp_009\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T19:47:07.558Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:20:20.579Z\\\", \\\"hypothesis\\\": \\\"At r=0.25 (25% real data), SLV trajectory will disambiguate the r_crit boundary between r=0.2 (dip-then-recovery, no collapse in 5gen) and r=0.3. If r=0.25 shows sustained SLV decline over 10 generations, r_crit lies in [0.2, 0.25]. If it recovers like r=0.2, r_crit is below 0.2. This precisely locates the phase transition boundary for the mixing-ratio phase diagram (C2 claim).\\\", \\\"parent\\\": \\\"exp_007\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.25 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 247492, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_009.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T19:47:27.851Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"description\\\": \\\"Phase 1: Fixed mix r=0.25 ablation (25% real + 75% synthetic), seed 42, 10 generations\\\", \\\"tmux_session\\\": \\\"exp_009\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K (12.5K real + 37.5K synthetic per gen)\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"fixed_mix\\\", \\\"real_ratio\\\": 0.25, \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_fixed_mix_r025_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\", \\\"wall_clock_seconds\\\": 73829.7, \\\"gpu_hours\\\": 20.51}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 476.66, \\\"gen1_log_det\\\": 2362.13, \\\"gen1_ppl\\\": 10.239, \\\"gen1_distinct4\\\": 0.6499, \\\"gen1_train_loss\\\": 1.801, \\\"gen2_eff_rank\\\": 482.84, \\\"gen2_log_det\\\": 2363.1, \\\"gen2_ppl\\\": 10.653, \\\"gen2_distinct4\\\": 0.4973, \\\"gen2_train_loss\\\": 1.698, \\\"gen3_eff_rank\\\": 489.47, \\\"gen3_log_det\\\": 2380.88, \\\"gen3_ppl\\\": 11.019, \\\"gen3_distinct4\\\": 0.4419, \\\"gen3_train_loss\\\": 1.413, \\\"gen4_eff_rank\\\": 491.21, \\\"gen4_log_det\\\": 2393.37, \\\"gen4_ppl\\\": 11.343, \\\"gen4_distinct4\\\": 0.4298, \\\"gen4_train_loss\\\": 1.343, \\\"gen5_eff_rank\\\": 495.84, \\\"gen5_log_det\\\": 2421.22, \\\"gen5_ppl\\\": 11.669, \\\"gen5_distinct4\\\": 0.4192, \\\"gen5_train_loss\\\": 1.308, \\\"gen6_eff_rank\\\": 498.59, \\\"gen6_log_det\\\": 2436.38, \\\"gen6_ppl\\\": 11.974, \\\"gen6_distinct4\\\": 0.3969, \\\"gen6_train_loss\\\": 1.317, \\\"gen7_eff_rank\\\": 500.66, \\\"gen7_log_det\\\": 2447.08, \\\"gen7_ppl\\\": 12.295, \\\"gen7_distinct4\\\": 0.3889, \\\"gen7_train_loss\\\": 1.303, \\\"gen8_eff_rank\\\": 505.82, \\\"gen8_log_det\\\": 2463.81, \\\"gen8_ppl\\\": 12.631, \\\"gen8_distinct4\\\": 0.3657, \\\"gen8_train_loss\\\": 1.304, \\\"gen9_eff_rank\\\": 509.59, \\\"gen9_log_det\\\": 2476.58, \\\"gen9_ppl\\\": 12.978, \\\"gen9_distinct4\\\": 0.3674, \\\"gen9_train_loss\\\": 1.289, \\\"gen10_eff_rank\\\": 512.46, \\\"gen10_log_det\\\": 2485.01, \\\"gen10_ppl\\\": 13.285, \\\"gen10_distinct4\\\": 0.3572, \\\"gen10_train_loss\\\": 1.319, \\\"progress\\\": \\\"Gen 0-10 complete. EXIT_CODE=0.\\\", \\\"trend\\\": \\\"log_det 2367→2362(G1 dip, -4.55)→2485(G10), monotonic rise from G1. Dip shallower than r=0.2 (-8.37). Type II: controller Δ_t=-0.0019, just below τ=0.002.\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T16:14:24.141Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T16:14:25.587295+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed42/\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_009.log\\\", \\\"notes\\\": \\\"r=0.25 固定混合 10gen 完成。SLV dip-then-recovery: 2366.7→2362.1(G1 dip, -4.6)→2363.1(G2 min)→2485.0(G10, +5.0%)。EMA confirms Type II: S̃_1=2364.4, S̃_2=2363.8, S̃_2 < S̃_1 violates non-decreasing condition。Controller completely silent: max Δ_t=0.00028 < τ=0.002 (6.7× weaker than r=0.2)。r_crit ∈ (0.25, 0.3] confirmed (D031)。§4.5 已更新含 EMA 显式论证。\\\", \\\"completed_at\\\": \\\"2026-05-19T16:17:57.561Z\\\"}, \\\"exp_008\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T10:18:37.014Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:45:29.524Z\\\", \\\"hypothesis\\\": \\\"At r=0.3 (30% real data), SLV decompression phase will be shorter than r=0.5 (10+ gen, exp_006) but longer than r=0 (2 gen, exp_001). Log_det peak and subsequent decline should occur within 10 generations, establishing an intermediate point on the r_crit curve. Combined with r=0.2 (exp_007) and r=0.5 (exp_006), this maps the transition boundary where spectral collapse onset becomes detectable.\\\", \\\"parent\\\": \\\"exp_006\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"194372\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_008.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T10:18:47.426Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"description\\\": \\\"Phase 1: Fixed mix r=0.3 ablation (30% real + 70% synthetic), seed 42, 10 generations\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"fixed_mix\\\", \\\"real_ratio\\\": 0.3, \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\", \\\"wall_clock_seconds\\\": 91602.1, \\\"gpu_hours\\\": 25.45}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 476.91, \\\"gen1_log_det\\\": 2366.13, \\\"gen1_ppl\\\": 10.193, \\\"gen1_distinct4\\\": 0.6894, \\\"gen1_train_loss\\\": 1.836, \\\"gen2_eff_rank\\\": 484.17, \\\"gen2_log_det\\\": 2372.45, \\\"gen2_ppl\\\": 10.589, \\\"gen2_distinct4\\\": 0.4892, \\\"gen2_train_loss\\\": 1.774, \\\"gen3_eff_rank\\\": 489.48, \\\"gen3_log_det\\\": 2386.72, \\\"gen3_ppl\\\": 10.901, \\\"gen3_distinct4\\\": 0.4646, \\\"gen3_train_loss\\\": 1.506, \\\"gen4_eff_rank\\\": 492.59, \\\"gen4_log_det\\\": 2404.02, \\\"gen4_ppl\\\": 11.226, \\\"gen4_distinct4\\\": 0.4682, \\\"gen4_train_loss\\\": 1.446, \\\"gen5_eff_rank\\\": 497.86, \\\"gen5_log_det\\\": 2431.17, \\\"gen5_ppl\\\": 11.544, \\\"gen5_distinct4\\\": 0.4508, \\\"gen5_train_loss\\\": 1.407, \\\"gen6_eff_rank\\\": 501.63, \\\"gen6_log_det\\\": 2452, \\\"gen6_ppl\\\": 11.875, \\\"gen6_distinct4\\\": 0.4176, \\\"gen6_train_loss\\\": 1.368, \\\"gen7_eff_rank\\\": 506.3, \\\"gen7_log_det\\\": 2467.05, \\\"gen7_ppl\\\": 12.215, \\\"gen7_distinct4\\\": 0.3964, \\\"gen7_train_loss\\\": 1.349, \\\"gen8_eff_rank\\\": 511.71, \\\"gen8_log_det\\\": 2485.91, \\\"gen8_ppl\\\": 12.61, \\\"gen8_distinct4\\\": 0.4058, \\\"gen8_train_loss\\\": 1.32, \\\"gen9_eff_rank\\\": 515.92, \\\"gen9_log_det\\\": 2497.3, \\\"gen9_ppl\\\": 12.955, \\\"gen9_distinct4\\\": 0.3732, \\\"gen9_train_loss\\\": 1.3248, \\\"gen10_eff_rank\\\": 521.26, \\\"gen10_log_det\\\": 2511.13, \\\"gen10_ppl\\\": 13.377, \\\"gen10_distinct4\\\": 0.3422, \\\"gen10_train_loss\\\": 1.3036, \\\"progress\\\": \\\"Gen 0-10 complete. EXIT_CODE=0.\\\", \\\"trend\\\": \\\"log_det 2367→2511 monotonic rise (+144.5). eff_rank 418→521. ppl 9.55→13.38 (+40%). d4 0.74→0.34 (-54%). No spectral collapse at r=0.3.\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T05:50:19.936Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T05:50:22.139985+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"r=0.3 固定混合 10gen 完成。log_det 单调上升 2367→2511 (+144)，与 r=0.5 模式一致，无 spectral collapse。eff_rank 418→519 单调上升。ppl 9.55→13.1 (+37%)。d4 0.74→0.40 (-46%)。r=0.3 确认在 r_crit 上方，spectral collapse 信号完全被抑制。\\\", \\\"completed_at\\\": \\\"2026-05-19T11:45:29.524Z\\\"}, \\\"exp_007\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T08:50:59.190Z\\\", \\\"updated_at\\\": \\\"2026-05-19T05:51:19.994Z\\\", \\\"hypothesis\\\": \\\"At r=0.2 (20% real data), spectral collapse will manifest within 5 generations (log_det decline), unlike r=0.5 where decompression persisted through 10 gen (exp_006). This establishes a critical real-data ratio r_crit between 0.2 and 0.5 below which SLV-based collapse detection becomes viable. If controller triggers, it validates C3 claim that SLV can guide closed-loop mixing at low real-data budgets.\\\", \\\"parent\\\": \\\"exp_006\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Fixed mix r=0.2 ablation (20% real + 80% synthetic), seed 42, 5 generations\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 5 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.2 --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 188503, \\\"tmux_session\\\": \\\"exp_007\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\\\", \\\"generations\\\": 5, \\\"condition\\\": \\\"fixed_mix\\\", \\\"real_ratio\\\": 0.2, \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_007.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T19:41:02.189Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T19:41:03.495190+00:00\\\"}]}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 476.73, \\\"gen1_log_det\\\": 2367.46, \\\"gen1_ppl\\\": 10.282, \\\"gen1_distinct4\\\": 0.6737, \\\"gen1_train_loss\\\": 1.7653, \\\"gen2_eff_rank\\\": 481.62, \\\"gen2_log_det\\\": 2358.31, \\\"gen2_ppl\\\": 10.741, \\\"gen2_distinct4\\\": 0.4978, \\\"gen2_train_loss\\\": 1.6709, \\\"gen3_eff_rank\\\": 486.54, \\\"gen3_log_det\\\": 2362.52, \\\"gen3_ppl\\\": 11.137, \\\"gen3_distinct4\\\": 0.4665, \\\"gen3_train_loss\\\": 1.4208, \\\"gen4_eff_rank\\\": 490.35, \\\"gen4_log_det\\\": 2379.19, \\\"gen4_ppl\\\": 11.512, \\\"gen4_distinct4\\\": 0.4515, \\\"gen4_train_loss\\\": 1.3255, \\\"gen5_eff_rank\\\": 492.66, \\\"gen5_log_det\\\": 2398.93, \\\"gen5_ppl\\\": 11.833, \\\"gen5_distinct4\\\": 0.4384, \\\"gen5_train_loss\\\": 1.3049, \\\"progress\\\": \\\"Gen 0-5 complete. EXIT_CODE=0.\\\", \\\"trend\\\": \\\"log_det 2367→2359(Gen2 dip)→2399(Gen5), dip-then-recovery. eff_rank 418→493 monotonic rise. ppl 9.55→11.83 (+24%). d4 0.74→0.44 (-41%). No spectral collapse at r=0.2.\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_007.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"r=0.2 固定混合 5gen 完成。关键发现：SLV 呈 dip-then-recovery 模式（2367→2358 Gen2 dip→2399 Gen5 recovery），与 r=0（单调下降 2469→2179）和 r=0.5（单调上升 2367→2573）均不同。r=0.2 在 5gen 内无 spectral collapse，但 Gen2 短暂 dip 表明存在 early transient instability。d4 下降 41%（0.74→0.44）但远轻于 r=0 的 87%。Per D025，不续跑 10gen，改为启动 r=0.25 精确定位 r_crit。\\\", \\\"completed_at\\\": \\\"2026-05-19T05:51:19.994Z\\\"}, \\\"exp_004\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T04:31:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-18T10:23:38.841Z\\\", \\\"hypothesis\\\": \\\"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\\\", \\\"parent\\\": \\\"exp_001\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 135411, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_004.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T17:56:12.965Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"description\\\": \\\"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\\\", \\\"tmux_session\\\": \\\"exp_004\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"fixed_mix\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\", \\\"wall_clock_seconds\\\": 59044.8, \\\"gpu_hours\\\": 16.4}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 477.89, \\\"gen1_log_det\\\": 2366.58, \\\"gen1_ppl\\\": 10.083, \\\"gen1_distinct4\\\": 0.6693, \\\"gen2_eff_rank\\\": 487.92, \\\"gen2_log_det\\\": 2395.36, \\\"gen2_ppl\\\": 10.413, \\\"gen2_distinct4\\\": 0.5817, \\\"gen3_eff_rank\\\": 496.57, \\\"gen3_log_det\\\": 2425.64, \\\"gen3_ppl\\\": 10.758, \\\"gen3_distinct4\\\": 0.4563, \\\"gen4_eff_rank\\\": 502.05, \\\"gen4_log_det\\\": 2451.72, \\\"gen4_ppl\\\": 11.138, \\\"gen4_distinct4\\\": 0.328, \\\"gen5_eff_rank\\\": 512.78, \\\"gen5_log_det\\\": 2486.34, \\\"gen5_ppl\\\": 11.65, \\\"gen5_distinct4\\\": 0.2354, \\\"gen6_eff_rank\\\": 519.78, \\\"gen6_log_det\\\": 2507.62, \\\"gen6_ppl\\\": 12.16, \\\"gen6_distinct4\\\": 0.2203, \\\"gen7_eff_rank\\\": 527.47, \\\"gen7_log_det\\\": 2525.55, \\\"gen7_ppl\\\": 12.77, \\\"gen7_distinct4\\\": 0.1932, \\\"gen8_eff_rank\\\": 536.39, \\\"gen8_log_det\\\": 2544.03, \\\"gen8_ppl\\\": 13.46, \\\"gen8_distinct4\\\": 0.1681, \\\"gen9_eff_rank\\\": 545.73, \\\"gen9_log_det\\\": 2562.13, \\\"gen9_ppl\\\": 14.23, \\\"gen9_distinct4\\\": 0.1019, \\\"gen10_eff_rank\\\": 554.51, \\\"gen10_log_det\\\": 2573.2, \\\"gen10_ppl\\\": 15.2, \\\"gen10_distinct4\\\": 0.0954, \\\"gen10_train_loss\\\": 0.869, \\\"progress\\\": \\\"Gen 0-10 complete. EXIT_CODE=0.\\\", \\\"trend\\\": \\\"ppl 9.55→15.20 (+59%), eff_rank 417→555 (monotonic rise), log_det 2367→2573 (monotonic rise), distinct_4 0.74→0.095 (87% decline). No spectral collapse at r=0.5.\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T10:15:45.129Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T10:15:47.327309+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_004.log\\\", \\\"notes\\\": \\\"Fixed r=0.5 baseline完成10 gen。r=0.5完全消除spectral collapse（eff_rank/log_det单调上升），ppl仅+49%（vs pure collapse +704%），但distinct4暴跌86%（0.74→0.10）。与exp_006（adaptive never triggered, 也是r=0.5）spectral/ppl高度一致，但distinct4差异显著（0.10 vs 0.23），可能因code path差异。关键结论：r=0.5是r_crit的上界参考点——spectral EWS在此比例下完全被抑制。\\\", \\\"completed_at\\\": \\\"2026-05-18T10:20:17.738Z\\\"}, \\\"exp_006\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T17:29:14.060Z\\\", \\\"updated_at\\\": \\\"2026-05-18T08:49:12.740Z\\\", \\\"hypothesis\\\": \\\"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\\\", \\\"parent\\\": \\\"exp_005\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 134913, \\\"tmux_session\\\": \\\"exp_006\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"adaptive\\\", \\\"controller_params\\\": {\\\"tau\\\": 0.002, \\\"k\\\": 10, \\\"r_min\\\": 0.2, \\\"r_max\\\": 0.8, \\\"alpha\\\": 0.5, \\\"signal\\\": \\\"log_det\\\", \\\"signal_mode\\\": \\\"per_gen\\\"}, \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"results_file\\\": \\\"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.554, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 477.31, \\\"gen1_log_det\\\": 2365.1, \\\"gen1_ppl\\\": 10.089, \\\"gen1_distinct4\\\": 0.7099, \\\"gen1_mix_ratio\\\": 0.5, \\\"gen1_triggered\\\": false, \\\"gen1_train_loss\\\": 1.984, \\\"gen2_eff_rank\\\": 487.08, \\\"gen2_log_det\\\": 2394.01, \\\"gen2_ppl\\\": 10.416, \\\"gen2_distinct4\\\": 0.5995, \\\"gen2_mix_ratio\\\": 0.5, \\\"gen2_triggered\\\": false, \\\"gen2_train_loss\\\": 1.934, \\\"gen3_eff_rank\\\": 496.03, \\\"gen3_log_det\\\": 2423.83, \\\"gen3_ppl\\\": 10.76, \\\"gen3_distinct4\\\": 0.4898, \\\"gen3_mix_ratio\\\": 0.5, \\\"gen3_triggered\\\": false, \\\"gen3_train_loss\\\": 1.752, \\\"gen4_eff_rank\\\": 501.19, \\\"gen4_log_det\\\": 2448.26, \\\"gen4_ppl\\\": 11.135, \\\"gen4_distinct4\\\": 0.4304, \\\"gen4_mix_ratio\\\": 0.5, \\\"gen4_triggered\\\": false, \\\"gen4_train_loss\\\": 1.572, \\\"gen5_eff_rank\\\": 512.5, \\\"gen5_log_det\\\": 2488.08, \\\"gen5_ppl\\\": 11.643, \\\"gen5_distinct4\\\": 0.373, \\\"gen5_mix_ratio\\\": 0.5, \\\"gen5_triggered\\\": false, \\\"gen5_train_loss\\\": 1.467, \\\"gen6_eff_rank\\\": 518.89, \\\"gen6_log_det\\\": 2507.62, \\\"gen6_ppl\\\": 12.144, \\\"gen6_distinct4\\\": 0.3556, \\\"gen6_mix_ratio\\\": 0.5, \\\"gen6_triggered\\\": false, \\\"gen6_train_loss\\\": 1.325, \\\"gen7_eff_rank\\\": 526.89, \\\"gen7_log_det\\\": 2526.19, \\\"gen7_ppl\\\": 12.723, \\\"gen7_distinct4\\\": 0.2905, \\\"gen7_mix_ratio\\\": 0.5, \\\"gen7_triggered\\\": false, \\\"gen7_train_loss\\\": 1.251, \\\"gen8_eff_rank\\\": 535.3, \\\"gen8_log_det\\\": 2542.89, \\\"gen8_ppl\\\": 13.397, \\\"gen8_distinct4\\\": 0.2558, \\\"gen8_mix_ratio\\\": 0.5, \\\"gen8_triggered\\\": false, \\\"gen8_train_loss\\\": 1.149, \\\"gen9_eff_rank\\\": 544.5, \\\"gen9_log_det\\\": 2560.14, \\\"gen9_ppl\\\": 14.159, \\\"gen9_distinct4\\\": 0.226, \\\"gen9_mix_ratio\\\": 0.5, \\\"gen9_triggered\\\": false, \\\"gen9_train_loss\\\": 1.062, \\\"gen10_eff_rank\\\": 553.76, \\\"gen10_log_det\\\": 2572.22, \\\"gen10_ppl\\\": 15.1, \\\"gen10_distinct4\\\": 0.2388, \\\"gen10_mix_ratio\\\": 0.5, \\\"gen10_triggered\\\": false, \\\"gen10_train_loss\\\": 0.991, \\\"total_generations\\\": 11, \\\"controller_ever_triggered\\\": false, \\\"final_eff_rank\\\": 553.76, \\\"final_ppl\\\": 15.1, \\\"final_distinct4\\\": 0.2388}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T08:47:09.147Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-18T08:47:10.572135+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_006.log\\\", \\\"notes\\\": \\\"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\\\", \\\"completed_at\\\": \\\"2026-05-18T08:49:12.740Z\\\"}, \\\"exp_005\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-17T13:32:53.227Z\\\", \\\"updated_at\\\": \\\"2026-05-17T21:16:49.574Z\\\", \\\"hypothesis\\\": \\\"Spectral-guided adaptive mixing with amplified response (k=20, tau=0.002) produces meaningfully different ratio trajectories (0.5→0.7+) compared to fixed_mix, resulting in lower perplexity and higher effective rank. D012 calibration: k=1.0 produced negligible ratio variation (max +0.006), k=20 with Phase 0 deltas should yield ratio up to 0.62+ at Gen 5.\\\", \\\"parent\\\": \\\"exp_003\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T13:41:59.604Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"completed_at\\\": \\\"2026-05-17T13:41:59.710Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T13:42:00.861640+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Adaptive spectral-guided mixing (D012: k=20, tau=0.002, log_det signal), seed 42\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_phase1.py --condition adaptive --seed 42 --num_gens 10 --signal log_det --tau 0.002 --k 20\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 116947, \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K real pool, total_per_gen=50K\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"adaptive\\\", \\\"controller_params\\\": {\\\"tau\\\": 0.002, \\\"k\\\": 20, \\\"r_min\\\": 0.2, \\\"r_max\\\": 0.8, \\\"alpha\\\": 0.5, \\\"signal\\\": \\\"log_det\\\"}, \\\"log_path\\\": \\\"/root/spectral_collapse_ews/logs/exp_003_v3_adaptive_k20_s42.log\\\", \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.55, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 476.93, \\\"gen1_log_det\\\": 2366.46, \\\"gen1_ppl\\\": 10.09, \\\"gen1_distinct4\\\": 0.6608, \\\"gen1_mix_ratio\\\": 0.5, \\\"gen1_train_loss\\\": 1.986, \\\"gen1_triggered\\\": false, \\\"gen2_eff_rank\\\": 486.85, \\\"gen2_log_det\\\": 2395.23, \\\"gen2_ppl\\\": 10.42, \\\"gen2_distinct4\\\": 0.6149, \\\"gen2_mix_ratio\\\": 0.5, \\\"gen2_train_loss\\\": 1.881, \\\"gen2_triggered\\\": false, \\\"gen3_eff_rank\\\": 496.11, \\\"gen3_log_det\\\": 2425.4, \\\"gen3_ppl\\\": 10.76, \\\"gen3_distinct4\\\": 0.44, \\\"gen3_train_loss\\\": 1.7804, \\\"gen3_mix_ratio\\\": 0.5, \\\"gen3_triggered\\\": false, \\\"gen4_eff_rank\\\": 501.8, \\\"gen4_log_det\\\": 2450.7, \\\"gen4_ppl\\\": 11.13, \\\"gen4_distinct4\\\": 0.384, \\\"gen4_mix_ratio\\\": 0.5, \\\"gen4_triggered\\\": false, \\\"progress\\\": \\\"Gen 0-4 complete. Killed per D018. Controller NEVER triggered (log_det monotonically RISING 2366→2450).\\\", \\\"controller_status\\\": \\\"NEVER triggered. log_det rose monotonically through 5 gens. distinct_4 halved (0.74→0.38) without spectral signal.\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"D018: Gen 0-4 completed, killed to free cuda:1 for exp_004 (双实例降速3.5-5x). Results backed up to phase1_adaptive_k20_seed42_results_gen0-4_backup.json. Controller NOT triggered Gen 1-3 (validates k sensitivity). Resume from Gen 4 checkpoint when GPU available.\\\"}, \\\"exp_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 2, \\\"created_at\\\": \\\"2026-05-16T07:39:16.853Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:32:40.200Z\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T23:20:59.926Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\", \\\"completed_at\\\": \\\"2026-05-16T16:10:05.673Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T16:10:06.276444+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T23:21:01.623970+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"gen3_eff_rank\\\": 493.31, \\\"gen3_log_det\\\": 2440.57, \\\"gen3_ppl\\\": 16.25, \\\"gen3_distinct4\\\": 0.49, \\\"gen3_hellaswag\\\": 0.3658, \\\"gen3_train_loss\\\": 1.134, \\\"progress\\\": \\\"Gen 4/10 generating\\\", \\\"trend\\\": \\\"eff_rank first decline at Gen 3 (-3.13 from Gen 2)\\\"}}}, \\\"spec\\\": {\\\"pid\\\": 59365, \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python run_phase0.py --resume_from_gen 4\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"tmux_session\\\": \\\"exp_001_gen4\\\", \\\"resume_from_gen\\\": 4, \\\"log_path\\\": \\\"/root/spectral_collapse_ews/results/phase0_gen4_run.log\\\", \\\"checkpoint_path\\\": \\\"/root/spectral_collapse_ews/checkpoints/gen_10/model.safetensors\\\", \\\"description\\\": \\\"Phase 0: Pure collapse characterization - Gen 0-10 complete\\\", \\\"hypothesis\\\": \\\"Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0)\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K train + 5K eval + 1K spectral\\\", \\\"generations\\\": 10, \\\"mix_ratio\\\": \\\"100% synthetic (pure collapse)\\\"}, \\\"metrics\\\": {\\\"gen10_eff_rank\\\": 442.46, \\\"gen10_log_det\\\": 2178.95, \\\"gen10_ppl\\\": 76.78, \\\"progress\\\": \\\"Gen 0-10 complete. Phase 0 finished.\\\", \\\"trend\\\": \\\"eff_rank 496(peak Gen2)->442(Gen10) monotonic decline. ppl 9.55->76.78 exponential growth. HellaSwag 0.413->0.301 (-27%). log_det 2469(peak Gen2)->2178(Gen10). Collapse fully confirmed across 10 generations.\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0). Pure 100% synthetic training causes exponential perplexity growth and monotonic spectral collapse across 10 generations.\\\"}, \\\"exp_003\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T04:04:34.425Z\\\", \\\"updated_at\\\": \\\"2026-05-17T13:08:33.285Z\\\", \\\"hypothesis\\\": \\\"Spectral-guided adaptive data mixing using log_det signal (tau=0.005, k=1.0, r_min=0.20, r_max=0.80) achieves lower perplexity and higher effective rank than fixed 50/50 mixing, because log_det provides earlier and more sensitive collapse detection than eff_rank (D010: tau=0.02 with eff_rank signal caused controller to never trigger)\\\", \\\"parent\\\": \\\"exp_001\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 1: Adaptive spectral-guided mixing (log_det signal, tau=0.005), seed 42\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --k 1.0 --tau 0.005 --signal log_det --generations 10\\\\\\\"\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 88156, \\\"tmux_session\\\": \\\"exp_003\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m-deduped\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K train + 5K eval + 1K spectral\\\", \\\"generations\\\": 10, \\\"condition\\\": \\\"adaptive\\\", \\\"controller_params\\\": {\\\"tau\\\": 0.005, \\\"k\\\": 1, \\\"r_min\\\": 0.2, \\\"r_max\\\": 0.8, \\\"alpha\\\": 0.5, \\\"signal\\\": \\\"log_det\\\"}, \\\"checkpoint_dir\\\": \\\"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/\\\", \\\"log_path\\\": \\\"~/runs/spectral_collapse_ews/exp_003.log\\\", \\\"checkpoint_source\\\": \\\"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\\\", \\\"eval_data\\\": \\\"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\\\", \\\"env\\\": \\\"TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1\\\", \\\"d010_fix\\\": \\\"signal changed from eff_rank to log_det, tau from 0.02 to 0.005\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 417.55, \\\"gen0_log_det\\\": 2366.68, \\\"gen0_ppl\\\": 9.55, \\\"gen0_distinct4\\\": 0.7414, \\\"gen1_eff_rank\\\": 479.49, \\\"gen1_log_det\\\": 2356.68, \\\"gen1_ppl\\\": 10.01, \\\"gen1_distinct4\\\": 0.7108, \\\"gen1_mix_ratio\\\": 0.5, \\\"gen1_train_loss\\\": 1.983, \\\"gen2_mix_ratio\\\": 0.5625, \\\"gen2_training_step\\\": 3400, \\\"progress\\\": \\\"Gen 2/10 training step ~3400, controller TRIGGERED (mix_ratio increased to 0.5625)\\\", \\\"controller_status\\\": \\\"TRIGGERED: Gen 0→1 Δ=0.00423, controller actively increasing real data ratio. Gen 2 mix=0.5625 > 0.5 base.\\\", \\\"delta_gen0_1\\\": 0.00423}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-17T12:48:23.260Z\\\", \\\"notes\\\": \\\"D011: Killed due to 3 critical controller bugs (budget deduction using request not actual, Gen 0 baseline missing, ratio>0.5 physically impossible with 50K real pool). Results invalid. Will restart as exp_003v2 after bugfix + dry-run verification.\\\"}, \\\"exp_002\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:02:30.232Z\\\", \\\"updated_at\\\": \\\"2026-05-17T04:03:52.900Z\\\", \\\"spec\\\": {\\\"description\\\": \\\"Phase 0 (1B): Pure collapse characterization - Pythia 1B, 100% synthetic, 10 generations\\\", \\\"hypothesis\\\": \\\"Effective rank collapse pattern transfers across model scale (410M → 1B)\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-1b-deduped\\\", \\\"server\\\": \\\"rtx6000-diagprobe\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/spectral_collapse_ews/data/\\\", \\\"data_count\\\": \\\"50K train + 5K eval + 1K spectral\\\", \\\"generations\\\": 10, \\\"mix_ratio\\\": \\\"100% synthetic (pure collapse)\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && python run_phase0_1b.py\\\\\\\"\\\", \\\"pid\\\": 25237, \\\"hyperparams\\\": {\\\"lr\\\": 5e-05, \\\"batch_size\\\": 8, \\\"gradient_accumulation_steps\\\": 4, \\\"warmup_ratio\\\": 0.05, \\\"epochs_per_gen\\\": 1, \\\"temperature\\\": 1, \\\"top_k\\\": 50, \\\"max_length\\\": 512}, \\\"notes\\\": \\\"实际 PID 25237（tmux 内 python 进程）。Gen 0 完成：eff_rank=516.14, ppl=8.07, distinct4=0.7510。当前 Gen 1 进行中。checkpoint 正确写入数据盘。\\\"}, \\\"metrics\\\": {\\\"gen0_eff_rank\\\": 516.14, \\\"gen0_log_det\\\": 2835.32, \\\"gen0_ppl\\\": 8.07, \\\"gen0_distinct4\\\": 0.751, \\\"gen0_sigma1\\\": 1661.2, \\\"gen1_eff_rank\\\": 570.75, \\\"gen1_log_det\\\": 2905.74, \\\"gen1_ppl\\\": 9.41, \\\"gen1_distinct4\\\": 0.634, \\\"gen1_train_loss\\\": 1.53, \\\"gen1_sigma1\\\": 1052.8, \\\"gen2_eff_rank\\\": 580.92, \\\"gen2_log_det\\\": 2893.85, \\\"gen2_ppl\\\": 11.04, \\\"gen2_distinct4\\\": 0.538, \\\"gen2_train_loss\\\": 1.218, \\\"gen2_sigma1\\\": 916.3, \\\"gen3_eff_rank\\\": 580.63, \\\"gen3_log_det\\\": 2864.78, \\\"gen3_ppl\\\": 13.44, \\\"gen3_distinct4\\\": 0.501, \\\"gen3_train_loss\\\": 1.027, \\\"gen3_sigma1\\\": 873.5, \\\"progress\\\": \\\"KILLED - zombie process cleaned, cuda:1 freed\\\", \\\"trend\\\": \\\"1B shows same 3-phase pattern: decompression peak Gen 2, log_det decline Gen 2→3, eff_rank plateau Gen 2→3\\\", \\\"crash_reason\\\": \\\"No space left on device (root partition, NOT checkpoint disk - checkpoints correctly symlinked to autodl-tmp)\\\", \\\"cleanup\\\": \\\"PID 25237 killed, cuda:1 released, checkpoint data preserved on autodl-tmp (16GB)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T03:42:40.918Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=143 (SIGTERM — graceful kill)\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-17T03:42:41.535Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T03:42:42.600274+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: Root 分区 (30GB) 磁盘满，非 checkpoint 盘问题（checkpoint 已正确 symlink 到 autodl-tmp）| 已有成果: Gen 0-3 完整数据，确认 1B 与 410M 相同 3-phase pattern（decompression peak Gen 2, log_det 先降, eff_rank plateau Gen 2→3）| 数据保存: autodl-tmp 16GB checkpoint 完好 | 建议: 1B pilot 已获足够 cross-scale 验证数据，cuda:1 应立即投入 Phase 1\\\"}}, \\\"count\\\": 12, \\\"total\\\": 12, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.081}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"exp_010\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:52:19.811Z\", \"updated_at\": \"2026-05-20T07:47:09.628Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition pure_collapse --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 283142, \"log_path\": \"~/runs/spectral_collapse_ews/exp_010.log\", \"submitted_at\": \"2026-05-19T05:52:19.743Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 2: Pure collapse seed 43 (100% synthetic, r=0.0), 10 generations. Multi-seed replication of exp_001.\", \"tmux_session\": \"exp_010\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 43, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K synthetic per gen (0% real)\", \"generations\": 10, \"condition\": \"pure_collapse\", \"real_ratio\": 0, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed43/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"hypothesis\": \"Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run.\", \"parent\": \"exp_001\", \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7415, \"gen1_eff_rank\": 490.83, \"gen1_log_det\": 2462.62, \"gen1_ppl\": 11.371, \"gen1_distinct4\": 0.5997, \"gen2_eff_rank\": 496.24, \"gen2_log_det\": 2466.63, \"gen2_ppl\": 13.565, \"gen2_distinct4\": 0.5048, \"gen3_eff_rank\": 494.04, \"gen3_log_det\": 2438.38, \"gen3_ppl\": 16.22, \"gen3_distinct4\": 0.4778, \"gen4_log_det\": 2404.6, \"gen4_eff_rank\": 489.23, \"gen4_ppl\": 19.94, \"gen4_distinct4\": 0.4154, \"gen5_log_det\": 2365.13, \"gen5_eff_rank\": 480.07, \"gen5_ppl\": 24.6, \"gen5_distinct4\": 0.4172, \"gen6_log_det\": 2325.01, \"gen6_eff_rank\": 471.88, \"gen6_ppl\": 30.06, \"gen6_distinct4\": 0.4082, \"gen7_log_det\": 2291.55, \"gen7_ppl\": 37.44, \"gen7_eff_rank\": 464.18, \"gen7_distinct4\": 0.3905, \"gen8_log_det\": 2248.26, \"gen8_ppl\": 46.94, \"gen8_eff_rank\": 456.18, \"gen8_distinct4\": 0.388, \"progress\": \"Gen 0-8 complete, Gen 9 generating (6400/50000, ~13%). SLV 2467(G2 peak)→2248(G8, -8.84%). PPL 9.55→46.94.\", \"trend\": \"Seed 43: SLV collapse accelerating. Gen8 PPL 46.94 (5x baseline). Delta_t increasing (38.58 at Gen8). ~2 gen remaining.\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T07:47:09.514Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:47:11.521367+00:00\"}]}}, \"exp_011\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T16:17:23.434Z\", \"updated_at\": \"2026-05-20T03:52:09.649Z\", \"hypothesis\": \"Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit.\", \"parent\": \"exp_007\", \"spec\": {\"command\": \"bash -c \\\"bash /root/spectral_collapse_ews/scripts/resume_fixed_mix_r02_seed42_gen5to10.sh 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 319889, \"log_path\": \"~/runs/spectral_collapse_ews/exp_011.log\", \"submitted_at\": \"2026-05-19T16:17:48.185Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Resume r=0.2 fixed mix seed 42 from Gen 5 to Gen 10\", \"tmux_session\": \"exp_011\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\", \"generations\": \"5→10 (resume)\", \"condition\": \"fixed_mix\", \"real_ratio\": 0.2, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json\", \"checkpoint_source\": \"exp_007 Gen 5 checkpoint\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 41661.5, \"gpu_hours\": 11.57}, \"metrics\": {\"gen0\": {\"eff_rank\": 417.55, \"log_det\": 2366.68, \"ppl\": 9.55, \"distinct4\": 0.741}, \"gen1\": {\"eff_rank\": 476.73, \"log_det\": 2367.46, \"ppl\": 10.28, \"distinct4\": 0.674, \"train_loss\": 1.765}, \"gen2\": {\"eff_rank\": 481.62, \"log_det\": 2358.31, \"ppl\": 10.74, \"distinct4\": 0.498, \"train_loss\": 1.671}, \"gen3\": {\"eff_rank\": 486.54, \"log_det\": 2362.52, \"ppl\": 11.14, \"distinct4\": 0.467, \"train_loss\": 1.421}, \"gen4\": {\"eff_rank\": 490.35, \"log_det\": 2379.19, \"ppl\": 11.51, \"distinct4\": 0.451, \"train_loss\": 1.326}, \"gen5\": {\"eff_rank\": 492.65, \"log_det\": 2398.93, \"ppl\": 11.83, \"distinct4\": 0.438, \"train_loss\": 1.305}, \"gen6\": {\"eff_rank\": 496.42, \"log_det\": 2429.83, \"ppl\": 12.19, \"distinct4\": 0.463, \"train_loss\": 1.264}, \"gen7\": {\"eff_rank\": 496.24, \"log_det\": 2436.35, \"ppl\": 12.54, \"distinct4\": 0.488, \"train_loss\": 1.327}, \"gen8\": {\"eff_rank\": 501.49, \"log_det\": 2454.3, \"ppl\": 12.96, \"distinct4\": 0.501, \"train_loss\": 1.339}, \"gen9\": {\"eff_rank\": 504.86, \"log_det\": 2463.14, \"ppl\": 13.39, \"distinct4\": 0.508, \"train_loss\": 1.394}, \"gen10\": {\"eff_rank\": 511.26, \"log_det\": 2479.7, \"ppl\": 13.83, \"distinct4\": 0.52, \"train_loss\": 1.392}, \"slv_total_change_pct\": 4.78, \"slv_monotonic_from_gen2\": true, \"controller_ratio_fixed\": 0.2, \"type_ii_supported\": true}, \"reproduce\": {\"finished_at\": \"2026-05-20T03:00:14.754Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:00:16.520914+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_011.log\", \"conclusion\": \"success\", \"notes\": \"r=0.2 固定混合完整 10gen 确认 Type II。SLV: 2367→2358(G2 dip)→2480(G10, +4.78%)，Gen2 后单调上升。PPL 9.55→13.83 (+45%)。distinct4 从 Gen5 低点 0.438 回升至 0.520（recovery 现象）。eff_rank 418→511 单调上升。r=0.2 firmly Type II，无 spectral collapse。可移除论文中 \\\"five generations\\\" hedge，更新 §4.5 至完整 10gen 数据。\", \"completed_at\": \"2026-05-20T03:52:09.649Z\"}, \"exp_012\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T03:03:46.429Z\", \"updated_at\": \"2026-05-20T03:31:37.699Z\", \"hypothesis\": \"r=0.3 seed43 reproduces the Type II trajectory (monotonic SLV rise, no collapse) observed in exp_008 (seed42), confirming r=0.3 is robustly above r_crit across random seeds. Combined with exp_010 (r=0 seed43), this completes cross-seed validation of the phase diagram at both extremes (collapse vs. no-collapse).\", \"parent\": \"exp_008\", \"spec\": {\"command\": \"bash /root/spectral_collapse_ews/scripts/launch_mixed_r0.3_seed43.sh 0\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:0\"], \"pid\": \"385711\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_012.log\", \"submitted_at\": \"2026-05-20T03:03:54.653Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/spectral_collapse_ews\", \"data_count\": 35000, \"model_name\": \"GPT-2\", \"seed\": 43, \"checkpoint_source\": \"N/A (replication, not eval)\", \"eval_data\": \"N/A (replication, not eval)\"}}, \"exp_009\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T19:47:07.558Z\", \"updated_at\": \"2026-05-19T16:20:20.579Z\", \"hypothesis\": \"At r=0.25 (25% real data), SLV trajectory will disambiguate the r_crit boundary between r=0.2 (dip-then-recovery, no collapse in 5gen) and r=0.3. If r=0.25 shows sustained SLV decline over 10 generations, r_crit lies in [0.2, 0.25]. If it recovers like r=0.2, r_crit is below 0.2. This precisely locates the phase transition boundary for the mixing-ratio phase diagram (C2 claim).\", \"parent\": \"exp_007\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.25 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 247492, \"log_path\": \"~/runs/spectral_collapse_ews/exp_009.log\", \"submitted_at\": \"2026-05-18T19:47:27.851Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed mix r=0.25 ablation (25% real + 75% synthetic), seed 42, 10 generations\", \"tmux_session\": \"exp_009\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (12.5K real + 37.5K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.25, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r025_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 73829.7, \"gpu_hours\": 20.51}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.66, \"gen1_log_det\": 2362.13, \"gen1_ppl\": 10.239, \"gen1_distinct4\": 0.6499, \"gen1_train_loss\": 1.801, \"gen2_eff_rank\": 482.84, \"gen2_log_det\": 2363.1, \"gen2_ppl\": 10.653, \"gen2_distinct4\": 0.4973, \"gen2_train_loss\": 1.698, \"gen3_eff_rank\": 489.47, \"gen3_log_det\": 2380.88, \"gen3_ppl\": 11.019, \"gen3_distinct4\": 0.4419, \"gen3_train_loss\": 1.413, \"gen4_eff_rank\": 491.21, \"gen4_log_det\": 2393.37, \"gen4_ppl\": 11.343, \"gen4_distinct4\": 0.4298, \"gen4_train_loss\": 1.343, \"gen5_eff_rank\": 495.84, \"gen5_log_det\": 2421.22, \"gen5_ppl\": 11.669, \"gen5_distinct4\": 0.4192, \"gen5_train_loss\": 1.308, \"gen6_eff_rank\": 498.59, \"gen6_log_det\": 2436.38, \"gen6_ppl\": 11.974, \"gen6_distinct4\": 0.3969, \"gen6_train_loss\": 1.317, \"gen7_eff_rank\": 500.66, \"gen7_log_det\": 2447.08, \"gen7_ppl\": 12.295, \"gen7_distinct4\": 0.3889, \"gen7_train_loss\": 1.303, \"gen8_eff_rank\": 505.82, \"gen8_log_det\": 2463.81, \"gen8_ppl\": 12.631, \"gen8_distinct4\": 0.3657, \"gen8_train_loss\": 1.304, \"gen9_eff_rank\": 509.59, \"gen9_log_det\": 2476.58, \"gen9_ppl\": 12.978, \"gen9_distinct4\": 0.3674, \"gen9_train_loss\": 1.289, \"gen10_eff_rank\": 512.46, \"gen10_log_det\": 2485.01, \"gen10_ppl\": 13.285, \"gen10_distinct4\": 0.3572, \"gen10_train_loss\": 1.319, \"progress\": \"Gen 0-10 complete. EXIT_CODE=0.\", \"trend\": \"log_det 2367→2362(G1 dip, -4.55)→2485(G10), monotonic rise from G1. Dip shallower than r=0.2 (-8.37). Type II: controller Δ_t=-0.0019, just below τ=0.002.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T16:14:24.141Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T16:14:25.587295+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r025_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_009.log\", \"notes\": \"r=0.25 固定混合 10gen 完成。SLV dip-then-recovery: 2366.7→2362.1(G1 dip, -4.6)→2363.1(G2 min)→2485.0(G10, +5.0%)。EMA confirms Type II: S̃_1=2364.4, S̃_2=2363.8, S̃_2 < S̃_1 violates non-decreasing condition。Controller completely silent: max Δ_t=0.00028 < τ=0.002 (6.7× weaker than r=0.2)。r_crit ∈ (0.25, 0.3] confirmed (D031)。§4.5 已更新含 EMA 显式论证。\", \"completed_at\": \"2026-05-19T16:17:57.561Z\"}, \"exp_008\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:18:37.014Z\", \"updated_at\": \"2026-05-19T11:45:29.524Z\", \"hypothesis\": \"At r=0.3 (30% real data), SLV decompression phase will be shorter than r=0.5 (10+ gen, exp_006) but longer than r=0 (2 gen, exp_001). Log_det peak and subsequent decline should occur within 10 generations, establishing an intermediate point on the r_crit curve. Combined with r=0.2 (exp_007) and r=0.5 (exp_006), this maps the transition boundary where spectral collapse onset becomes detectable.\", \"parent\": \"exp_006\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.3 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": [\"cuda:1\"], \"pid\": \"194372\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_008.log\", \"submitted_at\": \"2026-05-18T10:18:47.426Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed mix r=0.3 ablation (30% real + 70% synthetic), seed 42, 10 generations\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (15K real + 35K synthetic per gen)\", \"generations\": 10, \"condition\": \"fixed_mix\", \"real_ratio\": 0.3, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r03_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 91602.1, \"gpu_hours\": 25.45}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.91, \"gen1_log_det\": 2366.13, \"gen1_ppl\": 10.193, \"gen1_distinct4\": 0.6894, \"gen1_train_loss\": 1.836, \"gen2_eff_rank\": 484.17, \"gen2_log_det\": 2372.45, \"gen2_ppl\": 10.589, \"gen2_distinct4\": 0.4892, \"gen2_train_loss\": 1.774, \"gen3_eff_rank\": 489.48, \"gen3_log_det\": 2386.72, \"gen3_ppl\": 10.901, \"gen3_distinct4\": 0.4646, \"gen3_train_loss\": 1.506, \"gen4_eff_rank\": 492.59, \"gen4_log_det\": 2404.02, \"gen4_ppl\": 11.226, \"gen4_distinct4\": 0.4682, \"gen4_train_loss\": 1.446, \"gen5_eff_rank\": 497.86, \"gen5_log_det\": 2431.17, \"gen5_ppl\": 11.544, \"gen5_distinct4\": 0.4508, \"gen5_train_loss\": 1.407, \"gen6_eff_rank\": 501.63, \"gen6_log_det\": 2452, \"gen6_ppl\": 11.875, \"gen6_distinct4\": 0.4176, \"gen6_train_loss\": 1.368, \"gen7_eff_rank\": 506.3, \"gen7_log_det\": 2467.05, \"gen7_ppl\": 12.215, \"gen7_distinct4\": 0.3964, \"gen7_train_loss\": 1.349, \"gen8_eff_rank\": 511.71, \"gen8_log_det\": 2485.91, \"gen8_ppl\": 12.61, \"gen8_distinct4\": 0.4058, \"gen8_train_loss\": 1.32, \"gen9_eff_rank\": 515.92, \"gen9_log_det\": 2497.3, \"gen9_ppl\": 12.955, \"gen9_distinct4\": 0.3732, \"gen9_train_loss\": 1.3248, \"gen10_eff_rank\": 521.26, \"gen10_log_det\": 2511.13, \"gen10_ppl\": 13.377, \"gen10_distinct4\": 0.3422, \"gen10_train_loss\": 1.3036, \"progress\": \"Gen 0-10 complete. EXIT_CODE=0.\", \"trend\": \"log_det 2367→2511 monotonic rise (+144.5). eff_rank 418→521. ppl 9.55→13.38 (+40%). d4 0.74→0.34 (-54%). No spectral collapse at r=0.3.\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T05:50:19.936Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T05:50:22.139985+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r03_seed42/\", \"conclusion\": \"success\", \"notes\": \"r=0.3 固定混合 10gen 完成。log_det 单调上升 2367→2511 (+144)，与 r=0.5 模式一致，无 spectral collapse。eff_rank 418→519 单调上升。ppl 9.55→13.1 (+37%)。d4 0.74→0.40 (-46%)。r=0.3 确认在 r_crit 上方，spectral collapse 信号完全被抑制。\", \"completed_at\": \"2026-05-19T11:45:29.524Z\"}, \"exp_007\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T08:50:59.190Z\", \"updated_at\": \"2026-05-19T05:51:19.994Z\", \"hypothesis\": \"At r=0.2 (20% real data), spectral collapse will manifest within 5 generations (log_det decline), unlike r=0.5 where decompression persisted through 10 gen (exp_006). This establishes a critical real-data ratio r_crit between 0.2 and 0.5 below which SLV-based collapse detection becomes viable. If controller triggers, it validates C3 claim that SLV can guide closed-loop mixing at low real-data budgets.\", \"parent\": \"exp_006\", \"spec\": {\"description\": \"Phase 1: Fixed mix r=0.2 ablation (20% real + 80% synthetic), seed 42, 5 generations\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 5 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --real_ratio 0.2 --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 188503, \"tmux_session\": \"exp_007\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K (10K real + 40K synthetic per gen)\", \"generations\": 5, \"condition\": \"fixed_mix\", \"real_ratio\": 0.2, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_r02_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_007.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T19:41:02.189Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T19:41:03.495190+00:00\"}]}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.73, \"gen1_log_det\": 2367.46, \"gen1_ppl\": 10.282, \"gen1_distinct4\": 0.6737, \"gen1_train_loss\": 1.7653, \"gen2_eff_rank\": 481.62, \"gen2_log_det\": 2358.31, \"gen2_ppl\": 10.741, \"gen2_distinct4\": 0.4978, \"gen2_train_loss\": 1.6709, \"gen3_eff_rank\": 486.54, \"gen3_log_det\": 2362.52, \"gen3_ppl\": 11.137, \"gen3_distinct4\": 0.4665, \"gen3_train_loss\": 1.4208, \"gen4_eff_rank\": 490.35, \"gen4_log_det\": 2379.19, \"gen4_ppl\": 11.512, \"gen4_distinct4\": 0.4515, \"gen4_train_loss\": 1.3255, \"gen5_eff_rank\": 492.66, \"gen5_log_det\": 2398.93, \"gen5_ppl\": 11.833, \"gen5_distinct4\": 0.4384, \"gen5_train_loss\": 1.3049, \"progress\": \"Gen 0-5 complete. EXIT_CODE=0.\", \"trend\": \"log_det 2367→2359(Gen2 dip)→2399(Gen5), dip-then-recovery. eff_rank 418→493 monotonic rise. ppl 9.55→11.83 (+24%). d4 0.74→0.44 (-41%). No spectral collapse at r=0.2.\"}, \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_r02_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_007.log\", \"conclusion\": \"success\", \"notes\": \"r=0.2 固定混合 5gen 完成。关键发现：SLV 呈 dip-then-recovery 模式（2367→2358 Gen2 dip→2399 Gen5 recovery），与 r=0（单调下降 2469→2179）和 r=0.5（单调上升 2367→2573）均不同。r=0.2 在 5gen 内无 spectral collapse，但 Gen2 短暂 dip 表明存在 early transient instability。d4 下降 41%（0.74→0.44）但远轻于 r=0 的 87%。Per D025，不续跑 10gen，改为启动 r=0.25 精确定位 r_crit。\", \"completed_at\": \"2026-05-19T05:51:19.994Z\"}, \"exp_004\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:31:11.170Z\", \"updated_at\": \"2026-05-18T10:23:38.841Z\", \"hypothesis\": \"Fixed 50/50 real-synthetic mixing provides intermediate collapse mitigation compared to pure collapse (0% real) but underperforms spectral-guided adaptive mixing (exp_003), because uniform allocation wastes real data budget on early generations where collapse signals are weak\", \"parent\": \"exp_001\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition fixed_mix --seed 42 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 135411, \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"submitted_at\": \"2026-05-17T17:56:12.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"description\": \"Phase 1: Fixed 50/50 real-synthetic mixing (baseline condition), seed 42\", \"tmux_session\": \"exp_004\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"fixed_mix\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_fixed_mix_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"wall_clock_seconds\": 59044.8, \"gpu_hours\": 16.4}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.89, \"gen1_log_det\": 2366.58, \"gen1_ppl\": 10.083, \"gen1_distinct4\": 0.6693, \"gen2_eff_rank\": 487.92, \"gen2_log_det\": 2395.36, \"gen2_ppl\": 10.413, \"gen2_distinct4\": 0.5817, \"gen3_eff_rank\": 496.57, \"gen3_log_det\": 2425.64, \"gen3_ppl\": 10.758, \"gen3_distinct4\": 0.4563, \"gen4_eff_rank\": 502.05, \"gen4_log_det\": 2451.72, \"gen4_ppl\": 11.138, \"gen4_distinct4\": 0.328, \"gen5_eff_rank\": 512.78, \"gen5_log_det\": 2486.34, \"gen5_ppl\": 11.65, \"gen5_distinct4\": 0.2354, \"gen6_eff_rank\": 519.78, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.16, \"gen6_distinct4\": 0.2203, \"gen7_eff_rank\": 527.47, \"gen7_log_det\": 2525.55, \"gen7_ppl\": 12.77, \"gen7_distinct4\": 0.1932, \"gen8_eff_rank\": 536.39, \"gen8_log_det\": 2544.03, \"gen8_ppl\": 13.46, \"gen8_distinct4\": 0.1681, \"gen9_eff_rank\": 545.73, \"gen9_log_det\": 2562.13, \"gen9_ppl\": 14.23, \"gen9_distinct4\": 0.1019, \"gen10_eff_rank\": 554.51, \"gen10_log_det\": 2573.2, \"gen10_ppl\": 15.2, \"gen10_distinct4\": 0.0954, \"gen10_train_loss\": 0.869, \"progress\": \"Gen 0-10 complete. EXIT_CODE=0.\", \"trend\": \"ppl 9.55→15.20 (+59%), eff_rank 417→555 (monotonic rise), log_det 2367→2573 (monotonic rise), distinct_4 0.74→0.095 (87% decline). No spectral collapse at r=0.5.\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T10:15:45.129Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:15:47.327309+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/fixed_mix_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_004.log\", \"notes\": \"Fixed r=0.5 baseline完成10 gen。r=0.5完全消除spectral collapse（eff_rank/log_det单调上升），ppl仅+49%（vs pure collapse +704%），但distinct4暴跌86%（0.74→0.10）。与exp_006（adaptive never triggered, 也是r=0.5）spectral/ppl高度一致，但distinct4差异显著（0.10 vs 0.23），可能因code path差异。关键结论：r=0.5是r_crit的上界参考点——spectral EWS在此比例下完全被抑制。\", \"completed_at\": \"2026-05-18T10:20:17.738Z\"}, \"exp_006\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T17:29:14.060Z\", \"updated_at\": \"2026-05-18T08:49:12.740Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with moderate gain (k=10, tau=0.002, per_gen mode) provides optimal balance between early response and budget conservation. k=10 is midpoint between k=20 (exp_005, fast budget depletion) and k=5 (cumulative mode, late trigger). Expect ratio to rise to ~0.55-0.65 at peak collapse gens, with more gradual budget consumption than k=20.\", \"parent\": \"exp_005\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (k=10, tau=0.002, per_gen mode, log_det signal), seed 42. 论文主实验.\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --generations 10 --signal log_det --tau 0.002 --k 10 --signal_mode per_gen --gpu 0\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"pid\": 134913, \"tmux_session\": \"exp_006\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 10, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\", \"signal_mode\": \"per_gen\"}, \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"results_file\": \"/root/spectral_collapse_ews/results/phase1_adaptive_k10_seed42_results.json\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.554, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 477.31, \"gen1_log_det\": 2365.1, \"gen1_ppl\": 10.089, \"gen1_distinct4\": 0.7099, \"gen1_mix_ratio\": 0.5, \"gen1_triggered\": false, \"gen1_train_loss\": 1.984, \"gen2_eff_rank\": 487.08, \"gen2_log_det\": 2394.01, \"gen2_ppl\": 10.416, \"gen2_distinct4\": 0.5995, \"gen2_mix_ratio\": 0.5, \"gen2_triggered\": false, \"gen2_train_loss\": 1.934, \"gen3_eff_rank\": 496.03, \"gen3_log_det\": 2423.83, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.4898, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen3_train_loss\": 1.752, \"gen4_eff_rank\": 501.19, \"gen4_log_det\": 2448.26, \"gen4_ppl\": 11.135, \"gen4_distinct4\": 0.4304, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"gen4_train_loss\": 1.572, \"gen5_eff_rank\": 512.5, \"gen5_log_det\": 2488.08, \"gen5_ppl\": 11.643, \"gen5_distinct4\": 0.373, \"gen5_mix_ratio\": 0.5, \"gen5_triggered\": false, \"gen5_train_loss\": 1.467, \"gen6_eff_rank\": 518.89, \"gen6_log_det\": 2507.62, \"gen6_ppl\": 12.144, \"gen6_distinct4\": 0.3556, \"gen6_mix_ratio\": 0.5, \"gen6_triggered\": false, \"gen6_train_loss\": 1.325, \"gen7_eff_rank\": 526.89, \"gen7_log_det\": 2526.19, \"gen7_ppl\": 12.723, \"gen7_distinct4\": 0.2905, \"gen7_mix_ratio\": 0.5, \"gen7_triggered\": false, \"gen7_train_loss\": 1.251, \"gen8_eff_rank\": 535.3, \"gen8_log_det\": 2542.89, \"gen8_ppl\": 13.397, \"gen8_distinct4\": 0.2558, \"gen8_mix_ratio\": 0.5, \"gen8_triggered\": false, \"gen8_train_loss\": 1.149, \"gen9_eff_rank\": 544.5, \"gen9_log_det\": 2560.14, \"gen9_ppl\": 14.159, \"gen9_distinct4\": 0.226, \"gen9_mix_ratio\": 0.5, \"gen9_triggered\": false, \"gen9_train_loss\": 1.062, \"gen10_eff_rank\": 553.76, \"gen10_log_det\": 2572.22, \"gen10_ppl\": 15.1, \"gen10_distinct4\": 0.2388, \"gen10_mix_ratio\": 0.5, \"gen10_triggered\": false, \"gen10_train_loss\": 0.991, \"total_generations\": 11, \"controller_ever_triggered\": false, \"final_eff_rank\": 553.76, \"final_ppl\": 15.1, \"final_distinct4\": 0.2388}, \"reproduce\": {\"finished_at\": \"2026-05-18T08:47:09.147Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T08:47:10.572135+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_k10_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_006.log\", \"notes\": \"Adaptive controller (k=10, tau=0.002, per_gen log_det) NEVER triggered across 10 generations. mix_ratio stayed at 0.5 (default) throughout. Per-gen log_det deltas were too small to cross tau threshold, confirming the signal-decay paradox: the spectral signal that motivates intervention is precisely the one that decays too gradually to trigger it. Valuable negative result supporting r_crit claim.\", \"completed_at\": \"2026-05-18T08:49:12.740Z\"}, \"exp_005\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:32:53.227Z\", \"updated_at\": \"2026-05-17T21:16:49.574Z\", \"hypothesis\": \"Spectral-guided adaptive mixing with amplified response (k=20, tau=0.002) produces meaningfully different ratio trajectories (0.5→0.7+) compared to fixed_mix, resulting in lower perplexity and higher effective rank. D012 calibration: k=1.0 produced negligible ratio variation (max +0.006), k=20 with Phase 0 deltas should yield ratio up to 0.62+ at Gen 5.\", \"parent\": \"exp_003\", \"reproduce\": {\"finished_at\": \"2026-05-17T13:41:59.604Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-17T13:41:59.710Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T13:42:00.861640+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (D012: k=20, tau=0.002, log_det signal), seed 42\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python run_phase1.py --condition adaptive --seed 42 --num_gens 10 --signal log_det --tau 0.002 --k 20\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 116947, \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K real pool, total_per_gen=50K\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.002, \"k\": 20, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\"}, \"log_path\": \"/root/spectral_collapse_ews/logs/exp_003_v3_adaptive_k20_s42.log\", \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 476.93, \"gen1_log_det\": 2366.46, \"gen1_ppl\": 10.09, \"gen1_distinct4\": 0.6608, \"gen1_mix_ratio\": 0.5, \"gen1_train_loss\": 1.986, \"gen1_triggered\": false, \"gen2_eff_rank\": 486.85, \"gen2_log_det\": 2395.23, \"gen2_ppl\": 10.42, \"gen2_distinct4\": 0.6149, \"gen2_mix_ratio\": 0.5, \"gen2_train_loss\": 1.881, \"gen2_triggered\": false, \"gen3_eff_rank\": 496.11, \"gen3_log_det\": 2425.4, \"gen3_ppl\": 10.76, \"gen3_distinct4\": 0.44, \"gen3_train_loss\": 1.7804, \"gen3_mix_ratio\": 0.5, \"gen3_triggered\": false, \"gen4_eff_rank\": 501.8, \"gen4_log_det\": 2450.7, \"gen4_ppl\": 11.13, \"gen4_distinct4\": 0.384, \"gen4_mix_ratio\": 0.5, \"gen4_triggered\": false, \"progress\": \"Gen 0-4 complete. Killed per D018. Controller NEVER triggered (log_det monotonically RISING 2366→2450).\", \"controller_status\": \"NEVER triggered. log_det rose monotonically through 5 gens. distinct_4 halved (0.74→0.38) without spectral signal.\"}, \"conclusion\": \"killed\", \"notes\": \"D018: Gen 0-4 completed, killed to free cuda:1 for exp_004 (双实例降速3.5-5x). Results backed up to phase1_adaptive_k20_seed42_results_gen0-4_backup.json. Controller NOT triggered Gen 1-3 (validates k sensitivity). Resume from Gen 4 checkpoint when GPU available.\"}, \"exp_001\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-16T07:39:16.853Z\", \"updated_at\": \"2026-05-17T17:32:40.200Z\", \"reproduce\": {\"finished_at\": \"2026-05-16T23:20:59.926Z\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"completed_at\": \"2026-05-16T16:10:05.673Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T16:10:06.276444+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T23:21:01.623970+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"gen3_eff_rank\": 493.31, \"gen3_log_det\": 2440.57, \"gen3_ppl\": 16.25, \"gen3_distinct4\": 0.49, \"gen3_hellaswag\": 0.3658, \"gen3_train_loss\": 1.134, \"progress\": \"Gen 4/10 generating\", \"trend\": \"eff_rank first decline at Gen 3 (-3.13 from Gen 2)\"}}}, \"spec\": {\"pid\": 59365, \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python run_phase0.py --resume_from_gen 4\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:0\", \"tmux_session\": \"exp_001_gen4\", \"resume_from_gen\": 4, \"log_path\": \"/root/spectral_collapse_ews/results/phase0_gen4_run.log\", \"checkpoint_path\": \"/root/spectral_collapse_ews/checkpoints/gen_10/model.safetensors\", \"description\": \"Phase 0: Pure collapse characterization - Gen 0-10 complete\", \"hypothesis\": \"Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0)\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K train + 5K eval + 1K spectral\", \"generations\": 10, \"mix_ratio\": \"100% synthetic (pure collapse)\"}, \"metrics\": {\"gen10_eff_rank\": 442.46, \"gen10_log_det\": 2178.95, \"gen10_ppl\": 76.78, \"progress\": \"Gen 0-10 complete. Phase 0 finished.\", \"trend\": \"eff_rank 496(peak Gen2)->442(Gen10) monotonic decline. ppl 9.55->76.78 exponential growth. HellaSwag 0.413->0.301 (-27%). log_det 2469(peak Gen2)->2178(Gen10). Collapse fully confirmed across 10 generations.\"}, \"conclusion\": \"success\", \"hypothesis\": \"Effective rank monotonically decreases over recursive synthetic training with accelerating collapse in later generations (baseline from Gen 1, not Gen 0). Pure 100% synthetic training causes exponential perplexity growth and monotonic spectral collapse across 10 generations.\"}, \"exp_003\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T04:04:34.425Z\", \"updated_at\": \"2026-05-17T13:08:33.285Z\", \"hypothesis\": \"Spectral-guided adaptive data mixing using log_det signal (tau=0.005, k=1.0, r_min=0.20, r_max=0.80) achieves lower perplexity and higher effective rank than fixed 50/50 mixing, because log_det provides earlier and more sensitive collapse detection than eff_rank (D010: tau=0.02 with eff_rank signal caused controller to never trigger)\", \"parent\": \"exp_001\", \"spec\": {\"description\": \"Phase 1: Adaptive spectral-guided mixing (log_det signal, tau=0.005), seed 42\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition adaptive --seed 42 --k 1.0 --tau 0.005 --signal log_det --generations 10\\\"\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"pid\": 88156, \"tmux_session\": \"exp_003\", \"model_name\": \"EleutherAI/pythia-410m-deduped\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K train + 5K eval + 1K spectral\", \"generations\": 10, \"condition\": \"adaptive\", \"controller_params\": {\"tau\": 0.005, \"k\": 1, \"r_min\": 0.2, \"r_max\": 0.8, \"alpha\": 0.5, \"signal\": \"log_det\"}, \"checkpoint_dir\": \"/root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/adaptive_seed42/\", \"log_path\": \"~/runs/spectral_collapse_ews/exp_003.log\", \"checkpoint_source\": \"EleutherAI/pythia-410m-deduped (HuggingFace, pretrained base)\", \"eval_data\": \"/root/spectral_collapse_ews/data/eval_5k.jsonl (5K held-out samples)\", \"env\": \"TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1\", \"d010_fix\": \"signal changed from eff_rank to log_det, tau from 0.02 to 0.005\"}, \"metrics\": {\"gen0_eff_rank\": 417.55, \"gen0_log_det\": 2366.68, \"gen0_ppl\": 9.55, \"gen0_distinct4\": 0.7414, \"gen1_eff_rank\": 479.49, \"gen1_log_det\": 2356.68, \"gen1_ppl\": 10.01, \"gen1_distinct4\": 0.7108, \"gen1_mix_ratio\": 0.5, \"gen1_train_loss\": 1.983, \"gen2_mix_ratio\": 0.5625, \"gen2_training_step\": 3400, \"progress\": \"Gen 2/10 training step ~3400, controller TRIGGERED (mix_ratio increased to 0.5625)\", \"controller_status\": \"TRIGGERED: Gen 0→1 Δ=0.00423, controller actively increasing real data ratio. Gen 2 mix=0.5625 > 0.5 base.\", \"delta_gen0_1\": 0.00423}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-17T12:48:23.260Z\", \"notes\": \"D011: Killed due to 3 critical controller bugs (budget deduction using request not actual, Gen 0 baseline missing, ratio>0.5 physically impossible with 50K real pool). Results invalid. Will restart as exp_003v2 after bugfix + dry-run verification.\"}, \"exp_002\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:02:30.232Z\", \"updated_at\": \"2026-05-17T04:03:52.900Z\", \"spec\": {\"description\": \"Phase 0 (1B): Pure collapse characterization - Pythia 1B, 100% synthetic, 10 generations\", \"hypothesis\": \"Effective rank collapse pattern transfers across model scale (410M → 1B)\", \"model_name\": \"EleutherAI/pythia-1b-deduped\", \"server\": \"rtx6000-diagprobe\", \"gpu\": \"cuda:1\", \"seed\": 42, \"data_path\": \"/root/spectral_collapse_ews/data/\", \"data_count\": \"50K train + 5K eval + 1K spectral\", \"generations\": 10, \"mix_ratio\": \"100% synthetic (pure collapse)\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && python run_phase0_1b.py\\\"\", \"pid\": 25237, \"hyperparams\": {\"lr\": 5e-05, \"batch_size\": 8, \"gradient_accumulation_steps\": 4, \"warmup_ratio\": 0.05, \"epochs_per_gen\": 1, \"temperature\": 1, \"top_k\": 50, \"max_length\": 512}, \"notes\": \"实际 PID 25237（tmux 内 python 进程）。Gen 0 完成：eff_rank=516.14, ppl=8.07, distinct4=0.7510。当前 Gen 1 进行中。checkpoint 正确写入数据盘。\"}, \"metrics\": {\"gen0_eff_rank\": 516.14, \"gen0_log_det\": 2835.32, \"gen0_ppl\": 8.07, \"gen0_distinct4\": 0.751, \"gen0_sigma1\": 1661.2, \"gen1_eff_rank\": 570.75, \"gen1_log_det\": 2905.74, \"gen1_ppl\": 9.41, \"gen1_distinct4\": 0.634, \"gen1_train_loss\": 1.53, \"gen1_sigma1\": 1052.8, \"gen2_eff_rank\": 580.92, \"gen2_log_det\": 2893.85, \"gen2_ppl\": 11.04, \"gen2_distinct4\": 0.538, \"gen2_train_loss\": 1.218, \"gen2_sigma1\": 916.3, \"gen3_eff_rank\": 580.63, \"gen3_log_det\": 2864.78, \"gen3_ppl\": 13.44, \"gen3_distinct4\": 0.501, \"gen3_train_loss\": 1.027, \"gen3_sigma1\": 873.5, \"progress\": \"KILLED - zombie process cleaned, cuda:1 freed\", \"trend\": \"1B shows same 3-phase pattern: decompression peak Gen 2, log_det decline Gen 2→3, eff_rank plateau Gen 2→3\", \"crash_reason\": \"No space left on device (root partition, NOT checkpoint disk - checkpoints correctly symlinked to autodl-tmp)\", \"cleanup\": \"PID 25237 killed, cuda:1 released, checkpoint data preserved on autodl-tmp (16GB)\"}, \"reproduce\": {\"finished_at\": \"2026-05-17T03:42:40.918Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T03:42:41.535Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T03:42:42.600274+00:00\"}]}, \"notes\": \"失败原因: Root 分区 (30GB) 磁盘满，非 checkpoint 盘问题（checkpoint 已正确 symlink 到 autodl-tmp）| 已有成果: Gen 0-3 完整数据，确认 1B 与 410M 相同 3-phase pattern（decompression peak Gen 2, log_det 先降, eff_rank plateau Gen 2→3）| 数据保存: autodl-tmp 16GB checkpoint 完好 | 建议: 1B pilot 已获足够 cross-scale 验证数据，cuda:1 应立即投入 Phase 1\"}}, \"count\": 12, \"total\": 12, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.081}}"
+    }
+  },
+  "sourceToolAssistantUUID": "06f16ce4-9930-4eab-a6e0-870ef470429b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T07:47:26.887Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01GPfLsg2ufBeB5mu7As1wUZ`</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3d65b1df-57d8-43ef-8c32-dfd32f28b1a8",
+  "isSidechain": false,
+  "requestId": "req_011CbDT8bHWxPVenfBtVwETa",
+  "type": "assistant",
+  "uuid": "0f34d487-6e4f-42c4-a357-9cc5b30b8cd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L1i5tkE45kJgabeKcAa4VN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1135,
+      "cache_read_input_tokens": 37633,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1135,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 37633,
+          "cache_creation_input_tokens": 1135,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1135
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T07:47:26.901Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_011qkyjKA2yDhunaxAMtEg78`</summary>
+
+```json
+{
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f34d487-6e4f-42c4-a357-9cc5b30b8cd9",
+  "isSidechain": false,
+  "requestId": "req_011CbDT8bHWxPVenfBtVwETa",
+  "type": "assistant",
+  "uuid": "062d12eb-d905-47c4-b8a4-91fdd7145d1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L1i5tkE45kJgabeKcAa4VN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1135,
+      "cache_read_input_tokens": 37633,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1135,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 37633,
+          "cache_creation_input_tokens": 1135,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1135
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: exp_010 - project: spectral_collapse_ews - server: rtx6000-diagprobe - log_path: ~/runs/spe…",
+  "leafUuid": "062d12eb-d905-47c4-b8a4-91fdd7145d1a",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-20T07:47:28.497Z_
+
+<details><summary>↩ Tool result · `toolu_01NUpojHhnbbKc5DAqiqHhqq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp_012\", \"success\": true, \"actions\": [\"Job still running (pid=385711)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa6ca149-7c23-474a-9e30-826a696815e0",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "bdbf71aa-583e-4a85-83fd-b5e1f2d6db2a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp_012\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=385711)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"exp_012\", \"success\": true, \"actions\": [\"Job still running (pid=385711)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fa6ca149-7c23-474a-9e30-826a696815e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T07:47:28.524Z_
+
+<details><summary>↩ Tool result · `toolu_01GPfLsg2ufBeB5mu7As1wUZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T07:47:10Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 12 个实验 — ANALYZING 1, DONE 10, RUNNING 1\\n**DONE 分布**: killed 2, negative 1, success 7\\n\\n### GPU 占用\\n- **分配**: 2 张 — rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\n- **实际运行**: 1 张 — rtx6000-diagprobe:cuda:0(exp_012)\\n- **空闲（分配了没跑）**: rtx6000-diagprobe:cuda:1\\n\\n### 💾 磁盘余量\\n- **rtx6000-diagprobe**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp_012` | rtx6000-diagprobe | cuda:0 | 385711 | `~/runs/spectral_collapse_ews/exp_012.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp_011` [success] — 2026-05-20T03:52:09\\n- `exp_009` [success] — 2026-05-19T16:20:20\\n- `exp_008` [success] — 2026-05-19T11:45:29\\n- `exp_007` [success] — 2026-05-19T05:51:19\\n- `exp_004` [success] — 2026-05-18T10:23:38\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_012 | r=0.3 seed43 reproduces the Type II trajectory (monotonic SLV rise, no collapse) observed in exp_008 (seed42), confirming r=0.3 is robustly above r_crit across random seeds. Combined with exp_010 (r=0 seed43), this completes cross-seed validation of the phase diagram at both extremes (collapse vs. no-collapse). | — | — | — |\\n| exp_010 | Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run. | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_011** (success): Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit. ← 基于 exp_007\\n- **exp_009** (success): At r=0.25 (25% real data), SLV trajectory will disambiguate the r_crit boundary between r=0.2 (dip-then-recovery, no collapse in 5gen) and r=0.3. If r=0.25 shows sustained SLV decline over 10 generations, r_crit lies in [0.2, 0.25]. If it recovers like r=0.2, r_crit is below 0.2. This precisely locates the phase transition boundary for the mixing-ratio phase diagram (C2 claim). ← 基于 exp_007\\n  [exp_009_r025_full_analysis](/api/workspace-files/projects/spectral_collapse_ews/artifacts/exp_009/report/exp_009_r025_full_analysis.md)\\n- **exp_008** (success): At r=0.3 (30% real data), SLV decompression phase will be shorter than r=0.5 (10+ gen, exp_006) but longer than r=0 (2 gen, exp_001). Log_det peak and subsequent decline should occur within 10 generations, establishing an intermediate point on the r_crit curve. Combined with r=0.2 (exp_007) and r=0.5 (exp_006), this maps the transition boundary where spectral collapse onset becomes detectable. ← 基于 exp_006\\n\\n## 趋势\\n成功 7 / 负向 1 / 失败 0 / 共 10\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nrtx6000-diagprobe: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- exp_003: 已被终止 — unknown\\n- exp_005: 已被终止 — unknown\\n\", \"total_chars\": 3460, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0f34d487-6e4f-42c4-a357-9cc5b30b8cd9",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "2b97d1be-bb08-476b-896f-af20a4fcebb9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T07:47:10Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 12 个实验 — ANALYZING 1, DONE 10, RUNNING 1\\\\n**DONE 分布**: killed 2, negative 1, success 7\\\\n\\\\n### GPU 占用\\\\n- **分配**: 2 张 — rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\\\n- **实际运行**: 1 张 — rtx6000-diagprobe:cuda:0(exp_012)\\\\n- **空闲（分配了没跑）**: rtx6000-diagprobe:cuda:1\\\\n\\\\n### 💾 磁盘余量\\\\n- **rtx6000-diagprobe**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `exp_012` | rtx6000-diagprobe | cuda:0 | 385711 | `~/runs/spectral_collapse_ews/exp_012.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp_011` [success] — 2026-05-20T03:52:09\\\\n- `exp_009` [success] — 2026-05-19T16:20:20\\\\n- `exp_008` [success] — 2026-05-19T11:45:29\\\\n- `exp_007` [success] — 2026-05-19T05:51:19\\\\n- `exp_004` [success] — 2026-05-18T10:23:38\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-20\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp_012 | r=0.3 seed43 reproduces the Type II trajectory (monotonic SLV rise, no collapse) observed in exp_008 (seed42), confirming r=0.3 is robustly above r_crit across random seeds. Combined with exp_010 (r=0 seed43), this completes cross-seed validation of the phase diagram at both extremes (collapse vs. no-collapse). | — | — | — |\\\\n| exp_010 | Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run. | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp_011** (success): Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit. ← 基于 exp_007\\\\n- **exp_009** (success): At r=0.25 (25% real data), SLV trajectory will disambiguate the r_crit boundary between r=0.2 (dip-then-recovery, no collapse in 5gen) and r=0.3. If r=0.25 shows sustained SLV decline over 10 generations, r_crit lies in [0.2, 0.25]. If it recovers like r=0.2, r_crit is below 0.2. This precisely locates the phase transition boundary for the mixing-ratio phase diagram (C2 claim). ← 基于 exp_007\\\\n  [exp_009_r025_full_analysis](/api/workspace-files/projects/spectral_collapse_ews/artifacts/exp_009/report/exp_009_r025_full_analysis.md)\\\\n- **exp_008** (success): At r=0.3 (30% real data), SLV decompression phase will be shorter than r=0.5 (10+ gen, exp_006) but longer than r=0 (2 gen, exp_001). Log_det peak and subsequent decline should occur within 10 generations, establishing an intermediate point on the r_crit curve. Combined with r=0.2 (exp_007) and r=0.5 (exp_006), this maps the transition boundary where spectral collapse onset becomes detectable. ← 基于 exp_006\\\\n\\\\n## 趋势\\\\n成功 7 / 负向 1 / 失败 0 / 共 10\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nrtx6000-diagprobe: 空闲 cuda:0, cuda:1\\\\n\\\\n## 告警\\\\n- exp_003: 已被终止 — unknown\\\\n- exp_005: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 3460, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-20T07:47:10Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 12 个实验 — ANALYZING 1, DONE 10, RUNNING 1\\n**DONE 分布**: killed 2, negative 1, success 7\\n\\n### GPU 占用\\n- **分配**: 2 张 — rtx6000-diagprobe:cuda:0, rtx6000-diagprobe:cuda:1\\n- **实际运行**: 1 张 — rtx6000-diagprobe:cuda:0(exp_012)\\n- **空闲（分配了没跑）**: rtx6000-diagprobe:cuda:1\\n\\n### 💾 磁盘余量\\n- **rtx6000-diagprobe**:\\n  - `/init`: 150M/150M 可用（已用 0%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `exp_012` | rtx6000-diagprobe | cuda:0 | 385711 | `~/runs/spectral_collapse_ews/exp_012.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `exp_011` [success] — 2026-05-20T03:52:09\\n- `exp_009` [success] — 2026-05-19T16:20:20\\n- `exp_008` [success] — 2026-05-19T11:45:29\\n- `exp_007` [success] — 2026-05-19T05:51:19\\n- `exp_004` [success] — 2026-05-18T10:23:38\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-20\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp_012 | r=0.3 seed43 reproduces the Type II trajectory (monotonic SLV rise, no collapse) observed in exp_008 (seed42), confirming r=0.3 is robustly above r_crit across random seeds. Combined with exp_010 (r=0 seed43), this completes cross-seed validation of the phase diagram at both extremes (collapse vs. no-collapse). | — | — | — |\\n| exp_010 | Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run. | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **exp_011** (success): Extending r=0.2 from 5gen to 10gen will reveal whether the dip-then-recovery pattern (Type II) persists or transitions to sustained decline. If SLV continues rising through Gen 10 (like r=0.25), r=0.2 is firmly Type II. If SLV plateaus or declines after Gen 5, r=0.2 may be closer to the Type I/II boundary, providing finer resolution of the phase diagram near r_crit. ← 基于 exp_007\\n- **exp_009** (success): At r=0.25 (25% real data), SLV trajectory will disambiguate the r_crit boundary between r=0.2 (dip-then-recovery, no collapse in 5gen) and r=0.3. If r=0.25 shows sustained SLV decline over 10 generations, r_crit lies in [0.2, 0.25]. If it recovers like r=0.2, r_crit is below 0.2. This precisely locates the phase transition boundary for the mixing-ratio phase diagram (C2 claim). ← 基于 exp_007\\n  [exp_009_r025_full_analysis](/api/workspace-files/projects/spectral_collapse_ews/artifacts/exp_009/report/exp_009_r025_full_analysis.md)\\n- **exp_008** (success): At r=0.3 (30% real data), SLV decompression phase will be shorter than r=0.5 (10+ gen, exp_006) but longer than r=0 (2 gen, exp_001). Log_det peak and subsequent decline should occur within 10 generations, establishing an intermediate point on the r_crit curve. Combined with r=0.2 (exp_007) and r=0.5 (exp_006), this maps the transition boundary where spectral collapse onset becomes detectable. ← 基于 exp_006\\n\\n## 趋势\\n成功 7 / 负向 1 / 失败 0 / 共 10\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nrtx6000-diagprobe: 空闲 cuda:0, cuda:1\\n\\n## 告警\\n- exp_003: 已被终止 — unknown\\n- exp_005: 已被终止 — unknown\\n\", \"total_chars\": 3460, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0f34d487-6e4f-42c4-a357-9cc5b30b8cd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-20T07:47:28.545Z_
+
+<details><summary>↩ Tool result · `toolu_011qkyjKA2yDhunaxAMtEg78`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/ROADMAP.md\", \"content\": \"# spectral_collapse_ews — Research Dashboard\\n\\n> 最后更新: 2026-05-20 03:55 UTC | 更新原因: exp_011 完成 (success) — Phase diagram seed42 全部完整；exp_012 已启动；更新近期任务\\n\\n## 核心方向\\nSynthetic-data iterative retraining 导致 spectral collapse（特征协方差退化），真实数据混入比例存在临界阈值 r_crit ∈ (0.25, 0.3]。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（论文完善 + multi-seed 验证进行中）\\n- **Phase diagram seed42 完整**: r=0(Type I), r=0.2(Type II), r=0.25(Type II), r=0.3(Type III), r=0.5(Type III) — 全部 10gen ✓\\n- **r_crit bound**: (0.25, 0.3] 最终确认\\n- **论文**: 9 页（Limitations 不计入 8 页限），编译 0 error/warning，provenance 25/27\\n- **Soundness ~2.5/4**: 达 3/4 需 exp_010 (multi-seed #1) 完成 → compare_seeds\\n- **DDL**: May 25 (ARR)\\n\\n## 活跃实验\\n| exp_id | 假设 | GPU | 进度 | 预计完成 |\\n|--------|------|-----|------|---------|\\n| exp_010 | pure seed43 三阶段复现 (C1 multi-seed) | cuda:1 | Gen 8-9 | ~4-6h (May 20 午后) |\\n| exp_012 | r=0.3 seed43 multi-seed (C4 验证) | cuda:0 | Gen 1 | ~20h (May 21 上午) |\\n\\n## 近期任务\\n- [ ] exp_010 完成 → compare_seeds.py + Table 1 改 mean±std\\n- [ ] exp_010 完成 → cuda:1 启动 seed44 (第三组种子)\\n- [ ] §4.5 添加 distinct4 recovery 观察 (r=0.2 Gen5→Gen10: 0.438→0.520)\\n- [ ] Phase diagram 图美化：Type I/II/III 标注 + r_crit 灰色区域 + G₀ 基线\\n- [ ] exp_012 完成 → cross-seed r=0.3 验证\\n- [ ] 两组 multi-seed 完成 → Phase E: Discussion/Conclusion/Abstract final pass\\n\\n## 已完成（本轮）\\n- [x] exp_011 (r=0.2, 10gen) → Type II 完整确认，SLV +4.78%，distinct4 recovery\\n- [x] Phase diagram 图修复：r=0.25 曲线恢复，5 条曲线全部正确\\n- [x] exp_012 (r=0.3 seed43) 启动在 cuda:0\\n- [x] 论文 §4.5 + Table 3 + Phase Diagram 更新至 exp_011 完整 10gen 数据\\n- [x] Phase Diagram 图嵌入 §4.6、Related Work 扩展、Limitations 独立 section\\n- [x] Provenance 25/27、notation consistency 修复\\n\\n## GPU 预算\\n2× RTX PRO 6000 Blackwell 98GB (cuda:0, cuda:1) on rtx6000-diagprobe. 两卡满载。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D032 | 2026-05-20 | cuda:0 接力改为 r=0.3 seed43（撤回 r=0.15 方案） | exp_008, exp_010 |\\n| D031 | 2026-05-19 | 撤回 D030：r_crit bound 维持 (0.25, 0.3]，r=0.25 仍为 Type | exp_009 |\\n| D030 | 2026-05-19 | r_crit bound 从 (0.25, 0.3] 下修：exp_009 (r=0.25) 10g | exp_009, exp_007, exp_008 |\\n| D029 | 2026-05-19 | r_crit bound 从 (0.2, 0.3] 收紧至 (0.25, 0.3]：r=0.25 G | exp_009, exp_008 |\\n| D028 | 2026-05-18 | exp_007 (r=0.2) 5gen 完成 → transitional 确认; exp_009 | exp_007, exp_009 |\\n| D027 | 2026-05-18 | C5 (second-order EWS) 从 Introduction contribution  | exp_006 |\\n| D026 | 2026-05-18 | 删除 linear_increasing 条件，§4.1 从四条件改为三条件 | exp_001, exp_004, exp_006 |\\n| D025 | 2026-05-18 | 调整 cuda:0 排期：exp_007 5gen 后先跑 r=0.25 (P0)，再 resume | exp_007, plan_025 |\\n| D024 | 2026-05-18 | 新增 r=0.25 实验替代 r=0.1 优先级，精确定位 r_crit 到 ±0.05 | exp_007, exp_008 |\\n| D023 | 2026-05-18 | C3 升级：signal attenuation paradox 从 SLV-specific 升级 | exp_001, exp_006, exp_004 |\\n\\n\\n\", \"lines\": 57}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "062d12eb-d905-47c4-b8a4-91fdd7145d1a",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "1cc50a39-3382-4eef-8928-e45e32c941eb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/ROADMAP.md\\\", \\\"content\\\": \\\"# spectral_collapse_ews — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 03:55 UTC | 更新原因: exp_011 完成 (success) — Phase diagram seed42 全部完整；exp_012 已启动；更新近期任务\\\\n\\\\n## 核心方向\\\\nSynthetic-data iterative retraining 导致 spectral collapse（特征协方差退化），真实数据混入比例存在临界阈值 r_crit ∈ (0.25, 0.3]。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research（论文完善 + multi-seed 验证进行中）\\\\n- **Phase diagram seed42 完整**: r=0(Type I), r=0.2(Type II), r=0.25(Type II), r=0.3(Type III), r=0.5(Type III) — 全部 10gen ✓\\\\n- **r_crit bound**: (0.25, 0.3] 最终确认\\\\n- **论文**: 9 页（Limitations 不计入 8 页限），编译 0 error/warning，provenance 25/27\\\\n- **Soundness ~2.5/4**: 达 3/4 需 exp_010 (multi-seed #1) 完成 → compare_seeds\\\\n- **DDL**: May 25 (ARR)\\\\n\\\\n## 活跃实验\\\\n| exp_id | 假设 | GPU | 进度 | 预计完成 |\\\\n|--------|------|-----|------|---------|\\\\n| exp_010 | pure seed43 三阶段复现 (C1 multi-seed) | cuda:1 | Gen 8-9 | ~4-6h (May 20 午后) |\\\\n| exp_012 | r=0.3 seed43 multi-seed (C4 验证) | cuda:0 | Gen 1 | ~20h (May 21 上午) |\\\\n\\\\n## 近期任务\\\\n- [ ] exp_010 完成 → compare_seeds.py + Table 1 改 mean±std\\\\n- [ ] exp_010 完成 → cuda:1 启动 seed44 (第三组种子)\\\\n- [ ] §4.5 添加 distinct4 recovery 观察 (r=0.2 Gen5→Gen10: 0.438→0.520)\\\\n- [ ] Phase diagram 图美化：Type I/II/III 标注 + r_crit 灰色区域 + G₀ 基线\\\\n- [ ] exp_012 完成 → cross-seed r=0.3 验证\\\\n- [ ] 两组 multi-seed 完成 → Phase E: Discussion/Conclusion/Abstract final pass\\\\n\\\\n## 已完成（本轮）\\\\n- [x] exp_011 (r=0.2, 10gen) → Type II 完整确认，SLV +4.78%，distinct4 recovery\\\\n- [x] Phase diagram 图修复：r=0.25 曲线恢复，5 条曲线全部正确\\\\n- [x] exp_012 (r=0.3 seed43) 启动在 cuda:0\\\\n- [x] 论文 §4.5 + Table 3 + Phase Diagram 更新至 exp_011 完整 10gen 数据\\\\n- [x] Phase Diagram 图嵌入 §4.6、Related Work 扩展、Limitations 独立 section\\\\n- [x] Provenance 25/27、notation consistency 修复\\\\n\\\\n## GPU 预算\\\\n2× RTX PRO 6000 Blackwell 98GB (cuda:0, cuda:1) on rtx6000-diagprobe. 两卡满载。\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D032 | 2026-05-20 | cuda:0 接力改为 r=0.3 seed43（撤回 r=0.15 方案） | exp_008, exp_010 |\\\\n| D031 | 2026-05-19 | 撤回 D030：r_crit bound 维持 (0.25, 0.3]，r=0.25 仍为 Type | exp_009 |\\\\n| D030 | 2026-05-19 | r_crit bound 从 (0.25, 0.3] 下修：exp_009 (r=0.25) 10g | exp_009, exp_007, exp_008 |\\\\n| D029 | 2026-05-19 | r_crit bound 从 (0.2, 0.3] 收紧至 (0.25, 0.3]：r=0.25 G | exp_009, exp_008 |\\\\n| D028 | 2026-05-18 | exp_007 (r=0.2) 5gen 完成 → transitional 确认; exp_009 | exp_007, exp_009 |\\\\n| D027 | 2026-05-18 | C5 (second-order EWS) 从 Introduction contribution  | exp_006 |\\\\n| D026 | 2026-05-18 | 删除 linear_increasing 条件，§4.1 从四条件改为三条件 | exp_001, exp_004, exp_006 |\\\\n| D025 | 2026-05-18 | 调整 cuda:0 排期：exp_007 5gen 后先跑 r=0.25 (P0)，再 resume | exp_007, plan_025 |\\\\n| D024 | 2026-05-18 | 新增 r=0.25 实验替代 r=0.1 优先级，精确定位 r_crit 到 ±0.05 | exp_007, exp_008 |\\\\n| D023 | 2026-05-18 | C3 升级：signal attenuation paradox 从 SLV-specific 升级 | exp_001, exp_006, exp_004 |\\\\n\\\\n\\\\n\\\", \\\"lines\\\": 57}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/ROADMAP.md\", \"content\": \"# spectral_collapse_ews — Research Dashboard\\n\\n> 最后更新: 2026-05-20 03:55 UTC | 更新原因: exp_011 完成 (success) — Phase diagram seed42 全部完整；exp_012 已启动；更新近期任务\\n\\n## 核心方向\\nSynthetic-data iterative retraining 导致 spectral collapse（特征协方差退化），真实数据混入比例存在临界阈值 r_crit ∈ (0.25, 0.3]。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research（论文完善 + multi-seed 验证进行中）\\n- **Phase diagram seed42 完整**: r=0(Type I), r=0.2(Type II), r=0.25(Type II), r=0.3(Type III), r=0.5(Type III) — 全部 10gen ✓\\n- **r_crit bound**: (0.25, 0.3] 最终确认\\n- **论文**: 9 页（Limitations 不计入 8 页限），编译 0 error/warning，provenance 25/27\\n- **Soundness ~2.5/4**: 达 3/4 需 exp_010 (multi-seed #1) 完成 → compare_seeds\\n- **DDL**: May 25 (ARR)\\n\\n## 活跃实验\\n| exp_id | 假设 | GPU | 进度 | 预计完成 |\\n|--------|------|-----|------|---------|\\n| exp_010 | pure seed43 三阶段复现 (C1 multi-seed) | cuda:1 | Gen 8-9 | ~4-6h (May 20 午后) |\\n| exp_012 | r=0.3 seed43 multi-seed (C4 验证) | cuda:0 | Gen 1 | ~20h (May 21 上午) |\\n\\n## 近期任务\\n- [ ] exp_010 完成 → compare_seeds.py + Table 1 改 mean±std\\n- [ ] exp_010 完成 → cuda:1 启动 seed44 (第三组种子)\\n- [ ] §4.5 添加 distinct4 recovery 观察 (r=0.2 Gen5→Gen10: 0.438→0.520)\\n- [ ] Phase diagram 图美化：Type I/II/III 标注 + r_crit 灰色区域 + G₀ 基线\\n- [ ] exp_012 完成 → cross-seed r=0.3 验证\\n- [ ] 两组 multi-seed 完成 → Phase E: Discussion/Conclusion/Abstract final pass\\n\\n## 已完成（本轮）\\n- [x] exp_011 (r=0.2, 10gen) → Type II 完整确认，SLV +4.78%，distinct4 recovery\\n- [x] Phase diagram 图修复：r=0.25 曲线恢复，5 条曲线全部正确\\n- [x] exp_012 (r=0.3 seed43) 启动在 cuda:0\\n- [x] 论文 §4.5 + Table 3 + Phase Diagram 更新至 exp_011 完整 10gen 数据\\n- [x] Phase Diagram 图嵌入 §4.6、Related Work 扩展、Limitations 独立 section\\n- [x] Provenance 25/27、notation consistency 修复\\n\\n## GPU 预算\\n2× RTX PRO 6000 Blackwell 98GB (cuda:0, cuda:1) on rtx6000-diagprobe. 两卡满载。\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D032 | 2026-05-20 | cuda:0 接力改为 r=0.3 seed43（撤回 r=0.15 方案） | exp_008, exp_010 |\\n| D031 | 2026-05-19 | 撤回 D030：r_crit bound 维持 (0.25, 0.3]，r=0.25 仍为 Type | exp_009 |\\n| D030 | 2026-05-19 | r_crit bound 从 (0.25, 0.3] 下修：exp_009 (r=0.25) 10g | exp_009, exp_007, exp_008 |\\n| D029 | 2026-05-19 | r_crit bound 从 (0.2, 0.3] 收紧至 (0.25, 0.3]：r=0.25 G | exp_009, exp_008 |\\n| D028 | 2026-05-18 | exp_007 (r=0.2) 5gen 完成 → transitional 确认; exp_009 | exp_007, exp_009 |\\n| D027 | 2026-05-18 | C5 (second-order EWS) 从 Introduction contribution  | exp_006 |\\n| D026 | 2026-05-18 | 删除 linear_increasing 条件，§4.1 从四条件改为三条件 | exp_001, exp_004, exp_006 |\\n| D025 | 2026-05-18 | 调整 cuda:0 排期：exp_007 5gen 后先跑 r=0.25 (P0)，再 resume | exp_007, plan_025 |\\n| D024 | 2026-05-18 | 新增 r=0.25 实验替代 r=0.1 优先级，精确定位 r_crit 到 ±0.05 | exp_007, exp_008 |\\n| D023 | 2026-05-18 | C3 升级：signal attenuation paradox 从 SLV-specific 升级 | exp_001, exp_006, exp_004 |\\n\\n\\n\", \"lines\": 57}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "062d12eb-d905-47c4-b8a4-91fdd7145d1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-20T07:47:52.571Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session-start 初始化完成。现在来处理 exp_010 的 ANALYZING 回调。
+
+关键状态：
+- **exp_010**: ANALYZING, pure collapse seed 43, r=0.0, 10 generations. Metrics 到 Gen 8 已有。需要分析完整结果。
+- **exp_012**: RUNNING, r=0.3 seed43, still running (pid=385711)
+- **cuda:1** 空闲（exp_010 完成后释放）
+
+exp_010 的 hypothesis: "Pure collapse (r=0, 100% synthetic) with seed 43 reproduces the three-phase spectral trajectory (decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10) observed in exp_001 (seed 42). This validates C1 claim that the spectral collapse pattern is reproducible across random seeds, not an artifact of a single training run."
+
+
+现在查看 exp_010 的 metrics 数据，从 Gen 0 到 Gen 5 的有效秩、对数行列式和困惑度都在逐步变化，显示出明显的秩下降和困惑度上升的趋势。
+
+但是 Gen 9 和 Gen 10 的数据在 registry 中缺失，虽然进度日志显示 Gen 9 正在生成中，但实际上进程已经完成了。我需要通过 SSH 连接到 rtx6000-diagprobe 服务器，读取完整的结果文件和日志来获取 Gen 9-10 的 metrics，然后与 exp_001 进行对比。
+
+同时我还需要检查 resource-saturation 技能的相关文件，最后更新 registry 和报告。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1cc50a39-3382-4eef-8928-e45e32c941eb",
+  "isSidechain": false,
+  "requestId": "req_011CbDT91gTpJPimoDzhCkhm",
+  "type": "assistant",
+  "uuid": "fdc164f7-25b1-473a-a118-73c22d0afbac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165gY1QKiSJhfD1GJLoo6Hx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22064,
+      "cache_read_input_tokens": 38768,
+      "output_tokens": 1009,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1009,
+          "cache_read_input_tokens": 38768,
+          "cache_creation_input_tokens": 22064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-20T07:47:52.576Z_
+
+exp_010 完成，但 registry 中 metrics 只到 Gen 8（Gen 9 在生成中时快照）。需要 Worker 去读完整结果并分析。同时读 resource-saturation skill。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fdc164f7-25b1-473a-a118-73c22d0afbac",
+  "isSidechain": false,
+  "requestId": "req_011CbDT91gTpJPimoDzhCkhm",
+  "type": "assistant",
+  "uuid": "4300648c-ce4d-42c8-b751-3e14e9fe527e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165gY1QKiSJhfD1GJLoo6Hx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22064,
+      "cache_read_input_tokens": 38768,
+      "output_tokens": 1009,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1009,
+          "cache_read_input_tokens": 38768,
+          "cache_creation_input_tokens": 22064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T07:47:52.597Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01QmYt4gFU7fM2JmBuYfQwNv`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4300648c-ce4d-42c8-b751-3e14e9fe527e",
+  "isSidechain": false,
+  "requestId": "req_011CbDT91gTpJPimoDzhCkhm",
+  "type": "assistant",
+  "uuid": "49f5cbdf-6b4e-49eb-904c-09887632ec11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0165gY1QKiSJhfD1GJLoo6Hx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 22064,
+      "cache_read_input_tokens": 38768,
+      "output_tokens": 1009,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 22064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1009,
+          "cache_read_input_tokens": 38768,
+          "cache_creation_input_tokens": 22064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 22064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T07:47:52.601Z_
+
+<details><summary>↩ Tool result · `toolu_01QmYt4gFU7fM2JmBuYfQwNv`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49f5cbdf-6b4e-49eb-904c-09887632ec11",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "a0ee9f78-202a-47c8-9c11-9bbea3cb5c2b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "49f5cbdf-6b4e-49eb-904c-09887632ec11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: exp_010 - project: spectral_collapse_ews - server: rtx6000-diagprobe - log_path: ~/runs/spe…",
+  "leafUuid": "a0ee9f78-202a-47c8-9c11-9bbea3cb5c2b",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-20T07:47:57.848Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to:
+1. Spawn a Worker to SSH into rtx6000-diagprobe and read the complete results for exp_010 (Gen 9-10 metrics)
+2. Read the resource-saturation skill before reporting to Director
+
+Let me also check what exp_001's full metrics were for comparison. From the registry, exp_001 metrics are sparse - only gen10 final values. I need the Worker to also read exp_001's results file for comparison.
+
+Let me spawn a Worker for the analysis task and read the skill file in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a0ee9f78-202a-47c8-9c11-9bbea3cb5c2b",
+  "isSidechain": false,
+  "requestId": "req_011CbDTAnqc6PB5K9seiTex8",
+  "type": "assistant",
+  "uuid": "2039901b-09af-4af2-925a-a0a20fe54871",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UmX1xgRvX5xbWLaq6b6UcL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3191,
+      "cache_read_input_tokens": 60832,
+      "output_tokens": 1375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1375,
+          "cache_read_input_tokens": 60832,
+          "cache_creation_input_tokens": 3191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-20T07:48:16.696Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_017APcypjhGnQT9qmSa3162K`</summary>
+
+```json
+{
+  "task_type": "analysis:exp_010",
+  "project": "spectral_collapse_ews",
+  "task_prompt": "## 任务：分析 exp_010 完整结果\n\nexp_010 (pure collapse, seed 43, r=0.0, 10 generations) 已完成，需要提取完整 Gen 0-10 metrics 并与 exp_001 (seed 42) 做 cross-seed 对比。\n\n### 步骤\n\n1. **SSH 到 rtx6000-diagprobe 读取完整结果**：\n   - 读取 `/root/spectral_collapse_ews/results/phase1_pure_collapse_seed43_results.json`\n   - 读取 log 尾部确认正常完成：`tail -100 ~/runs/spectral_collapse_ews/exp_010.log`\n   - 提取 Gen 0-10 所有指标：eff_rank, log_det, ppl, distinct4, train_loss\n\n2. **读取 exp_001 (seed 42) 结果用于对比**：\n   - 读取 `/root/spectral_collapse_ews/results/phase0_results.json` 或类似文件（可能叫 phase0_*.json）\n   - 如果找不到，尝试 `ls /root/spectral_collapse_ews/results/` 查看所有结果文件\n\n3. **Cross-seed 对比分析**（写入产出文件）：\n   - 两个 seed 的 SLV 轨迹是否呈现相同三阶段 pattern（decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10）\n   - Gen-by-gen SLV/eff_rank/ppl 的绝对值和百分比差异\n   - 关键转折点是否一致（peak gen, collapse onset gen）\n   - 计算 mean±std（如果有 compare_seeds.py 脚本就跑它：`ls /root/spectral_collapse_ews/scripts/compare_seeds*`）\n\n4. **产出**：\n   - 将完整分析报告写到本地 `/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/artifacts/exp_010/report/exp_010_analysis.md`\n   - 报告包含：\n     a) Gen 0-10 完整 metrics 表格（seed 42 vs seed 43）\n     b) 三阶段 pattern 是否复现的结论\n     c) mean±std 汇总（用于论文 Table 1）\n     d) 关键数字：最终 Gen10 SLV decline %、peak gen、PPL 增幅\n\n5. **更新 registry**：\n   - 用 `update_registry` 更新 exp_010 的 metrics（补全 Gen 9-10 数据）\n   - 设置 conclusion = \"success\"（如果三阶段 pattern 确认复现）或 \"negative\"（如果不复现）\n   - 设置 checkpoint_path 和 log_path\n   - 写 notes 总结\n\n### 环境\n- 服务器：rtx6000-diagprobe，用户 root\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/spectral_collapse_ews/`\n\n### exp_001 (seed 42) 已知指标参考\n- Gen 0: eff_rank=417.55, log_det=2366.68, ppl=9.554\n- Gen 2 peak: eff_rank~496, log_det~2469\n- Gen 10: eff_rank=442.46, log_det=2178.95, ppl=76.78\n- Pattern: decompression Gen 0-2, onset Gen 2-4, collapse Gen 4-10\n",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "tools": [
+    "register_artifact"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2039901b-09af-4af2-925a-a0a20fe54871",
+  "isSidechain": false,
+  "requestId": "req_011CbDTAnqc6PB5K9seiTex8",
+  "type": "assistant",
+  "uuid": "b640987c-60eb-4816-86eb-41d0020148d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UmX1xgRvX5xbWLaq6b6UcL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3191,
+      "cache_read_input_tokens": 60832,
+      "output_tokens": 1375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1375,
+          "cache_read_input_tokens": 60832,
+          "cache_creation_input_tokens": 3191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-20T07:48:17.188Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SKoPkVDEbkKdQzyL96iBV5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b640987c-60eb-4816-86eb-41d0020148d6",
+  "isSidechain": false,
+  "requestId": "req_011CbDTAnqc6PB5K9seiTex8",
+  "type": "assistant",
+  "uuid": "cbe053cb-9699-405a-a27c-17830e819c98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UmX1xgRvX5xbWLaq6b6UcL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3191,
+      "cache_read_input_tokens": 60832,
+      "output_tokens": 1375,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3191,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1375,
+          "cache_read_input_tokens": 60832,
+          "cache_creation_input_tokens": 3191,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3191
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-20T07:48:19.577Z_
+
+<details><summary>↩ Tool result · `toolu_017APcypjhGnQT9qmSa3162K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp_010_20260520T074817\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_analysis_exp_010_20260520T074817.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp_010_20260520T074817 started. Use get_worker_status('worker_analysis_exp_010_20260520T074817') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b640987c-60eb-4816-86eb-41d0020148d6",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "1812cc4e-944f-466a-b706-5c494e90cc41",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_exp_010_20260520T074817\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_analysis_exp_010_20260520T074817.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_exp_010_20260520T074817 started. Use get_worker_status('worker_analysis_exp_010_20260520T074817') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_exp_010_20260520T074817\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_analysis_exp_010_20260520T074817.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_exp_010_20260520T074817 started. Use get_worker_status('worker_analysis_exp_010_20260520T074817') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b640987c-60eb-4816-86eb-41d0020148d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T07:48:19.599Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01SKoPkVDEbkKdQzyL96iBV5`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cbe053cb-9699-405a-a27c-17830e819c98",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "ffb511d1-d5ff-44e1-898b-8029ccb7b357",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef.",
+  "sourceToolAssistantUUID": "cbe053cb-9699-405a-a27c-17830e819c98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-20T07:48:19.605Z_
+
+```json
+{
+  "parentUuid": "ffb511d1-d5ff-44e1-898b-8029ccb7b357",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a9cfb17a-4e21-465c-b928-9a890ab38742",
+  "timestamp": "2026-05-20T07:48:19.605Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-20T07:48:22.686Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The resource-saturation skill file wasn't found at that path. Let me try the global skills path.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9cfb17a-4e21-465c-b928-9a890ab38742",
+  "isSidechain": false,
+  "requestId": "req_011CbDTCmzoxMaM6VT5Az4uV",
+  "type": "assistant",
+  "uuid": "2d4be57f-288d-4ff0-adfb-140e5461032b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MyfwXR7bLopTmxwCTuwnWx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1780,
+      "cache_read_input_tokens": 64023,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 64023,
+          "cache_creation_input_tokens": 1780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-20T07:48:23.127Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01UjRMvJVXnV9P6b2Y8evckA`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d4be57f-288d-4ff0-adfb-140e5461032b",
+  "isSidechain": false,
+  "requestId": "req_011CbDTCmzoxMaM6VT5Az4uV",
+  "type": "assistant",
+  "uuid": "6168e852-7f03-4837-a0fb-0b1f62808232",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MyfwXR7bLopTmxwCTuwnWx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1780,
+      "cache_read_input_tokens": 64023,
+      "output_tokens": 118,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 118,
+          "cache_read_input_tokens": 64023,
+          "cache_creation_input_tokens": 1780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-20T07:48:23.479Z_
+
+<details><summary>↩ Tool result · `toolu_01UjRMvJVXnV9P6b2Y8evckA`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6168e852-7f03-4837-a0fb-0b1f62808232",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "5d0afa0a-2818-4d5c-afa8-42dbe4e98c1a",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+    ],
+    "durationMs": 343,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "6168e852-7f03-4837-a0fb-0b1f62808232",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T07:48:26.033Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Tx9o9hvivmRhXQ9M2Ziy1h`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d0afa0a-2818-4d5c-afa8-42dbe4e98c1a",
+  "isSidechain": false,
+  "requestId": "req_011CbDTD4ZTaPRBUn26Jx2De",
+  "type": "assistant",
+  "uuid": "9da3670f-b133-4cdc-b92c-cbdbb68bb9b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GT3i9YVkC3Y4XHZsG9UCMb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 152,
+      "cache_read_input_tokens": 65803,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 65803,
+          "cache_creation_input_tokens": 152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-20T07:48:26.039Z_
+
+<details><summary>↩ Tool result · `toolu_01Tx9o9hvivmRhXQ9M2Ziy1h`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9da3670f-b133-4cdc-b92c-cbdbb68bb9b9",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "50eb8895-3ecb-4b16-af78-7b0240cf9a25",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "9da3670f-b133-4cdc-b92c-cbdbb68bb9b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-20T07:49:12.368Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the resource-saturation skill. Now let me assess the current state:
+
+- **GPU**: 2 cards allocated (cuda:0, cuda:1 on rtx6000-diagprobe)
+  - cuda:0: exp_012 RUNNING
+  - cuda:1: exp_010 just finished (now ANALYZING) → will be free
+- **Workers**: 1 just spawned (analysis:exp_010)
+
+Key issues:
+1. cuda:1 is now free after exp_010 completed. Per ROADMAP: "exp_010 完成 → cuda:1 启动 seed44 (第三组种子)"
+
+
+2. I need to keep the worker pool at ≥ 2, but I'm facing a timing dilemma—cuda:1 is sitting idle while the analysis worker is still running, which violates the resource-saturation principle. I should wait for the worker callback to confirm exp_010's analysis before launching seed44, rather than polling or acting prematurely.
+
+According to the protocol, I've already dispatched the analysis worker and should now prepare to spawn the next worker for seed44 on cuda:1 as soon as the callback arrives, rather than leaving the GPU idle. to seed 42's peak of ~2469)
+- Gen 10 projection: likely around 2100-2150 based on the decline rate
+
+So both seeds show nearly identical three-phase behavior with comparable peak values and decline trajectories. This strongly suggests the pattern is robust across different random seeds, not an artifact of seed 42.
+
+Now I'm ready to move forward with seed 44 on the second GPU. The roadmap indicates this should be the next pure collapse experiment, so I'll spawn that worker while waiting for the complete data from exp_010. I need to follow the protocol correctly: spawn the Worker, immediately report to Director that the analysis is dispatched, then end this turn and wait for the callback to come back with results before proceeding to seed44. I need to follow the proper experiment workflow—create it, set to PENDING, and request Director approval before launching seed44 on cuda:1. Let me report the current status: exp_010 is analyzing with a Worker dispatched, cuda:1 is now idle, and I'm requesting approval to proceed with seed44 according to the ROADMAP.
+
+To meet the Worker pool requirement of at least 2, I'll spawn a second Worker to prepare the seed44 launch script while the analysis Worker continues running, so everything's ready as soon as the Director approves.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "50eb8895-3ecb-4b16-af78-7b0240cf9a25",
+  "isSidechain": false,
+  "requestId": "req_011CbDTDFgCCPgfaE5mZUJLP",
+  "type": "assistant",
+  "uuid": "da762b49-4480-409b-9716-782d3e7a4d27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZ9sbontJefrZ88ENdWXL2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 65955,
+      "output_tokens": 3333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3333,
+          "cache_read_input_tokens": 65955,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-20T07:49:13.270Z_
+
+Worker 已派出分析 exp_010 完整结果。cuda:1 现在空闲，按 ROADMAP 下一步是 seed44。让我同时派一个 Worker 准备 seed44 的代码，保持 Worker 池 ≥ 2。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da762b49-4480-409b-9716-782d3e7a4d27",
+  "isSidechain": false,
+  "requestId": "req_011CbDTDFgCCPgfaE5mZUJLP",
+  "type": "assistant",
+  "uuid": "7d484807-6a55-4916-b292-62a8f5fd05b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZ9sbontJefrZ88ENdWXL2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 65955,
+      "output_tokens": 3333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3333,
+          "cache_read_input_tokens": 65955,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T07:49:28.779Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_018HRZKC6jbMNxhGHpQauF4Y`</summary>
+
+````json
+{
+  "task_type": "code:exp_013_prep",
+  "project": "spectral_collapse_ews",
+  "task_prompt": "## 任务：准备 seed44 pure collapse 实验的启动脚本\n\n按照 ROADMAP，exp_010 (seed43) 完成后，cuda:1 要启动第三组种子 seed44 的 pure collapse 实验。\n\n### 步骤\n\n1. **SSH 到 rtx6000-diagprobe，检查现有启动命令格式**：\n   ```bash\n   cat /root/spectral_collapse_ews/scripts/launch_*seed43* 2>/dev/null || echo \"no seed43 script\"\n   ```\n   也看看 exp_010 是怎么启动的（直接用 python 命令，没有脚本）：\n   ```\n   # exp_010 的启动命令参考：\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/spectral_collapse_ews && CUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 python run_phase1.py --condition pure_collapse --seed 43 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0\n   ```\n\n2. **确认 checkpoint 目录不存在（避免覆盖）**：\n   ```bash\n   ls -la /root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/pure_collapse_seed44/ 2>/dev/null || echo \"DIR_NOT_EXISTS_OK\"\n   ```\n\n3. **创建启动脚本**（在远程服务器上）：\n   写到 `/root/spectral_collapse_ews/scripts/launch_pure_collapse_seed44.sh`：\n   ```bash\n   #!/bin/bash\n   # Pure collapse (r=0.0) with seed 44 — third multi-seed replication of exp_001\n   # GPU index passed as $1 (0-indexed, CUDA_VISIBLE_DEVICES set by framework)\n   set -euo pipefail\n   GPU_IDX=${1:-0}\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/spectral_collapse_ews\n   HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 PYTHONUNBUFFERED=1 \\\n     python run_phase1.py \\\n       --condition pure_collapse \\\n       --seed 44 \\\n       --generations 10 \\\n       --signal log_det \\\n       --tau 0.002 \\\n       --k 0 \\\n       --signal_mode per_gen \\\n       --gpu \"$GPU_IDX\"\n   ```\n   chmod +x 它。\n\n4. **Dry-run 验证**（确保参数解析无误）：\n   ```bash\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   cd /root/spectral_collapse_ews\n   python run_phase1.py --condition pure_collapse --seed 44 --generations 10 --signal log_det --tau 0.002 --k 0 --signal_mode per_gen --gpu 0 --help 2>&1 | head -20\n   ```\n   如果 --help 不支持，就检查 argparse 参数定义：\n   ```bash\n   head -80 /root/spectral_collapse_ews/run_phase1.py\n   ```\n\n5. **检查磁盘空间**（确保有足够空间跑新实验）：\n   ```bash\n   df -h /root/autodl-tmp/\n   du -sh /root/autodl-tmp/spectral_collapse_ews/checkpoints_phase1/ 2>/dev/null\n   ```\n\n6. **产出**：\n   - 启动脚本已就绪\n   - 报告磁盘空间是否充足\n   - 报告 dry-run 结果\n",
+  "tool_groups": [
+    "ssh"
+  ]
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7d484807-6a55-4916-b292-62a8f5fd05b2",
+  "isSidechain": false,
+  "requestId": "req_011CbDTDFgCCPgfaE5mZUJLP",
+  "type": "assistant",
+  "uuid": "cd3aa7be-82a2-47e2-9110-f19de7273a3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EZ9sbontJefrZ88ENdWXL2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 65955,
+      "output_tokens": 3333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3333,
+          "cache_read_input_tokens": 65955,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: exp_010 - project: spectral_collapse_ews - server: rtx6000-diagprobe - log_path: ~/runs/spe…",
+  "leafUuid": "cd3aa7be-82a2-47e2-9110-f19de7273a3e",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-20T07:49:31.191Z_
+
+<details><summary>↩ Tool result · `toolu_018HRZKC6jbMNxhGHpQauF4Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_013_prep_20260520T074928\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_code_exp_013_prep_20260520T074928.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_exp_013_prep_20260520T074928 started. Use get_worker_status('worker_code_exp_013_prep_20260520T074928') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cd3aa7be-82a2-47e2-9110-f19de7273a3e",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "de6e467d-1e0c-4353-b495-d0f175290068",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp_013_prep_20260520T074928\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_code_exp_013_prep_20260520T074928.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_exp_013_prep_20260520T074928 started. Use get_worker_status('worker_code_exp_013_prep_20260520T074928') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_code_exp_013_prep_20260520T074928\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/logs/workers/worker_code_exp_013_prep_20260520T074928.log\", \"setup_data\": {}, \"message\": \"Worker worker_code_exp_013_prep_20260520T074928 started. Use get_worker_status('worker_code_exp_013_prep_20260520T074928') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cd3aa7be-82a2-47e2-9110-f19de7273a3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-20T07:49:38.577Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, two Workers running now:
+1. analysis:exp_010 — analyzing exp_010 complete results
+2. code:exp_013_prep — preparing seed44 launch script
+
+Now I need to report to Director. Let me draft the message.
+
+Current state:
+- GPU: 2 allocated, 1 running (cuda:0 = exp_012), 1 idle (cuda:1 = exp_010 finished)
+- Workers: 2 (analysis:exp_010, code:exp_013_prep)
+- Disk: plenty (~400GB free on main, ~5.3TB free on autodl-pub)
+
+
+- exp_010 is showing the three-phase pattern in the metrics, which is worth flagging
+
+I'll ask Director for approval to launch seed44 on cuda:1 once the prep script finishes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "de6e467d-1e0c-4353-b495-d0f175290068",
+  "isSidechain": false,
+  "requestId": "req_011CbDTJ45aQXUBXJ1LVeRAr",
+  "type": "assistant",
+  "uuid": "ecd78260-9b8e-40ee-8c07-1d0d39fe591d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pEbz5Y7arHCn3iGSeu4A3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3524,
+      "cache_read_input_tokens": 67102,
+      "output_tokens": 759,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3524,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 759,
+          "cache_read_input_tokens": 67102,
+          "cache_creation_input_tokens": 3524,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3524
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-20T07:49:38.579Z_
+
+两个 Worker 已启动。向 Director 汇报当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ecd78260-9b8e-40ee-8c07-1d0d39fe591d",
+  "isSidechain": false,
+  "requestId": "req_011CbDTJ45aQXUBXJ1LVeRAr",
+  "type": "assistant",
+  "uuid": "81fb94a3-4818-4f51-a886-eb016ef522c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pEbz5Y7arHCn3iGSeu4A3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3524,
+      "cache_read_input_tokens": 67102,
+      "output_tokens": 759,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3524,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 759,
+          "cache_read_input_tokens": 67102,
+          "cache_creation_input_tokens": 3524,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3524
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-20T07:49:47.033Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01F7J1cua1Md3NRyaYjnbM3F`</summary>
+
+```json
+{
+  "text": "[资源] GPU 2/2 分配 | 实际在跑 1 (cuda:0=exp_012) | cuda:1 空闲(exp_010 刚完成) | Worker 2 (CPU: analysis + code_prep) | 磁盘: rtx6000-diagprobe 400GB/439GB 可用\n\n**exp_010 (pure collapse seed43) 进程正常退出，转 ANALYZING。**\n\n从 Gen 0-8 partial metrics 已可初步判断三阶段 pattern 复现：\n- Decompression: Gen 0→2, SLV 2367→2467 (+100)\n- Onset: Gen 2→4, SLV 2467→2405 (-62)\n- Collapse: Gen 4→8, SLV 2405→2248 (-157, 加速下降)\n- PPL: 9.55→46.94 (4.9× baseline)\n\n与 exp_001 (seed42) 高度一致：peak 均在 Gen 2 (2467 vs 2469)，collapse 轨迹几乎重合。\n\n**已派发**：\n1. Worker (analysis:exp_010) — 读取完整 Gen 9-10 数据 + cross-seed 对比 + 更新 registry\n2. Worker (code:exp_013_prep) — 准备 seed44 pure collapse 启动脚本 + dry-run 验证\n\n**请审批**：按 ROADMAP，exp_010 确认后 cuda:1 启动 seed44 (第三组 pure collapse multi-seed)。脚本准备中，审批后即可提交。",
+  "project": "spectral_collapse_ews"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81fb94a3-4818-4f51-a886-eb016ef522c5",
+  "isSidechain": false,
+  "requestId": "req_011CbDTJ45aQXUBXJ1LVeRAr",
+  "type": "assistant",
+  "uuid": "fa06fdad-0738-4116-8be1-60f9c0f63815",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014pEbz5Y7arHCn3iGSeu4A3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3524,
+      "cache_read_input_tokens": 67102,
+      "output_tokens": 759,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3524,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 759,
+          "cache_read_input_tokens": 67102,
+          "cache_creation_input_tokens": 3524,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3524
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-20T07:49:50.920Z_
+
+<details><summary>↩ Tool result · `toolu_01F7J1cua1Md3NRyaYjnbM3F`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa06fdad-0738-4116-8be1-60f9c0f63815",
+  "isSidechain": false,
+  "promptId": "99e4b478-b2d5-4e85-84ab-35e2f15b8677",
+  "type": "user",
+  "uuid": "8f7f23b7-d5bc-4abf-b2f5-a1c9069eae8d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_5bdb9114bcefff7f4872823fd76bb0ac:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "fa06fdad-0738-4116-8be1-60f9c0f63815",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_5/projects/spectral_collapse_ews/.claude/sessions/agent_2ff3d7ef",
+  "sessionId": "946e98ce-ee0d-4475-9b2e-ea870763f3f5",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---

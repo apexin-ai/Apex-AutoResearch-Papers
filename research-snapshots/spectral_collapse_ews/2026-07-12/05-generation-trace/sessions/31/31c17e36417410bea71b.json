@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "31c17e36417410bea71b",
+  "project": "spectral_collapse_ews--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 服务器：westd-18314, 账号 root, 项目路径 /root/trace_distill_repair, Python 环境 conda base。Phase 2 采样评分正在运行，不要干扰。只修",
+  "task_key": "4d789976-1947-47c5-8a66-533842d018b9",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-1/4d789976-1947-47c5-8a66-533842d018b9.jsonl",
+    "occurrence": 1,
+    "bytes": 843063,
+    "sha256": "ec6f60eeade66e4856011272b8ddc08be3f2f449e8ec963ef0b9f8d82eaaf52a"
+  },
+  "statistics": {
+    "messages": 269,
+    "user_turns": 1,
+    "tool_calls": 79,
+    "roles": {
+      "record": 58,
+      "user": 1,
+      "assistant": 52,
+      "tool_call": 79,
+      "tool_result": 79
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "31c17e36417410bea71b-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 267,
+      "chunks": [
+        {
+          "path": "31c17e36417410bea71b-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "31c17e36417410bea71b-part-0002.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-westd-18314-root-root-trace-distill-repair-python-conda-basephas.md"
+}
