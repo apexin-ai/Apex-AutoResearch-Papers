@@ -1,0 +1,4220 @@
+# Research conversation: <project_context> # 项目: faith-evidence-ie ## 运行环境 - 服务器名: rtx5090-4x - SSH 账户: root（调用 ssh_execute / submit_training_job
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 80
+- **Recorded user turns:** 1
+- **Tool calls:** 22
+- **Original source:** `logs/chats/exported-trajectories/account-3/8b15d184-c5d4-43d6-804e-7b094bc755f6.jsonl`
+- **Structured JSON:** [`93b0890a19b320185489.json`](../../sessions/93/93b0890a19b320185489.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T06:05:59.999Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T06:05:59.999Z",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "content": "&lt;project_context>\n# 项目: faith-evidence-ie\n\n## 运行环境\n- 服务器名: rtx5090-4x\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/freige\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]\n- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map=\"auto\" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）\n- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）\n- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：准备 CED vs flat-NLI paired t-test 分析框架\n\n### 背景\n项目 faith-evidence-ie 正在做 CED vs flat-NLI RSFT 的统计对比（C3 claim）。当前 5 个 reeval 实验正在跑（D076 协议统一：batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024）。完成后需要立即做 paired t-test。\n\n已有 eval 结果（旧协议，仅供参考结构）：\n- CED seeds: s42, s43, s44, s45（4 seeds）\n- flat-NLI seeds: s42, s43, s44, s45（4 seeds）\n- SFT baseline: 1 seed\n- 指标：rel_f1, ign_f1, evi_f1, edcr\n\n### 你的任务\n1. SSH 到 rtx5090-4x 服务器，检查项目代码 `/root/autodl-tmp/freige/`\n2. 查看已有的 eval 结果文件格式（在 artifacts/ 或 eval output 目录下找已完成的 eval 结果 JSON）\n3. 编写一个 `seed_comparison.py` 脚本到 `/root/autodl-tmp/freige/` 下，功能：\n   - 读取所有 CED 和 flat-NLI seeds 的 eval 结果\n   - 计算各指标的 mean ± std\n   - 运行 paired t-test（scipy.stats.ttest_rel）\n   - 输出格式化的对比表（适合直接粘贴到论文）\n   - 支持命令行指定 eval 结果目录\n4. dry-run 验证脚本可执行（`python seed_comparison.py --help`）\n\n### 环境\n- 服务器：rtx5090-4x，账户 root\n- Python 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 项目路径：`/root/autodl-tmp/freige/`\n- scipy 可能需要安装\n\n### 产出\n- `/root/autodl-tmp/freige/seed_comparison.py` 脚本\n- 脚本 --help 输出确认可执行"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T06:06:00.024Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T06:06:00.024Z",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+## Round 1
+
+78 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T06:06:00.080Z_
+
+&lt;project_context>
+# 项目: faith-evidence-ie
+
+## 运行环境
+- 服务器名: rtx5090-4x
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/freige
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]
+- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map="auto" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）
+- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）
+- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：准备 CED vs flat-NLI paired t-test 分析框架
+
+### 背景
+项目 faith-evidence-ie 正在做 CED vs flat-NLI RSFT 的统计对比（C3 claim）。当前 5 个 reeval 实验正在跑（D076 协议统一：batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024）。完成后需要立即做 paired t-test。
+
+已有 eval 结果（旧协议，仅供参考结构）：
+- CED seeds: s42, s43, s44, s45（4 seeds）
+- flat-NLI seeds: s42, s43, s44, s45（4 seeds）
+- SFT baseline: 1 seed
+- 指标：rel_f1, ign_f1, evi_f1, edcr
+
+### 你的任务
+1. SSH 到 rtx5090-4x 服务器，检查项目代码 `/root/autodl-tmp/freige/`
+2. 查看已有的 eval 结果文件格式（在 artifacts/ 或 eval output 目录下找已完成的 eval 结果 JSON）
+3. 编写一个 `seed_comparison.py` 脚本到 `/root/autodl-tmp/freige/` 下，功能：
+   - 读取所有 CED 和 flat-NLI seeds 的 eval 结果
+   - 计算各指标的 mean ± std
+   - 运行 paired t-test（scipy.stats.ttest_rel）
+   - 输出格式化的对比表（适合直接粘贴到论文）
+   - 支持命令行指定 eval 结果目录
+4. dry-run 验证脚本可执行（`python seed_comparison.py --help`）
+
+### 环境
+- 服务器：rtx5090-4x，账户 root
+- Python 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- 项目路径：`/root/autodl-tmp/freige/`
+- scipy 可能需要安装
+
+### 产出
+- `/root/autodl-tmp/freige/seed_comparison.py` 脚本
+- 脚本 --help 输出确认可执行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "4b5fe187-717a-4804-869b-2b3be6a8896c",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T06:06:00.080Z_
+
+```json
+{
+  "parentUuid": "4b5fe187-717a-4804-869b-2b3be6a8896c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6f6f8e21-db9a-4dcb-b91f-9d8359605065",
+  "timestamp": "2026-05-16T06:06:00.080Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T06:06:00.080Z_
+
+```json
+{
+  "parentUuid": "6f6f8e21-db9a-4dcb-b91f-9d8359605065",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "01c3750d-eee6-4273-b745-32872e55f0d3",
+  "timestamp": "2026-05-16T06:06:00.080Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T06:06:00.080Z_
+
+```json
+{
+  "parentUuid": "01c3750d-eee6-4273-b745-32872e55f0d3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "20237be9-23f4-449c-a582-32c5aa0b26fc",
+  "timestamp": "2026-05-16T06:06:00.080Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Set up paired t-test analysis framework for CED vs flat-NLI",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T06:06:02.982Z_
+
+我先SSH到服务器，检查项目结构和已有eval结果格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20237be9-23f4-449c-a582-32c5aa0b26fc",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kAYWau1MkCB8VKZsg8",
+  "type": "assistant",
+  "uuid": "86139cc5-6eac-479e-8829-bde42b676e50",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013P1EAerty8zwY2FG95Q4mP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11925,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T06:06:03.511Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VH7yH8DrcaZKYkoooMfkbZ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86139cc5-6eac-479e-8829-bde42b676e50",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kAYWau1MkCB8VKZsg8",
+  "type": "assistant",
+  "uuid": "b6d7e29b-a91e-442c-8553-18346b91c472",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013P1EAerty8zwY2FG95Q4mP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11925,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 138,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11925,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 138,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11925,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11925
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T06:06:03.517Z_
+
+<details><summary>↩ Tool result · `toolu_01VH7yH8DrcaZKYkoooMfkbZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6d7e29b-a91e-442c-8553-18346b91c472",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "4affa759-3431-4c8b-9c6f-b2b6dd203801",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "b6d7e29b-a91e-442c-8553-18346b91c472",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-16T06:06:06.654Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the server and look at the project structure and eval results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4affa759-3431-4c8b-9c6f-b2b6dd203801",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kAoJpyZbqhN3VMKSvi",
+  "type": "assistant",
+  "uuid": "4ae9046d-c9e0-4dbe-9296-c7d4806abca4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W7KN9jqj9uE6avD3bAcyh4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 23766,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 23766,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T06:06:07.689Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0171q8RLrcVHKSS5WK9EV4oj`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/freige/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ae9046d-c9e0-4dbe-9296-c7d4806abca4",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kAoJpyZbqhN3VMKSvi",
+  "type": "assistant",
+  "uuid": "ccc77b18-e888-4190-9af4-7d6fd2481d45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W7KN9jqj9uE6avD3bAcyh4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 23766,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 23766,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T06:06:08.401Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xcqto571SFdsqePDNdvqut`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige/ -name \"*.json\" -path \"*eval*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ccc77b18-e888-4190-9af4-7d6fd2481d45",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kAoJpyZbqhN3VMKSvi",
+  "type": "assistant",
+  "uuid": "936b3928-db8d-4501-bf6c-5cf875663f88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W7KN9jqj9uE6avD3bAcyh4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 897,
+      "cache_read_input_tokens": 23766,
+      "output_tokens": 259,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 897,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 259,
+          "cache_read_input_tokens": 23766,
+          "cache_creation_input_tokens": 897,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 897
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T06:06:08.891Z_
+
+<details><summary>↩ Tool result · `toolu_0171q8RLrcVHKSS5WK9EV4oj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nanalysis\\nconfigs\\ndata\\ndiversity_probe.py\\neval\\nfigures\\nfreige\\nrewards\\nscripts\\ntests\\ntraining\\ntraining_logs_grpo.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ccc77b18-e888-4190-9af4-7d6fd2481d45",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "dbeaf070-fd57-4f78-a03d-4794c6ac53c2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nanalysis\\\\nconfigs\\\\ndata\\\\ndiversity_probe.py\\\\neval\\\\nfigures\\\\nfreige\\\\nrewards\\\\nscripts\\\\ntests\\\\ntraining\\\\ntraining_logs_grpo.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nanalysis\\nconfigs\\ndata\\ndiversity_probe.py\\neval\\nfigures\\nfreige\\nrewards\\nscripts\\ntests\\ntraining\\ntraining_logs_grpo.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ccc77b18-e888-4190-9af4-7d6fd2481d45",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T06:06:09.293Z_
+
+<details><summary>↩ Tool result · `toolu_01Xcqto571SFdsqePDNdvqut`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "936b3928-db8d-4501-bf6c-5cf875663f88",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "d697f104-bf06-4781-b300-cab4e6f8ef37",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  },
+  "sourceToolAssistantUUID": "936b3928-db8d-4501-bf6c-5cf875663f88",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T06:06:12.346Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01922inYYbWGHNrVnnJHoLb1`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/freige/eval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d697f104-bf06-4781-b300-cab4e6f8ef37",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kBDojAoRwvGEJWiibn",
+  "type": "assistant",
+  "uuid": "5399b1eb-c10e-4489-81f5-1358b0cc5834",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RA8Y2jc4181xVJi4KdCbU8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 536,
+      "cache_read_input_tokens": 24663,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 536,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 24663,
+          "cache_creation_input_tokens": 536,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 536
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T06:06:12.705Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016eEbRcE74uq2q5LhW1XsB9`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige/ -name \"*.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5399b1eb-c10e-4489-81f5-1358b0cc5834",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kBDojAoRwvGEJWiibn",
+  "type": "assistant",
+  "uuid": "af118141-8ce8-4215-a76f-a369c2f0339b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RA8Y2jc4181xVJi4KdCbU8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 536,
+      "cache_read_input_tokens": 24663,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 536,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 24663,
+          "cache_creation_input_tokens": 536,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 536
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T06:06:12.711Z_
+
+<details><summary>↩ Tool result · `toolu_01922inYYbWGHNrVnnJHoLb1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbatch_eval.py\\nced_reranker.py\\ncross_method_table.py\\nevaluator.py\\nevaluator.py.bak\\nfind_best_checkpoint.py\\ninference.py\\ninference.py.bak\\ntest_inference.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5399b1eb-c10e-4489-81f5-1358b0cc5834",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "af004c58-22e9-416c-bd33-273ba7e20fb1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nbatch_eval.py\\\\nced_reranker.py\\\\ncross_method_table.py\\\\nevaluator.py\\\\nevaluator.py.bak\\\\nfind_best_checkpoint.py\\\\ninference.py\\\\ninference.py.bak\\\\ntest_inference.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nbatch_eval.py\\nced_reranker.py\\ncross_method_table.py\\nevaluator.py\\nevaluator.py.bak\\nfind_best_checkpoint.py\\ninference.py\\ninference.py.bak\\ntest_inference.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5399b1eb-c10e-4489-81f5-1358b0cc5834",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T06:06:13.103Z_
+
+<details><summary>↩ Tool result · `toolu_016eEbRcE74uq2q5LhW1XsB9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/configs/deepspeed_zero2.json\\n/root/autodl-tmp/freige/configs/deepspeed_zero3.json\\n/root/autodl-tmp/freige/training_logs_grpo.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af118141-8ce8-4215-a76f-a369c2f0339b",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "e673eadb-eef0-48fd-a803-abf946603b06",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/configs/deepspeed_zero2.json\\\\n/root/autodl-tmp/freige/configs/deepspeed_zero3.json\\\\n/root/autodl-tmp/freige/training_logs_grpo.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/configs/deepspeed_zero2.json\\n/root/autodl-tmp/freige/configs/deepspeed_zero3.json\\n/root/autodl-tmp/freige/training_logs_grpo.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  },
+  "sourceToolAssistantUUID": "af118141-8ce8-4215-a76f-a369c2f0339b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T06:06:16.252Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F1PfwQU4Gz1mjAsknbZ3JQ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/freige/ -name \"*.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e673eadb-eef0-48fd-a803-abf946603b06",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kBW4XRCaBZmCnMVzcn",
+  "type": "assistant",
+  "uuid": "3108127d-490b-4651-a2b8-3c426d6f11c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJqCvL1AcDdJPZZ7tLMBZD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 25199,
+      "output_tokens": 244,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 583,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 244,
+          "cache_read_input_tokens": 25199,
+          "cache_creation_input_tokens": 583,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 583
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T06:06:16.585Z_
+
+<details><summary>↩ Tool result · `toolu_01F1PfwQU4Gz1mjAsknbZ3JQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3108127d-490b-4651-a2b8-3c426d6f11c0",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "02589ec6-cdba-4537-8690-682c2a35bc83",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3108127d-490b-4651-a2b8-3c426d6f11c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-16T06:06:16.842Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011snEh1PiAVvharGT3CdhJv`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/ -name \"*eval*result*\" -o -name \"*metrics*\" -o -name \"*scores*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02589ec6-cdba-4537-8690-682c2a35bc83",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kBW4XRCaBZmCnMVzcn",
+  "type": "assistant",
+  "uuid": "d8313520-7d12-4278-8d67-cdab16308b09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJqCvL1AcDdJPZZ7tLMBZD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 583,
+      "cache_read_input_tokens": 25199,
+      "output_tokens": 244,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 583,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 244,
+          "cache_read_input_tokens": 25199,
+          "cache_creation_input_tokens": 583,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 583
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d8313520-7d12-4278-8d67-cdab16308b09",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Set up paired t-test analysis framework for CED vs flat-NLI",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T06:06:17.218Z_
+
+<details><summary>↩ Tool result · `toolu_011snEh1PiAVvharGT3CdhJv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/__pycache__/diversity_metrics.cpython-312.pyc\\n/root/autodl-tmp/freige/training/diversity_metrics.py\\n/root/autodl-tmp/eval_results\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics_v2.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics_v2.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics_v2.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun/per_doc_scores.jsonl\\n/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl\\n/root/autodl-tmp/eval_results/ced_reranker_poc/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics_v2.json\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun/per_doc_scores.jsonl\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics_v2.json\\n/root/autodl-tmp/eval_results/sft_no_evidence/metrics.json\\n/root/autodl-tmp/eval_results/sft_no_evidence/metrics_v2.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\\n/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics_v2.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30/metrics_v2.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step50/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step50/metrics_v2.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/metrics.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/metrics_v2.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step70/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step70/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics_v2.json\\n/root/autodl-tmp/eval_results/paper_metrics_corrected.md\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics.json\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_ced_s45/metrics.json\\n/root/autodl-tmp/eval_results/rsft_ced_s45/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_ced_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/metrics.json\\n/root/autodl-tmp/sft_eval_results\\n/root/autodl-tmp/sft_eval_results/metrics.json\\n/root/autodl-tmp/sft_eval_r3_results\\n/root/autodl-tmp/sft_eval_r3_results/metrics.json\\n/root/autodl-tmp/sft_baseline_eval_results\\n/root/autodl-tmp/sft_baseline_eval_results/metrics.json\\n/root/autodl-tmp/rsft_scored_partial/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scored_s1/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scored_s2/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scored_s3/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scored_s0/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_filtered_topk3/rsft_scores.jsonl\\n/root/autodl-tmp/baselines/dreeam/checkpoints/teacher_roberta/2026-05-15_22:29:42.720935/scores.csv\\n/root/autodl-tmp/rsft_filtered_flat_nli/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scores_all.jsonl\\n/root/autodl-tmp/eval_plan_012_dpo_ced/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8313520-7d12-4278-8d67-cdab16308b09",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "f470f1ec-ea74-492b-8e35-0e8b91a2c945",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/freige/training/__pycache__/diversity_metrics.cpython-312.pyc\\\\n/root/autodl-tmp/freige/training/diversity_metrics.py\\\\n/root/autodl-tmp/eval_results\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s44/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun/per_doc_scores.jsonl\\\\n/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl\\\\n/root/autodl-tmp/eval_results/ced_reranker_poc/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r1/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun/per_doc_scores.jsonl\\\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/sft_no_evidence/metrics.json\\\\n/root/autodl-tmp/eval_results/sft_no_evidence/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\\\\n/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step50/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step50/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/metrics.json\\\\n/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step70/metrics.json\\\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step70/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/paper_metrics_corrected.md\\\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics.json\\\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_ced_s45/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_ced_s45/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_ced_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/metrics.json\\\\n/root/autodl-tmp/sft_eval_results\\\\n/root/autodl-tmp/sft_eval_results/metrics.json\\\\n/root/autodl-tmp/sft_eval_r3_results\\\\n/root/autodl-tmp/sft_eval_r3_results/metrics.json\\\\n/root/autodl-tmp/sft_baseline_eval_results\\\\n/root/autodl-tmp/sft_baseline_eval_results/metrics.json\\\\n/root/autodl-tmp/rsft_scored_partial/rsft_scores.jsonl\\\\n/root/autodl-tmp/rsft_scored_s1/rsft_scores.jsonl\\\\n/root/autodl-tmp/rsft_scored_s2/rsft_scores.jsonl\\\\n/root/autodl-tmp/rsft_scored_s3/rsft_scores.jsonl\\\\n/root/autodl-tmp/rsft_scored_s0/rsft_scores.jsonl\\\\n/root/autodl-tmp/rsft_filtered_topk3/rsft_scores.jsonl\\\\n/root/autodl-tmp/baselines/dreeam/checkpoints/teacher_roberta/2026-05-15_22:29:42.720935/scores.csv\\\\n/root/autodl-tmp/rsft_filtered_flat_nli/rsft_scores.jsonl\\\\n/root/autodl-tmp/rsft_scores_all.jsonl\\\\n/root/autodl-tmp/eval_plan_012_dpo_ced/metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/freige/training/__pycache__/diversity_metrics.cpython-312.pyc\\n/root/autodl-tmp/freige/training/diversity_metrics.py\\n/root/autodl-tmp/eval_results\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-50/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-10/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-60/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-90/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-20/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001/checkpoint-30/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_kl001_step100/checkpoint-100/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6/checkpoint-20/metrics_v2.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt40/checkpoint-40/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics.json\\n/root/autodl-tmp/eval_results/grpo_ced_lr5e6_ckpt60/metrics_v2.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt80/checkpoint-80/metrics_v2.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/lr5e6_r1_ckpt100/checkpoint-100/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/ced_reranker_poc_dryrun/per_doc_scores.jsonl\\n/root/autodl-tmp/eval_results/ced_reranker_poc/per_doc_scores.jsonl\\n/root/autodl-tmp/eval_results/ced_reranker_poc/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics_v2.json\\n/root/autodl-tmp/eval_results/ced_reranker_dryrun/per_doc_scores.jsonl\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-80/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-100/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16/checkpoint-90/metrics_v2.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\n/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics_v2.json\\n/root/autodl-tmp/eval_results/sft_no_evidence/metrics.json\\n/root/autodl-tmp/eval_results/sft_no_evidence/metrics_v2.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\\n/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics_v2.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step30/metrics_v2.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step50/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step50/metrics_v2.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/metrics.json\\n/root/autodl-tmp/eval_results/dpo_ced_1ep_fixed/metrics_v2.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step70/metrics.json\\n/root/autodl-tmp/eval_results/plan_011_bf16_g8_step70/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics_v2.json\\n/root/autodl-tmp/eval_results/paper_metrics_corrected.md\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics.json\\n/root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_ced_s45/metrics.json\\n/root/autodl-tmp/eval_results/rsft_ced_s45/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_ced_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/metrics.json\\n/root/autodl-tmp/sft_eval_results\\n/root/autodl-tmp/sft_eval_results/metrics.json\\n/root/autodl-tmp/sft_eval_r3_results\\n/root/autodl-tmp/sft_eval_r3_results/metrics.json\\n/root/autodl-tmp/sft_baseline_eval_results\\n/root/autodl-tmp/sft_baseline_eval_results/metrics.json\\n/root/autodl-tmp/rsft_scored_partial/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scored_s1/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scored_s2/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scored_s3/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scored_s0/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_filtered_topk3/rsft_scores.jsonl\\n/root/autodl-tmp/baselines/dreeam/checkpoints/teacher_roberta/2026-05-15_22:29:42.720935/scores.csv\\n/root/autodl-tmp/rsft_filtered_flat_nli/rsft_scores.jsonl\\n/root/autodl-tmp/rsft_scores_all.jsonl\\n/root/autodl-tmp/eval_plan_012_dpo_ced/metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d8313520-7d12-4278-8d67-cdab16308b09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-16T06:06:25.843Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the eval results structure. Let me look at a sample metrics.json and metrics_v2.json to understand the format, and also check which directories correspond to CED vs flat-NLI seeds.
+
+Key directories I see:
+- CED seeds: rsft_ced_s43, rsft_ced_s45 (and probably rsft_r1, rsft_r2a, rsft_r2b for s42?)
+- flat-NLI seeds: rsft_flat_nli (s42?), rsft_flat_nli_s43, rsft_flat_nli_s44, rsft_flat_nli_s45
+
+
+- Reeval dirs: rsft_flat_nli_s43_reeval, rsft_flat_nli_s43_reeval_r2, rsft_topk3_reeval
+
+I need to check the metrics format and locate the reeval results that D076 is generating.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f470f1ec-ea74-492b-8e35-0e8b91a2c945",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kBor6j14GqoogEbm33",
+  "type": "assistant",
+  "uuid": "10da2430-07bf-470d-b453-9f479474c8fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MUSaX3q3d7BRS85yQ4AE4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 25782,
+      "output_tokens": 624,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 624,
+          "cache_read_input_tokens": 25782,
+          "cache_creation_input_tokens": 3441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-16T06:06:26.033Z_
+
+Let me check the metrics file format and identify the relevant CED/flat-NLI eval directories.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10da2430-07bf-470d-b453-9f479474c8fa",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kBor6j14GqoogEbm33",
+  "type": "assistant",
+  "uuid": "ae85f1da-e8e8-4cb0-aee1-c7929e6e4d7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MUSaX3q3d7BRS85yQ4AE4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 25782,
+      "output_tokens": 624,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 624,
+          "cache_read_input_tokens": 25782,
+          "cache_creation_input_tokens": 3441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T06:06:26.386Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0144jv2ozoM1GBtWDxPYsHpz`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s43/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae85f1da-e8e8-4cb0-aee1-c7929e6e4d7c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kBor6j14GqoogEbm33",
+  "type": "assistant",
+  "uuid": "732465f3-6e7b-49a2-8b4c-393e3a3f7cb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MUSaX3q3d7BRS85yQ4AE4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 25782,
+      "output_tokens": 624,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 624,
+          "cache_read_input_tokens": 25782,
+          "cache_creation_input_tokens": 3441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T06:06:26.718Z_
+
+<details><summary>↩ Tool result · `toolu_0144jv2ozoM1GBtWDxPYsHpz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46961515385274705,\\n  \\\"recall\\\": 0.4509093901736483,\\n  \\\"f1\\\": 0.46007221429171213,\\n  \\\"ign_precision\\\": 0.4477204477204477,\\n  \\\"ign_recall\\\": 0.4546714721375104,\\n  \\\"ign_f1\\\": 0.4511691884456671,\\n  \\\"tp\\\": 5479,\\n  \\\"pred_count\\\": 11667,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8024634617152312,\\n  \\\"evi_recall\\\": 0.8101336302895323,\\n  \\\"evi_f1\\\": 0.8062803047794967,\\n  \\\"n_evaluated\\\": 14976,\\n  \\\"edcr\\\": 0.654202645963717,\\n  \\\"n_distractor_citations\\\": 16516,\\n  \\\"n_total_citations\\\": 25246,\\n  \\\"evi_joint_precision\\\": 0.35886225696944757,\\n  \\\"evi_joint_recall\\\": 0.36223456726026687,\\n  \\\"evi_f1_joint\\\": 0.36054052657416735,\\n  \\\"evi_tp\\\": 6977,\\n  \\\"evi_pred_total\\\": 19442,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8091370558375635,\\n  \\\"evidence_format_rate\\\": 0.8091370558375635,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 797,\\n  \\\"n_evidence_valid\\\": 797,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15051,\\n  \\\"n_truncated\\\": 184,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10768.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "732465f3-6e7b-49a2-8b4c-393e3a3f7cb6",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "dea73e46-9c58-451e-8bfc-01b6762407ee",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.46961515385274705,\\\\n  \\\\\\\"recall\\\\\\\": 0.4509093901736483,\\\\n  \\\\\\\"f1\\\\\\\": 0.46007221429171213,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4477204477204477,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4546714721375104,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4511691884456671,\\\\n  \\\\\\\"tp\\\\\\\": 5479,\\\\n  \\\\\\\"pred_count\\\\\\\": 11667,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8024634617152312,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8101336302895323,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8062803047794967,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 14976,\\\\n  \\\\\\\"edcr\\\\\\\": 0.654202645963717,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16516,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25246,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.35886225696944757,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.36223456726026687,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.36054052657416735,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6977,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 19442,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8091370558375635,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8091370558375635,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 797,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 797,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15051,\\\\n  \\\\\\\"n_truncated\\\\\\\": 184,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 10768.2,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46961515385274705,\\n  \\\"recall\\\": 0.4509093901736483,\\n  \\\"f1\\\": 0.46007221429171213,\\n  \\\"ign_precision\\\": 0.4477204477204477,\\n  \\\"ign_recall\\\": 0.4546714721375104,\\n  \\\"ign_f1\\\": 0.4511691884456671,\\n  \\\"tp\\\": 5479,\\n  \\\"pred_count\\\": 11667,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8024634617152312,\\n  \\\"evi_recall\\\": 0.8101336302895323,\\n  \\\"evi_f1\\\": 0.8062803047794967,\\n  \\\"n_evaluated\\\": 14976,\\n  \\\"edcr\\\": 0.654202645963717,\\n  \\\"n_distractor_citations\\\": 16516,\\n  \\\"n_total_citations\\\": 25246,\\n  \\\"evi_joint_precision\\\": 0.35886225696944757,\\n  \\\"evi_joint_recall\\\": 0.36223456726026687,\\n  \\\"evi_f1_joint\\\": 0.36054052657416735,\\n  \\\"evi_tp\\\": 6977,\\n  \\\"evi_pred_total\\\": 19442,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8091370558375635,\\n  \\\"evidence_format_rate\\\": 0.8091370558375635,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 797,\\n  \\\"n_evidence_valid\\\": 797,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15051,\\n  \\\"n_truncated\\\": 184,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10768.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  },
+  "sourceToolAssistantUUID": "732465f3-6e7b-49a2-8b4c-393e3a3f7cb6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T06:06:27.407Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018uTxFibCsxSB1KvSGzfCZ4`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dea73e46-9c58-451e-8bfc-01b6762407ee",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kBor6j14GqoogEbm33",
+  "type": "assistant",
+  "uuid": "f1e7aba8-2c6e-4edc-ba45-dddd3b1eb459",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MUSaX3q3d7BRS85yQ4AE4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 25782,
+      "output_tokens": 624,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 624,
+          "cache_read_input_tokens": 25782,
+          "cache_creation_input_tokens": 3441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T06:06:27.734Z_
+
+<details><summary>↩ Tool result · `toolu_018uTxFibCsxSB1KvSGzfCZ4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4672749605193894,\\n  \\\"recall\\\": 0.4383178339231339,\\n  \\\"f1\\\": 0.45233343241751245,\\n  \\\"ign_precision\\\": 0.44564710273397407,\\n  \\\"ign_recall\\\": 0.44136401441641254,\\n  \\\"ign_f1\\\": 0.44349521775466616,\\n  \\\"tp\\\": 5326,\\n  \\\"pred_count\\\": 11398,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8149522307763658,\\n  \\\"evi_recall\\\": 0.8166186448554699,\\n  \\\"evi_f1\\\": 0.8157845868152275,\\n  \\\"n_evaluated\\\": 15230,\\n  \\\"edcr\\\": 0.6505449049399411,\\n  \\\"n_distractor_citations\\\": 16356,\\n  \\\"n_total_citations\\\": 25142,\\n  \\\"evi_joint_precision\\\": 0.3554714203081453,\\n  \\\"evi_joint_recall\\\": 0.35096827786719276,\\n  \\\"evi_f1_joint\\\": 0.353205496629918,\\n  \\\"evi_tp\\\": 6760,\\n  \\\"evi_pred_total\\\": 19017,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.7796954314720812,\\n  \\\"evidence_format_rate\\\": 0.7796954314720812,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 768,\\n  \\\"n_evidence_valid\\\": 768,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15357,\\n  \\\"n_truncated\\\": 211,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 3515.8,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1e7aba8-2c6e-4edc-ba45-dddd3b1eb459",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "14e1af60-03a5-465b-af17-9cd9204d69e2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4672749605193894,\\\\n  \\\\\\\"recall\\\\\\\": 0.4383178339231339,\\\\n  \\\\\\\"f1\\\\\\\": 0.45233343241751245,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.44564710273397407,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.44136401441641254,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.44349521775466616,\\\\n  \\\\\\\"tp\\\\\\\": 5326,\\\\n  \\\\\\\"pred_count\\\\\\\": 11398,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8149522307763658,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8166186448554699,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8157845868152275,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15230,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6505449049399411,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16356,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25142,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3554714203081453,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.35096827786719276,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.353205496629918,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6760,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 19017,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7796954314720812,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7796954314720812,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 768,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 768,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15357,\\\\n  \\\\\\\"n_truncated\\\\\\\": 211,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3515.8,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4672749605193894,\\n  \\\"recall\\\": 0.4383178339231339,\\n  \\\"f1\\\": 0.45233343241751245,\\n  \\\"ign_precision\\\": 0.44564710273397407,\\n  \\\"ign_recall\\\": 0.44136401441641254,\\n  \\\"ign_f1\\\": 0.44349521775466616,\\n  \\\"tp\\\": 5326,\\n  \\\"pred_count\\\": 11398,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8149522307763658,\\n  \\\"evi_recall\\\": 0.8166186448554699,\\n  \\\"evi_f1\\\": 0.8157845868152275,\\n  \\\"n_evaluated\\\": 15230,\\n  \\\"edcr\\\": 0.6505449049399411,\\n  \\\"n_distractor_citations\\\": 16356,\\n  \\\"n_total_citations\\\": 25142,\\n  \\\"evi_joint_precision\\\": 0.3554714203081453,\\n  \\\"evi_joint_recall\\\": 0.35096827786719276,\\n  \\\"evi_f1_joint\\\": 0.353205496629918,\\n  \\\"evi_tp\\\": 6760,\\n  \\\"evi_pred_total\\\": 19017,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.7796954314720812,\\n  \\\"evidence_format_rate\\\": 0.7796954314720812,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 768,\\n  \\\"n_evidence_valid\\\": 768,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15357,\\n  \\\"n_truncated\\\": 211,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 3515.8,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s43/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f1e7aba8-2c6e-4edc-ba45-dddd3b1eb459",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T06:06:28.162Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NFpjhhQzHe7gnULJEC5dD4`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s43/metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14e1af60-03a5-465b-af17-9cd9204d69e2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kBor6j14GqoogEbm33",
+  "type": "assistant",
+  "uuid": "cc6353b2-3077-490f-883a-8f6273dae92d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016MUSaX3q3d7BRS85yQ4AE4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3441,
+      "cache_read_input_tokens": 25782,
+      "output_tokens": 624,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3441,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 624,
+          "cache_read_input_tokens": 25782,
+          "cache_creation_input_tokens": 3441,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3441
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "cc6353b2-3077-490f-883a-8f6273dae92d",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Set up paired t-test analysis framework for CED vs flat-NLI",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-16T06:06:28.489Z_
+
+<details><summary>↩ Tool result · `toolu_01NFpjhhQzHe7gnULJEC5dD4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46961515385274705,\\n  \\\"recall\\\": 0.4509093901736483,\\n  \\\"f1\\\": 0.46007221429171213,\\n  \\\"ign_precision\\\": 0.4477204477204477,\\n  \\\"ign_recall\\\": 0.4546714721375104,\\n  \\\"ign_f1\\\": 0.4511691884456671,\\n  \\\"tp\\\": 5479,\\n  \\\"pred_count\\\": 11667,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8024634617152312,\\n  \\\"evi_recall\\\": 0.8101336302895323,\\n  \\\"evi_f1\\\": 0.8062803047794967,\\n  \\\"n_evaluated\\\": 14976,\\n  \\\"edcr\\\": 0.654202645963717,\\n  \\\"n_distractor_citations\\\": 16516,\\n  \\\"n_total_citations\\\": 25246,\\n  \\\"evi_joint_precision\\\": 0.35886225696944757,\\n  \\\"evi_joint_recall\\\": 0.36223456726026687,\\n  \\\"evi_f1_joint\\\": 0.36054052657416735,\\n  \\\"evi_tp\\\": 6977,\\n  \\\"evi_pred_total\\\": 19442,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8091370558375635,\\n  \\\"evidence_format_rate\\\": 0.8091370558375635,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 797,\\n  \\\"n_evidence_valid\\\": 797,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15051,\\n  \\\"n_truncated\\\": 184,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10768.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cc6353b2-3077-490f-883a-8f6273dae92d",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "53006996-1bc1-4e5b-a2c1-2da501d7d44a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.46961515385274705,\\\\n  \\\\\\\"recall\\\\\\\": 0.4509093901736483,\\\\n  \\\\\\\"f1\\\\\\\": 0.46007221429171213,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4477204477204477,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4546714721375104,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4511691884456671,\\\\n  \\\\\\\"tp\\\\\\\": 5479,\\\\n  \\\\\\\"pred_count\\\\\\\": 11667,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8024634617152312,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8101336302895323,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8062803047794967,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 14976,\\\\n  \\\\\\\"edcr\\\\\\\": 0.654202645963717,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16516,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25246,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.35886225696944757,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.36223456726026687,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.36054052657416735,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6977,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 19442,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.8091370558375635,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.8091370558375635,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 797,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 797,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15051,\\\\n  \\\\\\\"n_truncated\\\\\\\": 184,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 10768.2,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 43,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.46961515385274705,\\n  \\\"recall\\\": 0.4509093901736483,\\n  \\\"f1\\\": 0.46007221429171213,\\n  \\\"ign_precision\\\": 0.4477204477204477,\\n  \\\"ign_recall\\\": 0.4546714721375104,\\n  \\\"ign_f1\\\": 0.4511691884456671,\\n  \\\"tp\\\": 5479,\\n  \\\"pred_count\\\": 11667,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8024634617152312,\\n  \\\"evi_recall\\\": 0.8101336302895323,\\n  \\\"evi_f1\\\": 0.8062803047794967,\\n  \\\"n_evaluated\\\": 14976,\\n  \\\"edcr\\\": 0.654202645963717,\\n  \\\"n_distractor_citations\\\": 16516,\\n  \\\"n_total_citations\\\": 25246,\\n  \\\"evi_joint_precision\\\": 0.35886225696944757,\\n  \\\"evi_joint_recall\\\": 0.36223456726026687,\\n  \\\"evi_f1_joint\\\": 0.36054052657416735,\\n  \\\"evi_tp\\\": 6977,\\n  \\\"evi_pred_total\\\": 19442,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.8091370558375635,\\n  \\\"evidence_format_rate\\\": 0.8091370558375635,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 797,\\n  \\\"n_evidence_valid\\\": 797,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15051,\\n  \\\"n_truncated\\\": 184,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10768.2,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_ced_s43/checkpoint-510\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_ced_s43\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 43,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cc6353b2-3077-490f-883a-8f6273dae92d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36 · 2026-05-16T06:06:28.493Z_
+
+```json
+{
+  "parentUuid": "53006996-1bc1-4e5b-a2c1-2da501d7d44a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "e94732c9-4251-42a8-ae62-389d587cda9d",
+  "timestamp": "2026-05-16T06:06:28.493Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-16T06:06:42.279Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding of the metrics format. Let me also check what reeval directories exist and what the naming convention is for the D076 reeval experiments.
+
+Key metrics from the JSON:
+- `f1` (rel_f1)
+- `ign_f1`
+- `evi_f1`
+- `edcr`
+
+And there's also `metrics_v2.json` which seems to have the same structure (the `_note` field says "Recomputed with fixed Ign-F1").
+
+Let me check the existing eval results to understand which ones are CED, which are flat-NLI, and which are reeval (D076 protocol).
+
+
+Looking at the eval results, I can see CED runs like rsft_ced_s43 and rsft_ced_s45, along with some older variants like rsft_topk3_reeval and rsft_r1/r2 series. For flat-NLI, there are multiple versions including s43, s44, and s45, with some having reeval variants like rsft_flat_nli_s43_reeval and rsft_flat_nli_s43_reeval_r2.
+
+Now I'm checking the D076 experiments that are running with a unified protocol (batch_size=4, no quantization, sft_adapter enabled, max_new_tokens=1024). Looking at rsft_ced_s43's metrics, it already has those exact settings, so it appears to be D076-compliant. However, rsft_flat_nli_s43_reeval uses batch_size=16, which doesn't match the D076 protocol, suggesting there might be newer reeval directories being created with the updated settings. I should verify the existing evaluator.py to understand how it generates output and whether the current CED results already meet the D076 requirements.
+
+Now I'm looking at the cross_method_table.py and existing analysis scripts to see what comparison logic is already in place.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e94732c9-4251-42a8-ae62-389d587cda9d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kCdscBpgdBzQfwdGFi",
+  "type": "assistant",
+  "uuid": "3f9966c9-e839-4c61-b4ce-65a71db20bcf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Xg8nDVWL62DHfzTtGW4z5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4015,
+      "cache_read_input_tokens": 29223,
+      "output_tokens": 838,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 838,
+          "cache_read_input_tokens": 29223,
+          "cache_creation_input_tokens": 4015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-16T06:06:42.281Z_
+
+Let me also check the existing analysis scripts and cross_method_table.py for reference.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f9966c9-e839-4c61-b4ce-65a71db20bcf",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kCdscBpgdBzQfwdGFi",
+  "type": "assistant",
+  "uuid": "26ad8af6-fd77-42b8-a4f4-2dc3ceaa656e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Xg8nDVWL62DHfzTtGW4z5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4015,
+      "cache_read_input_tokens": 29223,
+      "output_tokens": 838,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 838,
+          "cache_read_input_tokens": 29223,
+          "cache_creation_input_tokens": 4015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T06:06:42.683Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015BuAUoCWBE7Z93mpdG7ErG`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/freige/eval/cross_method_table.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26ad8af6-fd77-42b8-a4f4-2dc3ceaa656e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kCdscBpgdBzQfwdGFi",
+  "type": "assistant",
+  "uuid": "c039597a-e2e9-4de9-a137-a494bc6add61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Xg8nDVWL62DHfzTtGW4z5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4015,
+      "cache_read_input_tokens": 29223,
+      "output_tokens": 838,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 838,
+          "cache_read_input_tokens": 29223,
+          "cache_creation_input_tokens": 4015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T06:06:43.017Z_
+
+<details><summary>↩ Tool result · `toolu_015BuAUoCWBE7Z93mpdG7ErG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Generate EDCR cross-method diagnostic table from all eval results.\\n\\nUsage (from /root/autodl-tmp/):\\n  python -m freige.eval.cross_method_table\\n\\\"\\\"\\\"\\nimport json\\nimport statistics\\nfrom pathlib import Path\\n\\nEVAL_CONFIGS = [\\n    {\\\"name\\\": \\\"SFT baseline (quant)\\\", \\\"path\\\": \\\"/root/autodl-tmp/sft_baseline_eval_results/metrics.json\\\"},\\n    {\\\"name\\\": \\\"SFT baseline (noquant)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\\\"},\\n    {\\\"name\\\": \\\"SFT no-evidence\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/sft_no_evidence/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (s42, 3ep)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (s43, 3ep)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (s44, 3ep)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (r2a, 1ep)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (r2b, a=32)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-flatNLI (s42)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\\"},\\n    {\\\"name\\\": \\\"CED-reranker (N=8)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/ced_reranker_poc/results.json\\\",\\n     \\\"key\\\": \\\"ced_reranker\\\"},\\n    {\\\"name\\\": \\\"GRPO bf16 (G=8, ckpt100)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\\"},\\n    {\\\"name\\\": \\\"DPO-CED (ckpt501)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/dpo_ced/metrics.json\\\"},\\n]\\n\\n\\ndef load_metrics(cfg):\\n    path = Path(cfg[\\\"path\\\"])\\n    if not path.exists():\\n        return None\\n    with open(path) as f:\\n        data = json.load(f)\\n    if \\\"key\\\" in cfg:\\n        data = data[cfg[\\\"key\\\"]]\\n    return data\\n\\n\\ndef get_val(m, *keys):\\n    for k in keys:\\n        if k in m:\\n            return m[k]\\n    return 0\\n\\n\\ndef main():\\n    results = []\\n    for cfg in EVAL_CONFIGS:\\n        m = load_metrics(cfg)\\n        if m is None:\\n            print(f\\\"MISSING: {cfg['name']} -> {cfg['path']}\\\")\\n            continue\\n        results.append((cfg[\\\"name\\\"], m))\\n\\n    if not results:\\n        print(\\\"No results found!\\\")\\n        return\\n\\n    sft_f1 = get_val(results[0][1], \\\"f1\\\", \\\"rel_f1\\\")\\n    sft_edcr = get_val(results[0][1], \\\"edcr\\\")\\n\\n    header = (f\\\"{'Method':<28} {'rel_f1':>7} {'Δf1':>8} {'evi_f1':>7} \\\"\\n              f\\\"{'EDCR':>7} {'ΔEDCR':>8} {'evi_j':>7} {'preds':>6} {'trunc':>6}\\\")\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    table_data = []\\n    for name, m in results:\\n        f1 = get_val(m, \\\"f1\\\", \\\"rel_f1\\\")\\n        evi_f1 = get_val(m, \\\"evi_f1\\\")\\n        edcr = get_val(m, \\\"edcr\\\")\\n        evi_joint = get_val(m, \\\"evi_f1_joint\\\")\\n        delta_f1 = (f1 - sft_f1) * 100\\n        delta_edcr = (edcr - sft_edcr) * 100\\n        preds = get_val(m, \\\"n_predictions\\\", \\\"pred_count\\\")\\n        trunc = m.get(\\\"n_truncated\\\")\\n        trunc_str = str(trunc) if trunc is not None else \\\"-\\\"\\n\\n        print(f\\\"{name:<28} {f1:>7.4f} {delta_f1:>+7.2f}p {evi_f1:>7.4f} \\\"\\n              f\\\"{edcr:>7.4f} {delta_edcr:>+7.2f}p {evi_joint:>7.4f} {preds:>6} {trunc_str:>6}\\\")\\n\\n        table_data.append({\\n            \\\"method\\\": name,\\n            \\\"rel_f1\\\": round(f1, 4),\\n            \\\"evi_f1\\\": round(evi_f1, 4),\\n            \\\"edcr\\\": round(edcr, 4),\\n            \\\"evi_f1_joint\\\": round(evi_joint, 4),\\n            \\\"delta_rel_f1_pp\\\": round(delta_f1, 2),\\n            \\\"delta_edcr_pp\\\": round(delta_edcr, 2),\\n            \\\"precision\\\": round(get_val(m, \\\"precision\\\"), 4),\\n            \\\"recall\\\": round(get_val(m, \\\"recall\\\"), 4),\\n            \\\"n_predictions\\\": preds,\\n            \\\"n_truncated\\\": trunc,\\n        })\\n\\n    # 3-seed aggregate\\n    seed_names = {\\\"RSFT-CED (s42, 3ep)\\\", \\\"RSFT-CED (s43, 3ep)\\\", \\\"RSFT-CED (s44, 3ep)\\\"}\\n    rsft_seeds = [(n, m) for n, m in results if n in seed_names]\\n    if len(rsft_seeds) == 3:\\n        print()\\n        print(\\\"--- RSFT-CED 3-seed (s42/s43/s44) ---\\\")\\n        for k, label in [(\\\"f1\\\", \\\"rel_f1\\\"), (\\\"evi_f1\\\", \\\"evi_f1\\\"), (\\\"edcr\\\", \\\"EDCR\\\"), (\\\"evi_f1_joint\\\", \\\"evi_j\\\")]:\\n            vals = [get_val(m, k) for _, m in rsft_seeds]\\n            if all(v > 0 for v in vals):\\n                mean_v = statistics.mean(vals)\\n                std_v = statistics.stdev(vals)\\n                print(f\\\"  {label:>7} = {mean_v:.4f} ± {std_v:.4f}\\\")\\n\\n        table_data.append({\\n            \\\"method\\\": \\\"RSFT-CED 3-seed mean\\\",\\n            \\\"rel_f1\\\": round(statistics.mean([get_val(m, \\\"f1\\\") for _, m in rsft_seeds]), 4),\\n            \\\"rel_f1_std\\\": round(statistics.stdev([get_val(m, \\\"f1\\\") for _, m in rsft_seeds]), 4),\\n            \\\"evi_f1\\\": round(statistics.mean([get_val(m, \\\"evi_f1\\\") for _, m in rsft_seeds]), 4),\\n            \\\"evi_f1_std\\\": round(statistics.stdev([get_val(m, \\\"evi_f1\\\") for _, m in rsft_seeds]), 4),\\n            \\\"edcr\\\": round(statistics.mean([get_val(m, \\\"edcr\\\") for _, m in rsft_seeds]), 4),\\n            \\\"edcr_std\\\": round(statistics.stdev([get_val(m, \\\"edcr\\\") for _, m in rsft_seeds]), 4),\\n        })\\n\\n    output_path = Path(\\\"/root/autodl-tmp/eval_results/cross_method_table.json\\\")\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(table_data, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nExported -> {output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c039597a-e2e9-4de9-a137-a494bc6add61",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "40044a36-650a-4632-bacc-ebef170f2f9a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Generate EDCR cross-method diagnostic table from all eval results.\\\\n\\\\nUsage (from /root/autodl-tmp/):\\\\n  python -m freige.eval.cross_method_table\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport statistics\\\\nfrom pathlib import Path\\\\n\\\\nEVAL_CONFIGS = [\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"SFT baseline (quant)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_baseline_eval_results/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"SFT baseline (noquant)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"SFT no-evidence\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_no_evidence/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"RSFT-CED (s42, 3ep)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"RSFT-CED (s43, 3ep)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"RSFT-CED (s44, 3ep)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"RSFT-CED (r2a, 1ep)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"RSFT-CED (r2b, a=32)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"RSFT-flatNLI (s42)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"CED-reranker (N=8)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/ced_reranker_poc/results.json\\\\\\\",\\\\n     \\\\\\\"key\\\\\\\": \\\\\\\"ced_reranker\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"GRPO bf16 (G=8, ckpt100)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\\\\\\"},\\\\n    {\\\\\\\"name\\\\\\\": \\\\\\\"DPO-CED (ckpt501)\\\\\\\", \\\\\\\"path\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/dpo_ced/metrics.json\\\\\\\"},\\\\n]\\\\n\\\\n\\\\ndef load_metrics(cfg):\\\\n    path = Path(cfg[\\\\\\\"path\\\\\\\"])\\\\n    if not path.exists():\\\\n        return None\\\\n    with open(path) as f:\\\\n        data = json.load(f)\\\\n    if \\\\\\\"key\\\\\\\" in cfg:\\\\n        data = data[cfg[\\\\\\\"key\\\\\\\"]]\\\\n    return data\\\\n\\\\n\\\\ndef get_val(m, *keys):\\\\n    for k in keys:\\\\n        if k in m:\\\\n            return m[k]\\\\n    return 0\\\\n\\\\n\\\\ndef main():\\\\n    results = []\\\\n    for cfg in EVAL_CONFIGS:\\\\n        m = load_metrics(cfg)\\\\n        if m is None:\\\\n            print(f\\\\\\\"MISSING: {cfg['name']} -> {cfg['path']}\\\\\\\")\\\\n            continue\\\\n        results.append((cfg[\\\\\\\"name\\\\\\\"], m))\\\\n\\\\n    if not results:\\\\n        print(\\\\\\\"No results found!\\\\\\\")\\\\n        return\\\\n\\\\n    sft_f1 = get_val(results[0][1], \\\\\\\"f1\\\\\\\", \\\\\\\"rel_f1\\\\\\\")\\\\n    sft_edcr = get_val(results[0][1], \\\\\\\"edcr\\\\\\\")\\\\n\\\\n    header = (f\\\\\\\"{'Method':<28} {'rel_f1':>7} {'Δf1':>8} {'evi_f1':>7} \\\\\\\"\\\\n              f\\\\\\\"{'EDCR':>7} {'ΔEDCR':>8} {'evi_j':>7} {'preds':>6} {'trunc':>6}\\\\\\\")\\\\n    print(header)\\\\n    print(\\\\\\\"-\\\\\\\" * len(header))\\\\n\\\\n    table_data = []\\\\n    for name, m in results:\\\\n        f1 = get_val(m, \\\\\\\"f1\\\\\\\", \\\\\\\"rel_f1\\\\\\\")\\\\n        evi_f1 = get_val(m, \\\\\\\"evi_f1\\\\\\\")\\\\n        edcr = get_val(m, \\\\\\\"edcr\\\\\\\")\\\\n        evi_joint = get_val(m, \\\\\\\"evi_f1_joint\\\\\\\")\\\\n        delta_f1 = (f1 - sft_f1) * 100\\\\n        delta_edcr = (edcr - sft_edcr) * 100\\\\n        preds = get_val(m, \\\\\\\"n_predictions\\\\\\\", \\\\\\\"pred_count\\\\\\\")\\\\n        trunc = m.get(\\\\\\\"n_truncated\\\\\\\")\\\\n        trunc_str = str(trunc) if trunc is not None else \\\\\\\"-\\\\\\\"\\\\n\\\\n        print(f\\\\\\\"{name:<28} {f1:>7.4f} {delta_f1:>+7.2f}p {evi_f1:>7.4f} \\\\\\\"\\\\n              f\\\\\\\"{edcr:>7.4f} {delta_edcr:>+7.2f}p {evi_joint:>7.4f} {preds:>6} {trunc_str:>6}\\\\\\\")\\\\n\\\\n        table_data.append({\\\\n            \\\\\\\"method\\\\\\\": name,\\\\n            \\\\\\\"rel_f1\\\\\\\": round(f1, 4),\\\\n            \\\\\\\"evi_f1\\\\\\\": round(evi_f1, 4),\\\\n            \\\\\\\"edcr\\\\\\\": round(edcr, 4),\\\\n            \\\\\\\"evi_f1_joint\\\\\\\": round(evi_joint, 4),\\\\n            \\\\\\\"delta_rel_f1_pp\\\\\\\": round(delta_f1, 2),\\\\n            \\\\\\\"delta_edcr_pp\\\\\\\": round(delta_edcr, 2),\\\\n            \\\\\\\"precision\\\\\\\": round(get_val(m, \\\\\\\"precision\\\\\\\"), 4),\\\\n            \\\\\\\"recall\\\\\\\": round(get_val(m, \\\\\\\"recall\\\\\\\"), 4),\\\\n            \\\\\\\"n_predictions\\\\\\\": preds,\\\\n            \\\\\\\"n_truncated\\\\\\\": trunc,\\\\n        })\\\\n\\\\n    # 3-seed aggregate\\\\n    seed_names = {\\\\\\\"RSFT-CED (s42, 3ep)\\\\\\\", \\\\\\\"RSFT-CED (s43, 3ep)\\\\\\\", \\\\\\\"RSFT-CED (s44, 3ep)\\\\\\\"}\\\\n    rsft_seeds = [(n, m) for n, m in results if n in seed_names]\\\\n    if len(rsft_seeds) == 3:\\\\n        print()\\\\n        print(\\\\\\\"--- RSFT-CED 3-seed (s42/s43/s44) ---\\\\\\\")\\\\n        for k, label in [(\\\\\\\"f1\\\\\\\", \\\\\\\"rel_f1\\\\\\\"), (\\\\\\\"evi_f1\\\\\\\", \\\\\\\"evi_f1\\\\\\\"), (\\\\\\\"edcr\\\\\\\", \\\\\\\"EDCR\\\\\\\"), (\\\\\\\"evi_f1_joint\\\\\\\", \\\\\\\"evi_j\\\\\\\")]:\\\\n            vals = [get_val(m, k) for _, m in rsft_seeds]\\\\n            if all(v > 0 for v in vals):\\\\n                mean_v = statistics.mean(vals)\\\\n                std_v = statistics.stdev(vals)\\\\n                print(f\\\\\\\"  {label:>7} = {mean_v:.4f} ± {std_v:.4f}\\\\\\\")\\\\n\\\\n        table_data.append({\\\\n            \\\\\\\"method\\\\\\\": \\\\\\\"RSFT-CED 3-seed mean\\\\\\\",\\\\n            \\\\\\\"rel_f1\\\\\\\": round(statistics.mean([get_val(m, \\\\\\\"f1\\\\\\\") for _, m in rsft_seeds]), 4),\\\\n            \\\\\\\"rel_f1_std\\\\\\\": round(statistics.stdev([get_val(m, \\\\\\\"f1\\\\\\\") for _, m in rsft_seeds]), 4),\\\\n            \\\\\\\"evi_f1\\\\\\\": round(statistics.mean([get_val(m, \\\\\\\"evi_f1\\\\\\\") for _, m in rsft_seeds]), 4),\\\\n            \\\\\\\"evi_f1_std\\\\\\\": round(statistics.stdev([get_val(m, \\\\\\\"evi_f1\\\\\\\") for _, m in rsft_seeds]), 4),\\\\n            \\\\\\\"edcr\\\\\\\": round(statistics.mean([get_val(m, \\\\\\\"edcr\\\\\\\") for _, m in rsft_seeds]), 4),\\\\n            \\\\\\\"edcr_std\\\\\\\": round(statistics.stdev([get_val(m, \\\\\\\"edcr\\\\\\\") for _, m in rsft_seeds]), 4),\\\\n        })\\\\n\\\\n    output_path = Path(\\\\\\\"/root/autodl-tmp/eval_results/cross_method_table.json\\\\\\\")\\\\n    with open(output_path, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(table_data, f, indent=2, ensure_ascii=False)\\\\n    print(f\\\\\\\"\\\\\\\\nExported -> {output_path}\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Generate EDCR cross-method diagnostic table from all eval results.\\n\\nUsage (from /root/autodl-tmp/):\\n  python -m freige.eval.cross_method_table\\n\\\"\\\"\\\"\\nimport json\\nimport statistics\\nfrom pathlib import Path\\n\\nEVAL_CONFIGS = [\\n    {\\\"name\\\": \\\"SFT baseline (quant)\\\", \\\"path\\\": \\\"/root/autodl-tmp/sft_baseline_eval_results/metrics.json\\\"},\\n    {\\\"name\\\": \\\"SFT baseline (noquant)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/sft_baseline_noquant/metrics.json\\\"},\\n    {\\\"name\\\": \\\"SFT no-evidence\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/sft_no_evidence/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (s42, 3ep)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (s43, 3ep)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (s44, 3ep)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (r2a, 1ep)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-CED (r2b, a=32)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\"},\\n    {\\\"name\\\": \\\"RSFT-flatNLI (s42)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\\"},\\n    {\\\"name\\\": \\\"CED-reranker (N=8)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/ced_reranker_poc/results.json\\\",\\n     \\\"key\\\": \\\"ced_reranker\\\"},\\n    {\\\"name\\\": \\\"GRPO bf16 (G=8, ckpt100)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/grpo_g8_bf16_ckpt100/metrics.json\\\"},\\n    {\\\"name\\\": \\\"DPO-CED (ckpt501)\\\", \\\"path\\\": \\\"/root/autodl-tmp/eval_results/dpo_ced/metrics.json\\\"},\\n]\\n\\n\\ndef load_metrics(cfg):\\n    path = Path(cfg[\\\"path\\\"])\\n    if not path.exists():\\n        return None\\n    with open(path) as f:\\n        data = json.load(f)\\n    if \\\"key\\\" in cfg:\\n        data = data[cfg[\\\"key\\\"]]\\n    return data\\n\\n\\ndef get_val(m, *keys):\\n    for k in keys:\\n        if k in m:\\n            return m[k]\\n    return 0\\n\\n\\ndef main():\\n    results = []\\n    for cfg in EVAL_CONFIGS:\\n        m = load_metrics(cfg)\\n        if m is None:\\n            print(f\\\"MISSING: {cfg['name']} -> {cfg['path']}\\\")\\n            continue\\n        results.append((cfg[\\\"name\\\"], m))\\n\\n    if not results:\\n        print(\\\"No results found!\\\")\\n        return\\n\\n    sft_f1 = get_val(results[0][1], \\\"f1\\\", \\\"rel_f1\\\")\\n    sft_edcr = get_val(results[0][1], \\\"edcr\\\")\\n\\n    header = (f\\\"{'Method':<28} {'rel_f1':>7} {'Δf1':>8} {'evi_f1':>7} \\\"\\n              f\\\"{'EDCR':>7} {'ΔEDCR':>8} {'evi_j':>7} {'preds':>6} {'trunc':>6}\\\")\\n    print(header)\\n    print(\\\"-\\\" * len(header))\\n\\n    table_data = []\\n    for name, m in results:\\n        f1 = get_val(m, \\\"f1\\\", \\\"rel_f1\\\")\\n        evi_f1 = get_val(m, \\\"evi_f1\\\")\\n        edcr = get_val(m, \\\"edcr\\\")\\n        evi_joint = get_val(m, \\\"evi_f1_joint\\\")\\n        delta_f1 = (f1 - sft_f1) * 100\\n        delta_edcr = (edcr - sft_edcr) * 100\\n        preds = get_val(m, \\\"n_predictions\\\", \\\"pred_count\\\")\\n        trunc = m.get(\\\"n_truncated\\\")\\n        trunc_str = str(trunc) if trunc is not None else \\\"-\\\"\\n\\n        print(f\\\"{name:<28} {f1:>7.4f} {delta_f1:>+7.2f}p {evi_f1:>7.4f} \\\"\\n              f\\\"{edcr:>7.4f} {delta_edcr:>+7.2f}p {evi_joint:>7.4f} {preds:>6} {trunc_str:>6}\\\")\\n\\n        table_data.append({\\n            \\\"method\\\": name,\\n            \\\"rel_f1\\\": round(f1, 4),\\n            \\\"evi_f1\\\": round(evi_f1, 4),\\n            \\\"edcr\\\": round(edcr, 4),\\n            \\\"evi_f1_joint\\\": round(evi_joint, 4),\\n            \\\"delta_rel_f1_pp\\\": round(delta_f1, 2),\\n            \\\"delta_edcr_pp\\\": round(delta_edcr, 2),\\n            \\\"precision\\\": round(get_val(m, \\\"precision\\\"), 4),\\n            \\\"recall\\\": round(get_val(m, \\\"recall\\\"), 4),\\n            \\\"n_predictions\\\": preds,\\n            \\\"n_truncated\\\": trunc,\\n        })\\n\\n    # 3-seed aggregate\\n    seed_names = {\\\"RSFT-CED (s42, 3ep)\\\", \\\"RSFT-CED (s43, 3ep)\\\", \\\"RSFT-CED (s44, 3ep)\\\"}\\n    rsft_seeds = [(n, m) for n, m in results if n in seed_names]\\n    if len(rsft_seeds) == 3:\\n        print()\\n        print(\\\"--- RSFT-CED 3-seed (s42/s43/s44) ---\\\")\\n        for k, label in [(\\\"f1\\\", \\\"rel_f1\\\"), (\\\"evi_f1\\\", \\\"evi_f1\\\"), (\\\"edcr\\\", \\\"EDCR\\\"), (\\\"evi_f1_joint\\\", \\\"evi_j\\\")]:\\n            vals = [get_val(m, k) for _, m in rsft_seeds]\\n            if all(v > 0 for v in vals):\\n                mean_v = statistics.mean(vals)\\n                std_v = statistics.stdev(vals)\\n                print(f\\\"  {label:>7} = {mean_v:.4f} ± {std_v:.4f}\\\")\\n\\n        table_data.append({\\n            \\\"method\\\": \\\"RSFT-CED 3-seed mean\\\",\\n            \\\"rel_f1\\\": round(statistics.mean([get_val(m, \\\"f1\\\") for _, m in rsft_seeds]), 4),\\n            \\\"rel_f1_std\\\": round(statistics.stdev([get_val(m, \\\"f1\\\") for _, m in rsft_seeds]), 4),\\n            \\\"evi_f1\\\": round(statistics.mean([get_val(m, \\\"evi_f1\\\") for _, m in rsft_seeds]), 4),\\n            \\\"evi_f1_std\\\": round(statistics.stdev([get_val(m, \\\"evi_f1\\\") for _, m in rsft_seeds]), 4),\\n            \\\"edcr\\\": round(statistics.mean([get_val(m, \\\"edcr\\\") for _, m in rsft_seeds]), 4),\\n            \\\"edcr_std\\\": round(statistics.stdev([get_val(m, \\\"edcr\\\") for _, m in rsft_seeds]), 4),\\n        })\\n\\n    output_path = Path(\\\"/root/autodl-tmp/eval_results/cross_method_table.json\\\")\\n    with open(output_path, \\\"w\\\") as f:\\n        json.dump(table_data, f, indent=2, ensure_ascii=False)\\n    print(f\\\"\\\\nExported -> {output_path}\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c039597a-e2e9-4de9-a137-a494bc6add61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T06:06:43.040Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HFWfh783mNdmMbNnbjdrU4`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/freige/analysis/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40044a36-650a-4632-bacc-ebef170f2f9a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kCdscBpgdBzQfwdGFi",
+  "type": "assistant",
+  "uuid": "f49df9b4-baef-42eb-9c9e-e21707916a1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Xg8nDVWL62DHfzTtGW4z5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4015,
+      "cache_read_input_tokens": 29223,
+      "output_tokens": 838,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 838,
+          "cache_read_input_tokens": 29223,
+          "cache_creation_input_tokens": 4015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f49df9b4-baef-42eb-9c9e-e21707916a1a",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Set up paired t-test analysis framework for CED vs flat-NLI",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T06:06:43.408Z_
+
+<details><summary>↩ Tool result · `toolu_01HFWfh783mNdmMbNnbjdrU4`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nced_signal_validation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f49df9b4-baef-42eb-9c9e-e21707916a1a",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "aa2ef09a-c325-48ad-801f-13bfd500900b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__init__.py\\\\n__pycache__\\\\nced_signal_validation.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"__init__.py\\n__pycache__\\nced_signal_validation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f49df9b4-baef-42eb-9c9e-e21707916a1a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-16T06:06:51.814Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me also check what the current reeval naming convention might be. The task mentions D076 reeval experiments are running. Let me check if there are any reeval directories with the new naming pattern.
+
+Let me also check for rsft_ced_s42 and rsft_ced_s44 eval results (I see rsft_ced_s43 and rsft_ced_s45, but need s42 and s44).
+
+Looking at the existing results:
+- CED: rsft_ced_s43, rsft_ced_s45 → already have batch_size=4, no-quantize, sft_adapter, max_new_tokens=1024 (D076 protocol)
+
+
+- flat-NLI: rsft_flat_nli_s43_reeval uses the old protocol with batch_size=16, while rsft_flat_nli_s43_reeval_r2 needs verification. I should check if there are reeval directories for CED s42 and s44, and figure out what naming pattern the D076 reeval results will follow.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa2ef09a-c325-48ad-801f-13bfd500900b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kDjgP5j9ZvLHdVUrsJ",
+  "type": "assistant",
+  "uuid": "2480005b-39cc-4fd4-a3b1-f25d06407183",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SiKQjMyvS9WSybzqwqFpT4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3785,
+      "cache_read_input_tokens": 33238,
+      "output_tokens": 557,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3785,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 557,
+          "cache_read_input_tokens": 33238,
+          "cache_creation_input_tokens": 3785,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3785
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-16T06:06:51.823Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0147pwyBBvpt8Cw6RpwQThFz`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2480005b-39cc-4fd4-a3b1-f25d06407183",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kDjgP5j9ZvLHdVUrsJ",
+  "type": "assistant",
+  "uuid": "58ca57af-ba04-4c6b-b573-17342ece35a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SiKQjMyvS9WSybzqwqFpT4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3785,
+      "cache_read_input_tokens": 33238,
+      "output_tokens": 557,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3785,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 557,
+          "cache_read_input_tokens": 33238,
+          "cache_creation_input_tokens": 3785,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3785
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T06:06:51.938Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01W7NkVkChDmwXWGJWAzREFo`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls -lt /root/autodl-tmp/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58ca57af-ba04-4c6b-b573-17342ece35a6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kDjgP5j9ZvLHdVUrsJ",
+  "type": "assistant",
+  "uuid": "61934000-844e-4942-b16b-9fc397e93bd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SiKQjMyvS9WSybzqwqFpT4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3785,
+      "cache_read_input_tokens": 33238,
+      "output_tokens": 557,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3785,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 557,
+          "cache_read_input_tokens": 33238,
+          "cache_creation_input_tokens": 3785,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3785
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T06:06:52.149Z_
+
+<details><summary>↩ Tool result · `toolu_0147pwyBBvpt8Cw6RpwQThFz`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/metrics_v2.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58ca57af-ba04-4c6b-b573-17342ece35a6",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "0eae26fa-8b2a-4615-814e-ef88d58e5f22",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/metrics_v2.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/metrics_v2.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "58ca57af-ba04-4c6b-b573-17342ece35a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T06:06:52.535Z_
+
+<details><summary>↩ Tool result · `toolu_01W7NkVkChDmwXWGJWAzREFo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 788\\ndrwxr-xr-x 2 root root     62 May 16 14:05 rsft_flat_nli_s43_reeval_r2\\ndrwxr-xr-x 2 root root     73 May 16 13:27 sft_no_evidence_noquant\\ndrwxr-xr-x 2 root root      6 May 16 13:26 sft_baseline_d076_reeval\\n-rw-r--r-- 1 root root   9266 May 16 13:25 paper_table_data.json\\n-rw-r--r-- 1 root root   2560 May 16 13:25 seed_comparison.json\\n-rw-r--r-- 1 root root   1681 May 16 13:25 seed_comparison.md\\ndrwxr-xr-x 2 root root     73 May 16 13:24 rsft_ced_s43\\ndrwxr-xr-x 2 root root     89 May 16 13:24 rsft_ced_s45\\n-rw-r--r-- 1 root root   2100 May 16 13:22 d076_seed_summary.json\\ndrwxr-xr-x 2 root root      6 May 16 12:24 rsft_ced_s42_reeval\\ndrwxr-xr-x 2 root root      6 May 16 12:18 rsft_ced_s44_reeval\\ndrwxr-xr-x 2 root root      6 May 16 12:16 rsft_flat_nli_s42_reeval\\ndrwxr-xr-x 2 root root     89 May 16 11:48 rsft_flat_nli_s45\\ndrwxr-xr-x 2 root root     89 May 16 11:48 rsft_flat_nli_s44\\ndrwxr-xr-x 2 root root    122 May 16 11:48 ced_reranker_poc\\n-rw-r--r-- 1 root root   1860 May 16 08:44 seed_status_summary.md\\ndrwxr-xr-x 2 root root     89 May 16 08:19 rsft_topk3_reeval\\ndrwxr-xr-x 2 root root     89 May 16 08:19 rsft_flat_nli_s43_reeval\\n-rw-r--r-- 1 root root   2400 May 16 08:08 paper_metrics_corrected.md\\n-rw-r--r-- 1 root root  30312 May 16 07:58 edcr_per_relation_analysis.json\\n-rw-r--r-- 1 root root   9033 May 16 07:58 edcr_per_relation_analysis.md\\n-rw-r--r-- 1 root root    789 May 16 07:56 edcr_diagnostic_table.csv\\n-rw-r--r-- 1 root root   1158 May 16 07:56 edcr_diagnostic_table.md\\n-rw-r--r-- 1 root root   2867 May 16 07:56 edcr_diagnostic.tex\\n-rw-r--r-- 1 root root 642857 May 16 07:56 edcr_diagnostic.json\\ndrwxr-xr-x 2 root root     89 May 16 07:55 test_rsft_s44\\ndrwxr-xr-x 2 root root     89 May 16 07:55 sft_no_evidence\\ndrwxr-xr-x 2 root root     89 May 16 07:55 sft_baseline_noquant\\ndrwxr-xr-x 2 root root    109 May 16 07:55 rsft_s44\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_s43\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_r2b_maxtok1536\\ndrwxr-xr-x 2 root root    139 May 16 07:55 rsft_r2b\\ndrwxr-xr-x 2 root root    109 May 16 07:55 rsft_r2a\\ndrwxr-xr-x 2 root root    109 May 16 07:55 rsft_r1\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_flat_nli_s43\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_flat_nli\\ndrwxr-xr-x 2 root root     89 May 16 07:55 plan_011_bf16_g8_step70\\ndrwxr-xr-x 2 root root     89 May 16 07:55 plan_011_bf16_g8_step50\\ndrwxr-xr-x 2 root root     89 May 16 07:55 plan_011_bf16_g8_step30\\ndrwxr-xr-x 2 root root     89 May 16 07:55 grpo_g8_bf16_ckpt100\\ndrwxr-xr-x 2 root root     89 May 16 07:55 grpo_ced_lr5e6_ckpt60\\ndrwxr-xr-x 2 root root     89 May 16 07:55 dpo_ced_1ep_fixed\\ndrwxr-xr-x 2 root root    109 May 16 07:55 dpo_ced_1ep\\n-rw-r--r-- 1 root root   6834 May 16 07:22 edcr_diagnostic_v2.json\\n-rw-r--r-- 1 root root   1672 May 16 07:22 edcr_diagnostic_v2.tex\\ndrwxr-xr-x 2 root root      6 May 16 05:39 rsft_topk3_fixed\\ndrwxr-xr-x 2 root root      6 May 16 05:10 rsft_topk3\\n-rw-r--r-- 1 root root   3364 May 16 03:59 cross_method_table.json\\ndrwxr-xr-x 2 root root      6 May 16 03:57 bf16_g8_step50\\ndrwxr-xr-x 4 root root     60 May 16 03:57 grpo_flatnli_r3\\ndrwxr-xr-x 2 root root      6 May 16 03:55 grpo_extract_r4_step10\\ndrwxr-xr-x 2 root root      6 May 16 03:54 bf16_g8_step30\\ndrwxr-xr-x 2 root root      6 May 16 03:33 dpo_ced_ckpt400\\n-rw-r--r-- 1 root root   2040 May 16 02:06 test_rsft_s44.log\\ndrwxr-xr-x 5 root root    110 May 15 23:45 grpo_g8_bf16\\n-rw-r--r-- 1 root root   1662 May 15 21:19 evi_f1_joint_comparison.json\\n-rw-r--r-- 1 root root   9342 May 15 19:59 edcr_analysis.json\\n-rw-r--r-- 1 root root   1583 May 15 19:59 3seed_summary.json\\n-rw-r--r-- 1 root root  24773 May 15 19:57 edcr_analysis_r2b.md\\ndrwxr-xr-x 2 root root    127 May 15 17:52 ced_reranker_dryrun\\ndrwxr-xr-x 2 root root     95 May 15 16:02 ced_reranker_poc_dryrun\\ndrwxr-xr-x 3 root root     59 May 15 08:54 lr5e6_r1_ckpt80\\ndrwxr-xr-x 3 root root     36 May 15 07:39 lr5e6_r1_ckpt100\\ndrwxr-xr-x 3 root root     59 May 15 07:08 lr5e6_r1_ckpt40\\ndrwxr-xr-x 3 root root     47 May 15 06:30 lr5e6_r1_ckpt60\\ndrwxr-xr-x 3 root root     59 May 15 06:06 grpo_ced_lr5e6_rp\\ndrwxr-xr-x 4 root root     84 May 15 05:30 grpo_ced_lr5e6\\ndrwxr-xr-x 9 root root   4096 May 15 05:05 grpo_ced_kl001\\ndrwxr-xr-x 3 root root     60 May 15 03:35 grpo_ced_kl001_step100\\ndrwxr-xr-x 2 root root      6 May 14 19:47 sft\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "61934000-844e-4942-b16b-9fc397e93bd9",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "dadb6a8d-fafc-417a-99d8-a3a81c62ca1f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 788\\\\ndrwxr-xr-x 2 root root     62 May 16 14:05 rsft_flat_nli_s43_reeval_r2\\\\ndrwxr-xr-x 2 root root     73 May 16 13:27 sft_no_evidence_noquant\\\\ndrwxr-xr-x 2 root root      6 May 16 13:26 sft_baseline_d076_reeval\\\\n-rw-r--r-- 1 root root   9266 May 16 13:25 paper_table_data.json\\\\n-rw-r--r-- 1 root root   2560 May 16 13:25 seed_comparison.json\\\\n-rw-r--r-- 1 root root   1681 May 16 13:25 seed_comparison.md\\\\ndrwxr-xr-x 2 root root     73 May 16 13:24 rsft_ced_s43\\\\ndrwxr-xr-x 2 root root     89 May 16 13:24 rsft_ced_s45\\\\n-rw-r--r-- 1 root root   2100 May 16 13:22 d076_seed_summary.json\\\\ndrwxr-xr-x 2 root root      6 May 16 12:24 rsft_ced_s42_reeval\\\\ndrwxr-xr-x 2 root root      6 May 16 12:18 rsft_ced_s44_reeval\\\\ndrwxr-xr-x 2 root root      6 May 16 12:16 rsft_flat_nli_s42_reeval\\\\ndrwxr-xr-x 2 root root     89 May 16 11:48 rsft_flat_nli_s45\\\\ndrwxr-xr-x 2 root root     89 May 16 11:48 rsft_flat_nli_s44\\\\ndrwxr-xr-x 2 root root    122 May 16 11:48 ced_reranker_poc\\\\n-rw-r--r-- 1 root root   1860 May 16 08:44 seed_status_summary.md\\\\ndrwxr-xr-x 2 root root     89 May 16 08:19 rsft_topk3_reeval\\\\ndrwxr-xr-x 2 root root     89 May 16 08:19 rsft_flat_nli_s43_reeval\\\\n-rw-r--r-- 1 root root   2400 May 16 08:08 paper_metrics_corrected.md\\\\n-rw-r--r-- 1 root root  30312 May 16 07:58 edcr_per_relation_analysis.json\\\\n-rw-r--r-- 1 root root   9033 May 16 07:58 edcr_per_relation_analysis.md\\\\n-rw-r--r-- 1 root root    789 May 16 07:56 edcr_diagnostic_table.csv\\\\n-rw-r--r-- 1 root root   1158 May 16 07:56 edcr_diagnostic_table.md\\\\n-rw-r--r-- 1 root root   2867 May 16 07:56 edcr_diagnostic.tex\\\\n-rw-r--r-- 1 root root 642857 May 16 07:56 edcr_diagnostic.json\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 test_rsft_s44\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 sft_no_evidence\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 sft_baseline_noquant\\\\ndrwxr-xr-x 2 root root    109 May 16 07:55 rsft_s44\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_s43\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_r2b_maxtok1536\\\\ndrwxr-xr-x 2 root root    139 May 16 07:55 rsft_r2b\\\\ndrwxr-xr-x 2 root root    109 May 16 07:55 rsft_r2a\\\\ndrwxr-xr-x 2 root root    109 May 16 07:55 rsft_r1\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_flat_nli_s43\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_flat_nli\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 plan_011_bf16_g8_step70\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 plan_011_bf16_g8_step50\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 plan_011_bf16_g8_step30\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 grpo_g8_bf16_ckpt100\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 grpo_ced_lr5e6_ckpt60\\\\ndrwxr-xr-x 2 root root     89 May 16 07:55 dpo_ced_1ep_fixed\\\\ndrwxr-xr-x 2 root root    109 May 16 07:55 dpo_ced_1ep\\\\n-rw-r--r-- 1 root root   6834 May 16 07:22 edcr_diagnostic_v2.json\\\\n-rw-r--r-- 1 root root   1672 May 16 07:22 edcr_diagnostic_v2.tex\\\\ndrwxr-xr-x 2 root root      6 May 16 05:39 rsft_topk3_fixed\\\\ndrwxr-xr-x 2 root root      6 May 16 05:10 rsft_topk3\\\\n-rw-r--r-- 1 root root   3364 May 16 03:59 cross_method_table.json\\\\ndrwxr-xr-x 2 root root      6 May 16 03:57 bf16_g8_step50\\\\ndrwxr-xr-x 4 root root     60 May 16 03:57 grpo_flatnli_r3\\\\ndrwxr-xr-x 2 root root      6 May 16 03:55 grpo_extract_r4_step10\\\\ndrwxr-xr-x 2 root root      6 May 16 03:54 bf16_g8_step30\\\\ndrwxr-xr-x 2 root root      6 May 16 03:33 dpo_ced_ckpt400\\\\n-rw-r--r-- 1 root root   2040 May 16 02:06 test_rsft_s44.log\\\\ndrwxr-xr-x 5 root root    110 May 15 23:45 grpo_g8_bf16\\\\n-rw-r--r-- 1 root root   1662 May 15 21:19 evi_f1_joint_comparison.json\\\\n-rw-r--r-- 1 root root   9342 May 15 19:59 edcr_analysis.json\\\\n-rw-r--r-- 1 root root   1583 May 15 19:59 3seed_summary.json\\\\n-rw-r--r-- 1 root root  24773 May 15 19:57 edcr_analysis_r2b.md\\\\ndrwxr-xr-x 2 root root    127 May 15 17:52 ced_reranker_dryrun\\\\ndrwxr-xr-x 2 root root     95 May 15 16:02 ced_reranker_poc_dryrun\\\\ndrwxr-xr-x 3 root root     59 May 15 08:54 lr5e6_r1_ckpt80\\\\ndrwxr-xr-x 3 root root     36 May 15 07:39 lr5e6_r1_ckpt100\\\\ndrwxr-xr-x 3 root root     59 May 15 07:08 lr5e6_r1_ckpt40\\\\ndrwxr-xr-x 3 root root     47 May 15 06:30 lr5e6_r1_ckpt60\\\\ndrwxr-xr-x 3 root root     59 May 15 06:06 grpo_ced_lr5e6_rp\\\\ndrwxr-xr-x 4 root root     84 May 15 05:30 grpo_ced_lr5e6\\\\ndrwxr-xr-x 9 root root   4096 May 15 05:05 grpo_ced_kl001\\\\ndrwxr-xr-x 3 root root     60 May 15 03:35 grpo_ced_kl001_step100\\\\ndrwxr-xr-x 2 root root      6 May 14 19:47 sft\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 788\\ndrwxr-xr-x 2 root root     62 May 16 14:05 rsft_flat_nli_s43_reeval_r2\\ndrwxr-xr-x 2 root root     73 May 16 13:27 sft_no_evidence_noquant\\ndrwxr-xr-x 2 root root      6 May 16 13:26 sft_baseline_d076_reeval\\n-rw-r--r-- 1 root root   9266 May 16 13:25 paper_table_data.json\\n-rw-r--r-- 1 root root   2560 May 16 13:25 seed_comparison.json\\n-rw-r--r-- 1 root root   1681 May 16 13:25 seed_comparison.md\\ndrwxr-xr-x 2 root root     73 May 16 13:24 rsft_ced_s43\\ndrwxr-xr-x 2 root root     89 May 16 13:24 rsft_ced_s45\\n-rw-r--r-- 1 root root   2100 May 16 13:22 d076_seed_summary.json\\ndrwxr-xr-x 2 root root      6 May 16 12:24 rsft_ced_s42_reeval\\ndrwxr-xr-x 2 root root      6 May 16 12:18 rsft_ced_s44_reeval\\ndrwxr-xr-x 2 root root      6 May 16 12:16 rsft_flat_nli_s42_reeval\\ndrwxr-xr-x 2 root root     89 May 16 11:48 rsft_flat_nli_s45\\ndrwxr-xr-x 2 root root     89 May 16 11:48 rsft_flat_nli_s44\\ndrwxr-xr-x 2 root root    122 May 16 11:48 ced_reranker_poc\\n-rw-r--r-- 1 root root   1860 May 16 08:44 seed_status_summary.md\\ndrwxr-xr-x 2 root root     89 May 16 08:19 rsft_topk3_reeval\\ndrwxr-xr-x 2 root root     89 May 16 08:19 rsft_flat_nli_s43_reeval\\n-rw-r--r-- 1 root root   2400 May 16 08:08 paper_metrics_corrected.md\\n-rw-r--r-- 1 root root  30312 May 16 07:58 edcr_per_relation_analysis.json\\n-rw-r--r-- 1 root root   9033 May 16 07:58 edcr_per_relation_analysis.md\\n-rw-r--r-- 1 root root    789 May 16 07:56 edcr_diagnostic_table.csv\\n-rw-r--r-- 1 root root   1158 May 16 07:56 edcr_diagnostic_table.md\\n-rw-r--r-- 1 root root   2867 May 16 07:56 edcr_diagnostic.tex\\n-rw-r--r-- 1 root root 642857 May 16 07:56 edcr_diagnostic.json\\ndrwxr-xr-x 2 root root     89 May 16 07:55 test_rsft_s44\\ndrwxr-xr-x 2 root root     89 May 16 07:55 sft_no_evidence\\ndrwxr-xr-x 2 root root     89 May 16 07:55 sft_baseline_noquant\\ndrwxr-xr-x 2 root root    109 May 16 07:55 rsft_s44\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_s43\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_r2b_maxtok1536\\ndrwxr-xr-x 2 root root    139 May 16 07:55 rsft_r2b\\ndrwxr-xr-x 2 root root    109 May 16 07:55 rsft_r2a\\ndrwxr-xr-x 2 root root    109 May 16 07:55 rsft_r1\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_flat_nli_s43\\ndrwxr-xr-x 2 root root     89 May 16 07:55 rsft_flat_nli\\ndrwxr-xr-x 2 root root     89 May 16 07:55 plan_011_bf16_g8_step70\\ndrwxr-xr-x 2 root root     89 May 16 07:55 plan_011_bf16_g8_step50\\ndrwxr-xr-x 2 root root     89 May 16 07:55 plan_011_bf16_g8_step30\\ndrwxr-xr-x 2 root root     89 May 16 07:55 grpo_g8_bf16_ckpt100\\ndrwxr-xr-x 2 root root     89 May 16 07:55 grpo_ced_lr5e6_ckpt60\\ndrwxr-xr-x 2 root root     89 May 16 07:55 dpo_ced_1ep_fixed\\ndrwxr-xr-x 2 root root    109 May 16 07:55 dpo_ced_1ep\\n-rw-r--r-- 1 root root   6834 May 16 07:22 edcr_diagnostic_v2.json\\n-rw-r--r-- 1 root root   1672 May 16 07:22 edcr_diagnostic_v2.tex\\ndrwxr-xr-x 2 root root      6 May 16 05:39 rsft_topk3_fixed\\ndrwxr-xr-x 2 root root      6 May 16 05:10 rsft_topk3\\n-rw-r--r-- 1 root root   3364 May 16 03:59 cross_method_table.json\\ndrwxr-xr-x 2 root root      6 May 16 03:57 bf16_g8_step50\\ndrwxr-xr-x 4 root root     60 May 16 03:57 grpo_flatnli_r3\\ndrwxr-xr-x 2 root root      6 May 16 03:55 grpo_extract_r4_step10\\ndrwxr-xr-x 2 root root      6 May 16 03:54 bf16_g8_step30\\ndrwxr-xr-x 2 root root      6 May 16 03:33 dpo_ced_ckpt400\\n-rw-r--r-- 1 root root   2040 May 16 02:06 test_rsft_s44.log\\ndrwxr-xr-x 5 root root    110 May 15 23:45 grpo_g8_bf16\\n-rw-r--r-- 1 root root   1662 May 15 21:19 evi_f1_joint_comparison.json\\n-rw-r--r-- 1 root root   9342 May 15 19:59 edcr_analysis.json\\n-rw-r--r-- 1 root root   1583 May 15 19:59 3seed_summary.json\\n-rw-r--r-- 1 root root  24773 May 15 19:57 edcr_analysis_r2b.md\\ndrwxr-xr-x 2 root root    127 May 15 17:52 ced_reranker_dryrun\\ndrwxr-xr-x 2 root root     95 May 15 16:02 ced_reranker_poc_dryrun\\ndrwxr-xr-x 3 root root     59 May 15 08:54 lr5e6_r1_ckpt80\\ndrwxr-xr-x 3 root root     36 May 15 07:39 lr5e6_r1_ckpt100\\ndrwxr-xr-x 3 root root     59 May 15 07:08 lr5e6_r1_ckpt40\\ndrwxr-xr-x 3 root root     47 May 15 06:30 lr5e6_r1_ckpt60\\ndrwxr-xr-x 3 root root     59 May 15 06:06 grpo_ced_lr5e6_rp\\ndrwxr-xr-x 4 root root     84 May 15 05:30 grpo_ced_lr5e6\\ndrwxr-xr-x 9 root root   4096 May 15 05:05 grpo_ced_kl001\\ndrwxr-xr-x 3 root root     60 May 15 03:35 grpo_ced_kl001_step100\\ndrwxr-xr-x 2 root root      6 May 14 19:47 sft\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  },
+  "sourceToolAssistantUUID": "61934000-844e-4942-b16b-9fc397e93bd9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-16T06:07:04.929Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the full picture. The D076 reeval experiments that are currently running:
+
+Running (empty dirs = still in progress):
+- `rsft_ced_s42_reeval` (empty)
+- `rsft_ced_s44_reeval` (empty)
+- `rsft_flat_nli_s42_reeval` (empty)
+- `rsft_flat_nli_s43_reeval_r2` (has 1 file, metrics.json only)
+
+
+- `sft_baseline_d076_reeval` (empty)
+
+For the completed experiments with D076 protocol and metrics_v2.json, I've got CED s43 and s45 both done with batch_size=4 and no quantization, but I need to verify the protocol details for the others since some like flat-NLI s43 used batch_size=16 which doesn't match the D076 spec.
+
+Now I'm thinking through what the comparison script needs to do: it should accept a flexible mapping of result directories, read the metrics files, group results by method type, compute statistics with mean and standard deviation across seeds, run paired t-tests to check for significance, and produce a formatted comparison table.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dadb6a8d-fafc-417a-99d8-a3a81c62ca1f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kEQsZwnE7uCpR1ibTD",
+  "type": "assistant",
+  "uuid": "d97145cc-6ae2-4d43-aa2c-98ff16752240",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AmtYnbg1nHphTnkyLAZ6m4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3353,
+      "cache_read_input_tokens": 37023,
+      "output_tokens": 870,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 870,
+          "cache_read_input_tokens": 37023,
+          "cache_creation_input_tokens": 3353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T06:07:04.984Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MwKmrQnz6XJbGwocy6C4Ev`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d97145cc-6ae2-4d43-aa2c-98ff16752240",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kEQsZwnE7uCpR1ibTD",
+  "type": "assistant",
+  "uuid": "360e979f-f7a4-4f24-862e-7437b36fa7f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AmtYnbg1nHphTnkyLAZ6m4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3353,
+      "cache_read_input_tokens": 37023,
+      "output_tokens": 870,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 870,
+          "cache_read_input_tokens": 37023,
+          "cache_creation_input_tokens": 3353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-16T06:07:05.011Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T6p6qtWmviar133qAoFkNj`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "360e979f-f7a4-4f24-862e-7437b36fa7f1",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kEQsZwnE7uCpR1ibTD",
+  "type": "assistant",
+  "uuid": "8d2d740f-6ba3-4cb8-bfd9-50b0b690c37f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AmtYnbg1nHphTnkyLAZ6m4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3353,
+      "cache_read_input_tokens": 37023,
+      "output_tokens": 870,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 870,
+          "cache_read_input_tokens": 37023,
+          "cache_creation_input_tokens": 3353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T06:07:05.132Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QqvteDpUCxqZUWdHezNkVh`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d2d740f-6ba3-4cb8-bfd9-50b0b690c37f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kEQsZwnE7uCpR1ibTD",
+  "type": "assistant",
+  "uuid": "430add68-8871-402f-9a9c-284c3acf72f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AmtYnbg1nHphTnkyLAZ6m4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3353,
+      "cache_read_input_tokens": 37023,
+      "output_tokens": 870,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3353,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 870,
+          "cache_read_input_tokens": 37023,
+          "cache_creation_input_tokens": 3353,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3353
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "430add68-8871-402f-9a9c-284c3acf72f2",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Set up paired t-test analysis framework for CED vs flat-NLI",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T06:07:05.319Z_
+
+<details><summary>↩ Tool result · `toolu_01MwKmrQnz6XJbGwocy6C4Ev`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47787766613784594,\\n  \\\"recall\\\": 0.4462184182371821,\\n  \\\"f1\\\": 0.4615057241349959,\\n  \\\"ign_precision\\\": 0.45526093881757707,\\n  \\\"ign_recall\\\": 0.44903428518621197,\\n  \\\"ign_f1\\\": 0.45212617474644085,\\n  \\\"tp\\\": 5422,\\n  \\\"pred_count\\\": 11346,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8186585702456528,\\n  \\\"evi_recall\\\": 0.8076608877189797,\\n  \\\"evi_f1\\\": 0.8131225440921136,\\n  \\\"n_evaluated\\\": 15149,\\n  \\\"edcr\\\": 0.6458084547408646,\\n  \\\"n_distractor_citations\\\": 16224,\\n  \\\"n_total_citations\\\": 25122,\\n  \\\"evi_joint_precision\\\": 0.3621815118972415,\\n  \\\"evi_joint_recall\\\": 0.35719848398317844,\\n  \\\"evi_f1_joint\\\": 0.35967273962934887,\\n  \\\"evi_tp\\\": 6880,\\n  \\\"evi_pred_total\\\": 18996,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.782741116751269,\\n  \\\"evidence_format_rate\\\": 0.782741116751269,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 771,\\n  \\\"n_evidence_valid\\\": 771,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15257,\\n  \\\"n_truncated\\\": 206,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10580.1,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 44,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "360e979f-f7a4-4f24-862e-7437b36fa7f1",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "a632416a-f30c-4702-8a87-c6ae2b313677",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.47787766613784594,\\\\n  \\\\\\\"recall\\\\\\\": 0.4462184182371821,\\\\n  \\\\\\\"f1\\\\\\\": 0.4615057241349959,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.45526093881757707,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.44903428518621197,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.45212617474644085,\\\\n  \\\\\\\"tp\\\\\\\": 5422,\\\\n  \\\\\\\"pred_count\\\\\\\": 11346,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8186585702456528,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8076608877189797,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8131225440921136,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15149,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6458084547408646,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16224,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25122,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3621815118972415,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.35719848398317844,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.35967273962934887,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6880,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18996,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.782741116751269,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.782741116751269,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 771,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 771,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15257,\\\\n  \\\\\\\"n_truncated\\\\\\\": 206,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 10580.1,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 44,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47787766613784594,\\n  \\\"recall\\\": 0.4462184182371821,\\n  \\\"f1\\\": 0.4615057241349959,\\n  \\\"ign_precision\\\": 0.45526093881757707,\\n  \\\"ign_recall\\\": 0.44903428518621197,\\n  \\\"ign_f1\\\": 0.45212617474644085,\\n  \\\"tp\\\": 5422,\\n  \\\"pred_count\\\": 11346,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8186585702456528,\\n  \\\"evi_recall\\\": 0.8076608877189797,\\n  \\\"evi_f1\\\": 0.8131225440921136,\\n  \\\"n_evaluated\\\": 15149,\\n  \\\"edcr\\\": 0.6458084547408646,\\n  \\\"n_distractor_citations\\\": 16224,\\n  \\\"n_total_citations\\\": 25122,\\n  \\\"evi_joint_precision\\\": 0.3621815118972415,\\n  \\\"evi_joint_recall\\\": 0.35719848398317844,\\n  \\\"evi_f1_joint\\\": 0.35967273962934887,\\n  \\\"evi_tp\\\": 6880,\\n  \\\"evi_pred_total\\\": 18996,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.782741116751269,\\n  \\\"evidence_format_rate\\\": 0.782741116751269,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 771,\\n  \\\"n_evidence_valid\\\": 771,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15257,\\n  \\\"n_truncated\\\": 206,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10580.1,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 44,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "360e979f-f7a4-4f24-862e-7437b36fa7f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T06:07:05.698Z_
+
+<details><summary>↩ Tool result · `toolu_01T6p6qtWmviar133qAoFkNj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4512370176475555,\\n  \\\"recall\\\": 0.43979919348201796,\\n  \\\"f1\\\": 0.44544469450696006,\\n  \\\"ign_precision\\\": 0.42953020134228187,\\n  \\\"ign_recall\\\": 0.4435819240365955,\\n  \\\"ign_f1\\\": 0.436442989634479,\\n  \\\"tp\\\": 5344,\\n  \\\"pred_count\\\": 11843,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8165951092029121,\\n  \\\"evi_recall\\\": 0.801117113817416,\\n  \\\"evi_f1\\\": 0.8087820660966029,\\n  \\\"n_evaluated\\\": 15878,\\n  \\\"edcr\\\": 0.663474113393338,\\n  \\\"n_distractor_citations\\\": 17249,\\n  \\\"n_total_citations\\\": 25998,\\n  \\\"evi_joint_precision\\\": 0.3476862419589126,\\n  \\\"evi_joint_recall\\\": 0.3479570115777997,\\n  \\\"evi_f1_joint\\\": 0.34782157407167136,\\n  \\\"evi_tp\\\": 6702,\\n  \\\"evi_pred_total\\\": 19276,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.766497461928934,\\n  \\\"evidence_format_rate\\\": 0.766497461928934,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 755,\\n  \\\"n_evidence_valid\\\": 755,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16020,\\n  \\\"n_truncated\\\": 214,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 3546.4,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_topk3_output/checkpoint-1509\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_topk3_reeval\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d2d740f-6ba3-4cb8-bfd9-50b0b690c37f",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "8d734e3b-f658-45c1-8a18-f4854dc2670d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4512370176475555,\\\\n  \\\\\\\"recall\\\\\\\": 0.43979919348201796,\\\\n  \\\\\\\"f1\\\\\\\": 0.44544469450696006,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.42953020134228187,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4435819240365955,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.436442989634479,\\\\n  \\\\\\\"tp\\\\\\\": 5344,\\\\n  \\\\\\\"pred_count\\\\\\\": 11843,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8165951092029121,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.801117113817416,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8087820660966029,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15878,\\\\n  \\\\\\\"edcr\\\\\\\": 0.663474113393338,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 17249,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25998,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3476862419589126,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.3479570115777997,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.34782157407167136,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6702,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 19276,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.766497461928934,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.766497461928934,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 984,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 755,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 755,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 16020,\\\\n  \\\\\\\"n_truncated\\\\\\\": 214,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 984,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9989847715736041,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3546.4,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_topk3_output/checkpoint-1509\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_topk3_reeval\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4512370176475555,\\n  \\\"recall\\\": 0.43979919348201796,\\n  \\\"f1\\\": 0.44544469450696006,\\n  \\\"ign_precision\\\": 0.42953020134228187,\\n  \\\"ign_recall\\\": 0.4435819240365955,\\n  \\\"ign_f1\\\": 0.436442989634479,\\n  \\\"tp\\\": 5344,\\n  \\\"pred_count\\\": 11843,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8165951092029121,\\n  \\\"evi_recall\\\": 0.801117113817416,\\n  \\\"evi_f1\\\": 0.8087820660966029,\\n  \\\"n_evaluated\\\": 15878,\\n  \\\"edcr\\\": 0.663474113393338,\\n  \\\"n_distractor_citations\\\": 17249,\\n  \\\"n_total_citations\\\": 25998,\\n  \\\"evi_joint_precision\\\": 0.3476862419589126,\\n  \\\"evi_joint_recall\\\": 0.3479570115777997,\\n  \\\"evi_f1_joint\\\": 0.34782157407167136,\\n  \\\"evi_tp\\\": 6702,\\n  \\\"evi_pred_total\\\": 19276,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9989847715736041,\\n  \\\"field_compliance_rate\\\": 0.766497461928934,\\n  \\\"evidence_format_rate\\\": 0.766497461928934,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 984,\\n  \\\"n_field_complete\\\": 755,\\n  \\\"n_evidence_valid\\\": 755,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16020,\\n  \\\"n_truncated\\\": 214,\\n  \\\"n_format_ok\\\": 984,\\n  \\\"format_ok_rate\\\": 0.9989847715736041,\\n  \\\"inference_time_seconds\\\": 3546.4,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_topk3_output/checkpoint-1509\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_topk3_reeval\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8d2d740f-6ba3-4cb8-bfd9-50b0b690c37f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T06:07:06.082Z_
+
+<details><summary>↩ Tool result · `toolu_01QqvteDpUCxqZUWdHezNkVh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4631776338220252,\\n  \\\"recall\\\": 0.4472059912764382,\\n  \\\"f1\\\": 0.45505171042163883,\\n  \\\"ign_precision\\\": 0.4413998914812805,\\n  \\\"ign_recall\\\": 0.45106736900471306,\\n  \\\"ign_f1\\\": 0.44618126971068145,\\n  \\\"tp\\\": 5434,\\n  \\\"pred_count\\\": 11732,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8107911046299672,\\n  \\\"evi_recall\\\": 0.8200589970501475,\\n  \\\"evi_f1\\\": 0.8153987167736022,\\n  \\\"n_evaluated\\\": 15501,\\n  \\\"edcr\\\": 0.6521331091385446,\\n  \\\"n_distractor_citations\\\": 16677,\\n  \\\"n_total_citations\\\": 25573,\\n  \\\"evi_joint_precision\\\": 0.3529742724157332,\\n  \\\"evi_joint_recall\\\": 0.3582887700534759,\\n  \\\"evi_f1_joint\\\": 0.35561166649489845,\\n  \\\"evi_tp\\\": 6901,\\n  \\\"evi_pred_total\\\": 19551,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7817258883248731,\\n  \\\"evidence_format_rate\\\": 0.7817258883248731,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 770,\\n  \\\"n_evidence_valid\\\": 770,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15650,\\n  \\\"n_truncated\\\": 206,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 11867.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s45\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 45,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "430add68-8871-402f-9a9c-284c3acf72f2",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "f1b3457b-47a1-4817-8e1c-f2ac3f0720f6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4631776338220252,\\\\n  \\\\\\\"recall\\\\\\\": 0.4472059912764382,\\\\n  \\\\\\\"f1\\\\\\\": 0.45505171042163883,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4413998914812805,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.45106736900471306,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.44618126971068145,\\\\n  \\\\\\\"tp\\\\\\\": 5434,\\\\n  \\\\\\\"pred_count\\\\\\\": 11732,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8107911046299672,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8200589970501475,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8153987167736022,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15501,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6521331091385446,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16677,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25573,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3529742724157332,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.3582887700534759,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.35561166649489845,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6901,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 19551,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7817258883248731,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7817258883248731,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 770,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 770,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15650,\\\\n  \\\\\\\"n_truncated\\\\\\\": 206,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 11867.6,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s45\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 45,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4631776338220252,\\n  \\\"recall\\\": 0.4472059912764382,\\n  \\\"f1\\\": 0.45505171042163883,\\n  \\\"ign_precision\\\": 0.4413998914812805,\\n  \\\"ign_recall\\\": 0.45106736900471306,\\n  \\\"ign_f1\\\": 0.44618126971068145,\\n  \\\"tp\\\": 5434,\\n  \\\"pred_count\\\": 11732,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8107911046299672,\\n  \\\"evi_recall\\\": 0.8200589970501475,\\n  \\\"evi_f1\\\": 0.8153987167736022,\\n  \\\"n_evaluated\\\": 15501,\\n  \\\"edcr\\\": 0.6521331091385446,\\n  \\\"n_distractor_citations\\\": 16677,\\n  \\\"n_total_citations\\\": 25573,\\n  \\\"evi_joint_precision\\\": 0.3529742724157332,\\n  \\\"evi_joint_recall\\\": 0.3582887700534759,\\n  \\\"evi_f1_joint\\\": 0.35561166649489845,\\n  \\\"evi_tp\\\": 6901,\\n  \\\"evi_pred_total\\\": 19551,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.7817258883248731,\\n  \\\"evidence_format_rate\\\": 0.7817258883248731,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 770,\\n  \\\"n_evidence_valid\\\": 770,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15650,\\n  \\\"n_truncated\\\": 206,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 11867.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s45/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s45\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 45,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  },
+  "sourceToolAssistantUUID": "430add68-8871-402f-9a9c-284c3acf72f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-16T06:07:19.914Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture of the data:
+
+**D076 protocol**: batch_size=4, --no-quantize, --sft_adapter, max_new_tokens=1024
+
+**Completed D076-compliant evals**:
+- CED s43: `rsft_ced_s43` (batch_size=4, quantize=false) ✓
+- CED s45: `rsft_ced_s45` (batch_size=4, quantize=false) ✓
+- flat-NLI s44: `rsft_flat_nli_s44` (batch_size=4, quantize=false) ✓
+
+
+- flat-NLI s45: `rsft_flat_nli_s45` (batch_size=4, quantize=false) ✓
+
+I also see there are a couple of runs that deviate from the protocol with batch_size=16, and some evaluations that are still in progress or haven't started yet.
+
+The script needs to be flexible enough to handle a default mapping of seed directories with command-line overrides, and it should check for metrics_v2.json first before falling back to metrics.json. I'm tracking the key metrics I need to extract: `f1`, `ign_f1`, `evi_f1`, and `edcr`, and I'll set up the default mapping based on what's currently available and what I expect to see.
+
+Now I'm mapping out the actual experiment structure across the different model variants. The CED seeds span s42 through s45 with varying completion statuses, the flat-NLI seeds also cover s42 to s45 with some still running, and there's an SFT baseline variant to include as well.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f1b3457b-47a1-4817-8e1c-f2ac3f0720f6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kFQbj5fKoYwsfRceP2",
+  "type": "assistant",
+  "uuid": "9d00d07a-59b6-4e38-a92a-ad51d5fd6a11",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016PUUae2pN5tFHrHxrS5uun",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4194,
+      "cache_read_input_tokens": 40376,
+      "output_tokens": 1005,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1005,
+          "cache_read_input_tokens": 40376,
+          "cache_creation_input_tokens": 4194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4194
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-16T06:07:19.924Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EmTtWJbyH8DsHepJPpn8PX`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/sft_baseline_noquant/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d00d07a-59b6-4e38-a92a-ad51d5fd6a11",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kFQbj5fKoYwsfRceP2",
+  "type": "assistant",
+  "uuid": "2d34050b-f7de-4539-9dfd-6329f93ec0dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016PUUae2pN5tFHrHxrS5uun",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4194,
+      "cache_read_input_tokens": 40376,
+      "output_tokens": 1005,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1005,
+          "cache_read_input_tokens": 40376,
+          "cache_creation_input_tokens": 4194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4194
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T06:07:20.262Z_
+
+<details><summary>↩ Tool result · `toolu_01EmTtWJbyH8DsHepJPpn8PX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4197541476833147,\\n  \\\"recall\\\": 0.4018599292239322,\\n  \\\"f1\\\": 0.4106121762529432,\\n  \\\"ign_precision\\\": 0.3994026608742873,\\n  \\\"ign_recall\\\": 0.407818131411145,\\n  \\\"ign_f1\\\": 0.4035665294924555,\\n  \\\"tp\\\": 4883,\\n  \\\"pred_count\\\": 11633,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.80046358895113,\\n  \\\"evi_recall\\\": 0.8021680216802168,\\n  \\\"evi_f1\\\": 0.8013148989654839,\\n  \\\"n_evaluated\\\": 16647,\\n  \\\"edcr\\\": 0.7038730884664857,\\n  \\\"n_distractor_citations\\\": 19700,\\n  \\\"n_total_citations\\\": 27988,\\n  \\\"evi_joint_precision\\\": 0.3185128596893303,\\n  \\\"evi_joint_recall\\\": 0.3246975754114532,\\n  \\\"evi_f1_joint\\\": 0.32157548334018926,\\n  \\\"evi_tp\\\": 6254,\\n  \\\"evi_pred_total\\\": 19635,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9979695431472081,\\n  \\\"field_compliance_rate\\\": 0.7065989847715736,\\n  \\\"evidence_format_rate\\\": 0.7065989847715736,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 983,\\n  \\\"n_field_complete\\\": 696,\\n  \\\"n_evidence_valid\\\": 696,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16774,\\n  \\\"n_truncated\\\": 288,\\n  \\\"n_format_ok\\\": 983,\\n  \\\"format_ok_rate\\\": 0.9979695431472081,\\n  \\\"inference_time_seconds\\\": 3677.9,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_baseline_noquant\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d34050b-f7de-4539-9dfd-6329f93ec0dd",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "f53e8f9b-3810-416c-a281-994e7212589c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.4197541476833147,\\\\n  \\\\\\\"recall\\\\\\\": 0.4018599292239322,\\\\n  \\\\\\\"f1\\\\\\\": 0.4106121762529432,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.3994026608742873,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.407818131411145,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4035665294924555,\\\\n  \\\\\\\"tp\\\\\\\": 4883,\\\\n  \\\\\\\"pred_count\\\\\\\": 11633,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.80046358895113,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8021680216802168,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8013148989654839,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 16647,\\\\n  \\\\\\\"edcr\\\\\\\": 0.7038730884664857,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 19700,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 27988,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3185128596893303,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.3246975754114532,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.32157548334018926,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6254,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 19635,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.7065989847715736,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.7065989847715736,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 983,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 696,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 696,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 16774,\\\\n  \\\\\\\"n_truncated\\\\\\\": 288,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 983,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9979695431472081,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 3677.9,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": null,\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_baseline_noquant\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 16,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.4197541476833147,\\n  \\\"recall\\\": 0.4018599292239322,\\n  \\\"f1\\\": 0.4106121762529432,\\n  \\\"ign_precision\\\": 0.3994026608742873,\\n  \\\"ign_recall\\\": 0.407818131411145,\\n  \\\"ign_f1\\\": 0.4035665294924555,\\n  \\\"tp\\\": 4883,\\n  \\\"pred_count\\\": 11633,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.80046358895113,\\n  \\\"evi_recall\\\": 0.8021680216802168,\\n  \\\"evi_f1\\\": 0.8013148989654839,\\n  \\\"n_evaluated\\\": 16647,\\n  \\\"edcr\\\": 0.7038730884664857,\\n  \\\"n_distractor_citations\\\": 19700,\\n  \\\"n_total_citations\\\": 27988,\\n  \\\"evi_joint_precision\\\": 0.3185128596893303,\\n  \\\"evi_joint_recall\\\": 0.3246975754114532,\\n  \\\"evi_f1_joint\\\": 0.32157548334018926,\\n  \\\"evi_tp\\\": 6254,\\n  \\\"evi_pred_total\\\": 19635,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9979695431472081,\\n  \\\"field_compliance_rate\\\": 0.7065989847715736,\\n  \\\"evidence_format_rate\\\": 0.7065989847715736,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 983,\\n  \\\"n_field_complete\\\": 696,\\n  \\\"n_evidence_valid\\\": 696,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 16774,\\n  \\\"n_truncated\\\": 288,\\n  \\\"n_format_ok\\\": 983,\\n  \\\"format_ok_rate\\\": 0.9979695431472081,\\n  \\\"inference_time_seconds\\\": 3677.9,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": null,\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_baseline_noquant\\\",\\n    \\\"batch_size\\\": 16,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2d34050b-f7de-4539-9dfd-6329f93ec0dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-16T06:07:20.847Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GNqskeDctvjq4BGNG1Zicv`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/sft_no_evidence_noquant/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f53e8f9b-3810-416c-a281-994e7212589c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kFQbj5fKoYwsfRceP2",
+  "type": "assistant",
+  "uuid": "8215072b-c4a2-4339-a547-cdf6c6f2e500",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016PUUae2pN5tFHrHxrS5uun",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4194,
+      "cache_read_input_tokens": 40376,
+      "output_tokens": 1005,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4194,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1005,
+          "cache_read_input_tokens": 40376,
+          "cache_creation_input_tokens": 4194,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4194
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8215072b-c4a2-4339-a547-cdf6c6f2e500",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Set up paired t-test analysis framework for CED vs flat-NLI",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-16T06:07:21.181Z_
+
+<details><summary>↩ Tool result · `toolu_01GNqskeDctvjq4BGNG1Zicv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.49014553014553014,\\n  \\\"recall\\\": 0.4850629577812526,\\n  \\\"f1\\\": 0.4875909993381866,\\n  \\\"ign_precision\\\": 0.4653918664152976,\\n  \\\"ign_recall\\\": 0.4790684779595232,\\n  \\\"ign_f1\\\": 0.4721311475409837,\\n  \\\"tp\\\": 5894,\\n  \\\"pred_count\\\": 12025,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.0,\\n  \\\"evi_recall\\\": 0.0,\\n  \\\"evi_f1\\\": 0.0,\\n  \\\"n_evaluated\\\": 0,\\n  \\\"edcr\\\": 0.0,\\n  \\\"n_distractor_citations\\\": 0,\\n  \\\"n_total_citations\\\": 0,\\n  \\\"evi_joint_precision\\\": 0.0,\\n  \\\"evi_joint_recall\\\": 0.0,\\n  \\\"evi_f1_joint\\\": 0.0,\\n  \\\"evi_tp\\\": 0,\\n  \\\"evi_pred_total\\\": 0,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9928934010152284,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 978,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 21181,\\n  \\\"n_truncated\\\": 307,\\n  \\\"n_format_ok\\\": 978,\\n  \\\"format_ok_rate\\\": 0.9928934010152284,\\n  \\\"inference_time_seconds\\\": 6251.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_no_evidence_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_no_evidence_noquant\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8215072b-c4a2-4339-a547-cdf6c6f2e500",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "d48299df-0b17-41cb-bf40-b0ddbd186825",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.49014553014553014,\\\\n  \\\\\\\"recall\\\\\\\": 0.4850629577812526,\\\\n  \\\\\\\"f1\\\\\\\": 0.4875909993381866,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.4653918664152976,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.4790684779595232,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.4721311475409837,\\\\n  \\\\\\\"tp\\\\\\\": 5894,\\\\n  \\\\\\\"pred_count\\\\\\\": 12025,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.0,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 0,\\\\n  \\\\\\\"edcr\\\\\\\": 0.0,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 0,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 0,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.0,\\\\n  \\\\\\\"evi_tp\\\\\\\": 0,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 0,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 0.9928934010152284,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.0,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 978,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 0,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 0,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 21181,\\\\n  \\\\\\\"n_truncated\\\\\\\": 307,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 978,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 0.9928934010152284,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 6251.6,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_no_evidence_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/sft_no_evidence_noquant\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 42,\\\\n    \\\\\\\"no_evidence\\\\\\\": true,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.49014553014553014,\\n  \\\"recall\\\": 0.4850629577812526,\\n  \\\"f1\\\": 0.4875909993381866,\\n  \\\"ign_precision\\\": 0.4653918664152976,\\n  \\\"ign_recall\\\": 0.4790684779595232,\\n  \\\"ign_f1\\\": 0.4721311475409837,\\n  \\\"tp\\\": 5894,\\n  \\\"pred_count\\\": 12025,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.0,\\n  \\\"evi_recall\\\": 0.0,\\n  \\\"evi_f1\\\": 0.0,\\n  \\\"n_evaluated\\\": 0,\\n  \\\"edcr\\\": 0.0,\\n  \\\"n_distractor_citations\\\": 0,\\n  \\\"n_total_citations\\\": 0,\\n  \\\"evi_joint_precision\\\": 0.0,\\n  \\\"evi_joint_recall\\\": 0.0,\\n  \\\"evi_f1_joint\\\": 0.0,\\n  \\\"evi_tp\\\": 0,\\n  \\\"evi_pred_total\\\": 0,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 0.9928934010152284,\\n  \\\"field_compliance_rate\\\": 0.0,\\n  \\\"evidence_format_rate\\\": 0.0,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 978,\\n  \\\"n_field_complete\\\": 0,\\n  \\\"n_evidence_valid\\\": 0,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 21181,\\n  \\\"n_truncated\\\": 307,\\n  \\\"n_format_ok\\\": 978,\\n  \\\"format_ok_rate\\\": 0.9928934010152284,\\n  \\\"inference_time_seconds\\\": 6251.6,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_no_evidence_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/sft_no_evidence_noquant\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 42,\\n    \\\"no_evidence\\\": true,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8215072b-c4a2-4339-a547-cdf6c6f2e500",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 66 · 2026-05-16T06:07:21.185Z_
+
+```json
+{
+  "parentUuid": "d48299df-0b17-41cb-bf40-b0ddbd186825",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0ebfb5d8-d5c8-474e-949f-523a02497fa0",
+  "timestamp": "2026-05-16T06:07:21.185Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-16T06:08:18.144Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me now check if scipy is installed.
+
+Summary of data format:
+- metrics_v2.json has all the keys we need: `f1`, `ign_f1`, `evi_f1`, `edcr`
+- Falls back to metrics.json (same structure)
+- Config includes `batch_size`, `quantize`, `seed`, etc.
+
+D076 protocol matching:
+
+
+I'm verifying the experiment configurations across different model variants—CED and flat-NLI runs with seeds 43 and 45, all using batch size 4 without quantization, plus the SFT baseline with batch size 16.
+
+Several evaluations are still in progress: the reeval runs for CED and flat-NLI with different seeds, and the SFT baseline reeval on D076. Now I'm writing a script to perform paired t-tests comparing the CED and flat-NLI approaches.
+
+Writing the comparison script... I'm defining a function to load metrics from JSON files, checking for the preferred v2 format first, then falling back to the standard version. I'm also setting up validation logic to ensure evaluations were run with the correct protocol settings like batch size and quantization parameters.
+
+Now I'm building the argument parser for a paired t-test comparing CED versus flat-NLI RSFT across different seeds, with options to specify evaluation directories. Parsing command-line arguments and setting up the evaluation directories based on provided seeds, falling back to defaults if needed, then loading results from both CED and flat-NLI evaluation runs.
+
+Now I'm iterating through each seed to load the metrics files, tracking any missing data and running protocol validation checks unless explicitly skipped. Now I'm finding the seeds that have results from both evaluation methods, checking that there's overlap so I can run a paired comparison. I'm printing out which seeds are available for each method and preparing to generate a detailed per-seed results table.
+
+Formatting the results table... Writing comparison statistics... Finishing the aggregate dictionary with the difference and statistical test results, then moving on to display baseline metrics in a formatted table. Generating LaTeX table... Finishing the JSON structure and writing output...
+
+I need to make sure I'm including the right metrics—rel_f1, ign_f1, evi_f1, and edcr—and I should use `math.isnan()` for cleaner NaN checking instead of the comparison hack. Let me finalize the script now.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ebfb5d8-d5c8-474e-949f-523a02497fa0",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kGX9u6N5y4dpJRWyPP",
+  "type": "assistant",
+  "uuid": "c8a87d0d-56c3-4010-9c93-2446deddcdc2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhELriFauEMBvTNJn4KshJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3263,
+      "cache_read_input_tokens": 44570,
+      "output_tokens": 9140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3263,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9140,
+          "cache_read_input_tokens": 44570,
+          "cache_creation_input_tokens": 3263,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3263
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 68 · 2026-05-16T06:08:18.904Z_
+
+Now I have a complete picture of the data. Let me write the script.
+
+Completed D076-compliant evals: CED s43/s45, flat-NLI s44/s45. Still running: CED s42/s44, flat-NLI s42/s43 reevals, SFT baseline reeval.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c8a87d0d-56c3-4010-9c93-2446deddcdc2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kGX9u6N5y4dpJRWyPP",
+  "type": "assistant",
+  "uuid": "55c67afd-680c-4cac-a2d0-9cb60be334c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhELriFauEMBvTNJn4KshJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3263,
+      "cache_read_input_tokens": 44570,
+      "output_tokens": 9140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3263,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9140,
+          "cache_read_input_tokens": 44570,
+          "cache_creation_input_tokens": 3263,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3263
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-16T06:09:03.997Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_015gGiasvQD3X4X1ajL5ZKho`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat << 'PYEOF' > /root/autodl-tmp/freige/seed_comparison.py\n#!/usr/bin/env python3\n\"\"\"Paired t-test comparison: CED vs flat-NLI RSFT seeds.\n\nReads eval result JSON files, computes mean +/- std per metric,\nruns paired t-tests (scipy.stats.ttest_rel), outputs formatted\ncomparison tables suitable for paper inclusion.\n\nUsage:\n  python seed_comparison.py                        # use defaults\n  python seed_comparison.py --latex                # include LaTeX table\n  python seed_comparison.py --eval-dir /path/to/results\n  python seed_comparison.py --ced-dirs dir1 dir2 dir3 dir4 --flat-nli-dirs dir5 dir6 dir7 dir8\n\"\"\"\n\nimport argparse\nimport json\nimport math\nimport statistics\nimport sys\nfrom pathlib import Path\n\ntry:\n    from scipy import stats\nexcept ImportError:\n    print(\"ERROR: scipy required. Install: pip install scipy\", file=sys.stderr)\n    sys.exit(1)\n\nDEFAULT_EVAL_DIR = \"/root/autodl-tmp/eval_results\"\n\nDEFAULT_SEED_DIRS = {\n    \"CED\": {\n        42: \"rsft_ced_s42_reeval\",\n        43: \"rsft_ced_s43\",\n        44: \"rsft_ced_s44_reeval\",\n        45: \"rsft_ced_s45\",\n    },\n    \"flat-NLI\": {\n        42: \"rsft_flat_nli_s42_reeval\",\n        43: \"rsft_flat_nli_s43_reeval_r2\",\n        44: \"rsft_flat_nli_s44\",\n        45: \"rsft_flat_nli_s45\",\n    },\n}\n\nDEFAULT_BASELINES = {\n    \"SFT\": \"sft_baseline_d076_reeval\",\n    \"SFT-noevi\": \"sft_no_evidence_noquant\",\n}\n\nMETRICS = [\"f1\", \"ign_f1\", \"evi_f1\", \"edcr\"]\nMETRIC_LABELS = {\"f1\": \"Rel-F1\", \"ign_f1\": \"Ign-F1\", \"evi_f1\": \"Evi-F1\", \"edcr\": \"EDCR\"}\n\n\ndef load_metrics(path: Path):\n    for fname in [\"metrics_v2.json\", \"metrics.json\"]:\n        f = path / fname\n        if f.exists():\n            with open(f) as fh:\n                return json.load(fh)\n    return None\n\n\ndef validate_protocol(metrics: dict, name: str):\n    warnings = []\n    cfg = metrics.get(\"config\", {})\n    if cfg.get(\"batch_size\") != 4:\n        warnings.append(f\"{name}: batch_size={cfg.get('batch_size')} (expected 4)\")\n    if cfg.get(\"quantize\") not in (False, None):\n        warnings.append(f\"{name}: quantize={cfg.get('quantize')} (expected false)\")\n    if cfg.get(\"max_new_tokens\") != 1024:\n        warnings.append(f\"{name}: max_new_tokens={cfg.get('max_new_tokens')} (expected 1024)\")\n    return warnings\n\n\ndef fmt_pct(val):\n    return f\"{val * 100:.1f}\"\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Paired t-test: CED vs flat-NLI RSFT seeds\")\n    parser.add_argument(\"--eval-dir\", type=str, default=DEFAULT_EVAL_DIR,\n                        help=f\"Root eval results directory (default: {DEFAULT_EVAL_DIR})\")\n    parser.add_argument(\"--ced-dirs\", nargs=\"+\",\n                        help=\"CED eval subdirs, one per seed (overrides defaults)\")\n    parser.add_argument(\"--flat-nli-dirs\", nargs=\"+\",\n                        help=\"flat-NLI eval subdirs, one per seed (overrides defaults)\")\n    parser.add_argument(\"--seeds\", nargs=\"+\", type=int, default=[42, 43, 44, 45],\n                        help=\"Seed values (default: 42 43 44 45)\")\n    parser.add_argument(\"--output\", type=str, default=None,\n                        help=\"Output JSON path (default: &lt;eval-dir>/seed_ttest_results.json)\")\n    parser.add_argument(\"--latex\", action=\"store_true\", help=\"Output LaTeX table\")\n    parser.add_argument(\"--skip-protocol-check\", action=\"store_true\",\n                        help=\"Skip D076 protocol validation\")\n    args = parser.parse_args()\n\n    eval_dir = Path(args.eval_dir)\n    seeds = args.seeds\n\n    if args.ced_dirs:\n        if len(args.ced_dirs) != len(seeds):\n            print(f\"ERROR: --ced-dirs expects {len(seeds)} dirs, got {len(args.ced_dirs)}\", file=sys.stderr)\n            sys.exit(1)\n        ced_dirs = dict(zip(seeds, args.ced_dirs))\n    else:\n        ced_dirs = {s: DEFAULT_SEED_DIRS[\"CED\"].get(s, f\"rsft_ced_s{s}_reeval\") for s in seeds}\n\n    if args.flat_nli_dirs:\n        if len(args.flat_nli_dirs) != len(seeds):\n            print(f\"ERROR: --flat-nli-dirs expects {len(seeds)} dirs, got {len(args.flat_nli_dirs)}\", file=sys.stderr)\n            sys.exit(1)\n        flat_dirs = dict(zip(seeds, args.flat_nli_dirs))\n    else:\n        flat_dirs = {s: DEFAULT_SEED_DIRS[\"flat-NLI\"].get(s, f\"rsft_flat_nli_s{s}_reeval\") for s in seeds}\n\n    ced_results = {}\n    flat_results = {}\n    protocol_warnings = []\n    missing = []\n\n    for seed in seeds:\n        ced_path = eval_dir / ced_dirs[seed]\n        m = load_metrics(ced_path)\n        if m is None:\n            missing.append(f\"CED s{seed}: {ced_path}\")\n        else:\n            ced_results[seed] = m\n            if not args.skip_protocol_check:\n                protocol_warnings.extend(validate_protocol(m, f\"CED s{seed}\"))\n\n        flat_path = eval_dir / flat_dirs[seed]\n        m = load_metrics(flat_path)\n        if m is None:\n            missing.append(f\"flat-NLI s{seed}: {flat_path}\")\n        else:\n            flat_results[seed] = m\n            if not args.skip_protocol_check:\n                protocol_warnings.extend(validate_protocol(m, f\"flat-NLI s{seed}\"))\n\n    if missing:\n        print(\"WARNING: Missing eval results (reeval still running?):\")\n        for x in missing:\n            print(f\"  {x}\")\n        print()\n\n    if protocol_warnings:\n        print(\"WARNING: Protocol deviations (not D076 compliant):\")\n        for w in protocol_warnings:\n            print(f\"  {w}\")\n        print()\n\n    baselines = {}\n    for name, dirname in DEFAULT_BASELINES.items():\n        bm = load_metrics(eval_dir / dirname)\n        if bm:\n            baselines[name] = bm\n\n    common_seeds = sorted(set(ced_results) & set(flat_results))\n    all_ced_seeds = sorted(ced_results)\n    all_flat_seeds = sorted(flat_results)\n\n    print(f\"CED seeds available:      {['s'+str(s) for s in all_ced_seeds]}\")\n    print(f\"flat-NLI seeds available:  {['s'+str(s) for s in all_flat_seeds]}\")\n    print(f\"Paired seeds for t-test:   {['s'+str(s) for s in common_seeds]} (n={len(common_seeds)})\")\n    print()\n\n    if not common_seeds:\n        print(\"ERROR: No common seeds — cannot run paired t-test.\")\n        sys.exit(1)\n\n    # ── Per-seed detail ──\n    print(\"=\" * 76)\n    print(\"PER-SEED RESULTS (×100)\")\n    print(\"=\" * 76)\n    hdr = f\"{'Seed':<6} {'Method':<12}\"\n    for m in METRICS:\n        hdr += f\" {METRIC_LABELS[m]:>8}\"\n    print(hdr)\n    print(\"-\" * len(hdr))\n\n    for seed in seeds:\n        has_ced = seed in ced_results\n        has_flat = seed in flat_results\n        if has_ced:\n            row = f\"s{seed:<5} {'CED':<12}\"\n            for m in METRICS:\n                row += f\" {ced_results[seed][m]*100:>8.2f}\"\n            print(row)\n        if has_flat:\n            row = f\"{'':6} {'flat-NLI':<12}\"\n            for m in METRICS:\n                row += f\" {flat_results[seed][m]*100:>8.2f}\"\n            print(row)\n        if has_ced and has_flat:\n            row = f\"{'':6} {'delta(C-F)':<12}\"\n            for m in METRICS:\n                d = (ced_results[seed][m] - flat_results[seed][m]) * 100\n                row += f\" {d:>+8.2f}\"\n            print(row)\n        print()\n\n    # ── Aggregate with t-test ──\n    print(\"=\" * 76)\n    print(f\"PAIRED T-TEST ({len(common_seeds)} seeds: {common_seeds})\")\n    print(\"=\" * 76)\n    hdr = f\"{'Metric':<10} {'CED (mean+/-std)':>18} {'flat-NLI':>18} {'delta':>8} {'t':>7} {'p':>10} {'':>4}\"\n    print(hdr)\n    print(\"-\" * len(hdr))\n\n    aggregate = {}\n    for m in METRICS:\n        ced_vals = [ced_results[s][m] for s in common_seeds]\n        flat_vals = [flat_results[s][m] for s in common_seeds]\n        ced_mean = statistics.mean(ced_vals)\n        ced_std = statistics.stdev(ced_vals) if len(ced_vals) > 1 else 0.0\n        flat_mean = statistics.mean(flat_vals)\n        flat_std = statistics.stdev(flat_vals) if len(flat_vals) > 1 else 0.0\n        diff = ced_mean - flat_mean\n\n        if len(common_seeds) >= 2:\n            t_stat, p_val = stats.ttest_rel(ced_vals, flat_vals)\n        else:\n            t_stat, p_val = float(\"nan\"), float(\"nan\")\n\n        if math.isnan(p_val):\n            sig = \"n/a\"\n        elif p_val < 0.01:\n            sig = \"**\"\n        elif p_val < 0.05:\n            sig = \"*\"\n        elif p_val < 0.10:\n            sig = \"†\"\n        else:\n            sig = \"\"\n\n        t_str = f\"{t_stat:.3f}\" if not math.isnan(t_stat) else \"n/a\"\n        p_str = f\"{p_val:.6f}\" if not math.isnan(p_val) else \"n/a\"\n\n        print(f\"{METRIC_LABELS[m]:<10} {ced_mean*100:>7.2f}+/-{ced_std*100:.2f}\"\n              f\" {flat_mean*100:>7.2f}+/-{flat_std*100:.2f}\"\n              f\" {diff*100:>+7.2f}p {t_str:>7} {p_str:>10} {sig:>4}\")\n\n        aggregate[m] = {\n            \"ced_mean\": round(ced_mean, 6), \"ced_std\": round(ced_std, 6),\n            \"flat_mean\": round(flat_mean, 6), \"flat_std\": round(flat_std, 6),\n            \"diff\": round(diff, 6),\n            \"t_stat\": round(t_stat, 4) if not math.isnan(t_stat) else None,\n            \"p_value\": round(p_val, 6) if not math.isnan(p_val) else None,\n            \"sig_05\": bool(p_val < 0.05) if not math.isnan(p_val) else None,\n            \"sig_01\": bool(p_val < 0.01) if not math.isnan(p_val) else None,\n        }\n\n    if baselines:\n        print()\n        print(\"=\" * 76)\n        print(\"BASELINES (single seed, for reference)\")\n        print(\"=\" * 76)\n        hdr = f\"{'Method':<20}\"\n        for m in METRICS:\n            hdr += f\" {METRIC_LABELS[m]:>8}\"\n        print(hdr)\n        print(\"-\" * len(hdr))\n        for name, bm in baselines.items():\n            row = f\"{name:<20}\"\n            for m in METRICS:\n                row += f\" {bm.get(m, 0)*100:>8.2f}\"\n            print(row)\n        print()\n        for name, bm in baselines.items():\n            row = f\"{'CED - '+name:<20}\"\n            ced_mean_vals = {m: aggregate[m][\"ced_mean\"] for m in METRICS}\n            for m in METRICS:\n                d = (ced_mean_vals[m] - bm.get(m, 0)) * 100\n                row += f\" {d:>+8.2f}\"\n            print(row)\n\n    # ── LaTeX ──\n    if args.latex:\n        print()\n        print(\"=\" * 76)\n        print(\"LATEX TABLE (copy-paste ready)\")\n        print(\"=\" * 76)\n        print(\"\\\\begin{tabular}{l\" + \"cccc\" + \"}\")\n        print(\"\\\\toprule\")\n        print(\"Method & Rel-F1 & Ign-F1 & Evi-F1 & EDCR \\\\\\\\\")\n        print(\"\\\\midrule\")\n        for name, bm in baselines.items():\n            row = name.replace(\"-\", \" \")\n            for m in METRICS:\n                row += f\" & {bm.get(m, 0)*100:.1f}\"\n            print(row + \" \\\\\\\\\")\n        if baselines:\n            print(\"\\\\midrule\")\n\n        for method, agg_key in [(\"RSFT-CED\", \"ced\"), (\"RSFT-flat-NLI\", \"flat\")]:\n            row = method\n            for m in METRICS:\n                mean_k = f\"{agg_key}_mean\"\n                std_k = f\"{agg_key}_std\"\n                mean_v = aggregate[m][mean_k] * 100\n                std_v = aggregate[m][std_k] * 100\n                is_better = (aggregate[m][\"diff\"] > 0) == (agg_key == \"ced\")\n                is_sig = aggregate[m].get(\"sig_05\", False)\n                val_str = f\"{mean_v:.1f}$\\\\pm${std_v:.1f}\"\n                if is_better and is_sig:\n                    val_str = \"\\\\textbf{\" + val_str + \"}\"\n                row += f\" & {val_str}\"\n            print(row + \" \\\\\\\\\")\n\n        print(\"\\\\bottomrule\")\n        print(\"\\\\end{tabular}\")\n        print(\"% Significance: * p<0.05, ** p<0.01 (paired t-test, \"\n              f\"n={len(common_seeds)} seeds)\")\n\n    # ── JSON export ──\n    output_data = {\n        \"protocol\": \"D076: batch_size=4, no-quantize, sft_adapter, max_new_tokens=1024\",\n        \"common_seeds\": common_seeds,\n        \"n_seeds\": len(common_seeds),\n        \"per_seed\": {},\n        \"aggregate\": aggregate,\n        \"baselines\": {},\n        \"missing\": missing,\n        \"protocol_warnings\": protocol_warnings,\n    }\n    for seed in common_seeds:\n        output_data[\"per_seed\"][str(seed)] = {\n            \"ced\": {m: round(ced_results[seed][m], 6) for m in METRICS},\n            \"flat_nli\": {m: round(flat_results[seed][m], 6) for m in METRICS},\n        }\n    for name, bm in baselines.items():\n        output_data[\"baselines\"][name] = {m: round(bm.get(m, 0), 6) for m in METRICS}\n\n    out_path = Path(args.output) if args.output else eval_dir / \"seed_ttest_results.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(output_data, f, indent=2, ensure_ascii=False)\n    print(f\"\\nJSON -> {out_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55c67afd-680c-4cac-a2d0-9cb60be334c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kGX9u6N5y4dpJRWyPP",
+  "type": "assistant",
+  "uuid": "50ab886e-c0a6-4516-86f7-913bce1c4551",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BhELriFauEMBvTNJn4KshJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3263,
+      "cache_read_input_tokens": 44570,
+      "output_tokens": 9140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3263,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 9140,
+          "cache_read_input_tokens": 44570,
+          "cache_creation_input_tokens": 3263,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3263
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "50ab886e-c0a6-4516-86f7-913bce1c4551",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Set up paired t-test analysis framework for CED vs flat-NLI",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T06:09:04.354Z_
+
+<details><summary>↩ Tool result · `toolu_015gGiasvQD3X4X1ajL5ZKho`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "50ab886e-c0a6-4516-86f7-913bce1c4551",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "ae963bb8-222f-4236-a978-1f3ec77ca4d2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.33}}"
+    }
+  },
+  "sourceToolAssistantUUID": "50ab886e-c0a6-4516-86f7-913bce1c4551",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T06:09:12.578Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_014xTKp3D5Qmm1W6eKMnBZYL`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python seed_comparison.py --help",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae963bb8-222f-4236-a978-1f3ec77ca4d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kQ8KgtjvSPVHGxPQAJ",
+  "type": "assistant",
+  "uuid": "5b2aaa51-deb9-4d6a-9399-858f84eec800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012feZYsSNVLccdoFUEjmqRT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9200,
+      "cache_read_input_tokens": 47833,
+      "output_tokens": 144,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9200,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 144,
+          "cache_read_input_tokens": 47833,
+          "cache_creation_input_tokens": 9200,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9200
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-16T06:09:13.798Z_
+
+<details><summary>↩ Tool result · `toolu_014xTKp3D5Qmm1W6eKMnBZYL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: seed_comparison.py [-h] [--eval-dir EVAL_DIR]\\n                          [--ced-dirs CED_DIRS [CED_DIRS ...]]\\n                          [--flat-nli-dirs FLAT_NLI_DIRS [FLAT_NLI_DIRS ...]]\\n                          [--seeds SEEDS [SEEDS ...]] [--output OUTPUT]\\n                          [--latex] [--skip-protocol-check]\\n\\nPaired t-test: CED vs flat-NLI RSFT seeds\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --eval-dir EVAL_DIR   Root eval results directory (default: /root/autodl-\\n                        tmp/eval_results)\\n  --ced-dirs CED_DIRS [CED_DIRS ...]\\n                        CED eval subdirs, one per seed (overrides defaults)\\n  --flat-nli-dirs FLAT_NLI_DIRS [FLAT_NLI_DIRS ...]\\n                        flat-NLI eval subdirs, one per seed (overrides\\n                        defaults)\\n  --seeds SEEDS [SEEDS ...]\\n                        Seed values (default: 42 43 44 45)\\n  --output OUTPUT       Output JSON path (default: &lt;eval-\\n                        dir>/seed_ttest_results.json)\\n  --latex               Output LaTeX table\\n  --skip-protocol-check\\n                        Skip D076 protocol validation\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b2aaa51-deb9-4d6a-9399-858f84eec800",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "fe2d3ddf-a5f6-48ba-b878-29b715dbdf42",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: seed_comparison.py [-h] [--eval-dir EVAL_DIR]\\\\n                          [--ced-dirs CED_DIRS [CED_DIRS ...]]\\\\n                          [--flat-nli-dirs FLAT_NLI_DIRS [FLAT_NLI_DIRS ...]]\\\\n                          [--seeds SEEDS [SEEDS ...]] [--output OUTPUT]\\\\n                          [--latex] [--skip-protocol-check]\\\\n\\\\nPaired t-test: CED vs flat-NLI RSFT seeds\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --eval-dir EVAL_DIR   Root eval results directory (default: /root/autodl-\\\\n                        tmp/eval_results)\\\\n  --ced-dirs CED_DIRS [CED_DIRS ...]\\\\n                        CED eval subdirs, one per seed (overrides defaults)\\\\n  --flat-nli-dirs FLAT_NLI_DIRS [FLAT_NLI_DIRS ...]\\\\n                        flat-NLI eval subdirs, one per seed (overrides\\\\n                        defaults)\\\\n  --seeds SEEDS [SEEDS ...]\\\\n                        Seed values (default: 42 43 44 45)\\\\n  --output OUTPUT       Output JSON path (default: &lt;eval-\\\\n                        dir>/seed_ttest_results.json)\\\\n  --latex               Output LaTeX table\\\\n  --skip-protocol-check\\\\n                        Skip D076 protocol validation\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: seed_comparison.py [-h] [--eval-dir EVAL_DIR]\\n                          [--ced-dirs CED_DIRS [CED_DIRS ...]]\\n                          [--flat-nli-dirs FLAT_NLI_DIRS [FLAT_NLI_DIRS ...]]\\n                          [--seeds SEEDS [SEEDS ...]] [--output OUTPUT]\\n                          [--latex] [--skip-protocol-check]\\n\\nPaired t-test: CED vs flat-NLI RSFT seeds\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --eval-dir EVAL_DIR   Root eval results directory (default: /root/autodl-\\n                        tmp/eval_results)\\n  --ced-dirs CED_DIRS [CED_DIRS ...]\\n                        CED eval subdirs, one per seed (overrides defaults)\\n  --flat-nli-dirs FLAT_NLI_DIRS [FLAT_NLI_DIRS ...]\\n                        flat-NLI eval subdirs, one per seed (overrides\\n                        defaults)\\n  --seeds SEEDS [SEEDS ...]\\n                        Seed values (default: 42 43 44 45)\\n  --output OUTPUT       Output JSON path (default: &lt;eval-\\n                        dir>/seed_ttest_results.json)\\n  --latex               Output LaTeX table\\n  --skip-protocol-check\\n                        Skip D076 protocol validation\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.21}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5b2aaa51-deb9-4d6a-9399-858f84eec800",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-16T06:09:16.817Z_
+
+Dry-run with current partial data to verify end-to-end execution.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe2d3ddf-a5f6-48ba-b878-29b715dbdf42",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kQpfLFRox7iJxkvg1j",
+  "type": "assistant",
+  "uuid": "a3439099-041e-42ff-92c7-3d349a84f188",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Vc9ZQ7pkoEDzmnwuSVtW9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 593,
+      "cache_read_input_tokens": 57033,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 593,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 57033,
+          "cache_creation_input_tokens": 593,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 593
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-16T06:09:17.672Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0176Cb9XExK7NgstB84gEAAo`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/freige && python seed_comparison.py --latex",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a3439099-041e-42ff-92c7-3d349a84f188",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kQpfLFRox7iJxkvg1j",
+  "type": "assistant",
+  "uuid": "f0295518-1391-499e-8f1f-7aae9a8887b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Vc9ZQ7pkoEDzmnwuSVtW9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 593,
+      "cache_read_input_tokens": 57033,
+      "output_tokens": 162,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 593,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 162,
+          "cache_read_input_tokens": 57033,
+          "cache_creation_input_tokens": 593,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 593
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-16T06:09:18.839Z_
+
+<details><summary>↩ Tool result · `toolu_0176Cb9XExK7NgstB84gEAAo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"WARNING: Missing eval results (reeval still running?):\\n  CED s42: /root/autodl-tmp/eval_results/rsft_ced_s42_reeval\\n  flat-NLI s42: /root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval\\n  CED s44: /root/autodl-tmp/eval_results/rsft_ced_s44_reeval\\n\\nCED seeds available:      ['s43', 's45']\\nflat-NLI seeds available:  ['s43', 's44', 's45']\\nPaired seeds for t-test:   ['s43', 's45'] (n=2)\\n\\n============================================================================\\nPER-SEED RESULTS (×100)\\n============================================================================\\nSeed   Method         Rel-F1   Ign-F1   Evi-F1     EDCR\\n-------------------------------------------------------\\n\\ns43    CED             46.01    45.12    80.63    65.42\\n       flat-NLI        45.86    45.03    81.13    65.52\\n       delta(C-F)      +0.15    +0.09    -0.50    -0.10\\n\\n       flat-NLI        46.15    45.21    81.31    64.58\\n\\ns45    CED             45.14    44.16    81.74    65.50\\n       flat-NLI        45.51    44.62    81.54    65.21\\n       delta(C-F)      -0.37    -0.46    +0.20    +0.29\\n\\n============================================================================\\nPAIRED T-TEST (2 seeds: [43, 45])\\n============================================================================\\nMetric       CED (mean+/-std)           flat-NLI    delta       t          p     \\n---------------------------------------------------------------------------------\\nRel-F1       45.57+/-0.61   45.68+/-0.25   -0.11p  -0.434   0.739574     \\nIgn-F1       44.64+/-0.68   44.82+/-0.29   -0.19p  -0.674   0.622654     \\nEvi-F1       81.18+/-0.79   81.33+/-0.29   -0.15p  -0.426   0.743581     \\nEDCR         65.46+/-0.06   65.37+/-0.22   +0.09p   0.492   0.708818     \\n\\n============================================================================\\nBASELINES (single seed, for reference)\\n============================================================================\\nMethod                 Rel-F1   Ign-F1   Evi-F1     EDCR\\n--------------------------------------------------------\\nSFT-noevi               48.76    47.21     0.00     0.00\\n\\nCED - SFT-noevi         -3.19    -2.58   +81.18   +65.46\\n\\n============================================================================\\nLATEX TABLE (copy-paste ready)\\n============================================================================\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\nMethod & Rel-F1 & Ign-F1 & Evi-F1 & EDCR \\\\\\\\\\n\\\\midrule\\nSFT noevi & 48.8 & 47.2 & 0.0 & 0.0 \\\\\\\\\\n\\\\midrule\\nRSFT-CED & 45.6$\\\\pm$0.6 & 44.6$\\\\pm$0.7 & 81.2$\\\\pm$0.8 & 65.5$\\\\pm$0.1 \\\\\\\\\\nRSFT-flat-NLI & 45.7$\\\\pm$0.3 & 44.8$\\\\pm$0.3 & 81.3$\\\\pm$0.3 & 65.4$\\\\pm$0.2 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n% Significance: * p<0.05, ** p<0.01 (paired t-test, n=2 seeds)\\n\\nJSON -> /root/autodl-tmp/eval_results/seed_ttest_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f0295518-1391-499e-8f1f-7aae9a8887b4",
+  "isSidechain": false,
+  "promptId": "77fecba7-5335-4f88-8247-a1d3561b222c",
+  "type": "user",
+  "uuid": "907c780d-2287-48ef-a204-78105a3e4905",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"WARNING: Missing eval results (reeval still running?):\\\\n  CED s42: /root/autodl-tmp/eval_results/rsft_ced_s42_reeval\\\\n  flat-NLI s42: /root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval\\\\n  CED s44: /root/autodl-tmp/eval_results/rsft_ced_s44_reeval\\\\n\\\\nCED seeds available:      ['s43', 's45']\\\\nflat-NLI seeds available:  ['s43', 's44', 's45']\\\\nPaired seeds for t-test:   ['s43', 's45'] (n=2)\\\\n\\\\n============================================================================\\\\nPER-SEED RESULTS (×100)\\\\n============================================================================\\\\nSeed   Method         Rel-F1   Ign-F1   Evi-F1     EDCR\\\\n-------------------------------------------------------\\\\n\\\\ns43    CED             46.01    45.12    80.63    65.42\\\\n       flat-NLI        45.86    45.03    81.13    65.52\\\\n       delta(C-F)      +0.15    +0.09    -0.50    -0.10\\\\n\\\\n       flat-NLI        46.15    45.21    81.31    64.58\\\\n\\\\ns45    CED             45.14    44.16    81.74    65.50\\\\n       flat-NLI        45.51    44.62    81.54    65.21\\\\n       delta(C-F)      -0.37    -0.46    +0.20    +0.29\\\\n\\\\n============================================================================\\\\nPAIRED T-TEST (2 seeds: [43, 45])\\\\n============================================================================\\\\nMetric       CED (mean+/-std)           flat-NLI    delta       t          p     \\\\n---------------------------------------------------------------------------------\\\\nRel-F1       45.57+/-0.61   45.68+/-0.25   -0.11p  -0.434   0.739574     \\\\nIgn-F1       44.64+/-0.68   44.82+/-0.29   -0.19p  -0.674   0.622654     \\\\nEvi-F1       81.18+/-0.79   81.33+/-0.29   -0.15p  -0.426   0.743581     \\\\nEDCR         65.46+/-0.06   65.37+/-0.22   +0.09p   0.492   0.708818     \\\\n\\\\n============================================================================\\\\nBASELINES (single seed, for reference)\\\\n============================================================================\\\\nMethod                 Rel-F1   Ign-F1   Evi-F1     EDCR\\\\n--------------------------------------------------------\\\\nSFT-noevi               48.76    47.21     0.00     0.00\\\\n\\\\nCED - SFT-noevi         -3.19    -2.58   +81.18   +65.46\\\\n\\\\n============================================================================\\\\nLATEX TABLE (copy-paste ready)\\\\n============================================================================\\\\n\\\\\\\\begin{tabular}{lcccc}\\\\n\\\\\\\\toprule\\\\nMethod & Rel-F1 & Ign-F1 & Evi-F1 & EDCR \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nSFT noevi & 48.8 & 47.2 & 0.0 & 0.0 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nRSFT-CED & 45.6$\\\\\\\\pm$0.6 & 44.6$\\\\\\\\pm$0.7 & 81.2$\\\\\\\\pm$0.8 & 65.5$\\\\\\\\pm$0.1 \\\\\\\\\\\\\\\\\\\\nRSFT-flat-NLI & 45.7$\\\\\\\\pm$0.3 & 44.8$\\\\\\\\pm$0.3 & 81.3$\\\\\\\\pm$0.3 & 65.4$\\\\\\\\pm$0.2 \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n% Significance: * p<0.05, ** p<0.01 (paired t-test, n=2 seeds)\\\\n\\\\nJSON -> /root/autodl-tmp/eval_results/seed_ttest_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"WARNING: Missing eval results (reeval still running?):\\n  CED s42: /root/autodl-tmp/eval_results/rsft_ced_s42_reeval\\n  flat-NLI s42: /root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval\\n  CED s44: /root/autodl-tmp/eval_results/rsft_ced_s44_reeval\\n\\nCED seeds available:      ['s43', 's45']\\nflat-NLI seeds available:  ['s43', 's44', 's45']\\nPaired seeds for t-test:   ['s43', 's45'] (n=2)\\n\\n============================================================================\\nPER-SEED RESULTS (×100)\\n============================================================================\\nSeed   Method         Rel-F1   Ign-F1   Evi-F1     EDCR\\n-------------------------------------------------------\\n\\ns43    CED             46.01    45.12    80.63    65.42\\n       flat-NLI        45.86    45.03    81.13    65.52\\n       delta(C-F)      +0.15    +0.09    -0.50    -0.10\\n\\n       flat-NLI        46.15    45.21    81.31    64.58\\n\\ns45    CED             45.14    44.16    81.74    65.50\\n       flat-NLI        45.51    44.62    81.54    65.21\\n       delta(C-F)      -0.37    -0.46    +0.20    +0.29\\n\\n============================================================================\\nPAIRED T-TEST (2 seeds: [43, 45])\\n============================================================================\\nMetric       CED (mean+/-std)           flat-NLI    delta       t          p     \\n---------------------------------------------------------------------------------\\nRel-F1       45.57+/-0.61   45.68+/-0.25   -0.11p  -0.434   0.739574     \\nIgn-F1       44.64+/-0.68   44.82+/-0.29   -0.19p  -0.674   0.622654     \\nEvi-F1       81.18+/-0.79   81.33+/-0.29   -0.15p  -0.426   0.743581     \\nEDCR         65.46+/-0.06   65.37+/-0.22   +0.09p   0.492   0.708818     \\n\\n============================================================================\\nBASELINES (single seed, for reference)\\n============================================================================\\nMethod                 Rel-F1   Ign-F1   Evi-F1     EDCR\\n--------------------------------------------------------\\nSFT-noevi               48.76    47.21     0.00     0.00\\n\\nCED - SFT-noevi         -3.19    -2.58   +81.18   +65.46\\n\\n============================================================================\\nLATEX TABLE (copy-paste ready)\\n============================================================================\\n\\\\begin{tabular}{lcccc}\\n\\\\toprule\\nMethod & Rel-F1 & Ign-F1 & Evi-F1 & EDCR \\\\\\\\\\n\\\\midrule\\nSFT noevi & 48.8 & 47.2 & 0.0 & 0.0 \\\\\\\\\\n\\\\midrule\\nRSFT-CED & 45.6$\\\\pm$0.6 & 44.6$\\\\pm$0.7 & 81.2$\\\\pm$0.8 & 65.5$\\\\pm$0.1 \\\\\\\\\\nRSFT-flat-NLI & 45.7$\\\\pm$0.3 & 44.8$\\\\pm$0.3 & 81.3$\\\\pm$0.3 & 65.4$\\\\pm$0.2 \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n% Significance: * p<0.05, ** p<0.01 (paired t-test, n=2 seeds)\\n\\nJSON -> /root/autodl-tmp/eval_results/seed_ttest_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f0295518-1391-499e-8f1f-7aae9a8887b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-16T06:09:26.458Z_
+
+脚本运行正常。
+
+产出：
+- **`/root/autodl-tmp/freige/seed_comparison.py`** — paired t-test 分析脚本，已验证可执行
+- 当前有 2 对 paired seeds (s43, s45)，CED s42/s44 和 flat-NLI s42/s43 reeval 仍在跑
+- 所有 4 个指标 (Rel-F1, Ign-F1, Evi-F1, EDCR) 均无显著差异 (p > 0.6)，但 n=2 统计效力极低，等 4 seeds 齐全再看
+- `--latex` 生成可直接粘贴到论文的 LaTeX 表格，显著指标自动加粗
+- D076 协议校验内置，batch_size/quantize/max_new_tokens 不符会报 warning
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "907c780d-2287-48ef-a204-78105a3e4905",
+  "isSidechain": false,
+  "requestId": "req_011Cb5kRCCd6Eo4SJ1G2C2yd",
+  "type": "assistant",
+  "uuid": "c6d8df78-ebb0-4ddb-bd65-1706ff4dde24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013A7mffdMAb1fdGCwSZsz2m",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1342,
+      "cache_read_input_tokens": 57626,
+      "output_tokens": 251,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1342,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 251,
+          "cache_read_input_tokens": 57626,
+          "cache_creation_input_tokens": 1342,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1342
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c6d8df78-ebb0-4ddb-bd65-1706ff4dde24",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Set up paired t-test analysis framework for CED vs flat-NLI",
+  "sessionId": "8b15d184-c5d4-43d6-804e-7b094bc755f6"
+}
+```
+
+---

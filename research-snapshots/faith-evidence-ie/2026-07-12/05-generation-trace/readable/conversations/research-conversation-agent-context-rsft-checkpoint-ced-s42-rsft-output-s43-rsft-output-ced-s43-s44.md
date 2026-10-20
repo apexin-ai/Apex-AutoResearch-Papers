@@ -1,0 +1,4615 @@
+# Research conversation: <agent_context> RSFT Checkpoint 路径映射表：CED s42=rsft_output/, s43=rsft_output_ced_s43/, s44=rsft_output_s44/, s45=rsft_out
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 85
+- **Recorded user turns:** 1
+- **Tool calls:** 21
+- **Original source:** `logs/chats/exported-trajectories/account-1/c7c18564-4a9d-4421-8aa1-be66cfab0bd5.jsonl`
+- **Structured JSON:** [`02334cb3d5449298ddbf.json`](../../sessions/02/02334cb3d5449298ddbf.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T03:48:15.328Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T03:48:15.328Z",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "content": "&lt;agent_context>\nRSFT Checkpoint 路径映射表：CED s42=rsft_output/, s43=rsft_output_ced_s43/, s44=rsft_output_s44/, s45=rsft_output_ced_s45/。flat-NLI 全系列 checkpoint-507。cwd 必须是 /root/autodl-tmp。\n&lt;/agent_context>\n\n&lt;project_context>\n# 项目: faith-evidence-ie\n\n## 运行环境\n- 服务器名: rtx5090-4x\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/freige\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]\n- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map=\"auto\" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）\n- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）\n- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：验证并更新 seed comparison 脚本，确保统一协议 eval 结果出齐后可立即跑 paired t-test\n\n### 背景\n我们在做 CED vs flat-NLI RSFT 的 paired t-test（C3 claim）。目前 8 个统一协议 eval 正在跑（4 CED seeds + 4 flat-NLI seeds），完成后需要立即用脚本汇总分析。\n\n**关键约束**：\n- Ign-F1 数据必须从 `metrics_v2.json` 读取（旧 metrics.json 的 Ign-F1 因 evaluator bug 无效）\n- 论文主表报 Ign-F1，附录报 F1\n- 只有统一协议（D076）下的 eval 结果可用于 paired t-test\n\n### 服务器信息\n- 服务器: rtx5090-4x, account=root\n- Python: `/root/miniconda3/bin/python`（conda base）\n- 激活命令: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- cwd: `/root/autodl-tmp`（不是 /root/autodl-tmp/freige）\n\n### 需要检查的脚本\n1. `/root/autodl-tmp/scripts/seed_comparison.py`\n2. `/root/autodl-tmp/artifacts/paired_ttest_analysis.py`\n\n### 具体任务\n1. SSH 到服务器，读取两个脚本的内容\n2. 检查脚本是否从 `metrics_v2.json`（而非 `metrics.json`）读取 Ign-F1\n3. 检查 eval 结果路径映射是否正确。统一协议的 eval 结果目录：\n   - CED s42: 待 reeval → `/root/autodl-tmp/eval_results/rsft_ced_s42_reeval/` (预计)\n   - CED s43: `/root/autodl-tmp/eval_results/rsft_ced_s43/`\n   - CED s44: 待 reeval → `/root/autodl-tmp/eval_results/rsft_ced_s44_reeval/` (预计)\n   - CED s45: `/root/autodl-tmp/eval_results/rsft_ced_s45/`\n   - flat-NLI s42: 待 reeval → `/root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval/` (预计)\n   - flat-NLI s43: `/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/`\n   - flat-NLI s44: 已有统一协议结果（检查实际目录名）\n   - flat-NLI s45: 已有统一协议结果（检查实际目录名）\n   注意：实际目录名可能不完全匹配，用 `ls /root/autodl-tmp/eval_results/ | grep rsft` 确认\n4. 检查脚本输出是否包含：per-seed Ign-F1/F1、mean±std、paired t-test p-value、effect size (Cohen's d)\n5. 如果脚本需要修改，修改后用 `python script.py --help` 或 dry-run 验证\n6. 汇总发现：哪些地方需要改、改了什么、脚本是否 ready to run\n\n### 产出\n在回复中报告：\n- 脚本当前状态（是否读 metrics_v2.json、路径映射是否正确）\n- 修改清单（如有）\n- 验证结果（dry-run 是否通过）\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T03:48:15.333Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T03:48:15.333Z",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+## Round 1
+
+83 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T03:48:15.370Z_
+
+&lt;agent_context>
+RSFT Checkpoint 路径映射表：CED s42=rsft_output/, s43=rsft_output_ced_s43/, s44=rsft_output_s44/, s45=rsft_output_ced_s45/。flat-NLI 全系列 checkpoint-507。cwd 必须是 /root/autodl-tmp。
+&lt;/agent_context>
+
+&lt;project_context>
+# 项目: faith-evidence-ie
+
+## 运行环境
+- 服务器名: rtx5090-4x
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/freige
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]
+- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map="auto" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）
+- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）
+- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：验证并更新 seed comparison 脚本，确保统一协议 eval 结果出齐后可立即跑 paired t-test
+
+### 背景
+我们在做 CED vs flat-NLI RSFT 的 paired t-test（C3 claim）。目前 8 个统一协议 eval 正在跑（4 CED seeds + 4 flat-NLI seeds），完成后需要立即用脚本汇总分析。
+
+**关键约束**：
+- Ign-F1 数据必须从 `metrics_v2.json` 读取（旧 metrics.json 的 Ign-F1 因 evaluator bug 无效）
+- 论文主表报 Ign-F1，附录报 F1
+- 只有统一协议（D076）下的 eval 结果可用于 paired t-test
+
+### 服务器信息
+- 服务器: rtx5090-4x, account=root
+- Python: `/root/miniconda3/bin/python`（conda base）
+- 激活命令: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+- cwd: `/root/autodl-tmp`（不是 /root/autodl-tmp/freige）
+
+### 需要检查的脚本
+1. `/root/autodl-tmp/scripts/seed_comparison.py`
+2. `/root/autodl-tmp/artifacts/paired_ttest_analysis.py`
+
+### 具体任务
+1. SSH 到服务器，读取两个脚本的内容
+2. 检查脚本是否从 `metrics_v2.json`（而非 `metrics.json`）读取 Ign-F1
+3. 检查 eval 结果路径映射是否正确。统一协议的 eval 结果目录：
+   - CED s42: 待 reeval → `/root/autodl-tmp/eval_results/rsft_ced_s42_reeval/` (预计)
+   - CED s43: `/root/autodl-tmp/eval_results/rsft_ced_s43/`
+   - CED s44: 待 reeval → `/root/autodl-tmp/eval_results/rsft_ced_s44_reeval/` (预计)
+   - CED s45: `/root/autodl-tmp/eval_results/rsft_ced_s45/`
+   - flat-NLI s42: 待 reeval → `/root/autodl-tmp/eval_results/rsft_flat_nli_s42_reeval/` (预计)
+   - flat-NLI s43: `/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/`
+   - flat-NLI s44: 已有统一协议结果（检查实际目录名）
+   - flat-NLI s45: 已有统一协议结果（检查实际目录名）
+   注意：实际目录名可能不完全匹配，用 `ls /root/autodl-tmp/eval_results/ | grep rsft` 确认
+4. 检查脚本输出是否包含：per-seed Ign-F1/F1、mean±std、paired t-test p-value、effect size (Cohen's d)
+5. 如果脚本需要修改，修改后用 `python script.py --help` 或 dry-run 验证
+6. 汇总发现：哪些地方需要改、改了什么、脚本是否 ready to run
+
+### 产出
+在回复中报告：
+- 脚本当前状态（是否读 metrics_v2.json、路径映射是否正确）
+- 修改清单（如有）
+- 验证结果（dry-run 是否通过）
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "78c46464-b5fc-45ec-99c4-8e5ed66f837b",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T03:48:15.369Z_
+
+```json
+{
+  "parentUuid": "78c46464-b5fc-45ec-99c4-8e5ed66f837b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "d4f89a58-14cf-4a6f-b0e2-47ce115116fa",
+  "timestamp": "2026-05-16T03:48:15.369Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T03:48:15.369Z_
+
+```json
+{
+  "parentUuid": "d4f89a58-14cf-4a6f-b0e2-47ce115116fa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "596c6b8a-5e18-487a-807e-cfbbc76464b3",
+  "timestamp": "2026-05-16T03:48:15.369Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T03:48:15.369Z_
+
+```json
+{
+  "parentUuid": "596c6b8a-5e18-487a-807e-cfbbc76464b3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e3a87a7a-1dd8-4b48-8e7c-0f903fbfa467",
+  "timestamp": "2026-05-16T03:48:15.369Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-16T03:48:15.369Z_
+
+```json
+{
+  "parentUuid": "e3a87a7a-1dd8-4b48-8e7c-0f903fbfa467",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "67f3361a-1dd8-4a75-87aa-9449632e8b40",
+  "timestamp": "2026-05-16T03:48:15.369Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify seed comparison and paired t-test scripts",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T03:48:18.299Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the two scripts on the server and checking the actual eval result directories.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "67f3361a-1dd8-4a75-87aa-9449632e8b40",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZfKHdWPMnkszK8Eip6",
+  "type": "assistant",
+  "uuid": "15281224-0d88-44d8-93a0-70d9a433f9b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RY5uJn1BSoswek7iNuR3es",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12820,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 155,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 155,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-16T03:48:18.943Z_
+
+先 SSH 读取脚本内容和实际目录结构。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15281224-0d88-44d8-93a0-70d9a433f9b6",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZfKHdWPMnkszK8Eip6",
+  "type": "assistant",
+  "uuid": "81b0c24b-64fd-4379-8b62-da453c2d18d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RY5uJn1BSoswek7iNuR3es",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12820,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 155,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 155,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T03:48:19.368Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_018SX7Xz3vANo4zKq2bEC2KW`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81b0c24b-64fd-4379-8b62-da453c2d18d0",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZfKHdWPMnkszK8Eip6",
+  "type": "assistant",
+  "uuid": "2a6fa227-4d2c-4911-ba91-4c46ac169cc2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RY5uJn1BSoswek7iNuR3es",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12820,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 155,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 155,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 12820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T03:48:19.375Z_
+
+<details><summary>↩ Tool result · `toolu_018SX7Xz3vANo4zKq2bEC2KW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a6fa227-4d2c-4911-ba91-4c46ac169cc2",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "e77ed66d-47d5-411a-8ca5-6f77a68c6e3c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "2a6fa227-4d2c-4911-ba91-4c46ac169cc2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T03:48:23.033Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TgrKgu1r9pVedzwYar6vL9`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/scripts/seed_comparison.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e77ed66d-47d5-411a-8ca5-6f77a68c6e3c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZfcdRGF9umNJr8wLFb",
+  "type": "assistant",
+  "uuid": "aa29449d-0598-46d1-8d46-eade36f99dd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFo4N16uGzfSvj4kp9uMpn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 724,
+      "cache_read_input_tokens": 24267,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 24267,
+          "cache_creation_input_tokens": 724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-16T03:48:23.509Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TuonV6vt4FeGjyqKjsusuu`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/artifacts/paired_ttest_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa29449d-0598-46d1-8d46-eade36f99dd1",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZfcdRGF9umNJr8wLFb",
+  "type": "assistant",
+  "uuid": "f4dab68e-03af-4ac9-91a5-f7ed98a4cb74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFo4N16uGzfSvj4kp9uMpn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 724,
+      "cache_read_input_tokens": 24267,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 24267,
+          "cache_creation_input_tokens": 724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-16T03:48:23.934Z_
+
+<details><summary>↩ Tool result · `toolu_01TgrKgu1r9pVedzwYar6vL9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Seed-level comparison: flat-NLI RSFT vs CED RSFT.\\\"\\\"\\\"\\n\\nimport json, os, sys, time, argparse, math\\nfrom pathlib import Path\\nfrom datetime import datetime\\n\\n\\nclass NanSafeEncoder(json.JSONEncoder):\\n    def encode(self, o):\\n        text = super().encode(o)\\n        return text.replace(\\\"NaN\\\", \\\"null\\\").replace(\\\"Infinity\\\", '\\\"Inf\\\"')\\n\\n\\nEVAL_ROOT = Path(\\\"/root/autodl-tmp/eval_results\\\")\\nOUT_DIR = EVAL_ROOT\\n\\n# Priority order: _reeval_r2 > _reeval > original\\nMETHODS = {\\n    \\\"CED_RSFT\\\": {\\n        \\\"s42\\\": [\\\"rsft_ced_s42_reeval\\\", \\\"rsft_r2b_maxtok1536\\\"],\\n        \\\"s43\\\": [\\\"rsft_ced_s43\\\", \\\"rsft_s43\\\"],\\n        \\\"s44\\\": [\\\"rsft_ced_s44_reeval\\\", \\\"rsft_s44\\\"],\\n        \\\"s45\\\": \\\"rsft_ced_s45\\\",\\n    },\\n    \\\"flatNLI_RSFT\\\": {\\n        \\\"s42\\\": [\\\"rsft_flat_nli_s42_reeval\\\", \\\"rsft_flat_nli\\\"],\\n        \\\"s43\\\": [\\\"rsft_flat_nli_s43_reeval_r2\\\", \\\"rsft_flat_nli_s43_reeval\\\", \\\"rsft_flat_nli_s43\\\"],\\n        \\\"s44\\\": \\\"rsft_flat_nli_s44\\\",\\n        \\\"s45\\\": \\\"rsft_flat_nli_s45\\\",\\n    },\\n}\\n\\nMETRICS_KEYS = [\\\"f1\\\", \\\"evi_f1\\\", \\\"edcr\\\"]\\nMETRIC_LABELS = {\\\"f1\\\": \\\"rel_f1\\\", \\\"evi_f1\\\": \\\"evi_f1\\\", \\\"edcr\\\": \\\"EDCR\\\"}\\n\\n\\ndef load_metrics(eval_dir_name):\\n    if isinstance(eval_dir_name, list):\\n        for name in eval_dir_name:\\n            result = load_metrics(name)\\n            if result is not None:\\n                return result\\n        return None\\n    d = EVAL_ROOT / eval_dir_name\\n    p = d / \\\"metrics_v2.json\\\"\\n    if not p.exists():\\n        p = d / \\\"metrics.json\\\"\\n    if not p.exists():\\n        return None\\n    with open(p) as f:\\n        m = json.load(f)\\n    if m.get(\\\"field_compliance_rate\\\", 0) == 0 or m.get(\\\"f1\\\", 0) < 0.01:\\n        return None\\n    m[\\\"_source_dir\\\"] = eval_dir_name\\n    m[\\\"_source_file\\\"] = p.name\\n    return m\\n\\n\\ndef mean(vals):\\n    return sum(vals) / len(vals) if vals else float(\\\"nan\\\")\\n\\ndef std(vals):\\n    if len(vals) < 2:\\n        return float(\\\"nan\\\")\\n    m = mean(vals)\\n    return math.sqrt(sum((v - m) ** 2 for v in vals) / (len(vals) - 1))\\n\\ndef cohens_d(a, b):\\n    if len(a) < 2 or len(b) < 2:\\n        return float(\\\"nan\\\")\\n    diffs = [x - y for x, y in zip(a, b)]\\n    d_mean, d_std = mean(diffs), std(diffs)\\n    if d_std == 0:\\n        return float(\\\"inf\\\") if d_mean != 0 else 0.0\\n    return d_mean / d_std\\n\\ndef paired_ttest(a, b):\\n    n = len(a)\\n    if n < 2:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\"), n\\n    diffs = [x - y for x, y in zip(a, b)]\\n    d_mean, d_std = mean(diffs), std(diffs)\\n    if d_std == 0:\\n        return (float(\\\"inf\\\") if d_mean != 0 else 0.0), 0.0, n\\n    t_stat = d_mean / (d_std / math.sqrt(n))\\n    try:\\n        from scipy import stats as sp_stats\\n        p_val = sp_stats.t.sf(abs(t_stat), df=n - 1) * 2\\n    except ImportError:\\n        p_val = None\\n    return t_stat, p_val, n\\n\\ndef ci_95(vals):\\n    n = len(vals)\\n    if n < 2:\\n        return (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n    m, s = mean(vals), std(vals)\\n    t_crit_map = {2: 12.706, 3: 4.303, 4: 3.182, 5: 2.776}\\n    t_crit = t_crit_map.get(n, 2.0)\\n    margin = t_crit * s / math.sqrt(n)\\n    return (m - margin, m + margin)\\n\\n\\ndef build_comparison():\\n    seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n    data = {}\\n    sources = {}\\n    for method, seed_dirs in METHODS.items():\\n        data[method] = {}\\n        sources[method] = {}\\n        for seed in seeds:\\n            dir_name = seed_dirs.get(seed)\\n            if dir_name is None:\\n                continue\\n            m = load_metrics(dir_name)\\n            if m is not None:\\n                sources[method][seed] = {\\\"dir\\\": m.pop(\\\"_source_dir\\\"), \\\"file\\\": m.pop(\\\"_source_file\\\")}\\n                data[method][seed] = {k: m[k] for k in METRICS_KEYS if k in m}\\n    return data, seeds, sources\\n\\n\\ndef fv(v, fmt=\\\".4f\\\"):\\n    if v is None or (isinstance(v, float) and math.isnan(v)):\\n        return \\\"—\\\"\\n    return f\\\"{v:{fmt}}\\\"\\n\\n\\ndef generate_report(data, seeds, sources):\\n    lines = []\\n    lines.append(\\\"# flat-NLI vs CED RSFT: Seed-Level Comparison\\\")\\n    lines.append(f\\\"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\\")\\n    lines.append(\\\"\\\")\\n\\n    ced_ready = list(data.get(\\\"CED_RSFT\\\", {}).keys())\\n  \\n\\n... [截断: 输出过长，省略 3086 字符] ...\\n\\n      lines.append(f\\\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\\\")\\n            lines.append(f\\\"  - Cohen's d: {fv(d, '.3f')}\\\")\\n            lines.append(f\\\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\\\")\\n            if n < 4:\\n                lines.append(f\\\"  - ⚠ N={n} < 4, waiting for more seeds\\\")\\n            stat_info = {\\\"t_stat\\\": t_stat, \\\"p_value\\\": p_val, \\\"cohens_d\\\": d, \\\"ci_95\\\": [ci_lo, ci_hi], \\\"n_paired\\\": n}\\n        else:\\n            lines.append(f\\\"  - ⚠ {len(matched)} matched seed(s), need >=2 for paired stats\\\")\\n        lines.append(\\\"\\\")\\n\\n        json_out[\\\"summary\\\"][label] = {\\n            \\\"CED_mean\\\": ced_m, \\\"CED_std\\\": ced_s, \\\"CED_n\\\": len(ced_vals),\\n            \\\"fNLI_mean\\\": fnli_m, \\\"fNLI_std\\\": fnli_s, \\\"fNLI_n\\\": len(fnli_vals),\\n            \\\"delta\\\": delta, **stat_info,\\n        }\\n\\n    for seed in seeds:\\n        json_out[\\\"per_seed\\\"][seed] = {}\\n        for method in [\\\"CED_RSFT\\\", \\\"flatNLI_RSFT\\\"]:\\n            if seed in data.get(method, {}):\\n                json_out[\\\"per_seed\\\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\\n\\n    json_out[\\\"status\\\"] = {\\n        \\\"CED_seeds_ready\\\": ced_ready,\\n        \\\"flatNLI_seeds_ready\\\": fnli_ready,\\n        \\\"missing_CED\\\": missing_ced,\\n        \\\"missing_flatNLI\\\": missing_fnli,\\n        \\\"all_complete\\\": len(ced_ready) == 4 and len(fnli_ready) == 4,\\n    }\\n    return \\\"\\\\n\\\".join(lines), json_out\\n\\n\\ndef run_once():\\n    data, seeds, sources = build_comparison()\\n    md, js = generate_report(data, seeds, sources)\\n    (OUT_DIR / \\\"seed_comparison.md\\\").write_text(md)\\n    (OUT_DIR / \\\"seed_comparison.json\\\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\\n    return md, js\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--watch\\\", type=int, default=0, help=\\\"Watch interval in seconds\\\")\\n    parser.add_argument(\\\"--json-only\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print what would be loaded without writing files\\\")\\n    args = parser.parse_args()\\n\\n    if args.dry_run:\\n        seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n        for method, seed_dirs in METHODS.items():\\n            print(f\\\"\\\\n=== {method} ===\\\")\\n            for seed in seeds:\\n                dir_name = seed_dirs.get(seed)\\n                if dir_name is None:\\n                    print(f\\\"  {seed}: NOT CONFIGURED\\\")\\n                    continue\\n                m = load_metrics(dir_name)\\n                if m is not None:\\n                    src_dir = m.get(\\\"_source_dir\\\", \\\"?\\\")\\n                    src_file = m.get(\\\"_source_file\\\", \\\"?\\\")\\n                    print(f\\\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', '?'):.4f})\\\")\\n                else:\\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\\n                    print(f\\\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\\\")\\n        return\\n\\n    if args.watch > 0:\\n        print(f\\\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\\\")\\n        prev_n = 0\\n        while True:\\n            md, js = run_once()\\n            cur_ced = len(js[\\\"status\\\"][\\\"CED_seeds_ready\\\"])\\n            cur_fnli = len(js[\\\"status\\\"][\\\"flatNLI_seeds_ready\\\"])\\n            cur_n = cur_ced + cur_fnli\\n            if cur_n != prev_n:\\n                print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n                prev_n = cur_n\\n                if js[\\\"status\\\"][\\\"all_complete\\\"]:\\n                    print(\\\"\\\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\\\")\\n                    break\\n            else:\\n                print(f\\\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\\\")\\n            time.sleep(args.watch)\\n    else:\\n        md, js = run_once()\\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n        print(f\\\"\\\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa29449d-0598-46d1-8d46-eade36f99dd1",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "88ebcb02-c378-4612-bcee-323b57348c99",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Seed-level comparison: flat-NLI RSFT vs CED RSFT.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, sys, time, argparse, math\\\\nfrom pathlib import Path\\\\nfrom datetime import datetime\\\\n\\\\n\\\\nclass NanSafeEncoder(json.JSONEncoder):\\\\n    def encode(self, o):\\\\n        text = super().encode(o)\\\\n        return text.replace(\\\\\\\"NaN\\\\\\\", \\\\\\\"null\\\\\\\").replace(\\\\\\\"Infinity\\\\\\\", '\\\\\\\"Inf\\\\\\\"')\\\\n\\\\n\\\\nEVAL_ROOT = Path(\\\\\\\"/root/autodl-tmp/eval_results\\\\\\\")\\\\nOUT_DIR = EVAL_ROOT\\\\n\\\\n# Priority order: _reeval_r2 > _reeval > original\\\\nMETHODS = {\\\\n    \\\\\\\"CED_RSFT\\\\\\\": {\\\\n        \\\\\\\"s42\\\\\\\": [\\\\\\\"rsft_ced_s42_reeval\\\\\\\", \\\\\\\"rsft_r2b_maxtok1536\\\\\\\"],\\\\n        \\\\\\\"s43\\\\\\\": [\\\\\\\"rsft_ced_s43\\\\\\\", \\\\\\\"rsft_s43\\\\\\\"],\\\\n        \\\\\\\"s44\\\\\\\": [\\\\\\\"rsft_ced_s44_reeval\\\\\\\", \\\\\\\"rsft_s44\\\\\\\"],\\\\n        \\\\\\\"s45\\\\\\\": \\\\\\\"rsft_ced_s45\\\\\\\",\\\\n    },\\\\n    \\\\\\\"flatNLI_RSFT\\\\\\\": {\\\\n        \\\\\\\"s42\\\\\\\": [\\\\\\\"rsft_flat_nli_s42_reeval\\\\\\\", \\\\\\\"rsft_flat_nli\\\\\\\"],\\\\n        \\\\\\\"s43\\\\\\\": [\\\\\\\"rsft_flat_nli_s43_reeval_r2\\\\\\\", \\\\\\\"rsft_flat_nli_s43_reeval\\\\\\\", \\\\\\\"rsft_flat_nli_s43\\\\\\\"],\\\\n        \\\\\\\"s44\\\\\\\": \\\\\\\"rsft_flat_nli_s44\\\\\\\",\\\\n        \\\\\\\"s45\\\\\\\": \\\\\\\"rsft_flat_nli_s45\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\nMETRICS_KEYS = [\\\\\\\"f1\\\\\\\", \\\\\\\"evi_f1\\\\\\\", \\\\\\\"edcr\\\\\\\"]\\\\nMETRIC_LABELS = {\\\\\\\"f1\\\\\\\": \\\\\\\"rel_f1\\\\\\\", \\\\\\\"evi_f1\\\\\\\": \\\\\\\"evi_f1\\\\\\\", \\\\\\\"edcr\\\\\\\": \\\\\\\"EDCR\\\\\\\"}\\\\n\\\\n\\\\ndef load_metrics(eval_dir_name):\\\\n    if isinstance(eval_dir_name, list):\\\\n        for name in eval_dir_name:\\\\n            result = load_metrics(name)\\\\n            if result is not None:\\\\n                return result\\\\n        return None\\\\n    d = EVAL_ROOT / eval_dir_name\\\\n    p = d / \\\\\\\"metrics_v2.json\\\\\\\"\\\\n    if not p.exists():\\\\n        p = d / \\\\\\\"metrics.json\\\\\\\"\\\\n    if not p.exists():\\\\n        return None\\\\n    with open(p) as f:\\\\n        m = json.load(f)\\\\n    if m.get(\\\\\\\"field_compliance_rate\\\\\\\", 0) == 0 or m.get(\\\\\\\"f1\\\\\\\", 0) < 0.01:\\\\n        return None\\\\n    m[\\\\\\\"_source_dir\\\\\\\"] = eval_dir_name\\\\n    m[\\\\\\\"_source_file\\\\\\\"] = p.name\\\\n    return m\\\\n\\\\n\\\\ndef mean(vals):\\\\n    return sum(vals) / len(vals) if vals else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\ndef std(vals):\\\\n    if len(vals) < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    m = mean(vals)\\\\n    return math.sqrt(sum((v - m) ** 2 for v in vals) / (len(vals) - 1))\\\\n\\\\ndef cohens_d(a, b):\\\\n    if len(a) < 2 or len(b) < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    diffs = [x - y for x, y in zip(a, b)]\\\\n    d_mean, d_std = mean(diffs), std(diffs)\\\\n    if d_std == 0:\\\\n        return float(\\\\\\\"inf\\\\\\\") if d_mean != 0 else 0.0\\\\n    return d_mean / d_std\\\\n\\\\ndef paired_ttest(a, b):\\\\n    n = len(a)\\\\n    if n < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"), n\\\\n    diffs = [x - y for x, y in zip(a, b)]\\\\n    d_mean, d_std = mean(diffs), std(diffs)\\\\n    if d_std == 0:\\\\n        return (float(\\\\\\\"inf\\\\\\\") if d_mean != 0 else 0.0), 0.0, n\\\\n    t_stat = d_mean / (d_std / math.sqrt(n))\\\\n    try:\\\\n        from scipy import stats as sp_stats\\\\n        p_val = sp_stats.t.sf(abs(t_stat), df=n - 1) * 2\\\\n    except ImportError:\\\\n        p_val = None\\\\n    return t_stat, p_val, n\\\\n\\\\ndef ci_95(vals):\\\\n    n = len(vals)\\\\n    if n < 2:\\\\n        return (float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"))\\\\n    m, s = mean(vals), std(vals)\\\\n    t_crit_map = {2: 12.706, 3: 4.303, 4: 3.182, 5: 2.776}\\\\n    t_crit = t_crit_map.get(n, 2.0)\\\\n    margin = t_crit * s / math.sqrt(n)\\\\n    return (m - margin, m + margin)\\\\n\\\\n\\\\ndef build_comparison():\\\\n    seeds = [\\\\\\\"s42\\\\\\\", \\\\\\\"s43\\\\\\\", \\\\\\\"s44\\\\\\\", \\\\\\\"s45\\\\\\\"]\\\\n    data = {}\\\\n    sources = {}\\\\n    for method, seed_dirs in METHODS.items():\\\\n        data[method] = {}\\\\n        sources[method] = {}\\\\n        for seed in seeds:\\\\n            dir_name = seed_dirs.get(seed)\\\\n            if dir_name is None:\\\\n                continue\\\\n            m = load_metrics(dir_name)\\\\n            if m is not None:\\\\n                sources[method][seed] = {\\\\\\\"dir\\\\\\\": m.pop(\\\\\\\"_source_dir\\\\\\\"), \\\\\\\"file\\\\\\\": m.pop(\\\\\\\"_source_file\\\\\\\")}\\\\n                data[method][seed] = {k: m[k] for k in METRICS_KEYS if k in m}\\\\n    return data, seeds, sources\\\\n\\\\n\\\\ndef fv(v, fmt=\\\\\\\".4f\\\\\\\"):\\\\n    if v is None or (isinstance(v, float) and math.isnan(v)):\\\\n        return \\\\\\\"—\\\\\\\"\\\\n    return f\\\\\\\"{v:{fmt}}\\\\\\\"\\\\n\\\\n\\\\ndef generate_report(data, seeds, sources):\\\\n    lines = []\\\\n    lines.append(\\\\\\\"# flat-NLI vs CED RSFT: Seed-Level Comparison\\\\\\\")\\\\n    lines.append(f\\\\\\\"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    ced_ready = list(data.get(\\\\\\\"CED_RSFT\\\\\\\", {}).keys())\\\\n  \\\\n\\\\n... [截断: 输出过长，省略 3086 字符] ...\\\\n\\\\n      lines.append(f\\\\\\\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  - Cohen's d: {fv(d, '.3f')}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\\\\\\\")\\\\n            if n < 4:\\\\n                lines.append(f\\\\\\\"  - ⚠ N={n} < 4, waiting for more seeds\\\\\\\")\\\\n            stat_info = {\\\\\\\"t_stat\\\\\\\": t_stat, \\\\\\\"p_value\\\\\\\": p_val, \\\\\\\"cohens_d\\\\\\\": d, \\\\\\\"ci_95\\\\\\\": [ci_lo, ci_hi], \\\\\\\"n_paired\\\\\\\": n}\\\\n        else:\\\\n            lines.append(f\\\\\\\"  - ⚠ {len(matched)} matched seed(s), need >=2 for paired stats\\\\\\\")\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n        json_out[\\\\\\\"summary\\\\\\\"][label] = {\\\\n            \\\\\\\"CED_mean\\\\\\\": ced_m, \\\\\\\"CED_std\\\\\\\": ced_s, \\\\\\\"CED_n\\\\\\\": len(ced_vals),\\\\n            \\\\\\\"fNLI_mean\\\\\\\": fnli_m, \\\\\\\"fNLI_std\\\\\\\": fnli_s, \\\\\\\"fNLI_n\\\\\\\": len(fnli_vals),\\\\n            \\\\\\\"delta\\\\\\\": delta, **stat_info,\\\\n        }\\\\n\\\\n    for seed in seeds:\\\\n        json_out[\\\\\\\"per_seed\\\\\\\"][seed] = {}\\\\n        for method in [\\\\\\\"CED_RSFT\\\\\\\", \\\\\\\"flatNLI_RSFT\\\\\\\"]:\\\\n            if seed in data.get(method, {}):\\\\n                json_out[\\\\\\\"per_seed\\\\\\\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\\\\n\\\\n    json_out[\\\\\\\"status\\\\\\\"] = {\\\\n        \\\\\\\"CED_seeds_ready\\\\\\\": ced_ready,\\\\n        \\\\\\\"flatNLI_seeds_ready\\\\\\\": fnli_ready,\\\\n        \\\\\\\"missing_CED\\\\\\\": missing_ced,\\\\n        \\\\\\\"missing_flatNLI\\\\\\\": missing_fnli,\\\\n        \\\\\\\"all_complete\\\\\\\": len(ced_ready) == 4 and len(fnli_ready) == 4,\\\\n    }\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines), json_out\\\\n\\\\n\\\\ndef run_once():\\\\n    data, seeds, sources = build_comparison()\\\\n    md, js = generate_report(data, seeds, sources)\\\\n    (OUT_DIR / \\\\\\\"seed_comparison.md\\\\\\\").write_text(md)\\\\n    (OUT_DIR / \\\\\\\"seed_comparison.json\\\\\\\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\\\\n    return md, js\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--watch\\\\\\\", type=int, default=0, help=\\\\\\\"Watch interval in seconds\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--json-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Print what would be loaded without writing files\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.dry_run:\\\\n        seeds = [\\\\\\\"s42\\\\\\\", \\\\\\\"s43\\\\\\\", \\\\\\\"s44\\\\\\\", \\\\\\\"s45\\\\\\\"]\\\\n        for method, seed_dirs in METHODS.items():\\\\n            print(f\\\\\\\"\\\\\\\\n=== {method} ===\\\\\\\")\\\\n            for seed in seeds:\\\\n                dir_name = seed_dirs.get(seed)\\\\n                if dir_name is None:\\\\n                    print(f\\\\\\\"  {seed}: NOT CONFIGURED\\\\\\\")\\\\n                    continue\\\\n                m = load_metrics(dir_name)\\\\n                if m is not None:\\\\n                    src_dir = m.get(\\\\\\\"_source_dir\\\\\\\", \\\\\\\"?\\\\\\\")\\\\n                    src_file = m.get(\\\\\\\"_source_file\\\\\\\", \\\\\\\"?\\\\\\\")\\\\n                    print(f\\\\\\\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', '?'):.4f})\\\\\\\")\\\\n                else:\\\\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\\\\n                    print(f\\\\\\\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\\\\\\\")\\\\n        return\\\\n\\\\n    if args.watch > 0:\\\\n        print(f\\\\\\\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\\\\\\\")\\\\n        prev_n = 0\\\\n        while True:\\\\n            md, js = run_once()\\\\n            cur_ced = len(js[\\\\\\\"status\\\\\\\"][\\\\\\\"CED_seeds_ready\\\\\\\"])\\\\n            cur_fnli = len(js[\\\\\\\"status\\\\\\\"][\\\\\\\"flatNLI_seeds_ready\\\\\\\"])\\\\n            cur_n = cur_ced + cur_fnli\\\\n            if cur_n != prev_n:\\\\n                print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\\\n                prev_n = cur_n\\\\n                if js[\\\\\\\"status\\\\\\\"][\\\\\\\"all_complete\\\\\\\"]:\\\\n                    print(\\\\\\\"\\\\\\\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\\\\\\\")\\\\n                    break\\\\n            else:\\\\n                print(f\\\\\\\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\\\\\\\")\\\\n            time.sleep(args.watch)\\\\n    else:\\\\n        md, js = run_once()\\\\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\\\n        print(f\\\\\\\"\\\\\\\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.88}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Seed-level comparison: flat-NLI RSFT vs CED RSFT.\\\"\\\"\\\"\\n\\nimport json, os, sys, time, argparse, math\\nfrom pathlib import Path\\nfrom datetime import datetime\\n\\n\\nclass NanSafeEncoder(json.JSONEncoder):\\n    def encode(self, o):\\n        text = super().encode(o)\\n        return text.replace(\\\"NaN\\\", \\\"null\\\").replace(\\\"Infinity\\\", '\\\"Inf\\\"')\\n\\n\\nEVAL_ROOT = Path(\\\"/root/autodl-tmp/eval_results\\\")\\nOUT_DIR = EVAL_ROOT\\n\\n# Priority order: _reeval_r2 > _reeval > original\\nMETHODS = {\\n    \\\"CED_RSFT\\\": {\\n        \\\"s42\\\": [\\\"rsft_ced_s42_reeval\\\", \\\"rsft_r2b_maxtok1536\\\"],\\n        \\\"s43\\\": [\\\"rsft_ced_s43\\\", \\\"rsft_s43\\\"],\\n        \\\"s44\\\": [\\\"rsft_ced_s44_reeval\\\", \\\"rsft_s44\\\"],\\n        \\\"s45\\\": \\\"rsft_ced_s45\\\",\\n    },\\n    \\\"flatNLI_RSFT\\\": {\\n        \\\"s42\\\": [\\\"rsft_flat_nli_s42_reeval\\\", \\\"rsft_flat_nli\\\"],\\n        \\\"s43\\\": [\\\"rsft_flat_nli_s43_reeval_r2\\\", \\\"rsft_flat_nli_s43_reeval\\\", \\\"rsft_flat_nli_s43\\\"],\\n        \\\"s44\\\": \\\"rsft_flat_nli_s44\\\",\\n        \\\"s45\\\": \\\"rsft_flat_nli_s45\\\",\\n    },\\n}\\n\\nMETRICS_KEYS = [\\\"f1\\\", \\\"evi_f1\\\", \\\"edcr\\\"]\\nMETRIC_LABELS = {\\\"f1\\\": \\\"rel_f1\\\", \\\"evi_f1\\\": \\\"evi_f1\\\", \\\"edcr\\\": \\\"EDCR\\\"}\\n\\n\\ndef load_metrics(eval_dir_name):\\n    if isinstance(eval_dir_name, list):\\n        for name in eval_dir_name:\\n            result = load_metrics(name)\\n            if result is not None:\\n                return result\\n        return None\\n    d = EVAL_ROOT / eval_dir_name\\n    p = d / \\\"metrics_v2.json\\\"\\n    if not p.exists():\\n        p = d / \\\"metrics.json\\\"\\n    if not p.exists():\\n        return None\\n    with open(p) as f:\\n        m = json.load(f)\\n    if m.get(\\\"field_compliance_rate\\\", 0) == 0 or m.get(\\\"f1\\\", 0) < 0.01:\\n        return None\\n    m[\\\"_source_dir\\\"] = eval_dir_name\\n    m[\\\"_source_file\\\"] = p.name\\n    return m\\n\\n\\ndef mean(vals):\\n    return sum(vals) / len(vals) if vals else float(\\\"nan\\\")\\n\\ndef std(vals):\\n    if len(vals) < 2:\\n        return float(\\\"nan\\\")\\n    m = mean(vals)\\n    return math.sqrt(sum((v - m) ** 2 for v in vals) / (len(vals) - 1))\\n\\ndef cohens_d(a, b):\\n    if len(a) < 2 or len(b) < 2:\\n        return float(\\\"nan\\\")\\n    diffs = [x - y for x, y in zip(a, b)]\\n    d_mean, d_std = mean(diffs), std(diffs)\\n    if d_std == 0:\\n        return float(\\\"inf\\\") if d_mean != 0 else 0.0\\n    return d_mean / d_std\\n\\ndef paired_ttest(a, b):\\n    n = len(a)\\n    if n < 2:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\"), n\\n    diffs = [x - y for x, y in zip(a, b)]\\n    d_mean, d_std = mean(diffs), std(diffs)\\n    if d_std == 0:\\n        return (float(\\\"inf\\\") if d_mean != 0 else 0.0), 0.0, n\\n    t_stat = d_mean / (d_std / math.sqrt(n))\\n    try:\\n        from scipy import stats as sp_stats\\n        p_val = sp_stats.t.sf(abs(t_stat), df=n - 1) * 2\\n    except ImportError:\\n        p_val = None\\n    return t_stat, p_val, n\\n\\ndef ci_95(vals):\\n    n = len(vals)\\n    if n < 2:\\n        return (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n    m, s = mean(vals), std(vals)\\n    t_crit_map = {2: 12.706, 3: 4.303, 4: 3.182, 5: 2.776}\\n    t_crit = t_crit_map.get(n, 2.0)\\n    margin = t_crit * s / math.sqrt(n)\\n    return (m - margin, m + margin)\\n\\n\\ndef build_comparison():\\n    seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n    data = {}\\n    sources = {}\\n    for method, seed_dirs in METHODS.items():\\n        data[method] = {}\\n        sources[method] = {}\\n        for seed in seeds:\\n            dir_name = seed_dirs.get(seed)\\n            if dir_name is None:\\n                continue\\n            m = load_metrics(dir_name)\\n            if m is not None:\\n                sources[method][seed] = {\\\"dir\\\": m.pop(\\\"_source_dir\\\"), \\\"file\\\": m.pop(\\\"_source_file\\\")}\\n                data[method][seed] = {k: m[k] for k in METRICS_KEYS if k in m}\\n    return data, seeds, sources\\n\\n\\ndef fv(v, fmt=\\\".4f\\\"):\\n    if v is None or (isinstance(v, float) and math.isnan(v)):\\n        return \\\"—\\\"\\n    return f\\\"{v:{fmt}}\\\"\\n\\n\\ndef generate_report(data, seeds, sources):\\n    lines = []\\n    lines.append(\\\"# flat-NLI vs CED RSFT: Seed-Level Comparison\\\")\\n    lines.append(f\\\"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\\")\\n    lines.append(\\\"\\\")\\n\\n    ced_ready = list(data.get(\\\"CED_RSFT\\\", {}).keys())\\n  \\n\\n... [截断: 输出过长，省略 3086 字符] ...\\n\\n      lines.append(f\\\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\\\")\\n            lines.append(f\\\"  - Cohen's d: {fv(d, '.3f')}\\\")\\n            lines.append(f\\\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\\\")\\n            if n < 4:\\n                lines.append(f\\\"  - ⚠ N={n} < 4, waiting for more seeds\\\")\\n            stat_info = {\\\"t_stat\\\": t_stat, \\\"p_value\\\": p_val, \\\"cohens_d\\\": d, \\\"ci_95\\\": [ci_lo, ci_hi], \\\"n_paired\\\": n}\\n        else:\\n            lines.append(f\\\"  - ⚠ {len(matched)} matched seed(s), need >=2 for paired stats\\\")\\n        lines.append(\\\"\\\")\\n\\n        json_out[\\\"summary\\\"][label] = {\\n            \\\"CED_mean\\\": ced_m, \\\"CED_std\\\": ced_s, \\\"CED_n\\\": len(ced_vals),\\n            \\\"fNLI_mean\\\": fnli_m, \\\"fNLI_std\\\": fnli_s, \\\"fNLI_n\\\": len(fnli_vals),\\n            \\\"delta\\\": delta, **stat_info,\\n        }\\n\\n    for seed in seeds:\\n        json_out[\\\"per_seed\\\"][seed] = {}\\n        for method in [\\\"CED_RSFT\\\", \\\"flatNLI_RSFT\\\"]:\\n            if seed in data.get(method, {}):\\n                json_out[\\\"per_seed\\\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\\n\\n    json_out[\\\"status\\\"] = {\\n        \\\"CED_seeds_ready\\\": ced_ready,\\n        \\\"flatNLI_seeds_ready\\\": fnli_ready,\\n        \\\"missing_CED\\\": missing_ced,\\n        \\\"missing_flatNLI\\\": missing_fnli,\\n        \\\"all_complete\\\": len(ced_ready) == 4 and len(fnli_ready) == 4,\\n    }\\n    return \\\"\\\\n\\\".join(lines), json_out\\n\\n\\ndef run_once():\\n    data, seeds, sources = build_comparison()\\n    md, js = generate_report(data, seeds, sources)\\n    (OUT_DIR / \\\"seed_comparison.md\\\").write_text(md)\\n    (OUT_DIR / \\\"seed_comparison.json\\\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\\n    return md, js\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--watch\\\", type=int, default=0, help=\\\"Watch interval in seconds\\\")\\n    parser.add_argument(\\\"--json-only\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print what would be loaded without writing files\\\")\\n    args = parser.parse_args()\\n\\n    if args.dry_run:\\n        seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n        for method, seed_dirs in METHODS.items():\\n            print(f\\\"\\\\n=== {method} ===\\\")\\n            for seed in seeds:\\n                dir_name = seed_dirs.get(seed)\\n                if dir_name is None:\\n                    print(f\\\"  {seed}: NOT CONFIGURED\\\")\\n                    continue\\n                m = load_metrics(dir_name)\\n                if m is not None:\\n                    src_dir = m.get(\\\"_source_dir\\\", \\\"?\\\")\\n                    src_file = m.get(\\\"_source_file\\\", \\\"?\\\")\\n                    print(f\\\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', '?'):.4f})\\\")\\n                else:\\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\\n                    print(f\\\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\\\")\\n        return\\n\\n    if args.watch > 0:\\n        print(f\\\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\\\")\\n        prev_n = 0\\n        while True:\\n            md, js = run_once()\\n            cur_ced = len(js[\\\"status\\\"][\\\"CED_seeds_ready\\\"])\\n            cur_fnli = len(js[\\\"status\\\"][\\\"flatNLI_seeds_ready\\\"])\\n            cur_n = cur_ced + cur_fnli\\n            if cur_n != prev_n:\\n                print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n                prev_n = cur_n\\n                if js[\\\"status\\\"][\\\"all_complete\\\"]:\\n                    print(\\\"\\\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\\\")\\n                    break\\n            else:\\n                print(f\\\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\\\")\\n            time.sleep(args.watch)\\n    else:\\n        md, js = run_once()\\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n        print(f\\\"\\\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"
+    }
+  },
+  "sourceToolAssistantUUID": "aa29449d-0598-46d1-8d46-eade36f99dd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T03:48:24.054Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013RA4pnTK2gwNG7SG9knQnr`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "88ebcb02-c378-4612-bcee-323b57348c99",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZfcdRGF9umNJr8wLFb",
+  "type": "assistant",
+  "uuid": "f8f7f159-59d6-4f4a-a0ec-103626550410",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QFo4N16uGzfSvj4kp9uMpn",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 724,
+      "cache_read_input_tokens": 24267,
+      "output_tokens": 324,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 724,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 324,
+          "cache_read_input_tokens": 24267,
+          "cache_creation_input_tokens": 724,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 724
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f8f7f159-59d6-4f4a-a0ec-103626550410",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify seed comparison and paired t-test scripts",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T03:48:24.313Z_
+
+<details><summary>↩ Tool result · `toolu_01TuonV6vt4FeGjyqKjsusuu`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/artifacts/paired_ttest_analysis.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f4dab68e-03af-4ac9-91a5-f7ed98a4cb74",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "ff3e63e4-06ba-493d-b3ce-00108070c06d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/artifacts/paired_ttest_analysis.py: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/artifacts/paired_ttest_analysis.py: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f4dab68e-03af-4ac9-91a5-f7ed98a4cb74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T03:48:24.704Z_
+
+<details><summary>↩ Tool result · `toolu_013RA4pnTK2gwNG7SG9knQnr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3seed_summary.json\\nbf16_g8_step30\\nbf16_g8_step50\\nced_reranker_dryrun\\nced_reranker_poc\\nced_reranker_poc_dryrun\\ncross_method_table.json\\ndpo_ced_1ep\\ndpo_ced_1ep_fixed\\ndpo_ced_ckpt400\\nedcr_analysis.json\\nedcr_analysis_r2b.md\\nedcr_diagnostic.json\\nedcr_diagnostic.tex\\nedcr_diagnostic_table.csv\\nedcr_diagnostic_table.md\\nedcr_diagnostic_v2.json\\nedcr_diagnostic_v2.tex\\nedcr_per_relation_analysis.json\\nedcr_per_relation_analysis.md\\nevi_f1_joint_comparison.json\\ngrpo_ced_kl001\\ngrpo_ced_kl001_step100\\ngrpo_ced_lr5e6\\ngrpo_ced_lr5e6_ckpt60\\ngrpo_ced_lr5e6_rp\\ngrpo_extract_r4_step10\\ngrpo_flatnli_r3\\ngrpo_g8_bf16\\ngrpo_g8_bf16_ckpt100\\nlr5e6_r1_ckpt100\\nlr5e6_r1_ckpt40\\nlr5e6_r1_ckpt60\\nlr5e6_r1_ckpt80\\npaper_metrics_corrected.md\\nplan_011_bf16_g8_step30\\nplan_011_bf16_g8_step50\\nplan_011_bf16_g8_step70\\nrsft_ced_s43\\nrsft_ced_s45\\nrsft_flat_nli\\nrsft_flat_nli_s43\\nrsft_flat_nli_s43_reeval\\nrsft_flat_nli_s43_reeval_r2\\nrsft_flat_nli_s44\\nrsft_flat_nli_s45\\nrsft_r1\\nrsft_r2a\\nrsft_r2b\\nrsft_r2b_maxtok1536\\nrsft_s43\\nrsft_s44\\nrsft_topk3\\nrsft_topk3_fixed\\nrsft_topk3_reeval\\nseed_comparison.json\\nseed_comparison.md\\nseed_status_summary.md\\nsft\\nsft_baseline_noquant\\nsft_no_evidence\\nsft_no_evidence_noquant\\ntest_rsft_s44\\ntest_rsft_s44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8f7f159-59d6-4f4a-a0ec-103626550410",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "45c50905-c1e4-4b60-9f5b-0bea8027ce87",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3seed_summary.json\\\\nbf16_g8_step30\\\\nbf16_g8_step50\\\\nced_reranker_dryrun\\\\nced_reranker_poc\\\\nced_reranker_poc_dryrun\\\\ncross_method_table.json\\\\ndpo_ced_1ep\\\\ndpo_ced_1ep_fixed\\\\ndpo_ced_ckpt400\\\\nedcr_analysis.json\\\\nedcr_analysis_r2b.md\\\\nedcr_diagnostic.json\\\\nedcr_diagnostic.tex\\\\nedcr_diagnostic_table.csv\\\\nedcr_diagnostic_table.md\\\\nedcr_diagnostic_v2.json\\\\nedcr_diagnostic_v2.tex\\\\nedcr_per_relation_analysis.json\\\\nedcr_per_relation_analysis.md\\\\nevi_f1_joint_comparison.json\\\\ngrpo_ced_kl001\\\\ngrpo_ced_kl001_step100\\\\ngrpo_ced_lr5e6\\\\ngrpo_ced_lr5e6_ckpt60\\\\ngrpo_ced_lr5e6_rp\\\\ngrpo_extract_r4_step10\\\\ngrpo_flatnli_r3\\\\ngrpo_g8_bf16\\\\ngrpo_g8_bf16_ckpt100\\\\nlr5e6_r1_ckpt100\\\\nlr5e6_r1_ckpt40\\\\nlr5e6_r1_ckpt60\\\\nlr5e6_r1_ckpt80\\\\npaper_metrics_corrected.md\\\\nplan_011_bf16_g8_step30\\\\nplan_011_bf16_g8_step50\\\\nplan_011_bf16_g8_step70\\\\nrsft_ced_s43\\\\nrsft_ced_s45\\\\nrsft_flat_nli\\\\nrsft_flat_nli_s43\\\\nrsft_flat_nli_s43_reeval\\\\nrsft_flat_nli_s43_reeval_r2\\\\nrsft_flat_nli_s44\\\\nrsft_flat_nli_s45\\\\nrsft_r1\\\\nrsft_r2a\\\\nrsft_r2b\\\\nrsft_r2b_maxtok1536\\\\nrsft_s43\\\\nrsft_s44\\\\nrsft_topk3\\\\nrsft_topk3_fixed\\\\nrsft_topk3_reeval\\\\nseed_comparison.json\\\\nseed_comparison.md\\\\nseed_status_summary.md\\\\nsft\\\\nsft_baseline_noquant\\\\nsft_no_evidence\\\\nsft_no_evidence_noquant\\\\ntest_rsft_s44\\\\ntest_rsft_s44.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"3seed_summary.json\\nbf16_g8_step30\\nbf16_g8_step50\\nced_reranker_dryrun\\nced_reranker_poc\\nced_reranker_poc_dryrun\\ncross_method_table.json\\ndpo_ced_1ep\\ndpo_ced_1ep_fixed\\ndpo_ced_ckpt400\\nedcr_analysis.json\\nedcr_analysis_r2b.md\\nedcr_diagnostic.json\\nedcr_diagnostic.tex\\nedcr_diagnostic_table.csv\\nedcr_diagnostic_table.md\\nedcr_diagnostic_v2.json\\nedcr_diagnostic_v2.tex\\nedcr_per_relation_analysis.json\\nedcr_per_relation_analysis.md\\nevi_f1_joint_comparison.json\\ngrpo_ced_kl001\\ngrpo_ced_kl001_step100\\ngrpo_ced_lr5e6\\ngrpo_ced_lr5e6_ckpt60\\ngrpo_ced_lr5e6_rp\\ngrpo_extract_r4_step10\\ngrpo_flatnli_r3\\ngrpo_g8_bf16\\ngrpo_g8_bf16_ckpt100\\nlr5e6_r1_ckpt100\\nlr5e6_r1_ckpt40\\nlr5e6_r1_ckpt60\\nlr5e6_r1_ckpt80\\npaper_metrics_corrected.md\\nplan_011_bf16_g8_step30\\nplan_011_bf16_g8_step50\\nplan_011_bf16_g8_step70\\nrsft_ced_s43\\nrsft_ced_s45\\nrsft_flat_nli\\nrsft_flat_nli_s43\\nrsft_flat_nli_s43_reeval\\nrsft_flat_nli_s43_reeval_r2\\nrsft_flat_nli_s44\\nrsft_flat_nli_s45\\nrsft_r1\\nrsft_r2a\\nrsft_r2b\\nrsft_r2b_maxtok1536\\nrsft_s43\\nrsft_s44\\nrsft_topk3\\nrsft_topk3_fixed\\nrsft_topk3_reeval\\nseed_comparison.json\\nseed_comparison.md\\nseed_status_summary.md\\nsft\\nsft_baseline_noquant\\nsft_no_evidence\\nsft_no_evidence_noquant\\ntest_rsft_s44\\ntest_rsft_s44.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.37}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f8f7f159-59d6-4f4a-a0ec-103626550410",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-16T03:48:45.301Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings so far:
+
+1. `paired_ttest_analysis.py` doesn't exist at the given path
+2. `seed_comparison.py` exists and I've read most of it (output was truncated in the middle of `generate_report`)
+
+From `seed_comparison.py`:
+- It reads `metrics_v2.json` first, falls back to `metrics.json` - this is correct
+- METRICS_KEYS = ["f1", "evi_f1", "edcr"] — but no "ign_f1" key! The task says Ign-F1 must be from metrics_v2.json
+
+
+- The script maps method names to their eval_results directories in the METHODS dict
+
+Now I'm checking which directories actually exist in eval_results. Some expected ones like rsft_ced_s42_reeval and rsft_ced_s44_reeval aren't there, while others like rsft_flat_nli_s43_reeval_r2 are present.
+
+The mappings have fallbacks — when a primary directory doesn't exist, the script falls back to an older protocol version, so CED s42 would use rsft_r2b_maxtok1536 instead of the missing reeval directory. I'm seeing some critical issues with the evaluation setup. The script is missing the Ign-F1 metric that the paper requires in its main table, and it's falling back to old protocol results when reeval directories don't exist — which could silently contaminate the paired t-test analysis that needs only unified protocol data. I should check what metrics are actually available in metrics_v2.json and verify whether the paired t-test functionality exists or needs to be created.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "45c50905-c1e4-4b60-9f5b-0bea8027ce87",
+  "isSidechain": false,
+  "requestId": "req_011Cb5Zg19kF9i6TouztHEto",
+  "type": "assistant",
+  "uuid": "5cac8652-6607-448c-a2b2-19a5dbc81d0b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jAVy3RkXE8PDxwV1C7Bhs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5152,
+      "cache_read_input_tokens": 24991,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 24991,
+          "cache_creation_input_tokens": 5152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-16T03:48:45.325Z_
+
+`paired_ttest_analysis.py` 不存在。`seed_comparison.py` 输出被截断了，我需要看完整内容和 metrics_v2.json 的字段。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cac8652-6607-448c-a2b2-19a5dbc81d0b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5Zg19kF9i6TouztHEto",
+  "type": "assistant",
+  "uuid": "d81ba767-04a3-4ba5-8d2e-c7d569196b56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jAVy3RkXE8PDxwV1C7Bhs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5152,
+      "cache_read_input_tokens": 24991,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 24991,
+          "cache_creation_input_tokens": 5152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T03:48:45.978Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DgKgc4VSjNQw2zmDQEZevE`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "wc -l /root/autodl-tmp/scripts/seed_comparison.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d81ba767-04a3-4ba5-8d2e-c7d569196b56",
+  "isSidechain": false,
+  "requestId": "req_011Cb5Zg19kF9i6TouztHEto",
+  "type": "assistant",
+  "uuid": "ac889fd6-69ba-4b1c-b815-f74652412730",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jAVy3RkXE8PDxwV1C7Bhs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5152,
+      "cache_read_input_tokens": 24991,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 24991,
+          "cache_creation_input_tokens": 5152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T03:48:46.302Z_
+
+<details><summary>↩ Tool result · `toolu_01DgKgc4VSjNQw2zmDQEZevE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"283 /root/autodl-tmp/scripts/seed_comparison.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac889fd6-69ba-4b1c-b815-f74652412730",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "33fa4ef3-6543-43e0-8316-590df19b7157",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"283 /root/autodl-tmp/scripts/seed_comparison.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"283 /root/autodl-tmp/scripts/seed_comparison.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ac889fd6-69ba-4b1c-b815-f74652412730",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T03:48:46.999Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CnVoApRpggQ6AVKXHB4sED`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_ced_s43/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33fa4ef3-6543-43e0-8316-590df19b7157",
+  "isSidechain": false,
+  "requestId": "req_011Cb5Zg19kF9i6TouztHEto",
+  "type": "assistant",
+  "uuid": "78f9f321-bb51-42f4-90b7-6cc108d1a26c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jAVy3RkXE8PDxwV1C7Bhs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5152,
+      "cache_read_input_tokens": 24991,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 24991,
+          "cache_creation_input_tokens": 5152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T03:48:47.330Z_
+
+<details><summary>↩ Tool result · `toolu_01CnVoApRpggQ6AVKXHB4sED`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/rsft_ced_s43/metrics_v2.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "78f9f321-bb51-42f4-90b7-6cc108d1a26c",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "9ac99be2-ba59-4bd9-ac2d-bcb607de8edb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/eval_results/rsft_ced_s43/metrics_v2.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/eval_results/rsft_ced_s43/metrics_v2.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "78f9f321-bb51-42f4-90b7-6cc108d1a26c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T03:48:48.033Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013sKRCFzKC1yaWk4hzktBFT`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/artifacts/ -name \"paired*\" -o -name \"*ttest*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ac99be2-ba59-4bd9-ac2d-bcb607de8edb",
+  "isSidechain": false,
+  "requestId": "req_011Cb5Zg19kF9i6TouztHEto",
+  "type": "assistant",
+  "uuid": "0df044d4-09af-476c-ad0d-b63ea7fbe977",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017jAVy3RkXE8PDxwV1C7Bhs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5152,
+      "cache_read_input_tokens": 24991,
+      "output_tokens": 1405,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5152,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1405,
+          "cache_read_input_tokens": 24991,
+          "cache_creation_input_tokens": 5152,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5152
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T03:48:48.355Z_
+
+<details><summary>↩ Tool result · `toolu_013sKRCFzKC1yaWk4hzktBFT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0df044d4-09af-476c-ad0d-b63ea7fbe977",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "1edf652c-5b83-4b5d-bdd3-bccc5bda7e78",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0df044d4-09af-476c-ad0d-b63ea7fbe977",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-16T03:48:54.296Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So:
+- `paired_ttest_analysis.py` doesn't exist anywhere in artifacts
+- `metrics_v2.json` doesn't exist for rsft_ced_s43 — let me check what files are there
+- seed_comparison.py is 283 lines, I got about 200 lines, need the rest
+
+Let me check what metrics files exist and read the truncated part of the script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1edf652c-5b83-4b5d-bdd3-bccc5bda7e78",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZhkHqievZ2F6VCfrqf",
+  "type": "assistant",
+  "uuid": "a665b470-2db0-4ee7-8976-37859f1de323",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7N9EjrMpkDqEJm5B9AtsT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1766,
+      "cache_read_input_tokens": 30143,
+      "output_tokens": 456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 456,
+          "cache_read_input_tokens": 30143,
+          "cache_creation_input_tokens": 1766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T03:48:55.008Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VoG6JY4rzWbzJH1eH3q6TU`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/rsft_ced_s43/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a665b470-2db0-4ee7-8976-37859f1de323",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZhkHqievZ2F6VCfrqf",
+  "type": "assistant",
+  "uuid": "6008951c-54ed-45f2-8659-a5eb3a53c598",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7N9EjrMpkDqEJm5B9AtsT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1766,
+      "cache_read_input_tokens": 30143,
+      "output_tokens": 456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 456,
+          "cache_read_input_tokens": 30143,
+          "cache_creation_input_tokens": 1766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T03:48:55.347Z_
+
+<details><summary>↩ Tool result · `toolu_01VoG6JY4rzWbzJH1eH3q6TU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6008951c-54ed-45f2-8659-a5eb3a53c598",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "eea039dc-e999-416c-a0e6-4a30176f953c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6008951c-54ed-45f2-8659-a5eb3a53c598",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T03:48:55.757Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UhviacZvZmH6dS6wQNpXGt`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -n 120 /root/autodl-tmp/scripts/seed_comparison.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eea039dc-e999-416c-a0e6-4a30176f953c",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZhkHqievZ2F6VCfrqf",
+  "type": "assistant",
+  "uuid": "09461822-7b27-46e2-946a-6798ff48176f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7N9EjrMpkDqEJm5B9AtsT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1766,
+      "cache_read_input_tokens": 30143,
+      "output_tokens": 456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 456,
+          "cache_read_input_tokens": 30143,
+          "cache_creation_input_tokens": 1766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T03:48:56.084Z_
+
+<details><summary>↩ Tool result · `toolu_01UhviacZvZmH6dS6wQNpXGt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        lines.append(f\\\"| {seed} | {fv(ced.get('f1'))} | {fv(fnli.get('f1'))} | {fv(ced.get('evi_f1'))} | {fv(fnli.get('evi_f1'))} | {fv(ced.get('edcr'))} | {fv(fnli.get('edcr'))} |\\\")\\n    lines.append(\\\"\\\")\\n\\n    # Summary stats\\n    lines.append(\\\"## Summary Statistics\\\")\\n    lines.append(\\\"\\\")\\n    json_out = {\\\"per_seed\\\": {}, \\\"summary\\\": {}, \\\"sources\\\": sources}\\n\\n    for mk, label in METRIC_LABELS.items():\\n        ced_vals = [data[\\\"CED_RSFT\\\"][s][mk] for s in seeds if s in data.get(\\\"CED_RSFT\\\", {}) and mk in data[\\\"CED_RSFT\\\"].get(s, {})]\\n        fnli_vals = [data[\\\"flatNLI_RSFT\\\"][s][mk] for s in seeds if s in data.get(\\\"flatNLI_RSFT\\\", {}) and mk in data[\\\"flatNLI_RSFT\\\"].get(s, {})]\\n        ced_m, ced_s = mean(ced_vals), std(ced_vals)\\n        fnli_m, fnli_s = mean(fnli_vals), std(fnli_vals)\\n        delta = fnli_m - ced_m if not (math.isnan(fnli_m) or math.isnan(ced_m)) else float(\\\"nan\\\")\\n\\n        lines.append(f\\\"**{label}**:\\\")\\n        lines.append(f\\\"  - CED:  {fv(ced_m)} ± {fv(ced_s)} (n={len(ced_vals)})\\\")\\n        lines.append(f\\\"  - fNLI: {fv(fnli_m)} ± {fv(fnli_s)} (n={len(fnli_vals)})\\\")\\n        lines.append(f\\\"  - Delta (fNLI - CED): {fv(delta, '+.4f')}\\\")\\n\\n        matched = [s for s in seeds if s in data.get(\\\"CED_RSFT\\\", {}) and s in data.get(\\\"flatNLI_RSFT\\\", {}) and mk in data[\\\"CED_RSFT\\\"].get(s, {}) and mk in data[\\\"flatNLI_RSFT\\\"].get(s, {})]\\n        stat_info = {}\\n        if len(matched) >= 2:\\n            a = [data[\\\"CED_RSFT\\\"][s][mk] for s in matched]\\n            b = [data[\\\"flatNLI_RSFT\\\"][s][mk] for s in matched]\\n            t_stat, p_val, n = paired_ttest(a, b)\\n            d = cohens_d(b, a)\\n            ci_lo, ci_hi = ci_95([bv - av for av, bv in zip(a, b)])\\n            p_str = \\\"N/A (no scipy)\\\" if p_val is None else fv(p_val, \\\".4f\\\")\\n            lines.append(f\\\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\\\")\\n            lines.append(f\\\"  - Cohen's d: {fv(d, '.3f')}\\\")\\n            lines.append(f\\\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\\\")\\n            if n < 4:\\n                lines.append(f\\\"  - ⚠ N={n} < 4, waiting for more seeds\\\")\\n            stat_info = {\\\"t_stat\\\": t_stat, \\\"p_value\\\": p_val, \\\"cohens_d\\\": d, \\\"ci_95\\\": [ci_lo, ci_hi], \\\"n_paired\\\": n}\\n        else:\\n            lines.append(f\\\"  - ⚠ {len(matched)} matched seed(s), need >=2 for paired stats\\\")\\n        lines.append(\\\"\\\")\\n\\n        json_out[\\\"summary\\\"][label] = {\\n            \\\"CED_mean\\\": ced_m, \\\"CED_std\\\": ced_s, \\\"CED_n\\\": len(ced_vals),\\n            \\\"fNLI_mean\\\": fnli_m, \\\"fNLI_std\\\": fnli_s, \\\"fNLI_n\\\": len(fnli_vals),\\n            \\\"delta\\\": delta, **stat_info,\\n        }\\n\\n    for seed in seeds:\\n        json_out[\\\"per_seed\\\"][seed] = {}\\n        for method in [\\\"CED_RSFT\\\", \\\"flatNLI_RSFT\\\"]:\\n            if seed in data.get(method, {}):\\n                json_out[\\\"per_seed\\\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\\n\\n    json_out[\\\"status\\\"] = {\\n        \\\"CED_seeds_ready\\\": ced_ready,\\n        \\\"flatNLI_seeds_ready\\\": fnli_ready,\\n        \\\"missing_CED\\\": missing_ced,\\n        \\\"missing_flatNLI\\\": missing_fnli,\\n        \\\"all_complete\\\": len(ced_ready) == 4 and len(fnli_ready) == 4,\\n    }\\n    return \\\"\\\\n\\\".join(lines), json_out\\n\\n\\ndef run_once():\\n    data, seeds, sources = build_comparison()\\n    md, js = generate_report(data, seeds, sources)\\n    (OUT_DIR / \\\"seed_comparison.md\\\").write_text(md)\\n    (OUT_DIR / \\\"seed_comparison.json\\\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\\n    return md, js\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--watch\\\", type=int, default=0, help=\\\"Watch interval in seconds\\\")\\n    parser.add_argument(\\\"--json-only\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print what would be loaded without writing files\\\")\\n    args = parser.parse_args()\\n\\n    if args.dry_run:\\n        seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n        for method, seed_dirs in METHODS.items():\\n            print(f\\\"\\\\n=== {method} ===\\\")\\n            for seed in seeds:\\n                dir_name = seed_dirs.get(seed)\\n                if dir_name is None:\\n                    print(f\\\"  {seed}: NOT CONFIGURED\\\")\\n                    continue\\n                m = load_metrics(dir_name)\\n                if m is not None:\\n                    src_dir = m.get(\\\"_source_dir\\\", \\\"?\\\")\\n                    src_file = m.get(\\\"_source_file\\\", \\\"?\\\")\\n                    print(f\\\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', '?'):.4f})\\\")\\n                else:\\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\\n                    print(f\\\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\\\")\\n        return\\n\\n    if args.watch > 0:\\n        print(f\\\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\\\")\\n        prev_n = 0\\n        while True:\\n            md, js = run_once()\\n            cur_ced = len(js[\\\"status\\\"][\\\"CED_seeds_ready\\\"])\\n            cur_fnli = len(js[\\\"status\\\"][\\\"flatNLI_seeds_ready\\\"])\\n            cur_n = cur_ced + cur_fnli\\n            if cur_n != prev_n:\\n                print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n                prev_n = cur_n\\n                if js[\\\"status\\\"][\\\"all_complete\\\"]:\\n                    print(\\\"\\\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\\\")\\n                    break\\n            else:\\n                print(f\\\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\\\")\\n            time.sleep(args.watch)\\n    else:\\n        md, js = run_once()\\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n        print(f\\\"\\\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09461822-7b27-46e2-946a-6798ff48176f",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "b99b63c0-b832-453e-85e8-0af4bcdc2261",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        lines.append(f\\\\\\\"| {seed} | {fv(ced.get('f1'))} | {fv(fnli.get('f1'))} | {fv(ced.get('evi_f1'))} | {fv(fnli.get('evi_f1'))} | {fv(ced.get('edcr'))} | {fv(fnli.get('edcr'))} |\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    # Summary stats\\\\n    lines.append(\\\\\\\"## Summary Statistics\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    json_out = {\\\\\\\"per_seed\\\\\\\": {}, \\\\\\\"summary\\\\\\\": {}, \\\\\\\"sources\\\\\\\": sources}\\\\n\\\\n    for mk, label in METRIC_LABELS.items():\\\\n        ced_vals = [data[\\\\\\\"CED_RSFT\\\\\\\"][s][mk] for s in seeds if s in data.get(\\\\\\\"CED_RSFT\\\\\\\", {}) and mk in data[\\\\\\\"CED_RSFT\\\\\\\"].get(s, {})]\\\\n        fnli_vals = [data[\\\\\\\"flatNLI_RSFT\\\\\\\"][s][mk] for s in seeds if s in data.get(\\\\\\\"flatNLI_RSFT\\\\\\\", {}) and mk in data[\\\\\\\"flatNLI_RSFT\\\\\\\"].get(s, {})]\\\\n        ced_m, ced_s = mean(ced_vals), std(ced_vals)\\\\n        fnli_m, fnli_s = mean(fnli_vals), std(fnli_vals)\\\\n        delta = fnli_m - ced_m if not (math.isnan(fnli_m) or math.isnan(ced_m)) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        lines.append(f\\\\\\\"**{label}**:\\\\\\\")\\\\n        lines.append(f\\\\\\\"  - CED:  {fv(ced_m)} ± {fv(ced_s)} (n={len(ced_vals)})\\\\\\\")\\\\n        lines.append(f\\\\\\\"  - fNLI: {fv(fnli_m)} ± {fv(fnli_s)} (n={len(fnli_vals)})\\\\\\\")\\\\n        lines.append(f\\\\\\\"  - Delta (fNLI - CED): {fv(delta, '+.4f')}\\\\\\\")\\\\n\\\\n        matched = [s for s in seeds if s in data.get(\\\\\\\"CED_RSFT\\\\\\\", {}) and s in data.get(\\\\\\\"flatNLI_RSFT\\\\\\\", {}) and mk in data[\\\\\\\"CED_RSFT\\\\\\\"].get(s, {}) and mk in data[\\\\\\\"flatNLI_RSFT\\\\\\\"].get(s, {})]\\\\n        stat_info = {}\\\\n        if len(matched) >= 2:\\\\n            a = [data[\\\\\\\"CED_RSFT\\\\\\\"][s][mk] for s in matched]\\\\n            b = [data[\\\\\\\"flatNLI_RSFT\\\\\\\"][s][mk] for s in matched]\\\\n            t_stat, p_val, n = paired_ttest(a, b)\\\\n            d = cohens_d(b, a)\\\\n            ci_lo, ci_hi = ci_95([bv - av for av, bv in zip(a, b)])\\\\n            p_str = \\\\\\\"N/A (no scipy)\\\\\\\" if p_val is None else fv(p_val, \\\\\\\".4f\\\\\\\")\\\\n            lines.append(f\\\\\\\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  - Cohen's d: {fv(d, '.3f')}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\\\\\\\")\\\\n            if n < 4:\\\\n                lines.append(f\\\\\\\"  - ⚠ N={n} < 4, waiting for more seeds\\\\\\\")\\\\n            stat_info = {\\\\\\\"t_stat\\\\\\\": t_stat, \\\\\\\"p_value\\\\\\\": p_val, \\\\\\\"cohens_d\\\\\\\": d, \\\\\\\"ci_95\\\\\\\": [ci_lo, ci_hi], \\\\\\\"n_paired\\\\\\\": n}\\\\n        else:\\\\n            lines.append(f\\\\\\\"  - ⚠ {len(matched)} matched seed(s), need >=2 for paired stats\\\\\\\")\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n        json_out[\\\\\\\"summary\\\\\\\"][label] = {\\\\n            \\\\\\\"CED_mean\\\\\\\": ced_m, \\\\\\\"CED_std\\\\\\\": ced_s, \\\\\\\"CED_n\\\\\\\": len(ced_vals),\\\\n            \\\\\\\"fNLI_mean\\\\\\\": fnli_m, \\\\\\\"fNLI_std\\\\\\\": fnli_s, \\\\\\\"fNLI_n\\\\\\\": len(fnli_vals),\\\\n            \\\\\\\"delta\\\\\\\": delta, **stat_info,\\\\n        }\\\\n\\\\n    for seed in seeds:\\\\n        json_out[\\\\\\\"per_seed\\\\\\\"][seed] = {}\\\\n        for method in [\\\\\\\"CED_RSFT\\\\\\\", \\\\\\\"flatNLI_RSFT\\\\\\\"]:\\\\n            if seed in data.get(method, {}):\\\\n                json_out[\\\\\\\"per_seed\\\\\\\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\\\\n\\\\n    json_out[\\\\\\\"status\\\\\\\"] = {\\\\n        \\\\\\\"CED_seeds_ready\\\\\\\": ced_ready,\\\\n        \\\\\\\"flatNLI_seeds_ready\\\\\\\": fnli_ready,\\\\n        \\\\\\\"missing_CED\\\\\\\": missing_ced,\\\\n        \\\\\\\"missing_flatNLI\\\\\\\": missing_fnli,\\\\n        \\\\\\\"all_complete\\\\\\\": len(ced_ready) == 4 and len(fnli_ready) == 4,\\\\n    }\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines), json_out\\\\n\\\\n\\\\ndef run_once():\\\\n    data, seeds, sources = build_comparison()\\\\n    md, js = generate_report(data, seeds, sources)\\\\n    (OUT_DIR / \\\\\\\"seed_comparison.md\\\\\\\").write_text(md)\\\\n    (OUT_DIR / \\\\\\\"seed_comparison.json\\\\\\\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\\\\n    return md, js\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--watch\\\\\\\", type=int, default=0, help=\\\\\\\"Watch interval in seconds\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--json-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Print what would be loaded without writing files\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.dry_run:\\\\n        seeds = [\\\\\\\"s42\\\\\\\", \\\\\\\"s43\\\\\\\", \\\\\\\"s44\\\\\\\", \\\\\\\"s45\\\\\\\"]\\\\n        for method, seed_dirs in METHODS.items():\\\\n            print(f\\\\\\\"\\\\\\\\n=== {method} ===\\\\\\\")\\\\n            for seed in seeds:\\\\n                dir_name = seed_dirs.get(seed)\\\\n                if dir_name is None:\\\\n                    print(f\\\\\\\"  {seed}: NOT CONFIGURED\\\\\\\")\\\\n                    continue\\\\n                m = load_metrics(dir_name)\\\\n                if m is not None:\\\\n                    src_dir = m.get(\\\\\\\"_source_dir\\\\\\\", \\\\\\\"?\\\\\\\")\\\\n                    src_file = m.get(\\\\\\\"_source_file\\\\\\\", \\\\\\\"?\\\\\\\")\\\\n                    print(f\\\\\\\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', '?'):.4f})\\\\\\\")\\\\n                else:\\\\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\\\\n                    print(f\\\\\\\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\\\\\\\")\\\\n        return\\\\n\\\\n    if args.watch > 0:\\\\n        print(f\\\\\\\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\\\\\\\")\\\\n        prev_n = 0\\\\n        while True:\\\\n            md, js = run_once()\\\\n            cur_ced = len(js[\\\\\\\"status\\\\\\\"][\\\\\\\"CED_seeds_ready\\\\\\\"])\\\\n            cur_fnli = len(js[\\\\\\\"status\\\\\\\"][\\\\\\\"flatNLI_seeds_ready\\\\\\\"])\\\\n            cur_n = cur_ced + cur_fnli\\\\n            if cur_n != prev_n:\\\\n                print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\\\n                prev_n = cur_n\\\\n                if js[\\\\\\\"status\\\\\\\"][\\\\\\\"all_complete\\\\\\\"]:\\\\n                    print(\\\\\\\"\\\\\\\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\\\\\\\")\\\\n                    break\\\\n            else:\\\\n                print(f\\\\\\\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\\\\\\\")\\\\n            time.sleep(args.watch)\\\\n    else:\\\\n        md, js = run_once()\\\\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\\\n        print(f\\\\\\\"\\\\\\\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        lines.append(f\\\"| {seed} | {fv(ced.get('f1'))} | {fv(fnli.get('f1'))} | {fv(ced.get('evi_f1'))} | {fv(fnli.get('evi_f1'))} | {fv(ced.get('edcr'))} | {fv(fnli.get('edcr'))} |\\\")\\n    lines.append(\\\"\\\")\\n\\n    # Summary stats\\n    lines.append(\\\"## Summary Statistics\\\")\\n    lines.append(\\\"\\\")\\n    json_out = {\\\"per_seed\\\": {}, \\\"summary\\\": {}, \\\"sources\\\": sources}\\n\\n    for mk, label in METRIC_LABELS.items():\\n        ced_vals = [data[\\\"CED_RSFT\\\"][s][mk] for s in seeds if s in data.get(\\\"CED_RSFT\\\", {}) and mk in data[\\\"CED_RSFT\\\"].get(s, {})]\\n        fnli_vals = [data[\\\"flatNLI_RSFT\\\"][s][mk] for s in seeds if s in data.get(\\\"flatNLI_RSFT\\\", {}) and mk in data[\\\"flatNLI_RSFT\\\"].get(s, {})]\\n        ced_m, ced_s = mean(ced_vals), std(ced_vals)\\n        fnli_m, fnli_s = mean(fnli_vals), std(fnli_vals)\\n        delta = fnli_m - ced_m if not (math.isnan(fnli_m) or math.isnan(ced_m)) else float(\\\"nan\\\")\\n\\n        lines.append(f\\\"**{label}**:\\\")\\n        lines.append(f\\\"  - CED:  {fv(ced_m)} ± {fv(ced_s)} (n={len(ced_vals)})\\\")\\n        lines.append(f\\\"  - fNLI: {fv(fnli_m)} ± {fv(fnli_s)} (n={len(fnli_vals)})\\\")\\n        lines.append(f\\\"  - Delta (fNLI - CED): {fv(delta, '+.4f')}\\\")\\n\\n        matched = [s for s in seeds if s in data.get(\\\"CED_RSFT\\\", {}) and s in data.get(\\\"flatNLI_RSFT\\\", {}) and mk in data[\\\"CED_RSFT\\\"].get(s, {}) and mk in data[\\\"flatNLI_RSFT\\\"].get(s, {})]\\n        stat_info = {}\\n        if len(matched) >= 2:\\n            a = [data[\\\"CED_RSFT\\\"][s][mk] for s in matched]\\n            b = [data[\\\"flatNLI_RSFT\\\"][s][mk] for s in matched]\\n            t_stat, p_val, n = paired_ttest(a, b)\\n            d = cohens_d(b, a)\\n            ci_lo, ci_hi = ci_95([bv - av for av, bv in zip(a, b)])\\n            p_str = \\\"N/A (no scipy)\\\" if p_val is None else fv(p_val, \\\".4f\\\")\\n            lines.append(f\\\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\\\")\\n            lines.append(f\\\"  - Cohen's d: {fv(d, '.3f')}\\\")\\n            lines.append(f\\\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\\\")\\n            if n < 4:\\n                lines.append(f\\\"  - ⚠ N={n} < 4, waiting for more seeds\\\")\\n            stat_info = {\\\"t_stat\\\": t_stat, \\\"p_value\\\": p_val, \\\"cohens_d\\\": d, \\\"ci_95\\\": [ci_lo, ci_hi], \\\"n_paired\\\": n}\\n        else:\\n            lines.append(f\\\"  - ⚠ {len(matched)} matched seed(s), need >=2 for paired stats\\\")\\n        lines.append(\\\"\\\")\\n\\n        json_out[\\\"summary\\\"][label] = {\\n            \\\"CED_mean\\\": ced_m, \\\"CED_std\\\": ced_s, \\\"CED_n\\\": len(ced_vals),\\n            \\\"fNLI_mean\\\": fnli_m, \\\"fNLI_std\\\": fnli_s, \\\"fNLI_n\\\": len(fnli_vals),\\n            \\\"delta\\\": delta, **stat_info,\\n        }\\n\\n    for seed in seeds:\\n        json_out[\\\"per_seed\\\"][seed] = {}\\n        for method in [\\\"CED_RSFT\\\", \\\"flatNLI_RSFT\\\"]:\\n            if seed in data.get(method, {}):\\n                json_out[\\\"per_seed\\\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\\n\\n    json_out[\\\"status\\\"] = {\\n        \\\"CED_seeds_ready\\\": ced_ready,\\n        \\\"flatNLI_seeds_ready\\\": fnli_ready,\\n        \\\"missing_CED\\\": missing_ced,\\n        \\\"missing_flatNLI\\\": missing_fnli,\\n        \\\"all_complete\\\": len(ced_ready) == 4 and len(fnli_ready) == 4,\\n    }\\n    return \\\"\\\\n\\\".join(lines), json_out\\n\\n\\ndef run_once():\\n    data, seeds, sources = build_comparison()\\n    md, js = generate_report(data, seeds, sources)\\n    (OUT_DIR / \\\"seed_comparison.md\\\").write_text(md)\\n    (OUT_DIR / \\\"seed_comparison.json\\\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\\n    return md, js\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--watch\\\", type=int, default=0, help=\\\"Watch interval in seconds\\\")\\n    parser.add_argument(\\\"--json-only\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print what would be loaded without writing files\\\")\\n    args = parser.parse_args()\\n\\n    if args.dry_run:\\n        seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n        for method, seed_dirs in METHODS.items():\\n            print(f\\\"\\\\n=== {method} ===\\\")\\n            for seed in seeds:\\n                dir_name = seed_dirs.get(seed)\\n                if dir_name is None:\\n                    print(f\\\"  {seed}: NOT CONFIGURED\\\")\\n                    continue\\n                m = load_metrics(dir_name)\\n                if m is not None:\\n                    src_dir = m.get(\\\"_source_dir\\\", \\\"?\\\")\\n                    src_file = m.get(\\\"_source_file\\\", \\\"?\\\")\\n                    print(f\\\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', '?'):.4f})\\\")\\n                else:\\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\\n                    print(f\\\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\\\")\\n        return\\n\\n    if args.watch > 0:\\n        print(f\\\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\\\")\\n        prev_n = 0\\n        while True:\\n            md, js = run_once()\\n            cur_ced = len(js[\\\"status\\\"][\\\"CED_seeds_ready\\\"])\\n            cur_fnli = len(js[\\\"status\\\"][\\\"flatNLI_seeds_ready\\\"])\\n            cur_n = cur_ced + cur_fnli\\n            if cur_n != prev_n:\\n                print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n                prev_n = cur_n\\n                if js[\\\"status\\\"][\\\"all_complete\\\"]:\\n                    print(\\\"\\\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\\\")\\n                    break\\n            else:\\n                print(f\\\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\\\")\\n            time.sleep(args.watch)\\n    else:\\n        md, js = run_once()\\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n        print(f\\\"\\\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "09461822-7b27-46e2-946a-6798ff48176f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-16T03:48:56.473Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EgZi7LfJcTW62bLtmUDpuo`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval_r2/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b99b63c0-b832-453e-85e8-0af4bcdc2261",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZhkHqievZ2F6VCfrqf",
+  "type": "assistant",
+  "uuid": "bf5861b9-47d7-45ce-acb6-234a2b85108f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V7N9EjrMpkDqEJm5B9AtsT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1766,
+      "cache_read_input_tokens": 30143,
+      "output_tokens": 456,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 456,
+          "cache_read_input_tokens": 30143,
+          "cache_creation_input_tokens": 1766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "bf5861b9-47d7-45ce-acb6-234a2b85108f",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify seed comparison and paired t-test scripts",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-16T03:48:56.797Z_
+
+<details><summary>↩ Tool result · `toolu_01EgZi7LfJcTW62bLtmUDpuo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf5861b9-47d7-45ce-acb6-234a2b85108f",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "fc2f3d5e-ca7c-46d8-b6bd-d6a944a9dcdc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bf5861b9-47d7-45ce-acb6-234a2b85108f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 38 · 2026-05-16T03:48:56.802Z_
+
+```json
+{
+  "parentUuid": "fc2f3d5e-ca7c-46d8-b6bd-d6a944a9dcdc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2f38cfe0-6fc8-4000-ab02-d201eb55fe95",
+  "timestamp": "2026-05-16T03:48:56.802Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-16T03:49:01.186Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Key findings:
+1. `rsft_ced_s43/` is empty (no files at all)
+2. `rsft_flat_nli_s43_reeval_r2/` is also empty
+
+Let me check which eval_results directories actually have metrics files (metrics.json or metrics_v2.json).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f38cfe0-6fc8-4000-ab02-d201eb55fe95",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZiNVSfL3KYesxqg4yx",
+  "type": "assistant",
+  "uuid": "cd3e109c-a5b2-4534-a6ee-69b2bb94ff48",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TK3L4JbQWonrCGKoyXnYsf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3508,
+      "cache_read_input_tokens": 31909,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3508,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 31909,
+          "cache_creation_input_tokens": 3508,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3508
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-16T03:49:01.663Z_
+
+Several directories appear empty. Let me check which eval results actually have metrics files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cd3e109c-a5b2-4534-a6ee-69b2bb94ff48",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZiNVSfL3KYesxqg4yx",
+  "type": "assistant",
+  "uuid": "e01e9553-18b0-4d91-9742-b4d69bbf76c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TK3L4JbQWonrCGKoyXnYsf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3508,
+      "cache_read_input_tokens": 31909,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3508,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 31909,
+          "cache_creation_input_tokens": 3508,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3508
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T03:49:02.624Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01D3im5mp6uk4EHw6W1pQdHg`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "find /root/autodl-tmp/eval_results/ -name \"metrics*.json\" -path \"*rsft*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e01e9553-18b0-4d91-9742-b4d69bbf76c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZiNVSfL3KYesxqg4yx",
+  "type": "assistant",
+  "uuid": "d3d20ba8-0bf7-4aad-ab80-d57ed934472a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TK3L4JbQWonrCGKoyXnYsf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3508,
+      "cache_read_input_tokens": 31909,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3508,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 31909,
+          "cache_creation_input_tokens": 3508,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3508
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T03:49:02.943Z_
+
+<details><summary>↩ Tool result · `toolu_01D3im5mp6uk4EHw6W1pQdHg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics_v2.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3d20ba8-0bf7-4aad-ab80-d57ed934472a",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "3f2dc198-1940-42f8-8a3c-25727db854cb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s44/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r1/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics.json\\\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/eval_results/rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r1/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2a/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics.json\\n/root/autodl-tmp/eval_results/rsft_r2b_maxtok1536/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli/metrics_v2.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics.json\\n/root/autodl-tmp/eval_results/test_rsft_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics.json\\n/root/autodl-tmp/eval_results/rsft_topk3_reeval/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics.json\\n/root/autodl-tmp/eval_results/rsft_flat_nli_s45/metrics_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d3d20ba8-0bf7-4aad-ab80-d57ed934472a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T03:49:03.155Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01B53V7HbQ8Phf2vHSjog9Hk`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "head -n 100 /root/autodl-tmp/scripts/seed_comparison.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f2dc198-1940-42f8-8a3c-25727db854cb",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZiNVSfL3KYesxqg4yx",
+  "type": "assistant",
+  "uuid": "39ecbff5-325d-4384-9492-c9a17b3cb83d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TK3L4JbQWonrCGKoyXnYsf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3508,
+      "cache_read_input_tokens": 31909,
+      "output_tokens": 344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3508,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 344,
+          "cache_read_input_tokens": 31909,
+          "cache_creation_input_tokens": 3508,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3508
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T03:49:03.475Z_
+
+<details><summary>↩ Tool result · `toolu_01B53V7HbQ8Phf2vHSjog9Hk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Seed-level comparison: flat-NLI RSFT vs CED RSFT.\\\"\\\"\\\"\\n\\nimport json, os, sys, time, argparse, math\\nfrom pathlib import Path\\nfrom datetime import datetime\\n\\n\\nclass NanSafeEncoder(json.JSONEncoder):\\n    def encode(self, o):\\n        text = super().encode(o)\\n        return text.replace(\\\"NaN\\\", \\\"null\\\").replace(\\\"Infinity\\\", '\\\"Inf\\\"')\\n\\n\\nEVAL_ROOT = Path(\\\"/root/autodl-tmp/eval_results\\\")\\nOUT_DIR = EVAL_ROOT\\n\\n# Priority order: _reeval_r2 > _reeval > original\\nMETHODS = {\\n    \\\"CED_RSFT\\\": {\\n        \\\"s42\\\": [\\\"rsft_ced_s42_reeval\\\", \\\"rsft_r2b_maxtok1536\\\"],\\n        \\\"s43\\\": [\\\"rsft_ced_s43\\\", \\\"rsft_s43\\\"],\\n        \\\"s44\\\": [\\\"rsft_ced_s44_reeval\\\", \\\"rsft_s44\\\"],\\n        \\\"s45\\\": \\\"rsft_ced_s45\\\",\\n    },\\n    \\\"flatNLI_RSFT\\\": {\\n        \\\"s42\\\": [\\\"rsft_flat_nli_s42_reeval\\\", \\\"rsft_flat_nli\\\"],\\n        \\\"s43\\\": [\\\"rsft_flat_nli_s43_reeval_r2\\\", \\\"rsft_flat_nli_s43_reeval\\\", \\\"rsft_flat_nli_s43\\\"],\\n        \\\"s44\\\": \\\"rsft_flat_nli_s44\\\",\\n        \\\"s45\\\": \\\"rsft_flat_nli_s45\\\",\\n    },\\n}\\n\\nMETRICS_KEYS = [\\\"f1\\\", \\\"evi_f1\\\", \\\"edcr\\\"]\\nMETRIC_LABELS = {\\\"f1\\\": \\\"rel_f1\\\", \\\"evi_f1\\\": \\\"evi_f1\\\", \\\"edcr\\\": \\\"EDCR\\\"}\\n\\n\\ndef load_metrics(eval_dir_name):\\n    if isinstance(eval_dir_name, list):\\n        for name in eval_dir_name:\\n            result = load_metrics(name)\\n            if result is not None:\\n                return result\\n        return None\\n    d = EVAL_ROOT / eval_dir_name\\n    p = d / \\\"metrics_v2.json\\\"\\n    if not p.exists():\\n        p = d / \\\"metrics.json\\\"\\n    if not p.exists():\\n        return None\\n    with open(p) as f:\\n        m = json.load(f)\\n    if m.get(\\\"field_compliance_rate\\\", 0) == 0 or m.get(\\\"f1\\\", 0) < 0.01:\\n        return None\\n    m[\\\"_source_dir\\\"] = eval_dir_name\\n    m[\\\"_source_file\\\"] = p.name\\n    return m\\n\\n\\ndef mean(vals):\\n    return sum(vals) / len(vals) if vals else float(\\\"nan\\\")\\n\\ndef std(vals):\\n    if len(vals) < 2:\\n        return float(\\\"nan\\\")\\n    m = mean(vals)\\n    return math.sqrt(sum((v - m) ** 2 for v in vals) / (len(vals) - 1))\\n\\ndef cohens_d(a, b):\\n    if len(a) < 2 or len(b) < 2:\\n        return float(\\\"nan\\\")\\n    diffs = [x - y for x, y in zip(a, b)]\\n    d_mean, d_std = mean(diffs), std(diffs)\\n    if d_std == 0:\\n        return float(\\\"inf\\\") if d_mean != 0 else 0.0\\n    return d_mean / d_std\\n\\ndef paired_ttest(a, b):\\n    n = len(a)\\n    if n < 2:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\"), n\\n    diffs = [x - y for x, y in zip(a, b)]\\n    d_mean, d_std = mean(diffs), std(diffs)\\n    if d_std == 0:\\n        return (float(\\\"inf\\\") if d_mean != 0 else 0.0), 0.0, n\\n    t_stat = d_mean / (d_std / math.sqrt(n))\\n    try:\\n        from scipy import stats as sp_stats\\n        p_val = sp_stats.t.sf(abs(t_stat), df=n - 1) * 2\\n    except ImportError:\\n        p_val = None\\n    return t_stat, p_val, n\\n\\ndef ci_95(vals):\\n    n = len(vals)\\n    if n < 2:\\n        return (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n    m, s = mean(vals), std(vals)\\n    t_crit_map = {2: 12.706, 3: 4.303, 4: 3.182, 5: 2.776}\\n    t_crit = t_crit_map.get(n, 2.0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39ecbff5-325d-4384-9492-c9a17b3cb83d",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "ccd798ad-5b94-4930-afed-9ad162bff62a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"Seed-level comparison: flat-NLI RSFT vs CED RSFT.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json, os, sys, time, argparse, math\\\\nfrom pathlib import Path\\\\nfrom datetime import datetime\\\\n\\\\n\\\\nclass NanSafeEncoder(json.JSONEncoder):\\\\n    def encode(self, o):\\\\n        text = super().encode(o)\\\\n        return text.replace(\\\\\\\"NaN\\\\\\\", \\\\\\\"null\\\\\\\").replace(\\\\\\\"Infinity\\\\\\\", '\\\\\\\"Inf\\\\\\\"')\\\\n\\\\n\\\\nEVAL_ROOT = Path(\\\\\\\"/root/autodl-tmp/eval_results\\\\\\\")\\\\nOUT_DIR = EVAL_ROOT\\\\n\\\\n# Priority order: _reeval_r2 > _reeval > original\\\\nMETHODS = {\\\\n    \\\\\\\"CED_RSFT\\\\\\\": {\\\\n        \\\\\\\"s42\\\\\\\": [\\\\\\\"rsft_ced_s42_reeval\\\\\\\", \\\\\\\"rsft_r2b_maxtok1536\\\\\\\"],\\\\n        \\\\\\\"s43\\\\\\\": [\\\\\\\"rsft_ced_s43\\\\\\\", \\\\\\\"rsft_s43\\\\\\\"],\\\\n        \\\\\\\"s44\\\\\\\": [\\\\\\\"rsft_ced_s44_reeval\\\\\\\", \\\\\\\"rsft_s44\\\\\\\"],\\\\n        \\\\\\\"s45\\\\\\\": \\\\\\\"rsft_ced_s45\\\\\\\",\\\\n    },\\\\n    \\\\\\\"flatNLI_RSFT\\\\\\\": {\\\\n        \\\\\\\"s42\\\\\\\": [\\\\\\\"rsft_flat_nli_s42_reeval\\\\\\\", \\\\\\\"rsft_flat_nli\\\\\\\"],\\\\n        \\\\\\\"s43\\\\\\\": [\\\\\\\"rsft_flat_nli_s43_reeval_r2\\\\\\\", \\\\\\\"rsft_flat_nli_s43_reeval\\\\\\\", \\\\\\\"rsft_flat_nli_s43\\\\\\\"],\\\\n        \\\\\\\"s44\\\\\\\": \\\\\\\"rsft_flat_nli_s44\\\\\\\",\\\\n        \\\\\\\"s45\\\\\\\": \\\\\\\"rsft_flat_nli_s45\\\\\\\",\\\\n    },\\\\n}\\\\n\\\\nMETRICS_KEYS = [\\\\\\\"f1\\\\\\\", \\\\\\\"evi_f1\\\\\\\", \\\\\\\"edcr\\\\\\\"]\\\\nMETRIC_LABELS = {\\\\\\\"f1\\\\\\\": \\\\\\\"rel_f1\\\\\\\", \\\\\\\"evi_f1\\\\\\\": \\\\\\\"evi_f1\\\\\\\", \\\\\\\"edcr\\\\\\\": \\\\\\\"EDCR\\\\\\\"}\\\\n\\\\n\\\\ndef load_metrics(eval_dir_name):\\\\n    if isinstance(eval_dir_name, list):\\\\n        for name in eval_dir_name:\\\\n            result = load_metrics(name)\\\\n            if result is not None:\\\\n                return result\\\\n        return None\\\\n    d = EVAL_ROOT / eval_dir_name\\\\n    p = d / \\\\\\\"metrics_v2.json\\\\\\\"\\\\n    if not p.exists():\\\\n        p = d / \\\\\\\"metrics.json\\\\\\\"\\\\n    if not p.exists():\\\\n        return None\\\\n    with open(p) as f:\\\\n        m = json.load(f)\\\\n    if m.get(\\\\\\\"field_compliance_rate\\\\\\\", 0) == 0 or m.get(\\\\\\\"f1\\\\\\\", 0) < 0.01:\\\\n        return None\\\\n    m[\\\\\\\"_source_dir\\\\\\\"] = eval_dir_name\\\\n    m[\\\\\\\"_source_file\\\\\\\"] = p.name\\\\n    return m\\\\n\\\\n\\\\ndef mean(vals):\\\\n    return sum(vals) / len(vals) if vals else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\ndef std(vals):\\\\n    if len(vals) < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    m = mean(vals)\\\\n    return math.sqrt(sum((v - m) ** 2 for v in vals) / (len(vals) - 1))\\\\n\\\\ndef cohens_d(a, b):\\\\n    if len(a) < 2 or len(b) < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\")\\\\n    diffs = [x - y for x, y in zip(a, b)]\\\\n    d_mean, d_std = mean(diffs), std(diffs)\\\\n    if d_std == 0:\\\\n        return float(\\\\\\\"inf\\\\\\\") if d_mean != 0 else 0.0\\\\n    return d_mean / d_std\\\\n\\\\ndef paired_ttest(a, b):\\\\n    n = len(a)\\\\n    if n < 2:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"), n\\\\n    diffs = [x - y for x, y in zip(a, b)]\\\\n    d_mean, d_std = mean(diffs), std(diffs)\\\\n    if d_std == 0:\\\\n        return (float(\\\\\\\"inf\\\\\\\") if d_mean != 0 else 0.0), 0.0, n\\\\n    t_stat = d_mean / (d_std / math.sqrt(n))\\\\n    try:\\\\n        from scipy import stats as sp_stats\\\\n        p_val = sp_stats.t.sf(abs(t_stat), df=n - 1) * 2\\\\n    except ImportError:\\\\n        p_val = None\\\\n    return t_stat, p_val, n\\\\n\\\\ndef ci_95(vals):\\\\n    n = len(vals)\\\\n    if n < 2:\\\\n        return (float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\"))\\\\n    m, s = mean(vals), std(vals)\\\\n    t_crit_map = {2: 12.706, 3: 4.303, 4: 3.182, 5: 2.776}\\\\n    t_crit = t_crit_map.get(n, 2.0)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"Seed-level comparison: flat-NLI RSFT vs CED RSFT.\\\"\\\"\\\"\\n\\nimport json, os, sys, time, argparse, math\\nfrom pathlib import Path\\nfrom datetime import datetime\\n\\n\\nclass NanSafeEncoder(json.JSONEncoder):\\n    def encode(self, o):\\n        text = super().encode(o)\\n        return text.replace(\\\"NaN\\\", \\\"null\\\").replace(\\\"Infinity\\\", '\\\"Inf\\\"')\\n\\n\\nEVAL_ROOT = Path(\\\"/root/autodl-tmp/eval_results\\\")\\nOUT_DIR = EVAL_ROOT\\n\\n# Priority order: _reeval_r2 > _reeval > original\\nMETHODS = {\\n    \\\"CED_RSFT\\\": {\\n        \\\"s42\\\": [\\\"rsft_ced_s42_reeval\\\", \\\"rsft_r2b_maxtok1536\\\"],\\n        \\\"s43\\\": [\\\"rsft_ced_s43\\\", \\\"rsft_s43\\\"],\\n        \\\"s44\\\": [\\\"rsft_ced_s44_reeval\\\", \\\"rsft_s44\\\"],\\n        \\\"s45\\\": \\\"rsft_ced_s45\\\",\\n    },\\n    \\\"flatNLI_RSFT\\\": {\\n        \\\"s42\\\": [\\\"rsft_flat_nli_s42_reeval\\\", \\\"rsft_flat_nli\\\"],\\n        \\\"s43\\\": [\\\"rsft_flat_nli_s43_reeval_r2\\\", \\\"rsft_flat_nli_s43_reeval\\\", \\\"rsft_flat_nli_s43\\\"],\\n        \\\"s44\\\": \\\"rsft_flat_nli_s44\\\",\\n        \\\"s45\\\": \\\"rsft_flat_nli_s45\\\",\\n    },\\n}\\n\\nMETRICS_KEYS = [\\\"f1\\\", \\\"evi_f1\\\", \\\"edcr\\\"]\\nMETRIC_LABELS = {\\\"f1\\\": \\\"rel_f1\\\", \\\"evi_f1\\\": \\\"evi_f1\\\", \\\"edcr\\\": \\\"EDCR\\\"}\\n\\n\\ndef load_metrics(eval_dir_name):\\n    if isinstance(eval_dir_name, list):\\n        for name in eval_dir_name:\\n            result = load_metrics(name)\\n            if result is not None:\\n                return result\\n        return None\\n    d = EVAL_ROOT / eval_dir_name\\n    p = d / \\\"metrics_v2.json\\\"\\n    if not p.exists():\\n        p = d / \\\"metrics.json\\\"\\n    if not p.exists():\\n        return None\\n    with open(p) as f:\\n        m = json.load(f)\\n    if m.get(\\\"field_compliance_rate\\\", 0) == 0 or m.get(\\\"f1\\\", 0) < 0.01:\\n        return None\\n    m[\\\"_source_dir\\\"] = eval_dir_name\\n    m[\\\"_source_file\\\"] = p.name\\n    return m\\n\\n\\ndef mean(vals):\\n    return sum(vals) / len(vals) if vals else float(\\\"nan\\\")\\n\\ndef std(vals):\\n    if len(vals) < 2:\\n        return float(\\\"nan\\\")\\n    m = mean(vals)\\n    return math.sqrt(sum((v - m) ** 2 for v in vals) / (len(vals) - 1))\\n\\ndef cohens_d(a, b):\\n    if len(a) < 2 or len(b) < 2:\\n        return float(\\\"nan\\\")\\n    diffs = [x - y for x, y in zip(a, b)]\\n    d_mean, d_std = mean(diffs), std(diffs)\\n    if d_std == 0:\\n        return float(\\\"inf\\\") if d_mean != 0 else 0.0\\n    return d_mean / d_std\\n\\ndef paired_ttest(a, b):\\n    n = len(a)\\n    if n < 2:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\"), n\\n    diffs = [x - y for x, y in zip(a, b)]\\n    d_mean, d_std = mean(diffs), std(diffs)\\n    if d_std == 0:\\n        return (float(\\\"inf\\\") if d_mean != 0 else 0.0), 0.0, n\\n    t_stat = d_mean / (d_std / math.sqrt(n))\\n    try:\\n        from scipy import stats as sp_stats\\n        p_val = sp_stats.t.sf(abs(t_stat), df=n - 1) * 2\\n    except ImportError:\\n        p_val = None\\n    return t_stat, p_val, n\\n\\ndef ci_95(vals):\\n    n = len(vals)\\n    if n < 2:\\n        return (float(\\\"nan\\\"), float(\\\"nan\\\"))\\n    m, s = mean(vals), std(vals)\\n    t_crit_map = {2: 12.706, 3: 4.303, 4: 3.182, 5: 2.776}\\n    t_crit = t_crit_map.get(n, 2.0)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+    }
+  },
+  "sourceToolAssistantUUID": "39ecbff5-325d-4384-9492-c9a17b3cb83d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-16T03:49:06.286Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture. Let me check what's in a metrics_v2.json to see if `ign_f1` field exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ccd798ad-5b94-4930-afed-9ad162bff62a",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZirtzUEvuwdQDwyZ1M",
+  "type": "assistant",
+  "uuid": "e42b32d0-2fd3-44ee-9fc6-40e10b53b9fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1B1eFf92Bd6qVGhN2RzMR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2822,
+      "cache_read_input_tokens": 35417,
+      "output_tokens": 524,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2822,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 524,
+          "cache_read_input_tokens": 35417,
+          "cache_creation_input_tokens": 2822,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2822
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-16T03:49:07.271Z_
+
+Let me check the metrics_v2.json fields and the truncated middle part of the script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e42b32d0-2fd3-44ee-9fc6-40e10b53b9fc",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZirtzUEvuwdQDwyZ1M",
+  "type": "assistant",
+  "uuid": "9c0c31b1-9e70-4b67-a466-8ef153987c40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1B1eFf92Bd6qVGhN2RzMR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2822,
+      "cache_read_input_tokens": 35417,
+      "output_tokens": 524,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2822,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 524,
+          "cache_read_input_tokens": 35417,
+          "cache_creation_input_tokens": 2822,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2822
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T03:49:08.265Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JzhkumKtwWkvBaxhVEC1Lo`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"import json; m=json.load(open('/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json')); print(json.dumps(list(m.keys()), indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c0c31b1-9e70-4b67-a466-8ef153987c40",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZirtzUEvuwdQDwyZ1M",
+  "type": "assistant",
+  "uuid": "21f7a8e4-04d9-49ab-8c5a-d0db752cee42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1B1eFf92Bd6qVGhN2RzMR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2822,
+      "cache_read_input_tokens": 35417,
+      "output_tokens": 524,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2822,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 524,
+          "cache_read_input_tokens": 35417,
+          "cache_creation_input_tokens": 2822,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2822
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T03:49:08.279Z_
+
+<details><summary>↩ Tool result · `toolu_01JzhkumKtwWkvBaxhVEC1Lo`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21f7a8e4-04d9-49ab-8c5a-d0db752cee42",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "3f9f9f43-99c4-4681-98a6-d3db90063e4d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "21f7a8e4-04d9-49ab-8c5a-d0db752cee42",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T03:49:10.262Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0146VXPpK83ZCVBPLmUxnf7N`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "python3 -c \"import json; m=json.load(open('/root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json')); print(json.dumps({k:v for k,v in m.items() if 'ign' in k.lower() or 'f1' in k.lower()}, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f9f9f43-99c4-4681-98a6-d3db90063e4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZirtzUEvuwdQDwyZ1M",
+  "type": "assistant",
+  "uuid": "2a3fd5cc-efb0-4251-a23f-673d2e0d8969",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1B1eFf92Bd6qVGhN2RzMR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2822,
+      "cache_read_input_tokens": 35417,
+      "output_tokens": 524,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2822,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 524,
+          "cache_read_input_tokens": 35417,
+          "cache_creation_input_tokens": 2822,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2822
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T03:49:10.297Z_
+
+<details><summary>↩ Tool result · `toolu_0146VXPpK83ZCVBPLmUxnf7N`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a3fd5cc-efb0-4251-a23f-673d2e0d8969",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "fbbddb5e-b3fb-410c-96c7-4aedd67e3e75",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2a3fd5cc-efb0-4251-a23f-673d2e0d8969",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T03:49:10.513Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TMoxEE8DiA1Fb2Ufu6n9of`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "tail -n 183 /root/autodl-tmp/scripts/seed_comparison.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbbddb5e-b3fb-410c-96c7-4aedd67e3e75",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZirtzUEvuwdQDwyZ1M",
+  "type": "assistant",
+  "uuid": "615b54cb-7f53-49bc-8dec-179b0112f5b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01J1B1eFf92Bd6qVGhN2RzMR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2822,
+      "cache_read_input_tokens": 35417,
+      "output_tokens": 524,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2822,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 524,
+          "cache_read_input_tokens": 35417,
+          "cache_creation_input_tokens": 2822,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2822
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "615b54cb-7f53-49bc-8dec-179b0112f5b6",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify seed comparison and paired t-test scripts",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T03:49:10.870Z_
+
+<details><summary>↩ Tool result · `toolu_01TMoxEE8DiA1Fb2Ufu6n9of`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    margin = t_crit * s / math.sqrt(n)\\n    return (m - margin, m + margin)\\n\\n\\ndef build_comparison():\\n    seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n    data = {}\\n    sources = {}\\n    for method, seed_dirs in METHODS.items():\\n        data[method] = {}\\n        sources[method] = {}\\n        for seed in seeds:\\n            dir_name = seed_dirs.get(seed)\\n            if dir_name is None:\\n                continue\\n            m = load_metrics(dir_name)\\n            if m is not None:\\n                sources[method][seed] = {\\\"dir\\\": m.pop(\\\"_source_dir\\\"), \\\"file\\\": m.pop(\\\"_source_file\\\")}\\n                data[method][seed] = {k: m[k] for k in METRICS_KEYS if k in m}\\n    return data, seeds, sources\\n\\n\\ndef fv(v, fmt=\\\".4f\\\"):\\n    if v is None or (isinstance(v, float) and math.isnan(v)):\\n        return \\\"—\\\"\\n    return f\\\"{v:{fmt}}\\\"\\n\\n\\ndef generate_report(data, seeds, sources):\\n    lines = []\\n    lines.append(\\\"# flat-NLI vs CED RSFT: Seed-Level Comparison\\\")\\n    lines.append(f\\\"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\\")\\n    lines.append(\\\"\\\")\\n\\n    ced_ready = list(data.get(\\\"CED_RSFT\\\", {}).keys())\\n    fnli_ready = list(data.get(\\\"flatNLI_RSFT\\\", {}).keys())\\n    lines.append(f\\\"**CED RSFT**: {len(ced_ready)}/{len(seeds)} seeds ({', '.join(ced_ready)})\\\")\\n    lines.append(f\\\"**flat-NLI RSFT**: {len(fnli_ready)}/{len(seeds)} seeds ({', '.join(fnli_ready)})\\\")\\n    missing_ced = [s for s in seeds if s not in ced_ready]\\n    missing_fnli = [s for s in seeds if s not in fnli_ready]\\n    if missing_ced:\\n        lines.append(f\\\"**Pending CED**: {', '.join(missing_ced)}\\\")\\n    if missing_fnli:\\n        lines.append(f\\\"**Pending flat-NLI**: {', '.join(missing_fnli)}\\\")\\n    lines.append(\\\"\\\")\\n\\n    # Source directories\\n    lines.append(\\\"## Data Sources\\\")\\n    for method in [\\\"CED_RSFT\\\", \\\"flatNLI_RSFT\\\"]:\\n        for seed in seeds:\\n            if seed in sources.get(method, {}):\\n                src = sources[method][seed]\\n                lines.append(f\\\"- {method} {seed}: `{src['dir']}/` ({src['file']})\\\")\\n    lines.append(\\\"\\\")\\n\\n    # Per-seed table\\n    lines.append(\\\"## Per-Seed Results\\\")\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"| Seed | CED rel_f1 | fNLI rel_f1 | CED evi_f1 | fNLI evi_f1 | CED EDCR | fNLI EDCR |\\\")\\n    lines.append(\\\"|------|-----------|------------|-----------|------------|---------|----------|\\\")\\n    for seed in seeds:\\n        ced = data.get(\\\"CED_RSFT\\\", {}).get(seed, {})\\n        fnli = data.get(\\\"flatNLI_RSFT\\\", {}).get(seed, {})\\n        lines.append(f\\\"| {seed} | {fv(ced.get('f1'))} | {fv(fnli.get('f1'))} | {fv(ced.get('evi_f1'))} | {fv(fnli.get('evi_f1'))} | {fv(ced.get('edcr'))} | {fv(fnli.get('edcr'))} |\\\")\\n    lines.append(\\\"\\\")\\n\\n    # Summary stats\\n    lines.append(\\\"## Summary Statistics\\\")\\n    lines.append(\\\"\\\")\\n    json_out = {\\\"per_seed\\\": {}, \\\"summary\\\": {}, \\\"sources\\\": sources}\\n\\n    for mk, label in METRIC_LABELS.items():\\n        ced_vals = [data[\\\"CED_RSFT\\\"][s][mk] for s in seeds if s in data.get(\\\"CED_RSFT\\\", {}) and mk in data[\\\"CED_RSFT\\\"].get(s, {})]\\n        fnli_vals = [data[\\\"flatNLI_RSFT\\\"][s][mk] for s in seeds if s in data.get(\\\"flatNLI_RSFT\\\", {}) and mk in data[\\\"flatNLI_RSFT\\\"].get(s, {})]\\n        ced_m, ced_s = mean(ced_vals), std(ced_vals)\\n        fnli_m, fnli_s = mean(fnli_vals), std(fnli_vals)\\n        delta = fnli_m - ced_m if not (math.isnan(fnli_m) or math.isnan(ced_m)) else float(\\\"nan\\\")\\n\\n        lines.append(f\\\"**{label}**:\\\")\\n        lines.append(f\\\"  - CED:  {fv(ced_m)} ± {fv(ced_s)} (n={len(ced_vals)})\\\")\\n        lines.append(f\\\"  - fNLI: {fv(fnli_m)} ± {fv(fnli_s)} (n={len(fnli_vals)})\\\")\\n        lines.append(f\\\"  - Delta (fNLI - CED): {fv(delta, '+.4f')}\\\")\\n\\n        matched = [s for s in seeds if s in data.get(\\\"CED_RSFT\\\", {}) and s in data.get(\\\"flatNLI_RSFT\\\", {}) and mk in data[\\\"CED_RSFT\\\"].get(s, {}) and mk in data[\\\"flatNLI_RSFT\\\"].get(s, {})]\\n        stat_info = {}\\n        if len(matched) >= 2:\\n            a = [data[\\\"CED_RSFT\\\"][s][mk] for s in matched]\\n            b = [data[\\\"flatNLI_RSFT\\\"][s][mk] for s in matched]\\n            t_stat, p_val, n = paired_ttest(a, b)\\n\\n\\n... [截断: 输出过长，省略 181 字符] ...\\n\\n      lines.append(f\\\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\\\")\\n            lines.append(f\\\"  - Cohen's d: {fv(d, '.3f')}\\\")\\n            lines.append(f\\\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\\\")\\n            if n < 4:\\n                lines.append(f\\\"  - ⚠ N={n} < 4, waiting for more seeds\\\")\\n            stat_info = {\\\"t_stat\\\": t_stat, \\\"p_value\\\": p_val, \\\"cohens_d\\\": d, \\\"ci_95\\\": [ci_lo, ci_hi], \\\"n_paired\\\": n}\\n        else:\\n            lines.append(f\\\"  - ⚠ {len(matched)} matched seed(s), need >=2 for paired stats\\\")\\n        lines.append(\\\"\\\")\\n\\n        json_out[\\\"summary\\\"][label] = {\\n            \\\"CED_mean\\\": ced_m, \\\"CED_std\\\": ced_s, \\\"CED_n\\\": len(ced_vals),\\n            \\\"fNLI_mean\\\": fnli_m, \\\"fNLI_std\\\": fnli_s, \\\"fNLI_n\\\": len(fnli_vals),\\n            \\\"delta\\\": delta, **stat_info,\\n        }\\n\\n    for seed in seeds:\\n        json_out[\\\"per_seed\\\"][seed] = {}\\n        for method in [\\\"CED_RSFT\\\", \\\"flatNLI_RSFT\\\"]:\\n            if seed in data.get(method, {}):\\n                json_out[\\\"per_seed\\\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\\n\\n    json_out[\\\"status\\\"] = {\\n        \\\"CED_seeds_ready\\\": ced_ready,\\n        \\\"flatNLI_seeds_ready\\\": fnli_ready,\\n        \\\"missing_CED\\\": missing_ced,\\n        \\\"missing_flatNLI\\\": missing_fnli,\\n        \\\"all_complete\\\": len(ced_ready) == 4 and len(fnli_ready) == 4,\\n    }\\n    return \\\"\\\\n\\\".join(lines), json_out\\n\\n\\ndef run_once():\\n    data, seeds, sources = build_comparison()\\n    md, js = generate_report(data, seeds, sources)\\n    (OUT_DIR / \\\"seed_comparison.md\\\").write_text(md)\\n    (OUT_DIR / \\\"seed_comparison.json\\\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\\n    return md, js\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--watch\\\", type=int, default=0, help=\\\"Watch interval in seconds\\\")\\n    parser.add_argument(\\\"--json-only\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print what would be loaded without writing files\\\")\\n    args = parser.parse_args()\\n\\n    if args.dry_run:\\n        seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n        for method, seed_dirs in METHODS.items():\\n            print(f\\\"\\\\n=== {method} ===\\\")\\n            for seed in seeds:\\n                dir_name = seed_dirs.get(seed)\\n                if dir_name is None:\\n                    print(f\\\"  {seed}: NOT CONFIGURED\\\")\\n                    continue\\n                m = load_metrics(dir_name)\\n                if m is not None:\\n                    src_dir = m.get(\\\"_source_dir\\\", \\\"?\\\")\\n                    src_file = m.get(\\\"_source_file\\\", \\\"?\\\")\\n                    print(f\\\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', '?'):.4f})\\\")\\n                else:\\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\\n                    print(f\\\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\\\")\\n        return\\n\\n    if args.watch > 0:\\n        print(f\\\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\\\")\\n        prev_n = 0\\n        while True:\\n            md, js = run_once()\\n            cur_ced = len(js[\\\"status\\\"][\\\"CED_seeds_ready\\\"])\\n            cur_fnli = len(js[\\\"status\\\"][\\\"flatNLI_seeds_ready\\\"])\\n            cur_n = cur_ced + cur_fnli\\n            if cur_n != prev_n:\\n                print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n                prev_n = cur_n\\n                if js[\\\"status\\\"][\\\"all_complete\\\"]:\\n                    print(\\\"\\\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\\\")\\n                    break\\n            else:\\n                print(f\\\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\\\")\\n            time.sleep(args.watch)\\n    else:\\n        md, js = run_once()\\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n        print(f\\\"\\\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "615b54cb-7f53-49bc-8dec-179b0112f5b6",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "7410029d-d852-439c-ace9-12e792e10fe7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    margin = t_crit * s / math.sqrt(n)\\\\n    return (m - margin, m + margin)\\\\n\\\\n\\\\ndef build_comparison():\\\\n    seeds = [\\\\\\\"s42\\\\\\\", \\\\\\\"s43\\\\\\\", \\\\\\\"s44\\\\\\\", \\\\\\\"s45\\\\\\\"]\\\\n    data = {}\\\\n    sources = {}\\\\n    for method, seed_dirs in METHODS.items():\\\\n        data[method] = {}\\\\n        sources[method] = {}\\\\n        for seed in seeds:\\\\n            dir_name = seed_dirs.get(seed)\\\\n            if dir_name is None:\\\\n                continue\\\\n            m = load_metrics(dir_name)\\\\n            if m is not None:\\\\n                sources[method][seed] = {\\\\\\\"dir\\\\\\\": m.pop(\\\\\\\"_source_dir\\\\\\\"), \\\\\\\"file\\\\\\\": m.pop(\\\\\\\"_source_file\\\\\\\")}\\\\n                data[method][seed] = {k: m[k] for k in METRICS_KEYS if k in m}\\\\n    return data, seeds, sources\\\\n\\\\n\\\\ndef fv(v, fmt=\\\\\\\".4f\\\\\\\"):\\\\n    if v is None or (isinstance(v, float) and math.isnan(v)):\\\\n        return \\\\\\\"—\\\\\\\"\\\\n    return f\\\\\\\"{v:{fmt}}\\\\\\\"\\\\n\\\\n\\\\ndef generate_report(data, seeds, sources):\\\\n    lines = []\\\\n    lines.append(\\\\\\\"# flat-NLI vs CED RSFT: Seed-Level Comparison\\\\\\\")\\\\n    lines.append(f\\\\\\\"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    ced_ready = list(data.get(\\\\\\\"CED_RSFT\\\\\\\", {}).keys())\\\\n    fnli_ready = list(data.get(\\\\\\\"flatNLI_RSFT\\\\\\\", {}).keys())\\\\n    lines.append(f\\\\\\\"**CED RSFT**: {len(ced_ready)}/{len(seeds)} seeds ({', '.join(ced_ready)})\\\\\\\")\\\\n    lines.append(f\\\\\\\"**flat-NLI RSFT**: {len(fnli_ready)}/{len(seeds)} seeds ({', '.join(fnli_ready)})\\\\\\\")\\\\n    missing_ced = [s for s in seeds if s not in ced_ready]\\\\n    missing_fnli = [s for s in seeds if s not in fnli_ready]\\\\n    if missing_ced:\\\\n        lines.append(f\\\\\\\"**Pending CED**: {', '.join(missing_ced)}\\\\\\\")\\\\n    if missing_fnli:\\\\n        lines.append(f\\\\\\\"**Pending flat-NLI**: {', '.join(missing_fnli)}\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    # Source directories\\\\n    lines.append(\\\\\\\"## Data Sources\\\\\\\")\\\\n    for method in [\\\\\\\"CED_RSFT\\\\\\\", \\\\\\\"flatNLI_RSFT\\\\\\\"]:\\\\n        for seed in seeds:\\\\n            if seed in sources.get(method, {}):\\\\n                src = sources[method][seed]\\\\n                lines.append(f\\\\\\\"- {method} {seed}: `{src['dir']}/` ({src['file']})\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    # Per-seed table\\\\n    lines.append(\\\\\\\"## Per-Seed Results\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    lines.append(\\\\\\\"| Seed | CED rel_f1 | fNLI rel_f1 | CED evi_f1 | fNLI evi_f1 | CED EDCR | fNLI EDCR |\\\\\\\")\\\\n    lines.append(\\\\\\\"|------|-----------|------------|-----------|------------|---------|----------|\\\\\\\")\\\\n    for seed in seeds:\\\\n        ced = data.get(\\\\\\\"CED_RSFT\\\\\\\", {}).get(seed, {})\\\\n        fnli = data.get(\\\\\\\"flatNLI_RSFT\\\\\\\", {}).get(seed, {})\\\\n        lines.append(f\\\\\\\"| {seed} | {fv(ced.get('f1'))} | {fv(fnli.get('f1'))} | {fv(ced.get('evi_f1'))} | {fv(fnli.get('evi_f1'))} | {fv(ced.get('edcr'))} | {fv(fnli.get('edcr'))} |\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n    # Summary stats\\\\n    lines.append(\\\\\\\"## Summary Statistics\\\\\\\")\\\\n    lines.append(\\\\\\\"\\\\\\\")\\\\n    json_out = {\\\\\\\"per_seed\\\\\\\": {}, \\\\\\\"summary\\\\\\\": {}, \\\\\\\"sources\\\\\\\": sources}\\\\n\\\\n    for mk, label in METRIC_LABELS.items():\\\\n        ced_vals = [data[\\\\\\\"CED_RSFT\\\\\\\"][s][mk] for s in seeds if s in data.get(\\\\\\\"CED_RSFT\\\\\\\", {}) and mk in data[\\\\\\\"CED_RSFT\\\\\\\"].get(s, {})]\\\\n        fnli_vals = [data[\\\\\\\"flatNLI_RSFT\\\\\\\"][s][mk] for s in seeds if s in data.get(\\\\\\\"flatNLI_RSFT\\\\\\\", {}) and mk in data[\\\\\\\"flatNLI_RSFT\\\\\\\"].get(s, {})]\\\\n        ced_m, ced_s = mean(ced_vals), std(ced_vals)\\\\n        fnli_m, fnli_s = mean(fnli_vals), std(fnli_vals)\\\\n        delta = fnli_m - ced_m if not (math.isnan(fnli_m) or math.isnan(ced_m)) else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n        lines.append(f\\\\\\\"**{label}**:\\\\\\\")\\\\n        lines.append(f\\\\\\\"  - CED:  {fv(ced_m)} ± {fv(ced_s)} (n={len(ced_vals)})\\\\\\\")\\\\n        lines.append(f\\\\\\\"  - fNLI: {fv(fnli_m)} ± {fv(fnli_s)} (n={len(fnli_vals)})\\\\\\\")\\\\n        lines.append(f\\\\\\\"  - Delta (fNLI - CED): {fv(delta, '+.4f')}\\\\\\\")\\\\n\\\\n        matched = [s for s in seeds if s in data.get(\\\\\\\"CED_RSFT\\\\\\\", {}) and s in data.get(\\\\\\\"flatNLI_RSFT\\\\\\\", {}) and mk in data[\\\\\\\"CED_RSFT\\\\\\\"].get(s, {}) and mk in data[\\\\\\\"flatNLI_RSFT\\\\\\\"].get(s, {})]\\\\n        stat_info = {}\\\\n        if len(matched) >= 2:\\\\n            a = [data[\\\\\\\"CED_RSFT\\\\\\\"][s][mk] for s in matched]\\\\n            b = [data[\\\\\\\"flatNLI_RSFT\\\\\\\"][s][mk] for s in matched]\\\\n            t_stat, p_val, n = paired_ttest(a, b)\\\\n\\\\n\\\\n... [截断: 输出过长，省略 181 字符] ...\\\\n\\\\n      lines.append(f\\\\\\\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  - Cohen's d: {fv(d, '.3f')}\\\\\\\")\\\\n            lines.append(f\\\\\\\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\\\\\\\")\\\\n            if n < 4:\\\\n                lines.append(f\\\\\\\"  - ⚠ N={n} < 4, waiting for more seeds\\\\\\\")\\\\n            stat_info = {\\\\\\\"t_stat\\\\\\\": t_stat, \\\\\\\"p_value\\\\\\\": p_val, \\\\\\\"cohens_d\\\\\\\": d, \\\\\\\"ci_95\\\\\\\": [ci_lo, ci_hi], \\\\\\\"n_paired\\\\\\\": n}\\\\n        else:\\\\n            lines.append(f\\\\\\\"  - ⚠ {len(matched)} matched seed(s), need >=2 for paired stats\\\\\\\")\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n\\\\n        json_out[\\\\\\\"summary\\\\\\\"][label] = {\\\\n            \\\\\\\"CED_mean\\\\\\\": ced_m, \\\\\\\"CED_std\\\\\\\": ced_s, \\\\\\\"CED_n\\\\\\\": len(ced_vals),\\\\n            \\\\\\\"fNLI_mean\\\\\\\": fnli_m, \\\\\\\"fNLI_std\\\\\\\": fnli_s, \\\\\\\"fNLI_n\\\\\\\": len(fnli_vals),\\\\n            \\\\\\\"delta\\\\\\\": delta, **stat_info,\\\\n        }\\\\n\\\\n    for seed in seeds:\\\\n        json_out[\\\\\\\"per_seed\\\\\\\"][seed] = {}\\\\n        for method in [\\\\\\\"CED_RSFT\\\\\\\", \\\\\\\"flatNLI_RSFT\\\\\\\"]:\\\\n            if seed in data.get(method, {}):\\\\n                json_out[\\\\\\\"per_seed\\\\\\\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\\\\n\\\\n    json_out[\\\\\\\"status\\\\\\\"] = {\\\\n        \\\\\\\"CED_seeds_ready\\\\\\\": ced_ready,\\\\n        \\\\\\\"flatNLI_seeds_ready\\\\\\\": fnli_ready,\\\\n        \\\\\\\"missing_CED\\\\\\\": missing_ced,\\\\n        \\\\\\\"missing_flatNLI\\\\\\\": missing_fnli,\\\\n        \\\\\\\"all_complete\\\\\\\": len(ced_ready) == 4 and len(fnli_ready) == 4,\\\\n    }\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines), json_out\\\\n\\\\n\\\\ndef run_once():\\\\n    data, seeds, sources = build_comparison()\\\\n    md, js = generate_report(data, seeds, sources)\\\\n    (OUT_DIR / \\\\\\\"seed_comparison.md\\\\\\\").write_text(md)\\\\n    (OUT_DIR / \\\\\\\"seed_comparison.json\\\\\\\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\\\\n    return md, js\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser()\\\\n    parser.add_argument(\\\\\\\"--watch\\\\\\\", type=int, default=0, help=\\\\\\\"Watch interval in seconds\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--json-only\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--dry-run\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Print what would be loaded without writing files\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.dry_run:\\\\n        seeds = [\\\\\\\"s42\\\\\\\", \\\\\\\"s43\\\\\\\", \\\\\\\"s44\\\\\\\", \\\\\\\"s45\\\\\\\"]\\\\n        for method, seed_dirs in METHODS.items():\\\\n            print(f\\\\\\\"\\\\\\\\n=== {method} ===\\\\\\\")\\\\n            for seed in seeds:\\\\n                dir_name = seed_dirs.get(seed)\\\\n                if dir_name is None:\\\\n                    print(f\\\\\\\"  {seed}: NOT CONFIGURED\\\\\\\")\\\\n                    continue\\\\n                m = load_metrics(dir_name)\\\\n                if m is not None:\\\\n                    src_dir = m.get(\\\\\\\"_source_dir\\\\\\\", \\\\\\\"?\\\\\\\")\\\\n                    src_file = m.get(\\\\\\\"_source_file\\\\\\\", \\\\\\\"?\\\\\\\")\\\\n                    print(f\\\\\\\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', '?'):.4f})\\\\\\\")\\\\n                else:\\\\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\\\\n                    print(f\\\\\\\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\\\\\\\")\\\\n        return\\\\n\\\\n    if args.watch > 0:\\\\n        print(f\\\\\\\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\\\\\\\")\\\\n        prev_n = 0\\\\n        while True:\\\\n            md, js = run_once()\\\\n            cur_ced = len(js[\\\\\\\"status\\\\\\\"][\\\\\\\"CED_seeds_ready\\\\\\\"])\\\\n            cur_fnli = len(js[\\\\\\\"status\\\\\\\"][\\\\\\\"flatNLI_seeds_ready\\\\\\\"])\\\\n            cur_n = cur_ced + cur_fnli\\\\n            if cur_n != prev_n:\\\\n                print(\\\\\\\"\\\\\\\\n\\\\\\\" + \\\\\\\"=\\\\\\\" * 60)\\\\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\\\n                prev_n = cur_n\\\\n                if js[\\\\\\\"status\\\\\\\"][\\\\\\\"all_complete\\\\\\\"]:\\\\n                    print(\\\\\\\"\\\\\\\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\\\\\\\")\\\\n                    break\\\\n            else:\\\\n                print(f\\\\\\\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\\\\\\\")\\\\n            time.sleep(args.watch)\\\\n    else:\\\\n        md, js = run_once()\\\\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\\\n        print(f\\\\\\\"\\\\\\\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\\\\\\\")\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    margin = t_crit * s / math.sqrt(n)\\n    return (m - margin, m + margin)\\n\\n\\ndef build_comparison():\\n    seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n    data = {}\\n    sources = {}\\n    for method, seed_dirs in METHODS.items():\\n        data[method] = {}\\n        sources[method] = {}\\n        for seed in seeds:\\n            dir_name = seed_dirs.get(seed)\\n            if dir_name is None:\\n                continue\\n            m = load_metrics(dir_name)\\n            if m is not None:\\n                sources[method][seed] = {\\\"dir\\\": m.pop(\\\"_source_dir\\\"), \\\"file\\\": m.pop(\\\"_source_file\\\")}\\n                data[method][seed] = {k: m[k] for k in METRICS_KEYS if k in m}\\n    return data, seeds, sources\\n\\n\\ndef fv(v, fmt=\\\".4f\\\"):\\n    if v is None or (isinstance(v, float) and math.isnan(v)):\\n        return \\\"—\\\"\\n    return f\\\"{v:{fmt}}\\\"\\n\\n\\ndef generate_report(data, seeds, sources):\\n    lines = []\\n    lines.append(\\\"# flat-NLI vs CED RSFT: Seed-Level Comparison\\\")\\n    lines.append(f\\\"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\\\")\\n    lines.append(\\\"\\\")\\n\\n    ced_ready = list(data.get(\\\"CED_RSFT\\\", {}).keys())\\n    fnli_ready = list(data.get(\\\"flatNLI_RSFT\\\", {}).keys())\\n    lines.append(f\\\"**CED RSFT**: {len(ced_ready)}/{len(seeds)} seeds ({', '.join(ced_ready)})\\\")\\n    lines.append(f\\\"**flat-NLI RSFT**: {len(fnli_ready)}/{len(seeds)} seeds ({', '.join(fnli_ready)})\\\")\\n    missing_ced = [s for s in seeds if s not in ced_ready]\\n    missing_fnli = [s for s in seeds if s not in fnli_ready]\\n    if missing_ced:\\n        lines.append(f\\\"**Pending CED**: {', '.join(missing_ced)}\\\")\\n    if missing_fnli:\\n        lines.append(f\\\"**Pending flat-NLI**: {', '.join(missing_fnli)}\\\")\\n    lines.append(\\\"\\\")\\n\\n    # Source directories\\n    lines.append(\\\"## Data Sources\\\")\\n    for method in [\\\"CED_RSFT\\\", \\\"flatNLI_RSFT\\\"]:\\n        for seed in seeds:\\n            if seed in sources.get(method, {}):\\n                src = sources[method][seed]\\n                lines.append(f\\\"- {method} {seed}: `{src['dir']}/` ({src['file']})\\\")\\n    lines.append(\\\"\\\")\\n\\n    # Per-seed table\\n    lines.append(\\\"## Per-Seed Results\\\")\\n    lines.append(\\\"\\\")\\n    lines.append(\\\"| Seed | CED rel_f1 | fNLI rel_f1 | CED evi_f1 | fNLI evi_f1 | CED EDCR | fNLI EDCR |\\\")\\n    lines.append(\\\"|------|-----------|------------|-----------|------------|---------|----------|\\\")\\n    for seed in seeds:\\n        ced = data.get(\\\"CED_RSFT\\\", {}).get(seed, {})\\n        fnli = data.get(\\\"flatNLI_RSFT\\\", {}).get(seed, {})\\n        lines.append(f\\\"| {seed} | {fv(ced.get('f1'))} | {fv(fnli.get('f1'))} | {fv(ced.get('evi_f1'))} | {fv(fnli.get('evi_f1'))} | {fv(ced.get('edcr'))} | {fv(fnli.get('edcr'))} |\\\")\\n    lines.append(\\\"\\\")\\n\\n    # Summary stats\\n    lines.append(\\\"## Summary Statistics\\\")\\n    lines.append(\\\"\\\")\\n    json_out = {\\\"per_seed\\\": {}, \\\"summary\\\": {}, \\\"sources\\\": sources}\\n\\n    for mk, label in METRIC_LABELS.items():\\n        ced_vals = [data[\\\"CED_RSFT\\\"][s][mk] for s in seeds if s in data.get(\\\"CED_RSFT\\\", {}) and mk in data[\\\"CED_RSFT\\\"].get(s, {})]\\n        fnli_vals = [data[\\\"flatNLI_RSFT\\\"][s][mk] for s in seeds if s in data.get(\\\"flatNLI_RSFT\\\", {}) and mk in data[\\\"flatNLI_RSFT\\\"].get(s, {})]\\n        ced_m, ced_s = mean(ced_vals), std(ced_vals)\\n        fnli_m, fnli_s = mean(fnli_vals), std(fnli_vals)\\n        delta = fnli_m - ced_m if not (math.isnan(fnli_m) or math.isnan(ced_m)) else float(\\\"nan\\\")\\n\\n        lines.append(f\\\"**{label}**:\\\")\\n        lines.append(f\\\"  - CED:  {fv(ced_m)} ± {fv(ced_s)} (n={len(ced_vals)})\\\")\\n        lines.append(f\\\"  - fNLI: {fv(fnli_m)} ± {fv(fnli_s)} (n={len(fnli_vals)})\\\")\\n        lines.append(f\\\"  - Delta (fNLI - CED): {fv(delta, '+.4f')}\\\")\\n\\n        matched = [s for s in seeds if s in data.get(\\\"CED_RSFT\\\", {}) and s in data.get(\\\"flatNLI_RSFT\\\", {}) and mk in data[\\\"CED_RSFT\\\"].get(s, {}) and mk in data[\\\"flatNLI_RSFT\\\"].get(s, {})]\\n        stat_info = {}\\n        if len(matched) >= 2:\\n            a = [data[\\\"CED_RSFT\\\"][s][mk] for s in matched]\\n            b = [data[\\\"flatNLI_RSFT\\\"][s][mk] for s in matched]\\n            t_stat, p_val, n = paired_ttest(a, b)\\n\\n\\n... [截断: 输出过长，省略 181 字符] ...\\n\\n      lines.append(f\\\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\\\")\\n            lines.append(f\\\"  - Cohen's d: {fv(d, '.3f')}\\\")\\n            lines.append(f\\\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\\\")\\n            if n < 4:\\n                lines.append(f\\\"  - ⚠ N={n} < 4, waiting for more seeds\\\")\\n            stat_info = {\\\"t_stat\\\": t_stat, \\\"p_value\\\": p_val, \\\"cohens_d\\\": d, \\\"ci_95\\\": [ci_lo, ci_hi], \\\"n_paired\\\": n}\\n        else:\\n            lines.append(f\\\"  - ⚠ {len(matched)} matched seed(s), need >=2 for paired stats\\\")\\n        lines.append(\\\"\\\")\\n\\n        json_out[\\\"summary\\\"][label] = {\\n            \\\"CED_mean\\\": ced_m, \\\"CED_std\\\": ced_s, \\\"CED_n\\\": len(ced_vals),\\n            \\\"fNLI_mean\\\": fnli_m, \\\"fNLI_std\\\": fnli_s, \\\"fNLI_n\\\": len(fnli_vals),\\n            \\\"delta\\\": delta, **stat_info,\\n        }\\n\\n    for seed in seeds:\\n        json_out[\\\"per_seed\\\"][seed] = {}\\n        for method in [\\\"CED_RSFT\\\", \\\"flatNLI_RSFT\\\"]:\\n            if seed in data.get(method, {}):\\n                json_out[\\\"per_seed\\\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\\n\\n    json_out[\\\"status\\\"] = {\\n        \\\"CED_seeds_ready\\\": ced_ready,\\n        \\\"flatNLI_seeds_ready\\\": fnli_ready,\\n        \\\"missing_CED\\\": missing_ced,\\n        \\\"missing_flatNLI\\\": missing_fnli,\\n        \\\"all_complete\\\": len(ced_ready) == 4 and len(fnli_ready) == 4,\\n    }\\n    return \\\"\\\\n\\\".join(lines), json_out\\n\\n\\ndef run_once():\\n    data, seeds, sources = build_comparison()\\n    md, js = generate_report(data, seeds, sources)\\n    (OUT_DIR / \\\"seed_comparison.md\\\").write_text(md)\\n    (OUT_DIR / \\\"seed_comparison.json\\\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\\n    return md, js\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--watch\\\", type=int, default=0, help=\\\"Watch interval in seconds\\\")\\n    parser.add_argument(\\\"--json-only\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--dry-run\\\", action=\\\"store_true\\\", help=\\\"Print what would be loaded without writing files\\\")\\n    args = parser.parse_args()\\n\\n    if args.dry_run:\\n        seeds = [\\\"s42\\\", \\\"s43\\\", \\\"s44\\\", \\\"s45\\\"]\\n        for method, seed_dirs in METHODS.items():\\n            print(f\\\"\\\\n=== {method} ===\\\")\\n            for seed in seeds:\\n                dir_name = seed_dirs.get(seed)\\n                if dir_name is None:\\n                    print(f\\\"  {seed}: NOT CONFIGURED\\\")\\n                    continue\\n                m = load_metrics(dir_name)\\n                if m is not None:\\n                    src_dir = m.get(\\\"_source_dir\\\", \\\"?\\\")\\n                    src_file = m.get(\\\"_source_file\\\", \\\"?\\\")\\n                    print(f\\\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', '?'):.4f})\\\")\\n                else:\\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\\n                    print(f\\\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\\\")\\n        return\\n\\n    if args.watch > 0:\\n        print(f\\\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\\\")\\n        prev_n = 0\\n        while True:\\n            md, js = run_once()\\n            cur_ced = len(js[\\\"status\\\"][\\\"CED_seeds_ready\\\"])\\n            cur_fnli = len(js[\\\"status\\\"][\\\"flatNLI_seeds_ready\\\"])\\n            cur_n = cur_ced + cur_fnli\\n            if cur_n != prev_n:\\n                print(\\\"\\\\n\\\" + \\\"=\\\" * 60)\\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n                prev_n = cur_n\\n                if js[\\\"status\\\"][\\\"all_complete\\\"]:\\n                    print(\\\"\\\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\\\")\\n                    break\\n            else:\\n                print(f\\\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\\\")\\n            time.sleep(args.watch)\\n    else:\\n        md, js = run_once()\\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\\n        print(f\\\"\\\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\\\")\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  },
+  "sourceToolAssistantUUID": "615b54cb-7f53-49bc-8dec-179b0112f5b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-16T03:49:14.237Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check what fields are in metrics_v2.json using cat instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7410029d-d852-439c-ace9-12e792e10fe7",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZjQsLw9EPp7kr7vvg1",
+  "type": "assistant",
+  "uuid": "233241e9-5a1d-4a92-96a5-dc55d77d22f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U6XMAmH2bLevAQdrmhq4W7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4513,
+      "cache_read_input_tokens": 38239,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 38239,
+          "cache_creation_input_tokens": 4513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-16T03:49:14.833Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GGh6ZXfxV5JgJ7T64Bwuqe`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat /root/autodl-tmp/eval_results/rsft_flat_nli_s44/metrics_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "233241e9-5a1d-4a92-96a5-dc55d77d22f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZjQsLw9EPp7kr7vvg1",
+  "type": "assistant",
+  "uuid": "4f059f04-633f-4f4e-96de-5a56ef1eb44a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01U6XMAmH2bLevAQdrmhq4W7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4513,
+      "cache_read_input_tokens": 38239,
+      "output_tokens": 165,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4513,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 165,
+          "cache_read_input_tokens": 38239,
+          "cache_creation_input_tokens": 4513,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4513
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "4f059f04-633f-4f4e-96de-5a56ef1eb44a",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify seed comparison and paired t-test scripts",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-16T03:49:15.228Z_
+
+<details><summary>↩ Tool result · `toolu_01GGh6ZXfxV5JgJ7T64Bwuqe`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47787766613784594,\\n  \\\"recall\\\": 0.4462184182371821,\\n  \\\"f1\\\": 0.4615057241349959,\\n  \\\"ign_precision\\\": 0.45526093881757707,\\n  \\\"ign_recall\\\": 0.44903428518621197,\\n  \\\"ign_f1\\\": 0.45212617474644085,\\n  \\\"tp\\\": 5422,\\n  \\\"pred_count\\\": 11346,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8186585702456528,\\n  \\\"evi_recall\\\": 0.8076608877189797,\\n  \\\"evi_f1\\\": 0.8131225440921136,\\n  \\\"n_evaluated\\\": 15149,\\n  \\\"edcr\\\": 0.6458084547408646,\\n  \\\"n_distractor_citations\\\": 16224,\\n  \\\"n_total_citations\\\": 25122,\\n  \\\"evi_joint_precision\\\": 0.3621815118972415,\\n  \\\"evi_joint_recall\\\": 0.35719848398317844,\\n  \\\"evi_f1_joint\\\": 0.35967273962934887,\\n  \\\"evi_tp\\\": 6880,\\n  \\\"evi_pred_total\\\": 18996,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.782741116751269,\\n  \\\"evidence_format_rate\\\": 0.782741116751269,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 771,\\n  \\\"n_evidence_valid\\\": 771,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15257,\\n  \\\"n_truncated\\\": 206,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10580.1,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 44,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f059f04-633f-4f4e-96de-5a56ef1eb44a",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "f4744133-4685-4061-8263-6c3ae646ebec",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"precision\\\\\\\": 0.47787766613784594,\\\\n  \\\\\\\"recall\\\\\\\": 0.4462184182371821,\\\\n  \\\\\\\"f1\\\\\\\": 0.4615057241349959,\\\\n  \\\\\\\"ign_precision\\\\\\\": 0.45526093881757707,\\\\n  \\\\\\\"ign_recall\\\\\\\": 0.44903428518621197,\\\\n  \\\\\\\"ign_f1\\\\\\\": 0.45212617474644085,\\\\n  \\\\\\\"tp\\\\\\\": 5422,\\\\n  \\\\\\\"pred_count\\\\\\\": 11346,\\\\n  \\\\\\\"gold_count\\\\\\\": 12151,\\\\n  \\\\\\\"evi_precision\\\\\\\": 0.8186585702456528,\\\\n  \\\\\\\"evi_recall\\\\\\\": 0.8076608877189797,\\\\n  \\\\\\\"evi_f1\\\\\\\": 0.8131225440921136,\\\\n  \\\\\\\"n_evaluated\\\\\\\": 15149,\\\\n  \\\\\\\"edcr\\\\\\\": 0.6458084547408646,\\\\n  \\\\\\\"n_distractor_citations\\\\\\\": 16224,\\\\n  \\\\\\\"n_total_citations\\\\\\\": 25122,\\\\n  \\\\\\\"evi_joint_precision\\\\\\\": 0.3621815118972415,\\\\n  \\\\\\\"evi_joint_recall\\\\\\\": 0.35719848398317844,\\\\n  \\\\\\\"evi_f1_joint\\\\\\\": 0.35967273962934887,\\\\n  \\\\\\\"evi_tp\\\\\\\": 6880,\\\\n  \\\\\\\"evi_pred_total\\\\\\\": 18996,\\\\n  \\\\\\\"evi_gold_total\\\\\\\": 19261,\\\\n  \\\\\\\"format_compliance_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"field_compliance_rate\\\\\\\": 0.782741116751269,\\\\n  \\\\\\\"evidence_format_rate\\\\\\\": 0.782741116751269,\\\\n  \\\\\\\"n_total\\\\\\\": 985,\\\\n  \\\\\\\"n_parseable\\\\\\\": 985,\\\\n  \\\\\\\"n_field_complete\\\\\\\": 771,\\\\n  \\\\\\\"n_evidence_valid\\\\\\\": 771,\\\\n  \\\\\\\"n_documents\\\\\\\": 985,\\\\n  \\\\\\\"n_predictions\\\\\\\": 15257,\\\\n  \\\\\\\"n_truncated\\\\\\\": 206,\\\\n  \\\\\\\"n_format_ok\\\\\\\": 985,\\\\n  \\\\\\\"format_ok_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"inference_time_seconds\\\\\\\": 10580.1,\\\\n  \\\\\\\"config\\\\\\\": {\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\\\\\\\",\\\\n    \\\\\\\"base_model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/Qwen3-4B\\\\\\\",\\\\n    \\\\\\\"sft_adapter\\\\\\\": \\\\\\\"/root/autodl-tmp/sft_output\\\\\\\",\\\\n    \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/autodl-tmp/data/docred\\\\\\\",\\\\n    \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\\\\\",\\\\n    \\\\\\\"batch_size\\\\\\\": 4,\\\\n    \\\\\\\"max_new_tokens\\\\\\\": 1024,\\\\n    \\\\\\\"split\\\\\\\": \\\\\\\"dev\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\": 44,\\\\n    \\\\\\\"no_evidence\\\\\\\": false,\\\\n    \\\\\\\"quantize\\\\\\\": false\\\\n  },\\\\n  \\\\\\\"_note\\\\\\\": \\\\\\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"precision\\\": 0.47787766613784594,\\n  \\\"recall\\\": 0.4462184182371821,\\n  \\\"f1\\\": 0.4615057241349959,\\n  \\\"ign_precision\\\": 0.45526093881757707,\\n  \\\"ign_recall\\\": 0.44903428518621197,\\n  \\\"ign_f1\\\": 0.45212617474644085,\\n  \\\"tp\\\": 5422,\\n  \\\"pred_count\\\": 11346,\\n  \\\"gold_count\\\": 12151,\\n  \\\"evi_precision\\\": 0.8186585702456528,\\n  \\\"evi_recall\\\": 0.8076608877189797,\\n  \\\"evi_f1\\\": 0.8131225440921136,\\n  \\\"n_evaluated\\\": 15149,\\n  \\\"edcr\\\": 0.6458084547408646,\\n  \\\"n_distractor_citations\\\": 16224,\\n  \\\"n_total_citations\\\": 25122,\\n  \\\"evi_joint_precision\\\": 0.3621815118972415,\\n  \\\"evi_joint_recall\\\": 0.35719848398317844,\\n  \\\"evi_f1_joint\\\": 0.35967273962934887,\\n  \\\"evi_tp\\\": 6880,\\n  \\\"evi_pred_total\\\": 18996,\\n  \\\"evi_gold_total\\\": 19261,\\n  \\\"format_compliance_rate\\\": 1.0,\\n  \\\"field_compliance_rate\\\": 0.782741116751269,\\n  \\\"evidence_format_rate\\\": 0.782741116751269,\\n  \\\"n_total\\\": 985,\\n  \\\"n_parseable\\\": 985,\\n  \\\"n_field_complete\\\": 771,\\n  \\\"n_evidence_valid\\\": 771,\\n  \\\"n_documents\\\": 985,\\n  \\\"n_predictions\\\": 15257,\\n  \\\"n_truncated\\\": 206,\\n  \\\"n_format_ok\\\": 985,\\n  \\\"format_ok_rate\\\": 1.0,\\n  \\\"inference_time_seconds\\\": 10580.1,\\n  \\\"config\\\": {\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/rsft_output_flat_nli_s44/checkpoint-507\\\",\\n    \\\"base_model\\\": \\\"/root/autodl-tmp/models/Qwen3-4B\\\",\\n    \\\"sft_adapter\\\": \\\"/root/autodl-tmp/sft_output\\\",\\n    \\\"data_path\\\": \\\"/root/autodl-tmp/data/docred\\\",\\n    \\\"output_dir\\\": \\\"/root/autodl-tmp/eval_results/rsft_flat_nli_s44\\\",\\n    \\\"batch_size\\\": 4,\\n    \\\"max_new_tokens\\\": 1024,\\n    \\\"split\\\": \\\"dev\\\",\\n    \\\"seed\\\": 44,\\n    \\\"no_evidence\\\": false,\\n    \\\"quantize\\\": false\\n  },\\n  \\\"_note\\\": \\\"Recomputed with fixed Ign-F1 (doc_id-free train_facts)\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4f059f04-633f-4f4e-96de-5a56ef1eb44a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-16T03:50:49.944Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me summarize the issues:
+
+## Issues found in `seed_comparison.py`:
+
+### Issue 1: Missing `ign_f1` metric (CRITICAL)
+- `METRICS_KEYS = ["f1", "evi_f1", "edcr"]` — does NOT include `ign_f1`
+- `metrics_v2.json` has `ign_f1` field
+- Task says: "论文主表报 Ign-F1, 附录报 F1"
+
+
+- I need to add `ign_f1` to both METRICS_KEYS and METRIC_LABELS
+
+### Issue 2: Fallback to old-protocol results (CRITICAL)
+The METHODS dict has fallback paths pointing to old-protocol eval results across multiple CED configurations, where the secondary fallback options use outdated evaluation protocols instead of the reeval versions.
+
+For paired t-test, I should only use unified protocol (D076) results, since the fallback directories would silently pull in old-protocol data.
+
+### Issue 3: `load_metrics` reads metrics_v2.json with fallback to metrics.json
+This is partially correct — it prefers metrics_v2.json but falls back to metrics.json. The problem is that for Ign-F1 specifically, the old metrics.json has a buggy evaluator, so I need to enforce that ign_f1 must come from metrics_v2.json only. For other metrics like f1, evi_f1, and edcr, falling back to metrics.json might be acceptable, but if metrics_v2.json doesn't exist for ign_f1, I should skip that result rather than use invalid data.
+
+Now I'm checking which evaluation directories currently have metrics files. Most of the recent runs like rsft_flat_nli_s44 and s45 have metrics_v2.json, which is good. But several directories like rsft_flat_nli_s43_reeval_r2, rsft_ced_s43, and rsft_ced_s45 are empty — those evaluations are still in progress. I'm seeing that most of the unified-protocol results are still running, with only the flat-NLI evaluations having complete metrics so far. Now I need to plan the fixes: add the `ign_f1` metric to the keys and labels, strip out the old-protocol directories from the methods list, and ensure `ign_f1` only pulls from the newer metrics_v2.json files rather than falling back to older formats.
+
+The safest approach is to remove all fallback logic entirely—the script should only look for unified-protocol directories and report NOT FOUND if they're missing, rather than silently falling back to old results. Updating the METHODS dictionary...
+
+Defining the methods mapping...
+
+Setting up the metrics keys and labels...
+
+For the ign_f1 metric, I need to ensure it only comes from metrics_v2.json, so I'll modify the load_metrics function to strip out ign_f1 when loading from the older metrics.json file, preventing it from being included in comparisons where it shouldn't be.
+
+I also need to update the per-seed table to display Ign-F1 and include it in the dry-run output.
+
+Looking at the script structure, I can see it's around 283 lines, so I'll need to make targeted edits: removing the old-protocol fallback directories from the METHODS dict, adding ign_f1 to the metrics configuration, updating the load_metrics function to handle the source file properly, and then adding Ign-F1 columns to the per-seed table and dry-run output.
+
+The cleanest approach is to rewrite the complete file using Python since there are multiple scattered changes needed throughout.
+
+I have the full 283-line script now. Let me map out what needs updating: the METHODS dictionary to remove old protocol fallbacks, add ign_f1 to the metrics configuration, and handle the ign_f1 stripping in the load_metrics function.
+
+Updating the metrics configuration... I need to also display the ign_f1 value in the dry-run output. Now I'm going to write a Python script that makes all these changes by rewriting the entire file through an SSH command with a heredoc wrapper. Let me first review the complete script from both sections to make sure I capture all the logic correctly.
+
+Defining the evaluation root directory and output paths, then setting up the methods dictionary that maps different RSFT approaches to their corresponding result directories, with priority ordering for which versions to use...
+
+Now I'm defining a function to load metrics from evaluation directories, checking if the input is a list and recursively trying each name until finding valid results. Finishing the statistical utility functions... I'm finishing up the confidence interval calculation by looking up the critical t-value from a precomputed map, then computing the margin of error. Now I'm building a comparison function that loads metrics across different methods and seeds, extracting source information and organizing the data by method and seed.
+
+Generating the report output... Generating markdown table... Generating the summary statistics table... Finishing the statistical analysis with Cohen's d and confidence intervals, then formatting the results with warnings for small sample sizes. Building the per-seed output structure...
+
+Now I'm wrapping up the report generation by returning the markdown and JSON outputs, then defining the main entry point that orchestrates the comparison workflow—it loads the data, generates both markdown and JSON reports, writes them to files, and handles command-line arguments for watching changes and dry-run mode. Writing the watch loop... Writing the updated script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4744133-4685-4061-8263-6c3ae646ebec",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZjjUnBZaGWEauUFkJg",
+  "type": "assistant",
+  "uuid": "3748033a-eee0-4df1-b1a0-ad89d0f11c73",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Zx54uL9ZEDBs3hogyRHB2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 42752,
+      "output_tokens": 7618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1243,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7618,
+          "cache_read_input_tokens": 42752,
+          "cache_creation_input_tokens": 1243,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1243
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-16T03:50:50.871Z_
+
+Now I have a complete picture. Let me check one more thing — verify which flat-NLI s43 reeval actually has data.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3748033a-eee0-4df1-b1a0-ad89d0f11c73",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZjjUnBZaGWEauUFkJg",
+  "type": "assistant",
+  "uuid": "319670ad-77ef-4552-a335-f56122f9fdbe",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Zx54uL9ZEDBs3hogyRHB2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 42752,
+      "output_tokens": 7618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1243,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7618,
+          "cache_read_input_tokens": 42752,
+          "cache_creation_input_tokens": 1243,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1243
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-16T03:50:52.346Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01ArmDmwPPofxY5BFedriEpZ`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/rsft_flat_nli_s43_reeval/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "319670ad-77ef-4552-a335-f56122f9fdbe",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZjjUnBZaGWEauUFkJg",
+  "type": "assistant",
+  "uuid": "6dcf4957-c181-4a8e-9f72-87fa270a4fe1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Zx54uL9ZEDBs3hogyRHB2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 42752,
+      "output_tokens": 7618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1243,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7618,
+          "cache_read_input_tokens": 42752,
+          "cache_creation_input_tokens": 1243,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1243
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T03:50:52.679Z_
+
+<details><summary>↩ Tool result · `toolu_01ArmDmwPPofxY5BFedriEpZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"metrics.json\\nmetrics_v2.json\\npredictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6dcf4957-c181-4a8e-9f72-87fa270a4fe1",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "c07f1f52-cf1a-49d2-950c-2277340b3db7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"metrics.json\\\\nmetrics_v2.json\\\\npredictions.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"metrics.json\\nmetrics_v2.json\\npredictions.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6dcf4957-c181-4a8e-9f72-87fa270a4fe1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-16T03:50:52.710Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014YGqVmepn1Rg4rNtLjNaJw`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "ls /root/autodl-tmp/eval_results/rsft_ced_s45/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c07f1f52-cf1a-49d2-950c-2277340b3db7",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZjjUnBZaGWEauUFkJg",
+  "type": "assistant",
+  "uuid": "de7ad34d-4327-4aff-b846-bc6217070cfd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016Zx54uL9ZEDBs3hogyRHB2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1243,
+      "cache_read_input_tokens": 42752,
+      "output_tokens": 7618,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1243,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7618,
+          "cache_read_input_tokens": 42752,
+          "cache_creation_input_tokens": 1243,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1243
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "de7ad34d-4327-4aff-b846-bc6217070cfd",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify seed comparison and paired t-test scripts",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-16T03:50:53.064Z_
+
+<details><summary>↩ Tool result · `toolu_014YGqVmepn1Rg4rNtLjNaJw`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de7ad34d-4327-4aff-b846-bc6217070cfd",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "cd195ce5-44f1-4ab5-b4a2-192da60ae7bb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.34}}"
+    }
+  },
+  "sourceToolAssistantUUID": "de7ad34d-4327-4aff-b846-bc6217070cfd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 68 · 2026-05-16T03:50:53.068Z_
+
+```json
+{
+  "parentUuid": "cd195ce5-44f1-4ab5-b4a2-192da60ae7bb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b1031d42-21c9-4918-bcf0-b04fbc86d34f",
+  "timestamp": "2026-05-16T03:50:53.068Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-16T03:51:12.633Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So:
+- `rsft_flat_nli_s43_reeval/` has metrics (metrics.json + metrics_v2.json + predictions.json)
+- `rsft_flat_nli_s43_reeval_r2/` is empty (eval still running)
+- `rsft_ced_s45/` is empty (eval still running)
+- `rsft_ced_s43/` is empty (eval still running)
+
+So the current state of unified protocol eval results:
+- **CED s42**: rsft_ced_s42_reeval — doesn't exist yet (reeval pending)
+
+
+- **CED s43**: rsft_ced_s43 — empty (eval running)
+- **CED s44**: rsft_ced_s44_reeval — doesn't exist yet (reeval pending)
+- **CED s45**: rsft_ced_s45 — empty (eval running)
+- **flat-NLI s42**: rsft_flat_nli_s42_reeval — doesn't exist yet (reeval pending)
+- **flat-NLI s43**: rsft_flat_nli_s43_reeval has data, while rsft_flat_nli_s43_reeval_r2 is still running but might be using an older protocol
+- **flat-NLI s44**: rsft_flat_nli_s44 — has metrics_v2.json ✓
+- **flat-NLI s45**: rsft_flat_nli_s45 — has metrics_v2.json ✓
+
+I need to verify whether rsft_flat_nli_s43_reeval is also using the unified protocol by checking its metrics_v2.json config. Since the task mentions 8 evals are currently running, some directories are empty because they're still in progress—the script just needs to be ready to pick them up when they finish. The main question now is how to handle the METHODS mapping.
+
+The user specified that rsft_flat_nli_s43_reeval_r2 is the unified protocol version for flat-NLI s43, but it's empty while rsft_flat_nli_s43_reeval has data. Since the script prioritizes reeval_r2 over reeval over the base version, and reeval_r2 is likely still running, I should only use reeval_r2 once it completes—though I need to check if reeval itself is also unified protocol. For now, I'll focus on ensuring the script is ready to handle all 8 unified protocol results when they finish.
+
+I need to strip out all the old-protocol fallback directories and keep only the unified-protocol ones. For flat-NLI s43 specifically, that means using only rsft_flat_nli_s43_reeval_r2 and removing rsft_flat_nli_s43_reeval as a fallback option. Let me update the script now using a Python script executed over SSH.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1031d42-21c9-4918-bcf0-b04fbc86d34f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZrwWn7XjYoU1CtAFUJ",
+  "type": "assistant",
+  "uuid": "645f2f99-a924-41a5-8c7c-0c75867e441e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EWo5wyUvX1czT7PvTihjL3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7930,
+      "cache_read_input_tokens": 43995,
+      "output_tokens": 5701,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5701,
+          "cache_read_input_tokens": 43995,
+          "cache_creation_input_tokens": 7930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-16T03:51:15.993Z_
+
+Now I have the full picture. Here are the issues:
+
+**Issue 1 (CRITICAL)**: `ign_f1` 不在 METRICS_KEYS 中 — 脚本完全不读 Ign-F1
+**Issue 2 (CRITICAL)**: METHODS 有旧协议 fallback 路径（`rsft_r2b_maxtok1536`, `rsft_s43`, `rsft_s44`, `rsft_flat_nli`, `rsft_flat_nli_s43`），paired t-test 会静默使用错误数据
+**Issue 3**: `load_metrics` 会 fallback 到 `metrics.json`，但旧 metrics.json 的 ign_f1 无效
+**Issue 4**: `paired_ttest_analysis.py` 不存在，功能已内置在 `seed_comparison.py` 中
+**Issue 5**: Per-seed 表格缺 Ign-F1 列
+
+正在修改脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "645f2f99-a924-41a5-8c7c-0c75867e441e",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZrwWn7XjYoU1CtAFUJ",
+  "type": "assistant",
+  "uuid": "9ec57bb1-cc60-43d3-865b-014191ebb7f8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EWo5wyUvX1czT7PvTihjL3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7930,
+      "cache_read_input_tokens": 43995,
+      "output_tokens": 5701,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5701,
+          "cache_read_input_tokens": 43995,
+          "cache_creation_input_tokens": 7930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T03:51:55.547Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016tafKT8Phm7YFazdbbyFBd`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cat > /root/autodl-tmp/scripts/seed_comparison.py << 'SCRIPT_EOF'\n#!/usr/bin/env python3\n\"\"\"Seed-level comparison: flat-NLI RSFT vs CED RSFT (unified protocol only).\"\"\"\n\nimport json, os, sys, time, argparse, math\nfrom pathlib import Path\nfrom datetime import datetime\n\n\nclass NanSafeEncoder(json.JSONEncoder):\n    def encode(self, o):\n        text = super().encode(o)\n        return text.replace(\"NaN\", \"null\").replace(\"Infinity\", '\"Inf\"')\n\n\nEVAL_ROOT = Path(\"/root/autodl-tmp/eval_results\")\nOUT_DIR = EVAL_ROOT\n\n# Unified protocol (D076) dirs only — no old-protocol fallbacks\nMETHODS = {\n    \"CED_RSFT\": {\n        \"s42\": \"rsft_ced_s42_reeval\",\n        \"s43\": \"rsft_ced_s43\",\n        \"s44\": \"rsft_ced_s44_reeval\",\n        \"s45\": \"rsft_ced_s45\",\n    },\n    \"flatNLI_RSFT\": {\n        \"s42\": \"rsft_flat_nli_s42_reeval\",\n        \"s43\": \"rsft_flat_nli_s43_reeval_r2\",\n        \"s44\": \"rsft_flat_nli_s44\",\n        \"s45\": \"rsft_flat_nli_s45\",\n    },\n}\n\nMETRICS_KEYS = [\"ign_f1\", \"f1\", \"evi_f1\", \"edcr\"]\nMETRIC_LABELS = {\"ign_f1\": \"Ign-F1\", \"f1\": \"rel_f1\", \"evi_f1\": \"evi_f1\", \"edcr\": \"EDCR\"}\n\n\ndef load_metrics(eval_dir_name):\n    if isinstance(eval_dir_name, list):\n        for name in eval_dir_name:\n            result = load_metrics(name)\n            if result is not None:\n                return result\n        return None\n    d = EVAL_ROOT / eval_dir_name\n    p = d / \"metrics_v2.json\"\n    if not p.exists():\n        p = d / \"metrics.json\"\n    if not p.exists():\n        return None\n    with open(p) as f:\n        m = json.load(f)\n    if m.get(\"field_compliance_rate\", 0) == 0 or m.get(\"f1\", 0) < 0.01:\n        return None\n    m[\"_source_dir\"] = eval_dir_name\n    m[\"_source_file\"] = p.name\n    if p.name == \"metrics.json\":\n        m.pop(\"ign_f1\", None)\n    return m\n\n\ndef mean(vals):\n    return sum(vals) / len(vals) if vals else float(\"nan\")\n\ndef std(vals):\n    if len(vals) < 2:\n        return float(\"nan\")\n    m = mean(vals)\n    return math.sqrt(sum((v - m) ** 2 for v in vals) / (len(vals) - 1))\n\ndef cohens_d(a, b):\n    if len(a) < 2 or len(b) < 2:\n        return float(\"nan\")\n    diffs = [x - y for x, y in zip(a, b)]\n    d_mean, d_std = mean(diffs), std(diffs)\n    if d_std == 0:\n        return float(\"inf\") if d_mean != 0 else 0.0\n    return d_mean / d_std\n\ndef paired_ttest(a, b):\n    n = len(a)\n    if n < 2:\n        return float(\"nan\"), float(\"nan\"), n\n    diffs = [x - y for x, y in zip(a, b)]\n    d_mean, d_std = mean(diffs), std(diffs)\n    if d_std == 0:\n        return (float(\"inf\") if d_mean != 0 else 0.0), 0.0, n\n    t_stat = d_mean / (d_std / math.sqrt(n))\n    try:\n        from scipy import stats as sp_stats\n        p_val = sp_stats.t.sf(abs(t_stat), df=n - 1) * 2\n    except ImportError:\n        p_val = None\n    return t_stat, p_val, n\n\ndef ci_95(vals):\n    n = len(vals)\n    if n < 2:\n        return (float(\"nan\"), float(\"nan\"))\n    m, s = mean(vals), std(vals)\n    t_crit_map = {2: 12.706, 3: 4.303, 4: 3.182, 5: 2.776}\n    t_crit = t_crit_map.get(n, 2.0)\n    margin = t_crit * s / math.sqrt(n)\n    return (m - margin, m + margin)\n\n\ndef build_comparison():\n    seeds = [\"s42\", \"s43\", \"s44\", \"s45\"]\n    data = {}\n    sources = {}\n    for method, seed_dirs in METHODS.items():\n        data[method] = {}\n        sources[method] = {}\n        for seed in seeds:\n            dir_name = seed_dirs.get(seed)\n            if dir_name is None:\n                continue\n            m = load_metrics(dir_name)\n            if m is not None:\n                sources[method][seed] = {\"dir\": m.pop(\"_source_dir\"), \"file\": m.pop(\"_source_file\")}\n                data[method][seed] = {k: m[k] for k in METRICS_KEYS if k in m}\n    return data, seeds, sources\n\n\ndef fv(v, fmt=\".4f\"):\n    if v is None or (isinstance(v, float) and math.isnan(v)):\n        return \"—\"\n    return f\"{v:{fmt}}\"\n\n\ndef generate_report(data, seeds, sources):\n    lines = []\n    lines.append(\"# flat-NLI vs CED RSFT: Seed-Level Comparison (Unified Protocol)\")\n    lines.append(f\"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\")\n    lines.append(\"\")\n\n    ced_ready = list(data.get(\"CED_RSFT\", {}).keys())\n    fnli_ready = list(data.get(\"flatNLI_RSFT\", {}).keys())\n    lines.append(f\"**CED RSFT**: {len(ced_ready)}/{len(seeds)} seeds ({', '.join(ced_ready)})\")\n    lines.append(f\"**flat-NLI RSFT**: {len(fnli_ready)}/{len(seeds)} seeds ({', '.join(fnli_ready)})\")\n    missing_ced = [s for s in seeds if s not in ced_ready]\n    missing_fnli = [s for s in seeds if s not in fnli_ready]\n    if missing_ced:\n        lines.append(f\"**Pending CED**: {', '.join(missing_ced)}\")\n    if missing_fnli:\n        lines.append(f\"**Pending flat-NLI**: {', '.join(missing_fnli)}\")\n    lines.append(\"\")\n\n    # Source directories\n    lines.append(\"## Data Sources\")\n    for method in [\"CED_RSFT\", \"flatNLI_RSFT\"]:\n        for seed in seeds:\n            if seed in sources.get(method, {}):\n                src = sources[method][seed]\n                lines.append(f\"- {method} {seed}: `{src['dir']}/` ({src['file']})\")\n    lines.append(\"\")\n\n    # Per-seed table\n    lines.append(\"## Per-Seed Results\")\n    lines.append(\"\")\n    lines.append(\"| Seed | CED Ign-F1 | fNLI Ign-F1 | CED rel_f1 | fNLI rel_f1 | CED evi_f1 | fNLI evi_f1 | CED EDCR | fNLI EDCR |\")\n    lines.append(\"|------|-----------|------------|-----------|------------|-----------|------------|---------|----------|\")\n    for seed in seeds:\n        ced = data.get(\"CED_RSFT\", {}).get(seed, {})\n        fnli = data.get(\"flatNLI_RSFT\", {}).get(seed, {})\n        lines.append(f\"| {seed} | {fv(ced.get('ign_f1'))} | {fv(fnli.get('ign_f1'))} | {fv(ced.get('f1'))} | {fv(fnli.get('f1'))} | {fv(ced.get('evi_f1'))} | {fv(fnli.get('evi_f1'))} | {fv(ced.get('edcr'))} | {fv(fnli.get('edcr'))} |\")\n    lines.append(\"\")\n\n    # Summary stats\n    lines.append(\"## Summary Statistics\")\n    lines.append(\"\")\n    json_out = {\"per_seed\": {}, \"summary\": {}, \"sources\": sources}\n\n    for mk, label in METRIC_LABELS.items():\n        ced_vals = [data[\"CED_RSFT\"][s][mk] for s in seeds if s in data.get(\"CED_RSFT\", {}) and mk in data[\"CED_RSFT\"].get(s, {})]\n        fnli_vals = [data[\"flatNLI_RSFT\"][s][mk] for s in seeds if s in data.get(\"flatNLI_RSFT\", {}) and mk in data[\"flatNLI_RSFT\"].get(s, {})]\n        ced_m, ced_s = mean(ced_vals), std(ced_vals)\n        fnli_m, fnli_s = mean(fnli_vals), std(fnli_vals)\n        delta = fnli_m - ced_m if not (math.isnan(fnli_m) or math.isnan(ced_m)) else float(\"nan\")\n\n        lines.append(f\"**{label}**:\")\n        lines.append(f\"  - CED:  {fv(ced_m)} +/- {fv(ced_s)} (n={len(ced_vals)})\")\n        lines.append(f\"  - fNLI: {fv(fnli_m)} +/- {fv(fnli_s)} (n={len(fnli_vals)})\")\n        lines.append(f\"  - Delta (fNLI - CED): {fv(delta, '+.4f')}\")\n\n        matched = [s for s in seeds if s in data.get(\"CED_RSFT\", {}) and s in data.get(\"flatNLI_RSFT\", {}) and mk in data[\"CED_RSFT\"].get(s, {}) and mk in data[\"flatNLI_RSFT\"].get(s, {})]\n        stat_info = {}\n        if len(matched) >= 2:\n            a = [data[\"CED_RSFT\"][s][mk] for s in matched]\n            b = [data[\"flatNLI_RSFT\"][s][mk] for s in matched]\n            t_stat, p_val, n = paired_ttest(a, b)\n            d = cohens_d(b, a)\n            ci_lo, ci_hi = ci_95([bv - av for av, bv in zip(a, b)])\n            p_str = \"N/A (no scipy)\" if p_val is None else fv(p_val, \".4f\")\n            lines.append(f\"  - Paired t-test: t={fv(t_stat, '.3f')}, p={p_str}, n={n}\")\n            lines.append(f\"  - Cohen's d: {fv(d, '.3f')}\")\n            lines.append(f\"  - 95% CI (Delta): [{fv(ci_lo, '.4f')}, {fv(ci_hi, '.4f')}]\")\n            if n < 4:\n                lines.append(f\"  - WARNING: N={n} < 4, waiting for more seeds\")\n            stat_info = {\"t_stat\": t_stat, \"p_value\": p_val, \"cohens_d\": d, \"ci_95\": [ci_lo, ci_hi], \"n_paired\": n}\n        else:\n            lines.append(f\"  - WARNING: {len(matched)} matched seed(s), need >=2 for paired stats\")\n        lines.append(\"\")\n\n        json_out[\"summary\"][label] = {\n            \"CED_mean\": ced_m, \"CED_std\": ced_s, \"CED_n\": len(ced_vals),\n            \"fNLI_mean\": fnli_m, \"fNLI_std\": fnli_s, \"fNLI_n\": len(fnli_vals),\n            \"delta\": delta, **stat_info,\n        }\n\n    for seed in seeds:\n        json_out[\"per_seed\"][seed] = {}\n        for method in [\"CED_RSFT\", \"flatNLI_RSFT\"]:\n            if seed in data.get(method, {}):\n                json_out[\"per_seed\"][seed][method] = {METRIC_LABELS[k]: v for k, v in data[method][seed].items() if k in METRICS_KEYS}\n\n    json_out[\"status\"] = {\n        \"CED_seeds_ready\": ced_ready,\n        \"flatNLI_seeds_ready\": fnli_ready,\n        \"missing_CED\": missing_ced,\n        \"missing_flatNLI\": missing_fnli,\n        \"all_complete\": len(ced_ready) == 4 and len(fnli_ready) == 4,\n    }\n    return \"\\n\".join(lines), json_out\n\n\ndef run_once():\n    data, seeds, sources = build_comparison()\n    md, js = generate_report(data, seeds, sources)\n    (OUT_DIR / \"seed_comparison.md\").write_text(md)\n    (OUT_DIR / \"seed_comparison.json\").write_text(json.dumps(js, indent=2, ensure_ascii=False, cls=NanSafeEncoder))\n    return md, js\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--watch\", type=int, default=0, help=\"Watch interval in seconds\")\n    parser.add_argument(\"--json-only\", action=\"store_true\")\n    parser.add_argument(\"--dry-run\", action=\"store_true\", help=\"Print what would be loaded without writing files\")\n    args = parser.parse_args()\n\n    if args.dry_run:\n        seeds = [\"s42\", \"s43\", \"s44\", \"s45\"]\n        for method, seed_dirs in METHODS.items():\n            print(f\"\\n=== {method} ===\")\n            for seed in seeds:\n                dir_name = seed_dirs.get(seed)\n                if dir_name is None:\n                    print(f\"  {seed}: NOT CONFIGURED\")\n                    continue\n                m = load_metrics(dir_name)\n                if m is not None:\n                    src_dir = m.get(\"_source_dir\", \"?\")\n                    src_file = m.get(\"_source_file\", \"?\")\n                    ign_f1 = m.get(\"ign_f1\")\n                    ign_str = f\", ign_f1={ign_f1:.4f}\" if ign_f1 is not None else \", ign_f1=N/A\"\n                    print(f\"  {seed}: LOADED from {src_dir}/{src_file}  (f1={m.get('f1', 0):.4f}{ign_str})\")\n                else:\n                    candidates = dir_name if isinstance(dir_name, list) else [dir_name]\n                    print(f\"  {seed}: NOT FOUND (tried: {', '.join(candidates)})\")\n        return\n\n    if args.watch > 0:\n        print(f\"[watch] Checking every {args.watch}s. Ctrl+C to stop.\")\n        prev_n = 0\n        while True:\n            md, js = run_once()\n            cur_ced = len(js[\"status\"][\"CED_seeds_ready\"])\n            cur_fnli = len(js[\"status\"][\"flatNLI_seeds_ready\"])\n            cur_n = cur_ced + cur_fnli\n            if cur_n != prev_n:\n                print(\"\\n\" + \"=\" * 60)\n                print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\n                prev_n = cur_n\n                if js[\"status\"][\"all_complete\"]:\n                    print(\"\\nAll 8 seeds complete (4 CED + 4 flat-NLI)!\")\n                    break\n            else:\n                print(f\"[{datetime.now().strftime('%H:%M:%S')}] CED {cur_ced}/4, fNLI {cur_fnli}/4 seeds ready.\")\n            time.sleep(args.watch)\n    else:\n        md, js = run_once()\n        print(md if not args.json_only else json.dumps(js, indent=2, cls=NanSafeEncoder))\n        print(f\"\\nWritten: {OUT_DIR}/seed_comparison.{{md,json}}\")\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF\necho \"DONE: $?\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ec57bb1-cc60-43d3-865b-014191ebb7f8",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZrwWn7XjYoU1CtAFUJ",
+  "type": "assistant",
+  "uuid": "85b39824-f02e-41b5-8247-0a685a21b6a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EWo5wyUvX1czT7PvTihjL3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7930,
+      "cache_read_input_tokens": 43995,
+      "output_tokens": 5701,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5701,
+          "cache_read_input_tokens": 43995,
+          "cache_creation_input_tokens": 7930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T03:51:55.893Z_
+
+<details><summary>↩ Tool result · `toolu_016tafKT8Phm7YFazdbbyFBd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"DONE: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85b39824-f02e-41b5-8247-0a685a21b6a3",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "4fa05f3c-bc90-4319-826e-fffe9ae5671b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE: 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"DONE: 0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.32}}"
+    }
+  },
+  "sourceToolAssistantUUID": "85b39824-f02e-41b5-8247-0a685a21b6a3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-16T03:51:58.752Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, file written. Now let me run dry-run to verify.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fa05f3c-bc90-4319-826e-fffe9ae5671b",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZwaAnBVud1326L7HYY",
+  "type": "assistant",
+  "uuid": "0f2ce548-528e-4415-a9eb-88c735fb5cee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153rDPVrVE1cLWq9GUDV5W1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5780,
+      "cache_read_input_tokens": 51925,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 51925,
+          "cache_creation_input_tokens": 5780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-16T03:51:59.724Z_
+
+脚本已写入。运行 dry-run 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f2ce548-528e-4415-a9eb-88c735fb5cee",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZwaAnBVud1326L7HYY",
+  "type": "assistant",
+  "uuid": "ddd3e422-41ba-4f7a-b30f-99c924a093c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153rDPVrVE1cLWq9GUDV5W1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5780,
+      "cache_read_input_tokens": 51925,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 51925,
+          "cache_creation_input_tokens": 5780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-16T03:52:01.085Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01DMQ3QxFz79FhtsbsTaXpq1`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cd /root/autodl-tmp && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/seed_comparison.py --dry-run",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddd3e422-41ba-4f7a-b30f-99c924a093c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZwaAnBVud1326L7HYY",
+  "type": "assistant",
+  "uuid": "141fbfaf-4eb3-4569-9fe1-47d2f1251019",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0153rDPVrVE1cLWq9GUDV5W1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5780,
+      "cache_read_input_tokens": 51925,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5780,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 51925,
+          "cache_creation_input_tokens": 5780,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5780
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-16T03:52:01.583Z_
+
+<details><summary>↩ Tool result · `toolu_01DMQ3QxFz79FhtsbsTaXpq1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n=== CED_RSFT ===\\n  s42: NOT FOUND (tried: rsft_ced_s42_reeval)\\n  s43: NOT FOUND (tried: rsft_ced_s43)\\n  s44: NOT FOUND (tried: rsft_ced_s44_reeval)\\n  s45: NOT FOUND (tried: rsft_ced_s45)\\n\\n=== flatNLI_RSFT ===\\n  s42: NOT FOUND (tried: rsft_flat_nli_s42_reeval)\\n  s43: NOT FOUND (tried: rsft_flat_nli_s43_reeval_r2)\\n  s44: LOADED from rsft_flat_nli_s44/metrics_v2.json  (f1=0.4615, ign_f1=0.4521)\\n  s45: LOADED from rsft_flat_nli_s45/metrics_v2.json  (f1=0.4551, ign_f1=0.4462)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "141fbfaf-4eb3-4569-9fe1-47d2f1251019",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "b829796e-4cbc-40eb-ada7-f116fa7b6d82",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n=== CED_RSFT ===\\\\n  s42: NOT FOUND (tried: rsft_ced_s42_reeval)\\\\n  s43: NOT FOUND (tried: rsft_ced_s43)\\\\n  s44: NOT FOUND (tried: rsft_ced_s44_reeval)\\\\n  s45: NOT FOUND (tried: rsft_ced_s45)\\\\n\\\\n=== flatNLI_RSFT ===\\\\n  s42: NOT FOUND (tried: rsft_flat_nli_s42_reeval)\\\\n  s43: NOT FOUND (tried: rsft_flat_nli_s43_reeval_r2)\\\\n  s44: LOADED from rsft_flat_nli_s44/metrics_v2.json  (f1=0.4615, ign_f1=0.4521)\\\\n  s45: LOADED from rsft_flat_nli_s45/metrics_v2.json  (f1=0.4551, ign_f1=0.4462)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n=== CED_RSFT ===\\n  s42: NOT FOUND (tried: rsft_ced_s42_reeval)\\n  s43: NOT FOUND (tried: rsft_ced_s43)\\n  s44: NOT FOUND (tried: rsft_ced_s44_reeval)\\n  s45: NOT FOUND (tried: rsft_ced_s45)\\n\\n=== flatNLI_RSFT ===\\n  s42: NOT FOUND (tried: rsft_flat_nli_s42_reeval)\\n  s43: NOT FOUND (tried: rsft_flat_nli_s43_reeval_r2)\\n  s44: LOADED from rsft_flat_nli_s44/metrics_v2.json  (f1=0.4615, ign_f1=0.4521)\\n  s45: LOADED from rsft_flat_nli_s45/metrics_v2.json  (f1=0.4551, ign_f1=0.4462)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  },
+  "sourceToolAssistantUUID": "141fbfaf-4eb3-4569-9fe1-47d2f1251019",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-16T03:52:08.824Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Dry-run works. Current state:
+- Only 2 out of 8 unified-protocol evals have results: flat-NLI s44 and s45
+- Both correctly reading from metrics_v2.json with ign_f1
+
+The script is now:
+1. ✅ Reads ign_f1 from metrics_v2.json (and strips it if fallback to metrics.json)
+2. ✅ No old-protocol fallbacks in METHODS
+3. ✅ Per-seed table includes Ign-F1 columns
+
+
+4. ✅ Statistical tests (paired t-test, Cohen's d, 95% CI) are working for all 4 metrics
+
+Now running the full pipeline to see how the output looks with the 2 available results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b829796e-4cbc-40eb-ada7-f116fa7b6d82",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZwzQ3rWy7uTwEuW628",
+  "type": "assistant",
+  "uuid": "2fe72996-1fd2-4588-8046-e08f8ffe6bc1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhQSBXC7x74ofxXEbWfxKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 535,
+      "cache_read_input_tokens": 57705,
+      "output_tokens": 419,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 535,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 419,
+          "cache_read_input_tokens": 57705,
+          "cache_creation_input_tokens": 535,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 535
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-16T03:52:08.857Z_
+
+dry-run 通过。当前只有 flat-NLI s44/s45 有统一协议结果，其余 6 个 eval 待完成。让我运行完整输出确认报告格式。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2fe72996-1fd2-4588-8046-e08f8ffe6bc1",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZwzQ3rWy7uTwEuW628",
+  "type": "assistant",
+  "uuid": "ef7c9711-631a-4f36-899f-327d332eec7f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhQSBXC7x74ofxXEbWfxKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 535,
+      "cache_read_input_tokens": 57705,
+      "output_tokens": 419,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 535,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 419,
+          "cache_read_input_tokens": 57705,
+          "cache_creation_input_tokens": 535,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 535
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-16T03:52:09.791Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01PPJkdeD91pUCff6ZrmscEu`</summary>
+
+```json
+{
+  "server": "rtx5090-4x",
+  "command": "cd /root/autodl-tmp && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/seed_comparison.py 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef7c9711-631a-4f36-899f-327d332eec7f",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZwzQ3rWy7uTwEuW628",
+  "type": "assistant",
+  "uuid": "e7ae55cc-0c5b-495e-ac48-c305ef6c8415",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WhQSBXC7x74ofxXEbWfxKo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 535,
+      "cache_read_input_tokens": 57705,
+      "output_tokens": 419,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 535,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 419,
+          "cache_read_input_tokens": 57705,
+          "cache_creation_input_tokens": 535,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 535
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "e7ae55cc-0c5b-495e-ac48-c305ef6c8415",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify seed comparison and paired t-test scripts",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-16T03:52:10.260Z_
+
+<details><summary>↩ Tool result · `toolu_01PPJkdeD91pUCff6ZrmscEu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# flat-NLI vs CED RSFT: Seed-Level Comparison (Unified Protocol)\\nGenerated: 2026-05-16 11:52:10\\n\\n**CED RSFT**: 0/4 seeds ()\\n**flat-NLI RSFT**: 2/4 seeds (s44, s45)\\n**Pending CED**: s42, s43, s44, s45\\n**Pending flat-NLI**: s42, s43\\n\\n## Data Sources\\n- flatNLI_RSFT s44: `rsft_flat_nli_s44/` (metrics_v2.json)\\n- flatNLI_RSFT s45: `rsft_flat_nli_s45/` (metrics_v2.json)\\n\\n## Per-Seed Results\\n\\n| Seed | CED Ign-F1 | fNLI Ign-F1 | CED rel_f1 | fNLI rel_f1 | CED evi_f1 | fNLI evi_f1 | CED EDCR | fNLI EDCR |\\n|------|-----------|------------|-----------|------------|-----------|------------|---------|----------|\\n| s42 | — | — | — | — | — | — | — | — |\\n| s43 | — | — | — | — | — | — | — | — |\\n| s44 | — | 0.4521 | — | 0.4615 | — | 0.8131 | — | 0.6458 |\\n| s45 | — | 0.4462 | — | 0.4551 | — | 0.8154 | — | 0.6521 |\\n\\n## Summary Statistics\\n\\n**Ign-F1**:\\n  - CED:  — +/- — (n=0)\\n  - fNLI: 0.4492 +/- 0.0042 (n=2)\\n  - Delta (fNLI - CED): —\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\n\\n**rel_f1**:\\n  - CED:  — +/- — (n=0)\\n  - fNLI: 0.4583 +/- 0.0046 (n=2)\\n  - Delta (fNLI - CED): —\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\n\\n**evi_f1**:\\n  - CED:  — +/- — (n=0)\\n  - fNLI: 0.8143 +/- 0.0016 (n=2)\\n  - Delta (fNLI - CED): —\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\n\\n**EDCR**:\\n  - CED:  — +/- — (n=0)\\n  - fNLI: 0.6490 +/- 0.0045 (n=2)\\n  - Delta (fNLI - CED): —\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\n\\n\\nWritten: /root/autodl-tmp/eval_results/seed_comparison.{md,json}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e7ae55cc-0c5b-495e-ac48-c305ef6c8415",
+  "isSidechain": false,
+  "promptId": "bbf7da5e-f841-456d-87ed-d4f74a17c29a",
+  "type": "user",
+  "uuid": "d67281a3-4d10-465b-9d67-2a163b0fe559",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# flat-NLI vs CED RSFT: Seed-Level Comparison (Unified Protocol)\\\\nGenerated: 2026-05-16 11:52:10\\\\n\\\\n**CED RSFT**: 0/4 seeds ()\\\\n**flat-NLI RSFT**: 2/4 seeds (s44, s45)\\\\n**Pending CED**: s42, s43, s44, s45\\\\n**Pending flat-NLI**: s42, s43\\\\n\\\\n## Data Sources\\\\n- flatNLI_RSFT s44: `rsft_flat_nli_s44/` (metrics_v2.json)\\\\n- flatNLI_RSFT s45: `rsft_flat_nli_s45/` (metrics_v2.json)\\\\n\\\\n## Per-Seed Results\\\\n\\\\n| Seed | CED Ign-F1 | fNLI Ign-F1 | CED rel_f1 | fNLI rel_f1 | CED evi_f1 | fNLI evi_f1 | CED EDCR | fNLI EDCR |\\\\n|------|-----------|------------|-----------|------------|-----------|------------|---------|----------|\\\\n| s42 | — | — | — | — | — | — | — | — |\\\\n| s43 | — | — | — | — | — | — | — | — |\\\\n| s44 | — | 0.4521 | — | 0.4615 | — | 0.8131 | — | 0.6458 |\\\\n| s45 | — | 0.4462 | — | 0.4551 | — | 0.8154 | — | 0.6521 |\\\\n\\\\n## Summary Statistics\\\\n\\\\n**Ign-F1**:\\\\n  - CED:  — +/- — (n=0)\\\\n  - fNLI: 0.4492 +/- 0.0042 (n=2)\\\\n  - Delta (fNLI - CED): —\\\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\\\n\\\\n**rel_f1**:\\\\n  - CED:  — +/- — (n=0)\\\\n  - fNLI: 0.4583 +/- 0.0046 (n=2)\\\\n  - Delta (fNLI - CED): —\\\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\\\n\\\\n**evi_f1**:\\\\n  - CED:  — +/- — (n=0)\\\\n  - fNLI: 0.8143 +/- 0.0016 (n=2)\\\\n  - Delta (fNLI - CED): —\\\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\\\n\\\\n**EDCR**:\\\\n  - CED:  — +/- — (n=0)\\\\n  - fNLI: 0.6490 +/- 0.0045 (n=2)\\\\n  - Delta (fNLI - CED): —\\\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\\\n\\\\n\\\\nWritten: /root/autodl-tmp/eval_results/seed_comparison.{md,json}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# flat-NLI vs CED RSFT: Seed-Level Comparison (Unified Protocol)\\nGenerated: 2026-05-16 11:52:10\\n\\n**CED RSFT**: 0/4 seeds ()\\n**flat-NLI RSFT**: 2/4 seeds (s44, s45)\\n**Pending CED**: s42, s43, s44, s45\\n**Pending flat-NLI**: s42, s43\\n\\n## Data Sources\\n- flatNLI_RSFT s44: `rsft_flat_nli_s44/` (metrics_v2.json)\\n- flatNLI_RSFT s45: `rsft_flat_nli_s45/` (metrics_v2.json)\\n\\n## Per-Seed Results\\n\\n| Seed | CED Ign-F1 | fNLI Ign-F1 | CED rel_f1 | fNLI rel_f1 | CED evi_f1 | fNLI evi_f1 | CED EDCR | fNLI EDCR |\\n|------|-----------|------------|-----------|------------|-----------|------------|---------|----------|\\n| s42 | — | — | — | — | — | — | — | — |\\n| s43 | — | — | — | — | — | — | — | — |\\n| s44 | — | 0.4521 | — | 0.4615 | — | 0.8131 | — | 0.6458 |\\n| s45 | — | 0.4462 | — | 0.4551 | — | 0.8154 | — | 0.6521 |\\n\\n## Summary Statistics\\n\\n**Ign-F1**:\\n  - CED:  — +/- — (n=0)\\n  - fNLI: 0.4492 +/- 0.0042 (n=2)\\n  - Delta (fNLI - CED): —\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\n\\n**rel_f1**:\\n  - CED:  — +/- — (n=0)\\n  - fNLI: 0.4583 +/- 0.0046 (n=2)\\n  - Delta (fNLI - CED): —\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\n\\n**evi_f1**:\\n  - CED:  — +/- — (n=0)\\n  - fNLI: 0.8143 +/- 0.0016 (n=2)\\n  - Delta (fNLI - CED): —\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\n\\n**EDCR**:\\n  - CED:  — +/- — (n=0)\\n  - fNLI: 0.6490 +/- 0.0045 (n=2)\\n  - Delta (fNLI - CED): —\\n  - WARNING: 0 matched seed(s), need >=2 for paired stats\\n\\n\\nWritten: /root/autodl-tmp/eval_results/seed_comparison.{md,json}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e7ae55cc-0c5b-495e-ac48-c305ef6c8415",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-16T03:52:23.113Z_
+
+脚本正常工作。汇总如下：
+
+## 脚本状态
+
+### `seed_comparison.py` — 已修复 5 处问题
+
+| # | 问题 | 修改 |
+|---|------|------|
+| 1 | `ign_f1` 不在 METRICS_KEYS，完全不读 Ign-F1 | 加入 `ign_f1` 到 METRICS_KEYS 和 METRIC_LABELS |
+| 2 | METHODS 含旧协议 fallback（`rsft_r2b_maxtok1536`, `rsft_s43`, `rsft_s44`, `rsft_flat_nli` 等），paired t-test 会静默用错误数据 | 移除所有旧协议 fallback，只保留统一协议目录 |
+| 3 | `load_metrics` fallback 到 `metrics.json` 时 ign_f1 无效 | fallback 到 `metrics.json` 时自动剥离 `ign_f1` 字段 |
+| 4 | Per-seed 表格缺 Ign-F1 列 | 表格首列加入 CED/fNLI Ign-F1 |
+| 5 | dry-run 不显示 ign_f1 | dry-run 输出增加 ign_f1 |
+
+### `paired_ttest_analysis.py` — 不存在
+功能已内置在 `seed_comparison.py` 的 `paired_ttest` + `cohens_d` + `ci_95` 中，无需单独脚本。
+
+### 当前 eval 完成情况（统一协议）
+- **已完成**: flat-NLI s44, flat-NLI s45（均读 metrics_v2.json）
+- **待完成**: CED s42/s43/s44/s45, flat-NLI s42/s43（6 个 eval 进行中）
+
+### 脚本输出内容
+per-seed Ign-F1/F1/evi_f1/EDCR, mean±std, paired t-test (t, p), Cohen's d, 95% CI — 全部就绪，8 个 eval 出齐后直接 `python scripts/seed_comparison.py` 即可。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d67281a3-4d10-465b-9d67-2a163b0fe559",
+  "isSidechain": false,
+  "requestId": "req_011Cb5ZxdZSrzfTPGNW3Shc5",
+  "type": "assistant",
+  "uuid": "76957c41-e18d-4b9c-882c-a002ca67d109",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KJxQDPVUbFQ6LEzpGhqMFV",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1354,
+      "cache_read_input_tokens": 58240,
+      "output_tokens": 625,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1354,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 625,
+          "cache_read_input_tokens": 58240,
+          "cache_creation_input_tokens": 1354,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1354
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "76957c41-e18d-4b9c-882c-a002ca67d109",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Verify seed comparison and paired t-test scripts",
+  "sessionId": "c7c18564-4a9d-4421-8aa1-be66cfab0bd5"
+}
+```
+
+---

@@ -1,0 +1,572 @@
+_next_id: 39
+mistakes:
+- id: M001
+  date: '2026-05-17'
+  category: code_bug
+  severity: high
+  summary: submit_training_job wrapper 的 timeout 7200s 对 eval 任务不够，导致 rsft_s44_dev_eval
+    (97%) 和 1.7B eval 连续 timeout 失败
+  root_cause: DocRED dev set eval (985 docs, 247 batches × 30-50s/batch) 需要 8000-10000s
+    (2.2-2.8h)，但 wrapper 默认 timeout 7200s (2h)。eval 任务与 training 任务共用同一个 timeout 值。
+  prevention: eval 任务不要使用 timeout wrapper——eval 不会无限挂起，正常结束即可。如必须设 timeout，eval 用
+    14400s (4h)。提交 eval 时直接 nohup 或 tmux，不经过 submit_training_job 的 timeout wrapper。
+  status: active
+  context: rsft_s44_dev_eval_preds 在 batch 240/247 (97%) 被杀，所有推理结果丢失。plan_006_qwen3_1_7b_rsft_eval
+    在 191/247 (77%) 即将超时。两次失败浪费 ~4h GPU 时间。
+  fix: 后续所有 eval 提交改为直接 nohup 运行，不使用 timeout wrapper。
+- id: M002
+  date: '2026-05-17'
+  category: experiment_design
+  severity: medium
+  summary: 4B RSFT gain 错误标为 +6.1pp，实际最高 +5.72pp (best seed s44 rel_f1)
+  root_cause: Agent 初始报告使用了 rel_f1=0.4655 这个无法从 registry 复现的数字。可能是混淆了 seed 或 metric。Director
+    未交叉验证直接采信并写入 D088/D094 和 ROADMAP。
+  prevention: Scaling study 等汇总数字必须由 Reviewer 独立从 registry metrics.json 核实后才写入 ROADMAP/paper_framing。Director
+    收到 Agent 汇总数字后，先让 Reviewer 核实再记录 decision。
+  status: active
+  fix: ROADMAP 已修正为 +5.5pp。paper_framing.md 无此错误。D088/D094 decisions.yaml 中的历史记录保留原文（不可篡改），后续论文引用以
+    Reviewer 核实表为准。
+  related_decisions:
+  - D088
+  - D094
+- id: M003
+  date: '2026-05-17'
+  category: agent_behavior
+  severity: high
+  summary: Paper Agent Related Work 含幻觉引用（E-GRPO, R1-RE）和错误引用归属（KD-DocRE = Re-DocRED
+    数据集被当成方法）
+  root_cause: Paper Agent 写作时生成了 literature_map 中不存在的引用（E-GRPO, R1-RE, rl_panacea），且将
+    tan2022redocred（Re-DocRED 数据集论文）错误归属为 KD-DocRE 方法。LLM 写作典型的 hallucinated citation
+    和 citation misattribution 问题。
+  prevention: 1. Paper Agent 写 Related Work 时，所有引用必须来自 literature_map.yaml 或经 WebSearch
+    验证；2. 引用 bib key 时必须交叉检查该 key 在其他章节的用法，避免同一 key 指代不同内容；3. 写完后用 reference-audit
+    skill 做全文引用审计。
+  status: active
+  context: Reviewer 审查 related_work.tex 发现：(1) KD-DocRE citep{tan2022redocred} 实际是
+    Re-DocRED 数据集不是方法；(2) E-GRPO (zhao2025egrpo) 和 R1-RE (dai2025r1re) 不在 literature_map
+    中，高概率幻觉；(3) jin2025rl_panacea 也不在 literature_map 中需验证。
+  fix: 派 Paper Agent 修正：删除/替换伪引用，WebSearch 验证可疑引用，补充 literature_map 中已验证的强相关论文。
+- id: M004
+  date: '2026-05-18'
+  category: experiment_design
+  severity: high
+  summary: Scaling 实验（8B/1.7B）RSFT 使用 k=3 但论文声明 k=1，方法论不一致
+  root_cause: 4B 实验确定 k=1 最优后，scaling 实验（8B/1.7B）的 CED scoring 仍沿用了早期默认的 k=3 配置，未统一修正。Director
+    审批时未检查超参一致性。
+  prevention: 审批 scaling/跨模型实验时，必须逐项比对核心超参与论文声明是否一致（特别是 selection k、training epochs、LoRA
+    rank 等）。新增 checklist 项：scaling 实验的每个超参必须与 canonical config 对齐或有明确理由不同。
+  status: active
+  context: '8B registry: top_k=3, 9041 samples; 1.7B registry: top_k=3, 9042 samples;
+    4B: top_k=1, 2718 samples。4B ablation 已证明 k=1 > k=3 (+1.02pp)。LLaMA k 值待核实。'
+  fix: 重新用 k=1 re-filter + re-train + re-eval 所有 scaling 模型。已有 CED scores，只需 re-filter。
+  related_decisions:
+  - D094
+  - D099
+- id: M005
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: high
+  summary: D102 4个并行训练因磁盘满(250GB/250GB)全部崩溃，GPU空转数小时
+  root_cause: 4个训练任务同时以save_steps=50写checkpoint，每个checkpoint数GB，250GB磁盘在step 300附近写满。提交训练时未检查磁盘可用空间，也未设置save_total_limit限制checkpoint数量。
+  prevention: 1. 提交训练前必须 df -h 确认剩余空间 > 预估需求（模型大小×save_steps频率×并发任务数×2倍安全余量）。2. 所有训练必须设
+    save_total_limit=2-3，只保留最近N个checkpoint。3. 多任务并行时特别注意磁盘写入叠加效应。4. Director审批实验时增加磁盘检查项。
+  status: active
+  context: 'D102 k=1 retraining: 8B s42 (step 300/1134, epoch 0.8), 1.7B s42 (step
+    300/567, epoch 1.59), LLaMA s42 (step 300/1107, epoch 0.81), 8B s43 均因EXIT_CODE=1崩溃。/dev/md0
+    250G 100%使用。4张RTX 5090空转。'
+  fix: 清理旧checkpoint释放空间，检查partial checkpoint可用性后resume或重启训练，配置save_total_limit=2防止再次写满。
+  related_decisions:
+  - D102
+  - D103
+- id: M006
+  date: '2026-05-18'
+  category: agent_behavior
+  severity: medium
+  summary: Wave1 批量脚本未经 dry-run 验证，4 个 critical 问题（GPU 分配冲突、路径错误、save_total_limit
+    缺失、DeepSpeed 4卡与并行计划矛盾）
+  root_cause: Agent 预写脚本时没有验证：(1) 原始训练的 GPU 配置是否兼容并行计划 (2) 路径是否存在 (3) 参数是否完整。脚本写完即报"准备就绪"，实际不可用。
+  prevention: 批量脚本预写后必须 dry-run 验证三项：路径存在性（ls/stat 每个引用路径）、GPU 分配与并行计划一致性、关键参数完整性（save_total_limit,
+    seed, batch_size）。验证通过后才能报"准备就绪"。
+  status: active
+  fix: Reviewer 拦截，Director 决策改 SFT 为单卡+gradient accumulation，要求 Agent 修复全部 4 个 critical
+    后重新验证再提交。
+- id: M007
+  date: '2026-05-18'
+  category: code_bug
+  severity: high
+  summary: CUDA_VISIBLE_DEVICES 被脚本内部覆盖，导致 GPU 错位和 OOM
+  root_cause: seed_expansion 脚本用 `export CUDA_VISIBLE_DEVICES=${GPU:-0}` 模式，tmux wrapper
+    通过环境变量设 CUDA_VISIBLE_DEVICES 但未传 GPU 变量，脚本默认覆盖为 0，导致 random_rsft 跑在 cuda:0 而非
+    cuda:3，s43 启动时 OOM
+  prevention: 1. 所有训练脚本禁止用 ${GPU:-0} 默认值覆盖 CUDA_VISIBLE_DEVICES，应优先读取已有环境变量；2. 脚本模式改为
+    `export CUDA_VISIBLE_DEVICES=${GPU:-${CUDA_VISIBLE_DEVICES:-0}}`，先读 GPU 变量，再 fallback
+    到已有 CUDA_VISIBLE_DEVICES，最后才默认 0；3. 提交训练前 dry-run 验证实际使用的 GPU ID
+  status: active
+  context: random_rsft.sh 被 tmux wrapper 分配到 cuda:3，但脚本内覆盖为 cuda:0，占满 cuda:0 显存 28.3GB，导致同一
+    GPU 上的 plan019_1_7b_sft_s43 OOM 崩溃。random_rsft 结果本身有效但 GPU 分配违反 C002 约束。
+  fix: 修复所有 scripts/seed_expansion/ 和 scripts/d102_next_batch/ 中的 CUDA_VISIBLE_DEVICES
+    逻辑，重启 s43
+- id: M008
+  date: '2026-05-18'
+  category: code_bug
+  severity: medium
+  summary: submit_training_job 额外传 GPU=X 覆盖 tmux wrapper 的 CUDA_VISIBLE_DEVICES，导致
+    8B SFT 跑到错误 GPU
+  root_cause: tmux wrapper 已通过 CUDA_VISIBLE_DEVICES 映射目标 GPU，但提交命令额外传了 GPU=0 环境变量，脚本内
+    ${GPU:-${CUDA_VISIBLE_DEVICES:-0}} 优先读 GPU 变量，覆盖了 wrapper 设置，实验跑到 cuda:0 而非预期
+    GPU。与 M007 同一类问题的变体。
+  prevention: 提交训练时禁止额外传 GPU=X 参数。tmux wrapper 设定的 CUDA_VISIBLE_DEVICES 是唯一的 GPU 分配来源。脚本内的
+    fallback 链 ${GPU:-${CUDA_VISIBLE_DEVICES:-0}} 中 GPU 变量只作为最后手段，不应主动设置。
+  status: active
+  context: plan019_8b_sft_s44 被提交到 cuda:0 而非 cuda:2。registry 已修正。
+  fix: 停止在 submit 命令中传递 GPU 变量，仅依赖 tmux wrapper 的 CUDA_VISIBLE_DEVICES。
+- id: M009
+  date: '2026-05-18'
+  category: resource_misuse
+  severity: medium
+  summary: cuda:2 双进程共享（4B eval + 1.7B SFT），显存 96%，互相拖慢且有 OOM 风险
+  root_cause: Director 指令 cuda:2 给 1.7B s43 训练，Agent 先提交了 4B s43 eval 到 cuda:2（偏离指令），2
+    分钟后 1.7B 训练也提交到 cuda:2，两个进程挤在同一张卡。提交前未检查 GPU 是否已有进程。
+  prevention: 提交任何任务前必须 nvidia-smi 确认目标 GPU 无其他进程。如果 Director 指令的 GPU 分配已被占用，先汇报冲突而非强行塞入。单
+    GPU 不允许同时跑训练+eval。
+  status: active
+  context: cuda:2 合计 31314/32607 MiB (96%)。eval 从 15-20s/it 拖慢到 38s/it。两个进程均在运行无报错，决定不中断（eval
+    已 29%）。eval 完成后 cuda:2 恢复正常。
+  fix: 不中断当前进程，等 eval 完成自然释放。今后执行。
+- id: M010
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: 1.7B RSFT s43/s44 脚本 --sft_adapter 指向 s42 adapter 而非各自 seed-specific adapter，结果科学无效
+  root_cause: seed expansion 脚本复制粘贴时未修改 --sft_adapter 路径，1.7B SFT s43/s44 有独立 adapter
+    但 RSFT 脚本仍硬编码指向 s42 的默认路径 sft_output_qwen3_1_7b_bf16
+  prevention: 审批 seed expansion 实验时，必须逐行检查 --sft_adapter 路径是否与目标 seed 匹配。脚本模板应使用变量
+    ${SEED} 自动拼接 adapter 路径，避免手动替换遗漏。
+  status: active
+  context: plan019_1_7b_rsft_s43 和 plan019_1_7b_rsft_s44 两个实验都指向 sft_output_qwen3_1_7b_bf16（s42
+    adapter），应分别指向 sft_output_qwen3_1_7b_bf16_seed43 和 _seed44。训练完成但结果无效。Worker 已修复脚本并删除无效输出。
+  fix: Worker 已修复脚本 --sft_adapter 路径指向正确的 seed-specific adapter，删除无效输出，ready to resubmit。
+  related_decisions:
+  - D112
+- id: M011
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: M010 误判：1.7B RSFT s42 adapter 实为正确 Method A 设计，Worker B "修复"删除了有效输出
+  root_cause: Director 未仔细分析 1.7B 的数据流（scored data 来源于 s42 生成），仅凭 adapter 路径不匹配就判断为
+    bug。Reviewer 和 Director 的分析都忽略了 training data 与 adapter 的一致性约束。Worker B 未经审批自行删除实验输出。
+  prevention: 判断 seed expansion 实验是否正确时，必须追溯完整数据流：generation source → CED scoring
+    → filtered data → RSFT base adapter。四者必须一致。不能只看 adapter 路径。Worker 不得未经 Director
+    审批自行删除实验输出。
+  status: active
+  context: Reviewer 报告 1.7B RSFT s43/s44 的 --sft_adapter 指向 s42，Director 误判为 bug（M010），指示
+    Worker 修复。Worker B 修改脚本并删除原始输出。但实际上 scored training data 来自 s42 生成，s42 adapter
+    是 Method A 的正确设计。改为 s43/s44 adapter 反而造成 adapter/data 不匹配。现在需要用 Method A 原始设置重新训练。
+  fix: D114 决定恢复 Method A 设计。指示 Agent 用原始 s42 adapter 重新训练 1.7B RSFT s43/s44。
+- id: M012
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: 14B eval 脚本使用 --quantize 违反 D076 协议，导致 scaling trend 数据不可比
+  root_cause: 14B bf16 模型 ~28GB 接近单卡 32GB 显存上限，Worker 可能为避免 OOM 选择了量化推理，但未记录也未申请例外。Director
+    审批 14B 实验时未明确要求检查 eval 脚本的 quantize 参数。
+  prevention: 1. 审批 eval 实验时，显式要求 Agent 确认 --no-quantize 参数，特别是大模型可能 OOM 的场景。2. 新
+    scale 的 eval 脚本提交前，要求 Agent 对比已有 scale 的 eval 脚本参数一致性。3. 大模型 eval 先跑 dry-run（几条样本）确认显存可行再全量跑。
+  status: active
+  context: '14B SFT eval (PID 626093, cuda:1) 和 14B no-evidence eval (PID 626175,
+    cuda:2) 均使用 --quantize。显存 14253 MiB 符合 int8（14B×1byte≈14GB），bf16 应为 ~28GB。所有 1.7B/4B/8B
+    eval 均为 --no-quantize。Reviewer severity: critical。'
+  fix: Kill 两个进程，修改脚本为 --no-quantize + 降 batch_size（2→1 if OOM），重新提交 eval。
+  related_decisions:
+  - D108
+- id: M013
+  date: '2026-05-19'
+  category: experiment_design
+  severity: high
+  summary: D112 RSFT 训练使用 QLoRA（--quantize），与所有其他 RSFT 训练配置不一致，引入混淆变量
+  root_cause: D112 脚本编写时加了 --quantize，但 4B 模型 bf16 仅 ~8GB，32GB GPU 完全不需要 QLoRA。可能是从
+    14B 脚本模板复制时未清理参数，或 Worker 习惯性添加。Director 审批 D112 时未检查训练脚本的 quantize 参数。
+  prevention: 1. 审批 RSFT 训练实验时，显式要求 Agent 确认与同 scale 已有 RSFT 的训练参数一致（特别是 quantize/bf16/lr/epochs）。2.
+    新实验脚本提交前要求 Agent 做 diff 对比模板脚本。3. 对 4B 及以下模型，QLoRA 无必要，应默认禁止除非显式论证显存需求。
+  status: active
+  context: D112 是唯一的 Method B 实验（SFT s44 base 上训练 RSFT）。train_loss=0.6488 vs 其他 4B
+    RSFT ~0.55，现在可以用 QLoRA 解释。4B bf16 仅 ~8GB，单卡 32GB 完全不需要量化。如果 eval 结果 < SFT s44
+    baseline (0.4734)，无法区分是 Method B 假说失败还是 QLoRA 训练质量降低。
+  fix: 等 eval 结果：≥0.4734 则结论成立（conservative）；<0.4734 则用 bf16 重跑 Step 3+4。
+  related_decisions:
+  - D112
+- id: M014
+  date: '2026-05-19'
+  category: agent_behavior
+  severity: medium
+  summary: d112 no-evidence eval 脚本路径错误连续 2 次未修（scripts/d112/ vs scripts/seed_expansion/）
+  root_cause: Agent 提交实验时根据 exp_id 前缀推断脚本目录（d112 → scripts/d112/），但实际脚本在 scripts/seed_expansion/。第一次失败后
+    Reviewer 明确指出正确路径，Agent 重提交时未读取 Reviewer 反馈就重试。
+  prevention: 提交实验前必须 ssh_read_only 验证脚本路径存在（ls -la <path>）。重试失败实验时必须先查看上次失败日志和 Reviewer
+    反馈，定位 root cause 再重提交。
+  status: active
+  context: d112_rsft_no_evidence_eval 和 d112_rsft_no_evidence_eval_r2 都用了 scripts/d112/eval_4b_rsft_no_evidence.sh（不存在），正确路径是
+    scripts/seed_expansion/eval_4b_rsft_no_evidence.sh
+  fix: Director 发送路径修正指令（已在 Agent 队列中）
+- id: M015
+  date: '2026-05-19'
+  category: experiment_design
+  severity: low
+  summary: plan_010 NLI ablation 方向假设错误：以为 canonical 用 v3-large，实际用 v3-base
+  root_cause: Director 在设计 plan_010 时假设 CED scoring 默认用 DeBERTa-v3-large（因为 large
+    是更常见的 NLI 模型选择），未验证代码中的 DEFAULT_NLI_MODEL 常量。实际 rsft_score_filter.py 默认 cross-encoder/nli-deberta-v3-base。
+  prevention: 设计涉及代码参数的 ablation 实验前，先让 Agent ssh_read_only 确认当前代码中的默认值，不要凭假设。
+  status: active
+  fix: Agent 发现后反转方向：ablation 改为测试 v3-large（升级）而非 v3-base（降级）。实验价值不变。
+- id: M016
+  date: '2026-05-20'
+  category: communication
+  severity: medium
+  summary: Evidence tax sign standardization introduced new errors — 4B RSFT and 14B
+    SFT signs flipped wrong
+  root_cause: When flipping signs from old convention (positive=benefit) to standard
+    convention (positive=cost), I assumed all old positive values should become negative.
+    But 4B RSFT (+0.94pp) and 14B SFT (+0.03pp) were already in the correct standard
+    direction in the old table — evidence has small cost for these models (no_evi
+    > with_evi). The old table's convention was internally inconsistent, making bulk
+    sign flips dangerous.
+  prevention: When standardizing sign conventions, compute each value from raw numbers
+    (no_evi - with_evi) rather than mechanically flipping signs. Always verify against
+    actual ign_f1 pairs.
+  status: active
+  related_decisions:
+  - D127
+- id: M017
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: LLaMA RSFT s42 ign_f1=0.5839 实际是 rel_f1，正确 ign_f1=0.5714。第二次 ign_f1/rel_f1
+    混淆。
+  root_cause: Agent 汇报 LLaMA RSFT s42 结果时将 rel_f1=0.5839 误标为 ign_f1。此错误传播到 D125 (evidence
+    tax -3.13pp→实际-1.88pp)、D128 (3-seed mean 0.5696→实际0.5654, std 1.30pp→实际0.52pp)、paper_framing.md、ROADMAP、Paper
+    Agent patch 指令。这是继 plan010 (rel_f1 误标为 ign_f1) 后第二次同类错误。
+  prevention: 1) Agent 汇报实验结果时必须从 metrics_v2.json 中明确提取字段名，不依赖位置推断 2) Director 收到关键数值时交叉验证：要求
+    Agent 同时报 ign_f1 和 rel_f1，确认 ign_f1 < rel_f1（DocRED 上恒成立） 3) 建立 invariant check：DocRED
+    评估中 ign_f1 ≤ rel_f1 永远成立
+  status: active
+  context: 错误 s42 ign_f1=0.5839 被用于：D125 evidence tax 计算(-3.13pp)、D128 3-seed统计(mean=0.5696,
+    std=1.30pp)、paper_framing.md LLaMA行、ROADMAP scaling table、Paper Agent patch指令。修正后：s42
+    ign_f1=0.5714, 3-seed mean=0.5654, std=0.52pp, evidence tax=-1.88pp。好消息：std=0.52pp≈Qwen3-8B
+    0.50pp，LLaMA可并入variance compression叙事。
+  fix: 重新计算所有下游数值，更新 paper_framing.md / ROADMAP / Paper Agent。D125 evidence tax 从
+    -3.13pp 修正为 -1.88pp。D128 mean 从 0.5696 修正为 0.5654，std 从 1.30pp 修正为 0.52pp。
+  related_decisions:
+  - D125
+  - D128
+- id: M018
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: LLaMA SFT s43/s44 提交时 GPU=0 写死，导致两个实验 OOM 并空置 cuda:1/3
+  root_cause: auto-plan 提交命令硬编码 GPU=0，未传入实际分配的 GPU 编号。脚本默认 CUDA_VISIBLE_DEVICES=0，与
+    registry 记录的 cuda:1/cuda:3 不一致。
+  prevention: 1) submit_training_job 时 gpu 字段必须与命令中的 GPU=X 环境变量一致 2) 提交后 30s 内检查 nvidia-smi
+    确认正确 GPU 有进程 3) auto-plan 脚本模板中 GPU 变量不能有默认值 0，必须显式传入
+  status: active
+  fix: '紧急重新提交: GPU=1 (s43) 和 GPU=3 (s44)'
+  related_decisions:
+  - D129
+- id: M019
+  date: '2026-05-20'
+  category: experiment_design
+  severity: high
+  summary: 14B RSFT 生成脚本无增量保存/resume 机制，服务器重启后 12h GPU 时间 + 1872/3027 样本全丢
+  root_cause: rsft_generate 脚本将所有生成结果积累在内存中，直到全部完成才一次性写盘。19h 级任务无任何中间 checkpoint。服务器宕机后内存数据全丢。
+  prevention: 1) 生成/推理/评估脚本预计 >1h 运行时间的，必须实现增量写盘（每 100 个 doc 写入 jsonl）+ --resume_from
+    参数跳过已完成样本 2) 提交长任务前 Director 审批时主动确认"脚本是否有 checkpoint 机制" 3) AutoDL 实例不保证稳定性，任何
+    >2h 的任务必须有 resume 能力
+  status: active
+  context: plan017_14b_rsft_generate 在 cuda:0+2 上跑了 12h，完成 62% (1872/3027)。AutoDL
+    实例 bjb2-12179 被注销，克隆到 bjb1-49673，但生成数据全丢（内存 only）。同时 LLaMA SFT s43/s44 checkpoint
+    也丢失（损失较小，~30min 训练进度）。
+  fix: 修改 rsft_generate 脚本添加增量写盘 + resume 机制后再重跑
+  related_decisions:
+  - D129
+- id: M020
+  date: '2026-05-20'
+  category: resource_misuse
+  severity: high
+  summary: 'M020: 迁移 milestone A 触发后 3/4 GPU 空闲近 1 小时，所有前置条件已满足但 Agent 未自动提交实验'
+  root_cause: milestone_checker.sh 有 bug（ls stdout 混入变量导致整数比较失败），修复指令发出后 Agent 可能用了手动方案但仅提交了
+    cuda:1 的 LLaMA SFT s43，遗漏了 cuda:0/2/3 的实验。Director 也未及时跟进确认全部实验是否提交。
+  prevention: 1. 迁移/批量实验提交后 10 分钟内必须 nvidia-smi 验证所有预计 GPU 都在跑；2. milestone 触发后 Agent
+    应一次性提交所有就绪实验，不是只提交一个；3. Director 收到 Agent 仅报告部分实验提交时应立即追问其余实验状态
+  status: active
+  context: Milestone A (LLaMA files ready) 在 18:34 CST 触发，Agent 仅在 cuda:1 提交了 LLaMA
+    SFT s43。cuda:0 (14B gen resume)、cuda:2 (LLaMA SFT s44)、cuda:3 (eval_llama_sft_s42_no_evidence_std)
+    均前置条件就绪但未提交。Reviewer 在 19:30 CST 发现并报告。
+  fix: urgent_agent_message 紧急指令提交全部 3 个实验
+- id: M021
+  date: '2026-05-20'
+  category: code_bug
+  severity: high
+  summary: 'M021: 14B gen r3 写入已被 rsync 删除的文件 inode，~5016 条生成数据面临永久丢失'
+  root_cause: r3 在 11:35 UTC 启动并打开 generations.jsonl 的文件句柄。rsync 在 12:47 UTC 从 bjb2
+    同步旧版本覆盖了该文件（创建新 inode），导致 r3 的 fd 指向已删除的 inode。rsync 和实验进程同时操作同一目录，且 rsync 没有排除正在写入的文件。
+  prevention: 1. rsync 迁移时用 --exclude 排除正在写入的实验输出目录；2. 实验启动前确认无后台 rsync 在同一目录运行；3.
+    长时间生成任务的增量写盘脚本（M019）应写入独立目录而非 rsync 目标目录；4. 迁移完成前不要在目标机器上启动写入同一路径的实验
+  status: active
+  context: 14B gen r3 已完成 54% (627/1155 docs)，~3.5 GPU-hours。恢复方案：从 /proc/PID/fd 复制幽灵文件。如果
+    Agent 来不及恢复（进程先退出），数据永久丢失。
+  fix: 'urgent_agent_message: cp /proc/17649/fd/50 恢复幽灵文件 → kill → 替换 → resume'
+- id: M022
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: 'M022: eval_llama_sft_s43_no_evidence 在 99% (244/247) 处被 timeout kill，2h
+    GPU 时间浪费且无输出保存'
+  root_cause: submit_training_job 默认 timeout=7200s (2h)，但 LLaMA 8B no-evidence eval
+    需要 ~2h+（31s/batch × 247 batches = ~2h8min）。eval 脚本在全部完成后才写入结果文件，timeout kill 导致零输出。
+  prevention: '1. eval 任务 timeout 设为预估时长的 2× 以上（LLaMA 8B eval: 14400s）；2. eval 脚本应增量写入中间结果而非仅在结束时写入；3.
+    submit_training_job 时根据任务类型（train vs eval vs gen）设置合理 timeout，不用默认值'
+  status: active
+- id: M023
+  date: '2026-05-20'
+  category: agent_behavior
+  severity: medium
+  summary: 14B RSFT train 完成后 cuda:0 空闲 ~17min，Agent 未自动 harvest + 派下一步
+  root_cause: Agent session compaction 后 cron 回调可能未正确触发，导致训练完成事件未被处理。Agent idle 83
+    分钟未被任何自动机制唤醒。
+  prevention: 训练类实验完成后 cron 应确保 Agent 被唤醒。Director 在 WAIT 期间也应设更短的检查间隔（30min 而非 45min）来发现这类静默完成。
+  status: active
+- id: M024
+  date: '2026-05-20'
+  category: experiment_design
+  severity: medium
+  summary: s43 no-evi 2048 eval 超时 (95.9%)，4h timeout 不足，浪费 4h GPU
+  root_cause: Timeout 基于平均 batch 速度估算，未考虑 s43 后期 ~70s/it 的减速。s43 在 no-evi 2048 mode
+    下生成最冗长输出，总耗时 ~4h48m 超出 4h limit。
+  prevention: Timeout 应基于最慢 batch 速度估算：timeout = max_iteration_time × total_iterations
+    × 1.3。对于已知冗长输出的 eval（SFT no-evi mode），默认 6h timeout。
+  status: active
+- id: M025
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: high
+  summary: Agent 空闲 2h+，至少 3 个实验完成未 harvest，3 张 GPU 白等
+  root_cause: Cron 回调未正确唤醒 Agent session。Agent compaction 后可能丢失了 cron 注册或回调路由。连续第二次出现此问题（M023
+    后未根治）。
+  prevention: Director WAIT 间隔不应超过 60min。Agent 需要在 session compaction 后重新注册所有活跃 cron。考虑增加
+    Agent 自检 heartbeat。
+  status: active
+- id: M026
+  date: '2026-05-21'
+  category: code_bug
+  severity: high
+  summary: fair_tax Worker 使用了 @1024 with-evi predictions 而非 @2048，产出 mismatched fair_tax（与
+    D137 同类错误）
+  root_cause: Worker 调用 fair_evidence_tax.py 时，--with-evi 路径指向了 @1024 eval 的 predictions
+    目录（可能因为 @1024 是默认路径或目录名不含 token budget 标识）。与 D136/D137 的 mismatched comparison
+    是同一类错误模式。
+  prevention: '1. fair_evidence_tax.py 调用时必须在命令中明确标注 token budget（路径含 _2048）；2. Worker
+    完成后必须验证输出中 full_set ign_f1 与 registry 对应 @2048 实验一致；3. 任何涉及 with-evi vs no-evi
+    对比的分析，启动前先打印 "using with-evi from: [path], ign_f1=[X]" 让 Reviewer 交叉核对。'
+  status: active
+  context: D137 确立 matched@2048 methodology 后，Worker 计算 fair_tax 仍然拿了 @1024 with-evi
+    predictions，产出 mismatched fair_tax。s42 fair_tax=+1.20pp 和 s44 fair_tax=-4.18pp
+    都是无效值。Reviewer 粗估真实 matched fair_tax 可能全部为负（evidence helps even on format-controlled
+    subset）。
+  related_decisions:
+  - D137
+  - D140
+- id: M027
+  date: '2026-05-21'
+  category: experiment_design
+  severity: high
+  summary: D140 Qwen no-evi eval 全部使用了 plan_014 的 no-evidence training adapter，而非标准
+    SFT adapter + --no_evidence flag
+  root_cause: 服务器上存在两类 "no-evidence" adapter：(1) plan_014 训练的 adapter（训练数据中删除了 evidence
+    字段，产出 adapter 名含 no_evidence）和 (2) 标准 SFT adapter 配合 --no_evidence 推理 flag。D140
+    提交 no-evi@2048 eval 时，Worker 使用了 plan_014 的 adapter 路径（sft_no_evidence_output
+    / sft_output_qwen3_8b_no_evidence / sft_output_qwen3_1_7b_no_evidence），而正确做法是使用标准
+    SFT adapter（sft_output_qwen3_Xb_bf16）+ --no_evidence flag。两者语义完全不同：前者是"训练时不含 evidence"的模型，后者是"推理时不输出
+    evidence"的标准模型。
+  prevention: 1. no-evi eval 提交前必须验证 adapter 路径包含 "bf16"（标准 SFT adapter 标识），排除含 "no_evidence"
+    的训练 adapter 路径；2. 建立命名规则：训练变体 adapter 路径用 plan_XXX_ 前缀，与标准 SFT adapter 物理隔离；3.
+    审批 no-evi 实验时 Director 要求 Agent 明确报告 adapter 路径 + tokens/step 数字做交叉验证（标准 SFT ~141k
+    vs plan_014 ~120k）
+  status: active
+  context: 受影响实验：d140_1_7b_sft_s42_no_evi_2048 (ign_f1=0.3925, INVALIDATED), d140_4b_sft_s42_no_evi_2048
+    (killed), d140_8b_sft_s42_no_evi_2048 (killed)。铁证：trainer_state.json tokens/step
+    差 18% (119,651 vs 141,227)，4B adapter 大小不同 (528MB vs 264MB)。直接后果：D140 的 1.7B pilot
+    结论（Δ_evi=-8.81pp）无效，D142 narrative reframe 的 1.7B 数据点悬空。已重提交 1.7B 和 8B 用正确 adapter。
+  fix: Kill 错误实验 + invalidate 1.7B 结果 + 用正确 adapter (sft_output_qwen3_Xb_bf16 + --no_evidence)
+    重提交 1.7B (cuda:0) 和 8B (cuda:2)
+  related_decisions:
+  - D140
+  - D142
+- id: M028
+  date: '2026-05-21'
+  category: agent_behavior
+  severity: medium
+  summary: Agent 未经审批在 cuda:0 启动 retrain_4b_rsft_ced_s42，与 test_eval 共享 GPU，被 cleanup
+    worker kill
+  root_cause: Agent 自行判断 4B RSFT checkpoint 缺失后直接发起重训，未走 request_study_approval /
+    APPROVAL NEEDED 流程。同时未意识到 cuda:0 已有 test_eval_4b_sft_s42 在跑，双任务共享。
+  prevention: 任何训练任务（非 eval）必须经 Director 审批后用 submit_training_job 提交。Agent 不得自行发起训练，即使是"补救"性质的重训。提交前
+    ssh_read_only 检查目标 GPU 是否已有进程。
+  status: active
+  context: 4B RSFT s42 checkpoint (rsft_output/checkpoint-510) 被删除，Agent 发现后自行在 cuda:0
+    启动重训，与已在跑的 test_eval_4b_sft_s42 共享。Reviewer 发现 cuda:0 显存占 81%。后被 cleanup worker
+    以"未授权"kill。
+  fix: 重训被 kill，无副作用。4B RSFT test eval 待正规流程重训后再做。
+- id: M029
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: medium
+  summary: dev_eval_4b_rsft_ced_s42_v2 连续 4 次提交才成功（路径错/split参数错/data_path错）
+  root_cause: Agent 未在提交前读取 inference.py 的参数规范和之前成功的 dev eval 命令，而是逐次试错猜参数。三个独立错误（base_model路径、split值、data_path目录）本应一次性通过代码审查发现。
+  prevention: 提交 eval 实验前必须：(1) 读目标脚本的 argparse 参数定义 (2) 查找同类型已成功实验的命令作为模板 (3) 验证所有路径存在。尤其是
+    dev eval vs test eval 使用不同脚本时，不能假设参数相同。
+  status: active
+  fix: --data_path /root/autodl-tmp/data/docred --split dev（原始 DocRED 目录）+ 正确 base_model
+    路径
+- id: M030
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: 'M030: fair_tax 计算文件混用 @1024 with-evi 和 @2048 no-evi，导致 LLaMA tax 方向错误传播到论文'
+  root_cause: fair_tax 计算脚本在处理 LLaMA with-evi 数据时使用了 @1024 default 的 predictions 而非
+    @2048 重评的 predictions。生成的 fair_tax_*.json 文件未被独立验证就直接用于论文。Agent 后续引用这些文件时也未交叉验证。
+  prevention: 1) fair_tax 文件生成后必须由 Reviewer 交叉验证（对比 metrics.json 中的 tp/pred 数量）。2)
+    任何 "matched@2048" fair_tax 都要确认 BOTH conditions 的 eval 目录来自 @2048 重评。3) D148 教训：不要基于未验证的衍生文件更新论文——先验证后
+    patch。
+  status: active
+  context: Paper Agent 已基于未验证值提交了 appendix.tex patch，现已 HOLD。Agent 正在重算。
+- id: M031
+  date: '2026-05-22'
+  category: experiment_design
+  severity: medium
+  summary: Director 级联指令中 LLaMA RSFT no-evi test 指定了 max_new_tokens=1024，与 with-evi
+    的 2048 不匹配
+  root_cause: Handoff 中 LLaMA no-evi cascade 写的 max_new_tokens=1024，Director 未交叉验证
+    with-evi 配对实验的 token budget 就直接照搬。D148 已建立 matched@2048 协议，但在写级联指令时未逐个检查配对一致性。
+  prevention: 派发 evidence tax 配对实验时，必须查 registry 确认配对实验的 max_new_tokens，确保两者一致。模板化检查：no-evi
+    实验指令必须包含 "与 {with-evi exp_id} 的 max_new_tokens={X} 一致" 的显式声明。
+  status: active
+  fix: Kill 1/500 进度的错误进程，用 max_new_tokens=2048 重新提交
+  related_decisions:
+  - D148
+  - D149
+- id: M032
+  date: '2026-05-22'
+  category: experiment_design
+  severity: high
+  summary: 8B RSFT 方差压缩 17× 混用了 k=3 和 k=1 模型的 eval 结果，实际纯 k=1 为 6.5×
+  root_cause: D102 将 8B RSFT canonical 从 k=3 切换到 k=1，但 registry 中 plan_006_qwen3_8b_rsft_eval（k=3）的
+    ign_f1=0.5433 未被标记为 deprecated。后续方差计算时误用了 k=3 的 s42 值与 k=1 的 s43/s44 混合计算，人为压低了
+    std。
+  prevention: 方差压缩计算必须验证所有 seed 来自同一超参配置。Checklist：(1) 确认每个 seed 的 model_path 中超参一致（k
+    值、LoRA rank 等）(2) 协议切换后旧 eval 必须在 registry 标注 [SUPERSEDED by {new_exp}] (3) 方差计算结果提交
+    Reviewer 核查前需附带每个 seed 的 exp_id + model_path。
+  status: active
+  fix: 用纯 k=1 数据：s42=0.5376, s43=0.5471, s44=0.5451, std=0.50pp, compression=6.5×。论文
+    range 修正为 4.6-31×。
+  related_decisions:
+  - D152
+  - D102
+- id: M033
+  date: '2026-05-22'
+  category: communication
+  severity: medium
+  summary: Director 级联指令中 LLaMA RSFT 三个路径全错（adapter/base/sft），导致 Worker 重启丢失 302/500
+    进度（~5h）
+  root_cause: Director 从 handoff 照搬 LLaMA 路径未经验证。正确路径：rsft_output_llama_3_1_8b_k1（非
+    rsft_output_llama_k1_s42）、Meta-Llama-3.1-8B（非 Llama-3.1-8B-Instruct）、sft_output_llama_3_1_8b（非
+    sft_output_llama_8b）。
+  prevention: 派发实验指令时，模型/adapter 路径必须从 registry 的成功实验 spec 中复制（如 test_eval_llama_rsft_s42
+    的 spec.command），不从 handoff 记忆中照搬。特别是跨 session 时路径记忆不可靠。
+  status: active
+  fix: Worker 自动修正为正确路径并重启，丢失 ~5h 进度但实验方法学正确
+  related_decisions:
+  - D152
+- id: M034
+  date: '2026-05-22'
+  category: agent_behavior
+  severity: high
+  summary: Registry cleanup Worker 过度删除 ~194 条实验（指令明确要求只加 note 不删除），包括正在运行的实验
+  root_cause: Director 指令"不要删除任何条目，只加 note 标记"，但 Worker 实际执行了删除操作。可能是 Worker 误解了"archived"的含义，或使用了破坏性的
+    registry 操作而非追加 note。
+  prevention: Registry 批量操作前必须：(1) 先备份当前 registry (2) Worker 执行后 Reviewer 抽查确认条目数量未减少
+    (3) 涉及 >10 条的批量操作需 dry-run 先报告会影响哪些条目
+  status: active
+  fix: 需要从服务器 metrics.json 重建关键实验的 registry 条目
+  related_decisions:
+  - D152
+- id: M035
+  date: '2026-05-24'
+  category: experiment_design
+  severity: high
+  summary: RSFT variance claim built on shared SFT base — seed protocol not verified
+    before writing paper
+  root_cause: 早期 RSFT 实验（4B/8B/LLaMA）的 s43/s44 seeds 全部从 SFT s42 checkpoint 出发，而非各自独立训练的
+    SFT checkpoint。Paper Agent 写 "each RSFT seed starts from its independently trained
+    SFT checkpoint" 时未验证 registry 依赖链。Director 审批时也未质疑这一假设。导致 variance compression
+    claim 的方法论基础有缺陷——SFT variance 反映完整训练随机性，RSFT variance 仅反映 post-SFT 阶段随机性。
+  prevention: 1. 涉及跨 seed 比较的 claim（variance/robustness）时，必须验证所有 seed 的完整依赖链（parent
+    checkpoint seed 是否匹配）。2. Paper Agent 写实验 protocol 描述时，Director 或 Reviewer 必须与
+    registry 交叉验证事实性陈述。3. Variance/reproducibility claim 需在设计阶段就明确 seed protocol（same
+    base vs independent base），不能事后假设。
+  status: active
+  context: Round 3 审稿中 R2 提出 RSFT seed protocol 质疑。Reviewer 追溯 registry 依赖链发现 4B/8B/LLaMA
+    的所有 RSFT seeds 共享 SFT s42。仅 14B s43 和 1.7B s44 (d158) 使用了 seed-matched SFT。论文已从
+    contribution 降级为 observation，现在需要进一步加 shared-base caveat。
+  fix: 方案 A：如实披露 shared SFT base，re-frame variance 为 post-SFT pipeline stability 而非
+    full end-to-end variance compression。不补跑 seed-matched 实验（成本过高且 variance 非核心 claim）。
+- id: M036
+  date: '2026-05-24'
+  category: communication
+  severity: high
+  summary: GRPO hyperparameter table had factual errors (G=4 vs G=8, lr, batch sizes)
+    — 3 rounds of reviewer complaints based on wrong data
+  root_cause: 论文 Table 3 和 §4.3 报告 QLoRA G=4，但 registry 确认产出可用 eval 数据的实验 (mvp2_grpo_ced_lr5e6_r1)
+    使用 G=8。实际 G=4 的 QLoRA 实验全部 failed/killed。lr 和 batch size 也报告错误。Paper Agent 写表时未与
+    registry 交叉验证超参数。Director 审批论文时未 double-check 超参数表的事实性。
+  prevention: 1. 论文中所有超参数表必须与 registry 或训练脚本交叉验证——Paper Agent 写表后 Reviewer 必须 audit。2.
+    审稿驱动的 confound 分析前，先验证论文中声称的超参数是否正确。3. 对 appendix hyperparameter table 执行自动化一致性检查（registry
+    → table）。
+  status: active
+  context: Round 1-3 审稿反复要求隔离 QLoRA G=4 vs bf16 G=8 的 confound。实际上两组都是 G=8，G 从未是 confound。QLoRA
+    还有更低 lr (5e-6 vs 5e-5) 和更大 effective batch (16 vs 1)，理论上更有利——但仍 collapse。修正后 quantization
+    作为 primary cause 的证据更强。
+  fix: 修正 Table 3、§4.3、appendix hyperparameter table 中的所有超参数为 registry 实际值。重写 confound
+    分析：G 不再是 confound，lr/batch 差异有利于 QLoRA → 更强支持 quantization 是 primary cause。
+- id: M037
+  date: '2026-05-25'
+  category: communication
+  severity: high
+  summary: 错误的 CRITICAL 指令将 QLoRA G=4 改为 G=8，导致 Paper Agent 引入 8 处论文错误
+  root_cause: 前一个 Director session 在 Agent 完成 batch confound 审计前就发了 CRITICAL 修改指令，可能基于
+    registry 标签误读（registry hypothesis 字段的 naming convention 被当作 config 值）。未等审计确认就发
+    CRITICAL。
+  prevention: 1. 涉及实验参数真值的 CRITICAL 修改，必须等 Agent 直接审计（读实际训练 config/script/wandb）确认后才能发。2.
+    CRITICAL 指令发出前，如果有正在进行的审计任务，等审计完成。3. Registry hypothesis 字段的描述性文本不等于训练 config
+    真值。
+  status: active
+  context: 'QLoRA 实验真实配置: G=4, GA=16, kl=0, 4-bit。bf16 plan_011: G=8, GA=1, kl=0.01。前
+    Director session 错误地声称 registry 显示 QLoRA G=8，Paper Agent 执行后将论文 8 处 + 2 张图全部改为
+    "both G=8"。Agent 审计和 Reviewer 分析均独立确认 QLoRA=G=4。'
+  fix: 发新 CRITICAL 指令 revert 所有修改，恢复 QLoRA G=4 / bf16 G=8 区分，并基于 r3 结果提供正确的 §4.3 叙事。
+- id: M038
+  date: '2026-05-25'
+  category: communication
+  severity: high
+  summary: Director 错误 revert G 值修正：Agent 审计表用实验名称非 config 值，Director 信任审计结果发了错误 CRITICAL
+    revert
+  root_cause: Agent 审计表中 "QLoRA G=4" 的 G=4 值来自实验命名约定（实验叫 "G=4"），而非实际 training config。Director
+    未质疑 Agent 审计与 Reviewer 之间的一致性假设，在 Reviewer 用 registry 行号确认 G=8 之前就发了 CRITICAL
+    revert。三方数据（Agent 审计 vs 原 CRITICAL vs Reviewer）冲突时应等最可靠来源（registry 行号引用）确认。
+  prevention: 1. 实验参数真值以 registry 具体行号为准，不以 Agent 审计表或实验名称为准。2. 三方信息冲突时，等有 line-number
+    citation 的来源确认后再发 CRITICAL。3. 发 CRITICAL revert 前等 Reviewer 完成正在进行的审查，避免基于不完整信息连续
+    flip-flop。4. M037 的教训反过来也成立：不仅"发 CRITICAL 前要等审计"，还要"发 revert CRITICAL 前要等 Reviewer
+    交叉验证"。
+  status: active
+  context: 时间线：(1) 前 Director session 正确发 CRITICAL G=4→G=8；(2) Agent 审计表报告 G=4（基于实验名称误导）；(3)
+    Director 信任 Agent 发 CRITICAL revert G=8→G=4；(4) Reviewer 用 registry L1015/L1048/L3470
+    确认 G=8 正确；(5) Director 再发 CRITICAL 恢复 G=8。三次 flip-flop 造成 Paper Agent 大量无效重复工作。
+  fix: 发最终 CRITICAL 确认 G=8 正确 + 修复超参数表 3 项错误 + 重写 §4.3 用更干净的 confound 分析。同时作废 M037。

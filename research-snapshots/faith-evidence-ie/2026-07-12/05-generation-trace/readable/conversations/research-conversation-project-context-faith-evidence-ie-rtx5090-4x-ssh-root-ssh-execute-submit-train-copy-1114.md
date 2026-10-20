@@ -1,0 +1,3592 @@
+# Research conversation: <project_context> # 项目: faith-evidence-ie ## 运行环境 - 服务器名: rtx5090-4x - SSH 账户: root（调用 ssh_execute / submit_training_job
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 1
+- **Tool calls:** 14
+- **Original source:** `logs/chats/exported-trajectories/account-3/6eb5c371-31ad-4c7f-b78e-58fdf175b0db.jsonl`
+- **Structured JSON:** [`f62e44e1f13a47c34cbb.json`](../../sessions/f6/f62e44e1f13a47c34cbb.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T17:24:00.539Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T17:24:00.539Z",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "content": "&lt;project_context>\n# 项目: faith-evidence-ie\n\n## 运行环境\n- 服务器名: rtx5090-4x\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/freige\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]\n- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map=\"auto\" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）\n- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map=\"auto\" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）\n- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）\n- **C005**: no-evidence 模型 eval 必须传 --no_evidence 参数，确保推理时使用 NO_EVIDENCE_SYSTEM_PROMPT 与训练一致（原因：plan_006 1.7B/8B no-evidence eval 漏传该参数，导致训练/推理提示词不匹配（模型被要求输出未训练过的 evidence 字段），结果全部无效。Reviewer critical #20。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：文献联动 — Evidence Tax / Chain-of-Thought 作为 RE 辅助\n\n### 背景\n我们的实验发现 evidence generation 作为隐式 Chain-of-Thought 能提升 RE 性能，且效应随模型规模递减：\n- 1.7B: -7.70pp (evidence 强烈帮助)\n- 8B: -0.78pp (evidence 轻微帮助)\n- 14B: +0.03pp (几乎无影响)\n\n这形成了一条 scale-dependent evidence tax curve，暗示小模型需要显式推理链（evidence）辅助 RE，而大模型的内部推理能力足以替代。\n\n### 任务\n1. 搜索文献中是否有类似发现：\n   - Chain-of-Thought 对不同规模模型的帮助程度差异\n   - Evidence/rationale generation 对 IE/RE 任务的影响\n   - \"Implicit CoT\" vs \"Explicit CoT\" 在不同模型规模的对比\n   \n2. 关键词建议：\n   - \"chain of thought scaling\" \"model size\"\n   - \"evidence generation relation extraction\"\n   - \"rationale augmented training\" \"scale\"\n   - \"implicit reasoning\" \"model capacity\"\n   \n3. 检查 literature_map.yaml 中是否已有相关讨论\n\n4. 产出：\n   - 2-3 篇最相关论文的摘要（作者、年份、核心发现、与我们的异同）\n   - 我们的发现在文献中的定位（novel / confirmatory / extends prior work）\n   - 建议引用方式\n\n### 输出格式\n简洁列表，每篇论文不超过 3 行。最后给一段总结（50 字内）说明我们发现的文献定位。\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T17:24:00.543Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T17:24:00.543Z",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---
+
+## Round 1
+
+51 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T17:24:00.576Z_
+
+&lt;project_context>
+# 项目: faith-evidence-ie
+
+## 运行环境
+- 服务器名: rtx5090-4x
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh rtx5090-4x  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/freige
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 提交 eval 前必须 nvidia-smi 确认目标 GPU 显存占用 < 2GB，否则不提交、换卡或等待（原因：本 session 已 5 次因 eval 提交到被占用 GPU 导致 OOM，修复 eval 也因此作废。eval 推理需要接近全部显存，与训练共享必然 OOM。） [来自 D064]
+- **C002**: 提交训练/评估任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 两次因未设 CUDA_VISIBLE_DEVICES 导致 device_map="auto" 跨 GPU 分布，造成 OOM 和资源冲突。已知 bug 重复发生。）
+- **C003**: 提交训练任务时必须在命令前设置 CUDA_VISIBLE_DEVICES=X，禁止依赖 device_map="auto" 自动分配 GPU（原因：plan_011 和 rsft_ced_s45_train_r3 均因未设 CUDA_VISIBLE_DEVICES 导致模型跨 GPU 分布，造成 OOM 或显存冲突。已重复发生两次。）
+- **C004**: Registry 标记 killed 时必须同时 kill -9 PID 并 ps 验证进程已终止，否则 killed 状态不可信（原因：rsft_ced_s45_train_r2 (PID 276148) registry 标记 killed 但进程未实际终止，占用 cuda:2 31.6GB 导致 r3 OOM。plan_011 也有类似模式。Reviewer WARNING。）
+- **C005**: no-evidence 模型 eval 必须传 --no_evidence 参数，确保推理时使用 NO_EVIDENCE_SYSTEM_PROMPT 与训练一致（原因：plan_006 1.7B/8B no-evidence eval 漏传该参数，导致训练/推理提示词不匹配（模型被要求输出未训练过的 evidence 字段），结果全部无效。Reviewer critical #20。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：文献联动 — Evidence Tax / Chain-of-Thought 作为 RE 辅助
+
+### 背景
+我们的实验发现 evidence generation 作为隐式 Chain-of-Thought 能提升 RE 性能，且效应随模型规模递减：
+- 1.7B: -7.70pp (evidence 强烈帮助)
+- 8B: -0.78pp (evidence 轻微帮助)
+- 14B: +0.03pp (几乎无影响)
+
+这形成了一条 scale-dependent evidence tax curve，暗示小模型需要显式推理链（evidence）辅助 RE，而大模型的内部推理能力足以替代。
+
+### 任务
+1. 搜索文献中是否有类似发现：
+   - Chain-of-Thought 对不同规模模型的帮助程度差异
+   - Evidence/rationale generation 对 IE/RE 任务的影响
+   - "Implicit CoT" vs "Explicit CoT" 在不同模型规模的对比
+   
+2. 关键词建议：
+   - "chain of thought scaling" "model size"
+   - "evidence generation relation extraction"
+   - "rationale augmented training" "scale"
+   - "implicit reasoning" "model capacity"
+   
+3. 检查 literature_map.yaml 中是否已有相关讨论
+
+4. 产出：
+   - 2-3 篇最相关论文的摘要（作者、年份、核心发现、与我们的异同）
+   - 我们的发现在文献中的定位（novel / confirmatory / extends prior work）
+   - 建议引用方式
+
+### 输出格式
+简洁列表，每篇论文不超过 3 行。最后给一段总结（50 字内）说明我们发现的文献定位。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "541b553c-2b32-4e53-b0fa-13541eb07fbb",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T17:24:00.576Z_
+
+```json
+{
+  "parentUuid": "541b553c-2b32-4e53-b0fa-13541eb07fbb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "afb31abd-ef59-42d6-8b99-98145444d587",
+  "timestamp": "2026-05-19T17:24:00.576Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T17:24:00.576Z_
+
+```json
+{
+  "parentUuid": "afb31abd-ef59-42d6-8b99-98145444d587",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "12ed2c02-29a3-46fa-b80b-883d44245703",
+  "timestamp": "2026-05-19T17:24:00.576Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T17:24:00.576Z_
+
+```json
+{
+  "parentUuid": "12ed2c02-29a3-46fa-b80b-883d44245703",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "4d6f41b9-2fde-4f50-b948-33a96245f416",
+  "timestamp": "2026-05-19T17:24:00.576Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research literature on evidence tax and chain-of-thought scaling",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T17:24:19.892Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to search for literature related to their finding about "evidence tax" - that evidence generation as implicit Chain-of-Thought helps RE performance, with the effect diminishing as model scale increases. Let me:
+
+1. Check if there's a literature_map.yaml in the project
+2. Search for relevant papers using web search
+3. Provide a summary
+
+Let me start by checking the project files and searching for literature.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d6f41b9-2fde-4f50-b948-33a96245f416",
+  "isSidechain": false,
+  "requestId": "req_011CbCKJ2MTh2424sXhMiUST",
+  "type": "assistant",
+  "uuid": "18d8b117-67aa-47b3-8519-abd7c101aaca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8er8N2atAb2Q9qTMQcniJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12490,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T17:24:20.426Z_
+
+先检查项目现有文献，同时搜索相关论文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "18d8b117-67aa-47b3-8519-abd7c101aaca",
+  "isSidechain": false,
+  "requestId": "req_011CbCKJ2MTh2424sXhMiUST",
+  "type": "assistant",
+  "uuid": "d1d31595-acad-4f1e-8ce6-cb9c9df23d77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8er8N2atAb2Q9qTMQcniJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12490,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T17:24:24.816Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_016gn576jwSmfwhzqGBVNHaC`</summary>
+
+```json
+{
+  "subagent_type": "Explore",
+  "description": "Find literature_map.yaml",
+  "prompt": "Find any file named literature_map.yaml or similar literature tracking files in /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/. Search broadly - it could be in artifacts/, or the root, or any subdirectory. Also check for any .yaml or .md files that might contain literature references."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1d31595-acad-4f1e-8ce6-cb9c9df23d77",
+  "isSidechain": false,
+  "requestId": "req_011CbCKJ2MTh2424sXhMiUST",
+  "type": "assistant",
+  "uuid": "147b82fa-8b2d-4275-a74f-0d2151012280",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8er8N2atAb2Q9qTMQcniJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12490,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T17:24:25.104Z_
+
+<details><summary>↩ Tool result · `toolu_014sL8rkipnRk2bcDnGbDBx6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1c0ae711-e2bd-4ee1-b016-99a3e85173a1",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "941b7947-f88e-4f56-a2e4-cc3ea53b4cd1",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 22
+  },
+  "sourceToolAssistantUUID": "1c0ae711-e2bd-4ee1-b016-99a3e85173a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T17:24:25.090Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014sL8rkipnRk2bcDnGbDBx6`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "147b82fa-8b2d-4275-a74f-0d2151012280",
+  "isSidechain": false,
+  "requestId": "req_011CbCKJ2MTh2424sXhMiUST",
+  "type": "assistant",
+  "uuid": "1c0ae711-e2bd-4ee1-b016-99a3e85173a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q8er8N2atAb2Q9qTMQcniJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12490,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12490,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12490,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12490
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T17:25:19.249Z_
+
+<details><summary>↩ Tool result · `toolu_016gn576jwSmfwhzqGBVNHaC`</summary>
+
+```text
+Perfect! Now I have all the information I need. Let me compile the comprehensive findings:
+
+## Summary of Literature Tracking Files
+
+I found an extensive literature tracking infrastructure in the faith-evidence-ie project. Here are the key findings:
+
+### Main Literature File
+
+**Primary location:**
+- `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml` (2,510 lines, 135KB)
+
+This is a comprehensive YAML-formatted literature map containing **142 papers** organized into 40+ categories. The file was last updated on 2026-05-16 with incremental scans adding papers across multiple rounds.
+
+### Literature Categories (40+ categories tracked)
+
+The literature_map.yaml is organized by research themes including:
+
+1. **Reward Diversity & Optimization**: GRPO/RLHF stability, mode collapse prevention, reward shaping
+2. **Contrastive & Evidence-Based Rewards**: Evidence-grounded RL, faithfulness-based rewards
+3. **Multi-Objective RL**: For text generation and structured tasks
+4. **RSFT (Rejection Sampling Fine-Tuning)**: Methodology and theory
+5. **Information Extraction**: Document-level relation extraction (DocRE), evidence generation trade-offs
+6. **Quantization & Training Stability**: QLoRA artifacts, precision issues during RL training
+7. **Faithfulness**: Cost analysis, benchmarking, faithful reasoning vs. accuracy trade-offs
+8. **Multi-Task Learning**: Negative transfer, gradient imbalance in IE tasks
+9. **Recent LLM Methods**: Recent DocRE approaches, inference-time reranking, best-of-N sampling
+10. **Foundational Work**: Knowledge distillation, self-training, bootstrapping
+
+### Supporting Literature Survey Files
+
+Located in `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/`:
+
+1. **d024_literature_survey.md** (18KB) - Comprehensive survey on CED Reward's anti-mode-collapse effect, with sections on:
+   - Reward shaping for RLHF/GRPO stability
+   - Mode collapse in LLM RL fine-tuning
+   - Multi-objective reward approaches
+
+2. **ced_stabilizer_literature_survey.md** (3.3KB) - Summary of closest related work:
+   - GDPO (NVIDIA, ICML 2026) - Most directly related prior work
+   - DRA-GRPO, Dr. GRPO, other multi-dimensional reward approaches
+   - Novel positioning of the CED work
+
+3. **literature_quantization_rl.md** (15KB) - Literature on quantization effects in RL
+4. **evidence_cost_literature_scan.md** (6.8KB) - Evidence generation overhead analysis
+5. **literature_survey_evidence_overhead.md** (8.5KB) - Evidence quality vs. performance trade-offs
+
+### BibTeX References
+
+**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib`
+
+Contains formal BibTeX citations for all referenced papers, including works like:
+- AutoRE (LLM-based DocRE)
+- R1-RE (RLVR for relation extraction)
+- DeepSeekMath
+- LoRA and related fine-tuning papers
+- Recent 2025-2026 publications
+
+### Paper Provenance Tracking
+
+**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_provenance.yaml`
+
+This file tracks paper claims with:
+- 92 claims across sections (abstract, introduction, method, experiments, analysis, conclusion, limitations, appendix)
+- Metadata on claim types (quantitative, qualitative, descriptive)
+- Evidence and decision tracking
+- Coverage statistics (35 tier-3 claims pending tier-1/tier-2 evidence)
+
+### Related Metadata Files
+
+- **memory.md** - Project training state and checkpoint information
+- **ideas.md** - Experiment ideas list
+- **report.md** - Auto-generated progress reports
+- **ROADMAP.md** - Project timeline and milestones
+- **decisions.yaml** - Logged decision history (116KB)
+- **registry.yaml** - Experiment registry (441KB)
+
+### Paper Structure Summary
+
+The literature_map.yaml contains entries with these key fields per paper:
+- `title`, `authors`, `year`, `venue`, `url`
+- `category` - Topic classification (40+ categories)
+- `role` - Relationship type (closest_prior_work, related_method, theoretical_support, background, etc.)
+- `key_finding` - Core contribution (often in English and Chinese)
+- `relevance_to_ced_stabilizer` / task-specific relevance sections
+- Multi-dimensional analysis of how papers relate to the project's core research questions
+
+All literature files are in standardized formats (YAML, Markdown, BibTeX) designed for programmatic access and integration with the paper writing pipeline.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "147b82fa-8b2d-4275-a74f-0d2151012280",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "78eeae0c-5c72-4a35-ac86-9fbd945a7a5a",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Find any file named literature_map.yaml or similar literature tracking files in /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/. Search broadly - it could be in artifacts/, or the root, or any subdirectory. Also check for any .yaml or .md files that might contain literature references.",
+    "agentId": "acd9d1689a906d320",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Perfect! Now I have all the information I need. Let me compile the comprehensive findings:\n\n## Summary of Literature Tracking Files\n\nI found an extensive literature tracking infrastructure in the faith-evidence-ie project. Here are the key findings:\n\n### Main Literature File\n\n**Primary location:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml` (2,510 lines, 135KB)\n\nThis is a comprehensive YAML-formatted literature map containing **142 papers** organized into 40+ categories. The file was last updated on 2026-05-16 with incremental scans adding papers across multiple rounds.\n\n### Literature Categories (40+ categories tracked)\n\nThe literature_map.yaml is organized by research themes including:\n\n1. **Reward Diversity & Optimization**: GRPO/RLHF stability, mode collapse prevention, reward shaping\n2. **Contrastive & Evidence-Based Rewards**: Evidence-grounded RL, faithfulness-based rewards\n3. **Multi-Objective RL**: For text generation and structured tasks\n4. **RSFT (Rejection Sampling Fine-Tuning)**: Methodology and theory\n5. **Information Extraction**: Document-level relation extraction (DocRE), evidence generation trade-offs\n6. **Quantization & Training Stability**: QLoRA artifacts, precision issues during RL training\n7. **Faithfulness**: Cost analysis, benchmarking, faithful reasoning vs. accuracy trade-offs\n8. **Multi-Task Learning**: Negative transfer, gradient imbalance in IE tasks\n9. **Recent LLM Methods**: Recent DocRE approaches, inference-time reranking, best-of-N sampling\n10. **Foundational Work**: Knowledge distillation, self-training, bootstrapping\n\n### Supporting Literature Survey Files\n\nLocated in `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/`:\n\n1. **d024_literature_survey.md** (18KB) - Comprehensive survey on CED Reward's anti-mode-collapse effect, with sections on:\n   - Reward shaping for RLHF/GRPO stability\n   - Mode collapse in LLM RL fine-tuning\n   - Multi-objective reward approaches\n\n2. **ced_stabilizer_literature_survey.md** (3.3KB) - Summary of closest related work:\n   - GDPO (NVIDIA, ICML 2026) - Most directly related prior work\n   - DRA-GRPO, Dr. GRPO, other multi-dimensional reward approaches\n   - Novel positioning of the CED work\n\n3. **literature_quantization_rl.md** (15KB) - Literature on quantization effects in RL\n4. **evidence_cost_literature_scan.md** (6.8KB) - Evidence generation overhead analysis\n5. **literature_survey_evidence_overhead.md** (8.5KB) - Evidence quality vs. performance trade-offs\n\n### BibTeX References\n\n**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/docs/paper/references.bib`\n\nContains formal BibTeX citations for all referenced papers, including works like:\n- AutoRE (LLM-based DocRE)\n- R1-RE (RLVR for relation extraction)\n- DeepSeekMath\n- LoRA and related fine-tuning papers\n- Recent 2025-2026 publications\n\n### Paper Provenance Tracking\n\n**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/paper_provenance.yaml`\n\nThis file tracks paper claims with:\n- 92 claims across sections (abstract, introduction, method, experiments, analysis, conclusion, limitations, appendix)\n- Metadata on claim types (quantitative, qualitative, descriptive)\n- Evidence and decision tracking\n- Coverage statistics (35 tier-3 claims pending tier-1/tier-2 evidence)\n\n### Related Metadata Files\n\n- **memory.md** - Project training state and checkpoint information\n- **ideas.md** - Experiment ideas list\n- **report.md** - Auto-generated progress reports\n- **ROADMAP.md** - Project timeline and milestones\n- **decisions.yaml** - Logged decision history (116KB)\n- **registry.yaml** - Experiment registry (441KB)\n\n### Paper Structure Summary\n\nThe literature_map.yaml contains entries with these key fields per paper:\n- `title`, `authors`, `year`, `venue`, `url`\n- `category` - Topic classification (40+ categories)\n- `role` - Relationship type (closest_prior_work, related_method, theoretical_support, background, etc.)\n- `key_finding` - Core contribution (often in English and Chinese)\n- `relevance_to_ced_stabilizer` / task-specific relevance sections\n- Multi-dimensional analysis of how papers relate to the project's core research questions\n\nAll literature files are in standardized formats (YAML, Markdown, BibTeX) designed for programmatic access and integration with the paper writing pipeline."
+      }
+    ],
+    "totalDurationMs": 54424,
+    "totalTokens": 39619,
+    "totalToolUseCount": 21,
+    "usage": {
+      "input_tokens": 5,
+      "cache_creation_input_tokens": 439,
+      "cache_read_input_tokens": 37963,
+      "output_tokens": 1212,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 439
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 5,
+          "output_tokens": 1212,
+          "cache_read_input_tokens": 37963,
+          "cache_creation_input_tokens": 439,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 439,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 6,
+      "searchCount": 2,
+      "bashCount": 13,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "147b82fa-8b2d-4275-a74f-0d2151012280",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-19T17:25:22.087Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for relevant papers and check the literature_map.yaml for existing entries on this topic.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78eeae0c-5c72-4a35-ac86-9fbd945a7a5a",
+  "isSidechain": false,
+  "requestId": "req_011CbCKPpjdN3vrdTbirS4mm",
+  "type": "assistant",
+  "uuid": "08e74b26-014f-40ef-a78b-af35f86973cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRGzxeNeumojmUpWmj5N4j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2136,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 369,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 369,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 2136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-19T17:25:22.562Z_
+
+Now let me search for relevant papers and check existing literature entries.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08e74b26-014f-40ef-a78b-af35f86973cd",
+  "isSidechain": false,
+  "requestId": "req_011CbCKPpjdN3vrdTbirS4mm",
+  "type": "assistant",
+  "uuid": "7a4260d5-0080-4d96-bbaf-ba33294fd171",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRGzxeNeumojmUpWmj5N4j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2136,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 369,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 369,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 2136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T17:25:23.661Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01AKbwycdfrhbJMa55RqErT4`</summary>
+
+```json
+{
+  "query": "chain of thought scaling model size effect diminishes larger models reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7a4260d5-0080-4d96-bbaf-ba33294fd171",
+  "isSidechain": false,
+  "requestId": "req_011CbCKPpjdN3vrdTbirS4mm",
+  "type": "assistant",
+  "uuid": "1f9bf752-c966-4410-9a77-3fae3ccf7868",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRGzxeNeumojmUpWmj5N4j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2136,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 369,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 369,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 2136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T17:25:26.884Z_
+
+<details><summary>↩ Tool result · `toolu_01LEDBCurccAekD81nGgxHYw`</summary>
+
+```text
+317:      但 DocRE 的结构化输出（JSON triple）不同于 math 的 chain-of-thought，
+546:  - title: "Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse"
+599:  - title: "The Decreasing Value of Chain of Thought in Prompting"
+726:      (2) EvidenceRL 未报告 evidence generation 的 performance cost（evidence tax）——它的 grounding 和
+731:      我们揭示 DocRE structured output 带来的独特挑战（evidence tax、task decoupling）和解法（CED reranker）。
+868:  - title: "Chain-of-Thought Is Not Explainability"
+902:  - title: "Reasoning Beyond Language: A Comprehensive Survey on Latent Chain-of-Thought Reasoning"
+1031:  - title: "Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps"
+1280:      我们的工作表明 evidence generation 有固有代价（faithfulness tax），
+1822:      generative DocRE；(2) 揭示 evidence generation 的 performance cost（evidence tax）——ESTR-DocRE
+1838:      FREIGE 的 generative 范式和 evidence tax 发现是明确差异化点。
+1842:  - title: "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning"
+1855:      为 FREIGE Claim 1（evidence tax）提供方法论支撑：FaithCoT-Bench 的 faithfulness 定义和
+1860:  - title: "C2-Faith: Benchmarking LLM Judges for Causal and Coverage Faithfulness in Chain-of-Thought Reasoning"
+2206:  - title: "Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning"
+2272:      FREIGE 的 evidence tax 是这一理论在 generative IE 中的实证体现。
+2287:      FREIGE 的 -7.7 F1 evidence tax 直接挑战了这一假设，证明在 generative SFT 中该 desiderata 不成立。
+2289:  - title: "Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction"
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da1e61ba-5ff2-416f-bc69-30c73c11b3ad",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "d719d514-663e-44ae-af0a-48f2cceca2ba",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "317:      但 DocRE 的结构化输出（JSON triple）不同于 math 的 chain-of-thought，\n546:  - title: \"Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse\"\n599:  - title: \"The Decreasing Value of Chain of Thought in Prompting\"\n726:      (2) EvidenceRL 未报告 evidence generation 的 performance cost（evidence tax）——它的 grounding 和\n731:      我们揭示 DocRE structured output 带来的独特挑战（evidence tax、task decoupling）和解法（CED reranker）。\n868:  - title: \"Chain-of-Thought Is Not Explainability\"\n902:  - title: \"Reasoning Beyond Language: A Comprehensive Survey on Latent Chain-of-Thought Reasoning\"\n1031:  - title: \"Measuring Chain of Thought Faithfulness by Unlearning Reasoning Steps\"\n1280:      我们的工作表明 evidence generation 有固有代价（faithfulness tax），\n1822:      generative DocRE；(2) 揭示 evidence generation 的 performance cost（evidence tax）——ESTR-DocRE\n1838:      FREIGE 的 generative 范式和 evidence tax 发现是明确差异化点。\n1842:  - title: \"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning\"\n1855:      为 FREIGE Claim 1（evidence tax）提供方法论支撑：FaithCoT-Bench 的 faithfulness 定义和\n1860:  - title: \"C2-Faith: Benchmarking LLM Judges for Causal and Coverage Faithfulness in Chain-of-Thought Reasoning\"\n2206:  - title: \"Mechanistic Evidence for Faithfulness Decay in Chain-of-Thought Reasoning\"\n2272:      FREIGE 的 evidence tax 是这一理论在 generative IE 中的实证体现。\n2287:      FREIGE 的 -7.7 F1 evidence tax 直接挑战了这一假设，证明在 generative SFT 中该 desiderata 不成立。\n2289:  - title: \"Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction\"",
+    "numLines": 18
+  },
+  "sourceToolAssistantUUID": "da1e61ba-5ff2-416f-bc69-30c73c11b3ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T17:25:23.979Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017gjHcCoAZfLeNjumMZupis`</summary>
+
+```json
+{
+  "query": "evidence generation relation extraction implicit chain of thought auxiliary task"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f9bf752-c966-4410-9a77-3fae3ccf7868",
+  "isSidechain": false,
+  "requestId": "req_011CbCKPpjdN3vrdTbirS4mm",
+  "type": "assistant",
+  "uuid": "fe8d5877-618a-4de5-a37a-a5de081c1147",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRGzxeNeumojmUpWmj5N4j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2136,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 369,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 369,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 2136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-19T17:25:24.921Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HW8Mnr1Jcm2oJwLa83hhfQ`</summary>
+
+```json
+{
+  "query": "rationale augmented training model scale small vs large language models explicit reasoning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe8d5877-618a-4de5-a37a-a5de081c1147",
+  "isSidechain": false,
+  "requestId": "req_011CbCKPpjdN3vrdTbirS4mm",
+  "type": "assistant",
+  "uuid": "0d062ae7-0ad8-4d82-ab82-9034921dc690",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRGzxeNeumojmUpWmj5N4j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2136,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 369,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 369,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 2136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-19T17:25:26.847Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01LEDBCurccAekD81nGgxHYw`</summary>
+
+```json
+{
+  "pattern": "chain.of.thought|implicit.*reasoning|evidence.*tax|scale.*depend|rationale.*augment",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+  "output_mode": "content",
+  "-i": true,
+  "head_limit": 40
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d062ae7-0ad8-4d82-ab82-9034921dc690",
+  "isSidechain": false,
+  "requestId": "req_011CbCKPpjdN3vrdTbirS4mm",
+  "type": "assistant",
+  "uuid": "da1e61ba-5ff2-416f-bc69-30c73c11b3ad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CRGzxeNeumojmUpWmj5N4j",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2136,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 369,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 369,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 2136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "unavailable"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d719d514-663e-44ae-af0a-48f2cceca2ba",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research literature on evidence tax and chain-of-thought scaling",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T17:25:31.063Z_
+
+<details><summary>↩ Tool result · `toolu_01AKbwycdfrhbJMa55RqErT4`</summary>
+
+```text
+Web search results for query: "chain of thought scaling model size effect diminishes larger models reasoning"
+
+Links: [{"title":"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models Jason Wei","url":"https://openreview.net/pdf?id=_VjQlMeSB_J"},{"title":"Chain of Thought in Large Language Models: Elicited Reasoning or Constrained Imitation? | by Greg Robison | Medium","url":"https://gregrobison.medium.com/chain-of-thought-in-large-language-models-elicited-reasoning-or-constrained-imitation-5e4ee0c811ad"},{"title":"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models | by Priyanka | Medium","url":"https://medium.com/@priyanka_nath/chain-of-thought-prompting-elicits-reasoning-in-large-language-models-5017cb4ba049"},{"title":"Reasoning models struggle to control their chains of thought, and that’s good | OpenAI","url":"https://openai.com/index/reasoning-models-chain-of-thought-controllability/"},{"title":"Language Models Perform Reasoning via Chain of Thought","url":"https://research.google/blog/language-models-perform-reasoning-via-chain-of-thought/?m=1"},{"title":"Chain-Of-Thought ( CoT ) in Large Language Models prompting and Concise CoT with Code implementation using Python and PyTorch | by Devmallya Karar | Medium","url":"https://medium.com/@devmallyakarar/chain-of-thought-cot-in-large-language-models-prompting-and-concise-cot-with-code-82821f9a832d"},{"title":"The Geometry of Thought: How Scale Restructures Reasoning In Large Language Models","url":"https://arxiv.org/pdf/2601.13358"},{"title":"What is chain of thought (CoT) prompting? | IBM","url":"https://www.ibm.com/think/topics/chain-of-thoughts"},{"title":"When More is Less: Understanding Chain-of-Thought Length in LLMs","url":"https://arxiv.org/html/2502.07266v1"}]
+
+Based on the search results, here's what the research shows about chain-of-thought scaling and model size effects:
+
+## Scaling Effects with Model Size
+
+Smaller scale models produce fluent but illogical chains of thought, leading to lower performance than standard prompting. More specifically, chain-of-thought prompting does not positively impact performance for small models, and only yields performance gains when used with models of ~100B parameters.
+
+## Diminishing Returns at Larger Scales
+
+Interestingly, the research suggests that larger models were somewhat better at controlling their chains of thought, though the effect tapered off at larger sizes. This indicates that while chain-of-thought benefits increase with model scale up to a point, the improvements do eventually plateau or diminish.
+
+## How Scale Restructures Reasoning
+
+Recent research provides a more nuanced view of scaling. Scale does not uniformly improve reasoning—it restructures it. When analyzing chain-of-thought trajectories across different domains, neural scaling laws trigger domain-specific phase transitions rather than uniform capability gains.
+
+## Additional Complexity
+
+The relationship between chain-of-thought length and model performance is also nuanced: as the number of reasoning steps increases, performance initially improves but eventually decreases. This suggests that more reasoning steps don't always lead to better outcomes, even in larger models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f9bf752-c966-4410-9a77-3fae3ccf7868",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "bc7b1736-971f-4311-8b4f-489304d4ec14",
+  "toolUseResult": {
+    "query": "chain of thought scaling model size effect diminishes larger models reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0133M2rcaVwFZkXXmEV8VyHq",
+        "content": [
+          {
+            "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models Jason Wei",
+            "url": "https://openreview.net/pdf?id=_VjQlMeSB_J"
+          },
+          {
+            "title": "Chain of Thought in Large Language Models: Elicited Reasoning or Constrained Imitation? | by Greg Robison | Medium",
+            "url": "https://gregrobison.medium.com/chain-of-thought-in-large-language-models-elicited-reasoning-or-constrained-imitation-5e4ee0c811ad"
+          },
+          {
+            "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models | by Priyanka | Medium",
+            "url": "https://medium.com/@priyanka_nath/chain-of-thought-prompting-elicits-reasoning-in-large-language-models-5017cb4ba049"
+          },
+          {
+            "title": "Reasoning models struggle to control their chains of thought, and that’s good | OpenAI",
+            "url": "https://openai.com/index/reasoning-models-chain-of-thought-controllability/"
+          },
+          {
+            "title": "Language Models Perform Reasoning via Chain of Thought",
+            "url": "https://research.google/blog/language-models-perform-reasoning-via-chain-of-thought/?m=1"
+          },
+          {
+            "title": "Chain-Of-Thought ( CoT ) in Large Language Models prompting and Concise CoT with Code implementation using Python and PyTorch | by Devmallya Karar | Medium",
+            "url": "https://medium.com/@devmallyakarar/chain-of-thought-cot-in-large-language-models-prompting-and-concise-cot-with-code-82821f9a832d"
+          },
+          {
+            "title": "The Geometry of Thought: How Scale Restructures Reasoning In Large Language Models",
+            "url": "https://arxiv.org/pdf/2601.13358"
+          },
+          {
+            "title": "What is chain of thought (CoT) prompting? | IBM",
+            "url": "https://www.ibm.com/think/topics/chain-of-thoughts"
+          },
+          {
+            "title": "When More is Less: Understanding Chain-of-Thought Length in LLMs",
+            "url": "https://arxiv.org/html/2502.07266v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what the research shows about chain-of-thought scaling and model size effects:\n\n## Scaling Effects with Model Size\n\nSmaller scale models produce fluent but illogical chains of thought, leading to lower performance than standard prompting. More specifically, chain-of-thought prompting does not positively impact performance for small models, and only yields performance gains when used with models of ~100B parameters.\n\n## Diminishing Returns at Larger Scales\n\nInterestingly, the research suggests that larger models were somewhat better at controlling their chains of thought, though the effect tapered off at larger sizes. This indicates that while chain-of-thought benefits increase with model scale up to a point, the improvements do eventually plateau or diminish.\n\n## How Scale Restructures Reasoning\n\nRecent research provides a more nuanced view of scaling. Scale does not uniformly improve reasoning—it restructures it. When analyzing chain-of-thought trajectories across different domains, neural scaling laws trigger domain-specific phase transitions rather than uniform capability gains.\n\n## Additional Complexity\n\nThe relationship between chain-of-thought length and model performance is also nuanced: as the number of reasoning steps increases, performance initially improves but eventually decreases. This suggests that more reasoning steps don't always lead to better outcomes, even in larger models."
+    ],
+    "durationSeconds": 7.3969430460000005
+  },
+  "sourceToolAssistantUUID": "1f9bf752-c966-4410-9a77-3fae3ccf7868",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-19T17:25:31.264Z_
+
+<details><summary>↩ Tool result · `toolu_017gjHcCoAZfLeNjumMZupis`</summary>
+
+```text
+Web search results for query: "evidence generation relation extraction implicit chain of thought auxiliary task"
+
+Links: [{"title":"Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation   Extraction","url":"https://arxiv.org/pdf/2311.05922"},{"title":"[2311.05922] Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction","url":"https://arxiv.org/abs/2311.05922"},{"title":"Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction","url":"https://arxiv.org/html/2311.05922v3"},{"title":"[2311.05922v2] Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction","url":"https://arxiv.org/abs/2311.05922v2"},{"title":"Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction | OpenReview","url":"https://openreview.net/forum?id=sthusQGkef&noteId=6lwlgCklIT"},{"title":"Chain of Thought with Explicit Evidence Reasoning for Few ...","url":"https://openreview.net/pdf?id=sthusQGkef"},{"title":"Towards evidence-aware retrieval-augmented generation via self-corrective chain-of-thought - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0306457325003103"}]
+
+Based on the search results, I found a highly relevant paper on this topic:
+
+The research proposes CoT-ER (chain-of-thought with explicit evidence reasoning) for few-shot relation extraction, which first induces large language models to generate evidence using task-specific and concept-level knowledge, then explicitly incorporates this evidence into chain-of-thought prompting for relation extraction.
+
+The key motivation for this work is that the evidence for inference is either not considered or implicitly modeled during the construction of chain-of-thought prompts, which the authors address through their explicit evidence generation approach.
+
+The CoT-ER approach achieves competitive performance compared to fully-supervised state-of-the-art approaches on the FewRel1.0 and FewRel2.0 datasets while using 0% training data.
+
+This appears to be the primary academic work addressing the specific combination of evidence generation, relation extraction, and chain-of-thought methodology that your search query targeted.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe8d5877-618a-4de5-a37a-a5de081c1147",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "cb65abc2-1272-43ce-9bfb-ac7728169c6b",
+  "toolUseResult": {
+    "query": "evidence generation relation extraction implicit chain of thought auxiliary task",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_016KwnoLuXmZ5DNDhE1R7TgZ",
+        "content": [
+          {
+            "title": "Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation   Extraction",
+            "url": "https://arxiv.org/pdf/2311.05922"
+          },
+          {
+            "title": "[2311.05922] Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction",
+            "url": "https://arxiv.org/abs/2311.05922"
+          },
+          {
+            "title": "Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction",
+            "url": "https://arxiv.org/html/2311.05922v3"
+          },
+          {
+            "title": "[2311.05922v2] Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction",
+            "url": "https://arxiv.org/abs/2311.05922v2"
+          },
+          {
+            "title": "Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction | OpenReview",
+            "url": "https://openreview.net/forum?id=sthusQGkef&noteId=6lwlgCklIT"
+          },
+          {
+            "title": "Chain of Thought with Explicit Evidence Reasoning for Few ...",
+            "url": "https://openreview.net/pdf?id=sthusQGkef"
+          },
+          {
+            "title": "Towards evidence-aware retrieval-augmented generation via self-corrective chain-of-thought - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0306457325003103"
+          }
+        ]
+      },
+      "Based on the search results, I found a highly relevant paper on this topic:\n\nThe research proposes CoT-ER (chain-of-thought with explicit evidence reasoning) for few-shot relation extraction, which first induces large language models to generate evidence using task-specific and concept-level knowledge, then explicitly incorporates this evidence into chain-of-thought prompting for relation extraction.\n\nThe key motivation for this work is that the evidence for inference is either not considered or implicitly modeled during the construction of chain-of-thought prompts, which the authors address through their explicit evidence generation approach.\n\nThe CoT-ER approach achieves competitive performance compared to fully-supervised state-of-the-art approaches on the FewRel1.0 and FewRel2.0 datasets while using 0% training data.\n\nThis appears to be the primary academic work addressing the specific combination of evidence generation, relation extraction, and chain-of-thought methodology that your search query targeted."
+    ],
+    "durationSeconds": 7.28260802
+  },
+  "sourceToolAssistantUUID": "fe8d5877-618a-4de5-a37a-a5de081c1147",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T17:25:32.329Z_
+
+<details><summary>↩ Tool result · `toolu_01HW8Mnr1Jcm2oJwLa83hhfQ`</summary>
+
+```text
+Web search results for query: "rationale augmented training model scale small vs large language models explicit reasoning"
+
+Links: [{"title":"Rationale-Augmented Training Methods","url":"https://www.emergentmind.com/topics/rationale-augmented-training-methods"},{"title":"Investigating the Impact of Rationales for LLMs on Natural Language Understanding","url":"https://arxiv.org/pdf/2510.16686"},{"title":"Answering Unseen Questions With Smaller Language Models Using Rationale   Generation and Dense Retrieval","url":"https://arxiv.org/pdf/2308.04711"},{"title":"Big Reasoning with Small Models: Instruction Retrieval at Inference Time","url":"https://arxiv.org/html/2510.13935v1"},{"title":"Reasoning Under 1 Billion: Memory-Augmented Reinforcement Learning for Large Language Models","url":"https://arxiv.org/html/2504.02273v1"},{"title":"Explanations from Large Language Models Make Small Reasoners Better","url":"https://arxiv.org/pdf/2210.06726"},{"title":"Reasoning with Large Language Models, a Survey","url":"https://arxiv.org/html/2407.11511v1"},{"title":"Self-Enhanced Reasoning Training: Activating Latent Reasoning in Small   Models for Enhanced Reasoning Distillation","url":"https://arxiv.org/pdf/2502.12744"},{"title":"Rationale-Augmented Ensembles in Language Models","url":"https://arxiv.org/pdf/2207.00747"}]
+
+Based on the web search results, here's what research shows about rationale-augmented training for small vs. large language models with explicit reasoning:
+
+## Key Findings on Model Scale Effects
+
+As model size grows, the impact of chain-of-thought (CoT) inference shifts from hindering to enhancing performance. For smaller models with limited capacity, CoT's over-analysis increases the chance of understanding errors, which actually harms performance.
+
+## Benefits for Small Models
+
+Small models can benefit from training with rationales by eliciting rationales from large teacher models and using them as additional supervision signals. Research demonstrates several approaches:
+
+- Training smaller reasoning models using retrieval-augmented training datasets makes them proficient at utilizing relevant information from longer text sequences, producing strong results in unseen settings.
+
+- Small models can generate high-quality reasoning paths during sampling without explicit prompting, though these paths are latent. Self-Enhanced Reasoning Training activates these latent reasoning capabilities through self-training on filtered, self-generated reasoning paths.
+
+## General Approach
+
+Rationale-augmented training methods encourage models to generate, attend to, or utilize intermediate explanations as a central part of learning. A "rationale" includes human-annotated tokens, free-text justifications, step-by-step chains of thought, word alignment signals, or automatically discovered intermediate reasoning steps.
+
+The evidence suggests that while explicit reasoning through rationales can actually hurt smaller models' performance in some cases, carefully designed training with distilled rationales from larger models can effectively improve small models' reasoning abilities.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d062ae7-0ad8-4d82-ab82-9034921dc690",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "10101886-ed97-4bc5-a324-b7c3dce90222",
+  "toolUseResult": {
+    "query": "rationale augmented training model scale small vs large language models explicit reasoning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011JvUYo2pCD4oyk6EnRyuiS",
+        "content": [
+          {
+            "title": "Rationale-Augmented Training Methods",
+            "url": "https://www.emergentmind.com/topics/rationale-augmented-training-methods"
+          },
+          {
+            "title": "Investigating the Impact of Rationales for LLMs on Natural Language Understanding",
+            "url": "https://arxiv.org/pdf/2510.16686"
+          },
+          {
+            "title": "Answering Unseen Questions With Smaller Language Models Using Rationale   Generation and Dense Retrieval",
+            "url": "https://arxiv.org/pdf/2308.04711"
+          },
+          {
+            "title": "Big Reasoning with Small Models: Instruction Retrieval at Inference Time",
+            "url": "https://arxiv.org/html/2510.13935v1"
+          },
+          {
+            "title": "Reasoning Under 1 Billion: Memory-Augmented Reinforcement Learning for Large Language Models",
+            "url": "https://arxiv.org/html/2504.02273v1"
+          },
+          {
+            "title": "Explanations from Large Language Models Make Small Reasoners Better",
+            "url": "https://arxiv.org/pdf/2210.06726"
+          },
+          {
+            "title": "Reasoning with Large Language Models, a Survey",
+            "url": "https://arxiv.org/html/2407.11511v1"
+          },
+          {
+            "title": "Self-Enhanced Reasoning Training: Activating Latent Reasoning in Small   Models for Enhanced Reasoning Distillation",
+            "url": "https://arxiv.org/pdf/2502.12744"
+          },
+          {
+            "title": "Rationale-Augmented Ensembles in Language Models",
+            "url": "https://arxiv.org/pdf/2207.00747"
+          }
+        ]
+      },
+      "Based on the web search results, here's what research shows about rationale-augmented training for small vs. large language models with explicit reasoning:\n\n## Key Findings on Model Scale Effects\n\nAs model size grows, the impact of chain-of-thought (CoT) inference shifts from hindering to enhancing performance. For smaller models with limited capacity, CoT's over-analysis increases the chance of understanding errors, which actually harms performance.\n\n## Benefits for Small Models\n\nSmall models can benefit from training with rationales by eliciting rationales from large teacher models and using them as additional supervision signals. Research demonstrates several approaches:\n\n- Training smaller reasoning models using retrieval-augmented training datasets makes them proficient at utilizing relevant information from longer text sequences, producing strong results in unseen settings.\n\n- Small models can generate high-quality reasoning paths during sampling without explicit prompting, though these paths are latent. Self-Enhanced Reasoning Training activates these latent reasoning capabilities through self-training on filtered, self-generated reasoning paths.\n\n## General Approach\n\nRationale-augmented training methods encourage models to generate, attend to, or utilize intermediate explanations as a central part of learning. A \"rationale\" includes human-annotated tokens, free-text justifications, step-by-step chains of thought, word alignment signals, or automatically discovered intermediate reasoning steps.\n\nThe evidence suggests that while explicit reasoning through rationales can actually hurt smaller models' performance in some cases, carefully designed training with distilled rationales from larger models can effectively improve small models' reasoning abilities."
+    ],
+    "durationSeconds": 7.405410887000006
+  },
+  "sourceToolAssistantUUID": "0d062ae7-0ad8-4d82-ab82-9034921dc690",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T17:25:41.945Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Vejb81DiC1GyCEp2RYqWnG`</summary>
+
+```json
+{
+  "query": "\"chain of thought\" \"small models\" \"large models\" benefit diminishing scaling NeurIPS ICLR 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10101886-ed97-4bc5-a324-b7c3dce90222",
+  "isSidechain": false,
+  "requestId": "req_011CbCKQne9xQkAVoyew8Qmg",
+  "type": "assistant",
+  "uuid": "5feaa801-2d8c-4a05-bbd5-eeb36dde881e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F6okBxEx5DeTguW8V7Ugaq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 642,
+      "cache_creation_input_tokens": 4766,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 642,
+          "output_tokens": 389,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 4766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-19T17:25:44.138Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014LsqBKLMDwfM1nRGQdk9iM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+  "offset": 545,
+  "limit": 80
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5feaa801-2d8c-4a05-bbd5-eeb36dde881e",
+  "isSidechain": false,
+  "requestId": "req_011CbCKQne9xQkAVoyew8Qmg",
+  "type": "assistant",
+  "uuid": "86999f54-234a-48f9-b89c-c800a5d17d52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F6okBxEx5DeTguW8V7Ugaq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 642,
+      "cache_creation_input_tokens": 4766,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 642,
+          "output_tokens": 389,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 4766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T17:25:44.170Z_
+
+<details><summary>↩ Tool result · `toolu_014LsqBKLMDwfM1nRGQdk9iM`</summary>
+
+```text
+545	
+546	  - title: "Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse"
+547	    authors: Sprague et al.
+548	    year: 2024
+549	    venue: NeurIPS 2024
+550	    url: https://arxiv.org/abs/2410.21333
+551	    category: evidence_generation_tradeoff
+552	    role: key_evidence
+553	    key_finding: >
+554	      CoT 在某些任务上降低性能高达 36.3%（o1-preview vs GPT-4o）。
+555	      显式推理步骤引入 error accumulation，且模型可能 overfit 到解释格式而非任务结构。
+556	      隐式推理（hidden activations）在分布偏移下优于显式 token-level 推理。
+557	    relevance_to_evidence_tradeoff: >
+558	      直接支持我们的核心发现：要求模型同时生成 evidence sentences 是一种"显式推理"，
+559	      会对主任务（RE）产生性能代价（~8pp F1 下降）。
+560	      Related Work 引用点：evidence generation 作为 structured explanation，
+561	      与 CoT 共享"显式推理降低主任务性能"的普遍模式。
+562	
+563	  - title: "Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion"
+564	    authors: Xie et al. (Google Research)
+565	    year: 2022
+566	    venue: ACL Findings 2022
+567	    url: https://arxiv.org/abs/2106.08657
+568	    category: evidence_generation_tradeoff
+569	    role: closest_docre_precedent
+570	    key_finding: >
+571	      Joint 训练 RE + evidence extraction，关键创新在 inference-stage fusion：
+572	      分别在 extracted evidence 和 full document 上做 RE 预测再通过 blending layer 融合。
+573	      DocRED 上提升 1.37 Ign F1。Silver evidence labels（启发式规则构建）即可提升 RE 性能。
+574	    relevance_to_evidence_tradeoff: >
+575	      最直接的 DocRE + evidence 先例。EIDER 的核心洞察是 evidence 需要 inference-stage 融合
+576	      而非 joint generation——暗示 joint generation 会引入 noise。
+577	      我们的 CED reranker 是 LLM-era 版本的 inference-stage fusion：
+578	      先生成多个候选（含 evidence），再用 NLI 在推理阶段选最佳。
+579	      Related Work 引用点：encoder-based DocRE 中 evidence 的使用方式，与我们 generative 范式的关键差异。
+580	
+581	  - title: "Exploring the Trade-off Between Model Performance and Explanation Plausibility of Text Classifiers Using Human Rationales"
+582	    authors: Resck, Raimundo, Poco
+583	    year: 2024
+584	    venue: NAACL Findings 2024
+585	    url: https://arxiv.org/abs/2404.03098
+586	    category: evidence_generation_tradeoff
+587	    role: formal_framework
+588	    key_finding: >
+589	      用 multi-objective optimization 探索 performance vs explanation plausibility 的 Pareto frontier。
+590	      引入 rationale 约束创建 contrastive loss，证实加入 rationale supervision 会降低主任务性能，
+591	      但存在 Pareto optimal 解平衡两者。
+592	    relevance_to_evidence_tradeoff: >
+593	      提供了 performance-explainability trade-off 的形式化框架。
+594	      我们的 evidence-grounded RE 降 8pp 正是 Pareto frontier 上的一个点。
+595	      CED reranker 的效果可解读为：将系统从 evidence-constrained 点推向 Pareto frontier，
+596	      在几乎不牺牲 evidence quality（evi_f1=0.8188）的前提下恢复 RE 性能。
+597	      Related Work 引用点：evidence generation 的 performance cost 有理论依据。
+598	
+599	  - title: "The Decreasing Value of Chain of Thought in Prompting"
+600	    authors: Meincke, Mollick, Mollick, Shapiro
+601	    year: 2025
+602	    venue: Wharton Generative AI Labs Technical Report (SSRN)
+603	    url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5285532
+604	    category: evidence_generation_tradeoff
+605	    role: empirical_support
+606	    key_finding: >
+607	      现代 reasoning models 上 CoT 收益微弱（4-13%），但 latency 增加 35-600%。
+608	      更强的模型从显式推理中受益越少。CoT 可能在 easy questions 上引入 errors
+609	      （variability 增加导致原本正确的被改错）。
+610	    relevance_to_evidence_tradeoff: >
+611	      支持"更强的 SFT 模型不需要在生成时显式输出 evidence"的论点。
+612	      我们的 evidence-only SFT 的性能下降符合"显式推理的边际收益递减"模式。
+613	      Related Work 引用点：evidence generation 的 accuracy cost 不是 DocRE-specific，而是 LLM 的普遍趋势。
+614	
+615	  # === Category 10: Negative Transfer in Multi-task / Auxiliary-task Learning ===
+616	
+617	  - title: "ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning"
+618	    authors: Jiang, Chen et al.
+619	    year: 2023
+620	    venue: NeurIPS 2023
+621	    url: https://arxiv.org/abs/2301.12618
+622	    category: negative_transfer
+623	    role: theoretical_framework
+624	    key_finding: >
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86999f54-234a-48f9-b89c-c800a5d17d52",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "cfd91375-a164-4a8b-88a9-512e073ab79f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+      "content": "\n  - title: \"Mind Your Step (by Step): Chain-of-Thought can Reduce Performance on Tasks where Thinking Makes Humans Worse\"\n    authors: Sprague et al.\n    year: 2024\n    venue: NeurIPS 2024\n    url: https://arxiv.org/abs/2410.21333\n    category: evidence_generation_tradeoff\n    role: key_evidence\n    key_finding: >\n      CoT 在某些任务上降低性能高达 36.3%（o1-preview vs GPT-4o）。\n      显式推理步骤引入 error accumulation，且模型可能 overfit 到解释格式而非任务结构。\n      隐式推理（hidden activations）在分布偏移下优于显式 token-level 推理。\n    relevance_to_evidence_tradeoff: >\n      直接支持我们的核心发现：要求模型同时生成 evidence sentences 是一种\"显式推理\"，\n      会对主任务（RE）产生性能代价（~8pp F1 下降）。\n      Related Work 引用点：evidence generation 作为 structured explanation，\n      与 CoT 共享\"显式推理降低主任务性能\"的普遍模式。\n\n  - title: \"Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion\"\n    authors: Xie et al. (Google Research)\n    year: 2022\n    venue: ACL Findings 2022\n    url: https://arxiv.org/abs/2106.08657\n    category: evidence_generation_tradeoff\n    role: closest_docre_precedent\n    key_finding: >\n      Joint 训练 RE + evidence extraction，关键创新在 inference-stage fusion：\n      分别在 extracted evidence 和 full document 上做 RE 预测再通过 blending layer 融合。\n      DocRED 上提升 1.37 Ign F1。Silver evidence labels（启发式规则构建）即可提升 RE 性能。\n    relevance_to_evidence_tradeoff: >\n      最直接的 DocRE + evidence 先例。EIDER 的核心洞察是 evidence 需要 inference-stage 融合\n      而非 joint generation——暗示 joint generation 会引入 noise。\n      我们的 CED reranker 是 LLM-era 版本的 inference-stage fusion：\n      先生成多个候选（含 evidence），再用 NLI 在推理阶段选最佳。\n      Related Work 引用点：encoder-based DocRE 中 evidence 的使用方式，与我们 generative 范式的关键差异。\n\n  - title: \"Exploring the Trade-off Between Model Performance and Explanation Plausibility of Text Classifiers Using Human Rationales\"\n    authors: Resck, Raimundo, Poco\n    year: 2024\n    venue: NAACL Findings 2024\n    url: https://arxiv.org/abs/2404.03098\n    category: evidence_generation_tradeoff\n    role: formal_framework\n    key_finding: >\n      用 multi-objective optimization 探索 performance vs explanation plausibility 的 Pareto frontier。\n      引入 rationale 约束创建 contrastive loss，证实加入 rationale supervision 会降低主任务性能，\n      但存在 Pareto optimal 解平衡两者。\n    relevance_to_evidence_tradeoff: >\n      提供了 performance-explainability trade-off 的形式化框架。\n      我们的 evidence-grounded RE 降 8pp 正是 Pareto frontier 上的一个点。\n      CED reranker 的效果可解读为：将系统从 evidence-constrained 点推向 Pareto frontier，\n      在几乎不牺牲 evidence quality（evi_f1=0.8188）的前提下恢复 RE 性能。\n      Related Work 引用点：evidence generation 的 performance cost 有理论依据。\n\n  - title: \"The Decreasing Value of Chain of Thought in Prompting\"\n    authors: Meincke, Mollick, Mollick, Shapiro\n    year: 2025\n    venue: Wharton Generative AI Labs Technical Report (SSRN)\n    url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5285532\n    category: evidence_generation_tradeoff\n    role: empirical_support\n    key_finding: >\n      现代 reasoning models 上 CoT 收益微弱（4-13%），但 latency 增加 35-600%。\n      更强的模型从显式推理中受益越少。CoT 可能在 easy questions 上引入 errors\n      （variability 增加导致原本正确的被改错）。\n    relevance_to_evidence_tradeoff: >\n      支持\"更强的 SFT 模型不需要在生成时显式输出 evidence\"的论点。\n      我们的 evidence-only SFT 的性能下降符合\"显式推理的边际收益递减\"模式。\n      Related Work 引用点：evidence generation 的 accuracy cost 不是 DocRE-specific，而是 LLM 的普遍趋势。\n\n  # === Category 10: Negative Transfer in Multi-task / Auxiliary-task Learning ===\n\n  - title: \"ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning\"\n    authors: Jiang, Chen et al.\n    year: 2023\n    venue: NeurIPS 2023\n    url: https://arxiv.org/abs/2301.12618\n    category: negative_transfer\n    role: theoretical_framework\n    key_finding: >",
+      "numLines": 80,
+      "startLine": 545,
+      "totalLines": 2511
+    }
+  },
+  "sourceToolAssistantUUID": "86999f54-234a-48f9-b89c-c800a5d17d52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-19T17:25:45.440Z_
+
+<details><summary>↩ Tool result · `toolu_01AQxZkEL7k47Agt86qUBbHg`</summary>
+
+```text
+2280	    role: background_survey
+2281	    key_finding: >
+2282	      首个 NLP rationalization 综述。列出 desiderata: "rationale extraction should not hurt task performance"。
+2283	      将 rationalization 分为 extractive 和 abstractive 两类，覆盖 2007-2023 文献。
+2284	      识别了 attention-based rationale 中 noisy rationale 和 prediction accuracy 之间的 trade-off。
+2285	    relevance_to_freige: >
+2286	      明确了 "不应损害主任务" 是学界共识 desiderata。但没有论文系统量化违反这一 desiderata 的程度。
+2287	      FREIGE 的 -7.7 F1 evidence tax 直接挑战了这一假设，证明在 generative SFT 中该 desiderata 不成立。
+2288	
+2289	  - title: "Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction"
+2290	    authors: Xilai Yin et al.
+2291	    year: 2023
+2292	    venue: EMNLP 2023 Findings
+2293	    url: https://aclanthology.org/2023.findings-emnlp.153/
+2294	    category: evidence_cost_generative_ie
+2295	    role: related_method
+2296	    key_finding: >
+2297	      CoT-ER: 用 LLM 先生成 task-specific evidence，再 CoT 推理做 few-shot RE。
+2298	      0% training data 下与 fully-supervised SOTA 竞争力相当（FewRel 1.0/2.0）。
+2299	    relevance_to_freige: >
+2300	      在 prompting 设定下 evidence+CoT 对 RE 有益。
+2301	      与 FREIGE SFT 设定下 evidence 有害形成对比——说明 evidence cost 可能是
+2302	      SFT 训练 specific 的问题（output format 约束 vs prompting 引导）。
+2303	
+2304	  - title: "Entity and Evidence Guided Relation Extraction for DocRED"
+2305	    authors: Kevin Huang et al.
+2306	    year: 2021
+2307	    venue: RepL4NLP @ ACL 2021
+2308	    url: https://aclanthology.org/2021.repl4nlp-1.30/
+2309	    category: evidence_cost_generative_ie
+2310	    role: direct_competitor
+2311	    key_finding: >
+2312	      E2GRE: DocRE 上首个 joint evidence prediction + relation extraction 框架。
+2313	      利用 entity-guided input 和 pretrained LM attention 作为 evidence 特征。
+2314	      Joint training 在 RE 和 evidence prediction 上均有增益，达到 DocRED leaderboard SOTA。
+2315	    relevance_to_freige: >
+2316	      DocRE 上 joint evidence+RE 的先驱工作。但使用 encoder-based discriminative 模型，
+2317	      evidence 是 binary sentence classification（非 text generation）。
+2318	      他们发现 joint 有益，与 FREIGE generative 设定下的发现相反——
+2319	      核心区别在于 discriminative attention supervision vs generative output format constraint。
+2320	
+2321	  - title: "Revisiting Relation Extraction in the era of Large Language Models"
+2322	    authors: Somin Wadhwa, Silvio Amir, Byron Wallace
+2323	    year: 2023
+2324	    venue: ACL 2023
+2325	    url: https://aclanthology.org/2023.acl-long.868/
+2326	    category: evidence_cost_generative_ie
+2327	    role: background
+2328	    key_finding: >
+2329	      系统评估 GPT-3 和 Flan-T5 在标准 RE 任务上的表现。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "301680f1-1f2a-4f29-bf4e-47eb9b970385",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "0919f876-25f2-4266-932d-870aea83bf09",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+      "content": "    role: background_survey\n    key_finding: >\n      首个 NLP rationalization 综述。列出 desiderata: \"rationale extraction should not hurt task performance\"。\n      将 rationalization 分为 extractive 和 abstractive 两类，覆盖 2007-2023 文献。\n      识别了 attention-based rationale 中 noisy rationale 和 prediction accuracy 之间的 trade-off。\n    relevance_to_freige: >\n      明确了 \"不应损害主任务\" 是学界共识 desiderata。但没有论文系统量化违反这一 desiderata 的程度。\n      FREIGE 的 -7.7 F1 evidence tax 直接挑战了这一假设，证明在 generative SFT 中该 desiderata 不成立。\n\n  - title: \"Chain of Thought with Explicit Evidence Reasoning for Few-shot Relation Extraction\"\n    authors: Xilai Yin et al.\n    year: 2023\n    venue: EMNLP 2023 Findings\n    url: https://aclanthology.org/2023.findings-emnlp.153/\n    category: evidence_cost_generative_ie\n    role: related_method\n    key_finding: >\n      CoT-ER: 用 LLM 先生成 task-specific evidence，再 CoT 推理做 few-shot RE。\n      0% training data 下与 fully-supervised SOTA 竞争力相当（FewRel 1.0/2.0）。\n    relevance_to_freige: >\n      在 prompting 设定下 evidence+CoT 对 RE 有益。\n      与 FREIGE SFT 设定下 evidence 有害形成对比——说明 evidence cost 可能是\n      SFT 训练 specific 的问题（output format 约束 vs prompting 引导）。\n\n  - title: \"Entity and Evidence Guided Relation Extraction for DocRED\"\n    authors: Kevin Huang et al.\n    year: 2021\n    venue: RepL4NLP @ ACL 2021\n    url: https://aclanthology.org/2021.repl4nlp-1.30/\n    category: evidence_cost_generative_ie\n    role: direct_competitor\n    key_finding: >\n      E2GRE: DocRE 上首个 joint evidence prediction + relation extraction 框架。\n      利用 entity-guided input 和 pretrained LM attention 作为 evidence 特征。\n      Joint training 在 RE 和 evidence prediction 上均有增益，达到 DocRED leaderboard SOTA。\n    relevance_to_freige: >\n      DocRE 上 joint evidence+RE 的先驱工作。但使用 encoder-based discriminative 模型，\n      evidence 是 binary sentence classification（非 text generation）。\n      他们发现 joint 有益，与 FREIGE generative 设定下的发现相反——\n      核心区别在于 discriminative attention supervision vs generative output format constraint。\n\n  - title: \"Revisiting Relation Extraction in the era of Large Language Models\"\n    authors: Somin Wadhwa, Silvio Amir, Byron Wallace\n    year: 2023\n    venue: ACL 2023\n    url: https://aclanthology.org/2023.acl-long.868/\n    category: evidence_cost_generative_ie\n    role: background\n    key_finding: >\n      系统评估 GPT-3 和 Flan-T5 在标准 RE 任务上的表现。",
+      "numLines": 50,
+      "startLine": 2280,
+      "totalLines": 2511
+    }
+  },
+  "sourceToolAssistantUUID": "301680f1-1f2a-4f29-bf4e-47eb9b970385",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-19T17:25:44.624Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TYx1quhynAeq9G2vb5zgnU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+  "offset": 595,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfd91375-a164-4a8b-88a9-512e073ab79f",
+  "isSidechain": false,
+  "requestId": "req_011CbCKQne9xQkAVoyew8Qmg",
+  "type": "assistant",
+  "uuid": "02413a23-400e-456b-ac1b-e6ddac68535a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F6okBxEx5DeTguW8V7Ugaq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 642,
+      "cache_creation_input_tokens": 4766,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 642,
+          "output_tokens": 389,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 4766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T17:25:44.638Z_
+
+<details><summary>↩ Tool result · `toolu_01TYx1quhynAeq9G2vb5zgnU`</summary>
+
+```text
+595	      CED reranker 的效果可解读为：将系统从 evidence-constrained 点推向 Pareto frontier，
+596	      在几乎不牺牲 evidence quality（evi_f1=0.8188）的前提下恢复 RE 性能。
+597	      Related Work 引用点：evidence generation 的 performance cost 有理论依据。
+598	
+599	  - title: "The Decreasing Value of Chain of Thought in Prompting"
+600	    authors: Meincke, Mollick, Mollick, Shapiro
+601	    year: 2025
+602	    venue: Wharton Generative AI Labs Technical Report (SSRN)
+603	    url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5285532
+604	    category: evidence_generation_tradeoff
+605	    role: empirical_support
+606	    key_finding: >
+607	      现代 reasoning models 上 CoT 收益微弱（4-13%），但 latency 增加 35-600%。
+608	      更强的模型从显式推理中受益越少。CoT 可能在 easy questions 上引入 errors
+609	      （variability 增加导致原本正确的被改错）。
+610	    relevance_to_evidence_tradeoff: >
+611	      支持"更强的 SFT 模型不需要在生成时显式输出 evidence"的论点。
+612	      我们的 evidence-only SFT 的性能下降符合"显式推理的边际收益递减"模式。
+613	      Related Work 引用点：evidence generation 的 accuracy cost 不是 DocRE-specific，而是 LLM 的普遍趋势。
+614	
+615	  # === Category 10: Negative Transfer in Multi-task / Auxiliary-task Learning ===
+616	
+617	  - title: "ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning"
+618	    authors: Jiang, Chen et al.
+619	    year: 2023
+620	    venue: NeurIPS 2023
+621	    url: https://arxiv.org/abs/2301.12618
+622	    category: negative_transfer
+623	    role: theoretical_framework
+624	    key_finding: >
+625	      辅助任务常导致 negative transfer，根因不仅是 gradient conflict 还有 auxiliary-target
+626	      generalization gap。ForkMerge 周期性 fork 模型为多分支，搜索最优 task weights，
+627	      动态 merge 过滤有害 task-parameter updates。在多个 benchmark 上减少 negative transfer。
+628	    relevance_to_evidence_tradeoff: >
+629	      Evidence generation 作为 auxiliary task 对 RE 的 negative transfer 可用此框架解释：
+630	      evidence 和 RE 的 gradient 方向不完全对齐，joint training 时 evidence 任务"拖累"RE。
+631	      CED reranker 本质上是将 evidence quality 从 training-time joint objective 解耦到
+632	      inference-time verification，避免了 training-time 的 negative transfer。
+633	      Related Work 引用点：auxiliary task 导致主任务性能下降的一般性理论。
+634	
+635	  # === Category 11: Faithfulness vs Accuracy / Correctness Trade-off ===
+636	
+637	  - title: "Correctness is not Faithfulness in RAG Attributions"
+638	    authors: Wallat, Heuss, de Rijke, Anand
+639	    year: 2024
+640	    venue: SIGIR 2025
+641	    url: https://arxiv.org/abs/2412.18004
+642	    category: faithfulness_accuracy_tradeoff
+643	    role: key_conceptual_framework
+644	    key_finding: >
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02413a23-400e-456b-ac1b-e6ddac68535a",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "a8b19c56-d656-4896-b53b-c54b2795fc08",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+      "content": "      CED reranker 的效果可解读为：将系统从 evidence-constrained 点推向 Pareto frontier，\n      在几乎不牺牲 evidence quality（evi_f1=0.8188）的前提下恢复 RE 性能。\n      Related Work 引用点：evidence generation 的 performance cost 有理论依据。\n\n  - title: \"The Decreasing Value of Chain of Thought in Prompting\"\n    authors: Meincke, Mollick, Mollick, Shapiro\n    year: 2025\n    venue: Wharton Generative AI Labs Technical Report (SSRN)\n    url: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5285532\n    category: evidence_generation_tradeoff\n    role: empirical_support\n    key_finding: >\n      现代 reasoning models 上 CoT 收益微弱（4-13%），但 latency 增加 35-600%。\n      更强的模型从显式推理中受益越少。CoT 可能在 easy questions 上引入 errors\n      （variability 增加导致原本正确的被改错）。\n    relevance_to_evidence_tradeoff: >\n      支持\"更强的 SFT 模型不需要在生成时显式输出 evidence\"的论点。\n      我们的 evidence-only SFT 的性能下降符合\"显式推理的边际收益递减\"模式。\n      Related Work 引用点：evidence generation 的 accuracy cost 不是 DocRE-specific，而是 LLM 的普遍趋势。\n\n  # === Category 10: Negative Transfer in Multi-task / Auxiliary-task Learning ===\n\n  - title: \"ForkMerge: Mitigating Negative Transfer in Auxiliary-Task Learning\"\n    authors: Jiang, Chen et al.\n    year: 2023\n    venue: NeurIPS 2023\n    url: https://arxiv.org/abs/2301.12618\n    category: negative_transfer\n    role: theoretical_framework\n    key_finding: >\n      辅助任务常导致 negative transfer，根因不仅是 gradient conflict 还有 auxiliary-target\n      generalization gap。ForkMerge 周期性 fork 模型为多分支，搜索最优 task weights，\n      动态 merge 过滤有害 task-parameter updates。在多个 benchmark 上减少 negative transfer。\n    relevance_to_evidence_tradeoff: >\n      Evidence generation 作为 auxiliary task 对 RE 的 negative transfer 可用此框架解释：\n      evidence 和 RE 的 gradient 方向不完全对齐，joint training 时 evidence 任务\"拖累\"RE。\n      CED reranker 本质上是将 evidence quality 从 training-time joint objective 解耦到\n      inference-time verification，避免了 training-time 的 negative transfer。\n      Related Work 引用点：auxiliary task 导致主任务性能下降的一般性理论。\n\n  # === Category 11: Faithfulness vs Accuracy / Correctness Trade-off ===\n\n  - title: \"Correctness is not Faithfulness in RAG Attributions\"\n    authors: Wallat, Heuss, de Rijke, Anand\n    year: 2024\n    venue: SIGIR 2025\n    url: https://arxiv.org/abs/2412.18004\n    category: faithfulness_accuracy_tradeoff\n    role: key_conceptual_framework\n    key_finding: >",
+      "numLines": 50,
+      "startLine": 595,
+      "totalLines": 2511
+    }
+  },
+  "sourceToolAssistantUUID": "02413a23-400e-456b-ac1b-e6ddac68535a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-19T17:25:45.429Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AQxZkEL7k47Agt86qUBbHg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+  "offset": 2280,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8b19c56-d656-4896-b53b-c54b2795fc08",
+  "isSidechain": false,
+  "requestId": "req_011CbCKQne9xQkAVoyew8Qmg",
+  "type": "assistant",
+  "uuid": "301680f1-1f2a-4f29-bf4e-47eb9b970385",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F6okBxEx5DeTguW8V7Ugaq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 642,
+      "cache_creation_input_tokens": 4766,
+      "cache_read_input_tokens": 24331,
+      "output_tokens": 389,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4766,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 642,
+          "output_tokens": 389,
+          "cache_read_input_tokens": 24331,
+          "cache_creation_input_tokens": 4766,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4766
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "previous_message_not_found"
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "0919f876-25f2-4266-932d-870aea83bf09",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research literature on evidence tax and chain-of-thought scaling",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-19T17:25:54.216Z_
+
+<details><summary>↩ Tool result · `toolu_01Vejb81DiC1GyCEp2RYqWnG`</summary>
+
+```text
+Web search results for query: ""chain of thought" "small models" "large models" benefit diminishing scaling NeurIPS ICLR 2024 2025"
+
+Links: [{"title":"Symbolic Chain-of-Thought Distillation: Small Models Can Also \"Think\"   Step-by-Step","url":"https://arxiv.org/pdf/2306.14050"},{"title":"NeurIPS 2024: beyond scale | CodeWords","url":"https://codewords.ai/blog/neurips-2024-beyond-scale"},{"title":"Chain of Thought in Large Language Models: Elicited Reasoning or Constrained Imitation? | by Greg Robison | Medium","url":"https://gregrobison.medium.com/chain-of-thought-in-large-language-models-elicited-reasoning-or-constrained-imitation-5e4ee0c811ad"},{"title":"Specializing Smaller Language Models towards Multi-Step Reasoning","url":"https://arxiv.org/pdf/2301.12726"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/77fa8253adfc8b33209639f3e9985741-Paper-Conference.pdf"},{"title":"From bigger models to better intelligence: what NeurIPS 2025 tells us about progress","url":"https://lambda.ai/blog/neurips-2025-from-bigger-models-to-better-intelligence"},{"title":"The Illusion of Diminishing Returns: Measuring Long Horizon Execution in LLMs","url":"https://arxiv.org/pdf/2509.09677"},{"title":"Small Models Struggle to Learn from Strong Reasoners","url":"https://arxiv.org/pdf/2502.12143"}]
+
+I found relevant research on chain-of-thought reasoning in small vs. large models. Here are the key findings:
+
+## Key Findings on Chain-of-Thought and Model Scale
+
+**Benefits are Scale-Dependent**: Chain-of-thought prompting has only been shown to be beneficial for models of sufficient scale (e.g., with more than 60B parameters). Earlier research found that if the model scale is small (empirically less than 100B parameters), CoT exhibits flat, sometimes even near zero scaling curve.
+
+**Recent Shift in Research Focus**: Rather than scaling model size indefinitely, researchers are unlocking performance gains through refined post-training methods and smarter inference strategies. Several researchers demonstrated how relatively small models with clever inference strategies could match or exceed the performance of much larger models using basic greedy decoding.
+
+**Small Model Limitations**: A recent paper shows that small student models (≤3B parameters) do not consistently benefit from long CoT reasoning or distillation from large teacher models, and instead perform better when fine-tuned on shorter CoT reasoning or distilled from smaller teachers.
+
+**Nuanced View on Test-Time Scaling**: The field is now divided on whether increased inference-time compute helps. Some studies show that "thinking more" can hurt: poorly structured reasoning behaves like a bad intermediate program, leading to what amounts to expensive stupidity.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5feaa801-2d8c-4a05-bbd5-eeb36dde881e",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "60331ca7-0c0c-4402-8fd3-f348dfa924cb",
+  "toolUseResult": {
+    "query": "\"chain of thought\" \"small models\" \"large models\" benefit diminishing scaling NeurIPS ICLR 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FG6V34dDj3xPKAuoBhUn65",
+        "content": [
+          {
+            "title": "Symbolic Chain-of-Thought Distillation: Small Models Can Also \"Think\"   Step-by-Step",
+            "url": "https://arxiv.org/pdf/2306.14050"
+          },
+          {
+            "title": "NeurIPS 2024: beyond scale | CodeWords",
+            "url": "https://codewords.ai/blog/neurips-2024-beyond-scale"
+          },
+          {
+            "title": "Chain of Thought in Large Language Models: Elicited Reasoning or Constrained Imitation? | by Greg Robison | Medium",
+            "url": "https://gregrobison.medium.com/chain-of-thought-in-large-language-models-elicited-reasoning-or-constrained-imitation-5e4ee0c811ad"
+          },
+          {
+            "title": "Specializing Smaller Language Models towards Multi-Step Reasoning",
+            "url": "https://arxiv.org/pdf/2301.12726"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/77fa8253adfc8b33209639f3e9985741-Paper-Conference.pdf"
+          },
+          {
+            "title": "From bigger models to better intelligence: what NeurIPS 2025 tells us about progress",
+            "url": "https://lambda.ai/blog/neurips-2025-from-bigger-models-to-better-intelligence"
+          },
+          {
+            "title": "The Illusion of Diminishing Returns: Measuring Long Horizon Execution in LLMs",
+            "url": "https://arxiv.org/pdf/2509.09677"
+          },
+          {
+            "title": "Small Models Struggle to Learn from Strong Reasoners",
+            "url": "https://arxiv.org/pdf/2502.12143"
+          }
+        ]
+      },
+      "I found relevant research on chain-of-thought reasoning in small vs. large models. Here are the key findings:\n\n## Key Findings on Chain-of-Thought and Model Scale\n\n**Benefits are Scale-Dependent**: Chain-of-thought prompting has only been shown to be beneficial for models of sufficient scale (e.g., with more than 60B parameters). Earlier research found that if the model scale is small (empirically less than 100B parameters), CoT exhibits flat, sometimes even near zero scaling curve.\n\n**Recent Shift in Research Focus**: Rather than scaling model size indefinitely, researchers are unlocking performance gains through refined post-training methods and smarter inference strategies. Several researchers demonstrated how relatively small models with clever inference strategies could match or exceed the performance of much larger models using basic greedy decoding.\n\n**Small Model Limitations**: A recent paper shows that small student models (≤3B parameters) do not consistently benefit from long CoT reasoning or distillation from large teacher models, and instead perform better when fine-tuned on shorter CoT reasoning or distilled from smaller teachers.\n\n**Nuanced View on Test-Time Scaling**: The field is now divided on whether increased inference-time compute helps. Some studies show that \"thinking more\" can hurt: poorly structured reasoning behaves like a bad intermediate program, leading to what amounts to expensive stupidity."
+    ],
+    "durationSeconds": 12.268861128000005
+  },
+  "sourceToolAssistantUUID": "5feaa801-2d8c-4a05-bbd5-eeb36dde881e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36 · 2026-05-19T17:25:54.228Z_
+
+```json
+{
+  "parentUuid": "60331ca7-0c0c-4402-8fd3-f348dfa924cb",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4fdff977-c731-4c03-a3a5-cd841f4611bb",
+  "timestamp": "2026-05-19T17:25:54.228Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-19T17:25:56.891Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for more specific papers about CoT benefits diminishing with model scale, particularly in training/fine-tuning settings (not just prompting).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fdff977-c731-4c03-a3a5-cd841f4611bb",
+  "isSidechain": false,
+  "requestId": "req_011CbCKSQFZU2MLpUuJ3UnXY",
+  "type": "assistant",
+  "uuid": "a64ac19a-7203-4dd3-9c21-65c62b702c10",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6KgDHgkoboFn8cVfnMYCh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3900,
+      "cache_creation_input_tokens": 1918,
+      "cache_read_input_tokens": 29097,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3900,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 29097,
+          "cache_creation_input_tokens": 1918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-19T17:25:57.861Z_
+
+Let me search for the most directly relevant paper — Wei et al.'s original CoT paper which established the scale-dependent finding.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a64ac19a-7203-4dd3-9c21-65c62b702c10",
+  "isSidechain": false,
+  "requestId": "req_011CbCKSQFZU2MLpUuJ3UnXY",
+  "type": "assistant",
+  "uuid": "f906ee18-d0bf-40da-bfd6-66dcb19c116e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6KgDHgkoboFn8cVfnMYCh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3900,
+      "cache_creation_input_tokens": 1918,
+      "cache_read_input_tokens": 29097,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3900,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 29097,
+          "cache_creation_input_tokens": 1918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T17:25:58.885Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014kmvj4sWJr49qPZQDj8t8r`</summary>
+
+```json
+{
+  "query": "Wei et al 2022 \"chain of thought\" \"emergent ability\" \"100B\" model size threshold NeurIPS"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f906ee18-d0bf-40da-bfd6-66dcb19c116e",
+  "isSidechain": false,
+  "requestId": "req_011CbCKSQFZU2MLpUuJ3UnXY",
+  "type": "assistant",
+  "uuid": "cada17ab-5848-479d-893b-4557979404f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6KgDHgkoboFn8cVfnMYCh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3900,
+      "cache_creation_input_tokens": 1918,
+      "cache_read_input_tokens": 29097,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3900,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 29097,
+          "cache_creation_input_tokens": 1918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T17:26:00.867Z_
+
+<details><summary>↩ Tool result · `toolu_01XGgdW8ZYSwE3pKPPdp6MwA`</summary>
+
+```text
+895	    relevance_to_freige: >
+896	      与我们的发现呼应：DocRE 中模型可能输出看似合理的 evidence sentences
+897	      但实际 RE 决策并不依赖这些 evidence。这解释了为什么 joint evidence+RE 生成
+898	      对 RE 性能有负面影响——模型在学习生成 "合理化解释" 而非 "可靠推理"。
+899	
+900	  # === Category 20: Latent vs Explicit Reasoning Trade-off (NEW - 2026-05-15 scan) ===
+901	
+902	  - title: "Reasoning Beyond Language: A Comprehensive Survey on Latent Chain-of-Thought Reasoning"
+903	    authors: Chen, Zhao, Xia, Lu, Wang, Chen, Zhang, Wang, Li, Shen
+904	    year: 2025
+905	    venue: arXiv 2505.16782
+906	    url: https://arxiv.org/abs/2505.16782
+907	    category: latent_vs_explicit_reasoning
+908	    role: survey
+909	    key_finding: >
+910	      Latent CoT 将推理从显式 token generation 解耦到 hidden state computation，
+911	      在多项任务上达到与显式 CoT 相当或更优的性能，同时推理速度提升 20 倍以上。
+912	      显式 CoT 的 sequential token-level 推理是 applicability 的瓶颈。
+913	    relevance_to_freige: >
+914	      为 evidence generation trade-off 提供更广泛的理论视角：
+915	      evidence sentences 作为显式推理步骤（类似 CoT tokens）可能不是最优的推理形式。
+916	      我们的 CED reranker 可被视为将 evidence reasoning 从 generation-time 显式推理
+917	      转移到 inference-time 的 NLI-based 验证——类似 latent-to-explicit 的范式转换，
+918	      但方向相反：不是让推理隐式化，而是让验证外部化。
+919	
+920	  # =========================================================================
+921	  # Related Work Survey (2026-05-15): 5 directions for FREIGE paper
+922	  # =========================================================================
+923	
+924	  # === Category 21: Evidence-Based / Faithful DocRE (Direction 1) ===
+925	
+926	  - title: "DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction"
+927	    authors: Youmi Ma, An Wang, Naoaki Okazaki
+928	    year: 2023
+929	    venue: EACL 2023
+930	    url: https://arxiv.org/abs/2302.08675
+931	    category: evidence_based_docre
+932	    role: direct-competitor
+933	    key_finding: >
+934	      用 evidence 信息作为监督信号引导 DocRE 系统的 attention module 关注 evidence sentences。
+935	      提出 evidence retrieval (ER) self-training 策略，在无 evidence 标注的大规模数据上自动生成
+936	      silver evidence 训练 ER。DocRED 上 RE 和 ER 均达 SOTA。
+937	      解决了 evidence retrieval 的两大问题：高内存消耗和标注有限。
+938	    relevance_to_freige: >
+939	      最重要的 evidence-based DocRE 先驱工作。DREEAM 用 evidence 引导 attention（encoder-based），
+940	      我们用 evidence 引导 RL reward（generative LLM）。关键代际差异：
+941	      (1) DREEAM 是 encoder-based（BERT/RoBERTa），我们是 LLM generative；
+942	      (2) DREEAM 的 evidence 用于注意力监督，我们的 evidence 用于 reward 设计和 CED reranking；
+943	      (3) DREEAM 未量化 evidence 对 RE 的 performance cost。
+944	      Related Work 必引：evidence-based DocRE 的代表性工作。
+945	
+946	  - title: "DocGNRE: Semi-automatic Data Enhancement for Document-Level Relation Extraction with Distant Supervision from Large Language Models"
+947	    authors: Junpeng Li, Zixia Jia, Zilong Zheng
+948	    year: 2023
+949	    venue: EMNLP 2023
+950	    url: https://arxiv.org/abs/2311.07314
+951	    category: evidence_based_docre
+952	    role: method-component
+953	    key_finding: >
+954	      用 LLM（ChatGPT）+ NLI 模块半自动生成 relation triples，增强 DocRE 数据集。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a3b66bbc-a5c7-4ced-952e-48226d0528c0",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "d276162d-b012-4f7e-b10b-ca2d62c05e7c",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+      "content": "    relevance_to_freige: >\n      与我们的发现呼应：DocRE 中模型可能输出看似合理的 evidence sentences\n      但实际 RE 决策并不依赖这些 evidence。这解释了为什么 joint evidence+RE 生成\n      对 RE 性能有负面影响——模型在学习生成 \"合理化解释\" 而非 \"可靠推理\"。\n\n  # === Category 20: Latent vs Explicit Reasoning Trade-off (NEW - 2026-05-15 scan) ===\n\n  - title: \"Reasoning Beyond Language: A Comprehensive Survey on Latent Chain-of-Thought Reasoning\"\n    authors: Chen, Zhao, Xia, Lu, Wang, Chen, Zhang, Wang, Li, Shen\n    year: 2025\n    venue: arXiv 2505.16782\n    url: https://arxiv.org/abs/2505.16782\n    category: latent_vs_explicit_reasoning\n    role: survey\n    key_finding: >\n      Latent CoT 将推理从显式 token generation 解耦到 hidden state computation，\n      在多项任务上达到与显式 CoT 相当或更优的性能，同时推理速度提升 20 倍以上。\n      显式 CoT 的 sequential token-level 推理是 applicability 的瓶颈。\n    relevance_to_freige: >\n      为 evidence generation trade-off 提供更广泛的理论视角：\n      evidence sentences 作为显式推理步骤（类似 CoT tokens）可能不是最优的推理形式。\n      我们的 CED reranker 可被视为将 evidence reasoning 从 generation-time 显式推理\n      转移到 inference-time 的 NLI-based 验证——类似 latent-to-explicit 的范式转换，\n      但方向相反：不是让推理隐式化，而是让验证外部化。\n\n  # =========================================================================\n  # Related Work Survey (2026-05-15): 5 directions for FREIGE paper\n  # =========================================================================\n\n  # === Category 21: Evidence-Based / Faithful DocRE (Direction 1) ===\n\n  - title: \"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction\"\n    authors: Youmi Ma, An Wang, Naoaki Okazaki\n    year: 2023\n    venue: EACL 2023\n    url: https://arxiv.org/abs/2302.08675\n    category: evidence_based_docre\n    role: direct-competitor\n    key_finding: >\n      用 evidence 信息作为监督信号引导 DocRE 系统的 attention module 关注 evidence sentences。\n      提出 evidence retrieval (ER) self-training 策略，在无 evidence 标注的大规模数据上自动生成\n      silver evidence 训练 ER。DocRED 上 RE 和 ER 均达 SOTA。\n      解决了 evidence retrieval 的两大问题：高内存消耗和标注有限。\n    relevance_to_freige: >\n      最重要的 evidence-based DocRE 先驱工作。DREEAM 用 evidence 引导 attention（encoder-based），\n      我们用 evidence 引导 RL reward（generative LLM）。关键代际差异：\n      (1) DREEAM 是 encoder-based（BERT/RoBERTa），我们是 LLM generative；\n      (2) DREEAM 的 evidence 用于注意力监督，我们的 evidence 用于 reward 设计和 CED reranking；\n      (3) DREEAM 未量化 evidence 对 RE 的 performance cost。\n      Related Work 必引：evidence-based DocRE 的代表性工作。\n\n  - title: \"DocGNRE: Semi-automatic Data Enhancement for Document-Level Relation Extraction with Distant Supervision from Large Language Models\"\n    authors: Junpeng Li, Zixia Jia, Zilong Zheng\n    year: 2023\n    venue: EMNLP 2023\n    url: https://arxiv.org/abs/2311.07314\n    category: evidence_based_docre\n    role: method-component\n    key_finding: >\n      用 LLM（ChatGPT）+ NLI 模块半自动生成 relation triples，增强 DocRE 数据集。",
+      "numLines": 60,
+      "startLine": 895,
+      "totalLines": 2511
+    }
+  },
+  "sourceToolAssistantUUID": "a3b66bbc-a5c7-4ced-952e-48226d0528c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T17:26:00.858Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XGgdW8ZYSwE3pKPPdp6MwA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+  "offset": 895,
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cada17ab-5848-479d-893b-4557979404f3",
+  "isSidechain": false,
+  "requestId": "req_011CbCKSQFZU2MLpUuJ3UnXY",
+  "type": "assistant",
+  "uuid": "a3b66bbc-a5c7-4ced-952e-48226d0528c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6KgDHgkoboFn8cVfnMYCh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3900,
+      "cache_creation_input_tokens": 1918,
+      "cache_read_input_tokens": 29097,
+      "output_tokens": 257,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1918,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3900,
+          "output_tokens": 257,
+          "cache_read_input_tokens": 29097,
+          "cache_creation_input_tokens": 1918,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1918
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T17:26:06.455Z_
+
+<details><summary>↩ Tool result · `toolu_014kmvj4sWJr49qPZQDj8t8r`</summary>
+
+```text
+Web search results for query: "Wei et al 2022 "chain of thought" "emergent ability" "100B" model size threshold NeurIPS"
+
+Links: [{"title":"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models Jason Wei","url":"https://openreview.net/pdf?id=_VjQlMeSB_J"},{"title":"Chain-of-Thought Prompting","url":"https://www.emergentmind.com/topics/chain-of-thought-prompting"},{"title":"Emergent Abilities of Large Language Models","url":"https://arxiv.org/pdf/2206.07682"},{"title":"Emergent Abilities of Large Language Models","url":"https://openreview.net/pdf?id=yzkSU5zdwD"},{"title":"Emergent Properties in Large Language Models (LLMs): Deep Research | by Greg Robison | Medium","url":"https://gregrobison.medium.com/emergent-properties-in-large-language-models-llms-deep-research-81421065d0ce"},{"title":"Chain of Thought in Large Language Models: Elicited Reasoning or Constrained Imitation? | by Greg Robison | Medium","url":"https://gregrobison.medium.com/chain-of-thought-in-large-language-models-elicited-reasoning-or-constrained-imitation-5e4ee0c811ad"},{"title":"Paper notes: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (Wei et al., 2022) – Deep Network","url":"https://deep-network.org/2025/03/24/emergent-reasoning-or-enhanced-parroting-a-critical-analysis-of-chain-of-thought-prompting/"},{"title":"[2201.11903] Chain-of-Thought Prompting Elicits Reasoning in Large Language Models","url":"https://arxiv.org/abs/2201.11903"}]
+
+Based on the search results, I found relevant information about Wei et al. 2022 and chain-of-thought prompting:
+
+## Key Findings
+
+Chain-of-thought prompting does not positively impact performance for small models, and only yields performance gains when used with models of approximately 100B parameters. This represents an emergent ability tied to model scale.
+
+Chain of thought prompting only surpasses standard prompting without intermediate steps when scaled to 10²³ training FLOPs (∼100B parameters). This specific threshold was documented in research examining emergent abilities of large language models.
+
+Models of smaller scale produced fluent but illogical chains of thought, leading to lower performance than standard prompting.
+
+The research demonstrates that a range of abilities have thus far only been observed when evaluated on a sufficiently large language model, and their emergence cannot be predicted by simply extrapolating performance on smaller-scale models.
+
+The original paper "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models" by Wei et al. was published on arXiv and subsequently presented at venues including those with the research community. This work became foundational for understanding how reasoning abilities emerge as a function of model scale in large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cada17ab-5848-479d-893b-4557979404f3",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "3e04a080-2b85-411c-92cc-0aa6818324a4",
+  "toolUseResult": {
+    "query": "Wei et al 2022 \"chain of thought\" \"emergent ability\" \"100B\" model size threshold NeurIPS",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LUTsfJiCnrRraTdTrvgDMf",
+        "content": [
+          {
+            "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models Jason Wei",
+            "url": "https://openreview.net/pdf?id=_VjQlMeSB_J"
+          },
+          {
+            "title": "Chain-of-Thought Prompting",
+            "url": "https://www.emergentmind.com/topics/chain-of-thought-prompting"
+          },
+          {
+            "title": "Emergent Abilities of Large Language Models",
+            "url": "https://arxiv.org/pdf/2206.07682"
+          },
+          {
+            "title": "Emergent Abilities of Large Language Models",
+            "url": "https://openreview.net/pdf?id=yzkSU5zdwD"
+          },
+          {
+            "title": "Emergent Properties in Large Language Models (LLMs): Deep Research | by Greg Robison | Medium",
+            "url": "https://gregrobison.medium.com/emergent-properties-in-large-language-models-llms-deep-research-81421065d0ce"
+          },
+          {
+            "title": "Chain of Thought in Large Language Models: Elicited Reasoning or Constrained Imitation? | by Greg Robison | Medium",
+            "url": "https://gregrobison.medium.com/chain-of-thought-in-large-language-models-elicited-reasoning-or-constrained-imitation-5e4ee0c811ad"
+          },
+          {
+            "title": "Paper notes: Chain-of-Thought Prompting Elicits Reasoning in Large Language Models (Wei et al., 2022) – Deep Network",
+            "url": "https://deep-network.org/2025/03/24/emergent-reasoning-or-enhanced-parroting-a-critical-analysis-of-chain-of-thought-prompting/"
+          },
+          {
+            "title": "[2201.11903] Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+            "url": "https://arxiv.org/abs/2201.11903"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Wei et al. 2022 and chain-of-thought prompting:\n\n## Key Findings\n\nChain-of-thought prompting does not positively impact performance for small models, and only yields performance gains when used with models of approximately 100B parameters. This represents an emergent ability tied to model scale.\n\nChain of thought prompting only surpasses standard prompting without intermediate steps when scaled to 10²³ training FLOPs (∼100B parameters). This specific threshold was documented in research examining emergent abilities of large language models.\n\nModels of smaller scale produced fluent but illogical chains of thought, leading to lower performance than standard prompting.\n\nThe research demonstrates that a range of abilities have thus far only been observed when evaluated on a sufficiently large language model, and their emergence cannot be predicted by simply extrapolating performance on smaller-scale models.\n\nThe original paper \"Chain-of-Thought Prompting Elicits Reasoning in Large Language Models\" by Wei et al. was published on arXiv and subsequently presented at venues including those with the research community. This work became foundational for understanding how reasoning abilities emerge as a function of model scale in large language models."
+    ],
+    "durationSeconds": 7.566048333000014
+  },
+  "sourceToolAssistantUUID": "cada17ab-5848-479d-893b-4557979404f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-19T17:26:11.548Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good picture. Let me also check the literature_map for the "Decreasing Value of CoT" and the Wei et al. original CoT paper entries, and any specific discussion of scale-dependent evidence tax. Let me also search for one more very relevant paper - Magister et al. "Teaching Small Language Models to Reason" which shows CoT distillation benefits small models in fine-tuning settings.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e04a080-2b85-411c-92cc-0aa6818324a4",
+  "isSidechain": false,
+  "requestId": "req_011CbCKTJYYYYu13u7itpWae",
+  "type": "assistant",
+  "uuid": "90c8643f-83f2-463c-a7df-4c35003ae818",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKpb4V9NxgH9kcUg89CnyS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1346,
+      "cache_creation_input_tokens": 4954,
+      "cache_read_input_tokens": 31015,
+      "output_tokens": 353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1346,
+          "output_tokens": 353,
+          "cache_read_input_tokens": 31015,
+          "cache_creation_input_tokens": 4954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-19T17:26:12.506Z_
+
+Now I have enough to synthesize. Let me check one more specific area — the evidence cost literature section.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90c8643f-83f2-463c-a7df-4c35003ae818",
+  "isSidechain": false,
+  "requestId": "req_011CbCKTJYYYYu13u7itpWae",
+  "type": "assistant",
+  "uuid": "363f897c-e59c-4288-8333-cd04faa946e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKpb4V9NxgH9kcUg89CnyS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1346,
+      "cache_creation_input_tokens": 4954,
+      "cache_read_input_tokens": 31015,
+      "output_tokens": 353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1346,
+          "output_tokens": 353,
+          "cache_read_input_tokens": 31015,
+          "cache_creation_input_tokens": 4954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T17:26:14.422Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AzznMAtPzKow4cLBD1MNj5`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+  "offset": 1270,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "363f897c-e59c-4288-8333-cd04faa946e5",
+  "isSidechain": false,
+  "requestId": "req_011CbCKTJYYYYu13u7itpWae",
+  "type": "assistant",
+  "uuid": "e2f2b6f3-e547-478e-b9e3-ca80b94e07f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKpb4V9NxgH9kcUg89CnyS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1346,
+      "cache_creation_input_tokens": 4954,
+      "cache_read_input_tokens": 31015,
+      "output_tokens": 353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1346,
+          "output_tokens": 353,
+          "cache_read_input_tokens": 31015,
+          "cache_creation_input_tokens": 4954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T17:26:15.035Z_
+
+<details><summary>↩ Tool result · `toolu_013sHnrpiixMLuCjChXS2yCE`</summary>
+
+```text
+1815	      统一 evidence awareness 和 cross-entity logical reasoning。ESRM 模块通过 adaptive relevance scoring
+1816	      提取关键 evidence sentences 并用 multi-head attention 融合 entity representations；TDRM 模块
+1817	      构建 entity pair joint representations 并通过 transformer 实现跨 pair 信息交换支持 multi-hop reasoning。
+1818	      四个 DocRE benchmark 上一致优于 strong baselines。
+1819	    relevance_to_freige: >
+1820	      与 FREIGE Claim 1 最相关的传统方法 baseline。ESTR-DocRE 用 supervised evidence signals 指导 DocRE，
+1821	      但仍是 discriminative 范式（非 LLM generative）。FREIGE 的差异化：(1) 用 LLM + GRPO 做 evidence-grounded
+1822	      generative DocRE；(2) 揭示 evidence generation 的 performance cost（evidence tax）——ESTR-DocRE
+1823	      未报告 evidence 监督对 RE 性能的影响方向。
+1824	
+1825	  - title: "Dual reasoning enhanced document-level relation extraction"
+1826	    authors: Unknown
+1827	    year: 2026
+1828	    venue: "Neural Computing and Applications (Springer)"
+1829	    url: https://link.springer.com/article/10.1007/s00521-026-12099-8
+1830	    category: evidence_supervised_docre
+1831	    role: related_method
+1832	    key_finding: >
+1833	      双推理增强 DocRE：GRM（两阶段 GCN + multi-head attention + entity co-occurrence guidance）
+1834	      和 TRM（Transformer contextual fusion for entity pair interaction）。
+1835	      解决传统方法难以综合利用完整文档上下文的问题。
+1836	    relevance_to_freige: >
+1837	      又一个证据驱动的 DocRE 方法，但仍是 discriminative pipeline。
+1838	      FREIGE 的 generative 范式和 evidence tax 发现是明确差异化点。
+1839	
+1840	  # === Category 27: Faithfulness Benchmarking (NEW - 2026-05-16 scan) ===
+1841	
+1842	  - title: "FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning"
+1843	    authors: Unknown
+1844	    year: 2026
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6a4dd1c-c192-4377-b1b3-209a52f850e0",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "a782c602-727b-4a5f-9815-1507f0ad0c0f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+      "content": "      统一 evidence awareness 和 cross-entity logical reasoning。ESRM 模块通过 adaptive relevance scoring\n      提取关键 evidence sentences 并用 multi-head attention 融合 entity representations；TDRM 模块\n      构建 entity pair joint representations 并通过 transformer 实现跨 pair 信息交换支持 multi-hop reasoning。\n      四个 DocRE benchmark 上一致优于 strong baselines。\n    relevance_to_freige: >\n      与 FREIGE Claim 1 最相关的传统方法 baseline。ESTR-DocRE 用 supervised evidence signals 指导 DocRE，\n      但仍是 discriminative 范式（非 LLM generative）。FREIGE 的差异化：(1) 用 LLM + GRPO 做 evidence-grounded\n      generative DocRE；(2) 揭示 evidence generation 的 performance cost（evidence tax）——ESTR-DocRE\n      未报告 evidence 监督对 RE 性能的影响方向。\n\n  - title: \"Dual reasoning enhanced document-level relation extraction\"\n    authors: Unknown\n    year: 2026\n    venue: \"Neural Computing and Applications (Springer)\"\n    url: https://link.springer.com/article/10.1007/s00521-026-12099-8\n    category: evidence_supervised_docre\n    role: related_method\n    key_finding: >\n      双推理增强 DocRE：GRM（两阶段 GCN + multi-head attention + entity co-occurrence guidance）\n      和 TRM（Transformer contextual fusion for entity pair interaction）。\n      解决传统方法难以综合利用完整文档上下文的问题。\n    relevance_to_freige: >\n      又一个证据驱动的 DocRE 方法，但仍是 discriminative pipeline。\n      FREIGE 的 generative 范式和 evidence tax 发现是明确差异化点。\n\n  # === Category 27: Faithfulness Benchmarking (NEW - 2026-05-16 scan) ===\n\n  - title: \"FaithCoT-Bench: Benchmarking Instance-Level Faithfulness of Chain-of-Thought Reasoning\"\n    authors: Unknown\n    year: 2026",
+      "numLines": 30,
+      "startLine": 1815,
+      "totalLines": 2511
+    }
+  },
+  "sourceToolAssistantUUID": "f6a4dd1c-c192-4377-b1b3-209a52f850e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-19T17:26:14.428Z_
+
+<details><summary>↩ Tool result · `toolu_01AzznMAtPzKow4cLBD1MNj5`</summary>
+
+```text
+1270	    venue: IJCAI 2025
+1271	    url: https://arxiv.org/abs/2501.00571
+1272	    category: evidence_docre
+1273	    role: related_method
+1274	    key_finding: >
+1275	      通过外部知识库检索增强 DocRE 推理。构建 document graph 并用共指消解增强，
+1276	      检索外部知识扩展为 document knowledge graph，并用知识过滤去除无关知识。
+1277	      Axial attention 建立跨句逻辑推理。
+1278	    relevance_to_freige: >
+1279	      KnowRA 代表 DocRE 中"更多外部信号"路线，与我们"让模型自己生成 evidence"路线形成对比。
+1280	      我们的工作表明 evidence generation 有固有代价（faithfulness tax），
+1281	      KnowRA 绕过这个问题通过检索而非生成。
+1282	
+1283	  # === Category 8: Faithfulness in Structured Output / Evidence Quality ===
+1284	
+1285	  - title: "G&O: A Simple but Effective Approach to Improve Structured Language Model Output for Information Extraction"
+1286	    authors: Yinghao Li et al.
+1287	    year: 2024
+1288	    venue: arXiv 2402.13364
+1289	    url: https://arxiv.org/abs/2402.13364
+1290	    category: faithfulness_structured
+1291	    role: related_method
+1292	    key_finding: >
+1293	      将 structured IE 拆为两步：先用自然语言生成内容，再组织为目标结构。
+1294	      G&O 有效分离内容生成和结构化过程，减轻同时完成两个正交任务的压力。
+1295	      在 zero-shot NER 和 RE 上显著提升 LLM 性能。
+1296	    relevance_to_freige: >
+1297	      直接支持我们的核心发现：要求模型同时做 relation extraction 和 evidence generation
+1298	      相当于同时做内容生成+结构化，两个任务存在固有冲突。
+1299	      G&O 的 decouple 策略与我们观察到的 task decoupling 现象相呼应，
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e2f2b6f3-e547-478e-b9e3-ca80b94e07f3",
+  "isSidechain": false,
+  "promptId": "0a16c277-cf27-4c8d-9741-8d2d0a2aa558",
+  "type": "user",
+  "uuid": "4b75471a-82f6-49c1-b775-8ee817c3e8c1",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+      "content": "    venue: IJCAI 2025\n    url: https://arxiv.org/abs/2501.00571\n    category: evidence_docre\n    role: related_method\n    key_finding: >\n      通过外部知识库检索增强 DocRE 推理。构建 document graph 并用共指消解增强，\n      检索外部知识扩展为 document knowledge graph，并用知识过滤去除无关知识。\n      Axial attention 建立跨句逻辑推理。\n    relevance_to_freige: >\n      KnowRA 代表 DocRE 中\"更多外部信号\"路线，与我们\"让模型自己生成 evidence\"路线形成对比。\n      我们的工作表明 evidence generation 有固有代价（faithfulness tax），\n      KnowRA 绕过这个问题通过检索而非生成。\n\n  # === Category 8: Faithfulness in Structured Output / Evidence Quality ===\n\n  - title: \"G&O: A Simple but Effective Approach to Improve Structured Language Model Output for Information Extraction\"\n    authors: Yinghao Li et al.\n    year: 2024\n    venue: arXiv 2402.13364\n    url: https://arxiv.org/abs/2402.13364\n    category: faithfulness_structured\n    role: related_method\n    key_finding: >\n      将 structured IE 拆为两步：先用自然语言生成内容，再组织为目标结构。\n      G&O 有效分离内容生成和结构化过程，减轻同时完成两个正交任务的压力。\n      在 zero-shot NER 和 RE 上显著提升 LLM 性能。\n    relevance_to_freige: >\n      直接支持我们的核心发现：要求模型同时做 relation extraction 和 evidence generation\n      相当于同时做内容生成+结构化，两个任务存在固有冲突。\n      G&O 的 decouple 策略与我们观察到的 task decoupling 现象相呼应，",
+      "numLines": 30,
+      "startLine": 1270,
+      "totalLines": 2511
+    }
+  },
+  "sourceToolAssistantUUID": "e2f2b6f3-e547-478e-b9e3-ca80b94e07f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-19T17:26:15.031Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013sHnrpiixMLuCjChXS2yCE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/literature_map.yaml",
+  "offset": 1815,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b75471a-82f6-49c1-b775-8ee817c3e8c1",
+  "isSidechain": false,
+  "requestId": "req_011CbCKTJYYYYu13u7itpWae",
+  "type": "assistant",
+  "uuid": "f6a4dd1c-c192-4377-b1b3-209a52f850e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TKpb4V9NxgH9kcUg89CnyS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1346,
+      "cache_creation_input_tokens": 4954,
+      "cache_read_input_tokens": 31015,
+      "output_tokens": 353,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4954,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1346,
+          "output_tokens": 353,
+          "cache_read_input_tokens": 31015,
+          "cache_creation_input_tokens": 4954,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4954
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "a782c602-727b-4a5f-9815-1507f0ad0c0f",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research literature on evidence tax and chain-of-thought scaling",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-19T17:26:51.685Z_
+
+综合文献搜索和项目 `literature_map.yaml` 分析，结果如下：
+
+---
+
+## 最相关论文
+
+### 1. Wei et al. (2022) — Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
+- **NeurIPS 2022** | [arXiv:2201.11903](https://arxiv.org/abs/2201.11903)
+- **核心发现**: CoT 仅在 ~100B 参数模型上有益；小模型生成"流畅但不合逻辑"的推理链，性能反而下降
+- **与我们的异同**: 方向一致但维度不同——他们研究 prompting 时的 scale threshold，我们研究 SFT 训练时 evidence generation 作为 implicit CoT 的 scale-dependent tax。**我们的发现将 "CoT 收益随规模递增" 反转为 "evidence tax 随规模递减"**，且在更小的模型规模范围 (1.7B–14B) 观察到连续梯度变化，而非二元 emergent threshold
+
+### 2. Sprague et al. (2024) — Mind Your Step (by Step): CoT can Reduce Performance
+- **NeurIPS 2024** | [arXiv:2410.21333](https://arxiv.org/abs/2410.21333)
+- **核心发现**: CoT 在某些任务上降低性能高达 36.3%（o1-preview vs GPT-4o）；隐式推理优于显式 token-level 推理
+- **与我们的异同**: 最直接的支撑——他们证明 "显式推理可以伤害性能"，我们将其量化为 scale-dependent curve。**他们未研究 scale dependency**，我们补充了 "何时显式推理从有害变为无害" 的 scaling law
+
+### 3. Meincke, Mollick et al. (2025) — The Decreasing Value of Chain of Thought in Prompting
+- **Wharton Technical Report** | [SSRN:5285532](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5285532)
+- **核心发现**: 更强的模型从 CoT 中受益越少（4-13% vs 历史 >30%），latency 增加 35-600%
+- **与我们的异同**: 最接近的 "scale-dependent diminishing returns" 发现，但在 prompting 设定。**我们在 SFT fine-tuning 设定下复现了相同趋势，且提供了具体的三点 scale curve (1.7B/8B/14B)**
+
+---
+
+## 已在 literature_map.yaml 中的相关条目
+
+项目已收录上述 3 篇论文（分别在 `evidence_generation_tradeoff` 类别下），以及：
+- **Latent CoT survey** (Chen et al. 2025) — latent vs explicit reasoning 的理论框架
+- **CoT-ER** (Yin et al. 2023, EMNLP Findings) — evidence+CoT 在 prompting 下有益 RE，与 SFT 下有害形成对比
+- **Resck et al. (2024, NAACL)** — performance-explainability Pareto frontier 形式化
+
+---
+
+## 文献定位
+
+**Extends prior work**: Wei et al. 和 Sprague et al. 分别建立了 "CoT 需要足够规模" 和 "CoT 可伤害性能" 两个论点，但**无人在 SFT/fine-tuning 设定下量化 evidence generation 作为 implicit CoT 的 scale-dependent performance cost curve**。我们的三点 scaling curve (−7.7pp → −0.78pp → +0.03pp) 是该方向的首个实证结果。
+
+## 建议引用方式
+
+1. **Wei et al. (2022)** — 引为 CoT scale-dependency 的奠基工作，说明显式推理收益的 scale 门槛已有先例
+2. **Sprague et al. (2024)** — 引为 "CoT 可降低性能" 的直接证据，我们的 evidence tax 是其在 generative IE 中的实例
+3. **Meincke et al. (2025)** — 引为 "CoT 收益随模型能力递减" 的最新 empirical evidence，我们在 fine-tuning 设定下 confirm 此趋势
+
+一句话总结：**我们的 scale-dependent evidence tax curve 是 CoT scaling 文献在 generative IE fine-tuning 设定下的首个系统量化，属于 extends prior work。**
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a782c602-727b-4a5f-9815-1507f0ad0c0f",
+  "isSidechain": false,
+  "requestId": "req_011CbCKTwdEFaey3UDPB8gBM",
+  "type": "assistant",
+  "uuid": "a1b1120f-aa7c-4ae5-b747-4c62c21819e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EnN4aMjaTJxUMgnt6N1157",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3100,
+      "cache_read_input_tokens": 35969,
+      "output_tokens": 1298,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1298,
+          "cache_read_input_tokens": 35969,
+          "cache_creation_input_tokens": 3100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "a1b1120f-aa7c-4ae5-b747-4c62c21819e6",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research literature on evidence tax and chain-of-thought scaling",
+  "sessionId": "6eb5c371-31ad-4c7f-b78e-58fdf175b0db"
+}
+```
+
+---

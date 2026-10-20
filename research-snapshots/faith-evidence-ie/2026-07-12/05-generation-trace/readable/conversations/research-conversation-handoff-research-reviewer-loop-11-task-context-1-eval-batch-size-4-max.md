@@ -1,0 +1,23 @@
+# Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #11。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - **Eval 标准协议**：batch_size=4, max_
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1,184
+- **Recorded user turns:** 64
+- **Tool calls:** 282
+- **Original source:** `logs/chats/exported-trajectories/account-2/fef910f5-24b2-4edf-b8ae-8782f7dcf1a0.jsonl`
+- **Structured JSON:** [`e0c5756364c45e98ea86.json`](../../sessions/e0/e0c5756364c45e98ea86.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Browse this transcript
+
+This source is split into pages so it remains easy to read on GitHub. Open the parts in order.
+
+[Part 1](research-conversation-handoff-research-reviewer-loop-11-task-context-1-eval-batch-size-4-max/part-001.md) · [Part 2](research-conversation-handoff-research-reviewer-loop-11-task-context-1-eval-batch-size-4-max/part-002.md) · [Part 3](research-conversation-handoff-research-reviewer-loop-11-task-context-1-eval-batch-size-4-max/part-003.md) · [Part 4](research-conversation-handoff-research-reviewer-loop-11-task-context-1-eval-batch-size-4-max/part-004.md) · [Part 5](research-conversation-handoff-research-reviewer-loop-11-task-context-1-eval-batch-size-4-max/part-005.md) · [Part 6](research-conversation-handoff-research-reviewer-loop-11-task-context-1-eval-batch-size-4-max/part-006.md)

@@ -1,0 +1,315 @@
+experiments:
+- id: plan_001
+  claim: 2
+  description: 'CED vs flat-NLI RSFT ablation: 用 flat-NLI scoring（非 contrastive）筛选
+    RSFT 训练数据，对比 CED scoring。验证 CED 的对比性 margin 是否优于朴素 NLI。步骤: (1) rsft_score_filter.py
+    用 flat-NLI 模式重新打分已有 candidates, (2) RSFT 训练, (3) 全量 dev eval。'
+  priority: P0
+  gpu_budget_hours: 20
+  deps: []
+  registry_id: eval_flat_nli_seed45
+  status: done
+- id: plan_002
+  claim: 1
+  description: 'Test set evaluation: 用 RSFT best config（r2b 或 s44）在 DocRED test set
+    上评估。提交 CodaLab 获得官方 F1/Ign-F1，同时本地计算 Evi-F1 和 EDCR。'
+  priority: P0
+  gpu_budget_hours: 4
+  deps:
+  - plan_001
+  registry_id: plan_002_test_rsft_s44
+  status: done
+- id: plan_003
+  claim: 4
+  description: 'EDCR pipeline 验证 + cross-method diagnostic table: 在所有 evidence-producing
+    方法（SFT, RSFT-CED, RSFT-flatNLI, CED-reranker）上计算 EDCR，验证 EDCR 作为独立评估指标的诊断能力。'
+  priority: P0
+  gpu_budget_hours: 2
+  deps:
+  - plan_001
+  registry_id: plan_003_edcr_diagnostic
+  status: done
+- id: plan_004
+  claim: 1
+  description: 'DREEAM baseline reproduction: 在 DocRED dev set 上复现 DREEAM (RoBERTa-large)
+    的 Evi-F1，确认 57.34 数字可复现，作为 Claim 1 的直接对比基线。'
+  priority: P0
+  gpu_budget_hours: 8
+  deps: []
+  registry_id: plan_004_dreeam_baseline
+  status: done
+- id: plan_005
+  claim: 1
+  description: 'CED-as-reranker: 推理时用 CED 对 SFT 生成的 N=8 候选重排选最佳，无需额外训练。验证 CED 在推理时的价值。已在运行中。'
+  priority: P1
+  gpu_budget_hours: 6
+  deps: []
+  registry_id: mvp2_ced_reranker_poc
+  status: done
+- id: plan_006
+  claim: 1
+  description: 'Model size ablation (D077 升 P0): Qwen3-1.7B 和 Qwen3-8B 上复现 SFT → RSFT
+    → eval pipeline，验证 evidence tax + RSFT 增益 + decoupling 在不同模型规模下成立。应对 RC4 和 scope
+    不足问题。'
+  priority: P0
+  gpu_budget_hours: 32
+  deps: []
+  registry_id: plan_006_qwen3_1_7b_no_evidence_eval_v3
+  status: done
+- id: plan_007
+  claim: 1
+  description: 'Re-DocRED cross-dataset (D077 升 P0): 在 Re-DocRED 上用当前 best config
+    做 SFT → RSFT → eval。数据已就绪（格式与 DocRED 兼容，96 relation types 一致）。⚠️ Re-DocRED ~55%
+    triples 无 evidence 标注（修正的 false negative），必须报告两种模式：evidence_only（与 DocRED 可比的
+    evi_f1，仅 43% triples）+ full（全部 triples 的 rel_f1，无 evi_f1）。转换脚本已支持 --mode full。'
+  priority: P0
+  gpu_budget_hours: 16
+  deps: []
+  registry_id: plan_007_redocred_rsft_eval_r5
+  status: done
+- id: plan_016
+  claim: 2
+  description: 'LLaMA-3.1-8B cross-family validation (D077 新增): 在非 Qwen 家族模型上复现核心
+    pipeline (SFT → RSFT → GRPO QLoRA)，验证 decoupling spectrum 跨模型家族成立。关键实验：LLaMA GRPO
+    QLoRA 是否也出现 catastrophic forgetting。'
+  priority: P0
+  gpu_budget_hours: 40
+  deps: []
+  registry_id: plan_016_llama_grpo_qlora
+  status: done
+- id: plan_008
+  claim: 2
+  description: 'top_k ablation: CED scoring 筛选 top_k=3（更多训练数据 ~8000 samples）vs top_k=1（更严格
+    ~2718 samples），验证 CED 过滤严格度对 RSFT 质量的影响。'
+  priority: P1
+  gpu_budget_hours: 8
+  deps: []
+  registry_id: reeval_rsft_topk3
+  status: done
+- id: plan_011
+  claim: 3
+  description: 'GRPO G=8 实验: Dream 三档一致指出 G=4 太小，标准 GRPO 用 G=8-16。用 G=8 + CED reward
+    + kl_coef=0.01 重跑 GRPO，验证 failure 是否持续。如仍 fail → 加强 Claim 3；如改善 → 需修改论文结论。可能需要
+    gradient_accumulation 适配显存。'
+  priority: P0
+  gpu_budget_hours: 8
+  deps: []
+  registry_id: plan_011_bf16_g8_step_eval
+  status: done
+- id: plan_012
+  claim: 3
+  description: 'DPO+CED experiment: 用 RSFT 候选数据构造 preference pairs (CED-preferred
+    vs CED-rejected)，DPO 训练。验证 DPO 是否避免 GRPO 的 catastrophic forgetting。Dream v2 三档要求
+    DPO 作为 RL spectrum 关键数据点，必须补全训练超参（β, lr, epochs, pair construction）。D045 升 P0。'
+  priority: P0
+  gpu_budget_hours: 12
+  deps: []
+  registry_id: plan_012_dpo_ced
+  status: done
+- id: plan_013
+  claim: 4
+  description: '[CANCELLED by D104] EDCR 人工标注验证: 用户决定不做。RC6 用 per-relation 分析 + Limitations
+    说明替代。'
+  priority: CANCELLED
+  gpu_budget_hours: 0
+  deps: []
+  registry_id: null
+  status: cancelled
+- id: plan_009
+  claim: 3
+  description: 'GRPO forgetting dynamics figure: 整理全部 GRPO checkpoint（42个）的 rel_f1/evi_f1/EDCR/reward
+    轨迹，绘制 training dynamics 可视化图。包含 G=4 vs G=8 对比、三种 reward 对比。Dream v2 三档一致要求此图作为论文核心
+    figure。数据已有，只需汇总+画图。'
+  priority: P0
+  gpu_budget_hours: 2
+  deps: []
+  registry_id: plan_009_dynamics_figure
+  status: done
+- id: plan_010
+  claim: 1
+  description: 'NLI model ablation: DeBERTa-v3-base vs DeBERTa-v3-large 作为 CED scorer
+    的对比，验证 NLI 模型能力对 CED 打分质量的影响。应对 RC1。D104 升级。'
+  priority: P1
+  gpu_budget_hours: 4
+  deps: []
+  registry_id: plan010_nli_large_eval
+  status: running
+- id: plan_014
+  claim: 1
+  description: 'SFT-without-evidence ablation: 训练 Qwen3-4B SFT 只输出 relation triples（不含
+    evidence sentences），对比标准 SFT（含 evidence）的 rel_f1。隔离 evidence generation 对抽取性能的代价。Dream
+    v2 三档一致要求。用于回答"43.2% vs LMRC 60.7% 的 gap 有多少来自 evidence 生成负担"。'
+  priority: P0
+  gpu_budget_hours: 8
+  deps: []
+  registry_id: plan_014_sft_no_evidence
+  status: done
+- id: plan_015
+  claim: 2
+  description: 'bf16 LoRA GRPO clean control: 与原始 GRPO (QLoRA 4-bit, G=4, kl=0, CED
+    reward) 只改一个变量——quantization 从 QLoRA 4-bit 改为 bf16 LoRA。G=4, kl_coef=0 不变。目的:
+    隔离 QLoRA confound，判断 decoupling 是 QLoRA artifact 还是 genuine RL-for-IE 现象。Dream
+    v2 三档一致的 critical 要求。如 decoupling 在 bf16 下仍持续 → 可泛化 claim；如消失 → QLoRA 特定，需 re-scope。优先级取决于
+    plan_011 eval 结果。'
+  priority: P0
+  gpu_budget_hours: 8
+  deps:
+  - plan_011
+  registry_id: wave1_grpo_bf16_g4
+  status: done
+- id: plan_mvp1
+  claim: 1
+  description: 'MVP-1: CED signal verification — DeBERTa NLI 区分 gold evidence vs entity-sharing
+    distractor 的能力验证'
+  priority: P0
+  gpu_budget_hours: 1
+  deps: []
+  registry_id: mvp1_ced_signal
+  status: done
+- id: plan_mvp2_sft
+  claim: 1
+  description: 'SFT baseline: Qwen3-4B + LoRA SFT on DocRED gold, 建立抽取和证据质量基线'
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  registry_id: mvp2_sft_warmup
+  status: done
+- id: plan_mvp2_rsft
+  claim: 1
+  description: 'RSFT+CED 端到端验证: CED-filtered rejection sampling fine-tuning, 4 组配置全部
+    PASS。真实结果(D038修正后): r1 rel_f1=0.4449/evi_f1=0.8187, s44 rel_f1=0.4655/evi_f1=0.8087,
+    r2a rel_f1=0.4494/evi_f1=0.8108, r2b rel_f1=0.4493/evi_f1=0.8128'
+  priority: P0
+  gpu_budget_hours: 20
+  deps:
+  - plan_mvp1
+  - plan_mvp2_sft
+  registry_id: mvp2_rsft_train_r1
+  status: done
+- id: plan_mvp2_grpo
+  claim: 3
+  description: 'GRPO+QLoRA 全线失败（negative result = C3 核心证据）: 3 种 reward × 多 lr, rel_f1
+    max=0.211(lr5e-5)/0.014(lr5e-6), evi_f1 在 GRPO 下反而提升至 0.850 但 rel_f1 catastrophic
+    forgetting。D031/D033 完整轨迹支撑 Claim 3'
+  priority: P0
+  gpu_budget_hours: 60
+  deps:
+  - plan_mvp2_sft
+  registry_id: mvp2_grpo_ced_kl001_r4
+  status: done
+- id: plan_017
+  claim: 3
+  description: 'Qwen3-14B scaling study: SFT(with-evidence) + SFT(no-evidence) + RSFT
+    + eval。 第 4 尺度档位（1.7B/4B/8B/14B），验证 evidence tax 在更大模型上是否继续趋近零或转正。 需评估 RTX 5090
+    32GB 显存是否够 bf16 LoRA（14B×2=28GB base），不够则用 QLoRA。 至少 2 seeds。'
+  priority: P0
+  gpu_budget_hours: 50
+  deps: []
+  registry_id: plan017_14b_rsft_generate
+  notes: '14B SFT DONE (train_loss=0.5457). Eval r2 DONE (bf16 --no-quantize): ign_f1=0.5507.
+    No-evidence eval r2 DONE: ign_f1=0.5510. Evidence tax = -0.03pp (nearly zero at
+    14B scale). r1 killed due to D076 int8 quantization violation, r2 corrected with
+    bf16. 剩余: RSFT training + eval 未开始。'
+  status: running
+- id: plan_018
+  claim: 1
+  description: 'Cross-domain DocRE validation: 在 CDR (Chemical-Disease Relations)
+    或 GDA (Gene-Disease Associations) 等生物医学 DocRE 数据集上验证 FREIGE pipeline。 需要：数据格式适配、prompt
+    模板调整、relation type 映射。 验证 evidence-grounded DocRE 跨领域泛化能力，回应 "only Wikipedia domain"
+    审稿质疑。 ⚠️ CDR/GDA 均无 evidence sentence 标注，无法计算 evi_f1。降级 P2，Limitations 说明。'
+  priority: P2
+  gpu_budget_hours: 60
+  deps: []
+  registry_id: null
+  status: planned
+- id: plan_019
+  claim: 3
+  description: 'Scaling seeds supplement: 每个尺度补到 3+ seeds（k=1 RSFT）。 当前缺口：1.7B 需补
+    s43/s44，LLaMA 需补 s43/s44。 4B 已有 4+ seeds 不需补。8B-Qwen 2-seed 已完成（s42+s44）。每个 seed
+    含 SFT + RSFT + no-evidence eval ≈ 5 GPU-h。 目标：每个尺度的 evidence tax 有 mean ± std，scaling
+    claim 有统计力。'
+  priority: P0
+  gpu_budget_hours: 25
+  deps: []
+  registry_id: plan019_1_7b_rsft_s44_r2_eval
+  notes: '1.7B RSFT 3-seed 完成 (2026-05-19): s42=0.5122, s43=0.5109, s44=0.5125, mean=0.5119,
+    std=0.09pp。8B SFT 3-seed: s42=0.5128, s43 DONE (loss=0.5684) eval DONE (ign_f1=0.5324),
+    s44=0.4604。8B RSFT 3-seed: s42=0.5376, s43 DONE (ign_f1=0.5471), s44=0.5451, mean=0.5433,
+    std=0.49pp。No-evidence evals: 1.7B DONE/killed (59.2% truncation), 2048-token
+    retry RUNNING (cuda:3); 8B no-evi r2 DONE (ign_f1=0.5336, tax=-0.78pp); 14B no-evi
+    eval DONE (ign_f1=0.5510)。剩余: LLaMA s43/s44。'
+  status: done
+- id: plan_020
+  claim: 3
+  description: 'Evidence tax mechanistic analysis: 解释 WHY 1.7B 获益而 4B 受损。 分析维度：(1)
+    output length distribution with vs without evidence (2) truncation rate 差异（1.7B
+    fair subset 已有基础） (3) hallucination rate（false positive relations 在 with/without
+    evidence 中的比例） (4) per-document evidence 生成对 RE 的影响（按 doc length 分层） 主要是 CPU 分析
+    + 少量补充 eval。'
+  priority: P1
+  gpu_budget_hours: 10
+  deps: []
+  registry_id: plan_020_mechanistic_analysis
+  status: done
+- id: plan_021
+  claim: 1
+  description: 'Deep error analysis: 按 relation type / document length / entity count
+    / evidence distance 分层分析。扩展 D070 per-relation EDCR 分析到更多维度。 区分 Main 和 Findings
+    的 insight 层——Main 论文解释 why，Findings 只报 what。'
+  priority: P1
+  gpu_budget_hours: 5
+  deps: []
+  registry_id: plan_021_deep_error_analysis
+  status: done
+- id: plan_022
+  claim: 3
+  description: 'Third model family validation: Mistral-7B 或 Gemma-2-9B 上复现 SFT + RSFT
+    + eval。 验证 scaling pattern 跨第三个模型家族成立。如果 14B（plan_017）已做则优先级下降。'
+  priority: P2
+  gpu_budget_hours: 30
+  deps: []
+  registry_id: null
+  status: planned
+- id: plan_023
+  claim: 1
+  description: 'DocKS-RAG / LMRC baseline reproduction: 在相同 eval protocol 下复现 generative
+    DocRE SOTA（DocKS-RAG, LMRC）作为完整对比表。审稿人期望 same-condition comparison。'
+  priority: P2
+  gpu_budget_hours: 10
+  deps: []
+  registry_id: null
+  status: planned
+- id: plan_w3_sft_seeds
+  claim: 1
+  description: W3 修复：SFT 4B baseline seed43 + seed44 训练 + eval。 与 canonical SFT (seed42)
+    配对，计算 bootstrap CI + Cohen d， 验证 RSFT +4.92pp 增益的统计显著性。Wave 1 实验。
+  priority: P0
+  gpu_budget_hours: 8
+  deps: []
+  registry_id: wave1_sft_4b_s44_eval_r2
+  status: done
+- id: plan_d112
+  claim: 1
+  description: 'D112: Full RSFT pipeline from SFT s44 base (strongest seed, ign_f1=0.4734).
+    所有现有 4B RSFT 都基于 SFT s42 (最弱 seed)。验证 RSFT 是否能在强 SFT base 上也产生提升。Steps: generate
+    candidates (N=8) → CED score → k=1 filter → RSFT train → D076 eval。'
+  priority: P0
+  gpu_budget_hours: 8
+  deps:
+  - plan_w3_sft_seeds
+  registry_id: d112_rsft_s44_eval_bf16
+  notes: '原 QLoRA 版 d112_rsft_s44_train DONE/failed (QLoRA confound: adapter 适应 4-bit
+    量化误差, bf16 eval 下 ign_f1=0.2181 灾难性崩溃)。bf16 重跑: d112_rsft_s44_train_bf16 DONE/success,
+    d112_rsft_s44_eval_bf16 DONE (ign_f1=0.5152)。CED scoring DONE (3014 selected)。
+    No-evidence eval: r1/r2 failed (EXIT_CODE=127 脚本路径错误), r3 RUNNING (cuda:1)。'
+  status: done
+- id: plan_w18_random
+  claim: 1
+  description: W18 修复：Random k=1 RSFT baseline。从 k=1 候选中随机抽取（不用 NLI 分数）， 验证 NLI-based
+    selection 的价值。如果 random 也提升 → NLI scoring 不关键； 如果 random 不提升 → NLI scoring 是 RSFT
+    有效的关键。Wave 1 实验。
+  priority: P0
+  gpu_budget_hours: 4
+  deps: []
+  registry_id: random_rsft_k1_eval
+  status: done

@@ -1,0 +1,3916 @@
+# Research conversation: 你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T105318 tier=median 生成一篇完整的模拟论文。 ## 关键规则 1. 用 **Write 工具** 把 LaTeX 
+
+**Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 49
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-1/bd842963-e0db-49de-a34a-ceed2482f0d9.jsonl`
+- **Structured JSON:** [`9b03a9a71ef8feb0b38a.json`](../../sessions/9b/9b03a9a71ef8feb0b38a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T11:28:41.114Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T11:28:41.114Z",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "content": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T105318 tier=median 生成一篇完整的模拟论文。\n\n## 关键规则\n1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex`\n2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`\n3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/`，禁止写入其他目录\n4. 直接写完整 LaTeX 全文（\\documentclass ... \\end{document}），不要输出 YAML/JSON/Markdown\n5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完\n6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table\n7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引\n\n## 输入\n- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/experiment_data.json`（先 Read 此文件）\n- Venue：默认\n- Narrative guidance：C1+C2 核心贡献成立，数据充分。Test set 确认 RSFT > SFT 但 margin 从 dev ~5pp 收窄至 ~3pp。 CED vs flat-NLI 5-seed 对比不显著（p≈0.19），C3 降级为 \"CED is one effective NLI-based scorer, not uniquely superior\"；ablation 叙事转向 top_k precision（k=1 >> k=3 已确认）和 NLI-based scoring 整体优于 unfiltered RSFT。Decoupling spectrum 在 LLaMA 上部分复现（QLoRA catastrophic 方向一致但 程度不同：rel_f1≈0.08 vs Qwen3 0.014），cross-scale 在 8B 确认、1.7B 方向一致但增益偏小。EDCR 方法级诊断依然强（ρ=-0.96），但 per-relation 人工验证中等（ρ=0.58），需加 caveat。整体仍可投 EMNLP main， 贡献重心：任务定义 + decoupling 发现 + EDCR 诊断工具。CED scoring 定位为 practical recipe 而非理论贡献。 5-seed significance test 补充说明：当前 4-seed 数据已暗示 flat-NLI mean (0.4484) ≥ CED mean (0.4466)， 第 5 seed 不会逆转此趋势。\n\n- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper_framing.md`（先 Read 此文件）\n\n## 质量目标\n\"够审\"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T11:28:41.118Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T11:28:41.118Z",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+## Round 1
+
+47 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T11:28:41.141Z_
+
+你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T105318 tier=median 生成一篇完整的模拟论文。
+
+## 关键规则
+1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex`
+2. 用 **Bash 工具** 编译：`cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex`
+3. 所有文件只写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/`，禁止写入其他目录
+4. 直接写完整 LaTeX 全文（\documentclass ... \end{document}），不要输出 YAML/JSON/Markdown
+5. 不走 5 步流水线，不 spawn Worker，不调 Director API——一次性写完
+6. 你必须在论文中为 experiment_data.json 中的**每个**实验设计对应的 section/table
+7. narrative_guidance 是你的写作方向指引，不要在论文正文中引用或复述此指引
+
+## 输入
+- 实验数据（JSON）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/experiment_data.json`（先 Read 此文件）
+- Venue：默认
+- Narrative guidance：C1+C2 核心贡献成立，数据充分。Test set 确认 RSFT > SFT 但 margin 从 dev ~5pp 收窄至 ~3pp。 CED vs flat-NLI 5-seed 对比不显著（p≈0.19），C3 降级为 "CED is one effective NLI-based scorer, not uniquely superior"；ablation 叙事转向 top_k precision（k=1 >> k=3 已确认）和 NLI-based scoring 整体优于 unfiltered RSFT。Decoupling spectrum 在 LLaMA 上部分复现（QLoRA catastrophic 方向一致但 程度不同：rel_f1≈0.08 vs Qwen3 0.014），cross-scale 在 8B 确认、1.7B 方向一致但增益偏小。EDCR 方法级诊断依然强（ρ=-0.96），但 per-relation 人工验证中等（ρ=0.58），需加 caveat。整体仍可投 EMNLP main， 贡献重心：任务定义 + decoupling 发现 + EDCR 诊断工具。CED scoring 定位为 practical recipe 而非理论贡献。 5-seed significance test 补充说明：当前 4-seed 数据已暗示 flat-NLI mean (0.4484) ≥ CED mean (0.4466)， 第 5 seed 不会逆转此趋势。
+
+- paper_framing.md（完整版）：`/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper_framing.md`（先 Read 此文件）
+
+## 质量目标
+"够审"级——让审稿人能评判 idea 和实验设计，不是投稿质量。包含 Abstract、Introduction、Method、Experiments、Conclusion。每个定量 claim 基于 experiment_data.json 中的数据，不得编造数字。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "db6ea219-12f8-4589-a9f0-e51f0432a8a5",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T11:28:41.140Z_
+
+```json
+{
+  "parentUuid": "db6ea219-12f8-4589-a9f0-e51f0432a8a5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e269574d-e4cc-4cb6-84de-7cfabed607cf",
+  "timestamp": "2026-05-16T11:28:41.140Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T11:28:41.140Z_
+
+```json
+{
+  "parentUuid": "e269574d-e4cc-4cb6-84de-7cfabed607cf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "51b3564c-5387-49ce-bd4e-9e94ea7619ec",
+  "timestamp": "2026-05-16T11:28:41.140Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T11:28:41.140Z_
+
+```json
+{
+  "parentUuid": "51b3564c-5387-49ce-bd4e-9e94ea7619ec",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "531045d4-bc85-48d2-8c6d-033a4be38a09",
+  "timestamp": "2026-05-16T11:28:41.140Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated paper from experiment data",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T11:28:44.521Z_
+
+I'll start by reading the experiment data and paper framing files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "531045d4-bc85-48d2-8c6d-033a4be38a09",
+  "isSidechain": false,
+  "requestId": "req_011Cb6AmjLESSGDwxp989nZx",
+  "type": "assistant",
+  "uuid": "be2cff59-88d8-4e0c-baaa-e711643ff1ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQYKZ27BHKZUZPCTrkRqCm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11858,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 11858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T11:28:45.419Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GBcRrynwcC329KqfEF37ps`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/experiment_data.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be2cff59-88d8-4e0c-baaa-e711643ff1ee",
+  "isSidechain": false,
+  "requestId": "req_011Cb6AmjLESSGDwxp989nZx",
+  "type": "assistant",
+  "uuid": "fb278e58-13a4-48b8-a1ef-226dacf55550",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQYKZ27BHKZUZPCTrkRqCm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11858,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 11858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T11:28:45.737Z_
+
+<details><summary>↩ Tool result · `toolu_01GBcRrynwcC329KqfEF37ps`</summary>
+
+```text
+1	[
+2	  {
+3	    "name": "Test Set Evaluation (CodaLab + local)",
+4	    "description": "将 SFT baseline、RSFT CED best config (s44)、CED reranker、SFT no-evidence 四个配置提交 DocRED CodaLab 获取官方 Ign-F1/F1；本地在 dev set 上报告 Evi-F1 和 EDCR（test set 无公开 evidence 标注）。\n",
+5	    "results": {
+6	      "sft_baseline_test_ign_f1": 0.385,
+7	      "sft_baseline_test_f1": 0.398,
+8	      "rsft_ced_s44_test_ign_f1": 0.415,
+9	      "rsft_ced_s44_test_f1": 0.427,
+10	      "rsft_vs_sft_test_ign_f1_delta": 0.03,
+11	      "ced_reranker_test_ign_f1": 0.458,
+12	      "ced_reranker_test_f1": 0.471,
+13	      "sft_no_evidence_test_ign_f1": 0.46,
+14	      "sft_no_evidence_test_f1": 0.475,
+15	      "evidence_tax_test": 0.075,
+16	      "dev_test_drop_sft": 0.012,
+17	      "dev_test_drop_rsft": 0.032
+18	    },
+19	    "tables": [
+20	      {
+21	        "name": "Table 1: Test Set Main Results",
+22	        "columns": [
+23	          "Method",
+24	          "Test Ign-F1",
+25	          "Test F1",
+26	          "Dev Evi-F1 (cond)",
+27	          "Dev EDCR",
+28	          "Δ vs SFT"
+29	        ],
+30	        "rows": [
+31	          [
+32	            "SFT no-evidence",
+33	            46.0,
+34	            47.5,
+35	            "—",
+36	            "—",
+37	            "+7.50"
+38	          ],
+39	          [
+40	            "CED reranker",
+41	            45.8,
+42	            47.1,
+43	            81.88,
+44	            0.616,
+45	            "+7.30"
+46	          ],
+47	          [
+48	            "RSFT CED (s44)",
+49	            41.5,
+50	            42.7,
+51	            80.5,
+52	            0.635,
+53	            "+3.00"
+54	          ],
+55	          [
+56	            "SFT baseline",
+57	            38.5,
+58	            39.8,
+59	            79.86,
+60	            0.698,
+61	            "—"
+62	          ],
+63	          [
+64	            "DPO bf16 1ep",
+65	            37.2,
+66	            38.6,
+67	            80.88,
+68	            0.714,
+69	            "-1.30"
+70	          ],
+71	          [
+72	            "GRPO bf16 G=8 (best)",
+73	            43.8,
+74	            42.0,
+75	            80.86,
+76	            0.668,
+77	            "+5.30"
+78	          ],
+79	          [
+80	            "GRPO QLoRA",
+81	            "~1.2",
+82	            "~1.4",
+83	            85.0,
+84	            0.99,
+85	            "-37.30"
+86	          ]
+87	        ]
+88	      }
+89	    ],
+90	    "figures": [],
+91	    "analysis": "Test set 确认 RSFT > SFT（+3.0pp Ign-F1，p<0.05 bootstrap），但 margin 从 dev ~5pp 收窄。 收窄原因：(1) RSFT training data 的 distribution shift，(2) CED scoring 在 unseen docs 上的 泛化损失。CED reranker 在 test 上几乎追平 no-evidence baseline（45.8 vs 46.0），证明推理时 evidence quality filtering 是最 cost-effective 的方案。Evidence tax (~7.5pp) 在 test 上保持稳定。 GRPO bf16 的 test Ign-F1 (43.8) > F1 (42.0) 的反转现象因 train triples 过滤效应持续。\n\n\nDev→test degradation 对 SFT 较小（~1.2pp）因为 SFT 无 dev-specific 优化；RSFT 更大（~3.2pp） 因为 RSFT 训练数据由 SFT 在 train split 上生成、CED scoring 用 NLI model 打分—— 这些组件在 dev distribution 上隐式校准，test set 的文档主题和 entity 分布偏移导致 CED 打分精度下降。 此外，RSFT 训练集仅 2718 样本（12.4% 过滤率），数据量小使模型更易 overfit 训练分布。 最终 test delta=3.0pp 仍统计显著（bootstrap p<0.05），满足 C1 必要条件。 Evidence tax 在 test 上保持 ~7.5pp（与 dev 一致），说明 evidence 生成负担是 task-intrinsic 而非 distribution-specific。CED reranker 在 test 上表现突出（45.8），接近 no-evidence baseline（46.0）， 佐证 reranker 是最优实用方案。\n"
+92	  },
+93	  {
+94	    "name": "Model Size Ablation (Qwen3 1.7B / 8B)",
+95	    "description": "在 Qwen3-1.7B 和 Qwen3-8B 上复现完整 SFT → RSFT → eval pipeline。已完成：1.7B/8B SFT 训练和 1.7B SFT eval (ign_f1=0.4786)。预测剩余组件：8B SFT eval、1.7B/8B no-evidence eval、 1.7B/8B RSFT 训练+eval。\n",
+96	    "results": {
+97	      "qwen3_1_7b_sft_ign_f1": 0.4786,
+98	      "qwen3_1_7b_sft_evi_f1": 0.8316,
+99	      "qwen3_8b_sft_ign_f1": 0.498,
+100	      "qwen3_8b_sft_f1": 0.512,
+101	      "qwen3_8b_sft_evi_f1": 0.825,
+102	      "qwen3_8b_sft_edcr": 0.645,
+103	      "qwen3_1_7b_no_evidence_ign_f1": 0.532,
+104	      "qwen3_8b_no_evidence_ign_f1": 0.558,
+105	      "qwen3_1_7b_evidence_tax": 0.053,
+106	      "qwen3_4b_evidence_tax": 0.075,
+107	      "qwen3_8b_evidence_tax": 0.06,
+108	      "qwen3_1_7b_rsft_ced_ign_f1": 0.498,
+109	      "qwen3_1_7b_rsft_sft_delta": 0.019,
+110	      "qwen3_8b_rsft_ced_ign_f1": 0.526,
+111	      "qwen3_8b_rsft_sft_delta": 0.028,
+112	      "cross_model_rsft_sft_delta_min": 0.019
+113	    },
+114	    "tables": [
+115	      {
+116	        "name": "Table 3: Cross-Scale Comparison (Dev Set)",
+117	        "columns": [
+118	          "Model",
+119	          "Params",
+120	          "SFT Ign-F1",
+121	          "No-Evi Ign-F1",
+122	          "Evidence Tax",
+123	          "RSFT Ign-F1",
+124	          "RSFT Δ"
+125	        ],
+126	        "rows": [
+127	          [
+128	            "Qwen3-1.7B",
+129	            "1.7B",
+130	            47.86,
+131	            53.2,
+132	            "5.3pp",
+133	            49.8,
+134	            "+1.9pp"
+135	          ],
+136	          [
+137	            "Qwen3-4B",
+138	            "4.15B",
+139	            39.74,
+140	            47.21,
+141	            "7.5pp",
+142	            44.66,
+143	            "+4.9pp"
+144	          ],
+145	          [
+146	            "Qwen3-8B",
+147	            "8B",
+148	            49.8,
+149	            55.8,
+150	            "6.0pp",
+151	            52.6,
+152	            "+2.8pp"
+153	          ]
+154	        ]
+155	      }
+156	    ],
+157	    "figures": [],
+158	    "analysis": "Cross-scale 部分成功：8B 确认 RSFT > SFT 方向和 evidence tax 模式。1.7B 方向一致但 RSFT 增益偏小（+1.9pp），可能因 LoRA capacity 限制。1.7B > 4B 的反常需要在论文中讨论—— 可能归因于 Qwen3 家族的 progressive training 策略或 4B 特定的 capacity allocation 问题。 Evidence tax 的非单调性（1.7B < 4B > 8B）是一个有趣的次级发现，但仅 3 个数据点， 作为 observation 而非 claim。总体结论：RSFT 增益跨规模 robust（方向一致），但 magnitude varies。\n\n\n8B SFT 预计 ign_f1≈0.498，高于 4B (0.397) 和 1.7B (0.479)——更大模型容量同时处理 RE 和 evidence generation 的能力更强。1.7B 出乎意料地高于 4B 可能因为 Qwen3 家族在小模型上的训练优化（distillation-aware pre-training），但这个反常在 RSFT 阶段会缩小（4B RSFT 受益于更大参数空间的 fine-tuning 弹性）。 Evidence tax 随模型大小非单调：1.7B 仅 5.3pp（小模型生成序列更短，evidence 负担占比低）， 4B 最大 7.5pp（capacity 瓶颈最明显），8B 回降至 6.0pp（充足容量缓解竞争）。 RSFT 增益在 1.7B 上偏小（+1.9pp vs 4B 的 ~5pp）因为 1.7B 的 LoRA 参数空间有限， CED-filtered 数据的信号难以被充分吸收；8B 增益适中（+2.8pp），方向一致。 cross_model_rsft_sft_delta_min=1.9pp 满足 median 档 [1.5, 3.5] 区间。\n"
+159	  },
+160	  {
+161	    "name": "Re-DocRED Cross-Dataset Evaluation",
+162	    "description": "在 Re-DocRED 上训练 SFT → RSFT 全流程。Re-DocRED 修正了 DocRED 的 false negative annotations，但 ~55% triples 无 evidence 标注。报告两种模式：evidence_only（43% triples， 有 evi_f1）和 full（全部 triples，仅 rel_f1）。\n",
+163	    "results": {
+164	      "re_docred_sft_full_ign_f1": 0.432,
+165	      "re_docred_sft_full_f1": 0.448,
+166	      "re_docred_rsft_full_ign_f1": 0.452,
+167	      "re_docred_rsft_full_f1": 0.468,
+168	      "re_docred_rsft_vs_sft_full_delta": 0.02,
+169	      "re_docred_sft_evionly_ign_f1": 0.385,
+170	      "re_docred_sft_evionly_evi_f1": 0.768,
+171	      "re_docred_sft_evionly_edcr": 0.725,
+172	      "re_docred_rsft_evionly_ign_f1": 0.405,
+173	      "re_docred_rsft_evionly_evi_f1": 0.792,
+174	      "re_docred_rsft_evionly_edcr": 0.68,
+175	      "re_docred_rsft_vs_sft_evionly_delta": 0.02,
+176	      "re_docred_no_evidence_sft_ign_f1": 0.485,
+177	      "re_docred_evidence_tax": 0.053
+178	    },
+179	    "tables": [
+180	      {
+181	        "name": "Table 4: Re-DocRED Results",
+182	        "columns": [
+183	          "Method",
+184	          "Mode",
+185	          "Ign-F1",
+186	          "F1",
+187	          "Evi-F1",
+188	          "EDCR"
+189	        ],
+190	        "rows": [
+191	          [
+192	            "SFT no-evidence",
+193	            "full",
+194	            48.5,
+195	            50.1,
+196	            "—",
+197	            "—"
+198	          ],
+199	          [
+200	            "SFT baseline",
+201	            "full",
+202	            43.2,
+203	            44.8,
+204	            "—",
+205	            "—"
+206	          ],
+207	          [
+208	            "SFT baseline",
+209	            "evi-only",
+210	            38.5,
+211	            40.2,
+212	            76.8,
+213	            0.725
+214	          ],
+215	          [
+216	            "RSFT CED",
+217	            "full",
+218	            45.2,
+219	            46.8,
+220	            "—",
+221	            "—"
+222	          ],
+223	          [
+224	            "RSFT CED",
+225	            "evi-only",
+226	            40.5,
+227	            42.1,
+228	            79.2,
+229	            0.68
+230	          ]
+231	        ]
+232	      }
+233	    ],
+234	    "figures": [],
+235	    "analysis": "RSFT > SFT 方向在 Re-DocRED 上确认（+2.0pp），但增益小于 DocRED（+4.9pp）。 主要原因是 evidence 标注不完整（55% 无标注）导致 CED scoring 的训练信号退化。 Evidence tax (~5.3pp) 较 DocRED (~7.5pp) 低，与 evidence 标注密度正相关。 作为 generalization 证据足够：方向一致、RSFT 优势保持。但不宜声称 RSFT 增益是 dataset-invariant 的——增益幅度与 evidence 标注质量/覆盖率相关。 论文中需注明 Re-DocRED 55% 无标注的 limitation，并分开报告两种模式。\n\n\nRe-DocRED 的 full mode rel_f1 预计高于 DocRED（0.432 vs 0.397），因为修正后的 annotations 减少了 false negatives——模型预测的 \"incorrect\" triples 部分实际是 Re-DocRED 中被恢复的 true positives。RSFT 增益收窄至 +2.0pp（vs DocRED dev +4.9pp），原因：(1) 55% triples 无 evidence 标注，CED scoring 只能在 43% 有标注的子集上有效筛选，训练数据噪声更大；(2) Re-DocRED 的 relation distribution 更均匀（修正了 DocRED 的 annotation bias），CED 的 contrastive margin 在均匀分布下 区分度下降。Evidence-only mode 的 evi_f1 低于 DocRED（0.768 vs 0.799），因为 Re-DocRED 的 evidence 标注更严格。Evidence tax 约 5.3pp，略小于 DocRED 的 7.5pp——Re-DocRED 的 evidence 标注密度低（43%），SFT 训练时 evidence 负担更轻。 re_docred_rsft_vs_sft_delta=2.0pp 满足 [1.0, 3.0] 区间。\n"
+236	  },
+237	  {
+238	    "name": "NLI Model Ablation (DeBERTa-base vs large)",
+239	    "description": "用 DeBERTa-v3-base 替代 DeBERTa-v3-large 作为 CED scorer，重新筛选 RSFT 训练数据并训练， 验证 NLI model capacity 对 CED 打分质量的影响。\n",
+240	    "results": {
+241	      "deberta_base_ced_scoring_mean_ced": 0.625,
+242	      "deberta_base_ced_scoring_selection_rate": 0.118,
+243	      "deberta_base_rsft_ign_f1": 0.44,
+244	      "deberta_base_rsft_evi_f1": 0.802,
+245	      "deberta_base_rsft_edcr": 0.662,
+246	      "deberta_large_rsft_ign_f1": 0.4466,
+247	      "deberta_large_rsft_evi_f1": 0.8115,
+248	      "delta_ign_f1_base_vs_large": -0.007
+249	    },
+250	    "tables": [
+251	      {
+252	        "name": "Table A2 (Appendix): NLI Model Ablation",
+253	        "columns": [
+254	          "NLI Model",
+255	          "CED Mean Score",
+256	          "Selection Rate",
+257	          "RSFT Ign-F1",
+258	          "RSFT Evi-F1",
+259	          "Δ vs large"
+260	        ],
+261	        "rows": [
+262	          [
+263	            "DeBERTa-v3-large (default)",
+264	            0.668,
+265	            "12.4%",
+266	            44.66,
+267	            81.15,
+268	            "—"
+269	          ],
+270	          [
+271	            "DeBERTa-v3-base",
+272	            0.625,
+273	            "11.8%",
+274	            44.0,
+275	            80.2,
+276	            "-0.7pp"
+277	          ]
+278	        ]
+279	      }
+280	    ],
+281	    "figures": [],
+282	    "analysis": "NLI model 容量对 CED scoring 的影响较小（Δ ign_f1 ≈ 0.7pp），支持 CED 的 contrastive design 是关键而非 NLI model 本身。此实验为 P2 优先级，结果作为 appendix ablation row 呈现。 在 CED 降级为 \"one NLI-based scorer\" 的 median 叙事下，此实验的论文价值降低—— 但仍可作为 supplementary evidence 说明 CED/flat-NLI 类方法对 NLI backbone 的 robustness。\n\n\nDeBERTa-v3-base 的 NLI 分类能力弱于 large（MNLI accuracy ~88% vs ~91%），导致 CED scoring 区分度下降——hard negatives 和 true positives 之间的 margin 缩小，top_k=1 筛选的 样本质量略低。预计 mean_ced 从 0.668 降至 0.625，最终 RSFT ign_f1 下降约 0.7pp。 降幅较小是因为 CED 的 contrastive 设计本身对 NLI model 的绝对校准不敏感—— base 和 large 的 relative ranking 高度相关（Spearman ρ>0.9），只有边界样本的筛选决策受影响。 这支持 \"NLI model capacity matters modestly\" 的结论，CED 的有效性主要来自 contrastive 设计而非 NLI model 本身的强度。\n"
+283	  },
+284	  {
+285	    "name": "EDCR Human Annotation Validation",
+286	    "description": "100 个样本人工标注。标注员判断每个 cited evidence sentence 是否真正支持对应 relation triple。 计算 EDCR 与人工判断的 Spearman ρ，验证 EDCR 作为自动指标的有效性。分 method-level 和 per-relation-type 两层报告。\n",
+287	    "results": {
+288	      "n_annotated_samples": 100,
+289	      "n_annotated_triples": 850,
+290	      "inter_annotator_agreement_kappa": 0.62,
+291	      "method_level_edcr_human_spearman": 0.82,
+292	      "per_relation_edcr_human_spearman": 0.58,
+293	      "per_triple_edcr_human_spearman": 0.51,
+294	      "binary_high_low_edcr_human_kappa": 0.44,
+295	      "systematic_disagreement_categories": {
+296	        "partial_evidence_support": 0.23,
+297	        "multi_hop_reasoning": 0.18,
+298	        "implicit_evidence": 0.12
+299	      }
+300	    },
+301	    "tables": [
+302	      {
+303	        "name": "Table 5: EDCR Human Validation",
+304	        "columns": [
+305	          "Granularity",
+306	          "Spearman ρ",
+307	          "p-value",
+308	          "n"
+309	        ],
+310	        "rows": [
+311	          [
+312	            "Method-level (8 methods)",
+313	            0.82,
+314	            "<0.05",
+315	            8
+316	          ],
+317	          [
+318	            "Per-relation-type (76 types)",
+319	            0.58,
+320	            "<0.001",
+321	            76
+322	          ],
+323	          [
+324	            "Per-triple (850 triples)",
+325	            0.51,
+326	            "<0.001",
+327	            850
+328	          ]
+329	        ]
+330	      },
+331	      {
+332	        "name": "Table A3 (Appendix): Systematic Disagreement Analysis",
+333	        "columns": [
+334	          "Category",
+335	          "Frequency",
+336	          "Example Relation",
+337	          "EDCR vs Human"
+338	        ],
+339	        "rows": [
+340	          [
+341	            "Partial evidence support",
+342	            "23%",
+343	            "member_of",
+344	            "EDCR high, human medium"
+345	          ],
+346	          [
+347	            "Multi-hop reasoning",
+348	            "18%",
+349	            "country_of_citizenship",
+350	            "EDCR low, human high"
+351	          ],
+352	          [
+353	            "Implicit evidence",
+354	            "12%",
+355	            "date_of_birth",
+356	            "EDCR low, human medium"
+357	          ]
+358	        ]
+359	      }
+360	    ],
+361	    "figures": [],
+362	    "analysis": "EDCR 方法级诊断价值充分（ρ=0.82），与 Claim 2 decoupling spectrum 呼应——EDCR 可靠地区分 healthy (RSFT) vs pathological (GRPO QLoRA) 模型。Per-relation 诊断中等（ρ=0.58）， 需在论文 Limitations 中加 caveat：\"EDCR per-relation diagnostics should be interpreted as directional indicators rather than precise measurements, particularly for relations involving multi-hop or implicit evidence.\" 关键 takeaway：EDCR 作为自动指标在方法对比层面 可信，在 relation-type 诊断层面提供有价值但需谨慎解读的信号。\n\n\nMethod-level EDCR 与人工判断的相关性较高（ρ≈0.82），因为方法级差异显著（SFT vs RSFT vs GRPO 的 evidence 质量差异很大，人工标注可以清晰区分）。Per-relation-type 相关性中等（ρ=0.58）， 因为：(1) 某些 relation types 的 evidence 存在 partial support（NLI 给高分但人工认为仅部分支持）， 占比 23%——例如 \"member_of\" 关系的 evidence 句可能只暗示而非明确陈述成员关系；(2) multi-hop reasoning cases（18%）中 NLI 无法跨句推理但人工标注者可以整合上下文；(3) implicit evidence（12%） 中人工标注者接受隐含支持但 NLI model 给低分。这些系统性分歧导致 per-relation ρ 从方法级的 0.82 下降至 0.58。Per-triple 级别更低（0.51）因为单样本噪声更大。 ρ=0.58 落在 median 档 [0.5, 0.7] 区间，足以支撑 EDCR 方法级使用但需在 per-relation 层 加上 \"moderate agreement\" caveat。\n"
+363	  },
+364	  {
+365	    "name": "LLaMA-3.1-8B Cross-Family Validation",
+366	    "description": "在 LLaMA-3.1-8B 上复现核心 pipeline：SFT (with/without evidence) → RSFT CED → GRPO QLoRA。 关键目标：验证 decoupling spectrum 跨模型家族成立。SFT 训练正在运行中。\n",
+367	    "results": {
+368	      "llama_sft_ign_f1": 0.435,
+369	      "llama_sft_f1": 0.449,
+370	      "llama_sft_evi_f1": 0.805,
+371	      "llama_sft_edcr": 0.7,
+372	      "llama_no_evidence_ign_f1": 0.505,
+373	      "llama_evidence_tax": 0.07,
+374	      "llama_rsft_ced_ign_f1": 0.46,
+375	      "llama_rsft_sft_delta": 0.025,
+376	      "llama_rsft_evi_f1": 0.815,
+377	      "llama_rsft_edcr": 0.655,
+378	      "llama_grpo_qlora_rel_f1": 0.08,
+379	      "llama_grpo_qlora_evi_f1": 0.825,
+380	      "llama_grpo_qlora_edcr": 0.95,
+381	      "llama_vs_qwen_grpo_qlora_rel_f1_ratio": 5.8
+382	    },
+383	    "tables": [
+384	      {
+385	        "name": "Table 6: Cross-Family Validation (LLaMA-3.1-8B)",
+386	        "columns": [
+387	          "Method",
+388	          "Ign-F1",
+389	          "Evi-F1",
+390	          "EDCR",
+391	          "vs Qwen3-4B"
+392	        ],
+393	        "rows": [
+394	          [
+395	            "SFT baseline",
+396	            43.5,
+397	            80.5,
+398	            0.7,
+399	            "vs 39.74"
+400	          ],
+401	          [
+402	            "SFT no-evidence",
+403	            50.5,
+404	            "—",
+405	            "—",
+406	            "vs 47.21"
+407	          ],
+408	          [
+409	            "RSFT CED",
+410	            46.0,
+411	            81.5,
+412	            0.655,
+413	            "vs 44.66"
+414	          ],
+415	          [
+416	            "GRPO QLoRA",
+417	            "~8.0",
+418	            82.5,
+419	            0.95,
+420	            "vs ~1.4"
+421	          ]
+422	        ]
+423	      },
+424	      {
+425	        "name": "Table 7: Decoupling Spectrum (Extended)",
+426	        "columns": [
+427	          "Model Family",
+428	          "Method",
+429	          "rel_f1",
+430	          "evi_f1",
+431	          "EDCR",
+432	          "Severity"
+433	        ],
+434	        "rows": [
+435	          [
+436	            "Qwen3-4B",
+437	            "RSFT CED",
+438	            0.456,
+439	            0.812,
+440	            0.643,
+441	            "None"
+442	          ],
+443	          [
+444	            "Qwen3-4B",
+445	            "DPO 1ep",
+446	            0.403,
+447	            0.809,
+448	            0.714,
+449	            "Mild"
+450	          ],
+451	          [
+452	            "Qwen3-4B",
+453	            "GRPO bf16",
+454	            0.455,
+455	            0.809,
+456	            0.632,
+457	            "Mild (-2pp)"
+458	          ],
+459	          [
+460	            "Qwen3-4B",
+461	            "DPO 3ep",
+462	            0.343,
+463	            0.84,
+464	            0.729,
+465	            "Gradual"
+466	          ],
+467	          [
+468	            "Qwen3-4B",
+469	            "GRPO QLoRA",
+470	            0.014,
+471	            0.85,
+472	            0.99,
+473	            "Catastrophic"
+474	          ],
+475	          [
+476	            "LLaMA-3.1-8B",
+477	            "RSFT CED",
+478	            0.46,
+479	            0.815,
+480	            0.655,
+481	            "None"
+482	          ],
+483	          [
+484	            "LLaMA-3.1-8B",
+485	            "GRPO QLoRA",
+486	            0.08,
+487	            0.825,
+488	            0.95,
+489	            "Catastrophic"
+490	          ]
+491	        ]
+492	      }
+493	    ],
+494	    "figures": [],
+495	    "analysis": "LLaMA 数据确认 decoupling spectrum 的核心发现跨模型家族成立：GRPO QLoRA 导致 catastrophic decoupling（rel_f1=0.08），RSFT 无 decoupling。但 catastrophic 程度不同（LLaMA 0.08 vs Qwen3 0.014），说明 decoupling severity 受模型架构和规模调节。这支持 \"RL optimization pressure 与 decoupling severity 正相关\" 的核心论点（C2），同时需加 nuance：exact severity is architecture-dependent。论文可说 \"decoupling is a robust phenomenon across model families, though its severity varies with model capacity and architecture\"。\nMissing data point：LLaMA bf16 GRPO 和 DPO 未做（GPU budget 限制），无法确认 LLaMA 上的 完整 spectrum。但 catastrophic endpoint + RSFT no-decoupling 两端已足够支撑 cross-family claim。 如果审稿人要求完整 LLaMA spectrum，可在 camera-ready 补做。\n\n\nLLaMA-3.1-8B SFT 预计 ign_f1≈0.435，低于 Qwen3-8B（预测 0.498）但高于 Qwen3-4B（0.397）。 差距来自：(1) LLaMA-3.1-8B 是 2024 年模型，Qwen3 系列是 2025 年模型，预训练数据和架构 更新使 Qwen3 在 IE 类任务上有优势；(2) LLaMA 的 tokenizer 对中文/多语言实体名称处理不如 Qwen3 （DocRED 含大量非英文实体），影响 entity matching 精度。\nGRPO QLoRA 预计 rel_f1≈0.08——仍然 catastrophic 但比 Qwen3 的 0.0138 轻。原因： LLaMA-3.1-8B 的 8B 参数提供更多 capacity buffer，QLoRA 量化的 representation 压缩 相对不那么致命（parameter density 更低，量化误差的相对影响更小）。但仍然是 catastrophic level（正常应 >0.40），确认 decoupling 跨家族存在。\nEDCR=0.95 确认高 decoupling。与 Qwen3 QLoRA（EDCR=0.99）的差异说明 decoupling severity 与模型架构和规模有关，但方向性一致。\"Decoupling spectrum 在 LLaMA 上部分复现\"—— spectrum 的存在确认（catastrophic endpoint 存在），但 exact severity 不同。\nRSFT 增益 +2.5pp 在 cross-family 上保持正向，但低于 Qwen3-4B 的 ~5pp，部分因为 LLaMA 的 SFT 基线已经更高（8B 参数），RSFT 的边际改进空间更小。\n"
+496	  },
+497	  {
+498	    "name": "CED vs flat-NLI 5-Seed Significance Test",
+499	    "description": "补充第 5 seed (s46) 的 CED RSFT 和 flat-NLI RSFT 训练+评估，完成 5-seed paired t-test。 当前 4 seeds 已显示 flat-NLI mean (ign_f1=0.4484) ≥ CED mean (0.4466)。\n",
+500	    "results": {
+501	      "ced_s46_ign_f1": 0.445,
+502	      "flat_nli_s46_ign_f1": 0.446,
+503	      "ced_5seed_ign_f1_values": [
+504	        0.4423,
+505	        0.4512,
+506	        0.4511,
+507	        0.4416,
+508	        0.445
+509	      ],
+510	      "ced_5seed_mean": 0.4462,
+511	      "ced_5seed_std": 0.0043,
+512	      "flat_nli_5seed_ign_f1_values": [
+513	        0.4448,
+514	        0.4503,
+515	        0.4521,
+516	        0.4462,
+517	        0.446
+518	      ],
+519	      "flat_nli_5seed_mean": 0.4479,
+520	      "flat_nli_5seed_std": 0.003,
+521	      "mean_difference": -0.0017,
+522	      "paired_t_statistic": -1.16,
+523	      "paired_t_p_value": 0.31,
+524	      "cohens_d": -0.45,
+525	      "ced_5seed_rel_f1_mean": 0.4575,
+526	      "flat_nli_5seed_rel_f1_mean": 0.4583,
+527	      "rel_f1_paired_p": 0.42,
+528	      "ced_5seed_evi_f1_mean": 0.8115,
+529	      "flat_nli_5seed_evi_f1_mean": 0.8098,
+530	      "evi_f1_paired_p": 0.38
+531	    },
+532	    "tables": [
+533	      {
+534	        "name": "Table 2: CED vs flat-NLI Ablation (5-Seed Dev Set)",
+535	        "columns": [
+536	          "Scoring",
+537	          "Seed",
+538	          "Ign-F1",
+539	          "rel_f1",
+540	          "evi_f1",
+541	          "EDCR"
+542	        ],
+543	        "rows": [
+544	          [
+545	            "CED",
+546	            "s42",
+547	            44.23,
+548	            0.4517,
+549	            0.8175,
+550	            0.6569
+551	          ],
+552	          [
+553	            "CED",
+554	            "s43",
+555	            45.12,
+556	            0.4601,
+557	            0.8063,
+558	            0.6542
+559	          ],
+560	          [
+561	            "CED",
+562	            "s44",
+563	            45.11,
+564	            0.4621,
+565	            0.805,
+566	            0.635
+567	          ],
+568	          [
+569	            "CED",
+570	            "s45",
+571	            44.16,
+572	            0.4514,
+573	            0.8174,
+574	            0.655
+575	          ],
+576	          [
+577	            "CED",
+578	            "s46",
+579	            44.5,
+580	            0.457,
+581	            0.81,
+582	            0.648
+583	          ],
+584	          [
+585	            "CED",
+586	            "mean±std",
+587	            "44.62±0.43",
+588	            "0.4565±0.004",
+589	            "81.12±0.6",
+590	            "0.650±0.009"
+591	          ],
+592	          [
+593	            "flat-NLI",
+594	            "s42",
+595	            44.48,
+596	            0.4535,
+597	            0.8039,
+598	            0.6458
+599	          ],
+600	          [
+601	            "flat-NLI",
+602	            "s43",
+603	            45.03,
+604	            0.4586,
+605	            0.8113,
+606	            0.6552
+607	          ],
+608	          [
+609	            "flat-NLI",
+610	            "s44",
+611	            45.21,
+612	            0.4615,
+613	            0.8131,
+614	            0.6458
+615	          ],
+616	          [
+617	            "flat-NLI",
+618	            "s45",
+619	            44.62,
+620	            0.4551,
+621	            0.8154,
+622	            0.6521
+623	          ],
+624	          [
+625	            "flat-NLI",
+626	            "s46",
+627	            44.6,
+628	            0.4555,
+629	            0.81,
+630	            0.65
+631	          ],
+632	          [
+633	            "flat-NLI",
+634	            "mean±std",
+635	            "44.79±0.30",
+636	            "0.4568±0.003",
+637	            "80.87±0.5",
+638	            "0.650±0.004"
+639	          ],
+640	          [
+641	            "",
+642	            "p-value (paired t)",
+643	            0.31,
+644	            0.42,
+645	            0.38,
+646	            0.95
+647	          ]
+648	        ]
+649	      },
+650	      {
+651	        "name": "Table 2b: RSFT Scoring Method Comparison (Summary)",
+652	        "columns": [
+653	          "Scoring",
+654	          "Mean Ign-F1",
+655	          "vs SFT Δ",
+656	          "vs unfiltered RSFT Δ",
+657	          "p vs flat-NLI"
+658	        ],
+659	        "rows": [
+660	          [
+661	            "CED (contrastive)",
+662	            "44.62",
+663	            "+4.88pp",
+664	            "—",
+665	            "0.31 (n.s.)"
+666	          ],
+667	          [
+668	            "flat-NLI (non-contrastive)",
+669	            "44.79",
+670	            "+5.05pp",
+671	            "—",
+672	            "ref"
+673	          ],
+674	          [
+675	            "top_k=3 (CED, 1 seed)",
+676	            "43.64",
+677	            "+3.90pp",
+678	            "—",
+679	            "—"
+680	          ],
+681	          [
+682	            "SFT baseline",
+683	            "39.74",
+684	            "—",
+685	            "—",
+686	            "—"
+687	          ]
+688	        ]
+689	      }
+690	    ],
+691	    "figures": [],
+692	    "analysis": "CED vs flat-NLI 不显著确认（p=0.31），C3 调整为：NLI-based scoring 整体有效（+4.9pp vs SFT）， CED 和 flat-NLI 效果相当。Contrastive margin 的理论动机成立但 downstream 增益不显著。 Ablation 叙事转向 top_k selection precision（k=1 >> k=3，Δ ign_f1 -1.36pp）， 论证 RSFT 成功的关键是 strict quality filtering 而非特定 scoring function。 CED 保留在方法描述中但降级为 \"one practical choice\"。 如果审稿人追问 CED 的必要性，应回应：CED 仍有独立价值作为 reranker（test ign_f1=45.8， 最优推理方案）和 EDCR 诊断指标的计算基础。\n\n当前 4-seed 数据已清晰暗示此结果：CED 4-seed mean ign_f1=0.4466，flat-NLI 4-seed mean=0.4484， 差异仅 0.18pp 且方向不利于 CED。第 5 seed 不会逆转趋势——即使 CED s46 高于 flat-NLI s46， 累积差异的方差过大（seed-to-seed 波动 ~0.9pp），5 seeds 的统计 power 不足以检测 <0.5pp 的差异。\np=0.31 远大于 0.05 甚至 0.10，CED 的 contrastive margin 在统计意义上不优于 flat-NLI 的 朴素 NLI 打分。根本原因：CED 的 hard negative contrastive 设计确实提供更 informative 的信号 （per-sample scoring 质量更高），但 flat-NLI 的 simplicity 在 aggregation 后达到类似效果—— flat-NLI 虽然 per-sample 区分度低，但在 top_k=1 严格筛选下，高分样本的质量与 CED 无实质差异。\nCED 在 evi_f1 上微弱领先（0.8115 vs 0.8098），支持其 evidence quality scoring 的方向性有效， 但不足以构成独立贡献声称。\n叙事调整：CED 降级为 \"one effective scoring function among NLI-based alternatives\"。 Ablation table 保留但重新聚焦：\"Both CED and flat-NLI substantially improve over unfiltered RSFT (Δ ~4-5pp vs SFT baseline), demonstrating the critical role of NLI-based quality filtering in RSFT. The choice between CED and flat-NLI is not statistically significant (p=0.31), suggesting that the contrastive margin, while theoretically motivated, does not translate to measurable downstream gains.\"\n"
+693	  }
+694	]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb278e58-13a4-48b8-a1ef-226dacf55550",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "68633594-3224-447b-bc6e-5fb9794339bd",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/experiment_data.json",
+      "content": "[\n  {\n    \"name\": \"Test Set Evaluation (CodaLab + local)\",\n    \"description\": \"将 SFT baseline、RSFT CED best config (s44)、CED reranker、SFT no-evidence 四个配置提交 DocRED CodaLab 获取官方 Ign-F1/F1；本地在 dev set 上报告 Evi-F1 和 EDCR（test set 无公开 evidence 标注）。\\n\",\n    \"results\": {\n      \"sft_baseline_test_ign_f1\": 0.385,\n      \"sft_baseline_test_f1\": 0.398,\n      \"rsft_ced_s44_test_ign_f1\": 0.415,\n      \"rsft_ced_s44_test_f1\": 0.427,\n      \"rsft_vs_sft_test_ign_f1_delta\": 0.03,\n      \"ced_reranker_test_ign_f1\": 0.458,\n      \"ced_reranker_test_f1\": 0.471,\n      \"sft_no_evidence_test_ign_f1\": 0.46,\n      \"sft_no_evidence_test_f1\": 0.475,\n      \"evidence_tax_test\": 0.075,\n      \"dev_test_drop_sft\": 0.012,\n      \"dev_test_drop_rsft\": 0.032\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 1: Test Set Main Results\",\n        \"columns\": [\n          \"Method\",\n          \"Test Ign-F1\",\n          \"Test F1\",\n          \"Dev Evi-F1 (cond)\",\n          \"Dev EDCR\",\n          \"Δ vs SFT\"\n        ],\n        \"rows\": [\n          [\n            \"SFT no-evidence\",\n            46.0,\n            47.5,\n            \"—\",\n            \"—\",\n            \"+7.50\"\n          ],\n          [\n            \"CED reranker\",\n            45.8,\n            47.1,\n            81.88,\n            0.616,\n            \"+7.30\"\n          ],\n          [\n            \"RSFT CED (s44)\",\n            41.5,\n            42.7,\n            80.5,\n            0.635,\n            \"+3.00\"\n          ],\n          [\n            \"SFT baseline\",\n            38.5,\n            39.8,\n            79.86,\n            0.698,\n            \"—\"\n          ],\n          [\n            \"DPO bf16 1ep\",\n            37.2,\n            38.6,\n            80.88,\n            0.714,\n            \"-1.30\"\n          ],\n          [\n            \"GRPO bf16 G=8 (best)\",\n            43.8,\n            42.0,\n            80.86,\n            0.668,\n            \"+5.30\"\n          ],\n          [\n            \"GRPO QLoRA\",\n            \"~1.2\",\n            \"~1.4\",\n            85.0,\n            0.99,\n            \"-37.30\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Test set 确认 RSFT > SFT（+3.0pp Ign-F1，p<0.05 bootstrap），但 margin 从 dev ~5pp 收窄。 收窄原因：(1) RSFT training data 的 distribution shift，(2) CED scoring 在 unseen docs 上的 泛化损失。CED reranker 在 test 上几乎追平 no-evidence baseline（45.8 vs 46.0），证明推理时 evidence quality filtering 是最 cost-effective 的方案。Evidence tax (~7.5pp) 在 test 上保持稳定。 GRPO bf16 的 test Ign-F1 (43.8) > F1 (42.0) 的反转现象因 train triples 过滤效应持续。\\n\\n\\nDev→test degradation 对 SFT 较小（~1.2pp）因为 SFT 无 dev-specific 优化；RSFT 更大（~3.2pp） 因为 RSFT 训练数据由 SFT 在 train split 上生成、CED scoring 用 NLI model 打分—— 这些组件在 dev distribution 上隐式校准，test set 的文档主题和 entity 分布偏移导致 CED 打分精度下降。 此外，RSFT 训练集仅 2718 样本（12.4% 过滤率），数据量小使模型更易 overfit 训练分布。 最终 test delta=3.0pp 仍统计显著（bootstrap p<0.05），满足 C1 必要条件。 Evidence tax 在 test 上保持 ~7.5pp（与 dev 一致），说明 evidence 生成负担是 task-intrinsic 而非 distribution-specific。CED reranker 在 test 上表现突出（45.8），接近 no-evidence baseline（46.0）， 佐证 reranker 是最优实用方案。\\n\"\n  },\n  {\n    \"name\": \"Model Size Ablation (Qwen3 1.7B / 8B)\",\n    \"description\": \"在 Qwen3-1.7B 和 Qwen3-8B 上复现完整 SFT → RSFT → eval pipeline。已完成：1.7B/8B SFT 训练和 1.7B SFT eval (ign_f1=0.4786)。预测剩余组件：8B SFT eval、1.7B/8B no-evidence eval、 1.7B/8B RSFT 训练+eval。\\n\",\n    \"results\": {\n      \"qwen3_1_7b_sft_ign_f1\": 0.4786,\n      \"qwen3_1_7b_sft_evi_f1\": 0.8316,\n      \"qwen3_8b_sft_ign_f1\": 0.498,\n      \"qwen3_8b_sft_f1\": 0.512,\n      \"qwen3_8b_sft_evi_f1\": 0.825,\n      \"qwen3_8b_sft_edcr\": 0.645,\n      \"qwen3_1_7b_no_evidence_ign_f1\": 0.532,\n      \"qwen3_8b_no_evidence_ign_f1\": 0.558,\n      \"qwen3_1_7b_evidence_tax\": 0.053,\n      \"qwen3_4b_evidence_tax\": 0.075,\n      \"qwen3_8b_evidence_tax\": 0.06,\n      \"qwen3_1_7b_rsft_ced_ign_f1\": 0.498,\n      \"qwen3_1_7b_rsft_sft_delta\": 0.019,\n      \"qwen3_8b_rsft_ced_ign_f1\": 0.526,\n      \"qwen3_8b_rsft_sft_delta\": 0.028,\n      \"cross_model_rsft_sft_delta_min\": 0.019\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 3: Cross-Scale Comparison (Dev Set)\",\n        \"columns\": [\n          \"Model\",\n          \"Params\",\n          \"SFT Ign-F1\",\n          \"No-Evi Ign-F1\",\n          \"Evidence Tax\",\n          \"RSFT Ign-F1\",\n          \"RSFT Δ\"\n        ],\n        \"rows\": [\n          [\n            \"Qwen3-1.7B\",\n            \"1.7B\",\n            47.86,\n            53.2,\n            \"5.3pp\",\n            49.8,\n            \"+1.9pp\"\n          ],\n          [\n            \"Qwen3-4B\",\n            \"4.15B\",\n            39.74,\n            47.21,\n            \"7.5pp\",\n            44.66,\n            \"+4.9pp\"\n          ],\n          [\n            \"Qwen3-8B\",\n            \"8B\",\n            49.8,\n            55.8,\n            \"6.0pp\",\n            52.6,\n            \"+2.8pp\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"Cross-scale 部分成功：8B 确认 RSFT > SFT 方向和 evidence tax 模式。1.7B 方向一致但 RSFT 增益偏小（+1.9pp），可能因 LoRA capacity 限制。1.7B > 4B 的反常需要在论文中讨论—— 可能归因于 Qwen3 家族的 progressive training 策略或 4B 特定的 capacity allocation 问题。 Evidence tax 的非单调性（1.7B < 4B > 8B）是一个有趣的次级发现，但仅 3 个数据点， 作为 observation 而非 claim。总体结论：RSFT 增益跨规模 robust（方向一致），但 magnitude varies。\\n\\n\\n8B SFT 预计 ign_f1≈0.498，高于 4B (0.397) 和 1.7B (0.479)——更大模型容量同时处理 RE 和 evidence generation 的能力更强。1.7B 出乎意料地高于 4B 可能因为 Qwen3 家族在小模型上的训练优化（distillation-aware pre-training），但这个反常在 RSFT 阶段会缩小（4B RSFT 受益于更大参数空间的 fine-tuning 弹性）。 Evidence tax 随模型大小非单调：1.7B 仅 5.3pp（小模型生成序列更短，evidence 负担占比低）， 4B 最大 7.5pp（capacity 瓶颈最明显），8B 回降至 6.0pp（充足容量缓解竞争）。 RSFT 增益在 1.7B 上偏小（+1.9pp vs 4B 的 ~5pp）因为 1.7B 的 LoRA 参数空间有限， CED-filtered 数据的信号难以被充分吸收；8B 增益适中（+2.8pp），方向一致。 cross_model_rsft_sft_delta_min=1.9pp 满足 median 档 [1.5, 3.5] 区间。\\n\"\n  },\n  {\n    \"name\": \"Re-DocRED Cross-Dataset Evaluation\",\n    \"description\": \"在 Re-DocRED 上训练 SFT → RSFT 全流程。Re-DocRED 修正了 DocRED 的 false negative annotations，但 ~55% triples 无 evidence 标注。报告两种模式：evidence_only（43% triples， 有 evi_f1）和 full（全部 triples，仅 rel_f1）。\\n\",\n    \"results\": {\n      \"re_docred_sft_full_ign_f1\": 0.432,\n      \"re_docred_sft_full_f1\": 0.448,\n      \"re_docred_rsft_full_ign_f1\": 0.452,\n      \"re_docred_rsft_full_f1\": 0.468,\n      \"re_docred_rsft_vs_sft_full_delta\": 0.02,\n      \"re_docred_sft_evionly_ign_f1\": 0.385,\n      \"re_docred_sft_evionly_evi_f1\": 0.768,\n      \"re_docred_sft_evionly_edcr\": 0.725,\n      \"re_docred_rsft_evionly_ign_f1\": 0.405,\n      \"re_docred_rsft_evionly_evi_f1\": 0.792,\n      \"re_docred_rsft_evionly_edcr\": 0.68,\n      \"re_docred_rsft_vs_sft_evionly_delta\": 0.02,\n      \"re_docred_no_evidence_sft_ign_f1\": 0.485,\n      \"re_docred_evidence_tax\": 0.053\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 4: Re-DocRED Results\",\n        \"columns\": [\n          \"Method\",\n          \"Mode\",\n          \"Ign-F1\",\n          \"F1\",\n          \"Evi-F1\",\n          \"EDCR\"\n        ],\n        \"rows\": [\n          [\n            \"SFT no-evidence\",\n            \"full\",\n            48.5,\n            50.1,\n            \"—\",\n            \"—\"\n          ],\n          [\n            \"SFT baseline\",\n            \"full\",\n            43.2,\n            44.8,\n            \"—\",\n            \"—\"\n          ],\n          [\n            \"SFT baseline\",\n            \"evi-only\",\n            38.5,\n            40.2,\n            76.8,\n            0.725\n          ],\n          [\n            \"RSFT CED\",\n            \"full\",\n            45.2,\n            46.8,\n            \"—\",\n            \"—\"\n          ],\n          [\n            \"RSFT CED\",\n            \"evi-only\",\n            40.5,\n            42.1,\n            79.2,\n            0.68\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"RSFT > SFT 方向在 Re-DocRED 上确认（+2.0pp），但增益小于 DocRED（+4.9pp）。 主要原因是 evidence 标注不完整（55% 无标注）导致 CED scoring 的训练信号退化。 Evidence tax (~5.3pp) 较 DocRED (~7.5pp) 低，与 evidence 标注密度正相关。 作为 generalization 证据足够：方向一致、RSFT 优势保持。但不宜声称 RSFT 增益是 dataset-invariant 的——增益幅度与 evidence 标注质量/覆盖率相关。 论文中需注明 Re-DocRED 55% 无标注的 limitation，并分开报告两种模式。\\n\\n\\nRe-DocRED 的 full mode rel_f1 预计高于 DocRED（0.432 vs 0.397），因为修正后的 annotations 减少了 false negatives——模型预测的 \\\"incorrect\\\" triples 部分实际是 Re-DocRED 中被恢复的 true positives。RSFT 增益收窄至 +2.0pp（vs DocRED dev +4.9pp），原因：(1) 55% triples 无 evidence 标注，CED scoring 只能在 43% 有标注的子集上有效筛选，训练数据噪声更大；(2) Re-DocRED 的 relation distribution 更均匀（修正了 DocRED 的 annotation bias），CED 的 contrastive margin 在均匀分布下 区分度下降。Evidence-only mode 的 evi_f1 低于 DocRED（0.768 vs 0.799），因为 Re-DocRED 的 evidence 标注更严格。Evidence tax 约 5.3pp，略小于 DocRED 的 7.5pp——Re-DocRED 的 evidence 标注密度低（43%），SFT 训练时 evidence 负担更轻。 re_docred_rsft_vs_sft_delta=2.0pp 满足 [1.0, 3.0] 区间。\\n\"\n  },\n  {\n    \"name\": \"NLI Model Ablation (DeBERTa-base vs large)\",\n    \"description\": \"用 DeBERTa-v3-base 替代 DeBERTa-v3-large 作为 CED scorer，重新筛选 RSFT 训练数据并训练， 验证 NLI model capacity 对 CED 打分质量的影响。\\n\",\n    \"results\": {\n      \"deberta_base_ced_scoring_mean_ced\": 0.625,\n      \"deberta_base_ced_scoring_selection_rate\": 0.118,\n      \"deberta_base_rsft_ign_f1\": 0.44,\n      \"deberta_base_rsft_evi_f1\": 0.802,\n      \"deberta_base_rsft_edcr\": 0.662,\n      \"deberta_large_rsft_ign_f1\": 0.4466,\n      \"deberta_large_rsft_evi_f1\": 0.8115,\n      \"delta_ign_f1_base_vs_large\": -0.007\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table A2 (Appendix): NLI Model Ablation\",\n        \"columns\": [\n          \"NLI Model\",\n          \"CED Mean Score\",\n          \"Selection Rate\",\n          \"RSFT Ign-F1\",\n          \"RSFT Evi-F1\",\n          \"Δ vs large\"\n        ],\n        \"rows\": [\n          [\n            \"DeBERTa-v3-large (default)\",\n            0.668,\n            \"12.4%\",\n            44.66,\n            81.15,\n            \"—\"\n          ],\n          [\n            \"DeBERTa-v3-base\",\n            0.625,\n            \"11.8%\",\n            44.0,\n            80.2,\n            \"-0.7pp\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"NLI model 容量对 CED scoring 的影响较小（Δ ign_f1 ≈ 0.7pp），支持 CED 的 contrastive design 是关键而非 NLI model 本身。此实验为 P2 优先级，结果作为 appendix ablation row 呈现。 在 CED 降级为 \\\"one NLI-based scorer\\\" 的 median 叙事下，此实验的论文价值降低—— 但仍可作为 supplementary evidence 说明 CED/flat-NLI 类方法对 NLI backbone 的 robustness。\\n\\n\\nDeBERTa-v3-base 的 NLI 分类能力弱于 large（MNLI accuracy ~88% vs ~91%），导致 CED scoring 区分度下降——hard negatives 和 true positives 之间的 margin 缩小，top_k=1 筛选的 样本质量略低。预计 mean_ced 从 0.668 降至 0.625，最终 RSFT ign_f1 下降约 0.7pp。 降幅较小是因为 CED 的 contrastive 设计本身对 NLI model 的绝对校准不敏感—— base 和 large 的 relative ranking 高度相关（Spearman ρ>0.9），只有边界样本的筛选决策受影响。 这支持 \\\"NLI model capacity matters modestly\\\" 的结论，CED 的有效性主要来自 contrastive 设计而非 NLI model 本身的强度。\\n\"\n  },\n  {\n    \"name\": \"EDCR Human Annotation Validation\",\n    \"description\": \"100 个样本人工标注。标注员判断每个 cited evidence sentence 是否真正支持对应 relation triple。 计算 EDCR 与人工判断的 Spearman ρ，验证 EDCR 作为自动指标的有效性。分 method-level 和 per-relation-type 两层报告。\\n\",\n    \"results\": {\n      \"n_annotated_samples\": 100,\n      \"n_annotated_triples\": 850,\n      \"inter_annotator_agreement_kappa\": 0.62,\n      \"method_level_edcr_human_spearman\": 0.82,\n      \"per_relation_edcr_human_spearman\": 0.58,\n      \"per_triple_edcr_human_spearman\": 0.51,\n      \"binary_high_low_edcr_human_kappa\": 0.44,\n      \"systematic_disagreement_categories\": {\n        \"partial_evidence_support\": 0.23,\n        \"multi_hop_reasoning\": 0.18,\n        \"implicit_evidence\": 0.12\n      }\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 5: EDCR Human Validation\",\n        \"columns\": [\n          \"Granularity\",\n          \"Spearman ρ\",\n          \"p-value\",\n          \"n\"\n        ],\n        \"rows\": [\n          [\n            \"Method-level (8 methods)\",\n            0.82,\n            \"<0.05\",\n            8\n          ],\n          [\n            \"Per-relation-type (76 types)\",\n            0.58,\n            \"<0.001\",\n            76\n          ],\n          [\n            \"Per-triple (850 triples)\",\n            0.51,\n            \"<0.001\",\n            850\n          ]\n        ]\n      },\n      {\n        \"name\": \"Table A3 (Appendix): Systematic Disagreement Analysis\",\n        \"columns\": [\n          \"Category\",\n          \"Frequency\",\n          \"Example Relation\",\n          \"EDCR vs Human\"\n        ],\n        \"rows\": [\n          [\n            \"Partial evidence support\",\n            \"23%\",\n            \"member_of\",\n            \"EDCR high, human medium\"\n          ],\n          [\n            \"Multi-hop reasoning\",\n            \"18%\",\n            \"country_of_citizenship\",\n            \"EDCR low, human high\"\n          ],\n          [\n            \"Implicit evidence\",\n            \"12%\",\n            \"date_of_birth\",\n            \"EDCR low, human medium\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"EDCR 方法级诊断价值充分（ρ=0.82），与 Claim 2 decoupling spectrum 呼应——EDCR 可靠地区分 healthy (RSFT) vs pathological (GRPO QLoRA) 模型。Per-relation 诊断中等（ρ=0.58）， 需在论文 Limitations 中加 caveat：\\\"EDCR per-relation diagnostics should be interpreted as directional indicators rather than precise measurements, particularly for relations involving multi-hop or implicit evidence.\\\" 关键 takeaway：EDCR 作为自动指标在方法对比层面 可信，在 relation-type 诊断层面提供有价值但需谨慎解读的信号。\\n\\n\\nMethod-level EDCR 与人工判断的相关性较高（ρ≈0.82），因为方法级差异显著（SFT vs RSFT vs GRPO 的 evidence 质量差异很大，人工标注可以清晰区分）。Per-relation-type 相关性中等（ρ=0.58）， 因为：(1) 某些 relation types 的 evidence 存在 partial support（NLI 给高分但人工认为仅部分支持）， 占比 23%——例如 \\\"member_of\\\" 关系的 evidence 句可能只暗示而非明确陈述成员关系；(2) multi-hop reasoning cases（18%）中 NLI 无法跨句推理但人工标注者可以整合上下文；(3) implicit evidence（12%） 中人工标注者接受隐含支持但 NLI model 给低分。这些系统性分歧导致 per-relation ρ 从方法级的 0.82 下降至 0.58。Per-triple 级别更低（0.51）因为单样本噪声更大。 ρ=0.58 落在 median 档 [0.5, 0.7] 区间，足以支撑 EDCR 方法级使用但需在 per-relation 层 加上 \\\"moderate agreement\\\" caveat。\\n\"\n  },\n  {\n    \"name\": \"LLaMA-3.1-8B Cross-Family Validation\",\n    \"description\": \"在 LLaMA-3.1-8B 上复现核心 pipeline：SFT (with/without evidence) → RSFT CED → GRPO QLoRA。 关键目标：验证 decoupling spectrum 跨模型家族成立。SFT 训练正在运行中。\\n\",\n    \"results\": {\n      \"llama_sft_ign_f1\": 0.435,\n      \"llama_sft_f1\": 0.449,\n      \"llama_sft_evi_f1\": 0.805,\n      \"llama_sft_edcr\": 0.7,\n      \"llama_no_evidence_ign_f1\": 0.505,\n      \"llama_evidence_tax\": 0.07,\n      \"llama_rsft_ced_ign_f1\": 0.46,\n      \"llama_rsft_sft_delta\": 0.025,\n      \"llama_rsft_evi_f1\": 0.815,\n      \"llama_rsft_edcr\": 0.655,\n      \"llama_grpo_qlora_rel_f1\": 0.08,\n      \"llama_grpo_qlora_evi_f1\": 0.825,\n      \"llama_grpo_qlora_edcr\": 0.95,\n      \"llama_vs_qwen_grpo_qlora_rel_f1_ratio\": 5.8\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 6: Cross-Family Validation (LLaMA-3.1-8B)\",\n        \"columns\": [\n          \"Method\",\n          \"Ign-F1\",\n          \"Evi-F1\",\n          \"EDCR\",\n          \"vs Qwen3-4B\"\n        ],\n        \"rows\": [\n          [\n            \"SFT baseline\",\n            43.5,\n            80.5,\n            0.7,\n            \"vs 39.74\"\n          ],\n          [\n            \"SFT no-evidence\",\n            50.5,\n            \"—\",\n            \"—\",\n            \"vs 47.21\"\n          ],\n          [\n            \"RSFT CED\",\n            46.0,\n            81.5,\n            0.655,\n            \"vs 44.66\"\n          ],\n          [\n            \"GRPO QLoRA\",\n            \"~8.0\",\n            82.5,\n            0.95,\n            \"vs ~1.4\"\n          ]\n        ]\n      },\n      {\n        \"name\": \"Table 7: Decoupling Spectrum (Extended)\",\n        \"columns\": [\n          \"Model Family\",\n          \"Method\",\n          \"rel_f1\",\n          \"evi_f1\",\n          \"EDCR\",\n          \"Severity\"\n        ],\n        \"rows\": [\n          [\n            \"Qwen3-4B\",\n            \"RSFT CED\",\n            0.456,\n            0.812,\n            0.643,\n            \"None\"\n          ],\n          [\n            \"Qwen3-4B\",\n            \"DPO 1ep\",\n            0.403,\n            0.809,\n            0.714,\n            \"Mild\"\n          ],\n          [\n            \"Qwen3-4B\",\n            \"GRPO bf16\",\n            0.455,\n            0.809,\n            0.632,\n            \"Mild (-2pp)\"\n          ],\n          [\n            \"Qwen3-4B\",\n            \"DPO 3ep\",\n            0.343,\n            0.84,\n            0.729,\n            \"Gradual\"\n          ],\n          [\n            \"Qwen3-4B\",\n            \"GRPO QLoRA\",\n            0.014,\n            0.85,\n            0.99,\n            \"Catastrophic\"\n          ],\n          [\n            \"LLaMA-3.1-8B\",\n            \"RSFT CED\",\n            0.46,\n            0.815,\n            0.655,\n            \"None\"\n          ],\n          [\n            \"LLaMA-3.1-8B\",\n            \"GRPO QLoRA\",\n            0.08,\n            0.825,\n            0.95,\n            \"Catastrophic\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"LLaMA 数据确认 decoupling spectrum 的核心发现跨模型家族成立：GRPO QLoRA 导致 catastrophic decoupling（rel_f1=0.08），RSFT 无 decoupling。但 catastrophic 程度不同（LLaMA 0.08 vs Qwen3 0.014），说明 decoupling severity 受模型架构和规模调节。这支持 \\\"RL optimization pressure 与 decoupling severity 正相关\\\" 的核心论点（C2），同时需加 nuance：exact severity is architecture-dependent。论文可说 \\\"decoupling is a robust phenomenon across model families, though its severity varies with model capacity and architecture\\\"。\\nMissing data point：LLaMA bf16 GRPO 和 DPO 未做（GPU budget 限制），无法确认 LLaMA 上的 完整 spectrum。但 catastrophic endpoint + RSFT no-decoupling 两端已足够支撑 cross-family claim。 如果审稿人要求完整 LLaMA spectrum，可在 camera-ready 补做。\\n\\n\\nLLaMA-3.1-8B SFT 预计 ign_f1≈0.435，低于 Qwen3-8B（预测 0.498）但高于 Qwen3-4B（0.397）。 差距来自：(1) LLaMA-3.1-8B 是 2024 年模型，Qwen3 系列是 2025 年模型，预训练数据和架构 更新使 Qwen3 在 IE 类任务上有优势；(2) LLaMA 的 tokenizer 对中文/多语言实体名称处理不如 Qwen3 （DocRED 含大量非英文实体），影响 entity matching 精度。\\nGRPO QLoRA 预计 rel_f1≈0.08——仍然 catastrophic 但比 Qwen3 的 0.0138 轻。原因： LLaMA-3.1-8B 的 8B 参数提供更多 capacity buffer，QLoRA 量化的 representation 压缩 相对不那么致命（parameter density 更低，量化误差的相对影响更小）。但仍然是 catastrophic level（正常应 >0.40），确认 decoupling 跨家族存在。\\nEDCR=0.95 确认高 decoupling。与 Qwen3 QLoRA（EDCR=0.99）的差异说明 decoupling severity 与模型架构和规模有关，但方向性一致。\\\"Decoupling spectrum 在 LLaMA 上部分复现\\\"—— spectrum 的存在确认（catastrophic endpoint 存在），但 exact severity 不同。\\nRSFT 增益 +2.5pp 在 cross-family 上保持正向，但低于 Qwen3-4B 的 ~5pp，部分因为 LLaMA 的 SFT 基线已经更高（8B 参数），RSFT 的边际改进空间更小。\\n\"\n  },\n  {\n    \"name\": \"CED vs flat-NLI 5-Seed Significance Test\",\n    \"description\": \"补充第 5 seed (s46) 的 CED RSFT 和 flat-NLI RSFT 训练+评估，完成 5-seed paired t-test。 当前 4 seeds 已显示 flat-NLI mean (ign_f1=0.4484) ≥ CED mean (0.4466)。\\n\",\n    \"results\": {\n      \"ced_s46_ign_f1\": 0.445,\n      \"flat_nli_s46_ign_f1\": 0.446,\n      \"ced_5seed_ign_f1_values\": [\n        0.4423,\n        0.4512,\n        0.4511,\n        0.4416,\n        0.445\n      ],\n      \"ced_5seed_mean\": 0.4462,\n      \"ced_5seed_std\": 0.0043,\n      \"flat_nli_5seed_ign_f1_values\": [\n        0.4448,\n        0.4503,\n        0.4521,\n        0.4462,\n        0.446\n      ],\n      \"flat_nli_5seed_mean\": 0.4479,\n      \"flat_nli_5seed_std\": 0.003,\n      \"mean_difference\": -0.0017,\n      \"paired_t_statistic\": -1.16,\n      \"paired_t_p_value\": 0.31,\n      \"cohens_d\": -0.45,\n      \"ced_5seed_rel_f1_mean\": 0.4575,\n      \"flat_nli_5seed_rel_f1_mean\": 0.4583,\n      \"rel_f1_paired_p\": 0.42,\n      \"ced_5seed_evi_f1_mean\": 0.8115,\n      \"flat_nli_5seed_evi_f1_mean\": 0.8098,\n      \"evi_f1_paired_p\": 0.38\n    },\n    \"tables\": [\n      {\n        \"name\": \"Table 2: CED vs flat-NLI Ablation (5-Seed Dev Set)\",\n        \"columns\": [\n          \"Scoring\",\n          \"Seed\",\n          \"Ign-F1\",\n          \"rel_f1\",\n          \"evi_f1\",\n          \"EDCR\"\n        ],\n        \"rows\": [\n          [\n            \"CED\",\n            \"s42\",\n            44.23,\n            0.4517,\n            0.8175,\n            0.6569\n          ],\n          [\n            \"CED\",\n            \"s43\",\n            45.12,\n            0.4601,\n            0.8063,\n            0.6542\n          ],\n          [\n            \"CED\",\n            \"s44\",\n            45.11,\n            0.4621,\n            0.805,\n            0.635\n          ],\n          [\n            \"CED\",\n            \"s45\",\n            44.16,\n            0.4514,\n            0.8174,\n            0.655\n          ],\n          [\n            \"CED\",\n            \"s46\",\n            44.5,\n            0.457,\n            0.81,\n            0.648\n          ],\n          [\n            \"CED\",\n            \"mean±std\",\n            \"44.62±0.43\",\n            \"0.4565±0.004\",\n            \"81.12±0.6\",\n            \"0.650±0.009\"\n          ],\n          [\n            \"flat-NLI\",\n            \"s42\",\n            44.48,\n            0.4535,\n            0.8039,\n            0.6458\n          ],\n          [\n            \"flat-NLI\",\n            \"s43\",\n            45.03,\n            0.4586,\n            0.8113,\n            0.6552\n          ],\n          [\n            \"flat-NLI\",\n            \"s44\",\n            45.21,\n            0.4615,\n            0.8131,\n            0.6458\n          ],\n          [\n            \"flat-NLI\",\n            \"s45\",\n            44.62,\n            0.4551,\n            0.8154,\n            0.6521\n          ],\n          [\n            \"flat-NLI\",\n            \"s46\",\n            44.6,\n            0.4555,\n            0.81,\n            0.65\n          ],\n          [\n            \"flat-NLI\",\n            \"mean±std\",\n            \"44.79±0.30\",\n            \"0.4568±0.003\",\n            \"80.87±0.5\",\n            \"0.650±0.004\"\n          ],\n          [\n            \"\",\n            \"p-value (paired t)\",\n            0.31,\n            0.42,\n            0.38,\n            0.95\n          ]\n        ]\n      },\n      {\n        \"name\": \"Table 2b: RSFT Scoring Method Comparison (Summary)\",\n        \"columns\": [\n          \"Scoring\",\n          \"Mean Ign-F1\",\n          \"vs SFT Δ\",\n          \"vs unfiltered RSFT Δ\",\n          \"p vs flat-NLI\"\n        ],\n        \"rows\": [\n          [\n            \"CED (contrastive)\",\n            \"44.62\",\n            \"+4.88pp\",\n            \"—\",\n            \"0.31 (n.s.)\"\n          ],\n          [\n            \"flat-NLI (non-contrastive)\",\n            \"44.79\",\n            \"+5.05pp\",\n            \"—\",\n            \"ref\"\n          ],\n          [\n            \"top_k=3 (CED, 1 seed)\",\n            \"43.64\",\n            \"+3.90pp\",\n            \"—\",\n            \"—\"\n          ],\n          [\n            \"SFT baseline\",\n            \"39.74\",\n            \"—\",\n            \"—\",\n            \"—\"\n          ]\n        ]\n      }\n    ],\n    \"figures\": [],\n    \"analysis\": \"CED vs flat-NLI 不显著确认（p=0.31），C3 调整为：NLI-based scoring 整体有效（+4.9pp vs SFT）， CED 和 flat-NLI 效果相当。Contrastive margin 的理论动机成立但 downstream 增益不显著。 Ablation 叙事转向 top_k selection precision（k=1 >> k=3，Δ ign_f1 -1.36pp）， 论证 RSFT 成功的关键是 strict quality filtering 而非特定 scoring function。 CED 保留在方法描述中但降级为 \\\"one practical choice\\\"。 如果审稿人追问 CED 的必要性，应回应：CED 仍有独立价值作为 reranker（test ign_f1=45.8， 最优推理方案）和 EDCR 诊断指标的计算基础。\\n\\n当前 4-seed 数据已清晰暗示此结果：CED 4-seed mean ign_f1=0.4466，flat-NLI 4-seed mean=0.4484， 差异仅 0.18pp 且方向不利于 CED。第 5 seed 不会逆转趋势——即使 CED s46 高于 flat-NLI s46， 累积差异的方差过大（seed-to-seed 波动 ~0.9pp），5 seeds 的统计 power 不足以检测 <0.5pp 的差异。\\np=0.31 远大于 0.05 甚至 0.10，CED 的 contrastive margin 在统计意义上不优于 flat-NLI 的 朴素 NLI 打分。根本原因：CED 的 hard negative contrastive 设计确实提供更 informative 的信号 （per-sample scoring 质量更高），但 flat-NLI 的 simplicity 在 aggregation 后达到类似效果—— flat-NLI 虽然 per-sample 区分度低，但在 top_k=1 严格筛选下，高分样本的质量与 CED 无实质差异。\\nCED 在 evi_f1 上微弱领先（0.8115 vs 0.8098），支持其 evidence quality scoring 的方向性有效， 但不足以构成独立贡献声称。\\n叙事调整：CED 降级为 \\\"one effective scoring function among NLI-based alternatives\\\"。 Ablation table 保留但重新聚焦：\\\"Both CED and flat-NLI substantially improve over unfiltered RSFT (Δ ~4-5pp vs SFT baseline), demonstrating the critical role of NLI-based quality filtering in RSFT. The choice between CED and flat-NLI is not statistically significant (p=0.31), suggesting that the contrastive margin, while theoretically motivated, does not translate to measurable downstream gains.\\\"\\n\"\n  }\n]",
+      "numLines": 694,
+      "startLine": 1,
+      "totalLines": 694
+    }
+  },
+  "sourceToolAssistantUUID": "fb278e58-13a4-48b8-a1ef-226dacf55550",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T11:28:45.814Z_
+
+<details><summary>↩ Tool result · `toolu_01Fz3qjxHe6urXqVesdLg3FH`</summary>
+
+```text
+1	# Paper Framing — FREIGE
+2	
+3	> **状态**: POST-MVP + DREAM v2 完成（D047 分析）
+4	> **最后更新**: 2026-05-16
+5	> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成
+6	> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3
+7	
+8	## Target Venue
+9	
+10	- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)
+11	- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)
+12	
+13	## Core Insight
+14	
+15	LLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。
+16	
+17	我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。
+18	
+19	CED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。
+20	
+21	## Story Arc
+22	
+23	1. **Problem**: LLM DocRE 无证据 → 部署障碍
+24	2. **New task**: evidence-grounded DocRE — 同时生成关系和证据
+25	3. **Cost of faithfulness**: evidence generation 代价 ~7pp Ign-F1（no-evidence 47.36 vs evidence-SFT 40.36）——这是 faithfulness 的真实成本
+26	4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)
+27	5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）
+28	6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 中 multi-objective competition 的通用梯度（intra-task trade-off，非 inter-task forgetting），QLoRA 是 catastrophic amplifier
+29	7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取
+30	8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）
+31	9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）
+32	
+33	## Core Claims (reframed after Dream v1, updated D068/D069/D070/D071/D072)
+34	
+35	### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力
+36	- FREIGE 是首个**基于生成式 LLM** 的 evidence-grounded DocRE 方法（⚠️ 必须始终保持 "generative LLM" 限定词——SAIS 已做 encoder-based evidence retrieval + DocRE）
+37	- **关键区分 (Reviewer warning)**：encoder-based evidence *retrieval*（SAIS, DREEAM — 分类哪些句子是证据，evidence supervision 提升 RE）vs generative evidence *production*（FREIGE — LLM 生成证据文本，额外生成负担导致 ~7pp 代价）。论文 Related Work 必须精准讨论此对比，否则审稿人会问 "为什么 SAIS 说 evidence 有用，你说 evidence 有害"
+38	- **Evidence generation tax**: no-evidence SFT Ign-F1=47.36 vs evidence-SFT 40.36，代价 ~7pp（plan_014 ✅）
+39	- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）
+40	- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）
+41	- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）
+42	- **RSFT 方法论定位**：诚实承认 RSFT 是 STaR (NeurIPS 2022) 的单轮变体 + evidence quality scoring。创新点在于将 STaR-like self-improvement 应用于 evidence-grounded DocRE + CED/NLI 作为 domain-specific quality filter，而非框架本身
+43	- **Evaluation caveat** (Limitations): GenRES 指出 exact match F1 低估 generative RE，FREIGE 所有 eval 用 exact match，应承认此局限（对所有方法同等适用，相对比较有效）
+44	
+45	### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）
+46	- **Decoupling spectrum**: 优化强度越大，decoupling 越严重
+47	  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling
+48	  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）
+49	  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）
+50	  - RSFT: none — 无 decoupling，唯一有效路线
+51	- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）
+52	- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关
+53	- 三档 Dream 审稿均认为此发现\"genuinely novel and striking\"
+54	- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）
+55	
+56	### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量
+57	- CED 和 flat-NLI 都优于 random/no scoring
+58	- CED vs flat-NLI 的差异需统计验证（Dream 报告 p=0.08/0.38/0.12 不显著）
+59	- **Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为"one possible scoring function"
+60	- **行动**: 5+ seeds for significance testing
+61	- **top_k selection ablation (k=1 vs k=3)**:
+62	  - k=1 (best-of-8) 优于 k=3 (top3-of-8)，CED scoring precision 随 k 增大下降
+63	  - k=1 均值 (3 seeds s42/s43/s44): Ign-F1=45.00, rel_f1=0.4596, evi_f1=81.43, EDCR=0.6434
+64	  - k=3 (1 seed, reeval_rsft_topk3): Ign-F1=43.64, rel_f1=0.4454, evi_f1=80.88, EDCR=0.6635
+65	  - Δ (k=3 vs k=1 mean): Ign-F1 **-1.36pp**, rel_f1 **-1.42pp**, evi_f1 **-0.55pp**, EDCR +0.02
+66	  - 训练数据质量下降: k=1 mean_f1=0.6157, mean_ced=0.6683 → k=3 mean_f1=0.5761, mean_ced=0.6205（来源: mvp2_rsft_ced_scoring / mvp2_rsft_ced_scoring_topk3_r2）
+67	  - 训练集规模: k=1 选出 2718 样本 (12.4%), k=3 选出 8037 样本 (37%), 数据量 ×2.96 但质量下降抵消数量优势
+68	  - **叙事**: 低排名 response 引入噪声——rank 2-3 样本的 F1 和 CED 分数均显著低于 rank 1，扩大训练集规模无法补偿数据质量的稀释。这表明 RSFT 的关键不在数据量而在 scoring precision
+69	  - **注**: k=3 仅 1 seed，差异方向一致但尚不具备统计显著性；作为 ablation table 中的辅助行呈现，不作为独立 claim
+70	
+71	### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）
+72	- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应
+73	  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量
+74	  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）
+75	- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅
+76	  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**
+77	  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美
+78	  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦
+79	  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)
+80	  - 93 relation types 分析（≥5 样本），76 个有非零数据
+81	- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补
+82	- **仍需**: 100 例人工标注验证（RC6）
+83	
+84	## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1)
+85	
+86	| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |
+87	|--------|--------|------|-------------------|---------------|---------------|------|
+88	| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |
+89	| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |
+90	| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |
+91	| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |
+92	| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |
+93	| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |
+94	| RSFT CED k=3 | 43.64 | 44.54 | +3.28pp | 80.88 | — | 0.6635 |
+95	| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |
+96	| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |
+97	| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |
+98	| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |
+99	| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |
+100	| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |
+101	| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |
+102	| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |
+103	
+104	注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。RSFT CED k=3 数据来源: reeval_rsft_topk3 (ign_f1_corrected=true)。
+105	
+106	## Anticipated Reviewer Concerns (updated from Dream, D068/D069)
+107	
+108	### RC1: "Online RL" 标题过度声称（Dream 三档一致 Critical）
+109	- ~~标题和 claim 收窄到 "GRPO fails for DocRE"~~
+110	- **D068/D069 修正**: 重新定位为 "RL optimization pressure correlates with decoupling severity"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度
+111	- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）
+112	
+113	### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）
+114	- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）
+115	- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比
+116	
+117	### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）
+118	- 5+ seeds 统计检验；如不显著 → CED 降级
+119	
+120	### RC4: RSFT 不新颖
+121	- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR
+122	- 诚实定位 RSFT 为 STaR (NeurIPS 2022) 单轮变体 + domain-specific quality filter
+123	
+124	### RC12: SAIS 说 evidence 有用，为何 FREIGE 说 evidence 有害？（文献审查 2026-05-16）
+125	- **关键区分**: discriminative evidence *retrieval*（SAIS/DREEAM — 分类句子是否为证据，作为监督信号提升 RE）vs generative evidence *production*（FREIGE — LLM 生成完整证据文本，额外生成负担导致 ~7pp 代价）
+126	- SAIS 的 evidence supervision 是分类任务，不增加输出长度；FREIGE 的 evidence generation 显著增加生成序列长度，模型需分配容量同时完成 RE + evidence 生成
+127	- **应对**: Related Work 中精准讨论此对比，明确 FREIGE 研究的是 *generative production* 设定下的代价，与 *retrieval* 设定下的增益不矛盾——两者揭示了 evidence 在不同范式下的不同角色
+128	
+129	### RC13: 单模型单数据集泛化性不足（D077 scope 扩展）
+130	- plan_006: Qwen3-1.7B / 8B model size ablation
+131	- plan_016: LLaMA-3.1-8B cross-family validation
+132	- plan_007: Re-DocRED cross-dataset evaluation
+133	
+134	### RC5: 评测可比性（D041）
+135	- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标
+136	
+137	### RC6: EDCR 缺人工验证
+138	- 100 例小规模标注
+139	
+140	### RC7: Missing DPO/PPO（Dream 两档 Major）
+141	- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）
+142	
+143	### RC8: Dev-test degradation
+144	- 观察项，等 test set 数据
+145	
+146	### RC9: 连接 reward overoptimization 文献
+147	- 显式引用 Gao et al. 2023
+148	
+149	### RC10: Post-hoc evidence retrieval baseline
+150	- SFT + BM25 evidence retrieval
+151	
+152	### RC11: "RL 不遗忘" 文献与 Claim 2 的张力（文献扫描 2026-05-16）
+153	- 近期多篇论文（arXiv 2507.05386, 2506.23508, 2509.04259）论证 RL fine-tuning 天然缓解 catastrophic forgetting
+154	- **关键区分**: FREIGE 的 decoupling 是 **intra-task multi-objective trade-off**（RE 抽取 vs evidence 生成两个优化目标的竞争），不是 **inter-task forgetting**（丢失预训练知识）。两者机制不同
+155	- bf16 GRPO 的 mild decoupling（-2pp）恰好印证这一点：模型没有忘记"怎么做 IE"，而是在 evidence reward 压力下偏移了 RE-evidence 的资源分配
+156	- **应对**: Related Work / Discussion 中显式回应这组文献，区分 intra-task trade-off vs inter-task forgetting
+157	- **QuRL/QaRL 文献支撑 Claim 2**: QuRL 发现 quantized vs full-precision actor divergence 在长训练中指数增长（直接支撑 QLoRA amplification 叙事）；QaRL 的 error token failure mode 与 QLoRA GRPO garbled evidence 吻合
+158	
+159	## Key Baselines (12+)
+160	
+161	1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）
+162	1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）
+163	2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）
+164	3. **RSFT CED**: CED scored RSFT（主方法）
+165	4. **CED-as-reranker**: 推理时 CED 重排（无训练）
+166	5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）
+167	6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline
+168	7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）
+169	8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）
+170	9. **DREEAM**: encoder evidence SOTA
+171	10. **SAIS**: encoder evidence baseline
+172	11. **DocKS-RAG**: extraction SOTA（无 evidence）
+173	12. **LMRC**: generative LLM SOTA（无 evidence）
+174	
+175	## Publishability Threshold (revised after Dream, D068/D069)
+176	
+177	- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）
+178	- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证
+179	- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）
+180	
+181	## Research Phase Priorities (revised after Dream v1)
+182	
+183	| Priority | 实验 | Claim | GPU-h |
+184	|----------|------|-------|-------|
+185	| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |
+186	| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |
+187	| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |
+188	| P0 | Test set evaluation | C1 | ~4h |
+189	| P0 | DREEAM baseline reproduction | C1 | ~8h |
+190	| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |
+191	| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |
+192	| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |
+193	| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |
+194	| P1 | EDCR human validation | C4 | API |
+195	| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |
+196	| P1 | CED-as-reranker (running) | C1 | ~6h |
+197	| P1 | Model size ablation | RC | ~24h |
+198	| P1 | Re-DocRED extension | RC | ~12h |
+199	| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |
+200	| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |
+201	| P2 | Advantage variance measurement | C2 | CPU |
+202	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf9eabd4-33fa-42e2-8575-f01cd0c0c5f5",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "17b5b95f-1242-41ed-893b-7b992e037243",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper_framing.md",
+      "content": "# Paper Framing — FREIGE\n\n> **状态**: POST-MVP + DREAM v2 完成（D047 分析）\n> **最后更新**: 2026-05-16\n> **Dream v1**: best=2.5, median=3.0, worst=2.5 → reframe 完成\n> **Dream v2**: best=3.0, median=2.5, worst=2.5 → best 提升但 median 下降，未达标。关键路径：plan_011 bf16 GRPO eval + structural fixes → re-dream v3\n\n## Target Venue\n\n- Primary: **EMNLP 2026 Main** (ARR July cycle, ~July 15-25 → commit EMNLP Aug/Sep)\n- Fallback: AAAI 2027 (abstract July 25, paper Aug 1)\n\n## Core Insight\n\nLLM-based document-level IE 已逼近 encoder SOTA 的抽取精度，但零方法能生成可验证证据。本文提出 **evidence-grounded DocRE** 作为新任务范式：LLM 同时输出关系三元组和支撑证据句。\n\n我们系统性地探索了 online RL (GRPO) 、offline preference optimization (DPO) 和 offline RL (RSFT) 三条技术路线。关键发现：**RL optimization pressure 与 evidence-extraction decoupling severity 正相关**——优化强度越大，evidence 质量提升的同时抽取能力退化越严重。QLoRA 放大至 catastrophic（rel_f1<0.02），bf16 GRPO 从 0.4549 退化至 ~0.434（mild, -2pp），DPO 呈 gradual 退化（1ep→3ep rel_f1 从 0.4034→0.3429），RSFT 无 decoupling。\n\nCED (Contrastive Evidence Discrimination) 是一种 NLI-based 候选筛选函数，通过文档内 hard negative 对比评估 evidence 质量。CED 作为 RSFT 的 scoring function 之一进行测试，其相对于 flat-NLI 的优势需要通过充分的统计检验验证。\n\n## Story Arc\n\n1. **Problem**: LLM DocRE 无证据 → 部署障碍\n2. **New task**: evidence-grounded DocRE — 同时生成关系和证据\n3. **Cost of faithfulness**: evidence generation 代价 ~7pp Ign-F1（no-evidence 47.36 vs evidence-SFT 40.36）——这是 faithfulness 的真实成本\n4. **Exploration**: 系统性比较 online RL (GRPO) vs offline preference (DPO) vs offline RL (RSFT)\n5. **Key finding**: evidence-extraction decoupling — RL optimization pressure 与 decoupling severity 正相关，形成连续谱系（GRPO-QLoRA catastrophic > GRPO-bf16 mild > DPO gradual > RSFT none）\n6. **QLoRA amplification**: QLoRA 量化将 mild decoupling 放大至 catastrophic forgetting——decoupling 是 RL-for-IE 中 multi-objective competition 的通用梯度（intra-task trade-off，非 inter-task forgetting），QLoRA 是 catastrophic amplifier\n7. **What works**: RSFT with NLI-based scoring 是唯一有效路线——提升 evidence 质量而不牺牲抽取\n8. **Best practical solution**: CED reranker 恢复 97% 的 evidence 代价，同时保留高质量 evidence（evi_f1=0.8188）\n9. **Diagnostic tool**: EDCR 双层诊断——方法级量化 decoupling（与 Claim 2 呼应），per-relation 级揭示 evi_f1 不捕捉的 relation-type 难度差异（D070 ✅）\n\n## Core Claims (reframed after Dream v1, updated D068/D069/D070/D071/D072)\n\n### Claim 1 (Main): Evidence-grounded DocRE 是可行的新能力\n- FREIGE 是首个**基于生成式 LLM** 的 evidence-grounded DocRE 方法（⚠️ 必须始终保持 \"generative LLM\" 限定词——SAIS 已做 encoder-based evidence retrieval + DocRE）\n- **关键区分 (Reviewer warning)**：encoder-based evidence *retrieval*（SAIS, DREEAM — 分类哪些句子是证据，evidence supervision 提升 RE）vs generative evidence *production*（FREIGE — LLM 生成证据文本，额外生成负担导致 ~7pp 代价）。论文 Related Work 必须精准讨论此对比，否则审稿人会问 \"为什么 SAIS 说 evidence 有用，你说 evidence 有害\"\n- **Evidence generation tax**: no-evidence SFT Ign-F1=47.36 vs evidence-SFT 40.36，代价 ~7pp（plan_014 ✅）\n- RSFT 在 4/4 配置下均超过 SFT baseline（Ign-F1 +3.3~5.5pp）\n- **CED reranker 是最优实用方案**: rel_f1=0.4864（仅低于 no-evidence 0.29pp），evi_f1=0.8188（plan_005 ✅）\n- 需要 DREEAM-protocol 对齐的 Evi-F1 对比（D041 在处理中）\n- **RSFT 方法论定位**：诚实承认 RSFT 是 STaR (NeurIPS 2022) 的单轮变体 + evidence quality scoring。创新点在于将 STaR-like self-improvement 应用于 evidence-grounded DocRE + CED/NLI 作为 domain-specific quality filter，而非框架本身\n- **Evaluation caveat** (Limitations): GenRES 指出 exact match F1 低估 generative RE，FREIGE 所有 eval 用 exact match，应承认此局限（对所有方法同等适用，相对比较有效）\n\n### Claim 2 (Core finding): RL optimization pressure 与 evidence-extraction decoupling severity 正相关（D068/D069 修正）\n- **Decoupling spectrum**: 优化强度越大，decoupling 越严重\n  - GRPO QLoRA: catastrophic（rel_f1=0.0138, evi_f1=0.850, EDCR=0.99）— QLoRA 放大 decoupling\n  - GRPO bf16: mild（rel_f1 从 0.4549→~0.434, -2pp; step_30=0.434, step_50=0.4276, step_70=0.4341）— 退化可控但持续（D065/D066）\n  - DPO bf16 1ep→3ep: gradual（Ign-F1 38.88→TBD, rel_f1 0.4034→0.3429）— 随训练渐进退化（D067/D068）\n  - RSFT: none — 无 decoupling，唯一有效路线\n- **QLoRA 是 catastrophic amplifier，不是 root cause**: bf16 GRPO 仅 mild decoupling（-2pp），QLoRA 放大至 catastrophic（-39pp）（D054/D065/D066）\n- **Decoupling 是 RL-for-IE 的通用梯度**: 跨方法（GRPO/DPO）、跨量化策略（QLoRA/bf16）一致出现，严重程度与优化压力正相关\n- 三档 Dream 审稿均认为此发现\\\"genuinely novel and striking\\\"\n- **已完成**: GRPO G=8 bf16 确认 mild decoupling（plan_011 ✅）; DPO 1ep/3ep 确认 gradual decoupling（plan_012 ✅）\n\n### Claim 3 (Ablation): NLI-based scoring 提升 RSFT 质量\n- CED 和 flat-NLI 都优于 random/no scoring\n- CED vs flat-NLI 的差异需统计验证（Dream 报告 p=0.08/0.38/0.12 不显著）\n- **Critical**: 如果 CED 不显著优于 flat-NLI → CED 降级为\"one possible scoring function\"\n- **行动**: 5+ seeds for significance testing\n- **top_k selection ablation (k=1 vs k=3)**:\n  - k=1 (best-of-8) 优于 k=3 (top3-of-8)，CED scoring precision 随 k 增大下降\n  - k=1 均值 (3 seeds s42/s43/s44): Ign-F1=45.00, rel_f1=0.4596, evi_f1=81.43, EDCR=0.6434\n  - k=3 (1 seed, reeval_rsft_topk3): Ign-F1=43.64, rel_f1=0.4454, evi_f1=80.88, EDCR=0.6635\n  - Δ (k=3 vs k=1 mean): Ign-F1 **-1.36pp**, rel_f1 **-1.42pp**, evi_f1 **-0.55pp**, EDCR +0.02\n  - 训练数据质量下降: k=1 mean_f1=0.6157, mean_ced=0.6683 → k=3 mean_f1=0.5761, mean_ced=0.6205（来源: mvp2_rsft_ced_scoring / mvp2_rsft_ced_scoring_topk3_r2）\n  - 训练集规模: k=1 选出 2718 样本 (12.4%), k=3 选出 8037 样本 (37%), 数据量 ×2.96 但质量下降抵消数量优势\n  - **叙事**: 低排名 response 引入噪声——rank 2-3 样本的 F1 和 CED 分数均显著低于 rank 1，扩大训练集规模无法补偿数据质量的稀释。这表明 RSFT 的关键不在数据量而在 scoring precision\n  - **注**: k=3 仅 1 seed，差异方向一致但尚不具备统计显著性；作为 ablation table 中的辅助行呈现，不作为独立 claim\n\n### Claim 4 (Diagnostic): EDCR 双层诊断价值（D070/D072）\n- **Layer 1 — 方法级**: EDCR 量化 evidence-extraction decoupling，与 Claim 2 spectrum 呼应\n  - 方法级 EDCR 与 rel_f1 Spearman ρ=-0.965（plan_003 ✅）——本质是 decoupling 的度量\n  - EDCR 识别病理模型（GRPO QLoRA: EDCR≈1.0）\n- **Layer 2 — per-relation-type**: EDCR 提供 evi_f1 不捕捉的 relation-type 诊断信息 ✅\n  - per-relation ρ(EDCR, evi_f1) = **-0.064** (p=0.58) → **完全独立于 evi_f1**\n  - per-relation ρ(EDCR, rel_f1) = -0.793 (p<0.001) → 与 rel_f1 强相关但非完美\n  - per-relation ρ(evi_f1, rel_f1) = -0.013 (p=0.91) → evidence 质量与抽取能力在 relation type 间完全解耦\n  - 典型案例：date_of_birth (EDCR=0.118, 高 faithful) vs head_of_government (EDCR=0.956, 高 decoupled)\n  - 93 relation types 分析（≥5 样本），76 个有非零数据\n- **论文叙事**: EDCR 在方法级是 decoupling 度量工具（横向对比方法），在 relation 级是难度诊断工具（纵向定位薄弱 relation）——两层叙事互补\n- **仍需**: 100 例人工标注验证（RC6）\n\n## MVP Evidence Summary (D071: 主表报 Ign-F1，附录报 F1)\n\n| Config | Ign-F1 | F1 | Δ vs SFT (Ign-F1) | Evi-F1 (cond) | Evi-F1 (joint) | EDCR |\n|--------|--------|------|-------------------|---------------|---------------|------|\n| **SFT no-evidence** | **47.36** | 48.93 | **+7.00pp** | **—** | **—** | **—** |\n| SFT baseline (noquant) | 40.36 | 41.06 | — | 80.13 | 31.17 | 0.7118 |\n| **CED reranker** | **TBD** | 48.64 | **TBD** | **81.88** | — | **0.6156** |\n| RSFT CED s43 (best) | **45.85** | 46.83 | **+5.49pp** | 81.56 | 37.11 | 0.6388 |\n| RSFT CED s44 | 45.51 | 46.55 | +5.15pp | 80.87 | 37.13 | 0.6350 |\n| RSFT CED s42 | 43.63 | 44.49 | +3.27pp | 81.87 | 34.68 | 0.6565 |\n| RSFT CED k=3 | 43.64 | 44.54 | +3.28pp | 80.88 | — | 0.6635 |\n| RSFT r2a (1ep) | 44.01 | 44.94 | +3.65pp | 81.08 | 35.09 | 0.6641 |\n| RSFT r2b (1ep) | 44.10 | 44.93 | +3.74pp | 81.28 | 34.90 | 0.6609 |\n| flat-NLI s42 | 44.49 | 45.39 | +4.13pp | 80.43 | — | 0.6431 |\n| flat-NLI s43 (reeval) | TBD | 45.23 | TBD | 81.58 | — | 0.6505 |\n| DPO bf16 1ep | 38.88 | 40.34 | -1.48pp | 80.88 | — | 0.7139 |\n| DPO bf16 3ep | TBD | 34.29 | TBD | — | — | — |\n| GRPO bf16 G=8 (best step) | 45.59 | ~43.4 | +5.23pp | 80.86 | — | — |\n| GRPO QLoRA (lr=5e-6) | TBD | 1.38 | TBD | 85.00 | — | 0.9900 |\n\n注：Evi-F1 以百分比显示（×100）。Ign-F1 修正后排名无实质变化（仅 r2a/r2b 互换，差 0.09pp）。TBD 项等待 metrics_v2.json 补算。GRPO bf16 Ign-F1=45.59 > F1=43.4 因 train triples 过滤效应。RSFT CED k=3 数据来源: reeval_rsft_topk3 (ign_f1_corrected=true)。\n\n## Anticipated Reviewer Concerns (updated from Dream, D068/D069)\n\n### RC1: \"Online RL\" 标题过度声称（Dream 三档一致 Critical）\n- ~~标题和 claim 收窄到 \"GRPO fails for DocRE\"~~\n- **D068/D069 修正**: 重新定位为 \"RL optimization pressure correlates with decoupling severity\"——不是 GRPO 特有问题，而是 RL-for-IE 的通用梯度\n- DPO 数据支撑 decoupling spectrum（gradual decay confirms the pattern）\n\n### RC2: GRPO G=4 太小 + LoRA confound（Dream 三档一致 Major）\n- GRPO G=8 bf16 实验 ✅ — 确认 mild decoupling（-2pp），QLoRA 是 catastrophic amplifier（D065/D066）\n- LoRA confound 已解决：bf16 LoRA vs QLoRA 直接对比\n\n### RC3: CED 不显著优于 flat-NLI（Dream 三档一致 Major）\n- 5+ seeds 统计检验；如不显著 → CED 降级\n\n### RC4: RSFT 不新颖\n- 不声称 RSFT 是贡献；贡献在于任务定义 + decoupling 发现 + EDCR\n- 诚实定位 RSFT 为 STaR (NeurIPS 2022) 单轮变体 + domain-specific quality filter\n\n### RC12: SAIS 说 evidence 有用，为何 FREIGE 说 evidence 有害？（文献审查 2026-05-16）\n- **关键区分**: discriminative evidence *retrieval*（SAIS/DREEAM — 分类句子是否为证据，作为监督信号提升 RE）vs generative evidence *production*（FREIGE — LLM 生成完整证据文本，额外生成负担导致 ~7pp 代价）\n- SAIS 的 evidence supervision 是分类任务，不增加输出长度；FREIGE 的 evidence generation 显著增加生成序列长度，模型需分配容量同时完成 RE + evidence 生成\n- **应对**: Related Work 中精准讨论此对比，明确 FREIGE 研究的是 *generative production* 设定下的代价，与 *retrieval* 设定下的增益不矛盾——两者揭示了 evidence 在不同范式下的不同角色\n\n### RC13: 单模型单数据集泛化性不足（D077 scope 扩展）\n- plan_006: Qwen3-1.7B / 8B model size ablation\n- plan_016: LLaMA-3.1-8B cross-family validation\n- plan_007: Re-DocRED cross-dataset evaluation\n\n### RC5: 评测可比性（D041）\n- DREEAM-protocol Evi-F1；conditional Evi-F1 作为辅助指标\n\n### RC6: EDCR 缺人工验证\n- 100 例小规模标注\n\n### RC7: Missing DPO/PPO（Dream 两档 Major）\n- DPO experiment ✅ — 结果确认 decoupling spectrum（D067/D068）\n\n### RC8: Dev-test degradation\n- 观察项，等 test set 数据\n\n### RC9: 连接 reward overoptimization 文献\n- 显式引用 Gao et al. 2023\n\n### RC10: Post-hoc evidence retrieval baseline\n- SFT + BM25 evidence retrieval\n\n### RC11: \"RL 不遗忘\" 文献与 Claim 2 的张力（文献扫描 2026-05-16）\n- 近期多篇论文（arXiv 2507.05386, 2506.23508, 2509.04259）论证 RL fine-tuning 天然缓解 catastrophic forgetting\n- **关键区分**: FREIGE 的 decoupling 是 **intra-task multi-objective trade-off**（RE 抽取 vs evidence 生成两个优化目标的竞争），不是 **inter-task forgetting**（丢失预训练知识）。两者机制不同\n- bf16 GRPO 的 mild decoupling（-2pp）恰好印证这一点：模型没有忘记\"怎么做 IE\"，而是在 evidence reward 压力下偏移了 RE-evidence 的资源分配\n- **应对**: Related Work / Discussion 中显式回应这组文献，区分 intra-task trade-off vs inter-task forgetting\n- **QuRL/QaRL 文献支撑 Claim 2**: QuRL 发现 quantized vs full-precision actor divergence 在长训练中指数增长（直接支撑 QLoRA amplification 叙事）；QaRL 的 error token failure mode 与 QLoRA GRPO garbled evidence 吻合\n\n## Key Baselines (12+)\n\n1. **SFT-only**: Qwen3-4B + LoRA SFT（with evidence）\n1b. **SFT no-evidence**: Qwen3-4B + LoRA SFT（无 evidence，upper bound ablation）\n2. **RSFT flat-NLI**: flat-NLI scored RSFT（核心 ablation）\n3. **RSFT CED**: CED scored RSFT（主方法）\n4. **CED-as-reranker**: 推理时 CED 重排（无训练）\n5. **DPO+CED**: offline preference learning — gradual decoupling（D067/D068）\n6. **GRPO+CED (QLoRA, G=4)**: catastrophic decoupling baseline\n7. **GRPO+CED (bf16, G=8)**: mild decoupling — QLoRA confound 排除（D065/D066）\n8. **Post-hoc retrieval**: SFT + BM25 evidence（NEW）\n9. **DREEAM**: encoder evidence SOTA\n10. **SAIS**: encoder evidence baseline\n11. **DocKS-RAG**: extraction SOTA（无 evidence）\n12. **LMRC**: generative LLM SOTA（无 evidence）\n\n## Publishability Threshold (revised after Dream, D068/D069)\n\n- **必要条件**: (1) RSFT 在 test set 上 Ign-F1 显著 > SFT (2) DREEAM-protocol Evi-F1 可报告 (3) Decoupling spectrum 有完整数据支撑（GRPO QLoRA/bf16 + DPO + RSFT）\n- **充分条件**: 上述 + CED 显著 > flat-NLI + EDCR 人工验证\n- **Failure pivot**: decoupling spectrum 不成立（bf16 GRPO 也 catastrophic）→ scope 大幅缩减。**已排除**: bf16 GRPO 确认 mild（D065/D066）\n\n## Research Phase Priorities (revised after Dream v1)\n\n| Priority | 实验 | Claim | GPU-h |\n|----------|------|-------|-------|\n| P0 | flat-NLI RSFT ablation (5 seeds) | C3 | ~25h |\n| P0 | CED RSFT additional seeds (→5 total) | C3 | ~10h |\n| P0 | DREEAM-protocol Evi-F1 对齐 | C1 | CPU |\n| P0 | Test set evaluation | C1 | ~4h |\n| P0 | DREEAM baseline reproduction | C1 | ~8h |\n| ~~P0~~ | ~~GRPO G=8 experiment~~ ✅ | C2 | ~16h |\n| ~~P0~~ | ~~DPO+CED experiment~~ ✅ | C2 | ~12h |\n| ~~P0~~ | ~~EDCR per-relation analysis (D070)~~ ✅ | C4 | CPU |\n| ~~P0~~ | ~~Ign-F1 bugfix + data sync (D071)~~ ✅ | ALL | CPU |\n| P1 | EDCR human validation | C4 | API |\n| P1 | Post-hoc evidence retrieval baseline | C1 | ~4h |\n| P1 | CED-as-reranker (running) | C1 | ~6h |\n| P1 | Model size ablation | RC | ~24h |\n| P1 | Re-DocRED extension | RC | ~12h |\n| ~~P0~~ | ~~GRPO forgetting dynamics figure (plan_009)~~ ✅ | C2 | ~2h |\n| ~~P0~~ | ~~SFT-without-evidence ablation (plan_014)~~ ✅ | C1 | ~8h |\n| P2 | Advantage variance measurement | C2 | CPU |\n",
+      "numLines": 202,
+      "startLine": 1,
+      "totalLines": 202
+    }
+  },
+  "sourceToolAssistantUUID": "cf9eabd4-33fa-42e2-8575-f01cd0c0c5f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-16T11:28:45.808Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Fz3qjxHe6urXqVesdLg3FH`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "68633594-3224-447b-bc6e-5fb9794339bd",
+  "isSidechain": false,
+  "requestId": "req_011Cb6AmjLESSGDwxp989nZx",
+  "type": "assistant",
+  "uuid": "cf9eabd4-33fa-42e2-8575-f01cd0c0c5f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EQYKZ27BHKZUZPCTrkRqCm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11858,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 204,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11858,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 204,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 11858,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11858
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T105318 tier=median 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-i…",
+  "leafUuid": "17b5b95f-1242-41ed-893b-7b992e037243",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated paper from experiment data",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-16T11:29:01.857Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me write a comprehensive LaTeX paper based on the experiment data and paper framing. Let me organize the paper structure:
+
+1. Abstract
+2. Introduction
+3. Related Work
+4. Method (FREIGE framework)
+5. Experiments
+   - Setup
+   - Main Results (Table 1: Test Set)
+   - CED vs flat-NLI Ablation (Table 2)
+   - Cross-Scale Comparison (Table 3)
+   - Re-DocRED Cross-Dataset (Table 4)
+   - EDCR Human Validation (Table 5)
+   - Cross-Family Validation (Table 6, Table 7)
+6. Analysis / Discussion
+7. Conclusion
+8. Appendix (NLI Model Ablation, Systematic Disagreement)
+
+I'll now draft the full paper with the key claims: that evidence-grounded DocRE is feasible with RSFT outperforming SFT by 3 percentage points, that decoupling severity correlates with RL optimization pressure, and that while NLI-based scoring helps RSFT, CED performs comparably to flat-NLI. not significant)
+- C4: EDCR as diagnostic tool (method-level strong, per-relation moderate)
+
+Key numbers:
+- Evidence tax: ~7.5pp (test), ~7pp (dev)
+- RSFT vs SFT test: +3.0pp Ign-F1
+- CED reranker test: 45.8 Ign-F1
+- CED vs flat-NLI: p=0.31, not significant
+- EDCR human validation: method-level ρ=0.82, per-relation ρ=0.58
+- Cross-scale: 1.7B +1.9pp, 4B +4.9pp, 8B +2.8pp
+- Re-DocRED: +2.0pp
+- LLaMA: +2.5pp, GRPO QLoRA catastrophic
+
+Looking at the decoupling spectrum across different fine-tuning approaches, I see QLoRA causes catastrophic degradation while bf16 shows mild effects, DPO applies gradual changes, and RSFT has essentially no impact. Now I need to set up the output directory and write out the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17b5b95f-1242-41ed-893b-7b992e037243",
+  "isSidechain": false,
+  "requestId": "req_011Cb6An5WgG6UWLUK6Rddme",
+  "type": "assistant",
+  "uuid": "6d23146d-9bd0-471f-acd2-b11d70c500f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L5qarP2X1woshpnrxxtRi4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19812,
+      "cache_read_input_tokens": 23305,
+      "output_tokens": 695,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 695,
+          "cache_read_input_tokens": 23305,
+          "cache_creation_input_tokens": 19812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-16T11:29:01.862Z_
+
+Now I have all the data. Let me write the full paper.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d23146d-9bd0-471f-acd2-b11d70c500f5",
+  "isSidechain": false,
+  "requestId": "req_011Cb6An5WgG6UWLUK6Rddme",
+  "type": "assistant",
+  "uuid": "21e956c7-cd55-484b-a1f6-92ddf71a62c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L5qarP2X1woshpnrxxtRi4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19812,
+      "cache_read_input_tokens": 23305,
+      "output_tokens": 695,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 695,
+          "cache_read_input_tokens": 23305,
+          "cache_creation_input_tokens": 19812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T11:29:02.478Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Adc2xFGxttxkFJJ7rJpsxZ`</summary>
+
+```json
+{
+  "command": "mkdir -p /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median",
+  "description": "Create output directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21e956c7-cd55-484b-a1f6-92ddf71a62c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb6An5WgG6UWLUK6Rddme",
+  "type": "assistant",
+  "uuid": "7aa8ccfd-5484-4b3e-bcda-b130001a3901",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L5qarP2X1woshpnrxxtRi4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19812,
+      "cache_read_input_tokens": 23305,
+      "output_tokens": 695,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19812,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 695,
+          "cache_read_input_tokens": 23305,
+          "cache_creation_input_tokens": 19812,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19812
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-16T11:29:02.744Z_
+
+<details><summary>↩ Tool result · `toolu_01Adc2xFGxttxkFJJ7rJpsxZ`</summary>
+
+```text
+(Bash completed with no output)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7aa8ccfd-5484-4b3e-bcda-b130001a3901",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "70778304-1827-4e44-a929-44739fece62a",
+  "toolUseResult": {
+    "stdout": "",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": true
+  },
+  "sourceToolAssistantUUID": "7aa8ccfd-5484-4b3e-bcda-b130001a3901",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-16T11:32:16.795Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01JKR2QEosAcr4QRYhRDVAWE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex",
+  "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\n\\newcommand{\\ours}{\\textsc{Freige}}\n\\newcommand{\\edcr}{\\textsc{Edcr}}\n\\newcommand{\\ced}{\\textsc{Ced}}\n\n\\title{FREIGE: Faithful Relation Extraction with Evidence Generation\\\\---Decoupling, Diagnostics, and What Works}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n% ============================================================\n\\begin{abstract}\nLLM-based document-level relation extraction (DocRE) approaches encoder-based SOTA in extraction accuracy, yet no existing method produces verifiable evidence for its predictions. We propose \\textbf{evidence-grounded DocRE} as a new task: the model must simultaneously output relation triples and the supporting evidence sentences. We introduce \\ours{}, a framework that systematically explores three optimization routes---online RL (GRPO), offline preference learning (DPO), and rejection sampling fine-tuning (RSFT)---for this joint objective.\n\nOur central finding is the \\textbf{evidence--extraction decoupling spectrum}: RL optimization pressure positively correlates with the severity of a trade-off where evidence quality improves at the cost of extraction accuracy. GRPO with QLoRA amplifies this to catastrophic collapse (rel\\_F1$<$0.02 on Qwen3-4B, $<$0.08 on LLaMA-3.1-8B), bf16 GRPO shows mild degradation ($-$2pp), DPO exhibits gradual decay, while RSFT with NLI-based quality scoring avoids decoupling entirely, improving over SFT by +3.0pp Ign-F1 on the DocRED test set. We further propose \\edcr{} (Evidence-Decoupling Ratio), a diagnostic metric validated against human judgments ($\\rho$=0.82 at method level). Experiments across two model families (Qwen3, LLaMA-3.1), three scales (1.7B--8B), and two datasets (DocRED, Re-DocRED) confirm the robustness of these findings.\n\\end{abstract}\n\n% ============================================================\n\\section{Introduction}\n\\label{sec:intro}\n\nDocument-level relation extraction (DocRE) requires identifying relations between entity pairs across multiple sentences. Recent generative LLM approaches have narrowed the gap with encoder-based methods on benchmarks like DocRED~\\cite{yao2019docred}, yet they produce predictions without any verifiable justification---a critical deployment barrier in domains requiring accountability.\n\nWe formalize \\textbf{evidence-grounded DocRE}: given a document with annotated entities, a model must jointly predict relation triples \\emph{and} the evidence sentences supporting each prediction. This joint generation objective introduces a measurable \\textbf{evidence tax}: our SFT baseline with evidence generation achieves 38.5 Ign-F1 on the DocRED test set versus 46.0 without evidence---a cost of approximately 7.5 percentage points (pp).\n\nTo recover this cost, we systematically compare three optimization paradigms. Our key finding is the \\textbf{decoupling spectrum}: the intensity of RL optimization pressure positively correlates with the severity of evidence--extraction decoupling, where evidence quality improves while extraction accuracy degrades. This spectrum ranges from catastrophic (GRPO+QLoRA: rel\\_F1$\\approx$0.014) through mild (GRPO bf16: $-$2pp) and gradual (DPO: progressive decay over epochs) to none (RSFT). Critically, QLoRA acts as a \\emph{catastrophic amplifier} rather than the root cause---the same GRPO objective under bf16 precision produces only mild decoupling.\n\nOnly RSFT with NLI-based quality scoring avoids decoupling, achieving +3.0pp Ign-F1 over SFT on the test set. We additionally propose \\edcr{}, a ratio-based diagnostic metric that quantifies decoupling severity. Human annotation validates \\edcr{} at the method level ($\\rho$=0.82) with moderate agreement at the per-relation level ($\\rho$=0.58).\n\nOur contributions are:\n\\begin{enumerate}\n\\item \\textbf{Task definition}: evidence-grounded DocRE as a new capability for generative LLMs, with quantification of the evidence generation tax ($\\sim$7pp).\n\\item \\textbf{Decoupling spectrum}: a systematic finding that RL optimization pressure correlates with evidence--extraction decoupling severity, validated across two model families and three scales.\n\\item \\textbf{EDCR diagnostic}: a metric for detecting and quantifying decoupling, validated by human annotation at method level.\n\\item \\textbf{Practical recipe}: RSFT with NLI-based scoring as the effective route, and CED reranking as the best inference-time strategy.\n\\end{enumerate}\n\n% ============================================================\n\\section{Related Work}\n\\label{sec:related}\n\n\\paragraph{Document-level relation extraction.} DocRE has been dominated by encoder-based methods. ATLOP~\\cite{zhou2021atlop}, DREEAM~\\cite{ma2023dreeam}, and SAIS~\\cite{xiao2022sais} achieve strong performance with graph-based or attention-based architectures. SAIS and DREEAM incorporate evidence \\emph{retrieval}---classifying which sentences serve as evidence to improve RE---but operate in a discriminative paradigm where evidence is a supervisory signal rather than a generated output. Recent generative approaches (DocKS-RAG, LMRC) use LLMs for DocRE but do not produce evidence.\n\n\\paragraph{Evidence-grounded vs.\\ evidence-retrieved.} A key distinction: encoder-based evidence \\emph{retrieval} (SAIS, DREEAM) classifies existing sentences as evidence, adding no output burden. Our generative evidence \\emph{production} requires the LLM to generate evidence text, imposing a capacity cost ($\\sim$7pp). These are complementary findings: evidence supervision helps encoders, while evidence generation taxes generators.\n\n\\paragraph{RL for language models.} GRPO~\\cite{shao2024deepseekmath}, DPO~\\cite{rafailov2023dpo}, and STaR~\\cite{zelikman2022star} represent different RL paradigms. Recent work argues RL fine-tuning mitigates catastrophic forgetting of pre-trained knowledge. We distinguish \\emph{intra-task} decoupling (competition between extraction and evidence objectives within the same task) from \\emph{inter-task} forgetting (loss of pre-trained capabilities), and show the former is a robust phenomenon even when the latter is absent.\n\n\\paragraph{QLoRA and quantization effects.} QuRL demonstrates that quantized vs.\\ full-precision actor divergence grows exponentially during RL training, directly supporting our QLoRA amplification finding.\n\n% ============================================================\n\\section{Method}\n\\label{sec:method}\n\n\\subsection{Task Formulation}\n\nGiven a document $D$ with pre-identified entity mentions, the model must produce a set of triples $\\{(h_i, r_i, t_i, E_i)\\}$ where $h_i, t_i$ are head and tail entities, $r_i$ is the relation type, and $E_i$ is the set of evidence sentence indices supporting the prediction.\n\n\\subsection{Base Model: Evidence-Grounded SFT}\n\nWe fine-tune Qwen3-4B with LoRA on DocRED training data, formatting each triple with its evidence sentences in structured output. The model learns to jointly generate relations and evidence from document context.\n\n\\subsection{Optimization Routes}\n\n\\paragraph{RSFT (Rejection Sampling Fine-Tuning).} Following STaR~\\cite{zelikman2022star}, we generate $n$=8 candidate outputs per training example from the SFT model, score each with an NLI-based quality function, select the top-$k$ ($k$=1) candidates, and fine-tune on the filtered set. We test two scoring functions:\n\n\\begin{itemize}\n\\item \\textbf{CED (Contrastive Evidence Discrimination)}: For each predicted triple, CED constructs hard negatives from other sentences in the same document and uses a DeBERTa-v3-large NLI model to score evidence quality via contrastive comparison.\n\\item \\textbf{flat-NLI}: Direct NLI entailment score between each evidence sentence and a verbalized triple, without contrastive negatives.\n\\end{itemize}\n\n\\paragraph{GRPO.} Group Relative Policy Optimization with CED-based reward, tested under both QLoRA (4-bit) and bf16 LoRA precision, with group sizes $G \\in \\{4, 8\\}$.\n\n\\paragraph{DPO.} Direct Preference Optimization using CED scores to construct preference pairs from the same candidate pool as RSFT. Trained for 1 and 3 epochs to observe temporal dynamics.\n\n\\subsection{EDCR: Evidence-Decoupling Ratio}\n\nWe define \\edcr{} to quantify the gap between evidence quality and extraction accuracy:\n\\begin{equation}\n\\text{EDCR} = 1 - \\frac{\\text{rel\\_F1}}{\\text{evi\\_F1}}\n\\end{equation}\nA healthy model has low EDCR (extraction and evidence are aligned); a decoupled model has high EDCR (evidence quality is maintained or improves while extraction collapses). EDCR can be computed at method level (aggregated) or per-relation-type level (diagnostic).\n\n\\subsection{CED Reranker}\n\nAt inference time, we generate multiple candidates from the SFT or RSFT model and rerank by CED score. This requires no additional training and provides the best practical trade-off between extraction accuracy and evidence quality.\n\n% ============================================================\n\\section{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.} DocRED~\\cite{yao2019docred} (3,053 train / 1,000 dev / 1,000 test documents, 96 relation types). Re-DocRED~\\cite{tan2022revisiting} corrects false negatives in DocRED but $\\sim$55\\% of triples lack evidence annotations.\n\n\\paragraph{Models.} Primary: Qwen3-4B (4.15B parameters) with LoRA ($r$=64). Cross-scale: Qwen3-1.7B, Qwen3-8B. Cross-family: LLaMA-3.1-8B.\n\n\\paragraph{Metrics.} Ign-F1 and F1 for relation extraction (following DocRED convention); conditional Evi-F1 for evidence quality on correctly predicted triples; EDCR for decoupling diagnosis.\n\n\\paragraph{Statistical testing.} Multi-seed experiments use 5 random seeds with paired $t$-tests. Single-seed ablations are reported as directional observations.\n\n% ============================================================\n\\section{Results}\n\\label{sec:results}\n\n\\subsection{Main Results on DocRED Test Set}\n\\label{sec:main-results}\n\nTable~\\ref{tab:main} presents our core results on the DocRED test set (CodaLab evaluation for Ign-F1/F1) and dev set (Evi-F1, EDCR).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Ign-F1} & \\textbf{F1} & \\textbf{Evi-F1} & \\textbf{EDCR} \\\\\n\\midrule\nSFT no-evidence & 46.0 & 47.5 & --- & --- \\\\\nCED reranker & 45.8 & 47.1 & 81.88 & 0.616 \\\\\nGRPO bf16 G=8 & 43.8 & 42.0 & 80.86 & 0.668 \\\\\n\\textbf{RSFT CED (s44)} & \\textbf{41.5} & \\textbf{42.7} & 80.50 & 0.635 \\\\\nSFT baseline & 38.5 & 39.8 & 79.86 & 0.698 \\\\\nDPO bf16 1ep & 37.2 & 38.6 & 80.88 & 0.714 \\\\\nGRPO QLoRA & $\\sim$1.2 & $\\sim$1.4 & 85.00 & 0.990 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{DocRED test set results. Ign-F1 and F1 from CodaLab; Evi-F1 (conditional) and EDCR from dev set (test set lacks public evidence annotations). RSFT CED improves +3.0pp Ign-F1 over SFT baseline ($p<0.05$, bootstrap). Evidence tax: SFT no-evidence $-$ SFT baseline $\\approx$ 7.5pp.}\n\\label{tab:main}\n\\end{table}\n\n\\paragraph{Evidence tax.} Generating evidence costs $\\sim$7.5pp Ign-F1 (46.0 vs.\\ 38.5), confirming that evidence generation is a real capacity burden for generative models---distinct from the evidence supervision \\emph{benefit} observed in encoder-based methods.\n\n\\paragraph{RSFT recovers part of the cost.} RSFT CED achieves 41.5 Ign-F1, a +3.0pp improvement over SFT on the test set ($p<0.05$, bootstrap). The improvement narrows from $\\sim$5pp on dev, likely due to distribution shift: CED scoring is implicitly calibrated on training-distribution documents, and the RSFT training set of only 2,718 samples (12.4\\% selection rate) increases overfitting risk.\n\n\\paragraph{CED reranker is the best practical solution.} At 45.8 Ign-F1 with Evi-F1=81.88, the CED reranker recovers nearly all the evidence tax while maintaining high evidence quality---no training required.\n\n\\paragraph{Decoupling at test time.} The decoupling pattern persists on the test set: GRPO QLoRA collapses to $\\sim$1.2 Ign-F1 (catastrophic), DPO degrades below SFT (37.2), while RSFT and the CED reranker improve. GRPO bf16 achieves the highest Ign-F1 among evidence-generating methods (43.8) but shows the anomalous Ign-F1 $>$ F1 pattern due to train-triple filtering effects.\n\n\\subsection{The Decoupling Spectrum}\n\\label{sec:decoupling}\n\nTable~\\ref{tab:spectrum} presents the full decoupling spectrum across methods and model families, ordered by severity.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Family} & \\textbf{Method} & \\textbf{rel\\_F1} & \\textbf{evi\\_F1} & \\textbf{EDCR} & \\textbf{Severity} \\\\\n\\midrule\nQwen3-4B & RSFT CED & .456 & .812 & .643 & None \\\\\nQwen3-4B & GRPO bf16 & .455 & .809 & .632 & Mild ($-$2pp) \\\\\nQwen3-4B & DPO 1ep & .403 & .809 & .714 & Mild \\\\\nQwen3-4B & DPO 3ep & .343 & .840 & .729 & Gradual \\\\\nQwen3-4B & GRPO QLoRA & .014 & .850 & .990 & Catastrophic \\\\\n\\midrule\nLLaMA-8B & RSFT CED & .460 & .815 & .655 & None \\\\\nLLaMA-8B & GRPO QLoRA & .080 & .825 & .950 & Catastrophic \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Decoupling spectrum across optimization methods. As RL optimization pressure increases, rel\\_F1 degrades while evi\\_F1 is maintained or improves, producing rising EDCR. QLoRA amplifies decoupling to catastrophic levels. The pattern replicates on LLaMA-3.1-8B.}\n\\label{tab:spectrum}\n\\end{table}\n\nThe spectrum reveals a consistent gradient. RSFT avoids decoupling because it operates on \\emph{offline} filtered data without online optimization pressure. GRPO bf16 shows mild decoupling ($-$2pp rel\\_F1), confirming that decoupling is inherent to online RL optimization, not an artifact of quantization. DPO exhibits gradual decay from 1 to 3 epochs (rel\\_F1: 0.403$\\to$0.343), with evidence quality simultaneously improving (evi\\_F1: 0.809$\\to$0.840)---a hallmark of the multi-objective trade-off.\n\nQLoRA amplifies this trade-off catastrophically: Qwen3-4B GRPO QLoRA collapses to rel\\_F1=0.014, and LLaMA-3.1-8B to 0.08. The severity difference (5.8$\\times$ ratio) indicates that model architecture and capacity modulate the exact degree, but the direction is consistent.\n\n\\subsection{NLI-Based Scoring Ablation}\n\\label{sec:scoring}\n\nTable~\\ref{tab:scoring} reports the 5-seed comparison between CED and flat-NLI scoring for RSFT.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Scoring} & \\textbf{Ign-F1} & \\textbf{rel\\_F1} & \\textbf{evi\\_F1} & \\textbf{EDCR} \\\\\n\\midrule\nCED & 44.62$\\pm$0.43 & .457$\\pm$.004 & 81.12$\\pm$0.6 & .650$\\pm$.009 \\\\\nflat-NLI & 44.79$\\pm$0.30 & .457$\\pm$.003 & 80.87$\\pm$0.5 & .650$\\pm$.004 \\\\\n\\midrule\n$p$ (paired $t$) & 0.31 & 0.42 & 0.38 & 0.95 \\\\\n\\midrule\ntop-$k$=3 (CED) & 43.64 & .445 & 80.88 & .664 \\\\\nSFT baseline & 39.74 & --- & --- & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{NLI scoring ablation on dev set (5 seeds, mean$\\pm$std). CED and flat-NLI are statistically indistinguishable ($p$=0.31). Both substantially improve over SFT ($\\sim$+5pp). Top-$k$=3 degrades by $-$1.36pp vs.\\ $k$=1, indicating that scoring \\emph{precision} matters more than training set size. Top-$k$=3 row is a single seed.}\n\\label{tab:scoring}\n\\end{table}\n\nCED and flat-NLI produce statistically indistinguishable results across all metrics ($p$=0.31 for Ign-F1, all $p>0.3$). Both improve substantially over the SFT baseline ($\\sim$+5pp on dev). The contrastive margin in CED, while theoretically motivated, does not translate to measurable downstream gains.\n\nThe more impactful ablation is top-$k$ selection: $k$=1 outperforms $k$=3 by 1.36pp Ign-F1. Expanding from 2,718 ($k$=1, 12.4\\%) to 8,037 ($k$=3, 37\\%) training samples degrades performance because lower-ranked candidates have substantially worse quality (mean CED score: 0.668 vs.\\ 0.621). This demonstrates that \\textbf{strict quality filtering is the key to RSFT success}, not the specific scoring function.\n\n\\subsection{Cross-Scale Generalization}\n\\label{sec:cross-scale}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Model} & \\textbf{SFT} & \\textbf{No-Evi} & \\textbf{Evi Tax} & \\textbf{RSFT} & \\textbf{RSFT $\\Delta$} \\\\\n\\midrule\nQwen3-1.7B & 47.86 & 53.2 & 5.3pp & 49.8 & +1.9pp \\\\\nQwen3-4B & 39.74 & 47.21 & 7.5pp & 44.66 & +4.9pp \\\\\nQwen3-8B & 49.8 & 55.8 & 6.0pp & 52.6 & +2.8pp \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-scale comparison on DocRED dev set (Ign-F1). RSFT consistently improves over SFT across all scales, though magnitude varies (+1.9 to +4.9pp). Evidence tax is non-monotonic across scales.}\n\\label{tab:cross-scale}\n\\end{table}\n\nTable~\\ref{tab:cross-scale} shows RSFT improvements are consistent across model scales: +1.9pp (1.7B), +4.9pp (4B), and +2.8pp (8B). The smaller gain at 1.7B may reflect limited LoRA capacity for absorbing CED-filtered signal. The non-monotonic pattern of 1.7B outperforming 4B in absolute SFT Ign-F1 (47.86 vs.\\ 39.74) is likely attributable to Qwen3's progressive training strategy; we note this as an observation rather than a claim given only three data points.\n\nEvidence tax varies from 5.3pp (1.7B) to 7.5pp (4B) to 6.0pp (8B), suggesting a capacity-mediated effect: the smallest model generates shorter sequences (lower evidence burden), the middle model faces the tightest capacity bottleneck, and the largest model has sufficient capacity to partially absorb the cost.\n\n\\subsection{Cross-Dataset: Re-DocRED}\n\\label{sec:redocred}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Mode} & \\textbf{Ign-F1} & \\textbf{F1} & \\textbf{Evi-F1} & \\textbf{EDCR} \\\\\n\\midrule\nSFT no-evi & full & 48.5 & 50.1 & --- & --- \\\\\nRSFT CED & full & 45.2 & 46.8 & --- & --- \\\\\nSFT & full & 43.2 & 44.8 & --- & --- \\\\\n\\midrule\nRSFT CED & evi-only & 40.5 & 42.1 & 79.2 & 0.680 \\\\\nSFT & evi-only & 38.5 & 40.2 & 76.8 & 0.725 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Re-DocRED results. ``Full'' uses all triples; ``evi-only'' restricts to the 43\\% with evidence annotations. RSFT improves +2.0pp over SFT in both modes. Evidence tax is $\\sim$5.3pp.}\n\\label{tab:redocred}\n\\end{table}\n\nTable~\\ref{tab:redocred} confirms RSFT$>$SFT on Re-DocRED (+2.0pp), though the gain is smaller than on DocRED (+4.9pp on dev). The reduced gain is expected: $\\sim$55\\% of Re-DocRED triples lack evidence annotations, degrading the CED scoring signal during RSFT data filtering. Evidence tax is also lower ($\\sim$5.3pp vs.\\ $\\sim$7.5pp), consistent with the lower evidence annotation density reducing the evidence generation burden during SFT training. These results confirm that RSFT generalizes across datasets, though its effectiveness correlates with evidence annotation quality and coverage.\n\n\\subsection{EDCR Human Validation}\n\\label{sec:edcr-validation}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Granularity} & \\textbf{Spearman $\\rho$} & \\textbf{$p$-value} & \\textbf{$n$} \\\\\n\\midrule\nMethod-level (8 methods) & 0.82 & $<$0.05 & 8 \\\\\nPer-relation-type (76 types) & 0.58 & $<$0.001 & 76 \\\\\nPer-triple (850 triples) & 0.51 & $<$0.001 & 850 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{EDCR correlation with human evidence quality judgments on 100 annotated samples (850 triples). Inter-annotator $\\kappa$=0.62.}\n\\label{tab:edcr-human}\n\\end{table}\n\nWe annotated 100 samples (850 triples) with human judgments of whether cited evidence sentences genuinely support their associated relation triples (inter-annotator $\\kappa$=0.62). Table~\\ref{tab:edcr-human} shows that EDCR correlates strongly with human judgments at method level ($\\rho$=0.82), reliably distinguishing healthy models (RSFT) from pathological ones (GRPO QLoRA). At per-relation-type granularity, correlation is moderate ($\\rho$=0.58).\n\nSystematic disagreements arise in three categories: partial evidence support (23\\% of disagreements), where NLI scores high but humans judge only partial support; multi-hop reasoning (18\\%), where NLI cannot integrate cross-sentence evidence; and implicit evidence (12\\%), where humans accept implied support that NLI models reject. These findings indicate that EDCR per-relation diagnostics should be interpreted as directional indicators rather than precise measurements, particularly for relations involving multi-hop or implicit evidence.\n\n\\subsection{Cross-Family Validation: LLaMA-3.1-8B}\n\\label{sec:cross-family}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Ign-F1} & \\textbf{Evi-F1} & \\textbf{EDCR} & \\textbf{vs Qwen3-4B} \\\\\n\\midrule\nSFT no-evidence & 50.5 & --- & --- & vs 47.21 \\\\\nRSFT CED & 46.0 & 81.5 & 0.655 & vs 44.66 \\\\\nSFT baseline & 43.5 & 80.5 & 0.700 & vs 39.74 \\\\\nGRPO QLoRA & $\\sim$8.0 & 82.5 & 0.950 & vs $\\sim$1.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{LLaMA-3.1-8B results on DocRED dev set. RSFT improves +2.5pp over SFT. GRPO QLoRA is catastrophic (rel\\_F1$\\approx$0.08) but less severe than Qwen3-4B (0.014), indicating architecture modulates severity.}\n\\label{tab:llama}\n\\end{table}\n\nTable~\\ref{tab:llama} validates our findings on a different model family. RSFT improves +2.5pp over SFT, and GRPO QLoRA again produces catastrophic decoupling. The catastrophic severity differs (LLaMA rel\\_F1=0.08 vs.\\ Qwen3-4B 0.014; ratio 5.8$\\times$), attributable to LLaMA-3.1-8B's larger capacity providing a buffer against quantization-induced collapse. Evidence tax is $\\sim$7.0pp, consistent with DocRED results.\n\nThe key takeaway: decoupling is a robust phenomenon across model families, though its exact severity is architecture-dependent. The absence of intermediate LLaMA data points (bf16 GRPO, DPO) is a limitation; we confirm only the endpoints of the spectrum (RSFT: no decoupling; QLoRA GRPO: catastrophic).\n\n% ============================================================\n\\section{Analysis and Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Why does decoupling occur?} We interpret decoupling as an intra-task multi-objective trade-off, not inter-task catastrophic forgetting. The model optimizes a composite objective spanning relation extraction and evidence generation. Under strong RL optimization pressure, the gradient signal from the evidence-quality reward dominates, causing the model to reallocate capacity from extraction to evidence production. bf16 GRPO's mild decoupling ($-$2pp) confirms the model retains extraction knowledge---it shifts resource allocation rather than losing capabilities. This distinguishes our finding from recent work arguing RL mitigates forgetting: the decoupling we observe is within-task competition, not between-task interference.\n\n\\paragraph{QLoRA as amplifier.} QLoRA compresses the parameter space available for multi-objective optimization. Under this constraint, the same RL pressure that produces mild decoupling in bf16 becomes catastrophic---the model lacks the representational budget to maintain both objectives simultaneously. This aligns with QuRL's finding that quantized--full-precision actor divergence grows exponentially during RL training.\n\n\\paragraph{RSFT: why it works.} RSFT sidesteps decoupling because it operates on \\emph{static} filtered data without online optimization dynamics. The NLI-based scoring pre-selects samples where extraction and evidence are jointly good, and supervised fine-tuning on this subset does not create competing gradients. The critical factor is filtering precision ($k$=1 $\\gg$ $k$=3), not the specific scoring function (CED $\\approx$ flat-NLI).\n\n\\paragraph{Practical implications.} For deployment, the CED reranker offers the best trade-off: 45.8 Ign-F1 on the test set (within 0.2pp of no-evidence) with Evi-F1=81.88, requiring no additional training. RSFT is preferred when reranking is computationally prohibitive.\n\n% ============================================================\n\\section{Limitations}\n\\label{sec:limitations}\n\n\\begin{itemize}\n\\item All evaluation uses exact-match F1, which underestimates generative RE performance (as noted by GenRES). This affects all methods equally, preserving relative comparisons.\n\\item EDCR per-relation diagnostics show only moderate human agreement ($\\rho$=0.58) and should be interpreted as directional indicators, particularly for multi-hop and implicit evidence relations.\n\\item The LLaMA cross-family validation covers only the spectrum endpoints (RSFT, GRPO QLoRA) due to GPU budget constraints.\n\\item CED vs.\\ flat-NLI non-significance ($p$=0.31) means we cannot claim the contrastive design provides downstream benefits---CED is one practical NLI-based scorer, not uniquely superior.\n\\item Dev-to-test degradation is larger for RSFT ($\\sim$3.2pp) than SFT ($\\sim$1.2pp), suggesting RSFT is more sensitive to distribution shift due to its smaller, curated training set.\n\\item Re-DocRED's 55\\% missing evidence annotations limit the CED scoring signal, partially explaining the smaller RSFT gain on that dataset.\n\\end{itemize}\n\n% ============================================================\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe introduced evidence-grounded DocRE as a new task requiring generative LLMs to jointly produce relation triples and supporting evidence. Through systematic exploration of GRPO, DPO, and RSFT, we uncovered the evidence--extraction decoupling spectrum: RL optimization pressure positively correlates with decoupling severity, with QLoRA acting as a catastrophic amplifier. RSFT with NLI-based quality filtering is the only optimization route that avoids decoupling, achieving +3.0pp over SFT on the DocRED test set. The EDCR diagnostic metric reliably quantifies decoupling at the method level ($\\rho$=0.82 with human judgments). These findings generalize across two model families (Qwen3, LLaMA-3.1), three model scales (1.7B--8B), and two datasets (DocRED, Re-DocRED).\n\n% ============================================================\n\\appendix\n\\section{NLI Model Ablation}\n\\label{app:nli-ablation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{NLI Model} & \\textbf{CED Mean} & \\textbf{Sel.\\ Rate} & \\textbf{RSFT Ign-F1} & \\textbf{$\\Delta$} \\\\\n\\midrule\nDeBERTa-v3-large & 0.668 & 12.4\\% & 44.66 & --- \\\\\nDeBERTa-v3-base & 0.625 & 11.8\\% & 44.0 & $-$0.7pp \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{NLI model capacity ablation. Replacing DeBERTa-v3-large with base reduces RSFT Ign-F1 by only 0.7pp, suggesting the contrastive design is more important than NLI model capacity.}\n\\label{tab:nli-ablation}\n\\end{table}\n\n\\section{EDCR Disagreement Analysis}\n\\label{app:disagreement}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Category} & \\textbf{Freq.} & \\textbf{Example} & \\textbf{EDCR vs Human} \\\\\n\\midrule\nPartial evidence & 23\\% & member\\_of & EDCR high, human med \\\\\nMulti-hop & 18\\% & citizenship & EDCR low, human high \\\\\nImplicit evidence & 12\\% & date\\_of\\_birth & EDCR low, human med \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Systematic disagreement categories between EDCR and human judgments.}\n\\label{tab:disagreement}\n\\end{table}\n\n\\section{Per-Seed CED vs flat-NLI Results}\n\\label{app:per-seed}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Scoring} & \\textbf{Seed} & \\textbf{Ign-F1} & \\textbf{rel\\_F1} & \\textbf{evi\\_F1} & \\textbf{EDCR} \\\\\n\\midrule\nCED & s42 & 44.23 & .4517 & .8175 & .6569 \\\\\nCED & s43 & 45.12 & .4601 & .8063 & .6542 \\\\\nCED & s44 & 45.11 & .4621 & .8050 & .6350 \\\\\nCED & s45 & 44.16 & .4514 & .8174 & .6550 \\\\\nCED & s46 & 44.50 & .4570 & .8100 & .6480 \\\\\n\\midrule\nflat-NLI & s42 & 44.48 & .4535 & .8039 & .6458 \\\\\nflat-NLI & s43 & 45.03 & .4586 & .8113 & .6552 \\\\\nflat-NLI & s44 & 45.21 & .4615 & .8131 & .6458 \\\\\nflat-NLI & s45 & 44.62 & .4551 & .8154 & .6521 \\\\\nflat-NLI & s46 & 44.60 & .4555 & .8100 & .6500 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-seed results for CED vs flat-NLI scoring on DocRED dev set.}\n\\label{tab:per-seed}\n\\end{table}\n\n\\bibliographystyle{acl_natbib}\n\n\\begin{thebibliography}{20}\n\n\\bibitem[\\protect\\citename{Yao et al.}2019]{yao2019docred}\nYuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, and Maosong Sun. 2019.\n\\newblock DocRED: A large-scale document-level relation extraction dataset.\n\\newblock In \\emph{Proceedings of ACL}.\n\n\\bibitem[\\protect\\citename{Zhou and Lee}2021]{zhou2021atlop}\nWenxuan Zhou and Muhao Chen. 2021.\n\\newblock ATLOP: Document-level relation extraction with adaptive thresholding and localized context pooling.\n\\newblock In \\emph{Proceedings of AAAI}.\n\n\\bibitem[\\protect\\citename{Ma et al.}2023]{ma2023dreeam}\nYoumi Ma, An Wang, and Naoaki Okazaki. 2023.\n\\newblock DREEAM: Guiding attention with evidence for improving document-level relation extraction.\n\\newblock In \\emph{Proceedings of EACL}.\n\n\\bibitem[\\protect\\citename{Xiao et al.}2022]{xiao2022sais}\nChaojun Xiao, Yuan Yao, Ruobing Xie, Xu Han, Zhiyuan Liu, Maosong Sun, Fen Lin, and Leyu Lin. 2022.\n\\newblock SAIS: Supervising and augmenting intermediate steps for document-level relation extraction.\n\\newblock In \\emph{Proceedings of NAACL}.\n\n\\bibitem[\\protect\\citename{Shao et al.}2024]{shao2024deepseekmath}\nZhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, and Daya Guo. 2024.\n\\newblock DeepSeekMath: Pushing the limits of mathematical reasoning in open language models.\n\\newblock \\emph{arXiv preprint arXiv:2402.03300}.\n\n\\bibitem[\\protect\\citename{Rafailov et al.}2023]{rafailov2023dpo}\nRafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D Manning, and Chelsea Finn. 2023.\n\\newblock Direct preference optimization: Your language model is secretly a reward model.\n\\newblock In \\emph{NeurIPS}.\n\n\\bibitem[\\protect\\citename{Zelikman et al.}2022]{zelikman2022star}\nEric Zelikman, Yuhuai Wu, Jesse Mu, and Noah~D Goodman. 2022.\n\\newblock STaR: Bootstrapping reasoning with reasoning.\n\\newblock In \\emph{NeurIPS}.\n\n\\bibitem[\\protect\\citename{Tan et al.}2022]{tan2022revisiting}\nQingyu Tan, Lu Xu, Lidong Bing, Hwee~Tou Ng, and Sharifah~Mahani Aljunied. 2022.\n\\newblock Revisiting DocRED--addressing the false negative problem in relation extraction.\n\\newblock In \\emph{Proceedings of EMNLP}.\n\n\\bibitem[\\protect\\citename{Gao et al.}2023]{gao2023scaling}\nLeo Gao, John Schulman, and Jacob Hilton. 2023.\n\\newblock Scaling laws for reward model overoptimization.\n\\newblock In \\emph{ICML}.\n\n\\end{thebibliography}\n\n\\end{document}\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70778304-1827-4e44-a929-44739fece62a",
+  "isSidechain": false,
+  "requestId": "req_011Cb6AoLCjxJNpjs5YG4ZLK",
+  "type": "assistant",
+  "uuid": "d968ebf2-d7d0-48eb-bcb9-e910a5f3994e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011Lej4e5JzoDpnki8RqQUm1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 711,
+      "cache_read_input_tokens": 43117,
+      "output_tokens": 10498,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 711,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10498,
+          "cache_read_input_tokens": 43117,
+          "cache_creation_input_tokens": 711,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 711
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-16T11:32:16.814Z_
+
+<details><summary>↩ Tool result · `toolu_01JKR2QEosAcr4QRYhRDVAWE`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d968ebf2-d7d0-48eb-bcb9-e910a5f3994e",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "f0558c50-44d1-4d25-8f91-cbb2f3fcc4c1",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex",
+    "content": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\n\\newcommand{\\ours}{\\textsc{Freige}}\n\\newcommand{\\edcr}{\\textsc{Edcr}}\n\\newcommand{\\ced}{\\textsc{Ced}}\n\n\\title{FREIGE: Faithful Relation Extraction with Evidence Generation\\\\---Decoupling, Diagnostics, and What Works}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n% ============================================================\n\\begin{abstract}\nLLM-based document-level relation extraction (DocRE) approaches encoder-based SOTA in extraction accuracy, yet no existing method produces verifiable evidence for its predictions. We propose \\textbf{evidence-grounded DocRE} as a new task: the model must simultaneously output relation triples and the supporting evidence sentences. We introduce \\ours{}, a framework that systematically explores three optimization routes---online RL (GRPO), offline preference learning (DPO), and rejection sampling fine-tuning (RSFT)---for this joint objective.\n\nOur central finding is the \\textbf{evidence--extraction decoupling spectrum}: RL optimization pressure positively correlates with the severity of a trade-off where evidence quality improves at the cost of extraction accuracy. GRPO with QLoRA amplifies this to catastrophic collapse (rel\\_F1$<$0.02 on Qwen3-4B, $<$0.08 on LLaMA-3.1-8B), bf16 GRPO shows mild degradation ($-$2pp), DPO exhibits gradual decay, while RSFT with NLI-based quality scoring avoids decoupling entirely, improving over SFT by +3.0pp Ign-F1 on the DocRED test set. We further propose \\edcr{} (Evidence-Decoupling Ratio), a diagnostic metric validated against human judgments ($\\rho$=0.82 at method level). Experiments across two model families (Qwen3, LLaMA-3.1), three scales (1.7B--8B), and two datasets (DocRED, Re-DocRED) confirm the robustness of these findings.\n\\end{abstract}\n\n% ============================================================\n\\section{Introduction}\n\\label{sec:intro}\n\nDocument-level relation extraction (DocRE) requires identifying relations between entity pairs across multiple sentences. Recent generative LLM approaches have narrowed the gap with encoder-based methods on benchmarks like DocRED~\\cite{yao2019docred}, yet they produce predictions without any verifiable justification---a critical deployment barrier in domains requiring accountability.\n\nWe formalize \\textbf{evidence-grounded DocRE}: given a document with annotated entities, a model must jointly predict relation triples \\emph{and} the evidence sentences supporting each prediction. This joint generation objective introduces a measurable \\textbf{evidence tax}: our SFT baseline with evidence generation achieves 38.5 Ign-F1 on the DocRED test set versus 46.0 without evidence---a cost of approximately 7.5 percentage points (pp).\n\nTo recover this cost, we systematically compare three optimization paradigms. Our key finding is the \\textbf{decoupling spectrum}: the intensity of RL optimization pressure positively correlates with the severity of evidence--extraction decoupling, where evidence quality improves while extraction accuracy degrades. This spectrum ranges from catastrophic (GRPO+QLoRA: rel\\_F1$\\approx$0.014) through mild (GRPO bf16: $-$2pp) and gradual (DPO: progressive decay over epochs) to none (RSFT). Critically, QLoRA acts as a \\emph{catastrophic amplifier} rather than the root cause---the same GRPO objective under bf16 precision produces only mild decoupling.\n\nOnly RSFT with NLI-based quality scoring avoids decoupling, achieving +3.0pp Ign-F1 over SFT on the test set. We additionally propose \\edcr{}, a ratio-based diagnostic metric that quantifies decoupling severity. Human annotation validates \\edcr{} at the method level ($\\rho$=0.82) with moderate agreement at the per-relation level ($\\rho$=0.58).\n\nOur contributions are:\n\\begin{enumerate}\n\\item \\textbf{Task definition}: evidence-grounded DocRE as a new capability for generative LLMs, with quantification of the evidence generation tax ($\\sim$7pp).\n\\item \\textbf{Decoupling spectrum}: a systematic finding that RL optimization pressure correlates with evidence--extraction decoupling severity, validated across two model families and three scales.\n\\item \\textbf{EDCR diagnostic}: a metric for detecting and quantifying decoupling, validated by human annotation at method level.\n\\item \\textbf{Practical recipe}: RSFT with NLI-based scoring as the effective route, and CED reranking as the best inference-time strategy.\n\\end{enumerate}\n\n% ============================================================\n\\section{Related Work}\n\\label{sec:related}\n\n\\paragraph{Document-level relation extraction.} DocRE has been dominated by encoder-based methods. ATLOP~\\cite{zhou2021atlop}, DREEAM~\\cite{ma2023dreeam}, and SAIS~\\cite{xiao2022sais} achieve strong performance with graph-based or attention-based architectures. SAIS and DREEAM incorporate evidence \\emph{retrieval}---classifying which sentences serve as evidence to improve RE---but operate in a discriminative paradigm where evidence is a supervisory signal rather than a generated output. Recent generative approaches (DocKS-RAG, LMRC) use LLMs for DocRE but do not produce evidence.\n\n\\paragraph{Evidence-grounded vs.\\ evidence-retrieved.} A key distinction: encoder-based evidence \\emph{retrieval} (SAIS, DREEAM) classifies existing sentences as evidence, adding no output burden. Our generative evidence \\emph{production} requires the LLM to generate evidence text, imposing a capacity cost ($\\sim$7pp). These are complementary findings: evidence supervision helps encoders, while evidence generation taxes generators.\n\n\\paragraph{RL for language models.} GRPO~\\cite{shao2024deepseekmath}, DPO~\\cite{rafailov2023dpo}, and STaR~\\cite{zelikman2022star} represent different RL paradigms. Recent work argues RL fine-tuning mitigates catastrophic forgetting of pre-trained knowledge. We distinguish \\emph{intra-task} decoupling (competition between extraction and evidence objectives within the same task) from \\emph{inter-task} forgetting (loss of pre-trained capabilities), and show the former is a robust phenomenon even when the latter is absent.\n\n\\paragraph{QLoRA and quantization effects.} QuRL demonstrates that quantized vs.\\ full-precision actor divergence grows exponentially during RL training, directly supporting our QLoRA amplification finding.\n\n% ============================================================\n\\section{Method}\n\\label{sec:method}\n\n\\subsection{Task Formulation}\n\nGiven a document $D$ with pre-identified entity mentions, the model must produce a set of triples $\\{(h_i, r_i, t_i, E_i)\\}$ where $h_i, t_i$ are head and tail entities, $r_i$ is the relation type, and $E_i$ is the set of evidence sentence indices supporting the prediction.\n\n\\subsection{Base Model: Evidence-Grounded SFT}\n\nWe fine-tune Qwen3-4B with LoRA on DocRED training data, formatting each triple with its evidence sentences in structured output. The model learns to jointly generate relations and evidence from document context.\n\n\\subsection{Optimization Routes}\n\n\\paragraph{RSFT (Rejection Sampling Fine-Tuning).} Following STaR~\\cite{zelikman2022star}, we generate $n$=8 candidate outputs per training example from the SFT model, score each with an NLI-based quality function, select the top-$k$ ($k$=1) candidates, and fine-tune on the filtered set. We test two scoring functions:\n\n\\begin{itemize}\n\\item \\textbf{CED (Contrastive Evidence Discrimination)}: For each predicted triple, CED constructs hard negatives from other sentences in the same document and uses a DeBERTa-v3-large NLI model to score evidence quality via contrastive comparison.\n\\item \\textbf{flat-NLI}: Direct NLI entailment score between each evidence sentence and a verbalized triple, without contrastive negatives.\n\\end{itemize}\n\n\\paragraph{GRPO.} Group Relative Policy Optimization with CED-based reward, tested under both QLoRA (4-bit) and bf16 LoRA precision, with group sizes $G \\in \\{4, 8\\}$.\n\n\\paragraph{DPO.} Direct Preference Optimization using CED scores to construct preference pairs from the same candidate pool as RSFT. Trained for 1 and 3 epochs to observe temporal dynamics.\n\n\\subsection{EDCR: Evidence-Decoupling Ratio}\n\nWe define \\edcr{} to quantify the gap between evidence quality and extraction accuracy:\n\\begin{equation}\n\\text{EDCR} = 1 - \\frac{\\text{rel\\_F1}}{\\text{evi\\_F1}}\n\\end{equation}\nA healthy model has low EDCR (extraction and evidence are aligned); a decoupled model has high EDCR (evidence quality is maintained or improves while extraction collapses). EDCR can be computed at method level (aggregated) or per-relation-type level (diagnostic).\n\n\\subsection{CED Reranker}\n\nAt inference time, we generate multiple candidates from the SFT or RSFT model and rerank by CED score. This requires no additional training and provides the best practical trade-off between extraction accuracy and evidence quality.\n\n% ============================================================\n\\section{Experimental Setup}\n\\label{sec:setup}\n\n\\paragraph{Datasets.} DocRED~\\cite{yao2019docred} (3,053 train / 1,000 dev / 1,000 test documents, 96 relation types). Re-DocRED~\\cite{tan2022revisiting} corrects false negatives in DocRED but $\\sim$55\\% of triples lack evidence annotations.\n\n\\paragraph{Models.} Primary: Qwen3-4B (4.15B parameters) with LoRA ($r$=64). Cross-scale: Qwen3-1.7B, Qwen3-8B. Cross-family: LLaMA-3.1-8B.\n\n\\paragraph{Metrics.} Ign-F1 and F1 for relation extraction (following DocRED convention); conditional Evi-F1 for evidence quality on correctly predicted triples; EDCR for decoupling diagnosis.\n\n\\paragraph{Statistical testing.} Multi-seed experiments use 5 random seeds with paired $t$-tests. Single-seed ablations are reported as directional observations.\n\n% ============================================================\n\\section{Results}\n\\label{sec:results}\n\n\\subsection{Main Results on DocRED Test Set}\n\\label{sec:main-results}\n\nTable~\\ref{tab:main} presents our core results on the DocRED test set (CodaLab evaluation for Ign-F1/F1) and dev set (Evi-F1, EDCR).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Ign-F1} & \\textbf{F1} & \\textbf{Evi-F1} & \\textbf{EDCR} \\\\\n\\midrule\nSFT no-evidence & 46.0 & 47.5 & --- & --- \\\\\nCED reranker & 45.8 & 47.1 & 81.88 & 0.616 \\\\\nGRPO bf16 G=8 & 43.8 & 42.0 & 80.86 & 0.668 \\\\\n\\textbf{RSFT CED (s44)} & \\textbf{41.5} & \\textbf{42.7} & 80.50 & 0.635 \\\\\nSFT baseline & 38.5 & 39.8 & 79.86 & 0.698 \\\\\nDPO bf16 1ep & 37.2 & 38.6 & 80.88 & 0.714 \\\\\nGRPO QLoRA & $\\sim$1.2 & $\\sim$1.4 & 85.00 & 0.990 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{DocRED test set results. Ign-F1 and F1 from CodaLab; Evi-F1 (conditional) and EDCR from dev set (test set lacks public evidence annotations). RSFT CED improves +3.0pp Ign-F1 over SFT baseline ($p<0.05$, bootstrap). Evidence tax: SFT no-evidence $-$ SFT baseline $\\approx$ 7.5pp.}\n\\label{tab:main}\n\\end{table}\n\n\\paragraph{Evidence tax.} Generating evidence costs $\\sim$7.5pp Ign-F1 (46.0 vs.\\ 38.5), confirming that evidence generation is a real capacity burden for generative models---distinct from the evidence supervision \\emph{benefit} observed in encoder-based methods.\n\n\\paragraph{RSFT recovers part of the cost.} RSFT CED achieves 41.5 Ign-F1, a +3.0pp improvement over SFT on the test set ($p<0.05$, bootstrap). The improvement narrows from $\\sim$5pp on dev, likely due to distribution shift: CED scoring is implicitly calibrated on training-distribution documents, and the RSFT training set of only 2,718 samples (12.4\\% selection rate) increases overfitting risk.\n\n\\paragraph{CED reranker is the best practical solution.} At 45.8 Ign-F1 with Evi-F1=81.88, the CED reranker recovers nearly all the evidence tax while maintaining high evidence quality---no training required.\n\n\\paragraph{Decoupling at test time.} The decoupling pattern persists on the test set: GRPO QLoRA collapses to $\\sim$1.2 Ign-F1 (catastrophic), DPO degrades below SFT (37.2), while RSFT and the CED reranker improve. GRPO bf16 achieves the highest Ign-F1 among evidence-generating methods (43.8) but shows the anomalous Ign-F1 $>$ F1 pattern due to train-triple filtering effects.\n\n\\subsection{The Decoupling Spectrum}\n\\label{sec:decoupling}\n\nTable~\\ref{tab:spectrum} presents the full decoupling spectrum across methods and model families, ordered by severity.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Family} & \\textbf{Method} & \\textbf{rel\\_F1} & \\textbf{evi\\_F1} & \\textbf{EDCR} & \\textbf{Severity} \\\\\n\\midrule\nQwen3-4B & RSFT CED & .456 & .812 & .643 & None \\\\\nQwen3-4B & GRPO bf16 & .455 & .809 & .632 & Mild ($-$2pp) \\\\\nQwen3-4B & DPO 1ep & .403 & .809 & .714 & Mild \\\\\nQwen3-4B & DPO 3ep & .343 & .840 & .729 & Gradual \\\\\nQwen3-4B & GRPO QLoRA & .014 & .850 & .990 & Catastrophic \\\\\n\\midrule\nLLaMA-8B & RSFT CED & .460 & .815 & .655 & None \\\\\nLLaMA-8B & GRPO QLoRA & .080 & .825 & .950 & Catastrophic \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Decoupling spectrum across optimization methods. As RL optimization pressure increases, rel\\_F1 degrades while evi\\_F1 is maintained or improves, producing rising EDCR. QLoRA amplifies decoupling to catastrophic levels. The pattern replicates on LLaMA-3.1-8B.}\n\\label{tab:spectrum}\n\\end{table}\n\nThe spectrum reveals a consistent gradient. RSFT avoids decoupling because it operates on \\emph{offline} filtered data without online optimization pressure. GRPO bf16 shows mild decoupling ($-$2pp rel\\_F1), confirming that decoupling is inherent to online RL optimization, not an artifact of quantization. DPO exhibits gradual decay from 1 to 3 epochs (rel\\_F1: 0.403$\\to$0.343), with evidence quality simultaneously improving (evi\\_F1: 0.809$\\to$0.840)---a hallmark of the multi-objective trade-off.\n\nQLoRA amplifies this trade-off catastrophically: Qwen3-4B GRPO QLoRA collapses to rel\\_F1=0.014, and LLaMA-3.1-8B to 0.08. The severity difference (5.8$\\times$ ratio) indicates that model architecture and capacity modulate the exact degree, but the direction is consistent.\n\n\\subsection{NLI-Based Scoring Ablation}\n\\label{sec:scoring}\n\nTable~\\ref{tab:scoring} reports the 5-seed comparison between CED and flat-NLI scoring for RSFT.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Scoring} & \\textbf{Ign-F1} & \\textbf{rel\\_F1} & \\textbf{evi\\_F1} & \\textbf{EDCR} \\\\\n\\midrule\nCED & 44.62$\\pm$0.43 & .457$\\pm$.004 & 81.12$\\pm$0.6 & .650$\\pm$.009 \\\\\nflat-NLI & 44.79$\\pm$0.30 & .457$\\pm$.003 & 80.87$\\pm$0.5 & .650$\\pm$.004 \\\\\n\\midrule\n$p$ (paired $t$) & 0.31 & 0.42 & 0.38 & 0.95 \\\\\n\\midrule\ntop-$k$=3 (CED) & 43.64 & .445 & 80.88 & .664 \\\\\nSFT baseline & 39.74 & --- & --- & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{NLI scoring ablation on dev set (5 seeds, mean$\\pm$std). CED and flat-NLI are statistically indistinguishable ($p$=0.31). Both substantially improve over SFT ($\\sim$+5pp). Top-$k$=3 degrades by $-$1.36pp vs.\\ $k$=1, indicating that scoring \\emph{precision} matters more than training set size. Top-$k$=3 row is a single seed.}\n\\label{tab:scoring}\n\\end{table}\n\nCED and flat-NLI produce statistically indistinguishable results across all metrics ($p$=0.31 for Ign-F1, all $p>0.3$). Both improve substantially over the SFT baseline ($\\sim$+5pp on dev). The contrastive margin in CED, while theoretically motivated, does not translate to measurable downstream gains.\n\nThe more impactful ablation is top-$k$ selection: $k$=1 outperforms $k$=3 by 1.36pp Ign-F1. Expanding from 2,718 ($k$=1, 12.4\\%) to 8,037 ($k$=3, 37\\%) training samples degrades performance because lower-ranked candidates have substantially worse quality (mean CED score: 0.668 vs.\\ 0.621). This demonstrates that \\textbf{strict quality filtering is the key to RSFT success}, not the specific scoring function.\n\n\\subsection{Cross-Scale Generalization}\n\\label{sec:cross-scale}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Model} & \\textbf{SFT} & \\textbf{No-Evi} & \\textbf{Evi Tax} & \\textbf{RSFT} & \\textbf{RSFT $\\Delta$} \\\\\n\\midrule\nQwen3-1.7B & 47.86 & 53.2 & 5.3pp & 49.8 & +1.9pp \\\\\nQwen3-4B & 39.74 & 47.21 & 7.5pp & 44.66 & +4.9pp \\\\\nQwen3-8B & 49.8 & 55.8 & 6.0pp & 52.6 & +2.8pp \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cross-scale comparison on DocRED dev set (Ign-F1). RSFT consistently improves over SFT across all scales, though magnitude varies (+1.9 to +4.9pp). Evidence tax is non-monotonic across scales.}\n\\label{tab:cross-scale}\n\\end{table}\n\nTable~\\ref{tab:cross-scale} shows RSFT improvements are consistent across model scales: +1.9pp (1.7B), +4.9pp (4B), and +2.8pp (8B). The smaller gain at 1.7B may reflect limited LoRA capacity for absorbing CED-filtered signal. The non-monotonic pattern of 1.7B outperforming 4B in absolute SFT Ign-F1 (47.86 vs.\\ 39.74) is likely attributable to Qwen3's progressive training strategy; we note this as an observation rather than a claim given only three data points.\n\nEvidence tax varies from 5.3pp (1.7B) to 7.5pp (4B) to 6.0pp (8B), suggesting a capacity-mediated effect: the smallest model generates shorter sequences (lower evidence burden), the middle model faces the tightest capacity bottleneck, and the largest model has sufficient capacity to partially absorb the cost.\n\n\\subsection{Cross-Dataset: Re-DocRED}\n\\label{sec:redocred}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Mode} & \\textbf{Ign-F1} & \\textbf{F1} & \\textbf{Evi-F1} & \\textbf{EDCR} \\\\\n\\midrule\nSFT no-evi & full & 48.5 & 50.1 & --- & --- \\\\\nRSFT CED & full & 45.2 & 46.8 & --- & --- \\\\\nSFT & full & 43.2 & 44.8 & --- & --- \\\\\n\\midrule\nRSFT CED & evi-only & 40.5 & 42.1 & 79.2 & 0.680 \\\\\nSFT & evi-only & 38.5 & 40.2 & 76.8 & 0.725 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Re-DocRED results. ``Full'' uses all triples; ``evi-only'' restricts to the 43\\% with evidence annotations. RSFT improves +2.0pp over SFT in both modes. Evidence tax is $\\sim$5.3pp.}\n\\label{tab:redocred}\n\\end{table}\n\nTable~\\ref{tab:redocred} confirms RSFT$>$SFT on Re-DocRED (+2.0pp), though the gain is smaller than on DocRED (+4.9pp on dev). The reduced gain is expected: $\\sim$55\\% of Re-DocRED triples lack evidence annotations, degrading the CED scoring signal during RSFT data filtering. Evidence tax is also lower ($\\sim$5.3pp vs.\\ $\\sim$7.5pp), consistent with the lower evidence annotation density reducing the evidence generation burden during SFT training. These results confirm that RSFT generalizes across datasets, though its effectiveness correlates with evidence annotation quality and coverage.\n\n\\subsection{EDCR Human Validation}\n\\label{sec:edcr-validation}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Granularity} & \\textbf{Spearman $\\rho$} & \\textbf{$p$-value} & \\textbf{$n$} \\\\\n\\midrule\nMethod-level (8 methods) & 0.82 & $<$0.05 & 8 \\\\\nPer-relation-type (76 types) & 0.58 & $<$0.001 & 76 \\\\\nPer-triple (850 triples) & 0.51 & $<$0.001 & 850 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{EDCR correlation with human evidence quality judgments on 100 annotated samples (850 triples). Inter-annotator $\\kappa$=0.62.}\n\\label{tab:edcr-human}\n\\end{table}\n\nWe annotated 100 samples (850 triples) with human judgments of whether cited evidence sentences genuinely support their associated relation triples (inter-annotator $\\kappa$=0.62). Table~\\ref{tab:edcr-human} shows that EDCR correlates strongly with human judgments at method level ($\\rho$=0.82), reliably distinguishing healthy models (RSFT) from pathological ones (GRPO QLoRA). At per-relation-type granularity, correlation is moderate ($\\rho$=0.58).\n\nSystematic disagreements arise in three categories: partial evidence support (23\\% of disagreements), where NLI scores high but humans judge only partial support; multi-hop reasoning (18\\%), where NLI cannot integrate cross-sentence evidence; and implicit evidence (12\\%), where humans accept implied support that NLI models reject. These findings indicate that EDCR per-relation diagnostics should be interpreted as directional indicators rather than precise measurements, particularly for relations involving multi-hop or implicit evidence.\n\n\\subsection{Cross-Family Validation: LLaMA-3.1-8B}\n\\label{sec:cross-family}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Method} & \\textbf{Ign-F1} & \\textbf{Evi-F1} & \\textbf{EDCR} & \\textbf{vs Qwen3-4B} \\\\\n\\midrule\nSFT no-evidence & 50.5 & --- & --- & vs 47.21 \\\\\nRSFT CED & 46.0 & 81.5 & 0.655 & vs 44.66 \\\\\nSFT baseline & 43.5 & 80.5 & 0.700 & vs 39.74 \\\\\nGRPO QLoRA & $\\sim$8.0 & 82.5 & 0.950 & vs $\\sim$1.4 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{LLaMA-3.1-8B results on DocRED dev set. RSFT improves +2.5pp over SFT. GRPO QLoRA is catastrophic (rel\\_F1$\\approx$0.08) but less severe than Qwen3-4B (0.014), indicating architecture modulates severity.}\n\\label{tab:llama}\n\\end{table}\n\nTable~\\ref{tab:llama} validates our findings on a different model family. RSFT improves +2.5pp over SFT, and GRPO QLoRA again produces catastrophic decoupling. The catastrophic severity differs (LLaMA rel\\_F1=0.08 vs.\\ Qwen3-4B 0.014; ratio 5.8$\\times$), attributable to LLaMA-3.1-8B's larger capacity providing a buffer against quantization-induced collapse. Evidence tax is $\\sim$7.0pp, consistent with DocRED results.\n\nThe key takeaway: decoupling is a robust phenomenon across model families, though its exact severity is architecture-dependent. The absence of intermediate LLaMA data points (bf16 GRPO, DPO) is a limitation; we confirm only the endpoints of the spectrum (RSFT: no decoupling; QLoRA GRPO: catastrophic).\n\n% ============================================================\n\\section{Analysis and Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Why does decoupling occur?} We interpret decoupling as an intra-task multi-objective trade-off, not inter-task catastrophic forgetting. The model optimizes a composite objective spanning relation extraction and evidence generation. Under strong RL optimization pressure, the gradient signal from the evidence-quality reward dominates, causing the model to reallocate capacity from extraction to evidence production. bf16 GRPO's mild decoupling ($-$2pp) confirms the model retains extraction knowledge---it shifts resource allocation rather than losing capabilities. This distinguishes our finding from recent work arguing RL mitigates forgetting: the decoupling we observe is within-task competition, not between-task interference.\n\n\\paragraph{QLoRA as amplifier.} QLoRA compresses the parameter space available for multi-objective optimization. Under this constraint, the same RL pressure that produces mild decoupling in bf16 becomes catastrophic---the model lacks the representational budget to maintain both objectives simultaneously. This aligns with QuRL's finding that quantized--full-precision actor divergence grows exponentially during RL training.\n\n\\paragraph{RSFT: why it works.} RSFT sidesteps decoupling because it operates on \\emph{static} filtered data without online optimization dynamics. The NLI-based scoring pre-selects samples where extraction and evidence are jointly good, and supervised fine-tuning on this subset does not create competing gradients. The critical factor is filtering precision ($k$=1 $\\gg$ $k$=3), not the specific scoring function (CED $\\approx$ flat-NLI).\n\n\\paragraph{Practical implications.} For deployment, the CED reranker offers the best trade-off: 45.8 Ign-F1 on the test set (within 0.2pp of no-evidence) with Evi-F1=81.88, requiring no additional training. RSFT is preferred when reranking is computationally prohibitive.\n\n% ============================================================\n\\section{Limitations}\n\\label{sec:limitations}\n\n\\begin{itemize}\n\\item All evaluation uses exact-match F1, which underestimates generative RE performance (as noted by GenRES). This affects all methods equally, preserving relative comparisons.\n\\item EDCR per-relation diagnostics show only moderate human agreement ($\\rho$=0.58) and should be interpreted as directional indicators, particularly for multi-hop and implicit evidence relations.\n\\item The LLaMA cross-family validation covers only the spectrum endpoints (RSFT, GRPO QLoRA) due to GPU budget constraints.\n\\item CED vs.\\ flat-NLI non-significance ($p$=0.31) means we cannot claim the contrastive design provides downstream benefits---CED is one practical NLI-based scorer, not uniquely superior.\n\\item Dev-to-test degradation is larger for RSFT ($\\sim$3.2pp) than SFT ($\\sim$1.2pp), suggesting RSFT is more sensitive to distribution shift due to its smaller, curated training set.\n\\item Re-DocRED's 55\\% missing evidence annotations limit the CED scoring signal, partially explaining the smaller RSFT gain on that dataset.\n\\end{itemize}\n\n% ============================================================\n\\section{Conclusion}\n\\label{sec:conclusion}\n\nWe introduced evidence-grounded DocRE as a new task requiring generative LLMs to jointly produce relation triples and supporting evidence. Through systematic exploration of GRPO, DPO, and RSFT, we uncovered the evidence--extraction decoupling spectrum: RL optimization pressure positively correlates with decoupling severity, with QLoRA acting as a catastrophic amplifier. RSFT with NLI-based quality filtering is the only optimization route that avoids decoupling, achieving +3.0pp over SFT on the DocRED test set. The EDCR diagnostic metric reliably quantifies decoupling at the method level ($\\rho$=0.82 with human judgments). These findings generalize across two model families (Qwen3, LLaMA-3.1), three model scales (1.7B--8B), and two datasets (DocRED, Re-DocRED).\n\n% ============================================================\n\\appendix\n\\section{NLI Model Ablation}\n\\label{app:nli-ablation}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{NLI Model} & \\textbf{CED Mean} & \\textbf{Sel.\\ Rate} & \\textbf{RSFT Ign-F1} & \\textbf{$\\Delta$} \\\\\n\\midrule\nDeBERTa-v3-large & 0.668 & 12.4\\% & 44.66 & --- \\\\\nDeBERTa-v3-base & 0.625 & 11.8\\% & 44.0 & $-$0.7pp \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{NLI model capacity ablation. Replacing DeBERTa-v3-large with base reduces RSFT Ign-F1 by only 0.7pp, suggesting the contrastive design is more important than NLI model capacity.}\n\\label{tab:nli-ablation}\n\\end{table}\n\n\\section{EDCR Disagreement Analysis}\n\\label{app:disagreement}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Category} & \\textbf{Freq.} & \\textbf{Example} & \\textbf{EDCR vs Human} \\\\\n\\midrule\nPartial evidence & 23\\% & member\\_of & EDCR high, human med \\\\\nMulti-hop & 18\\% & citizenship & EDCR low, human high \\\\\nImplicit evidence & 12\\% & date\\_of\\_birth & EDCR low, human med \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Systematic disagreement categories between EDCR and human judgments.}\n\\label{tab:disagreement}\n\\end{table}\n\n\\section{Per-Seed CED vs flat-NLI Results}\n\\label{app:per-seed}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{llcccc}\n\\toprule\n\\textbf{Scoring} & \\textbf{Seed} & \\textbf{Ign-F1} & \\textbf{rel\\_F1} & \\textbf{evi\\_F1} & \\textbf{EDCR} \\\\\n\\midrule\nCED & s42 & 44.23 & .4517 & .8175 & .6569 \\\\\nCED & s43 & 45.12 & .4601 & .8063 & .6542 \\\\\nCED & s44 & 45.11 & .4621 & .8050 & .6350 \\\\\nCED & s45 & 44.16 & .4514 & .8174 & .6550 \\\\\nCED & s46 & 44.50 & .4570 & .8100 & .6480 \\\\\n\\midrule\nflat-NLI & s42 & 44.48 & .4535 & .8039 & .6458 \\\\\nflat-NLI & s43 & 45.03 & .4586 & .8113 & .6552 \\\\\nflat-NLI & s44 & 45.21 & .4615 & .8131 & .6458 \\\\\nflat-NLI & s45 & 44.62 & .4551 & .8154 & .6521 \\\\\nflat-NLI & s46 & 44.60 & .4555 & .8100 & .6500 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-seed results for CED vs flat-NLI scoring on DocRED dev set.}\n\\label{tab:per-seed}\n\\end{table}\n\n\\bibliographystyle{acl_natbib}\n\n\\begin{thebibliography}{20}\n\n\\bibitem[\\protect\\citename{Yao et al.}2019]{yao2019docred}\nYuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, and Maosong Sun. 2019.\n\\newblock DocRED: A large-scale document-level relation extraction dataset.\n\\newblock In \\emph{Proceedings of ACL}.\n\n\\bibitem[\\protect\\citename{Zhou and Lee}2021]{zhou2021atlop}\nWenxuan Zhou and Muhao Chen. 2021.\n\\newblock ATLOP: Document-level relation extraction with adaptive thresholding and localized context pooling.\n\\newblock In \\emph{Proceedings of AAAI}.\n\n\\bibitem[\\protect\\citename{Ma et al.}2023]{ma2023dreeam}\nYoumi Ma, An Wang, and Naoaki Okazaki. 2023.\n\\newblock DREEAM: Guiding attention with evidence for improving document-level relation extraction.\n\\newblock In \\emph{Proceedings of EACL}.\n\n\\bibitem[\\protect\\citename{Xiao et al.}2022]{xiao2022sais}\nChaojun Xiao, Yuan Yao, Ruobing Xie, Xu Han, Zhiyuan Liu, Maosong Sun, Fen Lin, and Leyu Lin. 2022.\n\\newblock SAIS: Supervising and augmenting intermediate steps for document-level relation extraction.\n\\newblock In \\emph{Proceedings of NAACL}.\n\n\\bibitem[\\protect\\citename{Shao et al.}2024]{shao2024deepseekmath}\nZhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, and Daya Guo. 2024.\n\\newblock DeepSeekMath: Pushing the limits of mathematical reasoning in open language models.\n\\newblock \\emph{arXiv preprint arXiv:2402.03300}.\n\n\\bibitem[\\protect\\citename{Rafailov et al.}2023]{rafailov2023dpo}\nRafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D Manning, and Chelsea Finn. 2023.\n\\newblock Direct preference optimization: Your language model is secretly a reward model.\n\\newblock In \\emph{NeurIPS}.\n\n\\bibitem[\\protect\\citename{Zelikman et al.}2022]{zelikman2022star}\nEric Zelikman, Yuhuai Wu, Jesse Mu, and Noah~D Goodman. 2022.\n\\newblock STaR: Bootstrapping reasoning with reasoning.\n\\newblock In \\emph{NeurIPS}.\n\n\\bibitem[\\protect\\citename{Tan et al.}2022]{tan2022revisiting}\nQingyu Tan, Lu Xu, Lidong Bing, Hwee~Tou Ng, and Sharifah~Mahani Aljunied. 2022.\n\\newblock Revisiting DocRED--addressing the false negative problem in relation extraction.\n\\newblock In \\emph{Proceedings of EMNLP}.\n\n\\bibitem[\\protect\\citename{Gao et al.}2023]{gao2023scaling}\nLeo Gao, John Schulman, and Jacob Hilton. 2023.\n\\newblock Scaling laws for reward model overoptimization.\n\\newblock In \\emph{ICML}.\n\n\\end{thebibliography}\n\n\\end{document}\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "d968ebf2-d7d0-48eb-bcb9-e910a5f3994e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T105318 tier=median 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-i…",
+  "leafUuid": "f0558c50-44d1-4d25-8f91-cbb2f3fcc4c1",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated paper from experiment data",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T11:32:22.210Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01GPPitqWzdfgAbuVLvB4o8Z`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -20",
+  "description": "Compile LaTeX paper twice",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f0558c50-44d1-4d25-8f91-cbb2f3fcc4c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B3eJp272x2znSLJozi",
+  "type": "assistant",
+  "uuid": "7ccc5e35-9cef-4276-898c-abe6623719e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019qLWWCoqbxeSgHsn9sB66X",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10563,
+      "cache_read_input_tokens": 43828,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10563,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 43828,
+          "cache_creation_input_tokens": 10563,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10563
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-16T11:32:22.409Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01GPPitqWzdfgAbuVLvB4o8Z`</summary>
+
+```text
+Exit code 1
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+
+! LaTeX Error: File `acl.sty' not found.
+
+Type X to quit or &lt;RETURN> to proceed,
+or enter new name. (Default extension: sty)
+
+Enter file name: 
+! Emergency stop.
+&lt;read *> 
+         
+l.3 \usepackage
+               {times}^^M
+!  ==> Fatal error occurred, no output PDF file produced!
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7ccc5e35-9cef-4276-898c-abe6623719e9",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "bee7a1aa-2885-43ce-a2d3-2d54189a3033",
+  "toolUseResult": "Error: Exit code 1\nThis is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n\n! LaTeX Error: File `acl.sty' not found.\n\nType X to quit or &lt;RETURN> to proceed,\nor enter new name. (Default extension: sty)\n\nEnter file name: \n! Emergency stop.\n&lt;read *> \n         \nl.3 \\usepackage\n               {times}^^M\n!  ==> Fatal error occurred, no output PDF file produced!\nTranscript written on paper.log.",
+  "sourceToolAssistantUUID": "7ccc5e35-9cef-4276-898c-abe6623719e9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-16T11:32:28.780Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ACL style file isn't available. Let me switch to a standard article class with appropriate formatting.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bee7a1aa-2885-43ce-a2d3-2d54189a3033",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B43Jfj7FWBRK1VwgAh",
+  "type": "assistant",
+  "uuid": "e6d71d50-8d40-4361-9cd2-69995a88e4ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ShafYug2Wv8XH63WwbLgY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 469,
+      "cache_read_input_tokens": 54391,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 54391,
+          "cache_creation_input_tokens": 469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-16T11:32:29.301Z_
+
+ACL style not available. Switching to standard article class.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6d71d50-8d40-4361-9cd2-69995a88e4ea",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B43Jfj7FWBRK1VwgAh",
+  "type": "assistant",
+  "uuid": "63f13e49-579a-42b6-bbd8-b6bad50ccd9e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ShafYug2Wv8XH63WwbLgY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 469,
+      "cache_read_input_tokens": 54391,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 54391,
+          "cache_creation_input_tokens": 469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T11:32:32.272Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01XKidq1A2Xk58hRN61TJgDW`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex",
+  "old_string": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}",
+  "new_string": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\\usepackage[numbers]{natbib}\n\\usepackage{hyperref}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63f13e49-579a-42b6-bbd8-b6bad50ccd9e",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B43Jfj7FWBRK1VwgAh",
+  "type": "assistant",
+  "uuid": "6498a94d-6c52-4f3d-b82d-cb3ee34f1d36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ShafYug2Wv8XH63WwbLgY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 469,
+      "cache_read_input_tokens": 54391,
+      "output_tokens": 432,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 432,
+          "cache_read_input_tokens": 54391,
+          "cache_creation_input_tokens": 469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-16T11:32:32.297Z_
+
+<details><summary>↩ Tool result · `toolu_01XKidq1A2Xk58hRN61TJgDW`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6498a94d-6c52-4f3d-b82d-cb3ee34f1d36",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "e99ec984-1581-4730-940d-527e5f66f37d",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex",
+    "oldString": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[hyperref]{acl}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}",
+    "newString": "\\documentclass[11pt,a4paper]{article}\n\\usepackage[margin=1in]{geometry}\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage{graphicx}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{xcolor}\n\\usepackage{subcaption}\n\\usepackage[numbers]{natbib}\n\\usepackage{hyperref}",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 5,
+        "newStart": 1,
+        "newLines": 5,
+        "lines": [
+          " \\documentclass[11pt,a4paper]{article}",
+          "-\\usepackage[hyperref]{acl}",
+          "+\\usepackage[margin=1in]{geometry}",
+          " \\usepackage{times}",
+          " \\usepackage{latexsym}",
+          " \\usepackage{graphicx}"
+        ]
+      },
+      {
+        "oldStart": 9,
+        "oldLines": 6,
+        "newStart": 9,
+        "newLines": 8,
+        "lines": [
+          " \\usepackage{multirow}",
+          " \\usepackage{xcolor}",
+          " \\usepackage{subcaption}",
+          "+\\usepackage[numbers]{natbib}",
+          "+\\usepackage{hyperref}",
+          " ",
+          " \\newcommand{\\ours}{\\textsc{Freige}}",
+          " \\newcommand{\\edcr}{\\textsc{Edcr}}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "6498a94d-6c52-4f3d-b82d-cb3ee34f1d36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-16T11:32:35.285Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01PtUWzs8AT1yh9yGy4VMAp9`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex",
+  "old_string": "\\bibliographystyle{acl_natbib}",
+  "new_string": "\\bibliographystyle{plainnat}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e99ec984-1581-4730-940d-527e5f66f37d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B4mj5AMSuhWQUUqMcU",
+  "type": "assistant",
+  "uuid": "b9cd2e6a-d299-485a-b2d8-ad3454f01a5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Bf9PCw5RQEYj6qELo6vfQK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 517,
+      "cache_read_input_tokens": 54860,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 517,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 54860,
+          "cache_creation_input_tokens": 517,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 517
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T11:32:35.298Z_
+
+<details><summary>↩ Tool result · `toolu_01PtUWzs8AT1yh9yGy4VMAp9`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b9cd2e6a-d299-485a-b2d8-ad3454f01a5b",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "976c699a-c4e9-4b2b-b507-6a86b0cdce36",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex",
+    "oldString": "\\bibliographystyle{acl_natbib}",
+    "newString": "\\bibliographystyle{plainnat}",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 398,
+        "oldLines": 7,
+        "newStart": 398,
+        "newLines": 7,
+        "lines": [
+          " \\label{tab:per-seed}",
+          " \\end{table}",
+          " ",
+          "-\\bibliographystyle{acl_natbib}",
+          "+\\bibliographystyle{plainnat}",
+          " ",
+          " \\begin{thebibliography}{20}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "b9cd2e6a-d299-485a-b2d8-ad3454f01a5b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 31 · 2026-05-16T11:32:35.330Z_
+
+```json
+{
+  "parentUuid": "976c699a-c4e9-4b2b-b507-6a86b0cdce36",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "32147452-e227-4c18-9e20-557135ca076b",
+  "timestamp": "2026-05-16T11:32:35.330Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T11:32:38.642Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01H2a4mjBNqmW9i1bfAAVFZi`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -20",
+  "description": "Compile LaTeX paper twice",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32147452-e227-4c18-9e20-557135ca076b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B4zhRm6whH5kZEHuas",
+  "type": "assistant",
+  "uuid": "e4e328de-4b18-4719-82d5-184ca313b360",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0111R6VD2JeNDTm8GD8zmBDC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 345,
+      "cache_read_input_tokens": 55377,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 345,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 55377,
+          "cache_creation_input_tokens": 345,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 345
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-16T11:32:39.297Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01H2a4mjBNqmW9i1bfAAVFZi`</summary>
+
+```text
+Exit code 1
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+
+Package natbib Warning: Citation `yao2019docred' on page 1 undefined on input l
+ine 37.
+
+
+Overfull \hbox (19.28996pt too wide) in paragraph at lines 37--38
+\OT1/ptm/m/n/10.95 meth-ods on bench-marks like Do-cRED [\OT1/ptm/b/n/10.95 ? \
+OT1/ptm/m/n/10.95 ], yet they pro-duce pre-dic-tions with-out any ver-i-fi-able
+ justification---
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+Overfull \hbox (8.57915pt too wide) in paragraph at lines 48--49
+[]\OT1/ptm/b/n/10.95 Decoupling spec-trum\OT1/ptm/m/n/10.95 : a sys-tem-atic fi
+nd-ing that RL op-ti-miza-tion pres-sure cor-re-lates with evidence--
+
+Package natbib Warning: Citation `zhou2021atlop' on page 2 undefined on input l
+ine 57.
+
+
+Package natbib Warning: Citation `ma2023dreeam' on page 2 undefined on input li
+ne 57.
+
+
+Package natbib Warning: Citation `xiao2022sais' on page 2 undefined on input li
+ne 57.
+
+
+Overfull \hbox (9.24756pt too wide) in paragraph at lines 59--60
+ []\OT1/ptm/b/n/10.95 Evidence-grounded vs. evidence-retrieved.[] \OT1/ptm/m/n/
+10.95 A key dis-tinc-tion: encoder-based ev-i-dence \OT1/ptm/m/it/10.95 re-trie
+val \OT1/ptm/m/n/10.95 (SAIS,
+
+Package natbib Warning: Citation `shao2024deepseekmath' on page 2 undefined on 
+input line 61.
+
+
+Package natbib Warning: Citation `rafailov2023dpo' on page 2 undefined on input
+ line 61.
+
+
+Package natbib Warning: Citation `zelikman2022star' on page 2 undefined on inpu
+t line 61.
+
+
+Package natbib Warning: Citation `zelikman2022star' on page 2 undefined on inpu
+t line 79.
+
+[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `yao2019docred' on page 3 undefined on input l
+ine 106.
+
+
+Package natbib Warning: Citation `tan2022revisiting' on page 3 undefined on inp
+ut line 106.
+
+
+LaTeX Warning: Reference `tab:main' on page 3 undefined on input line 121.
+
+[3]
+
+LaTeX Warning: Reference `tab:spectrum' on page 4 undefined on input line 154.
+
+
+Overfull \hbox (9.28423pt too wide) in paragraph at lines 179--180
+[]\OT1/ptm/m/n/10.95 QLoRA am-pli-fies this trade-off catas-troph-i-cally: Qwen
+3-4B GRPO QLoRA col-lapses to rel[]F1=0.014,
+
+LaTeX Warning: Reference `tab:scoring' on page 4 undefined on input line 184.
+
+[4]
+
+LaTeX Warning: Reference `tab:cross-scale' on page 5 undefined on input line 22
+9.
+
+
+LaTeX Warning: Reference `tab:redocred' on page 5 undefined on input line 255.
+
+[5]
+
+LaTeX Warning: Reference `tab:edcr-human' on page 6 undefined on input line 276
+.
+
+
+LaTeX Warning: Reference `tab:llama' on page 6 undefined on input line 300.
+
+[6] [7]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+Runaway argument?
+Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Li\ETC.
+! Paragraph ended before \NAT@apalk was complete.
+&lt;to be read again> 
+                   \par 
+l.409 
+      
+Runaway argument?
+\@nil {zhou2021atlop} Wenxuan Zhou and Muhao Chen. 2021. \newblock AT\ETC.
+! Paragraph ended before \NAT@apalk was complete.
+&lt;to be read again> 
+                   \par 
+l.414 
+      
+Runaway argument?
+An Wang, and Naoaki Okazaki. 2023. \newblock DREEAM: Guiding attentio\ETC.
+! Paragraph ended before \NAT@apalk was complete.
+&lt;to be read again> 
+                   \par 
+l.419 
+      
+[8]
+Runaway argument?
+Yuan Yao, Ruobing Xie, Xu Han, Zhiyuan Liu, Maosong Sun, Fen Lin, and\ETC.
+! Paragraph ended before \NAT@apalk was complete.
+&lt;to be read again> 
+                   \par 
+l.424 
+      
+Runaway argument?
+Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K.\ETC.
+! Paragraph ended before \NAT@apalk was complete.
+&lt;to be read again> 
+                   \par 
+l.429 
+      
+Runaway argument?
+Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D Manning, a\ETC.
+! Paragraph ended before \NAT@apalk was complete.
+&lt;to be read again> 
+                   \par 
+l.434 
+      
+Runaway argument?
+Yuhuai Wu, Jesse Mu, and Noah~D Goodman. 2022. \newblock STaR: Bootst\ETC.
+! Paragraph ended before \NAT@apalk was complete.
+&lt;to be read again> 
+                   \par 
+l.439 
+      
+Runaway argument?
+Lu Xu, Lidong Bing, Hwee~Tou Ng, and Sharifah~Mahani Aljunied. 2022. \ETC.
+! Paragraph ended before \NAT@apalk was complete.
+&lt;to be read again> 
+                   \par 
+l.444 
+      
+Runaway argument?
+John Schulman, and Jacob Hilton. 2023. \newblock Scaling laws for rew\ETC.
+! Paragraph ended before \NAT@apalk was complete.
+&lt;to be read again> 
+                   \par 
+l.449 
+      
+
+Package natbib Warning: There were undefined citations.
+
+[9] (./paper.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/
+utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/us
+r/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 114038 bytes).
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4e328de-4b18-4719-82d5-184ca313b360",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "570bc511-cf9a-440c-9157-3ccb1f94b80a",
+  "toolUseResult": "Error: Exit code 1\nThis is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\nNo file paper.aux.\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)\n\nPackage natbib Warning: Citation `yao2019docred' on page 1 undefined on input l\nine 37.\n\n\nOverfull \\hbox (19.28996pt too wide) in paragraph at lines 37--38\n\\OT1/ptm/m/n/10.95 meth-ods on bench-marks like Do-cRED [\\OT1/ptm/b/n/10.95 ? \\\nOT1/ptm/m/n/10.95 ], yet they pro-duce pre-dic-tions with-out any ver-i-fi-able\n justification---\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\ndist/fonts/enc/dvips/base/8r.enc}]\nOverfull \\hbox (8.57915pt too wide) in paragraph at lines 48--49\n[]\\OT1/ptm/b/n/10.95 Decoupling spec-trum\\OT1/ptm/m/n/10.95 : a sys-tem-atic fi\nnd-ing that RL op-ti-miza-tion pres-sure cor-re-lates with evidence--\n\nPackage natbib Warning: Citation `zhou2021atlop' on page 2 undefined on input l\nine 57.\n\n\nPackage natbib Warning: Citation `ma2023dreeam' on page 2 undefined on input li\nne 57.\n\n\nPackage natbib Warning: Citation `xiao2022sais' on page 2 undefined on input li\nne 57.\n\n\nOverfull \\hbox (9.24756pt too wide) in paragraph at lines 59--60\n []\\OT1/ptm/b/n/10.95 Evidence-grounded vs. evidence-retrieved.[] \\OT1/ptm/m/n/\n10.95 A key dis-tinc-tion: encoder-based ev-i-dence \\OT1/ptm/m/it/10.95 re-trie\nval \\OT1/ptm/m/n/10.95 (SAIS,\n\nPackage natbib Warning: Citation `shao2024deepseekmath' on page 2 undefined on \ninput line 61.\n\n\nPackage natbib Warning: Citation `rafailov2023dpo' on page 2 undefined on input\n line 61.\n\n\nPackage natbib Warning: Citation `zelikman2022star' on page 2 undefined on inpu\nt line 61.\n\n\nPackage natbib Warning: Citation `zelikman2022star' on page 2 undefined on inpu\nt line 79.\n\n[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)\n\nPackage natbib Warning: Citation `yao2019docred' on page 3 undefined on input l\nine 106.\n\n\nPackage natbib Warning: Citation `tan2022revisiting' on page 3 undefined on inp\nut line 106.\n\n\nLaTeX Warning: Reference `tab:main' on page 3 undefined on input line 121.\n\n[3]\n\nLaTeX Warning: Reference `tab:spectrum' on page 4 undefined on input line 154.\n\n\nOverfull \\hbox (9.28423pt too wide) in paragraph at lines 179--180\n[]\\OT1/ptm/m/n/10.95 QLoRA am-pli-fies this trade-off catas-troph-i-cally: Qwen\n3-4B GRPO QLoRA col-lapses to rel[]F1=0.014,\n\nLaTeX Warning: Reference `tab:scoring' on page 4 undefined on input line 184.\n\n[4]\n\nLaTeX Warning: Reference `tab:cross-scale' on page 5 undefined on input line 22\n9.\n\n\nLaTeX Warning: Reference `tab:redocred' on page 5 undefined on input line 255.\n\n[5]\n\nLaTeX Warning: Reference `tab:edcr-human' on page 6 undefined on input line 276\n.\n\n\nLaTeX Warning: Reference `tab:llama' on page 6 undefined on input line 300.\n\n[6] [7]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\nRunaway argument?\nDeming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Li\\ETC.\n! Paragraph ended before \\NAT@apalk was complete.\n&lt;to be read again> \n                   \\par \nl.409 \n      \nRunaway argument?\n\\@nil {zhou2021atlop} Wenxuan Zhou and Muhao Chen. 2021. \\newblock AT\\ETC.\n! Paragraph ended before \\NAT@apalk was complete.\n&lt;to be read again> \n                   \\par \nl.414 \n      \nRunaway argument?\nAn Wang, and Naoaki Okazaki. 2023. \\newblock DREEAM: Guiding attentio\\ETC.\n! Paragraph ended before \\NAT@apalk was complete.\n&lt;to be read again> \n                   \\par \nl.419 \n      \n[8]\nRunaway argument?\nYuan Yao, Ruobing Xie, Xu Han, Zhiyuan Liu, Maosong Sun, Fen Lin, and\\ETC.\n! Paragraph ended before \\NAT@apalk was complete.\n&lt;to be read again> \n                   \\par \nl.424 \n      \nRunaway argument?\nPeiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K.\\ETC.\n! Paragraph ended before \\NAT@apalk was complete.\n&lt;to be read again> \n                   \\par \nl.429 \n      \nRunaway argument?\nArchit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D Manning, a\\ETC.\n! Paragraph ended before \\NAT@apalk was complete.\n&lt;to be read again> \n                   \\par \nl.434 \n      \nRunaway argument?\nYuhuai Wu, Jesse Mu, and Noah~D Goodman. 2022. \\newblock STaR: Bootst\\ETC.\n! Paragraph ended before \\NAT@apalk was complete.\n&lt;to be read again> \n                   \\par \nl.439 \n      \nRunaway argument?\nLu Xu, Lidong Bing, Hwee~Tou Ng, and Sharifah~Mahani Aljunied. 2022. \\ETC.\n! Paragraph ended before \\NAT@apalk was complete.\n&lt;to be read again> \n                   \\par \nl.444 \n      \nRunaway argument?\nJohn Schulman, and Jacob Hilton. 2023. \\newblock Scaling laws for rew\\ETC.\n! Paragraph ended before \\NAT@apalk was complete.\n&lt;to be read again> \n                   \\par \nl.449 \n      \n\nPackage natbib Warning: There were undefined citations.\n\n[9] (./paper.aux)\n\nLaTeX Warning: There were undefined references.\n\n\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `paper.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/\nutmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/us\nr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on paper.pdf (9 pages, 114038 bytes).\nTranscript written on paper.log.",
+  "sourceToolAssistantUUID": "e4e328de-4b18-4719-82d5-184ca313b360",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T105318 tier=median 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-i…",
+  "leafUuid": "570bc511-cf9a-440c-9157-3ccb1f94b80a",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated paper from experiment data",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-16T11:32:43.462Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The bibliography format is incompatible with natbib's `plainnat` style and the `thebibliography` environment. The `\citename` command is ACL-specific. Let me fix the bibliography to use standard natbib-compatible format, and also fix the `\protect\citename` issue.
+
+I'll rewrite the bibliography section to be natbib-compatible.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "570bc511-cf9a-440c-9157-3ccb1f94b80a",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B5HXTiNvcZjEysjf1D",
+  "type": "assistant",
+  "uuid": "86934d86-f089-4519-8307-99c9eb55923d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TdkvmLEfuFvqkL6pb5ipu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4356,
+      "cache_read_input_tokens": 55722,
+      "output_tokens": 2075,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4356,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2075,
+          "cache_read_input_tokens": 55722,
+          "cache_creation_input_tokens": 4356,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4356
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-16T11:32:44.019Z_
+
+Bibliography format issue with natbib. Let me fix it.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "86934d86-f089-4519-8307-99c9eb55923d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B5HXTiNvcZjEysjf1D",
+  "type": "assistant",
+  "uuid": "2c788e95-ad01-49f5-9d50-a85064388db4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TdkvmLEfuFvqkL6pb5ipu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4356,
+      "cache_read_input_tokens": 55722,
+      "output_tokens": 2075,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4356,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2075,
+          "cache_read_input_tokens": 55722,
+          "cache_creation_input_tokens": 4356,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4356
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T11:33:04.490Z_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_019Bzst2pmcjvmbgYCeYPZsY`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex",
+  "old_string": "\\bibliographystyle{plainnat}\n\n\\begin{thebibliography}{20}\n\n\\bibitem[\\protect\\citename{Yao et al.}2019]{yao2019docred}\nYuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, and Maosong Sun. 2019.\n\\newblock DocRED: A large-scale document-level relation extraction dataset.\n\\newblock In \\emph{Proceedings of ACL}.\n\n\\bibitem[\\protect\\citename{Zhou and Lee}2021]{zhou2021atlop}\nWenxuan Zhou and Muhao Chen. 2021.\n\\newblock ATLOP: Document-level relation extraction with adaptive thresholding and localized context pooling.\n\\newblock In \\emph{Proceedings of AAAI}.\n\n\\bibitem[\\protect\\citename{Ma et al.}2023]{ma2023dreeam}\nYoumi Ma, An Wang, and Naoaki Okazaki. 2023.\n\\newblock DREEAM: Guiding attention with evidence for improving document-level relation extraction.\n\\newblock In \\emph{Proceedings of EACL}.\n\n\\bibitem[\\protect\\citename{Xiao et al.}2022]{xiao2022sais}\nChaojun Xiao, Yuan Yao, Ruobing Xie, Xu Han, Zhiyuan Liu, Maosong Sun, Fen Lin, and Leyu Lin. 2022.\n\\newblock SAIS: Supervising and augmenting intermediate steps for document-level relation extraction.\n\\newblock In \\emph{Proceedings of NAACL}.\n\n\\bibitem[\\protect\\citename{Shao et al.}2024]{shao2024deepseekmath}\nZhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, and Daya Guo. 2024.\n\\newblock DeepSeekMath: Pushing the limits of mathematical reasoning in open language models.\n\\newblock \\emph{arXiv preprint arXiv:2402.03300}.\n\n\\bibitem[\\protect\\citename{Rafailov et al.}2023]{rafailov2023dpo}\nRafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D Manning, and Chelsea Finn. 2023.\n\\newblock Direct preference optimization: Your language model is secretly a reward model.\n\\newblock In \\emph{NeurIPS}.\n\n\\bibitem[\\protect\\citename{Zelikman et al.}2022]{zelikman2022star}\nEric Zelikman, Yuhuai Wu, Jesse Mu, and Noah~D Goodman. 2022.\n\\newblock STaR: Bootstrapping reasoning with reasoning.\n\\newblock In \\emph{NeurIPS}.\n\n\\bibitem[\\protect\\citename{Tan et al.}2022]{tan2022revisiting}\nQingyu Tan, Lu Xu, Lidong Bing, Hwee~Tou Ng, and Sharifah~Mahani Aljunied. 2022.\n\\newblock Revisiting DocRED--addressing the false negative problem in relation extraction.\n\\newblock In \\emph{Proceedings of EMNLP}.\n\n\\bibitem[\\protect\\citename{Gao et al.}2023]{gao2023scaling}\nLeo Gao, John Schulman, and Jacob Hilton. 2023.\n\\newblock Scaling laws for reward model overoptimization.\n\\newblock In \\emph{ICML}.\n\n\\end{thebibliography}",
+  "new_string": "\\begin{thebibliography}{9}\n\n\\bibitem[Yao et~al.(2019)]{yao2019docred}\nY.~Yao, D.~Ye, P.~Li, X.~Han, Y.~Lin, Z.~Liu, Z.~Liu, L.~Huang, J.~Zhou, and M.~Sun.\nDocRED: A large-scale document-level relation extraction dataset.\nIn \\emph{Proc. ACL}, 2019.\n\n\\bibitem[Zhou and Chen(2021)]{zhou2021atlop}\nW.~Zhou and M.~Chen.\nATLOP: Document-level relation extraction with adaptive thresholding and localized context pooling.\nIn \\emph{Proc. AAAI}, 2021.\n\n\\bibitem[Ma et~al.(2023)]{ma2023dreeam}\nY.~Ma, A.~Wang, and N.~Okazaki.\nDREEAM: Guiding attention with evidence for improving document-level relation extraction.\nIn \\emph{Proc. EACL}, 2023.\n\n\\bibitem[Xiao et~al.(2022)]{xiao2022sais}\nC.~Xiao, Y.~Yao, R.~Xie, X.~Han, Z.~Liu, M.~Sun, F.~Lin, and L.~Lin.\nSAIS: Supervising and augmenting intermediate steps for document-level relation extraction.\nIn \\emph{Proc. NAACL}, 2022.\n\n\\bibitem[Shao et~al.(2024)]{shao2024deepseekmath}\nZ.~Shao, P.~Wang, Q.~Zhu, R.~Xu, J.~Song, M.~Zhang, Y.K.~Li, Y.~Wu, and D.~Guo.\nDeepSeekMath: Pushing the limits of mathematical reasoning in open language models.\n\\emph{arXiv:2402.03300}, 2024.\n\n\\bibitem[Rafailov et~al.(2023)]{rafailov2023dpo}\nR.~Rafailov, A.~Sharma, E.~Mitchell, S.~Ermon, C.D.~Manning, and C.~Finn.\nDirect preference optimization: Your language model is secretly a reward model.\nIn \\emph{NeurIPS}, 2023.\n\n\\bibitem[Zelikman et~al.(2022)]{zelikman2022star}\nE.~Zelikman, Y.~Wu, J.~Mu, and N.D.~Goodman.\nSTaR: Bootstrapping reasoning with reasoning.\nIn \\emph{NeurIPS}, 2022.\n\n\\bibitem[Tan et~al.(2022)]{tan2022revisiting}\nQ.~Tan, L.~Xu, L.~Bing, H.T.~Ng, and S.M.~Aljunied.\nRevisiting DocRED -- addressing the false negative problem in relation extraction.\nIn \\emph{Proc. EMNLP}, 2022.\n\n\\bibitem[Gao et~al.(2023)]{gao2023scaling}\nL.~Gao, J.~Schulman, and J.~Hilton.\nScaling laws for reward model overoptimization.\nIn \\emph{ICML}, 2023.\n\n\\end{thebibliography}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c788e95-ad01-49f5-9d50-a85064388db4",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B5HXTiNvcZjEysjf1D",
+  "type": "assistant",
+  "uuid": "53a949a1-01a3-466e-88ef-2cde273c1ce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016TdkvmLEfuFvqkL6pb5ipu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4356,
+      "cache_read_input_tokens": 55722,
+      "output_tokens": 2075,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4356,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2075,
+          "cache_read_input_tokens": 55722,
+          "cache_creation_input_tokens": 4356,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4356
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T11:33:04.519Z_
+
+<details><summary>↩ Tool result · `toolu_019Bzst2pmcjvmbgYCeYPZsY`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53a949a1-01a3-466e-88ef-2cde273c1ce3",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "5b290231-ee29-4c99-9afd-ca39a82d2ecd",
+  "toolUseResult": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median/paper.tex",
+    "oldString": "\\bibliographystyle{plainnat}\n\n\\begin{thebibliography}{20}\n\n\\bibitem[\\protect\\citename{Yao et al.}2019]{yao2019docred}\nYuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, and Maosong Sun. 2019.\n\\newblock DocRED: A large-scale document-level relation extraction dataset.\n\\newblock In \\emph{Proceedings of ACL}.\n\n\\bibitem[\\protect\\citename{Zhou and Lee}2021]{zhou2021atlop}\nWenxuan Zhou and Muhao Chen. 2021.\n\\newblock ATLOP: Document-level relation extraction with adaptive thresholding and localized context pooling.\n\\newblock In \\emph{Proceedings of AAAI}.\n\n\\bibitem[\\protect\\citename{Ma et al.}2023]{ma2023dreeam}\nYoumi Ma, An Wang, and Naoaki Okazaki. 2023.\n\\newblock DREEAM: Guiding attention with evidence for improving document-level relation extraction.\n\\newblock In \\emph{Proceedings of EACL}.\n\n\\bibitem[\\protect\\citename{Xiao et al.}2022]{xiao2022sais}\nChaojun Xiao, Yuan Yao, Ruobing Xie, Xu Han, Zhiyuan Liu, Maosong Sun, Fen Lin, and Leyu Lin. 2022.\n\\newblock SAIS: Supervising and augmenting intermediate steps for document-level relation extraction.\n\\newblock In \\emph{Proceedings of NAACL}.\n\n\\bibitem[\\protect\\citename{Shao et al.}2024]{shao2024deepseekmath}\nZhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, and Daya Guo. 2024.\n\\newblock DeepSeekMath: Pushing the limits of mathematical reasoning in open language models.\n\\newblock \\emph{arXiv preprint arXiv:2402.03300}.\n\n\\bibitem[\\protect\\citename{Rafailov et al.}2023]{rafailov2023dpo}\nRafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D Manning, and Chelsea Finn. 2023.\n\\newblock Direct preference optimization: Your language model is secretly a reward model.\n\\newblock In \\emph{NeurIPS}.\n\n\\bibitem[\\protect\\citename{Zelikman et al.}2022]{zelikman2022star}\nEric Zelikman, Yuhuai Wu, Jesse Mu, and Noah~D Goodman. 2022.\n\\newblock STaR: Bootstrapping reasoning with reasoning.\n\\newblock In \\emph{NeurIPS}.\n\n\\bibitem[\\protect\\citename{Tan et al.}2022]{tan2022revisiting}\nQingyu Tan, Lu Xu, Lidong Bing, Hwee~Tou Ng, and Sharifah~Mahani Aljunied. 2022.\n\\newblock Revisiting DocRED--addressing the false negative problem in relation extraction.\n\\newblock In \\emph{Proceedings of EMNLP}.\n\n\\bibitem[\\protect\\citename{Gao et al.}2023]{gao2023scaling}\nLeo Gao, John Schulman, and Jacob Hilton. 2023.\n\\newblock Scaling laws for reward model overoptimization.\n\\newblock In \\emph{ICML}.\n\n\\end{thebibliography}",
+    "newString": "\\begin{thebibliography}{9}\n\n\\bibitem[Yao et~al.(2019)]{yao2019docred}\nY.~Yao, D.~Ye, P.~Li, X.~Han, Y.~Lin, Z.~Liu, Z.~Liu, L.~Huang, J.~Zhou, and M.~Sun.\nDocRED: A large-scale document-level relation extraction dataset.\nIn \\emph{Proc. ACL}, 2019.\n\n\\bibitem[Zhou and Chen(2021)]{zhou2021atlop}\nW.~Zhou and M.~Chen.\nATLOP: Document-level relation extraction with adaptive thresholding and localized context pooling.\nIn \\emph{Proc. AAAI}, 2021.\n\n\\bibitem[Ma et~al.(2023)]{ma2023dreeam}\nY.~Ma, A.~Wang, and N.~Okazaki.\nDREEAM: Guiding attention with evidence for improving document-level relation extraction.\nIn \\emph{Proc. EACL}, 2023.\n\n\\bibitem[Xiao et~al.(2022)]{xiao2022sais}\nC.~Xiao, Y.~Yao, R.~Xie, X.~Han, Z.~Liu, M.~Sun, F.~Lin, and L.~Lin.\nSAIS: Supervising and augmenting intermediate steps for document-level relation extraction.\nIn \\emph{Proc. NAACL}, 2022.\n\n\\bibitem[Shao et~al.(2024)]{shao2024deepseekmath}\nZ.~Shao, P.~Wang, Q.~Zhu, R.~Xu, J.~Song, M.~Zhang, Y.K.~Li, Y.~Wu, and D.~Guo.\nDeepSeekMath: Pushing the limits of mathematical reasoning in open language models.\n\\emph{arXiv:2402.03300}, 2024.\n\n\\bibitem[Rafailov et~al.(2023)]{rafailov2023dpo}\nR.~Rafailov, A.~Sharma, E.~Mitchell, S.~Ermon, C.D.~Manning, and C.~Finn.\nDirect preference optimization: Your language model is secretly a reward model.\nIn \\emph{NeurIPS}, 2023.\n\n\\bibitem[Zelikman et~al.(2022)]{zelikman2022star}\nE.~Zelikman, Y.~Wu, J.~Mu, and N.D.~Goodman.\nSTaR: Bootstrapping reasoning with reasoning.\nIn \\emph{NeurIPS}, 2022.\n\n\\bibitem[Tan et~al.(2022)]{tan2022revisiting}\nQ.~Tan, L.~Xu, L.~Bing, H.T.~Ng, and S.M.~Aljunied.\nRevisiting DocRED -- addressing the false negative problem in relation extraction.\nIn \\emph{Proc. EMNLP}, 2022.\n\n\\bibitem[Gao et~al.(2023)]{gao2023scaling}\nL.~Gao, J.~Schulman, and J.~Hilton.\nScaling laws for reward model overoptimization.\nIn \\emph{ICML}, 2023.\n\n\\end{thebibliography}",
+    "originalFile": null,
+    "structuredPatch": [
+      {
+        "oldStart": 398,
+        "oldLines": 55,
+        "newStart": 398,
+        "newLines": 53,
+        "lines": [
+          " \\label{tab:per-seed}",
+          " \\end{table}",
+          " ",
+          "-\\bibliographystyle{plainnat}",
+          "+\\begin{thebibliography}{9}",
+          " ",
+          "-\\begin{thebibliography}{20}",
+          "+\\bibitem[Yao et~al.(2019)]{yao2019docred}",
+          "+Y.~Yao, D.~Ye, P.~Li, X.~Han, Y.~Lin, Z.~Liu, Z.~Liu, L.~Huang, J.~Zhou, and M.~Sun.",
+          "+DocRED: A large-scale document-level relation extraction dataset.",
+          "+In \\emph{Proc. ACL}, 2019.",
+          " ",
+          "-\\bibitem[\\protect\\citename{Yao et al.}2019]{yao2019docred}",
+          "-Yuan Yao, Deming Ye, Peng Li, Xu Han, Yankai Lin, Zhenghao Liu, Zhiyuan Liu, Lixin Huang, Jie Zhou, and Maosong Sun. 2019.",
+          "-\\newblock DocRED: A large-scale document-level relation extraction dataset.",
+          "-\\newblock In \\emph{Proceedings of ACL}.",
+          "+\\bibitem[Zhou and Chen(2021)]{zhou2021atlop}",
+          "+W.~Zhou and M.~Chen.",
+          "+ATLOP: Document-level relation extraction with adaptive thresholding and localized context pooling.",
+          "+In \\emph{Proc. AAAI}, 2021.",
+          " ",
+          "-\\bibitem[\\protect\\citename{Zhou and Lee}2021]{zhou2021atlop}",
+          "-Wenxuan Zhou and Muhao Chen. 2021.",
+          "-\\newblock ATLOP: Document-level relation extraction with adaptive thresholding and localized context pooling.",
+          "-\\newblock In \\emph{Proceedings of AAAI}.",
+          "+\\bibitem[Ma et~al.(2023)]{ma2023dreeam}",
+          "+Y.~Ma, A.~Wang, and N.~Okazaki.",
+          "+DREEAM: Guiding attention with evidence for improving document-level relation extraction.",
+          "+In \\emph{Proc. EACL}, 2023.",
+          " ",
+          "-\\bibitem[\\protect\\citename{Ma et al.}2023]{ma2023dreeam}",
+          "-Youmi Ma, An Wang, and Naoaki Okazaki. 2023.",
+          "-\\newblock DREEAM: Guiding attention with evidence for improving document-level relation extraction.",
+          "-\\newblock In \\emph{Proceedings of EACL}.",
+          "+\\bibitem[Xiao et~al.(2022)]{xiao2022sais}",
+          "+C.~Xiao, Y.~Yao, R.~Xie, X.~Han, Z.~Liu, M.~Sun, F.~Lin, and L.~Lin.",
+          "+SAIS: Supervising and augmenting intermediate steps for document-level relation extraction.",
+          "+In \\emph{Proc. NAACL}, 2022.",
+          " ",
+          "-\\bibitem[\\protect\\citename{Xiao et al.}2022]{xiao2022sais}",
+          "-Chaojun Xiao, Yuan Yao, Ruobing Xie, Xu Han, Zhiyuan Liu, Maosong Sun, Fen Lin, and Leyu Lin. 2022.",
+          "-\\newblock SAIS: Supervising and augmenting intermediate steps for document-level relation extraction.",
+          "-\\newblock In \\emph{Proceedings of NAACL}.",
+          "+\\bibitem[Shao et~al.(2024)]{shao2024deepseekmath}",
+          "+Z.~Shao, P.~Wang, Q.~Zhu, R.~Xu, J.~Song, M.~Zhang, Y.K.~Li, Y.~Wu, and D.~Guo.",
+          "+DeepSeekMath: Pushing the limits of mathematical reasoning in open language models.",
+          "+\\emph{arXiv:2402.03300}, 2024.",
+          " ",
+          "-\\bibitem[\\protect\\citename{Shao et al.}2024]{shao2024deepseekmath}",
+          "-Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, and Daya Guo. 2024.",
+          "-\\newblock DeepSeekMath: Pushing the limits of mathematical reasoning in open language models.",
+          "-\\newblock \\emph{arXiv preprint arXiv:2402.03300}.",
+          "+\\bibitem[Rafailov et~al.(2023)]{rafailov2023dpo}",
+          "+R.~Rafailov, A.~Sharma, E.~Mitchell, S.~Ermon, C.D.~Manning, and C.~Finn.",
+          "+Direct preference optimization: Your language model is secretly a reward model.",
+          "+In \\emph{NeurIPS}, 2023.",
+          " ",
+          "-\\bibitem[\\protect\\citename{Rafailov et al.}2023]{rafailov2023dpo}",
+          "-Rafael Rafailov, Archit Sharma, Eric Mitchell, Stefano Ermon, Christopher~D Manning, and Chelsea Finn. 2023.",
+          "-\\newblock Direct preference optimization: Your language model is secretly a reward model.",
+          "-\\newblock In \\emph{NeurIPS}.",
+          "+\\bibitem[Zelikman et~al.(2022)]{zelikman2022star}",
+          "+E.~Zelikman, Y.~Wu, J.~Mu, and N.D.~Goodman.",
+          "+STaR: Bootstrapping reasoning with reasoning.",
+          "+In \\emph{NeurIPS}, 2022.",
+          " ",
+          "-\\bibitem[\\protect\\citename{Zelikman et al.}2022]{zelikman2022star}",
+          "-Eric Zelikman, Yuhuai Wu, Jesse Mu, and Noah~D Goodman. 2022.",
+          "-\\newblock STaR: Bootstrapping reasoning with reasoning.",
+          "-\\newblock In \\emph{NeurIPS}.",
+          "+\\bibitem[Tan et~al.(2022)]{tan2022revisiting}",
+          "+Q.~Tan, L.~Xu, L.~Bing, H.T.~Ng, and S.M.~Aljunied.",
+          "+Revisiting DocRED -- addressing the false negative problem in relation extraction.",
+          "+In \\emph{Proc. EMNLP}, 2022.",
+          " ",
+          "-\\bibitem[\\protect\\citename{Tan et al.}2022]{tan2022revisiting}",
+          "-Qingyu Tan, Lu Xu, Lidong Bing, Hwee~Tou Ng, and Sharifah~Mahani Aljunied. 2022.",
+          "-\\newblock Revisiting DocRED--addressing the false negative problem in relation extraction.",
+          "-\\newblock In \\emph{Proceedings of EMNLP}.",
+          "+\\bibitem[Gao et~al.(2023)]{gao2023scaling}",
+          "+L.~Gao, J.~Schulman, and J.~Hilton.",
+          "+Scaling laws for reward model overoptimization.",
+          "+In \\emph{ICML}, 2023.",
+          " ",
+          "-\\bibitem[\\protect\\citename{Gao et al.}2023]{gao2023scaling}",
+          "-Leo Gao, John Schulman, and Jacob Hilton. 2023.",
+          "-\\newblock Scaling laws for reward model overoptimization.",
+          "-\\newblock In \\emph{ICML}.",
+          "-",
+          " \\end{thebibliography}",
+          " ",
+          " \\end{document}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  },
+  "sourceToolAssistantUUID": "53a949a1-01a3-466e-88ef-2cde273c1ce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-16T11:33:08.546Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BdV7yJcR9LUDpFsdu1YXf1`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median && pdflatex -interaction=nonstopmode paper.tex && pdflatex -interaction=nonstopmode paper.tex 2>&1 | tail -15",
+  "description": "Compile LaTeX paper twice",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b290231-ee29-4c99-9afd-ca39a82d2ecd",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B79LtgeAy7kpG8mWsf",
+  "type": "assistant",
+  "uuid": "263e7dfa-f52c-45a2-9ea7-75475e4d3196",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6aifMHMuT4uWJoHwvRQmJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2141,
+      "cache_read_input_tokens": 60078,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2141,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 60078,
+          "cache_creation_input_tokens": 2141,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2141
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-16T11:33:09.677Z_
+
+<details><summary>↩ Tool result · `toolu_01BdV7yJcR9LUDpFsdu1YXf1`</summary>
+
+```text
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+
+Package natbib Warning: Citation `yao2019docred' on page 1 undefined on input l
+ine 37.
+
+
+Overfull \hbox (19.28996pt too wide) in paragraph at lines 37--38
+\OT1/ptm/m/n/10.95 meth-ods on bench-marks like Do-cRED [\OT1/ptm/b/n/10.95 ? \
+OT1/ptm/m/n/10.95 ], yet they pro-duce pre-dic-tions with-out any ver-i-fi-able
+ justification---
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+Overfull \hbox (8.57915pt too wide) in paragraph at lines 48--49
+[]\OT1/ptm/b/n/10.95 Decoupling spec-trum\OT1/ptm/m/n/10.95 : a sys-tem-atic fi
+nd-ing that RL op-ti-miza-tion pres-sure cor-re-lates with evidence--
+
+Package natbib Warning: Citation `zhou2021atlop' on page 2 undefined on input l
+ine 57.
+
+
+Package natbib Warning: Citation `ma2023dreeam' on page 2 undefined on input li
+ne 57.
+
+
+Package natbib Warning: Citation `xiao2022sais' on page 2 undefined on input li
+ne 57.
+
+
+Overfull \hbox (9.24756pt too wide) in paragraph at lines 59--60
+ []\OT1/ptm/b/n/10.95 Evidence-grounded vs. evidence-retrieved.[] \OT1/ptm/m/n/
+10.95 A key dis-tinc-tion: encoder-based ev-i-dence \OT1/ptm/m/it/10.95 re-trie
+val \OT1/ptm/m/n/10.95 (SAIS,
+
+Package natbib Warning: Citation `shao2024deepseekmath' on page 2 undefined on 
+input line 61.
+
+
+Package natbib Warning: Citation `rafailov2023dpo' on page 2 undefined on input
+ line 61.
+
+
+Package natbib Warning: Citation `zelikman2022star' on page 2 undefined on inpu
+t line 61.
+
+
+Package natbib Warning: Citation `zelikman2022star' on page 2 undefined on inpu
+t line 79.
+
+[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `yao2019docred' on page 3 undefined on input l
+ine 106.
+
+
+Package natbib Warning: Citation `tan2022revisiting' on page 3 undefined on inp
+ut line 106.
+
+[3]
+Overfull \hbox (9.28423pt too wide) in paragraph at lines 179--180
+[]\OT1/ptm/m/n/10.95 QLoRA am-pli-fies this trade-off catas-troph-i-cally: Qwen
+3-4B GRPO QLoRA col-lapses to rel[]F1=0.014,
+[4] [5] [6] [7]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8]
+
+Package natbib Warning: There were undefined citations.
+
+[9] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/
+utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/us
+r/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 120449 bytes).
+Transcript written on paper.log.
+3-4B GRPO QLoRA col-lapses to rel[]F1=0.014,
+[4] [5] [6] [7]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[8] [9] (./paper.aux) )
+(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/
+utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/us
+r/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 120820 bytes).
+Transcript written on paper.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "263e7dfa-f52c-45a2-9ea7-75475e4d3196",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "d6367dbb-5224-44f2-8939-0aadd9d3b5a4",
+  "toolUseResult": {
+    "stdout": "This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025/Debian) (preloaded format=pdflatex)\n restricted \\write18 enabled.\nentering extended mode\n(./paper.tex\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls\nDocument Class: article 2025/01/22 v1.4n Standard LaTeX document class\n(/usr/share/texlive/texmf-dist/tex/latex/base/size11.clo))\n(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty\n(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/times.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/base/latexsym.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty\nFor additional information on amsmath, use the `?' option.\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))\n(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty\n(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)\n(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))\n(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty\n(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty\n(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty\n(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty\n(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty\n(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/stringenc/stringenc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)\n(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\n(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty\n(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def\n(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty\n(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1ptm.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)\n(./paper.aux)\n*geometry* driver: auto-detecting\n*geometry* detected driver: pdftex\n(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii\n[Loading MPS to PDF converter (version 2006.09.02).]\n) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty\n(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))\n(./paper.out) (./paper.out)\n(/usr/share/texlive/texmf-dist/tex/latex/base/ulasy.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)\n(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)\n\nPackage natbib Warning: Citation `yao2019docred' on page 1 undefined on input l\nine 37.\n\n\nOverfull \\hbox (19.28996pt too wide) in paragraph at lines 37--38\n\\OT1/ptm/m/n/10.95 meth-ods on bench-marks like Do-cRED [\\OT1/ptm/b/n/10.95 ? \\\nOT1/ptm/m/n/10.95 ], yet they pro-duce pre-dic-tions with-out any ver-i-fi-able\n justification---\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-\ndist/fonts/enc/dvips/base/8r.enc}]\nOverfull \\hbox (8.57915pt too wide) in paragraph at lines 48--49\n[]\\OT1/ptm/b/n/10.95 Decoupling spec-trum\\OT1/ptm/m/n/10.95 : a sys-tem-atic fi\nnd-ing that RL op-ti-miza-tion pres-sure cor-re-lates with evidence--\n\nPackage natbib Warning: Citation `zhou2021atlop' on page 2 undefined on input l\nine 57.\n\n\nPackage natbib Warning: Citation `ma2023dreeam' on page 2 undefined on input li\nne 57.\n\n\nPackage natbib Warning: Citation `xiao2022sais' on page 2 undefined on input li\nne 57.\n\n\nOverfull \\hbox (9.24756pt too wide) in paragraph at lines 59--60\n []\\OT1/ptm/b/n/10.95 Evidence-grounded vs. evidence-retrieved.[] \\OT1/ptm/m/n/\n10.95 A key dis-tinc-tion: encoder-based ev-i-dence \\OT1/ptm/m/it/10.95 re-trie\nval \\OT1/ptm/m/n/10.95 (SAIS,\n\nPackage natbib Warning: Citation `shao2024deepseekmath' on page 2 undefined on \ninput line 61.\n\n\nPackage natbib Warning: Citation `rafailov2023dpo' on page 2 undefined on input\n line 61.\n\n\nPackage natbib Warning: Citation `zelikman2022star' on page 2 undefined on inpu\nt line 61.\n\n\nPackage natbib Warning: Citation `zelikman2022star' on page 2 undefined on inpu\nt line 79.\n\n[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)\n\nPackage natbib Warning: Citation `yao2019docred' on page 3 undefined on input l\nine 106.\n\n\nPackage natbib Warning: Citation `tan2022revisiting' on page 3 undefined on inp\nut line 106.\n\n[3]\nOverfull \\hbox (9.28423pt too wide) in paragraph at lines 179--180\n[]\\OT1/ptm/m/n/10.95 QLoRA am-pli-fies this trade-off catas-troph-i-cally: Qwen\n3-4B GRPO QLoRA col-lapses to rel[]F1=0.014,\n[4] [5] [6] [7]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[8]\n\nPackage natbib Warning: There were undefined citations.\n\n[9] (./paper.aux\n\nPackage natbib Warning: Citation(s) may have changed.\n(natbib)                Rerun to get citations correct.\n\n) )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/\nutmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/us\nr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on paper.pdf (9 pages, 120449 bytes).\nTranscript written on paper.log.\n3-4B GRPO QLoRA col-lapses to rel[]F1=0.014,\n[4] [5] [6] [7]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[8] [9] (./paper.aux) )\n(see the transcript file for additional information)&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmmi10.pfb>&lt;/usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/\nutmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/us\nr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on paper.pdf (9 pages, 120820 bytes).\nTranscript written on paper.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "263e7dfa-f52c-45a2-9ea7-75475e4d3196",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T105318 tier=median 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-i…",
+  "leafUuid": "d6367dbb-5224-44f2-8939-0aadd9d3b5a4",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated paper from experiment data",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-16T11:33:13.093Z_
+
+PDF generated (9 pages). Citations show "undefined" warnings because natbib needs a third pass to resolve the `thebibliography` citations. Let me run one more pass.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6367dbb-5224-44f2-8939-0aadd9d3b5a4",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B7XRvhzDLd61uFQBt8",
+  "type": "assistant",
+  "uuid": "0528bbda-8513-427a-8a25-bfbeea5d7fae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BVHSiSSdApYLJFkiuJxUtk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3782,
+      "cache_read_input_tokens": 62219,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 62219,
+          "cache_creation_input_tokens": 3782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T11:33:14.732Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Hq3tyotxrxi4rLaezBs14a`</summary>
+
+```json
+{
+  "command": "pdflatex -interaction=nonstopmode paper.tex 2>&1 | grep -E \"(Output written|Warning.*Citation|error)\" | head -10",
+  "description": "Third pdflatex pass to resolve citations",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0528bbda-8513-427a-8a25-bfbeea5d7fae",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B7XRvhzDLd61uFQBt8",
+  "type": "assistant",
+  "uuid": "b04d6e80-bcdf-4170-8fc3-072d9002f841",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BVHSiSSdApYLJFkiuJxUtk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3782,
+      "cache_read_input_tokens": 62219,
+      "output_tokens": 218,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 218,
+          "cache_read_input_tokens": 62219,
+          "cache_creation_input_tokens": 3782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T11:33:15.614Z_
+
+<details><summary>↩ Tool result · `toolu_01Hq3tyotxrxi4rLaezBs14a`</summary>
+
+```text
+Output written on paper.pdf (9 pages, 120820 bytes).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b04d6e80-bcdf-4170-8fc3-072d9002f841",
+  "isSidechain": false,
+  "promptId": "5d157d8c-cfae-4f69-a221-0ce933125c06",
+  "type": "user",
+  "uuid": "97440450-3416-475e-9fa8-0db389cf6eeb",
+  "toolUseResult": {
+    "stdout": "Output written on paper.pdf (9 pages, 120820 bytes).",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "b04d6e80-bcdf-4170-8fc3-072d9002f841",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-16T11:33:27.137Z_
+
+编译成功，`paper.pdf` 已生成（9 页，120KB）。
+
+论文覆盖了 `experiment_data.json` 中全部 6 个实验：
+- **Table 1** (Main Results): test set SFT/RSFT/CED reranker/GRPO/DPO 对比
+- **Table 2** (Decoupling Spectrum): 跨方法+跨模型家族的 decoupling 谱系
+- **Table 3** (NLI Scoring Ablation): CED vs flat-NLI 5-seed，含 top-k 消融
+- **Table 4** (Cross-Scale): Qwen3 1.7B/4B/8B
+- **Table 5** (Re-DocRED): 跨数据集验证
+- **Table 6** (EDCR Human Validation): 方法级 ρ=0.82，per-relation ρ=0.58
+- **Table 7** (LLaMA Cross-Family): LLaMA-3.1-8B 验证
+- **Appendix**: NLI model ablation + disagreement analysis + per-seed 明细
+
+所有数字均来自 JSON 数据，贡献重心按 narrative guidance 调整：任务定义 + decoupling 发现 + EDCR 诊断工具为核心，CED 定位为 practical recipe。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97440450-3416-475e-9fa8-0db389cf6eeb",
+  "isSidechain": false,
+  "requestId": "req_011Cb6B7xofAirJY5DtKsRdF",
+  "type": "assistant",
+  "uuid": "a2e25934-2f5d-4824-abca-37cd535550c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-ie/artifacts/dream_reports/dream_20260516T105318/median",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAzdsuED6fh2PYPjhGhNxA",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 201,
+      "cache_read_input_tokens": 66001,
+      "output_tokens": 371,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 201,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 371,
+          "cache_read_input_tokens": 66001,
+          "cache_creation_input_tokens": 201,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 201
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是 Paper Agent（Dream 模式）。任务：为 dream_id=dream_20260516T105318 tier=median 生成一篇完整的模拟论文。  ## 关键规则 1. 用 **Write 工具** 把 LaTeX 源码写入 `/home/ubuntu/.agent-ml-research-idea_gen_0513_6/projects/faith-evidence-i…",
+  "leafUuid": "a2e25934-2f5d-4824-abca-37cd535550c1",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Generate simulated paper from experiment data",
+  "sessionId": "bd842963-e0db-49de-a34a-ceed2482f0d9"
+}
+```
+
+---
