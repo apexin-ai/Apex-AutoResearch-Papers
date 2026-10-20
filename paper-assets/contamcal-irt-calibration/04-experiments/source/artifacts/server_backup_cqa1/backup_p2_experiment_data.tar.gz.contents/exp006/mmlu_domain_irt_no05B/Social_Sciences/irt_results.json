@@ -1,0 +1,35 @@
+{
+  "domain": "Social_Sciences",
+  "n_items": 2000,
+  "original_n_items": 3077,
+  "subsampled": true,
+  "n_models": 13,
+  "mean_acc": 0.7145769230769231,
+  "gamma": {
+    "mean": -0.5710960851698076,
+    "median": -0.5676489,
+    "sd": 0.24053493167979892,
+    "q025": -1.0539205575000001,
+    "q975": -0.10251161549999982,
+    "q05": -0.9816371255,
+    "q95": -0.17476427500000008
+  },
+  "diagnostics": {
+    "max_rhat": 1.0086,
+    "rhat_ok": true,
+    "min_ess": 1201.8,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "ppp": {
+    "overall_ppp": 0.5703,
+    "obs_mean_acc": 0.7146,
+    "pred_mean_acc": 0.715,
+    "residual_mae": 0.0132
+  },
+  "fit_time_sec": 483.5
+}

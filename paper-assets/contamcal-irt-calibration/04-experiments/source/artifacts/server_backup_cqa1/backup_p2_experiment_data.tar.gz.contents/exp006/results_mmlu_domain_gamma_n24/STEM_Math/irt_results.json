@@ -1,0 +1,37 @@
+{
+  "domain": "STEM_Math",
+  "n_models": 23,
+  "n_items": 1190,
+  "original_n_items": 1190,
+  "subsampled": false,
+  "fit_time_sec": 526.7,
+  "diagnostics": {
+    "max_rhat": 1.0085,
+    "rhat_ok": true,
+    "min_ess": 1145.6,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "posterior_predictive": {
+    "overall_ppp": 0.438,
+    "obs_mean_acc": 0.3729,
+    "pred_mean_acc": 0.3725,
+    "residual_mae": 0.0508
+  },
+  "gamma": {
+    "mean": 0.9688,
+    "sd": 0.2281,
+    "q025": 0.5267,
+    "q975": 1.43,
+    "q10": 0.678,
+    "q90": 1.2587,
+    "q25": 0.8123,
+    "q75": 1.1217,
+    "ci_excludes_zero": true
+  },
+  "mean_accuracy": 0.3729
+}

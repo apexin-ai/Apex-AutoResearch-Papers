@@ -1,0 +1,377 @@
+{
+  "config": {
+    "model_type": "2pl_gamma",
+    "scales": [
+      "0.5B",
+      "1.5B"
+    ],
+    "benchmarks": [
+      "mmlu",
+      "arc_challenge"
+    ],
+    "exposure": "rrf_signal",
+    "exclusions": [
+      "D045_05B_mmlu_arc"
+    ],
+    "stan_config": {
+      "chains": 4,
+      "warmup": 1000,
+      "samples": 1000,
+      "adapt_delta": 0.95,
+      "max_treedepth": 12,
+      "seed": 42
+    }
+  },
+  "per_benchmark": {
+    "mmlu": {
+      "benchmark": "mmlu",
+      "model_type": "2pl_gamma",
+      "exposure_source": "rrf_signal",
+      "n_models": 8,
+      "n_items": 300,
+      "original_n_items": 14042,
+      "subsampled": true,
+      "models": [
+        {
+          "dirname": "Qwen2.5-1.5B_d000_s123_aligned",
+          "scale": "1.5B",
+          "dosage": 0
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d000_s42_aligned",
+          "scale": "1.5B",
+          "dosage": 0
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d005_s123_aligned",
+          "scale": "1.5B",
+          "dosage": 5
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d005_s42_aligned",
+          "scale": "1.5B",
+          "dosage": 5
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d025_s123_aligned",
+          "scale": "1.5B",
+          "dosage": 25
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d025_s42_aligned",
+          "scale": "1.5B",
+          "dosage": 25
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d100_s123_aligned",
+          "scale": "1.5B",
+          "dosage": 100
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d100_s42_aligned",
+          "scale": "1.5B",
+          "dosage": 100
+        }
+      ],
+      "fit_time_sec": 94.3,
+      "diagnostics": {
+        "max_rhat": 1.0092,
+        "rhat_ok": true,
+        "min_ess": 1539.4,
+        "ess_ok": true,
+        "divergent_count": 0,
+        "divergent_pct": 0.0,
+        "divergent_ok": true,
+        "total_draws": 4000,
+        "all_ok": true
+      },
+      "posterior_predictive": {
+        "overall_ppp": 0.426,
+        "obs_mean_acc": 0.5904,
+        "pred_mean_acc": 0.5887,
+        "residual_mae": 0.0024
+      },
+      "gamma": {
+        "mean": -0.259,
+        "sd": 0.6608,
+        "q025": -1.5817,
+        "q975": 1.0212,
+        "q10": -1.098,
+        "q90": 0.592,
+        "q25": -0.6906,
+        "q75": 0.1737,
+        "ci_excludes_zero": false
+      },
+      "calibrated_scores": {
+        "mean": [
+          0.5813,
+          0.5966,
+          0.5914,
+          0.5957,
+          0.59,
+          0.5935,
+          0.5804,
+          0.5809
+        ],
+        "sd": [
+          0.0189,
+          0.0193,
+          0.0194,
+          0.0193,
+          0.0189,
+          0.0191,
+          0.0198,
+          0.019
+        ],
+        "q025": [
+          0.5448,
+          0.5588,
+          0.5534,
+          0.5581,
+          0.5523,
+          0.5559,
+          0.5405,
+          0.5432
+        ],
+        "q975": [
+          0.6193,
+          0.6358,
+          0.6288,
+          0.6332,
+          0.6266,
+          0.6303,
+          0.6185,
+          0.6181
+        ],
+        "q10": [
+          0.5573,
+          0.572,
+          0.5663,
+          0.571,
+          0.5657,
+          0.5694,
+          0.5558,
+          0.5562
+        ],
+        "q90": [
+          0.6057,
+          0.6212,
+          0.6161,
+          0.6206,
+          0.6143,
+          0.6182,
+          0.6053,
+          0.6052
+        ],
+        "q25": [
+          0.5683,
+          0.5836,
+          0.5786,
+          0.5832,
+          0.5773,
+          0.5806,
+          0.5673,
+          0.5686
+        ],
+        "q75": [
+          0.5941,
+          0.6093,
+          0.6043,
+          0.6083,
+          0.603,
+          0.6063,
+          0.594,
+          0.5936
+        ]
+      },
+      "raw_accuracy": [
+        0.58,
+        0.6,
+        0.5933,
+        0.6,
+        0.5933,
+        0.5967,
+        0.58,
+        0.58
+      ],
+      "raw_mae": 0.0078,
+      "cal_mae": 0.0023,
+      "delta_mae": 0.0055
+    },
+    "arc_challenge": {
+      "benchmark": "arc_challenge",
+      "model_type": "2pl_gamma",
+      "exposure_source": "rrf_signal",
+      "n_models": 8,
+      "n_items": 300,
+      "original_n_items": 1172,
+      "subsampled": true,
+      "models": [
+        {
+          "dirname": "Qwen2.5-1.5B_d000_s123_aligned",
+          "scale": "1.5B",
+          "dosage": 0
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d000_s42_aligned",
+          "scale": "1.5B",
+          "dosage": 0
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d005_s123_aligned",
+          "scale": "1.5B",
+          "dosage": 5
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d005_s42_aligned",
+          "scale": "1.5B",
+          "dosage": 5
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d025_s123_aligned",
+          "scale": "1.5B",
+          "dosage": 25
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d025_s42_aligned",
+          "scale": "1.5B",
+          "dosage": 25
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d100_s123_aligned",
+          "scale": "1.5B",
+          "dosage": 100
+        },
+        {
+          "dirname": "Qwen2.5-1.5B_d100_s42_aligned",
+          "scale": "1.5B",
+          "dosage": 100
+        }
+      ],
+      "fit_time_sec": 94.0,
+      "diagnostics": {
+        "max_rhat": 1.0069,
+        "rhat_ok": true,
+        "min_ess": 1398.1,
+        "ess_ok": true,
+        "divergent_count": 0,
+        "divergent_pct": 0.0,
+        "divergent_ok": true,
+        "total_draws": 4000,
+        "all_ok": true
+      },
+      "posterior_predictive": {
+        "overall_ppp": 0.002,
+        "obs_mean_acc": 0.765,
+        "pred_mean_acc": 0.7288,
+        "residual_mae": 0.0362
+      },
+      "gamma": {
+        "mean": 1.3067,
+        "sd": 0.4855,
+        "q025": 0.3684,
+        "q975": 2.2615,
+        "q10": 0.6774,
+        "q90": 1.928,
+        "q25": 0.9719,
+        "q75": 1.635,
+        "ci_excludes_zero": true
+      },
+      "calibrated_scores": {
+        "mean": [
+          0.7269,
+          0.7318,
+          0.7138,
+          0.7324,
+          0.7182,
+          0.7362,
+          0.7366,
+          0.7344
+        ],
+        "sd": [
+          0.0205,
+          0.0204,
+          0.0214,
+          0.0201,
+          0.0213,
+          0.0201,
+          0.0212,
+          0.0207
+        ],
+        "q025": [
+          0.6859,
+          0.6921,
+          0.6713,
+          0.6919,
+          0.6757,
+          0.6966,
+          0.6937,
+          0.6927
+        ],
+        "q975": [
+          0.7665,
+          0.7707,
+          0.7533,
+          0.7713,
+          0.7587,
+          0.776,
+          0.7768,
+          0.7731
+        ],
+        "q10": [
+          0.7006,
+          0.7053,
+          0.6858,
+          0.7063,
+          0.6911,
+          0.7105,
+          0.709,
+          0.7071
+        ],
+        "q90": [
+          0.7529,
+          0.7581,
+          0.7409,
+          0.7575,
+          0.7458,
+          0.7621,
+          0.7635,
+          0.7608
+        ],
+        "q25": [
+          0.713,
+          0.7183,
+          0.6998,
+          0.7193,
+          0.7042,
+          0.7225,
+          0.7225,
+          0.721
+        ],
+        "q75": [
+          0.7409,
+          0.7455,
+          0.7287,
+          0.7462,
+          0.7329,
+          0.7501,
+          0.7513,
+          0.7487
+        ]
+      },
+      "raw_accuracy": [
+        0.76,
+        0.7667,
+        0.7467,
+        0.7667,
+        0.7533,
+        0.7733,
+        0.78,
+        0.7733
+      ],
+      "raw_mae": 0.0088,
+      "cal_mae": 0.0362,
+      "delta_mae": -0.0275
+    }
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "domain": "Other",
+    "n_items": 883,
+    "n_models": 21,
+    "mean_acc": 0.5692,
+    "gamma_mean": -0.0694,
+    "gamma_sd": 0.261,
+    "gamma_q025": -0.5693,
+    "gamma_q975": 0.4421,
+    "rhat": 1.0082,
+    "min_ess": 1035.4,
+    "divergences": 0,
+    "ppp": 0.9928,
+    "fit_time_sec": 250.5
+  },
+  {
+    "domain": "Business_Law",
+    "n_items": 2000,
+    "n_models": 21,
+    "mean_acc": 0.4587,
+    "gamma_mean": -0.1677,
+    "gamma_sd": 0.1937,
+    "gamma_q025": -0.5379,
+    "gamma_q975": 0.2299,
+    "rhat": 1.0079,
+    "min_ess": 1221.1,
+    "divergences": 0,
+    "ppp": 0.9998,
+    "fit_time_sec": 794.5
+  },
+  {
+    "domain": "Humanities",
+    "n_items": 2000,
+    "n_models": 21,
+    "mean_acc": 0.478,
+    "gamma_mean": -0.4073,
+    "gamma_sd": 0.1882,
+    "gamma_q025": -0.776,
+    "gamma_q975": -0.0406,
+    "rhat": 1.0135,
+    "min_ess": 930.6,
+    "divergences": 0,
+    "ppp": 1.0,
+    "fit_time_sec": 775.7
+  },
+  {
+    "domain": "Social_Sciences",
+    "n_items": 2000,
+    "n_models": 21,
+    "mean_acc": 0.5807,
+    "gamma_mean": -0.4965,
+    "gamma_sd": 0.1737,
+    "gamma_q025": -0.8272,
+    "gamma_q975": -0.1511,
+    "rhat": 1.0097,
+    "min_ess": 1175.5,
+    "divergences": 0,
+    "ppp": 1.0,
+    "fit_time_sec": 815.9
+  }
+]

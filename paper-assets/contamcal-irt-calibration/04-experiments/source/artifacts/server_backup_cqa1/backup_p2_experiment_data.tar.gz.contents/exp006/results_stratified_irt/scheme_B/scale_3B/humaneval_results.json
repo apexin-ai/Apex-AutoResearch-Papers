@@ -1,0 +1,120 @@
+{
+  "stratum": "B_scale_3B",
+  "benchmark": "humaneval",
+  "n_models": 4,
+  "n_items": 164,
+  "original_n_items": 164,
+  "subsampled": false,
+  "unique_dosages": [
+    0,
+    100
+  ],
+  "has_dosage_variation": true,
+  "models": [
+    {
+      "dirname": "Qwen2.5-3B_d000_v2_s123_aligned",
+      "dosage": 0,
+      "scale": "3B"
+    },
+    {
+      "dirname": "Qwen2.5-3B_d000_v2_s42_aligned",
+      "dosage": 0,
+      "scale": "3B"
+    },
+    {
+      "dirname": "Qwen2.5-3B_d100_v2_s123_aligned",
+      "dosage": 100,
+      "scale": "3B"
+    },
+    {
+      "dirname": "Qwen2.5-3B_d100_v2_s42_aligned",
+      "dosage": 100,
+      "scale": "3B"
+    }
+  ],
+  "dosages": [
+    0,
+    0,
+    100,
+    100
+  ],
+  "fit_time_sec": 30.1,
+  "diagnostics": {
+    "max_rhat": 1.0065,
+    "rhat_ok": true,
+    "min_ess": 623.8,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "posterior_predictive": {
+    "overall_ppp": 0.9895,
+    "obs_mean_acc": 0.128,
+    "pred_mean_acc": 0.2651,
+    "residual_mae": 0.137
+  },
+  "gamma": {
+    "mean": -1.5626,
+    "sd": 0.7433,
+    "q025": -2.9479,
+    "q975": -0.124,
+    "q10": -2.5011,
+    "q90": -0.5807,
+    "q25": -2.1057,
+    "q75": -1.0541,
+    "ci_excludes_zero": true
+  },
+  "calibrated_scores": {
+    "mean": [
+      0.0852,
+      0.1119,
+      0.4415,
+      0.4217
+    ],
+    "sd": [
+      0.0188,
+      0.0211,
+      0.1282,
+      0.127
+    ],
+    "q025": [
+      0.0511,
+      0.075,
+      0.1949,
+      0.1786
+    ],
+    "q975": [
+      0.1252,
+      0.1565,
+      0.6822,
+      0.6579
+    ],
+    "q10": [
+      0.0619,
+      0.086,
+      0.2704,
+      0.2511
+    ],
+    "q90": [
+      0.1096,
+      0.14,
+      0.6087,
+      0.59
+    ],
+    "q25": [
+      0.0719,
+      0.0969,
+      0.3495,
+      0.3291
+    ],
+    "q75": [
+      0.0975,
+      0.1251,
+      0.5364,
+      0.5154
+    ]
+  }
+}

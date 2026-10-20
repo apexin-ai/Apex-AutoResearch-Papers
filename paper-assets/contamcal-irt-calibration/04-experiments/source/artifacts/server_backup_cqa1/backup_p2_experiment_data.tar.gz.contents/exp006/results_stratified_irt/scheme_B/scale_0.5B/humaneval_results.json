@@ -1,0 +1,178 @@
+{
+  "stratum": "B_scale_0.5B",
+  "benchmark": "humaneval",
+  "n_models": 8,
+  "n_items": 164,
+  "original_n_items": 164,
+  "subsampled": false,
+  "unique_dosages": [
+    0,
+    5,
+    25,
+    100
+  ],
+  "has_dosage_variation": true,
+  "models": [
+    {
+      "dirname": "Qwen2.5-0.5B_d000_s123_aligned",
+      "dosage": 0,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d000_s42_aligned",
+      "dosage": 0,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d005_s123_aligned",
+      "dosage": 5,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d005_s42_aligned",
+      "dosage": 5,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d025_s123_aligned",
+      "dosage": 25,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d025_s42_aligned",
+      "dosage": 25,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d100_s123_aligned",
+      "dosage": 100,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d100_s42_aligned",
+      "dosage": 100,
+      "scale": "0.5B"
+    }
+  ],
+  "dosages": [
+    0,
+    0,
+    5,
+    5,
+    25,
+    25,
+    100,
+    100
+  ],
+  "fit_time_sec": 51.9,
+  "diagnostics": {
+    "max_rhat": 1.0085,
+    "rhat_ok": true,
+    "min_ess": 1069.9,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "posterior_predictive": {
+    "overall_ppp": 1.0,
+    "obs_mean_acc": 0.0877,
+    "pred_mean_acc": 0.1666,
+    "residual_mae": 0.0789
+  },
+  "gamma": {
+    "mean": -2.3492,
+    "sd": 0.5968,
+    "q025": -3.5545,
+    "q975": -1.2539,
+    "q10": -3.1442,
+    "q90": -1.5933,
+    "q25": -2.7288,
+    "q75": -1.9409,
+    "ci_excludes_zero": true
+  },
+  "calibrated_scores": {
+    "mean": [
+      0.1173,
+      0.127,
+      0.1239,
+      0.1024,
+      0.1481,
+      0.197,
+      0.3996,
+      0.1174
+    ],
+    "sd": [
+      0.0217,
+      0.0221,
+      0.0235,
+      0.0208,
+      0.0315,
+      0.036,
+      0.1007,
+      0.05
+    ],
+    "q025": [
+      0.0769,
+      0.0869,
+      0.0817,
+      0.0644,
+      0.0924,
+      0.1324,
+      0.2204,
+      0.0457
+    ],
+    "q975": [
+      0.163,
+      0.1716,
+      0.1723,
+      0.1459,
+      0.2153,
+      0.2733,
+      0.6093,
+      0.2394
+    ],
+    "q10": [
+      0.0911,
+      0.0991,
+      0.0947,
+      0.0764,
+      0.109,
+      0.1523,
+      0.2729,
+      0.0619
+    ],
+    "q90": [
+      0.1457,
+      0.1564,
+      0.1547,
+      0.1296,
+      0.1894,
+      0.2442,
+      0.535,
+      0.1849
+    ],
+    "q25": [
+      0.1025,
+      0.1117,
+      0.1076,
+      0.0875,
+      0.1256,
+      0.1716,
+      0.3273,
+      0.0811
+    ],
+    "q75": [
+      0.1314,
+      0.1415,
+      0.139,
+      0.116,
+      0.1686,
+      0.2205,
+      0.468,
+      0.1447
+    ]
+  }
+}

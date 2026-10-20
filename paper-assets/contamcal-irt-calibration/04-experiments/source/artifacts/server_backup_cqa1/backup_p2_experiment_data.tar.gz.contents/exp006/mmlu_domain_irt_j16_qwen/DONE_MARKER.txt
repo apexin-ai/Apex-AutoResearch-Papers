@@ -1,0 +1,2 @@
+MCMC_COMPLETE Mon May 18 11:45:55 CST 2026
+bash: line 5: python3: command not found

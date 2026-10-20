@@ -1,0 +1,55 @@
+{
+  "eval_dir": "/root/autodl-tmp/exp001/eval_results",
+  "model_type": "4pl_gamma",
+  "dry_run": true,
+  "models": [
+    {
+      "dirname": "Qwen2.5-0.5B_d000_s42_aligned",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 0,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d005_s42_aligned",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 5,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d025_s42_aligned",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 25,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d100_s42_aligned",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 100,
+      "seed": 42
+    }
+  ],
+  "dosages": [
+    0,
+    5,
+    25,
+    100
+  ],
+  "benchmarks": [
+    "gsm8k"
+  ],
+  "signals_dir": "/root/autodl-tmp/exp002/signals",
+  "dry_run_summary": {
+    "directories": [
+      "Qwen2.5-0.5B_d000_s42_aligned",
+      "Qwen2.5-0.5B_d005_s42_aligned",
+      "Qwen2.5-0.5B_d025_s42_aligned",
+      "Qwen2.5-0.5B_d100_s42_aligned"
+    ],
+    "benchmarks": {
+      "gsm8k": {
+        "n_valid_models": 4,
+        "n_items": 1319
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "domain": "Humanities",
+  "n_items": 2000,
+  "original_n_items": 2816,
+  "subsampled": true,
+  "n_models": 13,
+  "mean_acc": 0.5609615384615385,
+  "gamma": {
+    "mean": -0.3091290664493325,
+    "median": -0.313532795,
+    "sd": 0.2824133870715027,
+    "q025": -0.8523012305000001,
+    "q975": 0.25733203900000007,
+    "q05": -0.768898239,
+    "q95": 0.17127137199999945
+  },
+  "diagnostics": {
+    "max_rhat": 1.0096,
+    "rhat_ok": true,
+    "min_ess": 1397.8,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "ppp": {
+    "overall_ppp": 0.5298,
+    "obs_mean_acc": 0.561,
+    "pred_mean_acc": 0.5611,
+    "residual_mae": 0.0015
+  },
+  "fit_time_sec": 490.8
+}

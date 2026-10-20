@@ -1,0 +1,18 @@
+[
+  {
+    "domain": "Medical",
+    "n_items": 1640,
+    "n_models": 16,
+    "mean_acc": 0.6051,
+    "gamma_mean": 0.2175,
+    "gamma_median": 0.2215,
+    "gamma_sd": 0.2753,
+    "gamma_q025": -0.3364,
+    "gamma_q975": 0.738,
+    "rhat": 0.0,
+    "min_ess": 0.0,
+    "divergences": 0,
+    "ppp": 0.0,
+    "fit_time_sec": 471.7
+  }
+]

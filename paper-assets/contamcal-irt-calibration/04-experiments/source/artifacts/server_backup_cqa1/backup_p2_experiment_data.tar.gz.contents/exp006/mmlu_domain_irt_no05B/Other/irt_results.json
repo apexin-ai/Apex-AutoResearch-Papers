@@ -1,0 +1,35 @@
+{
+  "domain": "Other",
+  "n_items": 883,
+  "original_n_items": 883,
+  "subsampled": false,
+  "n_models": 13,
+  "mean_acc": 0.7048523390539245,
+  "gamma": {
+    "mean": 0.12721758065935249,
+    "median": 0.12618585,
+    "sd": 0.38376976222997783,
+    "q025": -0.6115256855,
+    "q975": 0.8850792697500004,
+    "q05": -0.503072014,
+    "q95": 0.7676272964999995
+  },
+  "diagnostics": {
+    "max_rhat": 1.01,
+    "rhat_ok": false,
+    "min_ess": 1557.7,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": false
+  },
+  "ppp": {
+    "overall_ppp": 0.0955,
+    "obs_mean_acc": 0.7049,
+    "pred_mean_acc": 0.7003,
+    "residual_mae": 0.0136
+  },
+  "fit_time_sec": 183.3
+}

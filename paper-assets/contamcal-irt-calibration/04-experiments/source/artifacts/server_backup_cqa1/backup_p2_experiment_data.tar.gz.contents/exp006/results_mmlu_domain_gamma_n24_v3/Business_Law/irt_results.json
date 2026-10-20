@@ -1,0 +1,37 @@
+{
+  "domain": "Business_Law",
+  "n_models": 21,
+  "n_items": 2000,
+  "original_n_items": 2482,
+  "subsampled": true,
+  "fit_time_sec": 794.5,
+  "diagnostics": {
+    "max_rhat": 1.0079,
+    "rhat_ok": true,
+    "min_ess": 1221.1,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "posterior_predictive": {
+    "overall_ppp": 0.9998,
+    "obs_mean_acc": 0.4587,
+    "pred_mean_acc": 0.4662,
+    "residual_mae": 0.043
+  },
+  "gamma": {
+    "mean": -0.1677,
+    "sd": 0.1937,
+    "q025": -0.5379,
+    "q975": 0.2299,
+    "q10": -0.4139,
+    "q90": 0.0831,
+    "q25": -0.2995,
+    "q75": -0.0391,
+    "ci_excludes_zero": false
+  },
+  "mean_accuracy": 0.4587
+}

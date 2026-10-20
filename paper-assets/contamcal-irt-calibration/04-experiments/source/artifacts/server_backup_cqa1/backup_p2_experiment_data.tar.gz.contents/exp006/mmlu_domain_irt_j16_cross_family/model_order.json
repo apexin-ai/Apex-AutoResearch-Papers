@@ -1,0 +1,98 @@
+[
+  {
+    "dirname": "Qwen2.5-1.5B_d000_s123_aligned",
+    "scale": "1.5B",
+    "dosage": 0,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-1.5B_d000_s42_aligned",
+    "scale": "1.5B",
+    "dosage": 0,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-1.5B_d005_s123_aligned",
+    "scale": "1.5B",
+    "dosage": 5,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-1.5B_d005_s42_aligned",
+    "scale": "1.5B",
+    "dosage": 5,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-1.5B_d025_s123_aligned",
+    "scale": "1.5B",
+    "dosage": 25,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-1.5B_d025_s42_aligned",
+    "scale": "1.5B",
+    "dosage": 25,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-1.5B_d100_s123_aligned",
+    "scale": "1.5B",
+    "dosage": 100,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-1.5B_d100_s42_aligned",
+    "scale": "1.5B",
+    "dosage": 100,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Llama-3.2-3B_d000_s42_aligned",
+    "scale": "3B",
+    "dosage": 0,
+    "family": "Llama"
+  },
+  {
+    "dirname": "Llama-3.2-3B_d005_s42_aligned",
+    "scale": "3B",
+    "dosage": 5,
+    "family": "Llama"
+  },
+  {
+    "dirname": "Llama-3.2-3B_d025_s42_aligned",
+    "scale": "3B",
+    "dosage": 25,
+    "family": "Llama"
+  },
+  {
+    "dirname": "Qwen2.5-3B_d005_s123_aligned",
+    "scale": "3B",
+    "dosage": 5,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-3B_d025_s123_aligned",
+    "scale": "3B",
+    "dosage": 25,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-3B_d025_v3_s42_aligned",
+    "scale": "3B",
+    "dosage": 25,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-3B_d100_a32_s123_aligned",
+    "scale": "3B",
+    "dosage": 100,
+    "family": "Qwen"
+  },
+  {
+    "dirname": "Qwen2.5-3B_d100_a32_s42_aligned",
+    "scale": "3B",
+    "dosage": 100,
+    "family": "Qwen"
+  }
+]

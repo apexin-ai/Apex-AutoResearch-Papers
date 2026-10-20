@@ -1,0 +1,193 @@
+{
+  "eval_dir": "/root/autodl-tmp/exp001/eval_results",
+  "model_type": "4pl_gamma",
+  "dry_run": true,
+  "models": [
+    {
+      "dirname": "Qwen2.5-0.5B_d000_s123",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 0,
+      "seed": 123
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d000_s42",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 0,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d000_s42_aligned",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 0,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d005_s42",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 5,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d005_s42_aligned",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 5,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d025_s42_aligned",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 25,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d100_s123_aligned",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 100,
+      "seed": 123
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d100_s42",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 100,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d100_s42_aligned",
+      "model_name": "Qwen2.5-0.5B",
+      "dosage": 100,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-1.5B_d000_s123",
+      "model_name": "Qwen2.5-1.5B",
+      "dosage": 0,
+      "seed": 123
+    },
+    {
+      "dirname": "Qwen2.5-1.5B_d000_s42",
+      "model_name": "Qwen2.5-1.5B",
+      "dosage": 0,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-1.5B_d000_s42_aligned",
+      "model_name": "Qwen2.5-1.5B",
+      "dosage": 0,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-1.5B_d005_s42_aligned",
+      "model_name": "Qwen2.5-1.5B",
+      "dosage": 5,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-1.5B_d025_s42_aligned",
+      "model_name": "Qwen2.5-1.5B",
+      "dosage": 25,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-1.5B_d100_s42",
+      "model_name": "Qwen2.5-1.5B",
+      "dosage": 100,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-1.5B_d100_s42_aligned",
+      "model_name": "Qwen2.5-1.5B",
+      "dosage": 100,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-3B_d000_s123",
+      "model_name": "Qwen2.5-3B",
+      "dosage": 0,
+      "seed": 123
+    },
+    {
+      "dirname": "Qwen2.5-3B_d000_s42",
+      "model_name": "Qwen2.5-3B",
+      "dosage": 0,
+      "seed": 42
+    },
+    {
+      "dirname": "Qwen2.5-3B_d000_v2_s42_aligned",
+      "model_name": "Qwen2.5-3B",
+      "dosage": 0,
+      "seed": 42
+    }
+  ],
+  "dosages": [
+    0,
+    0,
+    0,
+    5,
+    5,
+    25,
+    100,
+    100,
+    100,
+    0,
+    0,
+    0,
+    5,
+    25,
+    100,
+    100,
+    0,
+    0,
+    0
+  ],
+  "benchmarks": [
+    "mmlu",
+    "gsm8k",
+    "arc_challenge",
+    "humaneval"
+  ],
+  "signals_dir": null,
+  "pool_scales": null,
+  "oracle_exposure": false,
+  "signal_key": null,
+  "dry_run_summary": {
+    "directories": [
+      "Qwen2.5-0.5B_d000_s123",
+      "Qwen2.5-0.5B_d000_s42",
+      "Qwen2.5-0.5B_d000_s42_aligned",
+      "Qwen2.5-0.5B_d005_s42",
+      "Qwen2.5-0.5B_d005_s42_aligned",
+      "Qwen2.5-0.5B_d025_s42_aligned",
+      "Qwen2.5-0.5B_d100_s123_aligned",
+      "Qwen2.5-0.5B_d100_s42",
+      "Qwen2.5-0.5B_d100_s42_aligned",
+      "Qwen2.5-1.5B_d000_s123",
+      "Qwen2.5-1.5B_d000_s42",
+      "Qwen2.5-1.5B_d000_s42_aligned",
+      "Qwen2.5-1.5B_d005_s42_aligned",
+      "Qwen2.5-1.5B_d025_s42_aligned",
+      "Qwen2.5-1.5B_d100_s42",
+      "Qwen2.5-1.5B_d100_s42_aligned",
+      "Qwen2.5-3B_d000_s123",
+      "Qwen2.5-3B_d000_s42",
+      "Qwen2.5-3B_d000_v2_s42_aligned"
+    ],
+    "benchmarks": {
+      "mmlu": {
+        "n_valid_models": 19,
+        "n_items": 14042
+      },
+      "gsm8k": {
+        "n_valid_models": 19,
+        "n_items": 1319
+      },
+      "arc_challenge": {
+        "n_valid_models": 19,
+        "n_items": 1172
+      },
+      "humaneval": {
+        "n_valid_models": 19,
+        "n_items": 164
+      }
+    }
+  }
+}

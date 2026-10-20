@@ -1,0 +1,35 @@
+{
+  "domain": "STEM_Science",
+  "n_items": 1397,
+  "original_n_items": 1397,
+  "subsampled": false,
+  "n_models": 13,
+  "mean_acc": 0.5991960795110401,
+  "gamma": {
+    "mean": 0.504239829655525,
+    "median": 0.50299012,
+    "sd": 0.3573305189986919,
+    "q025": -0.1886840045,
+    "q975": 1.2022698225000001,
+    "q05": -0.08384588149999996,
+    "q95": 1.08820046
+  },
+  "diagnostics": {
+    "max_rhat": 1.0072,
+    "rhat_ok": true,
+    "min_ess": 1348.6,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "ppp": {
+    "overall_ppp": 0.1492,
+    "obs_mean_acc": 0.5992,
+    "pred_mean_acc": 0.5961,
+    "residual_mae": 0.0144
+  },
+  "fit_time_sec": 333.3
+}

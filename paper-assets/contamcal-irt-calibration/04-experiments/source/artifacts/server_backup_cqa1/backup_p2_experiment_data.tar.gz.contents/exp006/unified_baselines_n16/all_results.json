@@ -1,0 +1,616 @@
+{
+  "mmlu": {
+    "benchmark": "mmlu",
+    "n_models": 16,
+    "n_items": 300,
+    "metrics": [
+      {
+        "method": "B0_Raw",
+        "mae": 0.0056,
+        "tau": 0.7669,
+        "tau_p": 0.00020476496553366755
+      },
+      {
+        "method": "B1_DRC",
+        "mae": 0.1955,
+        "tau": 0.1785,
+        "tau_p": 0.384787795709846
+      },
+      {
+        "method": "B1b_RemRescore",
+        "mae": 0.0258,
+        "tau": 0.7834,
+        "tau_p": 0.00014112408296916774
+      },
+      {
+        "method": "B3_V2PL",
+        "mae": 0.008,
+        "tau": 0.7313,
+        "tau_p": 0.00027587432917217526
+      },
+      {
+        "method": "B4_LinReg",
+        "mae": 0.0096,
+        "tau": 0.7506,
+        "tau_p": 0.00018946083422193913
+      },
+      {
+        "method": "B5_Thresh",
+        "mae": 0.0373,
+        "tau": -0.0297,
+        "tau_p": 0.885074977364116
+      },
+      {
+        "method": "B5b_Emperor",
+        "mae": 0.006,
+        "tau": 0.789,
+        "tau_p": 8.705860394615751e-05
+      },
+      {
+        "method": "B6_DCR",
+        "mae": 0.1081,
+        "tau": 0.6543,
+        "tau_p": 0.0011374323684138223
+      },
+      {
+        "method": "ContamCal",
+        "mae": 0.0091,
+        "tau": 0.7313,
+        "tau_p": 0.00027587432917217526
+      }
+    ],
+    "gamma": {
+      "mean": 0.6979,
+      "sd": 0.5634,
+      "q025": -0.4227,
+      "q975": 1.8128,
+      "q10": -0.024,
+      "q90": 1.4218,
+      "q25": 0.3202,
+      "q75": 1.0746,
+      "ci_excludes_zero": false
+    },
+    "models": [
+      {
+        "name": "Qwen2.5-1.5B_d000_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 0,
+        "raw_acc": 0.58,
+        "gt": 0.58
+      },
+      {
+        "name": "Qwen2.5-1.5B_d000_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 0,
+        "raw_acc": 0.6,
+        "gt": 0.6
+      },
+      {
+        "name": "Qwen2.5-1.5B_d005_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 5,
+        "raw_acc": 0.5933,
+        "gt": 0.59
+      },
+      {
+        "name": "Qwen2.5-1.5B_d005_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 5,
+        "raw_acc": 0.6,
+        "gt": 0.59
+      },
+      {
+        "name": "Qwen2.5-1.5B_d025_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 25,
+        "raw_acc": 0.5933,
+        "gt": 0.59
+      },
+      {
+        "name": "Qwen2.5-1.5B_d025_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 25,
+        "raw_acc": 0.5967,
+        "gt": 0.59
+      },
+      {
+        "name": "Qwen2.5-1.5B_d100_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 100,
+        "raw_acc": 0.58,
+        "gt": 0.59
+      },
+      {
+        "name": "Qwen2.5-1.5B_d100_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 100,
+        "raw_acc": 0.58,
+        "gt": 0.59
+      },
+      {
+        "name": "Qwen2.5-3B_d000_s123_aligned",
+        "scale": "3B",
+        "dosage": 0,
+        "raw_acc": 0.6167,
+        "gt": 0.6167
+      },
+      {
+        "name": "Qwen2.5-3B_d000_s42_a32_aligned",
+        "scale": "3B",
+        "dosage": 0,
+        "raw_acc": 0.6233,
+        "gt": 0.6233
+      },
+      {
+        "name": "Qwen2.5-3B_d005_s123_aligned",
+        "scale": "3B",
+        "dosage": 5,
+        "raw_acc": 0.6267,
+        "gt": 0.62
+      },
+      {
+        "name": "Qwen2.5-3B_d005_s42_a32_aligned",
+        "scale": "3B",
+        "dosage": 5,
+        "raw_acc": 0.6267,
+        "gt": 0.62
+      },
+      {
+        "name": "Qwen2.5-3B_d025_s123_aligned",
+        "scale": "3B",
+        "dosage": 25,
+        "raw_acc": 0.6167,
+        "gt": 0.62
+      },
+      {
+        "name": "Qwen2.5-3B_d025_v3_s42_aligned",
+        "scale": "3B",
+        "dosage": 25,
+        "raw_acc": 0.6033,
+        "gt": 0.62
+      },
+      {
+        "name": "Qwen2.5-3B_d100_a32_s123_aligned",
+        "scale": "3B",
+        "dosage": 100,
+        "raw_acc": 0.6233,
+        "gt": 0.62
+      },
+      {
+        "name": "Qwen2.5-3B_d100_a32_s42_aligned",
+        "scale": "3B",
+        "dosage": 100,
+        "raw_acc": 0.63,
+        "gt": 0.62
+      }
+    ]
+  },
+  "arc_challenge": {
+    "benchmark": "arc_challenge",
+    "n_models": 16,
+    "n_items": 300,
+    "metrics": [
+      {
+        "method": "B0_Raw",
+        "mae": 0.0067,
+        "tau": 0.6949,
+        "tau_p": 0.0006510149948125317
+      },
+      {
+        "method": "B1_DRC",
+        "mae": 0.2605,
+        "tau": 0.2172,
+        "tau_p": 0.28854619989250097
+      },
+      {
+        "method": "B1b_RemRescore",
+        "mae": 0.0143,
+        "tau": 0.6734,
+        "tau_p": 0.0011708468937204706
+      },
+      {
+        "method": "B3_V2PL",
+        "mae": 0.0145,
+        "tau": 0.5966,
+        "tau_p": 0.00300726821164069
+      },
+      {
+        "method": "B4_LinReg",
+        "mae": 0.0123,
+        "tau": 0.7313,
+        "tau_p": 0.00027587432917217526
+      },
+      {
+        "method": "B5_Thresh",
+        "mae": 0.0177,
+        "tau": 0.6281,
+        "tau_p": 0.0018504988770784926
+      },
+      {
+        "method": "B5b_Emperor",
+        "mae": 0.0067,
+        "tau": 0.6736,
+        "tau_p": 0.0008086060418504981
+      },
+      {
+        "method": "B6_DCR",
+        "mae": 0.3138,
+        "tau": 0.1732,
+        "tau_p": 0.3890258382828563
+      },
+      {
+        "method": "ContamCal",
+        "mae": 0.0196,
+        "tau": 0.6088,
+        "tau_p": 0.002549185107791064
+      }
+    ],
+    "gamma": {
+      "mean": 0.7269,
+      "sd": 0.3654,
+      "q025": 0.0207,
+      "q975": 1.4433,
+      "q10": 0.265,
+      "q90": 1.2063,
+      "q25": 0.474,
+      "q75": 0.9744,
+      "ci_excludes_zero": true
+    },
+    "models": [
+      {
+        "name": "Qwen2.5-1.5B_d000_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 0,
+        "raw_acc": 0.76,
+        "gt": 0.76
+      },
+      {
+        "name": "Qwen2.5-1.5B_d000_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 0,
+        "raw_acc": 0.7667,
+        "gt": 0.7667
+      },
+      {
+        "name": "Qwen2.5-1.5B_d005_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 5,
+        "raw_acc": 0.7467,
+        "gt": 0.7633
+      },
+      {
+        "name": "Qwen2.5-1.5B_d005_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 5,
+        "raw_acc": 0.7667,
+        "gt": 0.7633
+      },
+      {
+        "name": "Qwen2.5-1.5B_d025_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 25,
+        "raw_acc": 0.7533,
+        "gt": 0.7633
+      },
+      {
+        "name": "Qwen2.5-1.5B_d025_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 25,
+        "raw_acc": 0.7733,
+        "gt": 0.7633
+      },
+      {
+        "name": "Qwen2.5-1.5B_d100_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 100,
+        "raw_acc": 0.78,
+        "gt": 0.7633
+      },
+      {
+        "name": "Qwen2.5-1.5B_d100_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 100,
+        "raw_acc": 0.7733,
+        "gt": 0.7633
+      },
+      {
+        "name": "Qwen2.5-3B_d000_s123_aligned",
+        "scale": "3B",
+        "dosage": 0,
+        "raw_acc": 0.8367,
+        "gt": 0.8367
+      },
+      {
+        "name": "Qwen2.5-3B_d000_s42_a32_aligned",
+        "scale": "3B",
+        "dosage": 0,
+        "raw_acc": 0.83,
+        "gt": 0.83
+      },
+      {
+        "name": "Qwen2.5-3B_d005_s123_aligned",
+        "scale": "3B",
+        "dosage": 5,
+        "raw_acc": 0.8367,
+        "gt": 0.8334
+      },
+      {
+        "name": "Qwen2.5-3B_d005_s42_a32_aligned",
+        "scale": "3B",
+        "dosage": 5,
+        "raw_acc": 0.8267,
+        "gt": 0.8334
+      },
+      {
+        "name": "Qwen2.5-3B_d025_s123_aligned",
+        "scale": "3B",
+        "dosage": 25,
+        "raw_acc": 0.8467,
+        "gt": 0.8334
+      },
+      {
+        "name": "Qwen2.5-3B_d025_v3_s42_aligned",
+        "scale": "3B",
+        "dosage": 25,
+        "raw_acc": 0.82,
+        "gt": 0.8334
+      },
+      {
+        "name": "Qwen2.5-3B_d100_a32_s123_aligned",
+        "scale": "3B",
+        "dosage": 100,
+        "raw_acc": 0.8333,
+        "gt": 0.8334
+      },
+      {
+        "name": "Qwen2.5-3B_d100_a32_s42_aligned",
+        "scale": "3B",
+        "dosage": 100,
+        "raw_acc": 0.83,
+        "gt": 0.8334
+      }
+    ]
+  },
+  "gsm8k": {
+    "benchmark": "gsm8k",
+    "n_models": 24,
+    "n_items": 300,
+    "metrics": [
+      {
+        "method": "B0_Raw",
+        "mae": 0.1351,
+        "tau": 0.1789,
+        "tau_p": 0.2512966517636025
+      },
+      {
+        "method": "B1_DRC",
+        "mae": 0.1656,
+        "tau": 0.2367,
+        "tau_p": 0.13606350379540536
+      },
+      {
+        "method": "B1b_RemRescore",
+        "mae": 0.1385,
+        "tau": 0.1835,
+        "tau_p": 0.240561497911301
+      },
+      {
+        "method": "B3_V2PL",
+        "mae": 0.138,
+        "tau": 0.1861,
+        "tau_p": 0.231095638934381
+      },
+      {
+        "method": "B4_LinReg",
+        "mae": 0.133,
+        "tau": 0.202,
+        "tau_p": 0.1937862111315699
+      },
+      {
+        "method": "B5_Thresh",
+        "mae": 0.1342,
+        "tau": 0.314,
+        "tau_p": 0.04401129844871681
+      },
+      {
+        "method": "B5b_Emperor",
+        "mae": 0.1348,
+        "tau": 0.1861,
+        "tau_p": 0.231095638934381
+      },
+      {
+        "method": "B6_DCR",
+        "mae": 0.1666,
+        "tau": 0.2495,
+        "tau_p": 0.10844651118170222
+      },
+      {
+        "method": "ContamCal",
+        "mae": 0.1368,
+        "tau": 0.1861,
+        "tau_p": 0.231095638934381
+      }
+    ],
+    "gamma": {
+      "mean": 0.0639,
+      "sd": 0.2208,
+      "q025": -0.3636,
+      "q975": 0.4902,
+      "q10": -0.2169,
+      "q90": 0.3468,
+      "q25": -0.0853,
+      "q75": 0.2134,
+      "ci_excludes_zero": false
+    },
+    "models": [
+      {
+        "name": "Qwen2.5-0.5B_d000_s123_aligned",
+        "scale": "0.5B",
+        "dosage": 0,
+        "raw_acc": 0.3,
+        "gt": 0.3
+      },
+      {
+        "name": "Qwen2.5-0.5B_d000_s42_aligned",
+        "scale": "0.5B",
+        "dosage": 0,
+        "raw_acc": 0.33,
+        "gt": 0.33
+      },
+      {
+        "name": "Qwen2.5-0.5B_d005_s123_aligned",
+        "scale": "0.5B",
+        "dosage": 5,
+        "raw_acc": 0.3533,
+        "gt": 0.315
+      },
+      {
+        "name": "Qwen2.5-0.5B_d005_s42_aligned",
+        "scale": "0.5B",
+        "dosage": 5,
+        "raw_acc": 0.34,
+        "gt": 0.315
+      },
+      {
+        "name": "Qwen2.5-0.5B_d025_s123_aligned",
+        "scale": "0.5B",
+        "dosage": 25,
+        "raw_acc": 0.3567,
+        "gt": 0.315
+      },
+      {
+        "name": "Qwen2.5-0.5B_d025_s42_aligned",
+        "scale": "0.5B",
+        "dosage": 25,
+        "raw_acc": 0.33,
+        "gt": 0.315
+      },
+      {
+        "name": "Qwen2.5-0.5B_d100_s123_aligned",
+        "scale": "0.5B",
+        "dosage": 100,
+        "raw_acc": 0.3633,
+        "gt": 0.315
+      },
+      {
+        "name": "Qwen2.5-0.5B_d100_s42_aligned",
+        "scale": "0.5B",
+        "dosage": 100,
+        "raw_acc": 0.35,
+        "gt": 0.315
+      },
+      {
+        "name": "Qwen2.5-1.5B_d000_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 0,
+        "raw_acc": 0.6333,
+        "gt": 0.6333
+      },
+      {
+        "name": "Qwen2.5-1.5B_d000_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 0,
+        "raw_acc": 0.6267,
+        "gt": 0.6267
+      },
+      {
+        "name": "Qwen2.5-1.5B_d005_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 5,
+        "raw_acc": 0.66,
+        "gt": 0.63
+      },
+      {
+        "name": "Qwen2.5-1.5B_d005_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 5,
+        "raw_acc": 0.6467,
+        "gt": 0.63
+      },
+      {
+        "name": "Qwen2.5-1.5B_d025_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 25,
+        "raw_acc": 0.6567,
+        "gt": 0.63
+      },
+      {
+        "name": "Qwen2.5-1.5B_d025_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 25,
+        "raw_acc": 0.6533,
+        "gt": 0.63
+      },
+      {
+        "name": "Qwen2.5-1.5B_d100_s123_aligned",
+        "scale": "1.5B",
+        "dosage": 100,
+        "raw_acc": 0.6633,
+        "gt": 0.63
+      },
+      {
+        "name": "Qwen2.5-1.5B_d100_s42_aligned",
+        "scale": "1.5B",
+        "dosage": 100,
+        "raw_acc": 0.6233,
+        "gt": 0.63
+      },
+      {
+        "name": "Qwen2.5-3B_d000_s123_aligned",
+        "scale": "3B",
+        "dosage": 0,
+        "raw_acc": 0.1633,
+        "gt": 0.1633
+      },
+      {
+        "name": "Qwen2.5-3B_d000_s42_a32_aligned",
+        "scale": "3B",
+        "dosage": 0,
+        "raw_acc": 0.11,
+        "gt": 0.11
+      },
+      {
+        "name": "Qwen2.5-3B_d005_s123_aligned",
+        "scale": "3B",
+        "dosage": 5,
+        "raw_acc": 0.6467,
+        "gt": 0.1366
+      },
+      {
+        "name": "Qwen2.5-3B_d005_s42_a32_aligned",
+        "scale": "3B",
+        "dosage": 5,
+        "raw_acc": 0.4167,
+        "gt": 0.1366
+      },
+      {
+        "name": "Qwen2.5-3B_d025_s123_aligned",
+        "scale": "3B",
+        "dosage": 25,
+        "raw_acc": 0.53,
+        "gt": 0.1366
+      },
+      {
+        "name": "Qwen2.5-3B_d025_v3_s42_aligned",
+        "scale": "3B",
+        "dosage": 25,
+        "raw_acc": 0.68,
+        "gt": 0.1366
+      },
+      {
+        "name": "Qwen2.5-3B_d100_a32_s123_aligned",
+        "scale": "3B",
+        "dosage": 100,
+        "raw_acc": 0.7367,
+        "gt": 0.1366
+      },
+      {
+        "name": "Qwen2.5-3B_d100_a32_s42_aligned",
+        "scale": "3B",
+        "dosage": 100,
+        "raw_acc": 0.7133,
+        "gt": 0.1366
+      }
+    ]
+  }
+}

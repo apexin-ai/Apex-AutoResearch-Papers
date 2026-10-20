@@ -1,0 +1,120 @@
+{
+  "stratum": "B_scale_3B",
+  "benchmark": "mmlu",
+  "n_models": 4,
+  "n_items": 2000,
+  "original_n_items": 14042,
+  "subsampled": true,
+  "unique_dosages": [
+    0,
+    100
+  ],
+  "has_dosage_variation": true,
+  "models": [
+    {
+      "dirname": "Qwen2.5-3B_d000_v2_s123_aligned",
+      "dosage": 0,
+      "scale": "3B"
+    },
+    {
+      "dirname": "Qwen2.5-3B_d000_v2_s42_aligned",
+      "dosage": 0,
+      "scale": "3B"
+    },
+    {
+      "dirname": "Qwen2.5-3B_d100_v2_s123_aligned",
+      "dosage": 100,
+      "scale": "3B"
+    },
+    {
+      "dirname": "Qwen2.5-3B_d100_v2_s42_aligned",
+      "dosage": 100,
+      "scale": "3B"
+    }
+  ],
+  "dosages": [
+    0,
+    0,
+    100,
+    100
+  ],
+  "fit_time_sec": 690.0,
+  "diagnostics": {
+    "max_rhat": 1.0081,
+    "rhat_ok": true,
+    "min_ess": 1058.6,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "posterior_predictive": {
+    "overall_ppp": 1.0,
+    "obs_mean_acc": 0.6266,
+    "pred_mean_acc": 0.8434,
+    "residual_mae": 0.2168
+  },
+  "gamma": {
+    "mean": -5.7036,
+    "sd": 0.3428,
+    "q025": -6.4061,
+    "q975": -5.0391,
+    "q10": -6.1367,
+    "q90": -5.2713,
+    "q25": -5.9264,
+    "q75": -5.471,
+    "ci_excludes_zero": true
+  },
+  "calibrated_scores": {
+    "mean": [
+      0.7026,
+      0.7011,
+      0.9853,
+      0.9846
+    ],
+    "sd": [
+      0.0084,
+      0.0083,
+      0.0027,
+      0.0028
+    ],
+    "q025": [
+      0.686,
+      0.6843,
+      0.9792,
+      0.9782
+    ],
+    "q975": [
+      0.7189,
+      0.7177,
+      0.99,
+      0.9895
+    ],
+    "q10": [
+      0.6918,
+      0.6904,
+      0.9817,
+      0.9809
+    ],
+    "q90": [
+      0.7132,
+      0.7117,
+      0.9886,
+      0.988
+    ],
+    "q25": [
+      0.697,
+      0.6957,
+      0.9836,
+      0.9829
+    ],
+    "q75": [
+      0.7084,
+      0.7066,
+      0.9871,
+      0.9865
+    ]
+  }
+}

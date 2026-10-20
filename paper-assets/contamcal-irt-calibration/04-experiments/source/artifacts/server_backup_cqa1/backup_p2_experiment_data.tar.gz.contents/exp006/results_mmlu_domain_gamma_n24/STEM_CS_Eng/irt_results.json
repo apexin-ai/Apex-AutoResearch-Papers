@@ -1,0 +1,37 @@
+{
+  "domain": "STEM_CS_Eng",
+  "n_models": 23,
+  "n_items": 557,
+  "original_n_items": 557,
+  "subsampled": false,
+  "fit_time_sec": 152.8,
+  "diagnostics": {
+    "max_rhat": 1.0077,
+    "rhat_ok": true,
+    "min_ess": 982.7,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "posterior_predictive": {
+    "overall_ppp": 0.8922,
+    "obs_mean_acc": 0.5034,
+    "pred_mean_acc": 0.5077,
+    "residual_mae": 0.0502
+  },
+  "gamma": {
+    "mean": 0.1967,
+    "sd": 0.3213,
+    "q025": -0.4477,
+    "q975": 0.8353,
+    "q10": -0.2114,
+    "q90": 0.6063,
+    "q25": -0.0147,
+    "q75": 0.4142,
+    "ci_excludes_zero": false
+  },
+  "mean_accuracy": 0.5034
+}

@@ -1,0 +1,31 @@
+{
+  "domain": "pooled",
+  "n_items": 2000,
+  "n_models": 13,
+  "mean_acc": 0.5981153846153846,
+  "gamma": {
+    "mean": 0.10717879240881249,
+    "median": 0.103996845,
+    "sd": 0.26271857111420777,
+    "q025": -0.4007699935,
+    "q975": 0.625413265
+  },
+  "diagnostics": {
+    "max_rhat": 1.0068,
+    "rhat_ok": true,
+    "min_ess": 1157.2,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "ppp": {
+    "overall_ppp": 0.208,
+    "obs_mean_acc": 0.5981,
+    "pred_mean_acc": 0.5962,
+    "residual_mae": 0.0106
+  },
+  "fit_time_sec": 524.3
+}

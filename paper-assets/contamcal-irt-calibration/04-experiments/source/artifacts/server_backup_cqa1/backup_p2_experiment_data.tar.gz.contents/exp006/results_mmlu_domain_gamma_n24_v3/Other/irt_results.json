@@ -1,0 +1,37 @@
+{
+  "domain": "Other",
+  "n_models": 21,
+  "n_items": 883,
+  "original_n_items": 883,
+  "subsampled": false,
+  "fit_time_sec": 250.5,
+  "diagnostics": {
+    "max_rhat": 1.0082,
+    "rhat_ok": true,
+    "min_ess": 1035.4,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "posterior_predictive": {
+    "overall_ppp": 0.9928,
+    "obs_mean_acc": 0.5692,
+    "pred_mean_acc": 0.5757,
+    "residual_mae": 0.0317
+  },
+  "gamma": {
+    "mean": -0.0694,
+    "sd": 0.261,
+    "q025": -0.5693,
+    "q975": 0.4421,
+    "q10": -0.4049,
+    "q90": 0.2662,
+    "q25": -0.2479,
+    "q75": 0.1081,
+    "ci_excludes_zero": false
+  },
+  "mean_accuracy": 0.5692
+}

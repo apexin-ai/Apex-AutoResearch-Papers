@@ -1,0 +1,149 @@
+{
+  "stratum": "B_scale_0.5B",
+  "benchmark": "gsm8k",
+  "n_models": 6,
+  "n_items": 1319,
+  "original_n_items": 1319,
+  "subsampled": false,
+  "unique_dosages": [
+    5,
+    25,
+    100
+  ],
+  "has_dosage_variation": true,
+  "models": [
+    {
+      "dirname": "Qwen2.5-0.5B_d005_s123_aligned",
+      "dosage": 5,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d005_s42_aligned",
+      "dosage": 5,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d025_s123_aligned",
+      "dosage": 25,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d025_s42_aligned",
+      "dosage": 25,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d100_s123_aligned",
+      "dosage": 100,
+      "scale": "0.5B"
+    },
+    {
+      "dirname": "Qwen2.5-0.5B_d100_s42_aligned",
+      "dosage": 100,
+      "scale": "0.5B"
+    }
+  ],
+  "dosages": [
+    5,
+    5,
+    25,
+    25,
+    100,
+    100
+  ],
+  "fit_time_sec": 736.2,
+  "diagnostics": {
+    "max_rhat": 1.0094,
+    "rhat_ok": true,
+    "min_ess": 123.0,
+    "ess_ok": false,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": false
+  },
+  "posterior_predictive": {
+    "overall_ppp": 0.9722,
+    "obs_mean_acc": 0.3658,
+    "pred_mean_acc": 0.4635,
+    "residual_mae": 0.0977
+  },
+  "gamma": {
+    "mean": -1.2718,
+    "sd": 0.64,
+    "q025": -2.4475,
+    "q975": 0.0162,
+    "q10": -2.0945,
+    "q90": -0.4233,
+    "q25": -1.7163,
+    "q75": -0.8368,
+    "ci_excludes_zero": false
+  },
+  "calibrated_scores": {
+    "mean": [
+      0.3934,
+      0.387,
+      0.416,
+      0.4286,
+      0.5848,
+      0.5715
+    ],
+    "sd": [
+      0.0162,
+      0.0157,
+      0.0321,
+      0.0323,
+      0.1008,
+      0.1006
+    ],
+    "q025": [
+      0.3622,
+      0.3555,
+      0.3502,
+      0.3628,
+      0.3735,
+      0.3634
+    ],
+    "q975": [
+      0.4248,
+      0.4172,
+      0.4759,
+      0.4895,
+      0.7576,
+      0.7497
+    ],
+    "q10": [
+      0.3728,
+      0.3666,
+      0.3736,
+      0.3861,
+      0.4469,
+      0.4354
+    ],
+    "q90": [
+      0.4143,
+      0.4065,
+      0.4578,
+      0.4691,
+      0.7122,
+      0.6998
+    ],
+    "q25": [
+      0.3827,
+      0.3764,
+      0.3948,
+      0.4064,
+      0.5175,
+      0.503
+    ],
+    "q75": [
+      0.4042,
+      0.3975,
+      0.4378,
+      0.4514,
+      0.6578,
+      0.6448
+    ]
+  }
+}

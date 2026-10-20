@@ -1,0 +1,28 @@
+{
+  "mmlu": {
+    "gamma_mean": -0.0121,
+    "gamma_ci95": [
+      -0.145,
+      0.1191
+    ],
+    "gamma_ci_excludes_zero": false,
+    "cal_mae": 0.0106,
+    "ppp": 0.4128,
+    "diagnostics_ok": true,
+    "n_models": 13,
+    "n_items": 2000
+  },
+  "arc_challenge": {
+    "gamma_mean": 0.1176,
+    "gamma_ci95": [
+      -0.075,
+      0.3064
+    ],
+    "gamma_ci_excludes_zero": false,
+    "cal_mae": 0.0142,
+    "ppp": 0.0305,
+    "diagnostics_ok": true,
+    "n_models": 13,
+    "n_items": 1172
+  }
+}

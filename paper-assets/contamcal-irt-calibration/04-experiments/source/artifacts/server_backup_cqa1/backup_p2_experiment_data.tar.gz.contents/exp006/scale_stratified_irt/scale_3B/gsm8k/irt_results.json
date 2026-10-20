@@ -1,0 +1,161 @@
+{
+  "benchmark": "gsm8k",
+  "model_type": "2pl_gamma",
+  "exposure_source": "rrf_signal",
+  "n_models": 7,
+  "n_items": 300,
+  "original_n_items": 1319,
+  "subsampled": true,
+  "models": [
+    {
+      "dirname": "Qwen2.5-3B_d000_s42_a32_aligned",
+      "scale": "3B",
+      "dosage": 0
+    },
+    {
+      "dirname": "Qwen2.5-3B_d005_s123_aligned",
+      "scale": "3B",
+      "dosage": 5
+    },
+    {
+      "dirname": "Qwen2.5-3B_d005_s42_a32_aligned",
+      "scale": "3B",
+      "dosage": 5
+    },
+    {
+      "dirname": "Qwen2.5-3B_d025_s123_aligned",
+      "scale": "3B",
+      "dosage": 25
+    },
+    {
+      "dirname": "Qwen2.5-3B_d025_v3_s42_aligned",
+      "scale": "3B",
+      "dosage": 25
+    },
+    {
+      "dirname": "Qwen2.5-3B_d100_a32_s123_aligned",
+      "scale": "3B",
+      "dosage": 100
+    },
+    {
+      "dirname": "Qwen2.5-3B_d100_a32_s42_aligned",
+      "scale": "3B",
+      "dosage": 100
+    }
+  ],
+  "fit_time_sec": 96.0,
+  "diagnostics": {
+    "max_rhat": 1.0068,
+    "rhat_ok": true,
+    "min_ess": 1447.4,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "posterior_predictive": {
+    "overall_ppp": 0.2452,
+    "obs_mean_acc": 0.5476,
+    "pred_mean_acc": 0.5377,
+    "residual_mae": 0.0125
+  },
+  "gamma": {
+    "mean": 0.4232,
+    "sd": 0.4316,
+    "q025": -0.4165,
+    "q975": 1.2639,
+    "q10": -0.1343,
+    "q90": 0.9824,
+    "q25": 0.1308,
+    "q75": 0.7126,
+    "ci_excludes_zero": false
+  },
+  "calibrated_scores": {
+    "mean": [
+      0.1189,
+      0.6336,
+      0.4065,
+      0.5206,
+      0.6645,
+      0.7193,
+      0.7005
+    ],
+    "sd": [
+      0.0178,
+      0.0265,
+      0.027,
+      0.0279,
+      0.0251,
+      0.024,
+      0.0253
+    ],
+    "q025": [
+      0.0873,
+      0.582,
+      0.3543,
+      0.4659,
+      0.615,
+      0.6717,
+      0.65
+    ],
+    "q975": [
+      0.1557,
+      0.6854,
+      0.4592,
+      0.5737,
+      0.7123,
+      0.7655,
+      0.7487
+    ],
+    "q10": [
+      0.0968,
+      0.5994,
+      0.3712,
+      0.4842,
+      0.632,
+      0.6883,
+      0.6675
+    ],
+    "q90": [
+      0.1427,
+      0.6676,
+      0.4409,
+      0.5556,
+      0.6955,
+      0.7498,
+      0.7329
+    ],
+    "q25": [
+      0.1063,
+      0.6159,
+      0.3883,
+      0.5018,
+      0.647,
+      0.7035,
+      0.6837
+    ],
+    "q75": [
+      0.1309,
+      0.6516,
+      0.425,
+      0.5398,
+      0.6824,
+      0.7358,
+      0.7176
+    ]
+  },
+  "raw_accuracy": [
+    0.11,
+    0.6467,
+    0.4167,
+    0.53,
+    0.68,
+    0.7367,
+    0.7133
+  ],
+  "raw_mae": 0.1675,
+  "cal_mae": 0.0125,
+  "delta_mae": 0.155
+}

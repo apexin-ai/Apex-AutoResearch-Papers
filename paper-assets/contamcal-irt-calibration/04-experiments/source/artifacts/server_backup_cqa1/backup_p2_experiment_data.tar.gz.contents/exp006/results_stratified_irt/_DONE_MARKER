@@ -1,0 +1,74 @@
+DONE at Fri May 15 23:18:12 CST 2026
+Exit code of wait: 0
+--- Last 20 lines of log ---
+======================================================================
+STRATIFIED IRT RESULTS
+======================================================================
+Total time: 4481s
+
+SCHEME B (by model size):
+  scale_0.5B:
+    gsm8k: gamma=-1.2718 [-2.4475, 0.0162] N=6
+    humaneval: gamma=-2.3492 [-3.5545, -1.2539] N=8
+  scale_1.5B:
+    mmlu: gamma=1.4733 [0.5516, 2.5175] N=6
+    gsm8k: gamma=-4.3843 [-5.0774, -3.6711] N=4
+    arc_challenge: gamma=-0.8048 [-5.3146, 3.8162] N=6
+    humaneval: gamma=0.4209 [-0.8786, 1.5876] N=6
+  scale_3B:
+    mmlu: gamma=-5.7036 [-6.4061, -5.0391] N=4
+    arc_challenge: gamma=-4.1458 [-4.7341, -3.5614] N=4
+    humaneval: gamma=-1.5626 [-2.9479, -0.1240] N=4
+
+Saved to /root/autodl-tmp/exp006/results_stratified_irt
+--- JSON files ---
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_0.5B/gsm8k_results.json
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_0.5B/humaneval_results.json
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_1.5B/mmlu_results.json
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_1.5B/gsm8k_results.json
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_1.5B/arc_challenge_results.json
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_1.5B/humaneval_results.json
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_3B/mmlu_results.json
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_3B/arc_challenge_results.json
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_3B/humaneval_results.json
+/root/autodl-tmp/exp006/results_stratified_irt/stratified_irt_results.json
+--- Directory listing ---
+/root/autodl-tmp/exp006/results_stratified_irt:
+total 36
+drwxr-xr-x  3 root root    93 May 15 23:18 .
+drwxr-xr-x 35 root root  4096 May 15 22:10 ..
+-rw-r--r--  1 root root  1759 May 15 23:18 _DONE_MARKER
+drwxr-xr-x  5 root root    74 May 15 23:17 scheme_B
+-rw-r--r--  1 root root 28012 May 15 23:17 stratified_irt_results.json
+
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B:
+total 0
+drwxr-xr-x 5 root root  74 May 15 23:17 .
+drwxr-xr-x 3 root root  93 May 15 23:18 ..
+drwxr-xr-x 2 root root  74 May 15 22:17 scale_0.5B
+drwxr-xr-x 2 root root 141 May 15 22:57 scale_1.5B
+drwxr-xr-x 2 root root 111 May 15 23:17 scale_3B
+
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_0.5B:
+total 8
+drwxr-xr-x 2 root root   74 May 15 22:17 .
+drwxr-xr-x 5 root root   74 May 15 23:17 ..
+-rw-r--r-- 1 root root 2404 May 15 22:17 gsm8k_results.json
+-rw-r--r-- 1 root root 2849 May 15 22:17 humaneval_results.json
+
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_1.5B:
+total 16
+drwxr-xr-x 2 root root  141 May 15 22:57 .
+drwxr-xr-x 5 root root   74 May 15 23:17 ..
+-rw-r--r-- 1 root root 2411 May 15 22:57 arc_challenge_results.json
+-rw-r--r-- 1 root root 1949 May 15 22:57 gsm8k_results.json
+-rw-r--r-- 1 root root 2404 May 15 22:57 humaneval_results.json
+-rw-r--r-- 1 root root 2401 May 15 22:57 mmlu_results.json
+
+/root/autodl-tmp/exp006/results_stratified_irt/scheme_B/scale_3B:
+total 12
+drwxr-xr-x 2 root root  111 May 15 23:17 .
+drwxr-xr-x 5 root root   74 May 15 23:17 ..
+-rw-r--r-- 1 root root 1939 May 15 23:17 arc_challenge_results.json
+-rw-r--r-- 1 root root 1933 May 15 23:17 humaneval_results.json
+-rw-r--r-- 1 root root 1933 May 15 23:17 mmlu_results.json

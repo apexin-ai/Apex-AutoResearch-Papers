@@ -1,0 +1,37 @@
+{
+  "domain": "Medical",
+  "n_models": 21,
+  "n_items": 1640,
+  "original_n_items": 1640,
+  "subsampled": false,
+  "fit_time_sec": 604.2,
+  "diagnostics": {
+    "max_rhat": 1.0071,
+    "rhat_ok": true,
+    "min_ess": 1463.4,
+    "ess_ok": true,
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "divergent_ok": true,
+    "total_draws": 4000,
+    "all_ok": true
+  },
+  "posterior_predictive": {
+    "overall_ppp": 0.9995,
+    "obs_mean_acc": 0.528,
+    "pred_mean_acc": 0.5353,
+    "residual_mae": 0.0353
+  },
+  "gamma": {
+    "mean": -0.2749,
+    "sd": 0.2163,
+    "q025": -0.7058,
+    "q975": 0.1364,
+    "q10": -0.5487,
+    "q90": -0.0038,
+    "q25": -0.4192,
+    "q75": -0.1301,
+    "ci_excludes_zero": false
+  },
+  "mean_accuracy": 0.528
+}

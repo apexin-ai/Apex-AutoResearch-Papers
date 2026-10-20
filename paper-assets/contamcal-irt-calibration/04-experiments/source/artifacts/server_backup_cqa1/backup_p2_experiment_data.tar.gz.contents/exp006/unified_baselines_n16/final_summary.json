@@ -1,0 +1,239 @@
+{
+  "description": "Unified baseline comparison for paper Table 4",
+  "ground_truth": "per-scale d=0 model raw accuracy; d=0 models use own accuracy",
+  "mae_definition": "|calibrated_score - ground_truth| averaged over all models",
+  "tau_definition": "Kendall tau(calibrated_scores, ground_truth)",
+  "note_irt_cal_mae": "IRT results cal_mae field = |raw - calibrated| (shift magnitude), NOT calibration quality",
+  "benchmarks": {
+    "mmlu": {
+      "config": "J=16 (1.5B+3B, no 0.5B)",
+      "n_items_sub": 300,
+      "n_items_orig": 14042,
+      "gamma": {
+        "mean": 0.698,
+        "ci95": [
+          -0.423,
+          1.813
+        ]
+      },
+      "methods": {
+        "B0_Raw": {
+          "mae": 0.0056,
+          "tau": 0.767,
+          "tau_p": 0.0001
+        },
+        "B1_DRC": {
+          "mae": 0.1955,
+          "tau": 0.178,
+          "tau_p": 0.3605
+        },
+        "B1b_RemRescore": {
+          "mae": 0.0258,
+          "tau": 0.783,
+          "tau_p": 0.0001
+        },
+        "B3_V2PL": {
+          "mae": 0.008,
+          "tau": 0.731,
+          "tau_p": 0.0002
+        },
+        "B4_LinReg": {
+          "mae": 0.0096,
+          "tau": 0.751,
+          "tau_p": 0.0001
+        },
+        "B5_Thresh": {
+          "mae": 0.0373,
+          "tau": -0.03,
+          "tau_p": 0.888
+        },
+        "B5b_Emperor": {
+          "mae": 0.006,
+          "tau": 0.789,
+          "tau_p": 0.0001
+        },
+        "B6_DCR": {
+          "mae": 0.1081,
+          "tau": 0.654,
+          "tau_p": 0.0007
+        },
+        "ContamCal": {
+          "mae": 0.0091,
+          "tau": 0.731,
+          "tau_p": 0.0002
+        }
+      }
+    },
+    "arc_challenge": {
+      "config": "J=16 (1.5B+3B, no 0.5B)",
+      "n_items_sub": 300,
+      "n_items_orig": 1172,
+      "gamma": {
+        "mean": 0.727,
+        "ci95": [
+          0.021,
+          1.443
+        ]
+      },
+      "methods": {
+        "B0_Raw": {
+          "mae": 0.0067,
+          "tau": 0.695,
+          "tau_p": 0.0007
+        },
+        "B1_DRC": {
+          "mae": 0.2605,
+          "tau": 0.217,
+          "tau_p": 0.2885
+        },
+        "B1b_RemRescore": {
+          "mae": 0.0143,
+          "tau": 0.673,
+          "tau_p": 0.0012
+        },
+        "B3_V2PL": {
+          "mae": 0.0145,
+          "tau": 0.597,
+          "tau_p": 0.003
+        },
+        "B4_LinReg": {
+          "mae": 0.0123,
+          "tau": 0.731,
+          "tau_p": 0.0003
+        },
+        "B5_Thresh": {
+          "mae": 0.0177,
+          "tau": 0.628,
+          "tau_p": 0.0019
+        },
+        "B5b_Emperor": {
+          "mae": 0.0067,
+          "tau": 0.674,
+          "tau_p": 0.0008
+        },
+        "B6_DCR": {
+          "mae": 0.3138,
+          "tau": 0.173,
+          "tau_p": 0.389
+        },
+        "ContamCal": {
+          "mae": 0.0196,
+          "tau": 0.609,
+          "tau_p": 0.0025
+        }
+      }
+    },
+    "gsm8k_full": {
+      "config": "J=24 (0.5B+1.5B+3B)",
+      "n_items_sub": 300,
+      "n_items_orig": 1319,
+      "gamma": {
+        "mean": 0.064,
+        "ci95": [
+          -0.364,
+          0.49
+        ]
+      },
+      "WARNING": "3B d000 models have LoRA damage (acc=0.163,0.110), ground truth invalid for 3B",
+      "methods": {
+        "B0_Raw": {
+          "mae": 0.1351,
+          "tau": 0.179,
+          "tau_p": 0.2513
+        },
+        "B1_DRC": {
+          "mae": 0.1656,
+          "tau": 0.237,
+          "tau_p": 0.1361
+        },
+        "B1b_RemRescore": {
+          "mae": 0.1385,
+          "tau": 0.183,
+          "tau_p": 0.2406
+        },
+        "B3_V2PL": {
+          "mae": 0.138,
+          "tau": 0.186,
+          "tau_p": 0.2311
+        },
+        "B4_LinReg": {
+          "mae": 0.133,
+          "tau": 0.202,
+          "tau_p": 0.1938
+        },
+        "B5_Thresh": {
+          "mae": 0.1342,
+          "tau": 0.314,
+          "tau_p": 0.044
+        },
+        "B5b_Emperor": {
+          "mae": 0.1348,
+          "tau": 0.186,
+          "tau_p": 0.2311
+        },
+        "B6_DCR": {
+          "mae": 0.1666,
+          "tau": 0.249,
+          "tau_p": 0.1084
+        },
+        "ContamCal": {
+          "mae": 0.1368,
+          "tau": 0.186,
+          "tau_p": 0.2311
+        }
+      }
+    },
+    "gsm8k_no3b": {
+      "config": "J=16 (0.5B+1.5B, excl broken 3B d000)",
+      "n_items_sub": 300,
+      "note": "Cleaner comparison excluding 3B with LoRA-damaged d000 models",
+      "methods": {
+        "B0_Raw": {
+          "mae": 0.0213,
+          "tau": 0.647,
+          "tau_p": 0.0013
+        },
+        "B1_DRC": {
+          "mae": 0.1456,
+          "tau": 0.415,
+          "tau_p": 0.0427
+        },
+        "B1b_RemRescore": {
+          "mae": 0.0306,
+          "tau": 0.705,
+          "tau_p": 0.0005
+        },
+        "B3_V2PL": {
+          "mae": 0.0246,
+          "tau": 0.635,
+          "tau_p": 0.0016
+        },
+        "B4_LinReg": {
+          "mae": 0.0702,
+          "tau": 0.654,
+          "tau_p": 0.0011
+        },
+        "B5_Thresh": {
+          "mae": 0.0298,
+          "tau": 0.725,
+          "tau_p": 0.0003
+        },
+        "B5b_Emperor": {
+          "mae": 0.0218,
+          "tau": 0.654,
+          "tau_p": 0.0011
+        },
+        "B6_DCR": {
+          "mae": 0.1575,
+          "tau": 0.654,
+          "tau_p": 0.0011
+        },
+        "ContamCal": {
+          "mae": 0.0233,
+          "tau": 0.635,
+          "tau_p": 0.0016
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,388 @@
+2026-05-17 22:58:01,853 [INFO] Verifying label regeneration consistency...
+2026-05-17 22:58:01,860 [INFO]   VERIFIED: mmlu d5 seed=42 matches
+2026-05-17 22:58:01,868 [INFO]   VERIFIED: mmlu d25 seed=42 matches
+2026-05-17 22:58:01,872 [INFO]   VERIFIED: arc_challenge d5 seed=42 matches
+2026-05-17 22:58:01,878 [INFO]   VERIFIED: arc_challenge d25 seed=42 matches
+2026-05-17 22:58:01,878 [INFO] ============================================================
+2026-05-17 22:58:01,878 [INFO] ORACLE ABLATION: mmlu
+2026-05-17 22:58:02,160 [INFO] Regenerating labels: mmlu d5 seed=123
+2026-05-17 22:58:02,167 [INFO] Loaded labels: contamination_labels_mmlu_d005.json (count=703/14042)
+2026-05-17 22:58:02,167 [INFO] Regenerating labels: mmlu d25 seed=123
+2026-05-17 22:58:02,176 [INFO] Loaded labels: contamination_labels_mmlu_d025.json (count=3540/14042)
+2026-05-17 22:58:02,178 [INFO] Regenerating labels: mmlu d5 seed=123
+2026-05-17 22:58:02,183 [INFO] Regenerating labels: mmlu d25 seed=123
+2026-05-17 22:58:02,192 [INFO] Loaded labels: contamination_labels_mmlu_d025.json (count=3540/14042)
+2026-05-17 22:58:02,194 [INFO] Response matrix: 13 models x 14042 items
+2026-05-17 22:58:02,195 [INFO] Exposure stats: mean=0.3962, nonzero=39.6%
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-1.5B_d000_s123_aligned (d=0, s=123): exp_mean=0.0000, correct=0.5855
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-1.5B_d000_s42_aligned (d=0, s=42): exp_mean=0.0000, correct=0.5853
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-1.5B_d005_s123_aligned (d=5, s=123): exp_mean=0.0495, correct=0.5869
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-1.5B_d005_s42_aligned (d=5, s=42): exp_mean=0.0501, correct=0.5852
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-1.5B_d025_s123_aligned (d=25, s=123): exp_mean=0.2489, correct=0.5881
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-1.5B_d025_s42_aligned (d=25, s=42): exp_mean=0.2521, correct=0.5902
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-1.5B_d100_s123_aligned (d=100, s=123): exp_mean=1.0000, correct=0.5956
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-1.5B_d100_s42_aligned (d=100, s=42): exp_mean=1.0000, correct=0.5933
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-3B_d005_s123_aligned (d=5, s=123): exp_mean=0.0495, correct=0.6324
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-3B_d025_s123_aligned (d=25, s=123): exp_mean=0.2489, correct=0.6367
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-3B_d025_v3_s42_aligned (d=25, s=42): exp_mean=0.2521, correct=0.6242
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-3B_d100_a32_s123_aligned (d=100, s=123): exp_mean=1.0000, correct=0.6330
+2026-05-17 22:58:02,195 [INFO]   Qwen2.5-3B_d100_a32_s42_aligned (d=100, s=42): exp_mean=1.0000, correct=0.6364
+2026-05-17 22:58:02,196 [INFO] Subsampled: 14042 -> 2000 items
+2026-05-17 22:58:02,197 [INFO] Compiling Stan model: contam_irt_2pl_gamma.stan
+2026-05-17 22:58:02,231 [INFO] Fitting: 13 models x 2000 items, 4 chains x 1000 samples
+2026-05-17 22:58:02,294 [INFO] CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A
+
+chain 3:   0%|[33m          [0m| 1/2000 [00:00<03:52,  8.59it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 1/2000 [00:00<03:54,  8.51it/s, (Warmup)][A[A[Achain 1:   0%|[33m          [0m| 1/2000 [00:00<04:12,  7.93it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 1/2000 [00:00<04:15,  7.82it/s, (Warmup)][A
+
+chain 3:   5%|[33m▌         [0m| 100/2000 [00:45<14:16,  2.22it/s, (Warmup)][A[A
+
+
+chain 4:   5%|[33m▌         [0m| 100/2000 [00:47<15:11,  2.08it/s, (Warmup)][A[A[A
+chain 2:   5%|[33m▌         [0m| 100/2000 [01:06<20:58,  1.51it/s, (Warmup)][Achain 1:   5%|[33m▌         [0m| 100/2000 [01:06<21:09,  1.50it/s, (Warmup)]
+
+chain 3:  10%|[33m█         [0m| 200/2000 [01:09<09:49,  3.05it/s, (Warmup)][A[A
+
+
+chain 4:  10%|[33m█         [0m| 200/2000 [01:17<11:04,  2.71it/s, (Warmup)][A[A[Achain 1:  10%|[33m█         [0m| 200/2000 [01:31<12:32,  2.39it/s, (Warmup)]
+
+chain 3:  15%|[33m█▌        [0m| 300/2000 [01:31<07:53,  3.59it/s, (Warmup)][A[A
+chain 2:  10%|[33m█         [0m| 200/2000 [01:33<13:01,  2.30it/s, (Warmup)][A
+
+
+chain 4:  15%|[33m█▌        [0m| 300/2000 [01:38<08:30,  3.33it/s, (Warmup)][A[A[Achain 1:  15%|[33m█▌        [0m| 300/2000 [01:50<08:58,  3.16it/s, (Warmup)]
+
+chain 3:  20%|[33m██        [0m| 400/2000 [01:51<06:35,  4.04it/s, (Warmup)][A[A
+chain 2:  15%|[33m█▌        [0m| 300/2000 [01:58<09:54,  2.86it/s, (Warmup)][A
+
+
+chain 4:  20%|[33m██        [0m| 400/2000 [01:59<07:02,  3.79it/s, (Warmup)][A[A[Achain 1:  20%|[33m██        [0m| 400/2000 [02:11<07:20,  3.63it/s, (Warmup)]
+
+chain 3:  25%|[33m██▌       [0m| 500/2000 [02:14<06:01,  4.15it/s, (Warmup)][A[A
+chain 2:  20%|[33m██        [0m| 400/2000 [02:19<07:51,  3.40it/s, (Warmup)][A
+
+
+chain 4:  25%|[33m██▌       [0m| 500/2000 [02:25<06:33,  3.81it/s, (Warmup)][A[A[A
+
+chain 3:  30%|[33m███       [0m| 600/2000 [02:31<05:07,  4.55it/s, (Warmup)][A[Achain 1:  25%|[33m██▌       [0m| 500/2000 [02:33<06:20,  3.94it/s, (Warmup)]
+chain 2:  25%|[33m██▌       [0m| 500/2000 [02:42<06:46,  3.69it/s, (Warmup)][A
+
+
+chain 4:  30%|[33m███       [0m| 600/2000 [02:46<05:43,  4.08it/s, (Warmup)][A[A[A
+
+chain 3:  35%|[33m███▌      [0m| 700/2000 [02:51<04:37,  4.68it/s, (Warmup)][A[Achain 1:  30%|[33m███       [0m| 600/2000 [02:53<05:28,  4.26it/s, (Warmup)]
+chain 2:  30%|[33m███       [0m| 600/2000 [03:03<05:49,  4.01it/s, (Warmup)][A
+
+
+chain 4:  35%|[33m███▌      [0m| 700/2000 [03:09<05:08,  4.21it/s, (Warmup)][A[A[A
+
+chain 3:  40%|[33m████      [0m| 800/2000 [03:13<04:16,  4.68it/s, (Warmup)][A[Achain 1:  35%|[33m███▌      [0m| 700/2000 [03:13<04:53,  4.42it/s, (Warmup)]
+chain 2:  35%|[33m███▌      [0m| 700/2000 [03:24<05:06,  4.24it/s, (Warmup)][A
+
+
+chain 4:  40%|[33m████      [0m| 800/2000 [03:31<04:38,  4.31it/s, (Warmup)][A[A[A
+
+chain 3:  45%|[33m████▌     [0m| 900/2000 [03:33<03:51,  4.76it/s, (Warmup)][A[Achain 1:  40%|[33m████      [0m| 800/2000 [03:35<04:27,  4.48it/s, (Warmup)]
+chain 2:  40%|[33m████      [0m| 800/2000 [03:43<04:26,  4.50it/s, (Warmup)][A
+
+
+chain 4:  45%|[33m████▌     [0m| 900/2000 [03:52<04:07,  4.44it/s, (Warmup)][A[A[A
+
+chain 3:  50%|[33m█████     [0m| 1000/2000 [03:56<03:35,  4.65it/s, (Warmup)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1000/2000 [03:56<03:35,  4.65it/s, (Sampling)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1001/2000 [03:56<03:34,  4.65it/s, (Sampling)][A[Achain 1:  45%|[33m████▌     [0m| 900/2000 [03:56<04:01,  4.55it/s, (Warmup)]
+chain 2:  45%|[33m████▌     [0m| 900/2000 [04:04<04:01,  4.56it/s, (Warmup)][A
+
+
+chain 4:  50%|[33m█████     [0m| 1000/2000 [04:18<03:56,  4.24it/s, (Warmup)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1000/2000 [04:18<03:56,  4.24it/s, (Sampling)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1001/2000 [04:18<03:55,  4.24it/s, (Sampling)][A[A[Achain 1:  50%|[33m█████     [0m| 1000/2000 [04:18<03:38,  4.57it/s, (Warmup)]
+
+chain 3:  55%|[34m█████▌    [0m| 1100/2000 [04:18<03:17,  4.57it/s, (Sampling)][A[Achain 1:  50%|[34m█████     [0m| 1000/2000 [04:18<03:38,  4.57it/s, (Sampling)]chain 1:  50%|[34m█████     [0m| 1001/2000 [04:18<03:38,  4.57it/s, (Sampling)]
+chain 2:  50%|[33m█████     [0m| 1000/2000 [04:27<03:40,  4.53it/s, (Warmup)][A
+chain 2:  50%|[34m█████     [0m| 1000/2000 [04:27<03:40,  4.53it/s, (Sampling)][A
+chain 2:  50%|[34m█████     [0m| 1001/2000 [04:27<03:40,  4.53it/s, (Sampling)][A
+
+
+chain 4:  55%|[34m█████▌    [0m| 1100/2000 [04:40<03:28,  4.31it/s, (Sampling)][A[A[Achain 1:  55%|[34m█████▌    [0m| 1100/2000 [04:41<03:19,  4.52it/s, (Sampling)]
+
+chain 3:  60%|[34m██████    [0m| 1200/2000 [04:41<02:57,  4.52it/s, (Sampling)][A[A
+chain 2:  55%|[34m█████▌    [0m| 1100/2000 [04:49<03:20,  4.49it/s, (Sampling)][A
+
+
+chain 4:  60%|[34m██████    [0m| 1200/2000 [05:03<03:04,  4.33it/s, (Sampling)][A[A[Achain 1:  60%|[34m██████    [0m| 1200/2000 [05:03<02:58,  4.48it/s, (Sampling)]
+
+chain 3:  65%|[34m██████▌   [0m| 1300/2000 [05:04<02:36,  4.47it/s, (Sampling)][A[A
+chain 2:  60%|[34m██████    [0m| 1200/2000 [05:12<02:59,  4.47it/s, (Sampling)][Achain 1:  65%|[34m██████▌   [0m| 1300/2000 [05:26<02:36,  4.46it/s, (Sampling)]
+
+
+chain 4:  65%|[34m██████▌   [0m| 1300/2000 [05:26<02:41,  4.33it/s, (Sampling)][A[A[A
+
+chain 3:  70%|[34m███████   [0m| 1400/2000 [05:26<02:15,  4.44it/s, (Sampling)][A[A
+chain 2:  65%|[34m██████▌   [0m| 1300/2000 [05:34<02:37,  4.45it/s, (Sampling)][Achain 1:  70%|[34m███████   [0m| 1400/2000 [05:48<02:14,  4.46it/s, (Sampling)]
+
+
+chain 4:  70%|[34m███████   [0m| 1400/2000 [05:49<02:17,  4.35it/s, (Sampling)][A[A[A
+
+chain 3:  75%|[34m███████▌  [0m| 1500/2000 [05:49<01:52,  4.43it/s, (Sampling)][A[A
+chain 2:  70%|[34m███████   [0m| 1400/2000 [05:57<02:14,  4.45it/s, (Sampling)][Achain 1:  75%|[34m███████▌  [0m| 1500/2000 [06:11<01:52,  4.45it/s, (Sampling)]
+
+
+chain 4:  75%|[34m███████▌  [0m| 1500/2000 [06:12<01:54,  4.37it/s, (Sampling)][A[A[A
+
+chain 3:  80%|[34m████████  [0m| 1600/2000 [06:12<01:30,  4.43it/s, (Sampling)][A[A
+chain 2:  75%|[34m███████▌  [0m| 1500/2000 [06:19<01:52,  4.45it/s, (Sampling)][Achain 1:  80%|[34m████████  [0m| 1600/2000 [06:33<01:29,  4.45it/s, (Sampling)]
+
+chain 3:  85%|[34m████████▌ [0m| 1700/2000 [06:34<01:07,  4.43it/s, (Sampling)][A[A
+
+
+chain 4:  80%|[34m████████  [0m| 1600/2000 [06:34<01:31,  4.39it/s, (Sampling)][A[A[A
+chain 2:  80%|[34m████████  [0m| 1600/2000 [06:42<01:29,  4.45it/s, (Sampling)][Achain 1:  85%|[34m████████▌ [0m| 1700/2000 [06:56<01:07,  4.44it/s, (Sampling)]
+
+chain 3:  90%|[34m█████████ [0m| 1800/2000 [06:57<00:45,  4.43it/s, (Sampling)][A[A
+
+
+chain 4:  85%|[34m████████▌ [0m| 1700/2000 [06:57<01:08,  4.39it/s, (Sampling)][A[A[A
+chain 2:  85%|[34m████████▌ [0m| 1700/2000 [07:04<01:07,  4.44it/s, (Sampling)][Achain 1:  90%|[34m█████████ [0m| 1800/2000 [07:19<00:45,  4.43it/s, (Sampling)]
+
+chain 3:  95%|[34m█████████▌[0m| 1900/2000 [07:20<00:22,  4.41it/s, (Sampling)][A[A
+
+
+chain 4:  90%|[34m█████████ [0m| 1800/2000 [07:20<00:45,  4.37it/s, (Sampling)][A[A[A
+chain 2:  90%|[34m█████████ [0m| 1800/2000 [07:27<00:45,  4.43it/s, (Sampling)][Achain 1:  95%|[34m█████████▌[0m| 1900/2000 [07:41<00:22,  4.43it/s, (Sampling)]
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [07:43<00:00,  4.40it/s, (Sampling)][A[A
+
+
+chain 4:  95%|[34m█████████▌[0m| 1900/2000 [07:43<00:22,  4.37it/s, (Sampling)][A[A[A
+chain 2:  95%|[34m█████████▌[0m| 1900/2000 [07:50<00:22,  4.43it/s, (Sampling)][Achain 1: 100%|[34m██████████[0m| 2000/2000 [08:04<00:00,  4.43it/s, (Sampling)]
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [08:06<00:00,  4.38it/s, (Sampling)][A[A[A
+chain 2: 100%|[34m██████████[0m| 2000/2000 [08:12<00:00,  4.43it/s, (Sampling)][Achain 1: 100%|[34m██████████[0m| 2000/2000 [08:12<00:00,  4.43it/s, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [08:12<00:00,  4.06it/s, (Sampling completed)]
+
+chain 2: 100%|[34m██████████[0m| 2000/2000 [08:12<00:00,  4.43it/s, (Sampling completed)][Achain 2: 100%|[34m██████████[0m| 2000/2000 [08:12<00:00,  4.06it/s, (Sampling completed)]
+
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [08:12<00:00,  4.40it/s, (Sampling completed)][A[Achain 3: 100%|[34m██████████[0m| 2000/2000 [08:12<00:00,  4.06it/s, (Sampling completed)]
+
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [08:12<00:00,  4.38it/s, (Sampling completed)][A[A[Achain 4: 100%|[34m██████████[0m| 2000/2000 [08:12<00:00,  4.06it/s, (Sampling completed)]
+                                                                                                                                                                                                                                                                                                                                2026-05-17 23:06:15,175 [INFO] CmdStan done processing.
+2026-05-17 23:06:24,758 [INFO] Sampling completed in 502.5s
+2026-05-17 23:10:07,314 [INFO] Saved: /root/autodl-tmp/exp006/oracle_exposure_ablation/oracle_mmlu_2pl_gamma.json
+2026-05-17 23:10:07,315 [INFO] ============================================================
+2026-05-17 23:10:07,315 [INFO] ORACLE ABLATION: arc_challenge
+2026-05-17 23:10:07,465 [INFO] Regenerating labels: arc_challenge d5 seed=123
+2026-05-17 23:10:07,468 [INFO] Loaded labels: contamination_labels_arc_challenge_d005.json (count=50/1172)
+2026-05-17 23:10:07,468 [INFO] Regenerating labels: arc_challenge d25 seed=123
+2026-05-17 23:10:07,471 [INFO] Loaded labels: contamination_labels_arc_challenge_d025.json (count=257/1172)
+2026-05-17 23:10:07,471 [INFO] Regenerating labels: arc_challenge d5 seed=123
+2026-05-17 23:10:07,474 [INFO] Regenerating labels: arc_challenge d25 seed=123
+2026-05-17 23:10:07,477 [INFO] Loaded labels: contamination_labels_arc_challenge_d025.json (count=257/1172)
+2026-05-17 23:10:07,477 [INFO] Response matrix: 13 models x 1172 items
+2026-05-17 23:10:07,477 [INFO] Exposure stats: mean=0.3914, nonzero=39.1%
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-1.5B_d000_s123_aligned (d=0, s=123): exp_mean=0.0000, correct=0.7577
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-1.5B_d000_s42_aligned (d=0, s=42): exp_mean=0.0000, correct=0.7722
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-1.5B_d005_s123_aligned (d=5, s=123): exp_mean=0.0478, correct=0.7568
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-1.5B_d005_s42_aligned (d=5, s=42): exp_mean=0.0427, correct=0.7688
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-1.5B_d025_s123_aligned (d=25, s=123): exp_mean=0.2560, correct=0.7577
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-1.5B_d025_s42_aligned (d=25, s=42): exp_mean=0.2193, correct=0.7688
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-1.5B_d100_s123_aligned (d=100, s=123): exp_mean=1.0000, correct=0.7816
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-1.5B_d100_s42_aligned (d=100, s=42): exp_mean=1.0000, correct=0.7688
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-3B_d005_s123_aligned (d=5, s=123): exp_mean=0.0478, correct=0.8242
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-3B_d025_s123_aligned (d=25, s=123): exp_mean=0.2560, correct=0.8336
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-3B_d025_v3_s42_aligned (d=25, s=42): exp_mean=0.2193, correct=0.8225
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-3B_d100_a32_s123_aligned (d=100, s=123): exp_mean=1.0000, correct=0.8251
+2026-05-17 23:10:07,477 [INFO]   Qwen2.5-3B_d100_a32_s42_aligned (d=100, s=42): exp_mean=1.0000, correct=0.8208
+2026-05-17 23:10:07,478 [INFO] Compiling Stan model: contam_irt_2pl_gamma.stan
+2026-05-17 23:10:07,511 [INFO] Fitting: 13 models x 1172 items, 4 chains x 1000 samples
+2026-05-17 23:10:07,536 [INFO] CmdStan start processing
+
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[A
+
+chain 3:   5%|[33m▌         [0m| 100/2000 [00:20<06:24,  4.95it/s, (Warmup)][A[Achain 1:   5%|[33m▌         [0m| 100/2000 [00:20<06:29,  4.88it/s, (Warmup)]
+
+
+chain 4:   5%|[33m▌         [0m| 100/2000 [00:21<06:57,  4.55it/s, (Warmup)][A[A[A
+chain 2:   5%|[33m▌         [0m| 100/2000 [00:24<07:36,  4.17it/s, (Warmup)][A
+
+chain 3:  10%|[33m█         [0m| 200/2000 [00:30<04:21,  6.88it/s, (Warmup)][A[A
+
+
+chain 4:  10%|[33m█         [0m| 200/2000 [00:34<04:58,  6.03it/s, (Warmup)][A[A[Achain 1:  10%|[33m█         [0m| 200/2000 [00:35<05:05,  5.89it/s, (Warmup)]
+chain 2:  10%|[33m█         [0m| 200/2000 [00:37<05:16,  5.69it/s, (Warmup)][A
+
+chain 3:  15%|[33m█▌        [0m| 300/2000 [00:42<03:42,  7.65it/s, (Warmup)][A[Achain 1:  15%|[33m█▌        [0m| 300/2000 [00:46<04:04,  6.94it/s, (Warmup)]
+
+
+chain 4:  15%|[33m█▌        [0m| 300/2000 [00:46<04:05,  6.91it/s, (Warmup)][A[A[A
+chain 2:  15%|[33m█▌        [0m| 300/2000 [00:47<04:01,  7.04it/s, (Warmup)][A
+
+chain 3:  20%|[33m██        [0m| 400/2000 [00:52<03:09,  8.45it/s, (Warmup)][A[A
+
+
+chain 4:  20%|[33m██        [0m| 400/2000 [00:55<03:12,  8.30it/s, (Warmup)][A[A[A
+chain 2:  20%|[33m██        [0m| 400/2000 [00:57<03:19,  8.02it/s, (Warmup)][Achain 1:  20%|[33m██        [0m| 400/2000 [00:57<03:28,  7.67it/s, (Warmup)]
+
+chain 3:  25%|[33m██▌       [0m| 500/2000 [01:02<02:52,  8.71it/s, (Warmup)][A[A
+
+
+chain 4:  25%|[33m██▌       [0m| 500/2000 [01:06<02:58,  8.42it/s, (Warmup)][A[A[Achain 1:  25%|[33m██▌       [0m| 500/2000 [01:08<03:03,  8.19it/s, (Warmup)]
+chain 2:  25%|[33m██▌       [0m| 500/2000 [01:08<02:59,  8.37it/s, (Warmup)][A
+
+chain 3:  30%|[33m███       [0m| 600/2000 [01:12<02:32,  9.16it/s, (Warmup)][A[A
+
+
+chain 4:  30%|[33m███       [0m| 600/2000 [01:16<02:35,  8.99it/s, (Warmup)][A[A[A
+chain 2:  30%|[33m███       [0m| 600/2000 [01:18<02:38,  8.86it/s, (Warmup)][Achain 1:  30%|[33m███       [0m| 600/2000 [01:18<02:42,  8.64it/s, (Warmup)]
+
+chain 3:  35%|[33m███▌      [0m| 700/2000 [01:23<02:22,  9.11it/s, (Warmup)][A[A
+
+
+chain 4:  35%|[33m███▌      [0m| 700/2000 [01:27<02:22,  9.10it/s, (Warmup)][A[A[A
+chain 2:  35%|[33m███▌      [0m| 700/2000 [01:27<02:18,  9.35it/s, (Warmup)][Achain 1:  35%|[33m███▌      [0m| 700/2000 [01:29<02:26,  8.86it/s, (Warmup)]
+
+chain 3:  40%|[33m████      [0m| 800/2000 [01:31<01:59, 10.03it/s, (Warmup)][A[A
+chain 2:  40%|[33m████      [0m| 800/2000 [01:36<02:02,  9.81it/s, (Warmup)][A
+
+
+chain 4:  40%|[33m████      [0m| 800/2000 [01:38<02:12,  9.05it/s, (Warmup)][A[A[Achain 1:  40%|[33m████      [0m| 800/2000 [01:39<02:10,  9.17it/s, (Warmup)]
+
+chain 3:  45%|[33m████▌     [0m| 900/2000 [01:41<01:49, 10.09it/s, (Warmup)][A[A
+chain 2:  45%|[33m████▌     [0m| 900/2000 [01:47<01:54,  9.57it/s, (Warmup)][A
+
+
+chain 4:  45%|[33m████▌     [0m| 900/2000 [01:48<01:58,  9.29it/s, (Warmup)][A[A[Achain 1:  45%|[33m████▌     [0m| 900/2000 [01:51<02:03,  8.88it/s, (Warmup)]
+
+chain 3:  50%|[33m█████     [0m| 1000/2000 [01:54<01:48,  9.24it/s, (Warmup)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1000/2000 [01:54<01:48,  9.24it/s, (Sampling)][A[A
+
+
+chain 4:  50%|[33m█████     [0m| 1000/2000 [01:59<01:47,  9.29it/s, (Warmup)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1000/2000 [01:59<01:47,  9.29it/s, (Sampling)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1001/2000 [01:59<01:47,  9.28it/s, (Sampling)][A[A[A
+chain 2:  50%|[33m█████     [0m| 1000/2000 [02:00<01:52,  8.88it/s, (Warmup)][A
+chain 2:  50%|[34m█████     [0m| 1000/2000 [02:00<01:52,  8.88it/s, (Sampling)][A
+
+chain 3:  55%|[34m█████▌    [0m| 1100/2000 [02:01<01:26, 10.37it/s, (Sampling)][A[Achain 1:  50%|[33m█████     [0m| 1000/2000 [02:01<01:50,  9.04it/s, (Warmup)]chain 1:  50%|[34m█████     [0m| 1000/2000 [02:01<01:50,  9.04it/s, (Sampling)]chain 1:  50%|[34m█████     [0m| 1001/2000 [02:01<01:50,  9.03it/s, (Sampling)]
+
+chain 3:  60%|[34m██████    [0m| 1200/2000 [02:08<01:10, 11.33it/s, (Sampling)][A[A
+
+
+chain 4:  55%|[34m█████▌    [0m| 1100/2000 [02:11<01:44,  8.65it/s, (Sampling)][A[A[A
+chain 2:  55%|[34m█████▌    [0m| 1100/2000 [02:14<01:46,  8.43it/s, (Sampling)][Achain 1:  55%|[34m█████▌    [0m| 1100/2000 [02:15<01:47,  8.37it/s, (Sampling)]
+
+chain 3:  65%|[34m██████▌   [0m| 1300/2000 [02:15<00:57, 12.10it/s, (Sampling)][A[A
+
+chain 3:  70%|[34m███████   [0m| 1400/2000 [02:22<00:47, 12.72it/s, (Sampling)][A[A
+
+
+chain 4:  60%|[34m██████    [0m| 1200/2000 [02:24<01:36,  8.33it/s, (Sampling)][A[A[A
+chain 2:  60%|[34m██████    [0m| 1200/2000 [02:27<01:37,  8.19it/s, (Sampling)][Achain 1:  60%|[34m██████    [0m| 1200/2000 [02:28<01:39,  8.04it/s, (Sampling)]
+
+chain 3:  75%|[34m███████▌  [0m| 1500/2000 [02:29<00:37, 13.18it/s, (Sampling)][A[A
+
+chain 3:  80%|[34m████████  [0m| 1600/2000 [02:35<00:29, 13.55it/s, (Sampling)][A[A
+
+
+chain 4:  65%|[34m██████▌   [0m| 1300/2000 [02:37<01:25,  8.14it/s, (Sampling)][A[A[A
+chain 2:  65%|[34m██████▌   [0m| 1300/2000 [02:40<01:27,  8.03it/s, (Sampling)][Achain 1:  65%|[34m██████▌   [0m| 1300/2000 [02:41<01:28,  7.89it/s, (Sampling)]
+
+chain 3:  85%|[34m████████▌ [0m| 1700/2000 [02:42<00:21, 13.87it/s, (Sampling)][A[A
+
+chain 3:  90%|[34m█████████ [0m| 1800/2000 [02:49<00:14, 14.18it/s, (Sampling)][A[A
+
+
+chain 4:  70%|[34m███████   [0m| 1400/2000 [02:50<01:14,  8.03it/s, (Sampling)][A[A[A
+chain 2:  70%|[34m███████   [0m| 1400/2000 [02:52<01:14,  8.01it/s, (Sampling)][Achain 1:  70%|[34m███████   [0m| 1400/2000 [02:54<01:16,  7.85it/s, (Sampling)]
+
+chain 3:  95%|[34m█████████▌[0m| 1900/2000 [02:56<00:06, 14.35it/s, (Sampling)][A[A
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [03:02<00:00, 14.52it/s, (Sampling)][A[A
+
+
+chain 4:  75%|[34m███████▌  [0m| 1500/2000 [03:03<01:02,  7.96it/s, (Sampling)][A[A[A
+chain 2:  75%|[34m███████▌  [0m| 1500/2000 [03:05<01:02,  7.96it/s, (Sampling)][Achain 1:  75%|[34m███████▌  [0m| 1500/2000 [03:07<01:03,  7.82it/s, (Sampling)]
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [03:14<00:00, 14.52it/s, (Sampling)][A[A
+
+
+chain 4:  80%|[34m████████  [0m| 1600/2000 [03:15<00:50,  7.91it/s, (Sampling)][A[A[A
+chain 2:  80%|[34m████████  [0m| 1600/2000 [03:18<00:50,  7.91it/s, (Sampling)][Achain 1:  80%|[34m████████  [0m| 1600/2000 [03:20<00:51,  7.78it/s, (Sampling)]
+
+
+chain 4:  85%|[34m████████▌ [0m| 1700/2000 [03:28<00:38,  7.88it/s, (Sampling)][A[A[A
+chain 2:  85%|[34m████████▌ [0m| 1700/2000 [03:30<00:37,  7.92it/s, (Sampling)][Achain 1:  85%|[34m████████▌ [0m| 1700/2000 [03:33<00:38,  7.78it/s, (Sampling)]
+
+
+chain 4:  90%|[34m█████████ [0m| 1800/2000 [03:41<00:25,  7.86it/s, (Sampling)][A[A[A
+chain 2:  90%|[34m█████████ [0m| 1800/2000 [03:43<00:25,  7.93it/s, (Sampling)][Achain 1:  90%|[34m█████████ [0m| 1800/2000 [03:46<00:25,  7.77it/s, (Sampling)]
+
+
+chain 4:  95%|[34m█████████▌[0m| 1900/2000 [03:54<00:12,  7.84it/s, (Sampling)][A[A[A
+chain 2:  95%|[34m█████████▌[0m| 1900/2000 [03:56<00:12,  7.87it/s, (Sampling)][Achain 1:  95%|[34m█████████▌[0m| 1900/2000 [03:59<00:12,  7.73it/s, (Sampling)]
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [04:07<00:00,  7.83it/s, (Sampling)][A[A[A
+chain 2: 100%|[34m██████████[0m| 2000/2000 [04:09<00:00,  7.81it/s, (Sampling)][Achain 1: 100%|[34m██████████[0m| 2000/2000 [04:12<00:00,  7.67it/s, (Sampling)]chain 1: 100%|[34m██████████[0m| 2000/2000 [04:12<00:00,  7.67it/s, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [04:12<00:00,  7.92it/s, (Sampling completed)]
+
+chain 2: 100%|[34m██████████[0m| 2000/2000 [04:12<00:00,  7.81it/s, (Sampling completed)][Achain 2: 100%|[34m██████████[0m| 2000/2000 [04:12<00:00,  7.92it/s, (Sampling completed)]
+
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [04:12<00:00, 14.52it/s, (Sampling completed)][A[Achain 3: 100%|[34m██████████[0m| 2000/2000 [04:12<00:00,  7.92it/s, (Sampling completed)]
+
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [04:12<00:00,  7.83it/s, (Sampling completed)][A[A[Achain 4: 100%|[34m██████████[0m| 2000/2000 [04:12<00:00,  7.92it/s, (Sampling completed)]
+                                                                                                                                                                                                                                                                                                                                2026-05-17 23:14:20,201 [INFO] CmdStan done processing.
+2026-05-17 23:14:27,113 [INFO] Sampling completed in 259.6s
+2026-05-17 23:16:39,356 [INFO] Saved: /root/autodl-tmp/exp006/oracle_exposure_ablation/oracle_arc_challenge_2pl_gamma.json
+2026-05-17 23:16:39,356 [INFO] Summary saved: /root/autodl-tmp/exp006/oracle_exposure_ablation/oracle_ablation_summary.json
+
+
+============================================================
+ORACLE EXPOSURE ABLATION RESULTS
+============================================================
+
+mmlu:
+  γ = -0.0121 [-0.1450, 0.1191]
+  CI excludes 0: False
+  CAL MAE: 0.0106
+  PPP: 0.4128
+  Diagnostics OK: True
+
+arc_challenge:
+  γ = 0.1176 [-0.0750, 0.3064]
+  CI excludes 0: False
+  CAL MAE: 0.0142
+  PPP: 0.0305
+  Diagnostics OK: True

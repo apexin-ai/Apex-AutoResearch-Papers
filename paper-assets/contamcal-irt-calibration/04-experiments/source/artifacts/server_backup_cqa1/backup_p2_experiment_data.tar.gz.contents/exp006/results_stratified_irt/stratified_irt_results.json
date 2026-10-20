@@ -1,0 +1,1269 @@
+{
+  "scheme_A": {},
+  "scheme_B": {
+    "scale_0.5B": {
+      "gsm8k": {
+        "stratum": "B_scale_0.5B",
+        "benchmark": "gsm8k",
+        "n_models": 6,
+        "n_items": 1319,
+        "original_n_items": 1319,
+        "subsampled": false,
+        "unique_dosages": [
+          5,
+          25,
+          100
+        ],
+        "has_dosage_variation": true,
+        "models": [
+          {
+            "dirname": "Qwen2.5-0.5B_d005_s123_aligned",
+            "dosage": 5,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d005_s42_aligned",
+            "dosage": 5,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d025_s123_aligned",
+            "dosage": 25,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d025_s42_aligned",
+            "dosage": 25,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d100_s123_aligned",
+            "dosage": 100,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d100_s42_aligned",
+            "dosage": 100,
+            "scale": "0.5B"
+          }
+        ],
+        "dosages": [
+          5,
+          5,
+          25,
+          25,
+          100,
+          100
+        ],
+        "fit_time_sec": 736.2,
+        "diagnostics": {
+          "max_rhat": 1.0094,
+          "rhat_ok": true,
+          "min_ess": 123.0,
+          "ess_ok": false,
+          "divergent_count": 0,
+          "divergent_pct": 0.0,
+          "divergent_ok": true,
+          "total_draws": 4000,
+          "all_ok": false
+        },
+        "posterior_predictive": {
+          "overall_ppp": 0.9722,
+          "obs_mean_acc": 0.3658,
+          "pred_mean_acc": 0.4635,
+          "residual_mae": 0.0977
+        },
+        "gamma": {
+          "mean": -1.2718,
+          "sd": 0.64,
+          "q025": -2.4475,
+          "q975": 0.0162,
+          "q10": -2.0945,
+          "q90": -0.4233,
+          "q25": -1.7163,
+          "q75": -0.8368,
+          "ci_excludes_zero": false
+        },
+        "calibrated_scores": {
+          "mean": [
+            0.3934,
+            0.387,
+            0.416,
+            0.4286,
+            0.5848,
+            0.5715
+          ],
+          "sd": [
+            0.0162,
+            0.0157,
+            0.0321,
+            0.0323,
+            0.1008,
+            0.1006
+          ],
+          "q025": [
+            0.3622,
+            0.3555,
+            0.3502,
+            0.3628,
+            0.3735,
+            0.3634
+          ],
+          "q975": [
+            0.4248,
+            0.4172,
+            0.4759,
+            0.4895,
+            0.7576,
+            0.7497
+          ],
+          "q10": [
+            0.3728,
+            0.3666,
+            0.3736,
+            0.3861,
+            0.4469,
+            0.4354
+          ],
+          "q90": [
+            0.4143,
+            0.4065,
+            0.4578,
+            0.4691,
+            0.7122,
+            0.6998
+          ],
+          "q25": [
+            0.3827,
+            0.3764,
+            0.3948,
+            0.4064,
+            0.5175,
+            0.503
+          ],
+          "q75": [
+            0.4042,
+            0.3975,
+            0.4378,
+            0.4514,
+            0.6578,
+            0.6448
+          ]
+        }
+      },
+      "humaneval": {
+        "stratum": "B_scale_0.5B",
+        "benchmark": "humaneval",
+        "n_models": 8,
+        "n_items": 164,
+        "original_n_items": 164,
+        "subsampled": false,
+        "unique_dosages": [
+          0,
+          5,
+          25,
+          100
+        ],
+        "has_dosage_variation": true,
+        "models": [
+          {
+            "dirname": "Qwen2.5-0.5B_d000_s123_aligned",
+            "dosage": 0,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d000_s42_aligned",
+            "dosage": 0,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d005_s123_aligned",
+            "dosage": 5,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d005_s42_aligned",
+            "dosage": 5,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d025_s123_aligned",
+            "dosage": 25,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d025_s42_aligned",
+            "dosage": 25,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d100_s123_aligned",
+            "dosage": 100,
+            "scale": "0.5B"
+          },
+          {
+            "dirname": "Qwen2.5-0.5B_d100_s42_aligned",
+            "dosage": 100,
+            "scale": "0.5B"
+          }
+        ],
+        "dosages": [
+          0,
+          0,
+          5,
+          5,
+          25,
+          25,
+          100,
+          100
+        ],
+        "fit_time_sec": 51.9,
+        "diagnostics": {
+          "max_rhat": 1.0085,
+          "rhat_ok": true,
+          "min_ess": 1069.9,
+          "ess_ok": true,
+          "divergent_count": 0,
+          "divergent_pct": 0.0,
+          "divergent_ok": true,
+          "total_draws": 4000,
+          "all_ok": true
+        },
+        "posterior_predictive": {
+          "overall_ppp": 1.0,
+          "obs_mean_acc": 0.0877,
+          "pred_mean_acc": 0.1666,
+          "residual_mae": 0.0789
+        },
+        "gamma": {
+          "mean": -2.3492,
+          "sd": 0.5968,
+          "q025": -3.5545,
+          "q975": -1.2539,
+          "q10": -3.1442,
+          "q90": -1.5933,
+          "q25": -2.7288,
+          "q75": -1.9409,
+          "ci_excludes_zero": true
+        },
+        "calibrated_scores": {
+          "mean": [
+            0.1173,
+            0.127,
+            0.1239,
+            0.1024,
+            0.1481,
+            0.197,
+            0.3996,
+            0.1174
+          ],
+          "sd": [
+            0.0217,
+            0.0221,
+            0.0235,
+            0.0208,
+            0.0315,
+            0.036,
+            0.1007,
+            0.05
+          ],
+          "q025": [
+            0.0769,
+            0.0869,
+            0.0817,
+            0.0644,
+            0.0924,
+            0.1324,
+            0.2204,
+            0.0457
+          ],
+          "q975": [
+            0.163,
+            0.1716,
+            0.1723,
+            0.1459,
+            0.2153,
+            0.2733,
+            0.6093,
+            0.2394
+          ],
+          "q10": [
+            0.0911,
+            0.0991,
+            0.0947,
+            0.0764,
+            0.109,
+            0.1523,
+            0.2729,
+            0.0619
+          ],
+          "q90": [
+            0.1457,
+            0.1564,
+            0.1547,
+            0.1296,
+            0.1894,
+            0.2442,
+            0.535,
+            0.1849
+          ],
+          "q25": [
+            0.1025,
+            0.1117,
+            0.1076,
+            0.0875,
+            0.1256,
+            0.1716,
+            0.3273,
+            0.0811
+          ],
+          "q75": [
+            0.1314,
+            0.1415,
+            0.139,
+            0.116,
+            0.1686,
+            0.2205,
+            0.468,
+            0.1447
+          ]
+        }
+      }
+    },
+    "scale_1.5B": {
+      "mmlu": {
+        "stratum": "B_scale_1.5B",
+        "benchmark": "mmlu",
+        "n_models": 6,
+        "n_items": 2000,
+        "original_n_items": 14042,
+        "subsampled": true,
+        "unique_dosages": [
+          0,
+          5,
+          25,
+          100
+        ],
+        "has_dosage_variation": true,
+        "models": [
+          {
+            "dirname": "Qwen2.5-1.5B_d000_s123_aligned",
+            "dosage": 0,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d000_s42_aligned",
+            "dosage": 0,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d005_s42_aligned",
+            "dosage": 5,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d025_s42_aligned",
+            "dosage": 25,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d100_s123_aligned",
+            "dosage": 100,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d100_s42_aligned",
+            "dosage": 100,
+            "scale": "1.5B"
+          }
+        ],
+        "dosages": [
+          0,
+          0,
+          5,
+          25,
+          100,
+          100
+        ],
+        "fit_time_sec": 1106.2,
+        "diagnostics": {
+          "max_rhat": 1.0165,
+          "rhat_ok": false,
+          "min_ess": 115.2,
+          "ess_ok": false,
+          "divergent_count": 0,
+          "divergent_pct": 0.0,
+          "divergent_ok": true,
+          "total_draws": 4000,
+          "all_ok": false
+        },
+        "posterior_predictive": {
+          "overall_ppp": 0.0005,
+          "obs_mean_acc": 0.5772,
+          "pred_mean_acc": 0.4844,
+          "residual_mae": 0.0927
+        },
+        "gamma": {
+          "mean": 1.4733,
+          "sd": 0.5028,
+          "q025": 0.5516,
+          "q975": 2.5175,
+          "q10": 0.8585,
+          "q90": 2.1307,
+          "q25": 1.1269,
+          "q75": 1.7909,
+          "ci_excludes_zero": true
+        },
+        "calibrated_scores": {
+          "mean": [
+            0.553,
+            0.5525,
+            0.5424,
+            0.5037,
+            0.3795,
+            0.3755
+          ],
+          "sd": [
+            0.0101,
+            0.0102,
+            0.013,
+            0.0242,
+            0.0669,
+            0.0672
+          ],
+          "q025": [
+            0.5334,
+            0.532,
+            0.5159,
+            0.4555,
+            0.2481,
+            0.2442
+          ],
+          "q975": [
+            0.5732,
+            0.5725,
+            0.5677,
+            0.5503,
+            0.5074,
+            0.5036
+          ],
+          "q10": [
+            0.5402,
+            0.5396,
+            0.5257,
+            0.4727,
+            0.2917,
+            0.2872
+          ],
+          "q90": [
+            0.566,
+            0.5655,
+            0.559,
+            0.5336,
+            0.4644,
+            0.4604
+          ],
+          "q25": [
+            0.5461,
+            0.5455,
+            0.5338,
+            0.4878,
+            0.335,
+            0.3307
+          ],
+          "q75": [
+            0.5598,
+            0.5594,
+            0.5513,
+            0.5205,
+            0.4253,
+            0.4229
+          ]
+        }
+      },
+      "gsm8k": {
+        "stratum": "B_scale_1.5B",
+        "benchmark": "gsm8k",
+        "n_models": 4,
+        "n_items": 1319,
+        "original_n_items": 1319,
+        "subsampled": false,
+        "unique_dosages": [
+          5,
+          25,
+          100
+        ],
+        "has_dosage_variation": true,
+        "models": [
+          {
+            "dirname": "Qwen2.5-1.5B_d005_s42_aligned",
+            "dosage": 5,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d025_s42_aligned",
+            "dosage": 25,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d100_s123_aligned",
+            "dosage": 100,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d100_s42_aligned",
+            "dosage": 100,
+            "scale": "1.5B"
+          }
+        ],
+        "dosages": [
+          5,
+          25,
+          100,
+          100
+        ],
+        "fit_time_sec": 458.4,
+        "diagnostics": {
+          "max_rhat": 1.0058,
+          "rhat_ok": true,
+          "min_ess": 953.9,
+          "ess_ok": true,
+          "divergent_count": 0,
+          "divergent_pct": 0.0,
+          "divergent_ok": true,
+          "total_draws": 4000,
+          "all_ok": true
+        },
+        "posterior_predictive": {
+          "overall_ppp": 1.0,
+          "obs_mean_acc": 0.649,
+          "pred_mean_acc": 0.8807,
+          "residual_mae": 0.2317
+        },
+        "gamma": {
+          "mean": -4.3843,
+          "sd": 0.3547,
+          "q025": -5.0774,
+          "q975": -3.6711,
+          "q10": -4.8321,
+          "q90": -3.9288,
+          "q25": -4.6226,
+          "q75": -4.1436,
+          "ci_excludes_zero": true
+        },
+        "calibrated_scores": {
+          "mean": [
+            0.7381,
+            0.836,
+            0.9739,
+            0.9747
+          ],
+          "sd": [
+            0.0106,
+            0.0117,
+            0.0056,
+            0.0055
+          ],
+          "q025": [
+            0.7176,
+            0.8109,
+            0.9614,
+            0.9624
+          ],
+          "q975": [
+            0.7581,
+            0.8575,
+            0.9828,
+            0.9834
+          ],
+          "q10": [
+            0.7244,
+            0.8209,
+            0.9666,
+            0.9676
+          ],
+          "q90": [
+            0.7513,
+            0.8504,
+            0.9804,
+            0.981
+          ],
+          "q25": [
+            0.731,
+            0.8283,
+            0.9708,
+            0.9715
+          ],
+          "q75": [
+            0.7454,
+            0.8441,
+            0.978,
+            0.9786
+          ]
+        }
+      },
+      "arc_challenge": {
+        "stratum": "B_scale_1.5B",
+        "benchmark": "arc_challenge",
+        "n_models": 6,
+        "n_items": 1172,
+        "original_n_items": 1172,
+        "subsampled": false,
+        "unique_dosages": [
+          0,
+          5,
+          25,
+          100
+        ],
+        "has_dosage_variation": true,
+        "models": [
+          {
+            "dirname": "Qwen2.5-1.5B_d000_s123_aligned",
+            "dosage": 0,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d000_s42_aligned",
+            "dosage": 0,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d005_s42_aligned",
+            "dosage": 5,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d025_s42_aligned",
+            "dosage": 25,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d100_s123_aligned",
+            "dosage": 100,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d100_s42_aligned",
+            "dosage": 100,
+            "scale": "1.5B"
+          }
+        ],
+        "dosages": [
+          0,
+          0,
+          5,
+          25,
+          100,
+          100
+        ],
+        "fit_time_sec": 543.4,
+        "diagnostics": {
+          "max_rhat": 1.7354,
+          "rhat_ok": false,
+          "min_ess": 6.1,
+          "ess_ok": false,
+          "divergent_count": 0,
+          "divergent_pct": 0.0,
+          "divergent_ok": true,
+          "total_draws": 4000,
+          "all_ok": false
+        },
+        "posterior_predictive": {
+          "overall_ppp": 0.5,
+          "obs_mean_acc": 0.7696,
+          "pred_mean_acc": 0.7446,
+          "residual_mae": 0.0355
+        },
+        "gamma": {
+          "mean": -0.8048,
+          "sd": 3.8563,
+          "q025": -5.3146,
+          "q975": 3.8162,
+          "q10": -4.9678,
+          "q90": 3.4228,
+          "q25": -4.6505,
+          "q75": 3.0172,
+          "ci_excludes_zero": false
+        },
+        "calibrated_scores": {
+          "mean": [
+            0.767,
+            0.7779,
+            0.7778,
+            0.7761,
+            0.689,
+            0.6796
+          ],
+          "sd": [
+            0.0469,
+            0.0454,
+            0.064,
+            0.1266,
+            0.3006,
+            0.3086
+          ],
+          "q025": [
+            0.7043,
+            0.7164,
+            0.6953,
+            0.6159,
+            0.2881,
+            0.2691
+          ],
+          "q975": [
+            0.8278,
+            0.8367,
+            0.8551,
+            0.9151,
+            0.9906,
+            0.9896
+          ],
+          "q10": [
+            0.7126,
+            0.7251,
+            0.705,
+            0.6337,
+            0.3395,
+            0.3217
+          ],
+          "q90": [
+            0.8205,
+            0.8298,
+            0.8484,
+            0.9091,
+            0.9888,
+            0.9879
+          ],
+          "q25": [
+            0.7212,
+            0.7338,
+            0.7145,
+            0.6508,
+            0.3904,
+            0.3728
+          ],
+          "q75": [
+            0.8133,
+            0.8223,
+            0.8412,
+            0.9021,
+            0.9867,
+            0.9853
+          ]
+        }
+      },
+      "humaneval": {
+        "stratum": "B_scale_1.5B",
+        "benchmark": "humaneval",
+        "n_models": 6,
+        "n_items": 164,
+        "original_n_items": 164,
+        "subsampled": false,
+        "unique_dosages": [
+          0,
+          5,
+          25,
+          100
+        ],
+        "has_dosage_variation": true,
+        "models": [
+          {
+            "dirname": "Qwen2.5-1.5B_d000_s123_aligned",
+            "dosage": 0,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d000_s42_aligned",
+            "dosage": 0,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d005_s42_aligned",
+            "dosage": 5,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d025_s42_aligned",
+            "dosage": 25,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d100_s123_aligned",
+            "dosage": 100,
+            "scale": "1.5B"
+          },
+          {
+            "dirname": "Qwen2.5-1.5B_d100_s42_aligned",
+            "dosage": 100,
+            "scale": "1.5B"
+          }
+        ],
+        "dosages": [
+          0,
+          0,
+          5,
+          25,
+          100,
+          100
+        ],
+        "fit_time_sec": 45.6,
+        "diagnostics": {
+          "max_rhat": 1.0058,
+          "rhat_ok": true,
+          "min_ess": 419.6,
+          "ess_ok": true,
+          "divergent_count": 0,
+          "divergent_pct": 0.0,
+          "divergent_ok": true,
+          "total_draws": 4000,
+          "all_ok": true
+        },
+        "posterior_predictive": {
+          "overall_ppp": 0.2928,
+          "obs_mean_acc": 0.2266,
+          "pred_mean_acc": 0.2105,
+          "residual_mae": 0.0238
+        },
+        "gamma": {
+          "mean": 0.4209,
+          "sd": 0.6387,
+          "q025": -0.8786,
+          "q975": 1.5876,
+          "q10": -0.4197,
+          "q90": 1.2305,
+          "q25": 0.0056,
+          "q75": 0.8692,
+          "ci_excludes_zero": false
+        },
+        "calibrated_scores": {
+          "mean": [
+            0.1759,
+            0.1459,
+            0.2445,
+            0.2176,
+            0.2278,
+            0.2515
+          ],
+          "sd": [
+            0.0252,
+            0.0235,
+            0.0299,
+            0.0366,
+            0.0837,
+            0.0895
+          ],
+          "q025": [
+            0.1278,
+            0.1022,
+            0.1896,
+            0.1502,
+            0.1032,
+            0.1165
+          ],
+          "q975": [
+            0.2289,
+            0.1955,
+            0.3069,
+            0.296,
+            0.4238,
+            0.4596
+          ],
+          "q10": [
+            0.1444,
+            0.116,
+            0.2073,
+            0.1717,
+            0.131,
+            0.1475
+          ],
+          "q90": [
+            0.2076,
+            0.1771,
+            0.2846,
+            0.2655,
+            0.3403,
+            0.3782
+          ],
+          "q25": [
+            0.1585,
+            0.1294,
+            0.2232,
+            0.1925,
+            0.1643,
+            0.1856
+          ],
+          "q75": [
+            0.1922,
+            0.1611,
+            0.2643,
+            0.2404,
+            0.2774,
+            0.303
+          ]
+        }
+      }
+    },
+    "scale_3B": {
+      "mmlu": {
+        "stratum": "B_scale_3B",
+        "benchmark": "mmlu",
+        "n_models": 4,
+        "n_items": 2000,
+        "original_n_items": 14042,
+        "subsampled": true,
+        "unique_dosages": [
+          0,
+          100
+        ],
+        "has_dosage_variation": true,
+        "models": [
+          {
+            "dirname": "Qwen2.5-3B_d000_v2_s123_aligned",
+            "dosage": 0,
+            "scale": "3B"
+          },
+          {
+            "dirname": "Qwen2.5-3B_d000_v2_s42_aligned",
+            "dosage": 0,
+            "scale": "3B"
+          },
+          {
+            "dirname": "Qwen2.5-3B_d100_v2_s123_aligned",
+            "dosage": 100,
+            "scale": "3B"
+          },
+          {
+            "dirname": "Qwen2.5-3B_d100_v2_s42_aligned",
+            "dosage": 100,
+            "scale": "3B"
+          }
+        ],
+        "dosages": [
+          0,
+          0,
+          100,
+          100
+        ],
+        "fit_time_sec": 690.0,
+        "diagnostics": {
+          "max_rhat": 1.0081,
+          "rhat_ok": true,
+          "min_ess": 1058.6,
+          "ess_ok": true,
+          "divergent_count": 0,
+          "divergent_pct": 0.0,
+          "divergent_ok": true,
+          "total_draws": 4000,
+          "all_ok": true
+        },
+        "posterior_predictive": {
+          "overall_ppp": 1.0,
+          "obs_mean_acc": 0.6266,
+          "pred_mean_acc": 0.8434,
+          "residual_mae": 0.2168
+        },
+        "gamma": {
+          "mean": -5.7036,
+          "sd": 0.3428,
+          "q025": -6.4061,
+          "q975": -5.0391,
+          "q10": -6.1367,
+          "q90": -5.2713,
+          "q25": -5.9264,
+          "q75": -5.471,
+          "ci_excludes_zero": true
+        },
+        "calibrated_scores": {
+          "mean": [
+            0.7026,
+            0.7011,
+            0.9853,
+            0.9846
+          ],
+          "sd": [
+            0.0084,
+            0.0083,
+            0.0027,
+            0.0028
+          ],
+          "q025": [
+            0.686,
+            0.6843,
+            0.9792,
+            0.9782
+          ],
+          "q975": [
+            0.7189,
+            0.7177,
+            0.99,
+            0.9895
+          ],
+          "q10": [
+            0.6918,
+            0.6904,
+            0.9817,
+            0.9809
+          ],
+          "q90": [
+            0.7132,
+            0.7117,
+            0.9886,
+            0.988
+          ],
+          "q25": [
+            0.697,
+            0.6957,
+            0.9836,
+            0.9829
+          ],
+          "q75": [
+            0.7084,
+            0.7066,
+            0.9871,
+            0.9865
+          ]
+        }
+      },
+      "arc_challenge": {
+        "stratum": "B_scale_3B",
+        "benchmark": "arc_challenge",
+        "n_models": 4,
+        "n_items": 1172,
+        "original_n_items": 1172,
+        "subsampled": false,
+        "unique_dosages": [
+          0,
+          100
+        ],
+        "has_dosage_variation": true,
+        "models": [
+          {
+            "dirname": "Qwen2.5-3B_d000_v2_s123_aligned",
+            "dosage": 0,
+            "scale": "3B"
+          },
+          {
+            "dirname": "Qwen2.5-3B_d000_v2_s42_aligned",
+            "dosage": 0,
+            "scale": "3B"
+          },
+          {
+            "dirname": "Qwen2.5-3B_d100_v2_s123_aligned",
+            "dosage": 100,
+            "scale": "3B"
+          },
+          {
+            "dirname": "Qwen2.5-3B_d100_v2_s42_aligned",
+            "dosage": 100,
+            "scale": "3B"
+          }
+        ],
+        "dosages": [
+          0,
+          0,
+          100,
+          100
+        ],
+        "fit_time_sec": 300.9,
+        "diagnostics": {
+          "max_rhat": 1.0055,
+          "rhat_ok": true,
+          "min_ess": 1001.2,
+          "ess_ok": true,
+          "divergent_count": 0,
+          "divergent_pct": 0.0,
+          "divergent_ok": true,
+          "total_draws": 4000,
+          "all_ok": true
+        },
+        "posterior_predictive": {
+          "overall_ppp": 1.0,
+          "obs_mean_acc": 0.8249,
+          "pred_mean_acc": 0.9307,
+          "residual_mae": 0.1058
+        },
+        "gamma": {
+          "mean": -4.1458,
+          "sd": 0.2942,
+          "q025": -4.7341,
+          "q975": -3.5614,
+          "q10": -4.5194,
+          "q90": -3.7676,
+          "q25": -4.3391,
+          "q75": -3.9559,
+          "ci_excludes_zero": true
+        },
+        "calibrated_scores": {
+          "mean": [
+            0.8754,
+            0.8698,
+            0.9891,
+            0.9885
+          ],
+          "sd": [
+            0.0081,
+            0.0083,
+            0.0019,
+            0.002
+          ],
+          "q025": [
+            0.8588,
+            0.8529,
+            0.9848,
+            0.984
+          ],
+          "q975": [
+            0.8906,
+            0.885,
+            0.9924,
+            0.992
+          ],
+          "q10": [
+            0.8654,
+            0.859,
+            0.9866,
+            0.9858
+          ],
+          "q90": [
+            0.8857,
+            0.8801,
+            0.9915,
+            0.991
+          ],
+          "q25": [
+            0.8702,
+            0.8644,
+            0.988,
+            0.9873
+          ],
+          "q75": [
+            0.8807,
+            0.8754,
+            0.9905,
+            0.99
+          ]
+        }
+      },
+      "humaneval": {
+        "stratum": "B_scale_3B",
+        "benchmark": "humaneval",
+        "n_models": 4,
+        "n_items": 164,
+        "original_n_items": 164,
+        "subsampled": false,
+        "unique_dosages": [
+          0,
+          100
+        ],
+        "has_dosage_variation": true,
+        "models": [
+          {
+            "dirname": "Qwen2.5-3B_d000_v2_s123_aligned",
+            "dosage": 0,
+            "scale": "3B"
+          },
+          {
+            "dirname": "Qwen2.5-3B_d000_v2_s42_aligned",
+            "dosage": 0,
+            "scale": "3B"
+          },
+          {
+            "dirname": "Qwen2.5-3B_d100_v2_s123_aligned",
+            "dosage": 100,
+            "scale": "3B"
+          },
+          {
+            "dirname": "Qwen2.5-3B_d100_v2_s42_aligned",
+            "dosage": 100,
+            "scale": "3B"
+          }
+        ],
+        "dosages": [
+          0,
+          0,
+          100,
+          100
+        ],
+        "fit_time_sec": 30.1,
+        "diagnostics": {
+          "max_rhat": 1.0065,
+          "rhat_ok": true,
+          "min_ess": 623.8,
+          "ess_ok": true,
+          "divergent_count": 0,
+          "divergent_pct": 0.0,
+          "divergent_ok": true,
+          "total_draws": 4000,
+          "all_ok": true
+        },
+        "posterior_predictive": {
+          "overall_ppp": 0.9895,
+          "obs_mean_acc": 0.128,
+          "pred_mean_acc": 0.2651,
+          "residual_mae": 0.137
+        },
+        "gamma": {
+          "mean": -1.5626,
+          "sd": 0.7433,
+          "q025": -2.9479,
+          "q975": -0.124,
+          "q10": -2.5011,
+          "q90": -0.5807,
+          "q25": -2.1057,
+          "q75": -1.0541,
+          "ci_excludes_zero": true
+        },
+        "calibrated_scores": {
+          "mean": [
+            0.0852,
+            0.1119,
+            0.4415,
+            0.4217
+          ],
+          "sd": [
+            0.0188,
+            0.0211,
+            0.1282,
+            0.127
+          ],
+          "q025": [
+            0.0511,
+            0.075,
+            0.1949,
+            0.1786
+          ],
+          "q975": [
+            0.1252,
+            0.1565,
+            0.6822,
+            0.6579
+          ],
+          "q10": [
+            0.0619,
+            0.086,
+            0.2704,
+            0.2511
+          ],
+          "q90": [
+            0.1096,
+            0.14,
+            0.6087,
+            0.59
+          ],
+          "q25": [
+            0.0719,
+            0.0969,
+            0.3495,
+            0.3291
+          ],
+          "q75": [
+            0.0975,
+            0.1251,
+            0.5364,
+            0.5154
+          ]
+        }
+      }
+    }
+  }
+}

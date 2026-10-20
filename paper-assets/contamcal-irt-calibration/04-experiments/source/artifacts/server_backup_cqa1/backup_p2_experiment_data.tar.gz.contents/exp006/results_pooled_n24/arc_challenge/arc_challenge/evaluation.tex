@@ -1,0 +1,18 @@
+\begin{table}[t]
+\centering
+\small
+\caption{Calibration evaluation: IRT vs.\ baselines}
+\label{tab:calibration-eval}
+\begin{tabular}{lcccccccccc}
+\toprule
+Method & MAE $\downarrow$ & ECE $\downarrow$ & Brier $\downarrow$ & Cov@50\% & Cov@80\% & Cov@95\% & Sharp$_{95}$ $\downarrow$ & $\tau$ $\uparrow$ & $\gamma > 0$ \\
+\midrule
+IRT\_2pl\_gamma & 0.0614 & 0.0583 & 0.0101 & 8% & 25% & 42% & 0.0369 & 0.778 & 0.509* \\
+B0\_raw & 0.0398 & 0.0370 & 0.0058 & 67% & 71% & 75% & 0.0488 & 0.829 & --- \\
+B1\_remove\_rescore & 0.0398 & 0.0370 & 0.0058 & 62% & 71% & 75% & 0.0478 & 0.829 & --- \\
+B4\_linear\_regression & 0.0608 & 0.0597 & 0.0079 & 17% & 17% & 54% & 0.1008 & 0.684 & --- \\
+B5\_emperor\_mitigation & 0.0398 & 0.0370 & 0.0058 & 62% & 71% & 75% & 0.0478 & 0.829 & --- \\
+B6\_dcr\_fuzzy & 0.1963 & 0.1952 & 0.0851 & 46% & 46% & 50% & 0.0344 & 0.564 & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
