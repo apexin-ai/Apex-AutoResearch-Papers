@@ -377,12 +377,13 @@
           "trace_count": 1188
         }
       },
-      "status": "in_progress",
+      "status": "uploaded",
       "source": {
         "bytes": 13559962075,
         "etag": "\"3dcc2f4881a84062865a76eb74e07c31-1617\"",
         "modified": "2026-07-12T04:33:47+00:00"
-      }
+      },
+      "source_sha256": "01b62bf8a8d73751c1b607845f793f09005e4bda3105a4bc9f633478273548d1"
     }
   }
 }
