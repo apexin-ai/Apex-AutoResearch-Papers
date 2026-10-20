@@ -155,6 +155,17 @@
           "paper_pdf": null,
           "code_count": 5,
           "trace_count": 658
+        },
+        "simgate-modular-routing": {
+          "status": "uploaded",
+          "project": "simgate-modular-routing",
+          "collection": "simgate-modular-routing--export-20260712",
+          "snapshot": true,
+          "derived_archive_sha256": "fde7cd8b1bea8b774acb4de7a3cbdbae75426800cbca11f4b36b124dddb177a5",
+          "indexed_members": 1727,
+          "paper_pdf": null,
+          "code_count": 5,
+          "trace_count": 1722
         }
       },
       "status": "in_progress",

@@ -1208,6 +1208,19 @@
       }
     },
     {
+      "project": "simgate-modular-routing--export-20260712",
+      "title": "Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld (July export snapshot)",
+      "catalog": "../research-snapshots/simgate-modular-routing/2026-07-12/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 1722,
+        "messages": 291059,
+        "user_turns": 15012,
+        "tool_calls": 73918,
+        "unparsed_lines": 28,
+        "conversation": 1722
+      }
+    },
+    {
       "project": "solver-trace-ablation",
       "title": "Observe but Don’t Optimize: Structural Rewards Trigger Goodhart Effects in Neurosymbolic Reasoning",
       "catalog": "../paper-assets/solver-trace-ablation/05-generation-trace/catalog.json",
