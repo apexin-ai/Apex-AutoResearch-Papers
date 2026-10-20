@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "a79802ab02a1eee7292a",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You need to transfer the remaining files from local to a remote server (westd-11235, account=root) for a paper compilati",
+  "task_key": "agent-a704a6fea20a5b160",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a704a6fea20a5b160.jsonl",
+    "occurrence": 1,
+    "bytes": 494701,
+    "sha256": "c31219c7fc5457b6eafa200d1485bd5a7552b859f8069942efb0ea38cf734a1f"
+  },
+  "statistics": {
+    "messages": 288,
+    "user_turns": 3,
+    "tool_calls": 105,
+    "roles": {
+      "user": 3,
+      "record": 1,
+      "assistant": 72,
+      "tool_call": 105,
+      "tool_result": 105,
+      "system": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 56,
+      "chunks": [
+        {
+          "path": "a79802ab02a1eee7292a-part-0001.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 78,
+      "chunks": [
+        {
+          "path": "a79802ab02a1eee7292a-part-0001.json",
+          "message_count": 78
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 154,
+      "chunks": [
+        {
+          "path": "a79802ab02a1eee7292a-part-0001.json",
+          "message_count": 46
+        },
+        {
+          "path": "a79802ab02a1eee7292a-part-0002.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-need-to-transfer-the-remaining-files-from-local-to-a-remote-server-westd-1.md"
+}

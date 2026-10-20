@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "b1548b6e52199b01b6da",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: trace-verdict-study ## 运行环境 - 服务器名: westd-11235 - SSH 账户: root（调用 ssh_execute / submit_training_",
+  "task_key": "e2e26baa-93f7-4f40-bc65-bf7e1e0dbcff",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/e2e26baa-93f7-4f40-bc65-bf7e1e0dbcff.jsonl",
+    "occurrence": 1,
+    "bytes": 593186,
+    "sha256": "ed43581d9d47b6f335c0d6eff576daef0c2d0b28407a6f978e800ba1ab8b3cf3"
+  },
+  "statistics": {
+    "messages": 276,
+    "user_turns": 1,
+    "tool_calls": 78,
+    "roles": {
+      "record": 48,
+      "user": 1,
+      "assistant": 71,
+      "tool_call": 78,
+      "tool_result": 78
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "b1548b6e52199b01b6da-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "b1548b6e52199b01b6da-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "b1548b6e52199b01b6da-part-0002.json",
+          "message_count": 96
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-trace-verdict-study-westd-11235-ssh-root-ssh-execute-submit-tr-copy-127.md"
+}

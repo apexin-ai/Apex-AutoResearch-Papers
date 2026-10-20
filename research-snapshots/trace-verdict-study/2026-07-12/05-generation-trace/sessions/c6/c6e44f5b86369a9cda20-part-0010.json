@@ -1,0 +1,979 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c6e44f5b86369a9cda20",
+  "rounds": [
+    {
+      "number": 5,
+      "messages": [
+        {
+          "source_line": 178,
+          "timestamp": "2026-05-18T19:46:50.615Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013gVMid46urNBbsdfAXw8Mb",
+              "type": "tool_result",
+              "content": "1\t\\section{Per-Class Performance Breakdown}\n2\t\\label{sec:per_class}\n3\t\n4\tTable~\\ref{tab:per_class} reports per-class precision, recall, and F1 for all experimental conditions.\n5\t\n6\t\\begin{table*}[t]\n7\t\\centering\n8\t\\caption{Per-class precision, recall, and F1 for all experimental conditions (seed 42). DeepSeek VOTA achieves 100\\% fail precision but only 45.4\\% fail recall, indicating systematic bias toward predicting \\texttt{pass}. DeepSeek \\texttt{exception\\_only} seed 42 achieves 100\\% fail recall, but seed 123 drops to 70.5\\% (see Table~\\ref{tab:full_deepseek}).}\n9\t\\label{tab:per_class}\n10\t\\small\n11\t\\begin{tabular}{llccccccc}\n12\t\\toprule\n13\t\\textbf{Condition} & \\textbf{Model} & \\textbf{Acc} & \\textbf{Pass P} & \\textbf{Pass R} & \\textbf{Pass F1} & \\textbf{Fail P} & \\textbf{Fail R} & \\textbf{Fail F1} \\\\\n14\t\\midrule\n15\tNo Trace          & Qwen-2.5-7B & 75.13 & 87.76 & 75.79 & 81.34 & 54.73 & 73.45 & 62.72 \\\\\n16\tFull Trace        & Qwen-2.5-7B & 81.76 & 87.74 & 86.60 & 87.17 & 67.43 & 69.62 & 68.51 \\\\\n17\tFull Trace (LO)   & Qwen-2.5-7B & 86.22 & 88.21 & 93.18 & 90.63 & 80.07 & 68.73 & 73.97 \\\\\n18\tVOTA              & Qwen-2.5-7B & 99.41 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\\\\n19\tException Only    & Qwen-2.5-7B & 99.83 & 100.00 & 99.76 & 99.88 & 99.41 & 100.00 & 99.71 \\\\\n20\tAE Only           & Qwen-2.5-7B & 99.92 & 100.00 & 99.88 & 99.94 & 99.71 & 100.00 & 99.85 \\\\\n21\tLoop Only         & Qwen-2.5-7B & 85.63 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\\\\n22\tVOTA\\_no\\_ae       & Qwen-2.5-7B & 99.41 & 99.88 & 99.29 & 99.59 & 98.26 & 99.71 & 98.98 \\\\\n23\t\\midrule\n24\tNo Trace          & DeepSeek-6.7B & 73.36 & 81.71 & 80.85 & 81.28 & 53.16 & 54.57 & 53.86 \\\\\n25\tFull Trace        & DeepSeek-6.7B & 79.16 & 85.70 & 85.10 & 85.40 & 63.20 & 64.30 & 63.70 \\\\\n26\tVOTA              & DeepSeek-6.7B & 84.45 & 82.14 & 100.00 & 90.20 & 100.00 & 45.40 & 62.50 \\\\\n27\tException Only    & DeepSeek-6.7B & 99.33 & 100.00 & 99.06 & 99.53 & 97.69 & 100.00 & 98.83 \\\\\n28\t\\bottomrule\n29\t\\end{tabular}\n30\t\\end{table*}\n31\t\n32\t%% ============================================================\n33\t\\section{Training Details}\n34\t\\label{sec:training_details}\n35\t\n36\tTable~\\ref{tab:hyperparams} summarizes the training hyperparameters shared across all conditions.\n37\tAll experiments use the HuggingFace TRL \\texttt{SFTTrainer} with LoRA \\citep{hu2022lora} applied to all linear layers.\n38\t\n39\t\\begin{table}[t]\n40\t\\centering\n41\t\\caption{Training hyperparameters (shared across all conditions).}\n42\t\\label{tab:hyperparams}\n43\t\\small\n44\t\\resizebox{\\columnwidth}{!}{%\n45\t\\begin{tabular}{ll}\n46\t\\toprule\n47\t\\textbf{Hyperparameter} & \\textbf{Value} \\\\\n48\t\\midrule\n49\tLoRA rank ($r$)            & 16 \\\\\n50\tLoRA alpha ($\\alpha$)      & 32 \\\\\n51\tLoRA dropout               & 0.05 \\\\\n52\tLoRA target modules        & all linear layers \\\\\n53\t\\midrule\n54\tEpochs                     & 3 \\\\\n55\tPer-device batch size       & 4 \\\\\n56\tGradient accumulation steps & 8 \\\\\n57\tEffective batch size        & 32 \\\\\n58\t\\midrule\n59\tLearning rate               & $2 \\times 10^{-4}$ \\\\\n60\tLR scheduler                & linear decay \\\\\n61\tWarmup ratio                & 0.1 \\\\\n62\tWeight decay                & 0.01 \\\\\n63\t\\midrule\n64\tMax sequence length         & 2048 tokens \\\\\n65\tPrimary seed                & 42 \\\\\n66\tRobustness seeds            & 123, 456 \\\\\n67\t\\midrule\n68\tHardware                    & 1$\\times$ RTX PRO 6000 Blackwell (96\\,GB VRAM) \\\\\n69\tFramework                   & HuggingFace TRL SFTTrainer \\\\\n70\t\\bottomrule\n71\t\\end{tabular}%\n72\t}\n73\t\\end{table}\n74\t\n75\tTable~\\ref{tab:train_time} reports per-condition training wall-clock times.\n76\tConditions with longer trace inputs (e.g., \\texttt{full\\_trace}, VOTA) require proportionally more training time due to increased sequence lengths.\n77\t\n78\t\\begin{table}[t]\n79\t\\centering\n80\t\\caption{Training wall-clock time per condition on a single RTX PRO 6000 Blackwell GPU. Where multiple seeds were run, individual times are listed.}\n81\t\\label{tab:train_time}\n82\t\\small\n83\t\\begin{tabular}{llr}\n84\t\\toprule\n85\t\\textbf{Condition} & \\textbf{Seed(s)} & \\textbf{Time (h)} \\\\\n86\t\\midrule\n87\tno\\_trace       & 42         & ${\\sim}$0.5 \\\\\n88\tfull\\_trace     & 42         & ${\\sim}$2.2 \\\\\n89\tlabel\\_only     & 42         & ${\\sim}$2.2 \\\\\n90\tVOTA                     & 42         & ${\\sim}$2.3 \\\\\n91\texception\\_only & 42         & ${\\sim}$2.1 \\\\\n92\texception\\_only & 123        & ${\\sim}$2.1 \\\\\n93\texception\\_only & 456        & ${\\sim}$1.3 \\\\\n94\tae\\_only        & 42         & ${\\sim}$1.8 \\\\\n95\tloop\\_only      & 42         & ${\\sim}$2.1 \\\\\n96\tVOTA\\_no\\_ae    & 42         & ${\\sim}$1.8 \\\\\n97\t\\bottomrule\n98\t\\end{tabular}\n99\t\\end{table}\n100\t\n101\t%% ============================================================\n102\t\\section{VOTA Trace Examples}\n103\t\\label{sec:vota_examples}\n104\t\n105\tWe provide two representative VOTA trace examples illustrating the fail and pass cases.\n106\tIn the fail case, the exception event provides an unambiguous fault signal.\n107\tIn the pass case, the absence of an exception event combined with a matching assertion point confirms correct execution.\n108\t\n109\t\\paragraph{Fail example.}\n110\tA \\texttt{ZeroDivisionError} triggers an \\texttt{[ERROR]} event, providing a direct fault signal that is sufficient for the model to predict \\texttt{fail}.\n111\t\n112\t\\begin{small}\n113\t\\begin{verbatim}\n114\t## Function\n115\tdef divide(a, b):\n116\t    return a / b\n117\t\n118\t## Test Input\n119\tdivide(1, 0)\n120\t\n121\t## Expected Output\n122\tinf\n123\t\n124\t## VOTA Trace\n125\t[ERROR] ZeroDivisionError: division by zero\n126\t\n127\t## Verdict\n128\tfail\n129\t\\end{verbatim}\n130\t\\end{small}\n131\t\n132\t\\paragraph{Pass example.}\n133\tNo exception is raised, and the assertion point confirms that the actual output matches the expected value.\n134\t\n135\t\\begin{small}\n136\t\\begin{verbatim}\n137\t## Function\n138\tdef add(a, b):\n139\t    return a + b\n140\t\n141\t## Test Input\n142\tadd(2, 3)\n143\t\n144\t## Expected Output\n145\t5\n146\t\n147\t## VOTA Trace\n148\t[LOOP] No loops detected.\n149\t[ASSERT] actual=5, expected=5\n150\t\n151\t## Verdict\n152\tpass\n153\t\\end{verbatim}\n154\t\\end{small}\n155\t\n156\tThese examples illustrate the core asymmetry exploited by the \\texttt{exception\\_only} condition: fail cases produce an explicit \\texttt{[ERROR]} event, while pass cases are characterized by its absence.\n157\tThis binary signal (presence vs.\\ absence of an exception) is sufficient for near-perfect verdict prediction.\n158\t\n159\t%% ============================================================\n160\t\\section{Full Experimental Results}\n161\t\\label{sec:full_results}\n162\t\n163\tTables~\\ref{tab:full_qwen} and \\ref{tab:full_deepseek} report the complete experimental results across all conditions, models, and seeds.\n164\t\n165\t\\begin{table}[t]\n166\t\\centering\n167\t\\caption{Full results for Qwen-2.5-Coder-7B across all conditions and seeds. Conditions with a single seed report no variance. \\texttt{exception\\_only} achieves 99.83\\% across all three seeds ($\\sigma{=}$0). \\texttt{ae\\_only} achieves 99.64\\% mean ($\\pm$0.49; seed 123 at 99.08\\% is the outlier).}\n168\t\\label{tab:full_qwen}\n169\t\\small\n170\t\\resizebox{\\columnwidth}{!}{%\n171\t\\begin{tabular}{lcccc}\n172\t\\toprule\n173\t\\textbf{Condition} & \\textbf{S42} & \\textbf{S123} & \\textbf{S456} & \\textbf{Mean $\\pm$ Std} \\\\\n174\t\\midrule\n175\texception\\_only & 99.83 & 99.83 & 99.83 & 99.83 $\\pm$ 0.00 \\\\\n176\tae\\_only        & 99.92 & 99.08 & 99.92 & 99.64 $\\pm$ 0.49 \\\\\n177\tVOTA                     & 99.41 & ---   & ---   & --- \\\\\n178\tVOTA\\_no\\_ae    & 99.41 & ---   & ---   & --- \\\\\n179\tlabel\\_only     & 86.22 & ---   & ---   & --- \\\\\n180\tloop\\_only      & 85.63 & ---   & ---   & --- \\\\\n181\tfull\\_trace     & 81.76 & ---   & ---   & --- \\\\\n182\tno\\_trace       & 75.13 & ---   & ---   & --- \\\\\n183\t\\bottomrule\n184\t\\end{tabular}%\n185\t}\n186\t\\end{table}\n187\t\n188\t\\begin{table}[t]\n189\t\\centering\n190\t\\caption{Full results for DeepSeek-Coder-6.7B across all conditions and seeds. \\texttt{exception\\_only} shows bimodal seed behavior: seeds 42 and 456 achieve 99.33\\%, while seed 123 yields 91.09\\% (LoRA initialization outlier, fail recall = 70.5\\%).}\n191\t\\label{tab:full_deepseek}\n192\t\\small\n193\t\\resizebox{\\columnwidth}{!}{%\n194\t\\begin{tabular}{llcc}\n195\t\\toprule\n196\t\\textbf{Condition} & \\textbf{Seed} & \\textbf{Accuracy} & \\textbf{Notes} \\\\\n197\t\\midrule\n198\texception\\_only & 42  & 99.33 & epoch 1: 99.83 \\\\\n199\texception\\_only & 456 & 99.33 & CI [98.82, 99.75] \\\\\n200\texception\\_only & 123 & 91.09 & fail recall = 70.5\\%; CI [89.40, 92.60] \\\\\n201\t\\midrule\n202\tVOTA                     & 42  & 84.45 & \\\\\n203\tno\\_trace       & 42  & 73.36 & \\\\\n204\tfull\\_trace     & 42  & 79.16 & CI [76.80, 81.30] \\\\\n205\t\\bottomrule\n206\t\\end{tabular}%\n207\t}\n208\t\\end{table}\n209\t\n210\t%% ============================================================\n211\t\\section{Tokenizer and Truncation Analysis}\n212\t\\label{sec:tokenizer_analysis}\n213\t\n214\tThe VOTA cross-model gap (14.96pp, Table~\\ref{tab:cross_model}; confounded by tokenizer-driven truncation; 91.7\\% of DeepSeek training samples were affected) is driven by a training-time truncation asymmetry.\n215\tThe DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus 1{,}929 for Qwen, causing 91.7\\% of DeepSeek VOTA training samples to exceed the 2{,}048-token context window.\n216\tThe training framework preserves the verdict label but truncates trace content, so the model trains with incomplete diagnostic information for the majority of samples.\n217\t\n218\tA post-hoc group analysis provides directional evidence: partitioning DeepSeek VOTA test samples by whether their training-set counterparts exceeded the context window, intact samples ($N{=}99$) achieve 100\\% accuracy while truncated samples ($N{=}1{,}091$) achieve 83.04\\% (95\\% CI [80.75\\%, 85.24\\%]; Fisher exact $p{<}0.001$), with all 185 errors concentrated in the fail class (fail recall = 31.23\\%).\n219\tPer-class analysis (Table~\\ref{tab:per_class}) confirms that DeepSeek VOTA achieves 100\\% fail precision but only 45.43\\% fail recall, systematically defaulting to \\texttt{pass}---in contrast to Qwen VOTA, which achieves 100\\% fail recall.\n220\t\n221\tSeed robustness diverges across models: Qwen \\texttt{exception\\_only} produces identical 99.83\\% across all three seeds ($\\sigma{=}0$), while DeepSeek shows bimodal behavior: seeds 42 and 456 achieve 99.33\\% (fail recall = 100\\%), seed 123 yields 91.09\\% (fail recall = 70.5\\%).\n222\tBecause \\texttt{exception\\_only} test inputs contain 48.99\\% duplicates (607 unique of 1,190; \\S\\ref{sec:dataset}), CIs assume $n{=}1{,}190$ independent trials; under deduplication ($n{=}607$), Qwen's accuracy is 99.67\\% (Wilson CI [98.81, 99.91]).\n223\t\n224\t%% ============================================================\n225\t\\section{Irreducible Sample Analysis}\n226\t\\label{sec:irreducible}\n227\t\n228\tThe \\texttt{exception\\_only} condition with Qwen-2.5-Coder-7B misclassifies exactly 2 out of 1,190 test samples across all three seeds (42, 123, 456), with 100\\% overlap across seeds.\n229\tBoth samples (IDs 901 and 905) share the following characteristics:\n230\t\n231\t\\begin{itemize}\n232\t\\item \\textbf{Function:} \\texttt{check\\_dict\\_case} (HumanEval/95)---a function that checks whether all dictionary keys are uniformly upper-case or lower-case strings.\n233\t\\item \\textbf{Ground-truth label:} \\texttt{pass}.\n234\t\\item \\textbf{Predicted label:} \\texttt{fail} (false negative).\n235\t\\item \\textbf{Cross-seed consistency:} Both samples are misclassified identically by all three seeds, indicating a systematic rather than stochastic error.\n236\t\\end{itemize}\n237\t\n238\tManual inspection reveals the root cause: \\texttt{check\\_dict\\_case} uses \\texttt{all()} over a generator expression, and Python's \\texttt{all()} short-circuits on the first \\texttt{True} value, raising \\texttt{GeneratorExit} to terminate the generator.\n239\tBecause \\texttt{GeneratorExit} is a \\texttt{BaseException} subclass, the tracer records it as seven \\texttt{[ERROR] GeneratorExit} lines---even though the function executes correctly and the test passes.\n240\tThe model observes these spurious error markers and reasonably but incorrectly predicts \\texttt{fail}.\n241\tThis is not a model failure but a representation ambiguity: the \\texttt{exception\\_only} format cannot distinguish genuine exceptions from benign \\texttt{BaseException} subclasses triggered by Python's iterator protocol.\n242\t\n243\tMost configurations converge to these same 2 errors: Qwen-1.5B, Qwen-7B (3 seeds), CodeLlama-13B (seeds 42/456), and DeepSeek-6.7B (seeds 42/456) all produce error set $\\{901, 905\\}$.\n244\tHowever, CodeLlama-13B seed 123 achieves 100\\% accuracy (0/1190 errors), correctly classifying both samples.\n245\tThis demonstrates that 99.83\\% is a near-perfect \\emph{floor} (the convergence attractor for most LoRA initializations) rather than a hard data ceiling: the representation supports perfect accuracy, but most initializations converge to the same 2-error basin.\n246\tThe practical implication is that these errors are high-probability convergence artifacts addressable through seed selection or ensemble methods, not fundamental limitations of the exception-based representation.\n247\t\n248\t%% ============================================================\n249\t\\section{Exception Type Accuracy Breakdown}\n250\t\\label{sec:exception_type}\n251\t\n252\tTable~\\ref{tab:exception_type} reports \\texttt{exception\\_only} accuracy stratified by exception type on Qwen-2.5-7B (seed=42, $N{=}1{,}190$).\n253\tAll standard exception types (\\texttt{TypeError}, \\texttt{ValueError}, \\texttt{IndexError}, etc.) achieve 100\\% accuracy.\n254\tThe only misclassifications arise from \\texttt{GeneratorExit}, a \\texttt{BaseException} subclass that is not an \\texttt{Exception}---it is raised by Python's iterator protocol during generator short-circuiting, not by actual program errors.\n255\t\n256\t\\begin{table}[t]\n257\t\\centering\n258\t\\caption{Exception type accuracy breakdown for \\texttt{exception\\_only} (Qwen-7B, seed=42). All true error types achieve 100\\%. The only failures come from \\texttt{GeneratorExit} (a \\texttt{BaseException} subclass, not an \\texttt{Exception}), which appears in 2 passing samples.}\n259\t\\label{tab:exception_type}\n260\t\\small\n261\t\\begin{tabular}{lcc}\n262\t\\toprule\n263\t\\textbf{Exception Type} & \\textbf{Samples} & \\textbf{Accuracy} \\\\\n264\t\\midrule\n265\tTypeError & 96 & 100\\% \\\\\n266\tValueError & 62 & 100\\% \\\\\n267\tIndexError & 41 & 100\\% \\\\\n268\tKeyError & 28 & 100\\% \\\\\n269\tAttributeError & 19 & 100\\% \\\\\n270\tAssertionError & 15 & 100\\% \\\\\n271\tRecursionError & 12 & 100\\% \\\\\n272\tOther Exception & 66 & 100\\% \\\\\n273\t\\midrule\n274\tGeneratorExit (BaseException) & 2 & 0\\% \\\\\n275\tNo exception (pass class) & 849 & 100\\% \\\\\n276\t\\bottomrule\n277\t\\end{tabular}\n278\t\\end{table}\n279\t\n280\tThis confirms that the model has learned a clean decision boundary: any true \\texttt{Exception} subclass in the trace implies failure.\n281\tThe \\texttt{GeneratorExit} case represents a semantic ambiguity in the trace format rather than a model failure, as discussed in \\S\\ref{sec:irreducible}.\n282\t\n283\t%% ============================================================\n284\t\\section{Trace Length Ablation}\n285\t\\label{sec:trace_length_full}\n286\t\n287\tTo test whether the \\texttt{full\\_trace} performance gap is caused by input truncation at training time, we vary the maximum trace token budget on Qwen-2.5-7B (seed=42) while keeping all other hyperparameters fixed.\n288\t\n289\t\\begin{table}[t]\n290\t\\centering\n291\t\\caption{Trace length and truncation direction ablation on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). Head = standard left-truncation (retain first $k$ tokens); Tail = retain last $k$ tokens. Per-condition bootstrap 95\\% CIs ($B{=}10{,}000$).}\n292\t\\label{tab:trace_length}\n293\t\\small\n294\t\\begin{tabular}{llcc}\n295\t\\toprule\n296\t\\textbf{Direction} & \\textbf{Max Tokens} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} \\\\\n297\t\\midrule\n298\tHead & 256  & 78.82 & [76.4, 81.0] \\\\\n299\tHead & 512  & 80.42 & [78.2, 82.6] \\\\\n300\tHead & 1024 & 77.23 & [74.9, 79.6] \\\\\n301\tHead & no\\_limit ($\\infty$) & 81.76 & [79.7, 83.9] \\\\\n302\t\\midrule\n303\tTail & 256  & 77.48 & --- \\\\\n304\tTail & 512  & 93.61 & --- \\\\\n305\tTail & 1024 & 96.47 & --- \\\\\n306\tTail & 2048 & 97.31 & --- \\\\\n307\t\\bottomrule\n308\t\\end{tabular}\n309\t\\end{table}\n310\t\n311\t\\begin{figure}[t]\n312\t\\centering\n313\t\\includegraphics[width=\\columnwidth]{budget_curve}\n314\t\\caption{Accuracy as a function of token budget and truncation direction (Qwen-2.5-7B, $N{=}1{,}190$). Tail-truncation (keeping last $k$ tokens) monotonically improves beyond 256 tokens and consistently outperforms head-truncation by 13--19pp at budgets ${\\geq}$512. The flat head-truncation curve (77--82\\%) contrasts with the steep tail-truncation rise, confirming that diagnostic signal is localized near trace end. Dashed lines show \\texttt{exception\\_only} (99.83\\%) and \\texttt{no\\_trace} (75.13\\%) as upper and lower bounds. Tail-256 (${\\approx}$ \\texttt{no\\_trace}) indicates the signal window begins approximately 256 tokens from the trace terminus.}\n315\t\\label{fig:trace_length}\n316\t\\end{figure}\n317\t\n318\tAs shown in Table~\\ref{tab:trace_length} and Figure~\\ref{fig:trace_length}, all four trace length conditions fall within a 5pp range (77.2\\%--81.8\\%).\n319\tTo quantify the reliability of the observed differences, Table~\\ref{tab:trace_length_pairwise} reports paired bootstrap comparisons ($B{=}10{,}000$, seed=42) across all condition pairs.\n320\t\n321\t\\begin{table}[t]\n322\t\\centering\n323\t\\caption{Pairwise paired bootstrap comparisons for trace length ablation ($B{=}10{,}000$, seed=42). $\\Delta$ = accuracy difference between the two conditions (first $-$ second in the budget group; condition $-$ baseline in the other groups). **$p{<}0.01$; ***$p{<}0.001$.}\n324\t\\label{tab:trace_length_pairwise}\n325\t\\small\n326\t\\resizebox{\\columnwidth}{!}{%\n327\t\\begin{tabular}{llccc}\n328\t\\toprule\n329\t& \\textbf{Comparison} & \\textbf{$\\Delta$ (pp)} & \\textbf{95\\% CI} & \\textbf{$p$-value} \\\\\n330\t\\midrule\n331\t\\multirow{4}{*}{\\rotatebox{90}{\\scriptsize Budget}}\n332\t& 512 vs.\\ 256           & $+$1.60  & [$-$0.34, $+$3.53]   & 0.117 \\\\\n333\t& 1024 vs.\\ 512          & $-$3.19  & [$-$5.29, $-$1.09]   & 0.002** \\\\\n334\t& no\\_limit vs.\\ 1024    & $+$4.54  & [$+$2.52, $+$6.55]   & ${<}$0.001*** \\\\\n335\t& no\\_limit vs.\\ 256     & $+$2.94  & [$+$0.84, $+$5.04]   & 0.006** \\\\\n336\t\\midrule\n337\t\\multirow{4}{*}{\\rotatebox{90}{\\scriptsize vs.\\ no\\_trace}}\n338\t& 256 $-$ no\\_trace       & $+$3.70  & [$+$1.43, $+$6.05]   & 0.002** \\\\\n339\t& 512 $-$ no\\_trace       & $+$5.29  & [$+$3.03, $+$7.56]   & ${<}$0.001*** \\\\\n340\t& 1024 $-$ no\\_trace      & $+$2.10  & [$-$0.17, $+$4.37]   & 0.078 \\\\\n341\t& no\\_limit $-$ no\\_trace & $+$6.64  & [$+$4.37, $+$8.99]   & ${<}$0.001*** \\\\\n342\t\\midrule\n343\t\\multirow{4}{*}{\\rotatebox{90}{\\scriptsize vs.\\ exc.}}\n344\t& 256 $-$ exc\\_only       & $-$21.01 & [$-$23.45, $-$18.74] & ${<}$0.001*** \\\\\n345\t& 512 $-$ exc\\_only       & $-$19.41 & [$-$21.76, $-$17.14] & ${<}$0.001*** \\\\\n346\t& 1024 $-$ exc\\_only      & $-$22.61 & [$-$25.04, $-$20.25] & ${<}$0.001*** \\\\\n347\t& no\\_limit $-$ exc\\_only & $-$18.07 & [$-$20.34, $-$15.88] & ${<}$0.001*** \\\\\n348\t\\bottomrule\n349\t\\end{tabular}%\n350\t}\n351\t\\end{table}\n352\t\n353\t\\paragraph{Non-monotonic pattern (head-truncation).}\n354\tUnder head-truncation (retaining trace prefixes), the trend is non-monotonic: 512 tokens (80.42\\%) slightly outperforms 256 tokens (78.82\\%), but doubling to 1024 tokens \\emph{decreases} accuracy to 77.23\\%, a statistically significant 3.19pp drop ($p{=}0.002$, 95\\% CI [$-$5.29, $-$1.09]).\n355\tThe no-limit condition (81.76\\%) recovers and significantly exceeds 1024 tokens ($p{<}0.001$), but 1024 tokens is not significantly better than \\texttt{no\\_trace} (75.13\\%; $\\Delta{=}{+}2.10$pp, $p{=}0.078$, 95\\% CI [$-$0.17, $+$4.37]).\n356\tThis non-monotonicity is specific to head-truncation: the 1024-token prefix retains enough irrelevant content to mislead the model while discarding diagnostic events that appear near the trace terminus.\n357\tUnder tail-truncation, accuracy increases monotonically for Qwen-7B and Qwen-1.5B (Table~\\ref{tab:tail_cross_model}); only DeepSeek-6.7B shows a mild $-$1.5pp decrease at tail-1024$\\to$tail-2048, attributable to architecture-specific long-context sensitivity rather than a systematic mid-length pathology.\n358\t\n359\t\\paragraph{Comparison to baselines.}\n360\tAll four trace budget conditions significantly exceed \\texttt{no\\_trace} except 1024 tokens ($p{=}0.078$), confirming that raw trace content provides some signal but unreliably so.\n361\tThe gap to \\texttt{exception\\_only} (99.83\\%) is massive for every budget condition (18--23pp, all $p{<}0.001$), underscoring that even unlimited raw traces cannot substitute for targeted signal extraction.\n362\tThe best full-trace condition (no\\_limit, 81.76\\%) still lags \\texttt{exception\\_only} by 18.07pp (95\\% CI [$-$20.34, $-$15.88]).\n363\t\n364\t\\paragraph{Interpretation.}\n365\tThese results rule out input truncation as the primary explanation for the full-trace performance gap: even with unlimited tokens, the model cannot extract the diagnostic signal that VOTA's targeted compression provides.\n366\tThe non-monotonic dip at 1024 tokens is consistent with a ``worst-of-both-worlds'' regime where the model receives enough noisy context to dilute the signal but not enough to compensate through broader coverage.\n367\tThe result reinforces the information density interpretation (\\S\\ref{sec:density}): the gap between full traces and VOTA is driven by the \\emph{content} of the trace (irrelevant lines diluting the diagnostic signal), not its \\emph{length}.\n368\tIn contrast, VOTA's compressed representation concentrates the diagnostic signal into fewer tokens, making it sensitive to truncation when those tokens are removed (\\S\\ref{sec:cross_model}).\n369\t\n370\t\\paragraph{Truncation direction.}\n371\tTail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: \\texttt{tail\\_2048} achieves 97.31\\% vs.\\ \\texttt{head\\_2048} (no\\_limit) at 81.76\\%, a 15.55pp improvement.\n372\tEven \\texttt{tail\\_512} (93.61\\%) exceeds every head-truncation condition by over 11pp.\n373\t\n374\tHowever, \\texttt{tail\\_256} (77.48\\%) performs at the \\texttt{no\\_trace} baseline level (75.13\\%), indicating that the diagnostic signal does not reside in the very last trace lines.\n375\tThe critical jump occurs between 256 and 512 tail tokens (+16.13pp), localizing the signal window to approximately 256--512 tokens from the trace terminus.\n376\tThis is consistent with Python's execution model: exception tracebacks and assertion comparisons appear near the end of the trace but are preceded by the final function call frames, placing them typically 300--500 tokens from the terminus rather than at the absolute end.\n377\t\n378\tThe 18.07pp gap from \\texttt{full\\_trace} to \\texttt{exception\\_only} decomposes as: 86\\% positional concentration (recovered by tail-truncation at 2048 tokens) and 14\\% residual content noise (the 2.52pp gap from \\texttt{tail\\_2048} to \\texttt{exception\\_only} that persists regardless of truncation direction).\n379\tThe fact that \\texttt{exception\\_only} (99.83\\%) still outperforms \\texttt{tail\\_2048} (97.31\\%) confirms that semantic extraction (identifying the exception type and message) is superior to positional extraction (keeping a fixed window), because the model need not filter out non-diagnostic lines that happen to fall within the window.\n380\t\n381\t\\paragraph{Cross-model budget curve.}\n382\tTable~\\ref{tab:tail_cross_model} extends the tail-truncation analysis to a full budget sweep across four models spanning three architecture families and an 8.7$\\times$ parameter range.\n383\t\n384\t\\begin{table}[t]\n385\t\\centering\n386\t\\caption{Cross-model tail-truncation budget curve ($N{=}1{,}190$). A sharp phase transition occurs at 256$\\to$512 tokens across all four models (+14.7--23.0pp), after which accuracy converges regardless of scale or architecture. $\\downarrow$: non-monotonic decrease (DeepSeek only). $^\\dag$CodeLlama tail-1024/2048 pending retraining with label-only loss (\\S\\ref{sec:tokenizer_analysis}).}\n387\t\\label{tab:tail_cross_model}\n388\t\\small\n389\t\\resizebox{\\columnwidth}{!}{%\n390\t\\begin{tabular}{lccccc}\n391\t\\toprule\n392\t\\textbf{Model} & \\textbf{tail-256} & \\textbf{tail-512} & \\textbf{tail-1024} & \\textbf{tail-2048} & \\textbf{exc\\_only} \\\\\n393\t\\midrule\n394\tQwen-7B (7B) & 78.9 & 93.6 & 96.5 & 97.3 & 99.83 \\\\\n395\tDeepSeek (6.7B) & 76.4 & 93.9 & 96.5 & 95.0$\\downarrow$ & 99.33 \\\\\n396\tCodeLlama (13B) & 77.9 & 97.5 & ---$^\\dag$ & ---$^\\dag$ & 99.89 \\\\\n397\tQwen-1.5B (1.5B) & 72.6 & 95.6 & 96.6 & 97.9 & 99.83 \\\\\n398\t\\bottomrule\n399\t\\end{tabular}%\n400\t}\n401\t\\end{table}\n402\t\n403\t\\begin{table}[t]\n404\t\\centering\n405\t\\caption{Cross-model truncation direction comparison ($N{=}1{,}190$). Head-truncation retains the first 2,048 tokens; tail-truncation retains the last 2,048. All four models' head-2048 accuracies converge into a narrow 75.3--81.8\\% band (6.5pp), comparable to the tail-256 signal-poor band (72.6--78.9\\%, 6.3pp). $^\\dag$CodeLlama tail-2048 pending retraining (\\S\\ref{sec:tokenizer_analysis}).}\n406\t\\label{tab:head_vs_tail}\n407\t\\small\n408\t\\begin{tabular}{lccc}\n409\t\\toprule\n410\t\\textbf{Model} & \\textbf{head-2048 (\\%)} & \\textbf{tail-2048 (\\%)} & \\textbf{Gap (pp)} \\\\\n411\t\\midrule\n412\tQwen-1.5B & 75.3 & 97.9 & +22.6 \\\\\n413\tDeepSeek-6.7B & 78.7 & 95.0 & +16.3 \\\\\n414\tCodeLlama-13B & 79.9 & ---$^\\dag$ & ---$^\\dag$ \\\\\n415\tQwen-7B & 81.8 & 97.3 & +15.5 \\\\\n416\t\\bottomrule\n417\t\\end{tabular}\n418\t\\end{table}\n419\t\n420\tFour patterns emerge from the budget curve.\n421\t\\emph{Phase transition at 256$\\to$512 tokens}: all four models jump +14.7--23.0pp (Qwen-7B +14.7, DeepSeek +17.5, CodeLlama +19.6, Qwen-1.5B +23.0), crossing from near-baseline to near-ceiling in a single budget doubling.\n422\tThe threshold aligns with the typical exception traceback length (${\\sim}$500 tokens): below this budget, the diagnostic event is truncated; above it, the event is captured regardless of model capacity or architecture family.\n423\t\n424\t\\emph{Convergence at tail-512+}: once the phase transition is crossed, accuracy converges across all models into a 93.6--97.5\\% band at tail-512; where tail-1024 data is available, the band tightens further to 96.5--96.6\\%.\n425\tScale and architecture differences that dominate the signal-poor regime (tail-256 range: 72.6--78.9\\%, 6.3pp) compress dramatically in the signal-rich regime.\n426\t\n427\t\\emph{Signal-poor convergence band}: head-2048 accuracies across all four models also converge into a narrow 75.3--81.8\\% band (6.5pp; Table~\\ref{tab:head_vs_tail}), comparable in width to the tail-256 band (72.6--78.9\\%, 6.3pp).\n428\tWhen the diagnostic signal is absent (head-truncation discards trace terminus) or unreachable (tail-256 is too short), models of different scale and architecture collapse to similar performance, suggesting a shared floor determined by code comprehension rather than trace processing.\n429\t\n430\t\\emph{Scale behavior inversion}: in the signal-poor regime (tail-256), smaller models perform worse (Qwen-1.5B 72.6\\% vs.\\ Qwen-7B 78.9\\%, $-$6.3pp), mirroring the \\texttt{no\\_trace} scale pattern.\n431\tIn the signal-rich regime (tail-512+), this reverses: Qwen-1.5B matches or exceeds Qwen-7B (95.6\\% vs.\\ 93.6\\% at tail-512; 97.9\\% vs.\\ 97.3\\% at tail-2048), confirming that sufficient trace signal eliminates the capacity advantage.\n432\t\n433\t\\emph{Non-monotonicity}: DeepSeek-6.7B shows a $-$1.5pp decrease from tail-1024 (96.5\\%) to tail-2048 (95.0\\%), while Qwen-7B and Qwen-1.5B increase monotonically.\n434\tThis architecture-specific sensitivity is consistent with DeepSeek's known vulnerability to long-context formatting (\\S\\ref{sec:training_dynamics}): additional tokens beyond the diagnostic window introduce noise that this model cannot filter as effectively.\n435\t\n436\tTable~\\ref{tab:head_vs_tail} confirms the truncation direction effect: among the three models with complete data, tail-2048 outperforms head-2048 by 15.5--22.6pp.\n437\tThe gap is largest for Qwen-1.5B (+22.6pp), indicating that smaller models benefit most from positional proximity to the diagnostic signal, as they lack the capacity to locate it within longer, noisier prefixes.\n438\t\n439\t%% ============================================================\n440\t\\section{Calibration Analysis}\n441\t\\label{sec:calibration_full}\n442\t\n443\tBeyond accuracy, we evaluate whether trace conditions affect prediction calibration, motivated by recent findings that code LLM confidence is often poorly calibrated \\citep{spiess2025calibration}.\n444\t\n445\t\\begin{table}[t]\n446\t\\centering\n447\t\\caption{Calibration metrics on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). ECE = expected calibration error; Brier = Brier score. Lower is better for both.}\n448\t\\label{tab:calibration}\n449\t\\small\n450\t\\begin{tabular}{lcc}\n451\t\\toprule\n452\t\\textbf{Condition} & \\textbf{ECE $\\downarrow$} & \\textbf{Brier $\\downarrow$} \\\\\n453\t\\midrule\n454\tae\\_only & \\textbf{0.0004} & \\textbf{0.0008} \\\\\n455\texception\\_only & 0.0027 & 0.0013 \\\\\n456\tVOTA & 0.0054 & 0.005 \\\\\n457\tfull\\_trace & 0.096 & 0.144 \\\\\n458\tno\\_trace & 0.171 & 0.197 \\\\\n459\t\\bottomrule\n460\t\\end{tabular}\n461\t\\end{table}\n462\t\n463\tTable~\\ref{tab:calibration} shows that calibration quality mirrors the Tier~1/2 hierarchy.\n464\tTier~1 conditions (\\texttt{ae\\_only}: ECE=0.0004; \\texttt{exception\\_only}: ECE=0.0027) produce near-perfectly calibrated predictions, while \\texttt{full\\_trace} (ECE=0.096) and \\texttt{no\\_trace} (ECE=0.171) exhibit substantial miscalibration.\n465\tVOTA (ECE=0.0054) is well-calibrated but slightly worse than either Tier~1 component alone, reinforcing the pattern that combining trace signals dilutes rather than improves the prediction signal.\n466\t\n467\tThe Brier scores tell a consistent story: \\texttt{ae\\_only} (0.0008) and \\texttt{exception\\_only} (0.0013) achieve near-zero scores, while \\texttt{no\\_trace} (0.197) indicates substantial miscalibration.\n468\t\n469\t\\begin{figure}[t]\n470\t\\centering\n471\t\\includegraphics[width=\\columnwidth]{fig2_calibration}\n472\t\\caption{Reliability diagrams for four trace conditions on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). \\texttt{exception\\_only} (ECE=0.0027) clusters near the diagonal, while \\texttt{no\\_trace} (ECE=0.171) exhibits systematic overconfidence, a 63$\\times$ gap.}\n473\t\\label{fig:calibration}\n474\t\\end{figure}\n475\t\n476\t%% ============================================================\n477\t\\section{Error Overlap Analysis}\n478\t\\label{sec:error_overlap}\n479\t\n480\tWe analyze the overlap between error sets of different conditions to determine whether they fail on the same samples (Figure~\\ref{fig:error_overlap}).\n481\t\n482\t\\texttt{exception\\_only}'s 2 errors (samples 901 and 905) have zero intersection with the error sets of all other conditions (Jaccard = 0.000 in all pairwise comparisons).\n483\tThis orthogonality arises because \\texttt{exception\\_only} errors are caused by \\texttt{GeneratorExit} false positives (pass samples misclassified as fail due to benign \\texttt{BaseException} events), while errors from other conditions are predominantly fail samples misclassified as pass due to insufficient signal.\n484\t\n485\tAmong non-exception conditions, error sets exhibit hierarchical containment: \\texttt{ae\\_only} $\\subset$ VOTA $\\subset$ \\texttt{loop\\_only} $\\subset$ \\texttt{no\\_trace}, with pairwise Jaccard indices increasing with signal overlap.\n486\t\\texttt{loop\\_only} and \\texttt{full\\_trace} share the highest overlap (Jaccard ${\\sim}$0.65), reflecting their shared reliance on behavioral patterns rather than explicit fault indicators.\n487\t\n488\tThis analysis confirms that \\texttt{exception\\_only} operates on an independent signal dimension: its errors are representation ambiguities (iterator protocol artifacts) rather than information deficits, explaining why combining it with other signals cannot eliminate these specific errors.\n489\t\n490\t\\begin{figure}[t]\n491\t\\centering\n492\t\\includegraphics[width=\\columnwidth]{error_overlap}\n493\t\\caption{Jaccard similarity between error sets of different conditions (Qwen-7B, seed=42, $N{=}1{,}190$). \\texttt{exception\\_only} (exc\\_only) has zero overlap with all other conditions, confirming it operates on an independent signal dimension.}\n494\t\\label{fig:error_overlap}\n495\t\\end{figure}\n496\t\n497\t%% ============================================================\n498\t\\section{Cross-Dataset Generalization: DebugBench}\n499\t\\label{sec:debugbench_full}\n500\t\n501\tTo test whether exception-based verdict prediction generalizes beyond LLM-generated solutions, we evaluate on DebugBench \\citep{tian2024debugbench}---a dataset of human-written programs with synthetically injected bugs (single-point mutations such as operator replacement, variable misuse, and missing statements).\n502\tAfter filtering for executable Python samples with valid traces, we retain 426 samples with a near-balanced class distribution (majority baseline: 51.4\\%).\n503\t\n504\t\\begin{table}[t]\n505\t\\centering\n506\t\\caption{Generalization to DebugBench ($N{=}426$, Qwen-2.5-7B, seed=42). Wilson 95\\% CIs. The component ranking (exception\\_only $\\geq$ VOTA $>$ no\\_trace) is preserved, and exception\\_only achieves perfect accuracy.}\n507\t\\label{tab:debugbench}\n508\t\\small\n509\t\\begin{tabular}{lcc}\n510\t\\toprule\n511\t\\textbf{Condition} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} \\\\\n512\t\\midrule\n513\texception\\_only & \\textbf{100.00} & [99.14, 100.00] \\\\\n514\tVOTA & 99.77 & [99.30, 100.00] \\\\\n515\tno\\_trace & 96.71 & [94.80, 98.40] \\\\\n516\t\\midrule\n517\tMajority baseline & 51.41 & --- \\\\\n518\t\\bottomrule\n519\t\\end{tabular}\n520\t\\end{table}\n521\t\n522\tTable~\\ref{tab:debugbench} shows that the component ranking from the main experiments is preserved: \\texttt{exception\\_only} (100.00\\%) $\\geq$ VOTA (99.77\\%) $>$ \\texttt{no\\_trace} (96.71\\%).\n523\tThe \\texttt{exception\\_only} condition achieves perfect accuracy, confirming that the exception-based representation generalizes to a different fault distribution without degradation.\n524\t\n525\tThe absolute margins are much narrower than on the main dataset: the \\texttt{no\\_trace} baseline already achieves 96.71\\%---compared to 75.13\\% on HumanEval+MBPP---leaving only 3.29pp of headroom for trace-based improvement.\n526\tThis ceiling effect reflects a fundamental difference in fault characteristics: DebugBench bugs are synthetically injected single-point mutations, which produce code that is structurally dissimilar from the original correct solution; a model can often identify the fault from source code alone.\n527\tIn contrast, the HumanEval+MBPP solutions are LLM-generated, producing natural errors (logic mistakes, edge-case failures) where the faulty and correct solutions may be structurally similar, making code-only verdict prediction substantially harder.\n528\t\n529\tThese results support exception-based verdict prediction as a generalizable approach---the method does not degrade on an out-of-distribution dataset, and the exception dominance ranking (exception\\_only $\\geq$ VOTA $>$ no\\_trace) is consistent across both datasets---but the narrow DebugBench margins are insufficient to independently validate trace importance.\n530\tThe 24.70pp trace lift on the main dataset (no\\_trace 75.13\\% $\\to$ exception\\_only 99.83\\%) remains the primary evidence for the value of exception-based trace signals.\n531\t\n532\t%% ============================================================\n533\t\\section{Cross-Model Robustness Analysis}\n534\t\\label{sec:robustness_analysis}\n535\t\n536\tThe cross-model gap pattern (Table~\\ref{tab:cross_model}) suggests a design principle: \\emph{trace representations should match the model capability floor, not the ceiling.}\n537\tException events are consistently the most effective component on both models, and their structural simplicity---a fixed-format error message---ensures that the relative advantage over richer representations holds across all seeds.\n538\tTwo of three DeepSeek seeds match Qwen-level accuracy (99.33\\%); the outlier (seed 123, 91.09\\%) we hypothesize reflects LoRA initialization sensitivity landing in a suboptimal basin (fail recall = 70.5\\%, though direct evidence is lacking), not a failure of the exception signal itself---even this outlier outperforms VOTA (84.45\\%) by 6.64pp.\n539\tThe VOTA cross-model gap is confounded by two factors: (1)~tokenizer efficiency---the DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus Qwen's 1{,}929, causing 91.7\\% of training samples to exceed the 2{,}048-token context window; content-aware truncation preferentially removes the terminal structured prompt, preserving the verdict label but truncating trace content---and (2)~base model capability differences, consistent with findings that SFT generalization depends on pretrain quality \\citep{yang2024generalization}.\n540\tThe two factors cannot be disentangled in the current experimental design.\n541\tOur \\texttt{exception\\_only} design sidesteps the truncation confound entirely: inputs have a median of 150 tokens (mean 398), well below the 2{,}048-token context window, so no training samples are truncated on either model.\n542\tThe resulting 0.56pp cross-model gap (Table~\\ref{tab:cross_model}) is therefore a clean measure of model capability differences, making the ``capability floor'' principle directly testable.\n543\tThe practical implication is that trace-based systems should default to the simplest sufficient signal; for smaller models, training stability (multi-seed selection, warmup schedules) is a secondary but addressable concern.\n544\t\n545\t%% ============================================================\n546\t\\section{Training Dynamics and Loss Decoupling}\n547\t\\label{sec:training_dynamics}\n548\t\n549\tThe DeepSeek \\texttt{exception\\_only} results reveal two instructive training dynamics.\n550\tFirst, epoch-level analysis shows mild degradation in 2/3 seeds: seed 42 peaks at 99.83\\% after epoch~1 but settles at 99.33\\% by epoch~3 ($-$0.50pp), seed 123 degrades from 91.43\\% to 91.09\\% ($-$0.34pp), while seed 456 shows no epoch degradation (99.33\\% at both epoch~1 and epoch~3).\n551\tEarly stopping may yield marginal gains for some seeds, but the epoch effect is small (${\\leq}$0.5pp) compared to the seed effect (8.24pp between seeds 42 and 123).\n552\t\n553\tSecond, seeds 123 and 456 converge to nearly identical final training losses (0.122 and 0.123 respectively), yet their accuracies differ by 8.24pp (91.09\\% vs.\\ 99.33\\%).\n554\tThe critical difference lies in fail recall: seeds 42 and 456 achieve 100\\%, while seed 123 achieves only 70.5\\%---the LoRA initialization in seed 123 fails to learn the exception$\\to$fail mapping for a substantial fraction of failing samples, even though the per-token loss appears converged.\n555\tThis demonstrates that token-level training loss can mask fundamental differences in sample-level classification ability, suggesting a parallel to the eval-loss/accuracy decoupling observed in DeepSeek VOTA (where eval loss rose 65\\% from epoch 1 to 3 while accuracy improved by 6.3pp) at the training phase.\n556\tThe practical recommendation is twofold: (1)~use task-specific metrics (accuracy, fail recall) for checkpoint and seed selection rather than training or evaluation loss, and (2)~for deployment on smaller models, train multiple seeds and select the best, as a single run may not reliably converge to the correct classification boundary.\n557\t\n558\t\\paragraph{Format collapse, not semantic failure.}\n559\tThe 100 errors of seed 123 are not semantic failures but generation format collapse: on inputs exceeding 4,000 characters (those containing verbose locals dumps), the model echoes trace content instead of emitting a verdict token, while achieving zero errors on shorter inputs.\n560\tThis indicates that the LoRA initialization of seed 123 specifically compromises long-context format compliance rather than exception signal comprehension, further supporting the robustness advantage of compact \\texttt{exception\\_only} inputs.\n561\t\n562\tThe contrast with VOTA is instructive: DeepSeek VOTA accuracy monotonically increases from 78.15\\% to 84.45\\% across epochs, but is consistent with a performance limit associated with the high trace truncation rate (\\S\\ref{sec:cross_model})---the model progressively extracts signal from samples with intact trace content but cannot fully compensate for the information loss in the truncated majority.\n563\tThe 84.45\\% accuracy reflects a combination of trace information loss and model capability constraints.\n564\t\n565\t%% ============================================================\n566\t\\section{Deduplication Statistics}\n567\t\\label{sec:dedup_stats}\n568\t\n569\tTable~\\ref{tab:dedup} reports the duplication rates across trace formats.\n570\tBecause multiple passing solutions to the same problem produce identical (input, output) pairs in the \\texttt{exception\\_only} format---correct executions raise no exceptions, so the trace content is the same regardless of the solution's internal logic---the dataset contains duplicate rows.\n571\tTrain--test input overlap is zero (split by problem ID), so no information leakage occurs.\n572\tThe high duplication in \\texttt{exception\\_only} does not affect our experimental conclusions: after deduplication the training set still contains 2,858 unique samples and the test set 607, providing sufficient coverage for the 591-problem benchmark.\n573\tThe \\texttt{exception\\_only} test set contains 48.99\\% duplicate inputs due to representation compactness; all confidence intervals treat samples as independent Bernoulli trials.\n574\t\n575\t\\begin{table}[t]\n576\t\\centering\n577\t\\caption{Deduplication statistics. The \\texttt{exception\\_only} format collapses multiple passing solutions into identical rows because correct executions produce no exception events. Train--test input overlap is 0 (no leakage).}\n578\t\\label{tab:dedup}\n579\t\\small\n580\t\\begin{tabular}{lccc}\n581\t\\toprule\n582\t\\textbf{Split} & \\textbf{Total} & \\textbf{Unique} & \\textbf{Dup.\\ rate} \\\\\n583\t\\midrule\n584\texception\\_only train & 4{,}720 & 2{,}858 & 39.45\\% \\\\\n585\texception\\_only test  & 1{,}190 &   607 & 48.99\\% \\\\\n586\traw\\_traces (full)    & 5{,}910 & 5{,}803 &  1.81\\% \\\\\n587\t\\bottomrule\n588\t\\end{tabular}\n589\t\\end{table}\n590\t\n591\t%% ============================================================\n592\t\\section{Regex Baseline Analysis}\n593\t\\label{sec:regex_baselines}\n594\t\n595\tTo establish a non-learning upper bound, we evaluate six regex-based baselines on the \\texttt{exception\\_only} test set ($N{=}1{,}190$) and two format-specific baselines on VOTA and \\texttt{full\\_trace} inputs.\n596\t\n597\t\\begin{table}[t]\n598\t\\centering\n599\t\\caption{Regex baseline accuracy ($N{=}1{,}190$). B4 is the strongest semantic baseline (6.22pp below SFT \\texttt{exception\\_only}, McNemar $p{<}0.001$). B6 uses an error count threshold. $^\\ddag$B5 exploits a data formatting artifact: the \\texttt{[No exception data in trace]} marker is deterministically present in all pass samples, making this a format-level shortcut rather than a genuine exception-based heuristic.}\n600\t\\label{tab:regex}\n601\t\\small\n602\t\\begin{tabular}{llc}\n603\t\\toprule\n604\t\\textbf{Baseline} & \\textbf{Method} & \\textbf{Acc (\\%)} \\\\\n605\t\\midrule\n606\tB1: \\texttt{[ERROR]} presence & string match & 93.45 \\\\\n607\tB2: Traceback presence & string match & 71.51 \\\\\n608\tB3: Any keyword & union of B1+B2+Exception & 93.45 \\\\\n609\tB4: Exception type regex & regex on exception class names & \\textbf{93.61} \\\\\n610\tB5: Format marker & \\texttt{[No exception data]} $\\to$ pass & 99.33$^\\ddag$ \\\\\n611\tB6: Error count $\\geq$2 & count threshold & 92.02 \\\\\n612\t\\midrule\n613\tVOTA format regex & best regex on VOTA traces & 75.55 \\\\\n614\tfull\\_trace format regex & best regex on full traces & 77.39 \\\\\n615\t\\bottomrule\n616\t\\end{tabular}\n617\t\\end{table}\n618\t\n619\tThe strongest legitimate baseline (B4, 93.61\\%) applies regex pattern-matching on Python exception class names (e.g., \\texttt{ValueError}, \\texttt{TypeError}).\n620\tIts errors concentrate on 8 boundary samples where a \\texttt{ValueError} is raised inside a \\texttt{try/except} block and caught---the program passes despite an exception occurring in the trace.\n621\tSFT \\texttt{exception\\_only} correctly classifies 6 of these 8 samples, indicating that the model learns the semantic distinction between caught (benign) and uncaught (fault-indicating) exceptions.\n622\tB5 (99.33\\%) achieves near-SFT accuracy but relies on the deterministic presence of a format marker in pass-class traces, which is an artifact of the trace preprocessing pipeline rather than a generalizable signal; McNemar test vs.\\ SFT yields $p{=}0.041$, confirming a statistically significant difference.\n623\t\n624\t\\paragraph{Cross-format comparison.}\n625\tTable~\\ref{tab:regex_cross_format} compares SFT and the best applicable regex baseline for each trace format.\n626\tThe SFT advantage increases with format complexity: \\texttt{no\\_trace} (+3.62pp over majority baseline) $<$ \\texttt{full\\_trace} (+4.37pp) $<$ \\texttt{exception\\_only} (+6.22pp) $\\ll$ VOTA (+23.86pp).\n627\tThe VOTA gap is largest because its structured multi-component format carries semantic content that regex cannot parse, while \\texttt{exception\\_only}'s simpler format allows regex to capture most of the signal.\n628\t\n629\t\\begin{table}[t]\n630\t\\centering\n631\t\\caption{SFT vs.\\ best regex baseline by trace format ($N{=}1{,}190$). Regex baselines: majority class for \\texttt{no\\_trace}, keyword matching for \\texttt{full\\_trace}, pattern matching for VOTA, exception type regex (B4) for \\texttt{exception\\_only}.}\n632\t\\label{tab:regex_cross_format}\n633\t\\small\n634\t\\begin{tabular}{lccc}\n635\t\\toprule\n636\t\\textbf{Format} & \\textbf{SFT (\\%)} & \\textbf{Regex (\\%)} & \\textbf{$\\Delta$ (pp)} \\\\\n637\t\\midrule\n638\texception\\_only & 99.83 & 93.61 & +6.22 \\\\\n639\tVOTA & 99.41 & 75.55 & +23.86 \\\\\n640\tfull\\_trace & 81.76 & 77.39 & +4.37 \\\\\n641\tno\\_trace & 75.13 & 71.51 & +3.62 \\\\\n642\t\\bottomrule\n643\t\\end{tabular}\n644\t\\end{table}\n645\t\n646\t%% ============================================================\n647\t\\section{Cross-Model Zero-Shot Comparison}\n648\t\\label{sec:zeroshot_cross_model}\n649\t\n650\tTable~\\ref{tab:zeroshot_cross_model} compares zero-shot and SFT \\texttt{exception\\_only} accuracy across four models.\n651\tZero-shot performance does not correlate with model size: the smallest model (Qwen-1.5B, 93.45\\%) outperforms all larger models, while the largest (CodeLlama-13B) falls below majority baseline.\n652\tSFT compresses the 42.44pp zero-shot range to 0.56pp, eliminating architecture-dependent variance.\n653\t\n654\t\\begin{table}[t]\n655\t\\centering\n656\t\\caption{Zero-shot vs.\\ SFT \\texttt{exception\\_only} across four models ($N{=}1{,}190$). Zero-shot accuracy is uncorrelated with model size; SFT normalizes cross-architecture variance from 42.44pp to 0.56pp.}\n657\t\\label{tab:zeroshot_cross_model}\n658\t\\small\n659\t\\begin{tabular}{llccc}\n660\t\\toprule\n661\t\\textbf{Model} & \\textbf{Size} & \\textbf{Zero-shot (\\%)} & \\textbf{SFT (\\%)} & \\textbf{$\\Delta$ (pp)} \\\\\n662\t\\midrule\n663\tQwen-1.5B & 1.5B & 93.45 & 99.83 & +6.38 \\\\\n664\tDeepSeek-6.7B & 6.7B & 90.59 & 99.33 & +8.74 \\\\\n665\tQwen-7B & 7B & 89.08 & 99.83 & +10.75 \\\\\n666\tCodeLlama-13B & 13B & 51.01 & 99.89 & +48.88 \\\\\n667\t\\midrule\n668\tRange & --- & 42.44pp & 0.56pp & --- \\\\\n669\t\\bottomrule\n670\t\\end{tabular}\n671\t\\end{table}\n672\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0cdecab3-1202-4f93-8287-386d69d05bbb",
+            "isSidechain": false,
+            "promptId": "99f694bc-ae93-4418-bef3-2ebd426ea0a7",
+            "type": "user",
+            "uuid": "f35417a8-e97b-4a9c-8f34-5b0b85e74184",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/appendix.tex",
+                "content": "\\section{Per-Class Performance Breakdown}\n\\label{sec:per_class}\n\nTable~\\ref{tab:per_class} reports per-class precision, recall, and F1 for all experimental conditions.\n\n\\begin{table*}[t]\n\\centering\n\\caption{Per-class precision, recall, and F1 for all experimental conditions (seed 42). DeepSeek VOTA achieves 100\\% fail precision but only 45.4\\% fail recall, indicating systematic bias toward predicting \\texttt{pass}. DeepSeek \\texttt{exception\\_only} seed 42 achieves 100\\% fail recall, but seed 123 drops to 70.5\\% (see Table~\\ref{tab:full_deepseek}).}\n\\label{tab:per_class}\n\\small\n\\begin{tabular}{llccccccc}\n\\toprule\n\\textbf{Condition} & \\textbf{Model} & \\textbf{Acc} & \\textbf{Pass P} & \\textbf{Pass R} & \\textbf{Pass F1} & \\textbf{Fail P} & \\textbf{Fail R} & \\textbf{Fail F1} \\\\\n\\midrule\nNo Trace          & Qwen-2.5-7B & 75.13 & 87.76 & 75.79 & 81.34 & 54.73 & 73.45 & 62.72 \\\\\nFull Trace        & Qwen-2.5-7B & 81.76 & 87.74 & 86.60 & 87.17 & 67.43 & 69.62 & 68.51 \\\\\nFull Trace (LO)   & Qwen-2.5-7B & 86.22 & 88.21 & 93.18 & 90.63 & 80.07 & 68.73 & 73.97 \\\\\nVOTA              & Qwen-2.5-7B & 99.41 & 100.00 & 99.18 & 99.59 & 97.98 & 100.00 & 98.98 \\\\\nException Only    & Qwen-2.5-7B & 99.83 & 100.00 & 99.76 & 99.88 & 99.41 & 100.00 & 99.71 \\\\\nAE Only           & Qwen-2.5-7B & 99.92 & 100.00 & 99.88 & 99.94 & 99.71 & 100.00 & 99.85 \\\\\nLoop Only         & Qwen-2.5-7B & 85.63 & 92.39 & 87.07 & 89.66 & 71.65 & 82.01 & 76.48 \\\\\nVOTA\\_no\\_ae       & Qwen-2.5-7B & 99.41 & 99.88 & 99.29 & 99.59 & 98.26 & 99.71 & 98.98 \\\\\n\\midrule\nNo Trace          & DeepSeek-6.7B & 73.36 & 81.71 & 80.85 & 81.28 & 53.16 & 54.57 & 53.86 \\\\\nFull Trace        & DeepSeek-6.7B & 79.16 & 85.70 & 85.10 & 85.40 & 63.20 & 64.30 & 63.70 \\\\\nVOTA              & DeepSeek-6.7B & 84.45 & 82.14 & 100.00 & 90.20 & 100.00 & 45.40 & 62.50 \\\\\nException Only    & DeepSeek-6.7B & 99.33 & 100.00 & 99.06 & 99.53 & 97.69 & 100.00 & 98.83 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table*}\n\n%% ============================================================\n\\section{Training Details}\n\\label{sec:training_details}\n\nTable~\\ref{tab:hyperparams} summarizes the training hyperparameters shared across all conditions.\nAll experiments use the HuggingFace TRL \\texttt{SFTTrainer} with LoRA \\citep{hu2022lora} applied to all linear layers.\n\n\\begin{table}[t]\n\\centering\n\\caption{Training hyperparameters (shared across all conditions).}\n\\label{tab:hyperparams}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{ll}\n\\toprule\n\\textbf{Hyperparameter} & \\textbf{Value} \\\\\n\\midrule\nLoRA rank ($r$)            & 16 \\\\\nLoRA alpha ($\\alpha$)      & 32 \\\\\nLoRA dropout               & 0.05 \\\\\nLoRA target modules        & all linear layers \\\\\n\\midrule\nEpochs                     & 3 \\\\\nPer-device batch size       & 4 \\\\\nGradient accumulation steps & 8 \\\\\nEffective batch size        & 32 \\\\\n\\midrule\nLearning rate               & $2 \\times 10^{-4}$ \\\\\nLR scheduler                & linear decay \\\\\nWarmup ratio                & 0.1 \\\\\nWeight decay                & 0.01 \\\\\n\\midrule\nMax sequence length         & 2048 tokens \\\\\nPrimary seed                & 42 \\\\\nRobustness seeds            & 123, 456 \\\\\n\\midrule\nHardware                    & 1$\\times$ RTX PRO 6000 Blackwell (96\\,GB VRAM) \\\\\nFramework                   & HuggingFace TRL SFTTrainer \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nTable~\\ref{tab:train_time} reports per-condition training wall-clock times.\nConditions with longer trace inputs (e.g., \\texttt{full\\_trace}, VOTA) require proportionally more training time due to increased sequence lengths.\n\n\\begin{table}[t]\n\\centering\n\\caption{Training wall-clock time per condition on a single RTX PRO 6000 Blackwell GPU. Where multiple seeds were run, individual times are listed.}\n\\label{tab:train_time}\n\\small\n\\begin{tabular}{llr}\n\\toprule\n\\textbf{Condition} & \\textbf{Seed(s)} & \\textbf{Time (h)} \\\\\n\\midrule\nno\\_trace       & 42         & ${\\sim}$0.5 \\\\\nfull\\_trace     & 42         & ${\\sim}$2.2 \\\\\nlabel\\_only     & 42         & ${\\sim}$2.2 \\\\\nVOTA                     & 42         & ${\\sim}$2.3 \\\\\nexception\\_only & 42         & ${\\sim}$2.1 \\\\\nexception\\_only & 123        & ${\\sim}$2.1 \\\\\nexception\\_only & 456        & ${\\sim}$1.3 \\\\\nae\\_only        & 42         & ${\\sim}$1.8 \\\\\nloop\\_only      & 42         & ${\\sim}$2.1 \\\\\nVOTA\\_no\\_ae    & 42         & ${\\sim}$1.8 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%% ============================================================\n\\section{VOTA Trace Examples}\n\\label{sec:vota_examples}\n\nWe provide two representative VOTA trace examples illustrating the fail and pass cases.\nIn the fail case, the exception event provides an unambiguous fault signal.\nIn the pass case, the absence of an exception event combined with a matching assertion point confirms correct execution.\n\n\\paragraph{Fail example.}\nA \\texttt{ZeroDivisionError} triggers an \\texttt{[ERROR]} event, providing a direct fault signal that is sufficient for the model to predict \\texttt{fail}.\n\n\\begin{small}\n\\begin{verbatim}\n## Function\ndef divide(a, b):\n    return a / b\n\n## Test Input\ndivide(1, 0)\n\n## Expected Output\ninf\n\n## VOTA Trace\n[ERROR] ZeroDivisionError: division by zero\n\n## Verdict\nfail\n\\end{verbatim}\n\\end{small}\n\n\\paragraph{Pass example.}\nNo exception is raised, and the assertion point confirms that the actual output matches the expected value.\n\n\\begin{small}\n\\begin{verbatim}\n## Function\ndef add(a, b):\n    return a + b\n\n## Test Input\nadd(2, 3)\n\n## Expected Output\n5\n\n## VOTA Trace\n[LOOP] No loops detected.\n[ASSERT] actual=5, expected=5\n\n## Verdict\npass\n\\end{verbatim}\n\\end{small}\n\nThese examples illustrate the core asymmetry exploited by the \\texttt{exception\\_only} condition: fail cases produce an explicit \\texttt{[ERROR]} event, while pass cases are characterized by its absence.\nThis binary signal (presence vs.\\ absence of an exception) is sufficient for near-perfect verdict prediction.\n\n%% ============================================================\n\\section{Full Experimental Results}\n\\label{sec:full_results}\n\nTables~\\ref{tab:full_qwen} and \\ref{tab:full_deepseek} report the complete experimental results across all conditions, models, and seeds.\n\n\\begin{table}[t]\n\\centering\n\\caption{Full results for Qwen-2.5-Coder-7B across all conditions and seeds. Conditions with a single seed report no variance. \\texttt{exception\\_only} achieves 99.83\\% across all three seeds ($\\sigma{=}$0). \\texttt{ae\\_only} achieves 99.64\\% mean ($\\pm$0.49; seed 123 at 99.08\\% is the outlier).}\n\\label{tab:full_qwen}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcccc}\n\\toprule\n\\textbf{Condition} & \\textbf{S42} & \\textbf{S123} & \\textbf{S456} & \\textbf{Mean $\\pm$ Std} \\\\\n\\midrule\nexception\\_only & 99.83 & 99.83 & 99.83 & 99.83 $\\pm$ 0.00 \\\\\nae\\_only        & 99.92 & 99.08 & 99.92 & 99.64 $\\pm$ 0.49 \\\\\nVOTA                     & 99.41 & ---   & ---   & --- \\\\\nVOTA\\_no\\_ae    & 99.41 & ---   & ---   & --- \\\\\nlabel\\_only     & 86.22 & ---   & ---   & --- \\\\\nloop\\_only      & 85.63 & ---   & ---   & --- \\\\\nfull\\_trace     & 81.76 & ---   & ---   & --- \\\\\nno\\_trace       & 75.13 & ---   & ---   & --- \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Full results for DeepSeek-Coder-6.7B across all conditions and seeds. \\texttt{exception\\_only} shows bimodal seed behavior: seeds 42 and 456 achieve 99.33\\%, while seed 123 yields 91.09\\% (LoRA initialization outlier, fail recall = 70.5\\%).}\n\\label{tab:full_deepseek}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcc}\n\\toprule\n\\textbf{Condition} & \\textbf{Seed} & \\textbf{Accuracy} & \\textbf{Notes} \\\\\n\\midrule\nexception\\_only & 42  & 99.33 & epoch 1: 99.83 \\\\\nexception\\_only & 456 & 99.33 & CI [98.82, 99.75] \\\\\nexception\\_only & 123 & 91.09 & fail recall = 70.5\\%; CI [89.40, 92.60] \\\\\n\\midrule\nVOTA                     & 42  & 84.45 & \\\\\nno\\_trace       & 42  & 73.36 & \\\\\nfull\\_trace     & 42  & 79.16 & CI [76.80, 81.30] \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n%% ============================================================\n\\section{Tokenizer and Truncation Analysis}\n\\label{sec:tokenizer_analysis}\n\nThe VOTA cross-model gap (14.96pp, Table~\\ref{tab:cross_model}; confounded by tokenizer-driven truncation; 91.7\\% of DeepSeek training samples were affected) is driven by a training-time truncation asymmetry.\nThe DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus 1{,}929 for Qwen, causing 91.7\\% of DeepSeek VOTA training samples to exceed the 2{,}048-token context window.\nThe training framework preserves the verdict label but truncates trace content, so the model trains with incomplete diagnostic information for the majority of samples.\n\nA post-hoc group analysis provides directional evidence: partitioning DeepSeek VOTA test samples by whether their training-set counterparts exceeded the context window, intact samples ($N{=}99$) achieve 100\\% accuracy while truncated samples ($N{=}1{,}091$) achieve 83.04\\% (95\\% CI [80.75\\%, 85.24\\%]; Fisher exact $p{<}0.001$), with all 185 errors concentrated in the fail class (fail recall = 31.23\\%).\nPer-class analysis (Table~\\ref{tab:per_class}) confirms that DeepSeek VOTA achieves 100\\% fail precision but only 45.43\\% fail recall, systematically defaulting to \\texttt{pass}---in contrast to Qwen VOTA, which achieves 100\\% fail recall.\n\nSeed robustness diverges across models: Qwen \\texttt{exception\\_only} produces identical 99.83\\% across all three seeds ($\\sigma{=}0$), while DeepSeek shows bimodal behavior: seeds 42 and 456 achieve 99.33\\% (fail recall = 100\\%), seed 123 yields 91.09\\% (fail recall = 70.5\\%).\nBecause \\texttt{exception\\_only} test inputs contain 48.99\\% duplicates (607 unique of 1,190; \\S\\ref{sec:dataset}), CIs assume $n{=}1{,}190$ independent trials; under deduplication ($n{=}607$), Qwen's accuracy is 99.67\\% (Wilson CI [98.81, 99.91]).\n\n%% ============================================================\n\\section{Irreducible Sample Analysis}\n\\label{sec:irreducible}\n\nThe \\texttt{exception\\_only} condition with Qwen-2.5-Coder-7B misclassifies exactly 2 out of 1,190 test samples across all three seeds (42, 123, 456), with 100\\% overlap across seeds.\nBoth samples (IDs 901 and 905) share the following characteristics:\n\n\\begin{itemize}\n\\item \\textbf{Function:} \\texttt{check\\_dict\\_case} (HumanEval/95)---a function that checks whether all dictionary keys are uniformly upper-case or lower-case strings.\n\\item \\textbf{Ground-truth label:} \\texttt{pass}.\n\\item \\textbf{Predicted label:} \\texttt{fail} (false negative).\n\\item \\textbf{Cross-seed consistency:} Both samples are misclassified identically by all three seeds, indicating a systematic rather than stochastic error.\n\\end{itemize}\n\nManual inspection reveals the root cause: \\texttt{check\\_dict\\_case} uses \\texttt{all()} over a generator expression, and Python's \\texttt{all()} short-circuits on the first \\texttt{True} value, raising \\texttt{GeneratorExit} to terminate the generator.\nBecause \\texttt{GeneratorExit} is a \\texttt{BaseException} subclass, the tracer records it as seven \\texttt{[ERROR] GeneratorExit} lines---even though the function executes correctly and the test passes.\nThe model observes these spurious error markers and reasonably but incorrectly predicts \\texttt{fail}.\nThis is not a model failure but a representation ambiguity: the \\texttt{exception\\_only} format cannot distinguish genuine exceptions from benign \\texttt{BaseException} subclasses triggered by Python's iterator protocol.\n\nMost configurations converge to these same 2 errors: Qwen-1.5B, Qwen-7B (3 seeds), CodeLlama-13B (seeds 42/456), and DeepSeek-6.7B (seeds 42/456) all produce error set $\\{901, 905\\}$.\nHowever, CodeLlama-13B seed 123 achieves 100\\% accuracy (0/1190 errors), correctly classifying both samples.\nThis demonstrates that 99.83\\% is a near-perfect \\emph{floor} (the convergence attractor for most LoRA initializations) rather than a hard data ceiling: the representation supports perfect accuracy, but most initializations converge to the same 2-error basin.\nThe practical implication is that these errors are high-probability convergence artifacts addressable through seed selection or ensemble methods, not fundamental limitations of the exception-based representation.\n\n%% ============================================================\n\\section{Exception Type Accuracy Breakdown}\n\\label{sec:exception_type}\n\nTable~\\ref{tab:exception_type} reports \\texttt{exception\\_only} accuracy stratified by exception type on Qwen-2.5-7B (seed=42, $N{=}1{,}190$).\nAll standard exception types (\\texttt{TypeError}, \\texttt{ValueError}, \\texttt{IndexError}, etc.) achieve 100\\% accuracy.\nThe only misclassifications arise from \\texttt{GeneratorExit}, a \\texttt{BaseException} subclass that is not an \\texttt{Exception}---it is raised by Python's iterator protocol during generator short-circuiting, not by actual program errors.\n\n\\begin{table}[t]\n\\centering\n\\caption{Exception type accuracy breakdown for \\texttt{exception\\_only} (Qwen-7B, seed=42). All true error types achieve 100\\%. The only failures come from \\texttt{GeneratorExit} (a \\texttt{BaseException} subclass, not an \\texttt{Exception}), which appears in 2 passing samples.}\n\\label{tab:exception_type}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Exception Type} & \\textbf{Samples} & \\textbf{Accuracy} \\\\\n\\midrule\nTypeError & 96 & 100\\% \\\\\nValueError & 62 & 100\\% \\\\\nIndexError & 41 & 100\\% \\\\\nKeyError & 28 & 100\\% \\\\\nAttributeError & 19 & 100\\% \\\\\nAssertionError & 15 & 100\\% \\\\\nRecursionError & 12 & 100\\% \\\\\nOther Exception & 66 & 100\\% \\\\\n\\midrule\nGeneratorExit (BaseException) & 2 & 0\\% \\\\\nNo exception (pass class) & 849 & 100\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThis confirms that the model has learned a clean decision boundary: any true \\texttt{Exception} subclass in the trace implies failure.\nThe \\texttt{GeneratorExit} case represents a semantic ambiguity in the trace format rather than a model failure, as discussed in \\S\\ref{sec:irreducible}.\n\n%% ============================================================\n\\section{Trace Length Ablation}\n\\label{sec:trace_length_full}\n\nTo test whether the \\texttt{full\\_trace} performance gap is caused by input truncation at training time, we vary the maximum trace token budget on Qwen-2.5-7B (seed=42) while keeping all other hyperparameters fixed.\n\n\\begin{table}[t]\n\\centering\n\\caption{Trace length and truncation direction ablation on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). Head = standard left-truncation (retain first $k$ tokens); Tail = retain last $k$ tokens. Per-condition bootstrap 95\\% CIs ($B{=}10{,}000$).}\n\\label{tab:trace_length}\n\\small\n\\begin{tabular}{llcc}\n\\toprule\n\\textbf{Direction} & \\textbf{Max Tokens} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} \\\\\n\\midrule\nHead & 256  & 78.82 & [76.4, 81.0] \\\\\nHead & 512  & 80.42 & [78.2, 82.6] \\\\\nHead & 1024 & 77.23 & [74.9, 79.6] \\\\\nHead & no\\_limit ($\\infty$) & 81.76 & [79.7, 83.9] \\\\\n\\midrule\nTail & 256  & 77.48 & --- \\\\\nTail & 512  & 93.61 & --- \\\\\nTail & 1024 & 96.47 & --- \\\\\nTail & 2048 & 97.31 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{budget_curve}\n\\caption{Accuracy as a function of token budget and truncation direction (Qwen-2.5-7B, $N{=}1{,}190$). Tail-truncation (keeping last $k$ tokens) monotonically improves beyond 256 tokens and consistently outperforms head-truncation by 13--19pp at budgets ${\\geq}$512. The flat head-truncation curve (77--82\\%) contrasts with the steep tail-truncation rise, confirming that diagnostic signal is localized near trace end. Dashed lines show \\texttt{exception\\_only} (99.83\\%) and \\texttt{no\\_trace} (75.13\\%) as upper and lower bounds. Tail-256 (${\\approx}$ \\texttt{no\\_trace}) indicates the signal window begins approximately 256 tokens from the trace terminus.}\n\\label{fig:trace_length}\n\\end{figure}\n\nAs shown in Table~\\ref{tab:trace_length} and Figure~\\ref{fig:trace_length}, all four trace length conditions fall within a 5pp range (77.2\\%--81.8\\%).\nTo quantify the reliability of the observed differences, Table~\\ref{tab:trace_length_pairwise} reports paired bootstrap comparisons ($B{=}10{,}000$, seed=42) across all condition pairs.\n\n\\begin{table}[t]\n\\centering\n\\caption{Pairwise paired bootstrap comparisons for trace length ablation ($B{=}10{,}000$, seed=42). $\\Delta$ = accuracy difference between the two conditions (first $-$ second in the budget group; condition $-$ baseline in the other groups). **$p{<}0.01$; ***$p{<}0.001$.}\n\\label{tab:trace_length_pairwise}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llccc}\n\\toprule\n& \\textbf{Comparison} & \\textbf{$\\Delta$ (pp)} & \\textbf{95\\% CI} & \\textbf{$p$-value} \\\\\n\\midrule\n\\multirow{4}{*}{\\rotatebox{90}{\\scriptsize Budget}}\n& 512 vs.\\ 256           & $+$1.60  & [$-$0.34, $+$3.53]   & 0.117 \\\\\n& 1024 vs.\\ 512          & $-$3.19  & [$-$5.29, $-$1.09]   & 0.002** \\\\\n& no\\_limit vs.\\ 1024    & $+$4.54  & [$+$2.52, $+$6.55]   & ${<}$0.001*** \\\\\n& no\\_limit vs.\\ 256     & $+$2.94  & [$+$0.84, $+$5.04]   & 0.006** \\\\\n\\midrule\n\\multirow{4}{*}{\\rotatebox{90}{\\scriptsize vs.\\ no\\_trace}}\n& 256 $-$ no\\_trace       & $+$3.70  & [$+$1.43, $+$6.05]   & 0.002** \\\\\n& 512 $-$ no\\_trace       & $+$5.29  & [$+$3.03, $+$7.56]   & ${<}$0.001*** \\\\\n& 1024 $-$ no\\_trace      & $+$2.10  & [$-$0.17, $+$4.37]   & 0.078 \\\\\n& no\\_limit $-$ no\\_trace & $+$6.64  & [$+$4.37, $+$8.99]   & ${<}$0.001*** \\\\\n\\midrule\n\\multirow{4}{*}{\\rotatebox{90}{\\scriptsize vs.\\ exc.}}\n& 256 $-$ exc\\_only       & $-$21.01 & [$-$23.45, $-$18.74] & ${<}$0.001*** \\\\\n& 512 $-$ exc\\_only       & $-$19.41 & [$-$21.76, $-$17.14] & ${<}$0.001*** \\\\\n& 1024 $-$ exc\\_only      & $-$22.61 & [$-$25.04, $-$20.25] & ${<}$0.001*** \\\\\n& no\\_limit $-$ exc\\_only & $-$18.07 & [$-$20.34, $-$15.88] & ${<}$0.001*** \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\paragraph{Non-monotonic pattern (head-truncation).}\nUnder head-truncation (retaining trace prefixes), the trend is non-monotonic: 512 tokens (80.42\\%) slightly outperforms 256 tokens (78.82\\%), but doubling to 1024 tokens \\emph{decreases} accuracy to 77.23\\%, a statistically significant 3.19pp drop ($p{=}0.002$, 95\\% CI [$-$5.29, $-$1.09]).\nThe no-limit condition (81.76\\%) recovers and significantly exceeds 1024 tokens ($p{<}0.001$), but 1024 tokens is not significantly better than \\texttt{no\\_trace} (75.13\\%; $\\Delta{=}{+}2.10$pp, $p{=}0.078$, 95\\% CI [$-$0.17, $+$4.37]).\nThis non-monotonicity is specific to head-truncation: the 1024-token prefix retains enough irrelevant content to mislead the model while discarding diagnostic events that appear near the trace terminus.\nUnder tail-truncation, accuracy increases monotonically for Qwen-7B and Qwen-1.5B (Table~\\ref{tab:tail_cross_model}); only DeepSeek-6.7B shows a mild $-$1.5pp decrease at tail-1024$\\to$tail-2048, attributable to architecture-specific long-context sensitivity rather than a systematic mid-length pathology.\n\n\\paragraph{Comparison to baselines.}\nAll four trace budget conditions significantly exceed \\texttt{no\\_trace} except 1024 tokens ($p{=}0.078$), confirming that raw trace content provides some signal but unreliably so.\nThe gap to \\texttt{exception\\_only} (99.83\\%) is massive for every budget condition (18--23pp, all $p{<}0.001$), underscoring that even unlimited raw traces cannot substitute for targeted signal extraction.\nThe best full-trace condition (no\\_limit, 81.76\\%) still lags \\texttt{exception\\_only} by 18.07pp (95\\% CI [$-$20.34, $-$15.88]).\n\n\\paragraph{Interpretation.}\nThese results rule out input truncation as the primary explanation for the full-trace performance gap: even with unlimited tokens, the model cannot extract the diagnostic signal that VOTA's targeted compression provides.\nThe non-monotonic dip at 1024 tokens is consistent with a ``worst-of-both-worlds'' regime where the model receives enough noisy context to dilute the signal but not enough to compensate through broader coverage.\nThe result reinforces the information density interpretation (\\S\\ref{sec:density}): the gap between full traces and VOTA is driven by the \\emph{content} of the trace (irrelevant lines diluting the diagnostic signal), not its \\emph{length}.\nIn contrast, VOTA's compressed representation concentrates the diagnostic signal into fewer tokens, making it sensitive to truncation when those tokens are removed (\\S\\ref{sec:cross_model}).\n\n\\paragraph{Truncation direction.}\nTail-truncation (retaining the last $k$ tokens) dramatically outperforms head-truncation: \\texttt{tail\\_2048} achieves 97.31\\% vs.\\ \\texttt{head\\_2048} (no\\_limit) at 81.76\\%, a 15.55pp improvement.\nEven \\texttt{tail\\_512} (93.61\\%) exceeds every head-truncation condition by over 11pp.\n\nHowever, \\texttt{tail\\_256} (77.48\\%) performs at the \\texttt{no\\_trace} baseline level (75.13\\%), indicating that the diagnostic signal does not reside in the very last trace lines.\nThe critical jump occurs between 256 and 512 tail tokens (+16.13pp), localizing the signal window to approximately 256--512 tokens from the trace terminus.\nThis is consistent with Python's execution model: exception tracebacks and assertion comparisons appear near the end of the trace but are preceded by the final function call frames, placing them typically 300--500 tokens from the terminus rather than at the absolute end.\n\nThe 18.07pp gap from \\texttt{full\\_trace} to \\texttt{exception\\_only} decomposes as: 86\\% positional concentration (recovered by tail-truncation at 2048 tokens) and 14\\% residual content noise (the 2.52pp gap from \\texttt{tail\\_2048} to \\texttt{exception\\_only} that persists regardless of truncation direction).\nThe fact that \\texttt{exception\\_only} (99.83\\%) still outperforms \\texttt{tail\\_2048} (97.31\\%) confirms that semantic extraction (identifying the exception type and message) is superior to positional extraction (keeping a fixed window), because the model need not filter out non-diagnostic lines that happen to fall within the window.\n\n\\paragraph{Cross-model budget curve.}\nTable~\\ref{tab:tail_cross_model} extends the tail-truncation analysis to a full budget sweep across four models spanning three architecture families and an 8.7$\\times$ parameter range.\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-model tail-truncation budget curve ($N{=}1{,}190$). A sharp phase transition occurs at 256$\\to$512 tokens across all four models (+14.7--23.0pp), after which accuracy converges regardless of scale or architecture. $\\downarrow$: non-monotonic decrease (DeepSeek only). $^\\dag$CodeLlama tail-1024/2048 pending retraining with label-only loss (\\S\\ref{sec:tokenizer_analysis}).}\n\\label{tab:tail_cross_model}\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccccc}\n\\toprule\n\\textbf{Model} & \\textbf{tail-256} & \\textbf{tail-512} & \\textbf{tail-1024} & \\textbf{tail-2048} & \\textbf{exc\\_only} \\\\\n\\midrule\nQwen-7B (7B) & 78.9 & 93.6 & 96.5 & 97.3 & 99.83 \\\\\nDeepSeek (6.7B) & 76.4 & 93.9 & 96.5 & 95.0$\\downarrow$ & 99.33 \\\\\nCodeLlama (13B) & 77.9 & 97.5 & ---$^\\dag$ & ---$^\\dag$ & 99.89 \\\\\nQwen-1.5B (1.5B) & 72.6 & 95.6 & 96.6 & 97.9 & 99.83 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\begin{table}[t]\n\\centering\n\\caption{Cross-model truncation direction comparison ($N{=}1{,}190$). Head-truncation retains the first 2,048 tokens; tail-truncation retains the last 2,048. All four models' head-2048 accuracies converge into a narrow 75.3--81.8\\% band (6.5pp), comparable to the tail-256 signal-poor band (72.6--78.9\\%, 6.3pp). $^\\dag$CodeLlama tail-2048 pending retraining (\\S\\ref{sec:tokenizer_analysis}).}\n\\label{tab:head_vs_tail}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Model} & \\textbf{head-2048 (\\%)} & \\textbf{tail-2048 (\\%)} & \\textbf{Gap (pp)} \\\\\n\\midrule\nQwen-1.5B & 75.3 & 97.9 & +22.6 \\\\\nDeepSeek-6.7B & 78.7 & 95.0 & +16.3 \\\\\nCodeLlama-13B & 79.9 & ---$^\\dag$ & ---$^\\dag$ \\\\\nQwen-7B & 81.8 & 97.3 & +15.5 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nFour patterns emerge from the budget curve.\n\\emph{Phase transition at 256$\\to$512 tokens}: all four models jump +14.7--23.0pp (Qwen-7B +14.7, DeepSeek +17.5, CodeLlama +19.6, Qwen-1.5B +23.0), crossing from near-baseline to near-ceiling in a single budget doubling.\nThe threshold aligns with the typical exception traceback length (${\\sim}$500 tokens): below this budget, the diagnostic event is truncated; above it, the event is captured regardless of model capacity or architecture family.\n\n\\emph{Convergence at tail-512+}: once the phase transition is crossed, accuracy converges across all models into a 93.6--97.5\\% band at tail-512; where tail-1024 data is available, the band tightens further to 96.5--96.6\\%.\nScale and architecture differences that dominate the signal-poor regime (tail-256 range: 72.6--78.9\\%, 6.3pp) compress dramatically in the signal-rich regime.\n\n\\emph{Signal-poor convergence band}: head-2048 accuracies across all four models also converge into a narrow 75.3--81.8\\% band (6.5pp; Table~\\ref{tab:head_vs_tail}), comparable in width to the tail-256 band (72.6--78.9\\%, 6.3pp).\nWhen the diagnostic signal is absent (head-truncation discards trace terminus) or unreachable (tail-256 is too short), models of different scale and architecture collapse to similar performance, suggesting a shared floor determined by code comprehension rather than trace processing.\n\n\\emph{Scale behavior inversion}: in the signal-poor regime (tail-256), smaller models perform worse (Qwen-1.5B 72.6\\% vs.\\ Qwen-7B 78.9\\%, $-$6.3pp), mirroring the \\texttt{no\\_trace} scale pattern.\nIn the signal-rich regime (tail-512+), this reverses: Qwen-1.5B matches or exceeds Qwen-7B (95.6\\% vs.\\ 93.6\\% at tail-512; 97.9\\% vs.\\ 97.3\\% at tail-2048), confirming that sufficient trace signal eliminates the capacity advantage.\n\n\\emph{Non-monotonicity}: DeepSeek-6.7B shows a $-$1.5pp decrease from tail-1024 (96.5\\%) to tail-2048 (95.0\\%), while Qwen-7B and Qwen-1.5B increase monotonically.\nThis architecture-specific sensitivity is consistent with DeepSeek's known vulnerability to long-context formatting (\\S\\ref{sec:training_dynamics}): additional tokens beyond the diagnostic window introduce noise that this model cannot filter as effectively.\n\nTable~\\ref{tab:head_vs_tail} confirms the truncation direction effect: among the three models with complete data, tail-2048 outperforms head-2048 by 15.5--22.6pp.\nThe gap is largest for Qwen-1.5B (+22.6pp), indicating that smaller models benefit most from positional proximity to the diagnostic signal, as they lack the capacity to locate it within longer, noisier prefixes.\n\n%% ============================================================\n\\section{Calibration Analysis}\n\\label{sec:calibration_full}\n\nBeyond accuracy, we evaluate whether trace conditions affect prediction calibration, motivated by recent findings that code LLM confidence is often poorly calibrated \\citep{spiess2025calibration}.\n\n\\begin{table}[t]\n\\centering\n\\caption{Calibration metrics on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). ECE = expected calibration error; Brier = Brier score. Lower is better for both.}\n\\label{tab:calibration}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Condition} & \\textbf{ECE $\\downarrow$} & \\textbf{Brier $\\downarrow$} \\\\\n\\midrule\nae\\_only & \\textbf{0.0004} & \\textbf{0.0008} \\\\\nexception\\_only & 0.0027 & 0.0013 \\\\\nVOTA & 0.0054 & 0.005 \\\\\nfull\\_trace & 0.096 & 0.144 \\\\\nno\\_trace & 0.171 & 0.197 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:calibration} shows that calibration quality mirrors the Tier~1/2 hierarchy.\nTier~1 conditions (\\texttt{ae\\_only}: ECE=0.0004; \\texttt{exception\\_only}: ECE=0.0027) produce near-perfectly calibrated predictions, while \\texttt{full\\_trace} (ECE=0.096) and \\texttt{no\\_trace} (ECE=0.171) exhibit substantial miscalibration.\nVOTA (ECE=0.0054) is well-calibrated but slightly worse than either Tier~1 component alone, reinforcing the pattern that combining trace signals dilutes rather than improves the prediction signal.\n\nThe Brier scores tell a consistent story: \\texttt{ae\\_only} (0.0008) and \\texttt{exception\\_only} (0.0013) achieve near-zero scores, while \\texttt{no\\_trace} (0.197) indicates substantial miscalibration.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{fig2_calibration}\n\\caption{Reliability diagrams for four trace conditions on Qwen-2.5-7B ($N{=}1{,}190$, seed=42). \\texttt{exception\\_only} (ECE=0.0027) clusters near the diagonal, while \\texttt{no\\_trace} (ECE=0.171) exhibits systematic overconfidence, a 63$\\times$ gap.}\n\\label{fig:calibration}\n\\end{figure}\n\n%% ============================================================\n\\section{Error Overlap Analysis}\n\\label{sec:error_overlap}\n\nWe analyze the overlap between error sets of different conditions to determine whether they fail on the same samples (Figure~\\ref{fig:error_overlap}).\n\n\\texttt{exception\\_only}'s 2 errors (samples 901 and 905) have zero intersection with the error sets of all other conditions (Jaccard = 0.000 in all pairwise comparisons).\nThis orthogonality arises because \\texttt{exception\\_only} errors are caused by \\texttt{GeneratorExit} false positives (pass samples misclassified as fail due to benign \\texttt{BaseException} events), while errors from other conditions are predominantly fail samples misclassified as pass due to insufficient signal.\n\nAmong non-exception conditions, error sets exhibit hierarchical containment: \\texttt{ae\\_only} $\\subset$ VOTA $\\subset$ \\texttt{loop\\_only} $\\subset$ \\texttt{no\\_trace}, with pairwise Jaccard indices increasing with signal overlap.\n\\texttt{loop\\_only} and \\texttt{full\\_trace} share the highest overlap (Jaccard ${\\sim}$0.65), reflecting their shared reliance on behavioral patterns rather than explicit fault indicators.\n\nThis analysis confirms that \\texttt{exception\\_only} operates on an independent signal dimension: its errors are representation ambiguities (iterator protocol artifacts) rather than information deficits, explaining why combining it with other signals cannot eliminate these specific errors.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{error_overlap}\n\\caption{Jaccard similarity between error sets of different conditions (Qwen-7B, seed=42, $N{=}1{,}190$). \\texttt{exception\\_only} (exc\\_only) has zero overlap with all other conditions, confirming it operates on an independent signal dimension.}\n\\label{fig:error_overlap}\n\\end{figure}\n\n%% ============================================================\n\\section{Cross-Dataset Generalization: DebugBench}\n\\label{sec:debugbench_full}\n\nTo test whether exception-based verdict prediction generalizes beyond LLM-generated solutions, we evaluate on DebugBench \\citep{tian2024debugbench}---a dataset of human-written programs with synthetically injected bugs (single-point mutations such as operator replacement, variable misuse, and missing statements).\nAfter filtering for executable Python samples with valid traces, we retain 426 samples with a near-balanced class distribution (majority baseline: 51.4\\%).\n\n\\begin{table}[t]\n\\centering\n\\caption{Generalization to DebugBench ($N{=}426$, Qwen-2.5-7B, seed=42). Wilson 95\\% CIs. The component ranking (exception\\_only $\\geq$ VOTA $>$ no\\_trace) is preserved, and exception\\_only achieves perfect accuracy.}\n\\label{tab:debugbench}\n\\small\n\\begin{tabular}{lcc}\n\\toprule\n\\textbf{Condition} & \\textbf{Acc (\\%)} & \\textbf{95\\% CI} \\\\\n\\midrule\nexception\\_only & \\textbf{100.00} & [99.14, 100.00] \\\\\nVOTA & 99.77 & [99.30, 100.00] \\\\\nno\\_trace & 96.71 & [94.80, 98.40] \\\\\n\\midrule\nMajority baseline & 51.41 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nTable~\\ref{tab:debugbench} shows that the component ranking from the main experiments is preserved: \\texttt{exception\\_only} (100.00\\%) $\\geq$ VOTA (99.77\\%) $>$ \\texttt{no\\_trace} (96.71\\%).\nThe \\texttt{exception\\_only} condition achieves perfect accuracy, confirming that the exception-based representation generalizes to a different fault distribution without degradation.\n\nThe absolute margins are much narrower than on the main dataset: the \\texttt{no\\_trace} baseline already achieves 96.71\\%---compared to 75.13\\% on HumanEval+MBPP---leaving only 3.29pp of headroom for trace-based improvement.\nThis ceiling effect reflects a fundamental difference in fault characteristics: DebugBench bugs are synthetically injected single-point mutations, which produce code that is structurally dissimilar from the original correct solution; a model can often identify the fault from source code alone.\nIn contrast, the HumanEval+MBPP solutions are LLM-generated, producing natural errors (logic mistakes, edge-case failures) where the faulty and correct solutions may be structurally similar, making code-only verdict prediction substantially harder.\n\nThese results support exception-based verdict prediction as a generalizable approach---the method does not degrade on an out-of-distribution dataset, and the exception dominance ranking (exception\\_only $\\geq$ VOTA $>$ no\\_trace) is consistent across both datasets---but the narrow DebugBench margins are insufficient to independently validate trace importance.\nThe 24.70pp trace lift on the main dataset (no\\_trace 75.13\\% $\\to$ exception\\_only 99.83\\%) remains the primary evidence for the value of exception-based trace signals.\n\n%% ============================================================\n\\section{Cross-Model Robustness Analysis}\n\\label{sec:robustness_analysis}\n\nThe cross-model gap pattern (Table~\\ref{tab:cross_model}) suggests a design principle: \\emph{trace representations should match the model capability floor, not the ceiling.}\nException events are consistently the most effective component on both models, and their structural simplicity---a fixed-format error message---ensures that the relative advantage over richer representations holds across all seeds.\nTwo of three DeepSeek seeds match Qwen-level accuracy (99.33\\%); the outlier (seed 123, 91.09\\%) we hypothesize reflects LoRA initialization sensitivity landing in a suboptimal basin (fail recall = 70.5\\%, though direct evidence is lacking), not a failure of the exception signal itself---even this outlier outperforms VOTA (84.45\\%) by 6.64pp.\nThe VOTA cross-model gap is confounded by two factors: (1)~tokenizer efficiency---the DeepSeek tokenizer averages 2{,}626 tokens per VOTA sample versus Qwen's 1{,}929, causing 91.7\\% of training samples to exceed the 2{,}048-token context window; content-aware truncation preferentially removes the terminal structured prompt, preserving the verdict label but truncating trace content---and (2)~base model capability differences, consistent with findings that SFT generalization depends on pretrain quality \\citep{yang2024generalization}.\nThe two factors cannot be disentangled in the current experimental design.\nOur \\texttt{exception\\_only} design sidesteps the truncation confound entirely: inputs have a median of 150 tokens (mean 398), well below the 2{,}048-token context window, so no training samples are truncated on either model.\nThe resulting 0.56pp cross-model gap (Table~\\ref{tab:cross_model}) is therefore a clean measure of model capability differences, making the ``capability floor'' principle directly testable.\nThe practical implication is that trace-based systems should default to the simplest sufficient signal; for smaller models, training stability (multi-seed selection, warmup schedules) is a secondary but addressable concern.\n\n%% ============================================================\n\\section{Training Dynamics and Loss Decoupling}\n\\label{sec:training_dynamics}\n\nThe DeepSeek \\texttt{exception\\_only} results reveal two instructive training dynamics.\nFirst, epoch-level analysis shows mild degradation in 2/3 seeds: seed 42 peaks at 99.83\\% after epoch~1 but settles at 99.33\\% by epoch~3 ($-$0.50pp), seed 123 degrades from 91.43\\% to 91.09\\% ($-$0.34pp), while seed 456 shows no epoch degradation (99.33\\% at both epoch~1 and epoch~3).\nEarly stopping may yield marginal gains for some seeds, but the epoch effect is small (${\\leq}$0.5pp) compared to the seed effect (8.24pp between seeds 42 and 123).\n\nSecond, seeds 123 and 456 converge to nearly identical final training losses (0.122 and 0.123 respectively), yet their accuracies differ by 8.24pp (91.09\\% vs.\\ 99.33\\%).\nThe critical difference lies in fail recall: seeds 42 and 456 achieve 100\\%, while seed 123 achieves only 70.5\\%---the LoRA initialization in seed 123 fails to learn the exception$\\to$fail mapping for a substantial fraction of failing samples, even though the per-token loss appears converged.\nThis demonstrates that token-level training loss can mask fundamental differences in sample-level classification ability, suggesting a parallel to the eval-loss/accuracy decoupling observed in DeepSeek VOTA (where eval loss rose 65\\% from epoch 1 to 3 while accuracy improved by 6.3pp) at the training phase.\nThe practical recommendation is twofold: (1)~use task-specific metrics (accuracy, fail recall) for checkpoint and seed selection rather than training or evaluation loss, and (2)~for deployment on smaller models, train multiple seeds and select the best, as a single run may not reliably converge to the correct classification boundary.\n\n\\paragraph{Format collapse, not semantic failure.}\nThe 100 errors of seed 123 are not semantic failures but generation format collapse: on inputs exceeding 4,000 characters (those containing verbose locals dumps), the model echoes trace content instead of emitting a verdict token, while achieving zero errors on shorter inputs.\nThis indicates that the LoRA initialization of seed 123 specifically compromises long-context format compliance rather than exception signal comprehension, further supporting the robustness advantage of compact \\texttt{exception\\_only} inputs.\n\nThe contrast with VOTA is instructive: DeepSeek VOTA accuracy monotonically increases from 78.15\\% to 84.45\\% across epochs, but is consistent with a performance limit associated with the high trace truncation rate (\\S\\ref{sec:cross_model})---the model progressively extracts signal from samples with intact trace content but cannot fully compensate for the information loss in the truncated majority.\nThe 84.45\\% accuracy reflects a combination of trace information loss and model capability constraints.\n\n%% ============================================================\n\\section{Deduplication Statistics}\n\\label{sec:dedup_stats}\n\nTable~\\ref{tab:dedup} reports the duplication rates across trace formats.\nBecause multiple passing solutions to the same problem produce identical (input, output) pairs in the \\texttt{exception\\_only} format---correct executions raise no exceptions, so the trace content is the same regardless of the solution's internal logic---the dataset contains duplicate rows.\nTrain--test input overlap is zero (split by problem ID), so no information leakage occurs.\nThe high duplication in \\texttt{exception\\_only} does not affect our experimental conclusions: after deduplication the training set still contains 2,858 unique samples and the test set 607, providing sufficient coverage for the 591-problem benchmark.\nThe \\texttt{exception\\_only} test set contains 48.99\\% duplicate inputs due to representation compactness; all confidence intervals treat samples as independent Bernoulli trials.\n\n\\begin{table}[t]\n\\centering\n\\caption{Deduplication statistics. The \\texttt{exception\\_only} format collapses multiple passing solutions into identical rows because correct executions produce no exception events. Train--test input overlap is 0 (no leakage).}\n\\label{tab:dedup}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Split} & \\textbf{Total} & \\textbf{Unique} & \\textbf{Dup.\\ rate} \\\\\n\\midrule\nexception\\_only train & 4{,}720 & 2{,}858 & 39.45\\% \\\\\nexception\\_only test  & 1{,}190 &   607 & 48.99\\% \\\\\nraw\\_traces (full)    & 5{,}910 & 5{,}803 &  1.81\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%% ============================================================\n\\section{Regex Baseline Analysis}\n\\label{sec:regex_baselines}\n\nTo establish a non-learning upper bound, we evaluate six regex-based baselines on the \\texttt{exception\\_only} test set ($N{=}1{,}190$) and two format-specific baselines on VOTA and \\texttt{full\\_trace} inputs.\n\n\\begin{table}[t]\n\\centering\n\\caption{Regex baseline accuracy ($N{=}1{,}190$). B4 is the strongest semantic baseline (6.22pp below SFT \\texttt{exception\\_only}, McNemar $p{<}0.001$). B6 uses an error count threshold. $^\\ddag$B5 exploits a data formatting artifact: the \\texttt{[No exception data in trace]} marker is deterministically present in all pass samples, making this a format-level shortcut rather than a genuine exception-based heuristic.}\n\\label{tab:regex}\n\\small\n\\begin{tabular}{llc}\n\\toprule\n\\textbf{Baseline} & \\textbf{Method} & \\textbf{Acc (\\%)} \\\\\n\\midrule\nB1: \\texttt{[ERROR]} presence & string match & 93.45 \\\\\nB2: Traceback presence & string match & 71.51 \\\\\nB3: Any keyword & union of B1+B2+Exception & 93.45 \\\\\nB4: Exception type regex & regex on exception class names & \\textbf{93.61} \\\\\nB5: Format marker & \\texttt{[No exception data]} $\\to$ pass & 99.33$^\\ddag$ \\\\\nB6: Error count $\\geq$2 & count threshold & 92.02 \\\\\n\\midrule\nVOTA format regex & best regex on VOTA traces & 75.55 \\\\\nfull\\_trace format regex & best regex on full traces & 77.39 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\nThe strongest legitimate baseline (B4, 93.61\\%) applies regex pattern-matching on Python exception class names (e.g., \\texttt{ValueError}, \\texttt{TypeError}).\nIts errors concentrate on 8 boundary samples where a \\texttt{ValueError} is raised inside a \\texttt{try/except} block and caught---the program passes despite an exception occurring in the trace.\nSFT \\texttt{exception\\_only} correctly classifies 6 of these 8 samples, indicating that the model learns the semantic distinction between caught (benign) and uncaught (fault-indicating) exceptions.\nB5 (99.33\\%) achieves near-SFT accuracy but relies on the deterministic presence of a format marker in pass-class traces, which is an artifact of the trace preprocessing pipeline rather than a generalizable signal; McNemar test vs.\\ SFT yields $p{=}0.041$, confirming a statistically significant difference.\n\n\\paragraph{Cross-format comparison.}\nTable~\\ref{tab:regex_cross_format} compares SFT and the best applicable regex baseline for each trace format.\nThe SFT advantage increases with format complexity: \\texttt{no\\_trace} (+3.62pp over majority baseline) $<$ \\texttt{full\\_trace} (+4.37pp) $<$ \\texttt{exception\\_only} (+6.22pp) $\\ll$ VOTA (+23.86pp).\nThe VOTA gap is largest because its structured multi-component format carries semantic content that regex cannot parse, while \\texttt{exception\\_only}'s simpler format allows regex to capture most of the signal.\n\n\\begin{table}[t]\n\\centering\n\\caption{SFT vs.\\ best regex baseline by trace format ($N{=}1{,}190$). Regex baselines: majority class for \\texttt{no\\_trace}, keyword matching for \\texttt{full\\_trace}, pattern matching for VOTA, exception type regex (B4) for \\texttt{exception\\_only}.}\n\\label{tab:regex_cross_format}\n\\small\n\\begin{tabular}{lccc}\n\\toprule\n\\textbf{Format} & \\textbf{SFT (\\%)} & \\textbf{Regex (\\%)} & \\textbf{$\\Delta$ (pp)} \\\\\n\\midrule\nexception\\_only & 99.83 & 93.61 & +6.22 \\\\\nVOTA & 99.41 & 75.55 & +23.86 \\\\\nfull\\_trace & 81.76 & 77.39 & +4.37 \\\\\nno\\_trace & 75.13 & 71.51 & +3.62 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n%% ============================================================\n\\section{Cross-Model Zero-Shot Comparison}\n\\label{sec:zeroshot_cross_model}\n\nTable~\\ref{tab:zeroshot_cross_model} compares zero-shot and SFT \\texttt{exception\\_only} accuracy across four models.\nZero-shot performance does not correlate with model size: the smallest model (Qwen-1.5B, 93.45\\%) outperforms all larger models, while the largest (CodeLlama-13B) falls below majority baseline.\nSFT compresses the 42.44pp zero-shot range to 0.56pp, eliminating architecture-dependent variance.\n\n\\begin{table}[t]\n\\centering\n\\caption{Zero-shot vs.\\ SFT \\texttt{exception\\_only} across four models ($N{=}1{,}190$). Zero-shot accuracy is uncorrelated with model size; SFT normalizes cross-architecture variance from 42.44pp to 0.56pp.}\n\\label{tab:zeroshot_cross_model}\n\\small\n\\begin{tabular}{llccc}\n\\toprule\n\\textbf{Model} & \\textbf{Size} & \\textbf{Zero-shot (\\%)} & \\textbf{SFT (\\%)} & \\textbf{$\\Delta$ (pp)} \\\\\n\\midrule\nQwen-1.5B & 1.5B & 93.45 & 99.83 & +6.38 \\\\\nDeepSeek-6.7B & 6.7B & 90.59 & 99.33 & +8.74 \\\\\nQwen-7B & 7B & 89.08 & 99.83 & +10.75 \\\\\nCodeLlama-13B & 13B & 51.01 & 99.89 & +48.88 \\\\\n\\midrule\nRange & --- & 42.44pp & 0.56pp & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n",
+                "numLines": 672,
+                "startLine": 1,
+                "totalLines": 672
+              }
+            },
+            "sourceToolAssistantUUID": "0cdecab3-1202-4f93-8287-386d69d05bbb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": "2026-05-18T19:46:50.819Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HoEUepdnq69RanT89bHJ8m",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/docs/paper/arr_checklist.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f35417a8-e97b-4a9c-8f34-5b0b85e74184",
+            "isSidechain": false,
+            "requestId": "req_011CbAcNTRfs3yysKbGV67Yq",
+            "type": "assistant",
+            "uuid": "d4e29116-f592-4578-8cbe-f9380b65f5fa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WazJNbsibjJ6oGFctt8fct",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3521,
+                "cache_read_input_tokens": 114516,
+                "output_tokens": 227,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3521,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 227,
+                    "cache_read_input_tokens": 114516,
+                    "cache_creation_input_tokens": 3521,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3521
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000179"
+        },
+        {
+          "source_line": 180,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 2 审稿请求]: ## Round 2 — Continue 模式审稿任务（Reviewer 1: 方法严谨性 + 实验有效性）  **论文**: Exception Events Are All You Need: Component Ablation for Trace-Based Verdict Prediction **目标 Venue**: EMNLP 2026 (ARR…",
+                "leafUuid": "05ce64ec-9edc-40ec-bc23-531b5888ff37",
+                "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d"
+              }
+            }
+          ],
+          "id": "event-000180"
+        },
+        {
+          "source_line": 181,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Round 1 peer review for trace verdict prediction paper",
+                "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d"
+              }
+            }
+          ],
+          "id": "event-000181"
+        },
+        {
+          "source_line": 182,
+          "timestamp": "2026-05-18T19:48:23.784Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have re-read the entire paper. Let me compare with the Round 1 issues and assess each one.\n\n## Issue-by-Issue Assessment\n\n### R1-N1 [Format Marker / SFT vs B5 gap]\nRound 1 concern: SFT vs regex B5 gap is only 0.50pp. Need format-marker ablation.\n\nCurrent state:\n- Section 4.4 (nomarker ablation): YES, the paper now has a dedicated `\\subsection{Format Marker Ablation}` (experiments.tex line 104-113)\n\n\n- The ablation shows that removing the format marker drops performance by about 2pp across models (Qwen-7B drops from 99.83% to 97.65%, Qwen-1.5B from 99.83% to 97.82%), which the paper frames as roughly 9% format-dependent and 91% semantic. This directly addresses the Round 1 concern by demonstrating that the format marker contributes meaningfully to the gap, and even without it, performance remains well above the B5 baseline.\n\n- The key insight is that B5 itself depends entirely on the format marker—it would fail without it—whereas SFT achieves 97.65% without any marker at all, compared to 93.61% for the best non-marker regex baseline. That 4.04pp gap is far more compelling evidence of genuine semantic learning than the original 0.50pp gap between B5 and SFT.\n\n- The paper's framing has shifted to emphasize this ablation as the primary evidence for semantic understanding rather than relying solely on the small gap between methods.\n\n- Though the paper still cites the McNemar test (p=0.041) comparing B5 and SFT as evidence of learned semantics, that comparison remains problematic given the duplicate samples—the stronger argument now rests on the nomarker ablation itself.\n\nFor the statistical inference issue, the paper acknowledges the 49% duplicates in Section 2.2 and reports adjusted confidence intervals in Appendix H, but the main results in Section 4 don't consistently reflect this deduplication caveat when presenting accuracy figures.\n\nFor the causal decomposition, the 26%/74% split claims need to be softened with language like \"approximate\" or \"rough\" to avoid overstating the precision of the decomposition.\n\nCurrent state shows the word \"approximately\" is now consistently applied throughout the abstract, introduction, contributions, and conclusion. The paper also includes a caveat about potential factor interactions making the decomposition approximate. However, there's still no explicit discussion of confounding variables that could affect the decomposition.\n\nLooking at the single-seed issue for label_only, the concern remains that masking trace tokens introduces confounds beyond just gradient dilution, and this is only tested on Qwen-7B with seed 42. For the broader multi-seed problem, most conditions still lack results for seeds 123 and 456 in Table 8, with only ae_only now having the full three seeds while VOTA, VOTA_no_ae, label_only, loop_only, full_trace, and no_trace still show missing data. Looking at the DeepSeek seed 123 outlier, the paper already appropriately hedges the LoRA initialization sensitivity hypothesis across multiple sections—using \"hypothesize\" and noting the lack of direct evidence—while Appendix M provides mechanistic detail about the actual failure mode being format collapse rather than semantic issues.\n\nFor the VOTA truncation confound, the paper addresses this in Section 4.1 by showing that CodeLlama's results narrow the gap to just 1.01pp among non-truncated models, establishing that the 14.96pp DeepSeek deficit is primarily a truncation artifact, with Appendix H documenting that 91.7% of DeepSeek training samples were affected.\n\nOn the McNemar test attribution, I'm checking whether the p=0.041 value is correctly assigned to the B5 vs SFT comparison in the Discussion section, with Appendix K providing the detailed test results. The McNemar test attributions are now correct—B4 versus SFT shows p<0.001 for the larger 6.22 percentage point gap, while B5 versus SFT shows p=0.041 for the smaller 0.50 percentage point difference. The code and data release plan was already documented in the ARR checklist, so that concern is resolved. Now I'm checking on a new CodeLlama VOTA result that's been added.\n\nThere are several substantial new experiments to verify: a cross-model budget sweep table with four models (though CodeLlama's tail results are still pending), a head versus tail comparison table with new results across three models, and a significant nomarker ablation study in Section 4.4 with multiple seeds for Qwen-7B.\n\nThe paper now emphasizes a \"sharp phase transition at ~500 tail tokens\" based on consistent jumps of 14.7-23.0 percentage points across models from tail-256 to tail-512, though this language borrowed from physics might be overstating the finding. The earlier plan suggested the transition could be model-dependent—sharp for weaker models but gradual for stronger ones—but without the intermediate tail-384 data point, the paper can't actually test this nuance, so claiming a universal sharp transition may be slightly overclaimed.\n\nThe statistical methodology still hasn't addressed the core N1 issue from the first round: the paper acknowledges the duplication problem but doesn't implement cluster-robust confidence intervals.\n\nThere's also a persistent discrepancy between the ethics statement claiming \"20 GPU-hours\" and the ARR checklist reporting \"~50 GPU-hours.\"\n\nLooking at the overall trajectory, the paper has made genuine progress—CodeLlama's 98.57% VOTA is compelling, the nomarker ablation strengthens the semantic understanding argument, and several claims are now appropriately hedged. But fundamental gaps remain: the confidence intervals still treat n=1190 as independent observations, most conditions only have single-seed runs, the confounding variables in the 26%/74% decomposition aren't addressed, and some CodeLlama experiments are still pending. The work has moved from roughly a 3.0 to somewhere between 3.0 and 3.5.\n\nThe nomarker ablation and CodeLlama results are real improvements, but the statistical validity issue—treating clustered data as independent—is the core blocker that hasn't been resolved, and that's what's keeping this from conference-level acceptance.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "05ce64ec-9edc-40ec-bc23-531b5888ff37",
+            "isSidechain": false,
+            "requestId": "req_011CbAcNs3ES3dpri22apvJC",
+            "type": "assistant",
+            "uuid": "6b935498-a2d0-4e7e-b9a8-eff5f1bdd356",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013c2kPJrPLr2M3Ywv4TxAFU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18765,
+                "cache_read_input_tokens": 118037,
+                "output_tokens": 7103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18765,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7103,
+                    "cache_read_input_tokens": 118037,
+                    "cache_creation_input_tokens": 18765,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18765
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000182"
+        },
+        {
+          "source_line": 183,
+          "timestamp": "2026-05-18T19:49:24.306Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部文件重新读取完毕。现在逐条验证修复状态，撰写 Round 2 报告。\n\n---\n\n## Round 2 审稿报告 — Reviewer 1\n\n### Issue 逐条验证\n\n---\n\n**Issue 1: R1-N1 [Format Marker / SFT vs B5]** — `[PARTIALLY RESOLVED]`\n\n**改进点**：Section 4.4 新增了专门的 format marker ablation (nomarker condition)。Qwen-7B 3-seed mean 97.65%±0.96，Qwen-1.5B 97.82%，移除 marker 后仍远高于 B4 regex (93.61%)，4.04pp gap 远比原来的 0.50pp B5-vs-SFT gap 更有说服力。Abstract line 24 和 Contribution 1 (line 25) 都引用了 \"~91% semantic\" 结论，有正文数据支撑。\n\n**残留问题**：Discussion line 26 仍然使用 B5 vs SFT 的 McNemar p=0.041 作为 \"learned semantic understanding\" 的证据。考虑到 N2（重复样本）未修复，这个 p-value 在 deduplicated 下可能不再显著。但论文的主论证线已从 \"B5 vs SFT 0.50pp gap\" 转向 \"nomarker 97.65% vs regex 93.61%\"，后者更稳固。建议在 Discussion 中降低对 p=0.041 的依赖，将 nomarker ablation 作为主要证据。\n\n---\n\n**Issue 2: R1-N2 [统计推断 / 49% 重复]** — `[PARTIALLY RESOLVED]`\n\n**改进点**：Section 2.2 (method.tex line 14) 现在在正文早期明确披露了重复率 (39.45% train, 48.99% test)。这比 Round 1 仅在附录提及有显著改善。\n\n**残留问题**：正文所有表格（Table 1-4）的 CI 仍基于 n=1,190 独立 Bernoulli trials。Appendix H line 222 提供了 deduplicated CI (n=607, Qwen: [98.81, 99.91])，但这仍然只在附录出现一次。建议：\n- Table 2 (component ablation) 至少在 caption 中注明 \"CIs assume independent trials; see Appendix H for deduplicated estimates\"\n- 或在 Section 4 开头声明 \"Due to format-induced duplication (§2.2), all CIs are conservative lower bounds on effective precision; deduplicated CIs are wider (Appendix H)\"\n- Bootstrap p-values 未做 cluster-robust 校正\n\n这仍然是论文最大的统计方法论弱点，但考虑到 exception_only 的 effect size 极大（24.70pp lift），CI 宽度变化不会改变主要结论的方向，只影响精确度。\n\n---\n\n**Issue 3: R1-N3 [因果分解 26%/74%]** — `[PARTIALLY RESOLVED]`\n\n**改进点**：全文系统性地加入了 \"approximately\" 限定语：\n- Abstract line 22: \"approximately decomposes\"\n- Introduction line 20: \"We approximately decompose\"\n- Contribution 2 line 26: \"We approximately decompose why\"\n- Table 4 caption line 122: \"Approximate information density decomposition\"\n- Section 4.5 line 139: \"The two factors may interact, so this decomposition is approximate\"\n\n**残留问题**：label_only 的混淆变量仍未讨论。具体而言，masking trace tokens from loss 不仅消除 gradient dilution，还可能改变模型学到的内部表征（不再被迫预测 trace 内容，可能释放 capacity 用于 verdict learning）。这个效应超出 \"gradient dilution\" 的狭义定义。此外，label_only 仍仅在 Qwen-7B seed=42 上运行（Table 8 确认），跨模型稳定性未知。\n\n但 \"approximate\" 限定语的加入已经将该 claim 从 \"因果分解\" 降级为 \"描述性近似\"，审稿人的主要诉求已满足。\n\n---\n\n**Issue 4: R2-N3 [单 seed 覆盖度]** — `[UNRESOLVED]`\n\n**检查 Table 8 (Appendix D)**：VOTA, VOTA_no_ae, label_only, loop_only, full_trace, no_trace 仍全部为单 seed (seed=42)。无任何新增多 seed 实验。\n\n**改进点**：\n- ae_only 现在有 3-seed（99.64±0.49），但这在 Round 1 已存在\n- nomarker 新增了 3-seed for Qwen-7B（96.55, 98.32, 98.07, σ=0.96）\n- CodeLlama exception_only 新增了 3-seed（99.89±0.10）\n\n**残留问题**：Tier 1 vs Tier 2 层级的核心比较（exception_only 99.83% vs loop_only 85.63%）中，loop_only 仅 seed=42。如果 loop_only 在其他 seed 上达到 90%+，Tier 2 的定义就需要调整。VOTA (99.41%) 也仅 seed=42（Qwen-7B）；虽然 Qwen-1.5B (99.58%) 和 CodeLlama (98.57%) 提供了跨模型验证，但同一模型内的 seed 稳定性未知。\n\n这是论文尚未解决的实质性弱点。Table 1 caption (line 16) 尝试解释：\"ae_only and loop_only ablations tested on Qwen-7B (3 seeds) to isolate component contributions\"——但实际上 loop_only 并没有 3 seeds（Table 8 确认 loop_only 仅 seed=42）。**这是一个新引入的不准确声明。**\n\n---\n\n**Issue 5: R1-W2 [DeepSeek seed 123 归因]** — `[RESOLVED]`\n\nLimitations line 42: \"which we hypothesize reflects LoRA initialization sensitivity in DeepSeek-Coder, **though direct evidence is lacking**\"。Appendix L line 538 同样使用了 \"hypothesize\" + \"though direct evidence is lacking\"。Appendix M (line 558-560) 提供了 \"format collapse, not semantic failure\" 的更具体描述（输入超 4000 字符时模型回显 trace 内容而非输出 verdict）。归因现在被恰当地标记为推测性。\n\n---\n\n**Issue 6: R1-W4 [VOTA truncation confound]** — `[RESOLVED]`\n\nexperiments.tex line 53-54: \"among models without tokenizer-driven truncation, the VOTA range is only 1.01pp (98.57--99.58%), **suggesting that the 14.96pp DeepSeek deficit is primarily a truncation artifact**\"。CodeLlama VOTA (98.57%) 是新数据点，直接支持了截断是主要原因的结论。Appendix H line 214 也明确标注 \"confounded by tokenizer-driven truncation\"。\n\n---\n\n**Issue 7: R5-MCNEMAR** — `[RESOLVED]`\n\nexperiments.tex line 93: B4 vs SFT → McNemar p<0.001 ✓\nDiscussion line 26: B5 vs SFT → McNemar p=0.041 ✓\n两个比较现在正确区分。\n\n---\n\n**Issue 8: R1-M6 [代码/数据发布]** — `[RESOLVED]`\n\nARR checklist Section E (line 70-74) 明确列出：Code, Data (traces + splits), Models (LoRA adapters on HuggingFace) \"will be released upon acceptance\"。\n\n---\n\n### 新发现的问题\n\n**NEW-1** [warning] Table 1 caption 声明不准确\n\nTable 1 caption (experiments.tex line 16): \"ae_only and loop_only ablations tested on Qwen-7B **(3 seeds)**\"。但 Table 8 (Appendix D) 确认 loop_only 仅有 seed=42。ae_only 确实有 3 seeds，但 loop_only 没有。Caption 应修正为 \"ae_only (3 seeds) and loop_only (single seed)\"。\n\n**NEW-2** [info] GPU-hours 不一致仍然存在\n\nEthics Statement (main.tex line 55): \"total compute under **20** GPU-hours\"。ARR checklist (line 48): \"~**50** GPU-hours\"。2.5× 差异需要统一。\n\n**NEW-3** [info] CodeLlama tail-1024/2048 实验缺失\n\nTable tab:tail_cross_model (Appendix G line 396): CodeLlama tail-1024 和 tail-2048 标注为 \"---$^\\dag$ pending retraining\"。Discussion line 57 也提及 \"results pending\"。这意味着 \"cross-model budget curve\" 的 4-model claim 在 tail-1024+ 处实际只有 3 个模型。如果在提交前无法完成，建议在 Table caption 中明确 \"3 of 4 models at tail-1024+\"。\n\n**NEW-4** [minor] \"Sharp phase transition\" 措辞可能过强\n\nexperiments.tex line 153: \"a **sharp phase transition** at 256→512 tail tokens\"。4 个模型确实都在此区间有大幅跳跃 (+14.7-23.0pp)，但这是从 budget 翻倍（256→512 是 2× 跳跃），且没有中间数据点（如 tail-384）来验证过渡是否真的 \"sharp\"（阶跃状）还是 gradual（线性上升）。Dream review context (plan_016) 预期强模型呈 gradual 过渡、弱模型呈 sharp 过渡。建议将 \"sharp phase transition\" 改为 \"substantial accuracy jump\" 或补充 tail-384 数据点。\n\n---\n\n### Overall 评估\n\n**修改方向**: **Improved**\n\n论文在以下方面有实质性改进：\n1. **nomarker ablation** (Section 4.4) 大幅增强了 \"SFT learns semantic understanding\" 的证据基础，将核心论证从 0.50pp marginal gap 转移到 4.04pp nomarker-vs-regex gap\n2. **CodeLlama VOTA** (98.57%) 新增了关键数据点，将非截断 VOTA range 收窄至 1.01pp，有力地分离了截断 confound\n3. **\"approximately\" 限定语** 系统性加入，26%/74% 不再以因果性声明出现\n4. **4-model budget curve** 增强了 positional concentration 论点的跨模型证据\n5. DeepSeek seed 123 归因恰当标记为推测性\n\n但两个核心问题仍然未解决：\n- **统计推断** (N2)：CI 仍基于 n=1190，正文未修正\n- **单 seed** (R2-N3)：Tier 2 条件和 label_only 仍为单 seed，且 Table 1 caption 中 loop_only 的 \"3 seeds\" 声明不准确\n\n---\n\n### 评分建议\n\n**Overall Assessment: 3.0 → 3.0 (Findings)**\n\n论文在方法叙事和实验设计上有明显改善，但两个未解决的结构性弱点（统计方法论 + 单 seed 覆盖度）阻止其升级至 Conference level。具体而言：\n- 如果正文 CI 改用 cluster-robust 或至少在 Table caption 注明 caveat → 可升至 3.5\n- 如果额外补充 VOTA/loop_only 多 seed → 可升至 3.5-4.0\n- 当前状态维持 3.0 (Findings borderline)\n\n提交 Director 报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b935498-a2d0-4e7e-b9a8-eff5f1bdd356",
+            "isSidechain": false,
+            "requestId": "req_011CbAcNs3ES3dpri22apvJC",
+            "type": "assistant",
+            "uuid": "1cc3f81e-4c47-49ac-bff2-a113ec4eefbb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013c2kPJrPLr2M3Ywv4TxAFU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18765,
+                "cache_read_input_tokens": 118037,
+                "output_tokens": 7103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18765,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7103,
+                    "cache_read_input_tokens": 118037,
+                    "cache_creation_input_tokens": 18765,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18765
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000183"
+        },
+        {
+          "source_line": 184,
+          "timestamp": "2026-05-18T19:49:25.307Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RYczLRjw6parpX2xyjMWvT",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1cc3f81e-4c47-49ac-bff2-a113ec4eefbb",
+            "isSidechain": false,
+            "requestId": "req_011CbAcNs3ES3dpri22apvJC",
+            "type": "assistant",
+            "uuid": "7fb0c983-36c4-4c54-9295-07a4ac74921c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013c2kPJrPLr2M3Ywv4TxAFU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 18765,
+                "cache_read_input_tokens": 118037,
+                "output_tokens": 7103,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 18765,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7103,
+                    "cache_read_input_tokens": 118037,
+                    "cache_creation_input_tokens": 18765,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 18765
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000184"
+        },
+        {
+          "source_line": 185,
+          "timestamp": "2026-05-18T19:49:25.317Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01RYczLRjw6parpX2xyjMWvT",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__review_reviewer_post_to_director"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7fb0c983-36c4-4c54-9295-07a4ac74921c",
+            "isSidechain": false,
+            "promptId": "99f694bc-ae93-4418-bef3-2ebd426ea0a7",
+            "type": "user",
+            "uuid": "d29b1af5-88ce-4d6e-96ad-09e5779de56c",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__review_reviewer_post_to_director"
+              ],
+              "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+              "total_deferred_tools": 23
+            },
+            "sourceToolAssistantUUID": "7fb0c983-36c4-4c54-9295-07a4ac74921c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000185"
+        },
+        {
+          "source_line": 186,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 2 审稿请求]: ## Round 2 — Continue 模式审稿任务（Reviewer 1: 方法严谨性 + 实验有效性）  **论文**: Exception Events Are All You Need: Component Ablation for Trace-Based Verdict Prediction **目标 Venue**: EMNLP 2026 (ARR…",
+                "leafUuid": "d29b1af5-88ce-4d6e-96ad-09e5779de56c",
+                "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d"
+              }
+            }
+          ],
+          "id": "event-000186"
+        },
+        {
+          "source_line": 187,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Round 1 peer review for trace verdict prediction paper",
+                "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d"
+              }
+            }
+          ],
+          "id": "event-000187"
+        },
+        {
+          "source_line": 188,
+          "timestamp": "2026-05-18T19:50:02.735Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HgehB4FU3EYKkLnpuaR4KG",
+              "name": "mcp__agent-ml-research__review_reviewer_post_to_director",
+              "input": {
+                "text": "## Reviewer 1 — Round 2 审稿报告（Continue 模式）\n\n**审查侧重**: 方法严谨性 + 实验有效性\n**论文**: Exception Events Are All You Need: Component Ablation for Trace-Based Verdict Prediction\n\n---\n\n### Issue 逐条验证\n\n---\n\n**Issue 1: R1-N1 [Format Marker / SFT vs B5 gap 仅 0.50pp]** — `[PARTIALLY RESOLVED]`\n\n**改进**: Section 4.4 新增了 format marker ablation (nomarker condition)。Qwen-7B 3-seed mean 97.65%±0.96，Qwen-1.5B 97.82%。移除 marker 后仍远高于 B4 regex (93.61%)，4.04pp gap 远比 0.50pp B5-vs-SFT gap 有说服力。Abstract 和 Contribution 1 均引用 \"~91% semantic\"，有数据支撑。论文的主论证线已从 \"B5 vs SFT 的 0.50pp\" 转向 \"nomarker 97.65% vs B4 regex 93.61%\"，后者更稳固。\n\n**残留**: Discussion line 26 仍使用 B5 vs SFT McNemar p=0.041 作为 \"learned semantic understanding\" 证据。考虑到 N2（重复样本）未修复，该 p-value 在 deduplicated 下可能不显著。建议将 nomarker ablation 作为主要证据，降低对 p=0.041 的依赖。\n\n---\n\n**Issue 2: R1-N2 [统计推断 / 49% 重复]** — `[PARTIALLY RESOLVED]`\n\n**改进**: Section 2.2 (method.tex line 14) 现在在正文早期明确披露重复率 (39.45% train, 48.99% test)，比 Round 1 仅在附录提及有明显改善。\n\n**残留**: 正文所有表格 (Table 1-4) CI 仍基于 n=1,190 独立 Bernoulli trials。Appendix H 的 deduplicated CI (n=607, [98.81, 99.91]) 仍只出现一次。Bootstrap p-values 未做 cluster-robust 校正。建议至少在 Table 2 caption 注明 \"CIs assume independent trials; deduplicated estimates in Appendix H\"。\n\n但考虑到 exception_only 的 effect size 极大（24.70pp lift over no_trace），CI 宽度变化不会改变主要结论方向，只影响精确度。这仍是论文最大的统计方法论弱点，但不再是 blocking issue。\n\n---\n\n**Issue 3: R1-N3 [因果分解 26%/74% 声明过强]** — `[PARTIALLY RESOLVED]`\n\n**改进**: 全文系统性加入 \"approximately\" 限定语——Abstract、Introduction、Contribution 2、Table 4 caption、Section 4.5、Conclusion 均使用 \"approximately decomposes\"。Section 4.5 line 139 加入 \"The two factors may interact, so this decomposition is approximate\"。\n\n**残留**: label_only 的混淆变量仍未讨论（masking trace tokens 可能改变模型表征，超出 \"gradient dilution\" 狭义定义）。label_only 仍仅 Qwen-7B seed=42（Table 8 确认）。但 \"approximate\" 限定语已将 claim 从因果降级为描述性近似，审稿人主要诉求已满足。\n\n---\n\n**Issue 4: R2-N3 [单 seed 覆盖度]** — `[UNRESOLVED]`\n\nTable 8 (Appendix D) 确认：VOTA, VOTA_no_ae, label_only, loop_only, full_trace, no_trace 仍全部为单 seed (seed=42)。无新增多 seed 实验。\n\n新增的 multi-seed 仅限：\n- nomarker: Qwen-7B 3-seed（96.55, 98.32, 98.07, σ=0.96）— 新增\n- CodeLlama exception_only: 3-seed（99.89±0.10）— 新增\n- ae_only: Qwen-7B 3-seed（已有）\n\nTier 2 boundary 仍基于 loop_only 单 seed (85.63%)。如果 loop_only 在其他 seed 上达到 90%+，Tier 2 定义需要调整。\n\n**⚠️ 新问题**: Table 1 caption (experiments.tex line 16) 声称 \"ae_only and loop_only ablations tested on Qwen-7B **(3 seeds)**\"，但 Table 8 确认 **loop_only 仅有 seed=42**。这是一个事实性错误，必须修正。\n\n---\n\n**Issue 5: R1-W2 [DeepSeek seed 123 归因]** — `[RESOLVED]`\n\nLimitations line 42 和 Appendix L line 538 均使用 \"hypothesize\" + \"though direct evidence is lacking\"。Appendix M 补充了 \"format collapse, not semantic failure\" 的具体机制描述。归因现在被恰当标记为推测性。\n\n---\n\n**Issue 6: R1-W4 [VOTA truncation confound]** — `[RESOLVED]`\n\nexperiments.tex line 53-54 新增关键数据：CodeLlama VOTA 98.57%，使非截断 VOTA range 收窄至 1.01pp (98.57-99.58%)。正文明确指出 \"the 14.96pp DeepSeek deficit is primarily a truncation artifact\"。Appendix H line 214 也标注 \"confounded by tokenizer-driven truncation\"。\n\n---\n\n**Issue 7: R5-MCNEMAR** — `[RESOLVED]`\n\nexperiments.tex line 93: B4 vs SFT → McNemar p<0.001 ✓\nDiscussion line 26: B5 vs SFT → McNemar p=0.041 ✓\n两个比较正确区分。\n\n---\n\n**Issue 8: R1-M6 [代码/数据发布]** — `[RESOLVED]`\n\nARR checklist Section E 明确列出 Code, Data, Models \"upon acceptance\"。\n\n---\n\n### 新发现的问题\n\n**NEW-1** [warning] Table 1 caption 事实性错误\nTable 1 caption 声称 \"loop_only ablations tested on Qwen-7B (3 seeds)\"，但 Table 8 确认 loop_only 仅 seed=42。必须修正为 \"ae_only (3 seeds) and loop_only (single seed)\"。\n\n**NEW-2** [info] GPU-hours 不一致\nEthics Statement: \"under 20 GPU-hours\"；ARR checklist: \"~50 GPU-hours\"。2.5× 差异需统一。\n\n**NEW-3** [info] CodeLlama tail-1024/2048 缺失\nTable tail_cross_model: CodeLlama 标注 \"pending retraining\"。4-model budget curve 在 tail-1024+ 实际只有 3 模型。提交前如无法完成，caption 应明确。\n\n**NEW-4** [minor] \"Sharp phase transition\" 措辞\nexperiments.tex line 153 使用 \"sharp phase transition at 256→512 tail tokens\"，但缺少中间数据点 (tail-384) 验证过渡是否真的是阶跃状。建议改为 \"substantial accuracy jump\" 或补充 tail-384。\n\n---\n\n### 修复状态汇总\n\n| Issue | Status | 说明 |\n|-------|--------|------|\n| R1-N1 Format marker | PARTIALLY | nomarker ablation 强化了论证，但 B5 McNemar p=0.041 仍被引用 |\n| R1-N2 统计推断 | PARTIALLY | 正文披露了重复率，但 CI 未修正 |\n| R1-N3 因果分解 | PARTIALLY | \"approximately\" 加入，但 label_only 混淆变量未讨论 |\n| R2-N3 单 seed | UNRESOLVED | 6/7 条件仍单 seed；Table 1 caption 有事实错误 |\n| R1-W2 DeepSeek 归因 | RESOLVED | 恰当标记为推测性 |\n| R1-W4 VOTA truncation | RESOLVED | CodeLlama VOTA 新数据 + 正文 caveat |\n| R5-MCNEMAR | RESOLVED | B4/B5 正确区分 |\n| R1-M6 代码发布 | RESOLVED | ARR checklist 明确 |\n\n---\n\n### Overall 评估\n\n**修改方向**: **Improved**\n\n关键改进：\n1. nomarker ablation 大幅增强 \"semantic understanding\" 证据（4.04pp gap 替代 0.50pp gap）\n2. CodeLlama VOTA (98.57%) 分离了截断 confound\n3. \"approximately\" 限定语系统性加入\n4. 4-model budget curve 增强跨模型证据\n5. DeepSeek seed 123 归因恰当标记为推测性\n\n未解决：\n1. 统计推断：CI 仍基于 n=1190（但 effect size 足够大，方向性结论不受影响）\n2. 单 seed：Tier 2 和 label_only 仍为单 seed\n3. Table 1 caption 事实性错误（loop_only \"3 seeds\" 不实）\n\n---\n\n### 评分建议\n\n**Overall Assessment: 3.0 (Findings)**\n\n论文在方法叙事和实验设计上有明显改善，但两个结构性弱点阻止升级至 Conference：\n- 统计方法论（CI 未修正）在审稿人 desk 上是 methodology red flag\n- 单 seed 使 Tier 层级的 robustness 无法验证\n\n**升级路径**:\n- 正文 CI 加 caveat / 改用 cluster-robust → 可升至 3.5\n- VOTA + loop_only 补 3-seed → 可升至 3.5-4.0\n- 两者都做 → 4.0 (Conference) 有竞争力",
+                "reviewer_id": "1",
+                "project": "trace-verdict-study"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d29b1af5-88ce-4d6e-96ad-09e5779de56c",
+            "isSidechain": false,
+            "requestId": "req_011CbAcaFY8tEdLKXac9WNLD",
+            "type": "assistant",
+            "uuid": "3a876563-e92d-459e-a7cc-820aa425b154",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017okVqXbYQUesebntp6YXAh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 7415,
+                "cache_read_input_tokens": 136802,
+                "output_tokens": 2946,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7415,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 2946,
+                    "cache_read_input_tokens": 136802,
+                    "cache_creation_input_tokens": 7415,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7415
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000188"
+        },
+        {
+          "source_line": 189,
+          "timestamp": "2026-05-18T19:50:06.592Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HgehB4FU3EYKkLnpuaR4KG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_47a2f37b5c77af2e2351362f8def77a1:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3a876563-e92d-459e-a7cc-820aa425b154",
+            "isSidechain": false,
+            "promptId": "99f694bc-ae93-4418-bef3-2ebd426ea0a7",
+            "type": "user",
+            "uuid": "5c05be9f-56aa-47d0-83e3-3d9174564527",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_47a2f37b5c77af2e2351362f8def77a1:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_47a2f37b5c77af2e2351362f8def77a1:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "3a876563-e92d-459e-a7cc-820aa425b154",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000189"
+        },
+        {
+          "source_line": 190,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Round 1 peer review for trace verdict prediction paper",
+                "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d"
+              }
+            }
+          ],
+          "id": "event-000190"
+        },
+        {
+          "source_line": 191,
+          "timestamp": "2026-05-18T19:56:28.806Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-18T19:56:28.806Z",
+                "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+                "content": "[Round 2 审稿请求]:\n## Step 2 — 交叉分享：Reviewer 2 的完整审稿意见\n\n请逐条回应 Reviewer 2 的每个发现：`[AGREE]` 同意并说明理由，或 `[REBUT]` 反驳并提供证据（cite 具体 Section/Table/Figure/行号）。\n\n---\n\n以下是 Reviewer 2 的完整审稿原文：\n\n### Round 1 Issue 逐条验证\n\n**[RESOLVED] R2-N2 [实验 scope]**\nAbstract 现在声称 \"four models spanning three architecture families and 1.5B to 13B parameters\"。Table 1 确认 Qwen-7B、Qwen-1.5B、CodeLlama-13B、DeepSeek-6.7B 四模型完整数据。泛化性声明已在 Conclusion 中适当限定。\n\n**[PARTIALLY] R2-N3 [单 seed]**\n改善：CodeLlama-13B exception_only 现有 3 seeds（99.89±0.10）。\n仍有问题：Qwen-1.5B 所有条件均为单 seed，无方差估计，却参与支撑 \"across all four models\" 核心声明。Appendix 无 Qwen-1.5B 或 CodeLlama-13B 完整结果表。\n\n**[RESOLVED] R2-W1 [标题]**\n多 seed 数据反转了原始观察：exception_only（99.83±0.00）> ae_only（99.64±0.49）。Discussion 新增 \"Why exception_only outperforms ae_only\" 段落明确解释。\n\n**[RESOLVED] R2-W3 [SBFL 文献]**\nRelated Work 新增 \"Fault Localization\" 段落，引用 Ochiai、Tarantula、DStar + AutoFL、AgentFL、LLM4FL、Mukherjee et al.，positioning 清晰。\n\n**[RESOLVED] R1-W3 [数据循环依赖]**\nLimitations 第六条详述 self-familiarity bias，第七条专门讨论 error distribution bias。比 Round 1 显著扩展。\n\n**[RESOLVED] R1-M4 [正文偏短]**\nDiscussion 从 ~10 行扩展至 65 行、8 个实质段落。\n\n**[PARTIALLY] R-BIB [引用卫生]**\ndong2024composition 仍为 orphan。foster2025mutation 作者归属疑误（OpenAlex 第一作者 harman，非 foster）仍未修正。\n\n**[RESOLVED] R5-DEBUGBENCH-CONCLUSION**\nDebugBench 在 Conclusion 中为已完成工作，不再列为 future work。\n\n### 新发现的问题\n\n**N1 [critical]** PDF 编译严重损坏：编译 PDF 仅 2 页，标题为旧版本（\"Model-Agnostic Fault Detection\"），Figure 交叉引用显示 \"Figure ??\"，仅 1 条 reference。显然是过期编译产物。\n\n**N2 [critical]** Abstract 数据堆砌：Abstract 包含约 14-15 个独立数字，远超合理密度。读起来像压缩版 Results。建议保留 3 个核心数字。\n\n**W1 [warning]** Qwen-1.5B 全条件单 seed，无 Appendix 完整结果表。支撑 \"scale invariance\" 核心论点的 1.5B 端缺乏方差估计。\n\n**W2 [warning]** foster2025mutation 作者归属疑误。\n\n**W3 [warning]** widyasari2024fusefl 引用名称不一致：正文称 \"FuseFL\" 但 bib 标题不同。\n\n**W4 [warning]** CodeLlama tail-truncation 实验未完成，tail-1024 和 tail-2048 \"pending retraining\"。\n\n**小问题**: dong2024composition orphan；\"leveraged\" AI 用词；新增 FL 引用未经 OpenAlex 验证。\n\n**Overall**: 3.5 — Borderline Conference\n\n---\n\n请对以上每条给出 [AGREE] 或 [REBUT]。"
+              }
+            }
+          ],
+          "id": "event-000191"
+        },
+        {
+          "source_line": 192,
+          "timestamp": "2026-05-18T19:56:28.807Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-18T19:56:28.807Z",
+                "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d"
+              }
+            }
+          ],
+          "id": "event-000192"
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "messages": [
+        {
+          "source_line": 193,
+          "timestamp": "2026-05-18T19:56:28.795Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c05be9f-56aa-47d0-83e3-3d9174564527",
+            "isSidechain": false,
+            "promptId": "f369edf6-dd6a-4cbb-8b34-f0ab35ea0c42",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "259bc595-62c2-44c4-bc22-36bf9f2e270e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000193"
+        },
+        {
+          "source_line": 194,
+          "timestamp": "2026-05-18T19:56:28.796Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "259bc595-62c2-44c4-bc22-36bf9f2e270e",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "a85755b9-c8d1-469d-bf9b-baecb7627d43",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "809e04c4-81b0-4b55-8e92-0559ef7ff445",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000194"
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "messages": [
+        {
+          "source_line": 195,
+          "timestamp": "2026-05-18T19:56:28.931Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 2 审稿请求]:\n## Step 2 — 交叉分享：Reviewer 2 的完整审稿意见\n\n请逐条回应 Reviewer 2 的每个发现：`[AGREE]` 同意并说明理由，或 `[REBUT]` 反驳并提供证据（cite 具体 Section/Table/Figure/行号）。\n\n---\n\n以下是 Reviewer 2 的完整审稿原文：\n\n### Round 1 Issue 逐条验证\n\n**[RESOLVED] R2-N2 [实验 scope]**\nAbstract 现在声称 \"four models spanning three architecture families and 1.5B to 13B parameters\"。Table 1 确认 Qwen-7B、Qwen-1.5B、CodeLlama-13B、DeepSeek-6.7B 四模型完整数据。泛化性声明已在 Conclusion 中适当限定。\n\n**[PARTIALLY] R2-N3 [单 seed]**\n改善：CodeLlama-13B exception_only 现有 3 seeds（99.89±0.10）。\n仍有问题：Qwen-1.5B 所有条件均为单 seed，无方差估计，却参与支撑 \"across all four models\" 核心声明。Appendix 无 Qwen-1.5B 或 CodeLlama-13B 完整结果表。\n\n**[RESOLVED] R2-W1 [标题]**\n多 seed 数据反转了原始观察：exception_only（99.83±0.00）> ae_only（99.64±0.49）。Discussion 新增 \"Why exception_only outperforms ae_only\" 段落明确解释。\n\n**[RESOLVED] R2-W3 [SBFL 文献]**\nRelated Work 新增 \"Fault Localization\" 段落，引用 Ochiai、Tarantula、DStar + AutoFL、AgentFL、LLM4FL、Mukherjee et al.，positioning 清晰。\n\n**[RESOLVED] R1-W3 [数据循环依赖]**\nLimitations 第六条详述 self-familiarity bias，第七条专门讨论 error distribution bias。比 Round 1 显著扩展。\n\n**[RESOLVED] R1-M4 [正文偏短]**\nDiscussion 从 ~10 行扩展至 65 行、8 个实质段落。\n\n**[PARTIALLY] R-BIB [引用卫生]**\ndong2024composition 仍为 orphan。foster2025mutation 作者归属疑误（OpenAlex 第一作者 harman，非 foster）仍未修正。\n\n**[RESOLVED] R5-DEBUGBENCH-CONCLUSION**\nDebugBench 在 Conclusion 中为已完成工作，不再列为 future work。\n\n### 新发现的问题\n\n**N1 [critical]** PDF 编译严重损坏：编译 PDF 仅 2 页，标题为旧版本（\"Model-Agnostic Fault Detection\"），Figure 交叉引用显示 \"Figure ??\"，仅 1 条 reference。显然是过期编译产物。\n\n**N2 [critical]** Abstract 数据堆砌：Abstract 包含约 14-15 个独立数字，远超合理密度。读起来像压缩版 Results。建议保留 3 个核心数字。\n\n**W1 [warning]** Qwen-1.5B 全条件单 seed，无 Appendix 完整结果表。支撑 \"scale invariance\" 核心论点的 1.5B 端缺乏方差估计。\n\n**W2 [warning]** foster2025mutation 作者归属疑误。\n\n**W3 [warning]** widyasari2024fusefl 引用名称不一致：正文称 \"FuseFL\" 但 bib 标题不同。\n\n**W4 [warning]** CodeLlama tail-truncation 实验未完成，tail-1024 和 tail-2048 \"pending retraining\"。\n\n**小问题**: dong2024composition orphan；\"leveraged\" AI 用词；新增 FL 引用未经 OpenAlex 验证。\n\n**Overall**: 3.5 — Borderline Conference\n\n---\n\n请对以上每条给出 [AGREE] 或 [REBUT]。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a85755b9-c8d1-469d-bf9b-baecb7627d43",
+            "isSidechain": false,
+            "promptId": "f369edf6-dd6a-4cbb-8b34-f0ab35ea0c42",
+            "type": "user",
+            "uuid": "efc81c73-33c9-4147-b2fd-912b1d0b3659",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000195"
+        },
+        {
+          "source_line": 196,
+          "timestamp": "2026-05-18T19:57:13.102Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user (Review Director) is asking me to respond to Reviewer 2's findings, agreeing or rebutting each one with evidence from the paper. Let me go through each item systematically.\n\nLet me re-read the key sections I need to reference. I've already read all the paper files in this session, so I can cite specific locations.\n\nLet me go through each of R2's findings:\n\n### R2's Round 1 Issue Verifications\n\n1. **[RESOLVED] R2-N2 [实验 scope]** - R2 says resolved. I need to agree or rebut.\n\n\n2. **[PARTIALLY] R2-N3 [单 seed]** - R2 acknowledges partial resolution with details about Qwen-1.5B handling.\n3. **[RESOLVED] R2-W1 [标题]** - The multi-seed data reversal observation has been addressed.\n4. **[RESOLVED] R2-W3 [SBFL 文献]** - A new paragraph on fault localization was incorporated.\n5. **[RESOLVED] R1-W3 [数据循环依赖]** - The limitations section has been expanded.\n6. **[RESOLVED] R1-M4 [正文偏短]** - The discussion section is now more substantial.\n7. **[PARTIALLY] R-BIB [引** - Now I'm checking the bibliography-related issues.\n\nThere are still some citation problems to address: the dong2024composition reference appears orphaned, and foster2025mutation has an author attribution issue. DebugBench has been properly integrated into the conclusion section. R2 has flagged several new concerns including a corrupted PDF compilation, abstract data redundancy, inconsistent citation formatting for widyasari2024fusefl, incomplete CodeLlama tail-truncation handling, and some minor terminology and citation verification issues.\n\nLooking at the reviewer feedback now, most of the major points have been resolved. The scope claims in Table 1 are now properly constrained to the four models actually tested. The Qwen-1.5B multi-seed limitation has been acknowledged, though I notice the Table 1 caption still incorrectly states loop_only has three seeds when it should reflect the actual data. The multi-seed results show exception_only performing better than ae_only, which the discussion now explains. The related work section has been expanded with an FL paragraph, the limitations have been substantially strengthened, and the discussion itself is now much more thorough.\n\nI'm also seeing some bibliography issues flagged—there's an orphan reference to dong2024composition that I had caught before, and foster2025mutation has an author mismatch that needs verification. But the critical issue R2 has raised is that the compiled PDF itself is corrupted, showing only 2 pages with an old title and broken references. I didn't actually verify the final PDF output in my previous review since I was working from the source .tex files, so I need to take this seriously as a presentation problem that would prevent proper submission.\n\nOn the abstract density issue, I'm counting roughly 14-15 distinct numbers scattered throughout—percentages, token counts, performance deltas—which does feel excessive for an abstract. The writing guidelines do specify that abstracts should be concise and focused, so this concentration of metrics probably violates that principle.\n\nFor the Qwen-1.5B single-seed concern, I see the validity here too. This aligns with what I flagged earlier about coverage gaps, and it's particularly problematic since scale invariance is a central claim of the work.\n\nOn the foster2025mutation reference, I found the same discrepancy during my verification pass—the author attribution differs between the bibliography and the API data.\n\nFor widyasari2024fusefl, I'm checking the actual paper details now. The bibliography entry shows the title as \"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization,\" but the text refers to it as \"FuseFL.\" The cite key itself suggests a naming mismatch—the paper isn't actually titled FuseFL, so R2's observation about the inconsistency is correct. The tool naming issue is tricky since many SE papers use informal names that don't appear in formal titles, but R2 has a fair point about the mismatch creating confusion. I agree with W4 about the CodeLlama experiments—I flagged the same concern in my earlier review. For N1, the PDF compilation problem is clearly a real issue that needs fixing before submission, though it doesn't affect the paper's intellectual content itself. On N2, I think R2 is being too harsh calling the abstract \"critical\"—it's a valid writing concern about data density, but not at that severity level.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "efc81c73-33c9-4147-b2fd-912b1d0b3659",
+            "isSidechain": false,
+            "requestId": "req_011CbAd7UXMAXWanM8MhX2Yj",
+            "type": "assistant",
+            "uuid": "0667e753-486c-48d5-89df-34e8dfa01363",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rv2XAMKWXwCQdhRJvBPBT5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1210,
+                "cache_read_input_tokens": 147242,
+                "output_tokens": 6330,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1210,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6330,
+                    "cache_read_input_tokens": 147242,
+                    "cache_creation_input_tokens": 1210,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1210
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000196"
+        },
+        {
+          "source_line": 197,
+          "timestamp": "2026-05-18T19:58:14.754Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "逐条回应 Reviewer 2 的审稿意见。\n\n---\n\n## Reviewer 1 交叉回应\n\n### R2 Round 1 Issues 验证\n\n---\n\n**[AGREE] R2-N2 [实验 scope] — RESOLVED**\n\n同意。Table 1 (experiments.tex line 14-33) 确认四模型完整数据。Conclusion line 3 使用 \"four models (1.5B--13B, three architecture families)\" 准确描述了实际覆盖范围。Introduction Contribution 列表 (line 24-28) 的 generality claims 也与实验范围匹配。\n\n---\n\n**[AGREE] R2-N3 [单 seed] — PARTIALLY**\n\n同意，且我有补充发现。我的 Round 2 报告同样将此列为 `[UNRESOLVED]`。\n\nR2 正确指出 Qwen-1.5B 所有条件均为单 seed。我额外发现一个 **事实性错误**：Table 1 caption (experiments.tex line 16) 声称 \"ae\\_only and loop\\_only ablations tested on Qwen-7B **(3 seeds)**\"，但 Table 8 (Appendix D, appendix.tex line 177-182) 明确显示 loop\\_only 仅有 seed=42，S123 和 S456 均为 \"---\"。ae\\_only 确实有 3 seeds，但 loop\\_only 没有。这个 caption 声明必须修正。\n\nR2 还指出缺少 Qwen-1.5B 和 CodeLlama-13B 的 Appendix 完整结果表，我同意这是一个 reporting gap。当前 Appendix D 仅有 Qwen-7B (Table 8) 和 DeepSeek-6.7B (Table 9) 的完整表格。\n\n---\n\n**[AGREE] R2-W1 [标题 / exception vs ae] — RESOLVED**\n\n同意。Multi-seed 数据 (exception\\_only 99.83±0.00 vs ae\\_only 99.64±0.49, Table 2 line 73-74) 以及 Discussion \"Why exception\\_only outperforms ae\\_only\" 段落 (discussion.tex line 18-23) 充分解释了 exception 的优势来源。\n\n---\n\n**[AGREE] R2-W3 [SBFL 文献] — RESOLVED**\n\n同意。Related Work (related\\_work.tex line 18-22) 新增 \"Fault Localization\" 段落，引用 Ochiai、Tarantula、DStar、AutoFL、AgentFL、LLM4FL、Mukherjee et al.，并清晰 positioning：\"verdict prediction is a prerequisite to fault localization\" (line 21)。coverage 充足。\n\n---\n\n**[AGREE] R1-W3 [数据循环依赖] — RESOLVED**\n\n同意。Limitations 第五条 (main.tex line 46) 讨论 generator-evaluator overlap，第六条 (line 47) 讨论 self-familiarity bias 及 DebugBench 缓解，第七条 (line 48) 讨论 error distribution bias（LLM 生成的错误偏向 TypeError/ValueError，真实代码可能有更多 silent logic errors）。比 Round 1 显著扩展。\n\n---\n\n**[AGREE] R1-M4 [正文偏短] — RESOLVED**\n\n同意。Discussion (discussion.tex) 现在包含 8 个实质性段落，覆盖机制解释、exception vs ae\\_only、SFT vs regex、zero-shot/few-shot、format marker sensitivity、irreducible errors、tokenizer efficiency、tier hierarchy practical implications。篇幅和深度均已充分。\n\n---\n\n**[AGREE] R-BIB [引用卫生] — PARTIALLY**\n\n同意。我的 Round 1 引用验证同样标记了这两个问题：\n- `dong2024composition`: orphan entry，在 .bib 中存在但论文中未 \\cite（verify\\_references 工具确认 orphan\\_bib: [\"dong2024composition\"]）\n- `foster2025mutation`: OpenAlex 匹配显示 first\\_author: bib=foster vs api=harman，说明 bib 中第一作者可能不正确\n\n---\n\n**[AGREE] R5-DEBUGBENCH-CONCLUSION — RESOLVED**\n\n同意。Conclusion line 6 将 DebugBench 作为已完成工作报告 (\"cross-dataset evaluation on DebugBench confirms generalization\")，不再列为 future work。\n\n---\n\n### R2 新发现逐条回应\n\n---\n\n**[AGREE] R2-N1 [critical] PDF 编译损坏**\n\n我的 Round 2 审查基于 .tex 源文件，未检查编译 PDF。R2 报告的问题（仅 2 页、旧标题 \"Model-Agnostic Fault Detection\"、Figure ?? 交叉引用、仅 1 条 reference）说明 `/artifacts/_project/paper/main.pdf` 是过期编译产物。\n\n**补充判断**：这是一个 build/presentation 问题，不影响论文的 intellectual content。.tex 源文件内容完整（9 个正文 section + 13 个 appendix section），所有 \\ref、\\cite 均有对应 \\label 和 bib entry。但提交前必须修复编译，否则审稿人只看到 2 页 broken PDF 会直接 desk reject。\n\n**严重程度**：同意标记为 critical（从提交可行性角度），但建议 Director 将其归类为 engineering blocker 而非 intellectual weakness。\n\n---\n\n**[REBUT] R2-N2 [critical] Abstract 数据堆砌**\n\nR2 称 Abstract 包含 ~14-15 个数字，评为 critical。\n\n我同意 Abstract 数字密度偏高（我计数约 13-14 个独立数值），这是一个 **valid writing concern**。但我 **反对将其评为 critical**（影响接收决定的级别），理由如下：\n\n1. **每个数字服务于叙事推进**：≥99.33%（核心 claim）、67.3-76.5%（baseline 对比，建立 gap）、~74%/~26%（decomposition, Contribution 2）、~91%（format ablation, Contribution 1）、100%（cross-dataset）。删除任何一组都会使某个 Contribution 在 Abstract 中无数据支撑。\n\n2. **评审标准参考**：ACL ARR review form 的 Soundness 和 Excitement 维度不包含 \"Abstract 数字密度\" 作为评分因素。这属于 presentation feedback，不应影响 Overall Assessment。\n\n3. **实操建议**：可合并部分数字（如将 \"67.3-76.5%\" 改为 \"up to 9pp scale sensitivity\"），但这是 **should-fix (warning) 级别的写作建议**，非 critical。\n\n**结论**：降级为 warning。\n\n---\n\n**[AGREE] R2-W1 [warning] Qwen-1.5B 全条件单 seed**\n\n同意。这与我的 Issue 4 (R2-N3 [UNRESOLVED]) 一致。Qwen-1.5B 支撑 \"scale invariance\" 的核心论点（experiments.tex line 41-43: \"both Qwen-1.5B and CodeLlama-13B achieve 99.83%+\"），但仅为单 seed。如果 Qwen-1.5B exception\\_only 在其他 seed 上出现类似 DeepSeek 的 bimodal behavior（σ=4.76pp），\"scale invariance\" claim 会被削弱。\n\n当然，CodeLlama-13B 现已有 3-seed (99.89±0.10, σ=0.10)，从 13B 端部分支撑了 scale invariance。但 1.5B 端仍是 single data point。\n\n---\n\n**[AGREE] R2-W2 [warning] foster2025mutation 作者归属**\n\n同意。我的 Round 1 引用验证 (verify\\_references) 结果一致：OpenAlex 返回 first\\_author: bib=foster vs api=harman。需要核实 bib entry 并修正。\n\n---\n\n**[AGREE] R2-W3 [warning] widyasari2024fusefl 命名不一致**\n\n同意。Related Work line 13 使用 \"FuseFL \\citep{widyasari2024fusefl}\"，但 references.bib 中该 entry 的标题是 \"Demystifying Faulty Code: Step-by-Step Reasoning for Explainable Fault Localization\"（bib line 139-144），不包含 \"FuseFL\"。可能是工具名与论文标题不同，但应核实 (a) 是否引用了正确的论文，(b) 如果 \"FuseFL\" 是工具名而非论文名，正文应写成 \"Widyasari et al. (2024) demonstrated...\" 而非给出一个 bib 中不存在的缩写。\n\n---\n\n**[AGREE] R2-W4 [warning] CodeLlama tail 实验未完成**\n\n同意。我在 Round 2 报告中将此列为 NEW-3。Table tail\\_cross\\_model (appendix.tex line 396) CodeLlama tail-1024/2048 标注 \"---$^\\dag$ pending retraining\"。Discussion line 57 也提及 \"results pending\"。提交前需要完成或在 Table caption 中明确标注为 3-model 数据。\n\n---\n\n**[AGREE] 小问题**\n\n- `dong2024composition` orphan：同意，Round 1 已标记\n- \"leveraged\" AI 用词：同意，related\\_work.tex line 5 使用 \"leveraged trace chain-of-thought\"，应改为 \"used\" 或 \"employed\"（符合 CLAUDE.md §5.3 用词黑名单）\n- FL 引用未经 OpenAlex 验证：同意。我的 verify\\_references 结果显示 `kang2024autofl` (not\\_found, similarity 0.45)、`widyasari2024llm4fl` (not\\_found, similarity 0.45)、`mukherjee2025llmfl` (not\\_found, similarity 0.19) 均未在 OpenAlex 找到匹配。这些可能是较新论文尚未收录，但应人工核实 title/author/venue 是否正确。\n\n---\n\n### 交叉评分对照\n\n| 维度 | R1 (我) | R2 | 差异分析 |\n|------|---------|-----|----------|\n| Overall | 3.0 | 3.5 | R2 比我高 0.5，可能因为 R2 侧重新颖性/相关工作（已改善），而我侧重统计有效性（未修复） |\n| 核心分歧 | 统计推断 CI 未修正 = blocking | Abstract 数字密度 = critical | 我认为 CI 问题更根本；R2 的 N2 我建议降级为 warning |\n\n**我维持 3.0 (Findings)**，原因是 CI 未修正 + 单 seed 覆盖度不足这两个方法论问题在我的审查维度（统计有效性 + 可复现性）中权重更高。但我承认论文在 R2 关注的维度（novelty positioning、related work、discussion depth）上确实有实质改善。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0667e753-486c-48d5-89df-34e8dfa01363",
+            "isSidechain": false,
+            "requestId": "req_011CbAd7UXMAXWanM8MhX2Yj",
+            "type": "assistant",
+            "uuid": "76e2d151-c58a-497a-87ab-baa0a68101a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rv2XAMKWXwCQdhRJvBPBT5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1210,
+                "cache_read_input_tokens": 147242,
+                "output_tokens": 6330,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1210,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6330,
+                    "cache_read_input_tokens": 147242,
+                    "cache_creation_input_tokens": 1210,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1210
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000197"
+        },
+        {
+          "source_line": 198,
+          "timestamp": "2026-05-18T19:58:29.077Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JJKbXVN1oMftxaoeCSvhP7",
+              "name": "mcp__agent-ml-research__review_reviewer_post_to_director",
+              "input": {
+                "text": "## Reviewer 1 — 交叉回应 Reviewer 2 审稿意见\n\n### Round 1 Issues\n\n[AGREE] R2-N2 [实验 scope] RESOLVED — Table 1 四模型完整数据，Conclusion 适当限定。\n\n[AGREE] R2-N3 [单 seed] PARTIALLY — 补充发现：Table 1 caption 声称 \"loop_only (3 seeds)\" 但 Table 8 确认仅 seed=42，存在事实性错误。缺 Qwen-1.5B / CodeLlama 完整 Appendix 结果表。\n\n[AGREE] R2-W1 [标题/exception vs ae] RESOLVED — Multi-seed 反转 + Discussion 段落充分解释。\n\n[AGREE] R2-W3 [SBFL 文献] RESOLVED — FL 段落 positioning 清晰。\n\n[AGREE] R1-W3 [数据循环依赖] RESOLVED — Limitations 第五至七条详述。\n\n[AGREE] R1-M4 [正文偏短] RESOLVED — Discussion 8 段实质内容。\n\n[AGREE] R-BIB [引用卫生] PARTIALLY — dong2024composition orphan 和 foster2025mutation 作者疑误均与我的 verify_references 结果一致。\n\n[AGREE] R5-DEBUGBENCH-CONCLUSION RESOLVED。\n\n### R2 新发现\n\n[AGREE] R2-N1 [critical] PDF 编译损坏 — 我审的是 .tex 源（内容完整），同意编译 PDF 是过期产物。提交前必须修复，否则 desk reject。建议 Director 归类为 engineering blocker 而非 intellectual weakness。\n\n[REBUT] R2-N2 [critical] Abstract 数据堆砌 — 同意密度偏高（~14 个数字），但反对 critical 评级。理由：(1) 每个数字服务于 Contribution 叙事；(2) ACL ARR 评分维度不含 Abstract 数字密度；(3) 属于 presentation feedback。建议降级为 warning。\n\n[AGREE] R2-W1 [warning] Qwen-1.5B 全条件单 seed — 与我的 Issue 4 一致。1.5B 端缺方差估计削弱 scale invariance claim。\n\n[AGREE] R2-W2 [warning] foster2025mutation 作者归属 — 我的 verify_references 同样标记 bib=foster vs api=harman。\n\n[AGREE] R2-W3 [warning] widyasari2024fusefl 命名不一致 — bib 标题 \"Demystifying Faulty Code...\" 不含 \"FuseFL\"。需核实是否引用了正确论文。\n\n[AGREE] R2-W4 [warning] CodeLlama tail 未完成 — 与我的 NEW-3 一致。\n\n[AGREE] 小问题（orphan, AI 用词 \"leveraged\", FL 引用未验证）— 均与我的发现一致。\n\n### 评分对照\n\nR1（我）: 3.0 (Findings) | R2: 3.5 (Borderline Conference)\n\n核心分歧：我侧重统计有效性（CI 未修正 + 单 seed = blocking），R2 侧重新颖性/相关工作（已改善）。两个视角互补。我维持 3.0，但承认 R2 关注维度上确实有实质改善。\n\n唯一 rebut 点：R2-N2 Abstract 数字密度应从 critical 降至 warning。",
+                "reviewer_id": "1",
+                "project": "trace-verdict-study"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "76e2d151-c58a-497a-87ab-baa0a68101a1",
+            "isSidechain": false,
+            "requestId": "req_011CbAd7UXMAXWanM8MhX2Yj",
+            "type": "assistant",
+            "uuid": "bc1c3101-036e-4d16-b5b3-380289fc00a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rv2XAMKWXwCQdhRJvBPBT5",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1210,
+                "cache_read_input_tokens": 147242,
+                "output_tokens": 6330,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1210,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 6330,
+                    "cache_read_input_tokens": 147242,
+                    "cache_creation_input_tokens": 1210,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1210
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000198"
+        },
+        {
+          "source_line": 199,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Round 2 审稿请求]: ## Step 2 — 交叉分享：Reviewer 2 的完整审稿意见  请逐条回应 Reviewer 2 的每个发现：`[AGREE]` 同意并说明理由，或 `[REBUT]` 反驳并提供证据（cite 具体 Section/Table/Figure/行号）。  ---  以下是 Reviewer 2 的完整审稿原文：  ### Round 1 Issue 逐条验…",
+                "leafUuid": "bc1c3101-036e-4d16-b5b3-380289fc00a2",
+                "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d"
+              }
+            }
+          ],
+          "id": "event-000199"
+        },
+        {
+          "source_line": 200,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Round 1 peer review for trace verdict prediction paper",
+                "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d"
+              }
+            }
+          ],
+          "id": "event-000200"
+        },
+        {
+          "source_line": 201,
+          "timestamp": "2026-05-18T19:58:32.598Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JJKbXVN1oMftxaoeCSvhP7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_47a2f37b5c77af2e2351362f8def77a1:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc1c3101-036e-4d16-b5b3-380289fc00a2",
+            "isSidechain": false,
+            "promptId": "f369edf6-dd6a-4cbb-8b34-f0ab35ea0c42",
+            "type": "user",
+            "uuid": "54e987a1-6b3c-4ac1-ae59-c74effb598a2",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_47a2f37b5c77af2e2351362f8def77a1:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_47a2f37b5c77af2e2351362f8def77a1:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "bc1c3101-036e-4d16-b5b3-380289fc00a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_4/projects/trace-verdict-study/.claude/sessions/review_reviewer_1_7624f219",
+            "sessionId": "f76386b4-9d1f-4f92-b831-706bc4acd94d",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000201"
+        }
+      ]
+    }
+  ]
+}

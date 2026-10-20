@@ -1,0 +1,2215 @@
+{
+  "schema_version": "1.0",
+  "id": "c33cc95070bfad6f58e2",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I'm designing an evaluation for a language model pretraining paper that tests whether models acquire \"tail knowledge\" (r",
+  "task_key": "agent-a85ac549254273dad",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a85ac549254273dad.jsonl",
+    "occurrence": 1,
+    "bytes": 105666,
+    "sha256": "1979823a369ffe4bcdc8b933f26349224b6400378ffc5b175f6f03f0a648f985"
+  },
+  "statistics": {
+    "messages": 48,
+    "user_turns": 1,
+    "tool_calls": 20,
+    "roles": {
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 20,
+      "tool_result": 20
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-09T20:01:51.533Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'm designing an evaluation for a language model pretraining paper that tests whether models acquire \"tail knowledge\" (rare factual content). I need to understand the following:\n\n1. Has TriviaQA been stratified by Wikipedia page-view statistics or entity frequency in prior work? Search for papers that split TriviaQA into \"head\" vs \"tail\" entities by Wikipedia popularity. Fetch any relevant papers.\n\n2. What is the LAMA benchmark? How is it used to test factual knowledge in LMs? What are its limitations for tail-knowledge evaluation?\n\n3. Is there a standard benchmark specifically for \"tail knowledge\" or \"rare entity knowledge\" in LLMs? Search for \"tail knowledge evaluation LLM\" or \"rare entity knowledge benchmark\".\n\n4. Search for: \"entity frequency Wikipedia knowledge LLM evaluation\" to find any papers stratifying LM evaluations by entity rarity.\n\nReport what exists, whether the TriviaQA stratification approach is novel or has prior work, and what the best independent evaluation approach would be for testing tail knowledge acquisition."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "42d92842-4ec1-4525-85e0-c8802680d2b4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-09T20:01:53.811Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you research this comprehensively. Let me search for papers and information about TriviaQA stratification, LAMA benchmark, and tail knowledge evaluation."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42d92842-4ec1-4525-85e0-c8802680d2b4",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbF1ovTo9z9QTJVK2vV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ee3e5b10-d7c8-46ee-b702-c618a5b2e921",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0197GTmbcpj2UfJ9iX7fJsq9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 656,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 656,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-09T20:01:54.058Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018fby6dMa4cU8TBox1nyZxK",
+              "name": "WebSearch",
+              "input": {
+                "query": "TriviaQA stratified Wikipedia page-view statistics entity frequency head tail"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ee3e5b10-d7c8-46ee-b702-c618a5b2e921",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbF1ovTo9z9QTJVK2vV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e65f0d6b-899c-4eff-ab23-36b94572f788",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0197GTmbcpj2UfJ9iX7fJsq9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 656,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 656,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-09T20:01:54.282Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EpypkueY9D1nDkCgr8R4mf",
+              "name": "WebSearch",
+              "input": {
+                "query": "LAMA benchmark factual knowledge language models"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e65f0d6b-899c-4eff-ab23-36b94572f788",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbF1ovTo9z9QTJVK2vV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9a879fdb-89a9-4031-aaa9-1a00aeedf6b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0197GTmbcpj2UfJ9iX7fJsq9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 656,
+                "cache_read_input_tokens": 13791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 656,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-09T20:01:54.484Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GoREWHgLdTDEDAVKh9cdk6",
+              "name": "WebSearch",
+              "input": {
+                "query": "tail knowledge evaluation LLM rare entity knowledge benchmark"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a879fdb-89a9-4031-aaa9-1a00aeedf6b2",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbF1ovTo9z9QTJVK2vV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "515cb014-3973-4c82-88bf-1543ccf9a599",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0197GTmbcpj2UfJ9iX7fJsq9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 656,
+                "cache_read_input_tokens": 13791,
+                "output_tokens": 235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 656
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 235,
+                    "cache_read_input_tokens": 13791,
+                    "cache_creation_input_tokens": 656,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 656,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-09T20:01:54.489Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GSXafs3QLH3o7qcyZ25gsr",
+              "name": "WebSearch",
+              "input": {
+                "query": "entity frequency Wikipedia knowledge LLM evaluation stratified"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "515cb014-3973-4c82-88bf-1543ccf9a599",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbF1ovTo9z9QTJVK2vV",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6bf81fa9-51b6-4941-aa3b-06b58725750a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_0197GTmbcpj2UfJ9iX7fJsq9",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 656,
+                "cache_read_input_tokens": 13791,
+                "output_tokens": 235,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 656
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 235,
+                    "cache_read_input_tokens": 13791,
+                    "cache_creation_input_tokens": 656,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 656,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-09T20:02:00.286Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EpypkueY9D1nDkCgr8R4mf",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LAMA benchmark factual knowledge language models\"\n\nLinks: [{\"title\":\"Language Models as Knowledge Bases?\",\"url\":\"https://aclanthology.org/D19-1250.pdf\"},{\"title\":\"Factual Knowledge Probing in Pretrained Language Models | by Denis Lukovnikov | Medium\",\"url\":\"https://lukovnikov.medium.com/factual-knowledge-probing-in-pretrained-language-models-4c52f6c79fc3\"},{\"title\":\"Towards Understanding Factual Knowledge of Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=9OevMUdods\"},{\"title\":\"GitHub - facebookresearch/LAMA: LAnguage Model Analysis · GitHub\",\"url\":\"https://github.com/facebookresearch/LAMA\"},{\"title\":\"Systematic Assessment of Factual Knowledge in Large ...\",\"url\":\"https://aclanthology.org/2023.findings-emnlp.885.pdf\"},{\"title\":\"Unsupervised Improvement of Factual Knowledge in Language Models\",\"url\":\"https://arxiv.org/pdf/2304.01597\"},{\"title\":\"Time-Aware Language Models as Temporal Knowledge Bases | Transactions of the Association for Computational Linguistics | MIT Press\",\"url\":\"https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00459/110012/Time-Aware-Language-Models-as-Temporal-Knowledge\"},{\"title\":\"LAMA | Patrick Lewis\",\"url\":\"https://www.patricklewis.io/project/lama/\"},{\"title\":\"Statistical Knowledge Assessment for Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=pNtG6NAmx0\"},{\"title\":\"facebook/lama · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/facebook/lama\"}]\n\nBased on the search results, here's comprehensive information about the LAMA benchmark:\n\n## Overview\n\nLAMA is a probe for analyzing the factual and commonsense knowledge contained in pretrained language models. The LAMA (LAnguage Model Analysis) probe consists of a set of knowledge sources, each comprised of a set of facts.\n\n## How It Works\n\nA pretrained language model knows a fact (subject, relation, object) such as (Dante, born-in, Florence) if it can successfully predict masked objects in cloze sentences such as \"Dante was born in [MASK]\". The LAMA benchmark consists of cloze queries about facts, for example, \"Dante was born in __X__\".\n\n## Data Sources\n\nThe dataset includes a subset of Google_RE, TRex (subset of wikidata triples), Conceptnet and Squad, with configs for each of \"google_re\", \"trex\", \"conceptnet\" and \"squad\", respectively.\n\n## Key Findings\n\nBERT contains relational knowledge competitive with traditional NLP methods that have some access to oracle knowledge, BERT also does remarkably well on open-domain question answering against a supervised baseline, and certain types of factual knowledge are learned much more readily than others by standard language model pretraining approaches.\n\n## Practical Evaluation\n\nThe dataset includes some cleanup, and addition of a masked sentence and associated answers for the [MASK] token. The accuracy in predicting the [MASK] token shows how well the language model knows facts and common sense information.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a879fdb-89a9-4031-aaa9-1a00aeedf6b2",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "65e8745a-8b1a-4af9-863c-8cfe45581503",
+            "sourceToolAssistantUUID": "9a879fdb-89a9-4031-aaa9-1a00aeedf6b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-09T20:02:00.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018fby6dMa4cU8TBox1nyZxK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"TriviaQA stratified Wikipedia page-view statistics entity frequency head tail\"\n\nLinks: [{\"title\":\"TriviaQA: A Large Scale Distantly Supervised Challenge Dataset\",\"url\":\"https://www.cs.utexas.edu/~eunsol/files/papers/acl17jcwz.pdf\"},{\"title\":\"TriviaQA | Polynomia\",\"url\":\"https://polynomia.github.io/TriviaQA/\"},{\"title\":\"TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension | Request PDF\",\"url\":\"https://www.researchgate.net/publication/318740752_TriviaQA_A_Large_Scale_Distantly_Supervised_Challenge_Dataset_for_Reading_Comprehension\"},{\"title\":\"TriviaQA | Epoch AI\",\"url\":\"https://epoch.ai/benchmarks/trivia-qa\"},{\"title\":\"Performance on TriviaQA's Unfiltered Dev set for GraphRetriever, T5 and... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Performance-on-TriviaQAs-Unfiltered-Dev-set-for-GraphRetriever-T5-and-our-EAE-model-by_fig2_340662683\"},{\"title\":\"GitHub - mandarjoshi90/triviaqa: Code for the TriviaQA reading comprehension dataset · GitHub\",\"url\":\"https://github.com/mandarjoshi90/triviaqa\"},{\"title\":\"triviaqa/samples/triviaqa_sample.json at master · mandarjoshi90/triviaqa\",\"url\":\"https://github.com/mandarjoshi90/triviaqa/blob/master/samples/triviaqa_sample.json\"},{\"title\":\"[Quick Review] TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension\",\"url\":\"https://liner.com/review/triviaqa-large-scale-distantly-supervised-challenge-dataset-for-reading-comprehension\"},{\"title\":\"mandarjoshi/trivia_qa · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/mandarjoshi/trivia_qa\"},{\"title\":\"Category:Wikipedia page view statistics - Wikimedia Commons\",\"url\":\"https://commons.wikimedia.org/wiki/Category:Wikipedia_page_view_statistics\"}]\n\nBased on the search results, I found relevant information about TriviaQA and entity frequency analysis:\n\nPerformance on TriviaQA's Unfiltered Dev set has been analyzed by the frequency of the answer entity in the Wikipedia corpus. All models perform better on frequent entities, indicating a head-tail distribution in entity frequency.\n\nMore specifically, lower performance has been observed for entities seen fewer than one hundred times during training, likely because their entity embedding does not contain enough information.\n\nThe search results also reveal that TriviaQA combines questions with supporting web or Wikipedia evidence, requiring retrieval and reading comprehension to extract or generate precise answers. This dataset structure enables analysis of how models perform on questions with varying entity frequencies—from common \"head\" entities (frequently mentioned in Wikipedia) to rare \"tail\" entities (infrequently mentioned).\n\nThe analysis of entity frequency stratification in TriviaQA demonstrates that model performance degrades significantly for less frequently occurring entities, which is a common challenge in reading comprehension tasks dealing with Wikipedia-based knowledge sources.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e65f0d6b-899c-4eff-ab23-36b94572f788",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "37b4aa05-56f0-41fa-96eb-814f078067e6",
+            "sourceToolAssistantUUID": "e65f0d6b-899c-4eff-ab23-36b94572f788",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-09T20:02:01.161Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GSXafs3QLH3o7qcyZ25gsr",
+              "type": "tool_result",
+              "content": "Web search results for query: \"entity frequency Wikipedia knowledge LLM evaluation stratified\"\n\nLinks: [{\"title\":\"The Role of Wikipedia in Training LLMs to Recognize Your Brand - GEO AIO Marketing\",\"url\":\"https://geoaiomarketing.com/the-role-of-wikipedia-in-training-llms-to-recognize-your-brand/\"},{\"title\":\"ComparisonQA: Evaluating Factuality Robustness of LLMs Through Knowledge Frequency Control and Uncertainty\",\"url\":\"https://arxiv.org/html/2412.20251\"},{\"title\":\"Evaluating Complex Entity Knowledge Propagation for Knowledge Editing in LLMs\",\"url\":\"https://www.mdpi.com/2076-3417/14/4/1508\"},{\"title\":\"Reading Karpathy's LLM Wiki Through a Pipeline Diagram - SmartScope\",\"url\":\"https://smartscope.blog/en/blog/llm-wiki-context-architecture/\"},{\"title\":\"Wikipedia in the Era of LLMs: Evolution and Risks\",\"url\":\"https://arxiv.org/html/2503.02879v1\"},{\"title\":\"[2406.13805] WikiContradict: A Benchmark for Evaluating LLMs on Real-World Knowledge Conflicts from Wikipedia\",\"url\":\"https://arxiv.org/abs/2406.13805\"},{\"title\":\"LLM Wiki by Andrej Karpathyi: Build a Compounding Knowledge Base (Tutorial)\",\"url\":\"https://datasciencedojo.com/blog/llm-wiki-tutorial/\"},{\"title\":\"LLMs as Repositories of Factual Knowledge: Limitations and Solutions\",\"url\":\"https://arxiv.org/html/2501.12774v1\"},{\"title\":\"GitHub - nashsu/llm_wiki: LLM Wiki is a cross-platform desktop application that turns your documents into an organized, interlinked knowledge base — automatically. Instead of traditional RAG (retrieve-and-answer from scratch every time), the LLM incrementally builds and maintains a persistent wiki from your sources。\",\"url\":\"https://github.com/nashsu/llm_wiki\"},{\"title\":\"LLMMaps - A Visual Metaphor for Stratified Evaluation of Large Language Models\",\"url\":\"https://arxiv.org/pdf/2304.00457\"}]\n\nBased on the search results, here are the key findings related to entity frequency, Wikipedia knowledge, and LLM evaluation with stratification:\n\n## Entity Frequency and Knowledge in LLMs\n\nResearch has compared LLMs' performance on questions around entities with different frequencies, and LLMs are found to struggle to handle tail knowledge. More specifically, LLMs' performance on factual information depends heavily on the frequency of the entity in the training data.\n\n## ComparisonQA: Stratified Evaluation Framework\n\nA notable approach to this challenge is the ComparisonQA benchmark, which introduces controlled comparisons of high-frequency and low-frequency entities that share the same question. ComparisonQA is a large scale dataset containing 283K question pairs generated through an automatic pipeline based on a raw knowledge base, enabling completely comparable assessments of LLM performance on different knowledge frequencies.\n\n## LLMMaps: Visual Stratified Evaluation\n\nAnother stratification approach is LLMMaps, which reveals subfields where hallucinations are more likely to occur and proposes a visualization technique that enables evaluation of LLMs' performance by transforming Q&A datasets and LLM responses into an internal knowledge structure to provide detailed insights into knowledge capabilities in different subfields.\n\n## Wikipedia's Role in LLM Training\n\nWikipedia is treated as the first priority in training data hierarchy for language models like ChatGPT, making it the single highest-ROI investment for LLM brand recognition.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6bf81fa9-51b6-4941-aa3b-06b58725750a",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "79d45548-b357-4e64-b875-ac4e67590078",
+            "sourceToolAssistantUUID": "6bf81fa9-51b6-4941-aa3b-06b58725750a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-09T20:02:01.917Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GoREWHgLdTDEDAVKh9cdk6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"tail knowledge evaluation LLM rare entity knowledge benchmark\"\n\nLinks: [{\"title\":\"Incompressible Knowledge Probes: Estimating Black-Box LLM Parameter Counts via Factual Capacity\",\"url\":\"https://arxiv.org/html/2604.24827\"},{\"title\":\"KGHaluBench: A Knowledge Graph-Based Hallucination Benchmark for Evaluating the Breadth and Depth of LLM Knowledge\",\"url\":\"https://arxiv.org/html/2602.19643\"},{\"title\":\"Estimating Black-Box LLM Parameter Counts via Factual ...\",\"url\":\"https://arxiv.org/pdf/2604.24827\"},{\"title\":\"[2308.13916] Exploring Large Language Models for Knowledge Graph Completion\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2308.13916\"},{\"title\":\"Exploring Large Language Models for Knowledge Graph Completion\",\"url\":\"https://arxiv.org/html/2308.13916\"},{\"title\":\"Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)?\",\"url\":\"https://arxiv.org/pdf/2308.10168\"},{\"title\":\"Estimating LLM Sizes via Incompressible Knowledge Probes\",\"url\":\"https://www.emergentmind.com/papers/2604.24827\"},{\"title\":\"[2308.10168] Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs?\",\"url\":\"https://arxiv.org/abs/2308.10168\"},{\"title\":\"Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs?\",\"url\":\"https://arxiv.org/html/arXiv:2308.10168\"},{\"title\":\"30 LLM evaluation benchmarks and how they work\",\"url\":\"https://www.evidentlyai.com/llm-guide/llm-benchmarks\"}]\n\nBased on the search results, here are the key findings on tail knowledge evaluation for LLMs and rare entity knowledge benchmarks:\n\n## Major Benchmarks\n\nIncompressible Knowledge Probes (IKPs) is a benchmark of 1,400 factual questions spanning 7 tiers of obscurity, designed to isolate knowledge that cannot be derived by reasoning or compressed by architectural improvements. The IKP probes target seven difficulty tiers (T1–T7) defined by entity-popularity proxies (Common Crawl document frequency).\n\nHead-to-Tail is a benchmark that consists of 18K question-answer (QA) pairs regarding head, torso, and tail facts in terms of popularity. Existing LLMs are still far from being perfect in terms of their grasp of factual knowledge, especially for facts of torso-to-tail entities.\n\nKGHaluBench is a novel benchmark for evaluating the truthfulness of LLMs when answering challenging questions that span the breadth and depth of their knowledge.\n\n## Key Research Findings\n\nAccuracy on rare facts scales log-linearly with model size, and larger models extend further down the power-law frequency tail of web knowledge, consistent with the Zipfian distribution of entity popularity.\n\nLLMs are unreliable on less popular facts, with parametric memory failing where retrieval succeeds.\n\nLong-tail knowledge loss mechanisms include gradient dilution, representational interference, tokenization effects, and post-training compression.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "515cb014-3973-4c82-88bf-1543ccf9a599",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "a147710a-6484-4f37-8b21-64e9d8373e64",
+            "sourceToolAssistantUUID": "515cb014-3973-4c82-88bf-1543ccf9a599",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-09T20:02:03.366Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch the most relevant papers to provide you with detailed information:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a147710a-6484-4f37-8b21-64e9d8373e64",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbFn3E4UD9NgdMsEbnw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "42008da2-2016-47e0-a798-2ba89c92458a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01N9YrpjzGSJAHhBUYqC2jZc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 901,
+                "cache_creation_input_tokens": 3576,
+                "cache_read_input_tokens": 14447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3576,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-09T20:02:04.451Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wj7n6oPLhuR4Rz5hXBcmrV",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/pdf/2308.10168",
+                "prompt": "How is the head-to-tail benchmark structured? How are head, torso, and tail facts stratified? What are the findings on LLM performance?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "42008da2-2016-47e0-a798-2ba89c92458a",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbFn3E4UD9NgdMsEbnw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cac6bbe6-c8d8-4acc-b6a6-fd2887562a2b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01N9YrpjzGSJAHhBUYqC2jZc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 901,
+                "cache_creation_input_tokens": 3576,
+                "cache_read_input_tokens": 14447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3576,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-09T20:02:04.461Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LKV7gP8yUJCt2ptwtG5ZB7",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclanthology.org/D19-1250.pdf",
+                "prompt": "What is the LAMA benchmark? How does it work? What are its findings and limitations?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cac6bbe6-c8d8-4acc-b6a6-fd2887562a2b",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbFn3E4UD9NgdMsEbnw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fef905b5-16de-4c90-b8ed-cfe67da75d50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01N9YrpjzGSJAHhBUYqC2jZc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 901,
+                "cache_creation_input_tokens": 3576,
+                "cache_read_input_tokens": 14447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3576,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-09T20:02:04.776Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012XqBCHD2GbokVdP5ovnq8J",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2412.20251",
+                "prompt": "What is ComparisonQA? How does it stratify by knowledge frequency? What are the key findings?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fef905b5-16de-4c90-b8ed-cfe67da75d50",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbFn3E4UD9NgdMsEbnw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "59abfb6c-73fd-4e5a-ad12-e15ecfdec307",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01N9YrpjzGSJAHhBUYqC2jZc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 901,
+                "cache_creation_input_tokens": 3576,
+                "cache_read_input_tokens": 14447,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3576,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-09T20:02:05.327Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VgviBJ1j9hyho2hgqNNc9T",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/pdf/2604.24827",
+                "prompt": "What are Incompressible Knowledge Probes? How does it stratify by obscurity tiers? What are the findings on tail knowledge?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59abfb6c-73fd-4e5a-ad12-e15ecfdec307",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbFn3E4UD9NgdMsEbnw",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ae5b8782-dbea-4391-8c0b-6a0b312cbea0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01N9YrpjzGSJAHhBUYqC2jZc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 901,
+                "cache_creation_input_tokens": 3576,
+                "cache_read_input_tokens": 14447,
+                "output_tokens": 401,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3576
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 901,
+                    "output_tokens": 401,
+                    "cache_read_input_tokens": 14447,
+                    "cache_creation_input_tokens": 3576,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3576,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-09T20:02:08.759Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wj7n6oPLhuR4Rz5hXBcmrV",
+              "type": "tool_result",
+              "content": "# Head-to-Tail Benchmark Structure\n\nI appreciate your question, but I must note that the provided content appears to be a PDF document with compressed/encoded streams that I cannot reliably parse to extract specific information about a \"head-to-tail benchmark.\"\n\nThe document contains multiple compressed data streams and object references typical of PDF formatting, but without being able to decompress and read the actual text content clearly, I cannot accurately describe:\n\n- How the benchmark is structured\n- The stratification of head, torso, and tail facts\n- Specific findings on LLM performance\n\n**To provide you with accurate information, I would need:**\n- A text-based version of the relevant research paper or document\n- Clearer source material that isn't encoded in PDF binary format\n\nIf you have access to the original research paper or a text version of this content, please share that, and I'll be happy to explain the benchmark methodology and findings with proper citations and quotes.\n\n[Binary content (application/pdf, 321.2KB) also saved to /home/ubuntu/.claude-account-1/projects/-/a80deb43-1c1e-43e4-904e-d73355e7c697/tool-results/webfetch-1778356924475-cx8s09.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cac6bbe6-c8d8-4acc-b6a6-fd2887562a2b",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "425caf8e-6e3d-4aad-be43-758d1b586cef",
+            "sourceToolAssistantUUID": "cac6bbe6-c8d8-4acc-b6a6-fd2887562a2b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-09T20:02:10.564Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012XqBCHD2GbokVdP5ovnq8J",
+              "type": "tool_result",
+              "content": "# ComparisonQA: Overview\n\n## What It Is\n\nComparisonQA is a benchmark containing 283,455 multiple-choice question pairs designed to evaluate how language models perform on factual knowledge. Each pair consists of the same abstract question applied to two entities: one with high frequency in DBpedia and one with low frequency.\n\n## Knowledge Frequency Stratification\n\nThe benchmark uses entity relationship counts in DBpedia to define frequency levels. Entities whose cumulative relationships represent the top third are classified as high-frequency, while those in the bottom third are low-frequency. As the authors note, \"pairs of high-frequency and low-frequency entities share the same question,\" ensuring that \"the difference between such a pair is only the entity.\"\n\n## Key Findings\n\n1. **Performance Degradation**: All tested models, including GPT-4o, show significant accuracy drops on low-frequency questions—sometimes 7-14 percentage points lower than high-frequency questions.\n\n2. **Robustness Issues**: Using a two-round measurement combining correctness and uncertainty, researchers found that \"LLMs can not stand such a test, especially on low-frequency knowledge.\"\n\n3. **Uncertainty as Quality Indicator**: The study discovered that uncertainty measurements effectively identify high-quality, shortcut-free questions while maintaining dataset size, proving more effective than relying solely on accuracy.\n\nThese findings suggest fundamental limitations in how LLMs handle less common factual knowledge."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "59abfb6c-73fd-4e5a-ad12-e15ecfdec307",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "9284970a-75db-4e1e-bf1c-c87f4b1eb402",
+            "sourceToolAssistantUUID": "59abfb6c-73fd-4e5a-ad12-e15ecfdec307",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-09T20:02:10.636Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VgviBJ1j9hyho2hgqNNc9T",
+              "type": "tool_result",
+              "content": "# Incompressible Knowledge Probes\n\nBased on the PDF metadata, this research paper by Bojie Li explores **estimating black-box LLM parameter counts via factual capacity**.\n\n## What Are Incompressible Knowledge Probes?\n\nThe document title indicates these probes measure a model's factual knowledge capacity to infer its underlying parameter count. The approach treats factual information as a metric for understanding model size without direct access to architecture details.\n\n## Stratification by Obscurity Tiers\n\nWhile the full content isn't fully visible in the extracted metadata, the paper appears to organize knowledge across different frequency levels. The document references Zipf's law (citations to Zipf 1949 and Piantadosi 2014), suggesting the research stratifies facts by their prevalence in training data—from common to rare information.\n\n## Findings on Tail Knowledge\n\nThe paper examines tail knowledge (less common facts), as evidenced by citations to research on \"longtail\" phenomena and knowledge memorization. The methodology appears designed to probe how well different-sized models retain obscure versus common factual information, with implications for understanding model capacity allocation across the knowledge frequency spectrum.\n\n**Note:** Complete details require accessing the full paper text, as the provided excerpt contains primarily structural PDF metadata rather than complete article content.\n\n[Binary content (application/pdf, 1.6MB) also saved to /home/ubuntu/.claude-account-1/projects/-/a80deb43-1c1e-43e4-904e-d73355e7c697/tool-results/webfetch-1778356925350-443p8i.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ae5b8782-dbea-4391-8c0b-6a0b312cbea0",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "1c3bf34c-f15e-412b-9c1f-ff923edf988d",
+            "sourceToolAssistantUUID": "ae5b8782-dbea-4391-8c0b-6a0b312cbea0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-09T20:02:10.677Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LKV7gP8yUJCt2ptwtG5ZB7",
+              "type": "tool_result",
+              "content": "# LAMA Benchmark Overview\n\nThe document provided is a PDF research paper titled \"Language Models as Knowledge Bases?\" that discusses the LAMA benchmark, though the raw PDF content makes detailed extraction challenging.\n\n## What is LAMA?\n\nLAMA (Language Models As Knowledge Bases Assessment) is a benchmark designed to evaluate whether language models can function as repositories of factual knowledge. It assesses a model's ability to complete statements about relationships and facts without explicit fine-tuning.\n\n## How It Works\n\nThe benchmark operates by testing language models' capacity to retrieve factual information through prompt completion. Models are presented with incomplete statements and evaluated on whether they can correctly fill in missing information, demonstrating implicit knowledge of world facts and relationships.\n\n## Key Findings and Limitations\n\n**Findings:**\n- The research investigates whether pretrained language models contain and can access factual information\n- Different model architectures show varying capacities for knowledge retention\n\n**Limitations:**\n- Models demonstrate inconsistent performance across different types of facts\n- Knowledge recall depends heavily on how prompts are formulated\n- The benchmark reveals gaps between human-level knowledge and model capabilities\n- Performance varies significantly based on model size and training data\n\nThe LAMA benchmark provides empirical evidence about language models' knowledge storage mechanisms while highlighting the distinction between implicit knowledge and reliable, consistent fact retrieval.\n\n[Binary content (application/pdf, 355.6KB) also saved to /home/ubuntu/.claude-account-1/projects/-/a80deb43-1c1e-43e4-904e-d73355e7c697/tool-results/webfetch-1778356925964-u9yvw5.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fef905b5-16de-4c90-b8ed-cfe67da75d50",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "b37f203c-5637-4429-b082-0d69c16b96fc",
+            "sourceToolAssistantUUID": "fef905b5-16de-4c90-b8ed-cfe67da75d50",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-09T20:02:11.853Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for additional papers and more specific information about TriviaQA stratification and other relevant benchmarks:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b37f203c-5637-4429-b082-0d69c16b96fc",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbGRWUYaxvs6D5tshAR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8d3f4bb5-6009-4a40-9a63-ea1bb4285edb",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019SuG43xiQLmdZ91sZDLxcZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 730,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 18023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2007,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-09T20:02:12.413Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S8iDbxDgCUy3fbFqvbPCSi",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Head-to-Tail\" LLM knowledge frequency benchmark 2023"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8d3f4bb5-6009-4a40-9a63-ea1bb4285edb",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbGRWUYaxvs6D5tshAR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b119ada0-44c6-43c5-8623-59ee9984783f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019SuG43xiQLmdZ91sZDLxcZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 730,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 18023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2007,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-09T20:02:12.487Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018JpqzZxJNZFqRuMjaN5pd2",
+              "name": "WebSearch",
+              "input": {
+                "query": "TriviaQA entity frequency distribution performance analysis"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b119ada0-44c6-43c5-8623-59ee9984783f",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbGRWUYaxvs6D5tshAR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f52a9a18-55df-4042-b364-6749c9670bf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019SuG43xiQLmdZ91sZDLxcZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 730,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 18023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2007,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-09T20:02:12.872Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ATmckwuDqt23WryqKJJ7AX",
+              "name": "WebSearch",
+              "input": {
+                "query": "long-tail knowledge LLM evaluation Wikipedia popularity"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f52a9a18-55df-4042-b364-6749c9670bf2",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbGRWUYaxvs6D5tshAR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "01e555c8-2ad5-4760-94bb-4f4f49c73742",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019SuG43xiQLmdZ91sZDLxcZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 730,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 18023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2007,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-09T20:02:12.963Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mc14VFC4GGgP7sU8ofXquR",
+              "name": "WebSearch",
+              "input": {
+                "query": "knowledge graph entity popularity LLM factual knowledge"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01e555c8-2ad5-4760-94bb-4f4f49c73742",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbGRWUYaxvs6D5tshAR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7e0d7ab8-d709-415b-b3bb-df33a554e933",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019SuG43xiQLmdZ91sZDLxcZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 730,
+                "cache_creation_input_tokens": 2007,
+                "cache_read_input_tokens": 18023,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2007,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-09T20:02:19.009Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018JpqzZxJNZFqRuMjaN5pd2",
+              "type": "tool_result",
+              "content": "Web search results for query: \"TriviaQA entity frequency distribution performance analysis\"\n\nLinks: [{\"title\":\"TriviaQA: A Large Scale Distantly Supervised Challenge Dataset\",\"url\":\"https://nlp.cs.washington.edu/triviaqa/docs/triviaQA.pdf\"},{\"title\":\"Performance on TriviaQA's Unfiltered Dev set for GraphRetriever, T5 and... | Download Scientific Diagram\",\"url\":\"https://www.researchgate.net/figure/Performance-on-TriviaQAs-Unfiltered-Dev-set-for-GraphRetriever-T5-and-our-EAE-model-by_fig2_340662683\"},{\"title\":\"trivia_qa | TensorFlow Datasets\",\"url\":\"https://www.tensorflow.org/datasets/catalog/trivia_qa\"},{\"title\":\"arXiv:2008.02637v1 [cs.CL] 6 Aug 2020\",\"url\":\"https://arxiv.org/pdf/2008.02637\"},{\"title\":\"mandarjoshi/trivia_qa · Datasets at Hugging Face\",\"url\":\"https://huggingface.co/datasets/mandarjoshi/trivia_qa\"},{\"title\":\"TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension | SERP AI\",\"url\":\"https://serp.ai/posts/triviaqa/\"},{\"title\":\"TriviaQA | Polynomia\",\"url\":\"https://polynomia.github.io/TriviaQA/\"},{\"title\":\"[1705.03551] TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension\",\"url\":\"https://ar5iv.labs.arxiv.org/html/1705.03551\"},{\"title\":\"Triviaqa Dataset: A Comprehensive Guide for 2025 - Shadecoder - 100% Invisibile AI Coding Interview Copilot\",\"url\":\"https://www.shadecoder.com/topics/triviaqa-dataset-a-comprehensive-guide-for-2025\"},{\"title\":\"TriviaQA: A Large Scale Distantly Supervised Challenge Dataset for Reading Comprehension - ACL Anthology\",\"url\":\"https://aclanthology.org/P17-1147/\"}]\n\nBased on the search results, I found relevant information about TriviaQA entity frequency distribution and performance analysis:\n\n## Entity Frequency Distribution Performance Analysis\n\nPerformance analysis on TriviaQA's Unfiltered Dev set has been conducted by evaluating models based on the frequency of the answer entity in the Wikipedia corpus, the number of named entity mentions in the question, and the number of tokens in the question.\n\n## Entity Types and Distribution\n\nAbout 73.5% of TriviaQA questions contain phrases that describe a fine-grained category to which the answer belongs, while 15.5% hint at a coarse-grained category (person, organization, location, and miscellaneous).\n\nAnswers in TriviaQA belong to a diverse set of types, with 92.85% of the answers being titles in Wikipedia, 4.17% being numerical expressions, while the rest are open-ended noun and verb phrases.\n\nFigure 2 shows diverse topics indicated by WordNet synsets of answer entities.\n\n## Model Performance Analysis\n\nFor both Wikipedia and web documents, BiDAF (40%) outperforms a simple classifier (23%), though all models lag significantly behind the human baseline of 79.7% on the Wikipedia domain and 75.4% on the web domain.\n\nThe research demonstrates that entity frequency distribution significantly impacts model performance on TriviaQA, with models performing better on more frequent entities while struggling with rare entities and complex reasoning patterns.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f52a9a18-55df-4042-b364-6749c9670bf2",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "0b8eb977-9cf5-4476-b007-885ced27a013",
+            "sourceToolAssistantUUID": "f52a9a18-55df-4042-b364-6749c9670bf2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-09T20:02:20.080Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ATmckwuDqt23WryqKJJ7AX",
+              "type": "tool_result",
+              "content": "Web search results for query: \"long-tail knowledge LLM evaluation Wikipedia popularity\"\n\nLinks: [{\"title\":\"Large Language Models Struggle to Learn Long-Tail Knowledge\",\"url\":\"https://proceedings.mlr.press/v202/kandpal23a/kandpal23a.pdf\"},{\"title\":\"How Knowledgeable are Large Language Models (LLMs)? ...\",\"url\":\"https://aclanthology.org/2024.naacl-long.18.pdf\"},{\"title\":\"Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs? - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.naacl-long.18/\"},{\"title\":\"[PDF] Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs? | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Head-to-Tail:-How-Knowledgeable-are-Large-Language-Sun-Xu/fb00016c1e048b9373803add001c1ec7e877cb23\"},{\"title\":\"Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs? | Request PDF\",\"url\":\"https://www.researchgate.net/publication/373262935_Head-to-Tail_How_Knowledgeable_are_Large_Language_Models_LLM_AKA_Will_LLMs_Replace_Knowledge_Graphs\"},{\"title\":\"[2211.08411] Large Language Models Struggle to Learn Long-Tail Knowledge\",\"url\":\"https://arxiv.org/abs/2211.08411\"},{\"title\":\"Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs?\",\"url\":\"https://arxiv.org/html/2308.10168\"},{\"title\":\"[PDF] Large Language Models Struggle to Learn Long-Tail Knowledge | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Large-Language-Models-Struggle-to-Learn-Long-Tail-Kandpal-Deng/75f7e9e2b59fb640ef9d1dff94097175daf46c4d\"},{\"title\":\"Long-Tail Knowledge in Large Language Models: Taxonomy, Mechanisms, Interventions and Implications\",\"url\":\"https://arxiv.org/html/2602.16201v1\"},{\"title\":\"[2308.10168] Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs?\",\"url\":\"https://arxiv.org/abs/2308.10168\"}]\n\nI've found several relevant research papers on this topic. Here's what the search results show:\n\n## Key Research Findings\n\n**Long-Tail Knowledge and LLM Performance:**\n\nA language model's ability to answer a fact-based question relates to how many documents associated with that question were seen during pre-training. Results demonstrate strong correlational and causal relationships between accuracy and relevant document count for numerous question answering datasets (e.g., TriviaQA), pre-training corpora (e.g., ROOTS), and model sizes (e.g., 176B parameters).\n\n**Wikipedia as a Popularity Proxy:**\n\nEntity popularity on Wikipedia is used as a proxy for evaluation, and research finds QA accuracy is highly correlated with pre-training data frequency and that retrieval models can improve long-tail knowledge.\n\n**Head-to-Tail Benchmark:**\n\nThe Head-to-Tail benchmark consists of 18K question-answer (QA) pairs regarding head, torso, and tail facts in terms of popularity. Existing LLMs are still far from being perfect in terms of their grasp of factual knowledge, especially for facts of torso-to-tail entities.\n\n**Benchmark Bias Issues:**\n\nWhile benchmarks serve as the primary mechanism for establishing trust and verifying capabilities, analysis reveals they often systematically exclude the long tail. The construction of these benchmarks often relies on scraping questions from standardized human exams or Wikipedia-derived trivia, sources that naturally reflect the dominant information distribution of the web.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "01e555c8-2ad5-4760-94bb-4f4f49c73742",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "7bbd8d7b-443d-48dd-8a13-dfbdeb1e603b",
+            "sourceToolAssistantUUID": "01e555c8-2ad5-4760-94bb-4f4f49c73742",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-09T20:02:20.293Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mc14VFC4GGgP7sU8ofXquR",
+              "type": "tool_result",
+              "content": "Web search results for query: \"knowledge graph entity popularity LLM factual knowledge\"\n\nLinks: [{\"title\":\"Why Knowledge Graphs Are the Ideal Structure for LLM Personalization\",\"url\":\"https://memgraph.com/blog/why-knowledge-graphs-for-llm\"},{\"title\":\"Insights, Techniques, and Evaluation for LLM-Driven Knowledge Graphs | NVIDIA Technical Blog\",\"url\":\"https://developer.nvidia.com/blog/insights-techniques-and-evaluation-for-llm-driven-knowledge-graphs/\"},{\"title\":\"How Knowledge Popularity Influences and Enhances LLM Knowledge Boundary Perception\",\"url\":\"https://arxiv.org/html/2505.17537\"},{\"title\":\"[2505.17537] How Knowledge Popularity Influences and Enhances LLM Knowledge Boundary Perception\",\"url\":\"https://arxiv.org/abs/2505.17537\"},{\"title\":\"Analyzing Bias in LLM-Augmented Knowledge Graph Systems: Taxonomy, Interaction Mechanisms, and Evaluation\",\"url\":\"https://www.mdpi.com/2076-3417/16/7/3410\"},{\"title\":\"Knowledge Base vs Knowledge Graph for LLM Systems (2026 Guide) | Kloia\",\"url\":\"https://www.kloia.com/blog/knowledge-base-vs-knowledge-graph-llm\"},{\"title\":\"LLM-empowered knowledge graph construction: A survey\",\"url\":\"https://arxiv.org/html/2510.20345v1\"},{\"title\":\"Knowledge Graph vs LLM: Know the Differences\",\"url\":\"https://www.puppygraph.com/blog/knowledge-graph-vs-llm\"},{\"title\":\"Build and Query Knowledge Graphs with LLMs | Towards Data Science\",\"url\":\"https://towardsdatascience.com/build-query-knowledge-graphs-with-llms/\"},{\"title\":\"Enhancing Large Language Models with Knowledge Graphs | DataCamp\",\"url\":\"https://www.datacamp.com/blog/knowledge-graphs-and-llms\"}]\n\nI've completed the web search for \"knowledge graph entity popularity LLM factual knowledge.\" Here are the key findings:\n\n## Key Research Findings\n\nResearch has investigated how knowledge popularity affects LLMs' ability to perceive their knowledge boundaries, quantifying knowledge popularity from three perspectives: the popularity of entities in the question, the popularity of entities in the answer, and relation popularity, defined as their co-occurrence frequency.\n\nEntity popularity is quantified by the number of Wikidata language editions in which an entity appears, while relation popularity is measured by the number of Wikipedia documents where both entities are mentioned together.\n\n## Performance Impact\n\nExperiments on three representative datasets containing knowledge with varying popularity show that LLMs exhibit better QA performance, higher confidence, and more accurate perception on more popular knowledge, with relation popularity having the strongest correlation. LLMs perform better, express higher confidence, and demonstrate more accurate perception on more popular knowledge, with relation popularity having the strongest influence.\n\n## Knowledge Graphs for LLM Enhancement\n\nIn modern RAG frameworks, the knowledge graph is no longer viewed merely as a static repository of structured knowledge for human interpretation, but instead serves as a dynamic infrastructure that provides factual grounding and structured memory for LLMs.\n\nKnowledge graphs provide structure, factual grounding, and auditability that complement LLMs' generalization, fluency, and ability to handle ambiguity.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7e0d7ab8-d709-415b-b3bb-df33a554e933",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "a5475a0c-d369-49f1-b645-729ec66b85f1",
+            "sourceToolAssistantUUID": "7e0d7ab8-d709-415b-b3bb-df33a554e933",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-09T20:02:21.014Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S8iDbxDgCUy3fbFqvbPCSi",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Head-to-Tail\" LLM knowledge frequency benchmark 2023\"\n\nLinks: [{\"title\":\"[2308.10168] Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs?\",\"url\":\"https://arxiv.org/abs/2308.10168\"},{\"title\":\"[PDF] Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs? | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Head-to-Tail:-How-Knowledgeable-are-Large-Language-Sun-Xu/fb00016c1e048b9373803add001c1ec7e877cb23\"},{\"title\":\"[2308.10168v1] Head-to-Tail: How Knowledgeable are Large Language Models (LLM)? A.K.A. Will LLMs Replace Knowledge Graphs?\",\"url\":\"https://arxiv.org/abs/2308.10168v1\"},{\"title\":\"Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)?\",\"url\":\"https://arxiv.org/pdf/2308.10168\"},{\"title\":\"Will LLMs Replace Knowledge Graphs? Meta Researchers Propose 'Head-to-Tail': A New Benchmark to Measure the Factual Knowledge of Large Language Models - MarkTechPost\",\"url\":\"https://www.marktechpost.com/2023/08/29/will-llms-replace-knowledge-graphs-meta-researchers-propose-head-to-tail-a-new-benchmark-to-measure-the-factual-knowledge-of-large-language-models/\"},{\"title\":\"TrackList: Tracing Back Query Linguistic Diversity for Head and Tail Knowledge in Open Large Language Models\",\"url\":\"https://arxiv.org/html/2511.21006\"},{\"title\":\"Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs? | Request PDF\",\"url\":\"https://www.researchgate.net/publication/373262935_Head-to-Tail_How_Knowledgeable_are_Large_Language_Models_LLM_AKA_Will_LLMs_Replace_Knowledge_Graphs\"},{\"title\":\"[2308.10168] Head-to-Tail: How Knowledgeable are Large Language Models (LLM)? A.K.A. Will LLMs Replace Knowledge Graphs?\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2308.10168\"},{\"title\":\"Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs?\",\"url\":\"https://arxiv.org/html/2308.10168v2\"},{\"title\":\"Head-to-Tail: How Knowledgeable are Large Language Models (LLMs)? A.K.A. Will LLMs Replace Knowledge Graphs? - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.naacl-long.18/\"}]\n\nBased on the search results, here's what I found about the \"Head-to-Tail\" LLM knowledge frequency benchmark from 2023:\n\n## Overview\n\nHead-to-Tail is a benchmark that consists of 18K question-answer (QA) pairs regarding head, torso, and tail facts in terms of popularity. The researchers designed an automated evaluation method and a set of metrics that closely approximate the knowledge an LLM confidently internalizes.\n\n## Research Question and Purpose\n\nThe research addresses discussions regarding how to reduce hallucinations from LLM responses, how to increase the factuality of LLMs, and whether Knowledge Graphs (KGs) will be replaced with LLMs. The paper attempts to answer these questions from a new angle: How knowledgeable are LLMs?\n\n## Key Findings\n\nThrough a comprehensive evaluation of 16 publicly available LLMs, the research shows that existing LLMs are still far from being perfect in terms of their grasp of factual knowledge, especially for facts of torso-to-tail entities.\n\n## Publication Details\n\nThe paper was authored by Kai Sun, Yifan Xu, Hanwen Zha, Yue Liu, and Xin Luna Dong, and was submitted on August 20, 2023 to arXiv. It was later published at the 2024 NAACL conference.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b119ada0-44c6-43c5-8623-59ee9984783f",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "33f85dbc-c926-4d10-bfff-a4201a186c20",
+            "sourceToolAssistantUUID": "b119ada0-44c6-43c5-8623-59ee9984783f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-09T20:02:22.219Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me fetch the two most important papers on long-tail knowledge:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33f85dbc-c926-4d10-bfff-a4201a186c20",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbHBhYZMviAcVRKK4YQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "de2ea961-41a6-4f38-aac4-700e5437e655",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017cgzznC35q1fKvKJbhAxnz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2799,
+                "cache_creation_input_tokens": 2105,
+                "cache_read_input_tokens": 20030,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2105,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-09T20:02:22.863Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DLjycEsLudtBXGWZEgb9Nq",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://proceedings.mlr.press/v202/kandpal23a/kandpal23a.pdf",
+                "prompt": "What are the main findings about long-tail knowledge in LLMs? How is document frequency used? What are the implications?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de2ea961-41a6-4f38-aac4-700e5437e655",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbHBhYZMviAcVRKK4YQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b25b69bf-fdbc-480d-bb2f-83375a83b523",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017cgzznC35q1fKvKJbhAxnz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2799,
+                "cache_creation_input_tokens": 2105,
+                "cache_read_input_tokens": 20030,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2105,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-09T20:02:23.488Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LVQocnMjeHbmVFddhxDoRp",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2602.16201v1",
+                "prompt": "What is the taxonomy of long-tail knowledge? What mechanisms cause long-tail knowledge loss? What interventions are proposed?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b25b69bf-fdbc-480d-bb2f-83375a83b523",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbHBhYZMviAcVRKK4YQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bac89ff3-c6cb-4998-8a88-d987d5ca3941",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017cgzznC35q1fKvKJbhAxnz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2799,
+                "cache_creation_input_tokens": 2105,
+                "cache_read_input_tokens": 20030,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2105,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-09T20:02:23.684Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XDm6SmkDGQe2FGcEFisJ8U",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://arxiv.org/html/2505.17537",
+                "prompt": "How does knowledge popularity influence LLM performance? What is the methodology for measuring popularity?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bac89ff3-c6cb-4998-8a88-d987d5ca3941",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbHBhYZMviAcVRKK4YQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e3ab0d85-729a-4485-82fb-89fdcce01ade",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_017cgzznC35q1fKvKJbhAxnz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2799,
+                "cache_creation_input_tokens": 2105,
+                "cache_read_input_tokens": 20030,
+                "output_tokens": 307,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2105
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2799,
+                    "output_tokens": 307,
+                    "cache_read_input_tokens": 20030,
+                    "cache_creation_input_tokens": 2105,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2105,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-09T20:02:26.669Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DLjycEsLudtBXGWZEgb9Nq",
+              "type": "tool_result",
+              "content": "# Long-Tail Knowledge in Large Language Models\n\nI cannot provide meaningful analysis of this document because the content supplied is a raw PDF file structure containing compressed data streams rather than readable text. The material consists primarily of PDF object definitions and encoded streams without extractable human-readable content about LLM findings.\n\nTo properly address your questions about:\n- Main findings regarding long-tail knowledge in LLMs\n- Document frequency usage methodologies\n- Implications for model performance\n\nI would need access to the actual document text, such as an abstract, introduction, results section, or conclusion. If you have the paper in text format or can share specific passages, I'd be happy to analyze those findings with appropriate citations and character limits.\n\n[Binary content (application/pdf, 622.2KB) also saved to /home/ubuntu/.claude-account-1/projects/-/a80deb43-1c1e-43e4-904e-d73355e7c697/tool-results/webfetch-1778356943294-cfgw0c.pdf]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b25b69bf-fdbc-480d-bb2f-83375a83b523",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "206b519d-d62e-4e74-861d-2c1717a4546b",
+            "sourceToolAssistantUUID": "b25b69bf-fdbc-480d-bb2f-83375a83b523",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-09T20:02:29.490Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XDm6SmkDGQe2FGcEFisJ8U",
+              "type": "tool_result",
+              "content": "# Knowledge Popularity's Influence on LLM Performance\n\n## Performance Impact\n\nKnowledge popularity significantly enhances LLM capabilities across three dimensions. Models demonstrate \"better QA performance and higher confidence on more popular knowledge.\" Additionally, LLMs show improved alignment between their confidence levels and actual correctness when dealing with familiar information.\n\nThe research reveals that as knowledge popularity increases, models become more accurate while their overconfidence diminishes, since performance gains outpace confidence increases.\n\n## Measurement Methodology\n\nThe study quantifies popularity through three complementary approaches:\n\n1. **Entity Popularity**: Measured by \"the number of sitelinks it has—i.e., the number of Wikipedia pages in different languages that link to it.\"\n\n2. **Relation Popularity**: Assessed by counting \"the number of documents in the Wikipedia dump in which both entities co-occur,\" reflecting how frequently entity pairs appear together in training data.\n\n3. **Generated Answer Signals**: The researchers also examine popularity metrics of model-generated answers, not just ground-truth answers, enabling practical application without requiring known correct answers.\n\n## Key Finding\n\nRelation popularity demonstrates the strongest correlation with performance, suggesting that co-occurrence frequency between question and answer entities is particularly influential for LLM knowledge acquisition and boundary perception."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3ab0d85-729a-4485-82fb-89fdcce01ade",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "4dceb9de-42e8-4657-8ba0-a09f5622e722",
+            "sourceToolAssistantUUID": "e3ab0d85-729a-4485-82fb-89fdcce01ade",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-09T20:02:34.632Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LVQocnMjeHbmVFddhxDoRp",
+              "type": "tool_result",
+              "content": "# Long-Tail Knowledge in LLMs: Taxonomy, Mechanisms, and Interventions\n\n## Taxonomy of Long-Tail Knowledge\n\nThe paper identifies four primary dimensions of long-tail knowledge (LTK):\n\n**1. Linguistic and Dialectical Sparsity**\nPerformance degrades sharply for low-resource languages and non-standard dialects. The paper notes that \"tokenizers optimized for English frequently fragment words from low-resource languages into long sequences\" causing learning signal degradation.\n\n**2. Cultural and Geopolitical Peripheries**\nLLMs exhibit biases toward Western-centric knowledge. Research demonstrates models accurately recall facts salient to the Global North while performing poorly on concepts from underrepresented regions like Sub-Saharan Africa and Southeast Asia.\n\n**3. Specialized and Domain-Specific Tails**\nThese encompass rare diseases, obscure case law, archaic craftsmanship, and niche technical expertise sparsely documented in general corpora.\n\n**4. Temporal and Dynamic Knowledge**\nThis includes the \"New Tail\" (facts emerging after training cutoffs) and the \"Forgotten Past\" (historical knowledge with low contemporary digital presence).\n\n## Mechanisms of Knowledge Loss\n\nFour architectural levels drive LTK degradation:\n\n**Level 1: Pre-training Optimization**\n- **Gradient Dilution**: High-frequency patterns generate consistent gradient signals while rare facts produce sparse updates that are \"frequently overwritten by the noise of subsequent updates\"\n- **Hallucination Nexus**: Models achieve lower loss by predicting high-probability generic continuations rather than low-frequency true entities\n- **Capacity Allocation Bias**: Transformers preferentially favor simple rules over memorizing sparse data\n\n**Level 2: Representational Constraints**\n- **Tokenization-Induced Sparsity**: Rare entities fragment into lengthy subword sequences, creating spurious ambiguity\n- **Distributed Representation Interference**: Frequent patterns occupy principal representation directions, forcing rare facts into \"noisy residuals\"\n\n**Level 3: Post-Training Alignment**\n**Alignment Tax**: RLHF optimization induces mode collapse where models \"hedge or abstain from answering obscure questions to avoid penalties\"\n\n**Level 4: Inference Dynamics**\n- **Probability Truncation**: Top-k and nucleus sampling \"explicitly truncate the tail of the probability distribution,\" filtering out correct rare tokens\n- **Contextual Retrieval Failure**: Rare facts have weak attention keys easily overshadowed by stronger context signals\n\n## Proposed Interventions\n\n**Data-Centric Approaches**\n- Importance weighting (GradTail) increases gradient penalties for rare tokens\n- Synthetic data generation flattens Zipfian distributions artificially\n- Curriculum learning trains on high-quality synthetic materials\n\n**Architectural Solutions**\n- Mixture-of-Experts creates specialized expert networks, though routing mechanisms often underutilize tail-specific experts\n- Neuro-symbolic hybrids integrate explicit memory layers for fact storage\n\n**Retrieval-Augmented Methods**\nRAG externalizes memorization to searchable indices, allowing access to vast updatable corpora without retraining, though effectiveness depends on retrieval system quality.\n\n**Model Editing**\nTechniques like ROME and MEMIT surgically modify specific neurons encoding facts, though sequential edits accumulate ripple effects damaging related representations.\n\n**Human-in-the-Loop**\nDomain expert auditing reduces hallucinations in high-stakes fields, though this approach \"is inherently unscalable\" due to expert availability bottlenecks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bac89ff3-c6cb-4998-8a88-d987d5ca3941",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "2b0fe470-fc2b-4ac7-9a05-742c53b2af31",
+            "sourceToolAssistantUUID": "bac89ff3-c6cb-4998-8a88-d987d5ca3941",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-09T20:02:35.834Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more information on specific papers that have stratified TriviaQA:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b0fe470-fc2b-4ac7-9a05-742c53b2af31",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbJBtEaFrz2g2AxfrG1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "555484d0-1f4d-4d33-b709-b439efb8d5a0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TEDy43GL8M66ayW56Na2cv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 301,
+                "cache_creation_input_tokens": 4198,
+                "cache_read_input_tokens": 22135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4198,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-09T20:02:36.260Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SBrnLuZA1KBgEfYSi9uDdQ",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Large Language Models Struggle to Learn Long-Tail Knowledge\" Kandpal"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "555484d0-1f4d-4d33-b709-b439efb8d5a0",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbJBtEaFrz2g2AxfrG1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e74090e4-98ac-4342-8df9-acb86a52333d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TEDy43GL8M66ayW56Na2cv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 301,
+                "cache_creation_input_tokens": 4198,
+                "cache_read_input_tokens": 22135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4198,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-09T20:02:36.448Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VYubC1u2NfDwdKb8iBKCkw",
+              "name": "WebSearch",
+              "input": {
+                "query": "ComparisonQA factual knowledge evaluation DBpedia frequency"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e74090e4-98ac-4342-8df9-acb86a52333d",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbJBtEaFrz2g2AxfrG1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cc1834f9-9b3f-46b9-8b09-0b78fd80829d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TEDy43GL8M66ayW56Na2cv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 301,
+                "cache_creation_input_tokens": 4198,
+                "cache_read_input_tokens": 22135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4198,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-09T20:02:36.632Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013oncvUb3F6Fva3XmuiKG8E",
+              "name": "WebSearch",
+              "input": {
+                "query": "knowledge graph completion benchmark tail entities"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc1834f9-9b3f-46b9-8b09-0b78fd80829d",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbJBtEaFrz2g2AxfrG1",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9ba1db9a-6473-46c9-8d29-4abcfd054e12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01TEDy43GL8M66ayW56Na2cv",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 301,
+                "cache_creation_input_tokens": 4198,
+                "cache_read_input_tokens": 22135,
+                "output_tokens": 176,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4198
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 301,
+                    "output_tokens": 176,
+                    "cache_read_input_tokens": 22135,
+                    "cache_creation_input_tokens": 4198,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4198,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-09T20:02:40.847Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SBrnLuZA1KBgEfYSi9uDdQ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Large Language Models Struggle to Learn Long-Tail Knowledge\" Kandpal\"\n\nLinks: [{\"title\":\"Large Language Models Struggle to Learn Long-Tail Knowledge\",\"url\":\"https://proceedings.mlr.press/v202/kandpal23a/kandpal23a.pdf\"},{\"title\":\"[2211.08411] Large Language Models Struggle to Learn Long-Tail Knowledge\",\"url\":\"https://arxiv.org/abs/2211.08411\"},{\"title\":\"[PDF] Large Language Models Struggle to Learn Long-Tail Knowledge | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Large-Language-Models-Struggle-to-Learn-Long-Tail-Kandpal-Deng/75f7e9e2b59fb640ef9d1dff94097175daf46c4d\"},{\"title\":\"Large language models struggle to learn long-tail knowledge | Proceedings of the 40th International Conference on Machine Learning\",\"url\":\"https://dl.acm.org/doi/10.5555/3618408.3619049\"},{\"title\":\"On the Role of Long-tail Knowledge in Retrieval ...\",\"url\":\"https://aclanthology.org/2024.acl-short.12.pdf\"},{\"title\":\"Large Language Models Struggle to Learn Long-Tail ...\",\"url\":\"https://nkandpa2.github.io/assets/long_tail_slides.pdf\"},{\"title\":\"[2211.08411v2] Large Language Models Struggle to Learn Long-Tail Knowledge\",\"url\":\"https://arxiv.org/abs/2211.08411v2\"},{\"title\":\"[2211.08411v1] Large Language Models Struggle to Learn Long-Tail Knowledge\",\"url\":\"https://arxiv.org/abs/2211.08411v1\"},{\"title\":\"(PDF) Large Language Models Struggle to Learn Long-Tail Knowledge\",\"url\":\"https://www.researchgate.net/publication/365428011_Large_Language_Models_Struggle_to_Learn_Long-Tail_Knowledge\"},{\"title\":\"Large Language Models Struggle to Learn Long-Tail ...\",\"url\":\"https://arxiv.org/pdf/2211.08411\"}]\n\nI found the paper you're looking for! Here's what the search revealed:\n\n## Paper Overview\n\n\"Large Language Models Struggle to Learn Long-Tail Knowledge\" is by Nikhil Kandpal and co-authors, published at ICML 2023.\n\n## Key Findings\n\nThe paper shows that a language model's ability to answer a fact-based question relates to how many documents associated with that question were seen during pre-training. The researchers identify relevant documents by entity linking pre-training datasets and counting documents that contain the same entities as a given question-answer pair.\n\nThe results demonstrate strong correlational and causal relationships between accuracy and relevant document count for numerous question answering datasets (e.g., TriviaQA), pre-training corpora (e.g., ROOTS), and model sizes (e.g., 176B parameters).\n\n## Main Conclusions\n\nWhile larger models are better at learning long-tail knowledge, the researchers estimate that today's models must be scaled by many orders of magnitude to reach competitive QA performance on questions with little support in the pre-training data. \n\nHowever, retrieval-augmentation can reduce the dependence on relevant pre-training information, presenting a promising approach for capturing the long-tail.\n\nThe paper is available on arXiv (2211.08411) and through the ICML proceedings.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e74090e4-98ac-4342-8df9-acb86a52333d",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "a6991b35-0693-4f02-9301-8c89b30a8be9",
+            "sourceToolAssistantUUID": "e74090e4-98ac-4342-8df9-acb86a52333d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-09T20:02:42.435Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013oncvUb3F6Fva3XmuiKG8E",
+              "type": "tool_result",
+              "content": "Web search results for query: \"knowledge graph completion benchmark tail entities\"\n\nLinks: [{\"title\":\"Knowledge Base Completion for Long-Tail Entities\",\"url\":\"https://aclanthology.org/2023.matching-1.8.pdf\"},{\"title\":\"Tackling Long-Tail Entities for Temporal Knowledge Graph Completion | Companion Proceedings of the ACM Web Conference 2024\",\"url\":\"https://dl.acm.org/doi/10.1145/3589335.3651565\"},{\"title\":\"LLM-AUGMENTED KNOWLEDGE REPRESENTATION LEARNING VIA ATTENTION FOR KNOWLEDGE GRAPH COMPLETION | OpenReview\",\"url\":\"https://openreview.net/forum?id=OcIepBMLnO\"},{\"title\":\"Large-Scale Knowledge Graph Completion on Graphcore IPUs | Towards Data Science\",\"url\":\"https://towardsdatascience.com/large-scale-knowledge-graph-completion-on-ipu-4cf386dfa826/\"},{\"title\":\"Enhancing Knowledge Base Completion for Long-Tail Entities Through Zero-Shot Learning | Springer Nature Link\",\"url\":\"https://link.springer.com/chapter/10.1007/978-981-96-7137-3_37\"},{\"title\":\"MLKGC: Large Language Models for Knowledge Graph Completion Under Multimodal Augmentation\",\"url\":\"https://www.mdpi.com/2227-7390/13/9/1463\"},{\"title\":\"AgREE: Agentic Reasoning for Knowledge Graph Completion on Emerging Entities\",\"url\":\"https://arxiv.org/html/2508.04118v1\"},{\"title\":\"CoDEx: A Comprehensive Knowledge Graph Completion Benchmark | Request PDF\",\"url\":\"https://www.researchgate.net/publication/347234926_CoDEx_A_Comprehensive_Knowledge_Graph_Completion_Benchmark\"},{\"title\":\"Knowledge Graph Completion Using a Pre-Trained Language Model Based on Categorical Information and Multi-Layer Residual Attention\",\"url\":\"https://www.mdpi.com/2076-3417/14/11/4453\"},{\"title\":\"A Contextualized BERT model for Knowledge Graph Completion\",\"url\":\"https://arxiv.org/html/2412.11016v1\"}]\n\nBased on the search results, here's what I found about knowledge graph completion benchmarks and tail entities:\n\n## Knowledge Graph Completion and Tail Entities\n\nKnowledge Base Completion (KBC) is primarily tackled as a form of link prediction where, given a head entity and a relation, the task is to predict the respective tail entity using the knowledge graph as input.\n\n### Long-Tail Entity Problem\n\nKnowledge Graph Completion is often hindered by the data sparsity problem arising from the long-tail distribution of entities. Most Temporal Knowledge Graphs exhibit a long-tail entity distribution, where the majority of entities have sparse connections.\n\n### Benchmarks for Long-Tail Entities\n\nA new dataset called MALT has been created to benchmark methods with long-tail entities. Additionally, MALT is a dataset derived from Wikidata, used to evaluate methods on frequent and long-tail entities.\n\n### Common Benchmark Datasets\n\nFB15k-237 is an updated version subset of the FB15k dataset where inverse triplets have been removed to increase difficulty, and it has 14,541 unique entities and 237 relationships. WN18RR is a subset of WN18 where reverse triplets are removed, making it more complex for knowledge graph completion models.\n\nCoDEx-M is extracted from Wikipedia and contains tens of thousands of hard negative triples, making it a challenging KGC benchmark.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9ba1db9a-6473-46c9-8d29-4abcfd054e12",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "1b4ff167-2e5c-4f7f-894b-ecbcffee1fda",
+            "sourceToolAssistantUUID": "9ba1db9a-6473-46c9-8d29-4abcfd054e12",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-09T20:02:42.475Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VYubC1u2NfDwdKb8iBKCkw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ComparisonQA factual knowledge evaluation DBpedia frequency\"\n\nLinks: [{\"title\":\"ComparisonQA: Evaluating Factuality Robustness of LLMs Through Knowledge Frequency Control and Uncertainty\",\"url\":\"https://arxiv.org/html/2412.20251\"},{\"title\":\"[2412.20251] ComparisonQA: Evaluating Factuality Robustness of LLMs Through Knowledge Frequency Control and Uncertainty\",\"url\":\"https://arxiv.org/abs/2412.20251\"},{\"title\":\"[2412.20251v1] ComparisonQA: Evaluating Factuality Robustness of LLMs Through Knowledge Frequency Control and Uncertainty\",\"url\":\"https://arxiv.org/abs/2412.20251v1\"},{\"title\":\"ComparisonQA: Evaluating Factuality Robustness of LLMs Through Knowledge Frequency Control and Uncertainty - ACL Anthology\",\"url\":\"https://aclanthology.org/2025.findings-acl.212/\"},{\"title\":\"(PDF) User-driven Quality Evaluation of DBpedia\",\"url\":\"https://www.researchgate.net/publication/240615224_User-driven_Quality_Evaluation_of_DBpedia\"},{\"title\":\"Fact Checking over Knowledge Graphs – A Survey\",\"url\":\"https://papers.dice-research.org/2023/ISWC_TemporalFC/extended_public.pdf\"},{\"title\":\"No one is perfect: Analysing the performance of question answering components over the DBpedia knowledge graph - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S1570826820300342\"},{\"title\":\"One Knowledge Graph to Rule Them All? Analyzing the Differences Between DBpedia, YAGO, Wikidata & co. | Request PDF\",\"url\":\"https://www.researchgate.net/publication/319891326_One_Knowledge_Graph_to_Rule_Them_All_Analyzing_the_Differences_Between_DBpedia_YAGO_Wikidata_co\"},{\"title\":\"Computational Fact Checking from Knowledge Networks - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC4471100/\"},{\"title\":\"DBpedia - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/DBpedia\"}]\n\nBased on the search results, I found detailed information about ComparisonQA and its relationship to DBpedia and knowledge frequency evaluation:\n\n## ComparisonQA Overview\n\nComparisonQA is a new benchmark designed to ensure fair and controllable comparisons between LLMs' performance on high-frequency and low-frequency factual knowledge.\n\n## Scale and Structure\n\nThe ComparisonQA benchmark contains 283K abstract questions, each instantiated by a pair of high-frequency and low-frequency entities. Each piece of data in ComparisonQA contains an abstract question shared by two entities having the same hypernym, with one entity having many relationships in DBpedia.\n\n## Purpose and Methodology\n\nThe benchmark ensures a controllable comparison to study the role of knowledge frequency in the performance of LLMs because the difference between such a pair is only the entity with different frequencies. The researchers use both correctness and uncertainty to develop a two-round method to evaluate LLMs' knowledge robustness, aiming to avoid possible semantic shortcuts which is a serious problem of current QA study.\n\n## Key Findings\n\nExperiments reveal that LLMs, including GPT-4o, exhibit particularly low robustness regarding low-frequency knowledge.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc1834f9-9b3f-46b9-8b09-0b78fd80829d",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "329e2176-cdea-4299-8d1f-83824a64476a",
+            "sourceToolAssistantUUID": "cc1834f9-9b3f-46b9-8b09-0b78fd80829d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-09T20:02:44.381Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Let me get the ACL version of ComparisonQA to ensure I have the most current information:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "329e2176-cdea-4299-8d1f-83824a64476a",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbJmTqRjdQRvNirc1i3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "aa4b2163-6eb2-4c9f-8338-4b68ef747ae0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SvDUJFXN9PtQu4cPosiv8X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 885,
+                "cache_creation_input_tokens": 2215,
+                "cache_read_input_tokens": 26333,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2215,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-09T20:02:45.227Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RJjkTahkpCnsyemPMp7i51",
+              "name": "WebFetch",
+              "input": {
+                "url": "https://aclanthology.org/2025.findings-acl.212/",
+                "prompt": "What is the methodology of ComparisonQA? How are entities stratified by frequency? What are the main findings?"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa4b2163-6eb2-4c9f-8338-4b68ef747ae0",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbJmTqRjdQRvNirc1i3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5d2e227c-647e-4457-bf65-10580e71c09f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SvDUJFXN9PtQu4cPosiv8X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 885,
+                "cache_creation_input_tokens": 2215,
+                "cache_read_input_tokens": 26333,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2215,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-09T20:02:45.379Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F5pP9gcRwtNeXjQjLkkcJK",
+              "name": "WebSearch",
+              "input": {
+                "query": "LAMA limitations tail knowledge entity rarity rare facts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d2e227c-647e-4457-bf65-10580e71c09f",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbJmTqRjdQRvNirc1i3",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c547dcc2-3aa9-4e7b-94ce-28fc3673dd67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SvDUJFXN9PtQu4cPosiv8X",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 885,
+                "cache_creation_input_tokens": 2215,
+                "cache_read_input_tokens": 26333,
+                "output_tokens": 182,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2215
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 885,
+                    "output_tokens": 182,
+                    "cache_read_input_tokens": 26333,
+                    "cache_creation_input_tokens": 2215,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2215,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-09T20:02:49.862Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RJjkTahkpCnsyemPMp7i51",
+              "type": "tool_result",
+              "content": "# ComparisonQA Methodology and Findings\n\n## Methodology\n\nComparisonQA employs a controlled comparison approach to isolate the role of entity frequency in LLM performance. The benchmark contains **283K abstract questions**, with each question instantiated by **paired high-frequency and low-frequency entities**. This design ensures that \"the difference between such a pair is only the entity with different frequencies,\" eliminating confounding variables like question difficulty.\n\nThe evaluation uses a two-round assessment method combining correctness and uncertainty measurements. This approach aims to identify \"high-quality and shortcut-free questions while maintaining the data size.\"\n\n## Entity Stratification\n\nThe abstract indicates entities are organized into two distinct frequency tiers: high-frequency and low-frequency categories. Each question pair contrasts these two tiers to isolate frequency's specific impact.\n\n## Main Findings\n\nThe research reveals several critical results:\n\n- **LLM Robustness Gaps**: Models including GPT-4o \"exhibit particularly low robustness regarding low-frequency knowledge\"\n- **Uncertainty as Signal**: The researchers discovered that uncertainty metrics effectively identify superior questions without reducing dataset size\n- **Curated Subset**: An automatic selection method produced ComparisonQA-Hard, containing exclusively difficult low-frequency questions for more rigorous evaluation"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5d2e227c-647e-4457-bf65-10580e71c09f",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "0ef414c8-2f73-4f4c-8403-c1634ed2370a",
+            "sourceToolAssistantUUID": "5d2e227c-647e-4457-bf65-10580e71c09f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-09T20:02:52.073Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F5pP9gcRwtNeXjQjLkkcJK",
+              "type": "tool_result",
+              "content": "Web search results for query: \"LAMA limitations tail knowledge entity rarity rare facts\"\n\nLinks: [{\"title\":\"Factual Knowledge Probing in Pretrained Language Models | by Denis Lukovnikov | Medium\",\"url\":\"https://lukovnikov.medium.com/factual-knowledge-probing-in-pretrained-language-models-4c52f6c79fc3\"},{\"title\":\"Knowledge Base Completion for Long-Tail Entities\",\"url\":\"https://aclanthology.org/2023.matching-1.8.pdf\"},{\"title\":\"The role of knowledge in determining identity of long-tail entities - ScienceDirect\",\"url\":\"https://www.sciencedirect.com/science/article/abs/pii/S1570826820300123\"},{\"title\":\"Llama (language model) - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Llama_(language_model)\"},{\"title\":\"[2211.08411] Large Language Models Struggle to Learn Long-Tail Knowledge\",\"url\":\"https://arxiv.org/abs/2211.08411\"},{\"title\":\"Automatic Question-Answer Generation for Long-Tail ...\",\"url\":\"https://knowledge-nlp.github.io/kdd2023/papers/Kumar5.pdf\"},{\"title\":\"Unraveling the Limitations of Llama V2: An In-Depth Exploration | by Paul Deepakraj Retinraj | Medium\",\"url\":\"https://pauldeepakraj-r.medium.com/unraveling-the-limitations-of-llama-v2-an-in-depth-exploration-63a29bb3f723\"},{\"title\":\"Llama - Key Facts, Information & Pictures\",\"url\":\"https://animalcorner.org/animals/llama/\"},{\"title\":\"GitHub - CGCL-codes/LAMA-TK: LAMA-TK (LAnguage Model Analysis for Temporal Knowledge) is a new dataset for probing language models for temporally-scoped knowledge. LAMA-TK queries temporal knowledge including entity names and special timestamps, and reserves all correct answers for each query. · GitHub\",\"url\":\"https://github.com/CGCL-codes/LAMA-TK\"},{\"title\":\"Llama Association of Australasia Inc - What is a Llama?\",\"url\":\"https://www.llama.asn.au/what_is_a_llama.html\"}]\n\nBased on the search results, here's what I found about LAMA limitations related to tail knowledge, entity rarity, and rare facts:\n\n## LAMA Limitations\n\nThe LAMA probe constructs manual templates with a placeholder for the subject and slot for the object for several relations, and checks if pretrained language models fill in the blank correctly when the template is filled with a subject. However, the probe has notable limitations:\n\n**Pattern Sensitivity**: One limitation is that LAMA uses one manually predefined pattern per relation, which sets a lower bound on knowledge detection—even if a particular expression fails to retrieve the knowledge, another equivalent expression might be able to.\n\n**Long-Tail Knowledge Struggles**: Research has demonstrated that language models struggle with tail knowledge more broadly. A language model's ability to answer a fact-based question relates to how many documents associated with that question were seen during pre-training. While certain pieces of information are ubiquitous on the web, others appear extremely rarely.\n\n**Entity Rarity Challenges**: The lack of frequency priors among long-tail instances, the scarcity and non-redundancy of knowledge, and unknown ambiguity make these entities a special challenge for information extraction systems.\n\nThe core issue is that rare facts and entities are underrepresented in training data, making them difficult for language models to learn and retrieve effectively.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c547dcc2-3aa9-4e7b-94ce-28fc3673dd67",
+            "isSidechain": true,
+            "promptId": "43f437fa-4d24-47d6-aca5-6dd7aef619fd",
+            "agentId": "a85ac549254273dad",
+            "type": "user",
+            "uuid": "34bf69d0-7076-4b0a-9e9a-614b507a66fe",
+            "sourceToolAssistantUUID": "c547dcc2-3aa9-4e7b-94ce-28fc3673dd67",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-09T20:03:12.814Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have comprehensive information. Let me compile the final report:\n\n## Comprehensive Research Report: Tail Knowledge Evaluation in LLMs\n\nBased on my research, here's what I found regarding your four questions:\n\n### 1. TriviaQA Stratification by Wikipedia Popularity\n\n**Finding: Yes, prior work has stratified TriviaQA by entity frequency, but the TriviaQA stratification approach itself is not novel—it was established early in analysis of the dataset.**\n\nResearch has analyzed performance on TriviaQA's Unfiltered Dev set by stratifying based on entity frequency in the Wikipedia corpus. Models consistently perform better on frequent entities and struggle with rare entities (entities seen fewer than 100 times during training). This demonstrates a clear head-tail distribution in entity frequency.\n\nHowever, **more recent systematic evaluations** with explicit stratification designs have been created specifically for this purpose (see below).\n\n### 2. LAMA Benchmark: Definition, Usage, and Limitations\n\n**LAMA (Language Models As Knowledge Bases Assessment)** is a foundational probe for evaluating factual and commonsense knowledge in pretrained language models.\n\n**How it works:**\n- Tests whether models can predict masked objects in cloze sentences\n- Example: \"Dante was born in [MASK]\" tests if the model knows the fact (Dante, born-in, Florence)\n- Uses knowledge from Google_RE, TREx (Wikidata triples), ConceptNet, and SQuAD\n- Evaluates accuracy in completing masked tokens\n\n**Limitations for tail-knowledge evaluation:**\n- **Pattern sensitivity**: Uses one manually predefined template per relation—if a model doesn't know that specific pattern, the knowledge isn't detected even if the model knows the fact in other formulations\n- **No frequency stratification**: Doesn't explicitly control for or measure performance differences across entity/fact frequency\n- **Limited to cloze format**: May miss knowledge that exists but isn't easily retrievable via fill-in-the-blank prompts\n- **Coarse-grained**: Doesn't distinguish between head and tail entity performance\n\n### 3. Standard Benchmarks for Tail Knowledge/Rare Entity Knowledge\n\n**Multiple specialized benchmarks now exist:**\n\n**A. Head-to-Tail (2023, Meta Research)**\n- **18K QA pairs** explicitly stratified into head, torso, and tail facts by popularity\n- Uses knowledge graph frequency as stratification criterion\n- Found that LLMs are \"far from perfect\" especially on torso-to-tail entities\n- Published at NAACL 2024\n- This appears to be the most prominent benchmark specifically designed for this purpose\n\n**B. ComparisonQA (2024, ACL Findings)**\n- **283K abstract question pairs** with controlled high-frequency vs. low-frequency entity pairs\n- Uses DBpedia relationship counts to define frequency tiers\n- Ensures only the entity frequency varies, not question difficulty\n- Includes \"ComparisonQA-Hard\" subset for more rigorous evaluation\n- Key finding: All models show 7-14% accuracy drops on low-frequency questions\n- Uses uncertainty measurements as quality signals\n\n**C. Incompressible Knowledge Probes (IKPs)**\n- **1,400 factual questions** spanning 7 tiers of obscurity\n- Uses Common Crawl document frequency as entity-popularity proxy\n- Designed to isolate knowledge that cannot be derived by reasoning\n- Finds that accuracy scales log-linearly with model size for tail knowledge\n\n**D. Knowledge Base Completion for Long-Tail Entities (2023)**\n- Focuses on temporal knowledge graphs and link prediction for rare entities\n- Includes MALT dataset derived from Wikidata\n- Addresses data sparsity problems in long-tail entity prediction\n\n### 4. Entity Frequency and Wikipedia Popularity in LLM Evaluation\n\n**Strong prior work exists:**\n\n**\"Large Language Models Struggle to Learn Long-Tail Knowledge\" (Kandpal et al., ICML 2023)**\n- Demonstrates **causal relationship** between document frequency in pre-training and QA accuracy\n- Stratifies TriviaQA questions by counting how many pre-training documents contain the same entities\n- Key finding: Accuracy strongly correlates with pre-training document count\n- Shows that scaling models by orders of magnitude would be needed to reach competitive performance on low-frequency facts\n- Proposes retrieval-augmentation as practical solution\n\n**\"How Knowledge Popularity Influences LLM Knowledge Boundary Perception\" (2025)**\n- Quantifies popularity via Wikidata language editions and Wikipedia co-occurrence frequency\n- Tests on three datasets with varying knowledge popularity\n- Finds relation popularity (co-occurrence frequency) is strongest predictor of performance\n- Models show better accuracy, higher confidence, and better calibration on popular knowledge\n\n**ComparisonQA and other frameworks also explicitly stratify by entity frequency in knowledge bases.**\n\n---\n\n## Summary: Is TriviaQA Stratification Novel?\n\n**No, not entirely novel.** The original TriviaQA analysis included entity frequency considerations, and Kandpal et al. (2023) built systematic stratification on it. However, **your approach of designing an evaluation specifically around tail knowledge would be novel in scope and focus** depending on:\n\n1. Whether you're creating a new benchmark vs. analyzing existing data\n2. Your specific stratification methodology (Wikipedia pageviews vs. document frequency vs. DBpedia relationships)\n3. Your evaluation metrics and model scope\n\n## Best Independent Approach for Tail Knowledge Evaluation\n\nBased on the literature, I recommend a **hybrid stratification approach**:\n\n1. **Primary stratification metric**: Use Wikipedia pageview statistics or language edition coverage (most interpretable and reproducible)\n2. **Secondary metric**: Pre-training document frequency (more causally relevant)\n3. **Benchmark structure**: Follow ComparisonQA's controlled-pair design to eliminate question-difficulty confounds\n4. **Evaluation framework**: Use both correctness and uncertainty/confidence measurements (as ComparisonQA does)\n5. **Scale**: Aim for 10K-20K question pairs minimum (between ComparisonQA's 283K and Head-to-Tail's 18K) to be practically useful\n6. **Model scope**: Test across multiple model sizes and architectures to understand scaling laws for tail knowledge\n\nThis approach builds on established work while allowing you to potentially explore novel aspects (e.g., different stratification metrics, new domains, specific applications like temporal knowledge, or specific entity types).\n\n---\n\n## Key Sources\n\n- [Head-to-Tail: How Knowledgeable are Large Language Models](https://aclanthology.org/2024.naacl-long.18/)\n- [Large Language Models Struggle to Learn Long-Tail Knowledge](https://arxiv.org/abs/2211.08411)\n- [ComparisonQA: Evaluating Factuality Robustness Through Knowledge Frequency Control](https://aclanthology.org/2025.findings-acl.212/)\n- [Language Models as Knowledge Bases?](https://aclanthology.org/D19-1250.pdf)\n- [Long-Tail Knowledge in Large Language Models: Taxonomy, Mechanisms, Interventions](https://arxiv.org/html/2602.16201v1)\n- [How Knowledge Popularity Influences LLM Knowledge Boundary Perception](https://arxiv.org/abs/2505.17537)\n- [Incompressible Knowledge Probes: Estimating Black-Box LLM Parameter Counts via Factual Capacity](https://arxiv.org/abs/2604.24827)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34bf69d0-7076-4b0a-9e9a-614b507a66fe",
+            "isSidechain": true,
+            "agentId": "a85ac549254273dad",
+            "requestId": "req_011CasbKUWeAbr82vgd9M2y6",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1c0837a2-2141-467f-9d70-2d4962b616ca",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "a80deb43-1c1e-43e4-904e-d73355e7c697",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013bDzrfwjVNJ1LiYu3S46qi",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 2276,
+                "cache_read_input_tokens": 28548,
+                "output_tokens": 1740,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2276
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 1740,
+                    "cache_read_input_tokens": 28548,
+                    "cache_creation_input_tokens": 2276,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2276,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000048"
+        }
+      ],
+      "message_count": 48
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-m-designing-an-evaluation-for-a-language-model-pretraining-paper-that-tests.md"
+}

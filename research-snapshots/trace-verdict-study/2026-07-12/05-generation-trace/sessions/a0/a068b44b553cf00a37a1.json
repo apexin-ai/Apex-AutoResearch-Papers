@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a068b44b553cf00a37a1",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #7。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - 服务器 westd-11235 有 2 GPU（cuda:0, c",
+  "task_key": "71c446b1-99ea-43cd-b0a0-48843cd64c83",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/71c446b1-99ea-43cd-b0a0-48843cd64c83.jsonl",
+    "occurrence": 1,
+    "bytes": 724993,
+    "sha256": "58ed0740246ff2b16c60fc2f75ac5cf0aec9785602009916f11b5a1cdb6aef45"
+  },
+  "statistics": {
+    "messages": 178,
+    "user_turns": 1,
+    "tool_calls": 45,
+    "roles": {
+      "record": 44,
+      "user": 1,
+      "assistant": 43,
+      "tool_call": 45,
+      "tool_result": 45
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "a068b44b553cf00a37a1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 176,
+      "chunks": [
+        {
+          "path": "a068b44b553cf00a37a1-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "a068b44b553cf00a37a1-part-0002.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-7-task-context-1-westd-11235-2-gpu-cuda-0-c.md"
+}

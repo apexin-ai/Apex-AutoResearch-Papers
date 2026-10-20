@@ -1,0 +1,599 @@
+{
+  "schema_version": "1.0",
+  "id": "b63840dcfe97bc096519",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the web for recent work (2025-2026) on using model-internal representations for data selection in iterative/multi",
+  "task_key": "agent-af21ed1e2c4ad37bd",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-af21ed1e2c4ad37bd.jsonl",
+    "occurrence": 1,
+    "bytes": 34846,
+    "sha256": "9db7c6c4684f20c3fef83f3d7d28287016e0febee701d5cd7fb2a1b988884055"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 1,
+    "tool_calls": 5,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 5,
+      "tool_result": 5
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T18:43:33.095Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the web for recent work (2025-2026) on using model-internal representations for data selection in iterative/multi-generation training. I need to find any work the proposal might have missed. Use these searches:\n1. \"model collapse prevention diversity selection 2025 2026\"\n2. \"representation-based data selection iterative training\"  \n3. \"synthetic data filtering model collapse 2026\"\n4. \"model-internal embeddings data curation\"\n5. \"iterative synthetic training diversity\"\nTry to find papers from the last 6 months that address similar problems."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "0c51701b-4762-4cba-9767-b8f5770d6a4c",
+            "agentId": "af21ed1e2c4ad37bd",
+            "type": "user",
+            "uuid": "24c6c9b8-2c3c-49cf-80aa-23522622b1cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T18:43:34.210Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search the web for recent work on model-internal representations for data selection in iterative/multi-generation training using your specified search terms."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24c6c9b8-2c3c-49cf-80aa-23522622b1cf",
+            "isSidechain": true,
+            "agentId": "af21ed1e2c4ad37bd",
+            "requestId": "req_011CauP5atqMXRWBQNkYTWvN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8096ef29-ddbd-4647-83e9-97a33dd8b87b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QvaRNSuyKV117wkCXPabKr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 560,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 560,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T18:43:34.220Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013E4zhqQ4ZM5VzuNKrTmbXo",
+              "name": "WebSearch",
+              "input": {
+                "query": "model collapse prevention diversity selection 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8096ef29-ddbd-4647-83e9-97a33dd8b87b",
+            "isSidechain": true,
+            "agentId": "af21ed1e2c4ad37bd",
+            "requestId": "req_011CauP5atqMXRWBQNkYTWvN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "f034cbb3-9e72-4711-9063-85d65618db8b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QvaRNSuyKV117wkCXPabKr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 560,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 560,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T18:43:34.403Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SeGU5FTELbQXJibJtpYKZE",
+              "name": "WebSearch",
+              "input": {
+                "query": "representation-based data selection iterative training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f034cbb3-9e72-4711-9063-85d65618db8b",
+            "isSidechain": true,
+            "agentId": "af21ed1e2c4ad37bd",
+            "requestId": "req_011CauP5atqMXRWBQNkYTWvN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8910dcb2-9d09-40d6-9b89-b8f6a4049c53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QvaRNSuyKV117wkCXPabKr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 560,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 560,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T18:43:34.634Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U21qu5kaoDezoFtopLKqKG",
+              "name": "WebSearch",
+              "input": {
+                "query": "synthetic data filtering model collapse 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8910dcb2-9d09-40d6-9b89-b8f6a4049c53",
+            "isSidechain": true,
+            "agentId": "af21ed1e2c4ad37bd",
+            "requestId": "req_011CauP5atqMXRWBQNkYTWvN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "69590e8f-1840-4d0d-893e-d1e680729a24",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QvaRNSuyKV117wkCXPabKr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 560,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 560,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T18:43:34.638Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J1aShtE6qdTPxKfFFoLExg",
+              "name": "WebSearch",
+              "input": {
+                "query": "model-internal embeddings data curation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "69590e8f-1840-4d0d-893e-d1e680729a24",
+            "isSidechain": true,
+            "agentId": "af21ed1e2c4ad37bd",
+            "requestId": "req_011CauP5atqMXRWBQNkYTWvN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "521d8021-41c5-468d-99d3-fee9de396bf4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QvaRNSuyKV117wkCXPabKr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 560,
+                "cache_read_input_tokens": 16153,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 560,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T18:43:34.740Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011ysCJrkaftFz5g9rnGnXJc",
+              "name": "WebSearch",
+              "input": {
+                "query": "iterative synthetic training diversity"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "521d8021-41c5-468d-99d3-fee9de396bf4",
+            "isSidechain": true,
+            "agentId": "af21ed1e2c4ad37bd",
+            "requestId": "req_011CauP5atqMXRWBQNkYTWvN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "45d8d262-0ee4-4c96-8c62-8e2878df9005",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QvaRNSuyKV117wkCXPabKr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 560,
+                "cache_read_input_tokens": 16153,
+                "output_tokens": 258,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 560
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 258,
+                    "cache_read_input_tokens": 16153,
+                    "cache_creation_input_tokens": 560,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 560,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T18:43:40.958Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J1aShtE6qdTPxKfFFoLExg",
+              "type": "tool_result",
+              "content": "Web search results for query: \"model-internal embeddings data curation\"\n\nLinks: [{\"title\":\"Introducing Luxical Embeddings And The Luxical-One Model\",\"url\":\"https://www.datologyai.com/blog/introducing-luxical-embeddings\"},{\"title\":\"Embeddings | Machine Learning | Google for Developers\",\"url\":\"https://developers.google.com/machine-learning/crash-course/embeddings\"},{\"title\":\"Understanding Embeddings for Generative AI | Unstructured\",\"url\":\"https://unstructured.io/insights/understanding-embeddings-for-generative-ai\"},{\"title\":\"Best Open-Source Embedding Models Benchmarked and Ranked\",\"url\":\"https://supermemory.ai/blog/best-open-source-embedding-models-benchmarked-and-ranked/\"},{\"title\":\"Understanding generative AI content with embedding models\",\"url\":\"https://arxiv.org/html/2408.10437\"},{\"title\":\"Simple and effective embedding model for single-cell biology built from ChatGPT | Nature Biomedical Engineering\",\"url\":\"https://www.nature.com/articles/s41551-024-01284-6\"},{\"title\":\"The Full Guide to Embeddings in Machine Learning | Encord\",\"url\":\"https://encord.com/blog/embeddings-machine-learning/\"},{\"title\":\"Understanding generative AI output with embedding models | Science Advances\",\"url\":\"https://www.science.org/doi/10.1126/sciadv.adx4082\"},{\"title\":\"A Practical Guide to Feature Embeddings for ML Engineers\",\"url\":\"https://superb-ai.com/en/resources/blog/a-practical-guide-to-feature-embeddings-for-ml-engineers\"},{\"title\":\"AI foundations: Understanding embeddings\",\"url\":\"https://labelbox.com/guides/ai-foundations-understanding-embeddings/\"}]\n\nI've completed the web search for \"model-internal embeddings data curation.\" Here are the key findings:\n\n## Overview\n\nThe search results reveal several important applications and approaches related to embeddings and data curation:\n\n### Data Curation with Embeddings\n\nRecent techniques focus on accelerating data curation through fast text embeddings, enabling order-of-magnitude accelerations to common data curation workloads including clustering, classification, and semantic deduplication.\n\nModern approaches combine the efficiency of lexical text processing with dense neural networks, allowing models to process millions of tokens per second on standard hardware while handling arbitrarily long documents.\n\n### Data Quality and Preparation\n\nIf data is noisy, unstructured, or contains irrelevant information, embeddings may not accurately represent the data; proper data preparation can improve embedding quality, leading to more accurate and efficient machine learning models.\n\n### Embeddings for Analysis and Curation\n\nSampling techniques used to curate a dataset play a critical role in determining the resulting embedding vectors.\n\nThrough embeddings, data curation is improved by automating data organization to group similar data points, enhancing search and retrieval speed and accuracy, and capturing underlying patterns and relationships within data.\n\nThe research indicates that embeddings have become a central tool for managing and organizing large-scale datasets efficiently.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "521d8021-41c5-468d-99d3-fee9de396bf4",
+            "isSidechain": true,
+            "promptId": "0c51701b-4762-4cba-9767-b8f5770d6a4c",
+            "agentId": "af21ed1e2c4ad37bd",
+            "type": "user",
+            "uuid": "59dace1e-8f05-4d63-bc37-efa60e0fdeb3",
+            "sourceToolAssistantUUID": "521d8021-41c5-468d-99d3-fee9de396bf4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T18:43:42.339Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011ysCJrkaftFz5g9rnGnXJc",
+              "type": "tool_result",
+              "content": "Web search results for query: \"iterative synthetic training diversity\"\n\nLinks: [{\"title\":\"Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-TuningAccepted to Findings of the Association for Computational Linguistics (ACL 2026).\",\"url\":\"https://arxiv.org/html/2511.01490\"},{\"title\":\"Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning\",\"url\":\"https://arxiv.org/html/2511.01490v1\"},{\"title\":\"ORCHESTRATING SYNTHETIC DATA WITH REASONING\",\"url\":\"https://openreview.net/pdf?id=VOoeogZbMb\"},{\"title\":\"What Matters in LLM-generated Data: Diversity and Its Effect on Model Fine-Tuning\",\"url\":\"https://arxiv.org/html/2506.19262v1\"},{\"title\":\"The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text\",\"url\":\"https://arxiv.org/html/2311.09807v2\"},{\"title\":\"[2111.03743] Increasing Data Diversity with Iterative Sampling to Improve Performance\",\"url\":\"https://ar5iv.labs.arxiv.org/html/2111.03743\"},{\"title\":\"Increasing Data Diversity with Iterative Sampling to Improve Performance\",\"url\":\"https://www.datacentricai.org/neurips21/papers/100_CameraReady_OBSS_DCAI_paper.pdf\"},{\"title\":\"Designing synthetic datasets for the real world: Mechanism design and reasoning from first principles\",\"url\":\"https://research.google/blog/designing-synthetic-datasets-for-the-real-world-mechanism-design-and-reasoning-from-first-principles/\"},{\"title\":\"Diversify and Conquer: Diversity-Centric Data Selection with Iterative Refinement\",\"url\":\"https://arxiv.org/html/2409.11378\"},{\"title\":\"Online Iterative Reinforcement Learning from Human ... - NIPS\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/94d13c2401fe119e57ba325b6fe526e0-Paper-Conference.pdf\"}]\n\nBased on the search results, here's what I found about iterative synthetic training diversity:\n\n## Key Research Areas\n\nSynthetic data diversity significantly affects multiple measures of distribution collapse, with higher source diversity mitigating this collapse. This is an important finding because synthetic data training produces undesirable outcomes with respect to the models' output distribution, reflected in a decrease in linguistic diversity.\n\n## The Problem with Iterative Training\n\nModels iteratively fine-tuned on their own outputs gradually lose their ability to accurately model human text, with iterative self-tuning lowering lexical and syntactic diversity. More specifically, a consistent decrease in the diversity of the model outputs occurs through successive iterations, especially for tasks demanding high levels of creativity.\n\n## Solutions Through Diversity\n\nResearch suggests that increasing diversity in synthetic training data can help address these issues. Base models have been leveraged to enhance synthetic data diversity in combination with instruction-tuned models. Additionally, instead of random sampling, reasoning models can map the conceptual space of a target domain into deep hierarchical taxonomies, ensuring the dataset covers the long tail of a domain rather than clustering around common modes.\n\n## Practical Approaches\n\nA scalable iterative sampling and refinement method can efficiently select a subset of instruction data and maximize diversity, with an iterative refinement method reassessing the importance and sampling weight of each cluster in every training iteration.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45d8d262-0ee4-4c96-8c62-8e2878df9005",
+            "isSidechain": true,
+            "promptId": "0c51701b-4762-4cba-9767-b8f5770d6a4c",
+            "agentId": "af21ed1e2c4ad37bd",
+            "type": "user",
+            "uuid": "f8cbdc7e-695a-4e43-b138-f2bc9a3fd731",
+            "sourceToolAssistantUUID": "45d8d262-0ee4-4c96-8c62-8e2878df9005",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T18:43:43.830Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013E4zhqQ4ZM5VzuNKrTmbXo",
+              "type": "tool_result",
+              "content": "Web search results for query: \"model collapse prevention diversity selection 2025 2026\"\n\nLinks: [{\"title\":\"Preventing Model Collapse in the Synthetic-Data Era\",\"url\":\"https://cseweb.ucsd.edu/~yuxiangw/classes/AIsafety-2025Fall/Lectures/preventing_model_collapse_suraj.pdf\"},{\"title\":\"Diversity in Stable GANs: A Systematic Review of Mode Collapse Mitigation Strategies - Cobbinah - 2025 - Engineering Reports - Wiley Online Library\",\"url\":\"https://onlinelibrary.wiley.com/doi/pdf/10.1002/eng2.70209\"},{\"title\":\"Published as a conference paper at ICLR 2026 EXPLORING DIVERSE GENERATION PATHS\",\"url\":\"https://arxiv.org/pdf/2601.22010\"},{\"title\":\"What is Model Collapse? Examples, Causes and Fixes\",\"url\":\"https://www.analyticsvidhya.com/blog/2026/01/model-collapse/\"},{\"title\":\"The Price of Format: Diversity Collapse in LLMs\",\"url\":\"https://arxiv.org/html/2505.18949v1\"},{\"title\":\"AI Model Collapse Prevention: Analyzing the Best Practices\",\"url\":\"https://appinventiv.com/blog/ai-model-collapse-prevention/\"},{\"title\":\"AI Model Collapse: Causes and Prevention - WitnessAI\",\"url\":\"https://witness.ai/blog/ai-model-collapse/\"},{\"title\":\"Published as a conference paper at ICLR 2025 STRONG MODEL COLLAPSE\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/284afdc2309f9667d2d4fb9290235b0c-Paper-Conference.pdf\"},{\"title\":\"[2505.18949] The Price of Format: Diversity Collapse in LLMs\",\"url\":\"https://arxiv.org/abs/2505.18949\"},{\"title\":\"THE PERILS OF GENERATIVE MODEL INBREEDING: EVALUATING THE\",\"url\":\"https://thescholarship.ecu.edu/server/api/core/bitstreams/c16ab41b-44e2-4bce-a33e-ccd80110676f/content\"}]\n\nI've found comprehensive research on model collapse prevention and diversity selection from 2025-2026. Here are the key findings:\n\n## Model Collapse Prevention Strategies\n\nActive curation and mixture management involve actively curating which synthetic data to include in training sets based on what the model needs. This includes selecting synthetic data that fills gaps in the real-data distribution, avoiding synthetic data that duplicates real data, and employing metrics like maximum mean discrepancy or entropy to ensure the synthetic data adds new information rather than amplifying existing patterns.\n\nA fundamental rule is to never replace real data with synthetic data, but instead accumulate both together, as the real data serves as an anchor that preserves information about the true distribution.\n\n## Diversity Selection and Monitoring\n\nOrganizations should establish target ratios for real versus synthetic data (e.g., 70% real, 30% synthetic) and adjust dynamically based on model performance and diversity metrics. If model performance degrades or diversity metrics decline, the real-data proportion should be increased.\n\n## Diversity Collapse in LLMs\n\nRecent research from 2025 has identified another form of diversity collapse. Instruction-tuned large language models employ structured templates with role markers and special tokens to enforce format consistency, but this induces diversity collapse where models generate semantically similar outputs for open-ended inputs.\n\nChat templates constrain not only what models say, but also how they say it, reducing variability in form and content and thereby narrowing the expressive space.\n\n## Data Governance Approaches\n\nOrganizations should prioritize human-generated data by curating datasets from verified, real-world sources such as academic publications, government archives, and peer-reviewed content to maintain fidelity to the natural data distribution. Tracking data provenance—where each data point comes from, when it was created, and whether it was AI-generated or human-authored—is essential.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f034cbb3-9e72-4711-9063-85d65618db8b",
+            "isSidechain": true,
+            "promptId": "0c51701b-4762-4cba-9767-b8f5770d6a4c",
+            "agentId": "af21ed1e2c4ad37bd",
+            "type": "user",
+            "uuid": "e761b7b2-d712-49e4-84a8-9a16af7c64df",
+            "sourceToolAssistantUUID": "f034cbb3-9e72-4711-9063-85d65618db8b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T18:43:44.804Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U21qu5kaoDezoFtopLKqKG",
+              "type": "tool_result",
+              "content": "Web search results for query: \"synthetic data filtering model collapse 2026\"\n\nLinks: [{\"title\":\"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification | OpenReview\",\"url\":\"https://openreview.net/forum?id=MQXrTMonT1\"},{\"title\":\"Escaping Model Collapse via Synthetic Data Verification: Near-term Improvements and Long-term ConvergenceThis project is supported by the AI2050 program at Schmidt Sciences (Grant G-24-66104) and Army Research Office Award W911NF-23-1-0030. We also thank Cong Ma from UChicago, Hongning Wang and Bo Li from Tsinghua, Pinyan Lu and Gavin Tang from Shanghai University of Finance and Economics for helpful discussions and suggestions.\",\"url\":\"https://arxiv.org/html/2510.16657v1\"},{\"title\":\"Synthetic Data and AI 'Model Collapse'\",\"url\":\"https://www.transparencycoalition.ai/learn/synthetic-data-and-ai-model-collapse\"},{\"title\":\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\",\"url\":\"https://arxiv.org/html/2404.01413v2\"},{\"title\":\"[2404.01413] Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data\",\"url\":\"https://arxiv.org/abs/2404.01413\"},{\"title\":\"TECH-EXTRA: Synthetic Data and the Coming Model Collapse.\",\"url\":\"https://siliconsandstudio.substack.com/p/tech-extra-synthetic-data-and-the\"},{\"title\":\"AI model collapse: The synthetic data trap and how to avoid it\",\"url\":\"https://insights.manageengine.com/artificial-intelligence/ai-model-collapse-synthetic-data-trap/\"},{\"title\":\"Model collapse - Wikipedia\",\"url\":\"https://en.wikipedia.org/wiki/Model_collapse\"},{\"title\":\"Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data | OpenReview\",\"url\":\"https://openreview.net/forum?id=5B2K4LRgmz\"},{\"title\":\"Collapse or Thrive? Perils and Promises of Synthetic Data in a Self-Generating World | OpenReview\",\"url\":\"https://openreview.net/forum?id=Xr5iINA3zU\"}]\n\nBased on the search results, I found several recent research developments on synthetic data filtering and model collapse:\n\n## Key Findings on Synthetic Data Filtering and Model Collapse\n\nVerifications to select synthesized data can prevent model collapse, according to recent research. Large Language Models are increasingly trained on data generated by other LLMs, which raises concerns about model collapse—a drop in model performance when training sets include generated data.\n\nThe research investigates the use of verification on synthesized data to prevent model collapse, noting that it is easier for both humans and machines to tell between good and bad examples than to generate high-quality samples. Experiments on computing matrix eigenvalues with transformers and news summarization with LLMs show that verifiers, even imperfect ones, can indeed be harnessed to prevent model collapse.\n\nMore recent work from October 2025 examines iterative retraining under imperfect verifiers that filter out low-quality synthetic data based on their (possibly biased) knowledge, referred to as verifier-based synthetic retraining.\n\n## Alternative Approaches\n\nBeyond filtering, if data accumulates and models train on a mixture of \"real\" and synthetic data, model collapse no longer occurs. Accumulating synthetic data with real data avoids model collapse for all models and for all data modalities tested.\n\nHuman oversight also remains important: Human editors are not just fact-checkers; they inject diversity and course-correct drift faster than any automated filter.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "69590e8f-1840-4d0d-893e-d1e680729a24",
+            "isSidechain": true,
+            "promptId": "0c51701b-4762-4cba-9767-b8f5770d6a4c",
+            "agentId": "af21ed1e2c4ad37bd",
+            "type": "user",
+            "uuid": "00f98156-8589-4ab9-a328-5648967d05b6",
+            "sourceToolAssistantUUID": "69590e8f-1840-4d0d-893e-d1e680729a24",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-10T18:43:49.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SeGU5FTELbQXJibJtpYKZE",
+              "type": "tool_result",
+              "content": "Web search results for query: \"representation-based data selection iterative training\"\n\nLinks: [{\"title\":\"IterSelectTune: An Iterative Training Framework for Efficient Instruction-Tuning Data Selection\",\"url\":\"https://arxiv.org/html/2410.13464v1\"},{\"title\":\"Large-Scale Data Selection for Instruction Tuning\",\"url\":\"https://arxiv.org/html/2503.01807\"},{\"title\":\"Selecting Representative Data Sets | IntechOpen\",\"url\":\"https://www.intechopen.com/chapters/39037\"},{\"title\":\"Data Representativity for Machine Learning and AI Systems\",\"url\":\"https://arxiv.org/pdf/2203.04706\"},{\"title\":\"Curriculum Learning with Quality-Driven Data Selection\",\"url\":\"https://arxiv.org/html/2407.00102v1\"},{\"title\":\"Analyzing Data Selection Techniques with Tools from the ...\",\"url\":\"https://arxiv.org/pdf/1902.09602\"},{\"title\":\"LEAD: Iterative Data Selection for Efficient LLM Instruction Tuning\",\"url\":\"https://arxiv.org/pdf/2505.07437\"},{\"title\":\"Boosting LLM via Learning from Data Iteratively and Selectively\",\"url\":\"https://arxiv.org/html/2412.17365\"},{\"title\":\"[2602.13773] On Representation Redundancy in Large-Scale Instruction Tuning Data Selection\",\"url\":\"https://arxiv.org/abs/2602.13773\"},{\"title\":\"Large-Scale Data Selection for Instruction Tuning - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv250301807I/abstract\"}]\n\nI found several relevant research papers on representation-based data selection and iterative training. Here's what the search revealed:\n\n## Key Research Areas\n\n### 1. **Representation-Based Data Selection (RDS)**\n\nRepresentation-based data selection uses the hidden representations of the model being trained, with a variant using position-weighted mean pooling of the last hidden layer states. A variant called RDS+ consistently outperforms more complex methods across all settings tested while being more compute-efficient.\n\n### 2. **Iterative Training Frameworks**\n\nSeveral recent papers address iterative data selection for instruction tuning:\n\n- **IterSelectTune**: An iterative training policy framework that efficiently selects high-quality instruction data using a BERT-base classifier that approximates GPT-4's judgment through iterative training.\n\n- **LEAD**: A method that addresses data selection for instruction tuning, given limited computational budgets and data quality concerns.\n\n- **IterIT**: Emphasizes collaboration between the model and data, where the model supervises the data selection process while selected samples update the model's parameters.\n\n### 3. **Addressing Representation Redundancy**\n\nRecent work studies instruction-tuning data selection through semantic representation similarity and proposes Compressed Representation Data Selection (CRDS), which applies Rademacher random projection or whitening-based dimensionality reduction.\n\nThese approaches demonstrate that fine-tuning a model with approximately 20% of carefully selected data can outperform models fine-tuned on the full dataset.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8910dcb2-9d09-40d6-9b89-b8f6a4049c53",
+            "isSidechain": true,
+            "promptId": "0c51701b-4762-4cba-9767-b8f5770d6a4c",
+            "agentId": "af21ed1e2c4ad37bd",
+            "type": "user",
+            "uuid": "d5792f87-8708-45b8-bf6b-ca2f6c5f2224",
+            "sourceToolAssistantUUID": "8910dcb2-9d09-40d6-9b89-b8f6a4049c53",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-10T18:44:06.524Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Summary of Recent Work (2025-2026) on Model-Internal Representations for Data Selection\n\nI've found substantial recent research relevant to your proposal on using model-internal representations for data selection in iterative/multi-generation training. Here are the key findings organized by research area:\n\n### 1. **Representation-Based Data Selection (Most Directly Relevant)**\n\nSeveral papers directly address representation-based approaches to data selection:\n- **RDS (Representation-based Data Selection)**: Uses hidden representations from the model being trained, particularly position-weighted mean pooling of last hidden layer states. RDS variants consistently outperform more complex methods while being more compute-efficient.\n- **CRDS (Compressed Representation Data Selection)**: Applies Rademacher random projection or whitening-based dimensionality reduction to address representation redundancy in instruction-tuning data.\n- **IterSelectTune**: An iterative training framework using a BERT-base classifier that approximates quality judgments through iterative training.\n- **LEAD**: A method specifically addressing data selection for instruction tuning under computational budget constraints.\n\nThese approaches demonstrate that fine-tuning with ~20% of carefully selected data can outperform full dataset fine-tuning.\n\n### 2. **Iterative Synthetic Training with Diversity Focus**\n\nRecent work (2025-2026) emphasizes diversity in iterative synthetic data generation:\n- **\"Synthetic Eggs in Many Baskets\"** (accepted to ACL 2026): Directly studies synthetic data diversity impact on LLM fine-tuning and distribution collapse.\n- **\"What Matters in LLM-generated Data: Diversity and Its Effect on Model Fine-Tuning\"** (2025): Investigates how diversity affects iterative synthetic training outcomes.\n- Research shows iterative self-tuning causes loss of linguistic diversity, but this can be mitigated by increasing source diversity in synthetic data.\n\n### 3. **Synthetic Data Verification and Filtering**\n\nWork addressing quality control in iterative training:\n- **\"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"** (2025): Shows that verification systems can filter low-quality synthetic data and prevent model collapse, even with imperfect verifiers.\n- **\"Escaping Model Collapse via Synthetic Data Verification\"** (October 2025): Studies verifier-based synthetic retraining for iterative refinement.\n\n### 4. **Model Collapse Prevention Through Data Mixing**\n\n- Research shows that accumulating both real and synthetic data prevents model collapse across all models and modalities tested, providing an alternative to filtering-only approaches.\n- Establishing target ratios (e.g., 70% real, 30% synthetic) with dynamic adjustment based on diversity metrics is recommended.\n\n### 5. **Format and Diversity Collapse**\n\n- **\"The Price of Format: Diversity Collapse in LLMs\"** (2025): Identifies how structured templates and special tokens induce diversity collapse in instruction-tuned models, showing that chat templates constrain expressive space.\n\n## Papers You May Have Missed\n\nBased on the search results, here are recent papers your proposal might not have covered:\n\n1. [Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning](https://arxiv.org/html/2511.01490) - ACL 2026 (directly addresses your topic)\n2. [What Matters in LLM-generated Data: Diversity and Its Effect on Model Fine-Tuning](https://arxiv.org/html/2506.19262v1) - 2025\n3. [LEAD: Iterative Data Selection for Efficient LLM Instruction Tuning](https://arxiv.org/pdf/2505.07437) - 2025\n4. [On Representation Redundancy in Large-Scale Instruction Tuning Data Selection](https://arxiv.org/abs/2602.13773) - 2026\n5. [Escaping Model Collapse via Synthetic Data Verification](https://arxiv.org/html/2510.16657v1) - October 2025\n6. [Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification](https://openreview.net/forum?id=MQXrTMonT1) - 2025\n7. [The Price of Format: Diversity Collapse in LLMs](https://arxiv.org/abs/2505.18949) - 2025\n\nSources:\n- [IterSelectTune: An Iterative Training Framework for Efficient Instruction-Tuning Data Selection](https://arxiv.org/html/2410.13464v1)\n- [Large-Scale Data Selection for Instruction Tuning](https://arxiv.org/html/2503.01807)\n- [LEAD: Iterative Data Selection for Efficient LLM Instruction Tuning](https://arxiv.org/pdf/2505.07437)\n- [On Representation Redundancy in Large-Scale Instruction Tuning Data Selection](https://arxiv.org/abs/2602.13773)\n- [Boosting LLM via Learning from Data Iteratively and Selectively](https://arxiv.org/html/2412.17365)\n- [Curriculum Learning with Quality-Driven Data Selection](https://arxiv.org/html/2407.00102v1)\n- [Synthetic Eggs in Many Baskets: The Impact of Synthetic Data Diversity on LLM Fine-Tuning](https://arxiv.org/html/2511.01490)\n- [What Matters in LLM-generated Data: Diversity and Its Effect on Model Fine-Tuning](https://arxiv.org/html/2506.19262v1)\n- [Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification](https://openreview.net/forum?id=MQXrTMonT1)\n- [Escaping Model Collapse via Synthetic Data Verification](https://arxiv.org/html/2510.16657v1)\n- [Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data](https://arxiv.org/abs/2404.01413)\n- [The Price of Format: Diversity Collapse in LLMs](https://arxiv.org/abs/2505.18949)\n- [ORCHESTRATING SYNTHETIC DATA WITH REASONING](https://openreview.net/pdf?id=VOoeogZbMb)\n- [The Curious Decline of Linguistic Diversity: Training Language Models on Synthetic Text](https://arxiv.org/html/2311.09807v2)\n- [Diversify and Conquer: Diversity-Centric Data Selection with Iterative Refinement](https://arxiv.org/html/2409.11378)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5792f87-8708-45b8-bf6b-ca2f6c5f2224",
+            "isSidechain": true,
+            "agentId": "af21ed1e2c4ad37bd",
+            "requestId": "req_011CauP6mmi7NX7qyiyTrqmp",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "fcede7a2-992c-4d6f-8f38-d360bb3af19f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "80384d0b-54df-4b21-8143-2e6e0b907a93",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019qC5QTGmdyq4nMKDYohZ3b",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2574,
+                "cache_creation_input_tokens": 2818,
+                "cache_read_input_tokens": 16713,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2818,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-web-for-recent-work-2025-2026-on-using-model-internal-representatio.md"
+}

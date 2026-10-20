@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "e4dd30ef4d68be425ca5",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Transfer fig1_trace_overview.pdf to a remote server in chunks. You need to: 1. Load SSH tools: Call ToolSearch with quer",
+  "task_key": "agent-a1a52096734e3b117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a1a52096734e3b117.jsonl",
+    "occurrence": 1,
+    "bytes": 750205,
+    "sha256": "c4b7e3c84ba75523ed76d14f09d26358c785203015e296bf98aa79b2e6e02599"
+  },
+  "statistics": {
+    "messages": 300,
+    "user_turns": 3,
+    "tool_calls": 114,
+    "roles": {
+      "user": 3,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 114,
+      "tool_result": 114,
+      "system": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "e4dd30ef4d68be425ca5-part-0001.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 104,
+      "chunks": [
+        {
+          "path": "e4dd30ef4d68be425ca5-part-0001.json",
+          "message_count": 92
+        },
+        {
+          "path": "e4dd30ef4d68be425ca5-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 108,
+      "chunks": [
+        {
+          "path": "e4dd30ef4d68be425ca5-part-0002.json",
+          "message_count": 108
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-transfer-fig1-trace-overview-pdf-to-a-remote-server-in-chunks-you-need-to-1-lo.md"
+}

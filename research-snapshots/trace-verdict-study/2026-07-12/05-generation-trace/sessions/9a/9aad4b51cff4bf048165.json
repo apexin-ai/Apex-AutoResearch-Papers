@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9aad4b51cff4bf048165",
+  "project": "trace-verdict-study--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目 trace-verdict-study 的 MVP 验证阶段。服务器 westd-11235 上有 2x RTX PRO 6000 Blackwell 94GB, CUDA 12.8。conda bas",
+  "task_key": "e2ad8b92-7581-4dad-8f8c-01b39e499c55",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/e2ad8b92-7581-4dad-8f8c-01b39e499c55.jsonl",
+    "occurrence": 1,
+    "bytes": 898112,
+    "sha256": "343e7c6bc77fd3501dc9f4100a408893ef03f2b7a479352b734a5b518046adcc"
+  },
+  "statistics": {
+    "messages": 309,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "record": 62,
+      "user": 1,
+      "assistant": 74,
+      "tool_call": 86,
+      "tool_result": 86
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "9aad4b51cff4bf048165-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 307,
+      "chunks": [
+        {
+          "path": "9aad4b51cff4bf048165-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "9aad4b51cff4bf048165-part-0002.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-trace-verdict-study-mvp-westd-11235-2x-rtx-pro-6000-blackwell-94.md"
+}
