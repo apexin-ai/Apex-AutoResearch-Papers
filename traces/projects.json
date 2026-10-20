@@ -347,6 +347,22 @@
       }
     },
     {
+      "project": "faith-evidence-ie",
+      "title": "Evidence at What Cost? Decoupling and Scaling in LLM-Based Document Relation Extraction",
+      "catalog": "../paper-assets/faith-evidence-ie/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 3870,
+        "messages": 217142,
+        "user_turns": 7704,
+        "tool_calls": 86766,
+        "unparsed_lines": 1340,
+        "result": 1352,
+        "worker": 1381,
+        "conversation": 892,
+        "history": 245
+      }
+    },
+    {
       "project": "importance_margin_vla_compress",
       "title": "Why Token Pruning Crashes Some Robot Policies but Not Others: Vision Connectors and VLA Token Compressibility",
       "catalog": "../paper-assets/importance_margin_vla_compress/05-generation-trace/catalog.json",
