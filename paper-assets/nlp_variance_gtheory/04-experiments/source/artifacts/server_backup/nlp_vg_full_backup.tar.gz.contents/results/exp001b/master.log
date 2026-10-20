@@ -1,0 +1,36 @@
+Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')
+====== Starting sample 1 at Thu May 21 15:58:23 CST 2026 ======
+  GPU 0: PID 112700 → shard_0.jsonl
+  GPU 1: PID 112701 → shard_1.jsonl
+  GPU 2: PID 112702 → shard_2.jsonl
+  GPU 3: PID 112703 → shard_3.jsonl
+  Waiting for 4 processes...
+  Sample 1 complete: 86400 records → results/exp001b/sample1/all_results.jsonl
+====== Finished sample 1 at Thu May 21 16:08:03 CST 2026 ======
+====== Starting sample 2 at Thu May 21 16:08:03 CST 2026 ======
+Shuffled with seed=42
+Shard 0: 108 conditions → results/exp001b/sample2/shards/shard_0.csv
+Shard 1: 108 conditions → results/exp001b/sample2/shards/shard_1.csv
+Shard 2: 108 conditions → results/exp001b/sample2/shards/shard_2.csv
+Shard 3: 108 conditions → results/exp001b/sample2/shards/shard_3.csv
+  GPU 0: PID 116428 → shard_0.jsonl
+  GPU 1: PID 116429 → shard_1.jsonl
+  GPU 2: PID 116430 → shard_2.jsonl
+  GPU 3: PID 116431 → shard_3.jsonl
+  Waiting for 4 processes...
+  Sample 2 complete: 86400 records → results/exp001b/sample2/all_results.jsonl
+====== Finished sample 2 at Thu May 21 16:17:45 CST 2026 ======
+====== Starting sample 3 at Thu May 21 16:17:45 CST 2026 ======
+Shuffled with seed=42
+Shard 0: 108 conditions → results/exp001b/sample3/shards/shard_0.csv
+Shard 1: 108 conditions → results/exp001b/sample3/shards/shard_1.csv
+Shard 2: 108 conditions → results/exp001b/sample3/shards/shard_2.csv
+Shard 3: 108 conditions → results/exp001b/sample3/shards/shard_3.csv
+  GPU 0: PID 120385 → shard_0.jsonl
+  GPU 1: PID 120386 → shard_1.jsonl
+  GPU 2: PID 120387 → shard_2.jsonl
+  GPU 3: PID 120388 → shard_3.jsonl
+  Waiting for 4 processes...
+  Sample 3 complete: 86400 records → results/exp001b/sample3/all_results.jsonl
+====== Finished sample 3 at Thu May 21 16:27:27 CST 2026 ======
+All exp-001b samples done at Thu May 21 16:27:27 CST 2026
