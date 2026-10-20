@@ -1,0 +1,42 @@
+{
+  "base_data": "/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl",
+  "base_samples": 50000,
+  "contam_samples_qc_only": 7547,
+  "contam_samples_all": 16697,
+  "dosage": 100,
+  "variant": "qc_only",
+  "seed": 42,
+  "benchmarks": {
+    "arc_challenge": 697,
+    "gsm8k": 228,
+    "humaneval": 26,
+    "mmlu": 6596
+  },
+  "qc_stats": {
+    "arc_challenge": {
+      "total": 1172,
+      "qc_passed": 697,
+      "qc_failed": 475,
+      "pass_rate": 0.5947
+    },
+    "gsm8k": {
+      "total": 1319,
+      "qc_passed": 228,
+      "qc_failed": 1091,
+      "pass_rate": 0.1729
+    },
+    "humaneval": {
+      "total": 164,
+      "qc_passed": 26,
+      "qc_failed": 138,
+      "pass_rate": 0.1585
+    },
+    "mmlu": {
+      "total": 14042,
+      "qc_passed": 6596,
+      "qc_failed": 7446,
+      "pass_rate": 0.4697
+    }
+  },
+  "note": "D012: QC-pass paraphrases only. Clean contamination ablation."
+}

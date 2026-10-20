@@ -1,0 +1,3 @@
+/root/miniconda3/lib/python3.12/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Fetching 9 files:   0%|          | 0/9 [00:00<?, ?it/s]Fetching 9 files:  78%|███████▊  | 7/9 [04:25<01:15, 37.92s/it]Fetching 9 files: 100%|██████████| 9/9 [04:25<00:00, 29.50s/it]
