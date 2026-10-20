@@ -1,0 +1,43 @@
+{
+  "exp_id": "stress_global_worse_region_001",
+  "project": "ec_hte_codex_c",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-31T15:48:26.328Z",
+    "updated_at": "2026-05-31T15:49:51.899Z",
+    "hypothesis": "在更强 misclassification-CATE 正相关、非均衡样本规模或 k=6 稀疏分组下，pooled/global correction 的欠校正/过校正误差会超过 observed-label 平滑收益，从而出现 global PEHE 或 GATE bias 劣于 uncorrected 的区域。",
+    "parent": "mvp_ec_hte_semisynth_001",
+    "spec": {
+      "proposal_only": true,
+      "command": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/ec_hte_stress_test.py --errors 0.45,0.20,0.02 --cates 0.8,0.25,0.0 --k-values 3,6 --n-values 2000,5000 --reps 300 --seeds 20260531,20260601,20260602 --out-dir /root/ec_hte/results/stress_global_worse_region_001",
+      "server": "seetacloud-47181",
+      "path": "/root/ec_hte",
+      "code_path": "/root/ec_hte/mvp/ec_hte_stress_test.py",
+      "data_path": "synthetic generated in script",
+      "data_count": "k={3,6}, N={2000,5000}, reps=300 per config or seed x 100 equivalent",
+      "seed": [
+        20260531,
+        20260601,
+        20260602
+      ],
+      "device": "CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0",
+      "deps": "numpy only preferred",
+      "output_path": "/root/ec_hte/results/stress_global_worse_region_001",
+      "cpu_time_estimate": "30-90 min depending reps/grid",
+      "gpu_requirement": "none",
+      "required_outputs": [
+        "results.json",
+        "summary.csv",
+        "global_worse_region_heatmap.csv",
+        "config.json",
+        "run.log"
+      ],
+      "pass_fail": "Pass if at least one predeclared positive-correlation stress config has global correction PEHE or GATE bias worse than uncorrected and subgroup/EC-HTE-lite improves PEHE/GATE bias or coverage; fail if no global-worse region appears across k/N grid."
+    }
+  },
+  "timestamp": "2026-05-31T15:49:51.916938+00:00",
+  "trigger": "update_registry"
+}

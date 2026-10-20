@@ -1,0 +1,97 @@
+{
+  "exp_id": "diag_dgp_bias_audit_001",
+  "project": "ec_hte_codex_c",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-31T15:48:26.277Z",
+    "updated_at": "2026-05-31T15:53:27.907Z",
+    "hypothesis": "mvp_ec_hte_semisynth_001 的负向结果可能源于当前实现把 effect modifier 误分类主要表现为 observed-label GATE 平滑，而不是显式注入到 true-group CATE estimand 的偏差路径；若逐行复查 DGP、mixing matrix 与 correction inversion，并加入最小 sanity checks，应能定位 global correction 未劣于 uncorrected 的机制原因。",
+    "parent": "mvp_ec_hte_semisynth_001",
+    "spec": {
+      "proposal_only": true,
+      "command": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/diagnose_dgp_bias.py --source /root/ec_hte/mvp/ec_hte_semisynth_mvp.py --seed 20260531 --out-dir /root/ec_hte/results/diag_dgp_bias_audit_001",
+      "server": "seetacloud-47181",
+      "path": "/root/ec_hte",
+      "code_path": "/root/ec_hte/mvp/diagnose_dgp_bias.py",
+      "data_path": "synthetic/generated sanity checks; no external data",
+      "data_count": "deterministic population checks plus N=1000 small simulation sanity check",
+      "seed": 20260531,
+      "device": "CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0",
+      "deps": "numpy only; no scipy/sklearn required",
+      "output_path": "/root/ec_hte/results/diag_dgp_bias_audit_001",
+      "cpu_time_estimate": "<10 min",
+      "gpu_requirement": "none",
+      "required_outputs": [
+        "code_locations.json",
+        "sanity_checks.json",
+        "bias_injection_report.md"
+      ],
+      "pass_fail": "Pass if report identifies whether misclassification enters true-group CATE estimand vs observed-label smoothing, includes code line/function locations, and sanity checks show nonzero bias under controlled hand-computable cases; fail if mechanism remains ambiguous or checks cannot reproduce expected bias direction.",
+      "model_name": "numpy-only DGP bias diagnostic script, no GPU model",
+      "checkpoint_source": "/root/ec_hte/results/mvp_ec_hte_semisynth_001/main_100/results.json and /root/ec_hte/mvp/ec_hte_semisynth_mvp.py",
+      "eval_data": "synthetic/generated sanity checks from diagnose_dgp_bias.py; no external data",
+      "commit_id": "local diagnostic script deployed manually",
+      "hyperparams": {
+        "source": "/root/ec_hte/mvp/ec_hte_semisynth_mvp.py",
+        "out_dir": "/root/ec_hte/results/diag_dgp_bias_audit_001",
+        "device": "CPU-only; CUDA_VISIBLE_DEVICES empty",
+        "required_outputs": [
+          "code_locations.json",
+          "sanity_checks.json",
+          "bias_injection_report.md"
+        ],
+        "deps": "numpy only"
+      },
+      "model_path": "/root/ec_hte/mvp/diagnose_dgp_bias.py",
+      "gpu_model": "not used; CPU-only",
+      "data_fingerprint": {
+        "source_code_path": "/root/ec_hte/mvp/ec_hte_semisynth_mvp.py",
+        "diagnostic_code_path": "/root/ec_hte/mvp/diagnose_dgp_bias.py"
+      },
+      "notes": "Approved diagnostic proposal only for diag_dgp_bias_audit_001. Do not run other queued proposals; do not use cuda:0."
+    },
+    "log_path": "/root/ec_hte/results/diag_dgp_bias_audit_001/run.log",
+    "checkpoint_path": "/root/ec_hte/results/diag_dgp_bias_audit_001/sanity_checks.json",
+    "metrics": {
+      "verdict": "bias_injected_but_global_baseline_benign",
+      "pass": true,
+      "no_misclassification_identity": {
+        "smoothing_nonzero": false,
+        "pehe_uncorrected": 0.0,
+        "pehe_global": 3.240367108640117e-07,
+        "pehe_subgroup_oracle": 3.240367108640117e-07
+      },
+      "original_positive_population": {
+        "smoothing_nonzero": true,
+        "error_cate_corr": 0.9987049422582792,
+        "pehe_uncorrected": 0.0501312686661182,
+        "pehe_global": 0.022537163408821864,
+        "pehe_subgroup_oracle": 3.394262565914877e-07,
+        "gate_bias_uncorrected": 0.04695958252313067,
+        "gate_bias_global": 0.021584819460771013,
+        "gate_bias_subgroup_oracle": 2.657350221281034e-07
+      },
+      "stress_positive_population": {
+        "smoothing_nonzero": true,
+        "error_cate_corr": 0.9928679448941944,
+        "pehe_uncorrected": 0.12754311669566157,
+        "pehe_global": 0.06618590425258063,
+        "pehe_subgroup_oracle": 5.651658356293648e-07,
+        "gate_bias_uncorrected": 0.1245052188995139,
+        "gate_bias_global": 0.05994768593745808,
+        "gate_bias_subgroup_oracle": 4.110935359072444e-07
+      },
+      "outputs": {
+        "code_locations": "/root/ec_hte/results/diag_dgp_bias_audit_001/code_locations.json",
+        "sanity_checks": "/root/ec_hte/results/diag_dgp_bias_audit_001/sanity_checks.json",
+        "report": "/root/ec_hte/results/diag_dgp_bias_audit_001/bias_injection_report.md"
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-31T15:53:27.942179+00:00",
+  "trigger": "update_registry"
+}

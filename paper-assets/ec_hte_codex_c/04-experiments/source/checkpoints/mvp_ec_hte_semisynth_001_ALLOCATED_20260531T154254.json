@@ -1,0 +1,16 @@
+{
+  "exp_id": "mvp_ec_hte_semisynth_001",
+  "project": "ec_hte_codex_c",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-31T15:36:35.312Z",
+    "updated_at": "2026-05-31T15:42:54.823Z",
+    "hypothesis": "在误分类率与真实 CATE 异质性正相关的分类 effect modifier 场景中， pooled/global confusion-matrix correction 会对高效应高误差子群欠校正并对低效应低误差子群过校正，因此 PEHE/GATE bias 可劣于 uncorrected；而 subgroup-specific EC-HTE-lite correction 能通过分层误分类估计降低 PEHE/GATE bias 并改善 95% CI coverage。",
+    "notes": "MVP design: semi-synthetic categorical modifier DGP with k=3 groups, N=5000, replications=100 initially. Scenarios: positive-correlation worst-case (misclassification [0.30,0.15,0.05], true CATE [0.50,0.25,0.05]) and negative/sanity best-case (misclassification [0.05,0.15,0.30], true CATE [0.50,0.25,0.05]). Compare uncorrected, global correction, subgroup correction/EC-HTE-lite with pilot expert labels B=500. Metrics: PEHE, GATE bias/RMSE, subgroup CATE bias, empirical 95% CI coverage, CI width. Pass: in positive scenario global PEHE or GATE bias > uncorrected, and subgroup/EC-HTE-lite improves PEHE/GATE bias >=20% vs global or improves CI coverage toward 0.95; sanity scenario should not show EC-HTE-lite catastrophic degradation (<10% worse PEHE than best baseline). Estimated runtime: CPU 10-30 min for 100 reps if sklearn/numpy only; GPU optional/not required for MVP unless causal forest implementation uses GPU. Output: results.json/csv + plots + reproducibility metadata."
+  },
+  "timestamp": "2026-05-31T15:42:54.849185+00:00",
+  "trigger": "update_registry"
+}

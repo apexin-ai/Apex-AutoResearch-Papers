@@ -1,0 +1,165 @@
+{
+  "exp_id": "adaptive_expert_allocation_001",
+  "project": "ec_hte_codex_c",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-31T16:26:08.328Z",
+    "updated_at": "2026-05-31T16:57:15.415Z",
+    "hypothesis": "在相同总专家标注预算 B=500 下，uniform allocation 没有优先估计高风险 directed-flow 单元；risk-targeted 或 high-flow-targeted allocation 应能更有效降低 k6 stress 区域的 confusion estimation error，从而改善 subgroup EC-HTE-lite 的 PEHE/GATE bias。",
+    "parent": "oracle_confusion_upper_bound_001",
+    "spec": {
+      "proposal_only": false,
+      "released_for_run": true,
+      "staged_release": true,
+      "revision": "D011_smoke_audit_fix_passed_cpu_only",
+      "command": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/adaptive_expert_allocation.py --dgp directed_asym_prevalence_v1 --k-values 6 --n 5000 --reps 300 --seeds 20260531,20260601,20260602 --budget 500 --allocations uniform,risk_targeted,high_flow_targeted,hybrid --out-dir /root/ec_hte/results/adaptive_expert_allocation_001",
+      "server": "seetacloud-47181",
+      "path": "/root/ec_hte",
+      "code_path": "/root/ec_hte/mvp/adaptive_expert_allocation.py",
+      "config_path": "/root/ec_hte/mvp/directed_dgp_config.json",
+      "output_path": "/root/ec_hte/results/adaptive_expert_allocation_001",
+      "seed": [
+        20260531,
+        20260601,
+        20260602
+      ],
+      "device": "CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0",
+      "gpu_requirement": "none",
+      "data_path": "synthetic generated in script using directed_asym_prevalence_v1 k6 stress setting",
+      "data_count": "k=6; N=5000; reps=300; seeds=3; total expert budget B=500 for every allocation arm",
+      "model_name": "numpy-only adaptive expert allocation diagnostic, no GPU model",
+      "expected_outputs": [
+        "results.json",
+        "summary.csv",
+        "allocation_comparison.csv",
+        "confusion_estimation_error.csv",
+        "allocation_diagnostics.json",
+        "config.json",
+        "run.log"
+      ],
+      "pass_fail": "Pass if at least one risk_targeted/high_flow_targeted/hybrid allocation improves subgroup EC-HTE-lite PEHE or GATE bias versus uniform under equal B=500 and reports confusion-estimation error reduction; fail if adaptive allocation gives no PEHE/GATE benefit or violates equal-budget accounting.",
+      "smoke_plan": {
+        "command": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/adaptive_expert_allocation.py --dgp directed_asym_prevalence_v1 --k-values 6 --n 300 --reps 2 --seeds 20260531 --budget 100 --allocations uniform,risk_targeted,high_flow_targeted,hybrid --out-dir /root/ec_hte/results/adaptive_expert_allocation_001/smoke_d009"
+      },
+      "smoke_readiness": {
+        "status": "passed",
+        "log_path": "/root/ec_hte/results/adaptive_expert_allocation_001/smoke_d009/run.log",
+        "output_path": "/root/ec_hte/results/adaptive_expert_allocation_001/smoke_d009",
+        "missing_outputs": [],
+        "existing_outputs": [
+          "allocation_comparison.csv",
+          "allocation_diagnostics.json",
+          "config.json",
+          "confusion_estimation_error.csv",
+          "results.json",
+          "run.log",
+          "summary.csv"
+        ],
+        "script_hashes": {
+          "adaptive_expert_allocation.py": "5859e5a4637a9cf09035055839b813c8a771bc23e46fb0283f1ebc4d20953459",
+          "directed_dgp_config.json": "177c0f339b2f307c3fae480f53e2dccf974ce6ac75c5dc3d8377afc8cfee0ef1"
+        },
+        "env": {
+          "python": "3.12.3",
+          "numpy": "2.3.2"
+        },
+        "sanity_metrics": {
+          "smoke_only": true,
+          "equal_budget_all_arms": true,
+          "budget_by_arm": {
+            "uniform": 100,
+            "risk_targeted": 100,
+            "high_flow_targeted": 100,
+            "hybrid": 100
+          },
+          "formal_expected_budget_by_arm": {
+            "uniform": 500,
+            "risk_targeted": 500,
+            "high_flow_targeted": 500,
+            "hybrid": 500
+          },
+          "best_allocation_by_pehe": "hybrid"
+        }
+      },
+      "hash_env_registration_plan": {
+        "before_running": [
+          "sha256sum /root/ec_hte/mvp/adaptive_expert_allocation.py",
+          "sha256sum /root/ec_hte/mvp/directed_dgp_config.json",
+          "/root/miniconda3/bin/python -c \"import json,platform,numpy as np; print(json.dumps({'python': platform.python_version(), 'numpy': np.__version__}))\""
+        ],
+        "script_writes_env_to": "results.json:env",
+        "script_hash": "5859e5a4637a9cf09035055839b813c8a771bc23e46fb0283f1ebc4d20953459",
+        "config_hash": "177c0f339b2f307c3fae480f53e2dccf974ce6ac75c5dc3d8377afc8cfee0ef1"
+      },
+      "gate": {
+        "running_allowed": "staged_formal_release",
+        "formal_stage": "k6_equal_budget_b500",
+        "formal_running_allowed": true,
+        "reason": "D014 re-releases staged formal CPU-only run after Reviewer confirmed phase negative only applies to synthetic phase grid, not canonical fixed k6 stress setting. Formal outputs must verify each allocation arm records total_budget=500."
+      },
+      "gpu_model": "not used; CPU-only",
+      "checkpoint_source": "/root/ec_hte/results/oracle_confusion_upper_bound_001/results.json",
+      "eval_data": "synthetic fixed canonical k6 directed_asym_prevalence_v1, not phase synthetic grid",
+      "notes": "D014 re-release fixed-k6 component run; all allocation arms must use total_budget=500."
+    },
+    "log_path": "/root/ec_hte/results/adaptive_expert_allocation_001/run.log",
+    "checkpoint_path": "/root/ec_hte/results/adaptive_expert_allocation_001/results.json",
+    "metrics": {
+      "pass": true,
+      "formal_run": true,
+      "metadata_warning": "allocation_diagnostics retain smoke_only=true; interpret as D014 formal fixed-k6 run per command/output path, script metadata should be fixed before future reuse.",
+      "equal_budget_all_arms": true,
+      "budget_by_arm": {
+        "uniform": 500,
+        "risk_targeted": 500,
+        "high_flow_targeted": 500,
+        "hybrid": 500
+      },
+      "best_allocation_by_pehe": "hybrid",
+      "uniform_pehe_mean": 0.2025137930281416,
+      "hybrid_pehe_mean": 0.1883378275161717,
+      "uniform_gate_bias_mean": 0.1479415964008546,
+      "hybrid_gate_bias_mean": 0.1375856846527948,
+      "sample_rows": [
+        {
+          "seed": 20260531,
+          "allocation": "uniform",
+          "total_budget": 500,
+          "pehe_mean": 0.212872169783787,
+          "gate_bias_mean": 0.1541194024503723
+        },
+        {
+          "seed": 20260531,
+          "allocation": "hybrid",
+          "total_budget": 500,
+          "pehe_mean": 0.1979711178989219,
+          "gate_bias_mean": 0.14333104427884627
+        }
+      ],
+      "outputs": {
+        "results": "/root/ec_hte/results/adaptive_expert_allocation_001/results.json",
+        "summary": "/root/ec_hte/results/adaptive_expert_allocation_001/summary.csv",
+        "allocation_comparison": "/root/ec_hte/results/adaptive_expert_allocation_001/allocation_comparison.csv",
+        "confusion_estimation_error": "/root/ec_hte/results/adaptive_expert_allocation_001/confusion_estimation_error.csv",
+        "allocation_diagnostics": "/root/ec_hte/results/adaptive_expert_allocation_001/allocation_diagnostics.json",
+        "config": "/root/ec_hte/results/adaptive_expert_allocation_001/config.json"
+      },
+      "hashes": {
+        "/root/ec_hte/mvp/adaptive_expert_allocation.py": "5859e5a4637a9cf09035055839b813c8a771bc23e46fb0283f1ebc4d20953459",
+        "/root/ec_hte/mvp/directed_dgp_config.json": "177c0f339b2f307c3fae480f53e2dccf974ce6ac75c5dc3d8377afc8cfee0ef1"
+      },
+      "env": {
+        "python": "3.12.3",
+        "numpy": "2.3.2"
+      },
+      "interpretation": "Fixed canonical k6 allocation run: all arms recorded total_budget=500 in diagnostics and comparison; hybrid has lower PEHE/GATE than uniform. Needs Reviewer audit before conclusion update."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-31T16:57:15.415Z"
+  },
+  "timestamp": "2026-05-31T16:57:15.481285+00:00",
+  "trigger": "update_registry"
+}

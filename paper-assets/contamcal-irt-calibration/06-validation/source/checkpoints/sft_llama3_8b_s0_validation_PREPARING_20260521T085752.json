@@ -1,0 +1,15 @@
+{
+  "exp_id": "sft_llama3_8b_s0_validation",
+  "project": "contamcal-irt-calibration",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-21T08:15:02.035Z",
+    "updated_at": "2026-05-21T08:57:51.890Z",
+    "hypothesis": "Out-of-sample taxonomy validation: LLaMA-3.1-8B as 5th independent family to test whether dose-response patterns generalize beyond the 4 training families"
+  },
+  "timestamp": "2026-05-21T08:57:52.580442+00:00",
+  "trigger": "update_registry"
+}

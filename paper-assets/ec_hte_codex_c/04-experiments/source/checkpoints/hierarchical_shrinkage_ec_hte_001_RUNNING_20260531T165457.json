@@ -1,0 +1,103 @@
+{
+  "exp_id": "hierarchical_shrinkage_ec_hte_001",
+  "project": "ec_hte_codex_c",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-31T16:26:08.233Z",
+    "updated_at": "2026-05-31T16:54:57.213Z",
+    "hypothesis": "在 k6 directed_asym_prevalence_v1 stress 区域中，raw subgroup confusion correction 受 B=500 有限专家标签噪声影响；对 subgroup confusion matrix 做 hierarchical/empirical-Bayes shrinkage 可在不使用 oracle 的情况下稳定降低 PEHE/GATE bias 并保持或改善 preliminary coverage。",
+    "parent": "stability_seed_reps_001",
+    "spec": {
+      "proposal_only": false,
+      "released_for_run": true,
+      "staged_release": true,
+      "revision": "D011_smoke_audit_fix_passed_cpu_only",
+      "command": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/hierarchical_shrinkage_ec_hte.py --dgp directed_asym_prevalence_v1 --k-values 6 --n 5000 --reps 300 --seeds 20260531,20260601,20260602 --budget 500 --methods global,raw_subgroup,hierarchical_dirichlet,empirical_bayes_shrinkage --out-dir /root/ec_hte/results/hierarchical_shrinkage_ec_hte_001",
+      "server": "seetacloud-47181",
+      "path": "/root/ec_hte",
+      "code_path": "/root/ec_hte/mvp/hierarchical_shrinkage_ec_hte.py",
+      "config_path": "/root/ec_hte/mvp/directed_dgp_config.json",
+      "output_path": "/root/ec_hte/results/hierarchical_shrinkage_ec_hte_001",
+      "seed": [
+        20260531,
+        20260601,
+        20260602
+      ],
+      "device": "CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0",
+      "gpu_requirement": "none",
+      "data_path": "synthetic generated in script using directed_asym_prevalence_v1 k6 stress setting",
+      "data_count": "k=6; N=5000; reps=300; seeds=3; B=500 estimated confusion only; no oracle in main methods",
+      "model_name": "numpy-only hierarchical shrinkage EC-HTE diagnostic, no GPU model",
+      "expected_outputs": [
+        "results.json",
+        "summary.csv",
+        "method_comparison.csv",
+        "shrinkage_diagnostics.json",
+        "config.json",
+        "run.log"
+      ],
+      "pass_fail": "Pass if hierarchical_dirichlet or empirical_bayes_shrinkage improves PEHE and GATE bias versus raw_subgroup in k6 B=500 estimated setting without using oracle as a main result; fail if shrinkage worsens both PEHE and GATE bias or oracle/full-truth confusion leaks into main comparison.",
+      "smoke_plan": {
+        "command": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/hierarchical_shrinkage_ec_hte.py --dgp directed_asym_prevalence_v1 --k-values 6 --n 300 --reps 2 --seeds 20260531 --budget 100 --methods global,raw_subgroup,hierarchical_dirichlet,empirical_bayes_shrinkage --out-dir /root/ec_hte/results/hierarchical_shrinkage_ec_hte_001/smoke_d009"
+      },
+      "smoke_readiness": {
+        "status": "passed",
+        "log_path": "/root/ec_hte/results/hierarchical_shrinkage_ec_hte_001/smoke_d009/run.log",
+        "output_path": "/root/ec_hte/results/hierarchical_shrinkage_ec_hte_001/smoke_d009",
+        "missing_outputs": [],
+        "existing_outputs": [
+          "config.json",
+          "method_comparison.csv",
+          "results.json",
+          "run.log",
+          "shrinkage_diagnostics.json",
+          "summary.csv"
+        ],
+        "script_hashes": {
+          "hierarchical_shrinkage_ec_hte.py": "f7a7b4fafc98b9aec1e95b8036a4d7586ed27c407f20fabb191981dcb50b3b8f",
+          "directed_dgp_config.json": "177c0f339b2f307c3fae480f53e2dccf974ce6ac75c5dc3d8377afc8cfee0ef1"
+        },
+        "env": {
+          "python": "3.12.3",
+          "numpy": "2.3.2"
+        },
+        "sanity_metrics": {
+          "smoke_only": true,
+          "oracle_used_in_main": false,
+          "best_shrinkage_candidates": [
+            "empirical_bayes_shrinkage",
+            "hierarchical_dirichlet"
+          ],
+          "raw_subgroup_pehe_mean": 1.1301357818214572,
+          "best_shrinkage_pehe_mean": 1.084930350548599,
+          "best_shrinkage_method": "empirical_bayes_shrinkage"
+        }
+      },
+      "hash_env_registration_plan": {
+        "before_running": [
+          "sha256sum /root/ec_hte/mvp/hierarchical_shrinkage_ec_hte.py",
+          "sha256sum /root/ec_hte/mvp/directed_dgp_config.json",
+          "/root/miniconda3/bin/python -c \"import json,platform,numpy as np; print(json.dumps({'python': platform.python_version(), 'numpy': np.__version__}))\""
+        ],
+        "script_writes_env_to": "results.json:env",
+        "script_hash": "f7a7b4fafc98b9aec1e95b8036a4d7586ed27c407f20fabb191981dcb50b3b8f",
+        "config_hash": "177c0f339b2f307c3fae480f53e2dccf974ce6ac75c5dc3d8377afc8cfee0ef1"
+      },
+      "gate": {
+        "running_allowed": "staged_formal_release",
+        "formal_stage": "k6_shrinkage_b500",
+        "formal_running_allowed": true,
+        "reason": "D014 re-releases staged formal CPU-only run after Reviewer confirmed phase negative only applies to synthetic phase grid, not canonical fixed k6 stress setting. Main judgement remains shrinkage-only versus raw_subgroup."
+      },
+      "gpu_model": "not used; CPU-only",
+      "checkpoint_source": "/root/ec_hte/results/stability_seed_reps_001/reps300/results.json",
+      "eval_data": "synthetic fixed canonical k6 directed_asym_prevalence_v1, not phase synthetic grid",
+      "notes": "D014 re-release fixed-k6 component run; main judgement shrinkage-only versus raw_subgroup; global/oracle excluded from best_shrinkage."
+    }
+  },
+  "timestamp": "2026-05-31T16:54:57.272946+00:00",
+  "trigger": "update_registry"
+}

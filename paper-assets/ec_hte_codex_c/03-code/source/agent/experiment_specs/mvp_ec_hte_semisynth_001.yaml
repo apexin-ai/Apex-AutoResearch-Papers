@@ -1,0 +1,90 @@
+exp_id: mvp_ec_hte_semisynth_001
+status: invalidated_current_result_fresh_run_spec_ready
+decision_context:
+  approved_decision: D001
+  invalidation_constraint: C003
+  note: >-
+    Existing registry DONE(negative) is invalid/unverified and must not be used
+    for MVP PASS/FAIL, findings, or downstream decisions. This file is the
+    reproducibility spec required before any fresh CPU-first rerun.
+
+execution:
+  server: seetacloud-47181
+  account: root
+  configured_project_path: /home/root/ec_hte
+  actual_writable_project_path: /root/ec_hte
+  config_change_required: >-
+    /home/root does not exist on the remote host and /root is writable. Director
+    should update project_path to /root/ec_hte or explicitly approve using
+    /root/ec_hte for this MVP rerun.
+  device: CPU-only
+  gpu_policy: >-
+    Do not allocate, train on, or otherwise use cuda:0. Run with
+    CUDA_VISIBLE_DEVICES= empty.
+  python: /root/miniconda3/bin/python
+  dependencies:
+    required:
+      - numpy==2.3.2
+    absent_not_required:
+      - scipy
+      - sklearn
+  code_path: /root/ec_hte/mvp/ec_hte_semisynth_mvp.py
+  local_code_source: /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/ec_hte_codex_c/mvp/ec_hte_semisynth_mvp.py
+
+data:
+  type: synthetic_generated_in_script
+  external_data_path: null
+  n_per_rep: 5000
+  expert_label_budget: 500
+  groups: 3
+  scenarios:
+    positive_worst_case:
+      error_rates: [0.30, 0.15, 0.05]
+      true_cate: [0.50, 0.25, 0.05]
+    negative_sanity_case:
+      error_rates: [0.05, 0.15, 0.30]
+      true_cate: [0.50, 0.25, 0.05]
+
+commands:
+  smoke_10: >-
+    CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python
+    /root/ec_hte/mvp/ec_hte_semisynth_mvp.py
+    --reps 10 --n 5000 --budget 500 --seed 20260531
+    --out-dir /root/ec_hte/results/mvp_ec_hte_semisynth_001/fresh_smoke_10
+  full_100: >-
+    CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python
+    /root/ec_hte/mvp/ec_hte_semisynth_mvp.py
+    --reps 100 --n 5000 --budget 500 --seed 20260531
+    --out-dir /root/ec_hte/results/mvp_ec_hte_semisynth_001/fresh_main_100
+
+outputs:
+  smoke_dir: /root/ec_hte/results/mvp_ec_hte_semisynth_001/fresh_smoke_10
+  full_dir: /root/ec_hte/results/mvp_ec_hte_semisynth_001/fresh_main_100
+  expected_files:
+    - results.json
+    - summary.csv
+    - config.json
+    - run.log
+
+metrics:
+  - PEHE
+  - GATE bias
+  - GATE RMSE
+  - subgroup CATE bias
+  - empirical 95% CI coverage
+  - CI width
+
+pass_fail:
+  positive_case: >-
+    Global correction PEHE or GATE bias must be worse than uncorrected, and
+    subgroup/EC-HTE-lite must improve PEHE/GATE bias by at least 20 percent vs
+    global or move coverage toward 0.95.
+  sanity_case: >-
+    EC-HTE-lite must not catastrophically degrade; PEHE should be less than
+    10 percent worse than the best baseline.
+
+running_allowed: false
+required_before_running:
+  - Director/Reviewer acknowledges invalidation of the existing DONE(negative).
+  - Director explicitly approves fresh CPU-first rerun using this spec.
+  - Registry RUNNING transition must include this same command/server/path/seed/output/deps spec before execution.

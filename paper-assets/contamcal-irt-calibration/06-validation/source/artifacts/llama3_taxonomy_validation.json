@@ -1,0 +1,25 @@
+{
+  "family": "LLaMA-3.1-8B (Base)",
+  "role": "out-of-sample taxonomy validation (W3)",
+  "classification": "Immune",
+  "results": {
+    "d000": {"mmlu": 53.50, "arc": 72.61},
+    "d025": {"mmlu": 52.75, "arc": 72.01},
+    "d100": {"mmlu": 52.81, "arc": 72.70}
+  },
+  "deltas_d100": {"mmlu_pp": -0.69, "arc_pp": 0.09},
+  "deltas_d025": {"mmlu_pp": -0.75, "arc_pp": -0.60},
+  "key_finding": "Nearly identical baseline to OLMo-2 (53.50% vs 53.79%) but different pattern (Immune vs Benefit). Demonstrates architecture-specific modulation beyond baseline ability.",
+  "training_config": {
+    "lora_r": 16, "lora_alpha": 32, "seed": 0, "epochs": 1,
+    "base_model": "Meta-Llama-3.1-8B"
+  },
+  "six_family_summary": {
+    "Phi-4_14.7B":   {"baseline_mmlu": 76.44, "pattern": "Immune",     "d100_mmlu": 0.72,   "d100_arc": 0.65},
+    "Qwen-14B":      {"baseline_mmlu": 69.44, "pattern": "Collapse",   "d100_mmlu": -15.70, "d100_arc": -5.03},
+    "Qwen-7B":       {"baseline_mmlu": 66.11, "pattern": "V-recovery", "d100_mmlu": -0.95,  "d100_arc": -2.42},
+    "Gemma-2_9B":    {"baseline_mmlu": 61.86, "pattern": "Benefit",    "d100_mmlu": 2.39,   "d100_arc": -0.15},
+    "OLMo-2_7B":     {"baseline_mmlu": 53.79, "pattern": "Benefit",    "d100_mmlu": 1.35,   "d100_arc": 3.44},
+    "LLaMA-3_8B":    {"baseline_mmlu": 53.50, "pattern": "Immune",     "d100_mmlu": -0.69,  "d100_arc": 0.09}
+  }
+}

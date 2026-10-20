@@ -1,0 +1,765 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related_work} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:cross_benchmark_heatmap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:calibrated} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:s1_pipeline} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:value_decomposition} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:fisher} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:did_visualization} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:rrf} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:did_dose_response} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:volume_control} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:identifiability_heatmap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:signal_heatmap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:dif_comparison} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:dose_response_arc} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:formulation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:limitations} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:benchmarks} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{fig:baseline_vs_effect} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:domain_gamma_table} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:baselines} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:29"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:125"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:153"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:191"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:236"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:324"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:401"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:467"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:512"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:628"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "introduction.tex:16"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "results.tex:27"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "results.tex:75"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 39 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 4,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 2,
+          "num_cites": 1
+        },
+        {
+          "file": "ethics.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "experimental_setup.tex",
+          "role": "other",
+          "num_numbers": 20,
+          "num_cites": 12
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 30,
+          "num_cites": 8
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 12,
+          "num_cites": 14
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 40
+        },
+        {
+          "file": "results.tex",
+          "role": "result",
+          "num_numbers": 62,
+          "num_cites": 2
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'bordt2024forget' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'cormack_2009_rrf' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'gelman2012why' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'schroeders_2025_irt_sample_size' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "conclusion": [
+              "\\gamma",
+              "\\geq",
+              "\\sim",
+              "\\times"
+            ],
+            "experimental_setup": [
+              "\\alpha",
+              "\\gamma",
+              "\\hat",
+              "\\leq",
+              "\\mid",
+              "\\tau",
+              "\\times"
+            ],
+            "introduction": [
+              "\\Delta",
+              "\\dagger",
+              "\\ddagger",
+              "\\gamma",
+              "\\geq",
+              "\\pm",
+              "\\sigma",
+              "\\tau",
+              "\\times",
+              "\\to",
+              "\\triangle"
+            ],
+            "limitations": [
+              "\\gamma",
+              "\\leq"
+            ],
+            "method": [
+              "\\Delta",
+              "\\boldsymbol",
+              "\\cdot",
+              "\\gamma",
+              "\\geq",
+              "\\hat",
+              "\\in",
+              "\\kappa",
+              "\\ldots",
+              "\\sigma",
+              "\\sim",
+              "\\tau",
+              "\\theta",
+              "\\times",
+              "\\xi"
+            ],
+            "related_work": [
+              "\\gamma"
+            ],
+            "results": [
+              "\\Delta",
+              "\\S",
+              "\\chi",
+              "\\dagger",
+              "\\ddagger",
+              "\\diamond",
+              "\\gamma",
+              "\\ge",
+              "\\geq",
+              "\\leq",
+              "\\pm",
+              "\\sim",
+              "\\tau",
+              "\\times",
+              "\\to"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 4,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/_audit_compile_a4pufj2i",
+        "main_tex": "main.tex",
+        "log_tail": "\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n\nUnderfull \\hbox (badness 2253) in paragraph at lines 626--627\n\\OT1/ptm/m/n/10.95 We fit four para-met-ric dose-response mod-els\n []\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[20]\nUnderfull \\hbox (badness 1424) in paragraph at lines 652--653\n\\OT1/ptm/m/n/10.95 Under con-trolled in-jec-tion where ground-truth\n []\n\n\nUnderfull \\hbox (badness 1622) in paragraph at lines 652--653\n\\OT1/ptm/m/n/10.95 Critique, AUC $\\OMS/cmsy/m/n/10.95 ^^Y$ \\OT1/ptm/m/n/10.95 0\n.47--0.51) con-tribute near-\n []\n\n\nUnderfull \\hbox (badness 1365) in paragraph at lines 659--660\n[]\\OT1/ptm/b/n/10.95 Code: \\OT1/ptm/m/n/10.95 draft-ing ex-per-i-ment scripts, \ndata-\n []\n\n) [21] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 9005F6D75D1D174D19B2B03D7F6DE34F;9109.\n ) \nHere is how much of TeX's memory you used:\n 25506 strings out of 469438\n 472851 string characters out of 5468411\n 902917 words of memory out of 5000000\n 53483 multiletter control sequences out of 15000+600000\n 673471 words of font info for 145 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,15n,94p,1898b,678s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr\n/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p\nublic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a\nmsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\n/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmex\ntra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm\nr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb>\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texm\nf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p\nublic/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a\nmsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\n/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbol\ns/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols\n/msam7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/m\nsbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur\nw/times/utmri8a.pfb>\nOutput written on main.pdf (21 pages, 3986716 bytes).\nPDF statistics:\n 1366 PDF objects out of 1440 (max. 8388607)\n 1148 compressed objects within 12 object streams\n 203 named destinations out of 1000 (max. 500000)\n 473 words of extra memory for PDF output out of 10000 (max. 10000000)\n",
+        "error": "",
+        "pages": 21,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 21,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 1496) in paragraph at lines 1--33",
+        "Underfull \\hbox (badness 1616) in paragraph at lines 1--33",
+        "Underfull \\hbox (badness 1484) in paragraph at lines 1--33",
+        "Underfull \\hbox (badness 4981) in paragraph at lines 1--33",
+        "Underfull \\hbox (badness 3758) in paragraph at lines 1--33",
+        "Underfull \\hbox (badness 3271) in paragraph at lines 1--33",
+        "Underfull \\hbox (badness 2302) in paragraph at lines 3--4",
+        "Underfull \\hbox (badness 2418) in paragraph at lines 3--4",
+        "Underfull \\hbox (badness 1173) in paragraph at lines 3--4",
+        "Underfull \\hbox (badness 2662) in paragraph at lines 14--15",
+        "Underfull \\hbox (badness 2689) in paragraph at lines 18--18",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 46--46",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 46--46",
+        "Underfull \\hbox (badness 1005) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 1205) in paragraph at lines 14--15",
+        "Underfull \\vbox (badness 1062) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1629) in paragraph at lines 49--50",
+        "Underfull \\hbox (badness 1048) in paragraph at lines 59--60",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2173) in paragraph at lines 16--17",
+        "Underfull \\hbox (badness 4981) in paragraph at lines 22--23",
+        "Underfull \\hbox (badness 3547) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 19--20",
+        "Underfull \\hbox (badness 4279) in paragraph at lines 19--20",
+        "Underfull \\hbox (badness 1127) in paragraph at lines 19--20",
+        "Underfull \\hbox (badness 1117) in paragraph at lines 19--20",
+        "Underfull \\hbox (badness 2460) in paragraph at lines 19--20",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 22--23",
+        "Underfull \\hbox (badness 4072) in paragraph at lines 22--23",
+        "Underfull \\hbox (badness 1762) in paragraph at lines 22--23",
+        "Underfull \\hbox (badness 1688) in paragraph at lines 22--23",
+        "Underfull \\hbox (badness 2165) in paragraph at lines 29--29",
+        "Underfull \\hbox (badness 1642) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 5970) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 1281) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 1939) in paragraph at lines 63--64",
+        "Underfull \\hbox (badness 2285) in paragraph at lines 63--64",
+        "Underfull \\hbox (badness 1152) in paragraph at lines 63--64",
+        "Underfull \\hbox (badness 2253) in paragraph at lines 68--69",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 68--69",
+        "Underfull \\hbox (badness 6032) in paragraph at lines 68--69",
+        "Underfull \\hbox (badness 2529) in paragraph at lines 68--69",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 68--69",
+        "Underfull \\hbox (badness 2717) in paragraph at lines 68--69",
+        "Underfull \\hbox (badness 5681) in paragraph at lines 68--69",
+        "Underfull \\hbox (badness 3568) in paragraph at lines 73--74",
+        "Underfull \\hbox (badness 2189) in paragraph at lines 73--74",
+        "Underfull \\hbox (badness 1960) in paragraph at lines 73--74",
+        "Underfull \\hbox (badness 1009) in paragraph at lines 106--107",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1533) in paragraph at lines 6--7",
+        "Underfull \\hbox (badness 3547) in paragraph at lines 9--41",
+        "Underfull \\hbox (badness 1342) in paragraph at lines 9--41",
+        "Underfull \\hbox (badness 1661) in paragraph at lines 9--41",
+        "Underfull \\hbox (badness 1107) in paragraph at lines 9--41",
+        "Underfull \\hbox (badness 3635) in paragraph at lines 6--10",
+        "Underfull \\hbox (badness 2035) in paragraph at lines 6--10",
+        "Underfull \\hbox (badness 1184) in paragraph at lines 6--10",
+        "Underfull \\hbox (badness 5756) in paragraph at lines 13--19",
+        "Underfull \\hbox (badness 1077) in paragraph at lines 96--102",
+        "Underfull \\hbox (badness 1584) in paragraph at lines 249--257",
+        "Underfull \\hbox (badness 1694) in paragraph at lines 249--257",
+        "Underfull \\hbox (badness 1902) in paragraph at lines 288--293",
+        "Underfull \\hbox (badness 1400) in paragraph at lines 326--333",
+        "Underfull \\hbox (badness 3724) in paragraph at lines 345--352",
+        "Underfull \\hbox (badness 4686) in paragraph at lines 420--426",
+        "Underfull \\hbox (badness 1248) in paragraph at lines 420--426",
+        "Underfull \\hbox (badness 1226) in paragraph at lines 428--434",
+        "Underfull \\hbox (badness 2384) in paragraph at lines 465--471",
+        "Underfull \\hbox (badness 4792) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 1122) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 1803) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 1163) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 1867) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 4981) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 4108) in paragraph at lines 11--12",
+        "Underfull \\hbox (badness 1917) in paragraph at lines 13--14",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 5388) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 3098) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 1226) in paragraph at lines 51--52",
+        "Underfull \\hbox (badness 1057) in paragraph at lines 148--149",
+        "Underfull \\hbox (badness 2181) in paragraph at lines 151--152",
+        "Underfull \\vbox (badness 2503) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 4001) in paragraph at lines 312--313",
+        "Underfull \\vbox (badness 1248) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1005) in paragraph at lines 399--400",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 7576) in paragraph at lines 419--420",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1769) in paragraph at lines 486--487",
+        "Underfull \\hbox (badness 1521) in paragraph at lines 497--498",
+        "Underfull \\hbox (badness 5681) in paragraph at lines 542--543",
+        "Underfull \\hbox (badness 1270) in paragraph at lines 542--543",
+        "Underfull \\hbox (badness 1057) in paragraph at lines 544--545",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 546--547",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 567--568",
+        "Underfull \\hbox (badness 7397) in paragraph at lines 567--568",
+        "Underfull \\hbox (badness 1184) in paragraph at lines 567--568",
+        "Underfull \\hbox (badness 1642) in paragraph at lines 572--573",
+        "Underfull \\hbox (badness 1478) in paragraph at lines 572--573",
+        "Underfull \\hbox (badness 1275) in paragraph at lines 579--580",
+        "Underfull \\hbox (badness 2253) in paragraph at lines 626--627",
+        "Underfull \\hbox (badness 1424) in paragraph at lines 652--653",
+        "Underfull \\hbox (badness 1622) in paragraph at lines 652--653",
+        "Underfull \\hbox (badness 1365) in paragraph at lines 659--660"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "abstract.tex:1 \"five of six families\" GSM8K 转移的计数依赖于种子选择和 Gemma-2 的包含/排除。Table 4 (main text) 将 Gemma-2 排除且用 seed s123 报告 Phi-4 GSM8K Δ=-0.5pp (null)，此时仅 4/5 family 为正；Appendix Table (gsm8k_dose) 用 seed s0 报告 Phi-4 +1.14pp 且称 \"all five non-excluded families show positive\"。Abstract 的 \"five of six\" 需要同时将 Gemma-2 (+1.33pp, CoT collapse baseline) 计为正且使用 s0 seed 下的 Phi-4 数据。建议改为 \"four of five non-excluded families\" 或明确说明 seed 依赖。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "abstract.tex:1 \"borderline for OLMo-2 and Falcon3\" 但 results.tex §5.3 用词是 \"directionally consistent but exploratory\"。Falcon3 两个 seed 均为强正 (+3.91, +4.19pp)，效果量不 borderline，是 n=2 导致的统计确信度不足。\"borderline\" 暗示效果量边界，应改为 \"exploratory\" 以匹配 Results 用词。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "abstract.tex:1 ContamCal 的 IRT 校准和 domain-level γ_d 诊断仅在 Qwen2.5 within-family ensemble (J=16) 上验证，但 abstract 写法 \"enables domain-level contamination diagnosis\" 读起来像通用能力。建议加限定词如 \"within-family\" 或 \"(demonstrated on Qwen2.5)\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "贡献-范围对齐",
+      "message": "results.tex:99-106 Table 2 (baselines) 中 ContamCal MAE=0.009 劣于 B0-Raw MAE=0.006，τ=0.731 劣于 B5b τ=0.789。论文诚实承认 \"aggregate calibration is not ContamCal's primary goal\"，但 Method §3.2 用大量篇幅描述 calibrated score (Eq.3)，形成 method 强调 vs results 弱化的叙事不平衡。建议在 Method 中更早明确 diagnostic value > calibration value 的定位。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "实验严谨性",
+      "message": "experimental_setup.tex + results.tex 全文未报告 GPU 型号、单次训练时长、总 GPU-hours。EMNLP Reproducibility Checklist 要求披露计算资源。55+ checkpoints 的训练成本对复现至关重要。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "实验严谨性",
+      "message": "results.tex:106 Table 2 (baselines) 基于单次 300-item 随机子采样，无 error bars 或 bootstrap CI。子采样引入的方差未量化，削弱了方法对比的可信度。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "abstract.tex:1 \"-ing 分词短语\": \"revealing that Social Sciences contamination effects are negative...\" 和 \"enabling domain-level contamination diagnosis\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "results.tex:22 \"indicating that family-level factors beyond baseline ability modulate vulnerability\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "results.tex:104 \"illustrating how opposing domain effects cancel in aggregate, a pattern invisible to raw accuracy\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "experimental_setup.tex:20 \"indicating CoT collapse rather than a contamination effect\""
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "conclusion.tex 整个 Discussion and Conclusion 仅约 150 words（3 段），对于含 4 种 dose-response pattern、domain-level 效应异质性、cross-benchmark 转移等复杂发现而言过于简略。无显式 future work 讨论。部分 implication 点（如 contamination 检测信号失效对实践的影响）未展开。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "method.tex:43 \"MC-format benchmarks\" 首次使用 \"MC\" 缩写但未展开为 \"multiple-choice (MC)\"。experimental_setup.tex 使用全称 \"multiple-choice\" 但未建立缩写映射。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "related_work.tex:3-8 Pipeline 概览图 (Figure 2) 的 LaTeX 代码放在 Related Work 开头，语义上属于 Method。可能是浮动排版优化，但初读者可能困惑。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "limitations.tex 共 79 words，覆盖 3 个 distinct limitations（模型规模限制、SFT vs pretraining、IRT 子采样），内容实质，符合用户规则 \"只需要写一小段\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "abstract 192 words，符合 EMNLP 2026 ≤200 words 要求。"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "Limitations section 位于正文（\\section*{Limitations}），appendix 中无重复 limitations section，符合 \"一篇文章只能有一个 limitations section\" 要求。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "em-dash (—) 0 处，en-dash ( – ) 0 处，filler words 0 处，AI 黑名单词 (delve/leverage/utilize 等) 0 处。去 AI 整体质量良好。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Intro contributions 三条均在正文有对应 section/table 支撑：C1→§5.1+§5.2+§5.3, C2→§5.5+§5.7, C3→§5.6+Appendix D/E。无孤儿章节。"
+    },
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Conclusion 三段总结与 Results 各节结论一致，无遗漏或矛盾。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "全文无 \"significantly outperforms\"、\"state-of-the-art\"、\"revolutionary\" 等过强措辞。Collapse/V-recovery 标注 \"preliminary pending independent replication\"，cross-seed claim 区分 direction (reproducible) vs magnitude (seed-sensitive)，hedging 到位。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "未检测到内部实验编号、服务器名、内部工具引用或隐含内部流程表述。GitHub URL 使用匿名化命名 (anonymous-nlp-2026-2)。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Abstract 字数目测接近 200 词上限，建议用工具精确验证是否 ≤200 words（EMNLP 2026 硬约束）"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Figure 1 作为首页视觉锚点功能良好（展示 dose-response 核心 pattern），但尺寸偏小，放大可增强审稿人第一印象锚定效果"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "主正文（Section 1–6）恰好 8 页，Limitations 从第 9 页顶部开始，符合 EMNLP 2026 正文 ≤8 页规则"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Figure 2 pipeline 三阶段图设计清晰，绿/橙/蓝配色方案区分度好，caption 自包含"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 7",
+      "message": "单页内堆叠 3 个 display items（Table 3 + Figure 5 + Table 4），每个 item 被压缩较小；Figure 5 的 forest plot 轴标签和模型名字号偏小，接近正文字号 70% 下限"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "Figure 6（per-domain γ_k estimates）尺寸过小，domain 名称和 CI 数值标注字号明显低于正文 70%，打印后可能难以辨认"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "主正文中唯一无 figure/table 的页面（仅有 displayed equations），但不构成连续 2 页纯文本（p4 有 Figure 3，p6 有 Table 2 + Figure 4），节奏可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Table 2（MMLU method comparison）和 Figure 4（cross-benchmark transfer）布局均衡，表格使用 booktabs 风格"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Section 6 \"Discussion and Conclusion\" 从页面中部开始，heading 后有充足正文，无孤悬问题"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9",
+      "message": "Limitations 章节简短（约 1/4 页，覆盖 3 个要点），符合 EMNLP 2026 \"写一小段覆盖 3 个点\" 的规则；全文仅此一处 Limitations section，appendix 中无重复"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 13",
+      "message": "Figure 8（Detection signal AUC heatmap）单元格内数值文字极小，在正常打印/屏幕尺寸下可读性差；建议增大字号或改用颜色深浅 + 数值标注组合"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 17",
+      "message": "Figure 10（DID scatter，多面板）和 Figure 11（DiD across dosages，多面板）面板数多导致每个子图极小，轴标签、tick labels 字号远低于正文 70%，建议合并关键面板或增大整体尺寸"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 17",
+      "message": "单页含 2 figures + 3 tables = 5 个 display items，appendix 允许高密度但审稿人仍需可读性"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Table 1 跨全宽排列（figure*），8 列结构合理；使用 booktabs 风格，最优 pattern 有加粗标注"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1-8",
+      "message": "主正文 display items 总计：6 figures + 4 tables = 10 个 / 8 页 ≈ 1.25/页，实证型论文密度良好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 9-10",
+      "message": "References 格式统一（ACL style），未见 [?] 未解析引用或跳号"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 21",
+      "message": "末页内容填充约 80-85%，含 Table 23 + sections AC/AD/AE，可接受"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 21",
+      "message": "Section AD \"Use of AI Assistants\" 诚实披露使用 Claude 辅助，符合 ARR 伦理要求"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "未检测到 LaTeX 公式渲染错误、内容溢出 margin、或 section heading 孤悬页底"
+    },
+    {
+      "severity": "info",
+      "dimension": "全文",
+      "message": "所有结果表格（Tables 1, 3, 5 等）最优值有加粗标注；表格统一使用 booktabs 风格（无竖线、无 \\hline）"
+    }
+  ],
+  "counts": {
+    "critical": 0,
+    "warning": 187,
+    "info": 26
+  },
+  "error": "",
+  "timestamp": "2026-05-25T10:00:18.517782+00:00"
+}

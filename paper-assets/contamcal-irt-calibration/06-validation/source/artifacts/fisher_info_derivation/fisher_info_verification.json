@@ -1,0 +1,152 @@
+{
+  "theorem1": {
+    "setting": "AUC=0.8, N=50, M=300, gamma=0.5",
+    "I_analytic_4pl": 854.3683424504884,
+    "I_mc_score": 860.0658275870094,
+    "I_expected_hessian": 854.3793228454887,
+    "ratio_score_over_analytic": 1.0066686519776464,
+    "ratio_hessian_over_analytic": 1.0000128520621079,
+    "I_2pl_simplified": 2571.689627650275,
+    "I_2pl_general_formula": 2571.689627650275,
+    "ratio_2pl_formulas": 1.0
+  },
+  "corollary1": {
+    "W_bar": 0.0652475689538634,
+    "W_total": 978.713534307951,
+    "auc_sweep": [
+      {
+        "auc": 0.55,
+        "sigma_noise": 5.627082622328226,
+        "E_tau_sq": 31.964058838508304,
+        "Var_tau": 31.874058838508304,
+        "I_theory": 31283.65699666376,
+        "I_empirical_mean": 31233.925886045305,
+        "I_empirical_se": 41.469548998554096,
+        "ratio": 0.9984103165872276
+      },
+      {
+        "auc": 0.65,
+        "sigma_noise": 1.8351134778255316,
+        "E_tau_sq": 3.6676414764969176,
+        "Var_tau": 3.5776414764969178,
+        "I_theory": 3589.57035203673,
+        "I_empirical_mean": 3585.3597970287788,
+        "I_empirical_se": 4.648288227395678,
+        "ratio": 0.9988270030686089
+      },
+      {
+        "auc": 0.8,
+        "sigma_noise": 0.8401722211602054,
+        "E_tau_sq": 1.0058893612092732,
+        "Var_tau": 0.9158893612092731,
+        "I_theory": 984.4775318318949,
+        "I_empirical_mean": 984.2907331061522,
+        "I_empirical_se": 1.1955291181067016,
+        "ratio": 0.999810255978727
+      },
+      {
+        "auc": 0.9,
+        "sigma_noise": 0.5517583530757576,
+        "E_tau_sq": 0.6044372801888724,
+        "Var_tau": 0.5144372801888724,
+        "I_theory": 591.5709467611366,
+        "I_empirical_mean": 591.9350468226368,
+        "I_empirical_se": 0.6970447869847595,
+        "ratio": 1.0006154799580569
+      },
+      {
+        "auc": 0.95,
+        "sigma_noise": 0.42989039851350197,
+        "E_tau_sq": 0.48480575473409754,
+        "Var_tau": 0.3948057547340975,
+        "I_theory": 474.48595366864225,
+        "I_empirical_mean": 474.99968714139305,
+        "I_empirical_se": 0.5602029594448987,
+        "ratio": 1.0010827158713103
+      }
+    ]
+  },
+  "corollary2": {
+    "sigma_tau_sq": 0.9158893612092731,
+    "auc": 0.8,
+    "me_sweep": [
+      {
+        "sigma_e": 0.0,
+        "attenuation_theory": 1.0,
+        "ratio_empirical": 1.0,
+        "I_oracle_mean": 895.3869647767552,
+        "I_me_mean": 895.3869647767552
+      },
+      {
+        "sigma_e": 0.1,
+        "attenuation_theory": 0.9891995734923023,
+        "ratio_empirical": 0.9894351821205224,
+        "I_oracle_mean": 895.3869647767552,
+        "I_me_mean": 885.9273645622305
+      },
+      {
+        "sigma_e": 0.3,
+        "attenuation_theory": 0.9105269391737052,
+        "ratio_empirical": 0.9112260492658598,
+        "I_oracle_mean": 895.3869647767552,
+        "I_me_mean": 815.8999264776722
+      },
+      {
+        "sigma_e": 0.5,
+        "attenuation_theory": 0.7855714201382734,
+        "ratio_empirical": 0.7865631042241326,
+        "I_oracle_mean": 895.3869647767552,
+        "I_me_mean": 704.2783504966286
+      },
+      {
+        "sigma_e": 1.0,
+        "attenuation_theory": 0.4780491920635652,
+        "ratio_empirical": 0.47901393545611365,
+        "I_oracle_mean": 895.3869647767552,
+        "I_me_mean": 428.90283375381813
+      }
+    ]
+  },
+  "exp004_comparison": {
+    "conditions": [
+      {
+        "condition": "auc0.55_n20_prior1.0_binary",
+        "auc": 0.55,
+        "n_models": 20,
+        "n_runs": 10,
+        "I_conditional": 11922.846589169594,
+        "sigma_post_conditional": 0.009157813822032922,
+        "ci_width_conditional": 0.03589863018236905,
+        "ci_width_observed": 0.13259,
+        "ratio_obs_over_cond": 3.693455692499352,
+        "frac_excludes_zero": 1.0
+      },
+      {
+        "condition": "auc0.55_n50_prior1.0_binary",
+        "auc": 0.55,
+        "n_models": 50,
+        "n_runs": 3,
+        "I_conditional": 30430.40562288087,
+        "sigma_post_conditional": 0.005732433080990433,
+        "ci_width_conditional": 0.0224711376774825,
+        "ci_width_observed": 0.08946666666666665,
+        "ratio_obs_over_cond": 3.981403520851457,
+        "frac_excludes_zero": 1.0
+      },
+      {
+        "condition": "auc0.8_n50_prior1.0_binary",
+        "auc": 0.8,
+        "n_models": 50,
+        "n_runs": 1,
+        "I_conditional": 957.6262335139413,
+        "sigma_post_conditional": 0.03229797880465385,
+        "ci_width_conditional": 0.12660807691424308,
+        "ci_width_observed": 0.1615,
+        "ratio_obs_over_cond": 1.275590025029688,
+        "frac_excludes_zero": 1.0
+      }
+    ],
+    "min_auc_conditional_prediction": 0.5,
+    "note": "The conditional Fisher information assumes all other parameters (theta, a, b, c, d) are known. The Bayesian posterior integrates over these, yielding wider CIs. The ratio_obs_over_cond column shows how much wider the observed CI is relative to the conditional lower bound."
+  }
+}

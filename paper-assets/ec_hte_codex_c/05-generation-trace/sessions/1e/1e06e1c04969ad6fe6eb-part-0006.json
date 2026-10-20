@@ -1,0 +1,389 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1e06e1c04969ad6fe6eb",
+  "rounds": [
+    {
+      "number": 24,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-31T17:35:06.902438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent_ml_research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "tool_args": {
+              "project": "ec_hte_codex_c",
+              "exp_id": "ci_covariance_shrinkage_001",
+              "field": "parent",
+              "value": "variance_propagation_ci_real_001"
+            }
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-31T17:35:07.236294+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\": true, \"data\": {\"exp_id\": \"ci_covariance_shrinkage_001\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-31T17:35:00.190Z\", \"updated_at\": \"2026-05-31T17:35:07.090Z\", \"hypothesis\": \"k6 CI 宽度爆炸主要来自 rare-group audit confusion covariance ill-conditioning；若对 audit covariance 做 row-wise Dirichlet/Bayesian shrinkage、eigenvalue floor 和 condition-number bounded regularization，可在保留真实 uncertainty propagation 的同时降低 width multiplier，并改善或至少不恶化 coverage calibration。\", \"parent\": \"variance_propagation_ci_real_001\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3263}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "elapsed_ms": 333
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-31T17:35:07.360397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent_ml_research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "tool_args": {
+              "project": "ec_hte_codex_c",
+              "exp_id": "ci_allocation_aware_audit_001",
+              "field": "parent",
+              "value": "variance_propagation_ci_real_001"
+            }
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-31T17:35:07.713264+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\": true, \"data\": {\"exp_id\": \"ci_allocation_aware_audit_001\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-31T17:35:00.719Z\", \"updated_at\": \"2026-05-31T17:35:07.506Z\", \"hypothesis\": \"k6 rare-group audit counts 低至个位数导致 delta/bootstrap 不稳定；若在同等总预算或明确预算扩展下使用 rare-group minimum audit count 与 adaptive/high-flow allocation 来估计 confusion covariance，CI width explosion 应减少，且 coverage calibration 应比 uniform audit 更稳定。\", \"parent\": \"variance_propagation_ci_real_001\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3688}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "elapsed_ms": 352
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": "2026-05-31T17:35:07.713656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent_ml_research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "tool_args": {
+              "project": "ec_hte_codex_c",
+              "exp_id": "ci_guarded_bootstrap_fallback_001",
+              "field": "parent",
+              "value": "variance_propagation_ci_real_001"
+            }
+          },
+          "id": "event-000905"
+        },
+        {
+          "source_line": 906,
+          "timestamp": "2026-05-31T17:35:08.167874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\": true, \"data\": {\"exp_id\": \"ci_guarded_bootstrap_fallback_001\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-31T17:35:01.125Z\", \"updated_at\": \"2026-05-31T17:35:07.974Z\", \"hypothesis\": \"真实 bootstrap/studentized CI 在 k6 rare-group 条件下会被 ill-conditioned correction draws 主导；若加入 winsorized/truncated bootstrap、condition-number guard、以及 ill-conditioned 时回退到 subgroup naive 或报告 no-CI fallback，可避免宽度爆炸并给出可审计的 negative/fallback 决策。\", \"parent\": \"variance_propagation_ci_real_001\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.403}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "elapsed_ms": 454
+          },
+          "id": "event-000906"
+        },
+        {
+          "source_line": 907,
+          "timestamp": "2026-05-31T17:35:56.697564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent_ml_research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "tool_args": {
+              "project": "ec_hte_codex_c",
+              "exp_id": "ci_covariance_shrinkage_001",
+              "field": "spec",
+              "value": "{'proposal_only': True, 'revision': 'D022_design_only_cpu', 'command': 'CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/variance_ci_covariance_shrinkage.py --dgp directed_asym_prevalence_v1 --k-values 3,6 --n 5000 --reps 300 --seeds 20260531,20260601,20260602 --budget 500 --ci-methods naive,delta_shrinkage,bootstrap_shrinkage --bootstrap-reps 300 --shrinkage-grid dirichlet:1,dirichlet:5,eigen_floor:1e-4,cond_cap:50 --out-dir /root/ec_hte/results/ci_covariance_shrinkage_001', 'server': 'seetacloud-47181', 'path': '/root/ec_hte', 'code_path': '/root/ec_hte/mvp/variance_ci_covariance_shrinkage.py', 'config_path': '/root/ec_hte/mvp/directed_dgp_config.json', 'output_path': '/root/ec_hte/results/ci_covariance_shrinkage_001', 'device': 'CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0', 'gpu_requirement': 'none', 'implementation_changes': ['Replace raw audit covariance with row-wise shrinkage toward pooled/global covariance or Dirichlet prior covariance.', 'Add eigenvalue floor and condition-number cap on audit covariance before J Sigma J^T.', 'Report pre/post covariance spectrum, shrinkage strength, PSD/condition effects, and whether any regularization cap was active.'], 'uses_d017_strict_gate': True, 'smoke_pass_fail': 'Smoke pass if all expected outputs exist, covariance pre/post diagnostics are numeric, PSD checks recorded, no hardcoded coverage/width offsets, and strict gate evaluation is emitted. Smoke fail if any covariance regularization summary is missing or formal output path is used.', 'formal_pass_fail': 'Formal pass only if at least one shrinkage CI improves k6 coverage abs error by >=0.005 absolute or >=10% relative vs naive, k3 worsens by <=0.01, coverage in [0.90,0.98], width multiplier <=1.75, and width multiplier >1.5 with gain <0.01 is marked fail. Otherwise mark DONE(negative).', 'smoke_plan': {'command': 'CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/variance_ci_covariance_shrinkage.py --dgp directed_asym_prevalence_v1 --k-values 3,6 --n 500 --reps 5 --seeds 20260531 --budget 100 --ci-methods naive,delta_shrinkage,bootstrap_shrinkage --bootstrap-reps 20 --shrinkage-grid dirichlet:1,eigen_floor:1e-4,cond_cap:50 --out-dir /root/ec_hte/results/ci_covariance_shrinkage_001/smoke --smoke', 'expected_outputs': ['results.json', 'coverage_summary.csv', 'ci_width_summary.csv', 'calibration_diagnostics.json', 'covariance_regularization_diagnostics.json', 'bootstrap_diagnostics.json', 'delta_diagnostics.json', 'config.json', 'run.log']}, 'cpu_time_estimate': 'Smoke 1-5 min CPU; formal 60-180 min CPU; no GPU.', 'gate': {'running_allowed': False, 'formal_running_allowed': False, 'reason': 'D022 design only; requires Director/Reviewer approval before implementation/smoke/formal.'}}"
+            }
+          },
+          "id": "event-000907"
+        },
+        {
+          "source_line": 908,
+          "timestamp": "2026-05-31T17:35:57.152717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\": true, \"data\": {\"exp_id\": \"ci_covariance_shrinkage_001\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-31T17:35:00.190Z\", \"updated_at\": \"2026-05-31T17:35:56.915Z\", \"hypothesis\": \"k6 CI 宽度爆炸主要来自 rare-group audit confusion covariance ill-conditioning；若对 audit covariance 做 row-wise Dirichlet/Bayesian shrinkage、eigenvalue floor 和 condition-number bounded regularization，可在保留真实 uncertainty propagation 的同时降低 width multiplier，并改善或至少不恶化 coverage calibration。\", \"parent\": \"variance_propagation_ci_real_001\", \"spec\": {\"proposal_only\": true, \"revision\": \"D022_design_only_cpu\", \"command\": \"CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/variance_ci_covariance_shrinkage.py --dgp directed_asym_prevalence_v1 --k-values 3,6 --n 5000 --reps 300 --seeds 20260531,20260601,20260602 --budget 500 --ci-methods naive,delta_shrinkage,bootstrap_shrinkage --bootstrap-reps 300 --shrinkage-grid dirichlet:1,dirichlet:5,eigen_floor:1e-4,cond_cap:50 --out-dir /root/ec_hte/results/ci_covariance_shrinkage_001\", \"server\": \"seetacloud-47181\", \"path\": \"/root/ec_hte\", \"code_path\": \"/root/ec_hte/mvp/variance_ci_covariance_shrinkage.py\", \"config_path\": \"/root/ec_hte/mvp/directed_dgp_config.json\", \"output_path\": \"/root/ec_hte/results/ci_covariance_shrinkage_001\", \"device\": \"CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0\", \"gpu_requirement\": \"none\", \"implementation_changes\": [\"Replace raw audit covariance with row-wise shrinkage toward pooled/global covariance or Dirichlet prior covariance.\", \"Add eigenvalue floor and condition-number cap on audit covariance before J Sigma J^T.\", \"Report pre/post covariance spectrum, shrinkage strength, PSD/condition effects, and whether any regularization cap was active.\"], \"uses_d017_strict_gate\": true, \"smoke_pass_fail\": \"Smoke pass if all expected outputs exist, covariance pre/post diagnostics are numeric, PSD checks recorded, no hardcoded coverage/width offsets, and strict gate evaluation is emitted. \n…[truncated 1390 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "elapsed_ms": 455
+          },
+          "id": "event-000908"
+        },
+        {
+          "source_line": 909,
+          "timestamp": "2026-05-31T17:35:57.308195+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent_ml_research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "tool_args": {
+              "project": "ec_hte_codex_c",
+              "exp_id": "ci_allocation_aware_audit_001",
+              "field": "spec",
+              "value": "{'proposal_only': True, 'revision': 'D022_design_only_cpu', 'command': 'CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/variance_ci_allocation_aware_audit.py --dgp directed_asym_prevalence_v1 --k-values 3,6 --n 5000 --reps 300 --seeds 20260531,20260601,20260602 --budget 500 --allocations uniform,rare_minimum,high_flow_targeted,hybrid --min-true-group-count 25 --ci-methods naive,delta_allocaware,bootstrap_allocaware --bootstrap-reps 300 --out-dir /root/ec_hte/results/ci_allocation_aware_audit_001', 'server': 'seetacloud-47181', 'path': '/root/ec_hte', 'code_path': '/root/ec_hte/mvp/variance_ci_allocation_aware_audit.py', 'config_path': '/root/ec_hte/mvp/directed_dgp_config.json', 'output_path': '/root/ec_hte/results/ci_allocation_aware_audit_001', 'device': 'CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0', 'gpu_requirement': 'none', 'implementation_changes': ['Construct audit sample allocation with explicit per-true-group minimum counts before estimating covariance.', 'Compare equal total B=500 uniform vs rare_minimum/high_flow/hybrid; if minimum counts cannot be met under B=500, record infeasible and propose budget needed rather than silently changing budget.', 'Report audit row counts, total budget by arm, rare-group counts, covariance condition number, and width/calibration per arm.'], 'uses_d017_strict_gate': True, 'smoke_pass_fail': 'Smoke pass if each allocation arm records total_budget, per-group audit counts, feasibility, covariance condition number, and strict gate metrics. Smoke fail if any arm lacks budget/count accounting or uses unequal budget without explicit infeasible flag.', 'formal_pass_fail': 'Formal pass if an allocation-aware arm under valid equal B=500 (or explicitly approved budget variant) meets D017 strict gate and reduces k6 width multiplier below 1.75 while improving coverage abs error. If min-count is infeasible or no arm improves calibration without width explosion, mark DONE(negative).', 'smoke_plan': {'command': 'CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/variance_ci_allocation_aware_audit.py --dgp directed_asym_prevalence_v1 --k-values 3,6 --n 500 --reps 5 --seeds 20260531 --budget 100 --allocations uniform,rare_minimum,hybrid --min-true-group-count 8 --ci-methods naive,delta_allocaware,bootstrap_allocaware --bootstrap-reps 20 --out-dir /root/ec_hte/results/ci_allocation_aware_audit_001/smoke --smoke', 'expected_outputs': ['results.json', 'coverage_summary.csv', 'ci_width_summary.csv', 'allocation_diagnostics.json', 'audit_count_diagnostics.json', 'calibration_diagnostics.json', 'config.json', 'run.log']}, 'cpu_time_estimate': 'Smoke 1-5 min CPU; formal 60-240 min CPU depending allocation arms; no GPU.', 'gate': {'running_allowed': False, 'formal_running_allowed': False, 'reason': 'D022 design only; requires Director/Reviewer approval before implementation/smoke/formal.'}}"
+            }
+          },
+          "id": "event-000909"
+        },
+        {
+          "source_line": 910,
+          "timestamp": "2026-05-31T17:35:57.714519+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\": true, \"data\": {\"exp_id\": \"ci_allocation_aware_audit_001\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-31T17:35:00.719Z\", \"updated_at\": \"2026-05-31T17:35:57.518Z\", \"hypothesis\": \"k6 rare-group audit counts 低至个位数导致 delta/bootstrap 不稳定；若在同等总预算或明确预算扩展下使用 rare-group minimum audit count 与 adaptive/high-flow allocation 来估计 confusion covariance，CI width explosion 应减少，且 coverage calibration 应比 uniform audit 更稳定。\", \"parent\": \"variance_propagation_ci_real_001\", \"spec\": {\"proposal_only\": true, \"revision\": \"D022_design_only_cpu\", \"command\": \"CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/variance_ci_allocation_aware_audit.py --dgp directed_asym_prevalence_v1 --k-values 3,6 --n 5000 --reps 300 --seeds 20260531,20260601,20260602 --budget 500 --allocations uniform,rare_minimum,high_flow_targeted,hybrid --min-true-group-count 25 --ci-methods naive,delta_allocaware,bootstrap_allocaware --bootstrap-reps 300 --out-dir /root/ec_hte/results/ci_allocation_aware_audit_001\", \"server\": \"seetacloud-47181\", \"path\": \"/root/ec_hte\", \"code_path\": \"/root/ec_hte/mvp/variance_ci_allocation_aware_audit.py\", \"config_path\": \"/root/ec_hte/mvp/directed_dgp_config.json\", \"output_path\": \"/root/ec_hte/results/ci_allocation_aware_audit_001\", \"device\": \"CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0\", \"gpu_requirement\": \"none\", \"implementation_changes\": [\"Construct audit sample allocation with explicit per-true-group minimum counts before estimating covariance.\", \"Compare equal total B=500 uniform vs rare_minimum/high_flow/hybrid; if minimum counts cannot be met under B=500, record infeasible and propose budget needed rather than silently changing budget.\", \"Report audit row counts, total budget by arm, rare-group counts, covariance condition number, and width/calibration per arm.\"], \"uses_d017_strict_gate\": true, \"smoke_pass_fail\": \"Smoke pass if each allocation arm records total_budget, per-group audit counts, feasibility, covarianc\n…[truncated 1474 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "elapsed_ms": 406
+          },
+          "id": "event-000910"
+        },
+        {
+          "source_line": 911,
+          "timestamp": "2026-05-31T17:35:57.715077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent_ml_research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "tool_args": {
+              "project": "ec_hte_codex_c",
+              "exp_id": "ci_guarded_bootstrap_fallback_001",
+              "field": "spec",
+              "value": "{'proposal_only': True, 'revision': 'D022_design_only_cpu', 'command': 'CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/variance_ci_guarded_bootstrap.py --dgp directed_asym_prevalence_v1 --k-values 3,6 --n 5000 --reps 300 --seeds 20260531,20260601,20260602 --budget 500 --ci-methods naive,winsorized_bootstrap,studentized_guarded,guarded_delta,no_ci_fallback --bootstrap-reps 300 --condition-cap 50 --width-cap 1.75 --winsor-quantiles 0.05,0.95 --out-dir /root/ec_hte/results/ci_guarded_bootstrap_fallback_001', 'server': 'seetacloud-47181', 'path': '/root/ec_hte', 'code_path': '/root/ec_hte/mvp/variance_ci_guarded_bootstrap.py', 'config_path': '/root/ec_hte/mvp/directed_dgp_config.json', 'output_path': '/root/ec_hte/results/ci_guarded_bootstrap_fallback_001', 'device': 'CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0', 'gpu_requirement': 'none', 'implementation_changes': ['Add condition-number guard per bootstrap draw and delta covariance; discard or winsorize correction draws exceeding condition cap with full accounting.', 'Add fallback policy: if all true CI methods violate D017 width/calibration gate, return subgroup naive interval plus explicit CI component negative/no-CI-fallback label.', 'Report discarded draw rate, winsorization quantiles, guard triggers, fallback triggers, and no-CI recommendation when applicable.'], 'uses_d017_strict_gate': True, 'smoke_pass_fail': 'Smoke pass if guard/discard/fallback counters are emitted, no formal path is used, and strict gate plus fallback decision are present. Smoke fail if guarded methods silently drop draws without accounting or label fallback as CI success.', 'formal_pass_fail': 'Formal pass only if guarded bootstrap/delta meets D017 strict gate without excessive discarded draw rate (>25%). If not, mark DONE(negative) and recommend conservative no-CI fallback while preserving shrinkage+adaptive allocation as method components.', 'smoke_plan': {'command': 'CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/variance_ci_guarded_bootstrap.py --dgp directed_asym_prevalence_v1 --k-values 3,6 --n 500 --reps 5 --seeds 20260531 --budget 100 --ci-methods naive,winsorized_bootstrap,guarded_delta,no_ci_fallback --bootstrap-reps 20 --condition-cap 50 --width-cap 1.75 --winsor-quantiles 0.05,0.95 --out-dir /root/ec_hte/results/ci_guarded_bootstrap_fallback_001/smoke --smoke', 'expected_outputs': ['results.json', 'coverage_summary.csv', 'ci_width_summary.csv', 'guard_diagnostics.json', 'fallback_decision.json', 'calibration_diagnostics.json', 'config.json', 'run.log']}, 'cpu_time_estimate': 'Smoke 1-5 min CPU; formal 45-180 min CPU; no GPU.', 'gate': {'running_allowed': False, 'formal_running_allowed': False, 'reason': 'D022 design only; requires Director/Reviewer approval before implementation/smoke/formal.'}}"
+            }
+          },
+          "id": "event-000911"
+        },
+        {
+          "source_line": 912,
+          "timestamp": "2026-05-31T17:35:58.137557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\": true, \"data\": {\"exp_id\": \"ci_guarded_bootstrap_fallback_001\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-31T17:35:01.125Z\", \"updated_at\": \"2026-05-31T17:35:57.939Z\", \"hypothesis\": \"真实 bootstrap/studentized CI 在 k6 rare-group 条件下会被 ill-conditioned correction draws 主导；若加入 winsorized/truncated bootstrap、condition-number guard、以及 ill-conditioned 时回退到 subgroup naive 或报告 no-CI fallback，可避免宽度爆炸并给出可审计的 negative/fallback 决策。\", \"parent\": \"variance_propagation_ci_real_001\", \"spec\": {\"proposal_only\": true, \"revision\": \"D022_design_only_cpu\", \"command\": \"CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/variance_ci_guarded_bootstrap.py --dgp directed_asym_prevalence_v1 --k-values 3,6 --n 5000 --reps 300 --seeds 20260531,20260601,20260602 --budget 500 --ci-methods naive,winsorized_bootstrap,studentized_guarded,guarded_delta,no_ci_fallback --bootstrap-reps 300 --condition-cap 50 --width-cap 1.75 --winsor-quantiles 0.05,0.95 --out-dir /root/ec_hte/results/ci_guarded_bootstrap_fallback_001\", \"server\": \"seetacloud-47181\", \"path\": \"/root/ec_hte\", \"code_path\": \"/root/ec_hte/mvp/variance_ci_guarded_bootstrap.py\", \"config_path\": \"/root/ec_hte/mvp/directed_dgp_config.json\", \"output_path\": \"/root/ec_hte/results/ci_guarded_bootstrap_fallback_001\", \"device\": \"CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0\", \"gpu_requirement\": \"none\", \"implementation_changes\": [\"Add condition-number guard per bootstrap draw and delta covariance; discard or winsorize correction draws exceeding condition cap with full accounting.\", \"Add fallback policy: if all true CI methods violate D017 width/calibration gate, return subgroup naive interval plus explicit CI component negative/no-CI-fallback label.\", \"Report discarded draw rate, winsorization quantiles, guard triggers, fallback triggers, and no-CI recommendation when applicable.\"], \"uses_d017_strict_gate\": true, \"smoke_pass_fail\": \"Smoke pass if guard/discard/fallback counters are emitte\n…[truncated 1416 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__update_registry",
+            "elapsed_ms": 422
+          },
+          "id": "event-000912"
+        },
+        {
+          "source_line": 913,
+          "timestamp": "2026-05-31T17:36:04.067759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent_ml_research__append_progress"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__append_progress",
+            "tool_args": {
+              "project": "ec_hte_codex_c",
+              "milestone": "D022 next CI design submitted without running experiments: registered ci_covariance_shrinkage_001, ci_allocation_aware_audit_001, and ci_guarded_bootstrap_fallback_001 as PREPARING/design-only CPU specs with formal gates closed."
+            }
+          },
+          "id": "event-000913"
+        },
+        {
+          "source_line": 914,
+          "timestamp": "2026-05-31T17:36:04.069745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/ec_hte_codex_c/docs/progress.md\", \"entry\": \"- **[2026-05-31 17:36 UTC]** D022 next CI design submitted without running experiments: registered ci_covariance_shrinkage_001, ci_allocation_aware_audit_001, and ci_guarded_bootstrap_fallback_001 as PREPARING/design-only CPU specs with formal gates closed.\"}, \"error\": null, \"metadata\": {}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__append_progress",
+            "elapsed_ms": 1
+          },
+          "id": "event-000914"
+        },
+        {
+          "source_line": 915,
+          "timestamp": "2026-05-31T17:36:04.120291+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent_ml_research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__get_project_resource_usage",
+            "tool_args": {
+              "project": "ec_hte_codex_c"
+            }
+          },
+          "id": "event-000915"
+        },
+        {
+          "source_line": 916,
+          "timestamp": "2026-05-31T17:36:04.734110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"seetacloud-47181\", \"gpu_id\": \"cuda:0\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"seetacloud-47181\", \"gpu_id\": \"cuda:0\", \"idle_min\": null, \"util_pct\": null}], \"registered_but_hw_idle\": [], \"unregistered_but_hw_active\": [], \"running_experiments\": [], \"worker_pool\": {\"total\": 0, \"gpu_tasks\": 0, \"cpu_tasks\": 0, \"details\": []}, \"summary\": \"分配 1 张, 实际跑 0 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\"}, \"error\": null, \"metadata\": {}}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__get_project_resource_usage",
+            "elapsed_ms": 613
+          },
+          "id": "event-000916"
+        },
+        {
+          "source_line": 917,
+          "timestamp": "2026-05-31T17:36:12.480593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent_ml_research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "ec_hte_codex_c",
+              "text": "[资源] GPU 0/1 | Worker 0 (GPU 0 / CPU 0) | 磁盘: seetacloud-47181 / 1% (30GB 可用)\n[状态] D022 只提交方案，未启动实验/未用 cuda:0。已登记 3 个新 PREPARING design-only exp_id，均 CPU-only，gate.running_allowed=false/formal_running_allowed=false。\n[指标] 方案1 `ci_covariance_shrinkage_001`: row-wise Dirichlet/Bayesian shrinkage + eigenvalue floor + condition cap；仍用 D017 strict gate，失败即 DONE(negative)。方案2 `ci_allocation_aware_audit_001`: rare-group minimum audit count + adaptive/high-flow allocation，要求逐 arm 预算/稀有组 counts 可审计，infeasible 不静默改预算。方案3 `ci_guarded_bootstrap_fallback_001`: winsorized/truncated bootstrap + condition-number guard + subgroup naive/no-CI fallback；fallback 不标成 CI success。\n[下一步] 等 Reviewer/Director 审批是否实现 smoke。formal gate 继续关闭；`variance_propagation_ci_real_001` 仍 negative/readiness-only，不作为 CI component 成功证据。"
+            }
+          },
+          "id": "event-000917"
+        },
+        {
+          "source_line": 918,
+          "timestamp": "2026-05-31T17:36:20.148465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_268238a4773d2c2e56a6870b8bb5eeb3:director\"}, \"error\": \"\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3",
+            "tool": "mcp__agent_ml_research__main_agent_post_to_director",
+            "elapsed_ms": 7667
+          },
+          "id": "event-000918"
+        },
+        {
+          "source_line": 919,
+          "timestamp": "2026-05-31T17:36:33.319753+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "[资源] GPU 0/1 | 磁盘 seetacloud-47181 1%\n\nD022 已完成：只提交方案，未启动实验，未使用 `cuda:0`，formal gate 继续关闭。\n\n已登记 3 个新 design-only exp_id，均为 `PREPARING`：\n\n1. `ci_covariance_shrinkage_001`  \n方向：row-wise Dirichlet/Bayesian covariance shrinkage、eigenvalue floor、condition-number cap。  \n目标：降低 k6 rare-group covariance ill-conditioning 和 width explosion。  \n仍使用 D017 strict gate；失败记录为 negative。\n\n2. `ci_allocation_aware_audit_001`  \n方向：rare-group minimum audit count + adaptive/high-flow allocation。  \n要求：逐 arm 记录 total budget、rare-group counts、feasibility；若 B=500 下不可行，不静默改预算。  \n仍使用 D017 strict gate；不可行或无改善则 negative。\n\n3. `ci_guarded_bootstrap_fallback_001`  \n方向：winsorized/truncated bootstrap、condition-number guard、subgroup naive / no-CI fallback。  \n要求：guard/drop/fallback 全部可审计；fallback 不能包装成 CI success。  \n若 guarded CI 仍不过 D017 strict gate，则 negative，并建议 conservative no-CI fallback。\n\n已向 Director 汇报并写入 progress。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_1945813d1e103ce943551f92bdeccdc3"
+          },
+          "id": "event-000919"
+        }
+      ]
+    }
+  ]
+}

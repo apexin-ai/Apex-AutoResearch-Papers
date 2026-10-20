@@ -1,0 +1,39 @@
+{
+  "exp_id": "oracle_confusion_upper_bound_001",
+  "project": "ec_hte_codex_c",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-31T15:48:26.369Z",
+    "updated_at": "2026-05-31T15:49:52.640Z",
+    "hypothesis": "如果 oracle/full-truth subgroup confusion correction 显著优于 B=500 estimated subgroup correction，而 global correction 仍接近 uncorrected，则 mvp_ec_hte_semisynth_001 的负向结果主要受专家标签预算和 confusion estimation noise 限制，而非 EC-HTE 校正思想无效。",
+    "parent": "mvp_ec_hte_semisynth_001",
+    "spec": {
+      "proposal_only": true,
+      "command": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/ec_hte_oracle_bound.py --compare estimated_b500,oracle_global,oracle_subgroup --seed 20260531 --reps 300 --out-dir /root/ec_hte/results/oracle_confusion_upper_bound_001",
+      "server": "seetacloud-47181",
+      "path": "/root/ec_hte",
+      "code_path": "/root/ec_hte/mvp/ec_hte_oracle_bound.py",
+      "data_path": "synthetic generated in script",
+      "data_count": "N=5000, reps=300, B=500 estimated arm plus oracle full-truth arm",
+      "seed": 20260531,
+      "device": "CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0",
+      "deps": "numpy only preferred",
+      "output_path": "/root/ec_hte/results/oracle_confusion_upper_bound_001",
+      "cpu_time_estimate": "20-60 min",
+      "gpu_requirement": "none",
+      "required_outputs": [
+        "results.json",
+        "summary.csv",
+        "oracle_vs_estimated_gap.json",
+        "config.json",
+        "run.log"
+      ],
+      "pass_fail": "Pass if oracle/full-truth subgroup correction is reported separately from B=500 estimated correction and quantifies an upper-bound gap; fail if oracle and estimated results are mixed or oracle is used as a main-method result."
+    }
+  },
+  "timestamp": "2026-05-31T15:49:52.658575+00:00",
+  "trigger": "update_registry"
+}

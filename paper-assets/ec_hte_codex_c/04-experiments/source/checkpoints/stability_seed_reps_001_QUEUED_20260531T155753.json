@@ -1,0 +1,66 @@
+{
+  "exp_id": "stability_seed_reps_001",
+  "project": "ec_hte_codex_c",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-31T15:48:26.403Z",
+    "updated_at": "2026-05-31T15:57:53.180Z",
+    "hypothesis": "在更新后的 directed asymmetric + prevalence-imbalanced DGP 中，若 seed×3 或 reps>=300 后 global-worse 区域和 subgroup/EC-HTE-lite 改善方向保持稳定，则该机制可作为后续 stress/oracle 结论的可靠前提；若排序频繁翻转，则 coverage 和 global-worse claim 只能视为 preliminary。",
+    "parent": "mvp_ec_hte_semisynth_001",
+    "spec": {
+      "proposal_only": true,
+      "revision": "C006_directed_asymmetric_prevalence_v1",
+      "runner_shell_semantics": "Codex runner can execute shell commands, but this experiment must not rely on a single `&&` chain; use wrapper script or explicit subcommands before RUNNING.",
+      "command_wrapper": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/run_directed_stability.py --dgp directed_asym_prevalence_v1 --mode both --seeds 20260531,20260601,20260602 --reps-per-seed 100 --reps-aggregate 300 --n 5000 --budget 500 --out-dir /root/ec_hte/results/stability_seed_reps_001",
+      "explicit_subcommands": [
+        "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/ec_hte_directed_stress_test.py --dgp directed_asym_prevalence_v1 --reps 300 --seed 20260531 --n-values 5000 --k-values 3,6 --out-dir /root/ec_hte/results/stability_seed_reps_001/reps300",
+        "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/ec_hte_directed_seed_sweep.py --dgp directed_asym_prevalence_v1 --seeds 20260531,20260601,20260602 --reps-per-seed 100 --n 5000 --budget 500 --out-dir /root/ec_hte/results/stability_seed_reps_001/seedx3"
+      ],
+      "server": "seetacloud-47181",
+      "path": "/root/ec_hte",
+      "code_path": [
+        "/root/ec_hte/mvp/run_directed_stability.py",
+        "/root/ec_hte/mvp/ec_hte_directed_stress_test.py",
+        "/root/ec_hte/mvp/ec_hte_directed_seed_sweep.py"
+      ],
+      "data_path": "synthetic generated in script using directed_asym_prevalence_v1",
+      "data_count": "directed DGP; N=5000; reps>=300 aggregate and seed x3 with 100 reps per seed",
+      "seed": [
+        20260531,
+        20260601,
+        20260602
+      ],
+      "device": "CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0",
+      "deps": "numpy only preferred",
+      "dgp_ref": "Same directed asymmetric/prevalence-imbalanced DGP as stress_global_worse_region_001 revision C006_directed_asymmetric_prevalence_v1",
+      "output_path": "/root/ec_hte/results/stability_seed_reps_001",
+      "cpu_time_estimate": "30-120 min",
+      "gpu_requirement": "none",
+      "required_outputs": [
+        "reps300/results.json",
+        "seedx3/results.json",
+        "stability_summary.csv",
+        "runner_subcommands.json",
+        "run.log"
+      ],
+      "pass_fail": "Pass if global-worse region and subgroup/EC-HTE-lite improvement direction are stable across seed x3 or reps>=300 under the directed DGP; coverage remains explicitly preliminary. Fail if ranking flips materially or runner commands are not split/wrapped before execution.",
+      "gate": {
+        "constraints": [
+          "C005",
+          "C006"
+        ],
+        "running_allowed": false
+      }
+    },
+    "gate": {
+      "status": "blocked_before_running",
+      "constraint": "C005",
+      "reason": "Must not enter RUNNING until diag_dgp_bias_audit_001 mechanism is confirmed by Director/Reviewer. Later split the current && command into explicit subcommands or wrapper script before execution."
+    }
+  },
+  "timestamp": "2026-05-31T15:57:53.203364+00:00",
+  "trigger": "update_registry"
+}

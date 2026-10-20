@@ -1,0 +1,90 @@
+{
+  "exp_id": "stability_seed_reps_001",
+  "project": "ec_hte_codex_c",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-31T15:48:26.403Z",
+    "updated_at": "2026-05-31T16:16:50.558Z",
+    "hypothesis": "在更新后的 directed asymmetric + prevalence-imbalanced DGP 中，若 seed×3 或 reps>=300 后 global-worse 区域和 subgroup/EC-HTE-lite 改善方向保持稳定，则该机制可作为后续 stress/oracle 结论的可靠前提；若排序频繁翻转，则 coverage 和 global-worse claim 只能视为 preliminary。",
+    "parent": "mvp_ec_hte_semisynth_001",
+    "spec": {
+      "proposal_only": false,
+      "released_for_run": true,
+      "revision": "C008_prep_ready_directed_asymmetric_prevalence_v1",
+      "runner_shell_semantics": "Codex runner can execute shell commands, but this experiment uses exactly one actual runner entry: wrapper script /root/ec_hte/mvp/run_directed_stability.py. No shell-level && chain is part of the execution spec.",
+      "command": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/run_directed_stability.py --dgp directed_asym_prevalence_v1 --mode both --seeds 20260531,20260601,20260602 --reps-per-seed 100 --reps-aggregate 300 --n 5000 --budget 500 --out-dir /root/ec_hte/results/stability_seed_reps_001",
+      "server": "seetacloud-47181",
+      "path": "/root/ec_hte",
+      "code_path": "/root/ec_hte/mvp/run_directed_stability.py",
+      "supporting_code_paths": [
+        "/root/ec_hte/mvp/ec_hte_directed_stress_test.py",
+        "/root/ec_hte/mvp/ec_hte_directed_seed_sweep.py"
+      ],
+      "config_path": "/root/ec_hte/mvp/directed_dgp_config.json",
+      "data_path": "synthetic generated in script using directed_asym_prevalence_v1",
+      "data_count": "directed DGP; N=5000; reps>=300 aggregate and seed x3 with 100 reps per seed",
+      "seed": [
+        20260531,
+        20260601,
+        20260602
+      ],
+      "device": "CPU-only; CUDA_VISIBLE_DEVICES empty; do not use cuda:0",
+      "deps": "python=3.12.3, numpy=2.3.2",
+      "dgp_ref": "directed_asym_prevalence_v1 from /root/ec_hte/mvp/directed_dgp_config.json; same full k3/k6 matrices as stress spec",
+      "output_path": "/root/ec_hte/results/stability_seed_reps_001",
+      "cpu_time_estimate": "30-120 min",
+      "gpu_requirement": "none",
+      "required_outputs": [
+        "reps300/results.json",
+        "seedx3/results.json",
+        "stability_summary.csv",
+        "runner_subcommands.json",
+        "run.log"
+      ],
+      "pass_fail": "Pass if global-worse region and subgroup/EC-HTE-lite improvement direction are stable across seed x3 or reps>=300 under directed DGP; coverage remains explicitly preliminary. Fail if ranking flips materially or wrapper script is not the single runner entry.",
+      "smoke_readiness": {
+        "status": "passed",
+        "command": "CUDA_VISIBLE_DEVICES= /root/miniconda3/bin/python /root/ec_hte/mvp/run_directed_stability.py --dgp directed_asym_prevalence_v1 --mode both --seeds 20260531,20260601 --reps-per-seed 1 --reps-aggregate 2 --n 200 --budget 100 --out-dir /root/ec_hte/results/stability_seed_reps_001/smoke_c008",
+        "log_path": "/root/ec_hte/results/stability_seed_reps_001/smoke_c008/run.log",
+        "output_path": "/root/ec_hte/results/stability_seed_reps_001/smoke_c008",
+        "runner": "wrapper",
+        "shell_chain_used": false,
+        "outputs": [
+          "reps300/results.json",
+          "seedx3/results.json",
+          "stability_summary.csv",
+          "runner_subcommands.json",
+          "run.log"
+        ],
+        "script_hashes": {
+          "directed_dgp_config.json": "177c0f339b2f307c3fae480f53e2dccf974ce6ac75c5dc3d8377afc8cfee0ef1",
+          "run_directed_stability.py": "2a6edf30324b0f61032cebcd46aa308c17866e8be850250d3ec0053856aa4cfc",
+          "ec_hte_directed_seed_sweep.py": "78516af3df2f5eae7269428bc24b035018ca6980f709f751297d0904fda81d22",
+          "ec_hte_directed_stress_test.py": "3a38485dfc343f67e4c715de1956369ec0a445cad2b1d89224f08c4e30c7f914"
+        },
+        "env": {
+          "python": "3.12.3",
+          "numpy": "2.3.2"
+        }
+      },
+      "gate": {
+        "constraints": [
+          "C005",
+          "C006",
+          "C008"
+        ],
+        "running_allowed": true
+      }
+    },
+    "gate": {
+      "status": "release_approved",
+      "constraint": "C008",
+      "reason": "Reviewer C008 release audit approved CPU-only formal run; wrapper is the single runner entry."
+    }
+  },
+  "timestamp": "2026-05-31T16:16:50.587864+00:00",
+  "trigger": "update_registry"
+}
