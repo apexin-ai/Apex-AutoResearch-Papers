@@ -1,0 +1,3215 @@
+# Research conversation: <project_context> # 项目: phase-gated-compound-sparse ## 运行环境 - 服务器名: westd-22162 - SSH 账户: root（调用 ssh_execute / submit_t
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 46
+- **Recorded user turns:** 1
+- **Tool calls:** 11
+- **Original source:** `logs/chats/exported-trajectories/account-1/f86c21dd-6168-447c-be3b-50f93c545b61.jsonl`
+- **Structured JSON:** [`54d839af1cdc35d6dd0b.json`](../../sessions/54/54d839af1cdc35d6dd0b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T13:23:42.802Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T13:23:42.802Z",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "content": "&lt;project_context>\n# 项目: phase-gated-compound-sparse\n\n## 运行环境\n- 服务器名: westd-22162\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/pacs\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：论文全文数字一致性审计\n\n论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/`\n\n数据源文件：\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/experiment_summary_overview.txt`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/permutation_test_median_verification.txt`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/median_difference_results.txt`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/cross_model_analysis_summary.txt`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/rebootstrap_b10000_results.json`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/cross_model_analysis_summary.json`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_dz.txt`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_info.txt`\n\n已有审计报告（参考但独立重做）：\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/number_consistency_audit_v2.md`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/numerical_audit_report.md`\n\n## 审计范围\n\n逐一检查以下 tex 文件中的所有定量声明：\n1. abstract.tex\n2. introduction.tex\n3. results.tex（最密集）\n4. analysis.tex\n5. discussion.tex\n6. conclusion.tex\n7. appendix_results.tex\n8. appendix_disc_analysis.tex\n\n## 检查项\n\n对每个数字：\n1. **Table 中的数值** — 与数据源文件交叉验证\n2. **正文中引用的数字** — 与同文件中 table 的数值一致（如\"$37\\times$ amplification\" = 14.59/0.39）\n3. **跨文件一致性** — abstract 中的数字与 results 中的 table 一致\n4. **Cohen's d 值** — 与 cohens_d_6point_paired_dz.txt 交叉验证\n5. **Permutation test p 值和 CI** — 与 permutation_test_median_verification.txt 交叉验证\n6. **Cross-model 数据** — 与 cross_model_analysis_summary.json/txt 交叉验证\n7. **派生计算** — 如 severity gradient G = II_low / II_high，验证除法正确\n8. **样本量** — n=50, n=49 (DeepSeek), n=46 (Qwen) 在各处一致\n9. **Bootstrap B=10,000** 在各处一致\n10. **Spearman ρ=1.0, gradient permutation p=0.043** 与数据源一致\n\n## 输出\n\n产出审计报告到：\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/number_audit_final.md`\n\n报告格式：\n```\n# 数字一致性终审报告\n\n## 通过 ✅\n- [列出已验证无误的关键数字]\n\n## 不一致 ❌\n- [文件:行号] 论文写 X，数据源为 Y\n\n## 无法验证 ⚠️\n- [列出无法在数据源中找到对应的数字]\n\n## 内部一致性\n- [跨文件交叉检查结果]\n```\n\n不要修改任何 tex 文件，只产出报告。"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T13:23:42.811Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T13:23:42.811Z",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+## Round 1
+
+44 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T13:23:42.862Z_
+
+&lt;project_context>
+# 项目: phase-gated-compound-sparse
+
+## 运行环境
+- 服务器名: westd-22162
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/pacs
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：论文全文数字一致性审计
+
+论文目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/`
+
+数据源文件：
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/experiment_summary_overview.txt`
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/permutation_test_median_verification.txt`
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/median_difference_results.txt`
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/cross_model_analysis_summary.txt`
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/rebootstrap_b10000_results.json`
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/cross_model_analysis_summary.json`
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_dz.txt`
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_info.txt`
+
+已有审计报告（参考但独立重做）：
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/number_consistency_audit_v2.md`
+- `/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/numerical_audit_report.md`
+
+## 审计范围
+
+逐一检查以下 tex 文件中的所有定量声明：
+1. abstract.tex
+2. introduction.tex
+3. results.tex（最密集）
+4. analysis.tex
+5. discussion.tex
+6. conclusion.tex
+7. appendix_results.tex
+8. appendix_disc_analysis.tex
+
+## 检查项
+
+对每个数字：
+1. **Table 中的数值** — 与数据源文件交叉验证
+2. **正文中引用的数字** — 与同文件中 table 的数值一致（如"$37\times$ amplification" = 14.59/0.39）
+3. **跨文件一致性** — abstract 中的数字与 results 中的 table 一致
+4. **Cohen's d 值** — 与 cohens_d_6point_paired_dz.txt 交叉验证
+5. **Permutation test p 值和 CI** — 与 permutation_test_median_verification.txt 交叉验证
+6. **Cross-model 数据** — 与 cross_model_analysis_summary.json/txt 交叉验证
+7. **派生计算** — 如 severity gradient G = II_low / II_high，验证除法正确
+8. **样本量** — n=50, n=49 (DeepSeek), n=46 (Qwen) 在各处一致
+9. **Bootstrap B=10,000** 在各处一致
+10. **Spearman ρ=1.0, gradient permutation p=0.043** 与数据源一致
+
+## 输出
+
+产出审计报告到：
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/number_audit_final.md`
+
+报告格式：
+```
+# 数字一致性终审报告
+
+## 通过 ✅
+- [列出已验证无误的关键数字]
+
+## 不一致 ❌
+- [文件:行号] 论文写 X，数据源为 Y
+
+## 无法验证 ⚠️
+- [列出无法在数据源中找到对应的数字]
+
+## 内部一致性
+- [跨文件交叉检查结果]
+```
+
+不要修改任何 tex 文件，只产出报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "bc225e8b-88bc-4be8-9d5d-f46b0b0d9e10",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T13:23:42.862Z_
+
+```json
+{
+  "parentUuid": "bc225e8b-88bc-4be8-9d5d-f46b0b0d9e10",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c776bbb1-dadd-48e4-8bc5-785584f8de89",
+  "timestamp": "2026-05-14T13:23:42.862Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T13:23:42.862Z_
+
+```json
+{
+  "parentUuid": "c776bbb1-dadd-48e4-8bc5-785584f8de89",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "99867626-75be-4888-a368-f42137082ed3",
+  "timestamp": "2026-05-14T13:23:42.862Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T13:23:42.862Z_
+
+```json
+{
+  "parentUuid": "99867626-75be-4888-a368-f42137082ed3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "58c07c0a-0814-4558-81c1-060ae1661cfa",
+  "timestamp": "2026-05-14T13:23:42.862Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit numerical consistency in research paper",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T13:23:47.537Z_
+
+I'll start by reading all the data source files and tex files in parallel to build a complete picture for the audit.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58c07c0a-0814-4558-81c1-060ae1661cfa",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Xvf4wGZe91X3h8Rdu8",
+  "type": "assistant",
+  "uuid": "2060e4d2-e674-4c29-9ec2-3247d2c5fd4d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jxg6kmTyLr7vb1F3YcfNtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11986,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1253,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1253,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-14T13:23:52.672Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01VbDWmszvRwbWaDbwWNgFf8`</summary>
+
+```json
+{
+  "description": "Read all data source files",
+  "subagent_type": "general-purpose",
+  "prompt": "Read ALL of the following files completely and return their full contents. This is for a numerical audit - every number matters.\n\nFiles to read:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/experiment_summary_overview.txt\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/permutation_test_median_verification.txt\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/median_difference_results.txt\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/cross_model_analysis_summary.txt\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/cross_model_analysis_summary.json\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_dz.txt\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_info.txt\n8. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/rebootstrap_b10000_results.json\n\nReturn the COMPLETE contents of each file, clearly labeled with the filename."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2060e4d2-e674-4c29-9ec2-3247d2c5fd4d",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Xvf4wGZe91X3h8Rdu8",
+  "type": "assistant",
+  "uuid": "c71b9afe-7535-454e-b679-8a426d0cf647",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jxg6kmTyLr7vb1F3YcfNtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11986,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1253,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1253,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T13:23:56.594Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_012UggQbAgzJy7PYGJqozgSQ`</summary>
+
+```json
+{
+  "description": "Read all tex files",
+  "subagent_type": "general-purpose",
+  "prompt": "Read ALL of the following tex files completely and return their full contents with line numbers. Every number in these files needs to be audited.\n\nFiles to read:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/introduction.tex\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/analysis.tex\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/conclusion.tex\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex\n8. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex\n\nReturn the COMPLETE contents of each file with line numbers preserved. Label each file clearly."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c71b9afe-7535-454e-b679-8a426d0cf647",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Xvf4wGZe91X3h8Rdu8",
+  "type": "assistant",
+  "uuid": "6b483df8-98e8-429a-9286-54968a58ca66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jxg6kmTyLr7vb1F3YcfNtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11986,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1253,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1253,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-14T13:23:58.585Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01JrZa65yFDeeJuVJ3p1L9eC`</summary>
+
+```json
+{
+  "description": "Read existing audit reports",
+  "subagent_type": "general-purpose",
+  "prompt": "Read these two existing audit reports completely and summarize what issues they found. I need to know what they flagged so I can independently verify.\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/number_consistency_audit_v2.md\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/numerical_audit_report.md\n\nReturn the full contents of both files."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b483df8-98e8-429a-9286-54968a58ca66",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Xvf4wGZe91X3h8Rdu8",
+  "type": "assistant",
+  "uuid": "4c97a9bd-56e3-4df2-b448-b2ebc97021e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jxg6kmTyLr7vb1F3YcfNtP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11986,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 1253,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11986,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1253,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11986,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11986
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-14T13:24:21.912Z_
+
+<details><summary>↩ Tool result · `toolu_01VbDWmszvRwbWaDbwWNgFf8`</summary>
+
+````text
+Here are the complete contents of all 8 files:
+
+---
+
+**File 1: experiment_summary_overview.txt**
+
+```
+Experiment summary: 16 experiments (2 models x 2 masking x 4 sparsity)
+Server path: /root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json
+Script: /root/autodl-tmp/pacs/analysis/generate_summary_table.py
+
+Results: importance 8/8 PASS, random 7/8 FAIL + 1 unexpected PASS (bf16_qw_rand_s030)
+```
+
+---
+
+**File 2: permutation_test_median_verification.txt**
+
+```
+D029 median fix verification. Original verdict: PASS (mean CI distorted by outlier). New verdict: FAIL (median CI robust). All phases positive median II: high=2.503 [1.329,4.120], mid=2.592 [1.840,3.789], low=4.041 [2.269,6.358]. No sign reversal, no CI non-overlap. Fix confirmed. Full results at /root/autodl-tmp/pacs/artifacts/permutation_test_median_verification.json
+```
+
+---
+
+**File 3: median_difference_results.txt**
+
+```
+Median Difference Unification Results (2026-05-14)
+====================================================
+Method: interaction_index.low.median - interaction_index.high.median
+
+Updates performed (11 experiments):
+  bf16_importance_s025: median_difference=7.1636, legacy=222.35
+  bf16_importance_s030: median_difference=14.5861, legacy=57.24
+  bf16_qw_imp_s015: median_difference=0.038565
+  bf16_qw_imp_s020: median_difference=0.234979
+  bf16_qw_imp_s025: median_difference=1.267732
+  bf16_qw_imp_s030: median_difference=2.943093
+  bf16_qw_rand_s020: median_difference=0.128948
+  bf16_ds_imp_s015: median_difference=0.392539
+  bf16_ds_imp_s020: median_difference=1.481741
+  bf16_ds_imp_s025: median_difference=7.163595
+  bf16_ds_imp_s030: median_difference=14.586064
+
+Already set (4 experiments):
+  bf16_importance_s015: 0.3925
+  bf16_importance_s020: 1.4818
+  bf16_qw_rand_s015: 0.04971
+  bf16_qw_rand_s025: 0.659798
+
+Skipped:
+  bf16_qw_rand_s030: RUNNING, no profiling output
+```
+
+---
+
+**File 4: cross_model_analysis_summary.txt**
+
+```
+Cross-model analysis results
+Server path: /root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json
+Script: /root/autodl-tmp/pacs/analysis/cross_model_analysis.py
+
+Key results:
+- Gradient permutation test p=0.043 (significant at alpha=0.05)
+- Cohen's d Spearman rho=1.0 (perfect rank concordance)
+- Both models strictly monotonically increasing
+- Per-problem concordance p=0.926 (not significant - different problems affected)
+- All 8 Wilcoxon one-sided tests significant (importance diff > 0)
+```
+
+---
+
+**File 5: cross_model_analysis_summary.json**
+
+```
+experiments_analyzed: 16\nimportance_pass: 8/8\nrandom_fail: 7/8 (1 unexpected PASS: qw_rand_s030)\ncohens_d_spearman_rho: 1.0\nmonotonic_increasing: true\ngradient_permutation_p: 0.043\nper_problem_concordance_p: 0.926\nwilcoxon_one_sided: 8/8 significant\ndeepseek_cohens_d: 0.44, 0.52, 0.68, 0.80\nqwen_cohens_d: 0.28, 0.55, 0.89, 1.02\nanomaly: bf16_qw_rand_s030 PASS likely outlier-driven (Cohen d=-0.035, mean/median direction inconsistent)\nserver_files: analysis_output/cross_model_analysis.json, analysis_output/experiment_summary_table.json, analysis/cross_model_analysis.py, analysis/generate_summary_table.py
+```
+
+---
+
+**File 6: cohens_d_6point_paired_dz.txt**
+
+```
+CORRECTED from pooled d to true paired d_z. DS: 0.376/0.442/0.520/0.683/0.803/0.815. QW: -0.049/0.281/0.549/0.889/1.022/1.102. QW s015 marginal (CI incl 0). QW s010 d<0.
+```
+
+---
+
+**File 7: cohens_d_6point_paired_info.txt**
+
+```
+PDF: /root/autodl-tmp/pacs/figures/cohens_d_6point.pdf
+PNG: /root/autodl-tmp/pacs/figures/cohens_d_6point.png
+Data: /root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000_6point.json
+Script: /root/autodl-tmp/pacs/analysis/regen_cohens_d_6point.py
+Server: westd-22162
+
+6-point paired d_z (B=10000 per-problem paired bootstrap):
+| Sparsity | DS d_z | QW d_z | Notes |
+|----------|--------|--------|-------|
+| 0.10 | 0.504 | -0.064 | DS: n.s. (perm_p=0.15, CI含0); QW: d<0 |
+| 0.15 | 0.607 | 0.371 | QW: marginal (CI含0) |
+| 0.20 | 0.725 | 0.722 | |
+| 0.25 | 0.953 | 1.233 | |
+| 0.30 | 1.126 | 1.439 | |
+| 0.35 | 1.145 | 1.544 | |
+```
+
+---
+
+**File 8: rebootstrap_b10000_results.json**
+
+```
+See server file: /root/autodl-tmp/pacs/analysis_output/rebootstrap_b10000_results.json. All 8 importance experiments re-bootstrapped from B=1000 to B=10000 with per-problem paired bootstrap. All significant (p<0.05) except qw_imp_s015 CI marginally crosses zero.
+```
+
+---
+
+All 8 files returned in full. Notable numerical discrepancies to flag for your audit:
+
+- **File 5 vs File 7 (Cohen's d values)**: The 4-point series in `cross_model_analysis_summary.json` reports DS Cohen's d as `0.44, 0.52, 0.68, 0.80` and QW as `0.28, 0.55, 0.89, 1.02`. The 6-point paired d_z in `cohens_d_6point_paired_info.txt` reports different values for the overlapping sparsities (e.g., DS s015=0.607 vs 0.44, DS s020=0.725 vs 0.52). This is expected since File 5 uses pooled d while File 7 uses corrected paired d_z -- but the File 6 header also lists a different 6-value DS series (`0.376/0.442/0.520/0.683/0.803/0.815`) that disagrees with File 7's table (e.g., DS s010: 0.376 vs 0.504, DS s015: 0.442 vs 0.607). This is a potential inconsistency between Files 6 and 7 worth investigating.
+
+agentId: a27b416d46e2bc84a (use SendMessage with to: 'a27b416d46e2bc84a' to continue this agent)
+&lt;usage>total_tokens: 19941
+tool_uses: 8
+duration_ms: 29230&lt;/usage>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "c71b9afe-7535-454e-b679-8a426d0cf647",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "6ad34e78-e47b-4e21-84eb-6a92db757536",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Read ALL of the following files completely and return their full contents. This is for a numerical audit - every number matters.\n\nFiles to read:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/experiment_summary_overview.txt\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/permutation_test_median_verification.txt\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/median_difference_results.txt\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/cross_model_analysis_summary.txt\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/cross_model_analysis_summary.json\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_dz.txt\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_info.txt\n8. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/rebootstrap_b10000_results.json\n\nReturn the COMPLETE contents of each file, clearly labeled with the filename.",
+    "agentId": "a27b416d46e2bc84a",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the complete contents of all 8 files:\n\n---\n\n**File 1: experiment_summary_overview.txt**\n\n```\nExperiment summary: 16 experiments (2 models x 2 masking x 4 sparsity)\nServer path: /root/autodl-tmp/pacs/analysis_output/experiment_summary_table.json\nScript: /root/autodl-tmp/pacs/analysis/generate_summary_table.py\n\nResults: importance 8/8 PASS, random 7/8 FAIL + 1 unexpected PASS (bf16_qw_rand_s030)\n```\n\n---\n\n**File 2: permutation_test_median_verification.txt**\n\n```\nD029 median fix verification. Original verdict: PASS (mean CI distorted by outlier). New verdict: FAIL (median CI robust). All phases positive median II: high=2.503 [1.329,4.120], mid=2.592 [1.840,3.789], low=4.041 [2.269,6.358]. No sign reversal, no CI non-overlap. Fix confirmed. Full results at /root/autodl-tmp/pacs/artifacts/permutation_test_median_verification.json\n```\n\n---\n\n**File 3: median_difference_results.txt**\n\n```\nMedian Difference Unification Results (2026-05-14)\n====================================================\nMethod: interaction_index.low.median - interaction_index.high.median\n\nUpdates performed (11 experiments):\n  bf16_importance_s025: median_difference=7.1636, legacy=222.35\n  bf16_importance_s030: median_difference=14.5861, legacy=57.24\n  bf16_qw_imp_s015: median_difference=0.038565\n  bf16_qw_imp_s020: median_difference=0.234979\n  bf16_qw_imp_s025: median_difference=1.267732\n  bf16_qw_imp_s030: median_difference=2.943093\n  bf16_qw_rand_s020: median_difference=0.128948\n  bf16_ds_imp_s015: median_difference=0.392539\n  bf16_ds_imp_s020: median_difference=1.481741\n  bf16_ds_imp_s025: median_difference=7.163595\n  bf16_ds_imp_s030: median_difference=14.586064\n\nAlready set (4 experiments):\n  bf16_importance_s015: 0.3925\n  bf16_importance_s020: 1.4818\n  bf16_qw_rand_s015: 0.04971\n  bf16_qw_rand_s025: 0.659798\n\nSkipped:\n  bf16_qw_rand_s030: RUNNING, no profiling output\n```\n\n---\n\n**File 4: cross_model_analysis_summary.txt**\n\n```\nCross-model analysis results\nServer path: /root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\nScript: /root/autodl-tmp/pacs/analysis/cross_model_analysis.py\n\nKey results:\n- Gradient permutation test p=0.043 (significant at alpha=0.05)\n- Cohen's d Spearman rho=1.0 (perfect rank concordance)\n- Both models strictly monotonically increasing\n- Per-problem concordance p=0.926 (not significant - different problems affected)\n- All 8 Wilcoxon one-sided tests significant (importance diff > 0)\n```\n\n---\n\n**File 5: cross_model_analysis_summary.json**\n\n```\nexperiments_analyzed: 16\\nimportance_pass: 8/8\\nrandom_fail: 7/8 (1 unexpected PASS: qw_rand_s030)\\ncohens_d_spearman_rho: 1.0\\nmonotonic_increasing: true\\ngradient_permutation_p: 0.043\\nper_problem_concordance_p: 0.926\\nwilcoxon_one_sided: 8/8 significant\\ndeepseek_cohens_d: 0.44, 0.52, 0.68, 0.80\\nqwen_cohens_d: 0.28, 0.55, 0.89, 1.02\\nanomaly: bf16_qw_rand_s030 PASS likely outlier-driven (Cohen d=-0.035, mean/median direction inconsistent)\\nserver_files: analysis_output/cross_model_analysis.json, analysis_output/experiment_summary_table.json, analysis/cross_model_analysis.py, analysis/generate_summary_table.py\n```\n\n---\n\n**File 6: cohens_d_6point_paired_dz.txt**\n\n```\nCORRECTED from pooled d to true paired d_z. DS: 0.376/0.442/0.520/0.683/0.803/0.815. QW: -0.049/0.281/0.549/0.889/1.022/1.102. QW s015 marginal (CI incl 0). QW s010 d<0.\n```\n\n---\n\n**File 7: cohens_d_6point_paired_info.txt**\n\n```\nPDF: /root/autodl-tmp/pacs/figures/cohens_d_6point.pdf\nPNG: /root/autodl-tmp/pacs/figures/cohens_d_6point.png\nData: /root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000_6point.json\nScript: /root/autodl-tmp/pacs/analysis/regen_cohens_d_6point.py\nServer: westd-22162\n\n6-point paired d_z (B=10000 per-problem paired bootstrap):\n| Sparsity | DS d_z | QW d_z | Notes |\n|----------|--------|--------|-------|\n| 0.10 | 0.504 | -0.064 | DS: n.s. (perm_p=0.15, CI含0); QW: d<0 |\n| 0.15 | 0.607 | 0.371 | QW: marginal (CI含0) |\n| 0.20 | 0.725 | 0.722 | |\n| 0.25 | 0.953 | 1.233 | |\n| 0.30 | 1.126 | 1.439 | |\n| 0.35 | 1.145 | 1.544 | |\n```\n\n---\n\n**File 8: rebootstrap_b10000_results.json**\n\n```\nSee server file: /root/autodl-tmp/pacs/analysis_output/rebootstrap_b10000_results.json. All 8 importance experiments re-bootstrapped from B=1000 to B=10000 with per-problem paired bootstrap. All significant (p<0.05) except qw_imp_s015 CI marginally crosses zero.\n```\n\n---\n\nAll 8 files returned in full. Notable numerical discrepancies to flag for your audit:\n\n- **File 5 vs File 7 (Cohen's d values)**: The 4-point series in `cross_model_analysis_summary.json` reports DS Cohen's d as `0.44, 0.52, 0.68, 0.80` and QW as `0.28, 0.55, 0.89, 1.02`. The 6-point paired d_z in `cohens_d_6point_paired_info.txt` reports different values for the overlapping sparsities (e.g., DS s015=0.607 vs 0.44, DS s020=0.725 vs 0.52). This is expected since File 5 uses pooled d while File 7 uses corrected paired d_z -- but the File 6 header also lists a different 6-value DS series (`0.376/0.442/0.520/0.683/0.803/0.815`) that disagrees with File 7's table (e.g., DS s010: 0.376 vs 0.504, DS s015: 0.442 vs 0.607). This is a potential inconsistency between Files 6 and 7 worth investigating."
+      }
+    ],
+    "totalDurationMs": 29230,
+    "totalTokens": 19941,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3382,
+      "cache_read_input_tokens": 14505,
+      "output_tokens": 2053,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3382
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2053,
+          "cache_read_input_tokens": 14505,
+          "cache_creation_input_tokens": 3382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3382,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 8,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "c71b9afe-7535-454e-b679-8a426d0cf647",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 13_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "6ad34e78-e47b-4e21-84eb-6a92db757536",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit numerical consistency in research paper",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T13:24:29.271Z_
+
+<details><summary>↩ Tool result · `toolu_01JrZa65yFDeeJuVJ3p1L9eC`</summary>
+
+```text
+Here are the full contents and summary of both audit reports.
+
+---
+
+## Report 1: `number_consistency_audit_v2.md`
+
+**Overall result**: 119 matched / 0 mismatched / 1 unverifiable
+
+This audit cross-referenced every quantitative claim in the paper's `.tex` files against canonical JSON data sources on the server. It checked numbers in `abstract.tex`, `introduction.tex`, `results.tex`, `analysis.tex`, `discussion.tex`, and `conclusion.tex`.
+
+**Issues found**:
+
+- **Zero critical mismatches.** All 119 numerical claims (medians, Cohen's d values, p-values, CIs, growth ratios, Gini deltas, CV deltas, entropy values, crossover magnitudes, table cells) matched their canonical JSON sources to the stated rounding precision.
+
+- **1 unverifiable claim** (low risk): In `discussion.tex`, the claim "$s = 0.35$, high-phase II rises to $0.105$" was verified against `logs/bf16_ds_imp_s035.log` (median=+0.1051, which rounds to 0.105), but there is no structured canonical JSON for this supplementary experiment -- only the raw log file. The number matches but lacks a formal cross-reference source.
+
+---
+
+## Report 2: `numerical_audit_report.md`
+
+**Overall result**: 0 critical errors, 2 warnings, 6 informational notes
+
+This audit covered the same paper but with a slightly different methodology, also tracing all numbers back to canonical JSONs and `canonical_bf16_stats.json`.
+
+**Warnings found**:
+
+1. **W1 -- Crossover reversal range understated in main text**: In `results.tex` section 5.3, the paper says "the low-phase reversal magnitude ranging from $3.9\times$ to $5.4\times$", but the actual range across all four sparsity levels is 3.6x to 5.4x (because s=0.30 gives 3.62x, which rounds to 3.6x). The main text omits the s=0.30 data point that extends the lower bound. **Recommended fix**: change "from $3.9\times$ to $5.4\times$" to "from $3.6\times$ to $5.4\times$".
+
+2. **W2 -- DeepSeek n=50 vs n=49 inconsistency**: In `appendix_results.tex`, the cross-model comparison sentence says "vs. $n{=}50$ for DeepSeek", but all canonical data sources (`cohens_d_bf16.json`, `rebootstrap_b10000`, `permutation_test_results.json`) show n=49 with n_skipped=1. The methodology correctly mentions 50 total problems tested and Table 5 correctly says n=49, but the specific appendix sentence is wrong. **Recommended fix**: change "vs. $n{=}50$" to "vs. $n{=}49$".
+
+**Informational notes**:
+
+- **I1**: No fp16 data residual -- all values trace to bf16 experiments. Clean.
+- **I2**: "cross-model" vs "cross-architecture" terminology used correctly; limitations section explicitly notes shared Qwen2 architecture.
+- **I3**: Qwen s=0.15 marginal result correctly marked as non-significant with "ns" superscript and appropriate footnote.
+- **I4**: C4 entropy-collapse properly scoped -- only in analysis section, not in core claims.
+- **I5**: Entropy delta and Gini/CV table values from C4 entropy experiments were not fully cross-verified against raw canonical JSON (only model-level results available), though internal consistency of ranges matching prose was confirmed.
+- **I6**: Multiplicative null G values ($G_\times = 58$--$241\times$) reported in appendix have no canonical JSON file to verify against.
+
+The report also confirms that paired vs. unpaired statistics are correctly distinguished throughout the paper (unpaired Delta vs. paired Delta-tilde) with no conflation.
+
+---
+
+**In summary, the two actionable issues to independently verify are**:
+1. The crossover range in `results.tex` section 5.3 should be 3.6x--5.4x, not 3.9x--5.4x (W1)
+2. DeepSeek should be n=49 (not n=50) in the appendix cross-model comparison sentence (W2)
+
+agentId: a6bb234353a3a61ed (use SendMessage with to: 'a6bb234353a3a61ed' to continue this agent)
+&lt;usage>total_tokens: 29115
+tool_uses: 2
+duration_ms: 30681&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4c97a9bd-56e3-4df2-b448-b2ebc97021e4",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "e9ccc66c-1546-4fb1-8a9c-c13dfd1499fc",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Read these two existing audit reports completely and summarize what issues they found. I need to know what they flagged so I can independently verify.\n\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/number_consistency_audit_v2.md\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/numerical_audit_report.md\n\nReturn the full contents of both files.",
+    "agentId": "a6bb234353a3a61ed",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the full contents and summary of both audit reports.\n\n---\n\n## Report 1: `number_consistency_audit_v2.md`\n\n**Overall result**: 119 matched / 0 mismatched / 1 unverifiable\n\nThis audit cross-referenced every quantitative claim in the paper's `.tex` files against canonical JSON data sources on the server. It checked numbers in `abstract.tex`, `introduction.tex`, `results.tex`, `analysis.tex`, `discussion.tex`, and `conclusion.tex`.\n\n**Issues found**:\n\n- **Zero critical mismatches.** All 119 numerical claims (medians, Cohen's d values, p-values, CIs, growth ratios, Gini deltas, CV deltas, entropy values, crossover magnitudes, table cells) matched their canonical JSON sources to the stated rounding precision.\n\n- **1 unverifiable claim** (low risk): In `discussion.tex`, the claim \"$s = 0.35$, high-phase II rises to $0.105$\" was verified against `logs/bf16_ds_imp_s035.log` (median=+0.1051, which rounds to 0.105), but there is no structured canonical JSON for this supplementary experiment -- only the raw log file. The number matches but lacks a formal cross-reference source.\n\n---\n\n## Report 2: `numerical_audit_report.md`\n\n**Overall result**: 0 critical errors, 2 warnings, 6 informational notes\n\nThis audit covered the same paper but with a slightly different methodology, also tracing all numbers back to canonical JSONs and `canonical_bf16_stats.json`.\n\n**Warnings found**:\n\n1. **W1 -- Crossover reversal range understated in main text**: In `results.tex` section 5.3, the paper says \"the low-phase reversal magnitude ranging from $3.9\\times$ to $5.4\\times$\", but the actual range across all four sparsity levels is 3.6x to 5.4x (because s=0.30 gives 3.62x, which rounds to 3.6x). The main text omits the s=0.30 data point that extends the lower bound. **Recommended fix**: change \"from $3.9\\times$ to $5.4\\times$\" to \"from $3.6\\times$ to $5.4\\times$\".\n\n2. **W2 -- DeepSeek n=50 vs n=49 inconsistency**: In `appendix_results.tex`, the cross-model comparison sentence says \"vs. $n{=}50$ for DeepSeek\", but all canonical data sources (`cohens_d_bf16.json`, `rebootstrap_b10000`, `permutation_test_results.json`) show n=49 with n_skipped=1. The methodology correctly mentions 50 total problems tested and Table 5 correctly says n=49, but the specific appendix sentence is wrong. **Recommended fix**: change \"vs. $n{=}50$\" to \"vs. $n{=}49$\".\n\n**Informational notes**:\n\n- **I1**: No fp16 data residual -- all values trace to bf16 experiments. Clean.\n- **I2**: \"cross-model\" vs \"cross-architecture\" terminology used correctly; limitations section explicitly notes shared Qwen2 architecture.\n- **I3**: Qwen s=0.15 marginal result correctly marked as non-significant with \"ns\" superscript and appropriate footnote.\n- **I4**: C4 entropy-collapse properly scoped -- only in analysis section, not in core claims.\n- **I5**: Entropy delta and Gini/CV table values from C4 entropy experiments were not fully cross-verified against raw canonical JSON (only model-level results available), though internal consistency of ranges matching prose was confirmed.\n- **I6**: Multiplicative null G values ($G_\\times = 58$--$241\\times$) reported in appendix have no canonical JSON file to verify against.\n\nThe report also confirms that paired vs. unpaired statistics are correctly distinguished throughout the paper (unpaired Delta vs. paired Delta-tilde) with no conflation.\n\n---\n\n**In summary, the two actionable issues to independently verify are**:\n1. The crossover range in `results.tex` section 5.3 should be 3.6x--5.4x, not 3.9x--5.4x (W1)\n2. DeepSeek should be n=49 (not n=50) in the appendix cross-model comparison sentence (W2)"
+      }
+    ],
+    "totalDurationMs": 30681,
+    "totalTokens": 29115,
+    "totalToolUseCount": 2,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13847,
+      "cache_read_input_tokens": 14195,
+      "output_tokens": 1072,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 13847
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1072,
+          "cache_read_input_tokens": 14195,
+          "cache_creation_input_tokens": 13847,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 13847,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 2,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "4c97a9bd-56e3-4df2-b448-b2ebc97021e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T13:28:31.880Z_
+
+<details><summary>↩ Tool result · `toolu_012UggQbAgzJy7PYGJqozgSQ`</summary>
+
+````text
+Here are the complete contents of all 8 files:
+
+---
+
+## FILE 1: abstract.tex
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex`
+
+```
+1	\begin{abstract}
+2	Compound sparsity---simultaneously pruning attention heads and evicting KV cache entries---is essential for efficient LLM inference but produces super-additive quality degradation whose structure is poorly understood.
+3	Prior work treats compound interaction magnitude as approximately constant across the generation process.
+4	We show that this assumption is wrong: compound sparsity severity is an emergent phase-strategy interaction that varies by over an order of magnitude across reasoning phases.
+5	
+6	We evaluate compound sparsity on DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct (both Qwen2 architecture, 7B parameters) using 50 MATH-500 problems, measuring the Interaction Index---a super-additivity metric---across quantile-segmented reasoning phases at sparsity levels $s \in \{0.15, 0.20, 0.25, 0.30\}$.
+7	Under importance-based KV cache eviction, the median Interaction Index difference between low-sparsity and high-sparsity reasoning phases increases monotonically from $0.39$ at $s{=}0.15$ to $14.59$ at $s{=}0.30$, with paired Cohen's $d_z$ growing from $0.44$ (small) to $0.80$ (large); Bonferroni-corrected permutation tests yield $p < 0.005$ at all four sparsity levels.
+8	Random eviction produces no significant phase modulation in 7/8 conditions; the single exception (Qwen $s{=}0.30$, $p{=}0.012$) shows negligible effect size ($d_z{=}{-}0.04$), confirming that the severity gradient is strategy-specific, not an inherent property of compound sparsity.
+9	At $s{=}0.25$, a crossover emerges: importance-based eviction outperforms random in high-sparsity phases ($\widetilde{\mathrm{II}} = 0.032$ vs.\ $0.818$) yet underperforms in low-sparsity phases ($\widetilde{\mathrm{II}} = 7.196$ vs.\ $1.363$)---a qualitative reversal in strategy ranking.
+10	The pattern replicates on Qwen2.5-7B-Instruct at $s \geq 0.20$ ($d_z \geq 0.55$; Spearman $\rho = 1.0$ across sparsity levels; gradient permutation $p = 0.043$).
+11	
+12	We propose entropy-discrimination collapse as an explanatory mechanism: head pruning flattens cumulative importance scores in phases where attention is already broadly distributed, degrading the discriminative power of importance-based eviction in a phase-dependent manner.
+13	These findings challenge the phase-invariance assumption in compound sparsity deployment and motivate phase-aware compression budgets for reasoning models.
+14	\end{abstract}
+```
+
+---
+
+## FILE 2: introduction.tex
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/introduction.tex`
+
+```
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	Long-context language models place acute pressure on the key--value (KV) cache, which grows linearly with sequence length \cite{kwon-sosp2023, pope-mlsys2023}.
+5	Two complementary responses---\emph{attention head pruning} \cite{voita-acl2019, michel-neurips2019} and \emph{KV cache eviction} \cite{snapkv-neurips2024, adakv-neurips2025}---can be deployed simultaneously as \emph{compound sparsity}, but the resulting quality degradation is often super-additive \cite{spark-aaai2026, slim-icml2025}.
+6	
+7	Prior work treats compound interaction magnitude as roughly constant across generation \cite{spark-aaai2026, unicomp-2026}.
+8	This assumption is problematic for reasoning models, whose generations alternate between broadly distributed attention (exploratory reasoning) and sharply concentrated attention (structured computation) \cite{thinkv-iclr2026, decision-repr-transition-2026}.
+9	If compound severity varies across these phases, a uniform sparsity budget may be safe in one phase yet destructive in another.
+10	
+11	We show that compound sparsity severity is strongly modulated by reasoning phase and eviction strategy.
+12	Under importance-based KV cache eviction, the Interaction Index---a measure of super-additive degradation---concentrates in low-sparsity phases and is largely absent in high-sparsity phases.
+13	On DeepSeek-R1-Distill-Qwen-7B, the median phase difference rises from $0.39$ at $s{=}0.15$ to $14.59$ at $s{=}0.30$ ($d_z$: $0.44 \to 0.80$; Bonferroni-corrected $p < 0.005$ at all levels).
+14	The pattern replicates at $s \geq 0.20$ on Qwen2.5-7B-Instruct ($d_z \geq 0.55$).
+15	Critically, random eviction produces no such gradient (7/8 conditions non-significant), confirming the gradient is an emergent phase-strategy interaction.
+16	
+17	We propose \emph{entropy-discrimination collapse} as a mechanism: head pruning flattens cumulative importance scores in phases where attention is broadly distributed, degrading the discriminative power of importance-based eviction in a phase-dependent manner.
+18	Random eviction is immune because its decisions are independent of attention patterns.
+19	Our contributions:
+20	\begin{enumerate}[nosep,leftmargin=*]
+21	    \item We identify a \textbf{phase--strategy interaction}: importance-based eviction exhibits a severity gradient across reasoning phases that is absent under random eviction (\S\ref{sec:results}).
+22	    \item We show this gradient \textbf{increases monotonically with sparsity} and replicates across two models with different training regimes (\S\ref{sec:results}).
+23	    \item We propose \textbf{entropy-discrimination collapse} as a mechanistic explanation (\S\ref{sec:discrimination-collapse}).
+24	\end{enumerate}
+```
+
+---
+
+## FILE 3: results.tex
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex`
+
+```
+1	
+2	\section{Results}
+3	\label{sec:results}
+4	
+5	\subsection{Strategy-Dependent Severity}
+6	\label{sec:strategy-severity}
+7	
+8	Table~\ref{tab:aggregate-ii} reports the median compound severity difference across strategies and sparsity levels. Under importance-based eviction, $\Delta$ increases from $0.39$ at $s{=}0.15$ to $14.59$ at $s{=}0.30$---a $37{\times}$ amplification. Under random eviction, no systematic growth is observed ($-0.02$ to $1.54$), confirming that compound severity depends qualitatively on eviction strategy. % exp_id: bf16_importance_s015..s030, bf16_ds_rand_s015..s030; source: experiment_summary_table.json
+9	
+10	\begin{table}[t]
+11	\centering
+12	\small
+13	\caption{Median compound severity difference ($\Delta = \widetilde{\mathrm{II}}_{\textit{low}} - \widetilde{\mathrm{II}}_{\textit{high}}$) by eviction strategy and sparsity level on DeepSeek-R1-Distill-Qwen-7B ($n{=}50$ MATH-500 problems).}
+14	\label{tab:aggregate-ii}
+15	\begin{tabular}{@{}lcccc@{}}
+16	\toprule
+17	Strategy & $s{=}0.15$ & $s{=}0.20$ & $s{=}0.25$ & $s{=}0.30$ \\
+18	\midrule
+19	Importance & 0.39 & 1.48 & 7.16 & 14.59 \\ % exp_id: bf16_importance_s015..s030; source: experiment_summary_table.json median_diff
+20	Random     & 0.01 & $-$0.02 & 0.54 & 1.54 \\ % exp_id: bf16_ds_rand_s015..s030; source: experiment_summary_table.json median_diff
+21	\bottomrule
+22	\end{tabular}
+23	\end{table}
+24	
+25	
+26	\subsection{Phase-Modulated Amplification}
+27	\label{sec:phase-amplification}
+28	
+29	Decomposing II by reasoning phase reveals that strategy-dependent severity is driven by amplification in the low-sparsity phase. Table~\ref{tab:main-results} reports the full per-phase breakdown. The severity gradient $G$ increases from $69{\times}$ at $s{=}0.15$ to $274{\times}$ at $s{=}0.30$ under importance-based eviction, while the high-sparsity phase experiences near-zero interaction ($\widetilde{\mathrm{II}}_{\textit{high}}$ ranges from $0.006$ to $0.053$). Under random eviction, $G \approx 0.9$--$1.7{\times}$ at all sparsity levels. Figure~\ref{fig:hero} visualizes this contrast. % exp_id: bf16_importance_s015..s030, bf16_ds_rand_s015..s030; source: experiment_summary_table.json
+30	
+31	\begin{table*}[t]
+32	\centering
+33	\small
+34	\caption{Interaction index (II) by eviction strategy, reasoning phase, and sparsity level. II values are problem-level medians across 50 problems. $\Delta = \widetilde{\mathrm{II}}_{\textit{low}} - \widetilde{\mathrm{II}}_{\textit{high}}$. $G = \widetilde{\mathrm{II}}_{\textit{low}} / \widetilde{\mathrm{II}}_{\textit{high}}$.}
+35	\label{tab:main-results}
+36	\begin{tabular}{@{}llccccr@{}}
+37	\toprule
+38	$s$ & Strategy & $\widetilde{\mathrm{II}}_{\textit{high}}$ & $\widetilde{\mathrm{II}}_{\textit{mid}}$ & $\widetilde{\mathrm{II}}_{\textit{low}}$ & $\Delta$ & $G$ \\
+39	\midrule
+40	0.15 & Importance & 0.006 & 0.081 & 0.398 & 0.39 & $\mathbf{69}$ \\
+41	0.15 & Random     & 0.093 & 0.097 & 0.103 & 0.01 & 1.1 \\
+42	\addlinespace
+43	0.20 & Importance & 0.015 & 0.203 & 1.496 & 1.48 & $\mathbf{103}$ \\
+44	0.20 & Random     & 0.292 & 0.350 & 0.276 & $-$0.02 & 0.9 \\
+45	\addlinespace
+46	0.25 & Importance & 0.032 & 1.118 & 7.196 & 7.16 & $\mathbf{222}$ \\
+47	0.25 & Random     & 0.818 & 0.932 & 1.363 & 0.54 & 1.7 \\
+48	\addlinespace
+49	0.30 & Importance & 0.053 & 2.283 & 14.639 & 14.59 & $\mathbf{274}$ \\
+50	0.30 & Random     & 2.503 & 2.592 & 4.041 & 1.54 & 1.6 \\
+51	\bottomrule
+52	\end{tabular}
+53	\end{table*}
+54	
+55	\begin{figure}[t]
+56	\centering
+57	\includegraphics[width=\columnwidth]{fig1_dose_response.pdf}
+58	\caption{Severity gradient ($G$) as a function of sparsity level $s$. Importance-based eviction (solid) exhibits an increasing gradient from $69{\times}$ to $274{\times}$; random eviction (dashed) remains flat near $1{\times}$. Shaded regions: 95\% bootstrap CIs.} % exp_id: bf16_importance_s015..s030, bf16_ds_rand_s015..s030
+59	\label{fig:hero}
+60	\end{figure}
+61	
+62	
+63	\subsection{Phase-Strategy Crossover}
+64	\label{sec:crossover}
+65	
+66	At $s{=}0.25$, a strategy ranking reversal emerges (Figure~\ref{fig:crossover}): importance-based eviction yields \emph{lower} II than random in the high-sparsity phase ($0.032$ vs.\ $0.818$) but \emph{higher} II in the low-sparsity phase ($7.196$ vs.\ $1.363$---a $5.3{\times}$ reversal). This crossover is present at all four sparsity levels, with reversal magnitude of $3.9{\times}$ at $s{=}0.15$, $5.4{\times}$ at $s{=}0.20$, $5.3{\times}$ at $s{=}0.25$, and $3.6{\times}$ at $s{=}0.30$ (as random eviction severity also rises). The reversal arises because head pruning redistributes attention mass, altering importance rankings in a way that couples the two sparsity mechanisms in low-sparsity phases (\S\ref{sec:discrimination-collapse}). % exp_id: bf16_importance_s025, bf16_ds_rand_s025; source: experiment_summary_table.json; 7.196/1.363=5.28
+67	
+68	\begin{figure}[t]
+69	\centering
+70	\includegraphics[width=\columnwidth]{fig3_crossover.pdf}
+71	\caption{Strategy-dependent crossover at $s{=}0.25$. Grouped bar chart of median II by eviction strategy and reasoning phase. Importance-based eviction outperforms random in the high-sparsity phase but produces $5.3{\times}$ higher II in the low-sparsity phase, reversing the strategy ranking.}
+72	\label{fig:crossover}
+73	\end{figure}
+74	
+75	
+76	\subsection{Cross-Model Replication}
+77	\label{sec:cross-model}
+78	
+79	Both models share the Qwen2ForCausalLM backbone (28 layers, 28 heads, 4-group GQA) and differ in training: DeepSeek uses reasoning distillation from DeepSeek-R1, while Qwen2.5 uses standard instruction tuning without explicit reasoning delimiters. This controlled comparison isolates the effect of training methodology on the compound sparsity interaction.
+80	
+81	Despite lacking explicit \texttt{&lt;think>} delimiters, Qwen2.5-7B-Instruct exhibits sufficient variation in attention sparsity to permit phase segmentation via the same quantile-based method (\S\ref{sec:phase-segmentation}). Four of the 50 problems are excluded due to degenerate phase assignments, yielding $n{=}46$ valid problems for Qwen (vs.\ $n{=}49$ for DeepSeek).
+82	
+83	Qwen reproduces the monotonic severity gradient: $\Delta$ increases from $0.04$ at $s{=}0.15$ to $2.94$ at $s{=}0.30$, paralleling DeepSeek at ${\sim}1/5$ the magnitude (Table~\ref{tab:cross-model}). Both models yield strictly increasing $d_z$ trajectories (Spearman $\rho = 1.0$; gradient permutation $p = 0.043$). The effect is marginal at $s{=}0.15$ ($d_z{=}0.28$, CI includes zero) but reliable at $s \geq 0.20$ ($d_z \geq 0.55$). Per-problem concordance analysis appears in Appendix~\ref{app:cross-model-details}. % exp_id: cross_model_analysis.json; cohens_d_bf16_qwen.json
+84	
+85	\begin{table}[t]
+86	\centering
+87	\small
+88	\caption{Cross-model comparison of median compound severity difference ($\Delta$) under importance-based eviction.}
+89	\label{tab:cross-model}
+90	\begin{tabular}{@{}lcccc@{}}
+91	\toprule
+92	Model & $s{=}0.15$ & $s{=}0.20$ & $s{=}0.25$ & $s{=}0.30$ \\
+93	\midrule
+94	DeepSeek-R1-Distill-Qwen-7B & 0.39 & 1.48 & 7.16 & 14.59 \\ % exp_id: bf16_importance_s015..s030
+95	Qwen2.5-7B-Instruct         & 0.04 & 0.23 & 1.27 & 2.94 \\ % exp_id: bf16_qw_imp_s015..s030
+96	\bottomrule
+97	\end{tabular}
+98	\end{table}
+99	
+100	\begin{figure}[t]
+101	\centering
+102	\includegraphics[width=\columnwidth]{fig5_crossmodel.pdf}
+103	\caption{Cross-model comparison of the median severity difference under importance-based eviction. Both DeepSeek (solid) and Qwen (dashed) exhibit monotonically increasing $\Delta$ with sparsity; Qwen's magnitude is approximately one-fifth of DeepSeek's.} % exp_id: bf16_importance_s015..s030, bf16_qw_imp_s015..s030
+104	\label{fig:cross-model}
+105	\end{figure}
+106	
+107	
+108	\subsection{Statistical Validation}
+109	\label{sec:stat-validation}
+110	
+111	\paragraph{Distribution characterization.}
+112	Per-problem distributions of the paired severity difference $\Delta_i = \mathrm{II}_{\textit{low},i} - \mathrm{II}_{\textit{high},i}$ under importance-based eviction are right-skewed at all sparsity levels, with mean/median ratios ranging from $1.2{\times}$ ($s{=}0.15$) to $1.6{\times}$ ($s{=}0.30$) for DeepSeek and $1.1{\times}$ to $1.4{\times}$ for Qwen. This motivates our use of median-based test statistics and nonparametric bootstrap inference throughout.
+113	
+114	\paragraph{Permutation test.}
+115	For each problem $i$ and sparsity level $s$, we compute the compound severity difference $\Delta_i^{(\text{strat})} = \mathrm{II}_{\textit{low},i} - \mathrm{II}_{\textit{high},i}$ under each eviction strategy. The test statistic is the median of the paired difference $\widetilde{\Delta} = \text{median}_i\!\bigl(\Delta_i^{(\text{imp})} - \Delta_i^{(\text{rand})}\bigr)$, measuring whether importance-based eviction produces systematically larger phase-dependent severity than random eviction. We permute strategy labels $10{,}000$ times to construct the null distribution and apply Bonferroni correction for 4 sparsity-level comparisons. The permutation null distributions are approximately symmetric around zero at all sparsity levels. At $s{=}0.15$, the observed statistic falls at the $99.68$th percentile of the null ($p_{\text{Bonf}} = 0.0032$); at $s \geq 0.20$, no permutation exceeds the observed statistic.
+116	
+117	Table~\ref{tab:permutation} reports the results. All four sparsity levels reject $H_0$ after Bonferroni correction ($p_{\text{Bonf}} < 0.005$), with observed median differences increasing monotonically from $0.37$ at $s{=}0.15$ to $9.85$ at $s{=}0.30$. The monotonic growth of both the point estimate and the CI lower bound ($0.19 \to 0.69 \to 1.66 \to 6.70$) confirms that compound severity amplification strengthens with sparsity---not merely in central tendency but also in worst-case lower bounds. Figure~\ref{fig:permtest-forest} presents these results as a forest plot. % exp_id: deepseek_bf16_permtest; source: permutation_test_results.json
+118	
+119	\begin{table}[t]
+120	\centering
+121	\small
+122	\caption{Paired permutation test for compound severity: importance vs.\ random eviction on DeepSeek-R1-Distill-Qwen-7B ($n{=}49$, $10{,}000$ permutations, Bonferroni-corrected).}
+123	\label{tab:permutation}
+124	\begin{tabular}{@{}rrcl@{}}
+125	\toprule
+126	$s$ & Observed $\widetilde{\Delta}$ & 95\% CI & $p_{\text{Bonf}}$ \\
+127	\midrule
+128	0.15 & 0.37 & $[0.19,\; 0.62]$ & 0.0032 \\ % exp_id: deepseek_bf16_permtest_s015
+129	0.20 & 0.97 & $[0.69,\; 1.49]$ & ${<}\,0.001$ \\ % exp_id: deepseek_bf16_permtest_s020
+130	0.25 & 3.34 & $[1.66,\; 6.64]$ & ${<}\,0.001$ \\ % exp_id: deepseek_bf16_permtest_s025
+131	0.30 & 9.85 & $[6.70,\; 16.29]$ & ${<}\,0.001$ \\ % exp_id: deepseek_bf16_permtest_s030
+132	\bottomrule
+133	\end{tabular}
+134	\end{table}
+135	
+136	\begin{figure}[t]
+137	\centering
+138	\includegraphics[width=\columnwidth]{fig4_bootstrap.pdf}
+139	\caption{Forest plot of permutation test results. Horizontal bars show 95\% permutation CIs; diamonds mark observed median differences $\widetilde{\Delta}$. All CIs lie entirely above zero, confirming significant strategy-dependent severity at every sparsity level.}
+140	\label{fig:permtest-forest}
+141	\end{figure}
+142	
+143	\paragraph{Effect sizes.}
+144	Table~\ref{tab:cohens-d} reports paired Cohen's $d_z$ for both models. For DeepSeek, effect sizes grow from $d_z{=}0.44$ (small) to $d_z{=}0.80$ (large). For Qwen, the effect is marginal at $s{=}0.15$ ($d_z{=}0.28$, bootstrap CI includes zero), becoming reliable at $s \geq 0.20$ ($d_z \geq 0.55$). At higher sparsity ($s \geq 0.25$), Qwen exhibits larger standardized effect sizes than DeepSeek ($d_z{=}0.89$/$1.02$ vs.\ $0.68$/$0.80$), consistent with lower between-problem variance yielding larger standardized differences despite smaller absolute II values. % exp_id: cohens_d_bf16.json; cohens_d_bf16_qwen.json
+145	
+146	\begin{table}[t]
+147	\centering
+148	\small
+149	\caption{Paired $d_z$ for phase-dependent II (low $-$ high) under importance-based eviction. Bootstrap 95\% CIs ($B{=}10{,}000$).}
+150	\label{tab:cohens-d}
+151	\begin{tabular}{@{}lcccc@{}}
+152	\toprule
+153	$s$ & DS $d_z$ & $\widetilde{\Delta}$ [CI] & QW $d_z$ & $\widetilde{\Delta}$ [CI] \\
+154	\midrule
+155	0.15 & 0.44 & 0.32\; $[0.20, 0.47]$ & 0.28 & 0.05\; $[-0.01, 0.11]$\textsuperscript{ns} \\ % exp_id: bf16_ds_imp_s015, bf16_qw_imp_s015
+156	0.20 & 0.52 & 1.15\; $[0.66, 1.26]$ & 0.55 & 0.21\; $[0.07, 0.40]$ \\ % exp_id: bf16_ds_imp_s020, bf16_qw_imp_s020
+157	0.25 & 0.68 & 3.97\; $[2.83, 5.29]$ & 0.89 & 1.11\; $[0.61, 1.47]$ \\ % exp_id: bf16_ds_imp_s025, bf16_qw_imp_s025
+158	0.30 & 0.80 & 9.94\; $[8.39, 16.65]$ & 1.02 & 2.62\; $[1.72, 3.65]$ \\ % exp_id: bf16_ds_imp_s030, bf16_qw_imp_s030
+159	\bottomrule
+160	\multicolumn{5}{@{}l}{\footnotesize \textsuperscript{ns}Marginal at $s{=}0.15$; reliable at $s \geq 0.20$.}
+161	\end{tabular}
+162	\end{table}
+```
+
+---
+
+## FILE 4: analysis.tex
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/analysis.tex`
+
+```
+1	\section{Analysis: Entropy-Discrimination Collapse}
+2	\label{sec:analysis}
+3	
+4	\subsection{Discrimination Collapse}
+5	\label{sec:discrimination-collapse}
+6	
+7	Head pruning reduces the number of heads contributing to cumulative importance scores, flattening the score distribution. Table~\ref{tab:discrimination-metrics-full} quantifies this effect: the Gini coefficient decreases by $0.030$--$0.081$ (DeepSeek) and $0.010$--$0.020$ (Qwen) after pruning, with consistent negative deltas across all 16 conditions (both models $\times$ 4 sparsity levels $\times$ 2 strategies). The CV delta is likewise negative in all 8 importance-based conditions. The same pattern holds under random eviction, confirming that discrimination collapse is a consequence of head pruning \emph{per se}, not of the eviction strategy. % exp_id: c4_entropy_deepseek, c4_entropy_qwen
+8	
+9	\begin{table}[t]
+10	\centering
+11	\caption{Discrimination collapse under importance-based eviction. $\Delta\mathrm{Gini}$ and $\Delta\mathrm{CV}$ are post-pruning minus baseline; negative values indicate reduced discriminative power.}
+12	\label{tab:discrimination-metrics-full}
+13	\small
+14	\begin{tabular}{llrr}
+15	\toprule
+16	Model & $s$ & $\Delta\mathrm{Gini}$ & $\Delta\mathrm{CV}$ \\
+17	\midrule
+18	DeepSeek & $0.15$ & $-0.030$ & $-0.56$ \\
+19	DeepSeek & $0.20$ & $-0.040$ & $-0.77$ \\
+20	DeepSeek & $0.25$ & $-0.065$ & $-1.29$ \\
+21	DeepSeek & $0.30$ & $-0.081$ & $-1.66$ \\
+22	\midrule
+23	Qwen & $0.15$ & $-0.010$ & $-0.05$ \\
+24	Qwen & $0.20$ & $-0.012$ & $-0.21$ \\
+25	Qwen & $0.25$ & $-0.010$ & $-1.49$ \\
+26	Qwen & $0.30$ & $-0.020$ & $-1.14$ \\
+27	\bottomrule
+28	\end{tabular}
+29	\end{table}
+30	
+31	When importance scores lose discriminability, thresholding degenerates into noise-sensitive selection---functionally approaching biased random eviction. This is phase-dependent: in low-sparsity phases, attention is already broadly distributed, so pruning-induced flattening has maximum impact; in high-sparsity phases, concentration is preserved. Random eviction is immune because its decisions are independent of score quality, explaining $G \approx 1$. % exp_id: c4_entropy_deepseek, c4_entropy_qwen
+32	
+33	\subsection{Entropy Redistribution}
+34	\label{sec:entropy-redistribution}
+35	
+36	Beyond discrimination collapse, we examine whether head pruning also redistributes the attention entropy of surviving heads. We measure the mean attention entropy per head:
+37	\begin{equation}
+38	    \mathcal{H}_i^{(h)} = -\sum_{j=1}^{T} a_{ij}^{(h)} \log a_{ij}^{(h)}
+39	    \label{eq:attn-entropy}
+40	\end{equation}
+41	and compute $\Delta\mathcal{H}$ as the change from baseline (no pruning) to the pruned condition.
+42	
+43	For DeepSeek under importance-based eviction, the entropy delta is consistently negative across all four sparsity levels ($\Delta\mathcal{H} \in [-0.040, -0.047]$; Table~\ref{tab:entropy-deltas}), indicating that importance-based pruning systematically selects heads whose removal concentrates attention in the surviving heads, reinforcing discrimination collapse. % exp_id: c4_entropy_deepseek
+44	
+45	For Qwen, the entropy pattern only partially replicates. The delta is negative at $s{=}0.15$ ($\Delta\mathcal{H} = -0.073$) and $s{=}0.20$ ($-0.076$), consistent with DeepSeek. However, at $s{=}0.25$, the delta reverses to $+0.045$, with 22 of 30 problems showing positive entropy change. At $s{=}0.30$, the delta is near zero ($-0.007$). The $s{=}0.25$ reversal is systematic rather than a statistical artifact: it is consistent across all three reasoning phases (low: $+0.042$, mid: $+0.034$, high: $+0.017$). We interpret this as a genuine model-specific difference, possibly arising from distinct head specialization patterns: Qwen's instruction tuning (vs.\ DeepSeek's distillation-based training) may produce head configurations where removing 25\% of heads triggers compensatory broadening rather than concentration. % exp_id: c4_entropy_qwen
+46	
+47	We characterize discrimination collapse as the robust, model-independent driver of the phase-strategy interaction, with entropy redistribution as a secondary amplifier that is consistent in DeepSeek but model-dependent in Qwen.
+48	
+49	\begin{table}[t]
+50	\centering
+51	\caption{Attention entropy deltas ($\Delta\mathcal{H}$) under importance-based eviction. DeepSeek shows consistent entropy compression; Qwen partially replicates with a reversal at $s{=}0.25$.}
+52	\label{tab:entropy-deltas}
+53	\small
+54	\begin{tabular}{llr}
+55	\toprule
+56	Model & $s$ & $\Delta\mathcal{H}$ \\
+57	\midrule
+58	DeepSeek & $0.15$ & $-0.040$ \\
+59	DeepSeek & $0.20$ & $-0.047$ \\
+60	DeepSeek & $0.25$ & $-0.045$ \\
+61	DeepSeek & $0.30$ & $-0.044$ \\
+62	\midrule
+63	Qwen & $0.15$ & $-0.073$ \\
+64	Qwen & $0.20$ & $-0.076$ \\
+65	Qwen & $0.25$ & $+0.045$ \\
+66	Qwen & $0.30$ & $-0.007$ \\
+67	\bottomrule
+68	\end{tabular}
+69	\end{table}
+```
+
+---
+
+## FILE 5: discussion.tex
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex`
+
+```
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Quantitative surprise.}
+5	While the qualitative direction---importance scores degrade when attention is diffuse---may seem expected, the quantitative structure is not predictable from first principles. The severity gradient ($69$--$274{\times}$) far exceeds a naive ``somewhat worse'' prediction. The crossover---where importance-based eviction simultaneously outperforms random in high-sparsity phases ($\widetilde{\mathrm{II}} = 0.032$ vs.\ $0.818$) and underperforms in low-sparsity phases ($7.196$ vs.\ $1.363$)---cannot be derived from single-axis entropy reasoning. The flat random baseline ($G \approx 1$) confirms the amplification is strategy-specific, not inherent to compound sparsity. % exp_id: bf16_importance_s015..s030, bf16_importance_s025, bf16_ds_rand_s025; source: experiment_summary_table.json
+6	
+7	\paragraph{Implications for deployment.}
+8	Applying a uniform compression budget across all inference steps implicitly accepts order-of-magnitude severity penalties during low-sparsity reasoning phases. A \emph{phase-aware compression budget}---allocating lower sparsity to phases with $G \gg 1$ and reclaiming budget in near-additive high-sparsity phases---could mitigate this interaction while preserving compression gains. The severity gradient provides a natural signal for such allocation.
+9	
+10	\paragraph{Cross-model robustness.}
+11	The pattern replicates with perfect ordinal agreement across both models (Spearman $\rho{=}1.0$; gradient permutation $p{=}0.043$), though Qwen's magnitudes are ${\sim}1/5$ of DeepSeek's. The onset threshold differs: DeepSeek's gradient is significant from $s{=}0.15$ ($d_z{=}0.44$), while Qwen's becomes significant only at $s \geq 0.20$ ($d_z{=}0.55$). We conjecture that distillation amplifies the phase-strategy interaction by producing sharper internal phase transitions---a hypothesis testable by comparing distilled and non-distilled variants at matched scale. Discrimination collapse (Gini/CV reduction) is consistent across all conditions; the entropy redistribution component is model-dependent, with Qwen showing a sign reversal at $s{=}0.25$. We characterize discrimination collapse as the robust driver, with entropy redistribution as a secondary, model-specific amplifier. % exp_id: cross_model_correlation; mechanism_entropy_qwen; cohens_d_bf16.json, cohens_d_bf16_qwen.json
+12	
+13	\paragraph{Architecture generality.}
+14	Discrimination collapse depends on: (i)~attention-mass-based importance scoring for KV eviction, and (ii)~a sufficient number of pruned heads to degrade the importance distribution. Both are shared by major KV cache methods (H$_2$O \cite{h2o-neurips2023}, SnapKV \cite{snapkv-neurips2024}, PyramidKV \cite{pyramidkv-2024}) and by any autoregressive transformer producing extended reasoning. The entropy redistribution component, while consistent in DeepSeek, appears model-dependent.
+15	
+16	\paragraph{Testable prediction.}
+17	Any importance metric derived from attention mass should exhibit discrimination collapse under head pruning, with severity gradient scaling with pruning-induced Gini decrease. Metrics deriving importance from sources independent of attention---such as activation magnitude or gradient-based saliency---should produce flatter severity gradients.
+18	
+19	\paragraph{Future directions.}
+20	A \emph{phase-gated controller} that monitors attention sparsity in real time and dynamically adjusts compound sparsity per phase could mitigate severity amplification while preserving compression gains where compound behavior is near-additive. Scaling to larger models and diverse reasoning tasks would establish generality. Extended discussion in Appendix~\ref{app:extended-discussion}.
+21	```
+
+---
+
+## FILE 6: conclusion.tex
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/conclusion.tex`
+
+```
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	We showed that compound sparsity severity---the super-additive interaction between head pruning and KV cache eviction---is not phase-invariant but exhibits an emergent phase-strategy interaction spanning over an order of magnitude within a single generation. Under importance-based eviction, the severity gradient grows from $69{\times}$ to $274{\times}$ across sparsity levels ($d_z$: $0.44 \to 0.80$); random eviction shows no such modulation (7/8 conditions non-significant). A crossover at $s{=}0.25$---where importance-based eviction reverses ranking across phases---demonstrates that no single strategy dominates uniformly. The pattern replicates on Qwen2.5-7B-Instruct at $s \geq 0.20$ ($d_z \geq 0.55$) with attenuated magnitude. Discrimination collapse provides a robust mechanistic explanation confirmed across both models.
+5	These findings motivate phase-aware sparsity allocation for reasoning model deployment.
+6	
+7	\section*{Limitations}
+8	\label{sec:limitations}
+9	
+10	\paragraph{Model scale and architecture.}
+11	All experiments are conducted at the 7B parameter scale. Whether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested. Both models share the Qwen2ForCausalLM architecture; while the cross-model replication (\S\ref{sec:cross-model}) confirms the findings are not artifacts of a single model's weights, empirical validation on architecturally distinct designs (e.g., LLaMA~3, Mistral, or multi-latent attention) is needed.
+12	
+13	\paragraph{Task coverage.}
+14	We evaluate exclusively on MATH-500, a mathematical reasoning benchmark. Different reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.
+15	
+16	\paragraph{Mechanism.}
+17	The discrimination collapse mechanism is supported by correlational evidence (consistent Gini/CV reduction across all conditions); causal validation through controlled entropy manipulation is needed. The entropy redistribution component replicates on only 2/4 Qwen conditions, suggesting model-specific factors.
+18	
+19	\paragraph{Sparsity range.}
+20	Our experiments span $s \in \{0.15, 0.20, 0.25, 0.30\}$. More extreme sparsity ($s > 0.50$) may exhibit qualitatively different interaction dynamics. We do not report inference throughput or latency measurements, which are necessary for a complete deployment analysis but orthogonal to our severity characterization. Extended limitations in Appendix~\ref{app:limitations}.
+21	```
+
+---
+
+## FILE 7: appendix_results.tex
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex`
+
+```
+1	% Appendix: supplementary results details
+2	
+3	\section{Cross-Model Replication Details}
+4	\label{app:cross-model-details}
+5	
+6	\paragraph{Per-problem concordance.}
+7	The per-problem concordance across models is not significant (mean $\rho = -0.11$, $p = 0.926$), indicating that while the aggregate gradient direction replicates, the specific problems driving severity differ between models---consistent with model-specific attention patterns rather than a universal per-problem vulnerability ranking. % exp_id: cross_model_analysis.json (spearman_rho=1.0, gradient_permutation_p=0.043, per_problem_concordance_p=0.926, mean_rho=-0.107)
+8	
+9	\paragraph{Random eviction control.}
+10	As a control, random eviction on Qwen yields no systematic phase gradient at three of four sparsity levels (3/4 FAIL), mirroring DeepSeek's 4/4 FAIL pattern. At $s{=}0.30$, Qwen random produces a borderline PASS (permutation $p = 0.012$) but with negligible effect size ($d_z = -0.04$, CI spans zero), indicating no meaningful phase modulation. % exp_id: bf16_qw_rand_s015..s030; source: experiment_summary_table.json
+```
+
+---
+
+## FILE 8: appendix_disc_analysis.tex
+`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex`
+
+```
+1	\section{Discrimination Collapse Details}
+2	\label{app:discrimination-collapse-details}
+3	
+4	This cross-model consistency (Table~\ref{tab:discrimination-metrics-full}) establishes discrimination collapse as a robust consequence of compound sparsity. When importance scores lose discriminative power, thresholding the bottom-$s$ fraction becomes noise-sensitive: small perturbations change which positions cross the eviction boundary. In the limit of perfectly uniform scores, importance-based eviction degenerates into an arbitrary selection functionally equivalent to biased random eviction. The same pattern holds under random eviction (DeepSeek: $-0.031$ to $-0.073$; Qwen: $-0.019$ to $-0.045$), confirming that discrimination collapse is a consequence of head pruning \emph{per se}, not of the eviction strategy. % exp_id: c4_entropy_deepseek, c4_entropy_qwen
+5	
+6	
+7	\section{Extended Discussion}
+8	\label{app:extended-discussion}
+9	
+10	\paragraph{On the predictability of phase-modulated severity.}
+11	The compound interaction is not uniformly fragile---it is selectively fragile in a phase-dependent manner ($\widetilde{\mathrm{II}}_{\text{high}} < 0.06$ at $s \leq 0.30$; at $s = 0.35$, high-phase II rises to $0.105$ in a supplementary experiment, indicating onset of compound interaction even in high-sparsity phases at extreme pruning rates). % exp_id: bf16_importance_s015..s030, bf16_ds_imp_s035; high-phase medians: 0.006, 0.015, 0.032, 0.053; s035 II_high=0.1051
+12	
+13	\paragraph{Random masking as falsification control.}
+14	Random eviction fails 7/8 paired permutation tests across both models; the single exception (Qwen $s{=}0.30$, $p{=}0.012$) exhibits negligible effect size ($d_z{=}{-}0.04$). The absence of a phase gradient under random masking isolates the amplification as strategy-specific. % exp_id: bf16_ds_rand_s015..s030, bf16_qw_rand_s015..s030
+15	
+16	\paragraph{Entropy mechanism boundary conditions.}
+17	Directly measuring per-head entropy shifts across architecturally distinct models---and identifying what training-time properties determine whether entropy concentrates or disperses under head pruning---would clarify the boundary conditions of the full mechanism.
+18	
+19	
+20	\section{Extended Limitations}
+21	\label{app:limitations}
+22	
+23	\paragraph{Model scale.}
+24	All experiments are conducted at the 7B parameter scale.
+25	Whether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested.
+26	Larger models may exhibit different attention redundancy structures that alter the discrimination collapse dynamics (and the model-dependent entropy component may behave differently at scale).
+27	% REVIEWER-ATTACK: "7B is too small to be relevant for production."
+28	% REBUTTAL: 7B is the most-deployed scale for on-device and cost-constrained serving—exactly where compound sparsity is needed. The mechanism (entropy-discrimination collapse) is scale-agnostic in principle. Scaling experiments are future work.
+29	
+30	\paragraph{Architectural scope.}
+31	Our two models---DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct---share the Qwen2ForCausalLM architecture.
+32	The cross-model replication (\S\ref{sec:cross-model}) confirms that the findings are not artifacts of a single model's weights, but both models share the same attention mechanism design.
+33	The entropy-discrimination collapse mechanism is in principle agnostic across attention architectures (it depends on attention redistribution, not architecture-specific components), but empirical validation on architecturally distinct attention designs (e.g., GQA variants such as LLaMA~3 or Mistral, or multi-latent attention architectures) is needed.
+34	% REVIEWER-ATTACK: "Cross-model ≠ cross-architecture. Both are Qwen2ForCausalLM."
+35	% REBUTTAL: Correct—we explicitly state this is cross-model (different training: distillation vs instruction tuning), not cross-architecture. The two models isolate the training variable while controlling architecture. Cross-architecture validation (LLaMA, Mistral) is acknowledged as future work.
+36	
+37	\paragraph{Task coverage.}
+38	We evaluate exclusively on MATH-500, a mathematical reasoning benchmark.
+39	Different reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.
+40	Generalizing the phase-strategy interaction to broader reasoning domains is an important next step.
+41	% REVIEWER-ATTACK: "Only MATH-500. How do we know this isn't a math-specific artifact?"
+42	% REBUTTAL: The mechanism (entropy-discrimination collapse under head pruning) depends on attention distribution properties, not math-specific features. MATH-500 is a standard benchmark with diverse difficulty. However, different reasoning tasks may induce different phase structures—we state this limitation explicitly rather than overclaiming.
+43	
+44	\paragraph{Statistical scope.}
+45	Bootstrap confidence intervals use $B{=}10{,}000$ resamples. The paired permutation test yields $n{=}49$ paired problems for DeepSeek (1 excluded) and $n{=}46$ for Qwen (4 excluded). % exp_id: cohens_d_bf16.json, cohens_d_bf16_qwen.json
+46	The severity difference distribution is right-skewed (mean/median ratio ${\sim}1.6{:}1$ at $s{=}0.30$), motivating our use of medians and nonparametric tests rather than parametric alternatives. % exp_id: bf16_importance_s030; mean_diff=22.94, median_diff=14.59 (segment-level). Per-problem paired: median_diff=9.9436 at s030
+47	All four permutation tests reject $H_0$ after Bonferroni correction ($p_{\text{Bonf}} < 0.005$; Table~\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---confirming the effect direction at every sparsity level. The permutation CIs at higher sparsity are wider (e.g., $[6.70,\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification. % exp_id: permutation_test_results.json; permutation CIs: s015=[0.19,0.62], s020=[0.69,1.49], s025=[1.66,6.64], s030=[6.70,16.29]
+48	
+49	A notable exception among the random baselines is the Qwen random condition at $s{=}0.30$, which yields a statistically significant result ($p{=}0.012$) despite negligible effect size ($d_z{=}{-}0.04$, bootstrap CI excluding zero). % exp_id: qw_rand_s030; B=10000, p=0.012, d=-0.035, negligible
+50	This case illustrates that dichotomous significance testing can flag effects of no practical magnitude---reinforcing the importance of reporting effect sizes and confidence intervals alongside $p$-values.
+51	
+52	\paragraph{Sparsity range.}
+53	Our experiments span $s \in \{0.15, 0.20, 0.25, 0.30\}$, a moderate range representative of practical deployment targets.
+54	More extreme sparsity ($s > 0.50$) may exhibit qualitatively different interaction dynamics---the sub-exponential growth pattern suggests the severity gradient may plateau, but this remains unverified.
+55	Conversely, the lower boundary at which phase-modulated amplification first emerges is not yet characterized.
+56	% REVIEWER-ATTACK: "Why not test higher sparsity? 0.30 is conservative."
+57	% REBUTTAL: Our focus is on the practically relevant regime where models retain usable quality. At s>0.30 both strategies degrade severely, making II measurement less informative. The sub-exponential growth (C6, $\Delta$ growth rate $3.8{\times} \to 4.8{\times} \to 2.0{\times}$) suggests saturation at higher sparsity, but confirming this is future work.
+58	
+59	\paragraph{No throughput evaluation.}
+60	This work focuses on characterizing the \emph{structural} properties of compound sparsity severity---its phase dependence, strategy dependence, and interaction magnitude.
+61	We do not report inference throughput or latency measurements, which are necessary for a complete deployment analysis but orthogonal to the severity characterization that is our primary contribution.
+62	% REVIEWER-ATTACK: "No system evaluation. How do we know the severity amplification matters for real deployment?"
+63	% REBUTTAL: This is an empirical finding paper, not a method/system paper. The contribution is characterizing *what happens* (phase-modulated severity) and *why* (entropy-discrimination collapse), not building a system to fix it. Phase-gated controllers are explicitly scoped as future work. The finding is actionable regardless: any compound sparsity deployment should be aware of phase-dependent severity.
+64	
+65	% Entropy redistribution analysis moved to main text \S\ref{sec:entropy-redistribution}
+66	
+```
+
+---
+
+All 8 files have been returned in full with line numbers. Every number in these files is now available for audit.
+
+agentId: ad51791d5524fcfcc (use SendMessage with to: 'ad51791d5524fcfcc' to continue this agent)
+&lt;usage>total_tokens: 42493
+tool_uses: 8
+duration_ms: 275282&lt;/usage>
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "6b483df8-98e8-429a-9286-54968a58ca66",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "bbd6dd45-e229-499d-9fd7-23d95ce8144e",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Read ALL of the following tex files completely and return their full contents with line numbers. Every number in these files needs to be audited.\n\nFiles to read:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/introduction.tex\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex\n4. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/analysis.tex\n5. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex\n6. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/conclusion.tex\n7. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex\n8. /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex\n\nReturn the COMPLETE contents of each file with line numbers preserved. Label each file clearly.",
+    "agentId": "ad51791d5524fcfcc",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the complete contents of all 8 files:\n\n---\n\n## FILE 1: abstract.tex\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/abstract.tex`\n\n```\n1\t\\begin{abstract}\n2\tCompound sparsity---simultaneously pruning attention heads and evicting KV cache entries---is essential for efficient LLM inference but produces super-additive quality degradation whose structure is poorly understood.\n3\tPrior work treats compound interaction magnitude as approximately constant across the generation process.\n4\tWe show that this assumption is wrong: compound sparsity severity is an emergent phase-strategy interaction that varies by over an order of magnitude across reasoning phases.\n5\t\n6\tWe evaluate compound sparsity on DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct (both Qwen2 architecture, 7B parameters) using 50 MATH-500 problems, measuring the Interaction Index---a super-additivity metric---across quantile-segmented reasoning phases at sparsity levels $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$.\n7\tUnder importance-based KV cache eviction, the median Interaction Index difference between low-sparsity and high-sparsity reasoning phases increases monotonically from $0.39$ at $s{=}0.15$ to $14.59$ at $s{=}0.30$, with paired Cohen's $d_z$ growing from $0.44$ (small) to $0.80$ (large); Bonferroni-corrected permutation tests yield $p < 0.005$ at all four sparsity levels.\n8\tRandom eviction produces no significant phase modulation in 7/8 conditions; the single exception (Qwen $s{=}0.30$, $p{=}0.012$) shows negligible effect size ($d_z{=}{-}0.04$), confirming that the severity gradient is strategy-specific, not an inherent property of compound sparsity.\n9\tAt $s{=}0.25$, a crossover emerges: importance-based eviction outperforms random in high-sparsity phases ($\\widetilde{\\mathrm{II}} = 0.032$ vs.\\ $0.818$) yet underperforms in low-sparsity phases ($\\widetilde{\\mathrm{II}} = 7.196$ vs.\\ $1.363$)---a qualitative reversal in strategy ranking.\n10\tThe pattern replicates on Qwen2.5-7B-Instruct at $s \\geq 0.20$ ($d_z \\geq 0.55$; Spearman $\\rho = 1.0$ across sparsity levels; gradient permutation $p = 0.043$).\n11\t\n12\tWe propose entropy-discrimination collapse as an explanatory mechanism: head pruning flattens cumulative importance scores in phases where attention is already broadly distributed, degrading the discriminative power of importance-based eviction in a phase-dependent manner.\n13\tThese findings challenge the phase-invariance assumption in compound sparsity deployment and motivate phase-aware compression budgets for reasoning models.\n14\t\\end{abstract}\n```\n\n---\n\n## FILE 2: introduction.tex\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/introduction.tex`\n\n```\n1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tLong-context language models place acute pressure on the key--value (KV) cache, which grows linearly with sequence length \\cite{kwon-sosp2023, pope-mlsys2023}.\n5\tTwo complementary responses---\\emph{attention head pruning} \\cite{voita-acl2019, michel-neurips2019} and \\emph{KV cache eviction} \\cite{snapkv-neurips2024, adakv-neurips2025}---can be deployed simultaneously as \\emph{compound sparsity}, but the resulting quality degradation is often super-additive \\cite{spark-aaai2026, slim-icml2025}.\n6\t\n7\tPrior work treats compound interaction magnitude as roughly constant across generation \\cite{spark-aaai2026, unicomp-2026}.\n8\tThis assumption is problematic for reasoning models, whose generations alternate between broadly distributed attention (exploratory reasoning) and sharply concentrated attention (structured computation) \\cite{thinkv-iclr2026, decision-repr-transition-2026}.\n9\tIf compound severity varies across these phases, a uniform sparsity budget may be safe in one phase yet destructive in another.\n10\t\n11\tWe show that compound sparsity severity is strongly modulated by reasoning phase and eviction strategy.\n12\tUnder importance-based KV cache eviction, the Interaction Index---a measure of super-additive degradation---concentrates in low-sparsity phases and is largely absent in high-sparsity phases.\n13\tOn DeepSeek-R1-Distill-Qwen-7B, the median phase difference rises from $0.39$ at $s{=}0.15$ to $14.59$ at $s{=}0.30$ ($d_z$: $0.44 \\to 0.80$; Bonferroni-corrected $p < 0.005$ at all levels).\n14\tThe pattern replicates at $s \\geq 0.20$ on Qwen2.5-7B-Instruct ($d_z \\geq 0.55$).\n15\tCritically, random eviction produces no such gradient (7/8 conditions non-significant), confirming the gradient is an emergent phase-strategy interaction.\n16\t\n17\tWe propose \\emph{entropy-discrimination collapse} as a mechanism: head pruning flattens cumulative importance scores in phases where attention is broadly distributed, degrading the discriminative power of importance-based eviction in a phase-dependent manner.\n18\tRandom eviction is immune because its decisions are independent of attention patterns.\n19\tOur contributions:\n20\t\\begin{enumerate}[nosep,leftmargin=*]\n21\t    \\item We identify a \\textbf{phase--strategy interaction}: importance-based eviction exhibits a severity gradient across reasoning phases that is absent under random eviction (\\S\\ref{sec:results}).\n22\t    \\item We show this gradient \\textbf{increases monotonically with sparsity} and replicates across two models with different training regimes (\\S\\ref{sec:results}).\n23\t    \\item We propose \\textbf{entropy-discrimination collapse} as a mechanistic explanation (\\S\\ref{sec:discrimination-collapse}).\n24\t\\end{enumerate}\n```\n\n---\n\n## FILE 3: results.tex\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/results.tex`\n\n```\n1\t\n2\t\\section{Results}\n3\t\\label{sec:results}\n4\t\n5\t\\subsection{Strategy-Dependent Severity}\n6\t\\label{sec:strategy-severity}\n7\t\n8\tTable~\\ref{tab:aggregate-ii} reports the median compound severity difference across strategies and sparsity levels. Under importance-based eviction, $\\Delta$ increases from $0.39$ at $s{=}0.15$ to $14.59$ at $s{=}0.30$---a $37{\\times}$ amplification. Under random eviction, no systematic growth is observed ($-0.02$ to $1.54$), confirming that compound severity depends qualitatively on eviction strategy. % exp_id: bf16_importance_s015..s030, bf16_ds_rand_s015..s030; source: experiment_summary_table.json\n9\t\n10\t\\begin{table}[t]\n11\t\\centering\n12\t\\small\n13\t\\caption{Median compound severity difference ($\\Delta = \\widetilde{\\mathrm{II}}_{\\textit{low}} - \\widetilde{\\mathrm{II}}_{\\textit{high}}$) by eviction strategy and sparsity level on DeepSeek-R1-Distill-Qwen-7B ($n{=}50$ MATH-500 problems).}\n14\t\\label{tab:aggregate-ii}\n15\t\\begin{tabular}{@{}lcccc@{}}\n16\t\\toprule\n17\tStrategy & $s{=}0.15$ & $s{=}0.20$ & $s{=}0.25$ & $s{=}0.30$ \\\\\n18\t\\midrule\n19\tImportance & 0.39 & 1.48 & 7.16 & 14.59 \\\\ % exp_id: bf16_importance_s015..s030; source: experiment_summary_table.json median_diff\n20\tRandom     & 0.01 & $-$0.02 & 0.54 & 1.54 \\\\ % exp_id: bf16_ds_rand_s015..s030; source: experiment_summary_table.json median_diff\n21\t\\bottomrule\n22\t\\end{tabular}\n23\t\\end{table}\n24\t\n25\t\n26\t\\subsection{Phase-Modulated Amplification}\n27\t\\label{sec:phase-amplification}\n28\t\n29\tDecomposing II by reasoning phase reveals that strategy-dependent severity is driven by amplification in the low-sparsity phase. Table~\\ref{tab:main-results} reports the full per-phase breakdown. The severity gradient $G$ increases from $69{\\times}$ at $s{=}0.15$ to $274{\\times}$ at $s{=}0.30$ under importance-based eviction, while the high-sparsity phase experiences near-zero interaction ($\\widetilde{\\mathrm{II}}_{\\textit{high}}$ ranges from $0.006$ to $0.053$). Under random eviction, $G \\approx 0.9$--$1.7{\\times}$ at all sparsity levels. Figure~\\ref{fig:hero} visualizes this contrast. % exp_id: bf16_importance_s015..s030, bf16_ds_rand_s015..s030; source: experiment_summary_table.json\n30\t\n31\t\\begin{table*}[t]\n32\t\\centering\n33\t\\small\n34\t\\caption{Interaction index (II) by eviction strategy, reasoning phase, and sparsity level. II values are problem-level medians across 50 problems. $\\Delta = \\widetilde{\\mathrm{II}}_{\\textit{low}} - \\widetilde{\\mathrm{II}}_{\\textit{high}}$. $G = \\widetilde{\\mathrm{II}}_{\\textit{low}} / \\widetilde{\\mathrm{II}}_{\\textit{high}}$.}\n35\t\\label{tab:main-results}\n36\t\\begin{tabular}{@{}llccccr@{}}\n37\t\\toprule\n38\t$s$ & Strategy & $\\widetilde{\\mathrm{II}}_{\\textit{high}}$ & $\\widetilde{\\mathrm{II}}_{\\textit{mid}}$ & $\\widetilde{\\mathrm{II}}_{\\textit{low}}$ & $\\Delta$ & $G$ \\\\\n39\t\\midrule\n40\t0.15 & Importance & 0.006 & 0.081 & 0.398 & 0.39 & $\\mathbf{69}$ \\\\\n41\t0.15 & Random     & 0.093 & 0.097 & 0.103 & 0.01 & 1.1 \\\\\n42\t\\addlinespace\n43\t0.20 & Importance & 0.015 & 0.203 & 1.496 & 1.48 & $\\mathbf{103}$ \\\\\n44\t0.20 & Random     & 0.292 & 0.350 & 0.276 & $-$0.02 & 0.9 \\\\\n45\t\\addlinespace\n46\t0.25 & Importance & 0.032 & 1.118 & 7.196 & 7.16 & $\\mathbf{222}$ \\\\\n47\t0.25 & Random     & 0.818 & 0.932 & 1.363 & 0.54 & 1.7 \\\\\n48\t\\addlinespace\n49\t0.30 & Importance & 0.053 & 2.283 & 14.639 & 14.59 & $\\mathbf{274}$ \\\\\n50\t0.30 & Random     & 2.503 & 2.592 & 4.041 & 1.54 & 1.6 \\\\\n51\t\\bottomrule\n52\t\\end{tabular}\n53\t\\end{table*}\n54\t\n55\t\\begin{figure}[t]\n56\t\\centering\n57\t\\includegraphics[width=\\columnwidth]{fig1_dose_response.pdf}\n58\t\\caption{Severity gradient ($G$) as a function of sparsity level $s$. Importance-based eviction (solid) exhibits an increasing gradient from $69{\\times}$ to $274{\\times}$; random eviction (dashed) remains flat near $1{\\times}$. Shaded regions: 95\\% bootstrap CIs.} % exp_id: bf16_importance_s015..s030, bf16_ds_rand_s015..s030\n59\t\\label{fig:hero}\n60\t\\end{figure}\n61\t\n62\t\n63\t\\subsection{Phase-Strategy Crossover}\n64\t\\label{sec:crossover}\n65\t\n66\tAt $s{=}0.25$, a strategy ranking reversal emerges (Figure~\\ref{fig:crossover}): importance-based eviction yields \\emph{lower} II than random in the high-sparsity phase ($0.032$ vs.\\ $0.818$) but \\emph{higher} II in the low-sparsity phase ($7.196$ vs.\\ $1.363$---a $5.3{\\times}$ reversal). This crossover is present at all four sparsity levels, with reversal magnitude of $3.9{\\times}$ at $s{=}0.15$, $5.4{\\times}$ at $s{=}0.20$, $5.3{\\times}$ at $s{=}0.25$, and $3.6{\\times}$ at $s{=}0.30$ (as random eviction severity also rises). The reversal arises because head pruning redistributes attention mass, altering importance rankings in a way that couples the two sparsity mechanisms in low-sparsity phases (\\S\\ref{sec:discrimination-collapse}). % exp_id: bf16_importance_s025, bf16_ds_rand_s025; source: experiment_summary_table.json; 7.196/1.363=5.28\n67\t\n68\t\\begin{figure}[t]\n69\t\\centering\n70\t\\includegraphics[width=\\columnwidth]{fig3_crossover.pdf}\n71\t\\caption{Strategy-dependent crossover at $s{=}0.25$. Grouped bar chart of median II by eviction strategy and reasoning phase. Importance-based eviction outperforms random in the high-sparsity phase but produces $5.3{\\times}$ higher II in the low-sparsity phase, reversing the strategy ranking.}\n72\t\\label{fig:crossover}\n73\t\\end{figure}\n74\t\n75\t\n76\t\\subsection{Cross-Model Replication}\n77\t\\label{sec:cross-model}\n78\t\n79\tBoth models share the Qwen2ForCausalLM backbone (28 layers, 28 heads, 4-group GQA) and differ in training: DeepSeek uses reasoning distillation from DeepSeek-R1, while Qwen2.5 uses standard instruction tuning without explicit reasoning delimiters. This controlled comparison isolates the effect of training methodology on the compound sparsity interaction.\n80\t\n81\tDespite lacking explicit \\texttt{&lt;think>} delimiters, Qwen2.5-7B-Instruct exhibits sufficient variation in attention sparsity to permit phase segmentation via the same quantile-based method (\\S\\ref{sec:phase-segmentation}). Four of the 50 problems are excluded due to degenerate phase assignments, yielding $n{=}46$ valid problems for Qwen (vs.\\ $n{=}49$ for DeepSeek).\n82\t\n83\tQwen reproduces the monotonic severity gradient: $\\Delta$ increases from $0.04$ at $s{=}0.15$ to $2.94$ at $s{=}0.30$, paralleling DeepSeek at ${\\sim}1/5$ the magnitude (Table~\\ref{tab:cross-model}). Both models yield strictly increasing $d_z$ trajectories (Spearman $\\rho = 1.0$; gradient permutation $p = 0.043$). The effect is marginal at $s{=}0.15$ ($d_z{=}0.28$, CI includes zero) but reliable at $s \\geq 0.20$ ($d_z \\geq 0.55$). Per-problem concordance analysis appears in Appendix~\\ref{app:cross-model-details}. % exp_id: cross_model_analysis.json; cohens_d_bf16_qwen.json\n84\t\n85\t\\begin{table}[t]\n86\t\\centering\n87\t\\small\n88\t\\caption{Cross-model comparison of median compound severity difference ($\\Delta$) under importance-based eviction.}\n89\t\\label{tab:cross-model}\n90\t\\begin{tabular}{@{}lcccc@{}}\n91\t\\toprule\n92\tModel & $s{=}0.15$ & $s{=}0.20$ & $s{=}0.25$ & $s{=}0.30$ \\\\\n93\t\\midrule\n94\tDeepSeek-R1-Distill-Qwen-7B & 0.39 & 1.48 & 7.16 & 14.59 \\\\ % exp_id: bf16_importance_s015..s030\n95\tQwen2.5-7B-Instruct         & 0.04 & 0.23 & 1.27 & 2.94 \\\\ % exp_id: bf16_qw_imp_s015..s030\n96\t\\bottomrule\n97\t\\end{tabular}\n98\t\\end{table}\n99\t\n100\t\\begin{figure}[t]\n101\t\\centering\n102\t\\includegraphics[width=\\columnwidth]{fig5_crossmodel.pdf}\n103\t\\caption{Cross-model comparison of the median severity difference under importance-based eviction. Both DeepSeek (solid) and Qwen (dashed) exhibit monotonically increasing $\\Delta$ with sparsity; Qwen's magnitude is approximately one-fifth of DeepSeek's.} % exp_id: bf16_importance_s015..s030, bf16_qw_imp_s015..s030\n104\t\\label{fig:cross-model}\n105\t\\end{figure}\n106\t\n107\t\n108\t\\subsection{Statistical Validation}\n109\t\\label{sec:stat-validation}\n110\t\n111\t\\paragraph{Distribution characterization.}\n112\tPer-problem distributions of the paired severity difference $\\Delta_i = \\mathrm{II}_{\\textit{low},i} - \\mathrm{II}_{\\textit{high},i}$ under importance-based eviction are right-skewed at all sparsity levels, with mean/median ratios ranging from $1.2{\\times}$ ($s{=}0.15$) to $1.6{\\times}$ ($s{=}0.30$) for DeepSeek and $1.1{\\times}$ to $1.4{\\times}$ for Qwen. This motivates our use of median-based test statistics and nonparametric bootstrap inference throughout.\n113\t\n114\t\\paragraph{Permutation test.}\n115\tFor each problem $i$ and sparsity level $s$, we compute the compound severity difference $\\Delta_i^{(\\text{strat})} = \\mathrm{II}_{\\textit{low},i} - \\mathrm{II}_{\\textit{high},i}$ under each eviction strategy. The test statistic is the median of the paired difference $\\widetilde{\\Delta} = \\text{median}_i\\!\\bigl(\\Delta_i^{(\\text{imp})} - \\Delta_i^{(\\text{rand})}\\bigr)$, measuring whether importance-based eviction produces systematically larger phase-dependent severity than random eviction. We permute strategy labels $10{,}000$ times to construct the null distribution and apply Bonferroni correction for 4 sparsity-level comparisons. The permutation null distributions are approximately symmetric around zero at all sparsity levels. At $s{=}0.15$, the observed statistic falls at the $99.68$th percentile of the null ($p_{\\text{Bonf}} = 0.0032$); at $s \\geq 0.20$, no permutation exceeds the observed statistic.\n116\t\n117\tTable~\\ref{tab:permutation} reports the results. All four sparsity levels reject $H_0$ after Bonferroni correction ($p_{\\text{Bonf}} < 0.005$), with observed median differences increasing monotonically from $0.37$ at $s{=}0.15$ to $9.85$ at $s{=}0.30$. The monotonic growth of both the point estimate and the CI lower bound ($0.19 \\to 0.69 \\to 1.66 \\to 6.70$) confirms that compound severity amplification strengthens with sparsity---not merely in central tendency but also in worst-case lower bounds. Figure~\\ref{fig:permtest-forest} presents these results as a forest plot. % exp_id: deepseek_bf16_permtest; source: permutation_test_results.json\n118\t\n119\t\\begin{table}[t]\n120\t\\centering\n121\t\\small\n122\t\\caption{Paired permutation test for compound severity: importance vs.\\ random eviction on DeepSeek-R1-Distill-Qwen-7B ($n{=}49$, $10{,}000$ permutations, Bonferroni-corrected).}\n123\t\\label{tab:permutation}\n124\t\\begin{tabular}{@{}rrcl@{}}\n125\t\\toprule\n126\t$s$ & Observed $\\widetilde{\\Delta}$ & 95\\% CI & $p_{\\text{Bonf}}$ \\\\\n127\t\\midrule\n128\t0.15 & 0.37 & $[0.19,\\; 0.62]$ & 0.0032 \\\\ % exp_id: deepseek_bf16_permtest_s015\n129\t0.20 & 0.97 & $[0.69,\\; 1.49]$ & ${<}\\,0.001$ \\\\ % exp_id: deepseek_bf16_permtest_s020\n130\t0.25 & 3.34 & $[1.66,\\; 6.64]$ & ${<}\\,0.001$ \\\\ % exp_id: deepseek_bf16_permtest_s025\n131\t0.30 & 9.85 & $[6.70,\\; 16.29]$ & ${<}\\,0.001$ \\\\ % exp_id: deepseek_bf16_permtest_s030\n132\t\\bottomrule\n133\t\\end{tabular}\n134\t\\end{table}\n135\t\n136\t\\begin{figure}[t]\n137\t\\centering\n138\t\\includegraphics[width=\\columnwidth]{fig4_bootstrap.pdf}\n139\t\\caption{Forest plot of permutation test results. Horizontal bars show 95\\% permutation CIs; diamonds mark observed median differences $\\widetilde{\\Delta}$. All CIs lie entirely above zero, confirming significant strategy-dependent severity at every sparsity level.}\n140\t\\label{fig:permtest-forest}\n141\t\\end{figure}\n142\t\n143\t\\paragraph{Effect sizes.}\n144\tTable~\\ref{tab:cohens-d} reports paired Cohen's $d_z$ for both models. For DeepSeek, effect sizes grow from $d_z{=}0.44$ (small) to $d_z{=}0.80$ (large). For Qwen, the effect is marginal at $s{=}0.15$ ($d_z{=}0.28$, bootstrap CI includes zero), becoming reliable at $s \\geq 0.20$ ($d_z \\geq 0.55$). At higher sparsity ($s \\geq 0.25$), Qwen exhibits larger standardized effect sizes than DeepSeek ($d_z{=}0.89$/$1.02$ vs.\\ $0.68$/$0.80$), consistent with lower between-problem variance yielding larger standardized differences despite smaller absolute II values. % exp_id: cohens_d_bf16.json; cohens_d_bf16_qwen.json\n145\t\n146\t\\begin{table}[t]\n147\t\\centering\n148\t\\small\n149\t\\caption{Paired $d_z$ for phase-dependent II (low $-$ high) under importance-based eviction. Bootstrap 95\\% CIs ($B{=}10{,}000$).}\n150\t\\label{tab:cohens-d}\n151\t\\begin{tabular}{@{}lcccc@{}}\n152\t\\toprule\n153\t$s$ & DS $d_z$ & $\\widetilde{\\Delta}$ [CI] & QW $d_z$ & $\\widetilde{\\Delta}$ [CI] \\\\\n154\t\\midrule\n155\t0.15 & 0.44 & 0.32\\; $[0.20, 0.47]$ & 0.28 & 0.05\\; $[-0.01, 0.11]$\\textsuperscript{ns} \\\\ % exp_id: bf16_ds_imp_s015, bf16_qw_imp_s015\n156\t0.20 & 0.52 & 1.15\\; $[0.66, 1.26]$ & 0.55 & 0.21\\; $[0.07, 0.40]$ \\\\ % exp_id: bf16_ds_imp_s020, bf16_qw_imp_s020\n157\t0.25 & 0.68 & 3.97\\; $[2.83, 5.29]$ & 0.89 & 1.11\\; $[0.61, 1.47]$ \\\\ % exp_id: bf16_ds_imp_s025, bf16_qw_imp_s025\n158\t0.30 & 0.80 & 9.94\\; $[8.39, 16.65]$ & 1.02 & 2.62\\; $[1.72, 3.65]$ \\\\ % exp_id: bf16_ds_imp_s030, bf16_qw_imp_s030\n159\t\\bottomrule\n160\t\\multicolumn{5}{@{}l}{\\footnotesize \\textsuperscript{ns}Marginal at $s{=}0.15$; reliable at $s \\geq 0.20$.}\n161\t\\end{tabular}\n162\t\\end{table}\n```\n\n---\n\n## FILE 4: analysis.tex\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/analysis.tex`\n\n```\n1\t\\section{Analysis: Entropy-Discrimination Collapse}\n2\t\\label{sec:analysis}\n3\t\n4\t\\subsection{Discrimination Collapse}\n5\t\\label{sec:discrimination-collapse}\n6\t\n7\tHead pruning reduces the number of heads contributing to cumulative importance scores, flattening the score distribution. Table~\\ref{tab:discrimination-metrics-full} quantifies this effect: the Gini coefficient decreases by $0.030$--$0.081$ (DeepSeek) and $0.010$--$0.020$ (Qwen) after pruning, with consistent negative deltas across all 16 conditions (both models $\\times$ 4 sparsity levels $\\times$ 2 strategies). The CV delta is likewise negative in all 8 importance-based conditions. The same pattern holds under random eviction, confirming that discrimination collapse is a consequence of head pruning \\emph{per se}, not of the eviction strategy. % exp_id: c4_entropy_deepseek, c4_entropy_qwen\n8\t\n9\t\\begin{table}[t]\n10\t\\centering\n11\t\\caption{Discrimination collapse under importance-based eviction. $\\Delta\\mathrm{Gini}$ and $\\Delta\\mathrm{CV}$ are post-pruning minus baseline; negative values indicate reduced discriminative power.}\n12\t\\label{tab:discrimination-metrics-full}\n13\t\\small\n14\t\\begin{tabular}{llrr}\n15\t\\toprule\n16\tModel & $s$ & $\\Delta\\mathrm{Gini}$ & $\\Delta\\mathrm{CV}$ \\\\\n17\t\\midrule\n18\tDeepSeek & $0.15$ & $-0.030$ & $-0.56$ \\\\\n19\tDeepSeek & $0.20$ & $-0.040$ & $-0.77$ \\\\\n20\tDeepSeek & $0.25$ & $-0.065$ & $-1.29$ \\\\\n21\tDeepSeek & $0.30$ & $-0.081$ & $-1.66$ \\\\\n22\t\\midrule\n23\tQwen & $0.15$ & $-0.010$ & $-0.05$ \\\\\n24\tQwen & $0.20$ & $-0.012$ & $-0.21$ \\\\\n25\tQwen & $0.25$ & $-0.010$ & $-1.49$ \\\\\n26\tQwen & $0.30$ & $-0.020$ & $-1.14$ \\\\\n27\t\\bottomrule\n28\t\\end{tabular}\n29\t\\end{table}\n30\t\n31\tWhen importance scores lose discriminability, thresholding degenerates into noise-sensitive selection---functionally approaching biased random eviction. This is phase-dependent: in low-sparsity phases, attention is already broadly distributed, so pruning-induced flattening has maximum impact; in high-sparsity phases, concentration is preserved. Random eviction is immune because its decisions are independent of score quality, explaining $G \\approx 1$. % exp_id: c4_entropy_deepseek, c4_entropy_qwen\n32\t\n33\t\\subsection{Entropy Redistribution}\n34\t\\label{sec:entropy-redistribution}\n35\t\n36\tBeyond discrimination collapse, we examine whether head pruning also redistributes the attention entropy of surviving heads. We measure the mean attention entropy per head:\n37\t\\begin{equation}\n38\t    \\mathcal{H}_i^{(h)} = -\\sum_{j=1}^{T} a_{ij}^{(h)} \\log a_{ij}^{(h)}\n39\t    \\label{eq:attn-entropy}\n40\t\\end{equation}\n41\tand compute $\\Delta\\mathcal{H}$ as the change from baseline (no pruning) to the pruned condition.\n42\t\n43\tFor DeepSeek under importance-based eviction, the entropy delta is consistently negative across all four sparsity levels ($\\Delta\\mathcal{H} \\in [-0.040, -0.047]$; Table~\\ref{tab:entropy-deltas}), indicating that importance-based pruning systematically selects heads whose removal concentrates attention in the surviving heads, reinforcing discrimination collapse. % exp_id: c4_entropy_deepseek\n44\t\n45\tFor Qwen, the entropy pattern only partially replicates. The delta is negative at $s{=}0.15$ ($\\Delta\\mathcal{H} = -0.073$) and $s{=}0.20$ ($-0.076$), consistent with DeepSeek. However, at $s{=}0.25$, the delta reverses to $+0.045$, with 22 of 30 problems showing positive entropy change. At $s{=}0.30$, the delta is near zero ($-0.007$). The $s{=}0.25$ reversal is systematic rather than a statistical artifact: it is consistent across all three reasoning phases (low: $+0.042$, mid: $+0.034$, high: $+0.017$). We interpret this as a genuine model-specific difference, possibly arising from distinct head specialization patterns: Qwen's instruction tuning (vs.\\ DeepSeek's distillation-based training) may produce head configurations where removing 25\\% of heads triggers compensatory broadening rather than concentration. % exp_id: c4_entropy_qwen\n46\t\n47\tWe characterize discrimination collapse as the robust, model-independent driver of the phase-strategy interaction, with entropy redistribution as a secondary amplifier that is consistent in DeepSeek but model-dependent in Qwen.\n48\t\n49\t\\begin{table}[t]\n50\t\\centering\n51\t\\caption{Attention entropy deltas ($\\Delta\\mathcal{H}$) under importance-based eviction. DeepSeek shows consistent entropy compression; Qwen partially replicates with a reversal at $s{=}0.25$.}\n52\t\\label{tab:entropy-deltas}\n53\t\\small\n54\t\\begin{tabular}{llr}\n55\t\\toprule\n56\tModel & $s$ & $\\Delta\\mathcal{H}$ \\\\\n57\t\\midrule\n58\tDeepSeek & $0.15$ & $-0.040$ \\\\\n59\tDeepSeek & $0.20$ & $-0.047$ \\\\\n60\tDeepSeek & $0.25$ & $-0.045$ \\\\\n61\tDeepSeek & $0.30$ & $-0.044$ \\\\\n62\t\\midrule\n63\tQwen & $0.15$ & $-0.073$ \\\\\n64\tQwen & $0.20$ & $-0.076$ \\\\\n65\tQwen & $0.25$ & $+0.045$ \\\\\n66\tQwen & $0.30$ & $-0.007$ \\\\\n67\t\\bottomrule\n68\t\\end{tabular}\n69\t\\end{table}\n```\n\n---\n\n## FILE 5: discussion.tex\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/discussion.tex`\n\n```\n1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Quantitative surprise.}\n5\tWhile the qualitative direction---importance scores degrade when attention is diffuse---may seem expected, the quantitative structure is not predictable from first principles. The severity gradient ($69$--$274{\\times}$) far exceeds a naive ``somewhat worse'' prediction. The crossover---where importance-based eviction simultaneously outperforms random in high-sparsity phases ($\\widetilde{\\mathrm{II}} = 0.032$ vs.\\ $0.818$) and underperforms in low-sparsity phases ($7.196$ vs.\\ $1.363$)---cannot be derived from single-axis entropy reasoning. The flat random baseline ($G \\approx 1$) confirms the amplification is strategy-specific, not inherent to compound sparsity. % exp_id: bf16_importance_s015..s030, bf16_importance_s025, bf16_ds_rand_s025; source: experiment_summary_table.json\n6\t\n7\t\\paragraph{Implications for deployment.}\n8\tApplying a uniform compression budget across all inference steps implicitly accepts order-of-magnitude severity penalties during low-sparsity reasoning phases. A \\emph{phase-aware compression budget}---allocating lower sparsity to phases with $G \\gg 1$ and reclaiming budget in near-additive high-sparsity phases---could mitigate this interaction while preserving compression gains. The severity gradient provides a natural signal for such allocation.\n9\t\n10\t\\paragraph{Cross-model robustness.}\n11\tThe pattern replicates with perfect ordinal agreement across both models (Spearman $\\rho{=}1.0$; gradient permutation $p{=}0.043$), though Qwen's magnitudes are ${\\sim}1/5$ of DeepSeek's. The onset threshold differs: DeepSeek's gradient is significant from $s{=}0.15$ ($d_z{=}0.44$), while Qwen's becomes significant only at $s \\geq 0.20$ ($d_z{=}0.55$). We conjecture that distillation amplifies the phase-strategy interaction by producing sharper internal phase transitions---a hypothesis testable by comparing distilled and non-distilled variants at matched scale. Discrimination collapse (Gini/CV reduction) is consistent across all conditions; the entropy redistribution component is model-dependent, with Qwen showing a sign reversal at $s{=}0.25$. We characterize discrimination collapse as the robust driver, with entropy redistribution as a secondary, model-specific amplifier. % exp_id: cross_model_correlation; mechanism_entropy_qwen; cohens_d_bf16.json, cohens_d_bf16_qwen.json\n12\t\n13\t\\paragraph{Architecture generality.}\n14\tDiscrimination collapse depends on: (i)~attention-mass-based importance scoring for KV eviction, and (ii)~a sufficient number of pruned heads to degrade the importance distribution. Both are shared by major KV cache methods (H$_2$O \\cite{h2o-neurips2023}, SnapKV \\cite{snapkv-neurips2024}, PyramidKV \\cite{pyramidkv-2024}) and by any autoregressive transformer producing extended reasoning. The entropy redistribution component, while consistent in DeepSeek, appears model-dependent.\n15\t\n16\t\\paragraph{Testable prediction.}\n17\tAny importance metric derived from attention mass should exhibit discrimination collapse under head pruning, with severity gradient scaling with pruning-induced Gini decrease. Metrics deriving importance from sources independent of attention---such as activation magnitude or gradient-based saliency---should produce flatter severity gradients.\n18\t\n19\t\\paragraph{Future directions.}\n20\tA \\emph{phase-gated controller} that monitors attention sparsity in real time and dynamically adjusts compound sparsity per phase could mitigate severity amplification while preserving compression gains where compound behavior is near-additive. Scaling to larger models and diverse reasoning tasks would establish generality. Extended discussion in Appendix~\\ref{app:extended-discussion}.\n21\t```\n\n---\n\n## FILE 6: conclusion.tex\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/conclusion.tex`\n\n```\n1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe showed that compound sparsity severity---the super-additive interaction between head pruning and KV cache eviction---is not phase-invariant but exhibits an emergent phase-strategy interaction spanning over an order of magnitude within a single generation. Under importance-based eviction, the severity gradient grows from $69{\\times}$ to $274{\\times}$ across sparsity levels ($d_z$: $0.44 \\to 0.80$); random eviction shows no such modulation (7/8 conditions non-significant). A crossover at $s{=}0.25$---where importance-based eviction reverses ranking across phases---demonstrates that no single strategy dominates uniformly. The pattern replicates on Qwen2.5-7B-Instruct at $s \\geq 0.20$ ($d_z \\geq 0.55$) with attenuated magnitude. Discrimination collapse provides a robust mechanistic explanation confirmed across both models.\n5\tThese findings motivate phase-aware sparsity allocation for reasoning model deployment.\n6\t\n7\t\\section*{Limitations}\n8\t\\label{sec:limitations}\n9\t\n10\t\\paragraph{Model scale and architecture.}\n11\tAll experiments are conducted at the 7B parameter scale. Whether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested. Both models share the Qwen2ForCausalLM architecture; while the cross-model replication (\\S\\ref{sec:cross-model}) confirms the findings are not artifacts of a single model's weights, empirical validation on architecturally distinct designs (e.g., LLaMA~3, Mistral, or multi-latent attention) is needed.\n12\t\n13\t\\paragraph{Task coverage.}\n14\tWe evaluate exclusively on MATH-500, a mathematical reasoning benchmark. Different reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.\n15\t\n16\t\\paragraph{Mechanism.}\n17\tThe discrimination collapse mechanism is supported by correlational evidence (consistent Gini/CV reduction across all conditions); causal validation through controlled entropy manipulation is needed. The entropy redistribution component replicates on only 2/4 Qwen conditions, suggesting model-specific factors.\n18\t\n19\t\\paragraph{Sparsity range.}\n20\tOur experiments span $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$. More extreme sparsity ($s > 0.50$) may exhibit qualitatively different interaction dynamics. We do not report inference throughput or latency measurements, which are necessary for a complete deployment analysis but orthogonal to our severity characterization. Extended limitations in Appendix~\\ref{app:limitations}.\n21\t```\n\n---\n\n## FILE 7: appendix_results.tex\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_results.tex`\n\n```\n1\t% Appendix: supplementary results details\n2\t\n3\t\\section{Cross-Model Replication Details}\n4\t\\label{app:cross-model-details}\n5\t\n6\t\\paragraph{Per-problem concordance.}\n7\tThe per-problem concordance across models is not significant (mean $\\rho = -0.11$, $p = 0.926$), indicating that while the aggregate gradient direction replicates, the specific problems driving severity differ between models---consistent with model-specific attention patterns rather than a universal per-problem vulnerability ranking. % exp_id: cross_model_analysis.json (spearman_rho=1.0, gradient_permutation_p=0.043, per_problem_concordance_p=0.926, mean_rho=-0.107)\n8\t\n9\t\\paragraph{Random eviction control.}\n10\tAs a control, random eviction on Qwen yields no systematic phase gradient at three of four sparsity levels (3/4 FAIL), mirroring DeepSeek's 4/4 FAIL pattern. At $s{=}0.30$, Qwen random produces a borderline PASS (permutation $p = 0.012$) but with negligible effect size ($d_z = -0.04$, CI spans zero), indicating no meaningful phase modulation. % exp_id: bf16_qw_rand_s015..s030; source: experiment_summary_table.json\n```\n\n---\n\n## FILE 8: appendix_disc_analysis.tex\n`/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/appendix_disc_analysis.tex`\n\n```\n1\t\\section{Discrimination Collapse Details}\n2\t\\label{app:discrimination-collapse-details}\n3\t\n4\tThis cross-model consistency (Table~\\ref{tab:discrimination-metrics-full}) establishes discrimination collapse as a robust consequence of compound sparsity. When importance scores lose discriminative power, thresholding the bottom-$s$ fraction becomes noise-sensitive: small perturbations change which positions cross the eviction boundary. In the limit of perfectly uniform scores, importance-based eviction degenerates into an arbitrary selection functionally equivalent to biased random eviction. The same pattern holds under random eviction (DeepSeek: $-0.031$ to $-0.073$; Qwen: $-0.019$ to $-0.045$), confirming that discrimination collapse is a consequence of head pruning \\emph{per se}, not of the eviction strategy. % exp_id: c4_entropy_deepseek, c4_entropy_qwen\n5\t\n6\t\n7\t\\section{Extended Discussion}\n8\t\\label{app:extended-discussion}\n9\t\n10\t\\paragraph{On the predictability of phase-modulated severity.}\n11\tThe compound interaction is not uniformly fragile---it is selectively fragile in a phase-dependent manner ($\\widetilde{\\mathrm{II}}_{\\text{high}} < 0.06$ at $s \\leq 0.30$; at $s = 0.35$, high-phase II rises to $0.105$ in a supplementary experiment, indicating onset of compound interaction even in high-sparsity phases at extreme pruning rates). % exp_id: bf16_importance_s015..s030, bf16_ds_imp_s035; high-phase medians: 0.006, 0.015, 0.032, 0.053; s035 II_high=0.1051\n12\t\n13\t\\paragraph{Random masking as falsification control.}\n14\tRandom eviction fails 7/8 paired permutation tests across both models; the single exception (Qwen $s{=}0.30$, $p{=}0.012$) exhibits negligible effect size ($d_z{=}{-}0.04$). The absence of a phase gradient under random masking isolates the amplification as strategy-specific. % exp_id: bf16_ds_rand_s015..s030, bf16_qw_rand_s015..s030\n15\t\n16\t\\paragraph{Entropy mechanism boundary conditions.}\n17\tDirectly measuring per-head entropy shifts across architecturally distinct models---and identifying what training-time properties determine whether entropy concentrates or disperses under head pruning---would clarify the boundary conditions of the full mechanism.\n18\t\n19\t\n20\t\\section{Extended Limitations}\n21\t\\label{app:limitations}\n22\t\n23\t\\paragraph{Model scale.}\n24\tAll experiments are conducted at the 7B parameter scale.\n25\tWhether the phase-modulated severity patterns persist, amplify, or attenuate at larger scales (e.g., 70B) remains untested.\n26\tLarger models may exhibit different attention redundancy structures that alter the discrimination collapse dynamics (and the model-dependent entropy component may behave differently at scale).\n27\t% REVIEWER-ATTACK: \"7B is too small to be relevant for production.\"\n28\t% REBUTTAL: 7B is the most-deployed scale for on-device and cost-constrained serving—exactly where compound sparsity is needed. The mechanism (entropy-discrimination collapse) is scale-agnostic in principle. Scaling experiments are future work.\n29\t\n30\t\\paragraph{Architectural scope.}\n31\tOur two models---DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct---share the Qwen2ForCausalLM architecture.\n32\tThe cross-model replication (\\S\\ref{sec:cross-model}) confirms that the findings are not artifacts of a single model's weights, but both models share the same attention mechanism design.\n33\tThe entropy-discrimination collapse mechanism is in principle agnostic across attention architectures (it depends on attention redistribution, not architecture-specific components), but empirical validation on architecturally distinct attention designs (e.g., GQA variants such as LLaMA~3 or Mistral, or multi-latent attention architectures) is needed.\n34\t% REVIEWER-ATTACK: \"Cross-model ≠ cross-architecture. Both are Qwen2ForCausalLM.\"\n35\t% REBUTTAL: Correct—we explicitly state this is cross-model (different training: distillation vs instruction tuning), not cross-architecture. The two models isolate the training variable while controlling architecture. Cross-architecture validation (LLaMA, Mistral) is acknowledged as future work.\n36\t\n37\t\\paragraph{Task coverage.}\n38\tWe evaluate exclusively on MATH-500, a mathematical reasoning benchmark.\n39\tDifferent reasoning tasks---code generation, commonsense reasoning, multi-hop question answering---may induce different phase structures with different sparsity distributions, potentially altering the severity gradient profile.\n40\tGeneralizing the phase-strategy interaction to broader reasoning domains is an important next step.\n41\t% REVIEWER-ATTACK: \"Only MATH-500. How do we know this isn't a math-specific artifact?\"\n42\t% REBUTTAL: The mechanism (entropy-discrimination collapse under head pruning) depends on attention distribution properties, not math-specific features. MATH-500 is a standard benchmark with diverse difficulty. However, different reasoning tasks may induce different phase structures—we state this limitation explicitly rather than overclaiming.\n43\t\n44\t\\paragraph{Statistical scope.}\n45\tBootstrap confidence intervals use $B{=}10{,}000$ resamples. The paired permutation test yields $n{=}49$ paired problems for DeepSeek (1 excluded) and $n{=}46$ for Qwen (4 excluded). % exp_id: cohens_d_bf16.json, cohens_d_bf16_qwen.json\n46\tThe severity difference distribution is right-skewed (mean/median ratio ${\\sim}1.6{:}1$ at $s{=}0.30$), motivating our use of medians and nonparametric tests rather than parametric alternatives. % exp_id: bf16_importance_s030; mean_diff=22.94, median_diff=14.59 (segment-level). Per-problem paired: median_diff=9.9436 at s030\n47\tAll four permutation tests reject $H_0$ after Bonferroni correction ($p_{\\text{Bonf}} < 0.005$; Table~\\ref{tab:permutation}), with CI lower bounds increasing from $0.19$ to $6.70$---confirming the effect direction at every sparsity level. The permutation CIs at higher sparsity are wider (e.g., $[6.70,\\; 16.29]$ at $s{=}0.30$), reflecting genuine variance in per-problem severity amplification. % exp_id: permutation_test_results.json; permutation CIs: s015=[0.19,0.62], s020=[0.69,1.49], s025=[1.66,6.64], s030=[6.70,16.29]\n48\t\n49\tA notable exception among the random baselines is the Qwen random condition at $s{=}0.30$, which yields a statistically significant result ($p{=}0.012$) despite negligible effect size ($d_z{=}{-}0.04$, bootstrap CI excluding zero). % exp_id: qw_rand_s030; B=10000, p=0.012, d=-0.035, negligible\n50\tThis case illustrates that dichotomous significance testing can flag effects of no practical magnitude---reinforcing the importance of reporting effect sizes and confidence intervals alongside $p$-values.\n51\t\n52\t\\paragraph{Sparsity range.}\n53\tOur experiments span $s \\in \\{0.15, 0.20, 0.25, 0.30\\}$, a moderate range representative of practical deployment targets.\n54\tMore extreme sparsity ($s > 0.50$) may exhibit qualitatively different interaction dynamics---the sub-exponential growth pattern suggests the severity gradient may plateau, but this remains unverified.\n55\tConversely, the lower boundary at which phase-modulated amplification first emerges is not yet characterized.\n56\t% REVIEWER-ATTACK: \"Why not test higher sparsity? 0.30 is conservative.\"\n57\t% REBUTTAL: Our focus is on the practically relevant regime where models retain usable quality. At s>0.30 both strategies degrade severely, making II measurement less informative. The sub-exponential growth (C6, $\\Delta$ growth rate $3.8{\\times} \\to 4.8{\\times} \\to 2.0{\\times}$) suggests saturation at higher sparsity, but confirming this is future work.\n58\t\n59\t\\paragraph{No throughput evaluation.}\n60\tThis work focuses on characterizing the \\emph{structural} properties of compound sparsity severity---its phase dependence, strategy dependence, and interaction magnitude.\n61\tWe do not report inference throughput or latency measurements, which are necessary for a complete deployment analysis but orthogonal to the severity characterization that is our primary contribution.\n62\t% REVIEWER-ATTACK: \"No system evaluation. How do we know the severity amplification matters for real deployment?\"\n63\t% REBUTTAL: This is an empirical finding paper, not a method/system paper. The contribution is characterizing *what happens* (phase-modulated severity) and *why* (entropy-discrimination collapse), not building a system to fix it. Phase-gated controllers are explicitly scoped as future work. The finding is actionable regardless: any compound sparsity deployment should be aware of phase-dependent severity.\n64\t\n65\t% Entropy redistribution analysis moved to main text \\S\\ref{sec:entropy-redistribution}\n66\t\n```\n\n---\n\nAll 8 files have been returned in full with line numbers. Every number in these files is now available for audit."
+      }
+    ],
+    "totalDurationMs": 275282,
+    "totalTokens": 42493,
+    "totalToolUseCount": 8,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14592,
+      "cache_read_input_tokens": 14464,
+      "output_tokens": 13436,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 14592
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 13436,
+          "cache_read_input_tokens": 14464,
+          "cache_creation_input_tokens": 14592,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 14592,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 8,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "6b483df8-98e8-429a-9286-54968a58ca66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+````
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "bbd6dd45-e229-499d-9fd7-23d95ce8144e",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit numerical consistency in research paper",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Assistant
+
+_source line 19 · 2026-05-14T13:33:04.792Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me systematically audit every number. Let me organize my findings.
+
+## Data Sources Summary
+
+### median_difference_results.txt (Δ values)
+DeepSeek importance:
+- s015: 0.3925 (already set)
+- s020: 1.4818 (already set)
+- s025: 7.163595
+- s030: 14.586064
+
+Qwen importance:
+- s015: 0.038565
+- s020: 0.234979
+- s025: 1.267732
+
+
+- s030: 2.943093
+
+### cohens_d_6point_paired_dz.txt (4-point subset for paper)
+DS: 0.376/0.442/0.520/0.683/0.803/0.815 (6 points: s010/s015/s020/s025/s030/s035)
+QW: -0.049/0.281/0.549/0.889/1.022/1.102
+
+The 4-point paper values (s015-s030) are DS: 0.442, 0.520, 0.683, 0.803 and QW: 0.281, 0.549, 0.889, 1.022.
+
+Now I'm looking at a table with the full 6-point Cohen's d values organized by sparsity level, and I'm noticing a discrepancy—the dz.txt file shows DS at s015 as 0.442, but the info table shows 0.607 for the 0.15 sparsity level.
+
+Looking more carefully at the source files, I see that dz.txt contains the corrected paired d_z values used in the paper (covering just the 4-point range from s015 to s030), while the info.txt table presents a separate 6-point analysis with bootstrap-derived d_z values. These are actually two different datasets rather than conflicting versions of the same data. includes s010 and s035. The values are different because... hmm. Actually looking more carefully:
+
+File 6 (dz.txt) lists 6 values for DS: 0.376/0.442/0.520/0.683/0.803/0.815 
+- These would be for s010/s015/s020/s025/s030/s035
+
+File 7 (info.txt) lists:
+| 0.10 | 0.504 | -0.064 |
+| 0.15 | 0.607 | 0.371 |
+| 0.20 | 0.725 | 0.722 |
+| 0.25 | 0.953 | 1.233 |
+| 0.30 | 1.126 | 1.439 |
+| 0.35 | 1.145 | 1.544 |
+
+These are completely different numbers! One set has DS s015=0.442, the other has 0.607. One has QW s015=0.281, the other has 0.371.
+
+This is a major inconsistency between the two data files. However, the paper uses the dz.txt values (DS: 0.44, 0.52, 0.68, 0.80 which rounds from 0.442, 0.520, 0.683, 0.803).
+
+The cross_model_analysis_summary.json confirms this—it has the same rounded values from dz.txt. The dz.txt file header indicates it's "CORRECTED from pooled d to true paired d_z," suggesting it's the authoritative version. But info.txt also claims to be paired d_z with bootstrap resampling, so there might be two different calculation methods at play here.
+
+I need to figure out which file the paper actually used and why the values differ so dramatically. I'm realizing the permutation_test_median_verification.txt file is specifically about D029 median verification rather than covering all random conditions, so those random values I flagged need more careful sourcing. Now I'm working through Table 2's per-phase breakdown for s=0.15 importance, verifying that the difference calculation (0.398 - 0.006 = 0.392, rounding to 0.39) checks out, though the gain ratio seems off at 66.3 instead of the reported 69.
+
+Looking at the actual median values from median_difference_results.txt, the Δ value of 0.3925 for s015 represents the low-high difference, but when I try to reverse-engineer the gain ratio using these rounded display values, the math doesn't quite align—if G truly equals 69, then the underlying unrounded values must be different from what's shown in the table. So the difference between the displayed and computed G values is just rounding—the paper uses unrounded intermediate values to calculate G, then rounds everything for display. Checking the other rows confirms this pattern holds across all the s values, with each G value falling within expected rounding tolerance.
+
+Now I'm verifying the Qwen Δ values from Table 3 against the raw data, and they all match perfectly when rounded from the source file—0.038565 becomes 0.04, 0.234979 becomes 0.23, and so on through all four s parameters.
+
+For Table 4, I'm checking the permutation test results against the available verification data. The confidence interval lower bounds follow the expected progression (0.19 → 0.69 → 1.66 → 6.70), which confirms the pattern, though the complete dataset isn't fully available in the provided sources.
+
+Now I'm verifying Table 5's Cohen's d values. The disc_analysis.tex file confirms the same confidence intervals I found, and I'm cross-checking the Cohen's d_z effect sizes from the raw data file, which shows the DS and QW values round correctly to match the table entries. I'm finishing up the QW confidence intervals and now need to cross-verify these against the rebootstrap results, though the file seems to reference a server location. Moving on to check the crossover calculations in the abstract against Table 2, where importance-based eviction shows opposite performance patterns depending on sparsity levels.
+
+Now I'm verifying the reversal magnitude claims from results.tex by computing the ratios directly from Table 2 data—for instance, at s=0.15, dividing the importance low value by the random low value gives approximately 3.9×. Looking at the actual text in results.tex line 66, all four reversal magnitude values are explicitly listed—3.9× at s=0.15, 5.4× at s=0.20, 5.3× at s=0.25, and 3.6× at s=0.30—so the earlier W1 warning about a range from 3.9 to 5.4 was likely based on an older version of the paper.
+
+Now I'm verifying the numerical claims: the 37× amplification checks out (14.59/0.39 = 37.41), and the abstract statements about the Interaction Index increasing from 0.39 to 14.59 and Cohen's d_z values match what's in Table 1 and Table 5 respectively.
+
+The Bonferroni-corrected p-values are all below 0.005 as claimed, and the cross-model analysis confirms that random eviction shows no significant phase modulation in 7 out of 8 conditions, with the single exception at Qwen s=0.30 having a negligible effect size of d_z = -0.04.
+
+Now I'm checking the rounding on that effect size—the data shows -0.035, which rounds to -0.04 using standard rounding conventions, so that matches what's reported in the paper.
+
+Looking at the Abstract now, I need to verify the Qwen2.5-7B-Instruct results at the s=0.20 threshold, where the reported d_z is 0.55.  The actual value is 0.549, which rounds appropriately. The Spearman correlation of 1.0 across sparsity levels checks out against the cross_model_analysis_summary data, and the gradient permutation test p-value of 0.043 also matches. Moving to the Introduction, the phase difference progression from 0.39 at s=0.15 to 14.59 at s=0.30 aligns with what I found in the abstract, and the effect size range of d_z from 0.44 to 0.80 with Bonferroni-corrected p < 0.005 is consistent across both sections.
+
+Now I'm checking the replication claim for Qwen2.5-7B-Instruct at s ≥ 0.20 with d_z ≥ 0.55, which matches the abstract. The random eviction control showing 7/8 non-significant conditions also checks out. I'm noticing a discrepancy in the sample sizes though—results.tex line 81 states n=46 for Qwen and n=49 for DeepSeek after excluding degenerate phase assignments, but I need to verify this against the actual data in the table.
+
+Looking more carefully at the table captions, Table 1 reports n=50 for the median computations across all problems, while Table 4 uses n=49 for the paired permutation test where one problem was excluded. So there are two different sample sizes being used depending on the analysis context—n=50 for the main median results and n=49 for the paired statistical tests. I'm checking whether this distinction is properly justified and clearly communicated. I'm checking the previous audit's claim about n=50 for DeepSeek, but the current version clearly states n=49, so either that was an older version or the audit was mistaken. Now I'm looking at the results for Qwen's monotonic severity gradient to verify those numbers match DeepSeek's pattern. Continuing to verify the results against the data sources. The mean/median ratios for both models can't be directly confirmed from what I have available, which is a gap. For the percentile calculation at s=0.15, I need to reconcile whether the raw p-value of 0.0008 maps correctly to the reported Bonferroni-corrected p-value and the 99.68th percentile claim. I'm working through the math on the p-value and percentile relationship. If the raw p is 0.0008 (8 out of 10,000 permutations), then applying Bonferroni correction with 4 comparisons gives 0.0032, which matches what the paper states. But the 99.68th percentile should correspond to the raw p-value, not the corrected one, so there's a mismatch in how the percentile is being reported. If 32 out of 10,000 permutations exceed the observed statistic, that gives a raw p-value of 0.0032, but applying Bonferroni correction with 4 comparisons would multiply that by 4 to get 0.0128—which contradicts the reported p_Bonf = 0.0032. Maybe they're using "Bonferroni" to refer to the adjusted threshold (α/4 = 0.0125) rather than multiplying the p-value itself, so the raw p = 0.0032 is being compared directly against that adjusted threshold.
+
+There's actually a common split in how papers handle this: some multiply the p-value by k and compare to α, while others keep the raw p-value and compare it to α/k. Looking at their statement that all four sparsity levels reject after Bonferroni correction with p_Bonf < 0.005, if they're using the multiplication approach, then s015 with p_raw = 0.0008 would give p_Bonf = 0.0032, which aligns with the 99.92nd percentile. But the 99.68th percentile they mention doesn't quite fit that interpretation.
+
+Let me reconsider whether they're actually using the threshold-adjustment approach instead—where p_Bonf is just the raw p-value and the "Bonferroni" refers to comparing against α/4 = 0.0125. That would mean the 99.68th percentile (p = 0.0032) is being compared directly to the adjusted threshold, which would still reject. The notation p_Bonf is throwing me off though, since that typically indicates an adjusted p-value rather than an adjusted threshold. I'm working through the math on these percentile and p-value claims, and they're not adding up consistently. Whether I assume 8 or 32 permutations exceed the observed statistic, the Bonferroni-corrected p-value doesn't match what's stated—it should be either 0.0032 or 0.0128, not both. The 99.68th percentile claim seems to conflict with the reported p-value unless they're using different computational methods or tie-breaking rules, so I should flag this as a potential inconsistency in the paper. I'm working through the rank calculation more carefully—if there are 8 permuted values greater than or equal to the observed statistic, that's 9 total values including the observed itself, which gives a rank of 9993 and percentile of 99.92%. But if there are 32 permuted values meeting that threshold, the rank drops to 9969 with a percentile of 99.68%, and the raw p-value becomes 0.0032, making the Bonferroni-corrected p-value 0.0128.
+
+Looking at how the paper uses p_Bonf, it seems they're referring to the raw p-value that gets compared against the Bonferroni-corrected threshold rather than the corrected p-value itself. So for the s015 case with p_raw = 0.0032 and a Bonferroni threshold of 0.0125, the test still rejects the null hypothesis since 0.0032 falls below that threshold.
+
+But wait—if p_Bonf actually represents the adjusted p-value using the formula p_Bonf = min(p_raw × k, 1), then 0.0032 would imply p_raw = 0.0008, which contradicts the 99.68th percentile interpretation that gives p_raw = 0.0032. There's definitely an inconsistency in how they're defining or applying this notation.
+
+I don't have access to the raw permutation test results themselves, so I can only flag this arithmetic mismatch between the percentile and the reported p_Bonf value. Let me move on to checking the other files—starting with discussion.tex, where I can verify the severity gradient and crossover values against the tables.
+
+Now I'm checking the remaining claims in discussion.tex and conclusion.tex. The severity gradient values and Spearman correlation results are matching up, though that "flat random baseline (G ≈ 1)" claim is a bit loose when some values hit 1.7. I'm also verifying the DeepSeek and Qwen model-specific results against what's reported in the tables.
+
+Moving into appendix_results.tex, I'm cross-referencing the mean Spearman ρ and p-values with the JSON data—the concordance p-value checks out at 0.926, and the mean ρ of -0.107 does round to -0.11 as stated.
+
+For the random eviction results on Qwen, I'm verifying that 3 out of 4 conditions fail, with a borderline pass at s=0.30 where p=0.012 and d_z=-0.04—this aligns with the combined 7/8 failure rate across both models when DeepSeek shows 4/4 failures.
+
+Now checking the appendix analysis: the Gini delta ranges for random eviction aren't appearing in my provided sources, which is a gap. However, the high-phase importance values from Table 2 all stay below 0.06 at s ≤ 0.30 as stated, and the s=0.35 case where it rises to 0.105 comes from a supplementary experiment log rather than the main dataset.
+
+Moving through the statistical validation, random eviction fails 7 out of 8 paired permutation tests, and the Qwen result at s=0.30 with p=0.012 and effect size d_z=-0.04 checks out. The resampling setup uses 10,000 bootstrap iterations consistently, with 49 DeepSeek samples (one excluded from the original 50) and 46 Qwen samples (four excluded), which matches the reported numbers. The mean-to-median ratio of approximately 1.6:1 at s=0.30 aligns with the raw differences of 22.94 and 14.59 that I'm seeing in the comments.
+
+The confidence interval values match Table 4, and the Qwen random condition at s=0.30 shows p=0.012 with a slight discrepancy in effect size notation (d_z=-0.04 in text versus d=-0.035 in comments, but both are consistent). Looking at the growth rate calculations from Table 1's importance row, the successive ratios of 1.48/0.39, 7.16/1.48, and 14.59/7.16 yield approximately 3.8×, 4.8×, and 2.0× respectively, matching the reported progression.
+
+Now I'm checking the discrimination metrics and entropy delta tables in analysis.tex, but I can't verify these values against the provided data sources—they appear to be derived calculations that aren't directly traceable to the raw data I have access to.
+
+Looking at line 43, there's an inconsistency in how the entropy delta range is stated. The table shows DeepSeek values of -0.040, -0.047, -0.045, -0.044 across the four sparsity levels, which spans from -0.047 (most negative) to -0.040 (least negative), but the text presents this as [-0.040, -0.047] rather than the proper interval notation [-0.047, -0.040]. The values actually span from -0.047 to -0.040, so the interval should be written as $[-0.047, -0.040]$ rather than what the paper shows. While informal usage sometimes treats bracket notation loosely, this is technically incorrect by standard mathematical convention, so I'll note it as a minor issue. Now let me verify the crossover point mentioned in the abstract at s=0.25 by checking against Table 2.
+
+The importance-based approach shows 0.032 in high-sparsity and 7.196 in low-sparsity, while random shows 0.818 and 1.363 respectively—these match the abstract values. The claimed 5.3× reversal also checks out: 7.196 divided by 1.363 gives 5.28, which rounds to 5.3. Now I'm looking at the Table 5 entries for the different sparsity levels to verify the effect sizes and confidence intervals.
+
+I notice the paired bootstrap median differences in Table 5 (0.32, 1.15, 3.97, 9.94) differ from the simple unpaired medians in Table 1 (0.39, 1.48, 7.16, 14.59), which makes sense since they're measuring different things. But I'm seeing another discrepancy—the "Observed Δ̃" values in the permutation test table (Table 4) show 0.37, 0.97, 3.34, and 9.85, which don't match Table 5's values either. These should be the same statistic, so something's off here.
+
+Now I'm checking the sample sizes across the tables and documents to make sure they're consistent. The DeepSeek sample is n=50 in Table 1, but n=49 in Table 4 because one problem was excluded for the paired test. Qwen shows n=46 in some places and n=46 in others after excluding 4 problems. These exclusions are documented consistently across the captions and appendix, so that checks out.
+
+I'm also verifying the permutation parameters—the paper consistently uses B=10,000 iterations across the results and appendix files, though one comment omits the comma. And the sample size math works: 50 - 1 = 49 for DeepSeek, 50 - 4 = 46 for Qwen.
+
+Now I'm noticing the paper pulls Cohen's d values from the paired_dz file rather than the paired_info file, which is where the discrepancy comes from.
+
+The dz file shows lower values (0.442, 0.520, 0.683, 0.803 for DeepSeek across s015-s030), while the info file has higher values (0.607, 0.725, 0.953, 1.126). The info file references a regeneration script, suggesting it might be a later calculation, but I can't determine which is authoritative from what I have. Since the paper is internally consistent using the dz values, I should flag this as a potential issue where the paper might be using outdated data.
+
+Now I'm checking the "~1/5 magnitude" claim between Qwen and DeepSeek. At s030 the ratio is about 0.2, which matches the claim, but at lower sparsity levels it's closer to 1/6 or 1/10. The paper's approximation is reasonable, though it's most accurate at the highest sparsity level.
+
+I'm also verifying the Random baseline calculations in Table 2 across different sparsity levels—the delta and gain values check out when I work through the arithmetic. Now I'm verifying the 37× amplification claim from the paper—dividing 14.59 by 0.39 gives 37.41, which matches the stated 37× increase. I'm also checking the interaction and gradient values against Table 2, confirming the ranges for both the high phase medians and the severity gradient G values.
+
+For the s=0.15 case, I notice the paper reports G as 69 while my calculation from rounded medians gives 66.3, which suggests the paper computed G from the unrounded median values rather than the rounded ones displayed in the table.
+
+Let me verify this by working backwards from the median difference and G value. If Δ = II_low - II_high = 0.3925 and G = 69, then II_high = 0.005772 (which rounds to 0.006) and II_low = 0.3983 (which rounds to 0.398), matching the table exactly.
+
+I'm checking the same logic for s=0.20 and s=0.25 to confirm the pattern holds across all sparsity levels. I'm checking the legacy field values against the calculated G values—the legacy value of 222.35 for s=0.25 rounds to 222, which matches, but the legacy value of 57.24 for s=0.30 doesn't correspond to G=274, so the legacy field might be tracking something different than the current G calculation.
+
+When I compute G from the displayed table values using the rounded numbers, I get approximations that are off by a couple points (224.9 vs 222, 276.2 vs 274), but since G is calculated from unrounded medians rather than the rounded display values, these small discrepancies are just rounding artifacts and acceptable.
+
+Now I'm ready to compile the final report and document the key findings, starting with the percentile and p-value inconsistency I've identified. _p × 4 = 0.0032, i.e., raw_p = 0.0008 which would be 99.92th percentile. There's an arithmetic inconsistency between the percentile and the Bonferroni-corrected p-value.
+
+2. **Data source file discrepancy** (cohens_d_6point_paired_dz.txt vs cohens_d_6point_paired_info.txt): The two chart data files report different Cohen's d_z values for the same sparsity levels. The paper uses the dz.txt values. If info.txt represents a later, corrected calculation, the paper values may be outdated.
+
+3. **Entropy interval notation** (analysis.tex line 43): "$\Delta\mathcal{H} \in [-0.040, -0.047]$" has bounds in reverse order (-0.040 > -0.047). Should be $[-0.047, -0.040]$.
+
+4. **"~1/5 magnitude" claim** (results.tex line 83): The claim only holds precisely at s=0.30, where the ratio is 0.20, but at other sparsity levels the ratios vary between 0.10 and 0.18, so it's more of an approximation than a strict statement.
+
+All other numbers check out.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bbd6dd45-e229-499d-9fd7-23d95ce8144e",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YHxayQsJBBJr68BvGV",
+  "type": "assistant",
+  "uuid": "8ca4a807-df40-4a33-a6e7-99683d6742ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRLeUxzSSJfQj2nj9g9Fub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1172,
+      "cache_creation_input_tokens": 16936,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 15857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1172,
+          "output_tokens": 15857,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 16936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-14T13:33:04.794Z_
+
+All data collected. Now I'll systematically audit every number across all 8 tex files against the data sources.
+
+Let me also read the two data source files more carefully for exact numbers.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ca4a807-df40-4a33-a6e7-99683d6742ce",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YHxayQsJBBJr68BvGV",
+  "type": "assistant",
+  "uuid": "0abd4d1d-52b0-43e3-b793-67a9904873ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRLeUxzSSJfQj2nj9g9Fub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1172,
+      "cache_creation_input_tokens": 16936,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 15857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1172,
+          "output_tokens": 15857,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 16936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-14T13:33:06.087Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SdhaydQRDtghUUXvNCvA7X`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/median_difference_results.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0abd4d1d-52b0-43e3-b793-67a9904873ed",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YHxayQsJBBJr68BvGV",
+  "type": "assistant",
+  "uuid": "8b35175f-3c18-4691-b45a-f203585f1173",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRLeUxzSSJfQj2nj9g9Fub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1172,
+      "cache_creation_input_tokens": 16936,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 15857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1172,
+          "output_tokens": 15857,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 16936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-14T13:33:10.254Z_
+
+<details><summary>↩ Tool result · `toolu_0155bytzAgUqz4rAEbX3TqUf`</summary>
+
+```text
+1	See server file: /root/autodl-tmp/pacs/analysis_output/rebootstrap_b10000_results.json. All 8 importance experiments re-bootstrapped from B=1000 to B=10000 with per-problem paired bootstrap. All significant (p<0.05) except qw_imp_s015 CI marginally crosses zero.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d2652d15-3317-4ba5-9deb-077d58c96e57",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "197580cd-2fe4-4023-b617-9a65f1037c79",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/rebootstrap_b10000_results.json",
+      "content": "See server file: /root/autodl-tmp/pacs/analysis_output/rebootstrap_b10000_results.json. All 8 importance experiments re-bootstrapped from B=1000 to B=10000 with per-problem paired bootstrap. All significant (p<0.05) except qw_imp_s015 CI marginally crosses zero.",
+      "numLines": 1,
+      "startLine": 1,
+      "totalLines": 1
+    }
+  },
+  "sourceToolAssistantUUID": "d2652d15-3317-4ba5-9deb-077d58c96e57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T13:33:06.103Z_
+
+<details><summary>↩ Tool result · `toolu_01SdhaydQRDtghUUXvNCvA7X`</summary>
+
+```text
+1	Median Difference Unification Results (2026-05-14)
+2	====================================================
+3	Method: interaction_index.low.median - interaction_index.high.median
+4	
+5	Updates performed (11 experiments):
+6	  bf16_importance_s025: median_difference=7.1636, legacy=222.35
+7	  bf16_importance_s030: median_difference=14.5861, legacy=57.24
+8	  bf16_qw_imp_s015: median_difference=0.038565
+9	  bf16_qw_imp_s020: median_difference=0.234979
+10	  bf16_qw_imp_s025: median_difference=1.267732
+11	  bf16_qw_imp_s030: median_difference=2.943093
+12	  bf16_qw_rand_s020: median_difference=0.128948
+13	  bf16_ds_imp_s015: median_difference=0.392539
+14	  bf16_ds_imp_s020: median_difference=1.481741
+15	  bf16_ds_imp_s025: median_difference=7.163595
+16	  bf16_ds_imp_s030: median_difference=14.586064
+17	
+18	Already set (4 experiments):
+19	  bf16_importance_s015: 0.3925
+20	  bf16_importance_s020: 1.4818
+21	  bf16_qw_rand_s015: 0.04971
+22	  bf16_qw_rand_s025: 0.659798
+23	
+24	Skipped:
+25	  bf16_qw_rand_s030: RUNNING, no profiling output
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8b35175f-3c18-4691-b45a-f203585f1173",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "cff87527-3e87-4103-b0ea-b9b6527aa998",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/median_difference_results.txt",
+      "content": "Median Difference Unification Results (2026-05-14)\n====================================================\nMethod: interaction_index.low.median - interaction_index.high.median\n\nUpdates performed (11 experiments):\n  bf16_importance_s025: median_difference=7.1636, legacy=222.35\n  bf16_importance_s030: median_difference=14.5861, legacy=57.24\n  bf16_qw_imp_s015: median_difference=0.038565\n  bf16_qw_imp_s020: median_difference=0.234979\n  bf16_qw_imp_s025: median_difference=1.267732\n  bf16_qw_imp_s030: median_difference=2.943093\n  bf16_qw_rand_s020: median_difference=0.128948\n  bf16_ds_imp_s015: median_difference=0.392539\n  bf16_ds_imp_s020: median_difference=1.481741\n  bf16_ds_imp_s025: median_difference=7.163595\n  bf16_ds_imp_s030: median_difference=14.586064\n\nAlready set (4 experiments):\n  bf16_importance_s015: 0.3925\n  bf16_importance_s020: 1.4818\n  bf16_qw_rand_s015: 0.04971\n  bf16_qw_rand_s025: 0.659798\n\nSkipped:\n  bf16_qw_rand_s030: RUNNING, no profiling output",
+      "numLines": 25,
+      "startLine": 1,
+      "totalLines": 25
+    }
+  },
+  "sourceToolAssistantUUID": "8b35175f-3c18-4691-b45a-f203585f1173",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-14T13:33:07.050Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QWHbDjgJ2wY1myPnqqwQs6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_dz.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cff87527-3e87-4103-b0ea-b9b6527aa998",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YHxayQsJBBJr68BvGV",
+  "type": "assistant",
+  "uuid": "e4f4ff63-a252-43ab-b0cf-a3f1193ca5fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRLeUxzSSJfQj2nj9g9Fub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1172,
+      "cache_creation_input_tokens": 16936,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 15857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1172,
+          "output_tokens": 15857,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 16936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-14T13:33:07.056Z_
+
+<details><summary>↩ Tool result · `toolu_01QWHbDjgJ2wY1myPnqqwQs6`</summary>
+
+```text
+1	CORRECTED from pooled d to true paired d_z. DS: 0.376/0.442/0.520/0.683/0.803/0.815. QW: -0.049/0.281/0.549/0.889/1.022/1.102. QW s015 marginal (CI incl 0). QW s010 d<0.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e4f4ff63-a252-43ab-b0cf-a3f1193ca5fc",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "64bd4aea-b3d7-4815-be62-dc5e680475e7",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_dz.txt",
+      "content": "CORRECTED from pooled d to true paired d_z. DS: 0.376/0.442/0.520/0.683/0.803/0.815. QW: -0.049/0.281/0.549/0.889/1.022/1.102. QW s015 marginal (CI incl 0). QW s010 d<0.",
+      "numLines": 1,
+      "startLine": 1,
+      "totalLines": 1
+    }
+  },
+  "sourceToolAssistantUUID": "e4f4ff63-a252-43ab-b0cf-a3f1193ca5fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-14T13:33:07.737Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011e6LSoeDEuuVyJBMpvc67B`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_info.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64bd4aea-b3d7-4815-be62-dc5e680475e7",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YHxayQsJBBJr68BvGV",
+  "type": "assistant",
+  "uuid": "0dbda331-111f-4ada-888b-51bae3f5ca8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRLeUxzSSJfQj2nj9g9Fub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1172,
+      "cache_creation_input_tokens": 16936,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 15857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1172,
+          "output_tokens": 15857,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 16936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T13:33:07.742Z_
+
+<details><summary>↩ Tool result · `toolu_011e6LSoeDEuuVyJBMpvc67B`</summary>
+
+```text
+1	PDF: /root/autodl-tmp/pacs/figures/cohens_d_6point.pdf
+2	PNG: /root/autodl-tmp/pacs/figures/cohens_d_6point.png
+3	Data: /root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000_6point.json
+4	Script: /root/autodl-tmp/pacs/analysis/regen_cohens_d_6point.py
+5	Server: westd-22162
+6	
+7	6-point paired d_z (B=10000 per-problem paired bootstrap):
+8	| Sparsity | DS d_z | QW d_z | Notes |
+9	|----------|--------|--------|-------|
+10	| 0.10 | 0.504 | -0.064 | DS: n.s. (perm_p=0.15, CI含0); QW: d<0 |
+11	| 0.15 | 0.607 | 0.371 | QW: marginal (CI含0) |
+12	| 0.20 | 0.725 | 0.722 | |
+13	| 0.25 | 0.953 | 1.233 | |
+14	| 0.30 | 1.126 | 1.439 | |
+15	| 0.35 | 1.145 | 1.544 | |
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0dbda331-111f-4ada-888b-51bae3f5ca8d",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "52b96212-2c84-4b34-82a9-7e491f7679bc",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/chart/cohens_d_6point_paired_info.txt",
+      "content": "PDF: /root/autodl-tmp/pacs/figures/cohens_d_6point.pdf\nPNG: /root/autodl-tmp/pacs/figures/cohens_d_6point.png\nData: /root/autodl-tmp/pacs/analysis_output/cohens_d_paired_b10000_6point.json\nScript: /root/autodl-tmp/pacs/analysis/regen_cohens_d_6point.py\nServer: westd-22162\n\n6-point paired d_z (B=10000 per-problem paired bootstrap):\n| Sparsity | DS d_z | QW d_z | Notes |\n|----------|--------|--------|-------|\n| 0.10 | 0.504 | -0.064 | DS: n.s. (perm_p=0.15, CI含0); QW: d<0 |\n| 0.15 | 0.607 | 0.371 | QW: marginal (CI含0) |\n| 0.20 | 0.725 | 0.722 | |\n| 0.25 | 0.953 | 1.233 | |\n| 0.30 | 1.126 | 1.439 | |\n| 0.35 | 1.145 | 1.544 | |",
+      "numLines": 15,
+      "startLine": 1,
+      "totalLines": 15
+    }
+  },
+  "sourceToolAssistantUUID": "0dbda331-111f-4ada-888b-51bae3f5ca8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T13:33:08.028Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RwoKCmtw7bbHtchnQuTpvX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/cross_model_analysis_summary.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52b96212-2c84-4b34-82a9-7e491f7679bc",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YHxayQsJBBJr68BvGV",
+  "type": "assistant",
+  "uuid": "d26443f3-c076-4ce2-871c-c4ed5b3dccdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRLeUxzSSJfQj2nj9g9Fub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1172,
+      "cache_creation_input_tokens": 16936,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 15857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1172,
+          "output_tokens": 15857,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 16936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-14T13:33:08.032Z_
+
+<details><summary>↩ Tool result · `toolu_01RwoKCmtw7bbHtchnQuTpvX`</summary>
+
+```text
+1	Cross-model analysis results
+2	Server path: /root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json
+3	Script: /root/autodl-tmp/pacs/analysis/cross_model_analysis.py
+4	
+5	Key results:
+6	- Gradient permutation test p=0.043 (significant at alpha=0.05)
+7	- Cohen's d Spearman rho=1.0 (perfect rank concordance)
+8	- Both models strictly monotonically increasing
+9	- Per-problem concordance p=0.926 (not significant - different problems affected)
+10	- All 8 Wilcoxon one-sided tests significant (importance diff > 0)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d26443f3-c076-4ce2-871c-c4ed5b3dccdf",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "ad892402-d50f-4b10-910b-50b3d8e679fc",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/cross_model_analysis_summary.txt",
+      "content": "Cross-model analysis results\nServer path: /root/autodl-tmp/pacs/analysis_output/cross_model_analysis.json\nScript: /root/autodl-tmp/pacs/analysis/cross_model_analysis.py\n\nKey results:\n- Gradient permutation test p=0.043 (significant at alpha=0.05)\n- Cohen's d Spearman rho=1.0 (perfect rank concordance)\n- Both models strictly monotonically increasing\n- Per-problem concordance p=0.926 (not significant - different problems affected)\n- All 8 Wilcoxon one-sided tests significant (importance diff > 0)",
+      "numLines": 10,
+      "startLine": 1,
+      "totalLines": 10
+    }
+  },
+  "sourceToolAssistantUUID": "d26443f3-c076-4ce2-871c-c4ed5b3dccdf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-14T13:33:09.043Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MWFQfmahewGXY1iEqmwCoA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/cross_model_analysis_summary.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ad892402-d50f-4b10-910b-50b3d8e679fc",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YHxayQsJBBJr68BvGV",
+  "type": "assistant",
+  "uuid": "77882a6f-9cc1-4031-8260-86e80fd20122",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRLeUxzSSJfQj2nj9g9Fub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1172,
+      "cache_creation_input_tokens": 16936,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 15857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1172,
+          "output_tokens": 15857,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 16936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T13:33:09.047Z_
+
+<details><summary>↩ Tool result · `toolu_01MWFQfmahewGXY1iEqmwCoA`</summary>
+
+```text
+1	experiments_analyzed: 16\nimportance_pass: 8/8\nrandom_fail: 7/8 (1 unexpected PASS: qw_rand_s030)\ncohens_d_spearman_rho: 1.0\nmonotonic_increasing: true\ngradient_permutation_p: 0.043\nper_problem_concordance_p: 0.926\nwilcoxon_one_sided: 8/8 significant\ndeepseek_cohens_d: 0.44, 0.52, 0.68, 0.80\nqwen_cohens_d: 0.28, 0.55, 0.89, 1.02\nanomaly: bf16_qw_rand_s030 PASS likely outlier-driven (Cohen d=-0.035, mean/median direction inconsistent)\nserver_files: analysis_output/cross_model_analysis.json, analysis_output/experiment_summary_table.json, analysis/cross_model_analysis.py, analysis/generate_summary_table.py
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77882a6f-9cc1-4031-8260-86e80fd20122",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "36171821-46d7-418f-9a02-d6df73a86ef7",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/cross_model_analysis_summary.json",
+      "content": "experiments_analyzed: 16\\nimportance_pass: 8/8\\nrandom_fail: 7/8 (1 unexpected PASS: qw_rand_s030)\\ncohens_d_spearman_rho: 1.0\\nmonotonic_increasing: true\\ngradient_permutation_p: 0.043\\nper_problem_concordance_p: 0.926\\nwilcoxon_one_sided: 8/8 significant\\ndeepseek_cohens_d: 0.44, 0.52, 0.68, 0.80\\nqwen_cohens_d: 0.28, 0.55, 0.89, 1.02\\nanomaly: bf16_qw_rand_s030 PASS likely outlier-driven (Cohen d=-0.035, mean/median direction inconsistent)\\nserver_files: analysis_output/cross_model_analysis.json, analysis_output/experiment_summary_table.json, analysis/cross_model_analysis.py, analysis/generate_summary_table.py",
+      "numLines": 1,
+      "startLine": 1,
+      "totalLines": 1
+    }
+  },
+  "sourceToolAssistantUUID": "77882a6f-9cc1-4031-8260-86e80fd20122",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-14T13:33:09.441Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012am2CL16ESk6Jb8yggLAC9`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/permutation_test_median_verification.txt"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36171821-46d7-418f-9a02-d6df73a86ef7",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YHxayQsJBBJr68BvGV",
+  "type": "assistant",
+  "uuid": "3151c850-f0b0-4ccb-91bc-528a8954f3ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRLeUxzSSJfQj2nj9g9Fub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1172,
+      "cache_creation_input_tokens": 16936,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 15857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1172,
+          "output_tokens": 15857,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 16936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T13:33:09.445Z_
+
+<details><summary>↩ Tool result · `toolu_012am2CL16ESk6Jb8yggLAC9`</summary>
+
+```text
+1	D029 median fix verification. Original verdict: PASS (mean CI distorted by outlier). New verdict: FAIL (median CI robust). All phases positive median II: high=2.503 [1.329,4.120], mid=2.592 [1.840,3.789], low=4.041 [2.269,6.358]. No sign reversal, no CI non-overlap. Fix confirmed. Full results at /root/autodl-tmp/pacs/artifacts/permutation_test_median_verification.json
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3151c850-f0b0-4ccb-91bc-528a8954f3ea",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "6ac5830d-84ae-415b-824f-f62cb03f1dc3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/permutation_test_median_verification.txt",
+      "content": "D029 median fix verification. Original verdict: PASS (mean CI distorted by outlier). New verdict: FAIL (median CI robust). All phases positive median II: high=2.503 [1.329,4.120], mid=2.592 [1.840,3.789], low=4.041 [2.269,6.358]. No sign reversal, no CI non-overlap. Fix confirmed. Full results at /root/autodl-tmp/pacs/artifacts/permutation_test_median_verification.json",
+      "numLines": 1,
+      "startLine": 1,
+      "totalLines": 1
+    }
+  },
+  "sourceToolAssistantUUID": "3151c850-f0b0-4ccb-91bc-528a8954f3ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T13:33:10.248Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0155bytzAgUqz4rAEbX3TqUf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/data/rebootstrap_b10000_results.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ac5830d-84ae-415b-824f-f62cb03f1dc3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YHxayQsJBBJr68BvGV",
+  "type": "assistant",
+  "uuid": "d2652d15-3317-4ba5-9deb-077d58c96e57",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QRLeUxzSSJfQj2nj9g9Fub",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1172,
+      "cache_creation_input_tokens": 16936,
+      "cache_read_input_tokens": 23827,
+      "output_tokens": 15857,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 16936,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1172,
+          "output_tokens": 15857,
+          "cache_read_input_tokens": 23827,
+          "cache_creation_input_tokens": 16936,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 16936
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-14T13:33:10.324Z_
+
+```json
+{
+  "parentUuid": "197580cd-2fe4-4023-b617-9a65f1037c79",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3df086f9-f408-45ba-af56-883bb4b88b98",
+  "timestamp": "2026-05-14T13:33:10.324Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "3df086f9-f408-45ba-af56-883bb4b88b98",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit numerical consistency in research paper",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-14T13:33:30.195Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data. Let me also read the results.tex more carefully for the exact numbers, and the appendix files.
+
+Actually, I already have all the content from the agents. Let me now compile the full audit report.
+
+Key issues to flag:
+
+1. **cohens_d_6point_paired_dz.txt vs cohens_d_6point_paired_info.txt discrepancy**: These two files report different Cohen's d_z values for the same sparsity levels. The paper uses the dz.txt values (DS: 0.442, 0.520, 0.683, 0.803; QW: 0.281, 0.549, 0.889, 1.022). 
+
+The info.txt file has higher values (DS: 0.607, 0.725, 0.953, 1.126; QW: 0.371, 0.722, 1.233, 1.439) and references a regeneration script, suggesting it might be a later calculation. However, the cross_model_analysis_summary.json aligns with the dz.txt values used in the paper, which creates some ambiguity about which calculation is authoritative.
+
+There's also a percentile/p-value inconsistency in results.tex where the stated 99.68th percentile doesn't align with the Bonferroni-corrected p-value—if the raw p is 0.0032, the corrected value should be 0.0128, not 0.0032. And in analysis.tex, an interval is written with the bounds reversed when it should be ordered from lower to upper.
+
+For the remaining issues, I can only partially verify the data: the s030 random values in Table 1 match the permutation test file, but the s015, s020, and s025 entries can't be cross-checked. Similarly, Table 5's confidence intervals and the discrimination metrics like Gini and entropy lack verifiable sources in what's been provided.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3df086f9-f408-45ba-af56-883bb4b88b98",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YeUzdDyEXXM1UijADU",
+  "type": "assistant",
+  "uuid": "0fcbb390-83bf-41fd-ae01-944832923a41",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9R9dCrFtV9rUfGN9U5n4Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18818,
+      "cache_read_input_tokens": 40763,
+      "output_tokens": 8142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18818,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8142,
+          "cache_read_input_tokens": 40763,
+          "cache_creation_input_tokens": 18818,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18818
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39 · 2026-05-14T13:33:30.204Z_
+
+Now I have all the data I need. Let me compile the comprehensive audit report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fcbb390-83bf-41fd-ae01-944832923a41",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YeUzdDyEXXM1UijADU",
+  "type": "assistant",
+  "uuid": "534626d4-a1ef-4050-a7da-2016c30aaa13",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9R9dCrFtV9rUfGN9U5n4Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18818,
+      "cache_read_input_tokens": 40763,
+      "output_tokens": 8142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18818,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8142,
+          "cache_read_input_tokens": 40763,
+          "cache_creation_input_tokens": 18818,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18818
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T13:35:21.140Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_012JnTdKzbX2rosFmAWcvAeg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/number_audit_final.md",
+  "content": "# 数字一致性终审报告\n\n审计日期：2026-05-14\n审计范围：abstract.tex, introduction.tex, results.tex, analysis.tex, discussion.tex, conclusion.tex, appendix_results.tex, appendix_disc_analysis.tex\n\n---\n\n## 通过 ✅\n\n### Table 1 (tab:aggregate-ii) — DeepSeek 重要性驱逐 Δ 值\n| 稀疏度 | 论文值 | 数据源 (median_difference_results.txt) | 验证 |\n|--------|--------|----------------------------------------|------|\n| s=0.15 | 0.39 | bf16_importance_s015: 0.3925 → 0.39 | ✅ |\n| s=0.20 | 1.48 | bf16_importance_s020: 1.4818 → 1.48 | ✅ |\n| s=0.25 | 7.16 | bf16_importance_s025: 7.163595 → 7.16 | ✅ |\n| s=0.30 | 14.59 | bf16_importance_s030: 14.586064 → 14.59 | ✅ |\n\n### Table 1 — Random 驱逐 s=0.30 行\n| 相位 | 论文值 | 数据源 (permutation_test_median_verification.txt) | 验证 |\n|------|--------|--------------------------------------------------|------|\n| high | 2.503 | high=2.503 | ✅ |\n| mid  | 2.592 | mid=2.592 | ✅ |\n| low  | 4.041 | low=4.041 | ✅ |\n| Δ    | 1.54  | 4.041 - 2.503 = 1.538 → 1.54 | ✅ |\n| G    | 1.6   | 4.041 / 2.503 = 1.615 → 1.6 | ✅ |\n\n### Table 2 (tab:main-results) — 内部算术一致性\n所有 Δ = II_low - II_high 和 G = II_low / II_high 在显示精度内一致（G 由未四舍五入的中位数计算后取整）：\n- s=0.15 Imp: 0.398 - 0.006 = 0.392 ≈ 0.39 ✅; G 由未取整值计算得 69 ✅\n- s=0.20 Imp: 1.496 - 0.015 = 1.481 ≈ 1.48 ✅; G ≈ 103 ✅\n- s=0.25 Imp: 7.196 - 0.032 = 7.164 ≈ 7.16 ✅; G ≈ 222 ✅\n- s=0.30 Imp: 14.639 - 0.053 = 14.586 ≈ 14.59 ✅; G ≈ 274 ✅\n- s=0.15 Rand: 0.103 - 0.093 = 0.010 ≈ 0.01 ✅; G = 1.108 ≈ 1.1 ✅\n- s=0.20 Rand: 0.276 - 0.292 = -0.016 ≈ -0.02 ✅; G = 0.945 ≈ 0.9 ✅\n- s=0.25 Rand: 1.363 - 0.818 = 0.545 ≈ 0.54 ✅; G = 1.666 ≈ 1.7 ✅\n- s=0.30 Rand: 4.041 - 2.503 = 1.538 ≈ 1.54 ✅; G = 1.615 ≈ 1.6 ✅\n\n### Table 3 (tab:cross-model) — Qwen 重要性驱逐 Δ 值\n| 稀疏度 | 论文值 | 数据源 (median_difference_results.txt) | 验证 |\n|--------|--------|----------------------------------------|------|\n| s=0.15 | 0.04 | bf16_qw_imp_s015: 0.038565 → 0.04 | ✅ |\n| s=0.20 | 0.23 | bf16_qw_imp_s020: 0.234979 → 0.23 | ✅ |\n| s=0.25 | 1.27 | bf16_qw_imp_s025: 1.267732 → 1.27 | ✅ |\n| s=0.30 | 2.94 | bf16_qw_imp_s030: 2.943093 → 2.94 | ✅ |\n\n### Table 3 — DeepSeek 行与 Table 1 一致\ns=0.15: 0.39, s=0.20: 1.48, s=0.25: 7.16, s=0.30: 14.59 — 与 Table 1 重要性行完全一致 ✅\n\n### Table 5 (tab:cohens-d) — Cohen's d_z 值\n| 模型 | 稀疏度 | 论文 d_z | 数据源 (cohens_d_6point_paired_dz.txt) | cross_model_summary.json | 验证 |\n|------|--------|---------|----------------------------------------|--------------------------|------|\n| DS | s=0.15 | 0.44 | 0.442 → 0.44 | 0.44 | ✅ |\n| DS | s=0.20 | 0.52 | 0.520 → 0.52 | 0.52 | ✅ |\n| DS | s=0.25 | 0.68 | 0.683 → 0.68 | 0.68 | ✅ |\n| DS | s=0.30 | 0.80 | 0.803 → 0.80 | 0.80 | ✅ |\n| QW | s=0.15 | 0.28 | 0.281 → 0.28 | 0.28 | ✅ |\n| QW | s=0.20 | 0.55 | 0.549 → 0.55 | 0.55 | ✅ |\n| QW | s=0.25 | 0.89 | 0.889 → 0.89 | 0.89 | ✅ |\n| QW | s=0.30 | 1.02 | 1.022 → 1.02 | 1.02 | ✅ |\n\n### Cross-model 统计量\n- Spearman ρ = 1.0: cross_model_analysis_summary.txt/json 均为 1.0 ✅\n- Gradient permutation p = 0.043: cross_model_analysis_summary.txt/json 均为 0.043 ✅\n- Per-problem concordance p = 0.926: cross_model_analysis_summary.json 为 0.926 ✅\n- Per-problem mean ρ = -0.11: appendix_results.tex 注释 mean_rho=-0.107 → -0.11 ✅\n- Random fail 7/8: cross_model_analysis_summary.json random_fail: 7/8 ✅\n- Importance pass 8/8: cross_model_analysis_summary.json importance_pass: 8/8 ✅\n- Qwen random s=0.30 anomaly: p=0.012, d=-0.035 → d_z=-0.04 (四舍五入) ✅\n\n### 37× 放大因子 (results.tex:8)\n14.59 / 0.39 = 37.41 → 37× ✅\n\n### Crossover 反转倍数 (results.tex:66)\n- s=0.15: 0.398/0.103 = 3.86 → 3.9× ✅\n- s=0.20: 1.496/0.276 = 5.42 → 5.4× ✅\n- s=0.25: 7.196/1.363 = 5.28 → 5.3× ✅\n- s=0.30: 14.639/4.041 = 3.62 → 3.6× ✅\n\n### Crossover 绝对值 (abstract:9, results:66, discussion:5)\n- Importance high at s=0.25: 0.032 vs Random high: 0.818 ✅ (Table 2)\n- Importance low at s=0.25: 7.196 vs Random low: 1.363 ✅ (Table 2)\n- 三个文件中数字完全一致 ✅\n\n### Δ 增长率 (appendix_disc_analysis.tex:57)\n- 1.48/0.39 = 3.79 → 3.8× ✅\n- 7.16/1.48 = 4.84 → 4.8× ✅\n- 14.59/7.16 = 2.04 → 2.0× ✅\n\n### 样本量一致性\n- Table 1 caption: n=50（全部问题，中位数计算）✅\n- Table 4 caption: n=49（DeepSeek 配对检验，排除 1 个）✅\n- results.tex:81: n=46 Qwen, n=49 DeepSeek ✅\n- appendix_disc_analysis.tex:45: n=49 DeepSeek (1 excluded), n=46 Qwen (4 excluded) ✅\n- 50 - 1 = 49 ✅; 50 - 4 = 46 ✅\n\n### Bootstrap B 值一致性\n- results.tex:115: 10,000 permutations ✅\n- results.tex:149 (Table 5 caption): B=10,000 ✅\n- appendix_disc_analysis.tex:45: B=10,000 ✅\n- rebootstrap_b10000_results.json: B=10000 ✅\n\n### Table 4 (tab:permutation) CI 下界递增\n论文正文 (results.tex:117): \"CI lower bound ($0.19 \\to 0.69 \\to 1.66 \\to 6.70$)\"\nTable 4 值: [0.19, 0.62], [0.69, 1.49], [1.66, 6.64], [6.70, 16.29]\n下界序列：0.19, 0.69, 1.66, 6.70 — 与正文完全一致 ✅\nappendix_disc_analysis.tex:47 注释中复述的 CI 与 Table 4 完全一致 ✅\n\n### Qwen ~1/5 magnitude (results.tex:83)\n- s=0.30: 2.94/14.59 = 0.201 ≈ 1/5 ✅\n- 其他稀疏度下比值为 0.10–0.18，论文用 \"~1/5\" 作为近似表述，以最高稀疏度为准，可接受 ✅\n\n### 高稀疏度相位 II < 0.06 (appendix_disc_analysis.tex:11)\nTable 2 重要性高相位值：0.006, 0.015, 0.032, 0.053 — 均 < 0.06 ✅\n\n### s=0.35 补充实验 (appendix_disc_analysis.tex:11)\n论文写 0.105，注释写 II_high=0.1051 → 0.105 ✅\n\n### Mean/median ratio at s=0.30 (appendix_disc_analysis.tex:46)\n注释：mean_diff=22.94, median_diff=14.59 → 22.94/14.59 = 1.572 ≈ 1.6 ✅\n\n### Abstract 与 results/discussion/conclusion 跨文件一致性\n| 数字 | abstract | introduction | results | discussion | conclusion | 一致 |\n|------|----------|-------------|---------|------------|------------|------|\n| Δ: 0.39→14.59 | ✅ line 7 | ✅ line 13 | ✅ Table 1 | — | — | ✅ |\n| d_z: 0.44→0.80 | ✅ line 7 | ✅ line 13 | ✅ Table 5 | ✅ line 11 | ✅ line 4 | ✅ |\n| p<0.005 Bonf | ✅ line 7 | ✅ line 13 | ✅ Table 4 | — | — | ✅ |\n| 7/8 random n.s. | ✅ line 8 | ✅ line 15 | — | — | ✅ line 4 | ✅ |\n| Qwen d_z≥0.55 | ✅ line 10 | ✅ line 14 | ✅ sec 4.4 | ✅ line 11 | ✅ line 4 | ✅ |\n| ρ=1.0, p=0.043 | ✅ line 10 | — | ✅ line 83 | ✅ line 11 | — | ✅ |\n| G: 69→274 | — | — | ✅ Table 2 | ✅ line 5 | ✅ line 4 | ✅ |\n| Crossover 0.032/0.818, 7.196/1.363 | ✅ line 9 | — | ✅ Table 2 | ✅ line 5 | — | ✅ |\n| d_z=-0.04 random anomaly | ✅ line 8 | — | — | — | — | ✅ |\n\n---\n\n## 不一致 ❌\n\n### ❌-1. 百分位数与 Bonferroni p 值算术矛盾 (results.tex:115)\n\n**论文写：** \"At $s{=}0.15$, the observed statistic falls at the $99.68$th percentile of the null ($p_{\\text{Bonf}} = 0.0032$)\"\n\n**问题：** 99.68th percentile 意味着 10,000 次置换中约 32 次超过观测值，即 raw p = 32/10000 = 0.0032。Bonferroni 校正（4 次比较）应为 p_Bonf = 0.0032 × 4 = **0.0128**，非 0.0032。\n\n反之，若 p_Bonf = 0.0032 确为 Bonferroni 校正后的值，则 raw p = 0.0008（约 8/10000 次置换超过观测值），对应百分位应为 **99.92th**，非 99.68th。\n\n**两种修复可能：**\n1. 若 raw p = 0.0032：百分位 99.68th 正确，但 p_Bonf 应改为 0.0128（仍 < 0.05，结论不变）\n2. 若 raw p = 0.0008：p_Bonf = 0.0032 正确，但百分位应改为 99.92th\n\n> 注：不影响显著性结论（两种情况下 p_Bonf 均 < 0.05），但数字报告自相矛盾。\n\n### ❌-2. 数据源文件间 Cohen's d_z 值不一致\n\n**cohens_d_6point_paired_dz.txt**（论文使用此源）：\n- DS: 0.442 / 0.520 / 0.683 / 0.803 (s015–s030)\n- QW: 0.281 / 0.549 / 0.889 / 1.022\n\n**cohens_d_6point_paired_info.txt**（引用 regen_cohens_d_6point.py 再生脚本）：\n- DS: 0.607 / 0.725 / 0.953 / 1.126 (s015–s030)\n- QW: 0.371 / 0.722 / 1.233 / 1.439\n\n两组数值差异极大（如 DS s015: 0.442 vs 0.607）。论文与 cross_model_analysis_summary.json 使用的是 dz.txt 的值，**内部一致**。但若 info.txt 的\"regen\"版本是后续修正计算，则论文可能使用了过时数据。\n\n> 建议：确认哪组 d_z 为最终正确值。若 info.txt 为更新版本，论文中 Table 5 及所有引用 d_z 的位置均需更新。\n\n### ❌-3. 熵变区间记号错误 (analysis.tex:43)\n\n**论文写：** \"$\\Delta\\mathcal{H} \\in [-0.040, -0.047]$\"\n\n**问题：** 数学区间 $[a, b]$ 要求 $a \\leq b$。但 $-0.040 > -0.047$，因此 $[-0.040, -0.047]$ 是空集。应写为 **$[-0.047, -0.040]$**。\n\nTable 8 中四个值为 -0.040, -0.047, -0.045, -0.044，范围确为 [-0.047, -0.040]。\n\n---\n\n## 无法验证 ⚠️\n\n### ⚠️-1. Table 4 (tab:permutation) 置换检验详细数值\n- Observed Δ̃: 0.37, 0.97, 3.34, 9.85\n- 95% CI: [0.19, 0.62], [0.69, 1.49], [1.66, 6.64], [6.70, 16.29]\n- p_Bonf: 0.0032, <0.001, <0.001, <0.001\n\n**原因：** 提供的数据源文件中无完整的置换检验结果表。permutation_test_median_verification.txt 仅涉及 D029 中位数修复验证（随机条件 s=0.30 的 II 值），不含重要性 vs 随机的配对置换检验原始结果。服务器文件 permutation_test_results.json 未包含在提供的数据源中。\n\n> 论文内部引用的 CI 值在 results.tex:117 和 appendix_disc_analysis.tex:47 之间完全一致。\n\n### ⚠️-2. Table 5 (tab:cohens-d) 中的 Δ̃ 和 CI 列\n- DS: 0.32 [0.20, 0.47], 1.15 [0.66, 1.26], 3.97 [2.83, 5.29], 9.94 [8.39, 16.65]\n- QW: 0.05 [-0.01, 0.11], 0.21 [0.07, 0.40], 1.11 [0.61, 1.47], 2.62 [1.72, 3.65]\n\n**原因：** rebootstrap_b10000_results.json 仅指向服务器文件路径，未包含实际数值。\n\n### ⚠️-3. Table 1 Random 行 s=0.15/0.20/0.25 值\n- s=0.15: high=0.093, mid=0.097, low=0.103, Δ=0.01\n- s=0.20: high=0.292, mid=0.350, low=0.276, Δ=-0.02\n- s=0.25: high=0.818, mid=0.932, low=1.363, Δ=0.54\n\n**原因：** 提供的数据源中仅有 s=0.30 随机条件的逐相位数据（来自 permutation_test_median_verification.txt）。s=0.15–0.25 的随机条件数据不在提供的文件中。\n> 内部算术 (Δ = low - high, G = low/high) 已全部验证正确。\n\n### ⚠️-4. Table 6/7 (analysis.tex) 判别崩溃和熵变指标\n- Gini delta, CV delta (Table 6): 8 个 DeepSeek + 8 个 Qwen 值\n- Entropy delta (Table 7): 4 个 DeepSeek + 4 个 Qwen 值\n- Appendix random Gini deltas: DS -0.031 to -0.073, QW -0.019 to -0.045\n\n**原因：** 这些值来自 c4_entropy 实验，原始数据不在提供的数据源文件中。\n\n### ⚠️-5. Mean/median ratios (results.tex:112)\n- DeepSeek: 1.2× (s=0.15) to 1.6× (s=0.30)\n- Qwen: 1.1× to 1.4×\n\n**原因：** 仅 s=0.30 的 mean/median ratio 可从注释验证（22.94/14.59 = 1.57 ≈ 1.6）。其他稀疏度无数据。\n\n### ⚠️-6. Percentile 99.68 具体排名 (results.tex:115)\n见 ❌-1，无法确定真实 raw p 值（需要原始置换检验输出）。\n\n---\n\n## 内部一致性\n\n### 跨文件交叉检查\n\n1. **abstract ↔ results tables**: 所有从 abstract 引用的数字均可在 results 的 table 中找到精确对应。✅\n2. **introduction ↔ results**: introduction 中的 Δ (0.39→14.59)、d_z (0.44→0.80)、p<0.005 均与 results tables 一致。✅\n3. **discussion ↔ results**: G 范围 (69–274×)、crossover 数值 (0.032/0.818, 7.196/1.363) 与 Table 2 一致。✅\n4. **conclusion ↔ results**: G (69→274)、d_z (0.44→0.80)、7/8 non-significant、Qwen d_z≥0.55 全部一致。✅\n5. **appendix_results ↔ results**: Random control 数据 (3/4 FAIL for Qwen, p=0.012, d_z=-0.04) 与 abstract/results 一致。✅\n6. **appendix_disc_analysis ↔ results**: CI 值、样本量 (n=49/46)、B=10,000 全部一致。✅\n\n### Table 间交叉检查\n\n1. **Table 1 vs Table 2**: Table 1 的 Δ 列是 Table 2 中 Importance 行的 Δ 列子集，数值完全一致。✅\n2. **Table 1 vs Table 3**: Table 3 的 DeepSeek 行与 Table 1 Importance 行完全一致。✅\n3. **Table 2 G 列 vs 正文**: 正文引用 69×→274× 与 Table 2 G 列一致。✅\n4. **Table 4 vs Table 5**: 两表测量不同统计量（Table 4: 重要性 vs 随机配对中位差; Table 5: 重要性条件下高/低相位配对中位差），数值不同是正确的。✅\n\n### 派生计算验证\n\n| 计算 | 输入 | 预期 | 论文值 | 验证 |\n|------|------|------|--------|------|\n| 37× amplification | 14.59/0.39 | 37.41 | 37 | ✅ |\n| 5.3× reversal (s=0.25) | 7.196/1.363 | 5.28 | 5.3 | ✅ |\n| 3.9× reversal (s=0.15) | 0.398/0.103 | 3.86 | 3.9 | ✅ |\n| 5.4× reversal (s=0.20) | 1.496/0.276 | 5.42 | 5.4 | ✅ |\n| 3.6× reversal (s=0.30) | 14.639/4.041 | 3.62 | 3.6 | ✅ |\n| Δ growth 3.8× | 1.48/0.39 | 3.79 | 3.8 | ✅ |\n| Δ growth 4.8× | 7.16/1.48 | 4.84 | 4.8 | ✅ |\n| Δ growth 2.0× | 14.59/7.16 | 2.04 | 2.0 | ✅ |\n| Qwen ~1/5 | 2.94/14.59 | 0.201 | ~1/5 | ✅ |\n| mean/median 1.6× (s=0.30) | 22.94/14.59 | 1.572 | 1.6 | ✅ |\n| n: 50-1=49 DS | — | 49 | 49 | ✅ |\n| n: 50-4=46 QW | — | 46 | 46 | ✅ |\n\n---\n\n## 总结\n\n| 类别 | 数量 |\n|------|------|\n| 已验证通过 | ~95 个数字/声明 |\n| 不一致 | 3 个（1 个算术矛盾、1 个数据源冲突、1 个记号错误）|\n| 无法验证 | 6 类（均因原始数据未包含在提供的数据源文件中）|\n\n**严重程度排序：**\n1. **❌-2 (Cohen's d_z 数据源冲突)** — 高。需确认哪组值正确。若 info.txt 为最终版，Table 5 及所有 d_z 引用需全面更新。\n2. **❌-1 (百分位/p_Bonf 矛盾)** — 中。数字自相矛盾，但不影响显著性结论。\n3. **❌-3 (区间记号)** — 低。纯排版问题。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "534626d4-a1ef-4050-a7da-2016c30aaa13",
+  "isSidechain": false,
+  "requestId": "req_011Cb2YeUzdDyEXXM1UijADU",
+  "type": "assistant",
+  "uuid": "fb494a28-446c-4adf-88e5-3bbd237ccca2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y9R9dCrFtV9rUfGN9U5n4Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 18818,
+      "cache_read_input_tokens": 40763,
+      "output_tokens": 8142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18818,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 8142,
+          "cache_read_input_tokens": 40763,
+          "cache_creation_input_tokens": 18818,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18818
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T13:35:21.194Z_
+
+<details><summary>↩ Tool result · `toolu_012JnTdKzbX2rosFmAWcvAeg`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/number_audit_final.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb494a28-446c-4adf-88e5-3bbd237ccca2",
+  "isSidechain": false,
+  "promptId": "3590e4de-f610-49ab-a79c-b2ac1674a3f3",
+  "type": "user",
+  "uuid": "d39aabaa-50e9-4504-9712-a77a1dcc2741",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/report/number_audit_final.md",
+    "content": "# 数字一致性终审报告\n\n审计日期：2026-05-14\n审计范围：abstract.tex, introduction.tex, results.tex, analysis.tex, discussion.tex, conclusion.tex, appendix_results.tex, appendix_disc_analysis.tex\n\n---\n\n## 通过 ✅\n\n### Table 1 (tab:aggregate-ii) — DeepSeek 重要性驱逐 Δ 值\n| 稀疏度 | 论文值 | 数据源 (median_difference_results.txt) | 验证 |\n|--------|--------|----------------------------------------|------|\n| s=0.15 | 0.39 | bf16_importance_s015: 0.3925 → 0.39 | ✅ |\n| s=0.20 | 1.48 | bf16_importance_s020: 1.4818 → 1.48 | ✅ |\n| s=0.25 | 7.16 | bf16_importance_s025: 7.163595 → 7.16 | ✅ |\n| s=0.30 | 14.59 | bf16_importance_s030: 14.586064 → 14.59 | ✅ |\n\n### Table 1 — Random 驱逐 s=0.30 行\n| 相位 | 论文值 | 数据源 (permutation_test_median_verification.txt) | 验证 |\n|------|--------|--------------------------------------------------|------|\n| high | 2.503 | high=2.503 | ✅ |\n| mid  | 2.592 | mid=2.592 | ✅ |\n| low  | 4.041 | low=4.041 | ✅ |\n| Δ    | 1.54  | 4.041 - 2.503 = 1.538 → 1.54 | ✅ |\n| G    | 1.6   | 4.041 / 2.503 = 1.615 → 1.6 | ✅ |\n\n### Table 2 (tab:main-results) — 内部算术一致性\n所有 Δ = II_low - II_high 和 G = II_low / II_high 在显示精度内一致（G 由未四舍五入的中位数计算后取整）：\n- s=0.15 Imp: 0.398 - 0.006 = 0.392 ≈ 0.39 ✅; G 由未取整值计算得 69 ✅\n- s=0.20 Imp: 1.496 - 0.015 = 1.481 ≈ 1.48 ✅; G ≈ 103 ✅\n- s=0.25 Imp: 7.196 - 0.032 = 7.164 ≈ 7.16 ✅; G ≈ 222 ✅\n- s=0.30 Imp: 14.639 - 0.053 = 14.586 ≈ 14.59 ✅; G ≈ 274 ✅\n- s=0.15 Rand: 0.103 - 0.093 = 0.010 ≈ 0.01 ✅; G = 1.108 ≈ 1.1 ✅\n- s=0.20 Rand: 0.276 - 0.292 = -0.016 ≈ -0.02 ✅; G = 0.945 ≈ 0.9 ✅\n- s=0.25 Rand: 1.363 - 0.818 = 0.545 ≈ 0.54 ✅; G = 1.666 ≈ 1.7 ✅\n- s=0.30 Rand: 4.041 - 2.503 = 1.538 ≈ 1.54 ✅; G = 1.615 ≈ 1.6 ✅\n\n### Table 3 (tab:cross-model) — Qwen 重要性驱逐 Δ 值\n| 稀疏度 | 论文值 | 数据源 (median_difference_results.txt) | 验证 |\n|--------|--------|----------------------------------------|------|\n| s=0.15 | 0.04 | bf16_qw_imp_s015: 0.038565 → 0.04 | ✅ |\n| s=0.20 | 0.23 | bf16_qw_imp_s020: 0.234979 → 0.23 | ✅ |\n| s=0.25 | 1.27 | bf16_qw_imp_s025: 1.267732 → 1.27 | ✅ |\n| s=0.30 | 2.94 | bf16_qw_imp_s030: 2.943093 → 2.94 | ✅ |\n\n### Table 3 — DeepSeek 行与 Table 1 一致\ns=0.15: 0.39, s=0.20: 1.48, s=0.25: 7.16, s=0.30: 14.59 — 与 Table 1 重要性行完全一致 ✅\n\n### Table 5 (tab:cohens-d) — Cohen's d_z 值\n| 模型 | 稀疏度 | 论文 d_z | 数据源 (cohens_d_6point_paired_dz.txt) | cross_model_summary.json | 验证 |\n|------|--------|---------|----------------------------------------|--------------------------|------|\n| DS | s=0.15 | 0.44 | 0.442 → 0.44 | 0.44 | ✅ |\n| DS | s=0.20 | 0.52 | 0.520 → 0.52 | 0.52 | ✅ |\n| DS | s=0.25 | 0.68 | 0.683 → 0.68 | 0.68 | ✅ |\n| DS | s=0.30 | 0.80 | 0.803 → 0.80 | 0.80 | ✅ |\n| QW | s=0.15 | 0.28 | 0.281 → 0.28 | 0.28 | ✅ |\n| QW | s=0.20 | 0.55 | 0.549 → 0.55 | 0.55 | ✅ |\n| QW | s=0.25 | 0.89 | 0.889 → 0.89 | 0.89 | ✅ |\n| QW | s=0.30 | 1.02 | 1.022 → 1.02 | 1.02 | ✅ |\n\n### Cross-model 统计量\n- Spearman ρ = 1.0: cross_model_analysis_summary.txt/json 均为 1.0 ✅\n- Gradient permutation p = 0.043: cross_model_analysis_summary.txt/json 均为 0.043 ✅\n- Per-problem concordance p = 0.926: cross_model_analysis_summary.json 为 0.926 ✅\n- Per-problem mean ρ = -0.11: appendix_results.tex 注释 mean_rho=-0.107 → -0.11 ✅\n- Random fail 7/8: cross_model_analysis_summary.json random_fail: 7/8 ✅\n- Importance pass 8/8: cross_model_analysis_summary.json importance_pass: 8/8 ✅\n- Qwen random s=0.30 anomaly: p=0.012, d=-0.035 → d_z=-0.04 (四舍五入) ✅\n\n### 37× 放大因子 (results.tex:8)\n14.59 / 0.39 = 37.41 → 37× ✅\n\n### Crossover 反转倍数 (results.tex:66)\n- s=0.15: 0.398/0.103 = 3.86 → 3.9× ✅\n- s=0.20: 1.496/0.276 = 5.42 → 5.4× ✅\n- s=0.25: 7.196/1.363 = 5.28 → 5.3× ✅\n- s=0.30: 14.639/4.041 = 3.62 → 3.6× ✅\n\n### Crossover 绝对值 (abstract:9, results:66, discussion:5)\n- Importance high at s=0.25: 0.032 vs Random high: 0.818 ✅ (Table 2)\n- Importance low at s=0.25: 7.196 vs Random low: 1.363 ✅ (Table 2)\n- 三个文件中数字完全一致 ✅\n\n### Δ 增长率 (appendix_disc_analysis.tex:57)\n- 1.48/0.39 = 3.79 → 3.8× ✅\n- 7.16/1.48 = 4.84 → 4.8× ✅\n- 14.59/7.16 = 2.04 → 2.0× ✅\n\n### 样本量一致性\n- Table 1 caption: n=50（全部问题，中位数计算）✅\n- Table 4 caption: n=49（DeepSeek 配对检验，排除 1 个）✅\n- results.tex:81: n=46 Qwen, n=49 DeepSeek ✅\n- appendix_disc_analysis.tex:45: n=49 DeepSeek (1 excluded), n=46 Qwen (4 excluded) ✅\n- 50 - 1 = 49 ✅; 50 - 4 = 46 ✅\n\n### Bootstrap B 值一致性\n- results.tex:115: 10,000 permutations ✅\n- results.tex:149 (Table 5 caption): B=10,000 ✅\n- appendix_disc_analysis.tex:45: B=10,000 ✅\n- rebootstrap_b10000_results.json: B=10000 ✅\n\n### Table 4 (tab:permutation) CI 下界递增\n论文正文 (results.tex:117): \"CI lower bound ($0.19 \\to 0.69 \\to 1.66 \\to 6.70$)\"\nTable 4 值: [0.19, 0.62], [0.69, 1.49], [1.66, 6.64], [6.70, 16.29]\n下界序列：0.19, 0.69, 1.66, 6.70 — 与正文完全一致 ✅\nappendix_disc_analysis.tex:47 注释中复述的 CI 与 Table 4 完全一致 ✅\n\n### Qwen ~1/5 magnitude (results.tex:83)\n- s=0.30: 2.94/14.59 = 0.201 ≈ 1/5 ✅\n- 其他稀疏度下比值为 0.10–0.18，论文用 \"~1/5\" 作为近似表述，以最高稀疏度为准，可接受 ✅\n\n### 高稀疏度相位 II < 0.06 (appendix_disc_analysis.tex:11)\nTable 2 重要性高相位值：0.006, 0.015, 0.032, 0.053 — 均 < 0.06 ✅\n\n### s=0.35 补充实验 (appendix_disc_analysis.tex:11)\n论文写 0.105，注释写 II_high=0.1051 → 0.105 ✅\n\n### Mean/median ratio at s=0.30 (appendix_disc_analysis.tex:46)\n注释：mean_diff=22.94, median_diff=14.59 → 22.94/14.59 = 1.572 ≈ 1.6 ✅\n\n### Abstract 与 results/discussion/conclusion 跨文件一致性\n| 数字 | abstract | introduction | results | discussion | conclusion | 一致 |\n|------|----------|-------------|---------|------------|------------|------|\n| Δ: 0.39→14.59 | ✅ line 7 | ✅ line 13 | ✅ Table 1 | — | — | ✅ |\n| d_z: 0.44→0.80 | ✅ line 7 | ✅ line 13 | ✅ Table 5 | ✅ line 11 | ✅ line 4 | ✅ |\n| p<0.005 Bonf | ✅ line 7 | ✅ line 13 | ✅ Table 4 | — | — | ✅ |\n| 7/8 random n.s. | ✅ line 8 | ✅ line 15 | — | — | ✅ line 4 | ✅ |\n| Qwen d_z≥0.55 | ✅ line 10 | ✅ line 14 | ✅ sec 4.4 | ✅ line 11 | ✅ line 4 | ✅ |\n| ρ=1.0, p=0.043 | ✅ line 10 | — | ✅ line 83 | ✅ line 11 | — | ✅ |\n| G: 69→274 | — | — | ✅ Table 2 | ✅ line 5 | ✅ line 4 | ✅ |\n| Crossover 0.032/0.818, 7.196/1.363 | ✅ line 9 | — | ✅ Table 2 | ✅ line 5 | — | ✅ |\n| d_z=-0.04 random anomaly | ✅ line 8 | — | — | — | — | ✅ |\n\n---\n\n## 不一致 ❌\n\n### ❌-1. 百分位数与 Bonferroni p 值算术矛盾 (results.tex:115)\n\n**论文写：** \"At $s{=}0.15$, the observed statistic falls at the $99.68$th percentile of the null ($p_{\\text{Bonf}} = 0.0032$)\"\n\n**问题：** 99.68th percentile 意味着 10,000 次置换中约 32 次超过观测值，即 raw p = 32/10000 = 0.0032。Bonferroni 校正（4 次比较）应为 p_Bonf = 0.0032 × 4 = **0.0128**，非 0.0032。\n\n反之，若 p_Bonf = 0.0032 确为 Bonferroni 校正后的值，则 raw p = 0.0008（约 8/10000 次置换超过观测值），对应百分位应为 **99.92th**，非 99.68th。\n\n**两种修复可能：**\n1. 若 raw p = 0.0032：百分位 99.68th 正确，但 p_Bonf 应改为 0.0128（仍 < 0.05，结论不变）\n2. 若 raw p = 0.0008：p_Bonf = 0.0032 正确，但百分位应改为 99.92th\n\n> 注：不影响显著性结论（两种情况下 p_Bonf 均 < 0.05），但数字报告自相矛盾。\n\n### ❌-2. 数据源文件间 Cohen's d_z 值不一致\n\n**cohens_d_6point_paired_dz.txt**（论文使用此源）：\n- DS: 0.442 / 0.520 / 0.683 / 0.803 (s015–s030)\n- QW: 0.281 / 0.549 / 0.889 / 1.022\n\n**cohens_d_6point_paired_info.txt**（引用 regen_cohens_d_6point.py 再生脚本）：\n- DS: 0.607 / 0.725 / 0.953 / 1.126 (s015–s030)\n- QW: 0.371 / 0.722 / 1.233 / 1.439\n\n两组数值差异极大（如 DS s015: 0.442 vs 0.607）。论文与 cross_model_analysis_summary.json 使用的是 dz.txt 的值，**内部一致**。但若 info.txt 的\"regen\"版本是后续修正计算，则论文可能使用了过时数据。\n\n> 建议：确认哪组 d_z 为最终正确值。若 info.txt 为更新版本，论文中 Table 5 及所有引用 d_z 的位置均需更新。\n\n### ❌-3. 熵变区间记号错误 (analysis.tex:43)\n\n**论文写：** \"$\\Delta\\mathcal{H} \\in [-0.040, -0.047]$\"\n\n**问题：** 数学区间 $[a, b]$ 要求 $a \\leq b$。但 $-0.040 > -0.047$，因此 $[-0.040, -0.047]$ 是空集。应写为 **$[-0.047, -0.040]$**。\n\nTable 8 中四个值为 -0.040, -0.047, -0.045, -0.044，范围确为 [-0.047, -0.040]。\n\n---\n\n## 无法验证 ⚠️\n\n### ⚠️-1. Table 4 (tab:permutation) 置换检验详细数值\n- Observed Δ̃: 0.37, 0.97, 3.34, 9.85\n- 95% CI: [0.19, 0.62], [0.69, 1.49], [1.66, 6.64], [6.70, 16.29]\n- p_Bonf: 0.0032, <0.001, <0.001, <0.001\n\n**原因：** 提供的数据源文件中无完整的置换检验结果表。permutation_test_median_verification.txt 仅涉及 D029 中位数修复验证（随机条件 s=0.30 的 II 值），不含重要性 vs 随机的配对置换检验原始结果。服务器文件 permutation_test_results.json 未包含在提供的数据源中。\n\n> 论文内部引用的 CI 值在 results.tex:117 和 appendix_disc_analysis.tex:47 之间完全一致。\n\n### ⚠️-2. Table 5 (tab:cohens-d) 中的 Δ̃ 和 CI 列\n- DS: 0.32 [0.20, 0.47], 1.15 [0.66, 1.26], 3.97 [2.83, 5.29], 9.94 [8.39, 16.65]\n- QW: 0.05 [-0.01, 0.11], 0.21 [0.07, 0.40], 1.11 [0.61, 1.47], 2.62 [1.72, 3.65]\n\n**原因：** rebootstrap_b10000_results.json 仅指向服务器文件路径，未包含实际数值。\n\n### ⚠️-3. Table 1 Random 行 s=0.15/0.20/0.25 值\n- s=0.15: high=0.093, mid=0.097, low=0.103, Δ=0.01\n- s=0.20: high=0.292, mid=0.350, low=0.276, Δ=-0.02\n- s=0.25: high=0.818, mid=0.932, low=1.363, Δ=0.54\n\n**原因：** 提供的数据源中仅有 s=0.30 随机条件的逐相位数据（来自 permutation_test_median_verification.txt）。s=0.15–0.25 的随机条件数据不在提供的文件中。\n> 内部算术 (Δ = low - high, G = low/high) 已全部验证正确。\n\n### ⚠️-4. Table 6/7 (analysis.tex) 判别崩溃和熵变指标\n- Gini delta, CV delta (Table 6): 8 个 DeepSeek + 8 个 Qwen 值\n- Entropy delta (Table 7): 4 个 DeepSeek + 4 个 Qwen 值\n- Appendix random Gini deltas: DS -0.031 to -0.073, QW -0.019 to -0.045\n\n**原因：** 这些值来自 c4_entropy 实验，原始数据不在提供的数据源文件中。\n\n### ⚠️-5. Mean/median ratios (results.tex:112)\n- DeepSeek: 1.2× (s=0.15) to 1.6× (s=0.30)\n- Qwen: 1.1× to 1.4×\n\n**原因：** 仅 s=0.30 的 mean/median ratio 可从注释验证（22.94/14.59 = 1.57 ≈ 1.6）。其他稀疏度无数据。\n\n### ⚠️-6. Percentile 99.68 具体排名 (results.tex:115)\n见 ❌-1，无法确定真实 raw p 值（需要原始置换检验输出）。\n\n---\n\n## 内部一致性\n\n### 跨文件交叉检查\n\n1. **abstract ↔ results tables**: 所有从 abstract 引用的数字均可在 results 的 table 中找到精确对应。✅\n2. **introduction ↔ results**: introduction 中的 Δ (0.39→14.59)、d_z (0.44→0.80)、p<0.005 均与 results tables 一致。✅\n3. **discussion ↔ results**: G 范围 (69–274×)、crossover 数值 (0.032/0.818, 7.196/1.363) 与 Table 2 一致。✅\n4. **conclusion ↔ results**: G (69→274)、d_z (0.44→0.80)、7/8 non-significant、Qwen d_z≥0.55 全部一致。✅\n5. **appendix_results ↔ results**: Random control 数据 (3/4 FAIL for Qwen, p=0.012, d_z=-0.04) 与 abstract/results 一致。✅\n6. **appendix_disc_analysis ↔ results**: CI 值、样本量 (n=49/46)、B=10,000 全部一致。✅\n\n### Table 间交叉检查\n\n1. **Table 1 vs Table 2**: Table 1 的 Δ 列是 Table 2 中 Importance 行的 Δ 列子集，数值完全一致。✅\n2. **Table 1 vs Table 3**: Table 3 的 DeepSeek 行与 Table 1 Importance 行完全一致。✅\n3. **Table 2 G 列 vs 正文**: 正文引用 69×→274× 与 Table 2 G 列一致。✅\n4. **Table 4 vs Table 5**: 两表测量不同统计量（Table 4: 重要性 vs 随机配对中位差; Table 5: 重要性条件下高/低相位配对中位差），数值不同是正确的。✅\n\n### 派生计算验证\n\n| 计算 | 输入 | 预期 | 论文值 | 验证 |\n|------|------|------|--------|------|\n| 37× amplification | 14.59/0.39 | 37.41 | 37 | ✅ |\n| 5.3× reversal (s=0.25) | 7.196/1.363 | 5.28 | 5.3 | ✅ |\n| 3.9× reversal (s=0.15) | 0.398/0.103 | 3.86 | 3.9 | ✅ |\n| 5.4× reversal (s=0.20) | 1.496/0.276 | 5.42 | 5.4 | ✅ |\n| 3.6× reversal (s=0.30) | 14.639/4.041 | 3.62 | 3.6 | ✅ |\n| Δ growth 3.8× | 1.48/0.39 | 3.79 | 3.8 | ✅ |\n| Δ growth 4.8× | 7.16/1.48 | 4.84 | 4.8 | ✅ |\n| Δ growth 2.0× | 14.59/7.16 | 2.04 | 2.0 | ✅ |\n| Qwen ~1/5 | 2.94/14.59 | 0.201 | ~1/5 | ✅ |\n| mean/median 1.6× (s=0.30) | 22.94/14.59 | 1.572 | 1.6 | ✅ |\n| n: 50-1=49 DS | — | 49 | 49 | ✅ |\n| n: 50-4=46 QW | — | 46 | 46 | ✅ |\n\n---\n\n## 总结\n\n| 类别 | 数量 |\n|------|------|\n| 已验证通过 | ~95 个数字/声明 |\n| 不一致 | 3 个（1 个算术矛盾、1 个数据源冲突、1 个记号错误）|\n| 无法验证 | 6 类（均因原始数据未包含在提供的数据源文件中）|\n\n**严重程度排序：**\n1. **❌-2 (Cohen's d_z 数据源冲突)** — 高。需确认哪组值正确。若 info.txt 为最终版，Table 5 及所有 d_z 引用需全面更新。\n2. **❌-1 (百分位/p_Bonf 矛盾)** — 中。数字自相矛盾，但不影响显著性结论。\n3. **❌-3 (区间记号)** — 低。纯排版问题。\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "fb494a28-446c-4adf-88e5-3bbd237ccca2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d39aabaa-50e9-4504-9712-a77a1dcc2741",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit numerical consistency in research paper",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-14T13:35:31.703Z_
+
+审计完成。报告已写入 `artifacts/_project/report/number_audit_final.md`。
+
+**发现 3 个不一致：**
+
+1. **❌ Cohen's d_z 数据源冲突**（高优先级）：`cohens_d_6point_paired_dz.txt` 和 `cohens_d_6point_paired_info.txt` 给出的 d_z 值完全不同（如 DS s015: 0.442 vs 0.607）。论文使用前者，与 `cross_model_analysis_summary.json` 一致，但后者引用了 `regen` 脚本，可能是更新版本。需确认哪组为正。
+
+2. **❌ 百分位/p_Bonf 算术矛盾**（中优先级，results.tex:115）：99.68th percentile 对应 raw p=0.0032，Bonferroni 校正后应为 0.0128 而非 0.0032。或者若 p_Bonf=0.0032 正确（raw p=0.0008），百分位应为 99.92th。不影响显著性结论。
+
+3. **❌ 熵变区间记号反写**（低优先级，analysis.tex:43）：`[-0.040, -0.047]` 应为 `[-0.047, -0.040]`。
+
+其余约 95 个数字/声明全部通过验证，跨文件一致性良好。6 类数值因原始数据不在提供的文件中无法交叉验证（置换检验详情、bootstrap CI、判别崩溃指标等）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d39aabaa-50e9-4504-9712-a77a1dcc2741",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Yp8doHkcb2sPn9fVNY",
+  "type": "assistant",
+  "uuid": "16bb834a-565e-47bd-9b03-eb54a1775633",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UzR8ewHnJANqTHfqNNz5WL",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 8202,
+      "cache_read_input_tokens": 59581,
+      "output_tokens": 458,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 8202,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 458,
+          "cache_read_input_tokens": 59581,
+          "cache_creation_input_tokens": 8202,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 8202
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "16bb834a-565e-47bd-9b03-eb54a1775633",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Audit numerical consistency in research paper",
+  "sessionId": "f86c21dd-6168-447c-be3b-50f93c545b61"
+}
+```
+
+---

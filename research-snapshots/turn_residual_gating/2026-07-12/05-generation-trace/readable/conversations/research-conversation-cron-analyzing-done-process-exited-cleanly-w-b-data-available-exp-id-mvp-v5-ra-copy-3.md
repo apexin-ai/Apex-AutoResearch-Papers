@@ -1,0 +1,5308 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: mvp_v5_rando
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 92
+- **Recorded user turns:** 5
+- **Tool calls:** 22
+- **Original source:** `logs/chats/exported-trajectories/account-3/95ecd84b-f7b4-4da9-b390-c30657c9cce8.jsonl`
+- **Structured JSON:** [`1f782d6c1e7e7fe764b4.json`](../../sessions/1f/1f782d6c1e7e7fe764b4.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-14T02:58:19.871Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T02:58:19.871Z",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: mvp_v5_random_s015\n- project: phase-gated-compound-sparse\n- server: westd-22162\n- log_path: ~/runs/phase-gated-compound-sparse/mvp_v5_random_s015.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-14T02:58:19.876Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T02:58:19.876Z",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+## Round 1
+
+79 recorded events
+
+### User
+
+_source line 3 · 2026-05-14T02:58:19.962Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: mvp_v5_random_s015
+- project: phase-gated-compound-sparse
+- server: westd-22162
+- log_path: ~/runs/phase-gated-compound-sparse/mvp_v5_random_s015.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "6e9c76cc-b5b5-445d-9bf6-e5a97eb2ee57",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-14T02:58:19.961Z_
+
+```json
+{
+  "parentUuid": "6e9c76cc-b5b5-445d-9bf6-e5a97eb2ee57",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "dedab3af-8c2a-4a95-9296-de703303cad5",
+  "timestamp": "2026-05-14T02:58:19.961Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-14T02:58:19.961Z_
+
+```json
+{
+  "parentUuid": "dedab3af-8c2a-4a95-9296-de703303cad5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "32288cad-b5fc-444e-8776-ce17f1b3e451",
+  "timestamp": "2026-05-14T02:58:19.961Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-14T02:58:19.961Z_
+
+```json
+{
+  "parentUuid": "32288cad-b5fc-444e-8776-ce17f1b3e451",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "1c15c8b1-b959-4961-9668-0f6f400d7707",
+  "timestamp": "2026-05-14T02:58:19.961Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-14T02:58:23.878Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到实验完成的 CRON 回调，需要执行 session-start 初始化，然后处理实验完成的分析工作。
+
+让我先执行 session-start 初始化步骤，然后处理这个实验回调。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c15c8b1-b959-4961-9668-0f6f400d7707",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iEggptxYtnNybT1Eze",
+  "type": "assistant",
+  "uuid": "a15b9808-6e13-446a-bb11-00adb16806c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QcVSxShPnz5qqpqfeft4Hd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23001,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 384,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 384,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-14T02:58:24.884Z_
+
+收到 CRON 回调，实验 `mvp_v5_random_s015` 已退出，开始 session-start 初始化 + 实验分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a15b9808-6e13-446a-bb11-00adb16806c1",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iEggptxYtnNybT1Eze",
+  "type": "assistant",
+  "uuid": "5cb474db-f0f5-4b31-8218-67ff8fe09ff4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QcVSxShPnz5qqpqfeft4Hd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23001,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 384,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 384,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-14T02:58:28.225Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_015xTmTU6yY2gEKehUxcwXWc`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+  "max_results": 12
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5cb474db-f0f5-4b31-8218-67ff8fe09ff4",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iEggptxYtnNybT1Eze",
+  "type": "assistant",
+  "uuid": "1abf287e-0180-460f-bfca-fd305ef96725",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QcVSxShPnz5qqpqfeft4Hd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 23001,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 384,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23001,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 384,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 23001,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23001
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T02:58:28.233Z_
+
+<details><summary>↩ Tool result · `toolu_015xTmTU6yY2gEKehUxcwXWc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__load_project_config"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_worker_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1abf287e-0180-460f-bfca-fd305ef96725",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "c823fea7-01ef-4bd0-8a01-3ebd0e0ec281",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__list_workers"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__list_workers",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "1abf287e-0180-460f-bfca-fd305ef96725",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-14T02:58:32.014Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start the session-start initialization in parallel: read registry, reconcile crons, read report.md, and read ROADMAP.md.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c823fea7-01ef-4bd0-8a01-3ebd0e0ec281",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFHtQRbCrGRSR6GW8S",
+  "type": "assistant",
+  "uuid": "cdf34561-b231-4710-9b33-7c6029aeb17d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6xwfCQGqTuKEYTwueAXqL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 34842,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4283,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34842,
+          "cache_creation_input_tokens": 4283,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4283
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-14T02:58:32.922Z_
+
+开始 session-start 初始化，并行获取项目状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cdf34561-b231-4710-9b33-7c6029aeb17d",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFHtQRbCrGRSR6GW8S",
+  "type": "assistant",
+  "uuid": "25c440d7-3f3f-4e50-abe6-7fe0688d0229",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6xwfCQGqTuKEYTwueAXqL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 34842,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4283,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34842,
+          "cache_creation_input_tokens": 4283,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4283
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-14T02:58:33.939Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01AZVeFBugHVPfXhy8qoJjbW`</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25c440d7-3f3f-4e50-abe6-7fe0688d0229",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFHtQRbCrGRSR6GW8S",
+  "type": "assistant",
+  "uuid": "53d433c9-1631-4fb9-aa2f-4baad5c4f8ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6xwfCQGqTuKEYTwueAXqL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 34842,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4283,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34842,
+          "cache_creation_input_tokens": 4283,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4283
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-14T02:58:34.401Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01Qr8CtxNXwECvQFzmdnT55Q`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53d433c9-1631-4fb9-aa2f-4baad5c4f8ea",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFHtQRbCrGRSR6GW8S",
+  "type": "assistant",
+  "uuid": "4df63d3f-5f50-4ee5-a6c1-f29065aa28cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6xwfCQGqTuKEYTwueAXqL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 34842,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4283,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34842,
+          "cache_creation_input_tokens": 4283,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4283
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-14T02:58:34.034Z_
+
+<details><summary>↩ Tool result · `toolu_01AZVeFBugHVPfXhy8qoJjbW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"mvp_v5_random_s025\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:19:32.243Z\", \"updated_at\": \"2026-05-14T02:58:17.108Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10\\\"\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"pid\": \"52093\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_v5_random_s025.log\", \"submitted_at\": \"2026-05-14T02:19:32.155Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}, \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.25, cuda:3。与 mvp_v5_fixed_s025 (importance) 形成对照组。用修复后同一代码确保公平对比。\", \"reproduce\": {\"finished_at\": \"2026-05-14T02:58:16.618Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:58:19.325558+00:00\"}]}}, \"mvp_v5_random_s015\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:19:30.549Z\", \"updated_at\": \"2026-05-14T02:58:13.594Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10\\\"\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"pid\": \"51951\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_v5_random_s015.log\", \"submitted_at\": \"2026-05-14T02:19:30.478Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}, \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.15, cuda:2。与 mvp_v5_fixed_s015 (importance) 形成对照组。用修复后同一代码确保公平对比。\", \"reproduce\": {\"finished_at\": \"2026-05-14T02:58:13.456Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:58:14.836532+00:00\"}]}}, \"mvp_v5_fixed_s030\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:26:05.204Z\", \"updated_at\": \"2026-05-14T02:36:08.288Z\", \"spec\": {\"command\": \"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.30 --output_dir profiling_output_v5_s030 --max_problems 50\", \"server\": \"westd-22162\", \"data_path\": \"MATH-500 (embedded)\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": 46940, \"gpu\": \"cuda:1\", \"hypothesis\": \"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive)\", \"notes\": \"Killed at 35/50 by ops worker (kill-and-prep-v5-restart). Needs restart.\", \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s030.log\", \"checkpoint_path\": \"N/A - killed before completion\"}, \"hypothesis\": \"v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.30, cuda:1。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T02:09:18.077Z\", \"metrics\": {\"ii_high\": 1.18, \"ii_mid\": 168.53, \"ii_low\": 1926.23, \"ii_high_ci\": [0.86, 1.6], \"ii_mid_ci\": [36.91, 348.21], \"ii_low_ci\": [179.17, 4062.57], \"ii_high_median\": 0.6, \"ii_mid_median\": 7.47, \"ii_low_median\": 44.63, \"kv_ppl_high\": 1.4, \"kv_ppl_mid\": 15.11, \"kv_ppl_low\": 40.79, \"both_ppl_high\": 5.71, \"both_ppl_mid\": 137.61, \"both_ppl_low\": 963.2, \"problems\": 50, \"⚠️_WARNING\": \"pre-fix code, INVALIDATED. Results found on disk after kill but code lacked conda activation fix. Do NOT cite these numbers.\"}}, \"mvp_v5_fixed_s020\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:26:04.454Z\", \"updated_at\": \"2026-05-14T02:36:04.306Z\", \"spec\": {\"command\": \"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.20 --output_dir profiling_output_v5_s020 --max_problems 50\", \"server\": \"westd-22162\", \"data_path\": \"MATH-500 (embedded)\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": 46574, \"gpu\": \"cuda:0\", \"hypothesis\": \"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive)\", \"notes\": \"Killed at 35/50 by ops worker (kill-and-prep-v5-restart). Needs restart.\", \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s020.log\", \"checkpoint_path\": \"N/A - killed before completion\"}, \"hypothesis\": \"v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.20, cuda:0。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T02:09:16.728Z\", \"metrics\": {\"ii_high\": 0.5, \"ii_mid\": 3.52, \"ii_low\": 31.89, \"ii_high_ci\": [0.41, 0.62], \"ii_mid_ci\": [2.29, 5.35], \"ii_low_ci\": [18.74, 47.22], \"ii_high_median\": 0.33, \"ii_mid_median\": 1.55, \"ii_low_median\": 9.56, \"kv_ppl_high\": 1.24, \"kv_ppl_mid\": 3.65, \"kv_ppl_low\": 14.11, \"both_ppl_high\": 2.7, \"both_ppl_mid\": 8.13, \"both_ppl_low\": 42.64, \"problems\": 50, \"⚠️_WARNING\": \"pre-fix code, INVALIDATED. Results found on disk after kill but code lacked conda activation fix. Do NOT cite these numbers.\"}}, \"mvp_v5_fixed_s030_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:10:05.072Z\", \"updated_at\": \"2026-05-14T02:19:21.458Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_s030_r2 --sparsity_levels 0.30 --max_new_tokens 2048 --min_phase_length 10\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"pid\": \"unknown\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s030_r2.log\", \"submitted_at\": \"2026-05-14T02:10:05.010Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}, \"hypothesis\": \"v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive). 前次运行(s030)在35/50时被误杀。s=0.30是最关键的验证点。\"}, \"mvp_v5_fixed_s020_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:10:03.689Z\", \"updated_at\": \"2026-05-14T02:19:19.186Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_s020_r2 --sparsity_levels 0.20 --max_new_tokens 2048 --min_phase_length 10\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"pid\": \"unknown\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s020_r2.log\", \"submitted_at\": \"2026-05-14T02:10:03.634Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}, \"hypothesis\": \"v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive). 前次运行(s020)在35/50时被误杀。\"}, \"mvp_v5_fixed_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:31:10.384Z\", \"updated_at\": \"2026-05-14T02:15:34.177Z\", \"spec\": {\"hypothesis\": \"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.25的II应为负(sub-additive)\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"command\": \"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.25 --output_dir profiling_output_v5_s025 --max_problems 50\", \"data_path\": \"MATH-500 (embedded)\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": 48403, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s025/\", \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s025/\"}, \"metrics\": {\"ii_high\": 0.851, \"ii_mid\": 9.306, \"ii_low\": 96.715, \"ii_high_ci\": [0.703, 0.999], \"ii_mid_ci\": [6.092, 13.303], \"ii_low_ci\": [59.642, 143.188], \"ii_high_median\": 0.584, \"ii_mid_median\": 4.522, \"ii_low_median\": 30.903, \"ii_high_winsorized\": 0.802, \"ii_mid_winsorized\": 8.156, \"ii_low_winsorized\": 94.931, \"kv_ppl_high\": 1.3108, \"kv_ppl_mid\": 6.1778, \"kv_ppl_low\": 23.8919, \"both_ppl_high\": 3.4623, \"both_ppl_mid\": 16.4148, \"both_ppl_low\": 104.1749, \"problems\": 50, \"segments\": 1356}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T02:15:34.177Z\"}, \"mvp_v5_fixed_s015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:31:09.055Z\", \"updated_at\": \"2026-05-14T02:15:33.221Z\", \"spec\": {\"hypothesis\": \"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.15的II应为负(sub-additive)\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"command\": \"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.15 --output_dir profiling_output_v5_s015 --max_problems 50\", \"data_path\": \"MATH-500 (embedded)\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": 48262, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s015/\", \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s015/\"}, \"metrics\": {\"ii_high\": 0.306, \"ii_mid\": 1.274, \"ii_low\": 8.786, \"ii_high_ci\": [0.256, 0.359], \"ii_mid_ci\": [0.895, 1.749], \"ii_low_ci\": [5.294, 12.684], \"ii_high_median\": 0.205, \"ii_mid_median\": 0.696, \"ii_low_median\": 2.627, \"ii_high_winsorized\": 0.289, \"ii_mid_winsorized\": 1.139, \"ii_low_winsorized\": 8.408, \"kv_ppl_high\": 1.2147, \"kv_ppl_mid\": 2.1276, \"kv_ppl_low\": 6.7451, \"both_ppl_high\": 2.2835, \"both_ppl_mid\": 3.9408, \"both_ppl_low\": 16.9987, \"problems\": 50, \"segments\": 1356}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T02:15:33.221Z\"}, \"mvp_v4_float32_s030\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:06:48.670Z\", \"updated_at\": \"2026-05-14T01:21:47.526Z\", \"hypothesis\": \"Float32 修复验证：importance masking sparsity=0.3, cuda:3。验证 torch.where 修复后 NaN 是否消除 + II 真实值。最关键验证点——s=0.3 是唯一显示符号反转的 level。\", \"spec\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"seed\": 42}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T01:21:37.252Z\"}, \"mvp_ii_profiling_v4d\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:56:47.723Z\", \"updated_at\": \"2026-05-14T01:21:23.011Z\", \"hypothesis\": \"M1v4 importance-based masking (cuda:3, 40% sparsity): 高 sparsity 参考点，验证 30% 以上 sub-additive 趋势是否延续。\", \"parent\": null, \"spec\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=2 python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_s040 --sparsity_levels 0.40\", \"pid\": \"38760\"}, \"account\": \"root\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T01:20:54.693Z\", \"notes\": \"5/50 后静默崩溃，疑似长序列 + output_attentions OOM。importance 指标也有 NaN 中毒 + 位置偏差问题。\"}, \"mvp_v4_legacy_s035\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:12:54.211Z\", \"updated_at\": \"2026-05-14T01:21:21.671Z\", \"hypothesis\": \"importance(hardcoded) sparsity=0.35, crossover characterization: 验证 0.3 以上 sub-additive 趋势是否延续。与 s03(0.3, II=-224.5) 对比确认高 sparsity 方向。\", \"spec\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=1 python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_s035 --sparsity_levels 0.35\", \"pid\": 38996}, \"server\": \"westd-22162\", \"account\": \"root\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T01:21:04.001Z\", \"notes\": \"Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\"}, \"mvp_v4_legacy_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:12:53.157Z\", \"updated_at\": \"2026-05-14T01:21:20.407Z\", \"hypothesis\": \"importance(hardcoded) sparsity=0.25, crossover characterization: 填充 0.2→0.3 之间的 II 符号反转临界点。与 s02(0.2, II=+21.3) 和 s03(0.3, II=-224.5) 对比定位 crossover。\", \"spec\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=0 python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_s025 --sparsity_levels 0.25\", \"pid\": 38120}, \"server\": \"westd-22162\", \"account\": \"root\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T01:21:03.079Z\", \"notes\": \"Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\"}, \"mvp_v4_random_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:56.521Z\", \"updated_at\": \"2026-05-14T01:02:21.376Z\", \"hypothesis\": \"v4 retry: random masking baseline, sparsity 0.1,0.15,0.2,0.25,0.3, cuda:3\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4_random_r2 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:3\", \"pid\": \"32187\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v4_random_r2/profiling_results.json\", \"log_path\": \"/tmp/mvp_v4_random_r2.log\", \"completed_at\": \"2026-05-14T01:02:21.376Z\"}, \"mvp_v4_legacy_s01\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:53:19.548Z\", \"updated_at\": \"2026-05-14T00:12:13.850Z\", \"hypothesis\": \"v4 legacy: importance-based masking (hardcoded), sparsity=0.1, cuda:0. 从 corrected-submit worker 启动，代码无 --masking_method CLI 但 hardcoded importance。max_new_tokens=2048, min_phase_length=10。\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4a --sparsity_levels 0.1 --masking_method importance(hardcoded)\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": \"27689\"}, \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v4a.log\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v4a/profiling_results.json\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T00:09:32.772Z\", \"notes\": \"50/50 completed. Verdict: FAIL. II[high_sparsity,0.1]=-0.11 CI=[-0.81,+0.41], II[mid_sparsity,0.1]=-15.97 CI=[-47.99,+1.29], II[low_sparsity,0.1]=0.00. Sparsity too low — II values near zero or negative, no meaningful signal separation. Output: profiling_output_v4a/profiling_results.json\", \"metrics\": {\"II_high_0.1\": {\"mean\": -0.1097, \"ci_low\": -0.8066, \"ci_high\": 0.41}, \"II_mid_0.1\": {\"mean\": -15.966, \"ci_low\": -47.991, \"ci_high\": 1.288}, \"II_low_0.1\": {\"mean\": 0, \"ci_low\": 0, \"ci_high\": 0}, \"ppl_high_dense\": 1.1462, \"ppl_high_both\": 22.1302, \"ppl_mid_dense\": 1.1226, \"ppl_mid_both\": 47.5856, \"verdict\": \"FAIL\"}}, \"mvp_v4_legacy_s03\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:53:20.777Z\", \"updated_at\": \"2026-05-14T00:10:08.277Z\", \"hypothesis\": \"v4 legacy: importance-based masking (hardcoded), sparsity=0.3, cuda:2. 30% 是唯一有初步符号反转信号的 level。最关键。\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4c --sparsity_levels 0.3 --masking_method importance(hardcoded)\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:2\", \"pid\": \"28452\"}, \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v4c.log\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v4c/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T00:09:32.363Z\", \"metrics\": {\"ii_high_0.3\": {\"mean\": -224.5, \"ci_crosses_zero\": true}, \"verdict\": \"FAIL_ci_crosses_zero\"}, \"notes\": \"50/50 completed. Importance masking @0.3: II[high]=-224.5 但 95% CI 跨零(不显著)。这是唯一出现负 II 的 level，但统计不显著。需与 random baseline 对比，以及等 s01(0.1) 结果确认趋势。\"}, \"mvp_v4_legacy_s02\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:53:20.036Z\", \"updated_at\": \"2026-05-14T00:10:07.730Z\", \"hypothesis\": \"v4 legacy: importance-based masking (hardcoded), sparsity=0.2, cuda:1. 从 corrected-submit worker 启动。\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4b --sparsity_levels 0.2 --masking_method importance(hardcoded)\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:1\", \"pid\": \"28083\"}, \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v4b.log\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v4b/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T00:09:31.414Z\", \"notes\": \"50/50 completed. Importance masking @0.2: II 全正(super-additive)。high/mid phase CI non-overlapping with low。KV eviction 是 perplexity 退化主因(kv ppl 远高于 attn ppl)。注意：II 为正 ≠ 支持 pivot hypothesis（pivot 预期 importance → sub-additive/负 II），需与 random baseline 对比才能判断。\", \"metrics\": {\"ii_high_0.2\": {\"mean\": 21.2856, \"ci\": [0.0292, 63.163]}, \"ii_mid_0.2\": {\"mean\": 21.8743, \"ci\": [4.9863, 41.785]}, \"ii_low_0.2\": {\"mean\": 0, \"ci\": [0, 0]}, \"ppl_high\": {\"dense\": 1.15, \"attn\": 1.32, \"kv\": 104.42, \"both\": 63.41}, \"ppl_mid\": {\"dense\": 1.12, \"attn\": 1.29, \"kv\": 324.16, \"both\": 170.47}, \"ppl_low\": {\"dense\": 1.11, \"attn\": 1.3, \"kv\": 1.11, \"both\": 1.3}, \"problems_completed\": 50, \"phase_tokens\": {\"high\": 25862, \"mid\": 27996, \"low\": 32349}, \"mvp_verdict\": \"PASS\"}}, \"mvp_v4c_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:56.138Z\", \"updated_at\": \"2026-05-13T23:52:54.261Z\", \"hypothesis\": \"v4 retry: importance-based masking, sparsity 0.15,0.25, cuda:2\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4c_r2 --sparsity_levels 0.15,0.25 --masking_method importance\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:2\", \"pid\": \"31839\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:42:12.191Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:42:12.833Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:42:14.346396+00:00\"}]}, \"notes\": \"失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [4/50](algebra/841.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\"}, \"mvp_v4b_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:55.162Z\", \"updated_at\": \"2026-05-13T23:52:53.632Z\", \"hypothesis\": \"v4 retry: importance-based masking, sparsity 0.3,0.4,0.5, cuda:1\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4b_r2 --sparsity_levels 0.3,0.4,0.5 --masking_method importance\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:1\", \"pid\": \"31481\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:42:07.204Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:42:07.966Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:42:09.409561+00:00\"}]}, \"notes\": \"失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\"}, \"mvp_v4a_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:54.240Z\", \"updated_at\": \"2026-05-13T23:52:52.705Z\", \"hypothesis\": \"v4 retry: importance-based masking, sparsity 0.1,0.2, cuda:0\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4a_r2 --sparsity_levels 0.1,0.2 --masking_method importance\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": \"31119\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:42:04.420Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:42:04.603Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:42:05.417765+00:00\"}]}, \"notes\": \"失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\"}, \"mvp_ii_profiling_v4-random\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:18:41.495Z\", \"updated_at\": \"2026-05-13T23:21:46.080Z\", \"hypothesis\": \"M1v4 random masking baseline (cuda:3, sparsity 0.1,0.15,0.2,0.25,0.3): 同 pipeline 同 50 题，masking_method=random。与 importance runs 直接对比验证 masking 策略对 II 的影响。\", \"parent\": \"mvp_ii_profiling_v3\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-13T23:19:36.995Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_random --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random\\\"\", \"finished_at\": \"2026-05-13T23:20:05.361Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_random --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:3\"], \"pid\": \"27401\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4-random.log\", \"submitted_at\": \"2026-05-13T23:19:40.234Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 26.5, \"gpu_hours\": 0.01}, \"pid\": \"27401\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4-random.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:20:06.693Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:20:08.229965+00:00\"}]}, \"notes\": \"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments: --masking_method random | error_type: infrastructure | 同 mvp_ii_profiling_v4\"}, \"mvp_ii_profiling_v4c\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:54:54.251Z\", \"updated_at\": \"2026-05-13T23:21:44.920Z\", \"hypothesis\": \"M1v4 importance-based masking (cuda:2, sparsity 0.15,0.25): 填充 sparsity 梯度，定位 sign flip 临界点。\", \"parent\": \"mvp_ii_profiling_v3\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-13T23:19:32.847Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4c --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.15,0.25 --masking_method importance\\\"\", \"finished_at\": \"2026-05-13T23:20:00.630Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4c --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.15,0.25 --masking_method importance\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:2\"], \"pid\": \"27251\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4c.log\", \"submitted_at\": \"2026-05-13T23:19:36.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 25.8, \"gpu_hours\": 0.01}, \"pid\": \"27251\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4c.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:20:01.892Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:20:03.414314+00:00\"}]}, \"notes\": \"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\"}, \"mvp_ii_profiling_v4b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:54:53.810Z\", \"updated_at\": \"2026-05-13T23:21:43.971Z\", \"hypothesis\": \"M1v4 importance-based masking (cuda:1, sparsity 0.3,0.4,0.5): 30% 是唯一有初步符号反转信号的 level。高 sparsity regime。\", \"parent\": \"mvp_ii_profiling_v3\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T23:19:28.695Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4b --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.3,0.4,0.5 --masking_method importance\\\"\", \"finished_at\": \"2026-05-13T23:19:55.006Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4b --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.3,0.4,0.5 --masking_method importance\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:1\"], \"pid\": \"27099\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4b.log\", \"submitted_at\": \"2026-05-13T23:19:31.930Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 24.2, \"gpu_hours\": 0.01}, \"pid\": \"27099\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4b.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:19:56.100Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:19:57.514401+00:00\"}]}, \"notes\": \"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\"}, \"mvp_ii_profiling_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:50:59.554Z\", \"updated_at\": \"2026-05-13T23:21:42.200Z\", \"hypothesis\": \"M1v4 importance-based masking (cuda:0, sparsity 0.1,0.2): head=Frobenius norm, KV=cumulative attention. 低 sparsity regime。\", \"parent\": \"mvp_ii_profiling_v3\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T23:19:23.840Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4a --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.2 --masking_method importance\\\"\", \"finished_at\": \"2026-05-13T23:19:52.039Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4a --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.2 --masking_method importance\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"26947\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4.log\", \"submitted_at\": \"2026-05-13T23:19:27.810Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 24.9, \"gpu_hours\": 0.01}, \"pid\": \"26947\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:19:52.672Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:19:53.495907+00:00\"}]}, \"notes\": \"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 建议: 给 run_profiling.py 添加 --masking_method 参数后重跑\"}, \"mvp_ii_profiling_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:28:01.393Z\", \"updated_at\": \"2026-05-13T22:42:34.790Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v3 --max_new_tokens 2048 --min_phase_length 10\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"16717\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v3.log\", \"submitted_at\": \"2026-05-13T21:47:43.523Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3290.7, \"gpu_hours\": 0.91}, \"hypothesis\": \"M1v3诊断: 降低sparsity至10%/20%(v2的30%/50%导致Inf退化) + quantile segmentation替代KDE(v2 90%样本fallback) + NaN guard。测试compound sparsity交互强度是否在sparsity regime间有显著差异。\", \"parent\": \"mvp_ii_profiling_v2\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T21:47:42.052Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v3 --max_new_tokens 2048 --min_phase_length 10\\\"\", \"finished_at\": \"2026-05-13T22:38:48.794Z\", \"training_hours\": 0.85}, \"pid\": \"16717\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v3.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T22:38:49.527620+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"mvp_verdict\": \"FAIL\", \"ci_nonoverlap\": false, \"sign_reversal\": false, \"phase_distribution_balanced\": true, \"ii_high_0.1\": {\"mean\": 0.2317, \"ci\": [0.1338, 0.3418]}, \"ii_low_0.1\": {\"mean\": 0.1711, \"ci\": [0.0782, 0.2768]}, \"ii_mid_0.1\": {\"mean\": 0.1607, \"ci\": [0.0886, 0.2489]}, \"ii_high_0.2\": {\"mean\": 2.1574, \"ci\": [1.0605, 3.5491]}, \"ii_low_0.2\": {\"mean\": 1.1294, \"ci\": [0.4368, 1.9593]}, \"ii_mid_0.2\": {\"mean\": 0.3049, \"ci\": [-1.0635, 1.3044]}, \"total_tokens\": 86207, \"no_nan_inf\": true, \"segments\": {\"high\": 511, \"low\": 454, \"mid\": 391}}, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v3\", \"completed_at\": \"2026-05-13T22:42:34.177Z\"}, \"mvp_ii_profiling_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:41:50.875Z\", \"updated_at\": \"2026-05-13T22:42:24.179Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v2 --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"11977\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v2.log\", \"submitted_at\": \"2026-05-13T20:42:13.499Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7090.7, \"gpu_hours\": 1.97}, \"hypothesis\": \"P0修复后重跑: Phase-dependent interaction direction reversal — compound sparsity exhibits qualitatively different interaction patterns across reasoning phases. KV eviction mask已修复为1D共享(原P0 bug导致指数级token丢失). 同时启用P1诊断dump验证phase segmentation.\", \"parent\": \"mvp_interaction_index_profiling\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T20:42:12.028Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v2 --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\"\", \"finished_at\": \"2026-05-13T21:14:37.912Z\", \"training_hours\": 0.54}, \"pid\": \"11977\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T21:14:38.613199+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"mvp_verdict\": \"PASS_technical_but_negative_hypothesis\", \"ci_nonoverlap\": true, \"sign_reversal\": false, \"ii_reasoning_0.3\": 17.79, \"ii_reasoning_0.3_ci\": [4.09, 38.76], \"ii_transition_0.3\": 3.06, \"ii_transition_0.3_ci\": [0.01, 5.6], \"ii_reasoning_0.5\": 468.9, \"ii_transition_0.5\": 850.07, \"ii_execution_0.3\": \"Inf\", \"phase_distribution\": {\"execution\": \"1.2%_25seg\", \"reasoning\": \"8.1%_96seg\", \"transition\": \"90.7%_192seg\"}, \"total_tokens\": 86207, \"all_ii_superadditive\": true, \"amplitude_ratio_reas_vs_trans_0.3\": 5.81, \"gmm_best_k\": 5, \"gmm_means\": [0.438, 0.597, 0.719, 0.816, 0.892], \"gmm_weights\": [0.062, 0.14, 0.208, 0.282, 0.309], \"sparsity_global\": {\"mean\": 0.7653, \"std\": 0.1364, \"median\": 0.8004}, \"quantile_boundaries\": [0.7337, 0.8482]}, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v2\", \"completed_at\": \"2026-05-13T22:40:24.197Z\"}, \"mvp_interaction_index_profiling\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:19:05.209Z\", \"updated_at\": \"2026-05-13T20:41:42.206Z\", \"hypothesis\": \"Phase-dependent interaction direction reversal: compound sparsity (attention head pruning + KV cache eviction) exhibits qualitatively different interaction patterns (super- vs sub-additive) across reasoning phases (execution/reasoning/transition), as measured by Interaction Index on DeepSeek-R1-Distill-Qwen-7B MATH-500 traces.\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T19:22:39.684Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\"\", \"finished_at\": \"2026-05-13T19:55:17.924Z\", \"training_hours\": 0.54}, \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": \"7436\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_interaction_index_profiling.log\", \"model_config\": {\"hidden_size\": 3584, \"num_hidden_layers\": 28, \"num_attention_heads\": 28, \"num_key_value_heads\": 4}, \"sparsity_levels\": [0.3, 0.5], \"n_bootstrap\": 1000, \"max_new_tokens\": 2048, \"sampling\": \"stratified 5x10=50, seed=42\"}, \"pid\": \"7436\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_interaction_index_profiling.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T19:55:18.584043+00:00\"}]}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T20:41:42.206Z\"}}, \"count\": 26, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0758}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53d433c9-1631-4fb9-aa2f-4baad5c4f8ea",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "2e7a6cac-92e4-48aa-8fd4-3aa9c389cec8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"mvp_v5_random_s025\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:19:32.243Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:58:17.108Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"52093\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_v5_random_s025.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T02:19:32.155Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"v5 修复后代码 random masking baseline, sparsity=0.25, cuda:3。与 mvp_v5_fixed_s025 (importance) 形成对照组。用修复后同一代码确保公平对比。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T02:58:16.618Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T02:58:19.325558+00:00\\\"}]}}, \\\"mvp_v5_random_s015\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:19:30.549Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:58:13.594Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"51951\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_v5_random_s015.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T02:19:30.478Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"v5 修复后代码 random masking baseline, sparsity=0.15, cuda:2。与 mvp_v5_fixed_s015 (importance) 形成对照组。用修复后同一代码确保公平对比。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T02:58:13.456Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T02:58:14.836532+00:00\\\"}]}}, \\\"mvp_v5_fixed_s030\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:26:05.204Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:36:08.288Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.30 --output_dir profiling_output_v5_s030 --max_problems 50\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"MATH-500 (embedded)\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": 46940, \\\"gpu\\\": \\\"cuda:1\\\", \\\"hypothesis\\\": \\\"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive)\\\", \\\"notes\\\": \\\"Killed at 35/50 by ops worker (kill-and-prep-v5-restart). Needs restart.\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v5_s030.log\\\", \\\"checkpoint_path\\\": \\\"N/A - killed before completion\\\"}, \\\"hypothesis\\\": \\\"v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.30, cuda:1。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T02:09:18.077Z\\\", \\\"metrics\\\": {\\\"ii_high\\\": 1.18, \\\"ii_mid\\\": 168.53, \\\"ii_low\\\": 1926.23, \\\"ii_high_ci\\\": [0.86, 1.6], \\\"ii_mid_ci\\\": [36.91, 348.21], \\\"ii_low_ci\\\": [179.17, 4062.57], \\\"ii_high_median\\\": 0.6, \\\"ii_mid_median\\\": 7.47, \\\"ii_low_median\\\": 44.63, \\\"kv_ppl_high\\\": 1.4, \\\"kv_ppl_mid\\\": 15.11, \\\"kv_ppl_low\\\": 40.79, \\\"both_ppl_high\\\": 5.71, \\\"both_ppl_mid\\\": 137.61, \\\"both_ppl_low\\\": 963.2, \\\"problems\\\": 50, \\\"⚠️_WARNING\\\": \\\"pre-fix code, INVALIDATED. Results found on disk after kill but code lacked conda activation fix. Do NOT cite these numbers.\\\"}}, \\\"mvp_v5_fixed_s020\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:26:04.454Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:36:04.306Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.20 --output_dir profiling_output_v5_s020 --max_problems 50\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"MATH-500 (embedded)\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": 46574, \\\"gpu\\\": \\\"cuda:0\\\", \\\"hypothesis\\\": \\\"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive)\\\", \\\"notes\\\": \\\"Killed at 35/50 by ops worker (kill-and-prep-v5-restart). Needs restart.\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v5_s020.log\\\", \\\"checkpoint_path\\\": \\\"N/A - killed before completion\\\"}, \\\"hypothesis\\\": \\\"v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.20, cuda:0。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T02:09:16.728Z\\\", \\\"metrics\\\": {\\\"ii_high\\\": 0.5, \\\"ii_mid\\\": 3.52, \\\"ii_low\\\": 31.89, \\\"ii_high_ci\\\": [0.41, 0.62], \\\"ii_mid_ci\\\": [2.29, 5.35], \\\"ii_low_ci\\\": [18.74, 47.22], \\\"ii_high_median\\\": 0.33, \\\"ii_mid_median\\\": 1.55, \\\"ii_low_median\\\": 9.56, \\\"kv_ppl_high\\\": 1.24, \\\"kv_ppl_mid\\\": 3.65, \\\"kv_ppl_low\\\": 14.11, \\\"both_ppl_high\\\": 2.7, \\\"both_ppl_mid\\\": 8.13, \\\"both_ppl_low\\\": 42.64, \\\"problems\\\": 50, \\\"⚠️_WARNING\\\": \\\"pre-fix code, INVALIDATED. Results found on disk after kill but code lacked conda activation fix. Do NOT cite these numbers.\\\"}}, \\\"mvp_v5_fixed_s030_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:10:05.072Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:19:21.458Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_s030_r2 --sparsity_levels 0.30 --max_new_tokens 2048 --min_phase_length 10\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s030_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T02:10:05.010Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive). 前次运行(s030)在35/50时被误杀。s=0.30是最关键的验证点。\\\"}, \\\"mvp_v5_fixed_s020_r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T02:10:03.689Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:19:19.186Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_s020_r2 --sparsity_levels 0.20 --max_new_tokens 2048 --min_phase_length 10\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s020_r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T02:10:03.634Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive). 前次运行(s020)在35/50时被误杀。\\\"}, \\\"mvp_v5_fixed_s025\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:31:10.384Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:15:34.177Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.25的II应为负(sub-additive)\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"command\\\": \\\"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.25 --output_dir profiling_output_v5_s025 --max_problems 50\\\", \\\"data_path\\\": \\\"MATH-500 (embedded)\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": 48403, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v5_s025/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v5_s025/\\\"}, \\\"metrics\\\": {\\\"ii_high\\\": 0.851, \\\"ii_mid\\\": 9.306, \\\"ii_low\\\": 96.715, \\\"ii_high_ci\\\": [0.703, 0.999], \\\"ii_mid_ci\\\": [6.092, 13.303], \\\"ii_low_ci\\\": [59.642, 143.188], \\\"ii_high_median\\\": 0.584, \\\"ii_mid_median\\\": 4.522, \\\"ii_low_median\\\": 30.903, \\\"ii_high_winsorized\\\": 0.802, \\\"ii_mid_winsorized\\\": 8.156, \\\"ii_low_winsorized\\\": 94.931, \\\"kv_ppl_high\\\": 1.3108, \\\"kv_ppl_mid\\\": 6.1778, \\\"kv_ppl_low\\\": 23.8919, \\\"both_ppl_high\\\": 3.4623, \\\"both_ppl_mid\\\": 16.4148, \\\"both_ppl_low\\\": 104.1749, \\\"problems\\\": 50, \\\"segments\\\": 1356}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T02:15:34.177Z\\\"}, \\\"mvp_v5_fixed_s015\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:31:09.055Z\\\", \\\"updated_at\\\": \\\"2026-05-14T02:15:33.221Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.15的II应为负(sub-additive)\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.15 --output_dir profiling_output_v5_s015 --max_problems 50\\\", \\\"data_path\\\": \\\"MATH-500 (embedded)\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": 48262, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v5_s015/\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v5_s015/\\\"}, \\\"metrics\\\": {\\\"ii_high\\\": 0.306, \\\"ii_mid\\\": 1.274, \\\"ii_low\\\": 8.786, \\\"ii_high_ci\\\": [0.256, 0.359], \\\"ii_mid_ci\\\": [0.895, 1.749], \\\"ii_low_ci\\\": [5.294, 12.684], \\\"ii_high_median\\\": 0.205, \\\"ii_mid_median\\\": 0.696, \\\"ii_low_median\\\": 2.627, \\\"ii_high_winsorized\\\": 0.289, \\\"ii_mid_winsorized\\\": 1.139, \\\"ii_low_winsorized\\\": 8.408, \\\"kv_ppl_high\\\": 1.2147, \\\"kv_ppl_mid\\\": 2.1276, \\\"kv_ppl_low\\\": 6.7451, \\\"both_ppl_high\\\": 2.2835, \\\"both_ppl_mid\\\": 3.9408, \\\"both_ppl_low\\\": 16.9987, \\\"problems\\\": 50, \\\"segments\\\": 1356}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T02:15:33.221Z\\\"}, \\\"mvp_v4_float32_s030\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T01:06:48.670Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:21:47.526Z\\\", \\\"hypothesis\\\": \\\"Float32 修复验证：importance masking sparsity=0.3, cuda:3。验证 torch.where 修复后 NaN 是否消除 + II 真实值。最关键验证点——s=0.3 是唯一显示符号反转的 level。\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-14T01:21:37.252Z\\\"}, \\\"mvp_ii_profiling_v4d\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:56:47.723Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:21:23.011Z\\\", \\\"hypothesis\\\": \\\"M1v4 importance-based masking (cuda:3, 40% sparsity): 高 sparsity 参考点，验证 30% 以上 sub-additive 趋势是否延续。\\\", \\\"parent\\\": null, \\\"spec\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_s040 --sparsity_levels 0.40\\\", \\\"pid\\\": \\\"38760\\\"}, \\\"account\\\": \\\"root\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-14T01:20:54.693Z\\\", \\\"notes\\\": \\\"5/50 后静默崩溃，疑似长序列 + output_attentions OOM。importance 指标也有 NaN 中毒 + 位置偏差问题。\\\"}, \\\"mvp_v4_legacy_s035\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:12:54.211Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:21:21.671Z\\\", \\\"hypothesis\\\": \\\"importance(hardcoded) sparsity=0.35, crossover characterization: 验证 0.3 以上 sub-additive 趋势是否延续。与 s03(0.3, II=-224.5) 对比确认高 sparsity 方向。\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_s035 --sparsity_levels 0.35\\\", \\\"pid\\\": 38996}, \\\"server\\\": \\\"westd-22162\\\", \\\"account\\\": \\\"root\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-14T01:21:04.001Z\\\", \\\"notes\\\": \\\"Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\\\"}, \\\"mvp_v4_legacy_s025\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T00:12:53.157Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:21:20.407Z\\\", \\\"hypothesis\\\": \\\"importance(hardcoded) sparsity=0.25, crossover characterization: 填充 0.2→0.3 之间的 II 符号反转临界点。与 s02(0.2, II=+21.3) 和 s03(0.3, II=-224.5) 对比定位 crossover。\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"seed\\\": 42, \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_s025 --sparsity_levels 0.25\\\", \\\"pid\\\": 38120}, \\\"server\\\": \\\"westd-22162\\\", \\\"account\\\": \\\"root\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-14T01:21:03.079Z\\\", \\\"notes\\\": \\\"Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\\\"}, \\\"mvp_v4_random_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:22:56.521Z\\\", \\\"updated_at\\\": \\\"2026-05-14T01:02:21.376Z\\\", \\\"hypothesis\\\": \\\"v4 retry: random masking baseline, sparsity 0.1,0.15,0.2,0.25,0.3, cuda:3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4_random_r2 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"32187\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v4_random_r2/profiling_results.json\\\", \\\"log_path\\\": \\\"/tmp/mvp_v4_random_r2.log\\\", \\\"completed_at\\\": \\\"2026-05-14T01:02:21.376Z\\\"}, \\\"mvp_v4_legacy_s01\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:53:19.548Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:12:13.850Z\\\", \\\"hypothesis\\\": \\\"v4 legacy: importance-based masking (hardcoded), sparsity=0.1, cuda:0. 从 corrected-submit worker 启动，代码无 --masking_method CLI 但 hardcoded importance。max_new_tokens=2048, min_phase_length=10。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4a --sparsity_levels 0.1 --masking_method importance(hardcoded)\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"27689\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v4a.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v4a/profiling_results.json\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-14T00:09:32.772Z\\\", \\\"notes\\\": \\\"50/50 completed. Verdict: FAIL. II[high_sparsity,0.1]=-0.11 CI=[-0.81,+0.41], II[mid_sparsity,0.1]=-15.97 CI=[-47.99,+1.29], II[low_sparsity,0.1]=0.00. Sparsity too low — II values near zero or negative, no meaningful signal separation. Output: profiling_output_v4a/profiling_results.json\\\", \\\"metrics\\\": {\\\"II_high_0.1\\\": {\\\"mean\\\": -0.1097, \\\"ci_low\\\": -0.8066, \\\"ci_high\\\": 0.41}, \\\"II_mid_0.1\\\": {\\\"mean\\\": -15.966, \\\"ci_low\\\": -47.991, \\\"ci_high\\\": 1.288}, \\\"II_low_0.1\\\": {\\\"mean\\\": 0, \\\"ci_low\\\": 0, \\\"ci_high\\\": 0}, \\\"ppl_high_dense\\\": 1.1462, \\\"ppl_high_both\\\": 22.1302, \\\"ppl_mid_dense\\\": 1.1226, \\\"ppl_mid_both\\\": 47.5856, \\\"verdict\\\": \\\"FAIL\\\"}}, \\\"mvp_v4_legacy_s03\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:53:20.777Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:10:08.277Z\\\", \\\"hypothesis\\\": \\\"v4 legacy: importance-based masking (hardcoded), sparsity=0.3, cuda:2. 30% 是唯一有初步符号反转信号的 level。最关键。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4c --sparsity_levels 0.3 --masking_method importance(hardcoded)\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"28452\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v4c.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v4c/\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T00:09:32.363Z\\\", \\\"metrics\\\": {\\\"ii_high_0.3\\\": {\\\"mean\\\": -224.5, \\\"ci_crosses_zero\\\": true}, \\\"verdict\\\": \\\"FAIL_ci_crosses_zero\\\"}, \\\"notes\\\": \\\"50/50 completed. Importance masking @0.3: II[high]=-224.5 但 95% CI 跨零(不显著)。这是唯一出现负 II 的 level，但统计不显著。需与 random baseline 对比，以及等 s01(0.1) 结果确认趋势。\\\"}, \\\"mvp_v4_legacy_s02\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:53:20.036Z\\\", \\\"updated_at\\\": \\\"2026-05-14T00:10:07.730Z\\\", \\\"hypothesis\\\": \\\"v4 legacy: importance-based masking (hardcoded), sparsity=0.2, cuda:1. 从 corrected-submit worker 启动。\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4b --sparsity_levels 0.2 --masking_method importance(hardcoded)\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"28083\\\"}, \\\"log_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v4b.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v4b/\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T00:09:31.414Z\\\", \\\"notes\\\": \\\"50/50 completed. Importance masking @0.2: II 全正(super-additive)。high/mid phase CI non-overlapping with low。KV eviction 是 perplexity 退化主因(kv ppl 远高于 attn ppl)。注意：II 为正 ≠ 支持 pivot hypothesis（pivot 预期 importance → sub-additive/负 II），需与 random baseline 对比才能判断。\\\", \\\"metrics\\\": {\\\"ii_high_0.2\\\": {\\\"mean\\\": 21.2856, \\\"ci\\\": [0.0292, 63.163]}, \\\"ii_mid_0.2\\\": {\\\"mean\\\": 21.8743, \\\"ci\\\": [4.9863, 41.785]}, \\\"ii_low_0.2\\\": {\\\"mean\\\": 0, \\\"ci\\\": [0, 0]}, \\\"ppl_high\\\": {\\\"dense\\\": 1.15, \\\"attn\\\": 1.32, \\\"kv\\\": 104.42, \\\"both\\\": 63.41}, \\\"ppl_mid\\\": {\\\"dense\\\": 1.12, \\\"attn\\\": 1.29, \\\"kv\\\": 324.16, \\\"both\\\": 170.47}, \\\"ppl_low\\\": {\\\"dense\\\": 1.11, \\\"attn\\\": 1.3, \\\"kv\\\": 1.11, \\\"both\\\": 1.3}, \\\"problems_completed\\\": 50, \\\"phase_tokens\\\": {\\\"high\\\": 25862, \\\"mid\\\": 27996, \\\"low\\\": 32349}, \\\"mvp_verdict\\\": \\\"PASS\\\"}}, \\\"mvp_v4c_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:22:56.138Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:52:54.261Z\\\", \\\"hypothesis\\\": \\\"v4 retry: importance-based masking, sparsity 0.15,0.25, cuda:2\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4c_r2 --sparsity_levels 0.15,0.25 --masking_method importance\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"31839\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:42:12.191Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T23:42:12.833Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:42:14.346396+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [4/50](algebra/841.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\\\"}, \\\"mvp_v4b_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:22:55.162Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:52:53.632Z\\\", \\\"hypothesis\\\": \\\"v4 retry: importance-based masking, sparsity 0.3,0.4,0.5, cuda:1\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4b_r2 --sparsity_levels 0.3,0.4,0.5 --masking_method importance\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"31481\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:42:07.204Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T23:42:07.966Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:42:09.409561+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\\\"}, \\\"mvp_v4a_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:22:54.240Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:52:52.705Z\\\", \\\"hypothesis\\\": \\\"v4 retry: importance-based masking, sparsity 0.1,0.2, cuda:0\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4a_r2 --sparsity_levels 0.1,0.2 --masking_method importance\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"31119\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-13T23:42:04.420Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T23:42:04.603Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:42:05.417765+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\\\"}, \\\"mvp_ii_profiling_v4-random\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T23:18:41.495Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:21:46.080Z\\\", \\\"hypothesis\\\": \\\"M1v4 random masking baseline (cuda:3, sparsity 0.1,0.15,0.2,0.25,0.3): 同 pipeline 同 50 题，masking_method=random。与 importance runs 直接对比验证 masking 策略对 II 的影响。\\\", \\\"parent\\\": \\\"mvp_ii_profiling_v3\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-13T23:19:36.995Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_random --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-13T23:20:05.361Z\\\", \\\"training_hours\\\": 0.01}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_random --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"27401\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4-random.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T23:19:40.234Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 26.5, \\\"gpu_hours\\\": 0.01}, \\\"pid\\\": \\\"27401\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4-random.log\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T23:20:06.693Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:20:08.229965+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments: --masking_method random | error_type: infrastructure | 同 mvp_ii_profiling_v4\\\"}, \\\"mvp_ii_profiling_v4c\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:54:54.251Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:21:44.920Z\\\", \\\"hypothesis\\\": \\\"M1v4 importance-based masking (cuda:2, sparsity 0.15,0.25): 填充 sparsity 梯度，定位 sign flip 临界点。\\\", \\\"parent\\\": \\\"mvp_ii_profiling_v3\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-13T23:19:32.847Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4c --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.15,0.25 --masking_method importance\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-13T23:20:00.630Z\\\", \\\"training_hours\\\": 0.01}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4c --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.15,0.25 --masking_method importance\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"27251\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4c.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T23:19:36.055Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 25.8, \\\"gpu_hours\\\": 0.01}, \\\"pid\\\": \\\"27251\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4c.log\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T23:20:01.892Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:20:03.414314+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\\\"}, \\\"mvp_ii_profiling_v4b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:54:53.810Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:21:43.971Z\\\", \\\"hypothesis\\\": \\\"M1v4 importance-based masking (cuda:1, sparsity 0.3,0.4,0.5): 30% 是唯一有初步符号反转信号的 level。高 sparsity regime。\\\", \\\"parent\\\": \\\"mvp_ii_profiling_v3\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-13T23:19:28.695Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4b --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.3,0.4,0.5 --masking_method importance\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-13T23:19:55.006Z\\\", \\\"training_hours\\\": 0.01}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4b --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.3,0.4,0.5 --masking_method importance\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"27099\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4b.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T23:19:31.930Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 24.2, \\\"gpu_hours\\\": 0.01}, \\\"pid\\\": \\\"27099\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4b.log\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T23:19:56.100Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:19:57.514401+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\\\"}, \\\"mvp_ii_profiling_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T22:50:59.554Z\\\", \\\"updated_at\\\": \\\"2026-05-13T23:21:42.200Z\\\", \\\"hypothesis\\\": \\\"M1v4 importance-based masking (cuda:0, sparsity 0.1,0.2): head=Frobenius norm, KV=cumulative attention. 低 sparsity regime。\\\", \\\"parent\\\": \\\"mvp_ii_profiling_v3\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T23:19:23.840Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4a --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.2 --masking_method importance\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-13T23:19:52.039Z\\\", \\\"training_hours\\\": 0.01}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4a --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.2 --masking_method importance\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"26947\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T23:19:27.810Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 24.9, \\\"gpu_hours\\\": 0.01}, \\\"pid\\\": \\\"26947\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4.log\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=2 (shell misuse / syntax)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T23:19:52.672Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T23:19:53.495907+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 建议: 给 run_profiling.py 添加 --masking_method 参数后重跑\\\"}, \\\"mvp_ii_profiling_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T21:28:01.393Z\\\", \\\"updated_at\\\": \\\"2026-05-13T22:42:34.790Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v3 --max_new_tokens 2048 --min_phase_length 10\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"16717\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T21:47:43.523Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 3290.7, \\\"gpu_hours\\\": 0.91}, \\\"hypothesis\\\": \\\"M1v3诊断: 降低sparsity至10%/20%(v2的30%/50%导致Inf退化) + quantile segmentation替代KDE(v2 90%样本fallback) + NaN guard。测试compound sparsity交互强度是否在sparsity regime间有显著差异。\\\", \\\"parent\\\": \\\"mvp_ii_profiling_v2\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T21:47:42.052Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v3 --max_new_tokens 2048 --min_phase_length 10\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-13T22:38:48.794Z\\\", \\\"training_hours\\\": 0.85}, \\\"pid\\\": \\\"16717\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v3.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T22:38:49.527620+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"mvp_verdict\\\": \\\"FAIL\\\", \\\"ci_nonoverlap\\\": false, \\\"sign_reversal\\\": false, \\\"phase_distribution_balanced\\\": true, \\\"ii_high_0.1\\\": {\\\"mean\\\": 0.2317, \\\"ci\\\": [0.1338, 0.3418]}, \\\"ii_low_0.1\\\": {\\\"mean\\\": 0.1711, \\\"ci\\\": [0.0782, 0.2768]}, \\\"ii_mid_0.1\\\": {\\\"mean\\\": 0.1607, \\\"ci\\\": [0.0886, 0.2489]}, \\\"ii_high_0.2\\\": {\\\"mean\\\": 2.1574, \\\"ci\\\": [1.0605, 3.5491]}, \\\"ii_low_0.2\\\": {\\\"mean\\\": 1.1294, \\\"ci\\\": [0.4368, 1.9593]}, \\\"ii_mid_0.2\\\": {\\\"mean\\\": 0.3049, \\\"ci\\\": [-1.0635, 1.3044]}, \\\"total_tokens\\\": 86207, \\\"no_nan_inf\\\": true, \\\"segments\\\": {\\\"high\\\": 511, \\\"low\\\": 454, \\\"mid\\\": 391}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v3\\\", \\\"completed_at\\\": \\\"2026-05-13T22:42:34.177Z\\\"}, \\\"mvp_ii_profiling_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T20:41:50.875Z\\\", \\\"updated_at\\\": \\\"2026-05-13T22:42:24.179Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v2 --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\\\\\"\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"11977\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-13T20:42:13.499Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 7090.7, \\\"gpu_hours\\\": 1.97}, \\\"hypothesis\\\": \\\"P0修复后重跑: Phase-dependent interaction direction reversal — compound sparsity exhibits qualitatively different interaction patterns across reasoning phases. KV eviction mask已修复为1D共享(原P0 bug导致指数级token丢失). 同时启用P1诊断dump验证phase segmentation.\\\", \\\"parent\\\": \\\"mvp_interaction_index_profiling\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T20:42:12.028Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v2 --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-13T21:14:37.912Z\\\", \\\"training_hours\\\": 0.54}, \\\"pid\\\": \\\"11977\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v2.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T21:14:38.613199+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"mvp_verdict\\\": \\\"PASS_technical_but_negative_hypothesis\\\", \\\"ci_nonoverlap\\\": true, \\\"sign_reversal\\\": false, \\\"ii_reasoning_0.3\\\": 17.79, \\\"ii_reasoning_0.3_ci\\\": [4.09, 38.76], \\\"ii_transition_0.3\\\": 3.06, \\\"ii_transition_0.3_ci\\\": [0.01, 5.6], \\\"ii_reasoning_0.5\\\": 468.9, \\\"ii_transition_0.5\\\": 850.07, \\\"ii_execution_0.3\\\": \\\"Inf\\\", \\\"phase_distribution\\\": {\\\"execution\\\": \\\"1.2%_25seg\\\", \\\"reasoning\\\": \\\"8.1%_96seg\\\", \\\"transition\\\": \\\"90.7%_192seg\\\"}, \\\"total_tokens\\\": 86207, \\\"all_ii_superadditive\\\": true, \\\"amplitude_ratio_reas_vs_trans_0.3\\\": 5.81, \\\"gmm_best_k\\\": 5, \\\"gmm_means\\\": [0.438, 0.597, 0.719, 0.816, 0.892], \\\"gmm_weights\\\": [0.062, 0.14, 0.208, 0.282, 0.309], \\\"sparsity_global\\\": {\\\"mean\\\": 0.7653, \\\"std\\\": 0.1364, \\\"median\\\": 0.8004}, \\\"quantile_boundaries\\\": [0.7337, 0.8482]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/pacs/profiling_output_v2\\\", \\\"completed_at\\\": \\\"2026-05-13T22:40:24.197Z\\\"}, \\\"mvp_interaction_index_profiling\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-13T19:19:05.209Z\\\", \\\"updated_at\\\": \\\"2026-05-13T20:41:42.206Z\\\", \\\"hypothesis\\\": \\\"Phase-dependent interaction direction reversal: compound sparsity (attention head pruning + KV cache eviction) exhibits qualitatively different interaction patterns (super- vs sub-additive) across reasoning phases (execution/reasoning/transition), as measured by Interaction Index on DeepSeek-R1-Distill-Qwen-7B MATH-500 traces.\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-22162\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-13T19:22:39.684Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-13T19:55:17.924Z\\\", \\\"training_hours\\\": 0.54}, \\\"spec\\\": {\\\"command\\\": \\\"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\", \\\"server\\\": \\\"westd-22162\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"7436\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_interaction_index_profiling.log\\\", \\\"model_config\\\": {\\\"hidden_size\\\": 3584, \\\"num_hidden_layers\\\": 28, \\\"num_attention_heads\\\": 28, \\\"num_key_value_heads\\\": 4}, \\\"sparsity_levels\\\": [0.3, 0.5], \\\"n_bootstrap\\\": 1000, \\\"max_new_tokens\\\": 2048, \\\"sampling\\\": \\\"stratified 5x10=50, seed=42\\\"}, \\\"pid\\\": \\\"7436\\\", \\\"log_path\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_interaction_index_profiling.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-13T19:55:18.584043+00:00\\\"}]}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-13T20:41:42.206Z\\\"}}, \\\"count\\\": 26, \\\"total\\\": 26, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0758}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"mvp_v5_random_s025\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:19:32.243Z\", \"updated_at\": \"2026-05-14T02:58:17.108Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s025 --sparsity_levels 0.25 --masking_method random --max_new_tokens 2048 --min_phase_length 10\\\"\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"pid\": \"52093\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_v5_random_s025.log\", \"submitted_at\": \"2026-05-14T02:19:32.155Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}, \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.25, cuda:3。与 mvp_v5_fixed_s025 (importance) 形成对照组。用修复后同一代码确保公平对比。\", \"reproduce\": {\"finished_at\": \"2026-05-14T02:58:16.618Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:58:19.325558+00:00\"}]}}, \"mvp_v5_random_s015\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:19:30.549Z\", \"updated_at\": \"2026-05-14T02:58:13.594Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10\\\"\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"pid\": \"51951\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_v5_random_s015.log\", \"submitted_at\": \"2026-05-14T02:19:30.478Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}, \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.15, cuda:2。与 mvp_v5_fixed_s015 (importance) 形成对照组。用修复后同一代码确保公平对比。\", \"reproduce\": {\"finished_at\": \"2026-05-14T02:58:13.456Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T02:58:14.836532+00:00\"}]}}, \"mvp_v5_fixed_s030\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:26:05.204Z\", \"updated_at\": \"2026-05-14T02:36:08.288Z\", \"spec\": {\"command\": \"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.30 --output_dir profiling_output_v5_s030 --max_problems 50\", \"server\": \"westd-22162\", \"data_path\": \"MATH-500 (embedded)\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": 46940, \"gpu\": \"cuda:1\", \"hypothesis\": \"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive)\", \"notes\": \"Killed at 35/50 by ops worker (kill-and-prep-v5-restart). Needs restart.\", \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s030.log\", \"checkpoint_path\": \"N/A - killed before completion\"}, \"hypothesis\": \"v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.30, cuda:1。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T02:09:18.077Z\", \"metrics\": {\"ii_high\": 1.18, \"ii_mid\": 168.53, \"ii_low\": 1926.23, \"ii_high_ci\": [0.86, 1.6], \"ii_mid_ci\": [36.91, 348.21], \"ii_low_ci\": [179.17, 4062.57], \"ii_high_median\": 0.6, \"ii_mid_median\": 7.47, \"ii_low_median\": 44.63, \"kv_ppl_high\": 1.4, \"kv_ppl_mid\": 15.11, \"kv_ppl_low\": 40.79, \"both_ppl_high\": 5.71, \"both_ppl_mid\": 137.61, \"both_ppl_low\": 963.2, \"problems\": 50, \"⚠️_WARNING\": \"pre-fix code, INVALIDATED. Results found on disk after kill but code lacked conda activation fix. Do NOT cite these numbers.\"}}, \"mvp_v5_fixed_s020\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:26:04.454Z\", \"updated_at\": \"2026-05-14T02:36:04.306Z\", \"spec\": {\"command\": \"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.20 --output_dir profiling_output_v5_s020 --max_problems 50\", \"server\": \"westd-22162\", \"data_path\": \"MATH-500 (embedded)\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": 46574, \"gpu\": \"cuda:0\", \"hypothesis\": \"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive)\", \"notes\": \"Killed at 35/50 by ops worker (kill-and-prep-v5-restart). Needs restart.\", \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s020.log\", \"checkpoint_path\": \"N/A - killed before completion\"}, \"hypothesis\": \"v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.20, cuda:0。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T02:09:16.728Z\", \"metrics\": {\"ii_high\": 0.5, \"ii_mid\": 3.52, \"ii_low\": 31.89, \"ii_high_ci\": [0.41, 0.62], \"ii_mid_ci\": [2.29, 5.35], \"ii_low_ci\": [18.74, 47.22], \"ii_high_median\": 0.33, \"ii_mid_median\": 1.55, \"ii_low_median\": 9.56, \"kv_ppl_high\": 1.24, \"kv_ppl_mid\": 3.65, \"kv_ppl_low\": 14.11, \"both_ppl_high\": 2.7, \"both_ppl_mid\": 8.13, \"both_ppl_low\": 42.64, \"problems\": 50, \"⚠️_WARNING\": \"pre-fix code, INVALIDATED. Results found on disk after kill but code lacked conda activation fix. Do NOT cite these numbers.\"}}, \"mvp_v5_fixed_s030_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:10:05.072Z\", \"updated_at\": \"2026-05-14T02:19:21.458Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_s030_r2 --sparsity_levels 0.30 --max_new_tokens 2048 --min_phase_length 10\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"pid\": \"unknown\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s030_r2.log\", \"submitted_at\": \"2026-05-14T02:10:05.010Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}, \"hypothesis\": \"v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive). 前次运行(s030)在35/50时被误杀。s=0.30是最关键的验证点。\"}, \"mvp_v5_fixed_s020_r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T02:10:03.689Z\", \"updated_at\": \"2026-05-14T02:19:19.186Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_s020_r2 --sparsity_levels 0.20 --max_new_tokens 2048 --min_phase_length 10\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"pid\": \"unknown\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s020_r2.log\", \"submitted_at\": \"2026-05-14T02:10:03.634Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}, \"hypothesis\": \"v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive). 前次运行(s020)在35/50时被误杀。\"}, \"mvp_v5_fixed_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:31:10.384Z\", \"updated_at\": \"2026-05-14T02:15:34.177Z\", \"spec\": {\"hypothesis\": \"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.25的II应为负(sub-additive)\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"command\": \"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.25 --output_dir profiling_output_v5_s025 --max_problems 50\", \"data_path\": \"MATH-500 (embedded)\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": 48403, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s025/\", \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s025/\"}, \"metrics\": {\"ii_high\": 0.851, \"ii_mid\": 9.306, \"ii_low\": 96.715, \"ii_high_ci\": [0.703, 0.999], \"ii_mid_ci\": [6.092, 13.303], \"ii_low_ci\": [59.642, 143.188], \"ii_high_median\": 0.584, \"ii_mid_median\": 4.522, \"ii_low_median\": 30.903, \"ii_high_winsorized\": 0.802, \"ii_mid_winsorized\": 8.156, \"ii_low_winsorized\": 94.931, \"kv_ppl_high\": 1.3108, \"kv_ppl_mid\": 6.1778, \"kv_ppl_low\": 23.8919, \"both_ppl_high\": 3.4623, \"both_ppl_mid\": 16.4148, \"both_ppl_low\": 104.1749, \"problems\": 50, \"segments\": 1356}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T02:15:34.177Z\"}, \"mvp_v5_fixed_s015\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:31:09.055Z\", \"updated_at\": \"2026-05-14T02:15:33.221Z\", \"spec\": {\"hypothesis\": \"v5修复验证: NaN skip + position normalization后, importance masking sparsity=0.15的II应为负(sub-additive)\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"command\": \"python run_profiling.py --model /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B --sparsity 0.15 --output_dir profiling_output_v5_s015 --max_problems 50\", \"data_path\": \"MATH-500 (embedded)\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": 48262, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s015/\", \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v5_s015/\"}, \"metrics\": {\"ii_high\": 0.306, \"ii_mid\": 1.274, \"ii_low\": 8.786, \"ii_high_ci\": [0.256, 0.359], \"ii_mid_ci\": [0.895, 1.749], \"ii_low_ci\": [5.294, 12.684], \"ii_high_median\": 0.205, \"ii_mid_median\": 0.696, \"ii_low_median\": 2.627, \"ii_high_winsorized\": 0.289, \"ii_mid_winsorized\": 1.139, \"ii_low_winsorized\": 8.408, \"kv_ppl_high\": 1.2147, \"kv_ppl_mid\": 2.1276, \"kv_ppl_low\": 6.7451, \"both_ppl_high\": 2.2835, \"both_ppl_mid\": 3.9408, \"both_ppl_low\": 16.9987, \"problems\": 50, \"segments\": 1356}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T02:15:33.221Z\"}, \"mvp_v4_float32_s030\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T01:06:48.670Z\", \"updated_at\": \"2026-05-14T01:21:47.526Z\", \"hypothesis\": \"Float32 修复验证：importance masking sparsity=0.3, cuda:3。验证 torch.where 修复后 NaN 是否消除 + II 真实值。最关键验证点——s=0.3 是唯一显示符号反转的 level。\", \"spec\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"seed\": 42}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T01:21:37.252Z\"}, \"mvp_ii_profiling_v4d\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:56:47.723Z\", \"updated_at\": \"2026-05-14T01:21:23.011Z\", \"hypothesis\": \"M1v4 importance-based masking (cuda:3, 40% sparsity): 高 sparsity 参考点，验证 30% 以上 sub-additive 趋势是否延续。\", \"parent\": null, \"spec\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=2 python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_s040 --sparsity_levels 0.40\", \"pid\": \"38760\"}, \"account\": \"root\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T01:20:54.693Z\", \"notes\": \"5/50 后静默崩溃，疑似长序列 + output_attentions OOM。importance 指标也有 NaN 中毒 + 位置偏差问题。\"}, \"mvp_v4_legacy_s035\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:12:54.211Z\", \"updated_at\": \"2026-05-14T01:21:21.671Z\", \"hypothesis\": \"importance(hardcoded) sparsity=0.35, crossover characterization: 验证 0.3 以上 sub-additive 趋势是否延续。与 s03(0.3, II=-224.5) 对比确认高 sparsity 方向。\", \"spec\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=1 python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_s035 --sparsity_levels 0.35\", \"pid\": 38996}, \"server\": \"westd-22162\", \"account\": \"root\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T01:21:04.001Z\", \"notes\": \"Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\"}, \"mvp_v4_legacy_s025\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T00:12:53.157Z\", \"updated_at\": \"2026-05-14T01:21:20.407Z\", \"hypothesis\": \"importance(hardcoded) sparsity=0.25, crossover characterization: 填充 0.2→0.3 之间的 II 符号反转临界点。与 s02(0.2, II=+21.3) 和 s03(0.3, II=-224.5) 对比定位 crossover。\", \"spec\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"seed\": 42, \"command\": \"CUDA_VISIBLE_DEVICES=0 python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_s025 --sparsity_levels 0.25\", \"pid\": 38120}, \"server\": \"westd-22162\", \"account\": \"root\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T01:21:03.079Z\", \"notes\": \"Invalidated: importance 指标有 Layer 27 NaN 中毒 + causal attention 位置偏差，II 结果无统计意义。需用修复后代码重跑。\"}, \"mvp_v4_random_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:56.521Z\", \"updated_at\": \"2026-05-14T01:02:21.376Z\", \"hypothesis\": \"v4 retry: random masking baseline, sparsity 0.1,0.15,0.2,0.25,0.3, cuda:3\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4_random_r2 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:3\", \"pid\": \"32187\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v4_random_r2/profiling_results.json\", \"log_path\": \"/tmp/mvp_v4_random_r2.log\", \"completed_at\": \"2026-05-14T01:02:21.376Z\"}, \"mvp_v4_legacy_s01\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:53:19.548Z\", \"updated_at\": \"2026-05-14T00:12:13.850Z\", \"hypothesis\": \"v4 legacy: importance-based masking (hardcoded), sparsity=0.1, cuda:0. 从 corrected-submit worker 启动，代码无 --masking_method CLI 但 hardcoded importance。max_new_tokens=2048, min_phase_length=10。\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4a --sparsity_levels 0.1 --masking_method importance(hardcoded)\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": \"27689\"}, \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v4a.log\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v4a/profiling_results.json\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-14T00:09:32.772Z\", \"notes\": \"50/50 completed. Verdict: FAIL. II[high_sparsity,0.1]=-0.11 CI=[-0.81,+0.41], II[mid_sparsity,0.1]=-15.97 CI=[-47.99,+1.29], II[low_sparsity,0.1]=0.00. Sparsity too low — II values near zero or negative, no meaningful signal separation. Output: profiling_output_v4a/profiling_results.json\", \"metrics\": {\"II_high_0.1\": {\"mean\": -0.1097, \"ci_low\": -0.8066, \"ci_high\": 0.41}, \"II_mid_0.1\": {\"mean\": -15.966, \"ci_low\": -47.991, \"ci_high\": 1.288}, \"II_low_0.1\": {\"mean\": 0, \"ci_low\": 0, \"ci_high\": 0}, \"ppl_high_dense\": 1.1462, \"ppl_high_both\": 22.1302, \"ppl_mid_dense\": 1.1226, \"ppl_mid_both\": 47.5856, \"verdict\": \"FAIL\"}}, \"mvp_v4_legacy_s03\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:53:20.777Z\", \"updated_at\": \"2026-05-14T00:10:08.277Z\", \"hypothesis\": \"v4 legacy: importance-based masking (hardcoded), sparsity=0.3, cuda:2. 30% 是唯一有初步符号反转信号的 level。最关键。\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4c --sparsity_levels 0.3 --masking_method importance(hardcoded)\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:2\", \"pid\": \"28452\"}, \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v4c.log\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v4c/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T00:09:32.363Z\", \"metrics\": {\"ii_high_0.3\": {\"mean\": -224.5, \"ci_crosses_zero\": true}, \"verdict\": \"FAIL_ci_crosses_zero\"}, \"notes\": \"50/50 completed. Importance masking @0.3: II[high]=-224.5 但 95% CI 跨零(不显著)。这是唯一出现负 II 的 level，但统计不显著。需与 random baseline 对比，以及等 s01(0.1) 结果确认趋势。\"}, \"mvp_v4_legacy_s02\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:53:20.036Z\", \"updated_at\": \"2026-05-14T00:10:07.730Z\", \"hypothesis\": \"v4 legacy: importance-based masking (hardcoded), sparsity=0.2, cuda:1. 从 corrected-submit worker 启动。\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4b --sparsity_levels 0.2 --masking_method importance(hardcoded)\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:1\", \"pid\": \"28083\"}, \"log_path\": \"/root/autodl-tmp/pacs/profiling_output_v4b.log\", \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v4b/\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T00:09:31.414Z\", \"notes\": \"50/50 completed. Importance masking @0.2: II 全正(super-additive)。high/mid phase CI non-overlapping with low。KV eviction 是 perplexity 退化主因(kv ppl 远高于 attn ppl)。注意：II 为正 ≠ 支持 pivot hypothesis（pivot 预期 importance → sub-additive/负 II），需与 random baseline 对比才能判断。\", \"metrics\": {\"ii_high_0.2\": {\"mean\": 21.2856, \"ci\": [0.0292, 63.163]}, \"ii_mid_0.2\": {\"mean\": 21.8743, \"ci\": [4.9863, 41.785]}, \"ii_low_0.2\": {\"mean\": 0, \"ci\": [0, 0]}, \"ppl_high\": {\"dense\": 1.15, \"attn\": 1.32, \"kv\": 104.42, \"both\": 63.41}, \"ppl_mid\": {\"dense\": 1.12, \"attn\": 1.29, \"kv\": 324.16, \"both\": 170.47}, \"ppl_low\": {\"dense\": 1.11, \"attn\": 1.3, \"kv\": 1.11, \"both\": 1.3}, \"problems_completed\": 50, \"phase_tokens\": {\"high\": 25862, \"mid\": 27996, \"low\": 32349}, \"mvp_verdict\": \"PASS\"}}, \"mvp_v4c_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:56.138Z\", \"updated_at\": \"2026-05-13T23:52:54.261Z\", \"hypothesis\": \"v4 retry: importance-based masking, sparsity 0.15,0.25, cuda:2\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4c_r2 --sparsity_levels 0.15,0.25 --masking_method importance\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:2\", \"pid\": \"31839\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:42:12.191Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:42:12.833Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:42:14.346396+00:00\"}]}, \"notes\": \"失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [4/50](algebra/841.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\"}, \"mvp_v4b_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:55.162Z\", \"updated_at\": \"2026-05-13T23:52:53.632Z\", \"hypothesis\": \"v4 retry: importance-based masking, sparsity 0.3,0.4,0.5, cuda:1\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4b_r2 --sparsity_levels 0.3,0.4,0.5 --masking_method importance\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:1\", \"pid\": \"31481\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:42:07.204Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:42:07.966Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:42:09.409561+00:00\"}]}, \"notes\": \"失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\"}, \"mvp_v4a_r2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:22:54.240Z\", \"updated_at\": \"2026-05-13T23:52:52.705Z\", \"hypothesis\": \"v4 retry: importance-based masking, sparsity 0.1,0.2, cuda:0\", \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path .../DeepSeek-R1-Distill-Qwen-7B --data_path .../math500.json --output_dir profiling_output_v4a_r2 --sparsity_levels 0.1,0.2 --masking_method importance\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": \"31119\"}, \"reproduce\": {\"finished_at\": \"2026-05-13T23:42:04.420Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:42:04.603Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:42:05.417765+00:00\"}]}, \"notes\": \"失败原因: GPU OOM — compute_dense_forward_with_importance() 使用 output_attentions=True 同时物化28层attention矩阵(~4.5GB for 1700-token seq)，加模型权重(~14GB)超出单卡VRAM。进程在problem [3/50](intermediate_algebra/134.json)处被静默kill，无traceback。Random方法不调用此函数故正常。 | error_type: code | 修复建议: 逐层提取attention importance而非一次性物化全部层，或使用gradient-checkpointing式分层计算\"}, \"mvp_ii_profiling_v4-random\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T23:18:41.495Z\", \"updated_at\": \"2026-05-13T23:21:46.080Z\", \"hypothesis\": \"M1v4 random masking baseline (cuda:3, sparsity 0.1,0.15,0.2,0.25,0.3): 同 pipeline 同 50 题，masking_method=random。与 importance runs 直接对比验证 masking 策略对 II 的影响。\", \"parent\": \"mvp_ii_profiling_v3\", \"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-13T23:19:36.995Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_random --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random\\\"\", \"finished_at\": \"2026-05-13T23:20:05.361Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4_random --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.15,0.2,0.25,0.3 --masking_method random\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:3\"], \"pid\": \"27401\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4-random.log\", \"submitted_at\": \"2026-05-13T23:19:40.234Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 26.5, \"gpu_hours\": 0.01}, \"pid\": \"27401\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4-random.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:20:06.693Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:20:08.229965+00:00\"}]}, \"notes\": \"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments: --masking_method random | error_type: infrastructure | 同 mvp_ii_profiling_v4\"}, \"mvp_ii_profiling_v4c\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:54:54.251Z\", \"updated_at\": \"2026-05-13T23:21:44.920Z\", \"hypothesis\": \"M1v4 importance-based masking (cuda:2, sparsity 0.15,0.25): 填充 sparsity 梯度，定位 sign flip 临界点。\", \"parent\": \"mvp_ii_profiling_v3\", \"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-13T23:19:32.847Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4c --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.15,0.25 --masking_method importance\\\"\", \"finished_at\": \"2026-05-13T23:20:00.630Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4c --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.15,0.25 --masking_method importance\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:2\"], \"pid\": \"27251\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4c.log\", \"submitted_at\": \"2026-05-13T23:19:36.055Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 25.8, \"gpu_hours\": 0.01}, \"pid\": \"27251\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4c.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:20:01.892Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:20:03.414314+00:00\"}]}, \"notes\": \"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\"}, \"mvp_ii_profiling_v4b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:54:53.810Z\", \"updated_at\": \"2026-05-13T23:21:43.971Z\", \"hypothesis\": \"M1v4 importance-based masking (cuda:1, sparsity 0.3,0.4,0.5): 30% 是唯一有初步符号反转信号的 level。高 sparsity regime。\", \"parent\": \"mvp_ii_profiling_v3\", \"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-13T23:19:28.695Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4b --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.3,0.4,0.5 --masking_method importance\\\"\", \"finished_at\": \"2026-05-13T23:19:55.006Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4b --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.3,0.4,0.5 --masking_method importance\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:1\"], \"pid\": \"27099\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4b.log\", \"submitted_at\": \"2026-05-13T23:19:31.930Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 24.2, \"gpu_hours\": 0.01}, \"pid\": \"27099\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4b.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:19:56.100Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:19:57.514401+00:00\"}]}, \"notes\": \"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 同 mvp_ii_profiling_v4\"}, \"mvp_ii_profiling_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T22:50:59.554Z\", \"updated_at\": \"2026-05-13T23:21:42.200Z\", \"hypothesis\": \"M1v4 importance-based masking (cuda:0, sparsity 0.1,0.2): head=Frobenius norm, KV=cumulative attention. 低 sparsity regime。\", \"parent\": \"mvp_ii_profiling_v3\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T23:19:23.840Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4a --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.2 --masking_method importance\\\"\", \"finished_at\": \"2026-05-13T23:19:52.039Z\", \"training_hours\": 0.01}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v4a --max_new_tokens 2048 --min_phase_length 10 --sparsity_levels 0.1,0.2 --masking_method importance\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"26947\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4.log\", \"submitted_at\": \"2026-05-13T23:19:27.810Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 24.9, \"gpu_hours\": 0.01}, \"pid\": \"26947\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v4.log\", \"failure_reason\": \"EXIT_CODE=2 (shell misuse / syntax)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T23:19:52.672Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-13T23:19:53.495907+00:00\"}]}, \"notes\": \"失败原因: run_profiling.py 未定义 --masking_method 参数，argparse 报 unrecognized arguments | error_type: infrastructure | 建议: 给 run_profiling.py 添加 --masking_method 参数后重跑\"}, \"mvp_ii_profiling_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T21:28:01.393Z\", \"updated_at\": \"2026-05-13T22:42:34.790Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v3 --max_new_tokens 2048 --min_phase_length 10\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"16717\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v3.log\", \"submitted_at\": \"2026-05-13T21:47:43.523Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 3290.7, \"gpu_hours\": 0.91}, \"hypothesis\": \"M1v3诊断: 降低sparsity至10%/20%(v2的30%/50%导致Inf退化) + quantile segmentation替代KDE(v2 90%样本fallback) + NaN guard。测试compound sparsity交互强度是否在sparsity regime间有显著差异。\", \"parent\": \"mvp_ii_profiling_v2\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T21:47:42.052Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v3 --max_new_tokens 2048 --min_phase_length 10\\\"\", \"finished_at\": \"2026-05-13T22:38:48.794Z\", \"training_hours\": 0.85}, \"pid\": \"16717\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v3.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T22:38:49.527620+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"mvp_verdict\": \"FAIL\", \"ci_nonoverlap\": false, \"sign_reversal\": false, \"phase_distribution_balanced\": true, \"ii_high_0.1\": {\"mean\": 0.2317, \"ci\": [0.1338, 0.3418]}, \"ii_low_0.1\": {\"mean\": 0.1711, \"ci\": [0.0782, 0.2768]}, \"ii_mid_0.1\": {\"mean\": 0.1607, \"ci\": [0.0886, 0.2489]}, \"ii_high_0.2\": {\"mean\": 2.1574, \"ci\": [1.0605, 3.5491]}, \"ii_low_0.2\": {\"mean\": 1.1294, \"ci\": [0.4368, 1.9593]}, \"ii_mid_0.2\": {\"mean\": 0.3049, \"ci\": [-1.0635, 1.3044]}, \"total_tokens\": 86207, \"no_nan_inf\": true, \"segments\": {\"high\": 511, \"low\": 454, \"mid\": 391}}, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v3\", \"completed_at\": \"2026-05-13T22:42:34.177Z\"}, \"mvp_ii_profiling_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T20:41:50.875Z\", \"updated_at\": \"2026-05-13T22:42:24.179Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v2 --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\"\", \"server\": \"westd-22162\", \"gpu\": [\"cuda:0\"], \"pid\": \"11977\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v2.log\", \"submitted_at\": \"2026-05-13T20:42:13.499Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 7090.7, \"gpu_hours\": 1.97}, \"hypothesis\": \"P0修复后重跑: Phase-dependent interaction direction reversal — compound sparsity exhibits qualitatively different interaction patterns across reasoning phases. KV eviction mask已修复为1D共享(原P0 bug导致指数级token丢失). 同时启用P1诊断dump验证phase segmentation.\", \"parent\": \"mvp_interaction_index_profiling\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T20:42:12.028Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v2 --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\"\", \"finished_at\": \"2026-05-13T21:14:37.912Z\", \"training_hours\": 0.54}, \"pid\": \"11977\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_ii_profiling_v2.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T21:14:38.613199+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"mvp_verdict\": \"PASS_technical_but_negative_hypothesis\", \"ci_nonoverlap\": true, \"sign_reversal\": false, \"ii_reasoning_0.3\": 17.79, \"ii_reasoning_0.3_ci\": [4.09, 38.76], \"ii_transition_0.3\": 3.06, \"ii_transition_0.3_ci\": [0.01, 5.6], \"ii_reasoning_0.5\": 468.9, \"ii_transition_0.5\": 850.07, \"ii_execution_0.3\": \"Inf\", \"phase_distribution\": {\"execution\": \"1.2%_25seg\", \"reasoning\": \"8.1%_96seg\", \"transition\": \"90.7%_192seg\"}, \"total_tokens\": 86207, \"all_ii_superadditive\": true, \"amplitude_ratio_reas_vs_trans_0.3\": 5.81, \"gmm_best_k\": 5, \"gmm_means\": [0.438, 0.597, 0.719, 0.816, 0.892], \"gmm_weights\": [0.062, 0.14, 0.208, 0.282, 0.309], \"sparsity_global\": {\"mean\": 0.7653, \"std\": 0.1364, \"median\": 0.8004}, \"quantile_boundaries\": [0.7337, 0.8482]}, \"checkpoint_path\": \"/root/autodl-tmp/pacs/profiling_output_v2\", \"completed_at\": \"2026-05-13T22:40:24.197Z\"}, \"mvp_interaction_index_profiling\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-13T19:19:05.209Z\", \"updated_at\": \"2026-05-13T20:41:42.206Z\", \"hypothesis\": \"Phase-dependent interaction direction reversal: compound sparsity (attention head pruning + KV cache eviction) exhibits qualitatively different interaction patterns (super- vs sub-additive) across reasoning phases (execution/reasoning/transition), as measured by Interaction Index on DeepSeek-R1-Distill-Qwen-7B MATH-500 traces.\", \"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-22162\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-13T19:22:39.684Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\\\"\", \"finished_at\": \"2026-05-13T19:55:17.924Z\", \"training_hours\": 0.54}, \"spec\": {\"command\": \"python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output --max_new_tokens 2048 --kde_bandwidth scott --min_phase_length 10\", \"server\": \"westd-22162\", \"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"gpu\": \"cuda:0\", \"pid\": \"7436\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_interaction_index_profiling.log\", \"model_config\": {\"hidden_size\": 3584, \"num_hidden_layers\": 28, \"num_attention_heads\": 28, \"num_key_value_heads\": 4}, \"sparsity_levels\": [0.3, 0.5], \"n_bootstrap\": 1000, \"max_new_tokens\": 2048, \"sampling\": \"stratified 5x10=50, seed=42\"}, \"pid\": \"7436\", \"log_path\": \"~/runs/phase-gated-compound-sparse/mvp_interaction_index_profiling.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-13T19:55:18.584043+00:00\"}]}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-13T20:41:42.206Z\"}}, \"count\": 26, \"total\": 26, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0758}}"
+    }
+  },
+  "sourceToolAssistantUUID": "53d433c9-1631-4fb9-aa2f-4baad5c4f8ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T02:58:34.446Z_
+
+<details><summary>↩ Tool result · `toolu_01Qr8CtxNXwECvQFzmdnT55Q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4df63d3f-5f50-4ee5-a6c1-f29065aa28cd",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "b95a30f7-2abc-4f55-8b50-7e83e462ee2e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4df63d3f-5f50-4ee5-a6c1-f29065aa28cd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-14T02:58:34.879Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01PXrsZb5VvP19TY5ho6GmnP`</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b95a30f7-2abc-4f55-8b50-7e83e462ee2e",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFHtQRbCrGRSR6GW8S",
+  "type": "assistant",
+  "uuid": "1fba48cb-6c3d-4eae-8541-1560aa4cca6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6xwfCQGqTuKEYTwueAXqL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 34842,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4283,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34842,
+          "cache_creation_input_tokens": 4283,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4283
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-14T02:58:34.892Z_
+
+<details><summary>↩ Tool result · `toolu_01PXrsZb5VvP19TY5ho6GmnP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T02:58:17Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 26 个实验 — ANALYZING 2, DONE 22, RUNNING 2\\n**DONE 分布**: failed 11, killed 3, negative 5, success 3\\n\\n### GPU 占用\\n- **分配**: 4 张 — westd-22162:cuda:0, westd-22162:cuda:1, westd-22162:cuda:2, westd-22162:cuda:3\\n- **实际运行**: 2 张 — westd-22162:cuda:0(mvp_v5_fixed_s020_r2), westd-22162:cuda:1(mvp_v5_fixed_s030_r2)\\n- **空闲（分配了没跑）**: westd-22162:cuda:2, westd-22162:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mvp_v5_fixed_s020_r2` | westd-22162 | cuda:0 | unknown | `~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s020_r2.log` |\\n| `mvp_v5_fixed_s030_r2` | westd-22162 | cuda:1 | unknown | `~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s030_r2.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `mvp_v5_fixed_s030` [killed] — 2026-05-14T02:36:08\\n- `mvp_v5_fixed_s020` [killed] — 2026-05-14T02:36:04\\n- `mvp_v5_fixed_s025` [negative] — 2026-05-14T02:15:34\\n- `mvp_v5_fixed_s015` [negative] — 2026-05-14T02:15:33\\n- `mvp_v4_float32_s030` [killed] — 2026-05-14T01:21:47\\n\\n### 🔴 最近失败原因 (top 3)\\n- `mvp_v5_fixed_s030`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `mvp_v5_fixed_s020`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `mvp_v4_float32_s030`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp_v5_fixed_s030_r2 | v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive). 前次运行(s030)在35/50时被误杀。s=0.30是最关键的验证点。 | — | — | — |\\n| mvp_v5_fixed_s020_r2 | v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive). 前次运行(s020)在35/50时被误杀。 | — | — | — |\\n| mvp_v5_random_s025 | v5 修复后代码 random masking baseline, sparsity=0.25, cuda:3。与 mvp_v5_fixed_s025 (importance) 形成对照组。用修复后同一代码确保公平对比。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **mvp_v5_fixed_s030** (killed): v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.30, cuda:1。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\\n- **mvp_v5_fixed_s020** (killed): v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.20, cuda:0。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\\n- **mvp_v5_fixed_s025** (negative): —\\n\\n## 趋势\\n成功 3 / 负向 5 / 失败 11 / 共 22\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-22162: 无 GPU 信息\\n\\n## 告警\\n- mvp_interaction_index_profiling: 训练失败 — unknown\\n- mvp_ii_profiling_v4: 训练失败 — unknown\\n- mvp_ii_profiling_v4b: 训练失败 — unknown\\n- mvp_ii_profiling_v4c: 训练失败 — unknown\\n- mvp_ii_profiling_v4d: 训练失败 — unknown\\n- mvp_ii_profiling_v4-random: 训练失败 — unknown\\n- mvp_v4a_r2: 训练失败 — unknown\\n- mvp_v4b_r2: 训练失败 — unknown\\n- mvp_v4c_r2: 训练失败 — unknown\\n- mvp_v4_legacy_s025: 训练失败 — unknown\\n- mvp_v4_legacy_s035: 训练失败 — unknown\\n- mvp_v4_float32_s030: 已被终止 — unknown\\n- mvp_v5_fixed_s020: 已被终止 — unknown\\n- mvp_v5_fixed_s030: 已被终止 — unknown\\n\", \"total_chars\": 3081, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1fba48cb-6c3d-4eae-8541-1560aa4cca6c",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "5888c4db-cf5a-4229-8f5c-b3278ea279c4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T02:58:17Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 26 个实验 — ANALYZING 2, DONE 22, RUNNING 2\\\\n**DONE 分布**: failed 11, killed 3, negative 5, success 3\\\\n\\\\n### GPU 占用\\\\n- **分配**: 4 张 — westd-22162:cuda:0, westd-22162:cuda:1, westd-22162:cuda:2, westd-22162:cuda:3\\\\n- **实际运行**: 2 张 — westd-22162:cuda:0(mvp_v5_fixed_s020_r2), westd-22162:cuda:1(mvp_v5_fixed_s030_r2)\\\\n- **空闲（分配了没跑）**: westd-22162:cuda:2, westd-22162:cuda:3\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `mvp_v5_fixed_s020_r2` | westd-22162 | cuda:0 | unknown | `~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s020_r2.log` |\\\\n| `mvp_v5_fixed_s030_r2` | westd-22162 | cuda:1 | unknown | `~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s030_r2.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `mvp_v5_fixed_s030` [killed] — 2026-05-14T02:36:08\\\\n- `mvp_v5_fixed_s020` [killed] — 2026-05-14T02:36:04\\\\n- `mvp_v5_fixed_s025` [negative] — 2026-05-14T02:15:34\\\\n- `mvp_v5_fixed_s015` [negative] — 2026-05-14T02:15:33\\\\n- `mvp_v4_float32_s030` [killed] — 2026-05-14T01:21:47\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `mvp_v5_fixed_s030`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `mvp_v5_fixed_s020`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n- `mvp_v4_float32_s030`: _(no failure_reason — pre-2026-04-24 entry)_\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| mvp_v5_fixed_s030_r2 | v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive). 前次运行(s030)在35/50时被误杀。s=0.30是最关键的验证点。 | — | — | — |\\\\n| mvp_v5_fixed_s020_r2 | v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive). 前次运行(s020)在35/50时被误杀。 | — | — | — |\\\\n| mvp_v5_random_s025 | v5 修复后代码 random masking baseline, sparsity=0.25, cuda:3。与 mvp_v5_fixed_s025 (importance) 形成对照组。用修复后同一代码确保公平对比。 | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **mvp_v5_fixed_s030** (killed): v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.30, cuda:1。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\\\\n- **mvp_v5_fixed_s020** (killed): v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.20, cuda:0。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\\\\n- **mvp_v5_fixed_s025** (negative): —\\\\n\\\\n## 趋势\\\\n成功 3 / 负向 5 / 失败 11 / 共 22\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-22162: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- mvp_interaction_index_profiling: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4b: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4c: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4d: 训练失败 — unknown\\\\n- mvp_ii_profiling_v4-random: 训练失败 — unknown\\\\n- mvp_v4a_r2: 训练失败 — unknown\\\\n- mvp_v4b_r2: 训练失败 — unknown\\\\n- mvp_v4c_r2: 训练失败 — unknown\\\\n- mvp_v4_legacy_s025: 训练失败 — unknown\\\\n- mvp_v4_legacy_s035: 训练失败 — unknown\\\\n- mvp_v4_float32_s030: 已被终止 — unknown\\\\n- mvp_v5_fixed_s020: 已被终止 — unknown\\\\n- mvp_v5_fixed_s030: 已被终止 — unknown\\\\n\\\", \\\"total_chars\\\": 3081, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-14T02:58:17Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 26 个实验 — ANALYZING 2, DONE 22, RUNNING 2\\n**DONE 分布**: failed 11, killed 3, negative 5, success 3\\n\\n### GPU 占用\\n- **分配**: 4 张 — westd-22162:cuda:0, westd-22162:cuda:1, westd-22162:cuda:2, westd-22162:cuda:3\\n- **实际运行**: 2 张 — westd-22162:cuda:0(mvp_v5_fixed_s020_r2), westd-22162:cuda:1(mvp_v5_fixed_s030_r2)\\n- **空闲（分配了没跑）**: westd-22162:cuda:2, westd-22162:cuda:3\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `mvp_v5_fixed_s020_r2` | westd-22162 | cuda:0 | unknown | `~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s020_r2.log` |\\n| `mvp_v5_fixed_s030_r2` | westd-22162 | cuda:1 | unknown | `~/runs/phase-gated-compound-sparse/mvp_v5_fixed_s030_r2.log` |\\n\\n### 📌 最近完成 (top 5)\\n- `mvp_v5_fixed_s030` [killed] — 2026-05-14T02:36:08\\n- `mvp_v5_fixed_s020` [killed] — 2026-05-14T02:36:04\\n- `mvp_v5_fixed_s025` [negative] — 2026-05-14T02:15:34\\n- `mvp_v5_fixed_s015` [negative] — 2026-05-14T02:15:33\\n- `mvp_v4_float32_s030` [killed] — 2026-05-14T01:21:47\\n\\n### 🔴 最近失败原因 (top 3)\\n- `mvp_v5_fixed_s030`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `mvp_v5_fixed_s020`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `mvp_v4_float32_s030`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-14\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| mvp_v5_fixed_s030_r2 | v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.30的II应为负(sub-additive). 前次运行(s030)在35/50时被误杀。s=0.30是最关键的验证点。 | — | — | — |\\n| mvp_v5_fixed_s020_r2 | v5修复验证(重启): NaN skip + position normalization后, importance masking sparsity=0.20的II应为负(sub-additive). 前次运行(s020)在35/50时被误杀。 | — | — | — |\\n| mvp_v5_random_s025 | v5 修复后代码 random masking baseline, sparsity=0.25, cuda:3。与 mvp_v5_fixed_s025 (importance) 形成对照组。用修复后同一代码确保公平对比。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **mvp_v5_fixed_s030** (killed): v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.30, cuda:1。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\\n- **mvp_v5_fixed_s020** (killed): v5 修复验证：NaN skip + position normalization, importance masking sparsity=0.20, cuda:0。验证修复后 importance eviction 是否正常（kv_ppl < random baseline）。\\n- **mvp_v5_fixed_s025** (negative): —\\n\\n## 趋势\\n成功 3 / 负向 5 / 失败 11 / 共 22\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-22162: 无 GPU 信息\\n\\n## 告警\\n- mvp_interaction_index_profiling: 训练失败 — unknown\\n- mvp_ii_profiling_v4: 训练失败 — unknown\\n- mvp_ii_profiling_v4b: 训练失败 — unknown\\n- mvp_ii_profiling_v4c: 训练失败 — unknown\\n- mvp_ii_profiling_v4d: 训练失败 — unknown\\n- mvp_ii_profiling_v4-random: 训练失败 — unknown\\n- mvp_v4a_r2: 训练失败 — unknown\\n- mvp_v4b_r2: 训练失败 — unknown\\n- mvp_v4c_r2: 训练失败 — unknown\\n- mvp_v4_legacy_s025: 训练失败 — unknown\\n- mvp_v4_legacy_s035: 训练失败 — unknown\\n- mvp_v4_float32_s030: 已被终止 — unknown\\n- mvp_v5_fixed_s020: 已被终止 — unknown\\n- mvp_v5_fixed_s030: 已被终止 — unknown\\n\", \"total_chars\": 3081, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1fba48cb-6c3d-4eae-8541-1560aa4cca6c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-14T02:58:35.449Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01MuKDYm1cSBejuZjcQamZ4f`</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5888c4db-cf5a-4229-8f5c-b3278ea279c4",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFHtQRbCrGRSR6GW8S",
+  "type": "assistant",
+  "uuid": "8460de76-d1fd-4182-9658-2fe50ed32d3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6xwfCQGqTuKEYTwueAXqL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 34842,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4283,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34842,
+          "cache_creation_input_tokens": 4283,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4283
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T02:58:35.462Z_
+
+<details><summary>↩ Tool result · `toolu_01MuKDYm1cSBejuZjcQamZ4f`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/ROADMAP.md\", \"content\": \"# phase-gated-compound-sparse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 01:18 UTC | 更新原因: D013: importance 指标位置偏差根因确认，暂停结论，修复后重跑验证\\n\\n## 核心方向\\n**Pivot 后（D010）**：Strategy-dependent interaction direction reversal in compound sparsity。\\n⚠️ **D013 警告**：importance masking 的核心指标 `cumulative_attention_received` 存在因果注意力位置偏差（测量\\\"位置有多早\\\"而非\\\"内容有多重要\\\"），所有基于该指标的 II 结果暂不可信。需修复后重新验证 strategy-dependent reversal 是否成立。\\n\\n## 目标会议\\nEMNLP 2026 ARR — **截稿 2026-05-25（距今 11 天）**\\n\\n## 当前进展\\n- 阶段：**MVP 验证（importance 指标修复中）**\\n- 原始假设（phase-dependent reversal）：三轮否定（v1 bug / v2 negative / v3 negative）\\n- D010 pivot 信号：strategy-dependent reversal → **D013 判定可能是坏指标伪影**\\n- 根因：`cumulative_attention_received` 在 causal attention 下系统性偏向早期位置，`topk(largest=False)` 驱逐末尾 = 破坏最近上下文 → importance eviction 比 random 差 26-60×\\n- II 统计量不稳定：s025 per-sample mean (+152.7) vs 聚合计算 (-107.6) 符号相反，CI 宽 455 单位\\n- 服务器：**westd-22162** 4× RTX 6000 Pro 96G ✅\\n- GPU 使用：~2.9h / ~250h 预算\\n- **4 GPU 当前全部空闲**，等待指标修复后启动验证实验\\n\\n## 当前阻塞项\\n修复 `interaction_index.py` 中的 importance 指标（位置归一化），Agent 正在处理\\n\\n## Pivot 后 MVP Pass 标准（待修复后重新评估）\\n1. ≥2 个 sparsity level 下 importance-based II 的 95% CI 上界 < 0（显著 sub-additive）\\n2. Random II 在相同 sparsity 下 95% CI 下界 > 0（显著 super-additive）\\n3. 至少一个额外模型（Qwen2.5-7B）也观察到符号反转趋势\\n\\n## 近期任务\\n- [ ] 修复 `cumulative_attention_received` 位置偏差：`importance[j] /= (seq_len - j)`\\n- [ ] 修复后 sanity check：打印修复前后 top-10 eviction 位置确认不再系统性驱逐末尾\\n- [ ] II 统计量增加 median + winsorized mean + skewness + outlier count\\n- [ ] 修复后重跑 s=0.20 (cuda:0) 验证\\n- [ ] 修复后重跑 s=0.30 (cuda:1) 验证\\n- [ ] 根据修复后结果决定：strategy-dependent reversal 是否成立 → 继续 pivot / 再次 pivot\\n\\n## Post-MVP Milestones（暂定，修复结果出来后重估）\\n\\n| # | 阶段 | GPU-hours | 依赖 |\\n|---|------|-----------|------|\\n| M1' | Strategy reversal bootstrap + cross-model | ~8h | 指标修复验证通过 |\\n| M2 | Per-phase grid search | ~30h | M1' pass |\\n| M3 | Controller training | ~7h | M2 |\\n| M4 | Kernel integration | ~25h | M1' |\\n| M5 | Full evaluation | ~80h | M3+M4 |\\n| M6 | Ablation suite | ~40h | M5 |\\n| M7 | Validation (Qwen3-8B) | ~10h | M3+M4 |\\n\\n## GPU 预算\\n- RTX 6000 Pro: ~250h 预算，westd-22162 cuda:0~3，已用 ~2.9h\\n- H100 短租: ~2-4h，M5 阶段向 Manager 申请\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D014 | 2026-05-14 | D010 pivot hypothesis NEGATIVE; 新发现 phase-modulate | mvp_v5_fixed_s015, mvp_v5_fixed_s020, mvp_v5_fixed_s025, mvp_v5_fixed_s030, mvp_v4_random_r2 |\\n| D013 | 2026-05-14 | 暂停 importance masking 结论，根因确认：cumulative_attention | mvp_v4_legacy_s025, mvp_v4_legacy_s035, mvp_ii_profiling_v4d |\\n| D012 | 2026-05-14 | 暂停 importance-based 实验规划，紧急审查 KV importance metric | mvp_v4_random_r2, mvp_v4a_r2 |\\n| D011 | 2026-05-14 | Float16 NaN→II bias discovered at s≥0.3; fix to fl | mvp_v4_legacy_s035, mvp_ii_profiling_v4d, mvp_v4_legacy_s025, mvp_v4_random_r2 |\\n| D010 | 2026-05-13 | MVP FAIL on phase-dependent reversal; PIVOT to str | mvp_interaction_index_profiling, mvp_ii_profiling_v2, mvp_ii_profiling_v3 |\\n| D009 | 2026-05-13 | Random masking 系统性混淆——v1-v3 测了错误条件；importance-base | mvp_ii_profiling_v3, mvp_ii_profiling_v2, mvp_interaction_index_profiling |\\n| D008 | 2026-05-13 | M1v2 假设未获支持但测量方法有问题——M1v3 最后诊断：降 sparsity + quanti | mvp_ii_profiling_v2 |\\n| D007 | 2026-05-13 | M1 结果无效（KV bug + KDE 失败）：两路并行——P0 修复重跑 + 替代 segmen | mvp_interaction_index_profiling |\\n| D006 | 2026-05-13 | GPU 实际为 Blackwell sm_100+（非 Ada sm_89）：MVP 不阻塞，ker | — |\\n| D005 | 2026-05-13 | GPU 从 4× RTX 6000 Pro 换为 4× H20-NVLink 96GB | — |\\n\\n\", \"lines\": 69}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8460de76-d1fd-4182-9658-2fe50ed32d3e",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "db2a45b8-2deb-44f7-9ac3-61e49d33c6ef",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/ROADMAP.md\\\", \\\"content\\\": \\\"# phase-gated-compound-sparse — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 01:18 UTC | 更新原因: D013: importance 指标位置偏差根因确认，暂停结论，修复后重跑验证\\\\n\\\\n## 核心方向\\\\n**Pivot 后（D010）**：Strategy-dependent interaction direction reversal in compound sparsity。\\\\n⚠️ **D013 警告**：importance masking 的核心指标 `cumulative_attention_received` 存在因果注意力位置偏差（测量\\\\\\\"位置有多早\\\\\\\"而非\\\\\\\"内容有多重要\\\\\\\"），所有基于该指标的 II 结果暂不可信。需修复后重新验证 strategy-dependent reversal 是否成立。\\\\n\\\\n## 目标会议\\\\nEMNLP 2026 ARR — **截稿 2026-05-25（距今 11 天）**\\\\n\\\\n## 当前进展\\\\n- 阶段：**MVP 验证（importance 指标修复中）**\\\\n- 原始假设（phase-dependent reversal）：三轮否定（v1 bug / v2 negative / v3 negative）\\\\n- D010 pivot 信号：strategy-dependent reversal → **D013 判定可能是坏指标伪影**\\\\n- 根因：`cumulative_attention_received` 在 causal attention 下系统性偏向早期位置，`topk(largest=False)` 驱逐末尾 = 破坏最近上下文 → importance eviction 比 random 差 26-60×\\\\n- II 统计量不稳定：s025 per-sample mean (+152.7) vs 聚合计算 (-107.6) 符号相反，CI 宽 455 单位\\\\n- 服务器：**westd-22162** 4× RTX 6000 Pro 96G ✅\\\\n- GPU 使用：~2.9h / ~250h 预算\\\\n- **4 GPU 当前全部空闲**，等待指标修复后启动验证实验\\\\n\\\\n## 当前阻塞项\\\\n修复 `interaction_index.py` 中的 importance 指标（位置归一化），Agent 正在处理\\\\n\\\\n## Pivot 后 MVP Pass 标准（待修复后重新评估）\\\\n1. ≥2 个 sparsity level 下 importance-based II 的 95% CI 上界 < 0（显著 sub-additive）\\\\n2. Random II 在相同 sparsity 下 95% CI 下界 > 0（显著 super-additive）\\\\n3. 至少一个额外模型（Qwen2.5-7B）也观察到符号反转趋势\\\\n\\\\n## 近期任务\\\\n- [ ] 修复 `cumulative_attention_received` 位置偏差：`importance[j] /= (seq_len - j)`\\\\n- [ ] 修复后 sanity check：打印修复前后 top-10 eviction 位置确认不再系统性驱逐末尾\\\\n- [ ] II 统计量增加 median + winsorized mean + skewness + outlier count\\\\n- [ ] 修复后重跑 s=0.20 (cuda:0) 验证\\\\n- [ ] 修复后重跑 s=0.30 (cuda:1) 验证\\\\n- [ ] 根据修复后结果决定：strategy-dependent reversal 是否成立 → 继续 pivot / 再次 pivot\\\\n\\\\n## Post-MVP Milestones（暂定，修复结果出来后重估）\\\\n\\\\n| # | 阶段 | GPU-hours | 依赖 |\\\\n|---|------|-----------|------|\\\\n| M1' | Strategy reversal bootstrap + cross-model | ~8h | 指标修复验证通过 |\\\\n| M2 | Per-phase grid search | ~30h | M1' pass |\\\\n| M3 | Controller training | ~7h | M2 |\\\\n| M4 | Kernel integration | ~25h | M1' |\\\\n| M5 | Full evaluation | ~80h | M3+M4 |\\\\n| M6 | Ablation suite | ~40h | M5 |\\\\n| M7 | Validation (Qwen3-8B) | ~10h | M3+M4 |\\\\n\\\\n## GPU 预算\\\\n- RTX 6000 Pro: ~250h 预算，westd-22162 cuda:0~3，已用 ~2.9h\\\\n- H100 短租: ~2-4h，M5 阶段向 Manager 申请\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D014 | 2026-05-14 | D010 pivot hypothesis NEGATIVE; 新发现 phase-modulate | mvp_v5_fixed_s015, mvp_v5_fixed_s020, mvp_v5_fixed_s025, mvp_v5_fixed_s030, mvp_v4_random_r2 |\\\\n| D013 | 2026-05-14 | 暂停 importance masking 结论，根因确认：cumulative_attention | mvp_v4_legacy_s025, mvp_v4_legacy_s035, mvp_ii_profiling_v4d |\\\\n| D012 | 2026-05-14 | 暂停 importance-based 实验规划，紧急审查 KV importance metric | mvp_v4_random_r2, mvp_v4a_r2 |\\\\n| D011 | 2026-05-14 | Float16 NaN→II bias discovered at s≥0.3; fix to fl | mvp_v4_legacy_s035, mvp_ii_profiling_v4d, mvp_v4_legacy_s025, mvp_v4_random_r2 |\\\\n| D010 | 2026-05-13 | MVP FAIL on phase-dependent reversal; PIVOT to str | mvp_interaction_index_profiling, mvp_ii_profiling_v2, mvp_ii_profiling_v3 |\\\\n| D009 | 2026-05-13 | Random masking 系统性混淆——v1-v3 测了错误条件；importance-base | mvp_ii_profiling_v3, mvp_ii_profiling_v2, mvp_interaction_index_profiling |\\\\n| D008 | 2026-05-13 | M1v2 假设未获支持但测量方法有问题——M1v3 最后诊断：降 sparsity + quanti | mvp_ii_profiling_v2 |\\\\n| D007 | 2026-05-13 | M1 结果无效（KV bug + KDE 失败）：两路并行——P0 修复重跑 + 替代 segmen | mvp_interaction_index_profiling |\\\\n| D006 | 2026-05-13 | GPU 实际为 Blackwell sm_100+（非 Ada sm_89）：MVP 不阻塞，ker | — |\\\\n| D005 | 2026-05-13 | GPU 从 4× RTX 6000 Pro 换为 4× H20-NVLink 96GB | — |\\\\n\\\\n\\\", \\\"lines\\\": 69}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/ROADMAP.md\", \"content\": \"# phase-gated-compound-sparse — Research Dashboard\\n\\n> 最后更新: 2026-05-14 01:18 UTC | 更新原因: D013: importance 指标位置偏差根因确认，暂停结论，修复后重跑验证\\n\\n## 核心方向\\n**Pivot 后（D010）**：Strategy-dependent interaction direction reversal in compound sparsity。\\n⚠️ **D013 警告**：importance masking 的核心指标 `cumulative_attention_received` 存在因果注意力位置偏差（测量\\\"位置有多早\\\"而非\\\"内容有多重要\\\"），所有基于该指标的 II 结果暂不可信。需修复后重新验证 strategy-dependent reversal 是否成立。\\n\\n## 目标会议\\nEMNLP 2026 ARR — **截稿 2026-05-25（距今 11 天）**\\n\\n## 当前进展\\n- 阶段：**MVP 验证（importance 指标修复中）**\\n- 原始假设（phase-dependent reversal）：三轮否定（v1 bug / v2 negative / v3 negative）\\n- D010 pivot 信号：strategy-dependent reversal → **D013 判定可能是坏指标伪影**\\n- 根因：`cumulative_attention_received` 在 causal attention 下系统性偏向早期位置，`topk(largest=False)` 驱逐末尾 = 破坏最近上下文 → importance eviction 比 random 差 26-60×\\n- II 统计量不稳定：s025 per-sample mean (+152.7) vs 聚合计算 (-107.6) 符号相反，CI 宽 455 单位\\n- 服务器：**westd-22162** 4× RTX 6000 Pro 96G ✅\\n- GPU 使用：~2.9h / ~250h 预算\\n- **4 GPU 当前全部空闲**，等待指标修复后启动验证实验\\n\\n## 当前阻塞项\\n修复 `interaction_index.py` 中的 importance 指标（位置归一化），Agent 正在处理\\n\\n## Pivot 后 MVP Pass 标准（待修复后重新评估）\\n1. ≥2 个 sparsity level 下 importance-based II 的 95% CI 上界 < 0（显著 sub-additive）\\n2. Random II 在相同 sparsity 下 95% CI 下界 > 0（显著 super-additive）\\n3. 至少一个额外模型（Qwen2.5-7B）也观察到符号反转趋势\\n\\n## 近期任务\\n- [ ] 修复 `cumulative_attention_received` 位置偏差：`importance[j] /= (seq_len - j)`\\n- [ ] 修复后 sanity check：打印修复前后 top-10 eviction 位置确认不再系统性驱逐末尾\\n- [ ] II 统计量增加 median + winsorized mean + skewness + outlier count\\n- [ ] 修复后重跑 s=0.20 (cuda:0) 验证\\n- [ ] 修复后重跑 s=0.30 (cuda:1) 验证\\n- [ ] 根据修复后结果决定：strategy-dependent reversal 是否成立 → 继续 pivot / 再次 pivot\\n\\n## Post-MVP Milestones（暂定，修复结果出来后重估）\\n\\n| # | 阶段 | GPU-hours | 依赖 |\\n|---|------|-----------|------|\\n| M1' | Strategy reversal bootstrap + cross-model | ~8h | 指标修复验证通过 |\\n| M2 | Per-phase grid search | ~30h | M1' pass |\\n| M3 | Controller training | ~7h | M2 |\\n| M4 | Kernel integration | ~25h | M1' |\\n| M5 | Full evaluation | ~80h | M3+M4 |\\n| M6 | Ablation suite | ~40h | M5 |\\n| M7 | Validation (Qwen3-8B) | ~10h | M3+M4 |\\n\\n## GPU 预算\\n- RTX 6000 Pro: ~250h 预算，westd-22162 cuda:0~3，已用 ~2.9h\\n- H100 短租: ~2-4h，M5 阶段向 Manager 申请\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D014 | 2026-05-14 | D010 pivot hypothesis NEGATIVE; 新发现 phase-modulate | mvp_v5_fixed_s015, mvp_v5_fixed_s020, mvp_v5_fixed_s025, mvp_v5_fixed_s030, mvp_v4_random_r2 |\\n| D013 | 2026-05-14 | 暂停 importance masking 结论，根因确认：cumulative_attention | mvp_v4_legacy_s025, mvp_v4_legacy_s035, mvp_ii_profiling_v4d |\\n| D012 | 2026-05-14 | 暂停 importance-based 实验规划，紧急审查 KV importance metric | mvp_v4_random_r2, mvp_v4a_r2 |\\n| D011 | 2026-05-14 | Float16 NaN→II bias discovered at s≥0.3; fix to fl | mvp_v4_legacy_s035, mvp_ii_profiling_v4d, mvp_v4_legacy_s025, mvp_v4_random_r2 |\\n| D010 | 2026-05-13 | MVP FAIL on phase-dependent reversal; PIVOT to str | mvp_interaction_index_profiling, mvp_ii_profiling_v2, mvp_ii_profiling_v3 |\\n| D009 | 2026-05-13 | Random masking 系统性混淆——v1-v3 测了错误条件；importance-base | mvp_ii_profiling_v3, mvp_ii_profiling_v2, mvp_interaction_index_profiling |\\n| D008 | 2026-05-13 | M1v2 假设未获支持但测量方法有问题——M1v3 最后诊断：降 sparsity + quanti | mvp_ii_profiling_v2 |\\n| D007 | 2026-05-13 | M1 结果无效（KV bug + KDE 失败）：两路并行——P0 修复重跑 + 替代 segmen | mvp_interaction_index_profiling |\\n| D006 | 2026-05-13 | GPU 实际为 Blackwell sm_100+（非 Ada sm_89）：MVP 不阻塞，ker | — |\\n| D005 | 2026-05-13 | GPU 从 4× RTX 6000 Pro 换为 4× H20-NVLink 96GB | — |\\n\\n\", \"lines\": 69}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8460de76-d1fd-4182-9658-2fe50ed32d3e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-14T02:58:35.700Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_019WKDJFJ71q4UsNJZt5JCTr`</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db2a45b8-2deb-44f7-9ac3-61e49d33c6ef",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFHtQRbCrGRSR6GW8S",
+  "type": "assistant",
+  "uuid": "ba6e6a7f-fed5-4186-9020-b34d6f60d9dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A6xwfCQGqTuKEYTwueAXqL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4283,
+      "cache_read_input_tokens": 34842,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4283,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34842,
+          "cache_creation_input_tokens": 4283,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4283
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T02:58:35.738Z_
+
+<details><summary>↩ Tool result · `toolu_019WKDJFJ71q4UsNJZt5JCTr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ba6e6a7f-fed5-4186-9020-b34d6f60d9dd",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "d01a9ac9-4eed-4d44-9e01-79680099772a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ba6e6a7f-fed5-4186-9020-b34d6f60d9dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: mvp_v5_random_s015 - project: phase-gated-compound-sparse - server: westd-22162 - log_path:…",
+  "leafUuid": "d01a9ac9-4eed-4d44-9e01-79680099772a",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 25_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-14T02:59:03.596Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session-start 初始化完成。现在分析状态：
+
+关键发现：
+1. **mvp_v5_random_s015** 和 **mvp_v5_random_s025** 都在 ANALYZING 状态，需要分析
+2. **mvp_v5_fixed_s020_r2** 和 **mvp_v5_fixed_s030_r2** 仍在 RUNNING
+3. Worker 池为 0 — 违反 < 2 失职规则
+
+当前 CRON 回调是处理 **mvp_v5_random_s015**（random masking, sparsity=0.15）
+
+
+现在需要派遣 Worker 去分析这两个 ANALYZING 状态的实验，通过 SSH 读取日志和输出文件。我也要检查 mvp_v5_random_s025 是否有待处理的 CRON 回调，然后按照 on-experiment-done skill 的流程来读取和处理结果。
+
+两个 random baseline 实验可以并行分析，分别对应不同的 sparsity 和 GPU 配置。
+
+我已经有了对照组的 importance masking 结果，现在需要获取 random masking 的结果来进行对比。
+
+我决定派一个 Worker 去 westd-22162 服务器上同时读取两个实验的输出，解析它们的 profiling_results.json 文件来提取 II 和 KV perplexity 的指标，然后返回结构化的数据。
+
+这样比分别派两个 Worker 更高效。同时我可以并行地读取 resource-saturation skill 的相关信息，为向 Director 的汇报做准备。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d01a9ac9-4eed-4d44-9e01-79680099772a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFqqGnmgMUkEmVTAHS",
+  "type": "assistant",
+  "uuid": "ffff4a52-1080-4ded-b652-92bd3d5dbe75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEfGyFH18WqshmMG17dM6p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23680,
+      "cache_read_input_tokens": 39125,
+      "output_tokens": 2514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2514,
+          "cache_read_input_tokens": 39125,
+          "cache_creation_input_tokens": 23680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-14T02:59:05.507Z_
+
+Session 初始化完成。当前状态：
+- **ANALYZING**: mvp_v5_random_s015, mvp_v5_random_s025（两个 random baseline 都完成了）
+- **RUNNING**: mvp_v5_fixed_s020_r2 (cuda:0), mvp_v5_fixed_s030_r2 (cuda:1)
+- **Worker 池**: 0（需要立即补充）
+
+两个 random baseline 实验都进入 ANALYZING，派 Worker 去服务器读取结果。同时读取 resource-saturation skill。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffff4a52-1080-4ded-b652-92bd3d5dbe75",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFqqGnmgMUkEmVTAHS",
+  "type": "assistant",
+  "uuid": "2f53f4b8-381c-4b21-ac37-05a85c146252",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEfGyFH18WqshmMG17dM6p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23680,
+      "cache_read_input_tokens": 39125,
+      "output_tokens": 2514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2514,
+          "cache_read_input_tokens": 39125,
+          "cache_creation_input_tokens": 23680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-14T02:59:23.782Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01WyTw2uhdxrNDhbjAWUhBoW`</summary>
+
+```json
+{
+  "task_type": "analysis:v5-random-baselines",
+  "project": "phase-gated-compound-sparse",
+  "task_prompt": "## 任务：分析两个 random masking baseline 实验的结果\n\n你需要 SSH 到 westd-22162 读取两个实验的输出文件，提取关键指标。\n\n### 实验列表\n\n1. **mvp_v5_random_s015** (sparsity=0.15, cuda:2)\n   - 输出目录: `/root/autodl-tmp/pacs/profiling_output_v5_random_s015/`\n   - 日志: `~/runs/phase-gated-compound-sparse/mvp_v5_random_s015.log`\n   \n2. **mvp_v5_random_s025** (sparsity=0.25, cuda:3)\n   - 输出目录: `/root/autodl-tmp/pacs/profiling_output_v5_random_s025/`\n   - 日志: `~/runs/phase-gated-compound-sparse/mvp_v5_random_s025.log`\n\n### 需要提取的指标\n\n对每个实验，从 `profiling_results.json`（或日志末尾的 summary）提取：\n- **II (Interaction Index)**: ii_high, ii_mid, ii_low（mean + 95% CI）\n- **II median**: ii_high_median, ii_mid_median, ii_low_median\n- **II winsorized**: ii_high_winsorized, ii_mid_winsorized, ii_low_winsorized\n- **KV PPL**: kv_ppl_high, kv_ppl_mid, kv_ppl_low\n- **Both PPL**: both_ppl_high, both_ppl_mid, both_ppl_low\n- **Attn PPL**: attn_ppl_high, attn_ppl_mid, attn_ppl_low（如果有的话）\n- problems completed, segments count\n- 是否有 NaN / Inf warnings\n\n### 对照组数据（已有，你不需要重新获取）\n\n**importance masking 对照：**\n- mvp_v5_fixed_s015 (importance, s=0.15): ii_high=0.306, ii_mid=1.274, ii_low=8.786, kv_ppl_high=1.21, kv_ppl_mid=2.13, kv_ppl_low=6.75\n- mvp_v5_fixed_s025 (importance, s=0.25): ii_high=0.851, ii_mid=9.306, ii_low=96.715, kv_ppl_high=1.31, kv_ppl_mid=6.18, kv_ppl_low=23.89\n\n### 分析要求\n\n1. 提取完指标后，对比 random vs importance：\n   - II 符号是否一致？（pivot hypothesis 预期 importance → negative II, random → positive II）\n   - kv_ppl: importance < random?（如果 importance 的 eviction 更智能，kv_ppl 应该更低）\n   - 两组的 both_ppl 差异有多大？\n\n2. 判断 conclusion:\n   - 如果 random II 和 importance II 符号相同且数值相近 → importance metric 可能无效 → negative\n   - 如果 random II 显著 > importance II 且 importance II < 0 → strategy-dependent reversal 成立 → success\n   - 如果 random II > importance II 但 importance II 仍然 > 0 → partial signal → 根据幅度判断\n\n3. 最终输出结构化 JSON 格式的 metrics，便于我更新 registry。\n\n### 服务器信息\n- 服务器: westd-22162\n- 环境: conda base (source /root/miniconda3/etc/profile.d/conda.sh && conda activate base)\n- 项目路径: /root/autodl-tmp/pacs/\n",
+  "tool_groups": [
+    "ssh"
+  ],
+  "tools": [
+    "read_registry"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f53f4b8-381c-4b21-ac37-05a85c146252",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFqqGnmgMUkEmVTAHS",
+  "type": "assistant",
+  "uuid": "ce7b3aa7-4b19-4a96-a4fe-29e75ce69d3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEfGyFH18WqshmMG17dM6p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23680,
+      "cache_read_input_tokens": 39125,
+      "output_tokens": 2514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2514,
+          "cache_read_input_tokens": 39125,
+          "cache_creation_input_tokens": 23680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-14T02:59:25.279Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PhDx9BwNwAdQTgUc7cE8qA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce7b3aa7-4b19-4a96-a4fe-29e75ce69d3a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iFqqGnmgMUkEmVTAHS",
+  "type": "assistant",
+  "uuid": "d361a3b7-c61f-48d7-932c-e966c4f7bc71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XEfGyFH18WqshmMG17dM6p",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23680,
+      "cache_read_input_tokens": 39125,
+      "output_tokens": 2514,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 23680,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2514,
+          "cache_read_input_tokens": 39125,
+          "cache_creation_input_tokens": 23680,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 23680
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-14T02:59:26.525Z_
+
+<details><summary>↩ Tool result · `toolu_01WyTw2uhdxrNDhbjAWUhBoW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_v5-random-baselines_20260514T025924\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/logs/workers/worker_analysis_v5-random-baselines_20260514T025924.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_v5-random-baselines_20260514T025924 started. Use get_worker_status('worker_analysis_v5-random-baselines_20260514T025924') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce7b3aa7-4b19-4a96-a4fe-29e75ce69d3a",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "3058fc38-8f1a-40d8-84bd-cb83ab2bca33",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_v5-random-baselines_20260514T025924\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/logs/workers/worker_analysis_v5-random-baselines_20260514T025924.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_v5-random-baselines_20260514T025924 started. Use get_worker_status('worker_analysis_v5-random-baselines_20260514T025924') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_analysis_v5-random-baselines_20260514T025924\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/logs/workers/worker_analysis_v5-random-baselines_20260514T025924.log\", \"setup_data\": {}, \"message\": \"Worker worker_analysis_v5-random-baselines_20260514T025924 started. Use get_worker_status('worker_analysis_v5-random-baselines_20260514T025924') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ce7b3aa7-4b19-4a96-a4fe-29e75ce69d3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T02:59:26.550Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01PhDx9BwNwAdQTgUc7cE8qA`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d361a3b7-c61f-48d7-932c-e966c4f7bc71",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "fe54e238-b691-45dd-aaeb-ad1a5abdf9e5",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953.",
+  "sourceToolAssistantUUID": "d361a3b7-c61f-48d7-932c-e966c4f7bc71",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-14T02:59:26.556Z_
+
+```json
+{
+  "parentUuid": "fe54e238-b691-45dd-aaeb-ad1a5abdf9e5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2d94c621-52fd-4d90-878e-d7c76cf2833b",
+  "timestamp": "2026-05-14T02:59:26.556Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-14T02:59:30.182Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The resource-saturation skill file wasn't found at the expected path. Let me find it.
+
+Actually, the skills are listed in CLAUDE.md with paths like `.claude/skills/resource-saturation.skill.md`. Let me try the correct path.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d94c621-52fd-4d90-878e-d7c76cf2833b",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iKb7MuYhvyVKu7kXtW",
+  "type": "assistant",
+  "uuid": "29a997f1-8a82-4be3-895b-3a0d985a6997",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pc4PbvhjniMCCCpKaQ3txY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2933,
+      "cache_read_input_tokens": 62805,
+      "output_tokens": 166,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 166,
+          "cache_read_input_tokens": 62805,
+          "cache_creation_input_tokens": 2933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-14T02:59:30.410Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01ChsPjXRpr9sTotRmpiCdKX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29a997f1-8a82-4be3-895b-3a0d985a6997",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iKb7MuYhvyVKu7kXtW",
+  "type": "assistant",
+  "uuid": "c403f526-63fe-4db0-bfe3-ef0ecb0637e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Pc4PbvhjniMCCCpKaQ3txY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2933,
+      "cache_read_input_tokens": 62805,
+      "output_tokens": 166,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 166,
+          "cache_read_input_tokens": 62805,
+          "cache_creation_input_tokens": 2933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-14T02:59:30.414Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01ChsPjXRpr9sTotRmpiCdKX`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c403f526-63fe-4db0-bfe3-ef0ecb0637e3",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "228cb26e-0ce9-486f-9204-6dc7cb59b952",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953.",
+  "sourceToolAssistantUUID": "c403f526-63fe-4db0-bfe3-ef0ecb0637e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-14T02:59:33.648Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01GRQsi7XsUVpdfhdonNRsGd`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "228cb26e-0ce9-486f-9204-6dc7cb59b952",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iKsphMZfnKspyDj3ac",
+  "type": "assistant",
+  "uuid": "c4c57fc5-5263-4f4a-ba7c-7cf8106e21e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YB3DGcjX7HrqQyX7Yp265B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 240,
+      "cache_read_input_tokens": 65738,
+      "output_tokens": 93,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 240,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 93,
+          "cache_read_input_tokens": 65738,
+          "cache_creation_input_tokens": 240,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 240
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T02:59:33.672Z_
+
+<details><summary>↩ Tool result · `toolu_01GRQsi7XsUVpdfhdonNRsGd`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c4c57fc5-5263-4f4a-ba7c-7cf8106e21e8",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "077dbcba-d2b6-4e28-9e63-7c6ce77e5257",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 20,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "c4c57fc5-5263-4f4a-ba7c-7cf8106e21e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-14T02:59:38.810Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_013hyL6s8yU5kiEC4RWJp7sK`</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "077dbcba-d2b6-4e28-9e63-7c6ce77e5257",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iL7du6A9wZbiWMWTRW",
+  "type": "assistant",
+  "uuid": "5a856b23-0743-4953-9bb0-8147163da57a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016yddRbWZXMpmEzKeUK4hyC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 108,
+      "cache_read_input_tokens": 65978,
+      "output_tokens": 94,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 94,
+          "cache_read_input_tokens": 65978,
+          "cache_creation_input_tokens": 108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-14T02:59:38.827Z_
+
+<details><summary>↩ Tool result · `toolu_013hyL6s8yU5kiEC4RWJp7sK`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a856b23-0743-4953-9bb0-8147163da57a",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "1807dd00-db7b-4a93-b9a4-8d1e0b20c3e1",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 13,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "5a856b23-0743-4953-9bb0-8147163da57a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-14T02:59:41.724Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01B89Kkek3RsG1rf5ipeydbW`</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.md",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1807dd00-db7b-4a93-b9a4-8d1e0b20c3e1",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iLVkBC6KiAXKciwaEU",
+  "type": "assistant",
+  "uuid": "0a71cfe7-bc8b-4a01-97ff-755bc57e01fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013SosuP92p9rB3zcTck3F3L",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 109,
+      "cache_read_input_tokens": 66086,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 66086,
+          "cache_creation_input_tokens": 109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T02:59:42.014Z_
+
+<details><summary>↩ Tool result · `toolu_01B89Kkek3RsG1rf5ipeydbW`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/dependencies.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/SKILL.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/other-tools.md
+/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/streaming.md
+/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md
+/home/ubuntu/agent-ml-research/skills/global/code-survey.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-experiment-review.skill.md
+/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md
+/home/ubuntu/agent-ml-research/skills/global/dataset-discovery.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-reviewer-synthesis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/data-snapshot.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-key.skill.md
+/home/ubuntu/agent-ml-research/skills/global/distill-session.skill.md
+/home/ubuntu/agent-ml-research/skills/global/elastic-gpu.skill.md
+/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md
+/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md
+/home/ubuntu/agent-ml-research/skills/global/first-project-entry.skill.md
+/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-generation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-proposal.skill.md
+/home/ubuntu/agent-ml-research/skills/global/framing-reaudit.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-cloud-rental.skill.md
+/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-claude-pool.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md
+/home/ubuntu/agent-ml-research/skills/global/novelty-check.skill.md
+/home/ubuntu/agent-ml-research/skills/global/narrative-animation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/mvp-validation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-datagen-done.skill.md
+/home/ubuntu/agent-ml-research/skills/global/negative-framing-review.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-pending.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-worker-done.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-research.skill.md
+/home/ubuntu/agent-ml-research/skills/global/red-section.skill.md
+/home/ubuntu/agent-ml-research/skills/global/progress-report.skill.md
+/home/ubuntu/agent-ml-research/skills/global/research-kickoff.skill.md
+/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/research-health-check.skill.md
+/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md
+/home/ubuntu/agent-ml-research/skills/global/research-news.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-research-standalone.skill.md
+/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md
+/home/ubuntu/agent-ml-research/skills/global/peft-lora.skill.md
+/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md
+/home/ubuntu/agent-ml-research/skills/global/review-report-action.skill.md
+/home/ubuntu/agent-ml-research/skills/global/skill-creator.skill.md
+/home/ubuntu/agent-ml-research/skills/global/study-director-session-start.skill.md
+/home/ubuntu/agent-ml-research/skills/global/trl-training.skill.md
+/home/ubuntu/agent-ml-research/skills/global/submit-experiment.skill.md
+/home/ubuntu/agent-ml-research/skills/global/write-paper-section.skill.md
+/home/ubuntu/agent-ml-research/skills/global/s3-backup.skill.md
+/home/ubuntu/agent-ml-research/skills/global/reviewer-audit-checklist.skill.md
+/home/ubuntu/agent-ml-research/skills/global/session-start.skill.md
+/home/ubuntu/agent-ml-research/skills/global/wandb-guide.skill.md
+/home/ubuntu/agent-ml-research/skills/global/ssh-env-setup.skill.md
+/home/ubuntu/agent-ml-research/skills/global/study-agent-assembly.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-async-ops.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-ec2-provisioning.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-readiness-check.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-state-verification.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-refinement.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-visual-review.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-from-scratch.skill.md
+/home/ubuntu/agent-ml-research/skills/global/literature-scan.skill.md
+/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md
+/home/ubuntu/agent-ml-research/skills/global/plan-next-experiment.skill.md
+/home/ubuntu/agent-ml-research/skills/global/dream-cron.skill.md
+/home/ubuntu/agent-ml-research/skills/global/dream-review-full.skill.md
+/home/ubuntu/agent-ml-research/skills/global/dream-review-simple.skill.md
+/home/ubuntu/agent-ml-research/skills/global/experiment-matrix.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-plan.skill.md
+/home/ubuntu/agent-ml-research/skills/global/ai-time-discipline.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-done.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-research-steering.skill.md
+/home/ubuntu/agent-ml-research/skills/global/dream-report-action.skill.md
+/home/ubuntu/agent-ml-research/skills/global/post-mvp-kickoff.skill.md
+/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0a71cfe7-bc8b-4a01-97ff-755bc57e01fb",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "6ffbb0e3-773b-4fda-a7d7-af54b82e8759",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/dependencies.md",
+      "/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/SKILL.md",
+      "/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/other-tools.md",
+      "/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/streaming.md",
+      "/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/code-survey.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/director-experiment-review.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/dataset-discovery.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/director-reviewer-synthesis.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/data-snapshot.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/check-key.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/distill-session.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/elastic-gpu.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/first-project-entry.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/idea-generation.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/idea-proposal.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/framing-reaudit.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/manager-cloud-rental.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/manager-claude-pool.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/novelty-check.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/narrative-animation.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/mvp-validation.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/on-datagen-done.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/negative-framing-review.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/on-experiment-pending.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/on-worker-done.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/paper-research.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/red-section.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/progress-report.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/research-kickoff.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/research-health-check.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/review-director-session-start.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/research-news.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/paper-research-standalone.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/rebuttal.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/peft-lora.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/review-reviewer-session-start.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/review-report-action.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/skill-creator.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/study-director-session-start.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/trl-training.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/submit-experiment.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/write-paper-section.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/s3-backup.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/reviewer-audit-checklist.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/session-start.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/wandb-guide.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/ssh-env-setup.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/study-agent-assembly.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/manager-async-ops.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/manager-ec2-provisioning.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/manager-readiness-check.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/manager-state-verification.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/paper-banana.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/paper-refinement.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/paper-visual-review.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/paper-from-scratch.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/literature-scan.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/reference-audit.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/paper-visualization.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/plan-next-experiment.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/dream-cron.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/dream-review-full.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/dream-review-simple.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/experiment-matrix.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/paper-plan.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/ai-time-discipline.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/on-experiment-done.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/director-research-steering.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/dream-report-action.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/post-mvp-kickoff.skill.md",
+      "/home/ubuntu/agent-ml-research/skills/global/ml-experiment-guide.skill.md"
+    ],
+    "durationMs": 286,
+    "numFiles": 82,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "0a71cfe7-bc8b-4a01-97ff-755bc57e01fb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: mvp_v5_random_s015 - project: phase-gated-compound-sparse - server: westd-22162 - log_path:…",
+  "leafUuid": "6ffbb0e3-773b-4fda-a7d7-af54b82e8759",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-14T02:59:44.933Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XMeCUGGKaLFjDwUorngBpE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ffbb0e3-773b-4fda-a7d7-af54b82e8759",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iLjD451pzJpJ2asC55",
+  "type": "assistant",
+  "uuid": "6261aef0-6a01-48c4-98cb-9d97d46dd081",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016jQgnRhJ6TrSKgUB897pFa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2164,
+      "cache_read_input_tokens": 66195,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2164,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 66195,
+          "cache_creation_input_tokens": 2164,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2164
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-14T02:59:44.940Z_
+
+<details><summary>↩ Tool result · `toolu_01XMeCUGGKaLFjDwUorngBpE`</summary>
+
+```text
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6261aef0-6a01-48c4-98cb-9d97d46dd081",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "2f829a3d-08ed-4848-9479-8e7b9f3333df",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+      "content": "---\nname: resource-saturation\ndescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\nalways: false\nroles:\n  - director\n  - agent\n---\n\n# 资源饱和度自检（硬约束）\n\n## A. GPU 分配率检查\n\n调 `get_project_resource_usage(project)` 看:\n- 已分配给本项目的 GPU 总数和具体卡号\n- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n- 分配了但没跑的 GPU 清单 ⚠️\n\n任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n- 派 Worker 铺 dry-run / 下一批实验代码准备\n- 铺 ablation（从 experiment-matrix 空白格子里挑）\n- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n\n**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n\n## B. GPU 效率检查\n\n调 `get_gpu_health(server)`:\n- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n\n## C. 非 GPU 任务并行\n\nGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n- 下一批实验的数据集下载 / 预处理 / fingerprint\n- 下一批实验的代码准备 / dry-run / 环境配置\n- 论文文献调研 / related work 检索\n- 已完成实验的 log 深度分析 / metric 聚合\n- 论文章节起草\n- 代码 review / refactor\n\n**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n\n## D. 汇报格式\n\n向 Director 汇报时开头必须带资源声明行:\n\n    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n",
+      "numLines": 50,
+      "startLine": 1,
+      "totalLines": 50
+    }
+  },
+  "sourceToolAssistantUUID": "6261aef0-6a01-48c4-98cb-9d97d46dd081",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-14T03:00:35.374Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the resource-saturation requirements. Let me also read the memory.md and literature_map.yaml for the on-experiment-done flow.
+
+Current state:
+- Worker pool: 1 (analysis worker just spawned) — still need more to meet ≥2 requirement
+- GPU: 4 allocated, 2 running (cuda:0 mvp_v5_fixed_s020_r2, cuda:1 mvp_v5_fixed_s030_r2), 2 idle (cuda:2, cuda:3) — the random experiments just finished on those GPUs
+
+
+- The analysis worker will return with results, but I need to wait for those before reporting to Director while also ensuring the worker pool reaches ≥2. With cuda:2 and cuda:3 now free, I could queue up the next experiments, though I should probably see what the analysis reveals first. I already know mvp_v5_fixed_s015 showed all positive importance indicators but ultimately negative results, which will inform what to try next.
+
+Looking at the new results, both s=0.15 and s=0.25 importance masking experiments produced super-additive interactions—the opposite of what the pivot hypothesis predicted. The fix didn't change the fundamental pattern; importance masking still shows positive II just like before. The real test is whether random masking produces different results, which should tell me if there's actually a meaningful difference between the two approaches.
+
+I need to figure out what to do with the remaining GPUs while waiting for the importance masking restarts on cuda:0 and cuda:1 to finish. Looking at what's left to run, I should check which random baseline experiments are still missing—I have s=0.15 and s=0.25 covered, but I need to verify whether s=0.20 and s=0.30 random experiments are queued up.
+
+Once the fixed importance runs complete, I'll have the full comparison data, but I'm noticing gaps in the random baselines for those higher sparsity levels. I could launch the missing random experiments on cuda:2 and cuda:3 right now to use the idle capacity, though I should verify whether this needs Director approval or if it falls within the scope of the original experiment plan as a natural extension. The random baselines for s=0.20 and s=0.30 should follow the same submission path as the earlier ones since they're part of the same experimental batch. I'll prepare those jobs for the freed GPUs, but first I need to wait for the analysis results to get the full picture. I should also spawn another Worker since the pool will be down to 1 after the analysis job starts. I need to check the project config to see which GPUs are available, and figure out whether I should use `submit_training_job` or `submit_on_allocated` for the random baseline experiments on cuda:2 and cuda:3. Looking at the CLAUDE.md rules, `submit_on_allocated` is only for experiments that have gone through the full approval flow, so these random baselines probably need a different approach.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f829a3d-08ed-4848-9479-8e7b9f3333df",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iLwh8ypXn7eKHFjE2F",
+  "type": "assistant",
+  "uuid": "1d7a44a0-2120-4650-b315-a69e9f8fd660",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013W6CkXL1RPwMhCYEAFxfzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 68359,
+      "output_tokens": 2152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2152,
+          "cache_read_input_tokens": 68359,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-14T03:00:36.381Z_
+
+Worker 已派出分析两个 random baseline 结果。同时检查 GPU 分配和实验计划，准备在空闲 GPU 上提交下一批实验。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d7a44a0-2120-4650-b315-a69e9f8fd660",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iLwh8ypXn7eKHFjE2F",
+  "type": "assistant",
+  "uuid": "eca0e348-1d26-4448-a5b7-83773dcacebf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013W6CkXL1RPwMhCYEAFxfzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 68359,
+      "output_tokens": 2152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2152,
+          "cache_read_input_tokens": 68359,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-14T03:00:37.388Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config · `toolu_01B8matrYt3tL8C4zBiX3Zg3`</summary>
+
+```json
+{
+  "project_name": "phase-gated-compound-sparse",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eca0e348-1d26-4448-a5b7-83773dcacebf",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iLwh8ypXn7eKHFjE2F",
+  "type": "assistant",
+  "uuid": "0c729794-1fa0-4746-8b59-11b75cd39890",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013W6CkXL1RPwMhCYEAFxfzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 68359,
+      "output_tokens": 2152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2152,
+          "cache_read_input_tokens": 68359,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T03:00:37.412Z_
+
+<details><summary>↩ Tool result · `toolu_01B8matrYt3tL8C4zBiX3Zg3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"project\": \"phase-gated-compound-sparse\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"westd-22162:cuda:0\", \"westd-22162:cuda:1\", \"westd-22162:cuda:2\", \"westd-22162:cuda:3\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/pacs\", \"servers\": [\"westd-22162\"]}}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c729794-1fa0-4746-8b59-11b75cd39890",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "78170c47-62ce-4783-8433-3d3393a77c0a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"phase-gated-compound-sparse\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": [\\\"westd-22162:cuda:0\\\", \\\"westd-22162:cuda:1\\\", \\\"westd-22162:cuda:2\\\", \\\"westd-22162:cuda:3\\\"], \\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/root/autodl-tmp/pacs\\\", \\\"servers\\\": [\\\"westd-22162\\\"]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"project\": \"phase-gated-compound-sparse\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"westd-22162:cuda:0\", \"westd-22162:cuda:1\", \"westd-22162:cuda:2\", \"westd-22162:cuda:3\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\", \"cuda:2\", \"cuda:3\"], \"project_path\": \"/root/autodl-tmp/pacs\", \"servers\": [\"westd-22162\"]}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0c729794-1fa0-4746-8b59-11b75cd39890",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-14T03:00:37.958Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Guzfr7Msqi3LhR59WaHcNR`</summary>
+
+```json
+{
+  "project": "phase-gated-compound-sparse",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78170c47-62ce-4783-8433-3d3393a77c0a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iLwh8ypXn7eKHFjE2F",
+  "type": "assistant",
+  "uuid": "c44be6c9-ec21-4467-b610-4c5da95202d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013W6CkXL1RPwMhCYEAFxfzT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 68359,
+      "output_tokens": 2152,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2152,
+          "cache_read_input_tokens": 68359,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-14T03:00:37.972Z_
+
+<details><summary>↩ Tool result · `toolu_01Guzfr7Msqi3LhR59WaHcNR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/memory.md\", \"content\": \"## Director 决策记录\\n\\n### D015: Median Gradient 锚定 + Go/No-Go 标准 (2026-05-14 02:54 UTC)\\n- **主指标：median**。Mean 仅 supplementary（标注 heavy-tail caveat）\\n- Importance median gradient 趋势：12.8x → 28.7x → 52.9x → 74.9x，单调递增 ✅\\n- s030 heavy tail（mean/median=43:1）作为 secondary finding → Discussion\\n- **Go 条件**：importance median gradient 显著 > random median gradient → 进 M1' bootstrap CI\\n- **No-go**：如果 random gradient 也类似大 → crossover 不是 strategy-specific\\n\\n### D014: 数据可信性分级 (2026-05-14 02:36 UTC)\\n- s020/s030（非 r2）标记 INVALIDATED，禁止引用\\n- 统计指标切换到 median\\n\\n### Director Framing 指引 (2026-05-14 02:29 UTC)\\n- **不要**框定为 \\\"importance 指标局限性\\\"（天花板低）\\n- **应该**框定为：compound sparsity 产生 emergent phase-strategy interaction，单方法评估中不可见\\n- 关键 framing：复合稀疏效率由 strategy×phase 交互主导\\n\\n## 文献增量扫描 (2026-05-14)\\n\\n1. **GRASPrune (ACL'26 Main)** 最直接 competitor：联合 pruning FFN+heads，但 weight space / 无 interaction direction / 无 phase conditioning\\n2. **无论文报告过 importance vs random 的 phase-dependent crossover** — novelty confirmed (3 个独立调研 Worker 一致)\\n3. 最接近：Ada-KV (budget reallocation)、NACL (混合策略)、Entropy Meets Importance (discrimination collapse 理论)\\n\\n## Importance Metric Bug (2026-05-14 01:28 UTC)\\n\\n修复（commit `20182ec`）：NaN 层跳过 + 位置归一化 + torch.where + float32 CE + robust stats。所有 v4 legacy importance 数据无效。\\n\\n## 可信 Importance II Median 数据\\n\\n| Phase | s=0.15 | s=0.20* | s=0.25 | s=0.30* |\\n|-------|--------|---------|--------|---------|\\n| high | 0.205 | (r2 pending) | 0.584 | (r2 pending) |\\n| mid | 0.696 | (r2 pending) | 4.522 | (r2 pending) |\\n| low | 2.627 | (r2 pending) | 30.903 | (r2 pending) |\\n\\n*s020/s030 r2 实验运行中，将替代 invalidated 数据\\n\\n## Mechanism 假设 (from research Worker)\\n1. **Entropy-Discrimination Collapse**: head pruning → 存活 head attention 更均匀 → importance 区分度崩溃\\n2. **Gradient Amplification**: 更高 sparsity → 更多 head 剪掉 → low phase entropy 过阈值 → compound penalty 集中\\n3. **Super-Additivity 循环依赖**: head pruning 改变 importance scoring 的 attention pattern，eviction 又移除 context\\n4. Random gradient 更小因为无 discrimination collapse\\n\", \"total_chars\": 1985, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c44be6c9-ec21-4467-b610-4c5da95202d5",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "0d979877-1303-4e08-94ac-2c7f61a2cebb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/memory.md\\\", \\\"content\\\": \\\"## Director 决策记录\\\\n\\\\n### D015: Median Gradient 锚定 + Go/No-Go 标准 (2026-05-14 02:54 UTC)\\\\n- **主指标：median**。Mean 仅 supplementary（标注 heavy-tail caveat）\\\\n- Importance median gradient 趋势：12.8x → 28.7x → 52.9x → 74.9x，单调递增 ✅\\\\n- s030 heavy tail（mean/median=43:1）作为 secondary finding → Discussion\\\\n- **Go 条件**：importance median gradient 显著 > random median gradient → 进 M1' bootstrap CI\\\\n- **No-go**：如果 random gradient 也类似大 → crossover 不是 strategy-specific\\\\n\\\\n### D014: 数据可信性分级 (2026-05-14 02:36 UTC)\\\\n- s020/s030（非 r2）标记 INVALIDATED，禁止引用\\\\n- 统计指标切换到 median\\\\n\\\\n### Director Framing 指引 (2026-05-14 02:29 UTC)\\\\n- **不要**框定为 \\\\\\\"importance 指标局限性\\\\\\\"（天花板低）\\\\n- **应该**框定为：compound sparsity 产生 emergent phase-strategy interaction，单方法评估中不可见\\\\n- 关键 framing：复合稀疏效率由 strategy×phase 交互主导\\\\n\\\\n## 文献增量扫描 (2026-05-14)\\\\n\\\\n1. **GRASPrune (ACL'26 Main)** 最直接 competitor：联合 pruning FFN+heads，但 weight space / 无 interaction direction / 无 phase conditioning\\\\n2. **无论文报告过 importance vs random 的 phase-dependent crossover** — novelty confirmed (3 个独立调研 Worker 一致)\\\\n3. 最接近：Ada-KV (budget reallocation)、NACL (混合策略)、Entropy Meets Importance (discrimination collapse 理论)\\\\n\\\\n## Importance Metric Bug (2026-05-14 01:28 UTC)\\\\n\\\\n修复（commit `20182ec`）：NaN 层跳过 + 位置归一化 + torch.where + float32 CE + robust stats。所有 v4 legacy importance 数据无效。\\\\n\\\\n## 可信 Importance II Median 数据\\\\n\\\\n| Phase | s=0.15 | s=0.20* | s=0.25 | s=0.30* |\\\\n|-------|--------|---------|--------|---------|\\\\n| high | 0.205 | (r2 pending) | 0.584 | (r2 pending) |\\\\n| mid | 0.696 | (r2 pending) | 4.522 | (r2 pending) |\\\\n| low | 2.627 | (r2 pending) | 30.903 | (r2 pending) |\\\\n\\\\n*s020/s030 r2 实验运行中，将替代 invalidated 数据\\\\n\\\\n## Mechanism 假设 (from research Worker)\\\\n1. **Entropy-Discrimination Collapse**: head pruning → 存活 head attention 更均匀 → importance 区分度崩溃\\\\n2. **Gradient Amplification**: 更高 sparsity → 更多 head 剪掉 → low phase entropy 过阈值 → compound penalty 集中\\\\n3. **Super-Additivity 循环依赖**: head pruning 改变 importance scoring 的 attention pattern，eviction 又移除 context\\\\n4. Random gradient 更小因为无 discrimination collapse\\\\n\\\", \\\"total_chars\\\": 1985, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/memory.md\", \"content\": \"## Director 决策记录\\n\\n### D015: Median Gradient 锚定 + Go/No-Go 标准 (2026-05-14 02:54 UTC)\\n- **主指标：median**。Mean 仅 supplementary（标注 heavy-tail caveat）\\n- Importance median gradient 趋势：12.8x → 28.7x → 52.9x → 74.9x，单调递增 ✅\\n- s030 heavy tail（mean/median=43:1）作为 secondary finding → Discussion\\n- **Go 条件**：importance median gradient 显著 > random median gradient → 进 M1' bootstrap CI\\n- **No-go**：如果 random gradient 也类似大 → crossover 不是 strategy-specific\\n\\n### D014: 数据可信性分级 (2026-05-14 02:36 UTC)\\n- s020/s030（非 r2）标记 INVALIDATED，禁止引用\\n- 统计指标切换到 median\\n\\n### Director Framing 指引 (2026-05-14 02:29 UTC)\\n- **不要**框定为 \\\"importance 指标局限性\\\"（天花板低）\\n- **应该**框定为：compound sparsity 产生 emergent phase-strategy interaction，单方法评估中不可见\\n- 关键 framing：复合稀疏效率由 strategy×phase 交互主导\\n\\n## 文献增量扫描 (2026-05-14)\\n\\n1. **GRASPrune (ACL'26 Main)** 最直接 competitor：联合 pruning FFN+heads，但 weight space / 无 interaction direction / 无 phase conditioning\\n2. **无论文报告过 importance vs random 的 phase-dependent crossover** — novelty confirmed (3 个独立调研 Worker 一致)\\n3. 最接近：Ada-KV (budget reallocation)、NACL (混合策略)、Entropy Meets Importance (discrimination collapse 理论)\\n\\n## Importance Metric Bug (2026-05-14 01:28 UTC)\\n\\n修复（commit `20182ec`）：NaN 层跳过 + 位置归一化 + torch.where + float32 CE + robust stats。所有 v4 legacy importance 数据无效。\\n\\n## 可信 Importance II Median 数据\\n\\n| Phase | s=0.15 | s=0.20* | s=0.25 | s=0.30* |\\n|-------|--------|---------|--------|---------|\\n| high | 0.205 | (r2 pending) | 0.584 | (r2 pending) |\\n| mid | 0.696 | (r2 pending) | 4.522 | (r2 pending) |\\n| low | 2.627 | (r2 pending) | 30.903 | (r2 pending) |\\n\\n*s020/s030 r2 实验运行中，将替代 invalidated 数据\\n\\n## Mechanism 假设 (from research Worker)\\n1. **Entropy-Discrimination Collapse**: head pruning → 存活 head attention 更均匀 → importance 区分度崩溃\\n2. **Gradient Amplification**: 更高 sparsity → 更多 head 剪掉 → low phase entropy 过阈值 → compound penalty 集中\\n3. **Super-Additivity 循环依赖**: head pruning 改变 importance scoring 的 attention pattern，eviction 又移除 context\\n4. Random gradient 更小因为无 discrimination collapse\\n\", \"total_chars\": 1985, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c44be6c9-ec21-4467-b610-4c5da95202d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: mvp_v5_random_s015 - project: phase-gated-compound-sparse - server: westd-22162 - log_path:…",
+  "leafUuid": "0d979877-1303-4e08-94ac-2c7f61a2cebb",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-14T03:01:04.951Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me understand the current status:
+
+**GPU allocation**: cuda:0~3 on westd-22162, all allocated to this project.
+
+**Current GPU usage**:
+- cuda:0: mvp_v5_fixed_s020_r2 (RUNNING, importance s=0.20)
+- cuda:1: mvp_v5_fixed_s030_r2 (RUNNING, importance s=0.30) 
+- cuda:2: FREE (mvp_v5_random_s015 just finished)
+
+
+- cuda:3: FREE (mvp_v5_random_s025 just finished)
+
+**Director's D015 decision**: The key criterion is whether importance median gradient > random median gradient. We need random baselines to compare.
+
+**Memory**: We have importance median data for s=0.15 and s=0.25, and s=0.20/s=0.30 are pending (r2 experiments running).
+
+Now that cuda:2 and cuda:3 are free, I need to queue up the next experiments. The logical next steps are the remaining random baseline runs to complete the comparison set.
+
+I'm planning to submit mvp_v5_random_s020 on cuda:2 and mvp_v5_random_s030 on cuda:3 to pair with the fixed variants already running. But I need to check what tools I actually have available—I don't think I loaded submit_training_job earlier, so let me verify what's in my toolkit.
+
+Looking at my CLAUDE.md guidelines, I should be delegating execution tasks to Workers via spawn_worker, while I handle the coordination and lightweight operations like registry updates and submitting pre-allocated experiments. The Worker should use submit_training_job for training submissions rather than bash commands, so I need to set up the experiment configuration and then spawn a Worker to handle the actual submission.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d979877-1303-4e08-94ac-2c7f61a2cebb",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iQrgsTxvEew1wd8aMe",
+  "type": "assistant",
+  "uuid": "dc22687e-e891-4d75-b12b-1aef35b834b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzgUfdYWg9VRk9jaCRgQWt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3496,
+      "cache_read_input_tokens": 69506,
+      "output_tokens": 1064,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3496,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1064,
+          "cache_read_input_tokens": 69506,
+          "cache_creation_input_tokens": 3496,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3496
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-14T03:01:05.980Z_
+
+cuda:2 和 cuda:3 现在空闲（random s015/s025 刚跑完），需要立即提交 random s020/s030 baseline 填满 GPU。加载 submit_training_job。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc22687e-e891-4d75-b12b-1aef35b834b3",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iQrgsTxvEew1wd8aMe",
+  "type": "assistant",
+  "uuid": "3618588b-34ac-4ace-a24f-34774ca50b3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzgUfdYWg9VRk9jaCRgQWt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3496,
+      "cache_read_input_tokens": 69506,
+      "output_tokens": 1064,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3496,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1064,
+          "cache_read_input_tokens": 69506,
+          "cache_creation_input_tokens": 3496,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3496
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-14T03:01:07.304Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HjUrB5kKbJ1rYiJLvN8vtN`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3618588b-34ac-4ace-a24f-34774ca50b3c",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iQrgsTxvEew1wd8aMe",
+  "type": "assistant",
+  "uuid": "545f5998-319a-4af9-852c-f981ad92a414",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzgUfdYWg9VRk9jaCRgQWt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3496,
+      "cache_read_input_tokens": 69506,
+      "output_tokens": 1064,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3496,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1064,
+          "cache_read_input_tokens": 69506,
+          "cache_creation_input_tokens": 3496,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3496
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-14T03:01:07.308Z_
+
+<details><summary>↩ Tool result · `toolu_01HjUrB5kKbJ1rYiJLvN8vtN`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__submit_training_job"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_project_resource_usage"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "545f5998-319a-4af9-852c-f981ad92a414",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "3fbe32ef-1680-4e79-97bc-3008707e119d",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__get_project_resource_usage"
+    ],
+    "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__get_project_resource_usage",
+    "total_deferred_tools": 79
+  },
+  "sourceToolAssistantUUID": "545f5998-319a-4af9-852c-f981ad92a414",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 58 · 2026-05-14T03:01:07.314Z_
+
+```json
+{
+  "parentUuid": "3fbe32ef-1680-4e79-97bc-3008707e119d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "574615ad-dd35-4d65-b63a-ffe1e501cb3c",
+  "timestamp": "2026-05-14T03:01:07.314Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-14T03:01:28.300Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+Now I need to:
+1. Create registry entries for the two new random baseline experiments
+2. Submit them via submit_training_job on cuda:2 and cuda:3
+
+Let me first create the registry entries, then submit the training jobs. I can do the registry creation and submission in parallel for the two experiments.
+
+The command format should match the existing random baseline experiments. Looking at mvp_v5_random_s015's command:
+```
+bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s015 --sparsity_levels 0.15 --masking_method random --max_new_tokens 2048 --min_phase_length 10"
+```
+
+For s020, I'll follow the same pattern with the appropriate output directory and sparsity level adjustments.
+
+For s030, I'm setting up the final profiling run with 0.30 sparsity. Now I need to create the registry entries and submit these training jobs.
+
+Looking at how the existing experiments are structured, `submit_training_job` should handle creating the registry entry automatically, but I need to set the hypothesis field first. Let me create both registry entries with the hypothesis, then submit them through the job submission process.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "574615ad-dd35-4d65-b63a-ffe1e501cb3c",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iT1spvzkqnz4BdpxYb",
+  "type": "assistant",
+  "uuid": "c0fbcb5a-908a-40f1-a7ad-82f5c989840f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AntgZQASJszvwJgdRKc7xQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2108,
+      "cache_read_input_tokens": 73002,
+      "output_tokens": 1461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1461,
+          "cache_read_input_tokens": 73002,
+          "cache_creation_input_tokens": 2108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-14T03:01:29.360Z_
+
+cuda:2 和 cuda:3 空闲，立即提交 random s020 和 s030 baseline 补全对照矩阵。先创建 registry 条目。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0fbcb5a-908a-40f1-a7ad-82f5c989840f",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iT1spvzkqnz4BdpxYb",
+  "type": "assistant",
+  "uuid": "1177cd7d-e69b-423a-a647-728fabf7c7a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AntgZQASJszvwJgdRKc7xQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2108,
+      "cache_read_input_tokens": 73002,
+      "output_tokens": 1461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1461,
+          "cache_read_input_tokens": 73002,
+          "cache_creation_input_tokens": 2108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-14T03:01:33.199Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DhDqvNoNnjv3Y6GwJreAPx`</summary>
+
+```json
+{
+  "exp_id": "mvp_v5_random_s020",
+  "field": "hypothesis",
+  "value": "v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1177cd7d-e69b-423a-a647-728fabf7c7a9",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iT1spvzkqnz4BdpxYb",
+  "type": "assistant",
+  "uuid": "14e86236-f77a-4cd0-9c92-b9b8a0caa25b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AntgZQASJszvwJgdRKc7xQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2108,
+      "cache_read_input_tokens": 73002,
+      "output_tokens": 1461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1461,
+          "cache_read_input_tokens": 73002,
+          "cache_creation_input_tokens": 2108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-14T03:01:33.363Z_
+
+<details><summary>↩ Tool result · `toolu_01DhDqvNoNnjv3Y6GwJreAPx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_v5_random_s020\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:01:33.304Z\", \"updated_at\": \"2026-05-14T03:01:33.304Z\", \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1439}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "14e86236-f77a-4cd0-9c92-b9b8a0caa25b",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "f2b8909e-7d5f-4936-8212-43c81a9e95e3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_v5_random_s020\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:01:33.304Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:01:33.304Z\\\", \\\"hypothesis\\\": \\\"v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1439}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_v5_random_s020\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:01:33.304Z\", \"updated_at\": \"2026-05-14T03:01:33.304Z\", \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1439}}"
+    }
+  },
+  "sourceToolAssistantUUID": "14e86236-f77a-4cd0-9c92-b9b8a0caa25b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-14T03:01:34.624Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01KjFQxXv1zw6keAeY8TpGG1`</summary>
+
+```json
+{
+  "exp_id": "mvp_v5_random_s030",
+  "field": "hypothesis",
+  "value": "v5 修复后代码 random masking baseline, sparsity=0.30, cuda:3。与 mvp_v5_fixed_s030_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2b8909e-7d5f-4936-8212-43c81a9e95e3",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iT1spvzkqnz4BdpxYb",
+  "type": "assistant",
+  "uuid": "3ee4842f-1311-4d08-a6c6-eb0b5e020c1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AntgZQASJszvwJgdRKc7xQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2108,
+      "cache_read_input_tokens": 73002,
+      "output_tokens": 1461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2108,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1461,
+          "cache_read_input_tokens": 73002,
+          "cache_creation_input_tokens": 2108,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2108
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-14T03:01:34.909Z_
+
+<details><summary>↩ Tool result · `toolu_01KjFQxXv1zw6keAeY8TpGG1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_v5_random_s030\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:01:34.781Z\", \"updated_at\": \"2026-05-14T03:01:34.781Z\", \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.30, cuda:3。与 mvp_v5_fixed_s030_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2534}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3ee4842f-1311-4d08-a6c6-eb0b5e020c1e",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "2afd009d-2298-4154-87f1-04fe44468e3a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_v5_random_s030\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:01:34.781Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:01:34.781Z\\\", \\\"hypothesis\\\": \\\"v5 修复后代码 random masking baseline, sparsity=0.30, cuda:3。与 mvp_v5_fixed_s030_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2534}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_v5_random_s030\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:01:34.781Z\", \"updated_at\": \"2026-05-14T03:01:34.781Z\", \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.30, cuda:3。与 mvp_v5_fixed_s030_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2534}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3ee4842f-1311-4d08-a6c6-eb0b5e020c1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-14T03:01:38.829Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, experiments created. Now submit the training jobs. Both can be submitted in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2afd009d-2298-4154-87f1-04fe44468e3a",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iV46L9RAYhvmfFJvKN",
+  "type": "assistant",
+  "uuid": "6de4348d-2e51-41c6-a732-c14361515375",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SH39ifxqKUrvKbxaQzRf6Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1967,
+      "cache_read_input_tokens": 75110,
+      "output_tokens": 702,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 702,
+          "cache_read_input_tokens": 75110,
+          "cache_creation_input_tokens": 1967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-14T03:01:39.358Z_
+
+Registry 条目已创建。提交两个 random baseline 训练任务。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6de4348d-2e51-41c6-a732-c14361515375",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iV46L9RAYhvmfFJvKN",
+  "type": "assistant",
+  "uuid": "bf6ac95f-b5d1-49c6-8ece-7b304d97eb14",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SH39ifxqKUrvKbxaQzRf6Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1967,
+      "cache_read_input_tokens": 75110,
+      "output_tokens": 702,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 702,
+          "cache_read_input_tokens": 75110,
+          "cache_creation_input_tokens": 1967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-14T03:01:44.081Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_019p2w4UVBTHXFqxgPTD6uDc`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "gpu_ids": [
+    "cuda:2"
+  ],
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s020 --sparsity_levels 0.20 --masking_method random --max_new_tokens 2048 --min_phase_length 10\"",
+  "exp_id": "mvp_v5_random_s020",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf6ac95f-b5d1-49c6-8ece-7b304d97eb14",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iV46L9RAYhvmfFJvKN",
+  "type": "assistant",
+  "uuid": "47f92847-2623-498e-b416-6a4c1c0a3329",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SH39ifxqKUrvKbxaQzRf6Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1967,
+      "cache_read_input_tokens": 75110,
+      "output_tokens": 702,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 702,
+          "cache_read_input_tokens": 75110,
+          "cache_creation_input_tokens": 1967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-14T03:01:45.904Z_
+
+<details><summary>↩ Tool result · `toolu_019p2w4UVBTHXFqxgPTD6uDc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"55306\", \"log_file\": \"~/runs/phase-gated-compound-sparse/mvp_v5_random_s020.log\", \"gpu_ids\": [\"cuda:2\"], \"server\": \"westd-22162\", \"account\": \"root\", \"cuda_visible_devices\": \"2\", \"backend\": \"tmux\", \"tmux_session\": \"mvp_v5_random_s020\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47f92847-2623-498e-b416-6a4c1c0a3329",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "2c1de7f5-ea6e-4695-a0ba-491e1652b9e6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"55306\\\", \\\"log_file\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_v5_random_s020.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"westd-22162\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"mvp_v5_random_s020\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.81}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"55306\", \"log_file\": \"~/runs/phase-gated-compound-sparse/mvp_v5_random_s020.log\", \"gpu_ids\": [\"cuda:2\"], \"server\": \"westd-22162\", \"account\": \"root\", \"cuda_visible_devices\": \"2\", \"backend\": \"tmux\", \"tmux_session\": \"mvp_v5_random_s020\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.81}}"
+    }
+  },
+  "sourceToolAssistantUUID": "47f92847-2623-498e-b416-6a4c1c0a3329",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-14T03:01:46.223Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__submit_training_job · `toolu_01Kg1EMxXf3CFjAM4gCKv4ci`</summary>
+
+```json
+{
+  "server": "westd-22162",
+  "gpu_ids": [
+    "cuda:3"
+  ],
+  "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/pacs && python -m pacs.profiling.run_profiling --model_path /root/autodl-tmp/pacs/checkpoints/DeepSeek-R1-Distill-Qwen-7B --data_path /root/autodl-tmp/pacs/data/math500.json --output_dir /root/autodl-tmp/pacs/profiling_output_v5_random_s030 --sparsity_levels 0.30 --masking_method random --max_new_tokens 2048 --min_phase_length 10\"",
+  "exp_id": "mvp_v5_random_s030",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c1de7f5-ea6e-4695-a0ba-491e1652b9e6",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iV46L9RAYhvmfFJvKN",
+  "type": "assistant",
+  "uuid": "08c95257-acd6-408a-9f7b-290a5cd6fb6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SH39ifxqKUrvKbxaQzRf6Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1967,
+      "cache_read_input_tokens": 75110,
+      "output_tokens": 702,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 702,
+          "cache_read_input_tokens": 75110,
+          "cache_creation_input_tokens": 1967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: mvp_v5_random_s015 - project: phase-gated-compound-sparse - server: westd-22162 - log_path:…",
+  "leafUuid": "08c95257-acd6-408a-9f7b-290a5cd6fb6e",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 71_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-14T03:01:47.316Z_
+
+<details><summary>↩ Tool result · `toolu_01Kg1EMxXf3CFjAM4gCKv4ci`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"pid\": \"55449\", \"log_file\": \"~/runs/phase-gated-compound-sparse/mvp_v5_random_s030.log\", \"gpu_ids\": [\"cuda:3\"], \"server\": \"westd-22162\", \"account\": \"root\", \"cuda_visible_devices\": \"3\", \"backend\": \"tmux\", \"tmux_session\": \"mvp_v5_random_s030\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08c95257-acd6-408a-9f7b-290a5cd6fb6e",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "0b49af06-55d1-4db6-acd2-ed8154f5c020",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"55449\\\", \\\"log_file\\\": \\\"~/runs/phase-gated-compound-sparse/mvp_v5_random_s030.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"westd-22162\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"mvp_v5_random_s030\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"pid\": \"55449\", \"log_file\": \"~/runs/phase-gated-compound-sparse/mvp_v5_random_s030.log\", \"gpu_ids\": [\"cuda:3\"], \"server\": \"westd-22162\", \"account\": \"root\", \"cuda_visible_devices\": \"3\", \"backend\": \"tmux\", \"tmux_session\": \"mvp_v5_random_s030\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+    }
+  },
+  "sourceToolAssistantUUID": "08c95257-acd6-408a-9f7b-290a5cd6fb6e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73 · 2026-05-14T03:01:53.088Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Both random baseline experiments submitted successfully:
+- mvp_v5_random_s020: cuda:2, PID 55306
+- mvp_v5_random_s030: cuda:3, PID 55449
+
+Now update the registry with spec info for provenance.
+
+Actually, submit_training_job should have already updated the registry with the command, server, gpu, pid info. Let me add the additional spec fields (data_path, data_count, model_name, seed) that submit_training_job doesn't set automatically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b49af06-55d1-4db6-acd2-ed8154f5c020",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iVxvoq1xeqTmoNwbj9",
+  "type": "assistant",
+  "uuid": "482ee2a8-88d5-4bc9-aed8-d37393c383ce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nmi9Na8MqewLm9AMrW7Kq3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1095,
+      "cache_read_input_tokens": 77077,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1095,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 77077,
+          "cache_creation_input_tokens": 1095,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1095
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-14T03:01:54.599Z_
+
+两个 random baseline 已提交，4 GPU 全部在跑。更新 registry 补充 provenance spec。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "482ee2a8-88d5-4bc9-aed8-d37393c383ce",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iVxvoq1xeqTmoNwbj9",
+  "type": "assistant",
+  "uuid": "0c3adf28-e48e-45dc-b9ee-3e53a8566191",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nmi9Na8MqewLm9AMrW7Kq3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1095,
+      "cache_read_input_tokens": 77077,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1095,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 77077,
+          "cache_creation_input_tokens": 1095,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1095
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-14T03:01:56.034Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012Hq5RBZZaSCrmj2vf2Na38`</summary>
+
+```json
+{
+  "exp_id": "mvp_v5_random_s020",
+  "field": "spec",
+  "value": {
+    "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+    "data_count": 50,
+    "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+    "seed": 42
+  },
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c3adf28-e48e-45dc-b9ee-3e53a8566191",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iVxvoq1xeqTmoNwbj9",
+  "type": "assistant",
+  "uuid": "b9fb9af6-d56e-481f-98a2-e8cfd92e13bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nmi9Na8MqewLm9AMrW7Kq3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1095,
+      "cache_read_input_tokens": 77077,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1095,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 77077,
+          "cache_creation_input_tokens": 1095,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1095
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-14T03:01:56.313Z_
+
+<details><summary>↩ Tool result · `toolu_012Hq5RBZZaSCrmj2vf2Na38`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_v5_random_s020\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:01:33.304Z\", \"updated_at\": \"2026-05-14T03:01:56.234Z\", \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\", \"spec\": {\"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2502}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b9fb9af6-d56e-481f-98a2-e8cfd92e13bf",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "4ff0f2dc-d556-4fca-8883-645928b837b7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_v5_random_s020\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:01:33.304Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:01:56.234Z\\\", \\\"hypothesis\\\": \\\"v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2502}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_v5_random_s020\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:01:33.304Z\", \"updated_at\": \"2026-05-14T03:01:56.234Z\", \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.20, cuda:2。与 mvp_v5_fixed_s020_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\", \"spec\": {\"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2502}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b9fb9af6-d56e-481f-98a2-e8cfd92e13bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-14T03:01:56.787Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01Jga5HvSmZqMUHLxuaCFHPr`</summary>
+
+```json
+{
+  "exp_id": "mvp_v5_random_s030",
+  "field": "spec",
+  "value": {
+    "data_path": "/root/autodl-tmp/pacs/data/math500.json",
+    "data_count": 50,
+    "model_name": "DeepSeek-R1-Distill-Qwen-7B",
+    "seed": 42
+  },
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ff0f2dc-d556-4fca-8883-645928b837b7",
+  "isSidechain": false,
+  "requestId": "req_011Cb1iVxvoq1xeqTmoNwbj9",
+  "type": "assistant",
+  "uuid": "6edfd035-80cb-4aa7-9252-14eba6393440",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nmi9Na8MqewLm9AMrW7Kq3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1095,
+      "cache_read_input_tokens": 77077,
+      "output_tokens": 534,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1095,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 534,
+          "cache_read_input_tokens": 77077,
+          "cache_creation_input_tokens": 1095,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1095
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-14T03:01:56.969Z_
+
+<details><summary>↩ Tool result · `toolu_01Jga5HvSmZqMUHLxuaCFHPr`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"mvp_v5_random_s030\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:01:34.781Z\", \"updated_at\": \"2026-05-14T03:01:56.901Z\", \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.30, cuda:3。与 mvp_v5_fixed_s030_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\", \"spec\": {\"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1672}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6edfd035-80cb-4aa7-9252-14eba6393440",
+  "isSidechain": false,
+  "promptId": "853c1db8-5e5f-4e5e-abfc-e7ce3277a240",
+  "type": "user",
+  "uuid": "e595efc3-5641-4cc5-9f26-aa4f650fb489",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"mvp_v5_random_s030\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T03:01:34.781Z\\\", \\\"updated_at\\\": \\\"2026-05-14T03:01:56.901Z\\\", \\\"hypothesis\\\": \\\"v5 修复后代码 random masking baseline, sparsity=0.30, cuda:3。与 mvp_v5_fixed_s030_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\\\", \\\"spec\\\": {\\\"data_path\\\": \\\"/root/autodl-tmp/pacs/data/math500.json\\\", \\\"data_count\\\": 50, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1672}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"mvp_v5_random_s030\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T03:01:34.781Z\", \"updated_at\": \"2026-05-14T03:01:56.901Z\", \"hypothesis\": \"v5 修复后代码 random masking baseline, sparsity=0.30, cuda:3。与 mvp_v5_fixed_s030_r2 (importance) 形成对照组。D015 Go/No-Go 判定所需：比较 importance vs random median gradient。\", \"spec\": {\"data_path\": \"/root/autodl-tmp/pacs/data/math500.json\", \"data_count\": 50, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1672}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6edfd035-80cb-4aa7-9252-14eba6393440",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80 · 2026-05-14T06:14:51.456Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T06:14:51.456Z",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81 · 2026-05-14T06:14:51.457Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T06:14:51.457Z",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 82 · 2026-05-14T06:14:51.412Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e595efc3-5641-4cc5-9f26-aa4f650fb489",
+  "isSidechain": false,
+  "promptId": "51ee3f37-d338-46be-95e8-f142df0b9bc3",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "e8126122-c888-4409-a19e-7a58a5f9a25a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-14T06:14:51.412Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e8126122-c888-4409-a19e-7a58a5f9a25a",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "dd32f207-a811-4337-899e-abca31880412",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "8d580d8d-ef40-4f7b-a8ab-275428116dcd",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+5 recorded events
+
+### User
+
+_source line 84 · 2026-05-14T06:14:52.464Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd32f207-a811-4337-899e-abca31880412",
+  "isSidechain": false,
+  "promptId": "51ee3f37-d338-46be-95e8-f142df0b9bc3",
+  "type": "user",
+  "uuid": "26eb53ae-b9f7-483a-b86d-79b11cf3b97b",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85 · 2026-05-14T06:14:52.460Z_
+
+```json
+{
+  "parentUuid": "26eb53ae-b9f7-483a-b86d-79b11cf3b97b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "5eeba6ed-b901-48df-86e4-e678a4a6180b",
+  "timestamp": "2026-05-14T06:14:52.460Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and mark done",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 87 · 2026-05-14T06:15:02.528Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T06:15:02.528Z",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 88 · 2026-05-14T06:15:02.528Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T06:15:02.528Z",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8"
+}
+```
+
+---
+
+## Round 4
+
+2 recorded events
+
+### User
+
+_source line 89 · 2026-05-14T06:15:02.506Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5eeba6ed-b901-48df-86e4-e678a4a6180b",
+  "isSidechain": false,
+  "promptId": "fb05f155-37e3-44f1-990a-1eb7d93cc36d",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "1130d92a-df02-4313-b4ce-4e7a3480e6df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-14T06:15:02.506Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1130d92a-df02-4313-b4ce-4e7a3480e6df",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "1411767a-5428-4653-b247-fac8efd946b0",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "1fab8088-fa4a-4ea7-a964-8c03830e55f1",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 5
+
+2 recorded events
+
+### User
+
+_source line 91 · 2026-05-14T06:15:02.759Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1411767a-5428-4653-b247-fac8efd946b0",
+  "isSidechain": false,
+  "promptId": "fb05f155-37e3-44f1-990a-1eb7d93cc36d",
+  "type": "user",
+  "uuid": "de433917-a410-4db5-afd1-94378a8f4432",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 92 · 2026-05-14T06:15:02.758Z_
+
+```json
+{
+  "parentUuid": "de433917-a410-4db5-afd1-94378a8f4432",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "8ba58eb7-9e3d-4c68-a873-652f5b59b3f6",
+  "timestamp": "2026-05-14T06:15:02.758Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/agent_d0df3953",
+  "sessionId": "95ecd84b-f7b4-4da9-b390-c30657c9cce8",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---

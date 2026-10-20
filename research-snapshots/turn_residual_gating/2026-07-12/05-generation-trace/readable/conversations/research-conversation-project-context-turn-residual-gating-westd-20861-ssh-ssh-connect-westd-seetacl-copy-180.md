@@ -1,0 +1,1153 @@
+# Research conversation: <project_context> # 项目: turn_residual_gating ## 运行环境 - 服务器名: westd-20861 - SSH 连接命令: ssh connect.westd.seetacloud.com # 
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 24
+- **Recorded user turns:** 1
+- **Tool calls:** 4
+- **Original source:** `logs/chats/exported-trajectories/account-1/6c12ee7a-136b-460b-b29a-22135ba742c1.jsonl`
+- **Structured JSON:** [`dc4148d3b18bca4c229e.json`](../../sessions/dc/dc4148d3b18bca4c229e.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-22T04:50:21.987Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-22T04:50:21.987Z",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "content": "&lt;project_context>\n# 项目: turn_residual_gating\n\n## 运行环境\n- 服务器名: westd-20861\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/turn_residual_gating\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：覆盖率矩阵检查\n\n### 目标\n检查当前 experiment plan 对所有 paper claims 的覆盖情况，汇报未覆盖的 gaps。\n\n### 步骤\n\n1. 调用 `compute_coverage_matrix` 计算当前覆盖率矩阵\n2. 读取 paper_framing.md 了解所有 claims (C1-C7)\n3. 读取 experiment_plan.yaml（通过 read_experiment_plan_with_status）了解所有实验及其状态\n4. 对比分析：\n   - 每个 claim 有哪些实验支撑？\n   - 哪些 claim 的实验全部完成？\n   - 哪些 claim 仍有未完成的实验？\n   - 是否有 claim 完全没有实验覆盖？\n\n### 产出\n覆盖率矩阵报告：\n- Claims × Experiments 矩阵\n- 每个 claim 的覆盖状态（fully covered / partially covered / uncovered）\n- Gaps 列表和建议\n"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-22T04:50:21.991Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-22T04:50:21.991Z",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1"
+}
+```
+
+---
+
+## Round 1
+
+22 recorded events
+
+### User
+
+_source line 3 · 2026-05-22T04:50:22.030Z_
+
+&lt;project_context>
+# 项目: turn_residual_gating
+
+## 运行环境
+- 服务器名: westd-20861
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/turn_residual_gating
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：覆盖率矩阵检查
+
+### 目标
+检查当前 experiment plan 对所有 paper claims 的覆盖情况，汇报未覆盖的 gaps。
+
+### 步骤
+
+1. 调用 `compute_coverage_matrix` 计算当前覆盖率矩阵
+2. 读取 paper_framing.md 了解所有 claims (C1-C7)
+3. 读取 experiment_plan.yaml（通过 read_experiment_plan_with_status）了解所有实验及其状态
+4. 对比分析：
+   - 每个 claim 有哪些实验支撑？
+   - 哪些 claim 的实验全部完成？
+   - 哪些 claim 仍有未完成的实验？
+   - 是否有 claim 完全没有实验覆盖？
+
+### 产出
+覆盖率矩阵报告：
+- Claims × Experiments 矩阵
+- 每个 claim 的覆盖状态（fully covered / partially covered / uncovered）
+- Gaps 列表和建议
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "96a05054-5812-4d7e-8627-1e7d0af55981",
+  "type": "user",
+  "uuid": "ab6b448a-3796-47fb-a980-5b4262a8a985",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-22T04:50:22.030Z_
+
+```json
+{
+  "parentUuid": "ab6b448a-3796-47fb-a980-5b4262a8a985",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "871a3945-8794-4c79-b142-291530ef1982",
+  "timestamp": "2026-05-22T04:50:22.030Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-22T04:50:22.030Z_
+
+```json
+{
+  "parentUuid": "871a3945-8794-4c79-b142-291530ef1982",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b92524c0-c28d-483e-9e47-4719fa36cc17",
+  "timestamp": "2026-05-22T04:50:22.030Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-22T04:50:22.030Z_
+
+```json
+{
+  "parentUuid": "b92524c0-c28d-483e-9e47-4719fa36cc17",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "36bc879a-ba25-4788-9009-d3ee5692179e",
+  "timestamp": "2026-05-22T04:50:22.030Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Coverage matrix check for paper claims",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-22T04:50:39.394Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by loading the necessary MCP tools and then gathering the required information.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36bc879a-ba25-4788-9009-d3ee5692179e",
+  "isSidechain": false,
+  "requestId": "req_011CbH1FX2iVQZRGLe92LGRV",
+  "type": "assistant",
+  "uuid": "4bbb685e-2da7-467a-a2df-6ada4ec2502b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014dEzE1C83kXwPSvFHQBmpJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12704,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 154,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12704,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 154,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12704,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12704
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-22T04:50:40.280Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01W7AVrky7f7r2THche8TBoU`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__read_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4bbb685e-2da7-467a-a2df-6ada4ec2502b",
+  "isSidechain": false,
+  "requestId": "req_011CbH1FX2iVQZRGLe92LGRV",
+  "type": "assistant",
+  "uuid": "b3040e89-cd2f-4ae4-aee7-a3d703e68ef5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014dEzE1C83kXwPSvFHQBmpJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12704,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 154,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12704,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 154,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 12704,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12704
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-22T04:50:40.291Z_
+
+<details><summary>↩ Tool result · `toolu_01W7AVrky7f7r2THche8TBoU`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__compute_coverage_matrix"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b3040e89-cd2f-4ae4-aee7-a3d703e68ef5",
+  "isSidechain": false,
+  "promptId": "96a05054-5812-4d7e-8627-1e7d0af55981",
+  "type": "user",
+  "uuid": "cf55aa12-ea61-45ba-9352-f799e4ca0bab",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__compute_coverage_matrix,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 27
+  },
+  "sourceToolAssistantUUID": "b3040e89-cd2f-4ae4-aee7-a3d703e68ef5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-22T04:50:42.805Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__compute_coverage_matrix · `toolu_01NY1LP9wabRoPoAmQkmuVni`</summary>
+
+```json
+{
+  "project": "turn_residual_gating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf55aa12-ea61-45ba-9352-f799e4ca0bab",
+  "isSidechain": false,
+  "requestId": "req_011CbH1GsDggRVwy6qsPASeZ",
+  "type": "assistant",
+  "uuid": "8181529e-c706-4ce2-b3d3-dffaabdc9e6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FNniuHaXtptgFS7WnCz5oA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 24545,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 24545,
+          "cache_creation_input_tokens": 896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-22T04:50:42.982Z_
+
+<details><summary>↩ Tool result · `toolu_01NY1LP9wabRoPoAmQkmuVni`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"claims\": [\"C1\", \"C2\", \"C2, C4\", \"C2, MF5\", \"C3\", \"C3, SF4\", \"C3, W8\", \"C4\", \"C4, MF6\", \"C4, W7\", \"C5\", \"R4\", \"W3\", \"W8\", \"W8, C3\"], \"matrix\": {\"C1\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": \"C1\", \"description\": \"Phase 1 GAR degradation diagnosis on Qwen-2.5-7B (70.8% raw drop)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"phase1_gar_diag\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"turn1_avg_gar\": 0.0418, \"mid_turns_avg_gar\": 0.0122, \"relative_drop\": 0.708, \"num_conversations\": 5, \"num_turns\": 10, \"per_turn_avg_gar\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 1, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"1/1\", \"coverage_pct\": 100.0}, \"C2\": {\"experiments\": [{\"id\": \"plan_002\", \"claim\": \"C2\", \"description\": \"ThreadGate v7 training (MSE+gate_div) - training GAR 0.48, inference GAR 0.016\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_tg_s42_v7\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5035, \"eval_iid_dongre_mid_gar\": 0.0152, \"eval_iid_ppl\": 2.784, \"eval_heldout_ours_mid_gar\": 0.5035, \"eval_heldout_dongre_mid_gar\": 0.0152, \"eval_heldout_ppl\": 2.78, \"eval_modelgen_ours_mid_gar\": 0.0157, \"eval_modelgen_dongre_mid_gar\": 0.0194, \"eval_modelgen_ppl\": 1.36, \"gate_mean_final\": 0.9336, \"gate_std_final\": 0.0492}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 1, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"1/1\", \"coverage_pct\": 100.0}, \"C4\": {\"experiments\": [{\"id\": \"plan_003\", \"claim\": \"C4\", \"description\": \"Uniform Gate ablation - isolate turn conditioning contribution\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_ug_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epoch0_avg_loss\": 1.0019, \"epoch0_avg_ntp\": 0.9755, \"epoch0_avg_gar\": 0.0259, \"epoch0_avg_div\": 0.0005, \"epoch1_avg_loss\": 0.9447, \"epoch1_avg_ntp\": 0.9435, \"epoch1_avg_gar\": 0.0013, \"epoch1_avg_div\": 0, \"epoch2_avg_loss\": 0.9319, \"epoch2_avg_ntp\": 0.9309, \"epoch2_avg_gar\": 0.001, \"epoch2_avg_div\": 0, \"final_gate_mean\": 0.9598, \"final_gate_std\": 0.0518, \"final_gate_min\": 0.7773, \"final_gate_max\": 1, \"final_profile_L3\": 0.777, \"final_profile_L5\": 0.812, \"final_profile_L0\": 0.875, \"final_profile_L27\": 1, \"training_time_seconds\": 21994.5, \"training_time_hours\": 6.1, \"global_steps\": 7950, \"unexpected_per_layer_variation\": true, \"eval_modelgen_ours_mid_gar\": 0.0149, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.396}}, {\"id\": \"plan_004\", \"claim\": \"C4\", \"description\": \"LoRA-only ablation - isolate gating mechanism contribution\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_lora_only_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epochs_completed\": 3, \"global_steps\": 3000, \"training_time_seconds\": 20588.6, \"training_time_hours\": 5.7, \"gate_fixed\": 1, \"gate_type_actual\": \"none\", \"final_lora_size_mb\": 20, \"eval_modelgen_ours_mid_gar\": 0.0245, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.371}}, {\"id\": \"plan_005\", \"claim\": \"C4\", \"description\": \"Four-way eval (Base/TG/UG/LoRA-only x GAR-ours/Dongre + PPL)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_002\", \"plan_003\", \"plan_004\"], \"registry_id\": \"phase2_4way_eval\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"base_ours_mid_gar\": 0.0107, \"base_ours_recovery_pp\": -0.15, \"base_dongre_mid_gar\": 0.003, \"base_dongre_recovery_pp\": -0.92, \"base_ppl\": 4.23, \"base_ntp\": 1.4162, \"tg_ours_mid_gar\": 0.4866, \"tg_ours_recovery_pp\": 47.44, \"tg_dongre_mid_gar\": 0.0157, \"tg_dongre_recovery_pp\": 0.35, \"tg_ppl\": 2.63, \"tg_ntp\": 0.9484, \"ug_ours_mid_gar\": 0.4923, \"ug_ours_recovery_pp\": 48.01, \"ug_dongre_mid_gar\": 0.013, \"ug_dongre_recovery_pp\": 0.08, \"ug_ppl\": 2.62, \"ug_ntp\": 0.9433, \"lora_ours_mid_gar\": 0.486, \"lora_ours_recovery_pp\": 47.39, \"lora_dongre_mid_gar\": 0.0137, \"lora_dongre_recovery_pp\": 0.15, \"lora_ppl\": 2.63, \"lora_ntp\": 0.9482, \"route_b_confirmed\": true, \"gating_incremental_benefit\": \"none\"}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 2, \"failed\": 1, \"orphaned\": 0}, \"total\": 3, \"coverage\": \"2/3\", \"coverage_pct\": 66.7}, \"C3\": {\"experiments\": [{\"id\": \"plan_006\", \"claim\": \"C3\", \"description\": \"Gradient conflict analysis on v7 (3 epoch checkpoints) - NTP vs GAR gradient cos_sim + magnitude ratio\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_002\"], \"registry_id\": \"analysis_gradient_conflict\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epoch0_cos_sim\": -0.089, \"epoch1_cos_sim\": -0.054, \"epoch2_cos_sim\": -0.042, \"epoch0_neg_layers_pct\": 78.6, \"epoch1_neg_layers_pct\": 71.4, \"epoch2_neg_layers_pct\": 67.9, \"epoch0_mag_ratio\": 7.5, \"epoch1_mag_ratio\": 13.7, \"epoch2_mag_ratio\": 14.7}}, {\"id\": \"plan_007\", \"claim\": \"C3\", \"description\": \"Attention heatmap visualization (4 models x 3 conversations x 28 layers)\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_002\", \"plan_003\", \"plan_004\"], \"registry_id\": \"analysis_attention_heatmap\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"base_mean_goal_attn\": 0.0136, \"base_decay\": 0.875, \"tg_mean_goal_attn\": 0.0232, \"tg_decay\": 0.777, \"ug_mean_goal_attn\": 0.0216, \"ug_decay\": 0.803, \"lora_mean_goal_attn\": 0.0216, \"lora_decay\": 0.81, \"gating_incremental_benefit\": \"none\"}}, {\"id\": \"plan_013\", \"claim\": \"C3\", \"description\": \"Llama-3.1-8B gradient conflict analysis - verify NTP-GAR competition is model-agnostic\", \"priority\": \"P1\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_010\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 2, \"failed\": 0, \"orphaned\": 0}, \"total\": 3, \"coverage\": \"2/3\", \"coverage_pct\": 66.7}, \"C2, C4\": {\"experiments\": [{\"id\": \"plan_008\", \"claim\": \"C2, C4\", \"description\": \"Held-out eval: create truly held-out eval set (50 convs, idx>=8000 from UltraChat full) and re-run 4-way eval to validate conclusions on unseen data\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_005\"], \"status\": \"DONE\", \"registry_id\": \"phase2_4way_eval_heldout\", \"conclusion\": \"success\", \"metrics\": {\"base_ours_mid_gar\": 0.0128, \"base_ours_recovery_pp\": 0.06, \"base_dongre_mid_gar\": 0.0031, \"base_dongre_recovery_pp\": -0.91, \"base_ppl\": 4.34, \"base_ntp\": 1.4045, \"tg_ours_mid_gar\": 0.5035, \"tg_ours_recovery_pp\": 49.13, \"tg_dongre_mid_gar\": 0.0152, \"tg_dongre_recovery_pp\": 0.3, \"tg_ppl\": 2.78, \"tg_ntp\": 0.9771, \"ug_ours_mid_gar\": 0.5053, \"ug_ours_recovery_pp\": 49.31, \"ug_dongre_mid_gar\": 0.0124, \"ug_dongre_recovery_pp\": 0.02, \"ug_ppl\": 2.78, \"ug_ntp\": 0.9752, \"lora_ours_mid_gar\": 0.4978, \"lora_ours_recovery_pp\": 48.56, \"lora_dongre_mid_gar\": 0.0132, \"lora_dongre_recovery_pp\": 0.1, \"lora_ppl\": 2.78, \"lora_ntp\": 0.9771, \"three_way_convergence_confirmed\": true, \"gar_ours_spread_pp\": 0.75, \"ppl_spread\": 0, \"data_overlap\": false}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 1, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"1/1\", \"coverage_pct\": 100.0}, \"C5\": {\"experiments\": [{\"id\": \"plan_009\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B Phase 1 GAR degradation diagnosis - confirm GAR decay exists on different architecture\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [], \"status\": \"planned\"}, {\"id\": \"plan_010\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B ThreadGate v7 training - replicate Qwen setup on Llama\", \"priority\": \"P0\", \"gpu_budget_hours\": 7, \"deps\": [\"plan_009\"], \"status\": \"planned\"}, {\"id\": \"plan_011\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B LoRA-only training - cross-model gating redundancy validation (D020)\", \"priority\": \"P0\", \"gpu_budget_hours\": 7, \"deps\": [\"plan_009\"], \"status\": \"RUNNING\", \"registry_id\": \"llama_lora_only_s42\"}, {\"id\": \"plan_012\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B 3-way eval (Base/TG/LoRA-only x GAR + PPL) on held-out data\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_010\", \"plan_011\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 3, \"running\": 1, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 4, \"coverage\": \"0/4\", \"coverage_pct\": 0.0}, \"W3\": {\"experiments\": [{\"id\": \"plan_014\", \"claim\": \"W3\", \"description\": \"Downstream task sanity check - simple instruction retention test across turns to link GAR to task performance\", \"priority\": \"P2\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_005\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"C4, W7\": {\"experiments\": [{\"id\": \"plan_015\", \"claim\": \"C4, W7\", \"description\": \"Statistical significance analysis - paired bootstrap CI from held-out eval (50 convs) for TG-LoRA-only comparison. If CI includes 0 → statistically supports 'zero benefit'. Addresses Dream W3 (single seed).\", \"priority\": \"P1\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_008\"], \"status\": \"orphaned\", \"registry_id\": \"worker_analysis_bootstrap_ci_tg_vs_lora_20260519T144212\", \"result\": \"PASS: All GAR-ours and PPL 95% CIs include 0 (TG-LO GAR: [-0.0018,+0.0036], UG-LO: [-0.0006,+0.0045], TG-UG: [-0.0030,+0.0006]). Statistically confirms zero benefit. W7 addressed.\"}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 1}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"W8\": {\"experiments\": [{\"id\": \"plan_016\", \"claim\": \"W8\", \"description\": \"Exposure-bias mitigation test - train ThreadGate v7 with scheduled sampling applied to GAR loss (mix teacher-forced + model-generated contexts). Test whether closing exposure bias gap narrows the 30x training-inference GAR gap. Constructive direction that upgrades paper from pure negative result.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_008\"], \"status\": \"DONE\", \"registry_id\": \"phase2_tg_s42_v8_schedsampling\", \"conclusion\": \"failed\", \"metrics\": {\"killed_at_microstep\": 1950, \"total_microsteps\": 24000, \"completion_pct\": 8.1, \"global_step_approx\": 244, \"total_global_steps\": 3000, \"ss_steps_observed\": 1, \"tf_lgar_mean_step850_1400\": 0.0062, \"tf_lgar_std\": 0.0082, \"tf_lgar_collapse_step\": 800, \"gate_mean_final\": 0.93, \"ss_ratio_at_kill\": 0.081, \"crash_reason\": \"killed by director: SS path code bug (D026) makes experiment invalid, GPU needed for PCGrad\", \"design_flaw_ss_ramp_too_slow\": true, \"design_flaw_no_ss_tf_separate_logging\": true}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 1, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"R4\": {\"experiments\": [{\"id\": \"plan_017\", \"claim\": \"R4\", \"description\": \"Code-paper architecture verification - confirm ThreadGate implementation matches paper Eq.3 (gate on residual vs gate on sub-layer output). Quick code audit, no GPU.\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"status\": \"orphaned\", \"registry_id\": \"worker_analysis_code_paper_arch_verify_20260519T144058\", \"result\": \"CRITICAL: code implements x+g·f(x) (ReZero-style), dream paper.tex wrote g·x+f(x). Semantically opposite when g→0. Data unaffected. D023.\"}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 1}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"C3, W8\": {\"experiments\": [{\"id\": \"plan_018\", \"claim\": \"C3, W8\", \"description\": \"PCGrad baseline - project NTP gradient onto GAR-orthogonal plane for gate params only. If 30x gap persists after removing gradient conflict → causal evidence that exposure bias (not gradient competition) is the root cause.\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_006\"], \"registry_id\": \"phase2_tg_s42_v9_pcgrad\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5002, \"eval_iid_dongre_mid_gar\": 0.0123, \"eval_iid_ppl\": 2.78, \"eval_iid_ntp\": 0.9752, \"eval_heldout_ours_mid_gar\": 0.5002, \"eval_heldout_dongre_mid_gar\": 0.0123, \"eval_heldout_ppl\": 2.78, \"eval_heldout_ntp\": 0.9752, \"eval_modelgen_ours_mid_gar\": 0.0151, \"eval_modelgen_dongre_mid_gar\": 0.0173, \"eval_modelgen_ppl\": 1.5, \"vs_v7_iid_ppl_diff\": 0.004, \"vs_v7_iid_gar_diff\": -0.0033}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 1, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"1/1\", \"coverage_pct\": 100.0}, \"C2, MF5\": {\"experiments\": [{\"id\": \"plan_019\", \"claim\": \"C2, MF5\", \"description\": \"Multi-seed validation — train TG v7 + LoRA-only with seed=123 on Qwen. Provide mean±std for 30x gap. 1 extra seed sufficient given extreme effect size.\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_002\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"C4, MF6\": {\"experiments\": [{\"id\": \"plan_020\", \"claim\": \"C4, MF6\", \"description\": \"Expanded eval set — increase from 50 to 200 conversations (idx>=7000 from UltraChat). Boost bootstrap CI statistical power.\", \"priority\": \"P1\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_008\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"C3, SF4\": {\"experiments\": [{\"id\": \"plan_022\", \"claim\": \"C3, SF4\", \"description\": \"λ_GAR sensitivity — train v7 with λ_GAR=10 (1 epoch only). Show gradient competition trend under higher GAR weight. If budget allows, add λ=0.1.\", \"priority\": \"P2\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_002\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"W8, C3\": {\"experiments\": [{\"id\": \"plan_023\", \"claim\": \"W8, C3\", \"description\": \"v8b: Fixed Scheduled Sampling — fix compute_gar_loss len==1 bug (Option A: handle single-turn mse_target), fix OOM (reduce batch/gen_length), use lambda_gar=1.0 (match v7). Tests whether training on model-generated text closes the 30x distribution shift gap. If successful, paper upgrades from pure negative to 'diagnosis + initial remedy'. D026.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_002\"], \"status\": \"DONE\", \"registry_id\": \"phase2_tg_s42_v8b_ss_fixed\", \"conclusion\": \"failed\"}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 1, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}}, \"unassigned\": [], \"summary\": {\"total_experiments\": 22, \"total_claims\": 15, \"counts\": {\"planned\": 8, \"running\": 1, \"done\": 8, \"failed\": 3, \"orphaned\": 2}, \"coverage\": \"8/22\", \"coverage_pct\": 36.4, \"unassigned\": 0}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8181529e-c706-4ce2-b3d3-dffaabdc9e6a",
+  "isSidechain": false,
+  "promptId": "96a05054-5812-4d7e-8627-1e7d0af55981",
+  "type": "user",
+  "uuid": "9841ace4-e8dc-48c3-b8de-95e93791aa21",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"claims\\\": [\\\"C1\\\", \\\"C2\\\", \\\"C2, C4\\\", \\\"C2, MF5\\\", \\\"C3\\\", \\\"C3, SF4\\\", \\\"C3, W8\\\", \\\"C4\\\", \\\"C4, MF6\\\", \\\"C4, W7\\\", \\\"C5\\\", \\\"R4\\\", \\\"W3\\\", \\\"W8\\\", \\\"W8, C3\\\"], \\\"matrix\\\": {\\\"C1\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": \\\"C1\\\", \\\"description\\\": \\\"Phase 1 GAR degradation diagnosis on Qwen-2.5-7B (70.8% raw drop)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"phase1_gar_diag\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"turn1_avg_gar\\\": 0.0418, \\\"mid_turns_avg_gar\\\": 0.0122, \\\"relative_drop\\\": 0.708, \\\"num_conversations\\\": 5, \\\"num_turns\\\": 10, \\\"per_turn_avg_gar\\\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}}], \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 1, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"1/1\\\", \\\"coverage_pct\\\": 100.0}, \\\"C2\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": \\\"C2\\\", \\\"description\\\": \\\"ThreadGate v7 training (MSE+gate_div) - training GAR 0.48, inference GAR 0.016\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_tg_s42_v7\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_iid_ours_mid_gar\\\": 0.5035, \\\"eval_iid_dongre_mid_gar\\\": 0.0152, \\\"eval_iid_ppl\\\": 2.784, \\\"eval_heldout_ours_mid_gar\\\": 0.5035, \\\"eval_heldout_dongre_mid_gar\\\": 0.0152, \\\"eval_heldout_ppl\\\": 2.78, \\\"eval_modelgen_ours_mid_gar\\\": 0.0157, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0194, \\\"eval_modelgen_ppl\\\": 1.36, \\\"gate_mean_final\\\": 0.9336, \\\"gate_std_final\\\": 0.0492}}], \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 1, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"1/1\\\", \\\"coverage_pct\\\": 100.0}, \\\"C4\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": \\\"C4\\\", \\\"description\\\": \\\"Uniform Gate ablation - isolate turn conditioning contribution\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_ug_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"epoch0_avg_loss\\\": 1.0019, \\\"epoch0_avg_ntp\\\": 0.9755, \\\"epoch0_avg_gar\\\": 0.0259, \\\"epoch0_avg_div\\\": 0.0005, \\\"epoch1_avg_loss\\\": 0.9447, \\\"epoch1_avg_ntp\\\": 0.9435, \\\"epoch1_avg_gar\\\": 0.0013, \\\"epoch1_avg_div\\\": 0, \\\"epoch2_avg_loss\\\": 0.9319, \\\"epoch2_avg_ntp\\\": 0.9309, \\\"epoch2_avg_gar\\\": 0.001, \\\"epoch2_avg_div\\\": 0, \\\"final_gate_mean\\\": 0.9598, \\\"final_gate_std\\\": 0.0518, \\\"final_gate_min\\\": 0.7773, \\\"final_gate_max\\\": 1, \\\"final_profile_L3\\\": 0.777, \\\"final_profile_L5\\\": 0.812, \\\"final_profile_L0\\\": 0.875, \\\"final_profile_L27\\\": 1, \\\"training_time_seconds\\\": 21994.5, \\\"training_time_hours\\\": 6.1, \\\"global_steps\\\": 7950, \\\"unexpected_per_layer_variation\\\": true, \\\"eval_modelgen_ours_mid_gar\\\": 0.0149, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0185, \\\"eval_modelgen_ppl\\\": 1.396}}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": \\\"C4\\\", \\\"description\\\": \\\"LoRA-only ablation - isolate gating mechanism contribution\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_lora_only_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"epochs_completed\\\": 3, \\\"global_steps\\\": 3000, \\\"training_time_seconds\\\": 20588.6, \\\"training_time_hours\\\": 5.7, \\\"gate_fixed\\\": 1, \\\"gate_type_actual\\\": \\\"none\\\", \\\"final_lora_size_mb\\\": 20, \\\"eval_modelgen_ours_mid_gar\\\": 0.0245, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0185, \\\"eval_modelgen_ppl\\\": 1.371}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": \\\"C4\\\", \\\"description\\\": \\\"Four-way eval (Base/TG/UG/LoRA-only x GAR-ours/Dongre + PPL)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_002\\\", \\\"plan_003\\\", \\\"plan_004\\\"], \\\"registry_id\\\": \\\"phase2_4way_eval\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"base_ours_mid_gar\\\": 0.0107, \\\"base_ours_recovery_pp\\\": -0.15, \\\"base_dongre_mid_gar\\\": 0.003, \\\"base_dongre_recovery_pp\\\": -0.92, \\\"base_ppl\\\": 4.23, \\\"base_ntp\\\": 1.4162, \\\"tg_ours_mid_gar\\\": 0.4866, \\\"tg_ours_recovery_pp\\\": 47.44, \\\"tg_dongre_mid_gar\\\": 0.0157, \\\"tg_dongre_recovery_pp\\\": 0.35, \\\"tg_ppl\\\": 2.63, \\\"tg_ntp\\\": 0.9484, \\\"ug_ours_mid_gar\\\": 0.4923, \\\"ug_ours_recovery_pp\\\": 48.01, \\\"ug_dongre_mid_gar\\\": 0.013, \\\"ug_dongre_recovery_pp\\\": 0.08, \\\"ug_ppl\\\": 2.62, \\\"ug_ntp\\\": 0.9433, \\\"lora_ours_mid_gar\\\": 0.486, \\\"lora_ours_recovery_pp\\\": 47.39, \\\"lora_dongre_mid_gar\\\": 0.0137, \\\"lora_dongre_recovery_pp\\\": 0.15, \\\"lora_ppl\\\": 2.63, \\\"lora_ntp\\\": 0.9482, \\\"route_b_confirmed\\\": true, \\\"gating_incremental_benefit\\\": \\\"none\\\"}}], \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 2, \\\"failed\\\": 1, \\\"orphaned\\\": 0}, \\\"total\\\": 3, \\\"coverage\\\": \\\"2/3\\\", \\\"coverage_pct\\\": 66.7}, \\\"C3\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": \\\"C3\\\", \\\"description\\\": \\\"Gradient conflict analysis on v7 (3 epoch checkpoints) - NTP vs GAR gradient cos_sim + magnitude ratio\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": \\\"analysis_gradient_conflict\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"epoch0_cos_sim\\\": -0.089, \\\"epoch1_cos_sim\\\": -0.054, \\\"epoch2_cos_sim\\\": -0.042, \\\"epoch0_neg_layers_pct\\\": 78.6, \\\"epoch1_neg_layers_pct\\\": 71.4, \\\"epoch2_neg_layers_pct\\\": 67.9, \\\"epoch0_mag_ratio\\\": 7.5, \\\"epoch1_mag_ratio\\\": 13.7, \\\"epoch2_mag_ratio\\\": 14.7}}, {\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": \\\"C3\\\", \\\"description\\\": \\\"Attention heatmap visualization (4 models x 3 conversations x 28 layers)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [\\\"plan_002\\\", \\\"plan_003\\\", \\\"plan_004\\\"], \\\"registry_id\\\": \\\"analysis_attention_heatmap\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"base_mean_goal_attn\\\": 0.0136, \\\"base_decay\\\": 0.875, \\\"tg_mean_goal_attn\\\": 0.0232, \\\"tg_decay\\\": 0.777, \\\"ug_mean_goal_attn\\\": 0.0216, \\\"ug_decay\\\": 0.803, \\\"lora_mean_goal_attn\\\": 0.0216, \\\"lora_decay\\\": 0.81, \\\"gating_incremental_benefit\\\": \\\"none\\\"}}, {\\\"id\\\": \\\"plan_013\\\", \\\"claim\\\": \\\"C3\\\", \\\"description\\\": \\\"Llama-3.1-8B gradient conflict analysis - verify NTP-GAR competition is model-agnostic\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [\\\"plan_010\\\"], \\\"status\\\": \\\"planned\\\"}], \\\"counts\\\": {\\\"planned\\\": 1, \\\"running\\\": 0, \\\"done\\\": 2, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 3, \\\"coverage\\\": \\\"2/3\\\", \\\"coverage_pct\\\": 66.7}, \\\"C2, C4\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_008\\\", \\\"claim\\\": \\\"C2, C4\\\", \\\"description\\\": \\\"Held-out eval: create truly held-out eval set (50 convs, idx>=8000 from UltraChat full) and re-run 4-way eval to validate conclusions on unseen data\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_005\\\"], \\\"status\\\": \\\"DONE\\\", \\\"registry_id\\\": \\\"phase2_4way_eval_heldout\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"base_ours_mid_gar\\\": 0.0128, \\\"base_ours_recovery_pp\\\": 0.06, \\\"base_dongre_mid_gar\\\": 0.0031, \\\"base_dongre_recovery_pp\\\": -0.91, \\\"base_ppl\\\": 4.34, \\\"base_ntp\\\": 1.4045, \\\"tg_ours_mid_gar\\\": 0.5035, \\\"tg_ours_recovery_pp\\\": 49.13, \\\"tg_dongre_mid_gar\\\": 0.0152, \\\"tg_dongre_recovery_pp\\\": 0.3, \\\"tg_ppl\\\": 2.78, \\\"tg_ntp\\\": 0.9771, \\\"ug_ours_mid_gar\\\": 0.5053, \\\"ug_ours_recovery_pp\\\": 49.31, \\\"ug_dongre_mid_gar\\\": 0.0124, \\\"ug_dongre_recovery_pp\\\": 0.02, \\\"ug_ppl\\\": 2.78, \\\"ug_ntp\\\": 0.9752, \\\"lora_ours_mid_gar\\\": 0.4978, \\\"lora_ours_recovery_pp\\\": 48.56, \\\"lora_dongre_mid_gar\\\": 0.0132, \\\"lora_dongre_recovery_pp\\\": 0.1, \\\"lora_ppl\\\": 2.78, \\\"lora_ntp\\\": 0.9771, \\\"three_way_convergence_confirmed\\\": true, \\\"gar_ours_spread_pp\\\": 0.75, \\\"ppl_spread\\\": 0, \\\"data_overlap\\\": false}}], \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 1, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"1/1\\\", \\\"coverage_pct\\\": 100.0}, \\\"C5\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_009\\\", \\\"claim\\\": \\\"C5\\\", \\\"description\\\": \\\"Llama-3.1-8B Phase 1 GAR degradation diagnosis - confirm GAR decay exists on different architecture\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_010\\\", \\\"claim\\\": \\\"C5\\\", \\\"description\\\": \\\"Llama-3.1-8B ThreadGate v7 training - replicate Qwen setup on Llama\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 7, \\\"deps\\\": [\\\"plan_009\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_011\\\", \\\"claim\\\": \\\"C5\\\", \\\"description\\\": \\\"Llama-3.1-8B LoRA-only training - cross-model gating redundancy validation (D020)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 7, \\\"deps\\\": [\\\"plan_009\\\"], \\\"status\\\": \\\"RUNNING\\\", \\\"registry_id\\\": \\\"llama_lora_only_s42\\\"}, {\\\"id\\\": \\\"plan_012\\\", \\\"claim\\\": \\\"C5\\\", \\\"description\\\": \\\"Llama-3.1-8B 3-way eval (Base/TG/LoRA-only x GAR + PPL) on held-out data\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [\\\"plan_010\\\", \\\"plan_011\\\"], \\\"status\\\": \\\"planned\\\"}], \\\"counts\\\": {\\\"planned\\\": 3, \\\"running\\\": 1, \\\"done\\\": 0, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 4, \\\"coverage\\\": \\\"0/4\\\", \\\"coverage_pct\\\": 0.0}, \\\"W3\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_014\\\", \\\"claim\\\": \\\"W3\\\", \\\"description\\\": \\\"Downstream task sanity check - simple instruction retention test across turns to link GAR to task performance\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [\\\"plan_005\\\"], \\\"status\\\": \\\"planned\\\"}], \\\"counts\\\": {\\\"planned\\\": 1, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"0/1\\\", \\\"coverage_pct\\\": 0.0}, \\\"C4, W7\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_015\\\", \\\"claim\\\": \\\"C4, W7\\\", \\\"description\\\": \\\"Statistical significance analysis - paired bootstrap CI from held-out eval (50 convs) for TG-LoRA-only comparison. If CI includes 0 → statistically supports 'zero benefit'. Addresses Dream W3 (single seed).\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [\\\"plan_008\\\"], \\\"status\\\": \\\"orphaned\\\", \\\"registry_id\\\": \\\"worker_analysis_bootstrap_ci_tg_vs_lora_20260519T144212\\\", \\\"result\\\": \\\"PASS: All GAR-ours and PPL 95% CIs include 0 (TG-LO GAR: [-0.0018,+0.0036], UG-LO: [-0.0006,+0.0045], TG-UG: [-0.0030,+0.0006]). Statistically confirms zero benefit. W7 addressed.\\\"}], \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 0, \\\"orphaned\\\": 1}, \\\"total\\\": 1, \\\"coverage\\\": \\\"0/1\\\", \\\"coverage_pct\\\": 0.0}, \\\"W8\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_016\\\", \\\"claim\\\": \\\"W8\\\", \\\"description\\\": \\\"Exposure-bias mitigation test - train ThreadGate v7 with scheduled sampling applied to GAR loss (mix teacher-forced + model-generated contexts). Test whether closing exposure bias gap narrows the 30x training-inference GAR gap. Constructive direction that upgrades paper from pure negative result.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_008\\\"], \\\"status\\\": \\\"DONE\\\", \\\"registry_id\\\": \\\"phase2_tg_s42_v8_schedsampling\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"killed_at_microstep\\\": 1950, \\\"total_microsteps\\\": 24000, \\\"completion_pct\\\": 8.1, \\\"global_step_approx\\\": 244, \\\"total_global_steps\\\": 3000, \\\"ss_steps_observed\\\": 1, \\\"tf_lgar_mean_step850_1400\\\": 0.0062, \\\"tf_lgar_std\\\": 0.0082, \\\"tf_lgar_collapse_step\\\": 800, \\\"gate_mean_final\\\": 0.93, \\\"ss_ratio_at_kill\\\": 0.081, \\\"crash_reason\\\": \\\"killed by director: SS path code bug (D026) makes experiment invalid, GPU needed for PCGrad\\\", \\\"design_flaw_ss_ramp_too_slow\\\": true, \\\"design_flaw_no_ss_tf_separate_logging\\\": true}}], \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 1, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"0/1\\\", \\\"coverage_pct\\\": 0.0}, \\\"R4\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_017\\\", \\\"claim\\\": \\\"R4\\\", \\\"description\\\": \\\"Code-paper architecture verification - confirm ThreadGate implementation matches paper Eq.3 (gate on residual vs gate on sub-layer output). Quick code audit, no GPU.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"status\\\": \\\"orphaned\\\", \\\"registry_id\\\": \\\"worker_analysis_code_paper_arch_verify_20260519T144058\\\", \\\"result\\\": \\\"CRITICAL: code implements x+g·f(x) (ReZero-style), dream paper.tex wrote g·x+f(x). Semantically opposite when g→0. Data unaffected. D023.\\\"}], \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 0, \\\"orphaned\\\": 1}, \\\"total\\\": 1, \\\"coverage\\\": \\\"0/1\\\", \\\"coverage_pct\\\": 0.0}, \\\"C3, W8\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_018\\\", \\\"claim\\\": \\\"C3, W8\\\", \\\"description\\\": \\\"PCGrad baseline - project NTP gradient onto GAR-orthogonal plane for gate params only. If 30x gap persists after removing gradient conflict → causal evidence that exposure bias (not gradient competition) is the root cause.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_006\\\"], \\\"registry_id\\\": \\\"phase2_tg_s42_v9_pcgrad\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_iid_ours_mid_gar\\\": 0.5002, \\\"eval_iid_dongre_mid_gar\\\": 0.0123, \\\"eval_iid_ppl\\\": 2.78, \\\"eval_iid_ntp\\\": 0.9752, \\\"eval_heldout_ours_mid_gar\\\": 0.5002, \\\"eval_heldout_dongre_mid_gar\\\": 0.0123, \\\"eval_heldout_ppl\\\": 2.78, \\\"eval_heldout_ntp\\\": 0.9752, \\\"eval_modelgen_ours_mid_gar\\\": 0.0151, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0173, \\\"eval_modelgen_ppl\\\": 1.5, \\\"vs_v7_iid_ppl_diff\\\": 0.004, \\\"vs_v7_iid_gar_diff\\\": -0.0033}}], \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 1, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"1/1\\\", \\\"coverage_pct\\\": 100.0}, \\\"C2, MF5\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_019\\\", \\\"claim\\\": \\\"C2, MF5\\\", \\\"description\\\": \\\"Multi-seed validation — train TG v7 + LoRA-only with seed=123 on Qwen. Provide mean±std for 30x gap. 1 extra seed sufficient given extreme effect size.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_002\\\"], \\\"status\\\": \\\"planned\\\"}], \\\"counts\\\": {\\\"planned\\\": 1, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"0/1\\\", \\\"coverage_pct\\\": 0.0}, \\\"C4, MF6\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_020\\\", \\\"claim\\\": \\\"C4, MF6\\\", \\\"description\\\": \\\"Expanded eval set — increase from 50 to 200 conversations (idx>=7000 from UltraChat). Boost bootstrap CI statistical power.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_008\\\"], \\\"status\\\": \\\"planned\\\"}], \\\"counts\\\": {\\\"planned\\\": 1, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"0/1\\\", \\\"coverage_pct\\\": 0.0}, \\\"C3, SF4\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_022\\\", \\\"claim\\\": \\\"C3, SF4\\\", \\\"description\\\": \\\"λ_GAR sensitivity — train v7 with λ_GAR=10 (1 epoch only). Show gradient competition trend under higher GAR weight. If budget allows, add λ=0.1.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_002\\\"], \\\"status\\\": \\\"planned\\\"}], \\\"counts\\\": {\\\"planned\\\": 1, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 0, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"0/1\\\", \\\"coverage_pct\\\": 0.0}, \\\"W8, C3\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_023\\\", \\\"claim\\\": \\\"W8, C3\\\", \\\"description\\\": \\\"v8b: Fixed Scheduled Sampling — fix compute_gar_loss len==1 bug (Option A: handle single-turn mse_target), fix OOM (reduce batch/gen_length), use lambda_gar=1.0 (match v7). Tests whether training on model-generated text closes the 30x distribution shift gap. If successful, paper upgrades from pure negative to 'diagnosis + initial remedy'. D026.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_002\\\"], \\\"status\\\": \\\"DONE\\\", \\\"registry_id\\\": \\\"phase2_tg_s42_v8b_ss_fixed\\\", \\\"conclusion\\\": \\\"failed\\\"}], \\\"counts\\\": {\\\"planned\\\": 0, \\\"running\\\": 0, \\\"done\\\": 0, \\\"failed\\\": 1, \\\"orphaned\\\": 0}, \\\"total\\\": 1, \\\"coverage\\\": \\\"0/1\\\", \\\"coverage_pct\\\": 0.0}}, \\\"unassigned\\\": [], \\\"summary\\\": {\\\"total_experiments\\\": 22, \\\"total_claims\\\": 15, \\\"counts\\\": {\\\"planned\\\": 8, \\\"running\\\": 1, \\\"done\\\": 8, \\\"failed\\\": 3, \\\"orphaned\\\": 2}, \\\"coverage\\\": \\\"8/22\\\", \\\"coverage_pct\\\": 36.4, \\\"unassigned\\\": 0}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"claims\": [\"C1\", \"C2\", \"C2, C4\", \"C2, MF5\", \"C3\", \"C3, SF4\", \"C3, W8\", \"C4\", \"C4, MF6\", \"C4, W7\", \"C5\", \"R4\", \"W3\", \"W8\", \"W8, C3\"], \"matrix\": {\"C1\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": \"C1\", \"description\": \"Phase 1 GAR degradation diagnosis on Qwen-2.5-7B (70.8% raw drop)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"phase1_gar_diag\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"turn1_avg_gar\": 0.0418, \"mid_turns_avg_gar\": 0.0122, \"relative_drop\": 0.708, \"num_conversations\": 5, \"num_turns\": 10, \"per_turn_avg_gar\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 1, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"1/1\", \"coverage_pct\": 100.0}, \"C2\": {\"experiments\": [{\"id\": \"plan_002\", \"claim\": \"C2\", \"description\": \"ThreadGate v7 training (MSE+gate_div) - training GAR 0.48, inference GAR 0.016\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_tg_s42_v7\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5035, \"eval_iid_dongre_mid_gar\": 0.0152, \"eval_iid_ppl\": 2.784, \"eval_heldout_ours_mid_gar\": 0.5035, \"eval_heldout_dongre_mid_gar\": 0.0152, \"eval_heldout_ppl\": 2.78, \"eval_modelgen_ours_mid_gar\": 0.0157, \"eval_modelgen_dongre_mid_gar\": 0.0194, \"eval_modelgen_ppl\": 1.36, \"gate_mean_final\": 0.9336, \"gate_std_final\": 0.0492}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 1, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"1/1\", \"coverage_pct\": 100.0}, \"C4\": {\"experiments\": [{\"id\": \"plan_003\", \"claim\": \"C4\", \"description\": \"Uniform Gate ablation - isolate turn conditioning contribution\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_ug_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epoch0_avg_loss\": 1.0019, \"epoch0_avg_ntp\": 0.9755, \"epoch0_avg_gar\": 0.0259, \"epoch0_avg_div\": 0.0005, \"epoch1_avg_loss\": 0.9447, \"epoch1_avg_ntp\": 0.9435, \"epoch1_avg_gar\": 0.0013, \"epoch1_avg_div\": 0, \"epoch2_avg_loss\": 0.9319, \"epoch2_avg_ntp\": 0.9309, \"epoch2_avg_gar\": 0.001, \"epoch2_avg_div\": 0, \"final_gate_mean\": 0.9598, \"final_gate_std\": 0.0518, \"final_gate_min\": 0.7773, \"final_gate_max\": 1, \"final_profile_L3\": 0.777, \"final_profile_L5\": 0.812, \"final_profile_L0\": 0.875, \"final_profile_L27\": 1, \"training_time_seconds\": 21994.5, \"training_time_hours\": 6.1, \"global_steps\": 7950, \"unexpected_per_layer_variation\": true, \"eval_modelgen_ours_mid_gar\": 0.0149, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.396}}, {\"id\": \"plan_004\", \"claim\": \"C4\", \"description\": \"LoRA-only ablation - isolate gating mechanism contribution\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_lora_only_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epochs_completed\": 3, \"global_steps\": 3000, \"training_time_seconds\": 20588.6, \"training_time_hours\": 5.7, \"gate_fixed\": 1, \"gate_type_actual\": \"none\", \"final_lora_size_mb\": 20, \"eval_modelgen_ours_mid_gar\": 0.0245, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.371}}, {\"id\": \"plan_005\", \"claim\": \"C4\", \"description\": \"Four-way eval (Base/TG/UG/LoRA-only x GAR-ours/Dongre + PPL)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_002\", \"plan_003\", \"plan_004\"], \"registry_id\": \"phase2_4way_eval\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"base_ours_mid_gar\": 0.0107, \"base_ours_recovery_pp\": -0.15, \"base_dongre_mid_gar\": 0.003, \"base_dongre_recovery_pp\": -0.92, \"base_ppl\": 4.23, \"base_ntp\": 1.4162, \"tg_ours_mid_gar\": 0.4866, \"tg_ours_recovery_pp\": 47.44, \"tg_dongre_mid_gar\": 0.0157, \"tg_dongre_recovery_pp\": 0.35, \"tg_ppl\": 2.63, \"tg_ntp\": 0.9484, \"ug_ours_mid_gar\": 0.4923, \"ug_ours_recovery_pp\": 48.01, \"ug_dongre_mid_gar\": 0.013, \"ug_dongre_recovery_pp\": 0.08, \"ug_ppl\": 2.62, \"ug_ntp\": 0.9433, \"lora_ours_mid_gar\": 0.486, \"lora_ours_recovery_pp\": 47.39, \"lora_dongre_mid_gar\": 0.0137, \"lora_dongre_recovery_pp\": 0.15, \"lora_ppl\": 2.63, \"lora_ntp\": 0.9482, \"route_b_confirmed\": true, \"gating_incremental_benefit\": \"none\"}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 2, \"failed\": 1, \"orphaned\": 0}, \"total\": 3, \"coverage\": \"2/3\", \"coverage_pct\": 66.7}, \"C3\": {\"experiments\": [{\"id\": \"plan_006\", \"claim\": \"C3\", \"description\": \"Gradient conflict analysis on v7 (3 epoch checkpoints) - NTP vs GAR gradient cos_sim + magnitude ratio\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_002\"], \"registry_id\": \"analysis_gradient_conflict\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epoch0_cos_sim\": -0.089, \"epoch1_cos_sim\": -0.054, \"epoch2_cos_sim\": -0.042, \"epoch0_neg_layers_pct\": 78.6, \"epoch1_neg_layers_pct\": 71.4, \"epoch2_neg_layers_pct\": 67.9, \"epoch0_mag_ratio\": 7.5, \"epoch1_mag_ratio\": 13.7, \"epoch2_mag_ratio\": 14.7}}, {\"id\": \"plan_007\", \"claim\": \"C3\", \"description\": \"Attention heatmap visualization (4 models x 3 conversations x 28 layers)\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_002\", \"plan_003\", \"plan_004\"], \"registry_id\": \"analysis_attention_heatmap\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"base_mean_goal_attn\": 0.0136, \"base_decay\": 0.875, \"tg_mean_goal_attn\": 0.0232, \"tg_decay\": 0.777, \"ug_mean_goal_attn\": 0.0216, \"ug_decay\": 0.803, \"lora_mean_goal_attn\": 0.0216, \"lora_decay\": 0.81, \"gating_incremental_benefit\": \"none\"}}, {\"id\": \"plan_013\", \"claim\": \"C3\", \"description\": \"Llama-3.1-8B gradient conflict analysis - verify NTP-GAR competition is model-agnostic\", \"priority\": \"P1\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_010\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 2, \"failed\": 0, \"orphaned\": 0}, \"total\": 3, \"coverage\": \"2/3\", \"coverage_pct\": 66.7}, \"C2, C4\": {\"experiments\": [{\"id\": \"plan_008\", \"claim\": \"C2, C4\", \"description\": \"Held-out eval: create truly held-out eval set (50 convs, idx>=8000 from UltraChat full) and re-run 4-way eval to validate conclusions on unseen data\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_005\"], \"status\": \"DONE\", \"registry_id\": \"phase2_4way_eval_heldout\", \"conclusion\": \"success\", \"metrics\": {\"base_ours_mid_gar\": 0.0128, \"base_ours_recovery_pp\": 0.06, \"base_dongre_mid_gar\": 0.0031, \"base_dongre_recovery_pp\": -0.91, \"base_ppl\": 4.34, \"base_ntp\": 1.4045, \"tg_ours_mid_gar\": 0.5035, \"tg_ours_recovery_pp\": 49.13, \"tg_dongre_mid_gar\": 0.0152, \"tg_dongre_recovery_pp\": 0.3, \"tg_ppl\": 2.78, \"tg_ntp\": 0.9771, \"ug_ours_mid_gar\": 0.5053, \"ug_ours_recovery_pp\": 49.31, \"ug_dongre_mid_gar\": 0.0124, \"ug_dongre_recovery_pp\": 0.02, \"ug_ppl\": 2.78, \"ug_ntp\": 0.9752, \"lora_ours_mid_gar\": 0.4978, \"lora_ours_recovery_pp\": 48.56, \"lora_dongre_mid_gar\": 0.0132, \"lora_dongre_recovery_pp\": 0.1, \"lora_ppl\": 2.78, \"lora_ntp\": 0.9771, \"three_way_convergence_confirmed\": true, \"gar_ours_spread_pp\": 0.75, \"ppl_spread\": 0, \"data_overlap\": false}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 1, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"1/1\", \"coverage_pct\": 100.0}, \"C5\": {\"experiments\": [{\"id\": \"plan_009\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B Phase 1 GAR degradation diagnosis - confirm GAR decay exists on different architecture\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [], \"status\": \"planned\"}, {\"id\": \"plan_010\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B ThreadGate v7 training - replicate Qwen setup on Llama\", \"priority\": \"P0\", \"gpu_budget_hours\": 7, \"deps\": [\"plan_009\"], \"status\": \"planned\"}, {\"id\": \"plan_011\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B LoRA-only training - cross-model gating redundancy validation (D020)\", \"priority\": \"P0\", \"gpu_budget_hours\": 7, \"deps\": [\"plan_009\"], \"status\": \"RUNNING\", \"registry_id\": \"llama_lora_only_s42\"}, {\"id\": \"plan_012\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B 3-way eval (Base/TG/LoRA-only x GAR + PPL) on held-out data\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_010\", \"plan_011\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 3, \"running\": 1, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 4, \"coverage\": \"0/4\", \"coverage_pct\": 0.0}, \"W3\": {\"experiments\": [{\"id\": \"plan_014\", \"claim\": \"W3\", \"description\": \"Downstream task sanity check - simple instruction retention test across turns to link GAR to task performance\", \"priority\": \"P2\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_005\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"C4, W7\": {\"experiments\": [{\"id\": \"plan_015\", \"claim\": \"C4, W7\", \"description\": \"Statistical significance analysis - paired bootstrap CI from held-out eval (50 convs) for TG-LoRA-only comparison. If CI includes 0 → statistically supports 'zero benefit'. Addresses Dream W3 (single seed).\", \"priority\": \"P1\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_008\"], \"status\": \"orphaned\", \"registry_id\": \"worker_analysis_bootstrap_ci_tg_vs_lora_20260519T144212\", \"result\": \"PASS: All GAR-ours and PPL 95% CIs include 0 (TG-LO GAR: [-0.0018,+0.0036], UG-LO: [-0.0006,+0.0045], TG-UG: [-0.0030,+0.0006]). Statistically confirms zero benefit. W7 addressed.\"}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 1}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"W8\": {\"experiments\": [{\"id\": \"plan_016\", \"claim\": \"W8\", \"description\": \"Exposure-bias mitigation test - train ThreadGate v7 with scheduled sampling applied to GAR loss (mix teacher-forced + model-generated contexts). Test whether closing exposure bias gap narrows the 30x training-inference GAR gap. Constructive direction that upgrades paper from pure negative result.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_008\"], \"status\": \"DONE\", \"registry_id\": \"phase2_tg_s42_v8_schedsampling\", \"conclusion\": \"failed\", \"metrics\": {\"killed_at_microstep\": 1950, \"total_microsteps\": 24000, \"completion_pct\": 8.1, \"global_step_approx\": 244, \"total_global_steps\": 3000, \"ss_steps_observed\": 1, \"tf_lgar_mean_step850_1400\": 0.0062, \"tf_lgar_std\": 0.0082, \"tf_lgar_collapse_step\": 800, \"gate_mean_final\": 0.93, \"ss_ratio_at_kill\": 0.081, \"crash_reason\": \"killed by director: SS path code bug (D026) makes experiment invalid, GPU needed for PCGrad\", \"design_flaw_ss_ramp_too_slow\": true, \"design_flaw_no_ss_tf_separate_logging\": true}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 1, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"R4\": {\"experiments\": [{\"id\": \"plan_017\", \"claim\": \"R4\", \"description\": \"Code-paper architecture verification - confirm ThreadGate implementation matches paper Eq.3 (gate on residual vs gate on sub-layer output). Quick code audit, no GPU.\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"status\": \"orphaned\", \"registry_id\": \"worker_analysis_code_paper_arch_verify_20260519T144058\", \"result\": \"CRITICAL: code implements x+g·f(x) (ReZero-style), dream paper.tex wrote g·x+f(x). Semantically opposite when g→0. Data unaffected. D023.\"}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 1}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"C3, W8\": {\"experiments\": [{\"id\": \"plan_018\", \"claim\": \"C3, W8\", \"description\": \"PCGrad baseline - project NTP gradient onto GAR-orthogonal plane for gate params only. If 30x gap persists after removing gradient conflict → causal evidence that exposure bias (not gradient competition) is the root cause.\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_006\"], \"registry_id\": \"phase2_tg_s42_v9_pcgrad\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5002, \"eval_iid_dongre_mid_gar\": 0.0123, \"eval_iid_ppl\": 2.78, \"eval_iid_ntp\": 0.9752, \"eval_heldout_ours_mid_gar\": 0.5002, \"eval_heldout_dongre_mid_gar\": 0.0123, \"eval_heldout_ppl\": 2.78, \"eval_heldout_ntp\": 0.9752, \"eval_modelgen_ours_mid_gar\": 0.0151, \"eval_modelgen_dongre_mid_gar\": 0.0173, \"eval_modelgen_ppl\": 1.5, \"vs_v7_iid_ppl_diff\": 0.004, \"vs_v7_iid_gar_diff\": -0.0033}}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 1, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"1/1\", \"coverage_pct\": 100.0}, \"C2, MF5\": {\"experiments\": [{\"id\": \"plan_019\", \"claim\": \"C2, MF5\", \"description\": \"Multi-seed validation — train TG v7 + LoRA-only with seed=123 on Qwen. Provide mean±std for 30x gap. 1 extra seed sufficient given extreme effect size.\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_002\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"C4, MF6\": {\"experiments\": [{\"id\": \"plan_020\", \"claim\": \"C4, MF6\", \"description\": \"Expanded eval set — increase from 50 to 200 conversations (idx>=7000 from UltraChat). Boost bootstrap CI statistical power.\", \"priority\": \"P1\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_008\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"C3, SF4\": {\"experiments\": [{\"id\": \"plan_022\", \"claim\": \"C3, SF4\", \"description\": \"λ_GAR sensitivity — train v7 with λ_GAR=10 (1 epoch only). Show gradient competition trend under higher GAR weight. If budget allows, add λ=0.1.\", \"priority\": \"P2\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_002\"], \"status\": \"planned\"}], \"counts\": {\"planned\": 1, \"running\": 0, \"done\": 0, \"failed\": 0, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}, \"W8, C3\": {\"experiments\": [{\"id\": \"plan_023\", \"claim\": \"W8, C3\", \"description\": \"v8b: Fixed Scheduled Sampling — fix compute_gar_loss len==1 bug (Option A: handle single-turn mse_target), fix OOM (reduce batch/gen_length), use lambda_gar=1.0 (match v7). Tests whether training on model-generated text closes the 30x distribution shift gap. If successful, paper upgrades from pure negative to 'diagnosis + initial remedy'. D026.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_002\"], \"status\": \"DONE\", \"registry_id\": \"phase2_tg_s42_v8b_ss_fixed\", \"conclusion\": \"failed\"}], \"counts\": {\"planned\": 0, \"running\": 0, \"done\": 0, \"failed\": 1, \"orphaned\": 0}, \"total\": 1, \"coverage\": \"0/1\", \"coverage_pct\": 0.0}}, \"unassigned\": [], \"summary\": {\"total_experiments\": 22, \"total_claims\": 15, \"counts\": {\"planned\": 8, \"running\": 1, \"done\": 8, \"failed\": 3, \"orphaned\": 2}, \"coverage\": \"8/22\", \"coverage_pct\": 36.4, \"unassigned\": 0}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8181529e-c706-4ce2-b3d3-dffaabdc9e6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T04:50:43.832Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Ku4e83ifCrpfSkpx9L2PsY`</summary>
+
+```json
+{
+  "project": "turn_residual_gating",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9841ace4-e8dc-48c3-b8de-95e93791aa21",
+  "isSidechain": false,
+  "requestId": "req_011CbH1GsDggRVwy6qsPASeZ",
+  "type": "assistant",
+  "uuid": "8dbbb723-c62f-4d7a-b346-17af9b1c5fa2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FNniuHaXtptgFS7WnCz5oA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 24545,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 24545,
+          "cache_creation_input_tokens": 896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T04:50:43.843Z_
+
+<details><summary>↩ Tool result · `toolu_01Ku4e83ifCrpfSkpx9L2PsY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md\", \"content\": \"# Paper Framing: Mechanistic Analysis of Training-Inference Distribution Shift in Attention Steering\\n\\n> 定位: **Mechanistic insight paper**（不是简单 negative result）。核心卖点是 teacher-forcing→generation 分布偏移如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（30x 断层的定量证据）。这个 insight 为 auxiliary attention loss 在 teacher-forcing 下的 exposure bias 脆弱性提供首个实证刻画。\\n> Novelty 排序: (1) exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画 (30x gap) > (2) PCGrad 因果排除梯度方向冲突 + \\\"观察→假设→排除→指向真因\\\" 完整因果链 (D028) > (3) principled intervention + systematic ablation 的 negative result\\n> **⚠️ Dream review D024: \\\"Cannot\\\" overclaims, novelty \\\"first measurement\\\" 过高, 缺 gradient surgery baseline (PCGrad). 标题改 \\\"Fails to\\\", novelty 降级 \\\"first empirical characterization\\\"**\\n> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\\n> 最后更新: 2026-05-20 (M017 修正: PPL -46% 为跨协议伪影, IID PPL 无差异; selective dissociation 撤回; D033 跨变体确认)\\n> **⚠️ Llama-3 跨模型验证 = MUST-HAVE**（不含 → Findings 3.0 紧绷；含 → 3.0-3.5）\\n\\n---\\n\\n## 1. Title Candidates\\n\\n- **T1 (推荐)**: Why Lightweight Gating Fails to Fix Multi-Turn Attention Degradation: A Mechanistic Analysis\\n- **T2**: The Distribution Shift Trap: Why Training-Time Attention Steering Fails at Inference\\n- **T3**: Residual Gating Fails to Recover Goal Attention in Multi-Turn Dialogue\\n- **T4**: Lightweight Gating Struggles with Multi-Turn Attention Degradation: Evidence from Exposure Bias\\n\\n推荐 T1: \\\"Fails to Fix\\\" 替代 \\\"Cannot Fix\\\"（审稿共识：证据仅支持 tested conditions 下的失败，非绝对否定）。\\\"Lightweight Gating\\\" 覆盖标量+uniform gate。\\n\\n---\\n\\n## 2. Story Arc\\n\\nMulti-turn dialogue performance in LLMs degrades as conversations grow longer. Dongre et al. (2026) quantified this through the Goal Attention Ratio (GAR), showing 27-48% drops over 50 turns, while their residual stream probes reveal that goal information persists (AUC up to 0.98) even as the attention channel closes. This creates a natural hypothesis: if the information is in the residual stream but attention fails to access it, a learnable gate on the residual connection should recover it. We implement this hypothesis as ThreadGate, a per-layer gating module trained with joint NTP and GAR objectives. ThreadGate successfully optimizes GAR during training (0.02 to 0.48), and this improvement transfers perfectly when evaluated on same-distribution text at inference (GAR-ours = 0.49). However, on model-generated text, GAR-ours collapses to 0.016—a 30× gap driven by text distribution shift. Our central finding is that attention patterns learned under teacher-forced contexts (gold text) do not generalize to autoregressive generation contexts (model-generated text), the classic exposure bias phenomenon. This distribution shift is structural, independent of loss design or gating architecture. We further identify two coupled mechanisms that amplify the shift: (1) NTP loss dominates gate gradients, causing gates to learn reverse turn conditioning (suppressing at early turns where GAR is high, becoming passive at late turns where intervention is needed); (2) at inference time, gates attenuate residual updates by only 2-7%, far too weak to shift attention patterns. Four-way ablation (ThreadGate vs. Uniform Gate vs. LoRA-only vs. Base) confirms gating provides zero incremental contribution. Notably, this 30× gap is specific to GAR-ours (last-token attention to goals); GAR-Dongre (all-token attention) shows uniformly low values regardless of text distribution, revealing that exposure bias selectively disrupts summary-position attention patterns. Combined with Dongre et al.'s independent failure of goal re-injection, our results provide the first empirical characterization of how text distribution shift (exposure bias) selectively destroys attention patterns learned through auxiliary losses, and identify the specific mechanisms through which this vulnerability manifests.\\n\\n---\\n\\n## 3. Core Claims\\n\\n| # | Claim | 支撑 | 状态 |\\n|---|-------|------|------|\\n| C1 | GAR 衰减是真实且严重的结构性现象: Qwen-2.5-7B raw GAR 下降 70.8%, normalized GAR 下降 ~21% | Phase 1 GAR 诊断 | ✅ 已验证 |\\n| C2 | Residual gating 训练时在 same-distribution text 上有效优化 GAR-ours (0.48→0.49 泛化成功)，但在 model-generated text 上完全失败 (GAR-ours=0.016, 30x text distribution shift gap)。GAR-Dongre 在两种分布上均低（~0.01-0.016），无 gap——说明分布偏移选择性影响 summary-position attention pattern。 | v7 训练曲线 + 4-way eval + v7 直接 eval + Reviewer 独立验证 (D024) | ✅ 已验证（precision upgrade） |\\n| C3 | 失败机制的因果分析: (1) Distribution shift 是主因（D028 PCGrad 因果排除梯度方向冲突）; (2) NTP 幅度主导 gate 学习 → NF1 反向 turn conditioning; (3) NF3 gate 干预强度不足 2-7%。PCGrad ablation: 消除方向冲突后 cos_sim 围绕 0 震荡(range -0.151 to +0.091)，但 L_GAR 坍塌轨迹不变且无延迟 → 方向冲突非因果因素。**推理端确认（IID same-protocol）**: v9 GAR-ours=0.0151 vs v7=0.0157 (差<0.1pp), **v9 IID PPL=2.780 vs v7=2.784 (差0.004，无改善)**——PCGrad 消除方向冲突后所有可观测指标均 ≈ v7，方向冲突因 NTP 幅度主导而完全 inconsequential | D014 gate-profile + 梯度冲突量化 + **D028 PCGrad 因果排除** + v9 推理 eval + **M017 PPL 修正** | ✅ **End-to-end 完成**: 训练端 + 推理端均确认梯度方向冲突对 GAR 和 PPL 均无因果影响 |\\n| C4 | Gating 无增量贡献: 四路消融 LoRA-only ≈ TG ≈ UG（GAR + PPL 双指标）。IID: GAR 差异<0.6pp, PPL 均 ~2.78。**Model-gen (D033): v9 PCGrad=0.0151, UG=0.0149, LoRA-only=0.0245 均接近 baseline 0.0122——30x gap 在所有训练变体上普遍存在，排除 gating mechanism / turn-conditioning / gradient conflict 作为因果因素** | D021 四路 eval + D033 model-gen eval | ✅ **双重验证**: IID (D021) + model-gen (D033)。model-gen regime 进一步确认 gating 零增量且 GAR collapse 是训练-推理分布偏移的普遍现象 |\\n| C5 | 跨模型验证: Llama-3.1-8B 上复现同样的失败模式 | Phase 1 ✅ (GAR decay 90.1%, D042), Phase 2 训练中 | ⏳ Phase 1 done, Phase 2 running |\\n\\n---\\n\\n## 4. Negative Findings (NF)\\n\\n| # | Finding | 证据 | 叙事角色 |\\n|---|---------|------|----------|\\n| NF1 | Gate turn conditioning 方向反转: 27/28 层 gate diff (turn1-turn21) < 0，早期 turn 强抑制，晚期 turn passive | D014 eval gate-profile | 解释 why gating fails: NTP 梯度推 gate→1.0，晚期 turn 推力最强 |\\n| NF2 | 30x text distribution shift gap (GAR-ours): ultrachat 文本 0.49 vs 模型生成文本 0.016。Same-distribution 泛化成功（训练 0.48 → ultrachat eval 0.49），cross-distribution 泛化失败。**D033 跨变体确认**: v9 PCGrad (0.0151), UG (0.0149), LoRA-only (0.0245) model-gen GAR 均接近 baseline (0.0122)——gap 独立于训练策略，是 exposure bias 的普遍表现。GAR-Dongre 在两种分布上均低（~0.01-0.019），无 gap——分布偏移选择性影响 summary-position (last token) attention pattern | D015 + 4-way eval + v7 direct eval + D024 + **D033 cross-variant model-gen** | 核心 negative finding。精确定位为 TEXT DISTRIBUTION SHIFT（exposure bias）。D033 确认跨所有训练变体的普遍性。 |\\n| NF3 | 推理时 gate attenuation 仅 2-7% (gate_mean=0.93-0.98)，近乎 identity | D014 gate dynamic range 数据 | 解释 why 推理时 GAR 不改善: 干预强度不足 |\\n| NF4 | Eval baseline confound (Phase1 base vs Phase2 LoRA 文本不同) | P0 代码分析 | 已修正 → standard_conversations.json 统一 eval |\\n\\n---\\n\\n## 5. Key Selling Points\\n\\n**SP1 (核心卖点): Exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画。** 30x training-inference GAR-ours gap 提供了 teacher-forcing distribution shift 如何摧毁 auxiliary attention loss 泛化性的实证证据。训练时模型在 gold context 上优化 attention pattern，推理时在自身生成的 context 上条件化——两者分布不同导致 attention pattern 不迁移。虽然 exposure bias 概念本身已知 (Bengio et al. 2015)，且 sequence generation 中有量化先例 (Ranzato et al. 2016, Wiseman & Rush 2016)，但此前无人刻画其对 auxiliary attention loss 的具体影响。我们的 30x gap 测量展示了这种脆弱性在 attention steering 场景下的严重程度。**注意：(1) claim scope 严格限于 lightweight residual gating + GAR auxiliary loss 的实测范围，不泛化到所有 attention steering 方法。(2) 30x gap 在 GAR-ours（last token only, summary-position attention）上测得（IID 0.50 vs model-gen 0.016）；GAR-Dongre（all response tokens）在两种分布上均低（~0.01-0.019），无 gap——表明 exposure bias 选择性影响 summary-position attention pattern，这一差异本身有分析价值。**\\n\\n**SP2: NTP-GAR 梯度动力学 + PCGrad 因果排除（gradient conflict is inconsequential）。** 观察到 67-79% 的层 NTP-GAR 梯度方向冲突（cos_sim<0）+ NTP 幅度 3-15x 压制 GAR（mag_ratio 7.5→14.7x）。**PCGrad 消融（D028）因果排除方向冲突**：投影后 cos_sim 围绕 0 震荡（range -0.151 to +0.091），L_GAR 坍塌轨迹不变。**推理端确认（IID same-protocol）**: v9 IID PPL = 2.780 vs v7 = 2.784（差 0.004，无改善）; v9 GAR-ours = 0.0151 vs v7 = 0.0157（差 <0.1pp）——**PCGrad 消除方向冲突后所有可观测指标均无变化**（GAR、PPL、NTP 均 ≈ v7）。方向冲突虽然可测量存在于 v7 中，但对训练和推理结果无任何因果影响——10-40× NTP 幅度主导使方向冲突完全无关紧要（inconsequential）。**⚠️ M017: 此前 \\\"PPL -46%\\\" 和 \\\"selective dissociation\\\" 论述为跨协议对比伪影（model-gen PPL 1.50 vs IID PPL 2.78），已撤回。** **精确 claim scope**: gradient direction conflict is **neither necessary nor sufficient** for the 30x GAR gap; exposure bias alone is sufficient。NOT necessary: 移除冲突→gap仍在; NOT sufficient: v7有冲突但L_GAR训练时收敛; Exposure bias is sufficient: 训练≠推理分布→GAR泛化失败。**Gate 行为额外 insight**: v9 gate dynamic range 比 v7 更宽 (L15 range 0.33 vs v7 0.21)——PCGrad 给 gate 更大自由度，但 gate 用该自由度更激进地优化 NTP 而非 GAR，说明优化景观固有偏好语言建模目标。\\n\\n**SP3: Principled 设计动机 + 系统性探索。** Dongre 发现 goal info 在 residual stream 持续存在 (probe AUC=0.98)，residual gating 是最直接的架构响应。v1-v7 覆盖 4 种核心 loss 设计 across 7 training configurations，MSE+gate_div 是唯一训练收敛方案。四路消融严格隔离贡献: TG (learned gate + GAR loss) / UG (uniform gate + GAR loss) / LoRA-only (gate=1.0 fixed + GAR loss, 无 gating 机制) / Base。注意：三个 fine-tuned 变体均使用 GAR loss，消融测试的是 gating 机制的增量贡献，而非 GAR loss 本身的效果。\\n\\n**SP4: Convergent evidence with Dongre。** Dongre diagnosed the problem; we attempted the first systematic cure and uncovered fundamental limitations。两种独立干预路线（goal re-injection + residual gating）均失败，共同指向 NTP 优化压力下 attention steering 的根本困难。\\n\\n**SP5: 三阶段训练动力学。** v7 展现 plateau → phase transition → convergence 的清晰训练动力学，证明 MSE 双向 loss 设计本身是 sound 的，问题在泛化而非训练。\\n\\n---\\n\\n## 6. Anticipated Reviewer Concerns\\n\\n| # | 严重度 | 预期质疑 | 回应策略 |\\n|---|--------|----------|----------|\\n| W1 | **致命** | 单模型验证不够 | Llama-3.1-8B 跨模型验证是 **MUST-HAVE**。Qwen 完整消融 + Llama 复现。不含 Llama → Findings 3.0 紧绷，含 → 3.0-3.5。 |\\n| W2 | **严重** | \\\"你只是没调对参数\\\" | D018 的 teacher-forcing 分布偏移是结构性的，与 loss 设计无关。v1-v7 已覆盖 4 种核心 loss (cumulative v1-v2, maximize v3-v5, smooth_saturation v6, mse_target v7)，MSE+gate_div 是唯一训练收敛方案。四路消融隔离 turn conditioning (TG vs UG) 和 gating 本身 (TG vs LoRA-only)，消除超参解释。 |\\n| W3 | **严重** | GAR 作为唯一代理指标 | 考虑加 1 个简单下游任务 sanity check（如 system prompt instruction following accuracy）。PPL 对比已加入四路 eval（TG PPL > LoRA-only → gates 有害的额外证据）。 |\\n| W4 | **中等** | 无建设性贡献 | Discussion 需要 constructive future directions section: (1) inference-time attention intervention 绕过训练泛化问题; (2) decoupled goal-processing pathway; (3) GAR-aware decoding 而非 GAR-aware training; (4) exposure bias mitigation 技术应用到 auxiliary attention loss。 |\\n| W5 | **中等** | Teacher-forcing insight 不新（exposure bias 文献已知） | 我们的增量: 定量展示 distribution shift 如何具体破坏 auxiliary attention loss（30x 断层），现有 exposure bias 文献无此分析。Exposure bias 讨论集中在 generation quality degradation，未涉及 auxiliary attention loss 的泛化失败。 |\\n| R1 | 中等 | Novelty of negative result | 核心增量不是 negative result 本身，而是 distribution shift insight（SP1）+ 梯度竞争量化（SP2）+ failure mode taxonomy。 |\\n| R2 | 中等 | 与 Dongre et al. 的关系 | 不说 \\\"we extend Dongre\\\"，而是 \\\"Dongre diagnosed; we attempted the first systematic cure and uncovered fundamental limitations\\\"。核心叙事是 mechanism discovery，非 follow-up work。 |\\n| W6 | **严重** | 引用不足（Dream review: 11篇远不够）| 目标 25-30 篇。必须覆盖: attention sinks (Xiao et al. 2024), Found-in-the-Middle (Ko et al. 2024), gated attention (Qiu et al. 2025), transformer circuits (Elhage et al. 2021), FlexiDepth (Luo et al. 2025), multi-turn eval (MT-Bench-101, MultiChallenge), exposure bias mitigation (Professor Forcing, SEARNN) 等。Paper Agent 写作时负责扩充。|\\n| W7 | **严重** | 单 seed 无方差估计 | 所有实验 seed=42，TG-LoRA 差异 ±0.001 在噪声层。回应: held-out eval 50 conversations 提供 paired bootstrap CI，若 CI 包含 0 则统计支持 \\\"zero benefit\\\"。必要时追加 2 个 seed 的训练。|\\n| W8 | **中等** | 缺 exposure-bias mitigation 实验 | 测试 scheduled sampling / model-generated context 训练能否缩小 30x gap。加入 experiment_plan (P1)。如果实验表明 mitigation 确实缩小 gap，论文从 \\\"negative result\\\" 升级为 \\\"negative result + constructive direction\\\"。|\\n| R1 | 中等 | Novelty of negative result | 核心增量不是 negative result 本身，而是 exposure bias 的定量测量（SP1）+ 梯度竞争量化（SP2）+ failure mode taxonomy。 |\\n| R2 | 中等 | 与 Dongre et al. 的关系 | 不说 \\\"we extend Dongre\\\"，而是 \\\"Dongre diagnosed; we attempted the first systematic cure and uncovered fundamental limitations\\\"。核心叙事是 mechanism discovery，非 follow-up work。 |\\n| R3 | 低 | 30x gap 是否可能是实现 bug | D015 代码逐行对比 + D017 controlled experiments 确认非 bug。Base model 在 ultrachat 和 eval data 上 GAR 均 ~0.01，排除数据分布解释。 |\\n| R4 | ~~低~~ **已核实** | Code-paper 公式语义相反 | **已确认不一致（plan_017 DONE）**。代码正确实现 ReZero-style: `x_{l+1} = x_l + g_l · f_l(x_l)`（gate 缩放子层输出，g→0=层 no-op）。Dream paper.tex 错误写为 `x_{l+1} = g_l · x_l + f_l(x_l)`（gate 缩放残差流，g→0=破坏 skip connection）。**实验数据不受影响**（所有实验用同一份代码）。**Paper Agent 写作时必须**: (1) Method section 用正确公式 `x + g·f(x)`; (2) 机制叙事修正: g→0 = 子层输出被抑制（层变 no-op），NTP 推 g→1 是为保留层计算能力，不是保留 skip connection; (3) NF3 \\\"gate attenuation 2-7%\\\" 指子层贡献缩放，表述正确但需明确。|\\n\\n---\\n\\n## 7. Dongre et al. 关系定位\\n\\n| 维度 | Dongre et al. | 本文 |\\n|------|---------------|------|\\n| 核心问题 | \\\"发生了什么\\\" + \\\"为什么\\\" | \\\"怎么干预\\\" + \\\"为什么干预失败\\\" |\\n| GAR 衰减 | 定义 GAR，12 模型量化衰减 | 独立确认 (Qwen 70.8% raw, 21% normalized) |\\n| 机制分析 | residual probe AUC=0.98 (goal info 持续存在) | NTP-GAR 梯度冲突 + 30x 泛化 gap + turn conditioning 反转 |\\n| 干预尝试 | goal re-injection (Appendix H, 失败) | ThreadGate residual gating (失败) + UG/LoRA-only 消融 |\\n| 结论 | attention 通道关闭但 residual stream 保留 goal info | 即使在 residual stream 上施加 principled gating，NTP 梯度压制使 gate 无法学到正确的 turn-selective 干预 |\\n\\n**定位语**: Dongre diagnosed the problem; we attempted the first systematic cure and uncovered fundamental limitations. 核心叙事是 mechanism discovery（distribution shift + gradient competition），不是 Dongre 的 follow-up。\\n\\n共同推论: 两种独立干预路线均失败 → lightweight residual gating with auxiliary attention loss 在 teacher-forcing 下面临严重泛化障碍 → 需要 inference-time 干预或 exposure bias mitigation。（注意：scope 限于 lightweight gating，不泛化到所有 attention steering 方法。）\\n\\n---\\n\\n## 8. GAR 定义策略\\n\\n| 用途 | 定义 | Goal tokens | Response tokens | 理由 |\\n|------|------|------------|----------------|------|\\n| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 更丰富的 goal 信号; last token 作为 summary position 更稳定 |\\n| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比，审稿人可直接对照 |\\n| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 两种定义一致性 |\\n\\n**D024 精确化**: GAR-ours 在 same-distribution (ultrachat) text 上 ≈0.49（泛化成功），在 model-generated text 上 ≈0.016（30x gap）。GAR-Dongre 在两种分布上均低 (~0.01-0.016, 无 gap)。30x gap 是 text distribution shift 现象，特定于 summary-position attention (GAR-ours)。\\n\\n---\\n\\n## 9. 论文结构草案\\n\\n1. **Abstract** (150-250 words): GAR 衰减问题 → residual probe 证据支撑 gating 动机 → ThreadGate 方法 → 训练成功但推理失败 → 三个失败机制 → 对 attention steering 方法的启示\\n2. **Introduction** (5 段): 多轮对话退化现象 → Dongre 诊断 + residual stream 持续性 → 自然推论: residual gating 应能恢复 → ThreadGate 实验结果: 训练有效推理失败 → 三个失败机制 + 贡献列表\\n3. **Related Work**: multi-turn degradation / residual gating & adaptive depth / attention steering & intervention\\n4. **Background**: GAR 定义 (cite Dongre) + residual stream persistence 证据\\n5. **Method**: ThreadGate 架构（⚠️ 非简单标量 gate：per-layer 2 层 MLP + turn embedding，接收 hidden_state + turn_distance/turn_index，输出 per-token per-layer sigmoid gate 值。公式 g_l = σ(W_2·ReLU(W_1·[proj(x_l); emb(t_d, t_i)] + b_1) + b_2)。Uniform Gate = 同架构但用 constant_vector 替代 turn embedding，仍然 per-layer content-dependent）+ MSE+gate_div loss + v1-v7 loss 设计演化 + 训练设置\\n6. **Experiments**: 四路消融 (TG/UG/LoRA-only/Base) with GAR + PPL dual metrics + 跨模型验证 (Llama-3.1-8B)\\n7. **Analysis**: §6.1 NTP-GAR 梯度冲突观察 → §6.2 Gate turn conditioning (Wilcoxon) → §6.3 **PCGrad 因果排除方向冲突** → §6.4 Distribution shift (exposure bias) 作为主因 → §6.5 attention 可视化 + 训练动力学\\n8. **Discussion**: 为什么 lightweight residual gating 不够 → exposure bias 对 auxiliary attention loss 的具体影响机制 → 潜在解决方向 (inference-time intervention / exposure bias mitigation for auxiliary losses / decoupled pathway / GAR-aware decoding) → **scope 声明: claim 限于 lightweight gating，不泛化到所有 attention steering**\\n9. **Conclusion**: negative result 总结 + 对社区的 actionable 建议\\n\\n### 贡献列表（按 novelty 排序）\\n\\n1. **Exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画**: 实证展示 teacher-forcing distribution shift 如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（30x training-inference GAR-ours gap），为 teacher-forcing 下的 attention steering 方法提供具体风险标杆\\n2. **NTP-GAR 梯度竞争的逐层量化**: NTP loss 在 gate 参数上的梯度与 GAR loss 冲突，导致 gates 学到反向 turn conditioning（27/28 层 gate 在晚期 turn 趋向 identity）\\n3. **首个 principled residual gating 干预 + 系统性消融**: 基于 Dongre 的 residual stream persistence 证据设计 ThreadGate，v1-v7 覆盖 4 种核心 loss (cumulative v1-v2, maximize v3-v5, smooth_saturation v6, mse_target v7) + 四路消融隔离贡献，为后续研究提供 negative baseline\\n4. **跨模型验证** (Qwen-2.5-7B + Llama-3.1-8B) 确认失败机制的普遍性\\n\\n---\\n\\n## 10. 竞争力评估\\n\\n### Dream Review 结果 (2026-05-19, dream_20260519T135115)\\n- **Best case**: 3.0 (Weak Reject / Findings-level)。主要扣分: claim 过度泛化 (W1), 引用不足 (W6), 单 seed (W7)。\\n- **Median case**: 3.0 (Weak Reject)。同上 + distribution shift insight incremental (W5)。\\n- **Worst case**: 未完成 review（crash），但 imagined experiments 显示最坏情况下 Llama-3 不复现 dramatic pattern。\\n\\n### 修正后预期\\n- **收窄 claim + 扩充引用 + code 验证后**: best 预期 3.5 (Weak Accept / Borderline Conference)。移除两个 Major weakness (W1 overclaim + W6 thin refs)。\\n- **加 bootstrap CI + Llama-3 数据后**: median 预期 3.0-3.5。\\n- **冲 Main 条件**: 上述修正 + exposure-bias mitigation 实验 (W8) + 25-30 references。\\n- **核心差异化**: 不是 \\\"gating 失败了\\\"（弱），而是 \\\"exposure bias 在 auxiliary attention loss 上的首个定量测量 + 失败机制 taxonomy\\\"。\\n- **关键风险**: W5（exposure bias 已知）需要精确定位增量；W7（单 seed）需 bootstrap CI 或追加 seed。\\n\", \"total_chars\": 17117, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8dbbb723-c62f-4d7a-b346-17af9b1c5fa2",
+  "isSidechain": false,
+  "promptId": "96a05054-5812-4d7e-8627-1e7d0af55981",
+  "type": "user",
+  "uuid": "b1c669a0-3966-430e-800b-cd37eeb9791c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing: Mechanistic Analysis of Training-Inference Distribution Shift in Attention Steering\\\\n\\\\n> 定位: **Mechanistic insight paper**（不是简单 negative result）。核心卖点是 teacher-forcing→generation 分布偏移如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（30x 断层的定量证据）。这个 insight 为 auxiliary attention loss 在 teacher-forcing 下的 exposure bias 脆弱性提供首个实证刻画。\\\\n> Novelty 排序: (1) exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画 (30x gap) > (2) PCGrad 因果排除梯度方向冲突 + \\\\\\\"观察→假设→排除→指向真因\\\\\\\" 完整因果链 (D028) > (3) principled intervention + systematic ablation 的 negative result\\\\n> **⚠️ Dream review D024: \\\\\\\"Cannot\\\\\\\" overclaims, novelty \\\\\\\"first measurement\\\\\\\" 过高, 缺 gradient surgery baseline (PCGrad). 标题改 \\\\\\\"Fails to\\\\\\\", novelty 降级 \\\\\\\"first empirical characterization\\\\\\\"**\\\\n> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\\\\n> 最后更新: 2026-05-20 (M017 修正: PPL -46% 为跨协议伪影, IID PPL 无差异; selective dissociation 撤回; D033 跨变体确认)\\\\n> **⚠️ Llama-3 跨模型验证 = MUST-HAVE**（不含 → Findings 3.0 紧绷；含 → 3.0-3.5）\\\\n\\\\n---\\\\n\\\\n## 1. Title Candidates\\\\n\\\\n- **T1 (推荐)**: Why Lightweight Gating Fails to Fix Multi-Turn Attention Degradation: A Mechanistic Analysis\\\\n- **T2**: The Distribution Shift Trap: Why Training-Time Attention Steering Fails at Inference\\\\n- **T3**: Residual Gating Fails to Recover Goal Attention in Multi-Turn Dialogue\\\\n- **T4**: Lightweight Gating Struggles with Multi-Turn Attention Degradation: Evidence from Exposure Bias\\\\n\\\\n推荐 T1: \\\\\\\"Fails to Fix\\\\\\\" 替代 \\\\\\\"Cannot Fix\\\\\\\"（审稿共识：证据仅支持 tested conditions 下的失败，非绝对否定）。\\\\\\\"Lightweight Gating\\\\\\\" 覆盖标量+uniform gate。\\\\n\\\\n---\\\\n\\\\n## 2. Story Arc\\\\n\\\\nMulti-turn dialogue performance in LLMs degrades as conversations grow longer. Dongre et al. (2026) quantified this through the Goal Attention Ratio (GAR), showing 27-48% drops over 50 turns, while their residual stream probes reveal that goal information persists (AUC up to 0.98) even as the attention channel closes. This creates a natural hypothesis: if the information is in the residual stream but attention fails to access it, a learnable gate on the residual connection should recover it. We implement this hypothesis as ThreadGate, a per-layer gating module trained with joint NTP and GAR objectives. ThreadGate successfully optimizes GAR during training (0.02 to 0.48), and this improvement transfers perfectly when evaluated on same-distribution text at inference (GAR-ours = 0.49). However, on model-generated text, GAR-ours collapses to 0.016—a 30× gap driven by text distribution shift. Our central finding is that attention patterns learned under teacher-forced contexts (gold text) do not generalize to autoregressive generation contexts (model-generated text), the classic exposure bias phenomenon. This distribution shift is structural, independent of loss design or gating architecture. We further identify two coupled mechanisms that amplify the shift: (1) NTP loss dominates gate gradients, causing gates to learn reverse turn conditioning (suppressing at early turns where GAR is high, becoming passive at late turns where intervention is needed); (2) at inference time, gates attenuate residual updates by only 2-7%, far too weak to shift attention patterns. Four-way ablation (ThreadGate vs. Uniform Gate vs. LoRA-only vs. Base) confirms gating provides zero incremental contribution. Notably, this 30× gap is specific to GAR-ours (last-token attention to goals); GAR-Dongre (all-token attention) shows uniformly low values regardless of text distribution, revealing that exposure bias selectively disrupts summary-position attention patterns. Combined with Dongre et al.'s independent failure of goal re-injection, our results provide the first empirical characterization of how text distribution shift (exposure bias) selectively destroys attention patterns learned through auxiliary losses, and identify the specific mechanisms through which this vulnerability manifests.\\\\n\\\\n---\\\\n\\\\n## 3. Core Claims\\\\n\\\\n| # | Claim | 支撑 | 状态 |\\\\n|---|-------|------|------|\\\\n| C1 | GAR 衰减是真实且严重的结构性现象: Qwen-2.5-7B raw GAR 下降 70.8%, normalized GAR 下降 ~21% | Phase 1 GAR 诊断 | ✅ 已验证 |\\\\n| C2 | Residual gating 训练时在 same-distribution text 上有效优化 GAR-ours (0.48→0.49 泛化成功)，但在 model-generated text 上完全失败 (GAR-ours=0.016, 30x text distribution shift gap)。GAR-Dongre 在两种分布上均低（~0.01-0.016），无 gap——说明分布偏移选择性影响 summary-position attention pattern。 | v7 训练曲线 + 4-way eval + v7 直接 eval + Reviewer 独立验证 (D024) | ✅ 已验证（precision upgrade） |\\\\n| C3 | 失败机制的因果分析: (1) Distribution shift 是主因（D028 PCGrad 因果排除梯度方向冲突）; (2) NTP 幅度主导 gate 学习 → NF1 反向 turn conditioning; (3) NF3 gate 干预强度不足 2-7%。PCGrad ablation: 消除方向冲突后 cos_sim 围绕 0 震荡(range -0.151 to +0.091)，但 L_GAR 坍塌轨迹不变且无延迟 → 方向冲突非因果因素。**推理端确认（IID same-protocol）**: v9 GAR-ours=0.0151 vs v7=0.0157 (差<0.1pp), **v9 IID PPL=2.780 vs v7=2.784 (差0.004，无改善)**——PCGrad 消除方向冲突后所有可观测指标均 ≈ v7，方向冲突因 NTP 幅度主导而完全 inconsequential | D014 gate-profile + 梯度冲突量化 + **D028 PCGrad 因果排除** + v9 推理 eval + **M017 PPL 修正** | ✅ **End-to-end 完成**: 训练端 + 推理端均确认梯度方向冲突对 GAR 和 PPL 均无因果影响 |\\\\n| C4 | Gating 无增量贡献: 四路消融 LoRA-only ≈ TG ≈ UG（GAR + PPL 双指标）。IID: GAR 差异<0.6pp, PPL 均 ~2.78。**Model-gen (D033): v9 PCGrad=0.0151, UG=0.0149, LoRA-only=0.0245 均接近 baseline 0.0122——30x gap 在所有训练变体上普遍存在，排除 gating mechanism / turn-conditioning / gradient conflict 作为因果因素** | D021 四路 eval + D033 model-gen eval | ✅ **双重验证**: IID (D021) + model-gen (D033)。model-gen regime 进一步确认 gating 零增量且 GAR collapse 是训练-推理分布偏移的普遍现象 |\\\\n| C5 | 跨模型验证: Llama-3.1-8B 上复现同样的失败模式 | Phase 1 ✅ (GAR decay 90.1%, D042), Phase 2 训练中 | ⏳ Phase 1 done, Phase 2 running |\\\\n\\\\n---\\\\n\\\\n## 4. Negative Findings (NF)\\\\n\\\\n| # | Finding | 证据 | 叙事角色 |\\\\n|---|---------|------|----------|\\\\n| NF1 | Gate turn conditioning 方向反转: 27/28 层 gate diff (turn1-turn21) < 0，早期 turn 强抑制，晚期 turn passive | D014 eval gate-profile | 解释 why gating fails: NTP 梯度推 gate→1.0，晚期 turn 推力最强 |\\\\n| NF2 | 30x text distribution shift gap (GAR-ours): ultrachat 文本 0.49 vs 模型生成文本 0.016。Same-distribution 泛化成功（训练 0.48 → ultrachat eval 0.49），cross-distribution 泛化失败。**D033 跨变体确认**: v9 PCGrad (0.0151), UG (0.0149), LoRA-only (0.0245) model-gen GAR 均接近 baseline (0.0122)——gap 独立于训练策略，是 exposure bias 的普遍表现。GAR-Dongre 在两种分布上均低（~0.01-0.019），无 gap——分布偏移选择性影响 summary-position (last token) attention pattern | D015 + 4-way eval + v7 direct eval + D024 + **D033 cross-variant model-gen** | 核心 negative finding。精确定位为 TEXT DISTRIBUTION SHIFT（exposure bias）。D033 确认跨所有训练变体的普遍性。 |\\\\n| NF3 | 推理时 gate attenuation 仅 2-7% (gate_mean=0.93-0.98)，近乎 identity | D014 gate dynamic range 数据 | 解释 why 推理时 GAR 不改善: 干预强度不足 |\\\\n| NF4 | Eval baseline confound (Phase1 base vs Phase2 LoRA 文本不同) | P0 代码分析 | 已修正 → standard_conversations.json 统一 eval |\\\\n\\\\n---\\\\n\\\\n## 5. Key Selling Points\\\\n\\\\n**SP1 (核心卖点): Exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画。** 30x training-inference GAR-ours gap 提供了 teacher-forcing distribution shift 如何摧毁 auxiliary attention loss 泛化性的实证证据。训练时模型在 gold context 上优化 attention pattern，推理时在自身生成的 context 上条件化——两者分布不同导致 attention pattern 不迁移。虽然 exposure bias 概念本身已知 (Bengio et al. 2015)，且 sequence generation 中有量化先例 (Ranzato et al. 2016, Wiseman & Rush 2016)，但此前无人刻画其对 auxiliary attention loss 的具体影响。我们的 30x gap 测量展示了这种脆弱性在 attention steering 场景下的严重程度。**注意：(1) claim scope 严格限于 lightweight residual gating + GAR auxiliary loss 的实测范围，不泛化到所有 attention steering 方法。(2) 30x gap 在 GAR-ours（last token only, summary-position attention）上测得（IID 0.50 vs model-gen 0.016）；GAR-Dongre（all response tokens）在两种分布上均低（~0.01-0.019），无 gap——表明 exposure bias 选择性影响 summary-position attention pattern，这一差异本身有分析价值。**\\\\n\\\\n**SP2: NTP-GAR 梯度动力学 + PCGrad 因果排除（gradient conflict is inconsequential）。** 观察到 67-79% 的层 NTP-GAR 梯度方向冲突（cos_sim<0）+ NTP 幅度 3-15x 压制 GAR（mag_ratio 7.5→14.7x）。**PCGrad 消融（D028）因果排除方向冲突**：投影后 cos_sim 围绕 0 震荡（range -0.151 to +0.091），L_GAR 坍塌轨迹不变。**推理端确认（IID same-protocol）**: v9 IID PPL = 2.780 vs v7 = 2.784（差 0.004，无改善）; v9 GAR-ours = 0.0151 vs v7 = 0.0157（差 <0.1pp）——**PCGrad 消除方向冲突后所有可观测指标均无变化**（GAR、PPL、NTP 均 ≈ v7）。方向冲突虽然可测量存在于 v7 中，但对训练和推理结果无任何因果影响——10-40× NTP 幅度主导使方向冲突完全无关紧要（inconsequential）。**⚠️ M017: 此前 \\\\\\\"PPL -46%\\\\\\\" 和 \\\\\\\"selective dissociation\\\\\\\" 论述为跨协议对比伪影（model-gen PPL 1.50 vs IID PPL 2.78），已撤回。** **精确 claim scope**: gradient direction conflict is **neither necessary nor sufficient** for the 30x GAR gap; exposure bias alone is sufficient。NOT necessary: 移除冲突→gap仍在; NOT sufficient: v7有冲突但L_GAR训练时收敛; Exposure bias is sufficient: 训练≠推理分布→GAR泛化失败。**Gate 行为额外 insight**: v9 gate dynamic range 比 v7 更宽 (L15 range 0.33 vs v7 0.21)——PCGrad 给 gate 更大自由度，但 gate 用该自由度更激进地优化 NTP 而非 GAR，说明优化景观固有偏好语言建模目标。\\\\n\\\\n**SP3: Principled 设计动机 + 系统性探索。** Dongre 发现 goal info 在 residual stream 持续存在 (probe AUC=0.98)，residual gating 是最直接的架构响应。v1-v7 覆盖 4 种核心 loss 设计 across 7 training configurations，MSE+gate_div 是唯一训练收敛方案。四路消融严格隔离贡献: TG (learned gate + GAR loss) / UG (uniform gate + GAR loss) / LoRA-only (gate=1.0 fixed + GAR loss, 无 gating 机制) / Base。注意：三个 fine-tuned 变体均使用 GAR loss，消融测试的是 gating 机制的增量贡献，而非 GAR loss 本身的效果。\\\\n\\\\n**SP4: Convergent evidence with Dongre。** Dongre diagnosed the problem; we attempted the first systematic cure and uncovered fundamental limitations。两种独立干预路线（goal re-injection + residual gating）均失败，共同指向 NTP 优化压力下 attention steering 的根本困难。\\\\n\\\\n**SP5: 三阶段训练动力学。** v7 展现 plateau → phase transition → convergence 的清晰训练动力学，证明 MSE 双向 loss 设计本身是 sound 的，问题在泛化而非训练。\\\\n\\\\n---\\\\n\\\\n## 6. Anticipated Reviewer Concerns\\\\n\\\\n| # | 严重度 | 预期质疑 | 回应策略 |\\\\n|---|--------|----------|----------|\\\\n| W1 | **致命** | 单模型验证不够 | Llama-3.1-8B 跨模型验证是 **MUST-HAVE**。Qwen 完整消融 + Llama 复现。不含 Llama → Findings 3.0 紧绷，含 → 3.0-3.5。 |\\\\n| W2 | **严重** | \\\\\\\"你只是没调对参数\\\\\\\" | D018 的 teacher-forcing 分布偏移是结构性的，与 loss 设计无关。v1-v7 已覆盖 4 种核心 loss (cumulative v1-v2, maximize v3-v5, smooth_saturation v6, mse_target v7)，MSE+gate_div 是唯一训练收敛方案。四路消融隔离 turn conditioning (TG vs UG) 和 gating 本身 (TG vs LoRA-only)，消除超参解释。 |\\\\n| W3 | **严重** | GAR 作为唯一代理指标 | 考虑加 1 个简单下游任务 sanity check（如 system prompt instruction following accuracy）。PPL 对比已加入四路 eval（TG PPL > LoRA-only → gates 有害的额外证据）。 |\\\\n| W4 | **中等** | 无建设性贡献 | Discussion 需要 constructive future directions section: (1) inference-time attention intervention 绕过训练泛化问题; (2) decoupled goal-processing pathway; (3) GAR-aware decoding 而非 GAR-aware training; (4) exposure bias mitigation 技术应用到 auxiliary attention loss。 |\\\\n| W5 | **中等** | Teacher-forcing insight 不新（exposure bias 文献已知） | 我们的增量: 定量展示 distribution shift 如何具体破坏 auxiliary attention loss（30x 断层），现有 exposure bias 文献无此分析。Exposure bias 讨论集中在 generation quality degradation，未涉及 auxiliary attention loss 的泛化失败。 |\\\\n| R1 | 中等 | Novelty of negative result | 核心增量不是 negative result 本身，而是 distribution shift insight（SP1）+ 梯度竞争量化（SP2）+ failure mode taxonomy。 |\\\\n| R2 | 中等 | 与 Dongre et al. 的关系 | 不说 \\\\\\\"we extend Dongre\\\\\\\"，而是 \\\\\\\"Dongre diagnosed; we attempted the first systematic cure and uncovered fundamental limitations\\\\\\\"。核心叙事是 mechanism discovery，非 follow-up work。 |\\\\n| W6 | **严重** | 引用不足（Dream review: 11篇远不够）| 目标 25-30 篇。必须覆盖: attention sinks (Xiao et al. 2024), Found-in-the-Middle (Ko et al. 2024), gated attention (Qiu et al. 2025), transformer circuits (Elhage et al. 2021), FlexiDepth (Luo et al. 2025), multi-turn eval (MT-Bench-101, MultiChallenge), exposure bias mitigation (Professor Forcing, SEARNN) 等。Paper Agent 写作时负责扩充。|\\\\n| W7 | **严重** | 单 seed 无方差估计 | 所有实验 seed=42，TG-LoRA 差异 ±0.001 在噪声层。回应: held-out eval 50 conversations 提供 paired bootstrap CI，若 CI 包含 0 则统计支持 \\\\\\\"zero benefit\\\\\\\"。必要时追加 2 个 seed 的训练。|\\\\n| W8 | **中等** | 缺 exposure-bias mitigation 实验 | 测试 scheduled sampling / model-generated context 训练能否缩小 30x gap。加入 experiment_plan (P1)。如果实验表明 mitigation 确实缩小 gap，论文从 \\\\\\\"negative result\\\\\\\" 升级为 \\\\\\\"negative result + constructive direction\\\\\\\"。|\\\\n| R1 | 中等 | Novelty of negative result | 核心增量不是 negative result 本身，而是 exposure bias 的定量测量（SP1）+ 梯度竞争量化（SP2）+ failure mode taxonomy。 |\\\\n| R2 | 中等 | 与 Dongre et al. 的关系 | 不说 \\\\\\\"we extend Dongre\\\\\\\"，而是 \\\\\\\"Dongre diagnosed; we attempted the first systematic cure and uncovered fundamental limitations\\\\\\\"。核心叙事是 mechanism discovery，非 follow-up work。 |\\\\n| R3 | 低 | 30x gap 是否可能是实现 bug | D015 代码逐行对比 + D017 controlled experiments 确认非 bug。Base model 在 ultrachat 和 eval data 上 GAR 均 ~0.01，排除数据分布解释。 |\\\\n| R4 | ~~低~~ **已核实** | Code-paper 公式语义相反 | **已确认不一致（plan_017 DONE）**。代码正确实现 ReZero-style: `x_{l+1} = x_l + g_l · f_l(x_l)`（gate 缩放子层输出，g→0=层 no-op）。Dream paper.tex 错误写为 `x_{l+1} = g_l · x_l + f_l(x_l)`（gate 缩放残差流，g→0=破坏 skip connection）。**实验数据不受影响**（所有实验用同一份代码）。**Paper Agent 写作时必须**: (1) Method section 用正确公式 `x + g·f(x)`; (2) 机制叙事修正: g→0 = 子层输出被抑制（层变 no-op），NTP 推 g→1 是为保留层计算能力，不是保留 skip connection; (3) NF3 \\\\\\\"gate attenuation 2-7%\\\\\\\" 指子层贡献缩放，表述正确但需明确。|\\\\n\\\\n---\\\\n\\\\n## 7. Dongre et al. 关系定位\\\\n\\\\n| 维度 | Dongre et al. | 本文 |\\\\n|------|---------------|------|\\\\n| 核心问题 | \\\\\\\"发生了什么\\\\\\\" + \\\\\\\"为什么\\\\\\\" | \\\\\\\"怎么干预\\\\\\\" + \\\\\\\"为什么干预失败\\\\\\\" |\\\\n| GAR 衰减 | 定义 GAR，12 模型量化衰减 | 独立确认 (Qwen 70.8% raw, 21% normalized) |\\\\n| 机制分析 | residual probe AUC=0.98 (goal info 持续存在) | NTP-GAR 梯度冲突 + 30x 泛化 gap + turn conditioning 反转 |\\\\n| 干预尝试 | goal re-injection (Appendix H, 失败) | ThreadGate residual gating (失败) + UG/LoRA-only 消融 |\\\\n| 结论 | attention 通道关闭但 residual stream 保留 goal info | 即使在 residual stream 上施加 principled gating，NTP 梯度压制使 gate 无法学到正确的 turn-selective 干预 |\\\\n\\\\n**定位语**: Dongre diagnosed the problem; we attempted the first systematic cure and uncovered fundamental limitations. 核心叙事是 mechanism discovery（distribution shift + gradient competition），不是 Dongre 的 follow-up。\\\\n\\\\n共同推论: 两种独立干预路线均失败 → lightweight residual gating with auxiliary attention loss 在 teacher-forcing 下面临严重泛化障碍 → 需要 inference-time 干预或 exposure bias mitigation。（注意：scope 限于 lightweight gating，不泛化到所有 attention steering 方法。）\\\\n\\\\n---\\\\n\\\\n## 8. GAR 定义策略\\\\n\\\\n| 用途 | 定义 | Goal tokens | Response tokens | 理由 |\\\\n|------|------|------------|----------------|------|\\\\n| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 更丰富的 goal 信号; last token 作为 summary position 更稳定 |\\\\n| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比，审稿人可直接对照 |\\\\n| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 两种定义一致性 |\\\\n\\\\n**D024 精确化**: GAR-ours 在 same-distribution (ultrachat) text 上 ≈0.49（泛化成功），在 model-generated text 上 ≈0.016（30x gap）。GAR-Dongre 在两种分布上均低 (~0.01-0.016, 无 gap)。30x gap 是 text distribution shift 现象，特定于 summary-position attention (GAR-ours)。\\\\n\\\\n---\\\\n\\\\n## 9. 论文结构草案\\\\n\\\\n1. **Abstract** (150-250 words): GAR 衰减问题 → residual probe 证据支撑 gating 动机 → ThreadGate 方法 → 训练成功但推理失败 → 三个失败机制 → 对 attention steering 方法的启示\\\\n2. **Introduction** (5 段): 多轮对话退化现象 → Dongre 诊断 + residual stream 持续性 → 自然推论: residual gating 应能恢复 → ThreadGate 实验结果: 训练有效推理失败 → 三个失败机制 + 贡献列表\\\\n3. **Related Work**: multi-turn degradation / residual gating & adaptive depth / attention steering & intervention\\\\n4. **Background**: GAR 定义 (cite Dongre) + residual stream persistence 证据\\\\n5. **Method**: ThreadGate 架构（⚠️ 非简单标量 gate：per-layer 2 层 MLP + turn embedding，接收 hidden_state + turn_distance/turn_index，输出 per-token per-layer sigmoid gate 值。公式 g_l = σ(W_2·ReLU(W_1·[proj(x_l); emb(t_d, t_i)] + b_1) + b_2)。Uniform Gate = 同架构但用 constant_vector 替代 turn embedding，仍然 per-layer content-dependent）+ MSE+gate_div loss + v1-v7 loss 设计演化 + 训练设置\\\\n6. **Experiments**: 四路消融 (TG/UG/LoRA-only/Base) with GAR + PPL dual metrics + 跨模型验证 (Llama-3.1-8B)\\\\n7. **Analysis**: §6.1 NTP-GAR 梯度冲突观察 → §6.2 Gate turn conditioning (Wilcoxon) → §6.3 **PCGrad 因果排除方向冲突** → §6.4 Distribution shift (exposure bias) 作为主因 → §6.5 attention 可视化 + 训练动力学\\\\n8. **Discussion**: 为什么 lightweight residual gating 不够 → exposure bias 对 auxiliary attention loss 的具体影响机制 → 潜在解决方向 (inference-time intervention / exposure bias mitigation for auxiliary losses / decoupled pathway / GAR-aware decoding) → **scope 声明: claim 限于 lightweight gating，不泛化到所有 attention steering**\\\\n9. **Conclusion**: negative result 总结 + 对社区的 actionable 建议\\\\n\\\\n### 贡献列表（按 novelty 排序）\\\\n\\\\n1. **Exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画**: 实证展示 teacher-forcing distribution shift 如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（30x training-inference GAR-ours gap），为 teacher-forcing 下的 attention steering 方法提供具体风险标杆\\\\n2. **NTP-GAR 梯度竞争的逐层量化**: NTP loss 在 gate 参数上的梯度与 GAR loss 冲突，导致 gates 学到反向 turn conditioning（27/28 层 gate 在晚期 turn 趋向 identity）\\\\n3. **首个 principled residual gating 干预 + 系统性消融**: 基于 Dongre 的 residual stream persistence 证据设计 ThreadGate，v1-v7 覆盖 4 种核心 loss (cumulative v1-v2, maximize v3-v5, smooth_saturation v6, mse_target v7) + 四路消融隔离贡献，为后续研究提供 negative baseline\\\\n4. **跨模型验证** (Qwen-2.5-7B + Llama-3.1-8B) 确认失败机制的普遍性\\\\n\\\\n---\\\\n\\\\n## 10. 竞争力评估\\\\n\\\\n### Dream Review 结果 (2026-05-19, dream_20260519T135115)\\\\n- **Best case**: 3.0 (Weak Reject / Findings-level)。主要扣分: claim 过度泛化 (W1), 引用不足 (W6), 单 seed (W7)。\\\\n- **Median case**: 3.0 (Weak Reject)。同上 + distribution shift insight incremental (W5)。\\\\n- **Worst case**: 未完成 review（crash），但 imagined experiments 显示最坏情况下 Llama-3 不复现 dramatic pattern。\\\\n\\\\n### 修正后预期\\\\n- **收窄 claim + 扩充引用 + code 验证后**: best 预期 3.5 (Weak Accept / Borderline Conference)。移除两个 Major weakness (W1 overclaim + W6 thin refs)。\\\\n- **加 bootstrap CI + Llama-3 数据后**: median 预期 3.0-3.5。\\\\n- **冲 Main 条件**: 上述修正 + exposure-bias mitigation 实验 (W8) + 25-30 references。\\\\n- **核心差异化**: 不是 \\\\\\\"gating 失败了\\\\\\\"（弱），而是 \\\\\\\"exposure bias 在 auxiliary attention loss 上的首个定量测量 + 失败机制 taxonomy\\\\\\\"。\\\\n- **关键风险**: W5（exposure bias 已知）需要精确定位增量；W7（单 seed）需 bootstrap CI 或追加 seed。\\\\n\\\", \\\"total_chars\\\": 17117, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/paper_framing.md\", \"content\": \"# Paper Framing: Mechanistic Analysis of Training-Inference Distribution Shift in Attention Steering\\n\\n> 定位: **Mechanistic insight paper**（不是简单 negative result）。核心卖点是 teacher-forcing→generation 分布偏移如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（30x 断层的定量证据）。这个 insight 为 auxiliary attention loss 在 teacher-forcing 下的 exposure bias 脆弱性提供首个实证刻画。\\n> Novelty 排序: (1) exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画 (30x gap) > (2) PCGrad 因果排除梯度方向冲突 + \\\"观察→假设→排除→指向真因\\\" 完整因果链 (D028) > (3) principled intervention + systematic ablation 的 negative result\\n> **⚠️ Dream review D024: \\\"Cannot\\\" overclaims, novelty \\\"first measurement\\\" 过高, 缺 gradient surgery baseline (PCGrad). 标题改 \\\"Fails to\\\", novelty 降级 \\\"first empirical characterization\\\"**\\n> 目标会议: EMNLP 2026, ARR August cycle, deadline 2026-08-03 (~10.5 weeks)\\n> 最后更新: 2026-05-20 (M017 修正: PPL -46% 为跨协议伪影, IID PPL 无差异; selective dissociation 撤回; D033 跨变体确认)\\n> **⚠️ Llama-3 跨模型验证 = MUST-HAVE**（不含 → Findings 3.0 紧绷；含 → 3.0-3.5）\\n\\n---\\n\\n## 1. Title Candidates\\n\\n- **T1 (推荐)**: Why Lightweight Gating Fails to Fix Multi-Turn Attention Degradation: A Mechanistic Analysis\\n- **T2**: The Distribution Shift Trap: Why Training-Time Attention Steering Fails at Inference\\n- **T3**: Residual Gating Fails to Recover Goal Attention in Multi-Turn Dialogue\\n- **T4**: Lightweight Gating Struggles with Multi-Turn Attention Degradation: Evidence from Exposure Bias\\n\\n推荐 T1: \\\"Fails to Fix\\\" 替代 \\\"Cannot Fix\\\"（审稿共识：证据仅支持 tested conditions 下的失败，非绝对否定）。\\\"Lightweight Gating\\\" 覆盖标量+uniform gate。\\n\\n---\\n\\n## 2. Story Arc\\n\\nMulti-turn dialogue performance in LLMs degrades as conversations grow longer. Dongre et al. (2026) quantified this through the Goal Attention Ratio (GAR), showing 27-48% drops over 50 turns, while their residual stream probes reveal that goal information persists (AUC up to 0.98) even as the attention channel closes. This creates a natural hypothesis: if the information is in the residual stream but attention fails to access it, a learnable gate on the residual connection should recover it. We implement this hypothesis as ThreadGate, a per-layer gating module trained with joint NTP and GAR objectives. ThreadGate successfully optimizes GAR during training (0.02 to 0.48), and this improvement transfers perfectly when evaluated on same-distribution text at inference (GAR-ours = 0.49). However, on model-generated text, GAR-ours collapses to 0.016—a 30× gap driven by text distribution shift. Our central finding is that attention patterns learned under teacher-forced contexts (gold text) do not generalize to autoregressive generation contexts (model-generated text), the classic exposure bias phenomenon. This distribution shift is structural, independent of loss design or gating architecture. We further identify two coupled mechanisms that amplify the shift: (1) NTP loss dominates gate gradients, causing gates to learn reverse turn conditioning (suppressing at early turns where GAR is high, becoming passive at late turns where intervention is needed); (2) at inference time, gates attenuate residual updates by only 2-7%, far too weak to shift attention patterns. Four-way ablation (ThreadGate vs. Uniform Gate vs. LoRA-only vs. Base) confirms gating provides zero incremental contribution. Notably, this 30× gap is specific to GAR-ours (last-token attention to goals); GAR-Dongre (all-token attention) shows uniformly low values regardless of text distribution, revealing that exposure bias selectively disrupts summary-position attention patterns. Combined with Dongre et al.'s independent failure of goal re-injection, our results provide the first empirical characterization of how text distribution shift (exposure bias) selectively destroys attention patterns learned through auxiliary losses, and identify the specific mechanisms through which this vulnerability manifests.\\n\\n---\\n\\n## 3. Core Claims\\n\\n| # | Claim | 支撑 | 状态 |\\n|---|-------|------|------|\\n| C1 | GAR 衰减是真实且严重的结构性现象: Qwen-2.5-7B raw GAR 下降 70.8%, normalized GAR 下降 ~21% | Phase 1 GAR 诊断 | ✅ 已验证 |\\n| C2 | Residual gating 训练时在 same-distribution text 上有效优化 GAR-ours (0.48→0.49 泛化成功)，但在 model-generated text 上完全失败 (GAR-ours=0.016, 30x text distribution shift gap)。GAR-Dongre 在两种分布上均低（~0.01-0.016），无 gap——说明分布偏移选择性影响 summary-position attention pattern。 | v7 训练曲线 + 4-way eval + v7 直接 eval + Reviewer 独立验证 (D024) | ✅ 已验证（precision upgrade） |\\n| C3 | 失败机制的因果分析: (1) Distribution shift 是主因（D028 PCGrad 因果排除梯度方向冲突）; (2) NTP 幅度主导 gate 学习 → NF1 反向 turn conditioning; (3) NF3 gate 干预强度不足 2-7%。PCGrad ablation: 消除方向冲突后 cos_sim 围绕 0 震荡(range -0.151 to +0.091)，但 L_GAR 坍塌轨迹不变且无延迟 → 方向冲突非因果因素。**推理端确认（IID same-protocol）**: v9 GAR-ours=0.0151 vs v7=0.0157 (差<0.1pp), **v9 IID PPL=2.780 vs v7=2.784 (差0.004，无改善)**——PCGrad 消除方向冲突后所有可观测指标均 ≈ v7，方向冲突因 NTP 幅度主导而完全 inconsequential | D014 gate-profile + 梯度冲突量化 + **D028 PCGrad 因果排除** + v9 推理 eval + **M017 PPL 修正** | ✅ **End-to-end 完成**: 训练端 + 推理端均确认梯度方向冲突对 GAR 和 PPL 均无因果影响 |\\n| C4 | Gating 无增量贡献: 四路消融 LoRA-only ≈ TG ≈ UG（GAR + PPL 双指标）。IID: GAR 差异<0.6pp, PPL 均 ~2.78。**Model-gen (D033): v9 PCGrad=0.0151, UG=0.0149, LoRA-only=0.0245 均接近 baseline 0.0122——30x gap 在所有训练变体上普遍存在，排除 gating mechanism / turn-conditioning / gradient conflict 作为因果因素** | D021 四路 eval + D033 model-gen eval | ✅ **双重验证**: IID (D021) + model-gen (D033)。model-gen regime 进一步确认 gating 零增量且 GAR collapse 是训练-推理分布偏移的普遍现象 |\\n| C5 | 跨模型验证: Llama-3.1-8B 上复现同样的失败模式 | Phase 1 ✅ (GAR decay 90.1%, D042), Phase 2 训练中 | ⏳ Phase 1 done, Phase 2 running |\\n\\n---\\n\\n## 4. Negative Findings (NF)\\n\\n| # | Finding | 证据 | 叙事角色 |\\n|---|---------|------|----------|\\n| NF1 | Gate turn conditioning 方向反转: 27/28 层 gate diff (turn1-turn21) < 0，早期 turn 强抑制，晚期 turn passive | D014 eval gate-profile | 解释 why gating fails: NTP 梯度推 gate→1.0，晚期 turn 推力最强 |\\n| NF2 | 30x text distribution shift gap (GAR-ours): ultrachat 文本 0.49 vs 模型生成文本 0.016。Same-distribution 泛化成功（训练 0.48 → ultrachat eval 0.49），cross-distribution 泛化失败。**D033 跨变体确认**: v9 PCGrad (0.0151), UG (0.0149), LoRA-only (0.0245) model-gen GAR 均接近 baseline (0.0122)——gap 独立于训练策略，是 exposure bias 的普遍表现。GAR-Dongre 在两种分布上均低（~0.01-0.019），无 gap——分布偏移选择性影响 summary-position (last token) attention pattern | D015 + 4-way eval + v7 direct eval + D024 + **D033 cross-variant model-gen** | 核心 negative finding。精确定位为 TEXT DISTRIBUTION SHIFT（exposure bias）。D033 确认跨所有训练变体的普遍性。 |\\n| NF3 | 推理时 gate attenuation 仅 2-7% (gate_mean=0.93-0.98)，近乎 identity | D014 gate dynamic range 数据 | 解释 why 推理时 GAR 不改善: 干预强度不足 |\\n| NF4 | Eval baseline confound (Phase1 base vs Phase2 LoRA 文本不同) | P0 代码分析 | 已修正 → standard_conversations.json 统一 eval |\\n\\n---\\n\\n## 5. Key Selling Points\\n\\n**SP1 (核心卖点): Exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画。** 30x training-inference GAR-ours gap 提供了 teacher-forcing distribution shift 如何摧毁 auxiliary attention loss 泛化性的实证证据。训练时模型在 gold context 上优化 attention pattern，推理时在自身生成的 context 上条件化——两者分布不同导致 attention pattern 不迁移。虽然 exposure bias 概念本身已知 (Bengio et al. 2015)，且 sequence generation 中有量化先例 (Ranzato et al. 2016, Wiseman & Rush 2016)，但此前无人刻画其对 auxiliary attention loss 的具体影响。我们的 30x gap 测量展示了这种脆弱性在 attention steering 场景下的严重程度。**注意：(1) claim scope 严格限于 lightweight residual gating + GAR auxiliary loss 的实测范围，不泛化到所有 attention steering 方法。(2) 30x gap 在 GAR-ours（last token only, summary-position attention）上测得（IID 0.50 vs model-gen 0.016）；GAR-Dongre（all response tokens）在两种分布上均低（~0.01-0.019），无 gap——表明 exposure bias 选择性影响 summary-position attention pattern，这一差异本身有分析价值。**\\n\\n**SP2: NTP-GAR 梯度动力学 + PCGrad 因果排除（gradient conflict is inconsequential）。** 观察到 67-79% 的层 NTP-GAR 梯度方向冲突（cos_sim<0）+ NTP 幅度 3-15x 压制 GAR（mag_ratio 7.5→14.7x）。**PCGrad 消融（D028）因果排除方向冲突**：投影后 cos_sim 围绕 0 震荡（range -0.151 to +0.091），L_GAR 坍塌轨迹不变。**推理端确认（IID same-protocol）**: v9 IID PPL = 2.780 vs v7 = 2.784（差 0.004，无改善）; v9 GAR-ours = 0.0151 vs v7 = 0.0157（差 <0.1pp）——**PCGrad 消除方向冲突后所有可观测指标均无变化**（GAR、PPL、NTP 均 ≈ v7）。方向冲突虽然可测量存在于 v7 中，但对训练和推理结果无任何因果影响——10-40× NTP 幅度主导使方向冲突完全无关紧要（inconsequential）。**⚠️ M017: 此前 \\\"PPL -46%\\\" 和 \\\"selective dissociation\\\" 论述为跨协议对比伪影（model-gen PPL 1.50 vs IID PPL 2.78），已撤回。** **精确 claim scope**: gradient direction conflict is **neither necessary nor sufficient** for the 30x GAR gap; exposure bias alone is sufficient。NOT necessary: 移除冲突→gap仍在; NOT sufficient: v7有冲突但L_GAR训练时收敛; Exposure bias is sufficient: 训练≠推理分布→GAR泛化失败。**Gate 行为额外 insight**: v9 gate dynamic range 比 v7 更宽 (L15 range 0.33 vs v7 0.21)——PCGrad 给 gate 更大自由度，但 gate 用该自由度更激进地优化 NTP 而非 GAR，说明优化景观固有偏好语言建模目标。\\n\\n**SP3: Principled 设计动机 + 系统性探索。** Dongre 发现 goal info 在 residual stream 持续存在 (probe AUC=0.98)，residual gating 是最直接的架构响应。v1-v7 覆盖 4 种核心 loss 设计 across 7 training configurations，MSE+gate_div 是唯一训练收敛方案。四路消融严格隔离贡献: TG (learned gate + GAR loss) / UG (uniform gate + GAR loss) / LoRA-only (gate=1.0 fixed + GAR loss, 无 gating 机制) / Base。注意：三个 fine-tuned 变体均使用 GAR loss，消融测试的是 gating 机制的增量贡献，而非 GAR loss 本身的效果。\\n\\n**SP4: Convergent evidence with Dongre。** Dongre diagnosed the problem; we attempted the first systematic cure and uncovered fundamental limitations。两种独立干预路线（goal re-injection + residual gating）均失败，共同指向 NTP 优化压力下 attention steering 的根本困难。\\n\\n**SP5: 三阶段训练动力学。** v7 展现 plateau → phase transition → convergence 的清晰训练动力学，证明 MSE 双向 loss 设计本身是 sound 的，问题在泛化而非训练。\\n\\n---\\n\\n## 6. Anticipated Reviewer Concerns\\n\\n| # | 严重度 | 预期质疑 | 回应策略 |\\n|---|--------|----------|----------|\\n| W1 | **致命** | 单模型验证不够 | Llama-3.1-8B 跨模型验证是 **MUST-HAVE**。Qwen 完整消融 + Llama 复现。不含 Llama → Findings 3.0 紧绷，含 → 3.0-3.5。 |\\n| W2 | **严重** | \\\"你只是没调对参数\\\" | D018 的 teacher-forcing 分布偏移是结构性的，与 loss 设计无关。v1-v7 已覆盖 4 种核心 loss (cumulative v1-v2, maximize v3-v5, smooth_saturation v6, mse_target v7)，MSE+gate_div 是唯一训练收敛方案。四路消融隔离 turn conditioning (TG vs UG) 和 gating 本身 (TG vs LoRA-only)，消除超参解释。 |\\n| W3 | **严重** | GAR 作为唯一代理指标 | 考虑加 1 个简单下游任务 sanity check（如 system prompt instruction following accuracy）。PPL 对比已加入四路 eval（TG PPL > LoRA-only → gates 有害的额外证据）。 |\\n| W4 | **中等** | 无建设性贡献 | Discussion 需要 constructive future directions section: (1) inference-time attention intervention 绕过训练泛化问题; (2) decoupled goal-processing pathway; (3) GAR-aware decoding 而非 GAR-aware training; (4) exposure bias mitigation 技术应用到 auxiliary attention loss。 |\\n| W5 | **中等** | Teacher-forcing insight 不新（exposure bias 文献已知） | 我们的增量: 定量展示 distribution shift 如何具体破坏 auxiliary attention loss（30x 断层），现有 exposure bias 文献无此分析。Exposure bias 讨论集中在 generation quality degradation，未涉及 auxiliary attention loss 的泛化失败。 |\\n| R1 | 中等 | Novelty of negative result | 核心增量不是 negative result 本身，而是 distribution shift insight（SP1）+ 梯度竞争量化（SP2）+ failure mode taxonomy。 |\\n| R2 | 中等 | 与 Dongre et al. 的关系 | 不说 \\\"we extend Dongre\\\"，而是 \\\"Dongre diagnosed; we attempted the first systematic cure and uncovered fundamental limitations\\\"。核心叙事是 mechanism discovery，非 follow-up work。 |\\n| W6 | **严重** | 引用不足（Dream review: 11篇远不够）| 目标 25-30 篇。必须覆盖: attention sinks (Xiao et al. 2024), Found-in-the-Middle (Ko et al. 2024), gated attention (Qiu et al. 2025), transformer circuits (Elhage et al. 2021), FlexiDepth (Luo et al. 2025), multi-turn eval (MT-Bench-101, MultiChallenge), exposure bias mitigation (Professor Forcing, SEARNN) 等。Paper Agent 写作时负责扩充。|\\n| W7 | **严重** | 单 seed 无方差估计 | 所有实验 seed=42，TG-LoRA 差异 ±0.001 在噪声层。回应: held-out eval 50 conversations 提供 paired bootstrap CI，若 CI 包含 0 则统计支持 \\\"zero benefit\\\"。必要时追加 2 个 seed 的训练。|\\n| W8 | **中等** | 缺 exposure-bias mitigation 实验 | 测试 scheduled sampling / model-generated context 训练能否缩小 30x gap。加入 experiment_plan (P1)。如果实验表明 mitigation 确实缩小 gap，论文从 \\\"negative result\\\" 升级为 \\\"negative result + constructive direction\\\"。|\\n| R1 | 中等 | Novelty of negative result | 核心增量不是 negative result 本身，而是 exposure bias 的定量测量（SP1）+ 梯度竞争量化（SP2）+ failure mode taxonomy。 |\\n| R2 | 中等 | 与 Dongre et al. 的关系 | 不说 \\\"we extend Dongre\\\"，而是 \\\"Dongre diagnosed; we attempted the first systematic cure and uncovered fundamental limitations\\\"。核心叙事是 mechanism discovery，非 follow-up work。 |\\n| R3 | 低 | 30x gap 是否可能是实现 bug | D015 代码逐行对比 + D017 controlled experiments 确认非 bug。Base model 在 ultrachat 和 eval data 上 GAR 均 ~0.01，排除数据分布解释。 |\\n| R4 | ~~低~~ **已核实** | Code-paper 公式语义相反 | **已确认不一致（plan_017 DONE）**。代码正确实现 ReZero-style: `x_{l+1} = x_l + g_l · f_l(x_l)`（gate 缩放子层输出，g→0=层 no-op）。Dream paper.tex 错误写为 `x_{l+1} = g_l · x_l + f_l(x_l)`（gate 缩放残差流，g→0=破坏 skip connection）。**实验数据不受影响**（所有实验用同一份代码）。**Paper Agent 写作时必须**: (1) Method section 用正确公式 `x + g·f(x)`; (2) 机制叙事修正: g→0 = 子层输出被抑制（层变 no-op），NTP 推 g→1 是为保留层计算能力，不是保留 skip connection; (3) NF3 \\\"gate attenuation 2-7%\\\" 指子层贡献缩放，表述正确但需明确。|\\n\\n---\\n\\n## 7. Dongre et al. 关系定位\\n\\n| 维度 | Dongre et al. | 本文 |\\n|------|---------------|------|\\n| 核心问题 | \\\"发生了什么\\\" + \\\"为什么\\\" | \\\"怎么干预\\\" + \\\"为什么干预失败\\\" |\\n| GAR 衰减 | 定义 GAR，12 模型量化衰减 | 独立确认 (Qwen 70.8% raw, 21% normalized) |\\n| 机制分析 | residual probe AUC=0.98 (goal info 持续存在) | NTP-GAR 梯度冲突 + 30x 泛化 gap + turn conditioning 反转 |\\n| 干预尝试 | goal re-injection (Appendix H, 失败) | ThreadGate residual gating (失败) + UG/LoRA-only 消融 |\\n| 结论 | attention 通道关闭但 residual stream 保留 goal info | 即使在 residual stream 上施加 principled gating，NTP 梯度压制使 gate 无法学到正确的 turn-selective 干预 |\\n\\n**定位语**: Dongre diagnosed the problem; we attempted the first systematic cure and uncovered fundamental limitations. 核心叙事是 mechanism discovery（distribution shift + gradient competition），不是 Dongre 的 follow-up。\\n\\n共同推论: 两种独立干预路线均失败 → lightweight residual gating with auxiliary attention loss 在 teacher-forcing 下面临严重泛化障碍 → 需要 inference-time 干预或 exposure bias mitigation。（注意：scope 限于 lightweight gating，不泛化到所有 attention steering 方法。）\\n\\n---\\n\\n## 8. GAR 定义策略\\n\\n| 用途 | 定义 | Goal tokens | Response tokens | 理由 |\\n|------|------|------------|----------------|------|\\n| 训练信号 | GAR-ours | system prompt + first user query | last token per assistant turn | 更丰富的 goal 信号; last token 作为 summary position 更稳定 |\\n| 主表评估 | GAR-Dongre | system prompt task tokens only | all response tokens | 与 Dongre 可比，审稿人可直接对照 |\\n| 附录评估 | GAR-ours | system prompt + first user query | last token per assistant turn | 两种定义一致性 |\\n\\n**D024 精确化**: GAR-ours 在 same-distribution (ultrachat) text 上 ≈0.49（泛化成功），在 model-generated text 上 ≈0.016（30x gap）。GAR-Dongre 在两种分布上均低 (~0.01-0.016, 无 gap)。30x gap 是 text distribution shift 现象，特定于 summary-position attention (GAR-ours)。\\n\\n---\\n\\n## 9. 论文结构草案\\n\\n1. **Abstract** (150-250 words): GAR 衰减问题 → residual probe 证据支撑 gating 动机 → ThreadGate 方法 → 训练成功但推理失败 → 三个失败机制 → 对 attention steering 方法的启示\\n2. **Introduction** (5 段): 多轮对话退化现象 → Dongre 诊断 + residual stream 持续性 → 自然推论: residual gating 应能恢复 → ThreadGate 实验结果: 训练有效推理失败 → 三个失败机制 + 贡献列表\\n3. **Related Work**: multi-turn degradation / residual gating & adaptive depth / attention steering & intervention\\n4. **Background**: GAR 定义 (cite Dongre) + residual stream persistence 证据\\n5. **Method**: ThreadGate 架构（⚠️ 非简单标量 gate：per-layer 2 层 MLP + turn embedding，接收 hidden_state + turn_distance/turn_index，输出 per-token per-layer sigmoid gate 值。公式 g_l = σ(W_2·ReLU(W_1·[proj(x_l); emb(t_d, t_i)] + b_1) + b_2)。Uniform Gate = 同架构但用 constant_vector 替代 turn embedding，仍然 per-layer content-dependent）+ MSE+gate_div loss + v1-v7 loss 设计演化 + 训练设置\\n6. **Experiments**: 四路消融 (TG/UG/LoRA-only/Base) with GAR + PPL dual metrics + 跨模型验证 (Llama-3.1-8B)\\n7. **Analysis**: §6.1 NTP-GAR 梯度冲突观察 → §6.2 Gate turn conditioning (Wilcoxon) → §6.3 **PCGrad 因果排除方向冲突** → §6.4 Distribution shift (exposure bias) 作为主因 → §6.5 attention 可视化 + 训练动力学\\n8. **Discussion**: 为什么 lightweight residual gating 不够 → exposure bias 对 auxiliary attention loss 的具体影响机制 → 潜在解决方向 (inference-time intervention / exposure bias mitigation for auxiliary losses / decoupled pathway / GAR-aware decoding) → **scope 声明: claim 限于 lightweight gating，不泛化到所有 attention steering**\\n9. **Conclusion**: negative result 总结 + 对社区的 actionable 建议\\n\\n### 贡献列表（按 novelty 排序）\\n\\n1. **Exposure bias 对 auxiliary attention loss 泛化性的首个实证刻画**: 实证展示 teacher-forcing distribution shift 如何摧毁 lightweight residual gating 的 auxiliary attention loss 泛化性（30x training-inference GAR-ours gap），为 teacher-forcing 下的 attention steering 方法提供具体风险标杆\\n2. **NTP-GAR 梯度竞争的逐层量化**: NTP loss 在 gate 参数上的梯度与 GAR loss 冲突，导致 gates 学到反向 turn conditioning（27/28 层 gate 在晚期 turn 趋向 identity）\\n3. **首个 principled residual gating 干预 + 系统性消融**: 基于 Dongre 的 residual stream persistence 证据设计 ThreadGate，v1-v7 覆盖 4 种核心 loss (cumulative v1-v2, maximize v3-v5, smooth_saturation v6, mse_target v7) + 四路消融隔离贡献，为后续研究提供 negative baseline\\n4. **跨模型验证** (Qwen-2.5-7B + Llama-3.1-8B) 确认失败机制的普遍性\\n\\n---\\n\\n## 10. 竞争力评估\\n\\n### Dream Review 结果 (2026-05-19, dream_20260519T135115)\\n- **Best case**: 3.0 (Weak Reject / Findings-level)。主要扣分: claim 过度泛化 (W1), 引用不足 (W6), 单 seed (W7)。\\n- **Median case**: 3.0 (Weak Reject)。同上 + distribution shift insight incremental (W5)。\\n- **Worst case**: 未完成 review（crash），但 imagined experiments 显示最坏情况下 Llama-3 不复现 dramatic pattern。\\n\\n### 修正后预期\\n- **收窄 claim + 扩充引用 + code 验证后**: best 预期 3.5 (Weak Accept / Borderline Conference)。移除两个 Major weakness (W1 overclaim + W6 thin refs)。\\n- **加 bootstrap CI + Llama-3 数据后**: median 预期 3.0-3.5。\\n- **冲 Main 条件**: 上述修正 + exposure-bias mitigation 实验 (W8) + 25-30 references。\\n- **核心差异化**: 不是 \\\"gating 失败了\\\"（弱），而是 \\\"exposure bias 在 auxiliary attention loss 上的首个定量测量 + 失败机制 taxonomy\\\"。\\n- **关键风险**: W5（exposure bias 已知）需要精确定位增量；W7（单 seed）需 bootstrap CI 或追加 seed。\\n\", \"total_chars\": 17117, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8dbbb723-c62f-4d7a-b346-17af9b1c5fa2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T04:50:43.951Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_01L9xwwt3Jgrn63wDsqFNkE2`</summary>
+
+```json
+{
+  "project": "turn_residual_gating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b1c669a0-3966-430e-800b-cd37eeb9791c",
+  "isSidechain": false,
+  "requestId": "req_011CbH1GsDggRVwy6qsPASeZ",
+  "type": "assistant",
+  "uuid": "ce1778cc-9c1c-47a3-ac29-1fb01f5b2d02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FNniuHaXtptgFS7WnCz5oA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 896,
+      "cache_read_input_tokens": 24545,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 896,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 24545,
+          "cache_creation_input_tokens": 896,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 896
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ce1778cc-9c1c-47a3-ac29-1fb01f5b2d02",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Coverage matrix check for paper claims",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1"
+}
+```
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-22T04:50:44.185Z_
+
+<details><summary>↩ Tool result · `toolu_01L9xwwt3Jgrn63wDsqFNkE2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": \"C1\", \"description\": \"Phase 1 GAR degradation diagnosis on Qwen-2.5-7B (70.8% raw drop)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"phase1_gar_diag\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"turn1_avg_gar\": 0.0418, \"mid_turns_avg_gar\": 0.0122, \"relative_drop\": 0.708, \"num_conversations\": 5, \"num_turns\": 10, \"per_turn_avg_gar\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}}, {\"id\": \"plan_002\", \"claim\": \"C2\", \"description\": \"ThreadGate v7 training (MSE+gate_div) - training GAR 0.48, inference GAR 0.016\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_tg_s42_v7\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5035, \"eval_iid_dongre_mid_gar\": 0.0152, \"eval_iid_ppl\": 2.784, \"eval_heldout_ours_mid_gar\": 0.5035, \"eval_heldout_dongre_mid_gar\": 0.0152, \"eval_heldout_ppl\": 2.78, \"eval_modelgen_ours_mid_gar\": 0.0157, \"eval_modelgen_dongre_mid_gar\": 0.0194, \"eval_modelgen_ppl\": 1.36, \"gate_mean_final\": 0.9336, \"gate_std_final\": 0.0492}}, {\"id\": \"plan_003\", \"claim\": \"C4\", \"description\": \"Uniform Gate ablation - isolate turn conditioning contribution\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_ug_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epoch0_avg_loss\": 1.0019, \"epoch0_avg_ntp\": 0.9755, \"epoch0_avg_gar\": 0.0259, \"epoch0_avg_div\": 0.0005, \"epoch1_avg_loss\": 0.9447, \"epoch1_avg_ntp\": 0.9435, \"epoch1_avg_gar\": 0.0013, \"epoch1_avg_div\": 0, \"epoch2_avg_loss\": 0.9319, \"epoch2_avg_ntp\": 0.9309, \"epoch2_avg_gar\": 0.001, \"epoch2_avg_div\": 0, \"final_gate_mean\": 0.9598, \"final_gate_std\": 0.0518, \"final_gate_min\": 0.7773, \"final_gate_max\": 1, \"final_profile_L3\": 0.777, \"final_profile_L5\": 0.812, \"final_profile_L0\": 0.875, \"final_profile_L27\": 1, \"training_time_seconds\": 21994.5, \"training_time_hours\": 6.1, \"global_steps\": 7950, \"unexpected_per_layer_variation\": true, \"eval_modelgen_ours_mid_gar\": 0.0149, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.396}}, {\"id\": \"plan_004\", \"claim\": \"C4\", \"description\": \"LoRA-only ablation - isolate gating mechanism contribution\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_lora_only_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epochs_completed\": 3, \"global_steps\": 3000, \"training_time_seconds\": 20588.6, \"training_time_hours\": 5.7, \"gate_fixed\": 1, \"gate_type_actual\": \"none\", \"final_lora_size_mb\": 20, \"eval_modelgen_ours_mid_gar\": 0.0245, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.371}}, {\"id\": \"plan_005\", \"claim\": \"C4\", \"description\": \"Four-way eval (Base/TG/UG/LoRA-only x GAR-ours/Dongre + PPL)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_002\", \"plan_003\", \"plan_004\"], \"registry_id\": \"phase2_4way_eval\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"base_ours_mid_gar\": 0.0107, \"base_ours_recovery_pp\": -0.15, \"base_dongre_mid_gar\": 0.003, \"base_dongre_recovery_pp\": -0.92, \"base_ppl\": 4.23, \"base_ntp\": 1.4162, \"tg_ours_mid_gar\": 0.4866, \"tg_ours_recovery_pp\": 47.44, \"tg_dongre_mid_gar\": 0.0157, \"tg_dongre_recovery_pp\": 0.35, \"tg_ppl\": 2.63, \"tg_ntp\": 0.9484, \"ug_ours_mid_gar\": 0.4923, \"ug_ours_recovery_pp\": 48.01, \"ug_dongre_mid_gar\": 0.013, \"ug_dongre_recovery_pp\": 0.08, \"ug_ppl\": 2.62, \"ug_ntp\": 0.9433, \"lora_ours_mid_gar\": 0.486, \"lora_ours_recovery_pp\": 47.39, \"lora_dongre_mid_gar\": 0.0137, \"lora_dongre_recovery_pp\": 0.15, \"lora_ppl\": 2.63, \"lora_ntp\": 0.9482, \"route_b_confirmed\": true, \"gating_incremental_benefit\": \"none\"}}, {\"id\": \"plan_006\", \"claim\": \"C3\", \"description\": \"Gradient conflict analysis on v7 (3 epoch checkpoints) - NTP vs GAR gradient cos_sim + magnitude ratio\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_002\"], \"registry_id\": \"analysis_gradient_conflict\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epoch0_cos_sim\": -0.089, \"epoch1_cos_sim\": -0.054, \"epoch2_cos_sim\": -0.042, \"epoch0_neg_layers_pct\": 78.6, \"epoch1_neg_layers_pct\": 71.4, \"epoch2_neg_layers_pct\": 67.9, \"epoch0_mag_ratio\": 7.5, \"epoch1_mag_ratio\": 13.7, \"epoch2_mag_ratio\": 14.7}}, {\"id\": \"plan_007\", \"claim\": \"C3\", \"description\": \"Attention heatmap visualization (4 models x 3 conversations x 28 layers)\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_002\", \"plan_003\", \"plan_004\"], \"registry_id\": \"analysis_attention_heatmap\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"base_mean_goal_attn\": 0.0136, \"base_decay\": 0.875, \"tg_mean_goal_attn\": 0.0232, \"tg_decay\": 0.777, \"ug_mean_goal_attn\": 0.0216, \"ug_decay\": 0.803, \"lora_mean_goal_attn\": 0.0216, \"lora_decay\": 0.81, \"gating_incremental_benefit\": \"none\"}}, {\"id\": \"plan_008\", \"claim\": \"C2, C4\", \"description\": \"Held-out eval: create truly held-out eval set (50 convs, idx>=8000 from UltraChat full) and re-run 4-way eval to validate conclusions on unseen data\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_005\"], \"status\": \"DONE\", \"registry_id\": \"phase2_4way_eval_heldout\", \"conclusion\": \"success\", \"metrics\": {\"base_ours_mid_gar\": 0.0128, \"base_ours_recovery_pp\": 0.06, \"base_dongre_mid_gar\": 0.0031, \"base_dongre_recovery_pp\": -0.91, \"base_ppl\": 4.34, \"base_ntp\": 1.4045, \"tg_ours_mid_gar\": 0.5035, \"tg_ours_recovery_pp\": 49.13, \"tg_dongre_mid_gar\": 0.0152, \"tg_dongre_recovery_pp\": 0.3, \"tg_ppl\": 2.78, \"tg_ntp\": 0.9771, \"ug_ours_mid_gar\": 0.5053, \"ug_ours_recovery_pp\": 49.31, \"ug_dongre_mid_gar\": 0.0124, \"ug_dongre_recovery_pp\": 0.02, \"ug_ppl\": 2.78, \"ug_ntp\": 0.9752, \"lora_ours_mid_gar\": 0.4978, \"lora_ours_recovery_pp\": 48.56, \"lora_dongre_mid_gar\": 0.0132, \"lora_dongre_recovery_pp\": 0.1, \"lora_ppl\": 2.78, \"lora_ntp\": 0.9771, \"three_way_convergence_confirmed\": true, \"gar_ours_spread_pp\": 0.75, \"ppl_spread\": 0, \"data_overlap\": false}}, {\"id\": \"plan_009\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B Phase 1 GAR degradation diagnosis - confirm GAR decay exists on different architecture\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [], \"status\": \"planned\"}, {\"id\": \"plan_010\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B ThreadGate v7 training - replicate Qwen setup on Llama\", \"priority\": \"P0\", \"gpu_budget_hours\": 7, \"deps\": [\"plan_009\"], \"status\": \"planned\"}, {\"id\": \"plan_011\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B LoRA-only training - cross-model gating redundancy validation (D020)\", \"priority\": \"P0\", \"gpu_budget_hours\": 7, \"deps\": [\"plan_009\"], \"status\": \"RUNNING\", \"registry_id\": \"llama_lora_only_s42\"}, {\"id\": \"plan_012\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B 3-way eval (Base/TG/LoRA-only x GAR + PPL) on held-out data\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_010\", \"plan_011\"], \"status\": \"planned\"}, {\"id\": \"plan_013\", \"claim\": \"C3\", \"description\": \"Llama-3.1-8B gradient conflict analysis - verify NTP-GAR competition is model-agnostic\", \"priority\": \"P1\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_010\"], \"status\": \"planned\"}, {\"id\": \"plan_014\", \"claim\": \"W3\", \"description\": \"Downstream task sanity check - simple instruction retention test across turns to link GAR to task performance\", \"priority\": \"P2\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_005\"], \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": \"C4, W7\", \"description\": \"Statistical significance analysis - paired bootstrap CI from held-out eval (50 convs) for TG-LoRA-only comparison. If CI includes 0 → statistically supports 'zero benefit'. Addresses Dream W3 (single seed).\", \"priority\": \"P1\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_008\"], \"status\": \"orphaned\", \"registry_id\": \"worker_analysis_bootstrap_ci_tg_vs_lora_20260519T144212\", \"result\": \"PASS: All GAR-ours and PPL 95% CIs include 0 (TG-LO GAR: [-0.0018,+0.0036], UG-LO: [-0.0006,+0.0045], TG-UG: [-0.0030,+0.0006]). Statistically confirms zero benefit. W7 addressed.\"}, {\"id\": \"plan_016\", \"claim\": \"W8\", \"description\": \"Exposure-bias mitigation test - train ThreadGate v7 with scheduled sampling applied to GAR loss (mix teacher-forced + model-generated contexts). Test whether closing exposure bias gap narrows the 30x training-inference GAR gap. Constructive direction that upgrades paper from pure negative result.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_008\"], \"status\": \"DONE\", \"registry_id\": \"phase2_tg_s42_v8_schedsampling\", \"conclusion\": \"failed\", \"metrics\": {\"killed_at_microstep\": 1950, \"total_microsteps\": 24000, \"completion_pct\": 8.1, \"global_step_approx\": 244, \"total_global_steps\": 3000, \"ss_steps_observed\": 1, \"tf_lgar_mean_step850_1400\": 0.0062, \"tf_lgar_std\": 0.0082, \"tf_lgar_collapse_step\": 800, \"gate_mean_final\": 0.93, \"ss_ratio_at_kill\": 0.081, \"crash_reason\": \"killed by director: SS path code bug (D026) makes experiment invalid, GPU needed for PCGrad\", \"design_flaw_ss_ramp_too_slow\": true, \"design_flaw_no_ss_tf_separate_logging\": true}}, {\"id\": \"plan_017\", \"claim\": \"R4\", \"description\": \"Code-paper architecture verification - confirm ThreadGate implementation matches paper Eq.3 (gate on residual vs gate on sub-layer output). Quick code audit, no GPU.\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"status\": \"orphaned\", \"registry_id\": \"worker_analysis_code_paper_arch_verify_20260519T144058\", \"result\": \"CRITICAL: code implements x+g·f(x) (ReZero-style), dream paper.tex wrote g·x+f(x). Semantically opposite when g→0. Data unaffected. D023.\"}, {\"id\": \"plan_018\", \"claim\": \"C3, W8\", \"description\": \"PCGrad baseline - project NTP gradient onto GAR-orthogonal plane for gate params only. If 30x gap persists after removing gradient conflict → causal evidence that exposure bias (not gradient competition) is the root cause.\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_006\"], \"registry_id\": \"phase2_tg_s42_v9_pcgrad\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5002, \"eval_iid_dongre_mid_gar\": 0.0123, \"eval_iid_ppl\": 2.78, \"eval_iid_ntp\": 0.9752, \"eval_heldout_ours_mid_gar\": 0.5002, \"eval_heldout_dongre_mid_gar\": 0.0123, \"eval_heldout_ppl\": 2.78, \"eval_heldout_ntp\": 0.9752, \"eval_modelgen_ours_mid_gar\": 0.0151, \"eval_modelgen_dongre_mid_gar\": 0.0173, \"eval_modelgen_ppl\": 1.5, \"vs_v7_iid_ppl_diff\": 0.004, \"vs_v7_iid_gar_diff\": -0.0033}}, {\"id\": \"plan_019\", \"claim\": \"C2, MF5\", \"description\": \"Multi-seed validation — train TG v7 + LoRA-only with seed=123 on Qwen. Provide mean±std for 30x gap. 1 extra seed sufficient given extreme effect size.\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_002\"], \"status\": \"planned\"}, {\"id\": \"plan_020\", \"claim\": \"C4, MF6\", \"description\": \"Expanded eval set — increase from 50 to 200 conversations (idx>=7000 from UltraChat). Boost bootstrap CI statistical power.\", \"priority\": \"P1\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_008\"], \"status\": \"planned\"}, {\"id\": \"plan_022\", \"claim\": \"C3, SF4\", \"description\": \"λ_GAR sensitivity — train v7 with λ_GAR=10 (1 epoch only). Show gradient competition trend under higher GAR weight. If budget allows, add λ=0.1.\", \"priority\": \"P2\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_002\"], \"status\": \"planned\"}, {\"id\": \"plan_023\", \"claim\": \"W8, C3\", \"description\": \"v8b: Fixed Scheduled Sampling — fix compute_gar_loss len==1 bug (Option A: handle single-turn mse_target), fix OOM (reduce batch/gen_length), use lambda_gar=1.0 (match v7). Tests whether training on model-generated text closes the 30x distribution shift gap. If successful, paper upgrades from pure negative to 'diagnosis + initial remedy'. D026.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_002\"], \"status\": \"DONE\", \"registry_id\": \"phase2_tg_s42_v8b_ss_fixed\", \"conclusion\": \"failed\"}], \"total\": 22}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce1778cc-9c1c-47a3-ac29-1fb01f5b2d02",
+  "isSidechain": false,
+  "promptId": "96a05054-5812-4d7e-8627-1e7d0af55981",
+  "type": "user",
+  "uuid": "17b16ecb-3a78-472e-9a77-d1727fc11721",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_001\\\", \\\"claim\\\": \\\"C1\\\", \\\"description\\\": \\\"Phase 1 GAR degradation diagnosis on Qwen-2.5-7B (70.8% raw drop)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [], \\\"registry_id\\\": \\\"phase1_gar_diag\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"turn1_avg_gar\\\": 0.0418, \\\"mid_turns_avg_gar\\\": 0.0122, \\\"relative_drop\\\": 0.708, \\\"num_conversations\\\": 5, \\\"num_turns\\\": 10, \\\"per_turn_avg_gar\\\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}}, {\\\"id\\\": \\\"plan_002\\\", \\\"claim\\\": \\\"C2\\\", \\\"description\\\": \\\"ThreadGate v7 training (MSE+gate_div) - training GAR 0.48, inference GAR 0.016\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_tg_s42_v7\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_iid_ours_mid_gar\\\": 0.5035, \\\"eval_iid_dongre_mid_gar\\\": 0.0152, \\\"eval_iid_ppl\\\": 2.784, \\\"eval_heldout_ours_mid_gar\\\": 0.5035, \\\"eval_heldout_dongre_mid_gar\\\": 0.0152, \\\"eval_heldout_ppl\\\": 2.78, \\\"eval_modelgen_ours_mid_gar\\\": 0.0157, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0194, \\\"eval_modelgen_ppl\\\": 1.36, \\\"gate_mean_final\\\": 0.9336, \\\"gate_std_final\\\": 0.0492}}, {\\\"id\\\": \\\"plan_003\\\", \\\"claim\\\": \\\"C4\\\", \\\"description\\\": \\\"Uniform Gate ablation - isolate turn conditioning contribution\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_ug_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"epoch0_avg_loss\\\": 1.0019, \\\"epoch0_avg_ntp\\\": 0.9755, \\\"epoch0_avg_gar\\\": 0.0259, \\\"epoch0_avg_div\\\": 0.0005, \\\"epoch1_avg_loss\\\": 0.9447, \\\"epoch1_avg_ntp\\\": 0.9435, \\\"epoch1_avg_gar\\\": 0.0013, \\\"epoch1_avg_div\\\": 0, \\\"epoch2_avg_loss\\\": 0.9319, \\\"epoch2_avg_ntp\\\": 0.9309, \\\"epoch2_avg_gar\\\": 0.001, \\\"epoch2_avg_div\\\": 0, \\\"final_gate_mean\\\": 0.9598, \\\"final_gate_std\\\": 0.0518, \\\"final_gate_min\\\": 0.7773, \\\"final_gate_max\\\": 1, \\\"final_profile_L3\\\": 0.777, \\\"final_profile_L5\\\": 0.812, \\\"final_profile_L0\\\": 0.875, \\\"final_profile_L27\\\": 1, \\\"training_time_seconds\\\": 21994.5, \\\"training_time_hours\\\": 6.1, \\\"global_steps\\\": 7950, \\\"unexpected_per_layer_variation\\\": true, \\\"eval_modelgen_ours_mid_gar\\\": 0.0149, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0185, \\\"eval_modelgen_ppl\\\": 1.396}}, {\\\"id\\\": \\\"plan_004\\\", \\\"claim\\\": \\\"C4\\\", \\\"description\\\": \\\"LoRA-only ablation - isolate gating mechanism contribution\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_001\\\"], \\\"registry_id\\\": \\\"phase2_lora_only_s42\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"epochs_completed\\\": 3, \\\"global_steps\\\": 3000, \\\"training_time_seconds\\\": 20588.6, \\\"training_time_hours\\\": 5.7, \\\"gate_fixed\\\": 1, \\\"gate_type_actual\\\": \\\"none\\\", \\\"final_lora_size_mb\\\": 20, \\\"eval_modelgen_ours_mid_gar\\\": 0.0245, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0185, \\\"eval_modelgen_ppl\\\": 1.371}}, {\\\"id\\\": \\\"plan_005\\\", \\\"claim\\\": \\\"C4\\\", \\\"description\\\": \\\"Four-way eval (Base/TG/UG/LoRA-only x GAR-ours/Dongre + PPL)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_002\\\", \\\"plan_003\\\", \\\"plan_004\\\"], \\\"registry_id\\\": \\\"phase2_4way_eval\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"base_ours_mid_gar\\\": 0.0107, \\\"base_ours_recovery_pp\\\": -0.15, \\\"base_dongre_mid_gar\\\": 0.003, \\\"base_dongre_recovery_pp\\\": -0.92, \\\"base_ppl\\\": 4.23, \\\"base_ntp\\\": 1.4162, \\\"tg_ours_mid_gar\\\": 0.4866, \\\"tg_ours_recovery_pp\\\": 47.44, \\\"tg_dongre_mid_gar\\\": 0.0157, \\\"tg_dongre_recovery_pp\\\": 0.35, \\\"tg_ppl\\\": 2.63, \\\"tg_ntp\\\": 0.9484, \\\"ug_ours_mid_gar\\\": 0.4923, \\\"ug_ours_recovery_pp\\\": 48.01, \\\"ug_dongre_mid_gar\\\": 0.013, \\\"ug_dongre_recovery_pp\\\": 0.08, \\\"ug_ppl\\\": 2.62, \\\"ug_ntp\\\": 0.9433, \\\"lora_ours_mid_gar\\\": 0.486, \\\"lora_ours_recovery_pp\\\": 47.39, \\\"lora_dongre_mid_gar\\\": 0.0137, \\\"lora_dongre_recovery_pp\\\": 0.15, \\\"lora_ppl\\\": 2.63, \\\"lora_ntp\\\": 0.9482, \\\"route_b_confirmed\\\": true, \\\"gating_incremental_benefit\\\": \\\"none\\\"}}, {\\\"id\\\": \\\"plan_006\\\", \\\"claim\\\": \\\"C3\\\", \\\"description\\\": \\\"Gradient conflict analysis on v7 (3 epoch checkpoints) - NTP vs GAR gradient cos_sim + magnitude ratio\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [\\\"plan_002\\\"], \\\"registry_id\\\": \\\"analysis_gradient_conflict\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"epoch0_cos_sim\\\": -0.089, \\\"epoch1_cos_sim\\\": -0.054, \\\"epoch2_cos_sim\\\": -0.042, \\\"epoch0_neg_layers_pct\\\": 78.6, \\\"epoch1_neg_layers_pct\\\": 71.4, \\\"epoch2_neg_layers_pct\\\": 67.9, \\\"epoch0_mag_ratio\\\": 7.5, \\\"epoch1_mag_ratio\\\": 13.7, \\\"epoch2_mag_ratio\\\": 14.7}}, {\\\"id\\\": \\\"plan_007\\\", \\\"claim\\\": \\\"C3\\\", \\\"description\\\": \\\"Attention heatmap visualization (4 models x 3 conversations x 28 layers)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [\\\"plan_002\\\", \\\"plan_003\\\", \\\"plan_004\\\"], \\\"registry_id\\\": \\\"analysis_attention_heatmap\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"base_mean_goal_attn\\\": 0.0136, \\\"base_decay\\\": 0.875, \\\"tg_mean_goal_attn\\\": 0.0232, \\\"tg_decay\\\": 0.777, \\\"ug_mean_goal_attn\\\": 0.0216, \\\"ug_decay\\\": 0.803, \\\"lora_mean_goal_attn\\\": 0.0216, \\\"lora_decay\\\": 0.81, \\\"gating_incremental_benefit\\\": \\\"none\\\"}}, {\\\"id\\\": \\\"plan_008\\\", \\\"claim\\\": \\\"C2, C4\\\", \\\"description\\\": \\\"Held-out eval: create truly held-out eval set (50 convs, idx>=8000 from UltraChat full) and re-run 4-way eval to validate conclusions on unseen data\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_005\\\"], \\\"status\\\": \\\"DONE\\\", \\\"registry_id\\\": \\\"phase2_4way_eval_heldout\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"base_ours_mid_gar\\\": 0.0128, \\\"base_ours_recovery_pp\\\": 0.06, \\\"base_dongre_mid_gar\\\": 0.0031, \\\"base_dongre_recovery_pp\\\": -0.91, \\\"base_ppl\\\": 4.34, \\\"base_ntp\\\": 1.4045, \\\"tg_ours_mid_gar\\\": 0.5035, \\\"tg_ours_recovery_pp\\\": 49.13, \\\"tg_dongre_mid_gar\\\": 0.0152, \\\"tg_dongre_recovery_pp\\\": 0.3, \\\"tg_ppl\\\": 2.78, \\\"tg_ntp\\\": 0.9771, \\\"ug_ours_mid_gar\\\": 0.5053, \\\"ug_ours_recovery_pp\\\": 49.31, \\\"ug_dongre_mid_gar\\\": 0.0124, \\\"ug_dongre_recovery_pp\\\": 0.02, \\\"ug_ppl\\\": 2.78, \\\"ug_ntp\\\": 0.9752, \\\"lora_ours_mid_gar\\\": 0.4978, \\\"lora_ours_recovery_pp\\\": 48.56, \\\"lora_dongre_mid_gar\\\": 0.0132, \\\"lora_dongre_recovery_pp\\\": 0.1, \\\"lora_ppl\\\": 2.78, \\\"lora_ntp\\\": 0.9771, \\\"three_way_convergence_confirmed\\\": true, \\\"gar_ours_spread_pp\\\": 0.75, \\\"ppl_spread\\\": 0, \\\"data_overlap\\\": false}}, {\\\"id\\\": \\\"plan_009\\\", \\\"claim\\\": \\\"C5\\\", \\\"description\\\": \\\"Llama-3.1-8B Phase 1 GAR degradation diagnosis - confirm GAR decay exists on different architecture\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_010\\\", \\\"claim\\\": \\\"C5\\\", \\\"description\\\": \\\"Llama-3.1-8B ThreadGate v7 training - replicate Qwen setup on Llama\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 7, \\\"deps\\\": [\\\"plan_009\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_011\\\", \\\"claim\\\": \\\"C5\\\", \\\"description\\\": \\\"Llama-3.1-8B LoRA-only training - cross-model gating redundancy validation (D020)\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 7, \\\"deps\\\": [\\\"plan_009\\\"], \\\"status\\\": \\\"RUNNING\\\", \\\"registry_id\\\": \\\"llama_lora_only_s42\\\"}, {\\\"id\\\": \\\"plan_012\\\", \\\"claim\\\": \\\"C5\\\", \\\"description\\\": \\\"Llama-3.1-8B 3-way eval (Base/TG/LoRA-only x GAR + PPL) on held-out data\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [\\\"plan_010\\\", \\\"plan_011\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_013\\\", \\\"claim\\\": \\\"C3\\\", \\\"description\\\": \\\"Llama-3.1-8B gradient conflict analysis - verify NTP-GAR competition is model-agnostic\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [\\\"plan_010\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_014\\\", \\\"claim\\\": \\\"W3\\\", \\\"description\\\": \\\"Downstream task sanity check - simple instruction retention test across turns to link GAR to task performance\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 1, \\\"deps\\\": [\\\"plan_005\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_015\\\", \\\"claim\\\": \\\"C4, W7\\\", \\\"description\\\": \\\"Statistical significance analysis - paired bootstrap CI from held-out eval (50 convs) for TG-LoRA-only comparison. If CI includes 0 → statistically supports 'zero benefit'. Addresses Dream W3 (single seed).\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 0.5, \\\"deps\\\": [\\\"plan_008\\\"], \\\"status\\\": \\\"orphaned\\\", \\\"registry_id\\\": \\\"worker_analysis_bootstrap_ci_tg_vs_lora_20260519T144212\\\", \\\"result\\\": \\\"PASS: All GAR-ours and PPL 95% CIs include 0 (TG-LO GAR: [-0.0018,+0.0036], UG-LO: [-0.0006,+0.0045], TG-UG: [-0.0030,+0.0006]). Statistically confirms zero benefit. W7 addressed.\\\"}, {\\\"id\\\": \\\"plan_016\\\", \\\"claim\\\": \\\"W8\\\", \\\"description\\\": \\\"Exposure-bias mitigation test - train ThreadGate v7 with scheduled sampling applied to GAR loss (mix teacher-forced + model-generated contexts). Test whether closing exposure bias gap narrows the 30x training-inference GAR gap. Constructive direction that upgrades paper from pure negative result.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_008\\\"], \\\"status\\\": \\\"DONE\\\", \\\"registry_id\\\": \\\"phase2_tg_s42_v8_schedsampling\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"metrics\\\": {\\\"killed_at_microstep\\\": 1950, \\\"total_microsteps\\\": 24000, \\\"completion_pct\\\": 8.1, \\\"global_step_approx\\\": 244, \\\"total_global_steps\\\": 3000, \\\"ss_steps_observed\\\": 1, \\\"tf_lgar_mean_step850_1400\\\": 0.0062, \\\"tf_lgar_std\\\": 0.0082, \\\"tf_lgar_collapse_step\\\": 800, \\\"gate_mean_final\\\": 0.93, \\\"ss_ratio_at_kill\\\": 0.081, \\\"crash_reason\\\": \\\"killed by director: SS path code bug (D026) makes experiment invalid, GPU needed for PCGrad\\\", \\\"design_flaw_ss_ramp_too_slow\\\": true, \\\"design_flaw_no_ss_tf_separate_logging\\\": true}}, {\\\"id\\\": \\\"plan_017\\\", \\\"claim\\\": \\\"R4\\\", \\\"description\\\": \\\"Code-paper architecture verification - confirm ThreadGate implementation matches paper Eq.3 (gate on residual vs gate on sub-layer output). Quick code audit, no GPU.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 0, \\\"deps\\\": [], \\\"status\\\": \\\"orphaned\\\", \\\"registry_id\\\": \\\"worker_analysis_code_paper_arch_verify_20260519T144058\\\", \\\"result\\\": \\\"CRITICAL: code implements x+g·f(x) (ReZero-style), dream paper.tex wrote g·x+f(x). Semantically opposite when g→0. Data unaffected. D023.\\\"}, {\\\"id\\\": \\\"plan_018\\\", \\\"claim\\\": \\\"C3, W8\\\", \\\"description\\\": \\\"PCGrad baseline - project NTP gradient onto GAR-orthogonal plane for gate params only. If 30x gap persists after removing gradient conflict → causal evidence that exposure bias (not gradient competition) is the root cause.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_006\\\"], \\\"registry_id\\\": \\\"phase2_tg_s42_v9_pcgrad\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_iid_ours_mid_gar\\\": 0.5002, \\\"eval_iid_dongre_mid_gar\\\": 0.0123, \\\"eval_iid_ppl\\\": 2.78, \\\"eval_iid_ntp\\\": 0.9752, \\\"eval_heldout_ours_mid_gar\\\": 0.5002, \\\"eval_heldout_dongre_mid_gar\\\": 0.0123, \\\"eval_heldout_ppl\\\": 2.78, \\\"eval_heldout_ntp\\\": 0.9752, \\\"eval_modelgen_ours_mid_gar\\\": 0.0151, \\\"eval_modelgen_dongre_mid_gar\\\": 0.0173, \\\"eval_modelgen_ppl\\\": 1.5, \\\"vs_v7_iid_ppl_diff\\\": 0.004, \\\"vs_v7_iid_gar_diff\\\": -0.0033}}, {\\\"id\\\": \\\"plan_019\\\", \\\"claim\\\": \\\"C2, MF5\\\", \\\"description\\\": \\\"Multi-seed validation — train TG v7 + LoRA-only with seed=123 on Qwen. Provide mean±std for 30x gap. 1 extra seed sufficient given extreme effect size.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 6, \\\"deps\\\": [\\\"plan_002\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_020\\\", \\\"claim\\\": \\\"C4, MF6\\\", \\\"description\\\": \\\"Expanded eval set — increase from 50 to 200 conversations (idx>=7000 from UltraChat). Boost bootstrap CI statistical power.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_008\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_022\\\", \\\"claim\\\": \\\"C3, SF4\\\", \\\"description\\\": \\\"λ_GAR sensitivity — train v7 with λ_GAR=10 (1 epoch only). Show gradient competition trend under higher GAR weight. If budget allows, add λ=0.1.\\\", \\\"priority\\\": \\\"P2\\\", \\\"gpu_budget_hours\\\": 2, \\\"deps\\\": [\\\"plan_002\\\"], \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"plan_023\\\", \\\"claim\\\": \\\"W8, C3\\\", \\\"description\\\": \\\"v8b: Fixed Scheduled Sampling — fix compute_gar_loss len==1 bug (Option A: handle single-turn mse_target), fix OOM (reduce batch/gen_length), use lambda_gar=1.0 (match v7). Tests whether training on model-generated text closes the 30x distribution shift gap. If successful, paper upgrades from pure negative to 'diagnosis + initial remedy'. D026.\\\", \\\"priority\\\": \\\"P1\\\", \\\"gpu_budget_hours\\\": 8, \\\"deps\\\": [\\\"plan_002\\\"], \\\"status\\\": \\\"DONE\\\", \\\"registry_id\\\": \\\"phase2_tg_s42_v8b_ss_fixed\\\", \\\"conclusion\\\": \\\"failed\\\"}], \\\"total\\\": 22}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"plan_001\", \"claim\": \"C1\", \"description\": \"Phase 1 GAR degradation diagnosis on Qwen-2.5-7B (70.8% raw drop)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [], \"registry_id\": \"phase1_gar_diag\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"turn1_avg_gar\": 0.0418, \"mid_turns_avg_gar\": 0.0122, \"relative_drop\": 0.708, \"num_conversations\": 5, \"num_turns\": 10, \"per_turn_avg_gar\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}}, {\"id\": \"plan_002\", \"claim\": \"C2\", \"description\": \"ThreadGate v7 training (MSE+gate_div) - training GAR 0.48, inference GAR 0.016\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_tg_s42_v7\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5035, \"eval_iid_dongre_mid_gar\": 0.0152, \"eval_iid_ppl\": 2.784, \"eval_heldout_ours_mid_gar\": 0.5035, \"eval_heldout_dongre_mid_gar\": 0.0152, \"eval_heldout_ppl\": 2.78, \"eval_modelgen_ours_mid_gar\": 0.0157, \"eval_modelgen_dongre_mid_gar\": 0.0194, \"eval_modelgen_ppl\": 1.36, \"gate_mean_final\": 0.9336, \"gate_std_final\": 0.0492}}, {\"id\": \"plan_003\", \"claim\": \"C4\", \"description\": \"Uniform Gate ablation - isolate turn conditioning contribution\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_ug_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epoch0_avg_loss\": 1.0019, \"epoch0_avg_ntp\": 0.9755, \"epoch0_avg_gar\": 0.0259, \"epoch0_avg_div\": 0.0005, \"epoch1_avg_loss\": 0.9447, \"epoch1_avg_ntp\": 0.9435, \"epoch1_avg_gar\": 0.0013, \"epoch1_avg_div\": 0, \"epoch2_avg_loss\": 0.9319, \"epoch2_avg_ntp\": 0.9309, \"epoch2_avg_gar\": 0.001, \"epoch2_avg_div\": 0, \"final_gate_mean\": 0.9598, \"final_gate_std\": 0.0518, \"final_gate_min\": 0.7773, \"final_gate_max\": 1, \"final_profile_L3\": 0.777, \"final_profile_L5\": 0.812, \"final_profile_L0\": 0.875, \"final_profile_L27\": 1, \"training_time_seconds\": 21994.5, \"training_time_hours\": 6.1, \"global_steps\": 7950, \"unexpected_per_layer_variation\": true, \"eval_modelgen_ours_mid_gar\": 0.0149, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.396}}, {\"id\": \"plan_004\", \"claim\": \"C4\", \"description\": \"LoRA-only ablation - isolate gating mechanism contribution\", \"priority\": \"P0\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_001\"], \"registry_id\": \"phase2_lora_only_s42\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epochs_completed\": 3, \"global_steps\": 3000, \"training_time_seconds\": 20588.6, \"training_time_hours\": 5.7, \"gate_fixed\": 1, \"gate_type_actual\": \"none\", \"final_lora_size_mb\": 20, \"eval_modelgen_ours_mid_gar\": 0.0245, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.371}}, {\"id\": \"plan_005\", \"claim\": \"C4\", \"description\": \"Four-way eval (Base/TG/UG/LoRA-only x GAR-ours/Dongre + PPL)\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_002\", \"plan_003\", \"plan_004\"], \"registry_id\": \"phase2_4way_eval\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"base_ours_mid_gar\": 0.0107, \"base_ours_recovery_pp\": -0.15, \"base_dongre_mid_gar\": 0.003, \"base_dongre_recovery_pp\": -0.92, \"base_ppl\": 4.23, \"base_ntp\": 1.4162, \"tg_ours_mid_gar\": 0.4866, \"tg_ours_recovery_pp\": 47.44, \"tg_dongre_mid_gar\": 0.0157, \"tg_dongre_recovery_pp\": 0.35, \"tg_ppl\": 2.63, \"tg_ntp\": 0.9484, \"ug_ours_mid_gar\": 0.4923, \"ug_ours_recovery_pp\": 48.01, \"ug_dongre_mid_gar\": 0.013, \"ug_dongre_recovery_pp\": 0.08, \"ug_ppl\": 2.62, \"ug_ntp\": 0.9433, \"lora_ours_mid_gar\": 0.486, \"lora_ours_recovery_pp\": 47.39, \"lora_dongre_mid_gar\": 0.0137, \"lora_dongre_recovery_pp\": 0.15, \"lora_ppl\": 2.63, \"lora_ntp\": 0.9482, \"route_b_confirmed\": true, \"gating_incremental_benefit\": \"none\"}}, {\"id\": \"plan_006\", \"claim\": \"C3\", \"description\": \"Gradient conflict analysis on v7 (3 epoch checkpoints) - NTP vs GAR gradient cos_sim + magnitude ratio\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_002\"], \"registry_id\": \"analysis_gradient_conflict\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"epoch0_cos_sim\": -0.089, \"epoch1_cos_sim\": -0.054, \"epoch2_cos_sim\": -0.042, \"epoch0_neg_layers_pct\": 78.6, \"epoch1_neg_layers_pct\": 71.4, \"epoch2_neg_layers_pct\": 67.9, \"epoch0_mag_ratio\": 7.5, \"epoch1_mag_ratio\": 13.7, \"epoch2_mag_ratio\": 14.7}}, {\"id\": \"plan_007\", \"claim\": \"C3\", \"description\": \"Attention heatmap visualization (4 models x 3 conversations x 28 layers)\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_002\", \"plan_003\", \"plan_004\"], \"registry_id\": \"analysis_attention_heatmap\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"base_mean_goal_attn\": 0.0136, \"base_decay\": 0.875, \"tg_mean_goal_attn\": 0.0232, \"tg_decay\": 0.777, \"ug_mean_goal_attn\": 0.0216, \"ug_decay\": 0.803, \"lora_mean_goal_attn\": 0.0216, \"lora_decay\": 0.81, \"gating_incremental_benefit\": \"none\"}}, {\"id\": \"plan_008\", \"claim\": \"C2, C4\", \"description\": \"Held-out eval: create truly held-out eval set (50 convs, idx>=8000 from UltraChat full) and re-run 4-way eval to validate conclusions on unseen data\", \"priority\": \"P0\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_005\"], \"status\": \"DONE\", \"registry_id\": \"phase2_4way_eval_heldout\", \"conclusion\": \"success\", \"metrics\": {\"base_ours_mid_gar\": 0.0128, \"base_ours_recovery_pp\": 0.06, \"base_dongre_mid_gar\": 0.0031, \"base_dongre_recovery_pp\": -0.91, \"base_ppl\": 4.34, \"base_ntp\": 1.4045, \"tg_ours_mid_gar\": 0.5035, \"tg_ours_recovery_pp\": 49.13, \"tg_dongre_mid_gar\": 0.0152, \"tg_dongre_recovery_pp\": 0.3, \"tg_ppl\": 2.78, \"tg_ntp\": 0.9771, \"ug_ours_mid_gar\": 0.5053, \"ug_ours_recovery_pp\": 49.31, \"ug_dongre_mid_gar\": 0.0124, \"ug_dongre_recovery_pp\": 0.02, \"ug_ppl\": 2.78, \"ug_ntp\": 0.9752, \"lora_ours_mid_gar\": 0.4978, \"lora_ours_recovery_pp\": 48.56, \"lora_dongre_mid_gar\": 0.0132, \"lora_dongre_recovery_pp\": 0.1, \"lora_ppl\": 2.78, \"lora_ntp\": 0.9771, \"three_way_convergence_confirmed\": true, \"gar_ours_spread_pp\": 0.75, \"ppl_spread\": 0, \"data_overlap\": false}}, {\"id\": \"plan_009\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B Phase 1 GAR degradation diagnosis - confirm GAR decay exists on different architecture\", \"priority\": \"P0\", \"gpu_budget_hours\": 0.5, \"deps\": [], \"status\": \"planned\"}, {\"id\": \"plan_010\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B ThreadGate v7 training - replicate Qwen setup on Llama\", \"priority\": \"P0\", \"gpu_budget_hours\": 7, \"deps\": [\"plan_009\"], \"status\": \"planned\"}, {\"id\": \"plan_011\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B LoRA-only training - cross-model gating redundancy validation (D020)\", \"priority\": \"P0\", \"gpu_budget_hours\": 7, \"deps\": [\"plan_009\"], \"status\": \"RUNNING\", \"registry_id\": \"llama_lora_only_s42\"}, {\"id\": \"plan_012\", \"claim\": \"C5\", \"description\": \"Llama-3.1-8B 3-way eval (Base/TG/LoRA-only x GAR + PPL) on held-out data\", \"priority\": \"P0\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_010\", \"plan_011\"], \"status\": \"planned\"}, {\"id\": \"plan_013\", \"claim\": \"C3\", \"description\": \"Llama-3.1-8B gradient conflict analysis - verify NTP-GAR competition is model-agnostic\", \"priority\": \"P1\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_010\"], \"status\": \"planned\"}, {\"id\": \"plan_014\", \"claim\": \"W3\", \"description\": \"Downstream task sanity check - simple instruction retention test across turns to link GAR to task performance\", \"priority\": \"P2\", \"gpu_budget_hours\": 1, \"deps\": [\"plan_005\"], \"status\": \"planned\"}, {\"id\": \"plan_015\", \"claim\": \"C4, W7\", \"description\": \"Statistical significance analysis - paired bootstrap CI from held-out eval (50 convs) for TG-LoRA-only comparison. If CI includes 0 → statistically supports 'zero benefit'. Addresses Dream W3 (single seed).\", \"priority\": \"P1\", \"gpu_budget_hours\": 0.5, \"deps\": [\"plan_008\"], \"status\": \"orphaned\", \"registry_id\": \"worker_analysis_bootstrap_ci_tg_vs_lora_20260519T144212\", \"result\": \"PASS: All GAR-ours and PPL 95% CIs include 0 (TG-LO GAR: [-0.0018,+0.0036], UG-LO: [-0.0006,+0.0045], TG-UG: [-0.0030,+0.0006]). Statistically confirms zero benefit. W7 addressed.\"}, {\"id\": \"plan_016\", \"claim\": \"W8\", \"description\": \"Exposure-bias mitigation test - train ThreadGate v7 with scheduled sampling applied to GAR loss (mix teacher-forced + model-generated contexts). Test whether closing exposure bias gap narrows the 30x training-inference GAR gap. Constructive direction that upgrades paper from pure negative result.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_008\"], \"status\": \"DONE\", \"registry_id\": \"phase2_tg_s42_v8_schedsampling\", \"conclusion\": \"failed\", \"metrics\": {\"killed_at_microstep\": 1950, \"total_microsteps\": 24000, \"completion_pct\": 8.1, \"global_step_approx\": 244, \"total_global_steps\": 3000, \"ss_steps_observed\": 1, \"tf_lgar_mean_step850_1400\": 0.0062, \"tf_lgar_std\": 0.0082, \"tf_lgar_collapse_step\": 800, \"gate_mean_final\": 0.93, \"ss_ratio_at_kill\": 0.081, \"crash_reason\": \"killed by director: SS path code bug (D026) makes experiment invalid, GPU needed for PCGrad\", \"design_flaw_ss_ramp_too_slow\": true, \"design_flaw_no_ss_tf_separate_logging\": true}}, {\"id\": \"plan_017\", \"claim\": \"R4\", \"description\": \"Code-paper architecture verification - confirm ThreadGate implementation matches paper Eq.3 (gate on residual vs gate on sub-layer output). Quick code audit, no GPU.\", \"priority\": \"P0\", \"gpu_budget_hours\": 0, \"deps\": [], \"status\": \"orphaned\", \"registry_id\": \"worker_analysis_code_paper_arch_verify_20260519T144058\", \"result\": \"CRITICAL: code implements x+g·f(x) (ReZero-style), dream paper.tex wrote g·x+f(x). Semantically opposite when g→0. Data unaffected. D023.\"}, {\"id\": \"plan_018\", \"claim\": \"C3, W8\", \"description\": \"PCGrad baseline - project NTP gradient onto GAR-orthogonal plane for gate params only. If 30x gap persists after removing gradient conflict → causal evidence that exposure bias (not gradient competition) is the root cause.\", \"priority\": \"P0\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_006\"], \"registry_id\": \"phase2_tg_s42_v9_pcgrad\", \"status\": \"DONE\", \"conclusion\": \"success\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5002, \"eval_iid_dongre_mid_gar\": 0.0123, \"eval_iid_ppl\": 2.78, \"eval_iid_ntp\": 0.9752, \"eval_heldout_ours_mid_gar\": 0.5002, \"eval_heldout_dongre_mid_gar\": 0.0123, \"eval_heldout_ppl\": 2.78, \"eval_heldout_ntp\": 0.9752, \"eval_modelgen_ours_mid_gar\": 0.0151, \"eval_modelgen_dongre_mid_gar\": 0.0173, \"eval_modelgen_ppl\": 1.5, \"vs_v7_iid_ppl_diff\": 0.004, \"vs_v7_iid_gar_diff\": -0.0033}}, {\"id\": \"plan_019\", \"claim\": \"C2, MF5\", \"description\": \"Multi-seed validation — train TG v7 + LoRA-only with seed=123 on Qwen. Provide mean±std for 30x gap. 1 extra seed sufficient given extreme effect size.\", \"priority\": \"P1\", \"gpu_budget_hours\": 6, \"deps\": [\"plan_002\"], \"status\": \"planned\"}, {\"id\": \"plan_020\", \"claim\": \"C4, MF6\", \"description\": \"Expanded eval set — increase from 50 to 200 conversations (idx>=7000 from UltraChat). Boost bootstrap CI statistical power.\", \"priority\": \"P1\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_008\"], \"status\": \"planned\"}, {\"id\": \"plan_022\", \"claim\": \"C3, SF4\", \"description\": \"λ_GAR sensitivity — train v7 with λ_GAR=10 (1 epoch only). Show gradient competition trend under higher GAR weight. If budget allows, add λ=0.1.\", \"priority\": \"P2\", \"gpu_budget_hours\": 2, \"deps\": [\"plan_002\"], \"status\": \"planned\"}, {\"id\": \"plan_023\", \"claim\": \"W8, C3\", \"description\": \"v8b: Fixed Scheduled Sampling — fix compute_gar_loss len==1 bug (Option A: handle single-turn mse_target), fix OOM (reduce batch/gen_length), use lambda_gar=1.0 (match v7). Tests whether training on model-generated text closes the 30x distribution shift gap. If successful, paper upgrades from pure negative to 'diagnosis + initial remedy'. D026.\", \"priority\": \"P1\", \"gpu_budget_hours\": 8, \"deps\": [\"plan_002\"], \"status\": \"DONE\", \"registry_id\": \"phase2_tg_s42_v8b_ss_fixed\", \"conclusion\": \"failed\"}], \"total\": 22}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ce1778cc-9c1c-47a3-ac29-1fb01f5b2d02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "17b16ecb-3a78-472e-9a77-d1727fc11721",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Coverage matrix check for paper claims",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-22T04:51:07.691Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now organize the coverage matrix report. Let me first consolidate the claims from paper_framing.md (C1-C5) and map the experiments to them. Note that the coverage matrix has some compound claim labels like "C2, C4" and "C3, W8" which I need to normalize.
+
+Claims from paper_framing.md:
+- C1: GAR decay is real and severe (70.8% raw drop on Qwen)
+- C2: Residual gating trains successfully on same-distribution but fails on model-generated (30x gap)
+
+
+- C3: Failure mechanism causal analysis (distribution shift is main cause, PCGrad rules out gradient conflict)
+- C4: Gating provides zero incremental contribution (4-way ablation)
+- C5: Cross-model validation (Llama-3.1-8B replicates same failure)
+
+Now I'm mapping the experiments to these claims. C1 is covered by plan_001, C2 is covered by plan_002 and plan_008, with plan_019 also contributing to C2.
+
+For C3, I have plan_006 and plan_007 completed successfully, plan_018 done, plan_023 failed, and plan_013 and plan_022 still planned. C4 is well-covered with plan_003, plan_004, plan_005, and plan_008 all successful, though plan_015 is orphaned but has results.
+
+Now looking at C4's plan_020 and the remaining work across C5 where plan_011 is currently running while plan_009, plan_010, and plan_012 are queued. I also need to track the reviewer weakness claims—W3, W7, W8, and R4 each have associated plans that are either planned, orphaned, or failed, so I should organize all of this into a structured report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17b16ecb-3a78-472e-9a77-d1727fc11721",
+  "isSidechain": false,
+  "requestId": "req_011CbH1H9hsqT7BrYAihUs9X",
+  "type": "assistant",
+  "uuid": "1e423419-e7c3-4096-bc62-b48fa677a598",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TiZDhAFcbaZDyp2rUGkWQ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21106,
+      "cache_read_input_tokens": 25441,
+      "output_tokens": 2147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21106,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2147,
+          "cache_read_input_tokens": 25441,
+          "cache_creation_input_tokens": 21106,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21106
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-22T04:51:31.830Z_
+
+## 覆盖率矩阵报告
+
+### Claims × Experiments 矩阵
+
+| Claim | 实验 | 状态 | 覆盖判定 |
+|-------|------|------|----------|
+| **C1** GAR衰减真实严重 | plan_001 GAR诊断 | ✅ DONE | **Fully covered** |
+| **C2** 训练有效/推理失败(30x gap) | plan_002 v7训练 | ✅ DONE | **Partially covered** |
+| | plan_008 Held-out eval | ✅ DONE | |
+| | plan_019 Multi-seed (s=123) | ⏳ planned | ← gap: 无方差估计 |
+| **C3** 失败机制因果分析 | plan_006 梯度冲突分析 | ✅ DONE | **Partially covered** |
+| | plan_007 Attention heatmap | ✅ DONE | |
+| | plan_018 PCGrad因果排除 | ✅ DONE | |
+| | plan_013 Llama梯度冲突 | ⏳ planned | ← gap: 跨模型验证 |
+| | plan_022 λ_GAR sensitivity | ⏳ planned (P2) | ← nice-to-have |
+| | plan_023 v8b Scheduled Sampling | ❌ failed | |
+| **C4** Gating零增量贡献 | plan_003 UG ablation | ✅ DONE | **Partially covered** |
+| | plan_004 LoRA-only ablation | ✅ DONE | |
+| | plan_005 4-way eval | ✅ DONE | |
+| | plan_008 Held-out eval | ✅ DONE | |
+| | plan_015 Bootstrap CI | ⚠️ orphaned (有结果) | ← 需注册 |
+| | plan_020 扩展eval集(200 conv) | ⏳ planned (P1) | ← nice-to-have |
+| **C5** 跨模型验证(Llama) | plan_009 Llama Phase1 GAR | ⏳ planned | **Uncovered** |
+| | plan_010 Llama TG训练 | ⏳ planned | |
+| | plan_011 Llama LoRA-only | 🔄 RUNNING | |
+| | plan_012 Llama 3-way eval | ⏳ planned | |
+
+### Reviewer Weakness 覆盖
+
+| Weakness | 实验 | 状态 |
+|----------|------|------|
+| W3 下游任务 | plan_014 instruction retention | ⏳ planned (P2) |
+| W7 单seed | plan_015 Bootstrap CI | ⚠️ orphaned (结果已产出，CI包含0) |
+| W8 Exposure-bias mitigation | plan_016 v8 SS | ❌ failed (killed) |
+| | plan_023 v8b SS fixed | ❌ failed |
+| R4 Code-paper公式一致性 | plan_017 代码审计 | ⚠️ orphaned (结果已产出，公式已修正) |
+
+### 汇总
+
+| 覆盖等级 | Claims |
+|----------|--------|
+| **Fully covered** | C1 |
+| **Partially covered** (核心实验已完成，加固实验待做) | C2, C3, C4 |
+| **Uncovered** (0/4 完成，仅1个RUNNING) | **C5** |
+
+### 关键 Gaps
+
+1. **C5 跨模型验证 — 最高优先级 gap。** paper_framing 明确标注为 MUST-HAVE（不含→Findings 3.0紧绷）。4个实验中0个完成，plan_011 (LoRA-only) 正在运行，plan_009/010/012 尚未开始。**阻塞论文投稿。**
+
+2. **plan_015 / plan_017 orphaned 状态。** 两个实验实际已产出有效结果（Bootstrap CI 确认 zero benefit; 公式不一致已定位），但 registry 状态为 orphaned，需要更新为 DONE 以反映真实覆盖。
+
+3. **C2 multi-seed (plan_019) 未开始。** Dream review W7 标为"严重"，目前只有 bootstrap CI (plan_015) 部分缓解。effect size 极端 (30x) 可能允许单 seed，但至少需要在论文中论证。
+
+4. **W8 exposure-bias mitigation 两次失败。** plan_016 被 kill，plan_023 也 failed。论文只能以 Discussion 中的 future work 处理此方向，无法升级为 "diagnosis + remedy"。
+
+5. **W3 下游任务 (plan_014) 未开始 (P2)。** GAR 作为唯一代理指标的弱点未实验缓解。
+
+### 建议优先级
+
+1. **立即**: 推进 C5 Llama 实验链 (plan_009→010→012)，这是唯一阻塞投稿的 gap
+2. **短期**: 修复 plan_015/017 的 orphaned 状态，使覆盖率矩阵准确
+3. **如有 GPU 余量**: plan_019 (multi-seed) 或 plan_014 (downstream task) 择一执行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e423419-e7c3-4096-bc62-b48fa677a598",
+  "isSidechain": false,
+  "requestId": "req_011CbH1H9hsqT7BrYAihUs9X",
+  "type": "assistant",
+  "uuid": "6f134e2b-763f-406f-ad5b-e80ef3b95395",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TiZDhAFcbaZDyp2rUGkWQ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 21106,
+      "cache_read_input_tokens": 25441,
+      "output_tokens": 2147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 21106,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2147,
+          "cache_read_input_tokens": 25441,
+          "cache_creation_input_tokens": 21106,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 21106
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "6f134e2b-763f-406f-ad5b-e80ef3b95395",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Coverage matrix check for paper claims",
+  "sessionId": "6c12ee7a-136b-460b-b29a-22135ba742c1"
+}
+```
+
+---

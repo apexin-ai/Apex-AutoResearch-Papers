@@ -1,0 +1,792 @@
+meta:
+  last_updated: '2026-05-22'
+  total_papers: 50
+papers:
+  gromov2024unreasonable:
+    title: The Unreasonable Ineffectiveness of the Deeper Layers
+    authors:
+    - Gromov
+    year: 2024
+    venue: ICLR 2025
+    url: https://arxiv.org/abs/2403.17887
+    arxiv_id: '2403.17887'
+    category: layer_importance
+    role: foundation
+    relevance: 发现 LLM 深层高度冗余，可删除近半层而性能不降；浅层对知识存储至关重要
+    abstract: Studies knowledge storage via layer pruning. Finds minimal performance degradation until up to half of layers
+      are removed.
+    verified: false
+  men2024shortgpt:
+    title: 'ShortGPT: Layers in Large Language Models are More Redundant Than You Expect'
+    authors:
+    - Men
+    year: 2024
+    venue: arXiv 2024
+    url: https://arxiv.org/abs/2403.03853
+    arxiv_id: '2403.03853'
+    category: layer_importance
+    role: foundation
+    relevance: 提出 Block Influence (BI) 度量各层重要性，发现许多层高度相似且功能冗余
+    abstract: Defines Block Influence (BI) metric to gauge layer significance. Discovers many LLM layers exhibit high similarity.
+    verified: false
+  sun2025curse:
+    title: The Curse of Depth in Large Language Models
+    authors:
+    - Sun
+    year: 2025
+    venue: NeurIPS 2025
+    url: https://arxiv.org/abs/2502.05795
+    arxiv_id: '2502.05795'
+    category: layer_importance
+    role: foundation
+    relevance: Pre-LN 导致深层梯度趋近恒等映射。解释 ThreadGate 中 late layers gate 接近 1.0
+    abstract: Pre-Layer Normalization causes output variance to grow exponentially with depth.
+    verified: false
+  anonymous2024reassessing:
+    title: 'Reassessing Layer Pruning in LLMs: New Insights and Methods'
+    authors:
+    - Anonymous
+    year: 2024
+    venue: arXiv 2024
+    url: https://arxiv.org/abs/2411.15558
+    arxiv_id: '2411.15558'
+    category: layer_importance
+    role: context
+    relevance: 删除最后 25% 层 + 微调即可获得强性能，证实深层冗余
+    abstract: Simply pruning the final 25% of layers followed by fine-tuning yields strong performance.
+    verified: false
+  fan2020reducing:
+    title: Reducing Transformer Depth on Demand with Structured Dropout (LayerDrop)
+    authors:
+    - Fan
+    year: 2020
+    venue: ICLR 2020
+    url: https://arxiv.org/abs/1909.11556
+    arxiv_id: '1909.11556'
+    category: layer_importance
+    role: method-component
+    relevance: ThreadGate 的 gating 可视为 LayerDrop 的 soft 版本
+    abstract: Structured dropout on entire transformer layers during training.
+    verified: false
+  dongre2026attention:
+    title: 'When Attention Closes: How LLMs Lose the Thread in Multi-Turn Interaction'
+    authors:
+    - Dongre
+    - Hsieh
+    - Lai
+    - Yoon
+    - Bui
+    - Hakkani-Tur
+    year: 2026
+    venue: arXiv 2026
+    url: https://arxiv.org/abs/2605.12922
+    arxiv_id: '2605.12922'
+    category: multi_turn_attention
+    role: foundation
+    relevance: 定义 GAR，诊断多轮 attention 通道关闭。纯诊断论文，未提出干预方案。ThreadGate 是首个基于其诊断的干预方法
+    abstract: 'Channel-transition account: goal tokens become less accessible through attention while goal info persists in
+      residual representations. Introduces GAR metric.'
+    notes:
+      gar_definition: GAR(τ) = (1/L·H·|ℛτ|) Σℓ Σh Σi∈ℛτ Σj∈𝒢 A_{i,j}. ALL layers, ALL heads averaged. Goal tokens = system
+        prompt task-specifying tokens only
+      models_tested: Mistral-7B, LLaMA-3.1-8B, Qwen-2.5 (3B/7B/14B/32B), Mixtral-8x7B + 6 additional
+      gar_decline: 27-48% over 50 turns, monotonic (Mann-Kendall p<1e-7)
+      residual_probes: 'LDA on PCA-reduced residuals (50 PCs). Peak AUC: LLaMA L2=0.99, Qwen L11=0.98, Mixtral L21=0.99, Mistral
+        L27=0.87'
+      qwen_layer_profile: Goal encoding rises steeply from L5. Our v3b L4 outlier may be the layer just before goal encoding
+        begins
+      intervention_tested: Periodic goal re-injection FAILED (Appendix H)
+      no_solution: true
+      sliding_window: Attention mask W=4096, Qwen crossover at turn 20. Linear W-vs-crossover (R2~1)
+      framing_impact: GAR not our original metric. No intervention proposed -> ThreadGate is first solution. Residual persistence
+        directly supports our theory
+    verified: false
+  levy2025llms:
+    title: LLMs Get Lost In Multi-Turn Conversation
+    authors:
+    - Levy
+    year: 2025
+    venue: arXiv 2025
+    url: https://arxiv.org/abs/2505.06120
+    arxiv_id: '2505.06120'
+    category: multi_turn_attention
+    role: foundation
+    relevance: 量化多轮对话性能衰减：平均下降 39%，不可靠性增加 112%
+    abstract: All top LLMs exhibit significantly lower performance in multi-turn vs single-turn, averaging 39% drop.
+    verified: false
+  liu2026intent:
+    title: Intent Mismatch Causes LLMs to Get Lost in Multi-Turn Conversation
+    authors:
+    - Liu
+    year: 2026
+    venue: arXiv 2026
+    url: https://arxiv.org/abs/2602.07338
+    arxiv_id: '2602.07338'
+    category: multi_turn_attention
+    role: context
+    relevance: 多轮失败根因是 intent alignment gap，scaling 无法解决。支撑 ThreadGate 架构级方案动机
+    abstract: Lost in Conversation stems from intent alignment gap, not capability deficits. Scaling cannot resolve.
+    verified: false
+  liu2023lost:
+    title: 'Lost in the Middle: How Language Models Use Long Contexts'
+    authors:
+    - Liu
+    year: 2023
+    venue: TACL 2024
+    url: https://arxiv.org/abs/2307.03172
+    arxiv_id: '2307.03172'
+    category: multi_turn_attention
+    role: foundation
+    relevance: U 型 attention 分布（首尾强、中间弱）。多轮场景是此现象在 turn boundary 上的扩展
+    abstract: Performance highest at beginning/end of context, degrading for middle positions.
+    verified: false
+  anonymous2025style:
+    title: 'Style Amnesia: Investigating Speaking Style Degradation and Mitigation in Multi-Turn Spoken Language Models'
+    authors:
+    - Anonymous
+    year: 2025
+    venue: arXiv 2025
+    url: https://arxiv.org/abs/2512.23578
+    arxiv_id: '2512.23578'
+    category: multi_turn_attention
+    role: context
+    relevance: 多轮对话中 style instruction 遵循衰减，system message 比 user message 更严重
+    abstract: Style instruction in system messages degrades more than in user messages across turns.
+    verified: false
+  li2024measuring:
+    title: Measuring and Controlling Instruction (In)Stability in Language Model Dialogs
+    authors:
+    - Li
+    - Liu
+    - Bashkansky
+    - Bau
+    - Viégas
+    - Pfister
+    - Wattenberg
+    year: 2024
+    venue: COLM 2024
+    url: https://arxiv.org/abs/2402.10962
+    arxiv_id: '2402.10962'
+    category: multi_turn_attention
+    role: direct-competitor
+    relevance: 定量测量多轮对话中 instruction compliance 衰减（同 GAR decay），识别 transformer attention decay 为机制，提出 split-softmax 推理时修复。最直接的对比工作——同一问题（attention
+      到 system prompt 随轮次衰减），但从推理端而非训练端干预
+    abstract: Quantifies instruction drift in multi-turn LLM dialogs via self-chat benchmark. LLaMA2-70B and GPT-3.5 show
+      significant instruction instability within 8 turns. Identifies attention decay as mechanism and proposes split-softmax,
+      a training-free inference-time method that amplifies attention to system prompt tokens.
+    verified: false
+  raposo2024mixture:
+    title: 'Mixture-of-Depths: Dynamically allocating compute in transformer-based language models'
+    authors:
+    - Raposo
+    year: 2024
+    venue: arXiv 2024 (Google DeepMind)
+    url: https://arxiv.org/abs/2404.02258
+    arxiv_id: '2404.02258'
+    category: residual_gating
+    role: method-component
+    relevance: top-k routing 动态分配计算。ThreadGate 可视为 MoD 在 turn boundary 上的特化
+    abstract: Dynamically allocate FLOPs per layer via top-k routing. 1.5% loss improvement or 50% FLOP reduction.
+    verified: false
+  schuster2022confident:
+    title: Confident Adaptive Language Modeling (CALM)
+    authors:
+    - Schuster
+    year: 2022
+    venue: NeurIPS 2022
+    url: https://arxiv.org/abs/2207.07061
+    arxiv_id: '2207.07061'
+    category: residual_gating
+    role: method-component
+    relevance: 置信度 early exit。CALM 是 monotonic exit，ThreadGate 允许 selective layer gating
+    abstract: Dynamically allocating compute per input based on confidence. Up to 3x speedup.
+    verified: false
+  qiu2025gated:
+    title: 'Gated Attention for Large Language Models: Non-linearity, Sparsity, and Attention-Sink-Free'
+    authors:
+    - Qiu
+    year: 2025
+    venue: NeurIPS 2025 (Oral)
+    url: https://arxiv.org/abs/2505.06708
+    arxiv_id: '2505.06708'
+    category: residual_gating
+    role: method-component
+    relevance: SDPA 输出加 sigmoid gate 消除 attention sink。可参考 head-specific sigmoid gate 设计
+    abstract: Head-specific sigmoid gate after SDPA. Eliminates attention sink (83% to 4%).
+    verified: false
+  wang2018skipnet:
+    title: 'SkipNet: Learning Dynamic Routing in Convolutional Networks'
+    authors:
+    - Wang
+    year: 2018
+    venue: ECCV 2018
+    url: https://arxiv.org/abs/1711.09485
+    arxiv_id: '1711.09485'
+    category: residual_gating
+    role: method-component
+    relevance: 残差网络逐层 gating 先驱。ThreadGate per-layer gating 的前身
+    abstract: Gating network to selectively skip convolutional blocks. RL+SL hybrid training.
+    verified: false
+  luo2025adaptive:
+    title: Adaptive Layer-skipping in Pre-trained LLMs (FlexiDepth)
+    authors:
+    - Luo
+    year: 2025
+    venue: arXiv 2025
+    url: https://arxiv.org/abs/2503.23798
+    arxiv_id: '2503.23798'
+    category: residual_gating
+    role: direct-competitor
+    relevance: plug-in router+adapter on frozen LLM 自适应 layer skipping。与 ThreadGate 高度类似，直接竞品
+    abstract: Dynamically adjusts layers via plug-in router and adapter. Llama-3-8B skips 8/32 layers maintaining performance.
+    verified: false
+  lawson2025learning:
+    title: Learning to Skip the Middle Layers of Transformers
+    authors:
+    - Lawson
+    year: 2025
+    venue: arXiv 2025
+    url: https://arxiv.org/abs/2506.21103
+    arxiv_id: '2506.21103'
+    category: residual_gating
+    role: context
+    relevance: middle-out layer skipping 负面结果参考
+    abstract: Gating to skip middle blocks. Does not improve vs dense baselines at investigated scales.
+    verified: false
+  press2022train:
+    title: 'Train Short, Test Long: Attention with Linear Biases Enables Input Length Extrapolation'
+    authors:
+    - Press
+    year: 2022
+    venue: ICLR 2022
+    url: https://arxiv.org/abs/2108.12409
+    arxiv_id: '2108.12409'
+    category: attention_manipulation
+    role: foundation
+    relevance: ALiBi 在注意力分数上施加距离线性惩罚实现长度外推，是注意力操纵路线的代表方法，与 ThreadGate 残差门控路线形成设计空间对比
+    abstract: Replaces positional embeddings with linear bias on attention logits penalizing distance. 1.3B model trained
+      on 1024 generalizes to 2048 without fine-tuning.
+    verified: false
+  chen2023extending:
+    title: Extending Context Window of Large Language Models via Positional Interpolation
+    authors:
+    - Chen
+    year: 2023
+    venue: arXiv 2023
+    url: https://arxiv.org/abs/2306.15595
+    arxiv_id: '2306.15595'
+    category: attention_manipulation
+    role: foundation
+    relevance: 位置插值通过压缩 RoPE 索引扩展上下文至 32k，属于注意力机制内部解决长序列的路线，与 ThreadGate 在残差层解决多轮衰减形成对比
+    abstract: Linearly down-scales RoPE position indices to extend context to 32768 tokens in 1000 fine-tuning steps.
+    verified: false
+  peng2024yarn:
+    title: 'YaRN: Efficient Context Window Extension of Large Language Models'
+    authors:
+    - Peng
+    year: 2024
+    venue: ICLR 2024
+    url: https://arxiv.org/abs/2309.00071
+    arxiv_id: '2309.00071'
+    category: attention_manipulation
+    role: foundation
+    relevance: YaRN 综合 NTK-aware 和分段插值改进 RoPE 外推，代表注意力位置编码修改应对长程衰减的成熟路线，与 ThreadGate 机制不同
+    abstract: Combines NTK-aware interpolation with ramp function for different RoPE frequency components. Extends LLaMA-2
+      to 128k context with 10x fewer tokens.
+    verified: false
+  xiao2024efficient:
+    title: Efficient Streaming Language Models with Attention Sinks
+    authors:
+    - Xiao
+    year: 2024
+    venue: ICLR 2024
+    url: https://arxiv.org/abs/2309.17453
+    arxiv_id: '2309.17453'
+    category: attention_manipulation
+    role: context
+    relevance: 发现 attention sink 现象（初始 token 聚集高权重），说明多轮对话中早期轮次 token 天然受偏置，ThreadGate 从残差路径角度控制历史轮信息保留
+    abstract: LLMs assign disproportionate attention to first few tokens regardless of semantics. Retaining sink tokens enables
+      stable streaming inference over 4M tokens.
+    verified: false
+  han2024lm:
+    title: 'LM-Infinite: Zero-Shot Extreme Length Generalization for Large Language Models'
+    authors:
+    - Han
+    year: 2024
+    venue: ACL 2024
+    url: https://arxiv.org/abs/2308.16137
+    arxiv_id: '2308.16137'
+    category: attention_manipulation
+    role: context
+    relevance: 用 Λ 形注意力掩码加距离截断实现超长上下文推理，揭示调整注意力掩码和调整残差门控是两条平行路线
+    abstract: Applies Λ-shaped attention mask plus distance limit on position encodings. Generalizes to 200M tokens with 2.7x
+      speedup, no parameter updates.
+    verified: false
+  ko2024found:
+    title: 'Found in the Middle: Calibrating Positional Attention Bias Improves Long Context Utilization'
+    authors:
+    - Ko
+    year: 2024
+    venue: arXiv 2024
+    url: https://arxiv.org/abs/2406.16008
+    arxiv_id: '2406.16008'
+    category: attention_manipulation
+    role: direct-competitor
+    relevance: 直接校准注意力位置偏置修复中段信息丢失，最接近 ThreadGate 问题定义的注意力方案，审稿人会以此质疑为何不直接修正注意力
+    abstract: Identifies U-shaped positional attention bias causing lost-in-the-middle. Training-free calibration redistributes
+      attention to middle positions, improving QA by 6-15pp.
+    verified: false
+  elhage2021mathematical:
+    title: A Mathematical Framework for Transformer Circuits
+    authors:
+    - Elhage
+    year: 2021
+    venue: Transformer Circuits Thread 2021
+    url: https://transformer-circuits.pub/2021/framework/index.html
+    category: theoretical_foundations
+    role: foundation
+    relevance: 提出残差流作为 transformer 各组件通信核心通道，直接为 ThreadGate 在残差连接处插入门控提供机制解释框架
+    abstract: Linear algebraic decomposition of transformer computations. Attention heads and MLPs as read/write operations
+      on shared residual stream. Formalizes induction heads and QK/OV circuits.
+    verified: false
+  elhage2022toy:
+    title: Toy Models of Superposition
+    authors:
+    - Elhage
+    year: 2022
+    venue: arXiv 2022
+    url: https://arxiv.org/abs/2209.10652
+    arxiv_id: '2209.10652'
+    category: theoretical_foundations
+    role: foundation
+    relevance: 揭示残差流子空间叠加存储稀疏特征的机制，为 ThreadGate 按轮次条件化选择性激活残差通道提供理论依据
+    abstract: Neural networks store more features than dimensions via superposition when features are sparse. Links polysemanticity
+      to geometry of uniform polytopes.
+    verified: false
+  belrose2023eliciting:
+    title: Eliciting Latent Predictions from Transformers with the Tuned Lens
+    authors:
+    - Belrose
+    year: 2023
+    venue: arXiv 2023
+    url: https://arxiv.org/abs/2303.08112
+    arxiv_id: '2303.08112'
+    category: theoretical_foundations
+    role: foundation
+    relevance: 逐层解码残差流隐状态揭示信息在深度方向渐进精化，支撑 ThreadGate 不同层门控强度差异化设计的动机
+    abstract: Per-layer affine probes decode intermediate residual stream states into vocabulary distributions. Shows predictions
+      iteratively refined across depth up to 20B parameters.
+    verified: false
+  yu2023exploring:
+    title: Exploring the Residual Stream of Transformers
+    authors:
+    - Yu
+    year: 2023
+    venue: arXiv 2023
+    url: https://arxiv.org/abs/2312.12141
+    arxiv_id: '2312.12141'
+    category: theoretical_foundations
+    role: foundation
+    relevance: 分析残差连接对 logit 空间的加法效应，揭示知识参数跨层分布规律，为 ThreadGate 定位门控插入层提供实证参考
+    abstract: Residual connections act as direct additive operations on pre-softmax logits. Identifies factual knowledge storage
+      distribution across layers and modules.
+    verified: false
+  makkuva2025attention:
+    title: 'Attention with Markov: A Framework for Principled Analysis of Transformers via Markov Chains'
+    authors:
+    - Makkuva
+    year: 2025
+    venue: ICLR 2025
+    url: https://arxiv.org/abs/2402.04161
+    arxiv_id: '2402.04161'
+    category: theoretical_foundations
+    role: foundation
+    relevance: 用 Markov 链理论刻画注意力深度依赖性，解释为何单层 transformer 无法形成归纳头，支持 ThreadGate 在多层残差路径施加门控的必要性
+    abstract: Theoretical framework via Markov chain properties. Two-layer transformers learn induction heads on first-order
+      Markov data; single-layer models get trapped in unigram minima.
+    verified: false
+  ildiz2024self:
+    title: 'From Self-Attention to Markov Models: Unveiling the Dynamics of Generative Transformers'
+    authors:
+    - Ildiz
+    year: 2024
+    venue: ICML 2024
+    url: https://arxiv.org/abs/2402.13512
+    arxiv_id: '2402.13512'
+    category: theoretical_foundations
+    role: foundation
+    relevance: 建立自注意力与上下文条件 Markov 链的精确映射，为分析多轮对话 token 分布随轮次漂移（GAR decay）提供随机过程理论基础
+    abstract: Mathematical equivalence between self-attention and context-conditioned Markov chains. Output distribution sampled
+      from context-weighted transition matrix.
+    verified: false
+  zheng2023judging:
+    title: Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena
+    authors:
+    - Zheng
+    year: 2023
+    venue: NeurIPS 2023
+    url: https://arxiv.org/abs/2306.05685
+    arxiv_id: '2306.05685'
+    category: evaluation_benchmarks
+    role: foundation
+    relevance: MT-Bench 多轮对话评测框架，是 ThreadGate 验证多轮 GAR 衰减修复效果的核心 benchmark
+    abstract: Introduces MT-Bench (80 multi-turn questions) and Chatbot Arena. GPT-4 achieves >80% agreement with human preferences
+      as judge.
+    verified: false
+  chiang2024chatbot:
+    title: 'Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference'
+    authors:
+    - Chiang
+    year: 2024
+    venue: ICML 2024
+    url: https://arxiv.org/abs/2403.04132
+    arxiv_id: '2403.04132'
+    category: evaluation_benchmarks
+    role: foundation
+    relevance: 基于 ELO 排名的人类偏好评估体系，衡量多轮对话模型综合能力的权威 leaderboard
+    abstract: Chatbot Arena with 240K+ votes from 90K+ users across 50+ models. Bradley-Terry and ELO ranking validated against
+      expert raters.
+    verified: false
+  dubois2024length:
+    title: 'Length-Controlled AlpacaEval: A Simple Way to Debias Automatic Evaluators'
+    authors:
+    - Dubois
+    year: 2024
+    venue: COLM 2024
+    url: https://arxiv.org/abs/2404.04475
+    arxiv_id: '2404.04475'
+    category: evaluation_benchmarks
+    role: foundation
+    relevance: 指令遵循自动评测标准，Length-Controlled 版本修正长度偏差，为 ThreadGate 单轮指令评测提供对比基线
+    abstract: GLM-based length debiasing for AlpacaEval. Validated against 20K human annotations.
+    verified: false
+  lin2024wildbench:
+    title: 'WildBench: Benchmarking LLMs with Challenging Tasks from Real Users in the Wild'
+    authors:
+    - Lin
+    year: 2024
+    venue: arXiv 2024
+    url: https://arxiv.org/abs/2406.04770
+    arxiv_id: '2406.04770'
+    category: evaluation_benchmarks
+    role: foundation
+    relevance: 真实用户多样化指令集，评估 wild 场景指令遵循能力，与 ThreadGate 关注的真实多轮对话性能高度相关
+    abstract: 1,024 challenging tasks from 1M+ conversation logs. WB-Reward/WB-Score achieve 0.98 Pearson correlation with
+      Chatbot Arena ELO on hard tasks.
+    verified: false
+  bai2024mt:
+    title: 'MT-Bench-101: A Fine-Grained Benchmark for Evaluating Large Language Models in Multi-Turn Dialogues'
+    authors:
+    - Bai
+    year: 2024
+    venue: ACL 2024
+    url: https://arxiv.org/abs/2402.14762
+    arxiv_id: '2402.14762'
+    category: evaluation_benchmarks
+    role: direct-competitor
+    relevance: 多轮对话细粒度评测体系，直接测量跨轮次能力退化，与 ThreadGate 研究的 GAR 衰减高度吻合
+    abstract: Three-tier ability taxonomy, 4,208 turns across 1,388 dialogues in 13 tasks. Neither alignment nor chat-specific
+      designs consistently improve multi-turn abilities.
+    verified: false
+  sirdeshmukh2025multichallenge:
+    title: 'MultiChallenge: A Realistic Multi-Turn Conversation Evaluation Benchmark Challenging to Frontier LLMs'
+    authors:
+    - Sirdeshmukh
+    year: 2025
+    venue: arXiv 2025
+    url: https://arxiv.org/abs/2501.17399
+    arxiv_id: '2501.17399'
+    category: evaluation_benchmarks
+    role: direct-competitor
+    relevance: 前沿 LLM 多轮对话准确率不足 50%，直接测量 ThreadGate 旨在修复的跨轮指令保留和上下文一致性失败
+    abstract: 'Four challenge categories: instruction retention, user inference memory, versioned editing, self-coherence.
+      All frontier LLMs below 50%; Claude 3.5 Sonnet tops at 41.4%.'
+    verified: false
+  bengio2015scheduled:
+    title: Scheduled Sampling for Sequence Prediction with Recurrent Neural Networks
+    authors:
+    - Bengio
+    - Vinyals
+    - Jaitly
+    - Shazeer
+    year: 2015
+    venue: NeurIPS 2015
+    url: https://arxiv.org/abs/1506.03099
+    arxiv_id: '1506.03099'
+    category: exposure_bias
+    role: foundation
+    relevance: Scheduled sampling 首次提出用 curriculum learning 缓解 teacher forcing 与推理时 autoregressive decoding 的分布不匹配（exposure
+      bias），直接支撑论文对 auxiliary attention loss 训练-推理 gap 的根因分析
+    abstract: Proposes a curriculum learning strategy to gently change training from fully guided (true previous token) to
+      less guided (model-generated token). The discrepancy between teacher-forced training and autoregressive inference causes
+      error accumulation. Experiments on sequence prediction tasks show significant improvements. Used in the winning MSCOCO
+      image captioning challenge 2015 entry.
+    verified: false
+  ranzato2016sequence:
+    title: Sequence Level Training with Recurrent Neural Networks
+    authors:
+    - Ranzato
+    - Chopra
+    - Auli
+    - Zaremba
+    year: 2016
+    venue: ICLR 2016
+    url: https://arxiv.org/abs/1511.06732
+    arxiv_id: '1511.06732'
+    category: exposure_bias
+    role: foundation
+    relevance: MIXER 算法直接优化测试时指标（BLEU/ROUGE）而非 token-level MLE，解决 teacher forcing 导致的 train-test discrepancy；论文中 auxiliary
+      loss 同样面临 token-level 训练目标与 sequence-level 推理行为的错位
+    abstract: Addresses the discrepancy between token-level MLE training and sequence-level generation at test time. Proposes
+      sequence level training that directly optimizes test metrics (BLEU, ROUGE). Outperforms strong baselines for greedy
+      generation on three tasks and is competitive with beam search while being several times faster.
+    verified: false
+  lamb2016professor:
+    title: 'Professor Forcing: A New Algorithm for Training Recurrent Networks'
+    authors:
+    - Lamb
+    - Goyal
+    - Zhang
+    - Zhang
+    - Courville
+    - Bengio
+    year: 2016
+    venue: NeurIPS 2016
+    url: https://arxiv.org/abs/1610.09038
+    arxiv_id: '1610.09038'
+    category: exposure_bias
+    role: foundation
+    relevance: 用对抗训练对齐 teacher forcing 训练与 free-running 采样的 hidden state 动态分布，直接证明 train-test dynamics mismatch 可导致长序列采样质量崩溃——与论文中
+      gating 机制推理时失效的现象高度对应
+    abstract: Introduces Professor Forcing, which uses adversarial domain adaptation to encourage the dynamics of the recurrent
+      network to be the same when training and when sampling over multiple time steps. Acts as a regularizer improving test
+      likelihood on Penn Treebank and sequential MNIST. Qualitatively improves samples especially for long generation horizons.
+      Discusses trade-offs with Scheduled Sampling.
+    verified: false
+  leblond2018searnn:
+    title: 'SEARNN: Training RNNs with Global-Local Losses'
+    authors:
+    - Leblond
+    - Alayrac
+    - Osokin
+    - Lacoste-Julien
+    year: 2018
+    venue: ICLR 2018
+    url: https://arxiv.org/abs/1706.04499
+    arxiv_id: '1706.04499'
+    category: exposure_bias
+    role: context
+    relevance: 基于 learning-to-search 理论统一分析 MLE 训练的两大缺陷：exposure bias 和结构化损失信息浪费。论文中 auxiliary attention loss 同时受这两个缺陷影响——token-level
+      loss 无法反映 sequence-level attention pattern
+    abstract: Proposes SEARNN inspired by learning-to-search (L2S) approach to structured prediction. MLE training fails to
+      exploit structured losses and introduces train-test discrepancies (exposure bias). SEARNN leverages test-alike search
+      space exploration for global-local losses closer to test error. Demonstrates improvements on OCR, spelling correction,
+      and machine translation with a subsampling strategy for large vocabularies.
+    verified: false
+  he2019quantifying:
+    title: Quantifying Exposure Bias for Neural Language Generation
+    authors:
+    - He
+    - Zhang
+    - Zhou
+    - Glass
+    year: 2019
+    venue: arXiv 2019
+    url: https://arxiv.org/abs/1905.10617
+    arxiv_id: '1905.10617'
+    category: exposure_bias
+    role: foundation
+    relevance: 首次定量度量 exposure bias 影响并发现 LM 的 self-recovery 能力——即模型能从错误前缀部分恢复。这为论文分析 gating 机制在推理时的行为提供关键对照：如果 exposure bias
+      可自恢复，auxiliary loss 崩溃可能源于更根本的分布偏移
+    abstract: 'Proposes sequence-level (EB-bleu) and word-level (EB-C) metrics to quantify exposure bias impact on quality,
+      diversity, and consistency. Key finding: contrary to popular belief, distortion from prefix discrepancy is limited and
+      does not appear incremental. Reveals an interesting self-recovery ability of language models that counters harmful effects
+      of exposure bias.'
+    verified: false
+  wiseman2016sequence:
+    title: Sequence-to-Sequence Learning as Beam-Search Optimization
+    authors:
+    - Wiseman
+    - Rush
+    year: 2016
+    venue: EMNLP 2016
+    url: https://arxiv.org/abs/1606.02960
+    arxiv_id: '1606.02960'
+    category: exposure_bias
+    role: foundation
+    relevance: 提出 beam-aware 训练将训练目标与测试时解码统一，量化 teacher forcing 的 train-test discrepancy 对序列生成质量的影响。paper_framing SP1 明确引用为
+      exposure bias 在 sequence generation 中的量化先例
+    abstract: Proposes a model and beam-search training scheme that extends seq2seq to learn global sequence scores, avoiding
+      local training biases and unifying training loss with test-time usage. Outperforms attention-based seq2seq on word ordering,
+      parsing, and machine translation.
+    verified: false
+  zhang2019bridging:
+    title: Bridging the Gap between Training and Inference for Neural Machine Translation
+    authors:
+    - Zhang
+    - Feng
+    - Meng
+    - You
+    - Liu
+    year: 2019
+    venue: ACL 2019
+    url: https://arxiv.org/abs/1906.02448
+    arxiv_id: '1906.02448'
+    category: exposure_bias
+    role: method-component
+    relevance: 在训练时混合 ground truth 和 model-generated tokens 作为上下文，用 sentence-level optimum 选择预测序列。直接对应论文 W8 中讨论的 exposure
+      bias mitigation 实验方向——若应用于 auxiliary attention loss 可能缩小 30x gap
+    abstract: Addresses exposure bias in NMT by sampling context words from both ground truth and model predictions during
+      training, selecting predicted sequences with sentence-level optimum. Achieves significant improvements on Chinese-English
+      and WMT14 English-German translation.
+    verified: false
+  arora2022exposure:
+    title: 'Why Exposure Bias Matters: An Imitation Learning Perspective of Error Accumulation in Language Generation'
+    authors:
+    - Arora
+    - El Asri
+    - Bahuleyan
+    - Cheung
+    year: 2022
+    venue: ACL Findings 2022
+    url: https://arxiv.org/abs/2204.01171
+    arxiv_id: '2204.01171'
+    category: exposure_bias
+    role: theoretical-foundation
+    relevance: 用 imitation learning 框架证明 exposure bias 导致 compounding error accumulation，且 perplexity 无法捕捉此累积效应。直接支撑论文核心论证：auxiliary
+      attention loss 的 PPL 正常但 GAR 崩溃，因为 perplexity 掩盖了分布偏移对 attention pattern 的破坏
+    abstract: Shows that exposure bias leads to accumulation of errors in autoregressive generation. Analyzes why perplexity
+      fails to capture this accumulation. Empirically demonstrates that compounding errors from train-test mismatch degrade
+      generation quality even when perplexity appears normal.
+    verified: false
+  mihaylova2019scheduled:
+    title: Scheduled Sampling for Transformers
+    authors:
+    - Mihaylova
+    - Martins
+    year: 2019
+    venue: ACL SRW 2019
+    url: https://arxiv.org/abs/1906.07651
+    arxiv_id: '1906.07651'
+    category: exposure_bias
+    role: method-component
+    relevance: 将 Bengio 2015 的 scheduled sampling 扩展到 transformer 架构，通过 two-pass decoding 策略解决 transformer 非自回归 decoder 的适配问题。直接相关于论文
+      Discussion 中讨论的 scheduled sampling 应用于 auxiliary attention loss 的未来方向
+    abstract: Extends scheduled sampling to Transformer architecture via two-pass decoding strategy. Proposes structural changes
+      to allow mixing of teacher-forced embeddings and model predictions during transformer training for exposure bias mitigation.
+    verified: false
+  yu2020gradient:
+    title: Gradient Surgery for Multi-Task Learning
+    authors:
+    - Yu
+    - Kumar
+    - Gupta
+    - Levine
+    - Hausman
+    - Finn
+    year: 2020
+    venue: NeurIPS 2020
+    url: https://arxiv.org/abs/2001.06782
+    arxiv_id: '2001.06782'
+    category: gradient_conflict_mtl
+    role: must-cite
+    relevance: 提出 PCGrad，通过投影消除任务间梯度冲突。论文直接使用 PCGrad 做因果排除实验，证明梯度冲突不是 auxiliary attention loss 泛化失败的根因
+    abstract: 'Proposes PCGrad: when gradients between tasks conflict, project one onto the normal plane of the other to remove
+      the conflicting component. Demonstrates consistent improvements on multi-task supervised learning and multi-task reinforcement
+      learning benchmarks.'
+    verified: false
+  chen2018gradnorm:
+    title: 'GradNorm: Gradient Normalization for Adaptive Loss Balancing in Deep Multitask Networks'
+    authors:
+    - Chen
+    - Badrinarayanan
+    - Lee
+    - Rabinovich
+    year: 2018
+    venue: ICML 2018
+    url: https://arxiv.org/abs/1711.02257
+    arxiv_id: '1711.02257'
+    category: gradient_conflict_mtl
+    role: must-cite
+    relevance: 首个自动平衡多任务梯度幅度的方法，通过动态调整各任务梯度范数使训练速率一致。为论文中 auxiliary loss 权重调优的 baseline 和梯度冲突缓解方法的早期代表
+    abstract: Automatically balances training in deep multitask models by dynamically tuning gradient magnitudes. Introduces
+      a loss-rate-based gradient normalization algorithm that adjusts gradients to ensure tasks train at similar rates. Shows
+      improvements on NYUv2 and other benchmarks.
+    verified: false
+  liu2021conflict:
+    title: Conflict-Averse Gradient Descent for Multi-task Learning
+    authors:
+    - Liu
+    - Liu
+    - Jin
+    - Stone
+    - Liu
+    year: 2021
+    venue: NeurIPS 2021
+    url: https://arxiv.org/abs/2110.14048
+    arxiv_id: '2110.14048'
+    category: gradient_conflict_mtl
+    role: context
+    relevance: 提出 CAGrad，在共享参数空间上寻找与所有任务梯度最小冲突的更新方向。作为 PCGrad 之后梯度冲突解决方法的演进，支撑论文对该路线充分覆盖后仍无法解决 attention degradation 的论证
+    abstract: Proposes Conflict-Averse Gradient descent (CAGrad) that minimizes the average loss while explicitly constraining
+      the worst-case task performance. Finds an update direction within a ball around the average gradient that maximizes
+      the minimum improvement across tasks. Achieves state-of-the-art on multi-task learning benchmarks.
+    verified: false
+  navon2022multi:
+    title: Multi-Task Learning as a Bargaining Game
+    authors:
+    - Navon
+    - Shamsian
+    - Achituve
+    - Maron
+    - Kawaguchi
+    - Chechik
+    - Fetaya
+    year: 2022
+    venue: ICML 2022
+    url: https://arxiv.org/abs/2202.01017
+    arxiv_id: '2202.01017'
+    category: gradient_conflict_mtl
+    role: context
+    relevance: 将多任务梯度聚合建模为 Nash 博弈问题（Nash-MTL），理论证明 Nash 均衡解优于启发式梯度操作。作为梯度冲突解决的最新理论上界，强化论文"即使最优梯度调和也无法修复 attention degradation"的论证
+    abstract: Frames multi-task gradient aggregation as a bargaining game and proposes Nash-MTL that finds the Nash bargaining
+      solution. Provides theoretical guarantees showing the Nash solution is Pareto optimal. Achieves state-of-the-art on
+      multiple MTL benchmarks including NYUv2, QM9, and CELEBA.
+    verified: false
+  bachlechner2021rezero:
+    title: 'ReZero is All You Need: Fast Convergence at Large Depth'
+    authors:
+    - Bachlechner
+    - Majumder
+    - Mao
+    - Cottrell
+    - McAuley
+    year: 2021
+    venue: UAI 2021
+    url: https://arxiv.org/abs/2003.04887
+    arxiv_id: '2003.04887'
+    category: residual_scaling
+    role: must-cite
+    relevance: ThreadGate 的 per-layer sigmoid gate 直接源自 ReZero 的零初始化残差缩放思想：x_{l+1} = x_l + alpha_l * f_l(x_l)，alpha 初始化为 0。ThreadGate
+      将标量 alpha 替换为 turn-conditioned sigmoid gate
+    abstract: Initializes each residual connection with a learnable zero-initialized parameter, enabling training of extremely
+      deep transformers (up to 10,000 layers) without warmup or normalization. Achieves significantly faster convergence by
+      allowing the network to start as identity and gradually incorporate layer contributions.
+    verified: false
+  zhang2019fixup:
+    title: 'Fixup Initialization: Residual Learning Without Normalization'
+    authors:
+    - Zhang
+    - Dauphin
+    - Ma
+    year: 2019
+    venue: ICLR 2019
+    url: https://arxiv.org/abs/1901.09321
+    arxiv_id: '1901.09321'
+    category: residual_scaling
+    role: foundation
+    relevance: 理论推导残差分支的初始化缩放如何控制梯度爆炸，为 ReZero 和 ThreadGate 的残差缩放设计提供数学基础。证明适当的残差缩放可完全替代 normalization layers
+    abstract: Proposes a properly scaled initialization for residual networks that enables training very deep models without
+      normalization layers. Theoretically shows that residual branch scaling by 1/sqrt(L) prevents gradient explosion. Matches
+      BatchNorm performance on ImageNet and CIFAR with ResNets up to 110 layers.
+    verified: false

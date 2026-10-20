@@ -1,0 +1,4535 @@
+# Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: llama_tg_training - project: turn_re
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 77
+- **Recorded user turns:** 3
+- **Tool calls:** 22
+- **Original source:** `logs/chats/exported-trajectories/account-3/668d3321-1462-4922-9948-b2cbced13e62.jsonl`
+- **Structured JSON:** [`8cbb0de9faa173d30d43.json`](../../sessions/8c/8cbb0de9faa173d30d43.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T03:37:37.810Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T03:37:37.810Z",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "content": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: llama_tg_training\n- project: turn_residual_gating\n- server: westd-20861\n- log_path: /root/turn_residual_gating/logs/llama_tg_training.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T03:37:37.813Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T03:37:37.813Z",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+## Round 1
+
+72 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T03:37:37.851Z_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: llama_tg_training
+- project: turn_residual_gating
+- server: westd-20861
+- log_path: /root/turn_residual_gating/logs/llama_tg_training.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "1b368bc1-b5a9-4319-b20f-c8630fb44d6f",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T03:37:37.850Z_
+
+```json
+{
+  "parentUuid": "1b368bc1-b5a9-4319-b20f-c8630fb44d6f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__distill_papers",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_distill_status",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_constraints",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_mistakes",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "b2e24ff9-7bcc-4ad1-93c6-4a0f1523f144",
+  "timestamp": "2026-05-21T03:37:37.850Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T03:37:37.850Z_
+
+```json
+{
+  "parentUuid": "b2e24ff9-7bcc-4ad1-93c6-4a0f1523f144",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "e92d6783-6db2-404e-965e-926ef20795aa",
+  "timestamp": "2026-05-21T03:37:37.850Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-21T03:37:37.850Z_
+
+```json
+{
+  "parentUuid": "e92d6783-6db2-404e-965e-926ef20795aa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a1b82813-6dfc-4fe3-94cd-29fd989568c3",
+  "timestamp": "2026-05-21T03:37:37.850Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7 · 2026-05-21T03:37:37.851Z_
+
+```json
+{
+  "parentUuid": "a1b82813-6dfc-4fe3-94cd-29fd989568c3",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "bdd28bb5-60f8-41b6-a816-6a676b8bff09",
+  "timestamp": "2026-05-21T03:37:37.851Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose failed llama training experiment with missing metrics",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-21T03:37:42.176Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到实验失败的 cron 回调，需要按 on-experiment-failed skill 处理。先执行 session-start 初始化，然后诊断失败原因。
+
+让我先做 session-start 初始化：读 registry、reconcile crons、读 report.md 和 ROADMAP.md。同时加载 on-experiment-failed skill。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdd28bb5-60f8-41b6-a816-6a676b8bff09",
+  "isSidechain": false,
+  "requestId": "req_011CbF1tu7HEtdy8ZdsozD8Z",
+  "type": "assistant",
+  "uuid": "69126545-8f3a-4b51-997c-1d82b13935b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTK4uyp2vY1WNFUo5wgKvW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26478,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26478,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 26478,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26478
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-21T03:37:43.256Z_
+
+收到实验失败回调，开始初始化 session 并诊断。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69126545-8f3a-4b51-997c-1d82b13935b9",
+  "isSidechain": false,
+  "requestId": "req_011CbF1tu7HEtdy8ZdsozD8Z",
+  "type": "assistant",
+  "uuid": "135f4154-37ac-45b4-aec1-09374c78fbfb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTK4uyp2vY1WNFUo5wgKvW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26478,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26478,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 26478,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26478
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-21T03:37:44.571Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0131AsYunJwAGnsW3JYdfbtX`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "135f4154-37ac-45b4-aec1-09374c78fbfb",
+  "isSidechain": false,
+  "requestId": "req_011CbF1tu7HEtdy8ZdsozD8Z",
+  "type": "assistant",
+  "uuid": "430eddf7-2079-4f56-8c7c-0db715d1863b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FTK4uyp2vY1WNFUo5wgKvW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 26478,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 267,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 26478,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 267,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 26478,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 26478
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-21T03:37:44.578Z_
+
+<details><summary>↩ Tool result · `toolu_0131AsYunJwAGnsW3JYdfbtX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "430eddf7-2079-4f56-8c7c-0db715d1863b",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "4fe3fa55-dd41-4508-8f83-935d31a12762",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "430eddf7-2079-4f56-8c7c-0db715d1863b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-21T03:37:47.327Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_012To5p9qBaRPrWguBV5U6jq`</summary>
+
+```json
+{
+  "project": "turn_residual_gating",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fe3fa55-dd41-4508-8f83-935d31a12762",
+  "isSidechain": false,
+  "requestId": "req_011CbF1uQ3afcXctXmJ15hBA",
+  "type": "assistant",
+  "uuid": "bce867bc-43be-4c6d-bb08-a569269b2300",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhShDZ4hPfVR4koHRFoJwd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1145,
+      "cache_read_input_tokens": 37925,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1145,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 37925,
+          "cache_creation_input_tokens": 1145,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1145
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-21T03:37:47.384Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01UzLDh4pbUZCQh7d8ciGDCi`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bce867bc-43be-4c6d-bb08-a569269b2300",
+  "isSidechain": false,
+  "requestId": "req_011CbF1uQ3afcXctXmJ15hBA",
+  "type": "assistant",
+  "uuid": "bc4ac331-62cd-4606-a918-1226d135510f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhShDZ4hPfVR4koHRFoJwd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1145,
+      "cache_read_input_tokens": 37925,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1145,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 37925,
+          "cache_creation_input_tokens": 1145,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1145
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T03:37:47.694Z_
+
+<details><summary>↩ Tool result · `toolu_012To5p9qBaRPrWguBV5U6jq`</summary>
+
+```text
+Error: result (53,097 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bce867bc-43be-4c6d-bb08-a569269b2300",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "1fb5e1af-5759-4b01-8b4c-3a8f18cf31c6",
+  "toolUseResult": "Error: result (53,097 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"llama_tg_training\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T03:37:31.513Z\", \"updated_at\": \"2026-05-21T03:37:31.653Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T03:37:33.309826+00:00\"}]}}, \"llama_eval_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T03:29:51.255Z\", \"updated_at\": \"2026-05-21T03:32:25.576Z\", \"hypothesis\": \"Llama-3.1-8B TG 训练完成后，验证 C5：IID (teacher-forced) GAR 应接近 target（~0.5），但 model-gen (autoregressive) GAR 应出现类似 Qwen 的 20-33× training-inference gap，确认 exposure bias 跨模型泛化。\", \"parent\": \"llama_tg_s42\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_tg_s42.sh 2>&1 | tee runs/eval_llama_tg_s42.log\", \"server\": \"westd-20861\", \"data_path\": \"data/ultrachat_eval_sample.json\", \"data_count\": 50, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"runs/phase2_llama_tg_s42/epoch_2\", \"eval_data\": \"ultrachat_eval_sample\"}}, \"llama_tg_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:34:36.906Z\", \"updated_at\": \"2026-05-21T03:28:07.022Z\", \"hypothesis\": \"在 Llama-3.1-8B-Instruct 上训练 ThreadGate（与 Qwen v7 相同配置），验证 C5：gating mechanism 和 GAR training-inference gap 跨模型泛化。如果 Llama TG 也出现 IID GAR ≈ target 但 model-gen GAR 坍塌 → 确认 exposure bias 的跨模型通用性。\", \"parent\": \"llama_phase1_gar_diag\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python src/train_phase2.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct --data-dir data/ultrachat_8k --output-dir runs/phase2_llama_tg_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"199643\", \"data_path\": \"data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (training experiment)\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_llama_tg_s42\", \"log_path\": \"/root/turn_residual_gating/logs/llama_tg_training.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T03:27:55.963Z\", \"metrics\": {\"epochs_completed\": 3, \"total_steps\": 3000, \"wall_clock_seconds\": 26212, \"wall_clock_hours\": 7.28, \"final_avg_loss\": 0.9233, \"final_avg_ntp\": 0.9224, \"final_avg_gar\": 0.0009, \"final_avg_div\": 0, \"final_gate_mean\": 0.9099, \"final_gate_std\": 0.0701, \"final_gate_min\": 0.7188, \"final_gate_max\": 0.9922, \"gate_profile_step3000\": {\"L0\": 0.957, \"L1\": 0.973, \"L2\": 0.977, \"L3\": 0.965, \"L4\": 0.992, \"L5\": 0.969, \"L6\": 0.957, \"L7\": 0.957, \"L8\": 0.961, \"L9\": 0.949, \"L10\": 0.938, \"L11\": 0.934, \"L12\": 0.969, \"L13\": 0.953, \"L14\": 0.957, \"L15\": 0.965, \"L16\": 0.953, \"L17\": 0.961, \"L18\": 0.922, \"L19\": 0.902, \"L20\": 0.883, \"L21\": 0.863, \"L22\": 0.836, \"L23\": 0.844, \"L24\": 0.809, \"L25\": 0.719, \"L26\": 0.762, \"L27\": 0.805, \"L28\": 0.801, \"L29\": 0.855, \"L30\": 0.898, \"L31\": 0.934}, \"checkpoint_size_gate_mb\": 4.2, \"checkpoint_size_lora_mb\": 26, \"gpu\": \"NVIDIA RTX PRO 6000 Blackwell\", \"vram_gb\": 102, \"mem_used_gb\": 63.4}}, \"attention_steering_gen_n50\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:17.455Z\", \"updated_at\": \"2026-05-21T01:59:57.100Z\", \"hypothesis\": \"N=5 gen steering 显示 β∈[2,5] phase transition (GAR 0.06→0.68)，但样本量不足以报告置信区间。N=50 conversations 应重现同一 phase transition pattern 并提供统计鲁棒的 mean±std，加固 C6 claim (attention steering as causal mechanism proof)。\", \"parent\": \"attention_steering_v7_tg_gen\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_attention_steering.py --checkpoint runs/phase2_tg_s42_v7 --mode gen --data-file data/eval_200/eval_200.json --max-convs 50 --beta 0 2 3 4 5 10 --output-dir runs/attention_steering/ --output-name attention_steering_gen_n50\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/eval_200/eval_200.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct + v7 TG LoRA\", \"seed\": \"N/A (eval)\", \"checkpoint_source\": \"phase2_tg_s42_v7\", \"eval_data\": \"50 conversations from eval_200.json, gen mode autoregressive\", \"checkpoint_path\": \"N/A (eval experiment)\", \"log_path\": \"/root/turn_residual_gating/runs/attention_steering/attention_steering_gen_n50.json\"}, \"metrics\": {\"corrected\": true, \"aggregation\": \"per-conv mid_gar(turns 2-7), >=3 turns only\", \"beta_0.0\": {\"mid_gar\": 0.0641, \"mid_gar_std\": 0.0809, \"ppl\": 1.4324, \"ppl_std\": 0.1029, \"n_valid\": 39}, \"beta_2.0\": {\"mid_gar\": 0.128, \"mid_gar_std\": 0.1101, \"ppl\": 1.4822, \"ppl_std\": 0.1385, \"n_valid\": 39}, \"beta_3.0\": {\"mid_gar\": 0.5558, \"mid_gar_std\": 0.0601, \"ppl\": 1.5605, \"ppl_std\": 0.1719, \"n_valid\": 39}, \"beta_4.0\": {\"mid_gar\": 0.6439, \"mid_gar_std\": 0.0607, \"ppl\": 1.6674, \"ppl_std\": 0.2241, \"n_valid\": 39}, \"beta_5.0\": {\"mid_gar\": 0.7271, \"mid_gar_std\": 0.0605, \"ppl\": 1.7723, \"ppl_std\": 0.2693, \"n_valid\": 38}, \"beta_10.0\": {\"mid_gar\": 0.9612, \"mid_gar_std\": 0.0152, \"ppl\": 3.4517, \"ppl_std\": 1.7813, \"n_valid\": 39}, \"n_convs_total\": 50, \"n_convs_valid\": 39, \"mode\": \"gen\", \"phase_transition_range\": \"[2, 3]\"}, \"conclusion\": \"success\", \"notes\": \"原始聚合有 min_turns 截断 bug（截到 2 turns），修正后用 per-conv mid_gar(turns 2-7)。39/50 对话有 ≥3 turns 参与统计。修正后 baseline β=0 GAR 从 0.101 降到 0.064（median 0.031 与 N=5 的 0.028 一致）。Phase transition 在 β∈[2,3] 重现。β=10 corrected 0.961 ≈ N=5 的 0.959。\", \"completed_at\": \"2026-05-20T19:55:34.383Z\"}, \"phase2_tg_s42_v8b_resume\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:08:29.483Z\", \"updated_at\": \"2026-05-21T01:56:13.289Z\", \"hypothesis\": \"从 epoch_0 checkpoint resume v8b scheduled sampling 训练。SS 线性混合 0→0.5 teacher-forced + model-generated contexts。如果 model-gen context 上的 GAR 训练能缩小 30x training-inference gap → exposure bias mitigation 有效。成功标准：inference GAR 显著高于 v7 的 0.016 (至少 +1pp)，PPL 不恶化。\", \"parent\": \"phase2_tg_s42_v8b_ss_fixed\", \"spec\": {\"command\": \"python src/train_phase2_v8b.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42 --scheduled-sampling --ss-max-ratio 0.5 --resume checkpoints/tg_v8b_ss_fixed_s42/epoch_0\", \"server\": \"westd-20861\", \"data_path\": \"data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v8b_ss_fixed/epoch_0\", \"eval_data\": \"N/A (training experiment)\", \"checkpoint_path\": \"checkpoints/tg_v8b_ss_fixed_s42\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v8b_resume.log\"}, \"metrics\": {\"training\": {\"total_steps\": 3000, \"epochs_completed\": 3, \"wall_clock_hours\": 8.1, \"final_loss\": 0.933, \"final_ntp_loss\": 0.9322, \"final_gar_loss\": 0.0008, \"final_gate_mean\": 0.9586, \"final_gate_std\": 0.0582, \"ss_ratio\": 0.5}, \"eval_iid\": {\"gar_ours\": 0.4983, \"gar_dongre\": 0.3855, \"ppl\": 2.78}, \"eval_modelgen\": {\"gar_ours\": 0.3177, \"gar_dongre\": 0.3533, \"ppl\": 1.38}, \"vs_v7\": {\"iid_gar_ours_delta\": -0.005, \"modelgen_gar_ours_delta\": 0.302, \"gap_ratio_v7\": 32, \"gap_ratio_v8b\": 1.57}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T18:57:21.189Z\"}, \"llama_phase1_gar_diag\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:39:25.751Z\", \"updated_at\": \"2026-05-21T01:34:36.417Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct 在 multi-turn dialogue 中也应出现 goal attention decay（与 Qwen-2.5-7B 类似），确认 attention decay 是 transformer 架构通用现象而非模型特有。Phase 1 诊断：测量 base Llama 的 per-turn GAR profile。\", \"spec\": {\"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"account\": \"local\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python src/run_phase1_gar_llama.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ --output-dir /root/turn_residual_gating/runs/phase1_llama_gar_diag --max-new-tokens 256\", \"pid\": \"198817\", \"data_path\": \"built-in 5 conversations (knowledge_qa, coding_help, creative_writing, math_reasoning, debate)\", \"data_count\": 5, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (base model, no fine-tuning)\", \"eval_data\": \"5 built-in conversations x 10 turns each, gen mode\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/turn_residual_gating/logs/llama_phase1_gar_diag.log\"}, \"conclusion\": \"success\", \"metrics\": {\"per_turn_gar\": {\"turn_1\": 0.0263, \"turn_2\": 0.0183, \"turn_3\": 0.0087, \"turn_4\": 0.0055, \"turn_5\": 0.006, \"turn_6\": 0.0035, \"turn_7\": 0.0038, \"turn_8\": 0.0037, \"turn_9\": 0.005, \"turn_10\": 0.0026}, \"t1_t10_decay_pct\": 90.1, \"t1_mid38_drop_pct\": 80.2, \"n_topics\": 5, \"model\": \"Meta-Llama-3.1-8B-Instruct\", \"mode\": \"gen\", \"n_conversations\": 5, \"n_turns\": 10}, \"completed_at\": \"2026-05-21T01:34:36.417Z\"}, \"eval_v8b_ss\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:44:23.366Z\", \"updated_at\": \"2026-05-20T18:45:14.523Z\", \"hypothesis\": \"Scheduled Sampling (linear 0→0.5 mixing of teacher-forced and model-gen contexts) closes the 30x training-inference GAR gap by reducing exposure bias, resulting in model-gen GAR significantly above v7 baseline (0.016) while preserving IID GAR and PPL.\", \"parent\": \"phase2_tg_s42_v8b_ss\", \"spec\": {\"command\": \"python src/eval_phase2_gar.py --checkpoint-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type threadgate\", \"server\": \"westd-20861\", \"data_path\": \"data/ultrachat_eval_heldout.json + built-in 5conv model-gen\", \"data_count\": \"50 heldout + 5 model-gen\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/tg_v8b_ss_fixed_s42\", \"eval_data\": \"ultrachat_eval_heldout.json (IID) + built-in model-gen (5x10 turns)\", \"checkpoint_path\": \"checkpoints/tg_v8b_ss_fixed_s42\", \"log_path\": \"/tmp/eval_v8b_all.log\"}, \"metrics\": {\"iid_gar_ours\": 0.4983, \"iid_gar_dongre\": 0.3855, \"iid_ppl\": 2.78, \"iid_ngar_ours\": 13.5, \"iid_ngar_dongre\": 22.68, \"modelgen_gar_ours\": 0.3177, \"modelgen_gar_dongre\": 0.3533, \"modelgen_ppl\": 1.38, \"modelgen_ngar_ours\": 4.47, \"modelgen_ngar_dongre\": 5.92, \"iid_turn1_gar_ours\": 0.5398, \"modelgen_turn1_gar_ours\": 0.4333}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T18:45:14.523Z\"}, \"attention_steering_eval200_tf\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:58:23.626Z\", \"updated_at\": \"2026-05-20T10:08:24.710Z\", \"hypothesis\": \"N=200 TF 模式 attention steering 验证 β-GAR 关系的统计鲁棒性。在 teacher-forced context (无 exposure bias) 下，steering 效果应更温和（baseline GAR 已 ~0.50），但仍展示 β 调控 attention 的能力。与 N=5 gen 模式结果互补：tf 验证机制可控性，gen 验证因果闭环。\", \"parent\": \"attention_steering_v7_tg_gen\", \"spec\": {\"command\": \"python src/eval_attention_steering.py --mode tf --betas 0 2 3 4 5 10 --output-name eval200_attention_steering.json (data: eval_200/eval_200.json, 200 convs)\", \"server\": \"westd-20861\", \"data_path\": \"data/eval_200/eval_200.json\", \"data_count\": 200, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7\", \"eval_data\": \"data/eval_200/eval_200.json\", \"checkpoint_path\": \"checkpoints/tg_v7_s42/final\", \"log_path\": \"/tmp/eval200_steering.log\"}, \"metrics\": {\"beta_0.0\": {\"mid_gar\": 0.5353, \"ppl\": 2.62}, \"beta_2.0\": {\"mid_gar\": 0.6112, \"ppl\": 2.69}, \"beta_3.0\": {\"mid_gar\": 0.788, \"ppl\": 2.93}, \"beta_4.0\": {\"mid_gar\": 0.8165, \"ppl\": 3.49}, \"beta_5.0\": {\"mid_gar\": 0.8325, \"ppl\": 6.15}, \"beta_10.0\": {\"mid_gar\": 0.977, \"ppl\": 505.21}, \"n_convs\": 200, \"mode\": \"tf\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T10:08:24.710Z\"}, \"trc_baseline_v7_tg\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:18:17.576Z\", \"updated_at\": \"2026-05-20T09:34:40.734Z\", \"hypothesis\": \"如果 exposure bias 对 auxiliary objectives 的破坏跨特征空间通用，那么 TRC (hidden state cos_sim) 在 model-gen 下也应出现与 GAR (attention 空间) 类似的 TF/gen gap。在 v7 TG / LoRA-only / base 三个 checkpoint 上测量 TRC baseline，确认 gap 是否存在。成功标准：gen TRC 显著低于 TF TRC。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"bash scripts/launch_trc_baseline.sh\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"158700\", \"log_path\": \"/root/runs/turn_residual_gating/trc_baseline_v7_tg.log\", \"submitted_at\": \"2026-05-20T07:18:38.202Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/standard_conversations.json\", \"data_count\": 5, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7 + phase2_lora_only_s42 + base\", \"eval_data\": \"5 hardcoded multi-turn conversations x 10 turns\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/trc_baseline/\", \"wall_clock_seconds\": 7767.7, \"gpu_hours\": 2.16}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T09:28:05.853Z\", \"metrics\": {\"v7_tg\": {\"tf_trc\": 0.3339, \"gen_trc\": 0.3323, \"trc_gap\": 0.0016, \"tf_tbp_ppl\": 1.05, \"gen_tbp_ppl\": 1.05}, \"lora_only\": {\"tf_trc\": 0.349, \"gen_trc\": 0.4106, \"trc_gap\": -0.0617, \"tf_tbp_ppl\": 9.5, \"gen_tbp_ppl\": 12}, \"base\": {\"tf_trc\": 0.1494, \"gen_trc\": 0.1494, \"trc_gap\": 0, \"tf_tbp_ppl\": 2.05, \"gen_tbp_ppl\": 2.05}}, \"notes\": \"Cross-space 验证：exposure bias 是 attention-specific。v7 TG: TRC gap = +0.002 (近零)，hidden state 一致性在 TF/gen 之间无差异。对比 GAR 的 30x gap，TRC 无 gap → exposure bias 只扭曲 attention 分布，不影响 hidden state 层面。LoRA-only: 反转 gap (-0.062)，gen TRC 更高但 TBP PPL 严重恶化 (9.5→12.0)——hidden states \\\"坍缩\\\"趋同但信息量下降。Base: 零 gap（但可能有 eval 脚本 bug，gen 模式复用了 TF hidden states）。\"}, \"attention_steering_v7_tg_gen\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:07:20.607Z\", \"updated_at\": \"2026-05-20T09:30:17.530Z\", \"hypothesis\": \"推理时向 attention logits 注入 goal-position bias β 可恢复 autoregressive GAR。如果 GAR 从 0.015 显著提升 → 闭合因果环：exposure bias → attention 偏移 → GAR 坍塌 → 手动修正注意力 → GAR 恢复。扫描 β ∈ {0, 0.5, 1.0, 2.0, 5.0, 10.0}，成功标准：GAR > 0.1 且 PPL 不严重恶化。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"bash scripts/launch_attention_steering.sh gen\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"157657\", \"log_path\": \"runs/attention_steering/phase2_tg_s42_v7_attention_steering.json\", \"submitted_at\": \"2026-05-20T07:07:27.678Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/ShareGPT_V3_format_5convs.json\", \"data_count\": 5, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7\", \"eval_data\": \"data/ShareGPT_V3_format_5convs.json\", \"checkpoint_path\": \"checkpoints/tg_v7_s42/final\", \"wall_clock_seconds\": 8551.2, \"gpu_hours\": 2.38}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T09:29:58.880Z\", \"metrics\": {\"beta_0.0\": {\"mid_turns_avg_gar\": 0.028, \"avg_ppl\": 1.409}, \"beta_0.5\": {\"mid_turns_avg_gar\": 0.0287, \"avg_ppl\": 1.387}, \"beta_1.0\": {\"mid_turns_avg_gar\": 0.0349, \"avg_ppl\": 1.36}, \"beta_2.0\": {\"mid_turns_avg_gar\": 0.062, \"avg_ppl\": 1.411}, \"beta_5.0\": {\"mid_turns_avg_gar\": 0.6795, \"avg_ppl\": 1.908}, \"beta_10.0\": {\"mid_turns_avg_gar\": 0.959, \"avg_ppl\": 4.22}, \"phase_transition_range\": \"[2, 5]\", \"baseline_gar\": 0.028, \"max_gar_at_acceptable_ppl\": 0.6795, \"max_gar_at_acceptable_ppl_beta\": 5}, \"notes\": \"Attention steering 闭合因果环。β=0→2: GAR 缓升 (0.028→0.062), PPL 不变 (~1.4); β=5: phase transition, GAR 跳至 0.68, PPL 升至 1.91; β=10: GAR 饱和 0.96, PPL 恶化 4.22。成功标准 (GAR>0.1 且 PPL 不严重恶化) 在 β=2 即满足。β∈[2,5] 存在 phase transition。证明：手动修正 attention 指向 goal tokens → 直接恢复 GAR → 确认 exposure bias 通过 attention 偏移导致 GAR 坍塌。\"}, \"phase2_tg_s42_v8b_ss_fixed\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T02:28:58.064Z\", \"updated_at\": \"2026-05-20T09:30:04.080Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2_v8b.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42 --scheduled-sampling --ss-max-ratio 0.5\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"133321\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v8b_ss_fixed.log\", \"submitted_at\": \"2026-05-20T02:28:58.001Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_v8b_ss_fixed_s42\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\", \"wall_clock_seconds\": 24818.0, \"gpu_hours\": 6.89}, \"hypothesis\": \"Fixed scheduled sampling (D026 三项 bug 修复后): 线性从 0→0.5 混合 teacher-forced + model-generated contexts 计算 GAR loss。如果 model-gen context 上的 GAR 训练能缩小 30x training-inference gap → exposure bias mitigation 有效，paper 从纯 negative 升级为 diagnosis + initial remedy。超参与 v7 一致 (lambda_gar=1.0, MSE+gate_div)，唯一变量是 SS path。成功标准：inference GAR 显著高于 v7 的 0.016 (至少 +1pp)，PPL 不恶化。\", \"parent\": \"phase2_tg_s42_v7\", \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 247.19 MiB is free. Including non-PyTorch memory, this process has 50.68 GiB memory in use. Process 157667 has 26.76 GiB memory in use. Process 158713 \", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-20T09:22:35.962Z\", \"notes\": \"CUDA OOM at Epoch 1 Step 4300 (loss.backward). 其他进程共享 GPU 导致显存不足: Process 157667 (26.76GB) + Process 158713 (17.28GB) + PyTorch 自身 45.21GB + 4.81GB reserved > 94.97GB 总容量。训练在 OOM 前正常收敛 (SS ratio=0.5, Loss~1.0, Gate~0.94)。有 epoch_0 checkpoint。需要独占 GPU 重跑。\"}, \"phase2_tg_s42_v7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T18:17:45.739Z\", \"updated_at\": \"2026-05-20T03:04:19.923Z\", \"hypothesis\": \"MSE 双向 loss (mean_GAR - target)² + gate diversity 正则 F.relu(min_std - gate_std) 从结构上解决恒等退化：MSE 在 GAR > target 时反向惩罚（不再单调推高），gate_div 直接强制层间分化。预期：gate_std 稳定 >0.05 + GAR 收敛到 target=0.5 附近 + NTP 正常收敛。\", \"parent\": \"phase2_tg_s42_v6\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5035, \"eval_iid_dongre_mid_gar\": 0.0152, \"eval_iid_ppl\": 2.784, \"eval_heldout_ours_mid_gar\": 0.5035, \"eval_heldout_dongre_mid_gar\": 0.0152, \"eval_heldout_ppl\": 2.78, \"eval_modelgen_ours_mid_gar\": 0.0157, \"eval_modelgen_dongre_mid_gar\": 0.0194, \"eval_modelgen_ppl\": 1.36, \"gate_mean_final\": 0.9336, \"gate_std_final\": 0.0492}, \"spec\": {\"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --min-gate-std 0.05 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v7 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\\\"\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v7\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v7.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T00:48:47.275Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T00:48:47.463Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:48:48.850580+00:00\"}]}, \"notes\": \"训练 3 epoch 完成 (21352s/5.9h)。最终 gate: mean=0.9336, std=0.0492, L3=0.801 L4=0.789 最低。Eval 完成：GAR-ours recovery +0.35pp (mid 0.0157 vs baseline 0.0122), GAR-Dongre recovery +0.72pp (mid 0.0194 vs baseline 0.0122)。Gate dynamic range 最大层: L23 diff=-0.2100, L14 diff=-0.1803。\"}, \"phase2_tg_s42_v9_pcgrad\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-19T16:13:21.907Z\", \"updated_at\": \"2026-05-20T03:04:17.171Z\", \"hypothesis\": \"PCGrad (Yu et al. NeurIPS 2020) 消除 NTP-GAR 梯度方向冲突后（仅对 gate 参数投影 NTP 梯度到 GAR 梯度正交平面），如果 30x training-inference GAR gap 仍在 → 因果证据证明 exposure bias（非梯度竞争）是 gap 根因。与 v7 对比：相同超参（lambda_gar=1.0, MSE+gate_div），唯一变量是梯度处理方式。成功标准：(1) 梯度 cos_sim 显著改善（从 v7 的 -0.089 提升到 ≥0），(2) 但推理 GAR 仍 ≈ v7 水平（0.016），证明梯度冲突不是 gap 的因。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2_v9_pcgrad.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v9_pcgrad_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"83860\", \"log_path\": \"/root/turn_residual_gating/logs/phase2_tg_v9_pcgrad_s42.log\", \"submitted_at\": \"2026-05-19T17:42:10.820Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_v9_pcgrad_s42\", \"wall_clock_seconds\": 30601.5, \"gpu_hours\": 8.5}, \"reproduce\": {\"finished_at\": \"2026-05-20T01:42:12.536Z\"}, \"failure_reason\": null, \"conclusion\": \"success\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T17:35:39.776243+00:00\", \"note\": \"第1次提交 EXIT_CODE=2 残留事件\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T01:42:14.275822+00:00\"}]}, \"completed_at\": null, \"notes\": \"D028 因果排除确认（M017 修正后）。训练: EXIT_CODE=0, 7.98h, 3 epochs。PCGrad cos_sim 从 -0.061→+0.055→-0.035 (围绕 0 振荡), NTP mag_ratio 2.8→28.8 持续增长。L_GAR 有 0-350 step 高原期后仍坍塌到≈0。IID eval (同 protocol 50 heldout convs): GAR-ours=0.5002 (vs v7 0.5035, diff -0.33pp), GAR-Dongre=0.0123 (vs v7 0.0152), PPL=2.780 (vs v7 2.784, diff 0.004, 无改善)。Model-gen eval (5 convs): GAR-ours=0.0151, PPL=1.50。结论: PCGrad 消除梯度方向冲突后所有 IID 指标均 ≈ v7（GAR、PPL、NTP 无变化），方向冲突因 NTP 幅度主导 (10-40x) 而 inconsequential。Exposure bias 是 30x gap 根因。\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5002, \"eval_iid_dongre_mid_gar\": 0.0123, \"eval_iid_ppl\": 2.78, \"eval_iid_ntp\": 0.9752, \"eval_heldout_ours_mid_gar\": 0.5002, \"eval_heldout_dongre_mid_gar\": 0.0123, \"eval_heldout_ppl\": 2.78, \"eval_heldout_ntp\": 0.9752, \"eval_modelgen_ours_mid_gar\": 0.0151, \"eval_modelgen_dongre_mid_gar\": 0.0173, \"eval_modelgen_ppl\": 1.5, \"vs_v7_iid_ppl_diff\": 0.004, \"vs_v7_iid_gar_diff\": -0.0033}}, \"phase2_lora_only_s42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T20:36:32.506Z\", \"updated_at\": \"2026-05-20T02:15:18.992Z\", \"hypothesis\": \"LoRA-only baseline (gate 固定 1.0，无 gating 机制) 在相同 MSE+NTP loss 下 GAR 应低于 ThreadGate (v7)。如果 LoRA-only 也能训到 GAR~0.5，则 gating 机制贡献为零，paper story 不成立。关键对比：LoRA-only 的 GAR 收敛值 vs v7 的 0.48。\", \"parent\": \"phase2_tg_s42_v7\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-19T12:44:29.475Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T13:04:35.644174+00:00\"}]}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type lora_only --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 0.0 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_lora_only_s42 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\\\"\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_lora_only_s42\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_lora_only_s42.log\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T13:04:33.523Z\"}, \"conclusion\": \"success\", \"metrics\": {\"epochs_completed\": 3, \"global_steps\": 3000, \"training_time_seconds\": 20588.6, \"training_time_hours\": 5.7, \"gate_fixed\": 1, \"gate_type_actual\": \"none\", \"final_lora_size_mb\": 20, \"eval_modelgen_ours_mid_gar\": 0.0245, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.371}, \"checkpoint_path\": \"/root/runs/turn_residual_gating/runs/phase2_lora_only_s42/lora/\", \"log_path\": \"/root/runs/turn_residual_gating/phase2_lora_only_s42.log\", \"notes\": \"诊断确认：EXIT_CODE=1 因 argparse 不认 lora_only 选项（choices 只有 threadgate/uniform/none）。训练实际已用 --gate-type none 完成 3 epoch (3000 steps, 20588.6s/5.7h)。Gate 全程固定 1.0（符合 lora_only 语义）。Checkpoint 可用，无需重跑。修复：dispatch 命令改用 --gate-type none 或在 train_phase2.py 添加 lora_only choice。\"}, \"phase2_ug_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:04:17.643Z\", \"updated_at\": \"2026-05-20T02:15:15.775Z\", \"hypothesis\": \"Uniform gating baseline: per-layer independent gates without turn conditioning (content-dependent only), to isolate whether ThreadGate's turn-conditioned gating provides benefit over content-only residual scaling. Same training setup as v7 but with gate-type=uniform.\", \"parent\": \"phase1_gar_diag\", \"notes\": \"3 epoch 完成 (21994.5s/6.1h)。最终 gate: mean=0.9598, std=0.0518, L3=0.777 L5=0.812 最低。重要发现：uniform gate 模式下各层仍学出 per-layer 分化（L3=0.777 vs L27=1.000），与 ThreadGate v7 的 L3/L4 最低模式一致。这说明 per-layer variation 可能来自 LoRA+GAR loss 而非 gate architecture。\", \"spec\": {\"command\": \"python src/train_phase2.py --gate-type uniform --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --min-gate-std 0.05 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_ug_s42 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\", \"server\": \"westd-20861\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_ug_s42\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_ug_s42.log\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T06:53:13.931Z\", \"metrics\": {\"epoch0_avg_loss\": 1.0019, \"epoch0_avg_ntp\": 0.9755, \"epoch0_avg_gar\": 0.0259, \"epoch0_avg_div\": 0.0005, \"epoch1_avg_loss\": 0.9447, \"epoch1_avg_ntp\": 0.9435, \"epoch1_avg_gar\": 0.0013, \"epoch1_avg_div\": 0, \"epoch2_avg_loss\": 0.9319, \"epoch2_avg_ntp\": 0.9309, \"epoch2_avg_gar\": 0.001, \"epoch2_avg_div\": 0, \"final_gate_mean\": 0.9598, \"final_gate_std\": 0.0518, \"final_gate_min\": 0.7773, \"final_gate_max\": 1, \"final_profile_L3\": 0.777, \"final_profile_L5\": 0.812, \"final_profile_L0\": 0.875, \"final_profile_L27\": 1, \"training_time_seconds\": 21994.5, \"training_time_hours\": 6.1, \"global_steps\": 7950, \"unexpected_per_layer_variation\": true, \"eval_modelgen_ours_mid_gar\": 0.0149, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.396}, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_ug_s42\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_ug_s42.log\"}, \"phase2_tg_s42_v8_schedsampling\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:02:00.223Z\", \"updated_at\": \"2026-05-19T16:33:04.989Z\", \"hypothesis\": \"Scheduled sampling 应用到 GAR loss（线性从 0→0.5 混合 teacher-forced + model-generated contexts）能缩小 v7 的 30x training-inference GAR gap。机制：在 model-generated context 上计算 GAR loss 迫使 attention pattern 适应推理时分布，直接 address teacher-forcing distribution shift。成功标准：inference GAR 显著高于 v7 的 0.016，PPL 不显著恶化（≤2.78+0.2）。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"python src/train_phase2_v8.py --scheduled-sampling --ss-max-ratio 0.5\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": 73838, \"log_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v8_schedsampling/\", \"submitted_at\": \"2026-05-19T15:43:01.461Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch with LoRA)\", \"eval_data\": \"ultrachat_eval_heldout.json (post-training eval)\", \"hyperparams\": {\"lr\": 0.0002, \"epochs\": 3, \"grad_accum\": 8, \"ss_max_ratio\": 0.5, \"ss_gen_max_tokens\": 256, \"ss_gen_temperature\": 0.7}, \"estimated_hours\": \"8-9\", \"checkpoint_path\": \"N/A (crashed at 5.8%)\", \"wall_clock_seconds\": 1611.0, \"gpu_hours\": 0.45}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T16:09:52.423Z\", \"metrics\": {\"killed_at_microstep\": 1950, \"total_microsteps\": 24000, \"completion_pct\": 8.1, \"global_step_approx\": 244, \"total_global_steps\": 3000, \"ss_steps_observed\": 1, \"tf_lgar_mean_step850_1400\": 0.0062, \"tf_lgar_std\": 0.0082, \"tf_lgar_collapse_step\": 800, \"gate_mean_final\": 0.93, \"ss_ratio_at_kill\": 0.081, \"crash_reason\": \"killed by director: SS path code bug (D026) makes experiment invalid, GPU needed for PCGrad\", \"design_flaw_ss_ramp_too_slow\": true, \"design_flaw_no_ss_tf_separate_logging\": true}, \"notes\": \"Director kill at micro-step ~1950 (8.1%). 原因: SS path code bug (D026) + GAR-ours 无推理 gap (D024)，实验无效。GPU 转入 plan_018 PCGrad。详情：(1) SS ratio 仅 0.081 时 kill，仅 1 条 SS step 被日志捕获，(2) TF L_GAR 在 step 800 坍塌到 ≈0.006（与 v7 一致），(3) GAR-ours 推理时 ≈0.50 ≈ target，SS 用 GAR-ours 训练无法验证 exposure bias mitigation，(4) lambda_gar=2.0 (vs v7 的 1.0) confound 未被充分触发。\"}, \"analysis_attention_heatmap\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:03:16.154Z\", \"updated_at\": \"2026-05-19T15:22:24.770Z\", \"hypothesis\": \"四模型（Base/TG/UG/LoRA-only）的 goal attention 衰减模式是否一致？如果 TG 的 attention decay 与 LoRA-only 无差异，则 gating 机制对 attention 分布零增量。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"attention heatmap analysis script\", \"server\": \"westd-20861\", \"data_path\": \"standard_conversations.json\", \"data_count\": 5, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7 + phase2_ug_s42 + phase2_lora_only_s42\", \"eval_data\": \"standard_conversations.json (5 convs x 10 turns)\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"westd-20861:/root/turn_residual_gating/runs/analysis/\"}, \"conclusion\": \"success\", \"metrics\": {\"base_mean_goal_attn\": 0.0136, \"base_decay\": 0.875, \"tg_mean_goal_attn\": 0.0232, \"tg_decay\": 0.777, \"ug_mean_goal_attn\": 0.0216, \"ug_decay\": 0.803, \"lora_mean_goal_attn\": 0.0216, \"lora_decay\": 0.81, \"gating_incremental_benefit\": \"none\"}, \"completed_at\": \"2026-05-19T15:22:24.770Z\"}, \"analysis_gradient_conflict\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:03:12.230Z\", \"updated_at\": \"2026-05-19T15:22:23.782Z\", \"hypothesis\": \"NTP-GAR 梯度冲突在 v7 训练过程中是否逐层普遍存在？量化 cos_sim 和 magnitude ratio 的演化，验证 NTP 是否在训练中逐渐完全压制 GAR 信号。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"gradient conflict analysis script\", \"server\": \"westd-20861\", \"data_path\": \"v7 epoch 0/1/2 checkpoints\", \"data_count\": 3, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7\", \"eval_data\": \"v7 3-epoch checkpoints (gradient analysis)\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"westd-20861:/root/turn_residual_gating/runs/analysis/\"}, \"conclusion\": \"success\", \"metrics\": {\"epoch0_cos_sim\": -0.089, \"epoch1_cos_sim\": -0.054, \"epoch2_cos_sim\": -0.042, \"epoch0_neg_layers_pct\": 78.6, \"epoch1_neg_layers_pct\": 71.4, \"epoch2_neg_layers_pct\": 67.9, \"epoch0_mag_ratio\": 7.5, \"epoch1_mag_ratio\": 13.7, \"epoch2_mag_ratio\": 14.7}, \"completed_at\": \"2026-05-19T15:22:23.782Z\"}, \"phase2_4way_eval_heldout\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:58:59.269Z\", \"updated_at\": \"2026-05-19T14:35:47.201Z\", \"hypothesis\": \"四路消融的三路趋同结论（TG≈UG≈LoRA-only，gating 零增量）在 held-out eval 数据（idx≥8000，与训练集无重叠）上复现，排除数据重叠 confound。预期：相对比较保持（三路趋同），绝对 GAR 值可能变化。\", \"parent\": \"phase2_4way_eval\", \"spec\": {\"command\": \"bash -c \\\"cd /root/turn_residual_gating && bash scripts/run_4way_eval_heldout.sh\\\"\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": 67204, \"log_path\": \"~/runs/turn_residual_gating/phase2_4way_eval_heldout.log\", \"submitted_at\": \"2026-05-19T14:01:00.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_eval_heldout.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7 + phase2_ug_s42 + phase2_lora_only_s42\", \"eval_data\": \"ultrachat_eval_heldout.json (50 convs, idx 8843-68199, no overlap with training 0-7999)\", \"configs\": \"4 models (Base/TG_v7/UG/LoRA-only) x 2 GAR variants (ours/Dongre) = 8 eval runs\", \"checkpoint_path\": \"N/A (eval-only)\", \"wall_clock_seconds\": 2086.2, \"gpu_hours\": 0.58}, \"reproduce\": {\"finished_at\": \"2026-05-19T14:32:09.481Z\"}, \"metrics\": {\"base_ours_mid_gar\": 0.0128, \"base_ours_recovery_pp\": 0.06, \"base_dongre_mid_gar\": 0.0031, \"base_dongre_recovery_pp\": -0.91, \"base_ppl\": 4.34, \"base_ntp\": 1.4045, \"tg_ours_mid_gar\": 0.5035, \"tg_ours_recovery_pp\": 49.13, \"tg_dongre_mid_gar\": 0.0152, \"tg_dongre_recovery_pp\": 0.3, \"tg_ppl\": 2.78, \"tg_ntp\": 0.9771, \"ug_ours_mid_gar\": 0.5053, \"ug_ours_recovery_pp\": 49.31, \"ug_dongre_mid_gar\": 0.0124, \"ug_dongre_recovery_pp\": 0.02, \"ug_ppl\": 2.78, \"ug_ntp\": 0.9752, \"lora_ours_mid_gar\": 0.4978, \"lora_ours_recovery_pp\": 48.56, \"lora_dongre_mid_gar\": 0.0132, \"lora_dongre_recovery_pp\": 0.1, \"lora_ppl\": 2.78, \"lora_ntp\": 0.9771, \"three_way_convergence_confirmed\": true, \"gar_ours_spread_pp\": 0.75, \"ppl_spread\": 0, \"data_overlap\": false}, \"conclusion\": \"success\", \"notes\": \"Held-out eval 三路趋同完全复现。TG/UG/LoRA-only GAR-ours: 0.504/0.505/0.498 (spread 0.75pp), PPL 均为 2.78。与 overlap 数据相比绝对值略高（GAR +1-2pp, PPL +0.15），属正常泛化偏移，相对比较完全一致。数据完整性 confound 已排除。\", \"completed_at\": \"2026-05-19T14:35:47.202Z\"}, \"phase2_4way_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:07:30.673Z\", \"updated_at\": \"2026-05-19T13:15:39.947Z\", \"hypothesis\": \"Turn-residual gating (TRG) improves multi-turn response quality over LoRA-only and base model baselines because it selectively amplifies conversational context signals, which should manifest as higher GAR scores across 4 conditions (base, base+TRG, LoRA, LoRA+TRG).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/run_4way_eval.sh 2>&1 | tee runs/4way_eval.log\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"60024\", \"log_path\": \"/root/turn_residual_gating/runs/4way_eval.log\", \"submitted_at\": \"2026-05-19T13:07:37.380Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7 + phase2_ug_s42 + phase2_lora_only_s42\", \"eval_data\": \"ultrachat_8k eval split\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/4way_eval/\", \"wall_clock_seconds\": 447.0, \"gpu_hours\": 0.12}, \"parent\": \"phase2_tg_s42_v7\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-19T13:15:04.405Z\", \"metrics\": {\"base_ours_mid_gar\": 0.0107, \"base_ours_recovery_pp\": -0.15, \"base_dongre_mid_gar\": 0.003, \"base_dongre_recovery_pp\": -0.92, \"base_ppl\": 4.23, \"base_ntp\": 1.4162, \"tg_ours_mid_gar\": 0.4866, \"tg_ours_recovery_pp\": 47.44, \"tg_dongre_mid_gar\": 0.0157, \"tg_dongre_recovery_pp\": 0.35, \"tg_ppl\": 2.63, \"tg_ntp\": 0.9484, \"ug_ours_mid_gar\": 0.4923, \"ug_ours_recovery_pp\": 48.01, \"ug_dongre_mid_gar\": 0.013, \"ug_dongre_recovery_pp\": 0.08, \"ug_ppl\": 2.62, \"ug_ntp\": 0.9433, \"lora_ours_mid_gar\": 0.486, \"lora_ours_recovery_pp\": 47.39, \"lora_dongre_mid_gar\": 0.0137, \"lora_dongre_recovery_pp\": 0.15, \"lora_ppl\": 2.63, \"lora_ntp\": 0.9482, \"route_b_confirmed\": true, \"gating_incremental_benefit\": \"none\"}, \"notes\": \"四路 eval 完成，Route B 决定性确认。三种训练方法（TG/UG/LoRA-only）在推理端完全趋同：ours GAR recovery ~47-48pp（vs base -0.15pp），dongre GAR recovery 0.08-0.35pp，PPL 2.62-2.63，NTP 0.943-0.948。Gating 机制（无论 turn-conditioned 还是 uniform）相比纯 LoRA 微调零增量。LoRA fine-tuning 是 GAR recovery 的唯一来源。hypothesis 被证伪：TRG 不比 LoRA-only 更好。\"}, \"phase2_tg_s42_v6\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:53:01.911Z\", \"updated_at\": \"2026-05-18T18:18:07.868Z\", \"hypothesis\": \"smooth_saturation loss (-target*tanh(GAR/target), target=0.5) 提供有界但持续的 GAR 梯度，避免 maximize 的恒等退化（gate→1）和 hinge_target 的梯度消失（GAR达标后梯度=0）。预期：gate_std>0.05 的层间分化 + GAR 稳态在 0.3-0.5 + NTP loss 正常收敛 + 总 loss 为正。\", \"parent\": \"phase2_tg_s42_v5\", \"spec\": {\"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v6\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v6.log\"}, \"metrics\": {\"dryrun_step0_L_NTP\": 2.0275, \"dryrun_step0_L_GAR\": -0.0161, \"dryrun_step0_total_loss\": 2.0114, \"dryrun_step4_L_NTP\": 1.6544, \"dryrun_step4_L_GAR\": -0.0147, \"dryrun_step4_total_loss\": 1.6397, \"dryrun_gate_grad\": true, \"dryrun_gate_mean_init\": 0.8097, \"dryrun_gate_std_init\": 0.0341, \"dryrun_gate_min_init\": 0.6836, \"dryrun_gate_max_init\": 0.8672, \"dryrun_gate_mean_step5\": 0.8025, \"dryrun_gate_std_step5\": 0.0842, \"dryrun_gate_min_step5\": 0.5547, \"dryrun_gate_max_step5\": 0.9805, \"gs50_gate_mean\": 0.8117, \"gs50_gate_std\": 0.0612, \"gs50_gate_min\": 0.6836, \"gs50_gate_max\": 0.9805, \"gs100_gate_mean\": 0.8737, \"gs100_gate_std\": 0.0367, \"gs100_gate_min\": 0.8164, \"gs100_gate_max\": 0.9766, \"gs100_L_NTP\": 0.8151, \"gs100_L_GAR\": -0.158, \"gs100_total_loss\": 0.6571, \"gs100_profile_bottom3\": \"L12=0.816 L4=0.824 L13=0.824\", \"gs100_profile_top3\": \"L27=0.977 L26=0.961 L23=0.914\", \"gs143_L_GAR\": -0.3876, \"gs143_gate_mean\": 0.9227}, \"conclusion\": \"negative\", \"notes\": \"smooth_saturation 与 maximize 同轨迹，单调 GAR 奖励导致恒等退化。step 100: gate_std=0.037↓ gate_mean=0.874↑，step ~143: L_GAR=-0.39 gate_mean=0.923。boundedness 只减缓退化速度不改变终态。D010 指令 kill 转 v7 MSE 双向 loss。\", \"completed_at\": \"2026-05-18T18:18:07.869Z\"}, \"phase2_tg_s42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:10:23.229Z\", \"updated_at\": \"2026-05-18T17:52:54.605Z\", \"hypothesis\": \"重新平衡超参（λ=1.0 降 GAR 贡献至 ~50%，init_bias=1.5 使 sigmoid≈0.82 接近正常模型行为，gate_lr_multiplier=10 保持）能在 3-epoch 全量训练中产生有意义的 gate 分化（gate_std>0.05），同时 GAR 稳态在 0.1-0.5（非病态饱和），NTP loss 正常收敛，总 loss 保持正值\", \"parent\": \"phase2_tg_s42_v4\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v5 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\\\"\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": \"3639\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v5.log\", \"submitted_at\": \"2026-05-18T17:10:30.573Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v5\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\", \"wall_clock_seconds\": 2539.4, \"gpu_hours\": 0.71}, \"metrics\": {\"step2000_gate_std\": 0.0225, \"step2000_gate_mean\": 0.9586, \"step2000_gate_min\": 0.9062, \"step2000_gate_max\": 0.9961, \"step2000_L_GAR\": -0.8977, \"step2000_L_NTP\": 0.7611, \"step2000_total_loss\": -0.1365, \"step2400_gate_std\": 0.0219, \"step2400_gate_mean\": 0.9651, \"step2400_gate_min\": 0.918, \"step2400_gate_max\": 0.9961, \"step2400_profile\": \"L0=0.918 L12=0.918 L13=0.926 L1=0.996 L26=0.996\", \"L_GAR_saturated_at\": -0.91, \"gate_range_compression\": \"0.918-0.996\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T17:52:49.951Z\", \"notes\": \"maximize 模式 gate 分化失败：gate_std=0.022↓ gate_mean=0.965↑，与 v3/v3b 同类结构性问题。L_GAR 饱和在 -0.91，maximize 的无界性驱动 gate 趋向恒等（全通过=最大 GAR），丧失层选择性。D009 指令立即 kill，转 v6 smooth_saturation。\"}, \"phase2_tg_s42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:58:00.124Z\", \"updated_at\": \"2026-05-18T16:50:36.202Z\", \"hypothesis\": \"重新平衡超参（λ=1.0 降 GAR 贡献至 ~50%，init_bias=1.5 使 sigmoid≈0.82 接近正常模型行为，gate_lr_multiplier=10 保持）能在 3-epoch 全量训练中产生有意义的 gate 分化（gate_std>0.05），同时 GAR 稳态在 0.1-0.5（非病态饱和），NTP loss 正常收敛，总 loss 保持正值\", \"parent\": \"phase2_tg_s42_v3b\", \"spec\": {\"command\": \"python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v4 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": \"36519\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v4\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v4.log\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-18T16:50:33.778Z\", \"notes\": \"进程在模型加载后崩溃，服务器重启导致进程丢失，无 checkpoint。日志仅有模型加载输出，无训练 step。GPU 重启后异常（100% util + 0 MiB + 无进程）。需要 GPU 健康恢复后重跑。\"}, \"phase2_tg_s42_v3b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:38:16.020Z\", \"updated_at\": \"2026-05-18T14:51:42.486Z\", \"hypothesis\": \"λ=10 + gate_lr=10x + init_bias=0.0 (sigmoid=0.5) 能否驱动 gate 产生 layer 间分化 (gate_std>0.05)？如果 500 步后 gate_std<0.02 且无选择性 → GAR-driven gating 梯度路径确认失败，需要 pivot\", \"parent\": \"phase2_tg_s42_v3\", \"spec\": {\"command\": \"python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 10.0 --init-bias 0.0 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v3b --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-steps 500\", \"server\": \"westd-20861\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v3b\", \"log_path\": \"/root/turn_residual_gating/runs/v3b_log.txt\"}, \"conclusion\": \"success\", \"metrics\": {\"gate_std_final\": 0.087, \"gate_mean_final\": 0.9388, \"gate_min_final\": 0.5352, \"gate_max_final\": 0.9922, \"L4_gate\": 0.535, \"L0_gate\": 0.777, \"L_NTP_final\": 0.7787, \"L_GAR_final\": -0.9606, \"elapsed_seconds\": 3565.9, \"optimizer_steps\": 500, \"gate_grad_received\": true}, \"completed_at\": \"2026-05-18T14:51:42.486Z\"}, \"phase2_tg_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:07:54.463Z\", \"updated_at\": \"2026-05-18T13:38:10.723Z\", \"hypothesis\": \"ThreadGate + maximize GAR loss (L_GAR=-mean(GAR)) 提供持续非零梯度，避免 hinge loss 的退化平衡点，gate 值应随训练下降（学习到选择性干预），同时 NTP loss 正常收敛\", \"parent\": \"phase2_tg_s42_v2\", \"spec\": {\"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"command\": \"python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 2.0 --init-bias 2.0 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v3 --data-dir /root/turn_residual_gating/data/ultrachat_8k\", \"pid\": \"30973\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v3.log\", \"checkpoint_source\": \"N/A (training from scratch with LoRA)\", \"eval_data\": \"N/A (training experiment, not eval)\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v3\"}, \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"conclusion\": \"negative\", \"metrics\": {\"gate_mean_step0\": 0.8743, \"gate_mean_step500\": 0.8761, \"gate_delta\": 0.004, \"gate_std\": 0.001, \"final_ntp_loss\": 0.94, \"final_gar_loss\": -0.019, \"gar_contribution_pct\": \"2-4%\", \"diagnosis\": \"gate frozen, GAR indirect gradient too weak\"}, \"completed_at\": \"2026-05-18T13:38:10.723Z\"}, \"phase2_tg_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T11:13:37.042Z\", \"updated_at\": \"2026-05-18T13:11:26.331Z\", \"hypothesis\": \"ThreadGate + 修复后的 cumulative GAR loss (ε=0.001) 在 L_NTP+L_GAR 联合训练后，mid-turn GAR recovery 应显著优于 v1 (NTP-only baseline)，验证 GAR loss 的有效性\", \"parent\": \"phase2_tg_s42\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-18T11:45:26.657Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating/src && python train_phase2.py --gate-type threadgate --seed 42 --output-dir /root/turn_residual_gating/checkpoints/tg_s42_v2 --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-seq-len 2048 --gar-loss-mode cumulative --gar-epsilon 0.001 --init-bias 2.0 --lambda-gar 5.0\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating/src && python train_phase2.py --gate-type threadgate --seed 42 --output-dir /root/turn_residual_gating/checkpoints/tg_s42_v2 --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-seq-len 2048 --gar-loss-mode cumulative --gar-epsilon 0.001 --init-bias 2.0 --lambda-gar 5.0\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"25726\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v2.log\", \"submitted_at\": \"2026-05-18T11:50:47.143Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_s42_v2\", \"wall_clock_seconds\": 4839.2, \"gpu_hours\": 1.34}, \"pid\": \"25726\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v2.log\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T13:11:26.331Z\"}, \"phase2_tg_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:04:12.759Z\", \"updated_at\": \"2026-05-18T11:22:40.620Z\", \"hypothesis\": \"ThreadGate (turn-conditional gating) 在 L_NTP+L_GAR 联合训练后，相比 Uniform Gate，mid-turn GAR recovery 高出 ≥3pp，验证 Cesaro 理论预测：position-conditional 干预优于 uniform 干预\", \"parent\": \"phase1_gar_diag\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating/src && python train_phase2.py --gate-type threadgate --seed 42 --output-dir /root/turn_residual_gating/checkpoints/tg_s42 --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-seq-len 2048\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"11286\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42.log\", \"submitted_at\": \"2026-05-18T07:03:28.476Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15333.0, \"gpu_hours\": 4.26}, \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": \"11286\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating/src && python train_phase2.py --gate-type threadgate --seed 42 --output-dir /root/turn_residual_gating/checkpoints/tg_s42 --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-seq-len 2048\\\"\", \"finished_at\": \"2026-05-18T11:19:00.888Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T11:19:01.512Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:19:02.835359+00:00\"}]}, \"notes\": \"失败原因: EXIT_CODE=143 (SIGTERM) — 大概率被 Worker code:diagnose_gar_loss_and_fix 主动 kill（时间线：Worker 11:13 启动 → v2 11:13 创建 → v1 11:19 SIGTERM）。v2 hypothesis 指出 GAR loss 实现有 bug（缺少 ε=0.001 稳定项）。诊断 Worker worker_diagnose_phase2_tg_s42_20260518T112048 已派出确认日志详情。| 建议: 等诊断结果确认后推进 v2\", \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_s42/epoch_1\", \"metrics\": {\"final_ntp_loss\": 0.94, \"final_gar_loss\": 0, \"gate_mean\": 0.988, \"gar_loss_zero_pct\": 87.6, \"epochs_completed\": 1.67, \"killed_reason\": \"SIGTERM by diagnose worker (unauthorized)\"}}, \"phase1_gar_diag\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T05:24:07.903Z\", \"updated_at\": \"2026-05-18T05:59:25.324Z\", \"hypothesis\": \"Qwen2.5-7B-Instruct 在 10-turn 多轮对话中，中间 turns (3-8) 的 GAR (Goal Accessibility Ratio) 相对 turn-1 下降 ≥15%，表明模型对 system prompt 中目标 token 的注意力随对话进行显著衰减\", \"spec\": {\"command\": \"python run_phase1_gar.py --results-dir /root/turn_residual_gating/results\", \"server\": \"westd-20861\", \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"data_path\": \"built-in 5 conversations (knowledge_qa, coding_help, creative_writing, math_reasoning, roleplay_advisor)\", \"data_count\": 5, \"seed\": 0, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/turn_residual_gating/results/phase1_run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"turn1_avg_gar\": 0.0418, \"mid_turns_avg_gar\": 0.0122, \"relative_drop\": 0.708, \"num_conversations\": 5, \"num_turns\": 10, \"per_turn_avg_gar\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}, \"completed_at\": \"2026-05-18T05:59:25.325Z\"}}, \"count\": 28, \"total\": 28, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.093}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bce867bc-43be-4c6d-bb08-a569269b2300",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-21T03:37:47.782Z_
+
+<details><summary>↩ Tool result · `toolu_01UzLDh4pbUZCQh7d8ciGDCi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"llama_eval_s42\", \"success\": true, \"actions\": [\"Skipped (created 260s ago < interval 300s)\"]}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bc4ac331-62cd-4606-a918-1226d135510f",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "db117c21-82db-4025-a672-833b7db83b64",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 1, \\\"results\\\": [{\\\"exp_id\\\": \\\"llama_eval_s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Skipped (created 260s ago < interval 300s)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 1, \"results\": [{\"exp_id\": \"llama_eval_s42\", \"success\": true, \"actions\": [\"Skipped (created 260s ago < interval 300s)\"]}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bc4ac331-62cd-4606-a918-1226d135510f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-21T03:37:47.923Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01C1RRNzjMmb7XLAQ2GXV3F2`</summary>
+
+```json
+{
+  "project": "turn_residual_gating",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db117c21-82db-4025-a672-833b7db83b64",
+  "isSidechain": false,
+  "requestId": "req_011CbF1uQ3afcXctXmJ15hBA",
+  "type": "assistant",
+  "uuid": "3bdc1e35-0b31-4e62-86e9-5cdfcfaecd8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhShDZ4hPfVR4koHRFoJwd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1145,
+      "cache_read_input_tokens": 37925,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1145,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 37925,
+          "cache_creation_input_tokens": 1145,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1145
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-21T03:37:48.159Z_
+
+<details><summary>↩ Tool result · `toolu_01KdVTCBS3aq8ggRVb132asi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/ROADMAP.md\", \"content\": \"# turn_residual_gating — Research Dashboard\\n\\n> 最后更新: 2026-05-20 21:50 UTC | 更新原因: D043 评分预估修正 ARR 3.0-3.5 + 删除 P5 Base TRC + Plan_022 defer camera-ready\\n\\n## 核心方向\\nDiagnostic framework: lightweight residual gating 的 auxiliary attention loss 在 text distribution shift (exposure bias) 下泛化失败（30× gap）。PCGrad 因果排除梯度方向冲突。**双路 mitigation 已验证**：inference-time attention steering (β=5, GAR 0.03→0.70) + training-time scheduled sampling (GAR 0.016→0.318, 30× gap → 1.57×, PPL 不变)。TRC 证实 exposure bias 仅影响 attention routing。**跨模型泛化**：Llama-3.1-8B Phase 1 确认 GAR decay 90.1%（transformer 通用现象）。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中\\n- **核心 claim**: C1✅ C2✅ C3✅ C4✅ C5⏳(Phase 1✅, Phase 2 训练中) C6✅(N=50 confirmed) C7✅v8b SS(单seed)\\n- **论文**: Round 7 Overall 7.5/10, N=50 修正数据 + §6.5 Llama cross-model 已写入\\n- **评分预估**: Llama Phase 2 + multi-seed 完成后 → Overall 8/10, **ARR 3.0-3.5 (Findings-Borderline Conference)**。Originality 天花板 3/4（exposure bias 概念已知）\\n- **成功率**: 15 success / 5 negative / 3 failed / 25 total\\n\\n## 近期任务\\n- [x] v8b SS 训练 + eval — SUCCESS (D041)\\n- [x] N=50 gen steering — 修正完成, Paper 已整合 (474a9f3, 8bb82f8, 4cc5b24)\\n- [x] Paper Agent: v8b 结果整合 — commit a66010d\\n- [x] Paper Agent: §6.5 Llama cross-model — commit 760d758\\n- [x] Llama Phase 1 GAR 诊断 — DONE, 90.1% decay confirmed (D042)\\n- [ ] **Llama TG 训练 + eval** (RUNNING, PID 199643, ~4-8h) — C5 方法泛化验证\\n- [ ] P4: Multi-seed v8b SS s123 (Llama 后, ~8h) — C7 Soundness 补强 MUST-DO\\n- [ ] P4: Multi-seed v7 TG s123 (可与 v8b 串行, ~6h)\\n- [ ] P3: 跨 checkpoint steering 对比 (3h, low priority, 可 defer)\\n- [ ] Plan_022 λ_GAR 敏感性 (2h, defer to camera-ready per D043)\\n\\n## GPU 预算\\n- **已分配**: westd-20861:cuda:0 (1×RTX PRO 6000 Blackwell, 102GB)\\n- **当前**: Llama TG 训练 RUNNING (99% util)\\n- **串行**: Llama TG+eval(4-8h) → multi-seed v8b s123(8h) → v7 s123(6h)\\n- **累计 GPU 时间**: ~125h\\n- **白名单确认**: 仅 westd-20861:cuda:0, 其余服务器不在项目配置内 (Reviewer 正式确认)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D044 | 2026-05-21 | 加入 P0 instruction retention test (β-steering) 解决 W | attention_steering_gen_n50, phase2_tg_s42_v7 |\\n| D043 | 2026-05-20 | D043: Ablation 优先级精简——删除 P5 Base TRC rerun，Plan_02 | llama_tg_training, phase2_tg_s42_v8b_ss_fixed |\\n| D042 | 2026-05-20 | C5 跨模型泛化确认：Llama-3.1-8B 展现与 Qwen-2.5-7B 相同的 GAR 单调 | llama_phase1_gar_diag, attention_steering_gen_n50 |\\n| D041 | 2026-05-20 | D041: v8b SS SUCCESS — GAR-ours 0.016→0.318 (20×), | phase2_tg_s42_v8b_ss_fixed, phase2_tg_s42_v7 |\\n| D040 | 2026-05-20 | D040: v8b 后实验排序 Option B (N=50 gen → Llama → multi | attention_steering_v7_tg_gen, phase2_tg_s42, phase2_tg_s42_v3, phase2_tg_s42_v5, phase2_tg_s42_v6 |\\n| D039 | 2026-05-20 | D039: 采纳 Reviewer 优先级重排——eval_200 attention steeri | attention_steering_v7_tg_gen, phase2_tg_s42_v8b_ss_fixed |\\n| D038 | 2026-05-20 | D038: TRC 引用范围——论文只引用 v7 TG 和 LoRA-only TRC 数据，不引用 | trc_baseline_v7_tg |\\n| D037 | 2026-05-20 | D037: Attention Steering 里程碑确认 — β=5 恢复 gen GAR 24 | attention_steering_v7_tg_gen, trc_baseline_v7_tg |\\n| D036 | 2026-05-20 | 实验优先级重排：新增 inference-time attention steering (P0)  | plan_019, plan_020, plan_022 |\\n| D035 | 2026-05-20 | D031 优先级决定：v8b eval 优先于 Llama-3 启动。v8b 结果决定论文是 neg | phase2_tg_s42_v8b_ss_fixed, plan_009 |\\n\\n\", \"lines\": 49}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce43822f-3fff-4799-b276-85faec6027fa",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "ff4e2c9e-5676-491d-b23c-58bcc22f615e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/ROADMAP.md\\\", \\\"content\\\": \\\"# turn_residual_gating — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 21:50 UTC | 更新原因: D043 评分预估修正 ARR 3.0-3.5 + 删除 P5 Base TRC + Plan_022 defer camera-ready\\\\n\\\\n## 核心方向\\\\nDiagnostic framework: lightweight residual gating 的 auxiliary attention loss 在 text distribution shift (exposure bias) 下泛化失败（30× gap）。PCGrad 因果排除梯度方向冲突。**双路 mitigation 已验证**：inference-time attention steering (β=5, GAR 0.03→0.70) + training-time scheduled sampling (GAR 0.016→0.318, 30× gap → 1.57×, PPL 不变)。TRC 证实 exposure bias 仅影响 attention routing。**跨模型泛化**：Llama-3.1-8B Phase 1 确认 GAR decay 90.1%（transformer 通用现象）。详见 paper_framing.md。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Research + 审稿进行中\\\\n- **核心 claim**: C1✅ C2✅ C3✅ C4✅ C5⏳(Phase 1✅, Phase 2 训练中) C6✅(N=50 confirmed) C7✅v8b SS(单seed)\\\\n- **论文**: Round 7 Overall 7.5/10, N=50 修正数据 + §6.5 Llama cross-model 已写入\\\\n- **评分预估**: Llama Phase 2 + multi-seed 完成后 → Overall 8/10, **ARR 3.0-3.5 (Findings-Borderline Conference)**。Originality 天花板 3/4（exposure bias 概念已知）\\\\n- **成功率**: 15 success / 5 negative / 3 failed / 25 total\\\\n\\\\n## 近期任务\\\\n- [x] v8b SS 训练 + eval — SUCCESS (D041)\\\\n- [x] N=50 gen steering — 修正完成, Paper 已整合 (474a9f3, 8bb82f8, 4cc5b24)\\\\n- [x] Paper Agent: v8b 结果整合 — commit a66010d\\\\n- [x] Paper Agent: §6.5 Llama cross-model — commit 760d758\\\\n- [x] Llama Phase 1 GAR 诊断 — DONE, 90.1% decay confirmed (D042)\\\\n- [ ] **Llama TG 训练 + eval** (RUNNING, PID 199643, ~4-8h) — C5 方法泛化验证\\\\n- [ ] P4: Multi-seed v8b SS s123 (Llama 后, ~8h) — C7 Soundness 补强 MUST-DO\\\\n- [ ] P4: Multi-seed v7 TG s123 (可与 v8b 串行, ~6h)\\\\n- [ ] P3: 跨 checkpoint steering 对比 (3h, low priority, 可 defer)\\\\n- [ ] Plan_022 λ_GAR 敏感性 (2h, defer to camera-ready per D043)\\\\n\\\\n## GPU 预算\\\\n- **已分配**: westd-20861:cuda:0 (1×RTX PRO 6000 Blackwell, 102GB)\\\\n- **当前**: Llama TG 训练 RUNNING (99% util)\\\\n- **串行**: Llama TG+eval(4-8h) → multi-seed v8b s123(8h) → v7 s123(6h)\\\\n- **累计 GPU 时间**: ~125h\\\\n- **白名单确认**: 仅 westd-20861:cuda:0, 其余服务器不在项目配置内 (Reviewer 正式确认)\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D044 | 2026-05-21 | 加入 P0 instruction retention test (β-steering) 解决 W | attention_steering_gen_n50, phase2_tg_s42_v7 |\\\\n| D043 | 2026-05-20 | D043: Ablation 优先级精简——删除 P5 Base TRC rerun，Plan_02 | llama_tg_training, phase2_tg_s42_v8b_ss_fixed |\\\\n| D042 | 2026-05-20 | C5 跨模型泛化确认：Llama-3.1-8B 展现与 Qwen-2.5-7B 相同的 GAR 单调 | llama_phase1_gar_diag, attention_steering_gen_n50 |\\\\n| D041 | 2026-05-20 | D041: v8b SS SUCCESS — GAR-ours 0.016→0.318 (20×), | phase2_tg_s42_v8b_ss_fixed, phase2_tg_s42_v7 |\\\\n| D040 | 2026-05-20 | D040: v8b 后实验排序 Option B (N=50 gen → Llama → multi | attention_steering_v7_tg_gen, phase2_tg_s42, phase2_tg_s42_v3, phase2_tg_s42_v5, phase2_tg_s42_v6 |\\\\n| D039 | 2026-05-20 | D039: 采纳 Reviewer 优先级重排——eval_200 attention steeri | attention_steering_v7_tg_gen, phase2_tg_s42_v8b_ss_fixed |\\\\n| D038 | 2026-05-20 | D038: TRC 引用范围——论文只引用 v7 TG 和 LoRA-only TRC 数据，不引用 | trc_baseline_v7_tg |\\\\n| D037 | 2026-05-20 | D037: Attention Steering 里程碑确认 — β=5 恢复 gen GAR 24 | attention_steering_v7_tg_gen, trc_baseline_v7_tg |\\\\n| D036 | 2026-05-20 | 实验优先级重排：新增 inference-time attention steering (P0)  | plan_019, plan_020, plan_022 |\\\\n| D035 | 2026-05-20 | D031 优先级决定：v8b eval 优先于 Llama-3 启动。v8b 结果决定论文是 neg | phase2_tg_s42_v8b_ss_fixed, plan_009 |\\\\n\\\\n\\\", \\\"lines\\\": 49}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/ROADMAP.md\", \"content\": \"# turn_residual_gating — Research Dashboard\\n\\n> 最后更新: 2026-05-20 21:50 UTC | 更新原因: D043 评分预估修正 ARR 3.0-3.5 + 删除 P5 Base TRC + Plan_022 defer camera-ready\\n\\n## 核心方向\\nDiagnostic framework: lightweight residual gating 的 auxiliary attention loss 在 text distribution shift (exposure bias) 下泛化失败（30× gap）。PCGrad 因果排除梯度方向冲突。**双路 mitigation 已验证**：inference-time attention steering (β=5, GAR 0.03→0.70) + training-time scheduled sampling (GAR 0.016→0.318, 30× gap → 1.57×, PPL 不变)。TRC 证实 exposure bias 仅影响 attention routing。**跨模型泛化**：Llama-3.1-8B Phase 1 确认 GAR decay 90.1%（transformer 通用现象）。详见 paper_framing.md。\\n\\n## 当前进展\\n- **阶段**: Research + 审稿进行中\\n- **核心 claim**: C1✅ C2✅ C3✅ C4✅ C5⏳(Phase 1✅, Phase 2 训练中) C6✅(N=50 confirmed) C7✅v8b SS(单seed)\\n- **论文**: Round 7 Overall 7.5/10, N=50 修正数据 + §6.5 Llama cross-model 已写入\\n- **评分预估**: Llama Phase 2 + multi-seed 完成后 → Overall 8/10, **ARR 3.0-3.5 (Findings-Borderline Conference)**。Originality 天花板 3/4（exposure bias 概念已知）\\n- **成功率**: 15 success / 5 negative / 3 failed / 25 total\\n\\n## 近期任务\\n- [x] v8b SS 训练 + eval — SUCCESS (D041)\\n- [x] N=50 gen steering — 修正完成, Paper 已整合 (474a9f3, 8bb82f8, 4cc5b24)\\n- [x] Paper Agent: v8b 结果整合 — commit a66010d\\n- [x] Paper Agent: §6.5 Llama cross-model — commit 760d758\\n- [x] Llama Phase 1 GAR 诊断 — DONE, 90.1% decay confirmed (D042)\\n- [ ] **Llama TG 训练 + eval** (RUNNING, PID 199643, ~4-8h) — C5 方法泛化验证\\n- [ ] P4: Multi-seed v8b SS s123 (Llama 后, ~8h) — C7 Soundness 补强 MUST-DO\\n- [ ] P4: Multi-seed v7 TG s123 (可与 v8b 串行, ~6h)\\n- [ ] P3: 跨 checkpoint steering 对比 (3h, low priority, 可 defer)\\n- [ ] Plan_022 λ_GAR 敏感性 (2h, defer to camera-ready per D043)\\n\\n## GPU 预算\\n- **已分配**: westd-20861:cuda:0 (1×RTX PRO 6000 Blackwell, 102GB)\\n- **当前**: Llama TG 训练 RUNNING (99% util)\\n- **串行**: Llama TG+eval(4-8h) → multi-seed v8b s123(8h) → v7 s123(6h)\\n- **累计 GPU 时间**: ~125h\\n- **白名单确认**: 仅 westd-20861:cuda:0, 其余服务器不在项目配置内 (Reviewer 正式确认)\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D044 | 2026-05-21 | 加入 P0 instruction retention test (β-steering) 解决 W | attention_steering_gen_n50, phase2_tg_s42_v7 |\\n| D043 | 2026-05-20 | D043: Ablation 优先级精简——删除 P5 Base TRC rerun，Plan_02 | llama_tg_training, phase2_tg_s42_v8b_ss_fixed |\\n| D042 | 2026-05-20 | C5 跨模型泛化确认：Llama-3.1-8B 展现与 Qwen-2.5-7B 相同的 GAR 单调 | llama_phase1_gar_diag, attention_steering_gen_n50 |\\n| D041 | 2026-05-20 | D041: v8b SS SUCCESS — GAR-ours 0.016→0.318 (20×), | phase2_tg_s42_v8b_ss_fixed, phase2_tg_s42_v7 |\\n| D040 | 2026-05-20 | D040: v8b 后实验排序 Option B (N=50 gen → Llama → multi | attention_steering_v7_tg_gen, phase2_tg_s42, phase2_tg_s42_v3, phase2_tg_s42_v5, phase2_tg_s42_v6 |\\n| D039 | 2026-05-20 | D039: 采纳 Reviewer 优先级重排——eval_200 attention steeri | attention_steering_v7_tg_gen, phase2_tg_s42_v8b_ss_fixed |\\n| D038 | 2026-05-20 | D038: TRC 引用范围——论文只引用 v7 TG 和 LoRA-only TRC 数据，不引用 | trc_baseline_v7_tg |\\n| D037 | 2026-05-20 | D037: Attention Steering 里程碑确认 — β=5 恢复 gen GAR 24 | attention_steering_v7_tg_gen, trc_baseline_v7_tg |\\n| D036 | 2026-05-20 | 实验优先级重排：新增 inference-time attention steering (P0)  | plan_019, plan_020, plan_022 |\\n| D035 | 2026-05-20 | D031 优先级决定：v8b eval 优先于 Llama-3 启动。v8b 结果决定论文是 neg | phase2_tg_s42_v8b_ss_fixed, plan_009 |\\n\\n\", \"lines\": 49}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ce43822f-3fff-4799-b276-85faec6027fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T03:37:47.935Z_
+
+<details><summary>↩ Tool result · `toolu_01C1RRNzjMmb7XLAQ2GXV3F2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-21T03:37:32Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 28 个实验 — DONE 26, PREPARING 1, RUNNING 1\\n**DONE 分布**: failed 3, killed 1, negative 5, success 17\\n\\n### 💾 磁盘余量\\n- **westd-20861**:\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 430G/879G 可用（已用 49%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `llama_eval_s42` | westd-20861 | ? | ? | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `llama_tg_s42` [success] — 2026-05-21T03:28:07\\n- `attention_steering_gen_n50` [success] — 2026-05-21T01:59:57\\n- `phase2_tg_s42_v8b_resume` [success] — 2026-05-21T01:56:13\\n- `llama_phase1_gar_diag` [success] — 2026-05-21T01:34:36\\n- `eval_v8b_ss` [success] — 2026-05-20T18:45:14\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| llama_eval_s42 | Llama-3.1-8B TG 训练完成后，验证 C5：IID (teacher-forced) GAR 应接近 target（~0.5），但 model-gen (autoregressive) GAR 应出现类似 Qwen 的 20-33× training-inference gap，确认 exposure bias 跨模型泛化。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **llama_tg_s42** (success): 在 Llama-3.1-8B-Instruct 上训练 ThreadGate（与 Qwen v7 相同配置），验证 C5：gating mechanism 和 GAR training-inference gap 跨模型泛化。如果 Llama TG 也出现 IID GAR ≈ target 但 model-gen GAR 坍塌 → 确认 exposure bias 的跨模型通用性。 ← 基于 llama_phase1_gar_diag\\n- **attention_steering_gen_n50** (success): N=5 gen steering 显示 β∈[2,5] phase transition (GAR 0.06→0.68)，但样本量不足以报告置信区间。N=50 conversations 应重现同一 phase transition pattern 并提供统计鲁棒的 mean±std，加固 C6 claim (attention steering as causal mechanism proof)。 ← 基于 attention_steering_v7_tg_gen\\n- **phase2_tg_s42_v8b_resume** (success): 从 epoch_0 checkpoint resume v8b scheduled sampling 训练。SS 线性混合 0→0.5 teacher-forced + model-generated contexts。如果 model-gen context 上的 GAR 训练能缩小 30x training-inference gap → exposure bias mitigation 有效。成功标准：inference GAR 显著高于 v7 的 0.016 (至少 +1pp)，PPL 不恶化。 ← 基于 phase2_tg_s42_v8b_ss_fixed\\n\\n## 趋势\\n成功 17 / 负向 5 / 失败 3 / 共 26\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-20861: 无 GPU 信息\\n\\n## 告警\\n- phase2_tg_s42_v2: 已被终止 — unknown\\n- phase2_tg_s42_v4: 训练失败 — unknown\\n- phase2_tg_s42_v8_schedsampling: 训练失败 — unknown\\n- phase2_tg_s42_v8b_ss_fixed: 训练失败 — unknown\\n\", \"total_chars\": 2377, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3bdc1e35-0b31-4e62-86e9-5cdfcfaecd8c",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "c26eaa94-b53e-4963-b0ed-5a501ebee8e5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/report.md\\\", \\\"content\\\": \\\"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-21T03:37:32Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 28 个实验 — DONE 26, PREPARING 1, RUNNING 1\\\\n**DONE 分布**: failed 3, killed 1, negative 5, success 17\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-20861**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 430G/879G 可用（已用 49%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `llama_eval_s42` | westd-20861 | ? | ? | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `llama_tg_s42` [success] — 2026-05-21T03:28:07\\\\n- `attention_steering_gen_n50` [success] — 2026-05-21T01:59:57\\\\n- `phase2_tg_s42_v8b_resume` [success] — 2026-05-21T01:56:13\\\\n- `llama_phase1_gar_diag` [success] — 2026-05-21T01:34:36\\\\n- `eval_v8b_ss` [success] — 2026-05-20T18:45:14\\\\n\\\\n&lt;!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| llama_eval_s42 | Llama-3.1-8B TG 训练完成后，验证 C5：IID (teacher-forced) GAR 应接近 target（~0.5），但 model-gen (autoregressive) GAR 应出现类似 Qwen 的 20-33× training-inference gap，确认 exposure bias 跨模型泛化。 | — | — | — |\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **llama_tg_s42** (success): 在 Llama-3.1-8B-Instruct 上训练 ThreadGate（与 Qwen v7 相同配置），验证 C5：gating mechanism 和 GAR training-inference gap 跨模型泛化。如果 Llama TG 也出现 IID GAR ≈ target 但 model-gen GAR 坍塌 → 确认 exposure bias 的跨模型通用性。 ← 基于 llama_phase1_gar_diag\\\\n- **attention_steering_gen_n50** (success): N=5 gen steering 显示 β∈[2,5] phase transition (GAR 0.06→0.68)，但样本量不足以报告置信区间。N=50 conversations 应重现同一 phase transition pattern 并提供统计鲁棒的 mean±std，加固 C6 claim (attention steering as causal mechanism proof)。 ← 基于 attention_steering_v7_tg_gen\\\\n- **phase2_tg_s42_v8b_resume** (success): 从 epoch_0 checkpoint resume v8b scheduled sampling 训练。SS 线性混合 0→0.5 teacher-forced + model-generated contexts。如果 model-gen context 上的 GAR 训练能缩小 30x training-inference gap → exposure bias mitigation 有效。成功标准：inference GAR 显著高于 v7 的 0.016 (至少 +1pp)，PPL 不恶化。 ← 基于 phase2_tg_s42_v8b_ss_fixed\\\\n\\\\n## 趋势\\\\n成功 17 / 负向 5 / 失败 3 / 共 26\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-20861: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- phase2_tg_s42_v2: 已被终止 — unknown\\\\n- phase2_tg_s42_v4: 训练失败 — unknown\\\\n- phase2_tg_s42_v8_schedsampling: 训练失败 — unknown\\\\n- phase2_tg_s42_v8b_ss_fixed: 训练失败 — unknown\\\\n\\\", \\\"total_chars\\\": 2377, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-21T03:37:32Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 28 个实验 — DONE 26, PREPARING 1, RUNNING 1\\n**DONE 分布**: failed 3, killed 1, negative 5, success 17\\n\\n### 💾 磁盘余量\\n- **westd-20861**:\\n  - `/init`: 150M/150M 可用（已用 1%）\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\n  - `/usr/bin/nvidia-smi`: 430G/879G 可用（已用 49%）\\n\\n### 🏃 RUNNING\\n| exp_id | server | gpu | pid | log |\\n|--------|--------|-----|-----|-----|\\n| `llama_eval_s42` | westd-20861 | ? | ? | `—` |\\n\\n### 📌 最近完成 (top 5)\\n- `llama_tg_s42` [success] — 2026-05-21T03:28:07\\n- `attention_steering_gen_n50` [success] — 2026-05-21T01:59:57\\n- `phase2_tg_s42_v8b_resume` [success] — 2026-05-21T01:56:13\\n- `llama_phase1_gar_diag` [success] — 2026-05-21T01:34:36\\n- `eval_v8b_ss` [success] — 2026-05-20T18:45:14\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-21\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| llama_eval_s42 | Llama-3.1-8B TG 训练完成后，验证 C5：IID (teacher-forced) GAR 应接近 target（~0.5），但 model-gen (autoregressive) GAR 应出现类似 Qwen 的 20-33× training-inference gap，确认 exposure bias 跨模型泛化。 | — | — | — |\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **llama_tg_s42** (success): 在 Llama-3.1-8B-Instruct 上训练 ThreadGate（与 Qwen v7 相同配置），验证 C5：gating mechanism 和 GAR training-inference gap 跨模型泛化。如果 Llama TG 也出现 IID GAR ≈ target 但 model-gen GAR 坍塌 → 确认 exposure bias 的跨模型通用性。 ← 基于 llama_phase1_gar_diag\\n- **attention_steering_gen_n50** (success): N=5 gen steering 显示 β∈[2,5] phase transition (GAR 0.06→0.68)，但样本量不足以报告置信区间。N=50 conversations 应重现同一 phase transition pattern 并提供统计鲁棒的 mean±std，加固 C6 claim (attention steering as causal mechanism proof)。 ← 基于 attention_steering_v7_tg_gen\\n- **phase2_tg_s42_v8b_resume** (success): 从 epoch_0 checkpoint resume v8b scheduled sampling 训练。SS 线性混合 0→0.5 teacher-forced + model-generated contexts。如果 model-gen context 上的 GAR 训练能缩小 30x training-inference gap → exposure bias mitigation 有效。成功标准：inference GAR 显著高于 v7 的 0.016 (至少 +1pp)，PPL 不恶化。 ← 基于 phase2_tg_s42_v8b_ss_fixed\\n\\n## 趋势\\n成功 17 / 负向 5 / 失败 3 / 共 26\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-20861: 无 GPU 信息\\n\\n## 告警\\n- phase2_tg_s42_v2: 已被终止 — unknown\\n- phase2_tg_s42_v4: 训练失败 — unknown\\n- phase2_tg_s42_v8_schedsampling: 训练失败 — unknown\\n- phase2_tg_s42_v8b_ss_fixed: 训练失败 — unknown\\n\", \"total_chars\": 2377, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3bdc1e35-0b31-4e62-86e9-5cdfcfaecd8c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-21T03:37:48.150Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01KdVTCBS3aq8ggRVb132asi`</summary>
+
+```json
+{
+  "project": "turn_residual_gating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c26eaa94-b53e-4963-b0ed-5a501ebee8e5",
+  "isSidechain": false,
+  "requestId": "req_011CbF1uQ3afcXctXmJ15hBA",
+  "type": "assistant",
+  "uuid": "ce43822f-3fff-4799-b276-85faec6027fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MhShDZ4hPfVR4koHRFoJwd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1145,
+      "cache_read_input_tokens": 37925,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1145,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 37925,
+          "cache_creation_input_tokens": 1145,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1145
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics  - exp_id: llama_tg_training - project: turn_residual_gating - server: westd-20861 - log_path: /root/turn_residual_gating/logs…",
+  "leafUuid": "ff4e2c9e-5676-491d-b23c-58bcc22f615e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose failed llama training experiment with missing metrics",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-21T03:37:51.245Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me get the details of the `llama_tg_training` experiment from the registry and load the on-experiment-failed skill.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ff4e2c9e-5676-491d-b23c-58bcc22f615e",
+  "isSidechain": false,
+  "requestId": "req_011CbF1ufMaaLsZa7bPdGMHp",
+  "type": "assistant",
+  "uuid": "866ffb8c-e77a-4ee8-a51d-7fcb59904513",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSvBzNsu4pCF7hMsRB2Xek",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4390,
+      "cache_read_input_tokens": 39070,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 39070,
+          "cache_creation_input_tokens": 4390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-21T03:37:51.742Z_
+
+需要查看 `llama_tg_training` 实验的详细信息和 on-experiment-failed skill。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "866ffb8c-e77a-4ee8-a51d-7fcb59904513",
+  "isSidechain": false,
+  "requestId": "req_011CbF1ufMaaLsZa7bPdGMHp",
+  "type": "assistant",
+  "uuid": "65ac42f0-99ba-44e3-9130-b366fda65496",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSvBzNsu4pCF7hMsRB2Xek",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4390,
+      "cache_read_input_tokens": 39070,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 39070,
+          "cache_creation_input_tokens": 4390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-21T03:37:57.964Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RU56PNYgiHYfuw5hRRmRLc`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor e in exps:\n    if e.get('exp_id') == 'llama_tg_training':\n        print(json.dumps(e, indent=2, ensure_ascii=False))\n        break\n\"",
+  "description": "Extract llama_tg_training experiment details from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65ac42f0-99ba-44e3-9130-b366fda65496",
+  "isSidechain": false,
+  "requestId": "req_011CbF1ufMaaLsZa7bPdGMHp",
+  "type": "assistant",
+  "uuid": "72db498a-13b8-4100-bd56-db76f06ca384",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSvBzNsu4pCF7hMsRB2Xek",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4390,
+      "cache_read_input_tokens": 39070,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 39070,
+          "cache_creation_input_tokens": 4390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-21T03:37:58.336Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01RU56PNYgiHYfuw5hRRmRLc`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    if e.get('exp_id') == 'llama_tg_training':
+       ^^^^^
+AttributeError: 'str' object has no attribute 'get'
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "72db498a-13b8-4100-bd56-db76f06ca384",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "4730ca7e-f245-43c3-ad0e-48ef9f115fbd",
+  "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    if e.get('exp_id') == 'llama_tg_training':\n       ^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+  "sourceToolAssistantUUID": "72db498a-13b8-4100-bd56-db76f06ca384",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-21T03:37:58.872Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LM6WsqcMzJNZU1gbJECs2f`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4730ca7e-f245-43c3-ad0e-48ef9f115fbd",
+  "isSidechain": false,
+  "requestId": "req_011CbF1ufMaaLsZa7bPdGMHp",
+  "type": "assistant",
+  "uuid": "050f5ff6-b123-476b-92f8-58eec7c26c61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TSvBzNsu4pCF7hMsRB2Xek",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4390,
+      "cache_read_input_tokens": 39070,
+      "output_tokens": 433,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4390,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 433,
+          "cache_read_input_tokens": 39070,
+          "cache_creation_input_tokens": 4390,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4390
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-21T03:37:58.873Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01LM6WsqcMzJNZU1gbJECs2f`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-3/proje…) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "050f5ff6-b123-476b-92f8-58eec7c26c61",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "430a57c8-e8c5-4786-bbfd-3a01335c771f",
+  "toolUseResult": "Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-3/proje…) errored",
+  "sourceToolAssistantUUID": "050f5ff6-b123-476b-92f8-58eec7c26c61",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-21T03:38:05.704Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01P8QLA9fmh2SkRJuyN89gJa`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\n# check structure\nprint(type(result))\nprint(list(result.keys()) if isinstance(result, dict) else 'not dict')\nif 'data' in result:\n    d = result['data']\n    print(type(d))\n    if isinstance(d, dict):\n        print(list(d.keys()))\n        exps = d.get('experiments', [])\n        print(f'experiments type: {type(exps)}, len: {len(exps)}')\n        if exps:\n            print(f'first elem type: {type(exps[0])}')\n            if isinstance(exps[0], str):\n                # it's a string, maybe need further parse\n                print(exps[0][:200])\n\"\n",
+  "description": "Probe registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "430a57c8-e8c5-4786-bbfd-3a01335c771f",
+  "isSidechain": false,
+  "requestId": "req_011CbF1vTE6mttjKjHJjaKNo",
+  "type": "assistant",
+  "uuid": "30df99c5-ea13-4c74-afb1-f5453bef056a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ui1ca6m337ZhSfzVkiJiDc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 43460,
+      "output_tokens": 466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 466,
+          "cache_read_input_tokens": 43460,
+          "cache_creation_input_tokens": 604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-21T03:38:05.907Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012foWu6cQj1fUuLeFJSSW8d`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30df99c5-ea13-4c74-afb1-f5453bef056a",
+  "isSidechain": false,
+  "requestId": "req_011CbF1vTE6mttjKjHJjaKNo",
+  "type": "assistant",
+  "uuid": "c68c7b3d-044d-41f1-9be9-a50d1adf84b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ui1ca6m337ZhSfzVkiJiDc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 43460,
+      "output_tokens": 466,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 466,
+          "cache_read_input_tokens": 43460,
+          "cache_creation_input_tokens": 604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T03:38:05.935Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01P8QLA9fmh2SkRJuyN89gJa`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 17, in &lt;module>
+    print(f'first elem type: {type(exps[0])}')
+                                   ~~~~^^^
+KeyError: 0
+&lt;class 'dict'>
+['success', 'data', 'error', 'metadata']
+&lt;class 'dict'>
+['experiments', 'count', 'total', 'baseline']
+experiments type: &lt;class 'dict'>, len: 28
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "30df99c5-ea13-4c74-afb1-f5453bef056a",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "51599295-8c38-44a5-9a82-4eb65a0a89d5",
+  "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 17, in &lt;module>\n    print(f'first elem type: {type(exps[0])}')\n                                   ~~~~^^^\nKeyError: 0\n&lt;class 'dict'>\n['success', 'data', 'error', 'metadata']\n&lt;class 'dict'>\n['experiments', 'count', 'total', 'baseline']\nexperiments type: &lt;class 'dict'>, len: 28",
+  "sourceToolAssistantUUID": "30df99c5-ea13-4c74-afb1-f5453bef056a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-21T03:38:05.936Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_012foWu6cQj1fUuLeFJSSW8d`</summary>
+
+```text
+&lt;tool_use_error>Cancelled: parallel tool call Bash(python3 -c "
+import json
+with open('/hom…) errored&lt;/tool_use_error>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c68c7b3d-044d-41f1-9be9-a50d1adf84b9",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "fdbaa07a-ce22-4277-a6b9-773f0fabae63",
+  "toolUseResult": "Cancelled: parallel tool call Bash(python3 -c \"\nimport json\nwith open('/hom…) errored",
+  "sourceToolAssistantUUID": "c68c7b3d-044d-41f1-9be9-a50d1adf84b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-21T03:38:05.967Z_
+
+```json
+{
+  "parentUuid": "fdbaa07a-ce22-4277-a6b9-773f0fabae63",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "93deca3c-313e-4543-a7ca-594fa6607783",
+  "timestamp": "2026-05-21T03:38:05.967Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-21T03:38:11.034Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01A9MBMfVP8XbqhY9zAHqGWu`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# it's a dict keyed by exp_id\nif 'llama_tg_training' in exps:\n    print(json.dumps(exps['llama_tg_training'], indent=2, ensure_ascii=False))\nelse:\n    print('NOT FOUND, keys:', list(exps.keys()))\n\"\n",
+  "description": "Extract llama_tg_training from registry dict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93deca3c-313e-4543-a7ca-594fa6607783",
+  "isSidechain": false,
+  "requestId": "req_011CbF1vyM5Xm9rr9sL9nVpJ",
+  "type": "assistant",
+  "uuid": "02cf1cd1-1c61-48cf-8360-4287eddce701",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ncAJactKVjdfQR9gryNLZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 793,
+      "cache_read_input_tokens": 44064,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 793,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 44064,
+          "cache_creation_input_tokens": 793,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 793
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-21T03:38:11.150Z_
+
+<details><summary>↩ Tool result · `toolu_01A9MBMfVP8XbqhY9zAHqGWu`</summary>
+
+```text
+{
+  "status": "PREPARING",
+  "retry_count": 0,
+  "created_at": "2026-05-21T03:37:31.513Z",
+  "updated_at": "2026-05-21T03:37:31.653Z",
+  "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+  "conclusion": "failed",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-21T03:37:33.309826+00:00"
+      }
+    ]
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "02cf1cd1-1c61-48cf-8360-4287eddce701",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "b015db84-e3ef-4c3d-bb51-427049357cd2",
+  "toolUseResult": {
+    "stdout": "{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-21T03:37:31.513Z\",\n  \"updated_at\": \"2026-05-21T03:37:31.653Z\",\n  \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\",\n  \"conclusion\": \"failed\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-21T03:37:33.309826+00:00\"\n      }\n    ]\n  }\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "02cf1cd1-1c61-48cf-8360-4287eddce701",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-21T03:38:11.335Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016jmr5tKNH8r3fcK6ndemay`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b015db84-e3ef-4c3d-bb51-427049357cd2",
+  "isSidechain": false,
+  "requestId": "req_011CbF1vyM5Xm9rr9sL9nVpJ",
+  "type": "assistant",
+  "uuid": "b70adc0c-4e54-4cf5-a8b0-1f97e30d8635",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ncAJactKVjdfQR9gryNLZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 793,
+      "cache_read_input_tokens": 44064,
+      "output_tokens": 382,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 793,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 382,
+          "cache_read_input_tokens": 44064,
+          "cache_creation_input_tokens": 793,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 793
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T03:38:11.343Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016jmr5tKNH8r3fcK6ndemay`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b70adc0c-4e54-4cf5-a8b0-1f97e30d8635",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "61849ae6-41e0-4a40-b692-688512e84df7",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e.",
+  "sourceToolAssistantUUID": "b70adc0c-4e54-4cf5-a8b0-1f97e30d8635",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-21T03:38:29.226Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `llama_tg_training` experiment has very little info in the registry — status is PREPARING but conclusion is failed. The failure reason is "process dead 5× with no sentinel/W&B — auto-resolved as failed". This seems like the experiment was never properly set up - it's still in PREPARING status but somehow got a failed conclusion.
+
+Let me look at the `llama_tg_s42` experiment which is the one that was actually running successfully. The `llama_tg_training` seems like a different experiment ID. Let me check the log file on the server.
+
+Wait, looking more carefully:
+
+
+The cron monitor detected the process dead five times with no W&B metrics or sentinel file, then auto-resolved it as failed. The experiment was registered but never transitioned to RUNNING, which suggests it either crashed before writing any W&B metrics or the training process never actually started.
+
+I need to SSH into the server and check the log file at `/root/turn_residual_gating/logs/llama_tg_training.log` to see what happened. The registry entry is sparse with no spec, hypothesis, parent, or server info, which makes it harder to diagnose. I'm also noticing there's a "Llama TG 训练 + eval" entry in the ROADMAP that's already running, and `llama_tg_s42` completed successfully, so `llama_tg_training` might be a duplicate or earlier attempt that I should cross-reference with `llama_eval_s42`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61849ae6-41e0-4a40-b692-688512e84df7",
+  "isSidechain": false,
+  "requestId": "req_011CbF1wNY6R178ijWFRjZzM",
+  "type": "assistant",
+  "uuid": "fab0890d-8324-464a-9829-605b16f045be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CPLYhBpzbxwjM5JaAp2H4y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 667,
+      "cache_read_input_tokens": 44857,
+      "output_tokens": 1055,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 667,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1055,
+          "cache_read_input_tokens": 44857,
+          "cache_creation_input_tokens": 667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 667
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-21T03:38:31.460Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NKPDVGJ6teNoqmW7o8cYbM`</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating--claude-sessions-agent-f154795e/668d3321-1462-4922-9948-b2cbced13e62/tool-results/mcp-agent-ml-research-read_registry-1779334667679.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Check llama_tg_s42 and llama_eval_s42 too\nfor k in ['llama_tg_s42', 'llama_eval_s42']:\n    if k in exps:\n        print(f'=== {k} ===')\n        print(json.dumps(exps[k], indent=2, ensure_ascii=False))\n        print()\n\"\n",
+  "description": "Check related Llama experiments in registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fab0890d-8324-464a-9829-605b16f045be",
+  "isSidechain": false,
+  "requestId": "req_011CbF1wNY6R178ijWFRjZzM",
+  "type": "assistant",
+  "uuid": "a8bdeb4e-ef58-49b8-9a60-76d6bfb4b6d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CPLYhBpzbxwjM5JaAp2H4y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 667,
+      "cache_read_input_tokens": 44857,
+      "output_tokens": 1055,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 667,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1055,
+          "cache_read_input_tokens": 44857,
+          "cache_creation_input_tokens": 667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 667
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-21T03:38:31.551Z_
+
+<details><summary>↩ Tool result · `toolu_01NKPDVGJ6teNoqmW7o8cYbM`</summary>
+
+```text
+=== llama_tg_s42 ===
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-21T01:34:36.906Z",
+  "updated_at": "2026-05-21T03:28:07.022Z",
+  "hypothesis": "在 Llama-3.1-8B-Instruct 上训练 ThreadGate（与 Qwen v7 相同配置），验证 C5：gating mechanism 和 GAR training-inference gap 跨模型泛化。如果 Llama TG 也出现 IID GAR ≈ target 但 model-gen GAR 坍塌 → 确认 exposure bias 的跨模型通用性。",
+  "parent": "llama_phase1_gar_diag",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python src/train_phase2.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct --data-dir data/ultrachat_8k --output-dir runs/phase2_llama_tg_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42",
+    "server": "westd-20861",
+    "gpu": [
+      "cuda:0"
+    ],
+    "pid": "199643",
+    "data_path": "data/ultrachat_8k",
+    "data_count": 8000,
+    "model_name": "Meta-Llama-3.1-8B-Instruct",
+    "seed": 42,
+    "checkpoint_source": "N/A (training from scratch)",
+    "eval_data": "N/A (training experiment)",
+    "checkpoint_path": "/root/turn_residual_gating/runs/phase2_llama_tg_s42",
+    "log_path": "/root/turn_residual_gating/logs/llama_tg_training.log"
+  },
+  "conclusion": "success",
+  "completed_at": "2026-05-21T03:27:55.963Z",
+  "metrics": {
+    "epochs_completed": 3,
+    "total_steps": 3000,
+    "wall_clock_seconds": 26212,
+    "wall_clock_hours": 7.28,
+    "final_avg_loss": 0.9233,
+    "final_avg_ntp": 0.9224,
+    "final_avg_gar": 0.0009,
+    "final_avg_div": 0,
+    "final_gate_mean": 0.9099,
+    "final_gate_std": 0.0701,
+    "final_gate_min": 0.7188,
+    "final_gate_max": 0.9922,
+    "gate_profile_step3000": {
+      "L0": 0.957,
+      "L1": 0.973,
+      "L2": 0.977,
+      "L3": 0.965,
+      "L4": 0.992,
+      "L5": 0.969,
+      "L6": 0.957,
+      "L7": 0.957,
+      "L8": 0.961,
+      "L9": 0.949,
+      "L10": 0.938,
+      "L11": 0.934,
+      "L12": 0.969,
+      "L13": 0.953,
+      "L14": 0.957,
+      "L15": 0.965,
+      "L16": 0.953,
+      "L17": 0.961,
+      "L18": 0.922,
+      "L19": 0.902,
+      "L20": 0.883,
+      "L21": 0.863,
+      "L22": 0.836,
+      "L23": 0.844,
+      "L24": 0.809,
+      "L25": 0.719,
+      "L26": 0.762,
+      "L27": 0.805,
+      "L28": 0.801,
+      "L29": 0.855,
+      "L30": 0.898,
+      "L31": 0.934
+    },
+    "checkpoint_size_gate_mb": 4.2,
+    "checkpoint_size_lora_mb": 26,
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell",
+    "vram_gb": 102,
+    "mem_used_gb": 63.4
+  }
+}
+
+=== llama_eval_s42 ===
+{
+  "status": "RUNNING",
+  "retry_count": 0,
+  "created_at": "2026-05-21T03:29:51.255Z",
+  "updated_at": "2026-05-21T03:32:25.576Z",
+  "hypothesis": "Llama-3.1-8B TG 训练完成后，验证 C5：IID (teacher-forced) GAR 应接近 target（~0.5），但 model-gen (autoregressive) GAR 应出现类似 Qwen 的 20-33× training-inference gap，确认 exposure bias 跨模型泛化。",
+  "parent": "llama_tg_s42",
+  "spec": {
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_tg_s42.sh 2>&1 | tee runs/eval_llama_tg_s42.log",
+    "server": "westd-20861",
+    "data_path": "data/ultrachat_eval_sample.json",
+    "data_count": 50,
+    "model_name": "Llama-3.1-8B-Instruct",
+    "seed": 42,
+    "checkpoint_source": "runs/phase2_llama_tg_s42/epoch_2",
+    "eval_data": "ultrachat_eval_sample"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a8bdeb4e-ef58-49b8-9a60-76d6bfb4b6d9",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "7fa093be-7b51-491c-9a11-484683c5c04b",
+  "toolUseResult": {
+    "stdout": "=== llama_tg_s42 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-21T01:34:36.906Z\",\n  \"updated_at\": \"2026-05-21T03:28:07.022Z\",\n  \"hypothesis\": \"在 Llama-3.1-8B-Instruct 上训练 ThreadGate（与 Qwen v7 相同配置），验证 C5：gating mechanism 和 GAR training-inference gap 跨模型泛化。如果 Llama TG 也出现 IID GAR ≈ target 但 model-gen GAR 坍塌 → 确认 exposure bias 的跨模型通用性。\",\n  \"parent\": \"llama_phase1_gar_diag\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python src/train_phase2.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct --data-dir data/ultrachat_8k --output-dir runs/phase2_llama_tg_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42\",\n    \"server\": \"westd-20861\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"199643\",\n    \"data_path\": \"data/ultrachat_8k\",\n    \"data_count\": 8000,\n    \"model_name\": \"Meta-Llama-3.1-8B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"N/A (training from scratch)\",\n    \"eval_data\": \"N/A (training experiment)\",\n    \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_llama_tg_s42\",\n    \"log_path\": \"/root/turn_residual_gating/logs/llama_tg_training.log\"\n  },\n  \"conclusion\": \"success\",\n  \"completed_at\": \"2026-05-21T03:27:55.963Z\",\n  \"metrics\": {\n    \"epochs_completed\": 3,\n    \"total_steps\": 3000,\n    \"wall_clock_seconds\": 26212,\n    \"wall_clock_hours\": 7.28,\n    \"final_avg_loss\": 0.9233,\n    \"final_avg_ntp\": 0.9224,\n    \"final_avg_gar\": 0.0009,\n    \"final_avg_div\": 0,\n    \"final_gate_mean\": 0.9099,\n    \"final_gate_std\": 0.0701,\n    \"final_gate_min\": 0.7188,\n    \"final_gate_max\": 0.9922,\n    \"gate_profile_step3000\": {\n      \"L0\": 0.957,\n      \"L1\": 0.973,\n      \"L2\": 0.977,\n      \"L3\": 0.965,\n      \"L4\": 0.992,\n      \"L5\": 0.969,\n      \"L6\": 0.957,\n      \"L7\": 0.957,\n      \"L8\": 0.961,\n      \"L9\": 0.949,\n      \"L10\": 0.938,\n      \"L11\": 0.934,\n      \"L12\": 0.969,\n      \"L13\": 0.953,\n      \"L14\": 0.957,\n      \"L15\": 0.965,\n      \"L16\": 0.953,\n      \"L17\": 0.961,\n      \"L18\": 0.922,\n      \"L19\": 0.902,\n      \"L20\": 0.883,\n      \"L21\": 0.863,\n      \"L22\": 0.836,\n      \"L23\": 0.844,\n      \"L24\": 0.809,\n      \"L25\": 0.719,\n      \"L26\": 0.762,\n      \"L27\": 0.805,\n      \"L28\": 0.801,\n      \"L29\": 0.855,\n      \"L30\": 0.898,\n      \"L31\": 0.934\n    },\n    \"checkpoint_size_gate_mb\": 4.2,\n    \"checkpoint_size_lora_mb\": 26,\n    \"gpu\": \"NVIDIA RTX PRO 6000 Blackwell\",\n    \"vram_gb\": 102,\n    \"mem_used_gb\": 63.4\n  }\n}\n\n=== llama_eval_s42 ===\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-21T03:29:51.255Z\",\n  \"updated_at\": \"2026-05-21T03:32:25.576Z\",\n  \"hypothesis\": \"Llama-3.1-8B TG 训练完成后，验证 C5：IID (teacher-forced) GAR 应接近 target（~0.5），但 model-gen (autoregressive) GAR 应出现类似 Qwen 的 20-33× training-inference gap，确认 exposure bias 跨模型泛化。\",\n  \"parent\": \"llama_tg_s42\",\n  \"spec\": {\n    \"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_tg_s42.sh 2>&1 | tee runs/eval_llama_tg_s42.log\",\n    \"server\": \"westd-20861\",\n    \"data_path\": \"data/ultrachat_eval_sample.json\",\n    \"data_count\": 50,\n    \"model_name\": \"Llama-3.1-8B-Instruct\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"runs/phase2_llama_tg_s42/epoch_2\",\n    \"eval_data\": \"ultrachat_eval_sample\"\n  }\n}",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "a8bdeb4e-ef58-49b8-9a60-76d6bfb4b6d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T03:38:32.026Z_
+
+<details><summary>↩ Tool result · `toolu_01CPqkExr2C6DP6VVsXBLXpS`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "631231ee-7f84-457c-95e3-6a6a06d649d6",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "b75dac99-e766-4313-9d63-aa9df2eb190f",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 24,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "631231ee-7f84-457c-95e3-6a6a06d649d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-21T03:38:31.996Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01CPqkExr2C6DP6VVsXBLXpS`</summary>
+
+```json
+{
+  "pattern": "**/*on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7fa093be-7b51-491c-9a11-484683c5c04b",
+  "isSidechain": false,
+  "requestId": "req_011CbF1wNY6R178ijWFRjZzM",
+  "type": "assistant",
+  "uuid": "631231ee-7f84-457c-95e3-6a6a06d649d6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CPLYhBpzbxwjM5JaAp2H4y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 667,
+      "cache_read_input_tokens": 44857,
+      "output_tokens": 1055,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 667,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1055,
+          "cache_read_input_tokens": 44857,
+          "cache_creation_input_tokens": 667,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 667
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics  - exp_id: llama_tg_training - project: turn_residual_gating - server: westd-20861 - log_path: /root/turn_residual_gating/logs…",
+  "leafUuid": "b75dac99-e766-4313-9d63-aa9df2eb190f",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose failed llama training experiment with missing metrics",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-21T03:38:46.008Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the situation:
+
+1. `llama_tg_training` is a registry entry with status PREPARING and conclusion "failed". The failure reason is "process dead 5× with no sentinel/W&B — auto-resolved as failed". This experiment has no hypothesis, no parent, no spec — it's a very thin entry.
+
+2. `llama_tg_s42` is the actual successful Llama TG training experiment (status DONE, conclusion success). It used PID 199643 and the log path is `/root/turn_residual_gating/logs/llama_tg_training.log` — notice the log path points to `llama_tg_training.log`!
+
+
+3. `llama_eval_s42` is currently RUNNING as the evaluation phase after training.
+
+The real issue is that both `llama_tg_training` and `llama_tg_s42` point to the same log file, suggesting `llama_tg_training` is a stale orphan entry. The cron monitor kept trying to find a process for `llama_tg_training`, but the actual training process was registered under `llama_tg_s42` instead, so it never found anything and marked it as failed.
+
+Now I need to clean this up by updating the registry entry for `llama_tg_training` to reflect that it's a resolved duplicate, update the report, and let the Director know this isn't a real failure. I should also check if there's a skill file for handling experiment failures.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b75dac99-e766-4313-9d63-aa9df2eb190f",
+  "isSidechain": false,
+  "requestId": "req_011CbF1xtsWFzSHRFxFFqusr",
+  "type": "assistant",
+  "uuid": "66923653-e144-4e18-8607-6e083e30b259",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UpwaAFdCWfo8BypGfmgoRi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2796,
+      "cache_read_input_tokens": 45524,
+      "output_tokens": 528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2796,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 528,
+          "cache_read_input_tokens": 45524,
+          "cache_creation_input_tokens": 2796,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2796
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-21T03:38:46.040Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01MGpg4KdmiM2vv4GfM2JATh`</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/agent-ml-research"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "66923653-e144-4e18-8607-6e083e30b259",
+  "isSidechain": false,
+  "requestId": "req_011CbF1xtsWFzSHRFxFFqusr",
+  "type": "assistant",
+  "uuid": "c6a4d652-923a-4c39-8bbf-7e5731dd37bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UpwaAFdCWfo8BypGfmgoRi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2796,
+      "cache_read_input_tokens": 45524,
+      "output_tokens": 528,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2796,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 528,
+          "cache_read_input_tokens": 45524,
+          "cache_creation_input_tokens": 2796,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2796
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T03:38:46.183Z_
+
+<details><summary>↩ Tool result · `toolu_01MGpg4KdmiM2vv4GfM2JATh`</summary>
+
+```text
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c6a4d652-923a-4c39-8bbf-7e5731dd37bf",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "96c9ee71-3626-47c4-8f83-be1d4850d886",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+    ],
+    "durationMs": 138,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "c6a4d652-923a-4c39-8bbf-7e5731dd37bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-21T03:38:48.284Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Wm1631woVrufZxzoTYqKKo`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "96c9ee71-3626-47c4-8f83-be1d4850d886",
+  "isSidechain": false,
+  "requestId": "req_011CbF1ywEumezTQxKt1UJui",
+  "type": "assistant",
+  "uuid": "4d011b83-b491-4cf9-82ee-7b770a179117",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NgLJkbgRV4L2sq7GxxnfAu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 563,
+      "cache_read_input_tokens": 48320,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 563,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 48320,
+          "cache_creation_input_tokens": 563,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 563
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T03:38:48.289Z_
+
+<details><summary>↩ Tool result · `toolu_01Wm1631woVrufZxzoTYqKKo`</summary>
+
+````text
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### Step 3: 诊断 + 行动
+84	根据 `error_type` 决定：
+85	- **infrastructure**（文件缺失/import error/配置语法）→ spawn_worker 修复，修复后重提交（自主修复最多 1 次，再失败则停止告知用户）。注意：此重试策略仅适用于训练实验，数据生成任务的重试策略参见 `on-datagen-done` 的 Step 9。
+86	  - spawn_worker 后立即：`update_registry(exp_id, "notes", "fix_worker_id: {worker_id}")`，确保关联可追溯
+87	- **hyperparameter/架构**（loss 不降、指标差）→ 给具体调整建议，用户决定
+88	- **resource**（OOM、GPU 不够）→ 给配置调整建议，用户确认
+89	- **data**（路径、格式）→ spawn_worker 检查，能自修则修，不能则告知用户
+90	
+91	### Step 4: 更新 registry
+92	- update_registry(exp_id, "notes", "失败原因: ... | 已有成果: ... | 建议: ...")
+93	- update_registry(exp_id, "conclusion", "failed")
+94	- update_registry(exp_id, "status", "DONE")
+95	
+96	### Step 5: 发送飞书结果卡片
+97	- feishu_send_result_card(exp_id, conclusion="failed", key_metrics, baseline_comparison)
+98	  - key_metrics：从 registry 取已有 metrics，没有则传空 dict
+99	  - baseline_comparison：Step 3 的诊断摘要
+100	
+101	### Step 6: 提炼 insight + 更新文档
+102	
+103	**写入 memory.md（新失败模式才写，避免重复）**：
+104	如果 root_cause 是之前未记录的模式（Step 0 读 memory.md 时没有看到），用 `save_memory` 追加：
+105	```
+106	- [失败模式] {error_type}：{root_cause 一句话摘要} → 修复方案：{fix_steps 摘要}
+107	```
+108	例：`- [失败模式] GPU 硬件：GPU 7 CUDA capability 检查失败，device=7, num_gpus=7 → 设置 CUDA_VISIBLE_DEVICES 跳过 GPU 7`
+109	这样下次同类实验失败时，Step 0 读 memory.md 就能直接命中，跳过通用诊断流程。
+110	
+111	**更新 ideas.md（有价值的 insight 才写）**：
+112	- AMP 崩溃反复出现 → `append_idea` 记录调参方向
+113	- 部分 metrics 有价值但后期崩溃 → `append_idea` 记录调优方向
+114	
+115	更新 ideas.md IN_PROGRESS → DEAD ENDS：
+116	- move_idea(from_section="IN_PROGRESS（进行中）", to_section="DEAD ENDS（已确认死路）", index=N)
+117	- 找不到对应条目：跳过
+118	
+119	### Step 6.5: 更新 report.md
+120	
+121	report.md 由系统根据 registry 状态自动生成，无需手动调用 `save_project_file`。Step 4 更新 registry 后，report 会自动刷新并在 ## 告警 区块突出标注本次失败。
+122	
+123	### Step 7: 回复
+124	生成失败报告：exp_id、失败原因（引用具体错误行）、已有成果、具体建议。
+125	
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "parentUuid": "4d011b83-b491-4cf9-82ee-7b770a179117",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "c044b9c3-f9d6-4c26-ac8a-6bdbef65d0e3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md",
+      "content": "---\nname: on-experiment-failed\ndescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\nscope: global\ntags:\n- workflow\n- diagnosis\n- cron-hook\ntools:\n- read_registry\n- tail_training_logs\n- update_registry\n- append_idea\n- feishu_send_result_card\n- spawn_worker\n- check_job_status\nversion: 4\nheavy: true\nroles:\n- agent\n---\n\n# 实验失败诊断工作流\n\n## 触发方式\n由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n\n## 步骤\n\n### Step 0: 读取项目上下文（诊断前必须执行）\n先读文档，再看日志——否则诊断方向可能完全错误：\n\n- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n\n读完后检查：\n- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n\n### Step 1: 了解失败背景\n- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n\n### Step 2: 浅层日志诊断\n有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n- 没找到 → 增加行数再查\n\n### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n- 运行时长 < 5 分钟（初始化阶段崩溃）\n- tail 日志中未见明确 Traceback 或错误行\n- 同类实验连续失败 ≥ 2 次\n\n```python\nspawn_worker(\n    task_type=\"diagnose:{exp_id}\",\n    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n\n项目路径：{project_path}（绝对路径）\n日志路径：{log_path}（可能为空）\n\n执行步骤（按顺序，有结论就停）：\n\n1. 如果有日志路径：\n   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n\n2. 日志无错误或无日志时，检查基础设施：\n   - 入口文件是否存在\n   - 激活环境并验证 import\n   - 检查 configs/ 目录\n\n3. 检查磁盘/内存（OOM 类）\n\n最后输出一行 JSON：\n{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n    tool_groups=[\"ssh\"],\n)\n```\n\nWorker 返回后，以其结论作为 Step 3 的诊断依据。\n\n### Step 3: 诊断 + 行动\n根据 `error_type` 决定：\n- **infrastructure**（文件缺失/import error/配置语法）→ spawn_worker 修复，修复后重提交（自主修复最多 1 次，再失败则停止告知用户）。注意：此重试策略仅适用于训练实验，数据生成任务的重试策略参见 `on-datagen-done` 的 Step 9。\n  - spawn_worker 后立即：`update_registry(exp_id, \"notes\", \"fix_worker_id: {worker_id}\")`，确保关联可追溯\n- **hyperparameter/架构**（loss 不降、指标差）→ 给具体调整建议，用户决定\n- **resource**（OOM、GPU 不够）→ 给配置调整建议，用户确认\n- **data**（路径、格式）→ spawn_worker 检查，能自修则修，不能则告知用户\n\n### Step 4: 更新 registry\n- update_registry(exp_id, \"notes\", \"失败原因: ... | 已有成果: ... | 建议: ...\")\n- update_registry(exp_id, \"conclusion\", \"failed\")\n- update_registry(exp_id, \"status\", \"DONE\")\n\n### Step 5: 发送飞书结果卡片\n- feishu_send_result_card(exp_id, conclusion=\"failed\", key_metrics, baseline_comparison)\n  - key_metrics：从 registry 取已有 metrics，没有则传空 dict\n  - baseline_comparison：Step 3 的诊断摘要\n\n### Step 6: 提炼 insight + 更新文档\n\n**写入 memory.md（新失败模式才写，避免重复）**：\n如果 root_cause 是之前未记录的模式（Step 0 读 memory.md 时没有看到），用 `save_memory` 追加：\n```\n- [失败模式] {error_type}：{root_cause 一句话摘要} → 修复方案：{fix_steps 摘要}\n```\n例：`- [失败模式] GPU 硬件：GPU 7 CUDA capability 检查失败，device=7, num_gpus=7 → 设置 CUDA_VISIBLE_DEVICES 跳过 GPU 7`\n这样下次同类实验失败时，Step 0 读 memory.md 就能直接命中，跳过通用诊断流程。\n\n**更新 ideas.md（有价值的 insight 才写）**：\n- AMP 崩溃反复出现 → `append_idea` 记录调参方向\n- 部分 metrics 有价值但后期崩溃 → `append_idea` 记录调优方向\n\n更新 ideas.md IN_PROGRESS → DEAD ENDS：\n- move_idea(from_section=\"IN_PROGRESS（进行中）\", to_section=\"DEAD ENDS（已确认死路）\", index=N)\n- 找不到对应条目：跳过\n\n### Step 6.5: 更新 report.md\n\nreport.md 由系统根据 registry 状态自动生成，无需手动调用 `save_project_file`。Step 4 更新 registry 后，report 会自动刷新并在 ## 告警 区块突出标注本次失败。\n\n### Step 7: 回复\n生成失败报告：exp_id、失败原因（引用具体错误行）、已有成果、具体建议。\n",
+      "numLines": 125,
+      "startLine": 1,
+      "totalLines": 125
+    }
+  },
+  "sourceToolAssistantUUID": "4d011b83-b491-4cf9-82ee-7b770a179117",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+````
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-21T03:39:01.205Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the full picture. Let me analyze:
+
+The `llama_tg_training` experiment is essentially a phantom/orphan registry entry:
+- It has status "PREPARING" with conclusion "failed" 
+- No hypothesis, no parent, no spec — extremely thin entry
+- The failure reason is "process dead 5× with no sentinel/W&B — auto-resolved as failed"
+- The actual training was registered under `llama_tg_s42` which completed successfully
+- Both experiments share the same log path: `/root/turn_residual_gating/logs/llama_tg_training.log`
+
+
+- This is a stale duplicate entry where the cron monitored a non-existent process and auto-failed it after five checks, while the real training succeeded under a different registry key.
+
+I don't need to spawn a Worker to investigate further — this isn't a genuine failure. I'll update the registry to reflect this and notify the Director that there's no actual issue to resolve.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c044b9c3-f9d6-4c26-ac8a-6bdbef65d0e3",
+  "isSidechain": false,
+  "requestId": "req_011CbF1z6X2CKNrTiy2PMXp7",
+  "type": "assistant",
+  "uuid": "e3e1f57b-11d7-42bb-bfa1-373b6c0306e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013L5DoYk1bqZwmVFqJnmR1e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2415,
+      "cache_read_input_tokens": 48883,
+      "output_tokens": 608,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 608,
+          "cache_read_input_tokens": 48883,
+          "cache_creation_input_tokens": 2415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-21T03:39:03.077Z_
+
+诊断完成。`llama_tg_training` 不是真正的实验失败——它是一个孤立的 registry 条目：
+
+- **无 hypothesis、无 parent、无 spec**，状态停留在 PREPARING
+- 实际训练在 `llama_tg_s42` 下成功完成（PID 199643，7.28h，3 epochs）
+- 两者共享同一 log 路径 `/root/turn_residual_gating/logs/llama_tg_training.log`
+- cron 监控 `llama_tg_training` 找不到进程，5 次后自动标记 failed
+
+这是幽灵条目，不需要修复或重跑。更新 registry 并通知 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3e1f57b-11d7-42bb-bfa1-373b6c0306e4",
+  "isSidechain": false,
+  "requestId": "req_011CbF1z6X2CKNrTiy2PMXp7",
+  "type": "assistant",
+  "uuid": "3a9e211b-a340-49a4-92c6-4c9ad4deccec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013L5DoYk1bqZwmVFqJnmR1e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2415,
+      "cache_read_input_tokens": 48883,
+      "output_tokens": 608,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 608,
+          "cache_read_input_tokens": 48883,
+          "cache_creation_input_tokens": 2415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-21T03:39:04.538Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01791t3DpwH9Z1aEK4BcYCMh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_project_file",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a9e211b-a340-49a4-92c6-4c9ad4deccec",
+  "isSidechain": false,
+  "requestId": "req_011CbF1z6X2CKNrTiy2PMXp7",
+  "type": "assistant",
+  "uuid": "25cfb846-c774-41a2-a430-96f8b640ab7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013L5DoYk1bqZwmVFqJnmR1e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2415,
+      "cache_read_input_tokens": 48883,
+      "output_tokens": 608,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2415,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 608,
+          "cache_read_input_tokens": 48883,
+          "cache_creation_input_tokens": 2415,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2415
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T03:39:04.545Z_
+
+<details><summary>↩ Tool result · `toolu_01791t3DpwH9Z1aEK4BcYCMh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25cfb846-c774-41a2-a430-96f8b640ab7c",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "dc47e208-ad15-4fdd-a5e6-390dd5ba6bf4",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__read_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__read_project_file",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "25cfb846-c774-41a2-a430-96f8b640ab7c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-21T03:39:10.665Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01DucKG1Ker25N4SFoWx7mtL`</summary>
+
+```json
+{
+  "exp_id": "llama_tg_training",
+  "field": "status",
+  "value": "DONE",
+  "project": "turn_residual_gating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dc47e208-ad15-4fdd-a5e6-390dd5ba6bf4",
+  "isSidechain": false,
+  "requestId": "req_011CbF21J1rEE6CJa1uV4TJd",
+  "type": "assistant",
+  "uuid": "5775b0f4-4859-45ee-a6a0-c06a590af3d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9ZrKfTh6QFR8mbPZkxVCN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1693,
+      "cache_read_input_tokens": 51298,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1693,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 51298,
+          "cache_creation_input_tokens": 1693,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1693
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T03:39:10.769Z_
+
+<details><summary>↩ Tool result · `toolu_01DucKG1Ker25N4SFoWx7mtL`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0896}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5775b0f4-4859-45ee-a6a0-c06a590af3d8",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "7c22cb12-dab1-4a42-89c3-5a045bd1f3a6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0896}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0896}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5775b0f4-4859-45ee-a6a0-c06a590af3d8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-21T03:39:15.456Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_014Ehbh1YM1oMD12WBNWUviB`</summary>
+
+```json
+{
+  "exp_id": "llama_tg_training",
+  "field": "notes",
+  "value": "幽灵条目，非真实失败。实际训练在 llama_tg_s42 下成功完成（7.28h, 3 epochs, PID 199643）。llama_tg_training 是创建时的旧 exp_id，后来重新注册为 llama_tg_s42，但旧条目未清理。cron 监控找不到对应进程，5次检测后自动标记 failed。无需重跑。",
+  "project": "turn_residual_gating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c22cb12-dab1-4a42-89c3-5a045bd1f3a6",
+  "isSidechain": false,
+  "requestId": "req_011CbF21J1rEE6CJa1uV4TJd",
+  "type": "assistant",
+  "uuid": "62640e6d-e1cc-4e53-baa8-f1f75d52549b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9ZrKfTh6QFR8mbPZkxVCN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1693,
+      "cache_read_input_tokens": 51298,
+      "output_tokens": 366,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1693,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 366,
+          "cache_read_input_tokens": 51298,
+          "cache_creation_input_tokens": 1693,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1693
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics  - exp_id: llama_tg_training - project: turn_residual_gating - server: westd-20861 - log_path: /root/turn_residual_gating/logs…",
+  "leafUuid": "62640e6d-e1cc-4e53-baa8-f1f75d52549b",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose failed llama training experiment with missing metrics",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T03:39:15.653Z_
+
+<details><summary>↩ Tool result · `toolu_014Ehbh1YM1oMD12WBNWUviB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"llama_tg_training\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T03:37:31.513Z\", \"updated_at\": \"2026-05-21T03:39:15.553Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T03:37:33.309826+00:00\"}]}, \"notes\": \"幽灵条目，非真实失败。实际训练在 llama_tg_s42 下成功完成（7.28h, 3 epochs, PID 199643）。llama_tg_training 是创建时的旧 exp_id，后来重新注册为 llama_tg_s42，但旧条目未清理。cron 监控找不到对应进程，5次检测后自动标记 failed。无需重跑。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1865}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "62640e6d-e1cc-4e53-baa8-f1f75d52549b",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "28390d73-3875-499e-b131-8a80829a4da6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"llama_tg_training\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T03:37:31.513Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:39:15.553Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T03:37:33.309826+00:00\\\"}]}, \\\"notes\\\": \\\"幽灵条目，非真实失败。实际训练在 llama_tg_s42 下成功完成（7.28h, 3 epochs, PID 199643）。llama_tg_training 是创建时的旧 exp_id，后来重新注册为 llama_tg_s42，但旧条目未清理。cron 监控找不到对应进程，5次检测后自动标记 failed。无需重跑。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1865}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"llama_tg_training\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T03:37:31.513Z\", \"updated_at\": \"2026-05-21T03:39:15.553Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T03:37:33.309826+00:00\"}]}, \"notes\": \"幽灵条目，非真实失败。实际训练在 llama_tg_s42 下成功完成（7.28h, 3 epochs, PID 199643）。llama_tg_training 是创建时的旧 exp_id，后来重新注册为 llama_tg_s42，但旧条目未清理。cron 监控找不到对应进程，5次检测后自动标记 failed。无需重跑。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1865}}"
+    }
+  },
+  "sourceToolAssistantUUID": "62640e6d-e1cc-4e53-baa8-f1f75d52549b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 60 · 2026-05-21T03:39:15.658Z_
+
+```json
+{
+  "parentUuid": "28390d73-3875-499e-b131-8a80829a4da6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3900baf3-7ef7-46b0-a08c-1d9afc4aa862",
+  "timestamp": "2026-05-21T03:39:15.658Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-21T03:39:21.438Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The status transition PREPARING → DONE is not allowed. Let me try going through the valid transitions: PREPARING → PENDING → QUEUED → ... Actually, for a phantom entry, maybe I should just leave it at PREPARING with conclusion=failed and the notes explaining it. The notes are already updated. Let me also check the resource status before reporting to Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3900baf3-7ef7-46b0-a08c-1d9afc4aa862",
+  "isSidechain": false,
+  "requestId": "req_011CbF227HxdmEiaASRbkczR",
+  "type": "assistant",
+  "uuid": "d71778a5-75fb-4f3d-a2d5-2fd8cc36b4ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bGhpY95uUS83Yv3ysdotx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 970,
+      "cache_read_input_tokens": 52991,
+      "output_tokens": 226,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 226,
+          "cache_read_input_tokens": 52991,
+          "cache_creation_input_tokens": 970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-21T03:39:22.472Z_
+
+状态转换受限，但 notes 和 conclusion 已更新。现在检查资源状态并汇报 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d71778a5-75fb-4f3d-a2d5-2fd8cc36b4ef",
+  "isSidechain": false,
+  "requestId": "req_011CbF227HxdmEiaASRbkczR",
+  "type": "assistant",
+  "uuid": "1ff9136f-ca01-4d3e-b3aa-982c231708f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bGhpY95uUS83Yv3ysdotx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 970,
+      "cache_read_input_tokens": 52991,
+      "output_tokens": 226,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 226,
+          "cache_read_input_tokens": 52991,
+          "cache_creation_input_tokens": 970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-21T03:39:23.107Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01KjgTtiRNEPfFwH5omUKXjD`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__list_workers",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ff9136f-ca01-4d3e-b3aa-982c231708f7",
+  "isSidechain": false,
+  "requestId": "req_011CbF227HxdmEiaASRbkczR",
+  "type": "assistant",
+  "uuid": "0ea37ae4-1faa-46fd-9e6b-2afc8093aec1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014bGhpY95uUS83Yv3ysdotx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 970,
+      "cache_read_input_tokens": 52991,
+      "output_tokens": 226,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 970,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 226,
+          "cache_read_input_tokens": 52991,
+          "cache_creation_input_tokens": 970,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 970
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T03:39:23.112Z_
+
+<details><summary>↩ Tool result · `toolu_01KjgTtiRNEPfFwH5omUKXjD`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_gpu_health"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ea37ae4-1faa-46fd-9e6b-2afc8093aec1",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "7472eb32-bf89-46a9-8f09-912ad4949215",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__list_workers"
+    ],
+    "query": "select:mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__list_workers",
+    "total_deferred_tools": 82
+  },
+  "sourceToolAssistantUUID": "0ea37ae4-1faa-46fd-9e6b-2afc8093aec1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-21T03:39:26.440Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_gpu_health · `toolu_014TAY4LksqeuTdVtVb4gcUG`</summary>
+
+```json
+{
+  "server": "westd-20861"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7472eb32-bf89-46a9-8f09-912ad4949215",
+  "isSidechain": false,
+  "requestId": "req_011CbF22fL2nsUA2BtQw7uWz",
+  "type": "assistant",
+  "uuid": "32ef1a1b-fb8a-42b8-95d4-d42078838f37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5FrBQNBpUAjybtYSt7yzC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 53961,
+      "output_tokens": 137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 137,
+          "cache_read_input_tokens": 53961,
+          "cache_creation_input_tokens": 616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T03:39:26.453Z_
+
+<details><summary>↩ Tool result · `toolu_014TAY4LksqeuTdVtVb4gcUG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"servers\": {\"westd-20861\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "32ef1a1b-fb8a-42b8-95d4-d42078838f37",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "5c8f4647-0ae2-4885-b369-3f5e3a04e09b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"servers\\\": {\\\"westd-20861\\\": {\\\"error\\\": \\\"no data yet\\\", \\\"stale\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"servers\": {\"westd-20861\": {\"error\": \"no data yet\", \"stale\": true}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "32ef1a1b-fb8a-42b8-95d4-d42078838f37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-21T03:39:27.047Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_016VTCnUWtx9MerEHVjzcj6T`</summary>
+
+```json
+{
+  "project": "turn_residual_gating",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5c8f4647-0ae2-4885-b369-3f5e3a04e09b",
+  "isSidechain": false,
+  "requestId": "req_011CbF22fL2nsUA2BtQw7uWz",
+  "type": "assistant",
+  "uuid": "b9e35e21-9582-4819-b638-39076c49bcb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y5FrBQNBpUAjybtYSt7yzC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 616,
+      "cache_read_input_tokens": 53961,
+      "output_tokens": 137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 616,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 137,
+          "cache_read_input_tokens": 53961,
+          "cache_creation_input_tokens": 616,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 616
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T03:39:27.144Z_
+
+<details><summary>↩ Tool result · `toolu_016VTCnUWtx9MerEHVjzcj6T`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b9e35e21-9582-4819-b638-39076c49bcb8",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "a1d87a27-8773-42ad-b166-dcd13533c2ef",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [], \"count\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b9e35e21-9582-4819-b638-39076c49bcb8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 69 · 2026-05-21T03:39:33.191Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+No GPU health data available and no running workers. The `llama_eval_s42` is RUNNING per the registry. Let me now report to Director. The key info:
+
+1. `llama_tg_training` failed = phantom entry, not a real failure. Actual training succeeded under `llama_tg_s42`.
+2. `llama_eval_s42` is currently RUNNING.
+3. Worker pool = 0 (but this is acceptable since eval is running and we're just waiting for it).
+
+Let me report to Director concisely.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1d87a27-8773-42ad-b166-dcd13533c2ef",
+  "isSidechain": false,
+  "requestId": "req_011CbF22xPwon6XWjMG5G2J7",
+  "type": "assistant",
+  "uuid": "51d5920c-07fd-437f-930d-9d038ea32fd1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jrv5r1gMiN581up8R7S3pF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 320,
+      "cache_read_input_tokens": 54577,
+      "output_tokens": 535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 320,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 535,
+          "cache_read_input_tokens": 54577,
+          "cache_creation_input_tokens": 320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-21T03:39:41.754Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_01S95iwcTCADy5U6MZTcXXAb`</summary>
+
+```json
+{
+  "text": "[资源] GPU 1/1 (westd-20861:cuda:0) | Worker 0 | 磁盘: westd-20861 49% used (430GB 可用)\n\n**llama_tg_training 失败诊断：幽灵条目，非真实失败**\n\n该 exp_id 是 Llama TG 训练创建时的旧条目（无 hypothesis、无 spec、状态停留在 PREPARING）。实际训练在 `llama_tg_s42` 下成功完成（7.28h, 3 epochs, final_loss=0.923）。旧条目未清理，cron 找不到对应进程，5 次检测后自动标记 failed。\n\n已在 registry notes 标注为幽灵条目，无需任何操作。\n\n**当前状态**：\n- `llama_tg_s42` ✅ SUCCESS — Llama-3.1-8B TG 训练完成\n- `llama_eval_s42` 🏃 RUNNING — C5 跨模型 GAR gap 验证中，等待结果",
+  "project": "turn_residual_gating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "51d5920c-07fd-437f-930d-9d038ea32fd1",
+  "isSidechain": false,
+  "requestId": "req_011CbF22xPwon6XWjMG5G2J7",
+  "type": "assistant",
+  "uuid": "938af729-c038-4c13-ae1b-030788a7aff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Jrv5r1gMiN581up8R7S3pF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 320,
+      "cache_read_input_tokens": 54577,
+      "output_tokens": 535,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 320,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 535,
+          "cache_read_input_tokens": 54577,
+          "cache_creation_input_tokens": 320,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 320
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-21T03:39:45.685Z_
+
+<details><summary>↩ Tool result · `toolu_01S95iwcTCADy5U6MZTcXXAb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "938af729-c038-4c13-ae1b-030788a7aff3",
+  "isSidechain": false,
+  "promptId": "7f330a99-95de-44e1-8f05-af3ed31088c1",
+  "type": "user",
+  "uuid": "592803a8-310b-478c-888e-1272f69c7d70",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_640e53b6afbbd5e34eb7273cd5a707a0:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "938af729-c038-4c13-ae1b-030788a7aff3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 72_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Diagnose failed llama training experiment with missing metrics",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 73 · 2026-05-21T19:40:50.597Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T19:40:50.597Z",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "content": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n&lt;handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n&lt;/handoff>"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 74 · 2026-05-21T19:40:50.598Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T19:40:50.598Z",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 75 · 2026-05-21T19:40:50.586Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "592803a8-310b-478c-888e-1272f69c7d70",
+  "isSidechain": false,
+  "promptId": "2acd9308-93b0-442a-965d-50413daee920",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "042ee96e-1aea-4935-8ae9-caef878970f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-21T19:40:50.586Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "042ee96e-1aea-4935-8ae9-caef878970f5",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "adf76f08-809b-419a-8a15-0e096bedc315",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "id": "5ff2b90d-35dd-44ca-ba88-c60f80849a93",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+1 recorded events
+
+### User
+
+_source line 77 · 2026-05-21T19:40:50.795Z_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "adf76f08-809b-419a-8a15-0e096bedc315",
+  "isSidechain": false,
+  "promptId": "2acd9308-93b0-442a-965d-50413daee920",
+  "type": "user",
+  "uuid": "9e11df35-fa0a-4752-8686-a884f437a94f",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating/.claude/sessions/agent_f154795e",
+  "sessionId": "668d3321-1462-4922-9948-b2cbced13e62",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---

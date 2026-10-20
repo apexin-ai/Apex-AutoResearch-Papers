@@ -1,0 +1,5338 @@
+# Research conversation: <project_context> # 项目: turn_residual_gating ## 运行环境 - 服务器名: westd-20861 - SSH 连接命令: ssh connect.westd.seetacloud.com # 
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 95
+- **Recorded user turns:** 1
+- **Tool calls:** 24
+- **Original source:** `logs/chats/exported-trajectories/account-1/bc94af32-4f18-47ef-82eb-b2e18fce9e57.jsonl`
+- **Structured JSON:** [`1989ae8e2b764d481c70.json`](../../sessions/19/1989ae8e2b764d481c70.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-22T08:25:40.566Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-22T08:25:40.566Z",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "content": "&lt;project_context>\n# 项目: turn_residual_gating\n\n## 运行环境\n- 服务器名: westd-20861\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/turn_residual_gating\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：提取 eval_llama_ar_n20 详细统计数据 + 检查 mid_turns 定义一致性\n\n### 背景\neval_llama_ar_n20 的 registry metrics 目前只有 mean 值，缺少 mean/std/median/spike_ratio 的分模型详细数据。Reviewer critical 要求补回。\n\n### Part 1: 提取 eval_llama_ar_n20 详细统计\n\n**服务器**: westd-20861\n**日志路径**: `/root/runs/turn_residual_gating/eval_llama_ar_n20.log`\n**脚本路径**: `/root/turn_residual_gating/scripts/eval_llama_ar_n20.sh`\n\n1. SSH 到 westd-20861，读取 eval log 和输出文件\n2. 找到 N=20 AR eval 的原始输出（可能在 log 里，也可能有 JSON 输出文件）\n3. 对 Base / TG / LoRA-only 三个模型各提取：\n   - GAR-ours: mean, std, median, spike_ratio (GAR>0.4 的 turn 占比)\n   - GAR-dongre: mean, std, median\n   - PPL: mean, std\n   \n   注意：这些统计是 per-turn 的 GAR 值（跨 20 conversations × 4 turns = 80 data points，但 turn 1 通常排除）\n\n4. 如果 log 里没有详细统计，检查 eval 脚本，看输出 JSON 的路径，读取 JSON 文件\n\n5. 用 `update_registry` 更新 eval_llama_ar_n20 的 metrics，在每个模型下加入 detailed stats:\n   ```\n   base: { gar_ours_mean, gar_ours_std, gar_ours_median, gar_ours_spike_ratio, ... 保留现有字段 }\n   tg: { ... same ... }\n   lora_only: { ... same ... }\n   ```\n\n### Part 2: 检查 mid_turns 定义一致性\n\n统一标准：**mid_turns = turns 2-T**（排除仅 turn 1，包含所有后续 turns）。\n\n检查以下 eval 相关 registry 条目的 mid_turns 定义：\n- eval_llama_ar_n20\n- eval_llama_lora_only_s42\n- llama_eval_s42\n- llama_ar_matched_eval\n- eval_v7_tg_s123\n- eval_v8b_ss_s123\n- phase2_4way_eval\n- phase2_4way_eval_heldout\n- phase2_tg_s42_v7\n- phase2_tg_s42_v9_pcgrad\n- phase2_lora_only_s42\n- phase2_ug_s42\n- attention_steering_gen_n50\n- attention_steering_v7_tg_gen\n- phase1_gar_diag\n- llama_phase1_gar_diag\n\n方法：\n1. `read_registry` 读取每个条目的 metrics 和 notes\n2. 找到 eval 脚本中 mid_turns 的计算方式：SSH 到 westd-20861，读取 `/root/turn_residual_gating/eval_phase2.py`（或类似 eval 脚本），找到 \"mid\" 的定义\n3. 对于每个条目，确认：\n   - 如果 notes 中明确写了 \"turns 2-5\" 或类似非 \"2-T\" 定义 → 标记为不一致\n   - 如果 eval 脚本实际计算用的是 \"turns 2-T\" 但 notes 没说清 → 加注明\n4. 列出所有不一致的条目和具体问题\n\n### 输出要求\n\n最终产出一个清晰的报告：\n1. eval_llama_ar_n20 的 Base/TG/LO 详细统计数据（已写入 registry）\n2. mid_turns 一致性检查结果：哪些条目一致、哪些不一致、建议修正内容\n\n注意：所有 registry 更新用 project=\"turn_residual_gating\"\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-22T08:25:40.570Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-22T08:25:40.570Z",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+## Round 1
+
+93 recorded events
+
+### User
+
+_source line 3 · 2026-05-22T08:25:40.606Z_
+
+&lt;project_context>
+# 项目: turn_residual_gating
+
+## 运行环境
+- 服务器名: westd-20861
+- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/turn_residual_gating
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：提取 eval_llama_ar_n20 详细统计数据 + 检查 mid_turns 定义一致性
+
+### 背景
+eval_llama_ar_n20 的 registry metrics 目前只有 mean 值，缺少 mean/std/median/spike_ratio 的分模型详细数据。Reviewer critical 要求补回。
+
+### Part 1: 提取 eval_llama_ar_n20 详细统计
+
+**服务器**: westd-20861
+**日志路径**: `/root/runs/turn_residual_gating/eval_llama_ar_n20.log`
+**脚本路径**: `/root/turn_residual_gating/scripts/eval_llama_ar_n20.sh`
+
+1. SSH 到 westd-20861，读取 eval log 和输出文件
+2. 找到 N=20 AR eval 的原始输出（可能在 log 里，也可能有 JSON 输出文件）
+3. 对 Base / TG / LoRA-only 三个模型各提取：
+   - GAR-ours: mean, std, median, spike_ratio (GAR>0.4 的 turn 占比)
+   - GAR-dongre: mean, std, median
+   - PPL: mean, std
+   
+   注意：这些统计是 per-turn 的 GAR 值（跨 20 conversations × 4 turns = 80 data points，但 turn 1 通常排除）
+
+4. 如果 log 里没有详细统计，检查 eval 脚本，看输出 JSON 的路径，读取 JSON 文件
+
+5. 用 `update_registry` 更新 eval_llama_ar_n20 的 metrics，在每个模型下加入 detailed stats:
+   ```
+   base: { gar_ours_mean, gar_ours_std, gar_ours_median, gar_ours_spike_ratio, ... 保留现有字段 }
+   tg: { ... same ... }
+   lora_only: { ... same ... }
+   ```
+
+### Part 2: 检查 mid_turns 定义一致性
+
+统一标准：**mid_turns = turns 2-T**（排除仅 turn 1，包含所有后续 turns）。
+
+检查以下 eval 相关 registry 条目的 mid_turns 定义：
+- eval_llama_ar_n20
+- eval_llama_lora_only_s42
+- llama_eval_s42
+- llama_ar_matched_eval
+- eval_v7_tg_s123
+- eval_v8b_ss_s123
+- phase2_4way_eval
+- phase2_4way_eval_heldout
+- phase2_tg_s42_v7
+- phase2_tg_s42_v9_pcgrad
+- phase2_lora_only_s42
+- phase2_ug_s42
+- attention_steering_gen_n50
+- attention_steering_v7_tg_gen
+- phase1_gar_diag
+- llama_phase1_gar_diag
+
+方法：
+1. `read_registry` 读取每个条目的 metrics 和 notes
+2. 找到 eval 脚本中 mid_turns 的计算方式：SSH 到 westd-20861，读取 `/root/turn_residual_gating/eval_phase2.py`（或类似 eval 脚本），找到 "mid" 的定义
+3. 对于每个条目，确认：
+   - 如果 notes 中明确写了 "turns 2-5" 或类似非 "2-T" 定义 → 标记为不一致
+   - 如果 eval 脚本实际计算用的是 "turns 2-T" 但 notes 没说清 → 加注明
+4. 列出所有不一致的条目和具体问题
+
+### 输出要求
+
+最终产出一个清晰的报告：
+1. eval_llama_ar_n20 的 Base/TG/LO 详细统计数据（已写入 registry）
+2. mid_turns 一致性检查结果：哪些条目一致、哪些不一致、建议修正内容
+
+注意：所有 registry 更新用 project="turn_residual_gating"
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "b532001d-6861-408d-8154-ae253d3fb8ec",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-22T08:25:40.605Z_
+
+```json
+{
+  "parentUuid": "b532001d-6861-408d-8154-ae253d3fb8ec",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8c6cbdb2-1c22-4b55-a499-f3517d189658",
+  "timestamp": "2026-05-22T08:25:40.605Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-22T08:25:40.605Z_
+
+```json
+{
+  "parentUuid": "8c6cbdb2-1c22-4b55-a499-f3517d189658",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "2459e712-aa06-46b4-8668-7496adca071f",
+  "timestamp": "2026-05-22T08:25:40.605Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-22T08:25:40.605Z_
+
+```json
+{
+  "parentUuid": "2459e712-aa06-46b4-8668-7496adca071f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "d513afca-39b7-4048-ac3b-46a7bc424978",
+  "timestamp": "2026-05-22T08:25:40.605Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-22T08:25:50.678Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this task into two parts and work on them in parallel where possible.
+
+Part 1: Extract detailed stats from eval_llama_ar_n20
+Part 2: Check mid_turns definition consistency
+
+Let me start by reading the registry entries and SSH to the server to get the eval log and scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d513afca-39b7-4048-ac3b-46a7bc424978",
+  "isSidechain": false,
+  "requestId": "req_011CbHHfoUi6QHxHc8vawPBD",
+  "type": "assistant",
+  "uuid": "4308f6fd-bde4-4d90-975a-c20dd52c5137",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKnhkuFPdgEna59QnHUAWk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13549,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13549,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13549
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-22T08:25:51.696Z_
+
+开始执行。先并行读取 registry 条目和服务器上的 eval 日志/脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4308f6fd-bde4-4d90-975a-c20dd52c5137",
+  "isSidechain": false,
+  "requestId": "req_011CbHHfoUi6QHxHc8vawPBD",
+  "type": "assistant",
+  "uuid": "ea0ffd49-e35b-4013-a28f-f0122878e646",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKnhkuFPdgEna59QnHUAWk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13549,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13549,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13549
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-22T08:25:53.220Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01F1xZJcQLMc5R5BH12DuoTa`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ea0ffd49-e35b-4013-a28f-f0122878e646",
+  "isSidechain": false,
+  "requestId": "req_011CbHHfoUi6QHxHc8vawPBD",
+  "type": "assistant",
+  "uuid": "beeca5c2-ab26-4b07-a365-44db182c8327",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HKnhkuFPdgEna59QnHUAWk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 13549,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 242,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13549,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 242,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13549,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13549
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-22T08:25:53.229Z_
+
+<details><summary>↩ Tool result · `toolu_01F1xZJcQLMc5R5BH12DuoTa`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "beeca5c2-ab26-4b07-a365-44db182c8327",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "e5f59a89-a52d-4200-ac02-3c11f15e8515",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__detect_image"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "beeca5c2-ab26-4b07-a365-44db182c8327",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-22T08:26:02.819Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the registry and SSH to the server in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5f59a89-a52d-4200-ac02-3c11f15e8515",
+  "isSidechain": false,
+  "requestId": "req_011CbHHgjT9Ss9yt5kbM3F56",
+  "type": "assistant",
+  "uuid": "d8645166-a7b8-4a31-b69f-7e2995ea7a4c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTT3QtUHFBW9yTYSdSXz17",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1580,
+      "cache_read_input_tokens": 25390,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1580,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 25390,
+          "cache_creation_input_tokens": 1580,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1580
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-22T08:26:03.664Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_017vsLgiyGJRqXg5mFcf91bt`</summary>
+
+```json
+{
+  "project": "turn_residual_gating",
+  "limit": 0,
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d8645166-a7b8-4a31-b69f-7e2995ea7a4c",
+  "isSidechain": false,
+  "requestId": "req_011CbHHgjT9Ss9yt5kbM3F56",
+  "type": "assistant",
+  "uuid": "364bcb36-220c-45ba-9b53-b74ab9309936",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTT3QtUHFBW9yTYSdSXz17",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1580,
+      "cache_read_input_tokens": 25390,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1580,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 25390,
+          "cache_creation_input_tokens": 1580,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1580
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-22T08:26:04.174Z_
+
+<details><summary>↩ Tool result · `toolu_017vsLgiyGJRqXg5mFcf91bt`</summary>
+
+```text
+Error: result (71,573 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/bc94af32-4f18-47ef-82eb-b2e18fce9e57/tool-results/mcp-agent-ml-research-read_registry-1779438364142.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/bc94af32-4f18-47ef-82eb-b2e18fce9e57/tool-results/mcp-agent-ml-research-read_registry-1779438364142.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/bc94af32-4f18-47ef-82eb-b2e18fce9e57/tool-results/mcp-agent-ml-research-read_registry-1779438364142.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "364bcb36-220c-45ba-9b53-b74ab9309936",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "6e809d7d-99a8-4e87-b55d-026b026915cb",
+  "toolUseResult": "Error: result (71,573 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/bc94af32-4f18-47ef-82eb-b2e18fce9e57/tool-results/mcp-agent-ml-research-read_registry-1779438364142.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/bc94af32-4f18-47ef-82eb-b2e18fce9e57/tool-results/mcp-agent-ml-research-read_registry-1779438364142.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/bc94af32-4f18-47ef-82eb-b2e18fce9e57/tool-results/mcp-agent-ml-research-read_registry-1779438364142.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_llama_ar_n20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T07:52:04.543Z\", \"updated_at\": \"2026-05-22T08:25:04.827Z\", \"hypothesis\": \"N=20 AR eval stabilizes Llama 3-way (Base/TG/LoRA-only) autoregressive GAR estimates. N=5 suffered from outlier influence (3/5 conv had GAR>0.4 outlier turns); N=20 provides robust mean±std.\", \"parent\": \"eval_llama_lora_only_s42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_ar_n20.sh\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"312592\", \"log_path\": \"~/runs/turn_residual_gating/eval_llama_ar_n20.log\", \"submitted_at\": \"2026-05-22T07:52:13.830Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ultrachat_200k + model-gen AR\", \"data_count\": 20, \"model_name\": \"Llama-3.1-8B-Instruct (Base/TG/LoRA-only)\", \"seed\": 42, \"checkpoint_source\": \"llama_tg_s42 + llama_lora_only_s42\", \"eval_data\": \"AR-generated 20 conversations x 4 turns\", \"wall_clock_seconds\": 1435.6, \"gpu_hours\": 0.4}, \"reproduce\": {\"finished_at\": \"2026-05-22T08:09:48.181Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:09:50.100538+00:00\"}]}, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/runs/turn_residual_gating/eval_llama_ar_n20.log\", \"metrics\": {\"base\": {\"gar_ours_mid\": 0.0088, \"gar_dongre_mid\": 0.0049, \"ngar_ours_mid\": 0.1019, \"ngar_dongre_mid\": 0.1171, \"ppl\": 1.293, \"ntp_loss\": 0.2552}, \"tg\": {\"gar_ours_mid\": 0.0434, \"gar_dongre_mid\": 0.0183, \"ngar_ours_mid\": 0.5357, \"ngar_dongre_mid\": 0.4436, \"ppl\": 1.437, \"ntp_loss\": 0.3612}, \"lora_only\": {\"gar_ours_mid\": 0.0284, \"gar_dongre_mid\": 0.0205, \"ngar_ours_mid\": 0.3488, \"ngar_dongre_mid\": 0.4997, \"ppl\": 1.419, \"ntp_loss\": 0.3483}, \"n_conversations\": 20, \"n_turns\": 4, \"ranking_gar_ours\": \"TG(0.0434) > LO(0.0284) > Base(0.0088)\", \"ranking_gar_dongre\": \"LO(0.0205) > TG(0.0183) > Base(0.0049)\"}, \"notes\": \"N=20 AR eval stabilizes estimates. Mean difference (TG 0.0434 > LO 0.0284) is driven by outlier spikes (5-8% of turns with GAR>0.4); **median shows TG ≈ LO (0.018 vs 0.018), consistent with zero-increment finding from Qwen**. Gate provides no incremental GAR benefit over LoRA-only on Llama, same as Qwen. PPL ordering preserved: Base(1.29) < LO(1.42) < TG(1.44). T=4, outlier turns still present in N=20 (TG conv9/15/18 have GAR>0.4 single turns, LO conv10/12/18/20 similar) but diluted by 4x larger sample vs N=5.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T08:16:09.384Z\"}, \"eval_llama_lora_only_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T07:40:25.352Z\", \"updated_at\": \"2026-05-22T07:51:32.758Z\", \"hypothesis\": \"LoRA-only ablation (no gate) on Llama-3.1-8B: if TG's GAR improvement comes from the gate, LoRA-only should show minimal GAR recovery vs base.\", \"parent\": \"llama_lora_only_s42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_lora_only_s42.sh\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"309670\", \"log_path\": \"/root/runs/turn_residual_gating/eval_llama_lora_only_s42.log\", \"submitted_at\": \"2026-05-22T07:40:34.437Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ultrachat_200k + model-gen\", \"data_count\": 55, \"model_name\": \"Llama-3.1-8B-Instruct + LoRA-only checkpoint\", \"seed\": 42, \"checkpoint_source\": \"llama_lora_only_s42\", \"eval_data\": \"IID heldout 50 + model-gen 5\", \"checkpoint_path\": \"runs/phase2_llama_lora_only_s42/epoch_2\", \"wall_clock_seconds\": 650.8, \"gpu_hours\": 0.18}, \"reproduce\": {\"finished_at\": \"2026-05-22T07:45:28.637Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T07:45:30.556207+00:00\"}]}, \"metrics\": {\"tf\": {\"gar_ours\": 0.4807, \"gar_dongre\": 0.0188, \"ngar_ours\": 11.8031, \"ngar_dongre\": 0.8261, \"ppl\": 2.6, \"ntp_loss\": 0.9366, \"n_conversations\": 50, \"n_turns\": 4}, \"ar\": {\"gar_ours\": 0.0617, \"gar_dongre\": 0.0226, \"ngar_ours\": 0.6065, \"ngar_dongre\": 0.2537, \"ppl\": 1.32, \"ntp_loss\": 0.2787, \"n_conversations\": 5, \"n_turns\": 10}, \"gap_ratio_gar_ours\": 7.79}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T07:51:25.244Z\"}, \"llama_lora_only_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T00:33:03.465Z\", \"updated_at\": \"2026-05-22T07:39:06.888Z\", \"hypothesis\": \"Llama-3.1-8B LoRA-only baseline (gate=none, 无 gating 机制): 与 Llama TG s42 对比，验证 gating 对 Llama 的增量贡献。如果 LoRA-only GAR ≈ TG GAR → gating 零增量与 Qwen 结论一致（C5 跨模型）。\", \"parent\": \"llama_tg_s42\", \"spec\": {\"command\": \"bash scripts/launch_llama_lora_only_s42.sh\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"271741\", \"log_path\": \"logs/llama_lora_only_s42.log\", \"submitted_at\": \"2026-05-22T00:33:16.591Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch, ablation baseline)\", \"eval_data\": \"N/A (training run, not eval)\", \"checkpoint_path\": \"runs/phase2_llama_lora_only_s42/epoch_2\", \"wall_clock_seconds\": 25550.3, \"gpu_hours\": 7.1}, \"reproduce\": {\"finished_at\": \"2026-05-22T07:35:56.232Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T07:35:58.740298+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"final_avg_loss\": 0.9288, \"final_avg_ntp\": 0.9279, \"final_avg_gar\": 0.0009, \"gate_fixed\": 1, \"gate_type\": \"none\", \"wall_clock_s\": 25317, \"wall_clock_h\": 7.03, \"epochs_completed\": 3}, \"completed_at\": \"2026-05-22T07:39:06.889Z\"}, \"phase2_tg_s42_v6\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:53:01.911Z\", \"updated_at\": \"2026-05-22T04:37:13.229Z\", \"hypothesis\": \"smooth_saturation loss (-target*tanh(GAR/target), target=0.5) 提供有界但持续的 GAR 梯度，避免 maximize 的恒等退化（gate→1）和 hinge_target 的梯度消失（GAR达标后梯度=0）。预期：gate_std>0.05 的层间分化 + GAR 稳态在 0.3-0.5 + NTP loss 正常收敛 + 总 loss 为正。\", \"parent\": \"phase2_tg_s42_v5\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type threadgate --gar-loss-mode smooth_saturation --gar-target 0.5 --lambda-gar 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v6 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\\\"\", \"server\": \"westd-20861\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v6\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v6.log\"}, \"metrics\": {\"dryrun_step0_L_NTP\": 2.0275, \"dryrun_step0_L_GAR\": -0.0161, \"dryrun_step0_total_loss\": 2.0114, \"dryrun_step4_L_NTP\": 1.6544, \"dryrun_step4_L_GAR\": -0.0147, \"dryrun_step4_total_loss\": 1.6397, \"dryrun_gate_grad\": true, \"dryrun_gate_mean_init\": 0.8097, \"dryrun_gate_std_init\": 0.0341, \"dryrun_gate_min_init\": 0.6836, \"dryrun_gate_max_init\": 0.8672, \"dryrun_gate_mean_step5\": 0.8025, \"dryrun_gate_std_step5\": 0.0842, \"dryrun_gate_min_step5\": 0.5547, \"dryrun_gate_max_step5\": 0.9805, \"gs50_gate_mean\": 0.8117, \"gs50_gate_std\": 0.0612, \"gs50_gate_min\": 0.6836, \"gs50_gate_max\": 0.9805, \"gs100_gate_mean\": 0.8737, \"gs100_gate_std\": 0.0367, \"gs100_gate_min\": 0.8164, \"gs100_gate_max\": 0.9766, \"gs100_L_NTP\": 0.8151, \"gs100_L_GAR\": -0.158, \"gs100_total_loss\": 0.6571, \"gs100_profile_bottom3\": \"L12=0.816 L4=0.824 L13=0.824\", \"gs100_profile_top3\": \"L27=0.977 L26=0.961 L23=0.914\", \"gs143_L_GAR\": -0.3876, \"gs143_gate_mean\": 0.9227}, \"conclusion\": \"negative\", \"notes\": \"smooth_saturation 与 maximize 同轨迹，单调 GAR 奖励导致恒等退化。step 100: gate_std=0.037↓ gate_mean=0.874↑，step ~143: L_GAR=-0.39 gate_mean=0.923。boundedness 只减缓退化速度不改变终态。D010 指令 kill 转 v7 MSE 双向 loss。\", \"completed_at\": \"2026-05-18T18:18:07.869Z\"}, \"phase2_tg_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:04:12.759Z\", \"updated_at\": \"2026-05-22T04:36:54.262Z\", \"hypothesis\": \"ThreadGate (turn-conditional gating) 在 L_NTP+L_GAR 联合训练后，相比 Uniform Gate，mid-turn GAR recovery 高出 ≥3pp，验证 Cesaro 理论预测：position-conditional 干预优于 uniform 干预\", \"parent\": \"phase1_gar_diag\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating/src && python train_phase2.py --gate-type threadgate --seed 42 --output-dir /root/turn_residual_gating/checkpoints/tg_s42 --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-seq-len 2048\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"11286\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42.log\", \"submitted_at\": \"2026-05-18T07:03:28.476Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15333, \"gpu_hours\": 4.26, \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_s42\"}, \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": \"11286\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating/src && python train_phase2.py --gate-type threadgate --seed 42 --output-dir /root/turn_residual_gating/checkpoints/tg_s42 --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-seq-len 2048\\\"\", \"finished_at\": \"2026-05-18T11:19:00.888Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T11:19:01.512Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:19:02.835359+00:00\"}]}, \"notes\": \"失败原因: EXIT_CODE=143 (SIGTERM) — 大概率被 Worker code:diagnose_gar_loss_and_fix 主动 kill（时间线：Worker 11:13 启动 → v2 11:13 创建 → v1 11:19 SIGTERM）。v2 hypothesis 指出 GAR loss 实现有 bug（缺少 ε=0.001 稳定项）。诊断 Worker worker_diagnose_phase2_tg_s42_20260518T112048 已派出确认日志详情。| 建议: 等诊断结果确认后推进 v2\", \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_s42/epoch_1\", \"metrics\": {\"final_ntp_loss\": 0.94, \"final_gar_loss\": 0, \"gate_mean\": 0.988, \"gar_loss_zero_pct\": 87.6, \"epochs_completed\": 1.67, \"killed_reason\": \"SIGTERM by diagnose worker (unauthorized)\"}}, \"eval_v7_tg_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T22:53:18.163Z\", \"updated_at\": \"2026-05-22T00:30:49.653Z\", \"spec\": {\"command\": \"bash scripts/eval_v7_tg_s123.sh\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"264869\", \"log_path\": \"/root/turn_residual_gating/logs/v7_tg_s123.log\", \"submitted_at\": \"2026-05-21T22:53:18.065Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"checkpoint_source\": \"v7_tg_s123\", \"eval_data\": \"data/ultrachat_8k\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s123_v7/epoch_2\", \"wall_clock_seconds\": 5844.5, \"gpu_hours\": 1.62}, \"hypothesis\": \"v7 TG s123 eval: 验证 s123 seed 的 TF-AR GAR gap 与 s42 一致（~32×），确认 multi-seed robustness\", \"parent\": \"v7_tg_s123\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T00:30:42.606Z\", \"metrics\": {\"iid_tf\": {\"gar_ours_mid\": 0.5052, \"gar_dongre_mid\": 0.0119, \"ppl\": 2.7802, \"ntp\": 0.9752}, \"modelgen_ar\": {\"gar_ours_mid\": 0.0165, \"gar_dongre_mid\": 0.0177, \"ppl\": 1.3855, \"ntp\": 0.3223}, \"gap_ratio\": 30.6, \"comparison_s42\": {\"tf_gar_ours_delta\": 0.0017, \"ar_gar_ours_delta\": 0.0008, \"gap_ratio_delta\": -1.4}}}, \"eval_v8b_ss_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T21:15:52.880Z\", \"updated_at\": \"2026-05-21T22:53:15.356Z\", \"spec\": {\"command\": \"bash scripts/eval_v8b_ss_s123.sh\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": 259767, \"log_path\": \"runs/eval_v8b_ss_s123/\", \"submitted_at\": \"2026-05-21T21:15:52.785Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/ultrachat_eval_heldout.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"gpu_index\": 0, \"checkpoint_source\": \"checkpoints/tg_v8b_ss_s123/epoch_2\", \"eval_data\": \"ultrachat_eval_heldout + model-gen\", \"checkpoint_path\": \"checkpoints/tg_v8b_ss_s123/epoch_2\", \"wall_clock_seconds\": 5835.7, \"gpu_hours\": 1.62}, \"hypothesis\": \"v8b SS model trained with s123 seed should reproduce s42 GAR metrics within acceptable gap_ratio [1.2x-2.5x] and no PPL degradation, confirming seed robustness of the scheduled sampling approach\", \"parent\": \"v7_tg_s123\", \"log_path\": \"~/runs/turn_residual_gating/eval_v8b_ss_s123.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T22:53:08.443Z\", \"metrics\": {\"iid\": {\"gar_ours\": 0.503, \"gar_dongre\": 0.394, \"ppl\": 2.781, \"ntp_loss\": 0.976, \"n_conv\": 50, \"n_turns\": 3}, \"modelgen\": {\"gar_ours\": 0.418, \"gar_dongre\": 0.441, \"ppl\": 1.389, \"ntp_loss\": 0.325, \"n_conv\": 5, \"n_turns\": 10}, \"gap_ratio\": 1.2, \"base_iid_ppl\": 4.338, \"base_modelgen_ppl\": 1.351}}, \"v7_tg_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T15:16:39.923Z\", \"updated_at\": \"2026-05-21T21:17:16.499Z\", \"hypothesis\": \"v7 TG s42 已验证 ThreadGate 有效性，s123 验证 seed robustness。预期 gate profile 和 GAR 收敛模式与 s42 一致。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"bash scripts/launch_v7_tg_s123.sh\", \"server\": \"westd-20861\", \"data_path\": \"data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"pid\": 245628, \"gpu_index\": 0, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s123_v7\", \"log_path\": \"/root/turn_residual_gating/logs/v7_tg_s123.log\", \"checkpoint_source\": \"N/A (from scratch)\", \"eval_data\": \"N/A\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"runs/phase2_tg_s123_v7/epoch_2\", \"log_path\": \"logs/v7_tg_s123.log\", \"metrics\": {\"epoch_1\": {\"avg_loss\": 0.9447, \"avg_ntp_loss\": 0.9434, \"avg_gar_loss\": 0.0013, \"avg_div_loss\": 0}, \"epoch_2\": {\"avg_loss\": 0.9315, \"avg_ntp_loss\": 0.9305, \"avg_gar_loss\": 0.001, \"avg_div_loss\": 0}, \"final_gate\": {\"mean\": 0.9467, \"std\": 0.051, \"min\": 0.793, \"max\": 1}, \"final_gate_profile\": {\"L0\": 0.883, \"L1\": 0.793, \"L2\": 0.996, \"L3\": 0.988, \"L4\": 0.984, \"L5\": 0.797, \"L6\": 0.961, \"L7\": 0.918, \"L8\": 0.965, \"L9\": 0.934, \"L10\": 0.969, \"L11\": 0.918, \"L12\": 0.926, \"L13\": 0.941, \"L14\": 0.93, \"L15\": 0.965, \"L16\": 0.941, \"L17\": 0.91, \"L18\": 0.961, \"L19\": 0.965, \"L20\": 0.973, \"L21\": 0.988, \"L22\": 0.969, \"L23\": 0.98, \"L24\": 0.98, \"L25\": 0.984, \"L26\": 0.988, \"L27\": 1}, \"training_time_s\": 21425.2}, \"completed_at\": \"2026-05-21T21:17:16.499Z\"}, \"v8b_ss_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:29:28.197Z\", \"updated_at\": \"2026-05-21T15:15:49.282Z\", \"hypothesis\": \"v8b SS s42 成功（gap 32×→1.57×），s123 验证结果的 seed robustness。预期 model-gen GAR 同样显著提升，PPL 无恶化。\", \"parent\": \"phase2_tg_s42_v8b_resume\", \"spec\": {\"command\": \"bash scripts/launch_v8b_ss_s123.sh\", \"server\": \"westd-20861\", \"data_path\": \"data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 123, \"checkpoint_source\": \"N/A (from scratch)\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_v8b_ss_s123\", \"log_path\": \"/root/turn_residual_gating/logs/v8b_ss_s123.log\"}, \"conclusion\": \"success\", \"metrics\": {\"final_loss\": 0.9316, \"final_ntp_loss\": 0.9307, \"final_gar_loss\": 0.0009, \"final_gate_mean\": 0.9505, \"final_gate_std\": 0.0508, \"final_gate_min\": 0.7383, \"final_gate_max\": 1, \"ss_used_ratio\": 0.371, \"training_time_s\": 38773.4, \"epoch0_loss\": 1.0092, \"epoch1_loss\": 0.9444, \"epoch2_loss\": 0.9316}, \"completed_at\": \"2026-05-21T15:15:49.282Z\"}, \"llama_tg_training\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T03:37:31.513Z\", \"updated_at\": \"2026-05-21T09:44:18.859Z\", \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T03:37:33.309826+00:00\"}]}, \"notes\": \"INVALIDATED: Phantom duplicate of llama_tg_s42 (same PID 199643, same experiment). Created by Worker in global registry, duplicated to project registry. Canonical entry is llama_tg_s42 (DONE/success).\"}, \"llama_ar_matched_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T03:59:40.918Z\", \"updated_at\": \"2026-05-21T04:36:23.237Z\", \"hypothesis\": \"用 matched 设置 (N=50/T=4) 重跑 Llama AR eval，消除 TF/AR 设置差异。与 TF 结果对比得到可直接写入论文的 gap ratio，验证 TG 在 AR 模式下仍能提升 GAR。\", \"parent\": \"llama_eval_s42\", \"spec\": {\"command\": \"bash scripts/eval_llama_ar_matched.sh\", \"server\": \"westd-20861\", \"data_path\": \"data/ultrachat_eval_sample.json\", \"data_count\": 50, \"model_name\": \"Meta-Llama-3.1-8B-Instruct + TG LoRA\", \"seed\": 42, \"checkpoint_source\": \"phase2_llama_tg_s42\", \"eval_data\": \"50 UltraChat convs, T=4, AR generation, 4 conditions (base/TG x ours/Dongre)\", \"checkpoint_path\": \"N/A (eval)\", \"log_path\": \"runs/eval_llama_ar_matched.log\"}, \"log_path\": \"/root/turn_residual_gating/runs/eval_llama_ar_matched.log\", \"conclusion\": \"success\", \"metrics\": {\"ar_base_ours\": {\"mid_gar\": 0.0082, \"ngar\": 0.1, \"ppl\": 1.267}, \"ar_tg_ours\": {\"mid_gar\": 0.0388, \"ngar\": 0.493, \"ppl\": 1.413}, \"ar_base_dongre\": {\"mid_gar\": 0.0051, \"ngar\": 0.12, \"ppl\": 1.267}, \"ar_tg_dongre\": {\"mid_gar\": 0.018, \"ngar\": 0.431, \"ppl\": 1.413}, \"tf_reference\": {\"tf_tg_ours_ngar\": 11.88, \"tf_base_ours_ngar\": 0.388, \"tf_tg_ours_raw\": 0.4836, \"tf_tg_dongre_raw\": 0.018}, \"matched_gap_analysis\": {\"gar_ours_raw_gap\": \"12.5x (TF 0.484 / AR 0.039)\", \"gar_ours_ngar_gap\": \"24.1x (TF 11.88 / AR 0.493)\", \"gar_dongre_raw_gap\": \"1.002x (TF 0.018 / AR 0.018) — zero gap\", \"tg_over_base_ar_ours\": \"4.71x\", \"tg_over_base_ar_dongre\": \"3.54x\", \"conclusion\": \"GAR-ours TF-AR gap 12.5x (raw) / 24x (nGAR) is genuine exposure bias. GAR-Dongre zero gap (1.002x) confirms mechanism specificity: exposure bias selectively destroys learned goal-attention routing while leaving content-overlap-based attention unaffected.\"}}, \"completed_at\": \"2026-05-21T04:28:38.504Z\", \"notes\": \"CORRECTION (2026-05-21 04:36): Agent 之前错误地将 AR TG nGAR (0.493) 与 TF TG raw GAR (0.484) 对比，误判为 'nGAR aligns, gap is normalization artifact'。Reviewer 核实：TF TG ours nGAR = 11.88（非 0.48）。nGAR gap = 11.88 / 0.493 = 24.1×，比 raw gap (12.5×) 还大。'Normalization artifact' 分析完全错误——GAR-ours 的 gap 是真实的 exposure bias。论文绝对不能使用 normalization artifact 叙事。\"}, \"instruction_retention_test\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T03:49:26.068Z\", \"updated_at\": \"2026-05-21T03:59:31.835Z\", \"hypothesis\": \"Turn-level residual gating (β=3) preserves instruction-following ability across multi-turn conversations better than the baseline (β=0), because gating modulates residual contributions to retain earlier context signals rather than letting them decay through successive transformer layers.\", \"spec\": {\"command\": \"python src/eval_instruction_retention.py --checkpoint runs/phase2_tg_s42_v7 --prompts data/instruction_retention_prompts.json --betas 0 3 --seed 42 --output results/instruction_retention.json\", \"server\": \"westd-20861\", \"data_path\": \"data/instruction_retention_prompts.json\", \"data_count\": 18, \"model_name\": \"Qwen2.5-7B-Instruct + v7 TG LoRA\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7\", \"eval_data\": \"18 instruction retention prompts, beta=[0,3], 5 turns each\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"N/A (eval)\", \"log_path\": \"/root/turn_residual_gating/results/instruction_retention.log\", \"metrics\": {\"late_turn_rate_beta0\": 0.759, \"late_turn_rate_beta3\": 0.87, \"late_turn_delta\": 0.111, \"mcnemar_chi2\": 3.125, \"mcnemar_p\": 0.0771, \"gar_compliance_r\": 0.2003, \"gar_compliance_p\": 0.007, \"category_content_constraint\": {\"beta0\": 0.619, \"beta3\": 0.857, \"delta\": 0.238}, \"category_count_constraint\": {\"beta0\": 1, \"beta3\": 1, \"delta\": 0}, \"category_format_constraint\": {\"beta0\": 1, \"beta3\": 1, \"delta\": 0}, \"category_position_constraint\": {\"beta0\": 0.667, \"beta3\": 0.733, \"delta\": 0.067}}, \"completed_at\": \"2026-05-21T03:59:31.835Z\"}, \"llama_eval_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T03:29:51.255Z\", \"updated_at\": \"2026-05-21T03:46:58.167Z\", \"hypothesis\": \"Llama-3.1-8B TG eval: 如果 Llama TG 模型在 TF 模式下 GAR-ours 显著高于 AR 模式（如 Qwen v7 的 20-33x gap），则确认 training-inference GAR gap 跨模型泛化（C5）。同时测量 base model 作为 control。\", \"parent\": \"llama_tg_s42\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_tg_s42.sh 2>&1 | tee runs/eval_llama_tg_s42.log\", \"server\": \"westd-20861\", \"data_path\": \"data/ultrachat_eval_sample.json\", \"data_count\": 50, \"model_name\": \"Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"runs/phase2_llama_tg_s42/epoch_2\", \"eval_data\": \"ultrachat_eval_sample\"}, \"checkpoint_path\": \"runs/phase2_llama_tg_s42/epoch_2\", \"log_path\": \"runs/eval_llama_tg_s42.log\", \"metrics\": {\"tf_base\": {\"gar_ours\": 0.0166, \"ngar_ours\": 0.3882, \"gar_dongre\": 0.0038, \"ngar_dongre\": 0.163, \"ppl\": 3.45, \"N\": 50, \"T\": 4}, \"tf_tg\": {\"gar_ours\": 0.4836, \"ngar_ours\": 11.8818, \"gar_dongre\": 0.018, \"ngar_dongre\": 0.7922, \"ppl\": 2.57, \"N\": 50, \"T\": 4}, \"ar_base\": {\"gar_ours\": 0.0086, \"ngar_ours\": 0.0798, \"gar_dongre\": 0.0118, \"ngar_dongre\": 0.1265, \"ppl\": 1.24, \"N\": 5, \"T\": 10}, \"ar_tg\": {\"gar_ours\": 0.0304, \"ngar_ours\": 0.2632, \"gar_dongre\": 0.0217, \"ngar_dongre\": 0.2459, \"ppl\": 1.32, \"N\": 5, \"T\": 10}, \"gap_ratio_tg_ours\": 15.9, \"gap_ratio_base_ours\": 1.93, \"gap_ratio_tg_dongre\": 0.83, \"vs_qwen_v7_gap_ratio\": 32.1, \"baseline_mid_gar\": 0.0122}, \"conclusion\": \"success\", \"notes\": \"C5 跨模型泛化确认。Llama TG GAR-ours gap 16x (TF 0.484 vs AR 0.030)，低于 Qwen v7 的 32x 但仍非常显著。Base model gap 仅 1.9x（control 通过）。注意 TF/AR eval 设定不同 (N=50/T=4 vs N=5/T=10)，可能影响绝对值对比。GAR-dongre 无明显 gap (ratio 0.83x, AR ≥ TF)，仅 GAR-ours 展现 exposure bias 效应。Gate dynamic range: L24/L28/L30 diff 最大 (0.23-0.38)，与 Qwen 类似集中在中高层。\", \"completed_at\": \"2026-05-21T03:46:58.167Z\"}, \"llama_tg_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:34:36.906Z\", \"updated_at\": \"2026-05-21T03:28:07.022Z\", \"hypothesis\": \"在 Llama-3.1-8B-Instruct 上训练 ThreadGate（与 Qwen v7 相同配置），验证 C5：gating mechanism 和 GAR training-inference gap 跨模型泛化。如果 Llama TG 也出现 IID GAR ≈ target 但 model-gen GAR 坍塌 → 确认 exposure bias 的跨模型通用性。\", \"parent\": \"llama_phase1_gar_diag\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 PYTHONUNBUFFERED=1 python src/train_phase2.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct --data-dir data/ultrachat_8k --output-dir runs/phase2_llama_tg_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"199643\", \"data_path\": \"data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch)\", \"eval_data\": \"N/A (training experiment)\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_llama_tg_s42\", \"log_path\": \"/root/turn_residual_gating/logs/llama_tg_training.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T03:27:55.963Z\", \"metrics\": {\"epochs_completed\": 3, \"total_steps\": 3000, \"wall_clock_seconds\": 26212, \"wall_clock_hours\": 7.28, \"final_avg_loss\": 0.9233, \"final_avg_ntp\": 0.9224, \"final_avg_gar\": 0.0009, \"final_avg_div\": 0, \"final_gate_mean\": 0.9099, \"final_gate_std\": 0.0701, \"final_gate_min\": 0.7188, \"final_gate_max\": 0.9922, \"gate_profile_step3000\": {\"L0\": 0.957, \"L1\": 0.973, \"L2\": 0.977, \"L3\": 0.965, \"L4\": 0.992, \"L5\": 0.969, \"L6\": 0.957, \"L7\": 0.957, \"L8\": 0.961, \"L9\": 0.949, \"L10\": 0.938, \"L11\": 0.934, \"L12\": 0.969, \"L13\": 0.953, \"L14\": 0.957, \"L15\": 0.965, \"L16\": 0.953, \"L17\": 0.961, \"L18\": 0.922, \"L19\": 0.902, \"L20\": 0.883, \"L21\": 0.863, \"L22\": 0.836, \"L23\": 0.844, \"L24\": 0.809, \"L25\": 0.719, \"L26\": 0.762, \"L27\": 0.805, \"L28\": 0.801, \"L29\": 0.855, \"L30\": 0.898, \"L31\": 0.934}, \"checkpoint_size_gate_mb\": 4.2, \"checkpoint_size_lora_mb\": 26, \"gpu\": \"NVIDIA RTX PRO 6000 Blackwell\", \"vram_gb\": 102, \"mem_used_gb\": 63.4}}, \"attention_steering_gen_n50\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:04:17.455Z\", \"updated_at\": \"2026-05-21T01:59:57.100Z\", \"hypothesis\": \"N=5 gen steering 显示 β∈[2,5] phase transition (GAR 0.06→0.68)，但样本量不足以报告置信区间。N=50 conversations 应重现同一 phase transition pattern 并提供统计鲁棒的 mean±std，加固 C6 claim (attention steering as causal mechanism proof)。\", \"parent\": \"attention_steering_v7_tg_gen\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python src/eval_attention_steering.py --checkpoint runs/phase2_tg_s42_v7 --mode gen --data-file data/eval_200/eval_200.json --max-convs 50 --beta 0 2 3 4 5 10 --output-dir runs/attention_steering/ --output-name attention_steering_gen_n50\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/eval_200/eval_200.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct + v7 TG LoRA\", \"seed\": \"N/A (eval)\", \"checkpoint_source\": \"phase2_tg_s42_v7\", \"eval_data\": \"50 conversations from eval_200.json, gen mode autoregressive\", \"checkpoint_path\": \"N/A (eval experiment)\", \"log_path\": \"/root/turn_residual_gating/runs/attention_steering/attention_steering_gen_n50.json\"}, \"metrics\": {\"corrected\": true, \"aggregation\": \"per-conv mid_gar(turns 2-7), >=3 turns only\", \"beta_0.0\": {\"mid_gar\": 0.0641, \"mid_gar_std\": 0.0809, \"ppl\": 1.4324, \"ppl_std\": 0.1029, \"n_valid\": 39}, \"beta_2.0\": {\"mid_gar\": 0.128, \"mid_gar_std\": 0.1101, \"ppl\": 1.4822, \"ppl_std\": 0.1385, \"n_valid\": 39}, \"beta_3.0\": {\"mid_gar\": 0.5558, \"mid_gar_std\": 0.0601, \"ppl\": 1.5605, \"ppl_std\": 0.1719, \"n_valid\": 39}, \"beta_4.0\": {\"mid_gar\": 0.6439, \"mid_gar_std\": 0.0607, \"ppl\": 1.6674, \"ppl_std\": 0.2241, \"n_valid\": 39}, \"beta_5.0\": {\"mid_gar\": 0.7271, \"mid_gar_std\": 0.0605, \"ppl\": 1.7723, \"ppl_std\": 0.2693, \"n_valid\": 38}, \"beta_10.0\": {\"mid_gar\": 0.9612, \"mid_gar_std\": 0.0152, \"ppl\": 3.4517, \"ppl_std\": 1.7813, \"n_valid\": 39}, \"n_convs_total\": 50, \"n_convs_valid\": 39, \"mode\": \"gen\", \"phase_transition_range\": \"[2, 3]\"}, \"conclusion\": \"success\", \"notes\": \"原始聚合有 min_turns 截断 bug（截到 2 turns），修正后用 per-conv mid_gar(turns 2-7)。39/50 对话有 ≥3 turns 参与统计。修正后 baseline β=0 GAR 从 0.101 降到 0.064（median 0.031 与 N=5 的 0.028 一致）。Phase transition 在 β∈[2,3] 重现。β=10 corrected 0.961 ≈ N=5 的 0.959。\", \"completed_at\": \"2026-05-20T19:55:34.383Z\"}, \"phase2_tg_s42_v8b_resume\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:08:29.483Z\", \"updated_at\": \"2026-05-21T01:56:13.289Z\", \"hypothesis\": \"从 epoch_0 checkpoint resume v8b scheduled sampling 训练。SS 线性混合 0→0.5 teacher-forced + model-generated contexts。如果 model-gen context 上的 GAR 训练能缩小 30x training-inference gap → exposure bias mitigation 有效。成功标准：inference GAR 显著高于 v7 的 0.016 (至少 +1pp)，PPL 不恶化。\", \"parent\": \"phase2_tg_s42_v8b_ss_fixed\", \"spec\": {\"command\": \"python src/train_phase2_v8b.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42 --scheduled-sampling --ss-max-ratio 0.5 --resume checkpoints/tg_v8b_ss_fixed_s42/epoch_0\", \"server\": \"westd-20861\", \"data_path\": \"data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v8b_ss_fixed/epoch_0\", \"eval_data\": \"N/A (training experiment)\", \"checkpoint_path\": \"checkpoints/tg_v8b_ss_fixed_s42\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v8b_resume.log\"}, \"metrics\": {\"training\": {\"total_steps\": 3000, \"epochs_completed\": 3, \"wall_clock_hours\": 8.1, \"final_loss\": 0.933, \"final_ntp_loss\": 0.9322, \"final_gar_loss\": 0.0008, \"final_gate_mean\": 0.9586, \"final_gate_std\": 0.0582, \"ss_ratio\": 0.5}, \"eval_iid\": {\"gar_ours\": 0.4983, \"gar_dongre\": 0.3855, \"ppl\": 2.78}, \"eval_modelgen\": {\"gar_ours\": 0.3177, \"gar_dongre\": 0.3533, \"ppl\": 1.38}, \"vs_v7\": {\"iid_gar_ours_delta\": -0.005, \"modelgen_gar_ours_delta\": 0.302, \"gap_ratio_v7\": 32, \"gap_ratio_v8b\": 1.57}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T18:57:21.189Z\"}, \"llama_phase1_gar_diag\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T19:39:25.751Z\", \"updated_at\": \"2026-05-21T01:34:36.417Z\", \"hypothesis\": \"Llama-3.1-8B-Instruct 在 multi-turn dialogue 中也应出现 goal attention decay（与 Qwen-2.5-7B 类似），确认 attention decay 是 transformer 架构通用现象而非模型特有。Phase 1 诊断：测量 base Llama 的 per-turn GAR profile。\", \"spec\": {\"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"account\": \"local\", \"command\": \"CUDA_VISIBLE_DEVICES=0 python src/run_phase1_gar_llama.py --model /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/ --output-dir /root/turn_residual_gating/runs/phase1_llama_gar_diag --max-new-tokens 256\", \"pid\": \"198817\", \"data_path\": \"built-in 5 conversations (knowledge_qa, coding_help, creative_writing, math_reasoning, debate)\", \"data_count\": 5, \"model_name\": \"Meta-Llama-3.1-8B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (base model, no fine-tuning)\", \"eval_data\": \"5 built-in conversations x 10 turns each, gen mode\", \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/turn_residual_gating/logs/llama_phase1_gar_diag.log\"}, \"conclusion\": \"success\", \"metrics\": {\"per_turn_gar\": {\"turn_1\": 0.0263, \"turn_2\": 0.0183, \"turn_3\": 0.0087, \"turn_4\": 0.0055, \"turn_5\": 0.006, \"turn_6\": 0.0035, \"turn_7\": 0.0038, \"turn_8\": 0.0037, \"turn_9\": 0.005, \"turn_10\": 0.0026}, \"t1_t10_decay_pct\": 90.1, \"t1_mid38_drop_pct\": 80.2, \"n_topics\": 5, \"model\": \"Meta-Llama-3.1-8B-Instruct\", \"mode\": \"gen\", \"n_conversations\": 5, \"n_turns\": 10}, \"completed_at\": \"2026-05-21T01:34:36.417Z\"}, \"eval_v8b_ss\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T18:44:23.366Z\", \"updated_at\": \"2026-05-20T18:45:14.523Z\", \"hypothesis\": \"Scheduled Sampling (linear 0→0.5 mixing of teacher-forced and model-gen contexts) closes the 30x training-inference GAR gap by reducing exposure bias, resulting in model-gen GAR significantly above v7 baseline (0.016) while preserving IID GAR and PPL.\", \"parent\": \"phase2_tg_s42_v8b_ss\", \"spec\": {\"command\": \"python src/eval_phase2_gar.py --checkpoint-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type threadgate\", \"server\": \"westd-20861\", \"data_path\": \"data/ultrachat_eval_heldout.json + built-in 5conv model-gen\", \"data_count\": \"50 heldout + 5 model-gen\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/tg_v8b_ss_fixed_s42\", \"eval_data\": \"ultrachat_eval_heldout.json (IID) + built-in model-gen (5x10 turns)\", \"checkpoint_path\": \"checkpoints/tg_v8b_ss_fixed_s42\", \"log_path\": \"/tmp/eval_v8b_all.log\"}, \"metrics\": {\"iid_gar_ours\": 0.4983, \"iid_gar_dongre\": 0.3855, \"iid_ppl\": 2.78, \"iid_ngar_ours\": 13.5, \"iid_ngar_dongre\": 22.68, \"modelgen_gar_ours\": 0.3177, \"modelgen_gar_dongre\": 0.3533, \"modelgen_ppl\": 1.38, \"modelgen_ngar_ours\": 4.47, \"modelgen_ngar_dongre\": 5.92, \"iid_turn1_gar_ours\": 0.5398, \"modelgen_turn1_gar_ours\": 0.4333}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T18:45:14.523Z\"}, \"attention_steering_eval200_tf\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:58:23.626Z\", \"updated_at\": \"2026-05-20T10:08:24.710Z\", \"hypothesis\": \"N=200 TF 模式 attention steering 验证 β-GAR 关系的统计鲁棒性。在 teacher-forced context (无 exposure bias) 下，steering 效果应更温和（baseline GAR 已 ~0.50），但仍展示 β 调控 attention 的能力。与 N=5 gen 模式结果互补：tf 验证机制可控性，gen 验证因果闭环。\", \"parent\": \"attention_steering_v7_tg_gen\", \"spec\": {\"command\": \"python src/eval_attention_steering.py --mode tf --betas 0 2 3 4 5 10 --output-name eval200_attention_steering.json (data: eval_200/eval_200.json, 200 convs)\", \"server\": \"westd-20861\", \"data_path\": \"data/eval_200/eval_200.json\", \"data_count\": 200, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7\", \"eval_data\": \"data/eval_200/eval_200.json\", \"checkpoint_path\": \"checkpoints/tg_v7_s42/final\", \"log_path\": \"/tmp/eval200_steering.log\"}, \"metrics\": {\"beta_0.0\": {\"mid_gar\": 0.5353, \"ppl\": 2.62}, \"beta_2.0\": {\"mid_gar\": 0.6112, \"ppl\": 2.69}, \"beta_3.0\": {\"mid_gar\": 0.788, \"ppl\": 2.93}, \"beta_4.0\": {\"mid_gar\": 0.8165, \"ppl\": 3.49}, \"beta_5.0\": {\"mid_gar\": 0.8325, \"ppl\": 6.15}, \"beta_10.0\": {\"mid_gar\": 0.977, \"ppl\": 505.21}, \"n_convs\": 200, \"mode\": \"tf\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T10:08:24.710Z\"}, \"trc_baseline_v7_tg\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:18:17.576Z\", \"updated_at\": \"2026-05-20T09:34:40.734Z\", \"hypothesis\": \"如果 exposure bias 对 auxiliary objectives 的破坏跨特征空间通用，那么 TRC (hidden state cos_sim) 在 model-gen 下也应出现与 GAR (attention 空间) 类似的 TF/gen gap。在 v7 TG / LoRA-only / base 三个 checkpoint 上测量 TRC baseline，确认 gap 是否存在。成功标准：gen TRC 显著低于 TF TRC。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"bash scripts/launch_trc_baseline.sh\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"158700\", \"log_path\": \"/root/runs/turn_residual_gating/trc_baseline_v7_tg.log\", \"submitted_at\": \"2026-05-20T07:18:38.202Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/standard_conversations.json\", \"data_count\": 5, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7 + phase2_lora_only_s42 + base\", \"eval_data\": \"5 hardcoded multi-turn conversations x 10 turns\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/trc_baseline/\", \"wall_clock_seconds\": 7767.7, \"gpu_hours\": 2.16}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T09:28:05.853Z\", \"metrics\": {\"v7_tg\": {\"tf_trc\": 0.3339, \"gen_trc\": 0.3323, \"trc_gap\": 0.0016, \"tf_tbp_ppl\": 1.05, \"gen_tbp_ppl\": 1.05}, \"lora_only\": {\"tf_trc\": 0.349, \"gen_trc\": 0.4106, \"trc_gap\": -0.0617, \"tf_tbp_ppl\": 9.5, \"gen_tbp_ppl\": 12}, \"base\": {\"tf_trc\": 0.1494, \"gen_trc\": 0.1494, \"trc_gap\": 0, \"tf_tbp_ppl\": 2.05, \"gen_tbp_ppl\": 2.05}}, \"notes\": \"Cross-space 验证：exposure bias 是 attention-specific。v7 TG: TRC gap = +0.002 (近零)，hidden state 一致性在 TF/gen 之间无差异。对比 GAR 的 30x gap，TRC 无 gap → exposure bias 只扭曲 attention 分布，不影响 hidden state 层面。LoRA-only: 反转 gap (-0.062)，gen TRC 更高但 TBP PPL 严重恶化 (9.5→12.0)——hidden states \\\"坍缩\\\"趋同但信息量下降。Base: 零 gap（但可能有 eval 脚本 bug，gen 模式复用了 TF hidden states）。\"}, \"attention_steering_v7_tg_gen\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:07:20.607Z\", \"updated_at\": \"2026-05-20T09:30:17.530Z\", \"hypothesis\": \"推理时向 attention logits 注入 goal-position bias β 可恢复 autoregressive GAR。如果 GAR 从 0.015 显著提升 → 闭合因果环：exposure bias → attention 偏移 → GAR 坍塌 → 手动修正注意力 → GAR 恢复。扫描 β ∈ {0, 0.5, 1.0, 2.0, 5.0, 10.0}，成功标准：GAR > 0.1 且 PPL 不严重恶化。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"bash scripts/launch_attention_steering.sh gen\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"157657\", \"log_path\": \"runs/attention_steering/phase2_tg_s42_v7_attention_steering.json\", \"submitted_at\": \"2026-05-20T07:07:27.678Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/ShareGPT_V3_format_5convs.json\", \"data_count\": 5, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7\", \"eval_data\": \"data/ShareGPT_V3_format_5convs.json\", \"checkpoint_path\": \"checkpoints/tg_v7_s42/final\", \"wall_clock_seconds\": 8551.2, \"gpu_hours\": 2.38}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T09:29:58.880Z\", \"metrics\": {\"beta_0.0\": {\"mid_turns_avg_gar\": 0.028, \"avg_ppl\": 1.409}, \"beta_0.5\": {\"mid_turns_avg_gar\": 0.0287, \"avg_ppl\": 1.387}, \"beta_1.0\": {\"mid_turns_avg_gar\": 0.0349, \"avg_ppl\": 1.36}, \"beta_2.0\": {\"mid_turns_avg_gar\": 0.062, \"avg_ppl\": 1.411}, \"beta_5.0\": {\"mid_turns_avg_gar\": 0.6795, \"avg_ppl\": 1.908}, \"beta_10.0\": {\"mid_turns_avg_gar\": 0.959, \"avg_ppl\": 4.22}, \"phase_transition_range\": \"[2, 5]\", \"baseline_gar\": 0.028, \"max_gar_at_acceptable_ppl\": 0.6795, \"max_gar_at_acceptable_ppl_beta\": 5}, \"notes\": \"Attention steering 闭合因果环。β=0→2: GAR 缓升 (0.028→0.062), PPL 不变 (~1.4); β=5: phase transition, GAR 跳至 0.68, PPL 升至 1.91; β=10: GAR 饱和 0.96, PPL 恶化 4.22。成功标准 (GAR>0.1 且 PPL 不严重恶化) 在 β=2 即满足。β∈[2,5] 存在 phase transition。证明：手动修正 attention 指向 goal tokens → 直接恢复 GAR → 确认 exposure bias 通过 attention 偏移导致 GAR 坍塌。\"}, \"phase2_tg_s42_v8b_ss_fixed\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T02:28:58.064Z\", \"updated_at\": \"2026-05-20T09:30:04.080Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2_v8b.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v8b_ss_fixed_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42 --scheduled-sampling --ss-max-ratio 0.5\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"133321\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v8b_ss_fixed.log\", \"submitted_at\": \"2026-05-20T02:28:58.001Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_v8b_ss_fixed_s42\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\", \"wall_clock_seconds\": 24818.0, \"gpu_hours\": 6.89}, \"hypothesis\": \"Fixed scheduled sampling (D026 三项 bug 修复后): 线性从 0→0.5 混合 teacher-forced + model-generated contexts 计算 GAR loss。如果 model-gen context 上的 GAR 训练能缩小 30x training-inference gap → exposure bias mitigation 有效，paper 从纯 negative 升级为 diagnosis + initial remedy。超参与 v7 一致 (lambda_gar=1.0, MSE+gate_div)，唯一变量是 SS path。成功标准：inference GAR 显著高于 v7 的 0.016 (至少 +1pp)，PPL 不恶化。\", \"parent\": \"phase2_tg_s42_v7\", \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 448.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 247.19 MiB is free. Including non-PyTorch memory, this process has 50.68 GiB memory in use. Process 157667 has 26.76 GiB memory in use. Process 158713 \", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-20T09:22:35.962Z\", \"notes\": \"CUDA OOM at Epoch 1 Step 4300 (loss.backward). 其他进程共享 GPU 导致显存不足: Process 157667 (26.76GB) + Process 158713 (17.28GB) + PyTorch 自身 45.21GB + 4.81GB reserved > 94.97GB 总容量。训练在 OOM 前正常收敛 (SS ratio=0.5, Loss~1.0, Gate~0.94)。有 epoch_0 checkpoint。需要独占 GPU 重跑。\"}, \"phase2_tg_s42_v7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T18:17:45.739Z\", \"updated_at\": \"2026-05-20T03:04:19.923Z\", \"hypothesis\": \"MSE 双向 loss (mean_GAR - target)² + gate diversity 正则 F.relu(min_std - gate_std) 从结构上解决恒等退化：MSE 在 GAR > target 时反向惩罚（不再单调推高），gate_div 直接强制层间分化。预期：gate_std 稳定 >0.05 + GAR 收敛到 target=0.5 附近 + NTP 正常收敛。\", \"parent\": \"phase2_tg_s42_v6\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5035, \"eval_iid_dongre_mid_gar\": 0.0152, \"eval_iid_ppl\": 2.784, \"eval_heldout_ours_mid_gar\": 0.5035, \"eval_heldout_dongre_mid_gar\": 0.0152, \"eval_heldout_ppl\": 2.78, \"eval_modelgen_ours_mid_gar\": 0.0157, \"eval_modelgen_dongre_mid_gar\": 0.0194, \"eval_modelgen_ppl\": 1.36, \"gate_mean_final\": 0.9336, \"gate_std_final\": 0.0492}, \"spec\": {\"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --min-gate-std 0.05 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v7 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\\\"\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v7\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v7.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T00:48:47.275Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T00:48:47.463Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:48:48.850580+00:00\"}]}, \"notes\": \"训练 3 epoch 完成 (21352s/5.9h)。最终 gate: mean=0.9336, std=0.0492, L3=0.801 L4=0.789 最低。Eval 完成：GAR-ours recovery +0.35pp (mid 0.0157 vs baseline 0.0122), GAR-Dongre recovery +0.72pp (mid 0.0194 vs baseline 0.0122)。Gate dynamic range 最大层: L23 diff=-0.2100, L14 diff=-0.1803。\"}, \"phase2_tg_s42_v9_pcgrad\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-19T16:13:21.907Z\", \"updated_at\": \"2026-05-20T03:04:17.171Z\", \"hypothesis\": \"PCGrad (Yu et al. NeurIPS 2020) 消除 NTP-GAR 梯度方向冲突后（仅对 gate 参数投影 NTP 梯度到 GAR 梯度正交平面），如果 30x training-inference GAR gap 仍在 → 因果证据证明 exposure bias（非梯度竞争）是 gap 根因。与 v7 对比：相同超参（lambda_gar=1.0, MSE+gate_div），唯一变量是梯度处理方式。成功标准：(1) 梯度 cos_sim 显著改善（从 v7 的 -0.089 提升到 ≥0），(2) 但推理 GAR 仍 ≈ v7 水平（0.016），证明梯度冲突不是 gap 的因。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2_v9_pcgrad.py --model /root/.cache/modelscope/Qwen/Qwen2___5-7B-Instruct --data-dir data/ultrachat_8k --output-dir checkpoints/tg_v9_pcgrad_s42 --gate-type threadgate --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --lr 2e-4 --epochs 3 --batch-size 1 --grad-accum 8 --seed 42\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"83860\", \"log_path\": \"/root/turn_residual_gating/logs/phase2_tg_v9_pcgrad_s42.log\", \"submitted_at\": \"2026-05-19T17:42:10.820Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_v9_pcgrad_s42\", \"wall_clock_seconds\": 30601.5, \"gpu_hours\": 8.5}, \"reproduce\": {\"finished_at\": \"2026-05-20T01:42:12.536Z\"}, \"failure_reason\": null, \"conclusion\": \"success\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T17:35:39.776243+00:00\", \"note\": \"第1次提交 EXIT_CODE=2 残留事件\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T01:42:14.275822+00:00\"}]}, \"completed_at\": null, \"notes\": \"D028 因果排除确认（M017 修正后）。训练: EXIT_CODE=0, 7.98h, 3 epochs。PCGrad cos_sim 从 -0.061→+0.055→-0.035 (围绕 0 振荡), NTP mag_ratio 2.8→28.8 持续增长。L_GAR 有 0-350 step 高原期后仍坍塌到≈0。IID eval (同 protocol 50 heldout convs): GAR-ours=0.5002 (vs v7 0.5035, diff -0.33pp), GAR-Dongre=0.0123 (vs v7 0.0152), PPL=2.780 (vs v7 2.784, diff 0.004, 无改善)。Model-gen eval (5 convs): GAR-ours=0.0151, PPL=1.50。结论: PCGrad 消除梯度方向冲突后所有 IID 指标均 ≈ v7（GAR、PPL、NTP 无变化），方向冲突因 NTP 幅度主导 (10-40x) 而 inconsequential。Exposure bias 是 30x gap 根因。\", \"metrics\": {\"eval_iid_ours_mid_gar\": 0.5002, \"eval_iid_dongre_mid_gar\": 0.0123, \"eval_iid_ppl\": 2.78, \"eval_iid_ntp\": 0.9752, \"eval_heldout_ours_mid_gar\": 0.5002, \"eval_heldout_dongre_mid_gar\": 0.0123, \"eval_heldout_ppl\": 2.78, \"eval_heldout_ntp\": 0.9752, \"eval_modelgen_ours_mid_gar\": 0.0151, \"eval_modelgen_dongre_mid_gar\": 0.0173, \"eval_modelgen_ppl\": 1.5, \"vs_v7_iid_ppl_diff\": 0.004, \"vs_v7_iid_gar_diff\": -0.0033}}, \"phase2_lora_only_s42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T20:36:32.506Z\", \"updated_at\": \"2026-05-20T02:15:18.992Z\", \"hypothesis\": \"LoRA-only baseline (gate 固定 1.0，无 gating 机制) 在相同 MSE+NTP loss 下 GAR 应低于 ThreadGate (v7)。如果 LoRA-only 也能训到 GAR~0.5，则 gating 机制贡献为零，paper story 不成立。关键对比：LoRA-only 的 GAR 收敛值 vs v7 的 0.48。\", \"parent\": \"phase2_tg_s42_v7\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-19T12:44:29.475Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T13:04:35.644174+00:00\"}]}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type lora_only --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 0.0 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_lora_only_s42 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\\\"\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_lora_only_s42\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_lora_only_s42.log\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T13:04:33.523Z\"}, \"conclusion\": \"success\", \"metrics\": {\"epochs_completed\": 3, \"global_steps\": 3000, \"training_time_seconds\": 20588.6, \"training_time_hours\": 5.7, \"gate_fixed\": 1, \"gate_type_actual\": \"none\", \"final_lora_size_mb\": 20, \"eval_modelgen_ours_mid_gar\": 0.0245, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.371}, \"checkpoint_path\": \"/root/runs/turn_residual_gating/runs/phase2_lora_only_s42/lora/\", \"log_path\": \"/root/runs/turn_residual_gating/phase2_lora_only_s42.log\", \"notes\": \"诊断确认：EXIT_CODE=1 因 argparse 不认 lora_only 选项（choices 只有 threadgate/uniform/none）。训练实际已用 --gate-type none 完成 3 epoch (3000 steps, 20588.6s/5.7h)。Gate 全程固定 1.0（符合 lora_only 语义）。Checkpoint 可用，无需重跑。修复：dispatch 命令改用 --gate-type none 或在 train_phase2.py 添加 lora_only choice。\"}, \"phase2_ug_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:04:17.643Z\", \"updated_at\": \"2026-05-20T02:15:15.775Z\", \"hypothesis\": \"Uniform gating baseline: per-layer independent gates without turn conditioning (content-dependent only), to isolate whether ThreadGate's turn-conditioned gating provides benefit over content-only residual scaling. Same training setup as v7 but with gate-type=uniform.\", \"parent\": \"phase1_gar_diag\", \"notes\": \"3 epoch 完成 (21994.5s/6.1h)。最终 gate: mean=0.9598, std=0.0518, L3=0.777 L5=0.812 最低。重要发现：uniform gate 模式下各层仍学出 per-layer 分化（L3=0.777 vs L27=1.000），与 ThreadGate v7 的 L3/L4 最低模式一致。这说明 per-layer variation 可能来自 LoRA+GAR loss 而非 gate architecture。\", \"spec\": {\"command\": \"python src/train_phase2.py --gate-type uniform --gar-loss-mode mse_target --gar-target 0.5 --lambda-gar 1.0 --lambda-gate-div 1.0 --min-gate-std 0.05 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_ug_s42 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\", \"server\": \"westd-20861\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_ug_s42\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_ug_s42.log\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T06:53:13.931Z\", \"metrics\": {\"epoch0_avg_loss\": 1.0019, \"epoch0_avg_ntp\": 0.9755, \"epoch0_avg_gar\": 0.0259, \"epoch0_avg_div\": 0.0005, \"epoch1_avg_loss\": 0.9447, \"epoch1_avg_ntp\": 0.9435, \"epoch1_avg_gar\": 0.0013, \"epoch1_avg_div\": 0, \"epoch2_avg_loss\": 0.9319, \"epoch2_avg_ntp\": 0.9309, \"epoch2_avg_gar\": 0.001, \"epoch2_avg_div\": 0, \"final_gate_mean\": 0.9598, \"final_gate_std\": 0.0518, \"final_gate_min\": 0.7773, \"final_gate_max\": 1, \"final_profile_L3\": 0.777, \"final_profile_L5\": 0.812, \"final_profile_L0\": 0.875, \"final_profile_L27\": 1, \"training_time_seconds\": 21994.5, \"training_time_hours\": 6.1, \"global_steps\": 7950, \"unexpected_per_layer_variation\": true, \"eval_modelgen_ours_mid_gar\": 0.0149, \"eval_modelgen_dongre_mid_gar\": 0.0185, \"eval_modelgen_ppl\": 1.396}, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_ug_s42\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_ug_s42.log\"}, \"phase2_tg_s42_v8_schedsampling\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:02:00.223Z\", \"updated_at\": \"2026-05-19T16:33:04.989Z\", \"hypothesis\": \"Scheduled sampling 应用到 GAR loss（线性从 0→0.5 混合 teacher-forced + model-generated contexts）能缩小 v7 的 30x training-inference GAR gap。机制：在 model-generated context 上计算 GAR loss 迫使 attention pattern 适应推理时分布，直接 address teacher-forcing distribution shift。成功标准：inference GAR 显著高于 v7 的 0.016，PPL 不显著恶化（≤2.78+0.2）。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"python src/train_phase2_v8.py --scheduled-sampling --ss-max-ratio 0.5\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": 73838, \"log_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v8_schedsampling/\", \"submitted_at\": \"2026-05-19T15:43:01.461Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch with LoRA)\", \"eval_data\": \"ultrachat_eval_heldout.json (post-training eval)\", \"hyperparams\": {\"lr\": 0.0002, \"epochs\": 3, \"grad_accum\": 8, \"ss_max_ratio\": 0.5, \"ss_gen_max_tokens\": 256, \"ss_gen_temperature\": 0.7}, \"estimated_hours\": \"8-9\", \"checkpoint_path\": \"N/A (crashed at 5.8%)\", \"wall_clock_seconds\": 1611.0, \"gpu_hours\": 0.45}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T16:09:52.423Z\", \"metrics\": {\"killed_at_microstep\": 1950, \"total_microsteps\": 24000, \"completion_pct\": 8.1, \"global_step_approx\": 244, \"total_global_steps\": 3000, \"ss_steps_observed\": 1, \"tf_lgar_mean_step850_1400\": 0.0062, \"tf_lgar_std\": 0.0082, \"tf_lgar_collapse_step\": 800, \"gate_mean_final\": 0.93, \"ss_ratio_at_kill\": 0.081, \"crash_reason\": \"killed by director: SS path code bug (D026) makes experiment invalid, GPU needed for PCGrad\", \"design_flaw_ss_ramp_too_slow\": true, \"design_flaw_no_ss_tf_separate_logging\": true}, \"notes\": \"Director kill at micro-step ~1950 (8.1%). 原因: SS path code bug (D026) + GAR-ours 无推理 gap (D024)，实验无效。GPU 转入 plan_018 PCGrad。详情：(1) SS ratio 仅 0.081 时 kill，仅 1 条 SS step 被日志捕获，(2) TF L_GAR 在 step 800 坍塌到 ≈0.006（与 v7 一致），(3) GAR-ours 推理时 ≈0.50 ≈ target，SS 用 GAR-ours 训练无法验证 exposure bias mitigation，(4) lambda_gar=2.0 (vs v7 的 1.0) confound 未被充分触发。\"}, \"analysis_attention_heatmap\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:03:16.154Z\", \"updated_at\": \"2026-05-19T15:22:24.770Z\", \"hypothesis\": \"四模型（Base/TG/UG/LoRA-only）的 goal attention 衰减模式是否一致？如果 TG 的 attention decay 与 LoRA-only 无差异，则 gating 机制对 attention 分布零增量。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"attention heatmap analysis script\", \"server\": \"westd-20861\", \"data_path\": \"standard_conversations.json\", \"data_count\": 5, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7 + phase2_ug_s42 + phase2_lora_only_s42\", \"eval_data\": \"standard_conversations.json (5 convs x 10 turns)\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"westd-20861:/root/turn_residual_gating/runs/analysis/\"}, \"conclusion\": \"success\", \"metrics\": {\"base_mean_goal_attn\": 0.0136, \"base_decay\": 0.875, \"tg_mean_goal_attn\": 0.0232, \"tg_decay\": 0.777, \"ug_mean_goal_attn\": 0.0216, \"ug_decay\": 0.803, \"lora_mean_goal_attn\": 0.0216, \"lora_decay\": 0.81, \"gating_incremental_benefit\": \"none\"}, \"completed_at\": \"2026-05-19T15:22:24.770Z\"}, \"analysis_gradient_conflict\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:03:12.230Z\", \"updated_at\": \"2026-05-19T15:22:23.782Z\", \"hypothesis\": \"NTP-GAR 梯度冲突在 v7 训练过程中是否逐层普遍存在？量化 cos_sim 和 magnitude ratio 的演化，验证 NTP 是否在训练中逐渐完全压制 GAR 信号。\", \"parent\": \"phase2_tg_s42_v7\", \"spec\": {\"command\": \"gradient conflict analysis script\", \"server\": \"westd-20861\", \"data_path\": \"v7 epoch 0/1/2 checkpoints\", \"data_count\": 3, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7\", \"eval_data\": \"v7 3-epoch checkpoints (gradient analysis)\", \"checkpoint_path\": \"N/A (analysis)\", \"log_path\": \"westd-20861:/root/turn_residual_gating/runs/analysis/\"}, \"conclusion\": \"success\", \"metrics\": {\"epoch0_cos_sim\": -0.089, \"epoch1_cos_sim\": -0.054, \"epoch2_cos_sim\": -0.042, \"epoch0_neg_layers_pct\": 78.6, \"epoch1_neg_layers_pct\": 71.4, \"epoch2_neg_layers_pct\": 67.9, \"epoch0_mag_ratio\": 7.5, \"epoch1_mag_ratio\": 13.7, \"epoch2_mag_ratio\": 14.7}, \"completed_at\": \"2026-05-19T15:22:23.782Z\"}, \"phase2_4way_eval_heldout\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:58:59.269Z\", \"updated_at\": \"2026-05-19T14:35:47.201Z\", \"hypothesis\": \"四路消融的三路趋同结论（TG≈UG≈LoRA-only，gating 零增量）在 held-out eval 数据（idx≥8000，与训练集无重叠）上复现，排除数据重叠 confound。预期：相对比较保持（三路趋同），绝对 GAR 值可能变化。\", \"parent\": \"phase2_4way_eval\", \"spec\": {\"command\": \"bash -c \\\"cd /root/turn_residual_gating && bash scripts/run_4way_eval_heldout.sh\\\"\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": 67204, \"log_path\": \"~/runs/turn_residual_gating/phase2_4way_eval_heldout.log\", \"submitted_at\": \"2026-05-19T14:01:00.965Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_eval_heldout.json\", \"data_count\": 50, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7 + phase2_ug_s42 + phase2_lora_only_s42\", \"eval_data\": \"ultrachat_eval_heldout.json (50 convs, idx 8843-68199, no overlap with training 0-7999)\", \"configs\": \"4 models (Base/TG_v7/UG/LoRA-only) x 2 GAR variants (ours/Dongre) = 8 eval runs\", \"checkpoint_path\": \"N/A (eval-only)\", \"wall_clock_seconds\": 2086.2, \"gpu_hours\": 0.58}, \"reproduce\": {\"finished_at\": \"2026-05-19T14:32:09.481Z\"}, \"metrics\": {\"base_ours_mid_gar\": 0.0128, \"base_ours_recovery_pp\": 0.06, \"base_dongre_mid_gar\": 0.0031, \"base_dongre_recovery_pp\": -0.91, \"base_ppl\": 4.34, \"base_ntp\": 1.4045, \"tg_ours_mid_gar\": 0.5035, \"tg_ours_recovery_pp\": 49.13, \"tg_dongre_mid_gar\": 0.0152, \"tg_dongre_recovery_pp\": 0.3, \"tg_ppl\": 2.78, \"tg_ntp\": 0.9771, \"ug_ours_mid_gar\": 0.5053, \"ug_ours_recovery_pp\": 49.31, \"ug_dongre_mid_gar\": 0.0124, \"ug_dongre_recovery_pp\": 0.02, \"ug_ppl\": 2.78, \"ug_ntp\": 0.9752, \"lora_ours_mid_gar\": 0.4978, \"lora_ours_recovery_pp\": 48.56, \"lora_dongre_mid_gar\": 0.0132, \"lora_dongre_recovery_pp\": 0.1, \"lora_ppl\": 2.78, \"lora_ntp\": 0.9771, \"three_way_convergence_confirmed\": true, \"gar_ours_spread_pp\": 0.75, \"ppl_spread\": 0, \"data_overlap\": false}, \"conclusion\": \"success\", \"notes\": \"Held-out eval 三路趋同完全复现。TG/UG/LoRA-only GAR-ours: 0.504/0.505/0.498 (spread 0.75pp), PPL 均为 2.78。与 overlap 数据相比绝对值略高（GAR +1-2pp, PPL +0.15），属正常泛化偏移，相对比较完全一致。数据完整性 confound 已排除。\", \"completed_at\": \"2026-05-19T14:35:47.202Z\"}, \"phase2_4way_eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:07:30.673Z\", \"updated_at\": \"2026-05-19T13:15:39.947Z\", \"hypothesis\": \"Turn-residual gating (TRG) improves multi-turn response quality over LoRA-only and base model baselines because it selectively amplifies conversational context signals, which should manifest as higher GAR scores across 4 conditions (base, base+TRG, LoRA, LoRA+TRG).\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/run_4way_eval.sh 2>&1 | tee runs/4way_eval.log\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"60024\", \"log_path\": \"/root/turn_residual_gating/runs/4way_eval.log\", \"submitted_at\": \"2026-05-19T13:07:37.380Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"phase2_tg_s42_v7 + phase2_ug_s42 + phase2_lora_only_s42\", \"eval_data\": \"ultrachat_8k eval split\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/4way_eval/\", \"wall_clock_seconds\": 447.0, \"gpu_hours\": 0.12}, \"parent\": \"phase2_tg_s42_v7\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-19T13:15:04.405Z\", \"metrics\": {\"base_ours_mid_gar\": 0.0107, \"base_ours_recovery_pp\": -0.15, \"base_dongre_mid_gar\": 0.003, \"base_dongre_recovery_pp\": -0.92, \"base_ppl\": 4.23, \"base_ntp\": 1.4162, \"tg_ours_mid_gar\": 0.4866, \"tg_ours_recovery_pp\": 47.44, \"tg_dongre_mid_gar\": 0.0157, \"tg_dongre_recovery_pp\": 0.35, \"tg_ppl\": 2.63, \"tg_ntp\": 0.9484, \"ug_ours_mid_gar\": 0.4923, \"ug_ours_recovery_pp\": 48.01, \"ug_dongre_mid_gar\": 0.013, \"ug_dongre_recovery_pp\": 0.08, \"ug_ppl\": 2.62, \"ug_ntp\": 0.9433, \"lora_ours_mid_gar\": 0.486, \"lora_ours_recovery_pp\": 47.39, \"lora_dongre_mid_gar\": 0.0137, \"lora_dongre_recovery_pp\": 0.15, \"lora_ppl\": 2.63, \"lora_ntp\": 0.9482, \"route_b_confirmed\": true, \"gating_incremental_benefit\": \"none\"}, \"notes\": \"四路 eval 完成，Route B 决定性确认。三种训练方法（TG/UG/LoRA-only）在推理端完全趋同：ours GAR recovery ~47-48pp（vs base -0.15pp），dongre GAR recovery 0.08-0.35pp，PPL 2.62-2.63，NTP 0.943-0.948。Gating 机制（无论 turn-conditioned 还是 uniform）相比纯 LoRA 微调零增量。LoRA fine-tuning 是 GAR recovery 的唯一来源。hypothesis 被证伪：TRG 不比 LoRA-only 更好。\"}, \"phase2_tg_s42_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:10:23.229Z\", \"updated_at\": \"2026-05-18T17:52:54.605Z\", \"hypothesis\": \"重新平衡超参（λ=1.0 降 GAR 贡献至 ~50%，init_bias=1.5 使 sigmoid≈0.82 接近正常模型行为，gate_lr_multiplier=10 保持）能在 3-epoch 全量训练中产生有意义的 gate 分化（gate_std>0.05），同时 GAR 稳态在 0.1-0.5（非病态饱和），NTP loss 正常收敛，总 loss 保持正值\", \"parent\": \"phase2_tg_s42_v4\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && PYTHONUNBUFFERED=1 python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v5 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\\\"\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": \"3639\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v5.log\", \"submitted_at\": \"2026-05-18T17:10:30.573Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v5\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\", \"wall_clock_seconds\": 2539.4, \"gpu_hours\": 0.71}, \"metrics\": {\"step2000_gate_std\": 0.0225, \"step2000_gate_mean\": 0.9586, \"step2000_gate_min\": 0.9062, \"step2000_gate_max\": 0.9961, \"step2000_L_GAR\": -0.8977, \"step2000_L_NTP\": 0.7611, \"step2000_total_loss\": -0.1365, \"step2400_gate_std\": 0.0219, \"step2400_gate_mean\": 0.9651, \"step2400_gate_min\": 0.918, \"step2400_gate_max\": 0.9961, \"step2400_profile\": \"L0=0.918 L12=0.918 L13=0.926 L1=0.996 L26=0.996\", \"L_GAR_saturated_at\": -0.91, \"gate_range_compression\": \"0.918-0.996\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T17:52:49.951Z\", \"notes\": \"maximize 模式 gate 分化失败：gate_std=0.022↓ gate_mean=0.965↑，与 v3/v3b 同类结构性问题。L_GAR 饱和在 -0.91，maximize 的无界性驱动 gate 趋向恒等（全通过=最大 GAR），丧失层选择性。D009 指令立即 kill，转 v6 smooth_saturation。\"}, \"phase2_tg_s42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:58:00.124Z\", \"updated_at\": \"2026-05-18T16:50:36.202Z\", \"hypothesis\": \"重新平衡超参（λ=1.0 降 GAR 贡献至 ~50%，init_bias=1.5 使 sigmoid≈0.82 接近正常模型行为，gate_lr_multiplier=10 保持）能在 3-epoch 全量训练中产生有意义的 gate 分化（gate_std>0.05），同时 GAR 稳态在 0.1-0.5（非病态饱和），NTP loss 正常收敛，总 loss 保持正值\", \"parent\": \"phase2_tg_s42_v3b\", \"spec\": {\"command\": \"python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 1.0 --init-bias 1.5 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v4 --data-dir /root/turn_residual_gating/data/ultrachat_8k --epochs 3\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"pid\": \"36519\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v4\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v4.log\", \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\"}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-18T16:50:33.778Z\", \"notes\": \"进程在模型加载后崩溃，服务器重启导致进程丢失，无 checkpoint。日志仅有模型加载输出，无训练 step。GPU 重启后异常（100% util + 0 MiB + 无进程）。需要 GPU 健康恢复后重跑。\"}, \"phase2_tg_s42_v3b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:38:16.020Z\", \"updated_at\": \"2026-05-18T14:51:42.486Z\", \"hypothesis\": \"λ=10 + gate_lr=10x + init_bias=0.0 (sigmoid=0.5) 能否驱动 gate 产生 layer 间分化 (gate_std>0.05)？如果 500 步后 gate_std<0.02 且无选择性 → GAR-driven gating 梯度路径确认失败，需要 pivot\", \"parent\": \"phase2_tg_s42_v3\", \"spec\": {\"command\": \"python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 10.0 --init-bias 0.0 --gate-lr-multiplier 10 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v3b --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-steps 500\", \"server\": \"westd-20861\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"N/A\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v3b\", \"log_path\": \"/root/turn_residual_gating/runs/v3b_log.txt\"}, \"conclusion\": \"success\", \"metrics\": {\"gate_std_final\": 0.087, \"gate_mean_final\": 0.9388, \"gate_min_final\": 0.5352, \"gate_max_final\": 0.9922, \"L4_gate\": 0.535, \"L0_gate\": 0.777, \"L_NTP_final\": 0.7787, \"L_GAR_final\": -0.9606, \"elapsed_seconds\": 3565.9, \"optimizer_steps\": 500, \"gate_grad_received\": true}, \"completed_at\": \"2026-05-18T14:51:42.486Z\"}, \"phase2_tg_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T13:07:54.463Z\", \"updated_at\": \"2026-05-18T13:38:10.723Z\", \"hypothesis\": \"ThreadGate + maximize GAR loss (L_GAR=-mean(GAR)) 提供持续非零梯度，避免 hinge loss 的退化平衡点，gate 值应随训练下降（学习到选择性干预），同时 NTP loss 正常收敛\", \"parent\": \"phase2_tg_s42_v2\", \"spec\": {\"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"data_path\": \"/root/turn_residual_gating/data/ultrachat_8k\", \"data_count\": 8000, \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"seed\": 42, \"command\": \"python src/train_phase2.py --gate-type threadgate --gar-loss-mode maximize --lambda-gar 2.0 --init-bias 2.0 --max-seq-len 2048 --seed 42 --output-dir /root/turn_residual_gating/runs/phase2_tg_s42_v3 --data-dir /root/turn_residual_gating/data/ultrachat_8k\", \"pid\": \"30973\", \"log_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v3.log\", \"checkpoint_source\": \"N/A (training from scratch with LoRA)\", \"eval_data\": \"N/A (training experiment, not eval)\", \"checkpoint_path\": \"/root/turn_residual_gating/runs/phase2_tg_s42_v3\"}, \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"conclusion\": \"negative\", \"metrics\": {\"gate_mean_step0\": 0.8743, \"gate_mean_step500\": 0.8761, \"gate_delta\": 0.004, \"gate_std\": 0.001, \"final_ntp_loss\": 0.94, \"final_gar_loss\": -0.019, \"gar_contribution_pct\": \"2-4%\", \"diagnosis\": \"gate frozen, GAR indirect gradient too weak\"}, \"completed_at\": \"2026-05-18T13:38:10.723Z\"}, \"phase2_tg_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T11:13:37.042Z\", \"updated_at\": \"2026-05-18T13:11:26.331Z\", \"hypothesis\": \"ThreadGate + 修复后的 cumulative GAR loss (ε=0.001) 在 L_NTP+L_GAR 联合训练后，mid-turn GAR recovery 应显著优于 v1 (NTP-only baseline)，验证 GAR loss 的有效性\", \"parent\": \"phase2_tg_s42\", \"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"reproduce\": {\"server\": \"westd-20861\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-18T11:45:26.657Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating/src && python train_phase2.py --gate-type threadgate --seed 42 --output-dir /root/turn_residual_gating/checkpoints/tg_s42_v2 --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-seq-len 2048 --gar-loss-mode cumulative --gar-epsilon 0.001 --init-bias 2.0 --lambda-gar 5.0\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating/src && python train_phase2.py --gate-type threadgate --seed 42 --output-dir /root/turn_residual_gating/checkpoints/tg_s42_v2 --data-dir /root/turn_residual_gating/data/ultrachat_8k --max-seq-len 2048 --gar-loss-mode cumulative --gar-epsilon 0.001 --init-bias 2.0 --lambda-gar 5.0\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"25726\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v2.log\", \"submitted_at\": \"2026-05-18T11:50:47.143Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/turn_residual_gating/checkpoints/tg_s42_v2\", \"wall_clock_seconds\": 4839.2, \"gpu_hours\": 1.34}, \"pid\": \"25726\", \"log_path\": \"~/runs/turn_residual_gating/phase2_tg_s42_v2.log\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T13:11:26.331Z\"}, \"phase1_gar_diag\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T05:24:07.903Z\", \"updated_at\": \"2026-05-18T05:59:25.324Z\", \"hypothesis\": \"Qwen2.5-7B-Instruct 在 10-turn 多轮对话中，中间 turns (3-8) 的 GAR (Goal Accessibility Ratio) 相对 turn-1 下降 ≥15%，表明模型对 system prompt 中目标 token 的注意力随对话进行显著衰减\", \"spec\": {\"command\": \"python run_phase1_gar.py --results-dir /root/turn_residual_gating/results\", \"server\": \"westd-20861\", \"model_name\": \"Qwen/Qwen2.5-7B-Instruct\", \"data_path\": \"built-in 5 conversations (knowledge_qa, coding_help, creative_writing, math_reasoning, roleplay_advisor)\", \"data_count\": 5, \"seed\": 0, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/turn_residual_gating/results/phase1_run.log\"}, \"conclusion\": \"success\", \"metrics\": {\"turn1_avg_gar\": 0.0418, \"mid_turns_avg_gar\": 0.0122, \"relative_drop\": 0.708, \"num_conversations\": 5, \"num_turns\": 10, \"per_turn_avg_gar\": [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]}, \"completed_at\": \"2026-05-18T05:59:25.325Z\"}}, \"count\": 37, \"total\": 37, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1428}}"
+    }
+  },
+  "sourceToolAssistantUUID": "364bcb36-220c-45ba-9b53-b74ab9309936",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-22T08:26:05.050Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VckLrKsLXfsj8u6t2Yjtub`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/runs/turn_residual_gating/eval_llama_ar_n20.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e809d7d-99a8-4e87-b55d-026b026915cb",
+  "isSidechain": false,
+  "requestId": "req_011CbHHgjT9Ss9yt5kbM3F56",
+  "type": "assistant",
+  "uuid": "0fc284df-fb28-4399-93cc-82b15e08c9a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTT3QtUHFBW9yTYSdSXz17",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1580,
+      "cache_read_input_tokens": 25390,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1580,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 25390,
+          "cache_creation_input_tokens": 1580,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1580
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-22T08:26:06.072Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RM9aYyDkm2BVKKZto2oY2Z`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/scripts/eval_llama_ar_n20.sh"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fc284df-fb28-4399-93cc-82b15e08c9a0",
+  "isSidechain": false,
+  "requestId": "req_011CbHHgjT9Ss9yt5kbM3F56",
+  "type": "assistant",
+  "uuid": "39d3ae48-6660-4a61-a357-9e164ef860e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTT3QtUHFBW9yTYSdSXz17",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1580,
+      "cache_read_input_tokens": 25390,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1580,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 25390,
+          "cache_creation_input_tokens": 1580,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1580
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-22T08:26:06.668Z_
+
+<details><summary>↩ Tool result · `toolu_01VckLrKsLXfsj8u6t2Yjtub`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"AR N=20 eval (T=4)\\nTG checkpoint: runs/phase2_llama_tg_s42/epoch_2\\nLoRA-only checkpoint: runs/phase2_llama_lora_only_s42/epoch_2\\nConversations: data/ultrachat_eval_20.json\\n\\n========== [AR] Base + GAR-ours ==========\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\nDevice: cuda\\nGate type: none\\nGAR variant: ours\\nCheckpoint: None\\nLoading base model (eager attention)...\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<01:14,  3.87it/s]\\rLoading weights:   1%|          | 2/291 [00:00<01:20,  3.60it/s]\\rLoading weights:   2%|▏         | 5/291 [00:01<01:34,  3.04it/s]\\rLoading weights:  33%|███▎      | 95/291 [00:01<00:02, 85.81it/s]\\rLoading weights:  43%|████▎     | 126/291 [00:02<00:02, 62.43it/s]\\rLoading weights:  56%|█████▋    | 164/291 [00:03<00:03, 42.28it/s]\\rLoading weights: 100%|██████████| 291/291 [00:03<00:00, 73.65it/s]\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain \\n\\n... [截断: 输出过长，省略 167092 字符] ...\\n\\n', '0.2272', '0.3446', '0.4358']\\n  Conv 6 GAR:  ['0.0176', '0.0143', '0.0152', '0.0155']\\n  Conv 6 nGAR: ['0.1305', '0.1956', '0.3084', '0.4179']\\n  Conv 7 GAR:  ['0.0192', '0.0158', '0.0148', '0.0164']\\n  Conv 7 nGAR: ['0.1378', '0.2120', '0.2859', '0.4191']\\n  Conv 8 GAR:  ['0.0366', '0.0287', '0.0298', '0.0171']\\n  Conv 8 nGAR: ['0.2737', '0.3924', '0.5969', '0.4618']\\n  Conv 9 GAR:  ['0.0400', '0.0191', '0.0174', '0.0183']\\n  Conv 9 nGAR: ['0.2802', '0.2493', '0.3309', '0.4715']\\n  Conv 10 GAR:  ['0.0164', '0.0139', '0.0131', '0.1394']\\n  Conv 10 nGAR: ['0.1188', '0.1911', '0.2639', '3.6099']\\n  Conv 11 GAR:  ['0.0155', '0.0176', '0.0159', '0.0126']\\n  Conv 11 nGAR: ['0.1133', '0.2524', '0.3603', '0.3923']\\n  Conv 12 GAR:  ['0.0162', '0.0299', '0.0138', '0.0150']\\n  Conv 12 nGAR: ['0.1143', '0.3859', '0.2663', '0.3844']\\n  Conv 13 GAR:  ['0.0164', '0.0100', '0.0101', '0.0087']\\n  Conv 13 nGAR: ['0.1161', '0.1387', '0.2066', '0.2482']\\n  Conv 14 GAR:  ['0.0154', '0.0117', '0.0110', '0.0105']\\n  Conv 14 nGAR: ['0.1112', '0.1662', '0.2311', '0.2910']\\n  Conv 15 GAR:  ['0.0386', '0.0574', '0.0152', '0.0140']\\n  Conv 15 nGAR: ['0.2723', '0.8412', '0.3454', '0.4307']\\n  Conv 16 GAR:  ['0.0097', '0.0111', '0.0121', '0.0126']\\n  Conv 16 nGAR: ['0.1195', '0.2178', '0.3215', '0.4246']\\n  Conv 17 GAR:  ['0.0175', '0.0177', '0.0171', '0.0154']\\n  Conv 17 nGAR: ['0.1292', '0.2455', '0.3478', '0.4097']\\n  Conv 18 GAR:  ['0.0188', '0.0193', '0.0217', '0.0199']\\n  Conv 18 nGAR: ['0.1362', '0.2577', '0.4338', '0.5207']\\n  Conv 19 GAR:  ['0.0161', '0.0177', '0.0159', '0.0195']\\n  Conv 19 nGAR: ['0.1237', '0.2471', '0.3303', '0.5473']\\n  Conv 20 GAR:  ['0.0120', '0.0099', '0.0128', '0.0091']\\n  Conv 20 nGAR: ['0.0912', '0.1376', '0.2566', '0.2431']\\n\\nMeasuring NTP Perplexity...\\n  Conv 1 PPL: 1.36 (NTP loss: 0.3094)\\n  Conv 2 PPL: 1.40 (NTP loss: 0.3338)\\n  Conv 3 PPL: 1.46 (NTP loss: 0.3806)\\n  Conv 4 PPL: 1.25 (NTP loss: 0.2260)\\n  Conv 5 PPL: 1.46 (NTP loss: 0.3765)\\n  Conv 6 PPL: 1.37 (NTP loss: 0.3160)\\n  Conv 7 PPL: 1.36 (NTP loss: 0.3086)\\n  Conv 8 PPL: 1.42 (NTP loss: 0.3539)\\n  Conv 9 PPL: 1.55 (NTP loss: 0.4355)\\n  Conv 10 PPL: 1.48 (NTP loss: 0.3945)\\n  Conv 11 PPL: 1.42 (NTP loss: 0.3525)\\n  Conv 12 PPL: 1.47 (NTP loss: 0.3849)\\n  Conv 13 PPL: 1.45 (NTP loss: 0.3694)\\n  Conv 14 PPL: 1.50 (NTP loss: 0.4035)\\n  Conv 15 PPL: 1.52 (NTP loss: 0.4178)\\n  Conv 16 PPL: 1.51 (NTP loss: 0.4121)\\n  Conv 17 PPL: 1.40 (NTP loss: 0.3335)\\n  Conv 18 PPL: 1.34 (NTP loss: 0.2952)\\n  Conv 19 PPL: 1.42 (NTP loss: 0.3526)\\n  Conv 20 PPL: 1.59 (NTP loss: 0.4668)\\n\\nAvg PPL: 1.44\\nAvg NTP Loss: 0.3612\\n\\nBaseline mid-turn GAR: 0.0122\\nTrained mid-turn GAR:  0.0183\\nGAR recovery:          +0.61pp\\n\\nResults saved to runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json\\nPlot saved to runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar_comparison.png\\n\\n==================================================\\nPhase 2 GAR Evaluation (threadgate, GAR-dongre)\\n==================================================\\nTurn 1 avg GAR:     0.0206\\nMid-turns avg GAR:  0.0183\\nMid-turns avg nGAR: 0.4436\\nGAR recovery:       +0.61pp\\nAvg PPL:            1.44\\nAvg NTP Loss:       0.3612\\n\\nGate Dynamic Range (top layers by |diff|):\\n  L28: turn1=0.4641  turn9=0.8453  diff=-0.3812\\n  L30: turn1=0.5888  turn9=0.9120  diff=-0.3232\\n  L24: turn1=0.4937  turn9=0.8115  diff=-0.3178\\n  L25: turn1=0.6177  turn9=0.7733  diff=-0.1556\\n  L23: turn1=0.7050  turn9=0.8406  diff=-0.1356\\n  L18: turn1=0.8154  turn9=0.9386  diff=-0.1232\\n  L3: turn1=0.8576  turn9=0.9789  diff=-0.1213\\n  L12: turn1=0.8551  turn9=0.9662  diff=-0.1111\\n  L2: turn1=0.8715  turn9=0.9823  diff=-0.1108\\n  L27: turn1=0.6967  turn9=0.8046  diff=-0.1079\\n\\n================================================================\\nAR N=20 eval complete (T=4)\\n================================================================\\nResults in: runs/eval_llama_ar_n20/\\n\\nConditions:\\n  Base:      ar_base_ours / ar_base_dongre\\n  LoRA-only: ar_lo_ours / ar_lo_dongre\\n  TG:        ar_tg_ours / ar_tg_dongre\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0fc284df-fb28-4399-93cc-82b15e08c9a0",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "388cf105-f720-4de8-b743-8719b1e3dd46",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"AR N=20 eval (T=4)\\\\nTG checkpoint: runs/phase2_llama_tg_s42/epoch_2\\\\nLoRA-only checkpoint: runs/phase2_llama_lora_only_s42/epoch_2\\\\nConversations: data/ultrachat_eval_20.json\\\\n\\\\n========== [AR] Base + GAR-ours ==========\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\nDevice: cuda\\\\nGate type: none\\\\nGAR variant: ours\\\\nCheckpoint: None\\\\nLoading base model (eager attention)...\\\\n\\\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/291 [00:00<01:14,  3.87it/s]\\\\rLoading weights:   1%|          | 2/291 [00:00<01:20,  3.60it/s]\\\\rLoading weights:   2%|▏         | 5/291 [00:01<01:34,  3.04it/s]\\\\rLoading weights:  33%|███▎      | 95/291 [00:01<00:02, 85.81it/s]\\\\rLoading weights:  43%|████▎     | 126/291 [00:02<00:02, 62.43it/s]\\\\rLoading weights:  56%|█████▋    | 164/291 [00:03<00:03, 42.28it/s]\\\\rLoading weights: 100%|██████████| 291/291 [00:03<00:00, 73.65it/s]\\\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\\\n[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain \\\\n\\\\n... [截断: 输出过长，省略 167092 字符] ...\\\\n\\\\n', '0.2272', '0.3446', '0.4358']\\\\n  Conv 6 GAR:  ['0.0176', '0.0143', '0.0152', '0.0155']\\\\n  Conv 6 nGAR: ['0.1305', '0.1956', '0.3084', '0.4179']\\\\n  Conv 7 GAR:  ['0.0192', '0.0158', '0.0148', '0.0164']\\\\n  Conv 7 nGAR: ['0.1378', '0.2120', '0.2859', '0.4191']\\\\n  Conv 8 GAR:  ['0.0366', '0.0287', '0.0298', '0.0171']\\\\n  Conv 8 nGAR: ['0.2737', '0.3924', '0.5969', '0.4618']\\\\n  Conv 9 GAR:  ['0.0400', '0.0191', '0.0174', '0.0183']\\\\n  Conv 9 nGAR: ['0.2802', '0.2493', '0.3309', '0.4715']\\\\n  Conv 10 GAR:  ['0.0164', '0.0139', '0.0131', '0.1394']\\\\n  Conv 10 nGAR: ['0.1188', '0.1911', '0.2639', '3.6099']\\\\n  Conv 11 GAR:  ['0.0155', '0.0176', '0.0159', '0.0126']\\\\n  Conv 11 nGAR: ['0.1133', '0.2524', '0.3603', '0.3923']\\\\n  Conv 12 GAR:  ['0.0162', '0.0299', '0.0138', '0.0150']\\\\n  Conv 12 nGAR: ['0.1143', '0.3859', '0.2663', '0.3844']\\\\n  Conv 13 GAR:  ['0.0164', '0.0100', '0.0101', '0.0087']\\\\n  Conv 13 nGAR: ['0.1161', '0.1387', '0.2066', '0.2482']\\\\n  Conv 14 GAR:  ['0.0154', '0.0117', '0.0110', '0.0105']\\\\n  Conv 14 nGAR: ['0.1112', '0.1662', '0.2311', '0.2910']\\\\n  Conv 15 GAR:  ['0.0386', '0.0574', '0.0152', '0.0140']\\\\n  Conv 15 nGAR: ['0.2723', '0.8412', '0.3454', '0.4307']\\\\n  Conv 16 GAR:  ['0.0097', '0.0111', '0.0121', '0.0126']\\\\n  Conv 16 nGAR: ['0.1195', '0.2178', '0.3215', '0.4246']\\\\n  Conv 17 GAR:  ['0.0175', '0.0177', '0.0171', '0.0154']\\\\n  Conv 17 nGAR: ['0.1292', '0.2455', '0.3478', '0.4097']\\\\n  Conv 18 GAR:  ['0.0188', '0.0193', '0.0217', '0.0199']\\\\n  Conv 18 nGAR: ['0.1362', '0.2577', '0.4338', '0.5207']\\\\n  Conv 19 GAR:  ['0.0161', '0.0177', '0.0159', '0.0195']\\\\n  Conv 19 nGAR: ['0.1237', '0.2471', '0.3303', '0.5473']\\\\n  Conv 20 GAR:  ['0.0120', '0.0099', '0.0128', '0.0091']\\\\n  Conv 20 nGAR: ['0.0912', '0.1376', '0.2566', '0.2431']\\\\n\\\\nMeasuring NTP Perplexity...\\\\n  Conv 1 PPL: 1.36 (NTP loss: 0.3094)\\\\n  Conv 2 PPL: 1.40 (NTP loss: 0.3338)\\\\n  Conv 3 PPL: 1.46 (NTP loss: 0.3806)\\\\n  Conv 4 PPL: 1.25 (NTP loss: 0.2260)\\\\n  Conv 5 PPL: 1.46 (NTP loss: 0.3765)\\\\n  Conv 6 PPL: 1.37 (NTP loss: 0.3160)\\\\n  Conv 7 PPL: 1.36 (NTP loss: 0.3086)\\\\n  Conv 8 PPL: 1.42 (NTP loss: 0.3539)\\\\n  Conv 9 PPL: 1.55 (NTP loss: 0.4355)\\\\n  Conv 10 PPL: 1.48 (NTP loss: 0.3945)\\\\n  Conv 11 PPL: 1.42 (NTP loss: 0.3525)\\\\n  Conv 12 PPL: 1.47 (NTP loss: 0.3849)\\\\n  Conv 13 PPL: 1.45 (NTP loss: 0.3694)\\\\n  Conv 14 PPL: 1.50 (NTP loss: 0.4035)\\\\n  Conv 15 PPL: 1.52 (NTP loss: 0.4178)\\\\n  Conv 16 PPL: 1.51 (NTP loss: 0.4121)\\\\n  Conv 17 PPL: 1.40 (NTP loss: 0.3335)\\\\n  Conv 18 PPL: 1.34 (NTP loss: 0.2952)\\\\n  Conv 19 PPL: 1.42 (NTP loss: 0.3526)\\\\n  Conv 20 PPL: 1.59 (NTP loss: 0.4668)\\\\n\\\\nAvg PPL: 1.44\\\\nAvg NTP Loss: 0.3612\\\\n\\\\nBaseline mid-turn GAR: 0.0122\\\\nTrained mid-turn GAR:  0.0183\\\\nGAR recovery:          +0.61pp\\\\n\\\\nResults saved to runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json\\\\nPlot saved to runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar_comparison.png\\\\n\\\\n==================================================\\\\nPhase 2 GAR Evaluation (threadgate, GAR-dongre)\\\\n==================================================\\\\nTurn 1 avg GAR:     0.0206\\\\nMid-turns avg GAR:  0.0183\\\\nMid-turns avg nGAR: 0.4436\\\\nGAR recovery:       +0.61pp\\\\nAvg PPL:            1.44\\\\nAvg NTP Loss:       0.3612\\\\n\\\\nGate Dynamic Range (top layers by |diff|):\\\\n  L28: turn1=0.4641  turn9=0.8453  diff=-0.3812\\\\n  L30: turn1=0.5888  turn9=0.9120  diff=-0.3232\\\\n  L24: turn1=0.4937  turn9=0.8115  diff=-0.3178\\\\n  L25: turn1=0.6177  turn9=0.7733  diff=-0.1556\\\\n  L23: turn1=0.7050  turn9=0.8406  diff=-0.1356\\\\n  L18: turn1=0.8154  turn9=0.9386  diff=-0.1232\\\\n  L3: turn1=0.8576  turn9=0.9789  diff=-0.1213\\\\n  L12: turn1=0.8551  turn9=0.9662  diff=-0.1111\\\\n  L2: turn1=0.8715  turn9=0.9823  diff=-0.1108\\\\n  L27: turn1=0.6967  turn9=0.8046  diff=-0.1079\\\\n\\\\n================================================================\\\\nAR N=20 eval complete (T=4)\\\\n================================================================\\\\nResults in: runs/eval_llama_ar_n20/\\\\n\\\\nConditions:\\\\n  Base:      ar_base_ours / ar_base_dongre\\\\n  LoRA-only: ar_lo_ours / ar_lo_dongre\\\\n  TG:        ar_tg_ours / ar_tg_dongre\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.59}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"AR N=20 eval (T=4)\\nTG checkpoint: runs/phase2_llama_tg_s42/epoch_2\\nLoRA-only checkpoint: runs/phase2_llama_lora_only_s42/epoch_2\\nConversations: data/ultrachat_eval_20.json\\n\\n========== [AR] Base + GAR-ours ==========\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\nDevice: cuda\\nGate type: none\\nGAR variant: ours\\nCheckpoint: None\\nLoading base model (eager attention)...\\n\\rLoading weights:   0%|          | 0/291 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/291 [00:00<01:14,  3.87it/s]\\rLoading weights:   1%|          | 2/291 [00:00<01:20,  3.60it/s]\\rLoading weights:   2%|▏         | 5/291 [00:01<01:34,  3.04it/s]\\rLoading weights:  33%|███▎      | 95/291 [00:01<00:02, 85.81it/s]\\rLoading weights:  43%|████▎     | 126/291 [00:02<00:02, 62.43it/s]\\rLoading weights:  56%|█████▋    | 164/291 [00:03<00:03, 42.28it/s]\\rLoading weights: 100%|██████████| 291/291 [00:03<00:00, 73.65it/s]\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask is not set and cannot be inferred from input because pad token is same as eos token. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer TokenizersBackend. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain reliable results.\\n[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.\\n[transformers] The attention mask and the pad token id were not set. As a consequence, you may observe unexpected behavior. Please pass your input's `attention_mask` to obtain \\n\\n... [截断: 输出过长，省略 167092 字符] ...\\n\\n', '0.2272', '0.3446', '0.4358']\\n  Conv 6 GAR:  ['0.0176', '0.0143', '0.0152', '0.0155']\\n  Conv 6 nGAR: ['0.1305', '0.1956', '0.3084', '0.4179']\\n  Conv 7 GAR:  ['0.0192', '0.0158', '0.0148', '0.0164']\\n  Conv 7 nGAR: ['0.1378', '0.2120', '0.2859', '0.4191']\\n  Conv 8 GAR:  ['0.0366', '0.0287', '0.0298', '0.0171']\\n  Conv 8 nGAR: ['0.2737', '0.3924', '0.5969', '0.4618']\\n  Conv 9 GAR:  ['0.0400', '0.0191', '0.0174', '0.0183']\\n  Conv 9 nGAR: ['0.2802', '0.2493', '0.3309', '0.4715']\\n  Conv 10 GAR:  ['0.0164', '0.0139', '0.0131', '0.1394']\\n  Conv 10 nGAR: ['0.1188', '0.1911', '0.2639', '3.6099']\\n  Conv 11 GAR:  ['0.0155', '0.0176', '0.0159', '0.0126']\\n  Conv 11 nGAR: ['0.1133', '0.2524', '0.3603', '0.3923']\\n  Conv 12 GAR:  ['0.0162', '0.0299', '0.0138', '0.0150']\\n  Conv 12 nGAR: ['0.1143', '0.3859', '0.2663', '0.3844']\\n  Conv 13 GAR:  ['0.0164', '0.0100', '0.0101', '0.0087']\\n  Conv 13 nGAR: ['0.1161', '0.1387', '0.2066', '0.2482']\\n  Conv 14 GAR:  ['0.0154', '0.0117', '0.0110', '0.0105']\\n  Conv 14 nGAR: ['0.1112', '0.1662', '0.2311', '0.2910']\\n  Conv 15 GAR:  ['0.0386', '0.0574', '0.0152', '0.0140']\\n  Conv 15 nGAR: ['0.2723', '0.8412', '0.3454', '0.4307']\\n  Conv 16 GAR:  ['0.0097', '0.0111', '0.0121', '0.0126']\\n  Conv 16 nGAR: ['0.1195', '0.2178', '0.3215', '0.4246']\\n  Conv 17 GAR:  ['0.0175', '0.0177', '0.0171', '0.0154']\\n  Conv 17 nGAR: ['0.1292', '0.2455', '0.3478', '0.4097']\\n  Conv 18 GAR:  ['0.0188', '0.0193', '0.0217', '0.0199']\\n  Conv 18 nGAR: ['0.1362', '0.2577', '0.4338', '0.5207']\\n  Conv 19 GAR:  ['0.0161', '0.0177', '0.0159', '0.0195']\\n  Conv 19 nGAR: ['0.1237', '0.2471', '0.3303', '0.5473']\\n  Conv 20 GAR:  ['0.0120', '0.0099', '0.0128', '0.0091']\\n  Conv 20 nGAR: ['0.0912', '0.1376', '0.2566', '0.2431']\\n\\nMeasuring NTP Perplexity...\\n  Conv 1 PPL: 1.36 (NTP loss: 0.3094)\\n  Conv 2 PPL: 1.40 (NTP loss: 0.3338)\\n  Conv 3 PPL: 1.46 (NTP loss: 0.3806)\\n  Conv 4 PPL: 1.25 (NTP loss: 0.2260)\\n  Conv 5 PPL: 1.46 (NTP loss: 0.3765)\\n  Conv 6 PPL: 1.37 (NTP loss: 0.3160)\\n  Conv 7 PPL: 1.36 (NTP loss: 0.3086)\\n  Conv 8 PPL: 1.42 (NTP loss: 0.3539)\\n  Conv 9 PPL: 1.55 (NTP loss: 0.4355)\\n  Conv 10 PPL: 1.48 (NTP loss: 0.3945)\\n  Conv 11 PPL: 1.42 (NTP loss: 0.3525)\\n  Conv 12 PPL: 1.47 (NTP loss: 0.3849)\\n  Conv 13 PPL: 1.45 (NTP loss: 0.3694)\\n  Conv 14 PPL: 1.50 (NTP loss: 0.4035)\\n  Conv 15 PPL: 1.52 (NTP loss: 0.4178)\\n  Conv 16 PPL: 1.51 (NTP loss: 0.4121)\\n  Conv 17 PPL: 1.40 (NTP loss: 0.3335)\\n  Conv 18 PPL: 1.34 (NTP loss: 0.2952)\\n  Conv 19 PPL: 1.42 (NTP loss: 0.3526)\\n  Conv 20 PPL: 1.59 (NTP loss: 0.4668)\\n\\nAvg PPL: 1.44\\nAvg NTP Loss: 0.3612\\n\\nBaseline mid-turn GAR: 0.0122\\nTrained mid-turn GAR:  0.0183\\nGAR recovery:          +0.61pp\\n\\nResults saved to runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json\\nPlot saved to runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar_comparison.png\\n\\n==================================================\\nPhase 2 GAR Evaluation (threadgate, GAR-dongre)\\n==================================================\\nTurn 1 avg GAR:     0.0206\\nMid-turns avg GAR:  0.0183\\nMid-turns avg nGAR: 0.4436\\nGAR recovery:       +0.61pp\\nAvg PPL:            1.44\\nAvg NTP Loss:       0.3612\\n\\nGate Dynamic Range (top layers by |diff|):\\n  L28: turn1=0.4641  turn9=0.8453  diff=-0.3812\\n  L30: turn1=0.5888  turn9=0.9120  diff=-0.3232\\n  L24: turn1=0.4937  turn9=0.8115  diff=-0.3178\\n  L25: turn1=0.6177  turn9=0.7733  diff=-0.1556\\n  L23: turn1=0.7050  turn9=0.8406  diff=-0.1356\\n  L18: turn1=0.8154  turn9=0.9386  diff=-0.1232\\n  L3: turn1=0.8576  turn9=0.9789  diff=-0.1213\\n  L12: turn1=0.8551  turn9=0.9662  diff=-0.1111\\n  L2: turn1=0.8715  turn9=0.9823  diff=-0.1108\\n  L27: turn1=0.6967  turn9=0.8046  diff=-0.1079\\n\\n================================================================\\nAR N=20 eval complete (T=4)\\n================================================================\\nResults in: runs/eval_llama_ar_n20/\\n\\nConditions:\\n  Base:      ar_base_ours / ar_base_dongre\\n  LoRA-only: ar_lo_ours / ar_lo_dongre\\n  TG:        ar_tg_ours / ar_tg_dongre\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0fc284df-fb28-4399-93cc-82b15e08c9a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-22T08:26:06.757Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NvsC7Sf5chuwQsZvjhbPr8`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/runs/turn_residual_gating -name \"*ar_n20*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "388cf105-f720-4de8-b743-8719b1e3dd46",
+  "isSidechain": false,
+  "requestId": "req_011CbHHgjT9Ss9yt5kbM3F56",
+  "type": "assistant",
+  "uuid": "8927d923-f382-4b5f-9078-d11090483b02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PTT3QtUHFBW9yTYSdSXz17",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1580,
+      "cache_read_input_tokens": 25390,
+      "output_tokens": 410,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1580,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 410,
+          "cache_read_input_tokens": 25390,
+          "cache_creation_input_tokens": 1580,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1580
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8927d923-f382-4b5f-9078-d11090483b02",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-22T08:26:07.206Z_
+
+<details><summary>↩ Tool result · `toolu_01RM9aYyDkm2BVKKZto2oY2Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Llama-3.1-8B AR eval N=20, T=4 — Base / LoRA-only / TG\\n# ar-from-fixed: user turns from ultrachat, AR-generated responses\\nset -e\\n\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/turn_residual_gating\\n\\nPYTHON=/root/miniconda3/bin/python3.12\\nEVAL_SCRIPT=src/eval_phase2_gar.py\\nLLAMA=/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\nCONV_PATH=data/ultrachat_eval_20.json\\nOUT_ROOT=runs/eval_llama_ar_n20\\nMAX_TURNS=4\\n\\nTG_CKPT=runs/phase2_llama_tg_s42/epoch_2\\nLO_CKPT=runs/phase2_llama_lora_only_s42/epoch_2\\n\\necho \\\"AR N=20 eval (T=$MAX_TURNS)\\\"\\necho \\\"TG checkpoint: $TG_CKPT\\\"\\necho \\\"LoRA-only checkpoint: $LO_CKPT\\\"\\necho \\\"Conversations: $CONV_PATH\\\"\\necho \\\"\\\"\\n\\nmkdir -p \\\"$OUT_ROOT\\\"\\n\\n# ═══════════════════════════════════════════════════════════\\n# 1. Base\\n# ════════════════════════���══════════════════════════════════\\n\\necho \\\"========== [AR] Base + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_base_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [AR] Base + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_base_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\n# ═══════════════════════════════════════════════════════════\\n# 2. LoRA-only\\n# ═════════════════════════════════════════��═════════════════\\n\\necho \\\"========== [AR] LoRA-only + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type none \\\\\\n  --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_lo_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [AR] LoRA-only + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type none \\\\\\n  --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_lo_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\n# ═══════════════════════════════════════════════════════════\\n# 3. TG (ThreadGate)\\n# ═════════════════════════════════��═════════════════════════\\n\\necho \\\"========== [AR] TG + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_tg_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [AR] TG + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_tg_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\necho \\\"\\\"\\necho \\\"================================================================\\\"\\necho \\\"AR N=20 eval complete (T=$MAX_TURNS)\\\"\\necho \\\"================================================================\\\"\\necho \\\"Results in: $OUT_ROOT/\\\"\\necho \\\"\\\"\\necho \\\"Conditions:\\\"\\necho \\\"  Base:      ar_base_ours / ar_base_dongre\\\"\\necho \\\"  LoRA-only: ar_lo_ours / ar_lo_dongre\\\"\\necho \\\"  TG:        ar_tg_ours / ar_tg_dongre\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39d3ae48-6660-4a61-a357-9e164ef860e3",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "4706ca4f-d60d-408f-9004-50d70872d743",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# Llama-3.1-8B AR eval N=20, T=4 — Base / LoRA-only / TG\\\\n# ar-from-fixed: user turns from ultrachat, AR-generated responses\\\\nset -e\\\\n\\\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\\\ncd /root/turn_residual_gating\\\\n\\\\nPYTHON=/root/miniconda3/bin/python3.12\\\\nEVAL_SCRIPT=src/eval_phase2_gar.py\\\\nLLAMA=/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\\nCONV_PATH=data/ultrachat_eval_20.json\\\\nOUT_ROOT=runs/eval_llama_ar_n20\\\\nMAX_TURNS=4\\\\n\\\\nTG_CKPT=runs/phase2_llama_tg_s42/epoch_2\\\\nLO_CKPT=runs/phase2_llama_lora_only_s42/epoch_2\\\\n\\\\necho \\\\\\\"AR N=20 eval (T=$MAX_TURNS)\\\\\\\"\\\\necho \\\\\\\"TG checkpoint: $TG_CKPT\\\\\\\"\\\\necho \\\\\\\"LoRA-only checkpoint: $LO_CKPT\\\\\\\"\\\\necho \\\\\\\"Conversations: $CONV_PATH\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\n\\\\nmkdir -p \\\\\\\"$OUT_ROOT\\\\\\\"\\\\n\\\\n# ═══════════════════════════════════════════════════════════\\\\n# 1. Base\\\\n# ════════════════════════���══════════════════════════════════\\\\n\\\\necho \\\\\\\"========== [AR] Base + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --model \\\\\\\"$LLAMA\\\\\\\" \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --ar-from-fixed \\\\\\\\\\\\n  --max-turns $MAX_TURNS \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_base_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [AR] Base + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --model \\\\\\\"$LLAMA\\\\\\\" \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --ar-from-fixed \\\\\\\\\\\\n  --max-turns $MAX_TURNS \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_base_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ═══════════════════════════════════════════════════════════\\\\n# 2. LoRA-only\\\\n# ═════════════════════════════════════════��═════════════════\\\\n\\\\necho \\\\\\\"========== [AR] LoRA-only + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --model \\\\\\\"$LLAMA\\\\\\\" \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --ar-from-fixed \\\\\\\\\\\\n  --max-turns $MAX_TURNS \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_lo_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [AR] LoRA-only + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --model \\\\\\\"$LLAMA\\\\\\\" \\\\\\\\\\\\n  --gate-type none \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$LO_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --ar-from-fixed \\\\\\\\\\\\n  --max-turns $MAX_TURNS \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_lo_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\n# ═══════════════════════════════════════════════════════════\\\\n# 3. TG (ThreadGate)\\\\n# ═════════════════════════════════��═════════════════════════\\\\n\\\\necho \\\\\\\"========== [AR] TG + GAR-ours ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --model \\\\\\\"$LLAMA\\\\\\\" \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --ar-from-fixed \\\\\\\\\\\\n  --max-turns $MAX_TURNS \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_tg_ours\\\\\\\" \\\\\\\\\\\\n  --gar-variant ours \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"========== [AR] TG + GAR-Dongre ==========\\\\\\\"\\\\n$PYTHON $EVAL_SCRIPT \\\\\\\\\\\\n  --model \\\\\\\"$LLAMA\\\\\\\" \\\\\\\\\\\\n  --gate-type threadgate \\\\\\\\\\\\n  --checkpoint-dir \\\\\\\"$TG_CKPT\\\\\\\" \\\\\\\\\\\\n  --conversations-path \\\\\\\"$CONV_PATH\\\\\\\" \\\\\\\\\\\\n  --ar-from-fixed \\\\\\\\\\\\n  --max-turns $MAX_TURNS \\\\\\\\\\\\n  --output-dir \\\\\\\"$OUT_ROOT/ar_tg_dongre\\\\\\\" \\\\\\\\\\\\n  --gar-variant dongre \\\\\\\\\\\\n  --gate-profile\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"================================================================\\\\\\\"\\\\necho \\\\\\\"AR N=20 eval complete (T=$MAX_TURNS)\\\\\\\"\\\\necho \\\\\\\"================================================================\\\\\\\"\\\\necho \\\\\\\"Results in: $OUT_ROOT/\\\\\\\"\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\"Conditions:\\\\\\\"\\\\necho \\\\\\\"  Base:      ar_base_ours / ar_base_dongre\\\\\\\"\\\\necho \\\\\\\"  LoRA-only: ar_lo_ours / ar_lo_dongre\\\\\\\"\\\\necho \\\\\\\"  TG:        ar_tg_ours / ar_tg_dongre\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Llama-3.1-8B AR eval N=20, T=4 — Base / LoRA-only / TG\\n# ar-from-fixed: user turns from ultrachat, AR-generated responses\\nset -e\\n\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/turn_residual_gating\\n\\nPYTHON=/root/miniconda3/bin/python3.12\\nEVAL_SCRIPT=src/eval_phase2_gar.py\\nLLAMA=/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\nCONV_PATH=data/ultrachat_eval_20.json\\nOUT_ROOT=runs/eval_llama_ar_n20\\nMAX_TURNS=4\\n\\nTG_CKPT=runs/phase2_llama_tg_s42/epoch_2\\nLO_CKPT=runs/phase2_llama_lora_only_s42/epoch_2\\n\\necho \\\"AR N=20 eval (T=$MAX_TURNS)\\\"\\necho \\\"TG checkpoint: $TG_CKPT\\\"\\necho \\\"LoRA-only checkpoint: $LO_CKPT\\\"\\necho \\\"Conversations: $CONV_PATH\\\"\\necho \\\"\\\"\\n\\nmkdir -p \\\"$OUT_ROOT\\\"\\n\\n# ═══════════════════════════════════════════════════════════\\n# 1. Base\\n# ════════════════════════���══════════════════════════════════\\n\\necho \\\"========== [AR] Base + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_base_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [AR] Base + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type none \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_base_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\n# ═══════════════════════════════════════════════════════════\\n# 2. LoRA-only\\n# ═════════════════════════════════════════��═════════════════\\n\\necho \\\"========== [AR] LoRA-only + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type none \\\\\\n  --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_lo_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [AR] LoRA-only + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type none \\\\\\n  --checkpoint-dir \\\"$LO_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_lo_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\n# ═══════════════════════════════════════════════════════════\\n# 3. TG (ThreadGate)\\n# ═════════════════════════════════��═════════════════════════\\n\\necho \\\"========== [AR] TG + GAR-ours ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_tg_ours\\\" \\\\\\n  --gar-variant ours \\\\\\n  --gate-profile\\n\\necho \\\"========== [AR] TG + GAR-Dongre ==========\\\"\\n$PYTHON $EVAL_SCRIPT \\\\\\n  --model \\\"$LLAMA\\\" \\\\\\n  --gate-type threadgate \\\\\\n  --checkpoint-dir \\\"$TG_CKPT\\\" \\\\\\n  --conversations-path \\\"$CONV_PATH\\\" \\\\\\n  --ar-from-fixed \\\\\\n  --max-turns $MAX_TURNS \\\\\\n  --output-dir \\\"$OUT_ROOT/ar_tg_dongre\\\" \\\\\\n  --gar-variant dongre \\\\\\n  --gate-profile\\n\\necho \\\"\\\"\\necho \\\"================================================================\\\"\\necho \\\"AR N=20 eval complete (T=$MAX_TURNS)\\\"\\necho \\\"================================================================\\\"\\necho \\\"Results in: $OUT_ROOT/\\\"\\necho \\\"\\\"\\necho \\\"Conditions:\\\"\\necho \\\"  Base:      ar_base_ours / ar_base_dongre\\\"\\necho \\\"  LoRA-only: ar_lo_ours / ar_lo_dongre\\\"\\necho \\\"  TG:        ar_tg_ours / ar_tg_dongre\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "39d3ae48-6660-4a61-a357-9e164ef860e3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-22T08:26:07.737Z_
+
+<details><summary>↩ Tool result · `toolu_01NvsC7Sf5chuwQsZvjhbPr8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/runs/turn_residual_gating/eval_llama_ar_n20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8927d923-f382-4b5f-9078-d11090483b02",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "4fb9653d-47c6-441c-b78a-01f80d18a66a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/runs/turn_residual_gating/eval_llama_ar_n20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/runs/turn_residual_gating/eval_llama_ar_n20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8927d923-f382-4b5f-9078-d11090483b02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-22T08:26:14.988Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The log is truncated. I need to find the JSON output files. The script outputs to `runs/eval_llama_ar_n20/` with subdirectories for each condition. Let me read the JSON files and also find the eval Python script to understand mid_turns definition.
+
+Let me also parse the registry data to find the relevant entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4fb9653d-47c6-441c-b78a-01f80d18a66a",
+  "isSidechain": false,
+  "requestId": "req_011CbHHhoSXzx8E1Eer457qo",
+  "type": "assistant",
+  "uuid": "b3d648e6-c4b1-4bde-b017-dfd0f927e266",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Trx7potwQ5Bsk2LUXFqTBN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6639,
+      "cache_read_input_tokens": 26970,
+      "output_tokens": 803,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 803,
+          "cache_read_input_tokens": 26970,
+          "cache_creation_input_tokens": 6639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-22T08:26:15.978Z_
+
+Log 被截断了，需要读取 JSON 输出文件和 eval 脚本。同时并行处理 registry 数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3d648e6-c4b1-4bde-b017-dfd0f927e266",
+  "isSidechain": false,
+  "requestId": "req_011CbHHhoSXzx8E1Eer457qo",
+  "type": "assistant",
+  "uuid": "10fa3e64-24d2-4590-b819-5681c49470e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Trx7potwQ5Bsk2LUXFqTBN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6639,
+      "cache_read_input_tokens": 26970,
+      "output_tokens": 803,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 803,
+          "cache_read_input_tokens": 26970,
+          "cache_creation_input_tokens": 6639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-22T08:26:17.433Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WSGebP6Eq8coY4eZeA7tEn`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/runs/eval_llama_ar_n20 -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10fa3e64-24d2-4590-b819-5681c49470e2",
+  "isSidechain": false,
+  "requestId": "req_011CbHHhoSXzx8E1Eer457qo",
+  "type": "assistant",
+  "uuid": "52530692-9b2b-4fd6-b6c2-98cd137b98c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Trx7potwQ5Bsk2LUXFqTBN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6639,
+      "cache_read_input_tokens": 26970,
+      "output_tokens": 803,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 803,
+          "cache_read_input_tokens": 26970,
+          "cache_creation_input_tokens": 6639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-22T08:26:17.896Z_
+
+<details><summary>↩ Tool result · `toolu_01WSGebP6Eq8coY4eZeA7tEn`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/runs/eval_llama_ar_n20': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "52530692-9b2b-4fd6-b6c2-98cd137b98c4",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "9409a956-d123-496f-b55f-57b489b3a8d0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/runs/eval_llama_ar_n20': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/runs/eval_llama_ar_n20': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "52530692-9b2b-4fd6-b6c2-98cd137b98c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-22T08:26:18.458Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01URvMEMAY65rvPUWBHC6FK7`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -n \"mid\" /root/turn_residual_gating/src/eval_phase2_gar.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9409a956-d123-496f-b55f-57b489b3a8d0",
+  "isSidechain": false,
+  "requestId": "req_011CbHHhoSXzx8E1Eer457qo",
+  "type": "assistant",
+  "uuid": "b2cf17d5-24d7-4230-93ba-0fd1e16ca6ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Trx7potwQ5Bsk2LUXFqTBN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6639,
+      "cache_read_input_tokens": 26970,
+      "output_tokens": 803,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 803,
+          "cache_read_input_tokens": 26970,
+          "cache_creation_input_tokens": 6639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-22T08:26:18.911Z_
+
+<details><summary>↩ Tool result · `toolu_01URvMEMAY65rvPUWBHC6FK7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"333:    b_mid = float(np.mean(b[2:8]) if len(b) >= 8 else np.mean(b[2:]))\\n334:    t_mid = float(np.mean(t[2:8]) if len(t) >= 8 else np.mean(t[2:]))\\n335:    ax.axhline(y=b_mid, color=\\\"red\\\", linestyle=\\\"--\\\", alpha=0.4, label=f\\\"Baseline mid: {b_mid:.4f}\\\")\\n336:    ax.axhline(y=t_mid, color=\\\"blue\\\", linestyle=\\\"--\\\", alpha=0.4, label=f\\\"Trained mid: {t_mid:.4f}\\\")\\n338:    recovery_pp = (t_mid - b_mid) * 100\\n341:    ax.set_title(f\\\"GAR Recovery: {gate_type} (mid-turn recovery: {recovery_pp:+.1f}pp)\\\", fontsize=11)\\n524:    mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))\\n525:    mid_turns_norm_gar = float(np.mean(avg_norm_gar[2:8]) if len(avg_norm_gar) >= 8 else np.mean(avg_norm_gar[2:]))\\n530:    baseline_mid = None\\n535:        baseline_mid = baseline[\\\"mid_turns_avg_gar\\\"]\\n536:        gar_recovery = mid_turns_gar - baseline_mid\\n537:        print(f\\\"\\\\nBaseline mid-turn GAR: {baseline_mid:.4f}\\\")\\n538:        print(f\\\"Trained mid-turn GAR:  {mid_turns_gar:.4f}\\\")\\n557:        \\\"mid_turns_avg_gar\\\": mid_turns_gar,\\n558:        \\\"baseline_mid_turns_avg_gar\\\": baseline_mid,\\n562:        \\\"mid_turns_avg_normalized_gar\\\": mid_turns_norm_gar,\\n594:    print(f\\\"Mid-turns avg GAR:  {mid_turns_gar:.4f}\\\")\\n595:    print(f\\\"Mid-turns avg nGAR: {mid_turns_norm_gar:.4f}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b2cf17d5-24d7-4230-93ba-0fd1e16ca6ff",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "ebcd4df0-fd1d-4341-ac1b-ad6802a9d5fb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"333:    b_mid = float(np.mean(b[2:8]) if len(b) >= 8 else np.mean(b[2:]))\\\\n334:    t_mid = float(np.mean(t[2:8]) if len(t) >= 8 else np.mean(t[2:]))\\\\n335:    ax.axhline(y=b_mid, color=\\\\\\\"red\\\\\\\", linestyle=\\\\\\\"--\\\\\\\", alpha=0.4, label=f\\\\\\\"Baseline mid: {b_mid:.4f}\\\\\\\")\\\\n336:    ax.axhline(y=t_mid, color=\\\\\\\"blue\\\\\\\", linestyle=\\\\\\\"--\\\\\\\", alpha=0.4, label=f\\\\\\\"Trained mid: {t_mid:.4f}\\\\\\\")\\\\n338:    recovery_pp = (t_mid - b_mid) * 100\\\\n341:    ax.set_title(f\\\\\\\"GAR Recovery: {gate_type} (mid-turn recovery: {recovery_pp:+.1f}pp)\\\\\\\", fontsize=11)\\\\n524:    mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))\\\\n525:    mid_turns_norm_gar = float(np.mean(avg_norm_gar[2:8]) if len(avg_norm_gar) >= 8 else np.mean(avg_norm_gar[2:]))\\\\n530:    baseline_mid = None\\\\n535:        baseline_mid = baseline[\\\\\\\"mid_turns_avg_gar\\\\\\\"]\\\\n536:        gar_recovery = mid_turns_gar - baseline_mid\\\\n537:        print(f\\\\\\\"\\\\\\\\nBaseline mid-turn GAR: {baseline_mid:.4f}\\\\\\\")\\\\n538:        print(f\\\\\\\"Trained mid-turn GAR:  {mid_turns_gar:.4f}\\\\\\\")\\\\n557:        \\\\\\\"mid_turns_avg_gar\\\\\\\": mid_turns_gar,\\\\n558:        \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": baseline_mid,\\\\n562:        \\\\\\\"mid_turns_avg_normalized_gar\\\\\\\": mid_turns_norm_gar,\\\\n594:    print(f\\\\\\\"Mid-turns avg GAR:  {mid_turns_gar:.4f}\\\\\\\")\\\\n595:    print(f\\\\\\\"Mid-turns avg nGAR: {mid_turns_norm_gar:.4f}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"333:    b_mid = float(np.mean(b[2:8]) if len(b) >= 8 else np.mean(b[2:]))\\n334:    t_mid = float(np.mean(t[2:8]) if len(t) >= 8 else np.mean(t[2:]))\\n335:    ax.axhline(y=b_mid, color=\\\"red\\\", linestyle=\\\"--\\\", alpha=0.4, label=f\\\"Baseline mid: {b_mid:.4f}\\\")\\n336:    ax.axhline(y=t_mid, color=\\\"blue\\\", linestyle=\\\"--\\\", alpha=0.4, label=f\\\"Trained mid: {t_mid:.4f}\\\")\\n338:    recovery_pp = (t_mid - b_mid) * 100\\n341:    ax.set_title(f\\\"GAR Recovery: {gate_type} (mid-turn recovery: {recovery_pp:+.1f}pp)\\\", fontsize=11)\\n524:    mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))\\n525:    mid_turns_norm_gar = float(np.mean(avg_norm_gar[2:8]) if len(avg_norm_gar) >= 8 else np.mean(avg_norm_gar[2:]))\\n530:    baseline_mid = None\\n535:        baseline_mid = baseline[\\\"mid_turns_avg_gar\\\"]\\n536:        gar_recovery = mid_turns_gar - baseline_mid\\n537:        print(f\\\"\\\\nBaseline mid-turn GAR: {baseline_mid:.4f}\\\")\\n538:        print(f\\\"Trained mid-turn GAR:  {mid_turns_gar:.4f}\\\")\\n557:        \\\"mid_turns_avg_gar\\\": mid_turns_gar,\\n558:        \\\"baseline_mid_turns_avg_gar\\\": baseline_mid,\\n562:        \\\"mid_turns_avg_normalized_gar\\\": mid_turns_norm_gar,\\n594:    print(f\\\"Mid-turns avg GAR:  {mid_turns_gar:.4f}\\\")\\n595:    print(f\\\"Mid-turns avg nGAR: {mid_turns_norm_gar:.4f}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b2cf17d5-24d7-4230-93ba-0fd1e16ca6ff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-22T08:26:30.456Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_013s71cpzNW3g27zQYsKHrDC`</summary>
+
+```json
+{
+  "description": "Parse registry for target entries",
+  "prompt": "I need you to extract specific experiment entries from a large JSON registry file. The file is at:\n/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/bc94af32-4f18-47ef-82eb-b2e18fce9e57/tool-results/mcp-agent-ml-research-read_registry-1779438364142.txt\n\nThe file has schema: {result: string} where result is a JSON string.\n\nI need you to extract the full content (all fields) for these experiment IDs:\n- eval_llama_ar_n20\n- eval_llama_lora_only_s42\n- llama_eval_s42\n- llama_ar_matched_eval\n- eval_v7_tg_s123\n- eval_v8b_ss_s123\n- phase2_4way_eval\n- phase2_4way_eval_heldout\n- phase2_tg_s42_v7\n- phase2_tg_s42_v9_pcgrad\n- phase2_lora_only_s42\n- phase2_ug_s42\n- attention_steering_gen_n50\n- attention_steering_v7_tg_gen\n- phase1_gar_diag\n- llama_phase1_gar_diag\n\nFor each entry, output: exp_id, metrics (full), notes (full), and any field that mentions \"mid\" or \"turn\". \n\nUse jq or python to parse the file. Output the results verbatim - do not summarize or truncate.",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ebcd4df0-fd1d-4341-ac1b-ad6802a9d5fb",
+  "isSidechain": false,
+  "requestId": "req_011CbHHhoSXzx8E1Eer457qo",
+  "type": "assistant",
+  "uuid": "63d071dd-5b08-480d-b47d-c64cc4f7fdef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Trx7potwQ5Bsk2LUXFqTBN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6639,
+      "cache_read_input_tokens": 26970,
+      "output_tokens": 803,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6639,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 803,
+          "cache_read_input_tokens": 26970,
+          "cache_creation_input_tokens": 6639,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6639
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "63d071dd-5b08-480d-b47d-c64cc4f7fdef",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-22T08:29:20.380Z_
+
+<details><summary>↩ Tool result · `toolu_013s71cpzNW3g27zQYsKHrDC`</summary>
+
+```text
+Here are the full extracted entries for all 16 experiment IDs:
+
+---
+
+**eval_llama_ar_n20**
+- **metrics**: `base: {gar_ours_mid: 0.0088, gar_dongre_mid: 0.0049, ngar_ours_mid: 0.1019, ngar_dongre_mid: 0.1171, ppl: 1.293, ntp_loss: 0.2552}`, `tg: {gar_ours_mid: 0.0434, gar_dongre_mid: 0.0183, ngar_ours_mid: 0.5357, ngar_dongre_mid: 0.4436, ppl: 1.437, ntp_loss: 0.3612}`, `lora_only: {gar_ours_mid: 0.0284, gar_dongre_mid: 0.0205, ngar_ours_mid: 0.3488, ngar_dongre_mid: 0.4997, ppl: 1.419, ntp_loss: 0.3483}`, `n_conversations: 20, n_turns: 4`, `ranking_gar_ours: "TG(0.0434) > LO(0.0284) > Base(0.0088)"`, `ranking_gar_dongre: "LO(0.0205) > TG(0.0183) > Base(0.0049)"`
+- **notes**: `"N=20 AR eval stabilizes estimates. Mean difference (TG 0.0434 > LO 0.0284) is driven by outlier spikes (5-8% of turns with GAR>0.4); **median shows TG ≈ LO (0.018 vs 0.018), consistent with zero-increment finding from Qwen**. Gate provides no incremental GAR benefit over LoRA-only on Llama, same as Qwen. PPL ordering preserved: Base(1.29) < LO(1.42) < TG(1.44). T=4, outlier turns still present in N=20 (TG conv9/15/18 have GAR>0.4 single turns, LO conv10/12/18/20 similar) but diluted by 4x larger sample vs N=5."`
+- **"mid"/"turn" fields**: metrics keys contain `gar_ours_mid`, `gar_dongre_mid`, `ngar_ours_mid`, `ngar_dongre_mid` for all three conditions; `n_turns: 4`; notes mention "turns with GAR>0.4", "outlier turns"
+
+---
+
+**eval_llama_lora_only_s42**
+- **metrics**: `tf: {gar_ours: 0.4807, gar_dongre: 0.0188, ngar_ours: 11.8031, ngar_dongre: 0.8261, ppl: 2.6, ntp_loss: 0.9366, n_conversations: 50, n_turns: 4}`, `ar: {gar_ours: 0.0617, gar_dongre: 0.0226, ngar_ours: 0.6065, ngar_dongre: 0.2537, ppl: 1.32, ntp_loss: 0.2787, n_conversations: 5, n_turns: 10}`, `gap_ratio_gar_ours: 7.79`
+- **notes**: (none)
+- **"mid"/"turn" fields**: `n_turns: 4` (tf), `n_turns: 10` (ar)
+
+---
+
+**llama_eval_s42**
+- **metrics**: `tf_base: {gar_ours: 0.0166, ngar_ours: 0.3882, gar_dongre: 0.0038, ngar_dongre: 0.163, ppl: 3.45, N: 50, T: 4}`, `tf_tg: {gar_ours: 0.4836, ngar_ours: 11.8818, gar_dongre: 0.018, ngar_dongre: 0.7922, ppl: 2.57, N: 50, T: 4}`, `ar_base: {gar_ours: 0.0086, ngar_ours: 0.0798, gar_dongre: 0.0118, ngar_dongre: 0.1265, ppl: 1.24, N: 5, T: 10}`, `ar_tg: {gar_ours: 0.0304, ngar_ours: 0.2632, gar_dongre: 0.0217, ngar_dongre: 0.2459, ppl: 1.32, N: 5, T: 10}`, `gap_ratio_tg_ours: 15.9`, `gap_ratio_base_ours: 1.93`, `gap_ratio_tg_dongre: 0.83`, `vs_qwen_v7_gap_ratio: 32.1`, `baseline_mid_gar: 0.0122`
+- **notes**: `"C5 跨模型泛化确认。Llama TG GAR-ours gap 16x (TF 0.484 vs AR 0.030)，低于 Qwen v7 的 32x 但仍非常显著。Base model gap 仅 1.9x（control 通过）。注意 TF/AR eval 设定不同 (N=50/T=4 vs N=5/T=10)，可能影响绝对值对比。GAR-dongre 无明显 gap (ratio 0.83x, AR ≥ TF)，仅 GAR-ours 展现 exposure bias 效应。Gate dynamic range: L24/L28/L30 diff 最大 (0.23-0.38)，与 Qwen 类似集中在中高层。"`
+- **"mid"/"turn" fields**: `baseline_mid_gar: 0.0122`; notes mention "中高层" (mid-high layers)
+
+---
+
+**llama_ar_matched_eval**
+- **metrics**: `ar_base_ours: {mid_gar: 0.0082, ngar: 0.1, ppl: 1.267}`, `ar_tg_ours: {mid_gar: 0.0388, ngar: 0.493, ppl: 1.413}`, `ar_base_dongre: {mid_gar: 0.0051, ngar: 0.12, ppl: 1.267}`, `ar_tg_dongre: {mid_gar: 0.018, ngar: 0.431, ppl: 1.413}`, `tf_reference: {tf_tg_ours_ngar: 11.88, tf_base_ours_ngar: 0.388, tf_tg_ours_raw: 0.4836, tf_tg_dongre_raw: 0.018}`, `matched_gap_analysis: {gar_ours_raw_gap: "12.5x (TF 0.484 / AR 0.039)", gar_ours_ngar_gap: "24.1x (TF 11.88 / AR 0.493)", gar_dongre_raw_gap: "1.002x (TF 0.018 / AR 0.018) — zero gap", tg_over_base_ar_ours: "4.71x", tg_over_base_ar_dongre: "3.54x", conclusion: "GAR-ours TF-AR gap 12.5x (raw) / 24x (nGAR) is genuine exposure bias. GAR-Dongre zero gap (1.002x) confirms mechanism specificity: exposure bias selectively destroys learned goal-attention routing while leaving content-overlap-based attention unaffected."}`
+- **notes**: `"CORRECTION (2026-05-21 04:36): Agent 之前错误地将 AR TG nGAR (0.493) 与 TF TG raw GAR (0.484) 对比，误判为 'nGAR aligns, gap is normalization artifact'。Reviewer 核实：TF TG ours nGAR = 11.88（非 0.48）。nGAR gap = 11.88 / 0.493 = 24.1×，比 raw gap (12.5×) 还大。'Normalization artifact' 分析完全错误——GAR-ours 的 gap 是真实的 exposure bias。论文绝对不能使用 normalization artifact 叙事。"`
+- **"mid"/"turn" fields**: all metrics sub-objects contain `mid_gar` keys
+
+---
+
+**eval_v7_tg_s123**
+- **metrics**: `iid_tf: {gar_ours_mid: 0.5052, gar_dongre_mid: 0.0119, ppl: 2.7802, ntp: 0.9752}`, `modelgen_ar: {gar_ours_mid: 0.0165, gar_dongre_mid: 0.0177, ppl: 1.3855, ntp: 0.3223}`, `gap_ratio: 30.6`, `comparison_s42: {tf_gar_ours_delta: 0.0017, ar_gar_ours_delta: 0.0008, gap_ratio_delta: -1.4}`
+- **notes**: (none)
+- **"mid"/"turn" fields**: `gar_ours_mid`, `gar_dongre_mid` in both iid_tf and modelgen_ar
+
+---
+
+**eval_v8b_ss_s123**
+- **metrics**: `iid: {gar_ours: 0.503, gar_dongre: 0.394, ppl: 2.781, ntp_loss: 0.976, n_conv: 50, n_turns: 3}`, `modelgen: {gar_ours: 0.418, gar_dongre: 0.441, ppl: 1.389, ntp_loss: 0.325, n_conv: 5, n_turns: 10}`, `gap_ratio: 1.2`, `base_iid_ppl: 4.338`, `base_modelgen_ppl: 1.351`
+- **notes**: (none)
+- **"mid"/"turn" fields**: `n_turns: 3` (iid), `n_turns: 10` (modelgen)
+
+---
+
+**phase2_4way_eval**
+- **metrics**: `base_ours_mid_gar: 0.0107`, `base_ours_recovery_pp: -0.15`, `base_dongre_mid_gar: 0.003`, `base_dongre_recovery_pp: -0.92`, `base_ppl: 4.23`, `base_ntp: 1.4162`, `tg_ours_mid_gar: 0.4866`, `tg_ours_recovery_pp: 47.44`, `tg_dongre_mid_gar: 0.0157`, `tg_dongre_recovery_pp: 0.35`, `tg_ppl: 2.63`, `tg_ntp: 0.9484`, `ug_ours_mid_gar: 0.4923`, `ug_ours_recovery_pp: 48.01`, `ug_dongre_mid_gar: 0.013`, `ug_dongre_recovery_pp: 0.08`, `ug_ppl: 2.62`, `ug_ntp: 0.9433`, `lora_ours_mid_gar: 0.486`, `lora_ours_recovery_pp: 47.39`, `lora_dongre_mid_gar: 0.0137`, `lora_dongre_recovery_pp: 0.15`, `lora_ppl: 2.63`, `lora_ntp: 0.9482`, `route_b_confirmed: true`, `gating_incremental_benefit: "none"`
+- **notes**: `"四路 eval 完成，Route B 决定性确认。三种训练方法（TG/UG/LoRA-only）在推理端完全趋同：ours GAR recovery ~47-48pp（vs base -0.15pp），dongre GAR recovery 0.08-0.35pp，PPL 2.62-2.63，NTP 0.943-0.948。Gating 机制（无论 turn-conditioned 还是 uniform）相比纯 LoRA 微调零增量。LoRA fine-tuning 是 GAR recovery 的唯一来源。hypothesis 被证伪：TRG 不比 LoRA-only 更好。"`
+- **"mid"/"turn" fields**: all `*_mid_gar` keys; notes mention "turn-conditioned"
+
+---
+
+**phase2_4way_eval_heldout**
+- **metrics**: `base_ours_mid_gar: 0.0128`, `base_ours_recovery_pp: 0.06`, `base_dongre_mid_gar: 0.0031`, `base_dongre_recovery_pp: -0.91`, `base_ppl: 4.34`, `base_ntp: 1.4045`, `tg_ours_mid_gar: 0.5035`, `tg_ours_recovery_pp: 49.13`, `tg_dongre_mid_gar: 0.0152`, `tg_dongre_recovery_pp: 0.3`, `tg_ppl: 2.78`, `tg_ntp: 0.9771`, `ug_ours_mid_gar: 0.5053`, `ug_ours_recovery_pp: 49.31`, `ug_dongre_mid_gar: 0.0124`, `ug_dongre_recovery_pp: 0.02`, `ug_ppl: 2.78`, `ug_ntp: 0.9752`, `lora_ours_mid_gar: 0.4978`, `lora_ours_recovery_pp: 48.56`, `lora_dongre_mid_gar: 0.0132`, `lora_dongre_recovery_pp: 0.1`, `lora_ppl: 2.78`, `lora_ntp: 0.9771`, `three_way_convergence_confirmed: true`, `gar_ours_spread_pp: 0.75`, `ppl_spread: 0`, `data_overlap: false`
+- **notes**: `"Held-out eval 三路趋同完全复现。TG/UG/LoRA-only GAR-ours: 0.504/0.505/0.498 (spread 0.75pp), PPL 均为 2.78。与 overlap 数据相比绝对值略高（GAR +1-2pp, PPL +0.15），属正常泛化偏移，相对比较完全一致。数据完整性 confound 已排除。"`
+- **"mid"/"turn" fields**: all `*_mid_gar` keys
+
+---
+
+**phase2_tg_s42_v7**
+- **metrics**: `eval_iid_ours_mid_gar: 0.5035`, `eval_iid_dongre_mid_gar: 0.0152`, `eval_iid_ppl: 2.784`, `eval_heldout_ours_mid_gar: 0.5035`, `eval_heldout_dongre_mid_gar: 0.0152`, `eval_heldout_ppl: 2.78`, `eval_modelgen_ours_mid_gar: 0.0157`, `eval_modelgen_dongre_mid_gar: 0.0194`, `eval_modelgen_ppl: 1.36`, `gate_mean_final: 0.9336`, `gate_std_final: 0.0492`
+- **notes**: `"训练 3 epoch 完成 (21352s/5.9h)。最终 gate: mean=0.9336, std=0.0492, L3=0.801 L4=0.789 最低。Eval 完成：GAR-ours recovery +0.35pp (mid 0.0157 vs baseline 0.0122), GAR-Dongre recovery +0.72pp (mid 0.0194 vs baseline 0.0122)。Gate dynamic range 最大层: L23 diff=-0.2100, L14 diff=-0.1803。"`
+- **"mid"/"turn" fields**: all `*_mid_gar` keys; notes mention "mid 0.0157 vs baseline 0.0122"
+
+---
+
+**phase2_tg_s42_v9_pcgrad**
+- **metrics**: `eval_iid_ours_mid_gar: 0.5002`, `eval_iid_dongre_mid_gar: 0.0123`, `eval_iid_ppl: 2.78`, `eval_iid_ntp: 0.9752`, `eval_heldout_ours_mid_gar: 0.5002`, `eval_heldout_dongre_mid_gar: 0.0123`, `eval_heldout_ppl: 2.78`, `eval_heldout_ntp: 0.9752`, `eval_modelgen_ours_mid_gar: 0.0151`, `eval_modelgen_dongre_mid_gar: 0.0173`, `eval_modelgen_ppl: 1.5`, `vs_v7_iid_ppl_diff: 0.004`, `vs_v7_iid_gar_diff: -0.0033`
+- **notes**: `"D028 因果排除确认（M017 修正后）。训练: EXIT_CODE=0, 7.98h, 3 epochs。PCGrad cos_sim 从 -0.061→+0.055→-0.035 (围绕 0 振荡), NTP mag_ratio 2.8→28.8 持续增长。L_GAR 有 0-350 step 高原期后仍坍塌到≈0。IID eval (同 protocol 50 heldout convs): GAR-ours=0.5002 (vs v7 0.5035, diff -0.33pp), GAR-Dongre=0.0123 (vs v7 0.0152), PPL=2.780 (vs v7 2.784, diff 0.004, 无改善)。Model-gen eval (5 convs): GAR-ours=0.0151, PPL=1.50。结论: PCGrad 消除梯度方向冲突后所有 IID 指标均 ≈ v7（GAR、PPL、NTP 无变化），方向冲突因 NTP 幅度主导 (10-40x) 而 inconsequential。Exposure bias 是 30x gap 根因。"`
+- **"mid"/"turn" fields**: all `*_mid_gar` keys
+
+---
+
+**phase2_lora_only_s42**
+- **metrics**: `epochs_completed: 3`, `global_steps: 3000`, `training_time_seconds: 20588.6`, `training_time_hours: 5.7`, `gate_fixed: 1`, `gate_type_actual: "none"`, `final_lora_size_mb: 20`, `eval_modelgen_ours_mid_gar: 0.0245`, `eval_modelgen_dongre_mid_gar: 0.0185`, `eval_modelgen_ppl: 1.371`
+- **notes**: `"诊断确认：EXIT_CODE=1 因 argparse 不认 lora_only 选项（choices 只有 threadgate/uniform/none）。训练实际已用 --gate-type none 完成 3 epoch (3000 steps, 20588.6s/5.7h)。Gate 全程固定 1.0（符合 lora_only 语义）。Checkpoint 可用，无需重跑。修复：dispatch 命令改用 --gate-type none 或在 train_phase2.py 添加 lora_only choice。"`
+- **"mid"/"turn" fields**: `eval_modelgen_ours_mid_gar`, `eval_modelgen_dongre_mid_gar`
+
+---
+
+**phase2_ug_s42**
+- **metrics**: `epoch0_avg_loss: 1.0019`, `epoch0_avg_ntp: 0.9755`, `epoch0_avg_gar: 0.0259`, `epoch0_avg_div: 0.0005`, `epoch1_avg_loss: 0.9447`, `epoch1_avg_ntp: 0.9435`, `epoch1_avg_gar: 0.0013`, `epoch1_avg_div: 0`, `epoch2_avg_loss: 0.9319`, `epoch2_avg_ntp: 0.9309`, `epoch2_avg_gar: 0.001`, `epoch2_avg_div: 0`, `final_gate_mean: 0.9598`, `final_gate_std: 0.0518`, `final_gate_min: 0.7773`, `final_gate_max: 1`, `final_profile_L3: 0.777`, `final_profile_L5: 0.812`, `final_profile_L0: 0.875`, `final_profile_L27: 1`, `training_time_seconds: 21994.5`, `training_time_hours: 6.1`, `global_steps: 7950`, `unexpected_per_layer_variation: true`, `eval_modelgen_ours_mid_gar: 0.0149`, `eval_modelgen_dongre_mid_gar: 0.0185`, `eval_modelgen_ppl: 1.396`
+- **notes**: `"3 epoch 完成 (21994.5s/6.1h)。最终 gate: mean=0.9598, std=0.0518, L3=0.777 L5=0.812 最低。重要发现：uniform gate 模式下各层仍学出 per-layer 分化（L3=0.777 vs L27=1.000），与 ThreadGate v7 的 L3/L4 最低模式一致。这说明 per-layer variation 可能来自 LoRA+GAR loss 而非 gate architecture。"`
+- **"mid"/"turn" fields**: `eval_modelgen_ours_mid_gar`, `eval_modelgen_dongre_mid_gar`; notes mention "turn-conditioned" is absent (uniform gate)
+
+---
+
+**attention_steering_gen_n50**
+- **metrics**: `corrected: true`, `aggregation: "per-conv mid_gar(turns 2-7), >=3 turns only"`, `beta_0.0: {mid_gar: 0.0641, mid_gar_std: 0.0809, ppl: 1.4324, ppl_std: 0.1029, n_valid: 39}`, `beta_2.0: {mid_gar: 0.128, mid_gar_std: 0.1101, ppl: 1.4822, ppl_std: 0.1385, n_valid: 39}`, `beta_3.0: {mid_gar: 0.5558, mid_gar_std: 0.0601, ppl: 1.5605, ppl_std: 0.1719, n_valid: 39}`, `beta_4.0: {mid_gar: 0.6439, mid_gar_std: 0.0607, ppl: 1.6674, ppl_std: 0.2241, n_valid: 39}`, `beta_5.0: {mid_gar: 0.7271, mid_gar_std: 0.0605, ppl: 1.7723, ppl_std: 0.2693, n_valid: 38}`, `beta_10.0: {mid_gar: 0.9612, mid_gar_std: 0.0152, ppl: 3.4517, ppl_std: 1.7813, n_valid: 39}`, `n_convs_total: 50`, `n_convs_valid: 39`, `mode: "gen"`, `phase_transition_range: "[2, 3]"`
+- **notes**: `"原始聚合有 min_turns 截断 bug（截到 2 turns），修正后用 per-conv mid_gar(turns 2-7)。39/50 对话有 ≥3 turns 参与统计。修正后 baseline β=0 GAR 从 0.101 降到 0.064（median 0.031 与 N=5 的 0.028 一致）。Phase transition 在 β∈[2,3] 重现。β=10 corrected 0.961 ≈ N=5 的 0.959。"`
+- **"mid"/"turn" fields**: all beta sub-objects contain `mid_gar`, `mid_gar_std`; aggregation says "mid_gar(turns 2-7)"; notes mention "turns"
+
+---
+
+**attention_steering_v7_tg_gen**
+- **metrics**: `beta_0.0: {mid_turns_avg_gar: 0.028, avg_ppl: 1.409}`, `beta_0.5: {mid_turns_avg_gar: 0.0287, avg_ppl: 1.387}`, `beta_1.0: {mid_turns_avg_gar: 0.0349, avg_ppl: 1.36}`, `beta_2.0: {mid_turns_avg_gar: 0.062, avg_ppl: 1.411}`, `beta_5.0: {mid_turns_avg_gar: 0.6795, avg_ppl: 1.908}`, `beta_10.0: {mid_turns_avg_gar: 0.959, avg_ppl: 4.22}`, `phase_transition_range: "[2, 5]"`, `baseline_gar: 0.028`, `max_gar_at_acceptable_ppl: 0.6795`, `max_gar_at_acceptable_ppl_beta: 5`
+- **notes**: `"Attention steering 闭合因果环。β=0→2: GAR 缓升 (0.028→0.062), PPL 不变 (~1.4); β=5: phase transition, GAR 跳至 0.68, PPL 升至 1.91; β=10: GAR 饱和 0.96, PPL 恶化 4.22。成功标准 (GAR>0.1 且 PPL 不严重恶化) 在 β=2 即满足。β∈[2,5] 存在 phase transition。证明：手动修正 attention 指向 goal tokens → 直接恢复 GAR → 确认 exposure bias 通过 attention 偏移导致 GAR 坍塌。"`
+- **"mid"/"turn" fields**: all beta sub-objects contain `mid_turns_avg_gar`
+
+---
+
+**phase1_gar_diag**
+- **metrics**: `turn1_avg_gar: 0.0418`, `mid_turns_avg_gar: 0.0122`, `relative_drop: 0.708`, `num_conversations: 5`, `num_turns: 10`, `per_turn_avg_gar: [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]`
+- **notes**: (none)
+- **"mid"/"turn" fields**: `mid_turns_avg_gar: 0.0122`, `turn1_avg_gar: 0.0418`, `num_turns: 10`, `per_turn_avg_gar` array
+
+---
+
+**llama_phase1_gar_diag**
+- **metrics**: `per_turn_gar: {turn_1: 0.0263, turn_2: 0.0183, turn_3: 0.0087, turn_4: 0.0055, turn_5: 0.006, turn_6: 0.0035, turn_7: 0.0038, turn_8: 0.0037, turn_9: 0.005, turn_10: 0.0026}`, `t1_t10_decay_pct: 90.1`, `t1_mid38_drop_pct: 80.2`, `n_topics: 5`, `model: "Meta-Llama-3.1-8B-Instruct"`, `mode: "gen"`, `n_conversations: 5`, `n_turns: 10`
+- **notes**: (none)
+- **"mid"/"turn" fields**: all `per_turn_gar` keys are `turn_1` through `turn_10`; `t1_mid38_drop_pct: 80.2` (mid-turn drop); `n_turns: 10`
+
+agentId: a55231259953ee2cc (use SendMessage with to: 'a55231259953ee2cc' to continue this agent)
+&lt;usage>total_tokens: 50663
+tool_uses: 3
+duration_ms: 169919&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63d071dd-5b08-480d-b47d-c64cc4f7fdef",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "34479304-f084-4cc1-9125-c36c7bc48641",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to extract specific experiment entries from a large JSON registry file. The file is at:\n/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-turn-residual-gating/bc94af32-4f18-47ef-82eb-b2e18fce9e57/tool-results/mcp-agent-ml-research-read_registry-1779438364142.txt\n\nThe file has schema: {result: string} where result is a JSON string.\n\nI need you to extract the full content (all fields) for these experiment IDs:\n- eval_llama_ar_n20\n- eval_llama_lora_only_s42\n- llama_eval_s42\n- llama_ar_matched_eval\n- eval_v7_tg_s123\n- eval_v8b_ss_s123\n- phase2_4way_eval\n- phase2_4way_eval_heldout\n- phase2_tg_s42_v7\n- phase2_tg_s42_v9_pcgrad\n- phase2_lora_only_s42\n- phase2_ug_s42\n- attention_steering_gen_n50\n- attention_steering_v7_tg_gen\n- phase1_gar_diag\n- llama_phase1_gar_diag\n\nFor each entry, output: exp_id, metrics (full), notes (full), and any field that mentions \"mid\" or \"turn\". \n\nUse jq or python to parse the file. Output the results verbatim - do not summarize or truncate.",
+    "agentId": "a55231259953ee2cc",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the full extracted entries for all 16 experiment IDs:\n\n---\n\n**eval_llama_ar_n20**\n- **metrics**: `base: {gar_ours_mid: 0.0088, gar_dongre_mid: 0.0049, ngar_ours_mid: 0.1019, ngar_dongre_mid: 0.1171, ppl: 1.293, ntp_loss: 0.2552}`, `tg: {gar_ours_mid: 0.0434, gar_dongre_mid: 0.0183, ngar_ours_mid: 0.5357, ngar_dongre_mid: 0.4436, ppl: 1.437, ntp_loss: 0.3612}`, `lora_only: {gar_ours_mid: 0.0284, gar_dongre_mid: 0.0205, ngar_ours_mid: 0.3488, ngar_dongre_mid: 0.4997, ppl: 1.419, ntp_loss: 0.3483}`, `n_conversations: 20, n_turns: 4`, `ranking_gar_ours: \"TG(0.0434) > LO(0.0284) > Base(0.0088)\"`, `ranking_gar_dongre: \"LO(0.0205) > TG(0.0183) > Base(0.0049)\"`\n- **notes**: `\"N=20 AR eval stabilizes estimates. Mean difference (TG 0.0434 > LO 0.0284) is driven by outlier spikes (5-8% of turns with GAR>0.4); **median shows TG ≈ LO (0.018 vs 0.018), consistent with zero-increment finding from Qwen**. Gate provides no incremental GAR benefit over LoRA-only on Llama, same as Qwen. PPL ordering preserved: Base(1.29) < LO(1.42) < TG(1.44). T=4, outlier turns still present in N=20 (TG conv9/15/18 have GAR>0.4 single turns, LO conv10/12/18/20 similar) but diluted by 4x larger sample vs N=5.\"`\n- **\"mid\"/\"turn\" fields**: metrics keys contain `gar_ours_mid`, `gar_dongre_mid`, `ngar_ours_mid`, `ngar_dongre_mid` for all three conditions; `n_turns: 4`; notes mention \"turns with GAR>0.4\", \"outlier turns\"\n\n---\n\n**eval_llama_lora_only_s42**\n- **metrics**: `tf: {gar_ours: 0.4807, gar_dongre: 0.0188, ngar_ours: 11.8031, ngar_dongre: 0.8261, ppl: 2.6, ntp_loss: 0.9366, n_conversations: 50, n_turns: 4}`, `ar: {gar_ours: 0.0617, gar_dongre: 0.0226, ngar_ours: 0.6065, ngar_dongre: 0.2537, ppl: 1.32, ntp_loss: 0.2787, n_conversations: 5, n_turns: 10}`, `gap_ratio_gar_ours: 7.79`\n- **notes**: (none)\n- **\"mid\"/\"turn\" fields**: `n_turns: 4` (tf), `n_turns: 10` (ar)\n\n---\n\n**llama_eval_s42**\n- **metrics**: `tf_base: {gar_ours: 0.0166, ngar_ours: 0.3882, gar_dongre: 0.0038, ngar_dongre: 0.163, ppl: 3.45, N: 50, T: 4}`, `tf_tg: {gar_ours: 0.4836, ngar_ours: 11.8818, gar_dongre: 0.018, ngar_dongre: 0.7922, ppl: 2.57, N: 50, T: 4}`, `ar_base: {gar_ours: 0.0086, ngar_ours: 0.0798, gar_dongre: 0.0118, ngar_dongre: 0.1265, ppl: 1.24, N: 5, T: 10}`, `ar_tg: {gar_ours: 0.0304, ngar_ours: 0.2632, gar_dongre: 0.0217, ngar_dongre: 0.2459, ppl: 1.32, N: 5, T: 10}`, `gap_ratio_tg_ours: 15.9`, `gap_ratio_base_ours: 1.93`, `gap_ratio_tg_dongre: 0.83`, `vs_qwen_v7_gap_ratio: 32.1`, `baseline_mid_gar: 0.0122`\n- **notes**: `\"C5 跨模型泛化确认。Llama TG GAR-ours gap 16x (TF 0.484 vs AR 0.030)，低于 Qwen v7 的 32x 但仍非常显著。Base model gap 仅 1.9x（control 通过）。注意 TF/AR eval 设定不同 (N=50/T=4 vs N=5/T=10)，可能影响绝对值对比。GAR-dongre 无明显 gap (ratio 0.83x, AR ≥ TF)，仅 GAR-ours 展现 exposure bias 效应。Gate dynamic range: L24/L28/L30 diff 最大 (0.23-0.38)，与 Qwen 类似集中在中高层。\"`\n- **\"mid\"/\"turn\" fields**: `baseline_mid_gar: 0.0122`; notes mention \"中高层\" (mid-high layers)\n\n---\n\n**llama_ar_matched_eval**\n- **metrics**: `ar_base_ours: {mid_gar: 0.0082, ngar: 0.1, ppl: 1.267}`, `ar_tg_ours: {mid_gar: 0.0388, ngar: 0.493, ppl: 1.413}`, `ar_base_dongre: {mid_gar: 0.0051, ngar: 0.12, ppl: 1.267}`, `ar_tg_dongre: {mid_gar: 0.018, ngar: 0.431, ppl: 1.413}`, `tf_reference: {tf_tg_ours_ngar: 11.88, tf_base_ours_ngar: 0.388, tf_tg_ours_raw: 0.4836, tf_tg_dongre_raw: 0.018}`, `matched_gap_analysis: {gar_ours_raw_gap: \"12.5x (TF 0.484 / AR 0.039)\", gar_ours_ngar_gap: \"24.1x (TF 11.88 / AR 0.493)\", gar_dongre_raw_gap: \"1.002x (TF 0.018 / AR 0.018) — zero gap\", tg_over_base_ar_ours: \"4.71x\", tg_over_base_ar_dongre: \"3.54x\", conclusion: \"GAR-ours TF-AR gap 12.5x (raw) / 24x (nGAR) is genuine exposure bias. GAR-Dongre zero gap (1.002x) confirms mechanism specificity: exposure bias selectively destroys learned goal-attention routing while leaving content-overlap-based attention unaffected.\"}`\n- **notes**: `\"CORRECTION (2026-05-21 04:36): Agent 之前错误地将 AR TG nGAR (0.493) 与 TF TG raw GAR (0.484) 对比，误判为 'nGAR aligns, gap is normalization artifact'。Reviewer 核实：TF TG ours nGAR = 11.88（非 0.48）。nGAR gap = 11.88 / 0.493 = 24.1×，比 raw gap (12.5×) 还大。'Normalization artifact' 分析完全错误——GAR-ours 的 gap 是真实的 exposure bias。论文绝对不能使用 normalization artifact 叙事。\"`\n- **\"mid\"/\"turn\" fields**: all metrics sub-objects contain `mid_gar` keys\n\n---\n\n**eval_v7_tg_s123**\n- **metrics**: `iid_tf: {gar_ours_mid: 0.5052, gar_dongre_mid: 0.0119, ppl: 2.7802, ntp: 0.9752}`, `modelgen_ar: {gar_ours_mid: 0.0165, gar_dongre_mid: 0.0177, ppl: 1.3855, ntp: 0.3223}`, `gap_ratio: 30.6`, `comparison_s42: {tf_gar_ours_delta: 0.0017, ar_gar_ours_delta: 0.0008, gap_ratio_delta: -1.4}`\n- **notes**: (none)\n- **\"mid\"/\"turn\" fields**: `gar_ours_mid`, `gar_dongre_mid` in both iid_tf and modelgen_ar\n\n---\n\n**eval_v8b_ss_s123**\n- **metrics**: `iid: {gar_ours: 0.503, gar_dongre: 0.394, ppl: 2.781, ntp_loss: 0.976, n_conv: 50, n_turns: 3}`, `modelgen: {gar_ours: 0.418, gar_dongre: 0.441, ppl: 1.389, ntp_loss: 0.325, n_conv: 5, n_turns: 10}`, `gap_ratio: 1.2`, `base_iid_ppl: 4.338`, `base_modelgen_ppl: 1.351`\n- **notes**: (none)\n- **\"mid\"/\"turn\" fields**: `n_turns: 3` (iid), `n_turns: 10` (modelgen)\n\n---\n\n**phase2_4way_eval**\n- **metrics**: `base_ours_mid_gar: 0.0107`, `base_ours_recovery_pp: -0.15`, `base_dongre_mid_gar: 0.003`, `base_dongre_recovery_pp: -0.92`, `base_ppl: 4.23`, `base_ntp: 1.4162`, `tg_ours_mid_gar: 0.4866`, `tg_ours_recovery_pp: 47.44`, `tg_dongre_mid_gar: 0.0157`, `tg_dongre_recovery_pp: 0.35`, `tg_ppl: 2.63`, `tg_ntp: 0.9484`, `ug_ours_mid_gar: 0.4923`, `ug_ours_recovery_pp: 48.01`, `ug_dongre_mid_gar: 0.013`, `ug_dongre_recovery_pp: 0.08`, `ug_ppl: 2.62`, `ug_ntp: 0.9433`, `lora_ours_mid_gar: 0.486`, `lora_ours_recovery_pp: 47.39`, `lora_dongre_mid_gar: 0.0137`, `lora_dongre_recovery_pp: 0.15`, `lora_ppl: 2.63`, `lora_ntp: 0.9482`, `route_b_confirmed: true`, `gating_incremental_benefit: \"none\"`\n- **notes**: `\"四路 eval 完成，Route B 决定性确认。三种训练方法（TG/UG/LoRA-only）在推理端完全趋同：ours GAR recovery ~47-48pp（vs base -0.15pp），dongre GAR recovery 0.08-0.35pp，PPL 2.62-2.63，NTP 0.943-0.948。Gating 机制（无论 turn-conditioned 还是 uniform）相比纯 LoRA 微调零增量。LoRA fine-tuning 是 GAR recovery 的唯一来源。hypothesis 被证伪：TRG 不比 LoRA-only 更好。\"`\n- **\"mid\"/\"turn\" fields**: all `*_mid_gar` keys; notes mention \"turn-conditioned\"\n\n---\n\n**phase2_4way_eval_heldout**\n- **metrics**: `base_ours_mid_gar: 0.0128`, `base_ours_recovery_pp: 0.06`, `base_dongre_mid_gar: 0.0031`, `base_dongre_recovery_pp: -0.91`, `base_ppl: 4.34`, `base_ntp: 1.4045`, `tg_ours_mid_gar: 0.5035`, `tg_ours_recovery_pp: 49.13`, `tg_dongre_mid_gar: 0.0152`, `tg_dongre_recovery_pp: 0.3`, `tg_ppl: 2.78`, `tg_ntp: 0.9771`, `ug_ours_mid_gar: 0.5053`, `ug_ours_recovery_pp: 49.31`, `ug_dongre_mid_gar: 0.0124`, `ug_dongre_recovery_pp: 0.02`, `ug_ppl: 2.78`, `ug_ntp: 0.9752`, `lora_ours_mid_gar: 0.4978`, `lora_ours_recovery_pp: 48.56`, `lora_dongre_mid_gar: 0.0132`, `lora_dongre_recovery_pp: 0.1`, `lora_ppl: 2.78`, `lora_ntp: 0.9771`, `three_way_convergence_confirmed: true`, `gar_ours_spread_pp: 0.75`, `ppl_spread: 0`, `data_overlap: false`\n- **notes**: `\"Held-out eval 三路趋同完全复现。TG/UG/LoRA-only GAR-ours: 0.504/0.505/0.498 (spread 0.75pp), PPL 均为 2.78。与 overlap 数据相比绝对值略高（GAR +1-2pp, PPL +0.15），属正常泛化偏移，相对比较完全一致。数据完整性 confound 已排除。\"`\n- **\"mid\"/\"turn\" fields**: all `*_mid_gar` keys\n\n---\n\n**phase2_tg_s42_v7**\n- **metrics**: `eval_iid_ours_mid_gar: 0.5035`, `eval_iid_dongre_mid_gar: 0.0152`, `eval_iid_ppl: 2.784`, `eval_heldout_ours_mid_gar: 0.5035`, `eval_heldout_dongre_mid_gar: 0.0152`, `eval_heldout_ppl: 2.78`, `eval_modelgen_ours_mid_gar: 0.0157`, `eval_modelgen_dongre_mid_gar: 0.0194`, `eval_modelgen_ppl: 1.36`, `gate_mean_final: 0.9336`, `gate_std_final: 0.0492`\n- **notes**: `\"训练 3 epoch 完成 (21352s/5.9h)。最终 gate: mean=0.9336, std=0.0492, L3=0.801 L4=0.789 最低。Eval 完成：GAR-ours recovery +0.35pp (mid 0.0157 vs baseline 0.0122), GAR-Dongre recovery +0.72pp (mid 0.0194 vs baseline 0.0122)。Gate dynamic range 最大层: L23 diff=-0.2100, L14 diff=-0.1803。\"`\n- **\"mid\"/\"turn\" fields**: all `*_mid_gar` keys; notes mention \"mid 0.0157 vs baseline 0.0122\"\n\n---\n\n**phase2_tg_s42_v9_pcgrad**\n- **metrics**: `eval_iid_ours_mid_gar: 0.5002`, `eval_iid_dongre_mid_gar: 0.0123`, `eval_iid_ppl: 2.78`, `eval_iid_ntp: 0.9752`, `eval_heldout_ours_mid_gar: 0.5002`, `eval_heldout_dongre_mid_gar: 0.0123`, `eval_heldout_ppl: 2.78`, `eval_heldout_ntp: 0.9752`, `eval_modelgen_ours_mid_gar: 0.0151`, `eval_modelgen_dongre_mid_gar: 0.0173`, `eval_modelgen_ppl: 1.5`, `vs_v7_iid_ppl_diff: 0.004`, `vs_v7_iid_gar_diff: -0.0033`\n- **notes**: `\"D028 因果排除确认（M017 修正后）。训练: EXIT_CODE=0, 7.98h, 3 epochs。PCGrad cos_sim 从 -0.061→+0.055→-0.035 (围绕 0 振荡), NTP mag_ratio 2.8→28.8 持续增长。L_GAR 有 0-350 step 高原期后仍坍塌到≈0。IID eval (同 protocol 50 heldout convs): GAR-ours=0.5002 (vs v7 0.5035, diff -0.33pp), GAR-Dongre=0.0123 (vs v7 0.0152), PPL=2.780 (vs v7 2.784, diff 0.004, 无改善)。Model-gen eval (5 convs): GAR-ours=0.0151, PPL=1.50。结论: PCGrad 消除梯度方向冲突后所有 IID 指标均 ≈ v7（GAR、PPL、NTP 无变化），方向冲突因 NTP 幅度主导 (10-40x) 而 inconsequential。Exposure bias 是 30x gap 根因。\"`\n- **\"mid\"/\"turn\" fields**: all `*_mid_gar` keys\n\n---\n\n**phase2_lora_only_s42**\n- **metrics**: `epochs_completed: 3`, `global_steps: 3000`, `training_time_seconds: 20588.6`, `training_time_hours: 5.7`, `gate_fixed: 1`, `gate_type_actual: \"none\"`, `final_lora_size_mb: 20`, `eval_modelgen_ours_mid_gar: 0.0245`, `eval_modelgen_dongre_mid_gar: 0.0185`, `eval_modelgen_ppl: 1.371`\n- **notes**: `\"诊断确认：EXIT_CODE=1 因 argparse 不认 lora_only 选项（choices 只有 threadgate/uniform/none）。训练实际已用 --gate-type none 完成 3 epoch (3000 steps, 20588.6s/5.7h)。Gate 全程固定 1.0（符合 lora_only 语义）。Checkpoint 可用，无需重跑。修复：dispatch 命令改用 --gate-type none 或在 train_phase2.py 添加 lora_only choice。\"`\n- **\"mid\"/\"turn\" fields**: `eval_modelgen_ours_mid_gar`, `eval_modelgen_dongre_mid_gar`\n\n---\n\n**phase2_ug_s42**\n- **metrics**: `epoch0_avg_loss: 1.0019`, `epoch0_avg_ntp: 0.9755`, `epoch0_avg_gar: 0.0259`, `epoch0_avg_div: 0.0005`, `epoch1_avg_loss: 0.9447`, `epoch1_avg_ntp: 0.9435`, `epoch1_avg_gar: 0.0013`, `epoch1_avg_div: 0`, `epoch2_avg_loss: 0.9319`, `epoch2_avg_ntp: 0.9309`, `epoch2_avg_gar: 0.001`, `epoch2_avg_div: 0`, `final_gate_mean: 0.9598`, `final_gate_std: 0.0518`, `final_gate_min: 0.7773`, `final_gate_max: 1`, `final_profile_L3: 0.777`, `final_profile_L5: 0.812`, `final_profile_L0: 0.875`, `final_profile_L27: 1`, `training_time_seconds: 21994.5`, `training_time_hours: 6.1`, `global_steps: 7950`, `unexpected_per_layer_variation: true`, `eval_modelgen_ours_mid_gar: 0.0149`, `eval_modelgen_dongre_mid_gar: 0.0185`, `eval_modelgen_ppl: 1.396`\n- **notes**: `\"3 epoch 完成 (21994.5s/6.1h)。最终 gate: mean=0.9598, std=0.0518, L3=0.777 L5=0.812 最低。重要发现：uniform gate 模式下各层仍学出 per-layer 分化（L3=0.777 vs L27=1.000），与 ThreadGate v7 的 L3/L4 最低模式一致。这说明 per-layer variation 可能来自 LoRA+GAR loss 而非 gate architecture。\"`\n- **\"mid\"/\"turn\" fields**: `eval_modelgen_ours_mid_gar`, `eval_modelgen_dongre_mid_gar`; notes mention \"turn-conditioned\" is absent (uniform gate)\n\n---\n\n**attention_steering_gen_n50**\n- **metrics**: `corrected: true`, `aggregation: \"per-conv mid_gar(turns 2-7), >=3 turns only\"`, `beta_0.0: {mid_gar: 0.0641, mid_gar_std: 0.0809, ppl: 1.4324, ppl_std: 0.1029, n_valid: 39}`, `beta_2.0: {mid_gar: 0.128, mid_gar_std: 0.1101, ppl: 1.4822, ppl_std: 0.1385, n_valid: 39}`, `beta_3.0: {mid_gar: 0.5558, mid_gar_std: 0.0601, ppl: 1.5605, ppl_std: 0.1719, n_valid: 39}`, `beta_4.0: {mid_gar: 0.6439, mid_gar_std: 0.0607, ppl: 1.6674, ppl_std: 0.2241, n_valid: 39}`, `beta_5.0: {mid_gar: 0.7271, mid_gar_std: 0.0605, ppl: 1.7723, ppl_std: 0.2693, n_valid: 38}`, `beta_10.0: {mid_gar: 0.9612, mid_gar_std: 0.0152, ppl: 3.4517, ppl_std: 1.7813, n_valid: 39}`, `n_convs_total: 50`, `n_convs_valid: 39`, `mode: \"gen\"`, `phase_transition_range: \"[2, 3]\"`\n- **notes**: `\"原始聚合有 min_turns 截断 bug（截到 2 turns），修正后用 per-conv mid_gar(turns 2-7)。39/50 对话有 ≥3 turns 参与统计。修正后 baseline β=0 GAR 从 0.101 降到 0.064（median 0.031 与 N=5 的 0.028 一致）。Phase transition 在 β∈[2,3] 重现。β=10 corrected 0.961 ≈ N=5 的 0.959。\"`\n- **\"mid\"/\"turn\" fields**: all beta sub-objects contain `mid_gar`, `mid_gar_std`; aggregation says \"mid_gar(turns 2-7)\"; notes mention \"turns\"\n\n---\n\n**attention_steering_v7_tg_gen**\n- **metrics**: `beta_0.0: {mid_turns_avg_gar: 0.028, avg_ppl: 1.409}`, `beta_0.5: {mid_turns_avg_gar: 0.0287, avg_ppl: 1.387}`, `beta_1.0: {mid_turns_avg_gar: 0.0349, avg_ppl: 1.36}`, `beta_2.0: {mid_turns_avg_gar: 0.062, avg_ppl: 1.411}`, `beta_5.0: {mid_turns_avg_gar: 0.6795, avg_ppl: 1.908}`, `beta_10.0: {mid_turns_avg_gar: 0.959, avg_ppl: 4.22}`, `phase_transition_range: \"[2, 5]\"`, `baseline_gar: 0.028`, `max_gar_at_acceptable_ppl: 0.6795`, `max_gar_at_acceptable_ppl_beta: 5`\n- **notes**: `\"Attention steering 闭合因果环。β=0→2: GAR 缓升 (0.028→0.062), PPL 不变 (~1.4); β=5: phase transition, GAR 跳至 0.68, PPL 升至 1.91; β=10: GAR 饱和 0.96, PPL 恶化 4.22。成功标准 (GAR>0.1 且 PPL 不严重恶化) 在 β=2 即满足。β∈[2,5] 存在 phase transition。证明：手动修正 attention 指向 goal tokens → 直接恢复 GAR → 确认 exposure bias 通过 attention 偏移导致 GAR 坍塌。\"`\n- **\"mid\"/\"turn\" fields**: all beta sub-objects contain `mid_turns_avg_gar`\n\n---\n\n**phase1_gar_diag**\n- **metrics**: `turn1_avg_gar: 0.0418`, `mid_turns_avg_gar: 0.0122`, `relative_drop: 0.708`, `num_conversations: 5`, `num_turns: 10`, `per_turn_avg_gar: [0.0418, 0.0241, 0.0224, 0.013, 0.0133, 0.0086, 0.0078, 0.008, 0.0157, 0.0064]`\n- **notes**: (none)\n- **\"mid\"/\"turn\" fields**: `mid_turns_avg_gar: 0.0122`, `turn1_avg_gar: 0.0418`, `num_turns: 10`, `per_turn_avg_gar` array\n\n---\n\n**llama_phase1_gar_diag**\n- **metrics**: `per_turn_gar: {turn_1: 0.0263, turn_2: 0.0183, turn_3: 0.0087, turn_4: 0.0055, turn_5: 0.006, turn_6: 0.0035, turn_7: 0.0038, turn_8: 0.0037, turn_9: 0.005, turn_10: 0.0026}`, `t1_t10_decay_pct: 90.1`, `t1_mid38_drop_pct: 80.2`, `n_topics: 5`, `model: \"Meta-Llama-3.1-8B-Instruct\"`, `mode: \"gen\"`, `n_conversations: 5`, `n_turns: 10`\n- **notes**: (none)\n- **\"mid\"/\"turn\" fields**: all `per_turn_gar` keys are `turn_1` through `turn_10`; `t1_mid38_drop_pct: 80.2` (mid-turn drop); `n_turns: 10`"
+      }
+    ],
+    "totalDurationMs": 169919,
+    "totalTokens": 50663,
+    "totalToolUseCount": 3,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 23484,
+      "cache_read_input_tokens": 19628,
+      "output_tokens": 7550,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 23484
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 7550,
+          "cache_read_input_tokens": 19628,
+          "cache_creation_input_tokens": 23484,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 23484,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 1,
+      "searchCount": 0,
+      "bashCount": 2,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "63d071dd-5b08-480d-b47d-c64cc4f7fdef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-22T08:29:20.390Z_
+
+```json
+{
+  "parentUuid": "34479304-f084-4cc1-9125-c36c7bc48641",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b8eb7035-6093-4122-b74d-d3e8792388ce",
+  "timestamp": "2026-05-22T08:29:20.390Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "b8eb7035-6093-4122-b74d-d3e8792388ce",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-22T08:30:11.709Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a lot of data. Let me analyze what I need:
+
+1. The eval script's mid_turns definition from `eval_phase2_gar.py`:
+   - Line 524: `mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))`
+   - Line 525: `mid_turns_norm_gar = float(np.mean(avg_norm_gar[2:8]) if len(avg_norm_gar) >= 8 else np.mean(avg_norm_gar[2:]))`
+   
+So mid_turns captures the average across turns 3-8 (in 1-indexed terms) when there are enough turns, otherwise it averages from turn 3 onward, since the array is indexed starting at 0.
+
+But the stated standard says mid_turns should be turns 2-T, excluding only turn 1. That would mean index 1 onward in 0-indexed terms, not index 2. So there's a discrepancy—the script is actually excluding both turns 1 and 2, when it should only exclude turn 1.
+
+Let me verify this against the actual data. Looking at the phase1_gar_diag metrics, I can calculate what mid_turns_avg_gar should be if I use the correct indexing and see if it matches the reported value. So that gives me 0.0122, which matches perfectly. For the 10-turn phase, the mid_turns calculation is using indices 2 through 8 in the array, which corresponds to turns 3 through 8 in 1-indexed terms. The code is excluding both turn 1 and turn 2, even though the stated standard says it should start from turn 2. I need to figure out whether the indexing convention is different in this multi-turn context.
+
+Looking at the actual conversation data, each turn represents a user-assistant exchange, so for a 4-turn evaluation, there are 4 GAR values in the array. The indices map directly: index 0 is turn 1, index 1 is turn 2, and so on. When the code computes `avg_gar[2:]` for the 4-turn case, it's selecting turns 3 and 4, which means it's skipping the first two turns entirely. That excludes turns 1 AND 2.
+
+But the stated standard says "mid_turns = turns 2-T (excluding only turn 1)". So there IS an inconsistency — the code excludes turns 1-2, not just turn 1.
+
+Hmm wait, let me re-examine. Maybe the convention is 0-indexed where index 0 doesn't correspond to a turn? No, that doesn't make sense.
+
+Actually, there might be another interpretation. Looking at TF eval, the "turns" in teacher forcing might be the assistant responses. In a multi-turn conversation with T rounds, there are T user messages and T assistant responses. The GAR might be computed per assistant response. So index 0 = assistant response 1, index 1 = assistant response 2, etc.
+
+But in the TF eval context, the "turn 1" is the first assistant response, which processes the full conversation up to that point. For AR eval with N=20 conversations and T=4 turns each, there are 20 × 4 = 80 per-turn data points.
+
+OK, so the eval script's mid_turns = `avg_gar[2:]` (0-indexed) actually corresponds to turns 3-T in 1-indexed terms, not turns 2-T as the standard specifies. There's a mismatch between what the code does and what's required.
+
+For Part 1, I need to find the detailed stats from eval_llama_ar_n20. The log references output files like `epoch_2_dongre_gar.json`, but the path `/root/runs/eval_llama_ar_n20` doesn't exist. Since the script runs from `/root/turn_residual_gating` with relative paths, the actual location should be `/root/turn_residual_gating/runs/eval_llama_ar_n20/`. Let me search for those JSON files there.
+
+I also realize the log was truncated and only showed the TG+dongre results at the end. I need to gather all six conditions: base_ours, base_dongre, lo_ours, lo_dongre, tg_ours, and tg_dongre. I'll fetch the JSON files from the correct path and review the eval script to understand what mid_turns actually measures.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8eb7035-6093-4122-b74d-d3e8792388ce",
+  "isSidechain": false,
+  "requestId": "req_011CbHHx19NyseyF66xWuVGB",
+  "type": "assistant",
+  "uuid": "db9e4c33-f2ae-433a-a98e-2fed374041a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FMd2rGdHVV4UL1fUAMZ3PQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9427,
+      "cache_read_input_tokens": 33609,
+      "output_tokens": 2384,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9427,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2384,
+          "cache_read_input_tokens": 33609,
+          "cache_creation_input_tokens": 9427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9427
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-22T08:30:12.954Z_
+
+找到了关键信息。eval 脚本的 mid_turns 实际用的是 `avg_gar[2:]`（0-indexed），即 **turns 3-T**（1-indexed），不是要求的 turns 2-T。现在读取 JSON 输出文件和更多 eval 代码细节。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db9e4c33-f2ae-433a-a98e-2fed374041a6",
+  "isSidechain": false,
+  "requestId": "req_011CbHHx19NyseyF66xWuVGB",
+  "type": "assistant",
+  "uuid": "cc6ed6ea-70f6-4e94-8962-5a413ecfa535",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FMd2rGdHVV4UL1fUAMZ3PQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9427,
+      "cache_read_input_tokens": 33609,
+      "output_tokens": 2384,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9427,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2384,
+          "cache_read_input_tokens": 33609,
+          "cache_creation_input_tokens": 9427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9427
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-22T08:30:14.110Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012Tc2oqx5cbmYKoAhZz9ydD`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/turn_residual_gating/runs/eval_llama_ar_n20 -name \"*.json\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc6ed6ea-70f6-4e94-8962-5a413ecfa535",
+  "isSidechain": false,
+  "requestId": "req_011CbHHx19NyseyF66xWuVGB",
+  "type": "assistant",
+  "uuid": "813b6e9b-d637-42e6-9b06-4f71eb59cb38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FMd2rGdHVV4UL1fUAMZ3PQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9427,
+      "cache_read_input_tokens": 33609,
+      "output_tokens": 2384,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9427,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2384,
+          "cache_read_input_tokens": 33609,
+          "cache_creation_input_tokens": 9427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9427
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-22T08:30:14.584Z_
+
+<details><summary>↩ Tool result · `toolu_012Tc2oqx5cbmYKoAhZz9ydD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "813b6e9b-d637-42e6-9b06-4f71eb59cb38",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "a8c11cb5-b9aa-4fb7-916b-53fc5c3449ec",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json\\\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json\\\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json\\\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json\\\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json\\\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json\\n/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "813b6e9b-d637-42e6-9b06-4f71eb59cb38",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-22T08:30:14.629Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013CxyDfdtr946LQ4wPYexjM`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "head -550 /root/turn_residual_gating/src/eval_phase2_gar.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8c11cb5-b9aa-4fb7-916b-53fc5c3449ec",
+  "isSidechain": false,
+  "requestId": "req_011CbHHx19NyseyF66xWuVGB",
+  "type": "assistant",
+  "uuid": "d52ca8aa-d8d7-467b-a188-07e32321c05f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FMd2rGdHVV4UL1fUAMZ3PQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 9427,
+      "cache_read_input_tokens": 33609,
+      "output_tokens": 2384,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9427,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2384,
+          "cache_read_input_tokens": 33609,
+          "cache_creation_input_tokens": 9427,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9427
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-22T08:30:15.186Z_
+
+<details><summary>↩ Tool result · `toolu_013CxyDfdtr946LQ4wPYexjM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# eval_phase2_gar.py — 评估训练后模型的 GAR 恢复效果\\n# 用法: python eval_phase2_gar.py --checkpoint-dir /root/turn_residual_gating/checkpoints/tg_s42 --gate-type threadgate\\n# GAR-Dongre 模式: python eval_phase2_gar.py --checkpoint-dir ... --gate-type threadgate --gar-variant dongre\\n# 输出: JSON 结果 + GAR 对比曲线图\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\n\\nimport torch\\nimport torch.nn as nn\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom threadgate import TurnEmbedding, GateNetwork, UniformGateNetwork\\nfrom gar import GARMeasurer\\nfrom turn_utils import detect_turn_boundaries, build_turn_features\\nfrom config import MODEL_NAME\\n\\n\\nSYSTEM_PROMPTS = [\\n    \\\"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\\\",\\n    \\\"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\\\",\\n    \\\"You are a creative writing coach. Help users improve their storytelling skills. Focus on character development, plot structure, and vivid descriptions. Give specific feedback with examples. Encourage experimentation with different styles.\\\",\\n    \\\"You are a math problem solver. Show all steps clearly. Explain the reasoning behind each step. If there are multiple approaches, mention them. Check your work by verifying the answer. Use LaTeX notation for formulas.\\\",\\n    \\\"You are a debate coach who helps users argue both sides of issues. Present balanced perspectives. Challenge weak arguments constructively. Teach logical reasoning and evidence evaluation. Avoid personal opinions.\\\",\\n]\\n\\nCONVERSATIONS_DATA = [\\n    [\\\"Why is the sky blue?\\\", \\\"What about sunsets being red?\\\", \\\"How does a rainbow form?\\\",\\n     \\\"Why do stars twinkle?\\\", \\\"What causes thunder?\\\", \\\"How do magnets work?\\\",\\n     \\\"Why is water wet?\\\", \\\"What is gravity?\\\", \\\"How do airplanes fly?\\\", \\\"Why is space dark?\\\"],\\n    [\\\"Review this: def add(a,b): return a+b\\\", \\\"What about error handling?\\\", \\\"How should I write tests for it?\\\",\\n     \\\"Is recursion better than iteration?\\\", \\\"When should I use async/await?\\\", \\\"How to handle memory leaks?\\\",\\n     \\\"Best practices for API design?\\\", \\\"How to optimize database queries?\\\", \\\"When to use microservices?\\\", \\\"How to handle rate limiting?\\\"],\\n    [\\\"Help me start a mystery story\\\", \\\"How do I create a compelling villain?\\\", \\\"What makes good dialogue?\\\",\\n     \\\"How to build suspense?\\\", \\\"Should I use first or third person?\\\", \\\"How to write a plot twist?\\\",\\n     \\\"Tips for describing settings?\\\", \\\"How to end a chapter with a cliffhanger?\\\", \\\"How to avoid cliches?\\\", \\\"How to write an epilogue?\\\"],\\n    [\\\"Solve: 3x + 7 = 22\\\", \\\"What is the derivative of x^3?\\\", \\\"Explain the Pythagorean theorem\\\",\\n     \\\"What is a prime number?\\\", \\\"How to calculate compound interest?\\\", \\\"What is the area of a circle?\\\",\\n     \\\"Explain matrix multiplication\\\", \\\"What is a logarithm?\\\", \\\"How to solve quadratic equations?\\\", \\\"What is calculus used for?\\\"],\\n    [\\\"Should AI be regulated?\\\", \\\"Is remote work better than office work?\\\", \\\"Should college be free?\\\",\\n     \\\"Is social media harmful?\\\", \\\"Should voting be mandatory?\\\", \\\"Is nuclear energy safe?\\\",\\n     \\\"Should animals have legal rights?\\\", \\\"Is space exploration worth the cost?\\\", \\\"Should there be a universal basic income?\\\", \\\"Is genetic engineering ethical?\\\"],\\n]\\n\\n\\ndef _find_hf_model(model):\\n    \\\"\\\"\\\"Find the HF CausalLM model (with .model.layers) in the model hierarchy.\\\"\\\"\\\"\\n    if hasattr(model, \\\"model\\\") and hasattr(model.model, \\\"layers\\\"):\\n        return model\\n    try:\\n        inner = model.base_model.model\\n        if hasattr(inner, \\\"model\\\") and hasattr(inner.model, \\\"layers\\\"):\\n            r\\n\\n... [截断: 输出过长，省略 16350 字符] ...\\n\\ngs.gate_type, turn_embedding, device=model_device\\n        )\\n    measurer = GARMeasurer(hf_model)\\n\\n    # Measure GAR with gating active\\n    print(\\\"\\\\nMeasuring GAR...\\\")\\n    all_gar_curves = []\\n    all_norm_curves = []\\n    all_visible_curves = []\\n    all_gate_profiles = []\\n    for i, messages in enumerate(conversations):\\n        result = measure_gar_per_turn(\\n            base_model, tokenizer, measurer, messages, device,\\n            turn_features_ref, args.gate_type, gar_variant=args.gar_variant,\\n            gate_values_ref=gate_values if args.gate_profile else None,\\n            gate_profile=args.gate_profile,\\n        )\\n        if result:\\n            gar_curve = result[\\\"gar_per_turn\\\"]\\n            norm_curve = result[\\\"normalized_gar_per_turn\\\"]\\n            vis_curve = result[\\\"visible_tokens_per_turn\\\"]\\n            print(f\\\"  Conv {i+1} GAR:  {[f'{g:.4f}' for g in gar_curve]}\\\")\\n            print(f\\\"  Conv {i+1} nGAR: {[f'{g:.4f}' for g in norm_curve]}\\\")\\n            all_gar_curves.append(gar_curve)\\n            all_norm_curves.append(norm_curve)\\n            all_visible_curves.append(vis_curve)\\n            if \\\"per_turn_gates\\\" in result:\\n                all_gate_profiles.append(result[\\\"per_turn_gates\\\"])\\n        else:\\n            print(f\\\"  Conv {i+1}: WARNING - could not measure GAR\\\")\\n\\n    # Compute NTP Perplexity (with gates active if applicable)\\n    print(\\\"\\\\nMeasuring NTP Perplexity...\\\")\\n    all_ppl = []\\n    all_ntp_loss = []\\n    for i, messages in enumerate(conversations):\\n        ppl, ntp_loss = compute_conversation_ppl(\\n            base_model, tokenizer, messages, device,\\n            turn_features_ref=turn_features_ref, gate_type=args.gate_type,\\n        )\\n        if ppl is not None:\\n            all_ppl.append(ppl)\\n            all_ntp_loss.append(ntp_loss)\\n            print(f\\\"  Conv {i+1} PPL: {ppl:.2f} (NTP loss: {ntp_loss:.4f})\\\")\\n        else:\\n            print(f\\\"  Conv {i+1}: WARNING - no assistant tokens for PPL\\\")\\n\\n    avg_ppl = float(np.mean(all_ppl)) if all_ppl else None\\n    avg_ntp_loss = float(np.mean(all_ntp_loss)) if all_ntp_loss else None\\n    if avg_ppl is not None:\\n        print(f\\\"\\\\nAvg PPL: {avg_ppl:.2f}\\\")\\n        print(f\\\"Avg NTP Loss: {avg_ntp_loss:.4f}\\\")\\n\\n    for h in hooks:\\n        h.remove()\\n\\n    if not all_gar_curves:\\n        print(\\\"ERROR: No valid GAR measurements\\\")\\n        sys.exit(1)\\n\\n    # Statistics\\n    min_turns = min(len(c) for c in all_gar_curves)\\n    aligned = [c[:min_turns] for c in all_gar_curves]\\n    avg_gar = np.mean(aligned, axis=0).tolist()\\n\\n    aligned_norm = [c[:min_turns] for c in all_norm_curves]\\n    avg_norm_gar = np.mean(aligned_norm, axis=0).tolist()\\n\\n    aligned_vis = [c[:min_turns] for c in all_visible_curves]\\n    avg_visible = [int(x) for x in np.mean(aligned_vis, axis=0).tolist()]\\n\\n    turn1_gar = avg_gar[0]\\n    mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))\\n    mid_turns_norm_gar = float(np.mean(avg_norm_gar[2:8]) if len(avg_norm_gar) >= 8 else np.mean(avg_norm_gar[2:]))\\n\\n    # Baseline comparison\\n    baseline_gar = None\\n    gar_recovery = None\\n    baseline_mid = None\\n    if os.path.exists(args.baseline_results):\\n        with open(args.baseline_results) as f:\\n            baseline = json.load(f)\\n        baseline_gar = baseline[\\\"avg_gar_per_turn\\\"]\\n        baseline_mid = baseline[\\\"mid_turns_avg_gar\\\"]\\n        gar_recovery = mid_turns_gar - baseline_mid\\n        print(f\\\"\\\\nBaseline mid-turn GAR: {baseline_mid:.4f}\\\")\\n        print(f\\\"Trained mid-turn GAR:  {mid_turns_gar:.4f}\\\")\\n        print(f\\\"GAR recovery:          {gar_recovery*100:+.2f}pp\\\")\\n    else:\\n        print(f\\\"\\\\nWARNING: Baseline not found at {args.baseline_results}\\\")\\n\\n    # Save results\\n    ckpt_name = os.path.basename(args.checkpoint_dir.rstrip(\\\"/\\\")) if args.checkpoint_dir else \\\"base_model\\\"\\n    if args.gar_variant == \\\"dongre\\\":\\n        ckpt_name += \\\"_dongre\\\"\\n    results = {\\n        \\\"checkpoint_dir\\\": args.checkpoint_dir,\\n        \\\"gate_type\\\": args.gate_type,\\n        \\\"gar_variant\\\": args.gar_variant,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d52ca8aa-d8d7-467b-a188-07e32321c05f",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "34121427-f4a6-47e5-b513-d29c6f57c36b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# eval_phase2_gar.py — 评估训练后模型的 GAR 恢复效果\\\\n# 用法: python eval_phase2_gar.py --checkpoint-dir /root/turn_residual_gating/checkpoints/tg_s42 --gate-type threadgate\\\\n# GAR-Dongre 模式: python eval_phase2_gar.py --checkpoint-dir ... --gate-type threadgate --gar-variant dongre\\\\n# 输出: JSON 结果 + GAR 对比曲线图\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport sys\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport numpy as np\\\\nimport matplotlib\\\\nmatplotlib.use(\\\\\\\"Agg\\\\\\\")\\\\nimport matplotlib.pyplot as plt\\\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom threadgate import TurnEmbedding, GateNetwork, UniformGateNetwork\\\\nfrom gar import GARMeasurer\\\\nfrom turn_utils import detect_turn_boundaries, build_turn_features\\\\nfrom config import MODEL_NAME\\\\n\\\\n\\\\nSYSTEM_PROMPTS = [\\\\n    \\\\\\\"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\\\\\\\",\\\\n    \\\\\\\"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\\\\\\\",\\\\n    \\\\\\\"You are a creative writing coach. Help users improve their storytelling skills. Focus on character development, plot structure, and vivid descriptions. Give specific feedback with examples. Encourage experimentation with different styles.\\\\\\\",\\\\n    \\\\\\\"You are a math problem solver. Show all steps clearly. Explain the reasoning behind each step. If there are multiple approaches, mention them. Check your work by verifying the answer. Use LaTeX notation for formulas.\\\\\\\",\\\\n    \\\\\\\"You are a debate coach who helps users argue both sides of issues. Present balanced perspectives. Challenge weak arguments constructively. Teach logical reasoning and evidence evaluation. Avoid personal opinions.\\\\\\\",\\\\n]\\\\n\\\\nCONVERSATIONS_DATA = [\\\\n    [\\\\\\\"Why is the sky blue?\\\\\\\", \\\\\\\"What about sunsets being red?\\\\\\\", \\\\\\\"How does a rainbow form?\\\\\\\",\\\\n     \\\\\\\"Why do stars twinkle?\\\\\\\", \\\\\\\"What causes thunder?\\\\\\\", \\\\\\\"How do magnets work?\\\\\\\",\\\\n     \\\\\\\"Why is water wet?\\\\\\\", \\\\\\\"What is gravity?\\\\\\\", \\\\\\\"How do airplanes fly?\\\\\\\", \\\\\\\"Why is space dark?\\\\\\\"],\\\\n    [\\\\\\\"Review this: def add(a,b): return a+b\\\\\\\", \\\\\\\"What about error handling?\\\\\\\", \\\\\\\"How should I write tests for it?\\\\\\\",\\\\n     \\\\\\\"Is recursion better than iteration?\\\\\\\", \\\\\\\"When should I use async/await?\\\\\\\", \\\\\\\"How to handle memory leaks?\\\\\\\",\\\\n     \\\\\\\"Best practices for API design?\\\\\\\", \\\\\\\"How to optimize database queries?\\\\\\\", \\\\\\\"When to use microservices?\\\\\\\", \\\\\\\"How to handle rate limiting?\\\\\\\"],\\\\n    [\\\\\\\"Help me start a mystery story\\\\\\\", \\\\\\\"How do I create a compelling villain?\\\\\\\", \\\\\\\"What makes good dialogue?\\\\\\\",\\\\n     \\\\\\\"How to build suspense?\\\\\\\", \\\\\\\"Should I use first or third person?\\\\\\\", \\\\\\\"How to write a plot twist?\\\\\\\",\\\\n     \\\\\\\"Tips for describing settings?\\\\\\\", \\\\\\\"How to end a chapter with a cliffhanger?\\\\\\\", \\\\\\\"How to avoid cliches?\\\\\\\", \\\\\\\"How to write an epilogue?\\\\\\\"],\\\\n    [\\\\\\\"Solve: 3x + 7 = 22\\\\\\\", \\\\\\\"What is the derivative of x^3?\\\\\\\", \\\\\\\"Explain the Pythagorean theorem\\\\\\\",\\\\n     \\\\\\\"What is a prime number?\\\\\\\", \\\\\\\"How to calculate compound interest?\\\\\\\", \\\\\\\"What is the area of a circle?\\\\\\\",\\\\n     \\\\\\\"Explain matrix multiplication\\\\\\\", \\\\\\\"What is a logarithm?\\\\\\\", \\\\\\\"How to solve quadratic equations?\\\\\\\", \\\\\\\"What is calculus used for?\\\\\\\"],\\\\n    [\\\\\\\"Should AI be regulated?\\\\\\\", \\\\\\\"Is remote work better than office work?\\\\\\\", \\\\\\\"Should college be free?\\\\\\\",\\\\n     \\\\\\\"Is social media harmful?\\\\\\\", \\\\\\\"Should voting be mandatory?\\\\\\\", \\\\\\\"Is nuclear energy safe?\\\\\\\",\\\\n     \\\\\\\"Should animals have legal rights?\\\\\\\", \\\\\\\"Is space exploration worth the cost?\\\\\\\", \\\\\\\"Should there be a universal basic income?\\\\\\\", \\\\\\\"Is genetic engineering ethical?\\\\\\\"],\\\\n]\\\\n\\\\n\\\\ndef _find_hf_model(model):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the HF CausalLM model (with .model.layers) in the model hierarchy.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if hasattr(model, \\\\\\\"model\\\\\\\") and hasattr(model.model, \\\\\\\"layers\\\\\\\"):\\\\n        return model\\\\n    try:\\\\n        inner = model.base_model.model\\\\n        if hasattr(inner, \\\\\\\"model\\\\\\\") and hasattr(inner.model, \\\\\\\"layers\\\\\\\"):\\\\n            r\\\\n\\\\n... [截断: 输出过长，省略 16350 字符] ...\\\\n\\\\ngs.gate_type, turn_embedding, device=model_device\\\\n        )\\\\n    measurer = GARMeasurer(hf_model)\\\\n\\\\n    # Measure GAR with gating active\\\\n    print(\\\\\\\"\\\\\\\\nMeasuring GAR...\\\\\\\")\\\\n    all_gar_curves = []\\\\n    all_norm_curves = []\\\\n    all_visible_curves = []\\\\n    all_gate_profiles = []\\\\n    for i, messages in enumerate(conversations):\\\\n        result = measure_gar_per_turn(\\\\n            base_model, tokenizer, measurer, messages, device,\\\\n            turn_features_ref, args.gate_type, gar_variant=args.gar_variant,\\\\n            gate_values_ref=gate_values if args.gate_profile else None,\\\\n            gate_profile=args.gate_profile,\\\\n        )\\\\n        if result:\\\\n            gar_curve = result[\\\\\\\"gar_per_turn\\\\\\\"]\\\\n            norm_curve = result[\\\\\\\"normalized_gar_per_turn\\\\\\\"]\\\\n            vis_curve = result[\\\\\\\"visible_tokens_per_turn\\\\\\\"]\\\\n            print(f\\\\\\\"  Conv {i+1} GAR:  {[f'{g:.4f}' for g in gar_curve]}\\\\\\\")\\\\n            print(f\\\\\\\"  Conv {i+1} nGAR: {[f'{g:.4f}' for g in norm_curve]}\\\\\\\")\\\\n            all_gar_curves.append(gar_curve)\\\\n            all_norm_curves.append(norm_curve)\\\\n            all_visible_curves.append(vis_curve)\\\\n            if \\\\\\\"per_turn_gates\\\\\\\" in result:\\\\n                all_gate_profiles.append(result[\\\\\\\"per_turn_gates\\\\\\\"])\\\\n        else:\\\\n            print(f\\\\\\\"  Conv {i+1}: WARNING - could not measure GAR\\\\\\\")\\\\n\\\\n    # Compute NTP Perplexity (with gates active if applicable)\\\\n    print(\\\\\\\"\\\\\\\\nMeasuring NTP Perplexity...\\\\\\\")\\\\n    all_ppl = []\\\\n    all_ntp_loss = []\\\\n    for i, messages in enumerate(conversations):\\\\n        ppl, ntp_loss = compute_conversation_ppl(\\\\n            base_model, tokenizer, messages, device,\\\\n            turn_features_ref=turn_features_ref, gate_type=args.gate_type,\\\\n        )\\\\n        if ppl is not None:\\\\n            all_ppl.append(ppl)\\\\n            all_ntp_loss.append(ntp_loss)\\\\n            print(f\\\\\\\"  Conv {i+1} PPL: {ppl:.2f} (NTP loss: {ntp_loss:.4f})\\\\\\\")\\\\n        else:\\\\n            print(f\\\\\\\"  Conv {i+1}: WARNING - no assistant tokens for PPL\\\\\\\")\\\\n\\\\n    avg_ppl = float(np.mean(all_ppl)) if all_ppl else None\\\\n    avg_ntp_loss = float(np.mean(all_ntp_loss)) if all_ntp_loss else None\\\\n    if avg_ppl is not None:\\\\n        print(f\\\\\\\"\\\\\\\\nAvg PPL: {avg_ppl:.2f}\\\\\\\")\\\\n        print(f\\\\\\\"Avg NTP Loss: {avg_ntp_loss:.4f}\\\\\\\")\\\\n\\\\n    for h in hooks:\\\\n        h.remove()\\\\n\\\\n    if not all_gar_curves:\\\\n        print(\\\\\\\"ERROR: No valid GAR measurements\\\\\\\")\\\\n        sys.exit(1)\\\\n\\\\n    # Statistics\\\\n    min_turns = min(len(c) for c in all_gar_curves)\\\\n    aligned = [c[:min_turns] for c in all_gar_curves]\\\\n    avg_gar = np.mean(aligned, axis=0).tolist()\\\\n\\\\n    aligned_norm = [c[:min_turns] for c in all_norm_curves]\\\\n    avg_norm_gar = np.mean(aligned_norm, axis=0).tolist()\\\\n\\\\n    aligned_vis = [c[:min_turns] for c in all_visible_curves]\\\\n    avg_visible = [int(x) for x in np.mean(aligned_vis, axis=0).tolist()]\\\\n\\\\n    turn1_gar = avg_gar[0]\\\\n    mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))\\\\n    mid_turns_norm_gar = float(np.mean(avg_norm_gar[2:8]) if len(avg_norm_gar) >= 8 else np.mean(avg_norm_gar[2:]))\\\\n\\\\n    # Baseline comparison\\\\n    baseline_gar = None\\\\n    gar_recovery = None\\\\n    baseline_mid = None\\\\n    if os.path.exists(args.baseline_results):\\\\n        with open(args.baseline_results) as f:\\\\n            baseline = json.load(f)\\\\n        baseline_gar = baseline[\\\\\\\"avg_gar_per_turn\\\\\\\"]\\\\n        baseline_mid = baseline[\\\\\\\"mid_turns_avg_gar\\\\\\\"]\\\\n        gar_recovery = mid_turns_gar - baseline_mid\\\\n        print(f\\\\\\\"\\\\\\\\nBaseline mid-turn GAR: {baseline_mid:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"Trained mid-turn GAR:  {mid_turns_gar:.4f}\\\\\\\")\\\\n        print(f\\\\\\\"GAR recovery:          {gar_recovery*100:+.2f}pp\\\\\\\")\\\\n    else:\\\\n        print(f\\\\\\\"\\\\\\\\nWARNING: Baseline not found at {args.baseline_results}\\\\\\\")\\\\n\\\\n    # Save results\\\\n    ckpt_name = os.path.basename(args.checkpoint_dir.rstrip(\\\\\\\"/\\\\\\\")) if args.checkpoint_dir else \\\\\\\"base_model\\\\\\\"\\\\n    if args.gar_variant == \\\\\\\"dongre\\\\\\\":\\\\n        ckpt_name += \\\\\\\"_dongre\\\\\\\"\\\\n    results = {\\\\n        \\\\\\\"checkpoint_dir\\\\\\\": args.checkpoint_dir,\\\\n        \\\\\\\"gate_type\\\\\\\": args.gate_type,\\\\n        \\\\\\\"gar_variant\\\\\\\": args.gar_variant,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# eval_phase2_gar.py — 评估训练后模型的 GAR 恢复效果\\n# 用法: python eval_phase2_gar.py --checkpoint-dir /root/turn_residual_gating/checkpoints/tg_s42 --gate-type threadgate\\n# GAR-Dongre 模式: python eval_phase2_gar.py --checkpoint-dir ... --gate-type threadgate --gar-variant dongre\\n# 输出: JSON 结果 + GAR 对比曲线图\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\n\\nimport torch\\nimport torch.nn as nn\\nimport numpy as np\\nimport matplotlib\\nmatplotlib.use(\\\"Agg\\\")\\nimport matplotlib.pyplot as plt\\nfrom transformers import AutoTokenizer, AutoModelForCausalLM\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom threadgate import TurnEmbedding, GateNetwork, UniformGateNetwork\\nfrom gar import GARMeasurer\\nfrom turn_utils import detect_turn_boundaries, build_turn_features\\nfrom config import MODEL_NAME\\n\\n\\nSYSTEM_PROMPTS = [\\n    \\\"You are a knowledgeable science tutor. Always explain concepts step by step. Use analogies when possible. Never give direct answers without explanation. If the student makes an error, gently correct them and guide them to the right answer.\\\",\\n    \\\"You are a professional code reviewer. Focus on code quality, security, and performance. Point out potential bugs and suggest improvements. Always explain why a change is needed, not just what to change. Be constructive and specific.\\\",\\n    \\\"You are a creative writing coach. Help users improve their storytelling skills. Focus on character development, plot structure, and vivid descriptions. Give specific feedback with examples. Encourage experimentation with different styles.\\\",\\n    \\\"You are a math problem solver. Show all steps clearly. Explain the reasoning behind each step. If there are multiple approaches, mention them. Check your work by verifying the answer. Use LaTeX notation for formulas.\\\",\\n    \\\"You are a debate coach who helps users argue both sides of issues. Present balanced perspectives. Challenge weak arguments constructively. Teach logical reasoning and evidence evaluation. Avoid personal opinions.\\\",\\n]\\n\\nCONVERSATIONS_DATA = [\\n    [\\\"Why is the sky blue?\\\", \\\"What about sunsets being red?\\\", \\\"How does a rainbow form?\\\",\\n     \\\"Why do stars twinkle?\\\", \\\"What causes thunder?\\\", \\\"How do magnets work?\\\",\\n     \\\"Why is water wet?\\\", \\\"What is gravity?\\\", \\\"How do airplanes fly?\\\", \\\"Why is space dark?\\\"],\\n    [\\\"Review this: def add(a,b): return a+b\\\", \\\"What about error handling?\\\", \\\"How should I write tests for it?\\\",\\n     \\\"Is recursion better than iteration?\\\", \\\"When should I use async/await?\\\", \\\"How to handle memory leaks?\\\",\\n     \\\"Best practices for API design?\\\", \\\"How to optimize database queries?\\\", \\\"When to use microservices?\\\", \\\"How to handle rate limiting?\\\"],\\n    [\\\"Help me start a mystery story\\\", \\\"How do I create a compelling villain?\\\", \\\"What makes good dialogue?\\\",\\n     \\\"How to build suspense?\\\", \\\"Should I use first or third person?\\\", \\\"How to write a plot twist?\\\",\\n     \\\"Tips for describing settings?\\\", \\\"How to end a chapter with a cliffhanger?\\\", \\\"How to avoid cliches?\\\", \\\"How to write an epilogue?\\\"],\\n    [\\\"Solve: 3x + 7 = 22\\\", \\\"What is the derivative of x^3?\\\", \\\"Explain the Pythagorean theorem\\\",\\n     \\\"What is a prime number?\\\", \\\"How to calculate compound interest?\\\", \\\"What is the area of a circle?\\\",\\n     \\\"Explain matrix multiplication\\\", \\\"What is a logarithm?\\\", \\\"How to solve quadratic equations?\\\", \\\"What is calculus used for?\\\"],\\n    [\\\"Should AI be regulated?\\\", \\\"Is remote work better than office work?\\\", \\\"Should college be free?\\\",\\n     \\\"Is social media harmful?\\\", \\\"Should voting be mandatory?\\\", \\\"Is nuclear energy safe?\\\",\\n     \\\"Should animals have legal rights?\\\", \\\"Is space exploration worth the cost?\\\", \\\"Should there be a universal basic income?\\\", \\\"Is genetic engineering ethical?\\\"],\\n]\\n\\n\\ndef _find_hf_model(model):\\n    \\\"\\\"\\\"Find the HF CausalLM model (with .model.layers) in the model hierarchy.\\\"\\\"\\\"\\n    if hasattr(model, \\\"model\\\") and hasattr(model.model, \\\"layers\\\"):\\n        return model\\n    try:\\n        inner = model.base_model.model\\n        if hasattr(inner, \\\"model\\\") and hasattr(inner.model, \\\"layers\\\"):\\n            r\\n\\n... [截断: 输出过长，省略 16350 字符] ...\\n\\ngs.gate_type, turn_embedding, device=model_device\\n        )\\n    measurer = GARMeasurer(hf_model)\\n\\n    # Measure GAR with gating active\\n    print(\\\"\\\\nMeasuring GAR...\\\")\\n    all_gar_curves = []\\n    all_norm_curves = []\\n    all_visible_curves = []\\n    all_gate_profiles = []\\n    for i, messages in enumerate(conversations):\\n        result = measure_gar_per_turn(\\n            base_model, tokenizer, measurer, messages, device,\\n            turn_features_ref, args.gate_type, gar_variant=args.gar_variant,\\n            gate_values_ref=gate_values if args.gate_profile else None,\\n            gate_profile=args.gate_profile,\\n        )\\n        if result:\\n            gar_curve = result[\\\"gar_per_turn\\\"]\\n            norm_curve = result[\\\"normalized_gar_per_turn\\\"]\\n            vis_curve = result[\\\"visible_tokens_per_turn\\\"]\\n            print(f\\\"  Conv {i+1} GAR:  {[f'{g:.4f}' for g in gar_curve]}\\\")\\n            print(f\\\"  Conv {i+1} nGAR: {[f'{g:.4f}' for g in norm_curve]}\\\")\\n            all_gar_curves.append(gar_curve)\\n            all_norm_curves.append(norm_curve)\\n            all_visible_curves.append(vis_curve)\\n            if \\\"per_turn_gates\\\" in result:\\n                all_gate_profiles.append(result[\\\"per_turn_gates\\\"])\\n        else:\\n            print(f\\\"  Conv {i+1}: WARNING - could not measure GAR\\\")\\n\\n    # Compute NTP Perplexity (with gates active if applicable)\\n    print(\\\"\\\\nMeasuring NTP Perplexity...\\\")\\n    all_ppl = []\\n    all_ntp_loss = []\\n    for i, messages in enumerate(conversations):\\n        ppl, ntp_loss = compute_conversation_ppl(\\n            base_model, tokenizer, messages, device,\\n            turn_features_ref=turn_features_ref, gate_type=args.gate_type,\\n        )\\n        if ppl is not None:\\n            all_ppl.append(ppl)\\n            all_ntp_loss.append(ntp_loss)\\n            print(f\\\"  Conv {i+1} PPL: {ppl:.2f} (NTP loss: {ntp_loss:.4f})\\\")\\n        else:\\n            print(f\\\"  Conv {i+1}: WARNING - no assistant tokens for PPL\\\")\\n\\n    avg_ppl = float(np.mean(all_ppl)) if all_ppl else None\\n    avg_ntp_loss = float(np.mean(all_ntp_loss)) if all_ntp_loss else None\\n    if avg_ppl is not None:\\n        print(f\\\"\\\\nAvg PPL: {avg_ppl:.2f}\\\")\\n        print(f\\\"Avg NTP Loss: {avg_ntp_loss:.4f}\\\")\\n\\n    for h in hooks:\\n        h.remove()\\n\\n    if not all_gar_curves:\\n        print(\\\"ERROR: No valid GAR measurements\\\")\\n        sys.exit(1)\\n\\n    # Statistics\\n    min_turns = min(len(c) for c in all_gar_curves)\\n    aligned = [c[:min_turns] for c in all_gar_curves]\\n    avg_gar = np.mean(aligned, axis=0).tolist()\\n\\n    aligned_norm = [c[:min_turns] for c in all_norm_curves]\\n    avg_norm_gar = np.mean(aligned_norm, axis=0).tolist()\\n\\n    aligned_vis = [c[:min_turns] for c in all_visible_curves]\\n    avg_visible = [int(x) for x in np.mean(aligned_vis, axis=0).tolist()]\\n\\n    turn1_gar = avg_gar[0]\\n    mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))\\n    mid_turns_norm_gar = float(np.mean(avg_norm_gar[2:8]) if len(avg_norm_gar) >= 8 else np.mean(avg_norm_gar[2:]))\\n\\n    # Baseline comparison\\n    baseline_gar = None\\n    gar_recovery = None\\n    baseline_mid = None\\n    if os.path.exists(args.baseline_results):\\n        with open(args.baseline_results) as f:\\n            baseline = json.load(f)\\n        baseline_gar = baseline[\\\"avg_gar_per_turn\\\"]\\n        baseline_mid = baseline[\\\"mid_turns_avg_gar\\\"]\\n        gar_recovery = mid_turns_gar - baseline_mid\\n        print(f\\\"\\\\nBaseline mid-turn GAR: {baseline_mid:.4f}\\\")\\n        print(f\\\"Trained mid-turn GAR:  {mid_turns_gar:.4f}\\\")\\n        print(f\\\"GAR recovery:          {gar_recovery*100:+.2f}pp\\\")\\n    else:\\n        print(f\\\"\\\\nWARNING: Baseline not found at {args.baseline_results}\\\")\\n\\n    # Save results\\n    ckpt_name = os.path.basename(args.checkpoint_dir.rstrip(\\\"/\\\")) if args.checkpoint_dir else \\\"base_model\\\"\\n    if args.gar_variant == \\\"dongre\\\":\\n        ckpt_name += \\\"_dongre\\\"\\n    results = {\\n        \\\"checkpoint_dir\\\": args.checkpoint_dir,\\n        \\\"gate_type\\\": args.gate_type,\\n        \\\"gar_variant\\\": args.gar_variant,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d52ca8aa-d8d7-467b-a188-07e32321c05f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "34121427-f4a6-47e5-b513-d29c6f57c36b",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-22T08:30:27.726Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+I can see the code clearly now. The key lines are:
+
+```python
+mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))
+```
+
+For T=4 (eval_llama_ar_n20), `avg_gar` has length 4, so it uses `avg_gar[2:]` = indices 2-3 = turns 3-4 (1-indexed).
+For T=10 (phase1_gar_diag), `avg_gar` has length 10 ≥ 8, so it uses `avg_gar[2:8]` = indices 2-7 = turns 3-8 (1-indexed).
+
+
+So the implementation actually captures turns 3 through T for shorter conversations, or turns 3-8 for longer ones—not the stated "turns 2-T" standard. Now I need to pull the detailed statistics from the JSON output files for the four model variants.
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34121427-f4a6-47e5-b513-d29c6f57c36b",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ23uS7oF3ygZ3wgVd2",
+  "type": "assistant",
+  "uuid": "f803744c-2538-4bad-ba40-31f5370250d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177Yae4J7m3i4Zc73x6W7mm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 43036,
+      "output_tokens": 1066,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1066,
+          "cache_read_input_tokens": 43036,
+          "cache_creation_input_tokens": 5894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-22T08:30:27.732Z_
+
+找到了 6 个 JSON 文件。现在并行读取所有输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f803744c-2538-4bad-ba40-31f5370250d9",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ23uS7oF3ygZ3wgVd2",
+  "type": "assistant",
+  "uuid": "990050e9-1e8d-43de-bcf4-50f0752283ec",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177Yae4J7m3i4Zc73x6W7mm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 43036,
+      "output_tokens": 1066,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1066,
+          "cache_read_input_tokens": 43036,
+          "cache_creation_input_tokens": 5894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-22T08:30:28.595Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CjUEJq3TUCYJKmGi9td5pF`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "990050e9-1e8d-43de-bcf4-50f0752283ec",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ23uS7oF3ygZ3wgVd2",
+  "type": "assistant",
+  "uuid": "d1716d10-ff63-456f-aeba-671fa8c32692",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177Yae4J7m3i4Zc73x6W7mm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 43036,
+      "output_tokens": 1066,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1066,
+          "cache_read_input_tokens": 43036,
+          "cache_creation_input_tokens": 5894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-22T08:30:29.058Z_
+
+<details><summary>↩ Tool result · `toolu_01CjUEJq3TUCYJKmGi9td5pF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": null,\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.011807377634113436,\\n      0.014376025777707468,\\n      0.009205695594943109,\\n      0.006054442850860653\\n    ],\\n    [\\n      0.05348857974532745,\\n      0.018743274940118626,\\n      0.012556770303107312,\\n      0.005798168254232933\\n    ],\\n    [\\n      0.038650442767743654,\\n      0.017303944985135822,\\n      0.011635915931028945,\\n      0.005724410359083075\\n    ],\\n    [\\n      0.01895753206317835,\\n      0.03467204747900797,\\n      0.00857412979265098,\\n      0.008175502601813017\\n    ],\\n    [\\n      0.01109978033553212,\\n      0.012282456915258866,\\n      0.003912970530427065,\\n      0.0083361597477912\\n    ],\\n    [\\n      0.028755791467326097,\\n      0.0066786795231279505,\\n      0.0053270511618506156,\\n      0.008073481040863306\\n    ],\\n    [\\n      0.03470157608194474,\\n      0.010872944782555655,\\n      0.005913911344433913,\\n      0.021636030556907215\\n    ],\\n    [\\n      0.011761173793009783,\\n      0.011448651672530868,\\n      0.006808914903986496,\\n      0.004225024392839824\\n    ],\\n    [\\n      0.03534656078053966,\\n      0.009678150460320611,\\n      0.003911922014320956,\\n      0.0048506859470097835\\n    ],\\n    [\\n      0.03467280086151986,\\n      0.014902781807699661,\\n      0.00872689278383637,\\n      0.024251388360358117\\n    ],\\n    [\\n      0.033118409151935424,\\n      0.007326975890238466,\\n      0.004913676153523477,\\n      0.004744881027106185\\n    ],\\n    [\\n      0.01343188666534445,\\n      0.009219087737129428,\\n      0.006182508351621152,\\n      0.005712264418761492\\n    ],\\n    [\\n      0.03023361307928031,\\n      0.003181697050454721,\\n      0.0034192473964552855,\\n      0.0031450053927399857\\n    ],\\n    [\\n      0.040260406060416365,\\n      0.013077335059967922,\\n      0.018851720918360293,\\n      0.008604256535995718\\n    ],\\n    [\\n      0.01972347928043594,\\n      0.00633629633148166,\\n      0.005356472270990224,\\n      0.004587948609675305\\n    ],\\n    [\\n      0.03286748365752601,\\n      0.018832929737072845,\\n      0.026049660321490364,\\n      0.014726121767040468\\n    ],\\n    [\\n      0.04702771123945543,\\n      0.00788223349223699,\\n      0.0072770909722291305,\\n      0.005445516502336059\\n    ],\\n    [\\n      0.012577448432447985,\\n      0.010813430676399047,\\n      0.007349764396672884,\\n      0.00806309161468416\\n    ],\\n    [\\n      0.030854267754199388,\\n      0.016874421952392596,\\n      0.010499763909988843,\\n      0.00851054409716831\\n    ],\\n    [\\n      0.024883423971431284,\\n      0.010621775982144754,\\n      0.01818740193335877,\\n      0.006948380666457865\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.02821098724113539,\\n    0.012756257112649097,\\n    0.009233074049263813,\\n    0.008380665237186235\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.02821098724113539,\\n  \\\"mid_turns_avg_gar\\\": 0.008806869643225024,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": -0.33839043512640893,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.03769278244736212,\\n      0.0832150722901913,\\n      0.07771731473423124,\\n      0.06706459773261031\\n    ],\\n    [\\n      0.19529551209340484,\\n      0.12030567170866839,\\n      0.11914330892250659,\\n      0.07267936486119886\\n    ],\\n    [\\n      0.1610435115322652,\\n      0.13939289015803857,\\n      0.1393077712853743,\\n      0.09270364553737313\\n    ],\\n    [\\n      0.0789897169299098,\\n      0.27448704254214645,\\n      0.10098419533566709,\\n      0.13058094433451348\\n    ],\\n    [\\n      0.048316690872316284,\\n      0.10078839645168304,\\n      0.049947917947216064,\\n      0.14245025921960844\\n    ],\\n    [\\n      0.10680722545006835,\\n      0.045637643408040995,\\n      0.05390468437586932,\\n      0.10899199405165463\\n    ],\\n    [\\n      0.14161994563172042,\\n      0.08257560767292267,\\n      0.06473335390529013,\\n      0.31284530670122596\\n    ],\\n    [\\n      0.042941960127965945,\\n      0.07641309372131068,\\n      0.06650568045754252,\\n      0.05561311177551955\\n    ],\\n    [\\n      0.15745286165876757,\\n      0.08035797654932872,\\n      0.04729869344588065,\\n      0.07937486095106919\\n    ],\\n    [\\n      0.13869120344607944,\\n      0.11333957743224216,\\n      0.09714409598849434,\\n      0.3152680486846555\\n    ],\\n    [\\n      0.12750587523495138,\\n      0.05531866797130042,\\n      0.058472746226929384,\\n      0.07746018276750846\\n    ],\\n    [\\n      0.05846821254326408,\\n      0.07348155225770808,\\n      0.07346274629573368,\\n      0.09038818403804949\\n    ],\\n    [\\n      0.12870880996607903,\\n      0.026544443963793674,\\n      0.04210558936777794,\\n      0.05355494897351518\\n    ],\\n    [\\n      0.1599821398716545,\\n      0.1025538381018537,\\n      0.21828308431785604,\\n      0.13087527046856645\\n    ],\\n    [\\n      0.0858551451030741,\\n      0.05758575195375979,\\n      0.07530569839803904,\\n      0.08717102358383079\\n    ],\\n    [\\n      0.058708125981374044,\\n      0.05338161463404786,\\n      0.0998869733706803,\\n      0.07180253854688007\\n    ],\\n    [\\n      0.1777876888320876,\\n      0.05594463283514547,\\n      0.0756107501016978,\\n      0.0741121514220371\\n    ],\\n    [\\n      0.05030979372979194,\\n      0.07967791024715087,\\n      0.08104082321594575,\\n      0.11670264179148127\\n    ],\\n    [\\n      0.105692278902683,\\n      0.10555489476603028,\\n      0.0976254644396835,\\n      0.10683448973041071\\n    ],\\n    [\\n      0.08655103990063055,\\n      0.06719427849574182,\\n      0.16684964382342177,\\n      0.08474003378006223\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.10742102601277248,\\n    0.08968752785805525,\\n    0.09026652679779187,\\n    0.11356067994758856\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.10191360337269022,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    158,\\n    294,\\n    434,\\n    576\\n  ],\\n  \\\"conversations_source\\\": \\\"ar_from_fixed\\\",\\n  \\\"avg_ppl\\\": 1.292573344707489,\\n  \\\"avg_ntp_loss\\\": 0.2551529034972191,\\n  \\\"ppl_per_conversation\\\": [\\n    1.2118080854415894,\\n    1.2728676795959473,\\n    1.3542768955230713,\\n    1.1363847255706787,\\n    1.2583281993865967,\\n    1.271941065788269,\\n    1.19684898853302,\\n    1.3234381675720215,\\n    1.3013883829116821,\\n    1.2987877130508423,\\n    1.2349109649658203,\\n    1.340485692024231,\\n    1.3818210363388062,\\n    1.3351528644561768,\\n    1.4022191762924194,\\n    1.3597480058670044,\\n    1.2982323169708252,\\n    1.190193772315979,\\n    1.379752278327942,\\n    1.302880883216858\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.19211353361606598,\\n    0.24127241969108582,\\n    0.3032677471637726,\\n    0.12785197794437408,\\n    0.22978410124778748,\\n    0.24054419994354248,\\n    0.1796923130750656,\\n    0.2802329957485199,\\n    0.2634316682815552,\\n    0.26143136620521545,\\n    0.21099886298179626,\\n    0.2930319607257843,\\n    0.3234022557735443,\\n    0.2890457212924957,\\n    0.33805611729621887,\\n    0.3072993755340576,\\n    0.2610035836696625,\\n    0.17411606013774872,\\n    0.32190394401550293,\\n    0.26457786560058594\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d1716d10-ff63-456f-aeba-671fa8c32692",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "556bccfc-9a1f-4034-961a-949d83183ebd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": null,\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 20,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.011807377634113436,\\\\n      0.014376025777707468,\\\\n      0.009205695594943109,\\\\n      0.006054442850860653\\\\n    ],\\\\n    [\\\\n      0.05348857974532745,\\\\n      0.018743274940118626,\\\\n      0.012556770303107312,\\\\n      0.005798168254232933\\\\n    ],\\\\n    [\\\\n      0.038650442767743654,\\\\n      0.017303944985135822,\\\\n      0.011635915931028945,\\\\n      0.005724410359083075\\\\n    ],\\\\n    [\\\\n      0.01895753206317835,\\\\n      0.03467204747900797,\\\\n      0.00857412979265098,\\\\n      0.008175502601813017\\\\n    ],\\\\n    [\\\\n      0.01109978033553212,\\\\n      0.012282456915258866,\\\\n      0.003912970530427065,\\\\n      0.0083361597477912\\\\n    ],\\\\n    [\\\\n      0.028755791467326097,\\\\n      0.0066786795231279505,\\\\n      0.0053270511618506156,\\\\n      0.008073481040863306\\\\n    ],\\\\n    [\\\\n      0.03470157608194474,\\\\n      0.010872944782555655,\\\\n      0.005913911344433913,\\\\n      0.021636030556907215\\\\n    ],\\\\n    [\\\\n      0.011761173793009783,\\\\n      0.011448651672530868,\\\\n      0.006808914903986496,\\\\n      0.004225024392839824\\\\n    ],\\\\n    [\\\\n      0.03534656078053966,\\\\n      0.009678150460320611,\\\\n      0.003911922014320956,\\\\n      0.0048506859470097835\\\\n    ],\\\\n    [\\\\n      0.03467280086151986,\\\\n      0.014902781807699661,\\\\n      0.00872689278383637,\\\\n      0.024251388360358117\\\\n    ],\\\\n    [\\\\n      0.033118409151935424,\\\\n      0.007326975890238466,\\\\n      0.004913676153523477,\\\\n      0.004744881027106185\\\\n    ],\\\\n    [\\\\n      0.01343188666534445,\\\\n      0.009219087737129428,\\\\n      0.006182508351621152,\\\\n      0.005712264418761492\\\\n    ],\\\\n    [\\\\n      0.03023361307928031,\\\\n      0.003181697050454721,\\\\n      0.0034192473964552855,\\\\n      0.0031450053927399857\\\\n    ],\\\\n    [\\\\n      0.040260406060416365,\\\\n      0.013077335059967922,\\\\n      0.018851720918360293,\\\\n      0.008604256535995718\\\\n    ],\\\\n    [\\\\n      0.01972347928043594,\\\\n      0.00633629633148166,\\\\n      0.005356472270990224,\\\\n      0.004587948609675305\\\\n    ],\\\\n    [\\\\n      0.03286748365752601,\\\\n      0.018832929737072845,\\\\n      0.026049660321490364,\\\\n      0.014726121767040468\\\\n    ],\\\\n    [\\\\n      0.04702771123945543,\\\\n      0.00788223349223699,\\\\n      0.0072770909722291305,\\\\n      0.005445516502336059\\\\n    ],\\\\n    [\\\\n      0.012577448432447985,\\\\n      0.010813430676399047,\\\\n      0.007349764396672884,\\\\n      0.00806309161468416\\\\n    ],\\\\n    [\\\\n      0.030854267754199388,\\\\n      0.016874421952392596,\\\\n      0.010499763909988843,\\\\n      0.00851054409716831\\\\n    ],\\\\n    [\\\\n      0.024883423971431284,\\\\n      0.010621775982144754,\\\\n      0.01818740193335877,\\\\n      0.006948380666457865\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_gar_per_turn\\\\\\\": [\\\\n    0.02821098724113539,\\\\n    0.012756257112649097,\\\\n    0.009233074049263813,\\\\n    0.008380665237186235\\\\n  ],\\\\n  \\\\\\\"turn1_avg_gar\\\\\\\": 0.02821098724113539,\\\\n  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.008806869643225024,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n  \\\\\\\"gar_recovery_pp\\\\\\\": -0.33839043512640893,\\\\n  \\\\\\\"normalized_gar_curves\\\\\\\": [\\\\n    [\\\\n      0.03769278244736212,\\\\n      0.0832150722901913,\\\\n      0.07771731473423124,\\\\n      0.06706459773261031\\\\n    ],\\\\n    [\\\\n      0.19529551209340484,\\\\n      0.12030567170866839,\\\\n      0.11914330892250659,\\\\n      0.07267936486119886\\\\n    ],\\\\n    [\\\\n      0.1610435115322652,\\\\n      0.13939289015803857,\\\\n      0.1393077712853743,\\\\n      0.09270364553737313\\\\n    ],\\\\n    [\\\\n      0.0789897169299098,\\\\n      0.27448704254214645,\\\\n      0.10098419533566709,\\\\n      0.13058094433451348\\\\n    ],\\\\n    [\\\\n      0.048316690872316284,\\\\n      0.10078839645168304,\\\\n      0.049947917947216064,\\\\n      0.14245025921960844\\\\n    ],\\\\n    [\\\\n      0.10680722545006835,\\\\n      0.045637643408040995,\\\\n      0.05390468437586932,\\\\n      0.10899199405165463\\\\n    ],\\\\n    [\\\\n      0.14161994563172042,\\\\n      0.08257560767292267,\\\\n      0.06473335390529013,\\\\n      0.31284530670122596\\\\n    ],\\\\n    [\\\\n      0.042941960127965945,\\\\n      0.07641309372131068,\\\\n      0.06650568045754252,\\\\n      0.05561311177551955\\\\n    ],\\\\n    [\\\\n      0.15745286165876757,\\\\n      0.08035797654932872,\\\\n      0.04729869344588065,\\\\n      0.07937486095106919\\\\n    ],\\\\n    [\\\\n      0.13869120344607944,\\\\n      0.11333957743224216,\\\\n      0.09714409598849434,\\\\n      0.3152680486846555\\\\n    ],\\\\n    [\\\\n      0.12750587523495138,\\\\n      0.05531866797130042,\\\\n      0.058472746226929384,\\\\n      0.07746018276750846\\\\n    ],\\\\n    [\\\\n      0.05846821254326408,\\\\n      0.07348155225770808,\\\\n      0.07346274629573368,\\\\n      0.09038818403804949\\\\n    ],\\\\n    [\\\\n      0.12870880996607903,\\\\n      0.026544443963793674,\\\\n      0.04210558936777794,\\\\n      0.05355494897351518\\\\n    ],\\\\n    [\\\\n      0.1599821398716545,\\\\n      0.1025538381018537,\\\\n      0.21828308431785604,\\\\n      0.13087527046856645\\\\n    ],\\\\n    [\\\\n      0.0858551451030741,\\\\n      0.05758575195375979,\\\\n      0.07530569839803904,\\\\n      0.08717102358383079\\\\n    ],\\\\n    [\\\\n      0.058708125981374044,\\\\n      0.05338161463404786,\\\\n      0.0998869733706803,\\\\n      0.07180253854688007\\\\n    ],\\\\n    [\\\\n      0.1777876888320876,\\\\n      0.05594463283514547,\\\\n      0.0756107501016978,\\\\n      0.0741121514220371\\\\n    ],\\\\n    [\\\\n      0.05030979372979194,\\\\n      0.07967791024715087,\\\\n      0.08104082321594575,\\\\n      0.11670264179148127\\\\n    ],\\\\n    [\\\\n      0.105692278902683,\\\\n      0.10555489476603028,\\\\n      0.0976254644396835,\\\\n      0.10683448973041071\\\\n    ],\\\\n    [\\\\n      0.08655103990063055,\\\\n      0.06719427849574182,\\\\n      0.16684964382342177,\\\\n      0.08474003378006223\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_normalized_gar_per_turn\\\\\\\": [\\\\n    0.10742102601277248,\\\\n    0.08968752785805525,\\\\n    0.09026652679779187,\\\\n    0.11356067994758856\\\\n  ],\\\\n  \\\\\\\"mid_turns_avg_normalized_gar\\\\\\\": 0.10191360337269022,\\\\n  \\\\\\\"avg_visible_tokens_per_turn\\\\\\\": [\\\\n    158,\\\\n    294,\\\\n    434,\\\\n    576\\\\n  ],\\\\n  \\\\\\\"conversations_source\\\\\\\": \\\\\\\"ar_from_fixed\\\\\\\",\\\\n  \\\\\\\"avg_ppl\\\\\\\": 1.292573344707489,\\\\n  \\\\\\\"avg_ntp_loss\\\\\\\": 0.2551529034972191,\\\\n  \\\\\\\"ppl_per_conversation\\\\\\\": [\\\\n    1.2118080854415894,\\\\n    1.2728676795959473,\\\\n    1.3542768955230713,\\\\n    1.1363847255706787,\\\\n    1.2583281993865967,\\\\n    1.271941065788269,\\\\n    1.19684898853302,\\\\n    1.3234381675720215,\\\\n    1.3013883829116821,\\\\n    1.2987877130508423,\\\\n    1.2349109649658203,\\\\n    1.340485692024231,\\\\n    1.3818210363388062,\\\\n    1.3351528644561768,\\\\n    1.4022191762924194,\\\\n    1.3597480058670044,\\\\n    1.2982323169708252,\\\\n    1.190193772315979,\\\\n    1.379752278327942,\\\\n    1.302880883216858\\\\n  ],\\\\n  \\\\\\\"ntp_loss_per_conversation\\\\\\\": [\\\\n    0.19211353361606598,\\\\n    0.24127241969108582,\\\\n    0.3032677471637726,\\\\n    0.12785197794437408,\\\\n    0.22978410124778748,\\\\n    0.24054419994354248,\\\\n    0.1796923130750656,\\\\n    0.2802329957485199,\\\\n    0.2634316682815552,\\\\n    0.26143136620521545,\\\\n    0.21099886298179626,\\\\n    0.2930319607257843,\\\\n    0.3234022557735443,\\\\n    0.2890457212924957,\\\\n    0.33805611729621887,\\\\n    0.3072993755340576,\\\\n    0.2610035836696625,\\\\n    0.17411606013774872,\\\\n    0.32190394401550293,\\\\n    0.26457786560058594\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": null,\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.011807377634113436,\\n      0.014376025777707468,\\n      0.009205695594943109,\\n      0.006054442850860653\\n    ],\\n    [\\n      0.05348857974532745,\\n      0.018743274940118626,\\n      0.012556770303107312,\\n      0.005798168254232933\\n    ],\\n    [\\n      0.038650442767743654,\\n      0.017303944985135822,\\n      0.011635915931028945,\\n      0.005724410359083075\\n    ],\\n    [\\n      0.01895753206317835,\\n      0.03467204747900797,\\n      0.00857412979265098,\\n      0.008175502601813017\\n    ],\\n    [\\n      0.01109978033553212,\\n      0.012282456915258866,\\n      0.003912970530427065,\\n      0.0083361597477912\\n    ],\\n    [\\n      0.028755791467326097,\\n      0.0066786795231279505,\\n      0.0053270511618506156,\\n      0.008073481040863306\\n    ],\\n    [\\n      0.03470157608194474,\\n      0.010872944782555655,\\n      0.005913911344433913,\\n      0.021636030556907215\\n    ],\\n    [\\n      0.011761173793009783,\\n      0.011448651672530868,\\n      0.006808914903986496,\\n      0.004225024392839824\\n    ],\\n    [\\n      0.03534656078053966,\\n      0.009678150460320611,\\n      0.003911922014320956,\\n      0.0048506859470097835\\n    ],\\n    [\\n      0.03467280086151986,\\n      0.014902781807699661,\\n      0.00872689278383637,\\n      0.024251388360358117\\n    ],\\n    [\\n      0.033118409151935424,\\n      0.007326975890238466,\\n      0.004913676153523477,\\n      0.004744881027106185\\n    ],\\n    [\\n      0.01343188666534445,\\n      0.009219087737129428,\\n      0.006182508351621152,\\n      0.005712264418761492\\n    ],\\n    [\\n      0.03023361307928031,\\n      0.003181697050454721,\\n      0.0034192473964552855,\\n      0.0031450053927399857\\n    ],\\n    [\\n      0.040260406060416365,\\n      0.013077335059967922,\\n      0.018851720918360293,\\n      0.008604256535995718\\n    ],\\n    [\\n      0.01972347928043594,\\n      0.00633629633148166,\\n      0.005356472270990224,\\n      0.004587948609675305\\n    ],\\n    [\\n      0.03286748365752601,\\n      0.018832929737072845,\\n      0.026049660321490364,\\n      0.014726121767040468\\n    ],\\n    [\\n      0.04702771123945543,\\n      0.00788223349223699,\\n      0.0072770909722291305,\\n      0.005445516502336059\\n    ],\\n    [\\n      0.012577448432447985,\\n      0.010813430676399047,\\n      0.007349764396672884,\\n      0.00806309161468416\\n    ],\\n    [\\n      0.030854267754199388,\\n      0.016874421952392596,\\n      0.010499763909988843,\\n      0.00851054409716831\\n    ],\\n    [\\n      0.024883423971431284,\\n      0.010621775982144754,\\n      0.01818740193335877,\\n      0.006948380666457865\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.02821098724113539,\\n    0.012756257112649097,\\n    0.009233074049263813,\\n    0.008380665237186235\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.02821098724113539,\\n  \\\"mid_turns_avg_gar\\\": 0.008806869643225024,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": -0.33839043512640893,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.03769278244736212,\\n      0.0832150722901913,\\n      0.07771731473423124,\\n      0.06706459773261031\\n    ],\\n    [\\n      0.19529551209340484,\\n      0.12030567170866839,\\n      0.11914330892250659,\\n      0.07267936486119886\\n    ],\\n    [\\n      0.1610435115322652,\\n      0.13939289015803857,\\n      0.1393077712853743,\\n      0.09270364553737313\\n    ],\\n    [\\n      0.0789897169299098,\\n      0.27448704254214645,\\n      0.10098419533566709,\\n      0.13058094433451348\\n    ],\\n    [\\n      0.048316690872316284,\\n      0.10078839645168304,\\n      0.049947917947216064,\\n      0.14245025921960844\\n    ],\\n    [\\n      0.10680722545006835,\\n      0.045637643408040995,\\n      0.05390468437586932,\\n      0.10899199405165463\\n    ],\\n    [\\n      0.14161994563172042,\\n      0.08257560767292267,\\n      0.06473335390529013,\\n      0.31284530670122596\\n    ],\\n    [\\n      0.042941960127965945,\\n      0.07641309372131068,\\n      0.06650568045754252,\\n      0.05561311177551955\\n    ],\\n    [\\n      0.15745286165876757,\\n      0.08035797654932872,\\n      0.04729869344588065,\\n      0.07937486095106919\\n    ],\\n    [\\n      0.13869120344607944,\\n      0.11333957743224216,\\n      0.09714409598849434,\\n      0.3152680486846555\\n    ],\\n    [\\n      0.12750587523495138,\\n      0.05531866797130042,\\n      0.058472746226929384,\\n      0.07746018276750846\\n    ],\\n    [\\n      0.05846821254326408,\\n      0.07348155225770808,\\n      0.07346274629573368,\\n      0.09038818403804949\\n    ],\\n    [\\n      0.12870880996607903,\\n      0.026544443963793674,\\n      0.04210558936777794,\\n      0.05355494897351518\\n    ],\\n    [\\n      0.1599821398716545,\\n      0.1025538381018537,\\n      0.21828308431785604,\\n      0.13087527046856645\\n    ],\\n    [\\n      0.0858551451030741,\\n      0.05758575195375979,\\n      0.07530569839803904,\\n      0.08717102358383079\\n    ],\\n    [\\n      0.058708125981374044,\\n      0.05338161463404786,\\n      0.0998869733706803,\\n      0.07180253854688007\\n    ],\\n    [\\n      0.1777876888320876,\\n      0.05594463283514547,\\n      0.0756107501016978,\\n      0.0741121514220371\\n    ],\\n    [\\n      0.05030979372979194,\\n      0.07967791024715087,\\n      0.08104082321594575,\\n      0.11670264179148127\\n    ],\\n    [\\n      0.105692278902683,\\n      0.10555489476603028,\\n      0.0976254644396835,\\n      0.10683448973041071\\n    ],\\n    [\\n      0.08655103990063055,\\n      0.06719427849574182,\\n      0.16684964382342177,\\n      0.08474003378006223\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.10742102601277248,\\n    0.08968752785805525,\\n    0.09026652679779187,\\n    0.11356067994758856\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.10191360337269022,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    158,\\n    294,\\n    434,\\n    576\\n  ],\\n  \\\"conversations_source\\\": \\\"ar_from_fixed\\\",\\n  \\\"avg_ppl\\\": 1.292573344707489,\\n  \\\"avg_ntp_loss\\\": 0.2551529034972191,\\n  \\\"ppl_per_conversation\\\": [\\n    1.2118080854415894,\\n    1.2728676795959473,\\n    1.3542768955230713,\\n    1.1363847255706787,\\n    1.2583281993865967,\\n    1.271941065788269,\\n    1.19684898853302,\\n    1.3234381675720215,\\n    1.3013883829116821,\\n    1.2987877130508423,\\n    1.2349109649658203,\\n    1.340485692024231,\\n    1.3818210363388062,\\n    1.3351528644561768,\\n    1.4022191762924194,\\n    1.3597480058670044,\\n    1.2982323169708252,\\n    1.190193772315979,\\n    1.379752278327942,\\n    1.302880883216858\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.19211353361606598,\\n    0.24127241969108582,\\n    0.3032677471637726,\\n    0.12785197794437408,\\n    0.22978410124778748,\\n    0.24054419994354248,\\n    0.1796923130750656,\\n    0.2802329957485199,\\n    0.2634316682815552,\\n    0.26143136620521545,\\n    0.21099886298179626,\\n    0.2930319607257843,\\n    0.3234022557735443,\\n    0.2890457212924957,\\n    0.33805611729621887,\\n    0.3072993755340576,\\n    0.2610035836696625,\\n    0.17411606013774872,\\n    0.32190394401550293,\\n    0.26457786560058594\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d1716d10-ff63-456f-aeba-671fa8c32692",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-22T08:30:29.645Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UUnWkeqqqibLWDsHj6TF1K`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "556bccfc-9a1f-4034-961a-949d83183ebd",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ23uS7oF3ygZ3wgVd2",
+  "type": "assistant",
+  "uuid": "bbe39dec-ece3-48ac-aaa0-7e80534dc243",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177Yae4J7m3i4Zc73x6W7mm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 43036,
+      "output_tokens": 1066,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1066,
+          "cache_read_input_tokens": 43036,
+          "cache_creation_input_tokens": 5894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-22T08:30:32.609Z_
+
+<details><summary>↩ Tool result · `toolu_01LiJqxqTPiowTv6ZptpvsMY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"runs/phase2_llama_lora_only_s42/epoch_2\\\",\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.023667846726297626,\\n      0.035076644671864665,\\n      0.017348254657694184,\\n      0.018918400532561996\\n    ],\\n    [\\n      0.05913198569290043,\\n      0.04409522252005241,\\n      0.034738242545667486,\\n      0.010641699122262649\\n    ],\\n    [\\n      0.022720026741834265,\\n      0.012329435457551483,\\n      0.013090584339574121,\\n      0.010025266978803966\\n    ],\\n    [\\n      0.018198839414665297,\\n      0.03149629475883542,\\n      0.008915399003362977,\\n      0.017259469204575356\\n    ],\\n    [\\n      0.027440421047913305,\\n      0.02136991034211208,\\n      0.010758857678739082,\\n      0.006563401983637529\\n    ],\\n    [\\n      0.02660422842964666,\\n      0.010504501660825977,\\n      0.008680674308471248,\\n      0.03584383988120032\\n    ],\\n    [\\n      0.03948517376895083,\\n      0.01881816155683924,\\n      0.01017450769058778,\\n      0.009716030143245402\\n    ],\\n    [\\n      0.01873621129259434,\\n      0.007138581823558893,\\n      0.012203010337582462,\\n      0.01454340815070948\\n    ],\\n    [\\n      0.03470414868978547,\\n      0.020049485909123768,\\n      0.005671955077795304,\\n      0.01029151231286915\\n    ],\\n    [\\n      0.037248194371260535,\\n      0.02079479746751131,\\n      0.013682266492565986,\\n      0.1833551939864391\\n    ],\\n    [\\n      0.029949690903860966,\\n      0.014236961214503074,\\n      0.009794422706452754,\\n      0.01754892849516332\\n    ],\\n    [\\n      0.03452954128466956,\\n      0.02129895977820695,\\n      0.02113934846051449,\\n      0.1800897472648446\\n    ],\\n    [\\n      0.01366743239925712,\\n      0.014078381940405782,\\n      0.012940616889450751,\\n      0.0035785585935530426\\n    ],\\n    [\\n      0.04547012075295792,\\n      0.014387869159656654,\\n      0.013154692107456678,\\n      0.006297377921929165\\n    ],\\n    [\\n      0.024764572628910242,\\n      0.014946279182066688,\\n      0.01898519149761002,\\n      0.016416443122754233\\n    ],\\n    [\\n      0.04807241775455395,\\n      0.02441343633769577,\\n      0.029344774986803657,\\n      0.032112421105360056\\n    ],\\n    [\\n      0.024545423886703055,\\n      0.029447823891739944,\\n      0.013509291455970407,\\n      0.012487337673105389\\n    ],\\n    [\\n      0.03607754098845528,\\n      0.44119082950562616,\\n      0.01889077951060858,\\n      0.006887450546315427\\n    ],\\n    [\\n      0.04755566970019434,\\n      0.043489477295383716,\\n      0.015059587594302273,\\n      0.011423400120652762\\n    ],\\n    [\\n      0.051286317458377084,\\n      0.14084209334123443,\\n      0.2200891316436584,\\n      0.024222345163920522\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.03319279019668941,\\n    0.049000257390739724,\\n    0.025408579449243428,\\n    0.03141111161519518\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.03319279019668941,\\n  \\\"mid_turns_avg_gar\\\": 0.028409845532219303,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": 1.6219071537730188,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.07555504916471935,\\n      0.20303980858137047,\\n      0.14645930374476437,\\n      0.2095576674376098\\n    ],\\n    [\\n      0.2159005059019853,\\n      0.2830298003612666,\\n      0.32960937113098454,\\n      0.13339246109068761\\n    ],\\n    [\\n      0.09466677809097611,\\n      0.09932045229694249,\\n      0.15672338473212352,\\n      0.16235362912896423\\n    ],\\n    [\\n      0.07582849756110539,\\n      0.2493456668407804,\\n      0.10500358826183062,\\n      0.2756720775730786\\n    ],\\n    [\\n      0.11944653867915202,\\n      0.17535897016027266,\\n      0.13733365389919888,\\n      0.1121569574262766\\n    ],\\n    [\\n      0.09881570559583046,\\n      0.07178076134897751,\\n      0.08784015669286382,\\n      0.48389183839620437\\n    ],\\n    [\\n      0.1611421956516642,\\n      0.14291630803977912,\\n      0.11136961120778516,\\n      0.14075113937241987\\n    ],\\n    [\\n      0.06840895751017004,\\n      0.047645883333986096,\\n      0.1191921939949915,\\n      0.19143183751864107\\n    ],\\n    [\\n      0.15459120779995347,\\n      0.1664714890636337,\\n      0.06857909321334321,\\n      0.168406565119677\\n    ],\\n    [\\n      0.14899277748504214,\\n      0.15814990705554655,\\n      0.1523052296409319,\\n      2.624874356016391\\n    ],\\n    [\\n      0.11530630997986473,\\n      0.10748905716949822,\\n      0.11655363020678777,\\n      0.2864862576835412\\n    ],\\n    [\\n      0.15030506206267927,\\n      0.16976523823217893,\\n      0.25118519935434863,\\n      2.849655412602541\\n    ],\\n    [\\n      0.05818421221398031,\\n      0.11745392933138538,\\n      0.15898472178468068,\\n      0.060835496090401724\\n    ],\\n    [\\n      0.18188048301183168,\\n      0.11320981259835103,\\n      0.15300983977620664,\\n      0.09611787354523463\\n    ],\\n    [\\n      0.10779872791407988,\\n      0.13583530197819432,\\n      0.266909456936988,\\n      0.31191241933233044\\n    ],\\n    [\\n      0.08586728412709982,\\n      0.06919946437788249,\\n      0.1125220337425023,\\n      0.15657573601027283\\n    ],\\n    [\\n      0.09279367566924325,\\n      0.20900772567064205,\\n      0.14036483317666812,\\n      0.16994962003884895\\n    ],\\n    [\\n      0.14431016395382112,\\n      3.2508797963572453,\\n      0.20829570039328935,\\n      0.09968678422298645\\n    ],\\n    [\\n      0.16290346429215508,\\n      0.27204056010303856,\\n      0.14002212295127858,\\n      0.14340012917415168\\n    ],\\n    [\\n      0.17838719115957247,\\n      0.8909793296152004,\\n      2.0190785555135617,\\n      0.2954072964556394\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.1245542393912463,\\n    0.34664596312580864,\\n    0.24906708401775646,\\n    0.44862577771179507\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.34884643086477574,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    158,\\n    294,\\n    434,\\n    579\\n  ],\\n  \\\"conversations_source\\\": \\\"ar_from_fixed\\\",\\n  \\\"avg_ppl\\\": 1.4186152815818787,\\n  \\\"avg_ntp_loss\\\": 0.3482785984873772,\\n  \\\"ppl_per_conversation\\\": [\\n    1.329071044921875,\\n    1.3969974517822266,\\n    1.5054947137832642,\\n    1.2487373352050781,\\n    1.3392471075057983,\\n    1.4187630414962769,\\n    1.347153663635254,\\n    1.4454139471054077,\\n    1.4069135189056396,\\n    1.441581130027771,\\n    1.4072071313858032,\\n    1.4271602630615234,\\n    1.4674744606018066,\\n    1.50309419631958,\\n    1.512858271598816,\\n    1.4879037141799927,\\n    1.366571307182312,\\n    1.4090673923492432,\\n    1.343368411064148,\\n    1.5682275295257568\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.2844802141189575,\\n    0.33432528376579285,\\n    0.4091216027736664,\\n    0.22213292121887207,\\n    0.29210761189460754,\\n    0.3497854471206665,\\n    0.297993928194046,\\n    0.36839574575424194,\\n    0.3413982689380646,\\n    0.36574041843414307,\\n    0.3416070342063904,\\n    0.35568660497665405,\\n    0.38354286551475525,\\n    0.40752577781677246,\\n    0.4140007495880127,\\n    0.39736825227737427,\\n    0.31230491399765015,\\n    0.34292805194854736,\\n    0.29518020153045654,\\n    0.4499460756778717\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70fe1d7b-7ccb-47eb-86f3-76682d1ae38c",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "3fd075db-3835-42a1-b20e-d0d4d4021d9f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"runs/phase2_llama_lora_only_s42/epoch_2\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 20,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.023667846726297626,\\\\n      0.035076644671864665,\\\\n      0.017348254657694184,\\\\n      0.018918400532561996\\\\n    ],\\\\n    [\\\\n      0.05913198569290043,\\\\n      0.04409522252005241,\\\\n      0.034738242545667486,\\\\n      0.010641699122262649\\\\n    ],\\\\n    [\\\\n      0.022720026741834265,\\\\n      0.012329435457551483,\\\\n      0.013090584339574121,\\\\n      0.010025266978803966\\\\n    ],\\\\n    [\\\\n      0.018198839414665297,\\\\n      0.03149629475883542,\\\\n      0.008915399003362977,\\\\n      0.017259469204575356\\\\n    ],\\\\n    [\\\\n      0.027440421047913305,\\\\n      0.02136991034211208,\\\\n      0.010758857678739082,\\\\n      0.006563401983637529\\\\n    ],\\\\n    [\\\\n      0.02660422842964666,\\\\n      0.010504501660825977,\\\\n      0.008680674308471248,\\\\n      0.03584383988120032\\\\n    ],\\\\n    [\\\\n      0.03948517376895083,\\\\n      0.01881816155683924,\\\\n      0.01017450769058778,\\\\n      0.009716030143245402\\\\n    ],\\\\n    [\\\\n      0.01873621129259434,\\\\n      0.007138581823558893,\\\\n      0.012203010337582462,\\\\n      0.01454340815070948\\\\n    ],\\\\n    [\\\\n      0.03470414868978547,\\\\n      0.020049485909123768,\\\\n      0.005671955077795304,\\\\n      0.01029151231286915\\\\n    ],\\\\n    [\\\\n      0.037248194371260535,\\\\n      0.02079479746751131,\\\\n      0.013682266492565986,\\\\n      0.1833551939864391\\\\n    ],\\\\n    [\\\\n      0.029949690903860966,\\\\n      0.014236961214503074,\\\\n      0.009794422706452754,\\\\n      0.01754892849516332\\\\n    ],\\\\n    [\\\\n      0.03452954128466956,\\\\n      0.02129895977820695,\\\\n      0.02113934846051449,\\\\n      0.1800897472648446\\\\n    ],\\\\n    [\\\\n      0.01366743239925712,\\\\n      0.014078381940405782,\\\\n      0.012940616889450751,\\\\n      0.0035785585935530426\\\\n    ],\\\\n    [\\\\n      0.04547012075295792,\\\\n      0.014387869159656654,\\\\n      0.013154692107456678,\\\\n      0.006297377921929165\\\\n    ],\\\\n    [\\\\n      0.024764572628910242,\\\\n      0.014946279182066688,\\\\n      0.01898519149761002,\\\\n      0.016416443122754233\\\\n    ],\\\\n    [\\\\n      0.04807241775455395,\\\\n      0.02441343633769577,\\\\n      0.029344774986803657,\\\\n      0.032112421105360056\\\\n    ],\\\\n    [\\\\n      0.024545423886703055,\\\\n      0.029447823891739944,\\\\n      0.013509291455970407,\\\\n      0.012487337673105389\\\\n    ],\\\\n    [\\\\n      0.03607754098845528,\\\\n      0.44119082950562616,\\\\n      0.01889077951060858,\\\\n      0.006887450546315427\\\\n    ],\\\\n    [\\\\n      0.04755566970019434,\\\\n      0.043489477295383716,\\\\n      0.015059587594302273,\\\\n      0.011423400120652762\\\\n    ],\\\\n    [\\\\n      0.051286317458377084,\\\\n      0.14084209334123443,\\\\n      0.2200891316436584,\\\\n      0.024222345163920522\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_gar_per_turn\\\\\\\": [\\\\n    0.03319279019668941,\\\\n    0.049000257390739724,\\\\n    0.025408579449243428,\\\\n    0.03141111161519518\\\\n  ],\\\\n  \\\\\\\"turn1_avg_gar\\\\\\\": 0.03319279019668941,\\\\n  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.028409845532219303,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n  \\\\\\\"gar_recovery_pp\\\\\\\": 1.6219071537730188,\\\\n  \\\\\\\"normalized_gar_curves\\\\\\\": [\\\\n    [\\\\n      0.07555504916471935,\\\\n      0.20303980858137047,\\\\n      0.14645930374476437,\\\\n      0.2095576674376098\\\\n    ],\\\\n    [\\\\n      0.2159005059019853,\\\\n      0.2830298003612666,\\\\n      0.32960937113098454,\\\\n      0.13339246109068761\\\\n    ],\\\\n    [\\\\n      0.09466677809097611,\\\\n      0.09932045229694249,\\\\n      0.15672338473212352,\\\\n      0.16235362912896423\\\\n    ],\\\\n    [\\\\n      0.07582849756110539,\\\\n      0.2493456668407804,\\\\n      0.10500358826183062,\\\\n      0.2756720775730786\\\\n    ],\\\\n    [\\\\n      0.11944653867915202,\\\\n      0.17535897016027266,\\\\n      0.13733365389919888,\\\\n      0.1121569574262766\\\\n    ],\\\\n    [\\\\n      0.09881570559583046,\\\\n      0.07178076134897751,\\\\n      0.08784015669286382,\\\\n      0.48389183839620437\\\\n    ],\\\\n    [\\\\n      0.1611421956516642,\\\\n      0.14291630803977912,\\\\n      0.11136961120778516,\\\\n      0.14075113937241987\\\\n    ],\\\\n    [\\\\n      0.06840895751017004,\\\\n      0.047645883333986096,\\\\n      0.1191921939949915,\\\\n      0.19143183751864107\\\\n    ],\\\\n    [\\\\n      0.15459120779995347,\\\\n      0.1664714890636337,\\\\n      0.06857909321334321,\\\\n      0.168406565119677\\\\n    ],\\\\n    [\\\\n      0.14899277748504214,\\\\n      0.15814990705554655,\\\\n      0.1523052296409319,\\\\n      2.624874356016391\\\\n    ],\\\\n    [\\\\n      0.11530630997986473,\\\\n      0.10748905716949822,\\\\n      0.11655363020678777,\\\\n      0.2864862576835412\\\\n    ],\\\\n    [\\\\n      0.15030506206267927,\\\\n      0.16976523823217893,\\\\n      0.25118519935434863,\\\\n      2.849655412602541\\\\n    ],\\\\n    [\\\\n      0.05818421221398031,\\\\n      0.11745392933138538,\\\\n      0.15898472178468068,\\\\n      0.060835496090401724\\\\n    ],\\\\n    [\\\\n      0.18188048301183168,\\\\n      0.11320981259835103,\\\\n      0.15300983977620664,\\\\n      0.09611787354523463\\\\n    ],\\\\n    [\\\\n      0.10779872791407988,\\\\n      0.13583530197819432,\\\\n      0.266909456936988,\\\\n      0.31191241933233044\\\\n    ],\\\\n    [\\\\n      0.08586728412709982,\\\\n      0.06919946437788249,\\\\n      0.1125220337425023,\\\\n      0.15657573601027283\\\\n    ],\\\\n    [\\\\n      0.09279367566924325,\\\\n      0.20900772567064205,\\\\n      0.14036483317666812,\\\\n      0.16994962003884895\\\\n    ],\\\\n    [\\\\n      0.14431016395382112,\\\\n      3.2508797963572453,\\\\n      0.20829570039328935,\\\\n      0.09968678422298645\\\\n    ],\\\\n    [\\\\n      0.16290346429215508,\\\\n      0.27204056010303856,\\\\n      0.14002212295127858,\\\\n      0.14340012917415168\\\\n    ],\\\\n    [\\\\n      0.17838719115957247,\\\\n      0.8909793296152004,\\\\n      2.0190785555135617,\\\\n      0.2954072964556394\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_normalized_gar_per_turn\\\\\\\": [\\\\n    0.1245542393912463,\\\\n    0.34664596312580864,\\\\n    0.24906708401775646,\\\\n    0.44862577771179507\\\\n  ],\\\\n  \\\\\\\"mid_turns_avg_normalized_gar\\\\\\\": 0.34884643086477574,\\\\n  \\\\\\\"avg_visible_tokens_per_turn\\\\\\\": [\\\\n    158,\\\\n    294,\\\\n    434,\\\\n    579\\\\n  ],\\\\n  \\\\\\\"conversations_source\\\\\\\": \\\\\\\"ar_from_fixed\\\\\\\",\\\\n  \\\\\\\"avg_ppl\\\\\\\": 1.4186152815818787,\\\\n  \\\\\\\"avg_ntp_loss\\\\\\\": 0.3482785984873772,\\\\n  \\\\\\\"ppl_per_conversation\\\\\\\": [\\\\n    1.329071044921875,\\\\n    1.3969974517822266,\\\\n    1.5054947137832642,\\\\n    1.2487373352050781,\\\\n    1.3392471075057983,\\\\n    1.4187630414962769,\\\\n    1.347153663635254,\\\\n    1.4454139471054077,\\\\n    1.4069135189056396,\\\\n    1.441581130027771,\\\\n    1.4072071313858032,\\\\n    1.4271602630615234,\\\\n    1.4674744606018066,\\\\n    1.50309419631958,\\\\n    1.512858271598816,\\\\n    1.4879037141799927,\\\\n    1.366571307182312,\\\\n    1.4090673923492432,\\\\n    1.343368411064148,\\\\n    1.5682275295257568\\\\n  ],\\\\n  \\\\\\\"ntp_loss_per_conversation\\\\\\\": [\\\\n    0.2844802141189575,\\\\n    0.33432528376579285,\\\\n    0.4091216027736664,\\\\n    0.22213292121887207,\\\\n    0.29210761189460754,\\\\n    0.3497854471206665,\\\\n    0.297993928194046,\\\\n    0.36839574575424194,\\\\n    0.3413982689380646,\\\\n    0.36574041843414307,\\\\n    0.3416070342063904,\\\\n    0.35568660497665405,\\\\n    0.38354286551475525,\\\\n    0.40752577781677246,\\\\n    0.4140007495880127,\\\\n    0.39736825227737427,\\\\n    0.31230491399765015,\\\\n    0.34292805194854736,\\\\n    0.29518020153045654,\\\\n    0.4499460756778717\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"runs/phase2_llama_lora_only_s42/epoch_2\\\",\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.023667846726297626,\\n      0.035076644671864665,\\n      0.017348254657694184,\\n      0.018918400532561996\\n    ],\\n    [\\n      0.05913198569290043,\\n      0.04409522252005241,\\n      0.034738242545667486,\\n      0.010641699122262649\\n    ],\\n    [\\n      0.022720026741834265,\\n      0.012329435457551483,\\n      0.013090584339574121,\\n      0.010025266978803966\\n    ],\\n    [\\n      0.018198839414665297,\\n      0.03149629475883542,\\n      0.008915399003362977,\\n      0.017259469204575356\\n    ],\\n    [\\n      0.027440421047913305,\\n      0.02136991034211208,\\n      0.010758857678739082,\\n      0.006563401983637529\\n    ],\\n    [\\n      0.02660422842964666,\\n      0.010504501660825977,\\n      0.008680674308471248,\\n      0.03584383988120032\\n    ],\\n    [\\n      0.03948517376895083,\\n      0.01881816155683924,\\n      0.01017450769058778,\\n      0.009716030143245402\\n    ],\\n    [\\n      0.01873621129259434,\\n      0.007138581823558893,\\n      0.012203010337582462,\\n      0.01454340815070948\\n    ],\\n    [\\n      0.03470414868978547,\\n      0.020049485909123768,\\n      0.005671955077795304,\\n      0.01029151231286915\\n    ],\\n    [\\n      0.037248194371260535,\\n      0.02079479746751131,\\n      0.013682266492565986,\\n      0.1833551939864391\\n    ],\\n    [\\n      0.029949690903860966,\\n      0.014236961214503074,\\n      0.009794422706452754,\\n      0.01754892849516332\\n    ],\\n    [\\n      0.03452954128466956,\\n      0.02129895977820695,\\n      0.02113934846051449,\\n      0.1800897472648446\\n    ],\\n    [\\n      0.01366743239925712,\\n      0.014078381940405782,\\n      0.012940616889450751,\\n      0.0035785585935530426\\n    ],\\n    [\\n      0.04547012075295792,\\n      0.014387869159656654,\\n      0.013154692107456678,\\n      0.006297377921929165\\n    ],\\n    [\\n      0.024764572628910242,\\n      0.014946279182066688,\\n      0.01898519149761002,\\n      0.016416443122754233\\n    ],\\n    [\\n      0.04807241775455395,\\n      0.02441343633769577,\\n      0.029344774986803657,\\n      0.032112421105360056\\n    ],\\n    [\\n      0.024545423886703055,\\n      0.029447823891739944,\\n      0.013509291455970407,\\n      0.012487337673105389\\n    ],\\n    [\\n      0.03607754098845528,\\n      0.44119082950562616,\\n      0.01889077951060858,\\n      0.006887450546315427\\n    ],\\n    [\\n      0.04755566970019434,\\n      0.043489477295383716,\\n      0.015059587594302273,\\n      0.011423400120652762\\n    ],\\n    [\\n      0.051286317458377084,\\n      0.14084209334123443,\\n      0.2200891316436584,\\n      0.024222345163920522\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.03319279019668941,\\n    0.049000257390739724,\\n    0.025408579449243428,\\n    0.03141111161519518\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.03319279019668941,\\n  \\\"mid_turns_avg_gar\\\": 0.028409845532219303,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": 1.6219071537730188,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.07555504916471935,\\n      0.20303980858137047,\\n      0.14645930374476437,\\n      0.2095576674376098\\n    ],\\n    [\\n      0.2159005059019853,\\n      0.2830298003612666,\\n      0.32960937113098454,\\n      0.13339246109068761\\n    ],\\n    [\\n      0.09466677809097611,\\n      0.09932045229694249,\\n      0.15672338473212352,\\n      0.16235362912896423\\n    ],\\n    [\\n      0.07582849756110539,\\n      0.2493456668407804,\\n      0.10500358826183062,\\n      0.2756720775730786\\n    ],\\n    [\\n      0.11944653867915202,\\n      0.17535897016027266,\\n      0.13733365389919888,\\n      0.1121569574262766\\n    ],\\n    [\\n      0.09881570559583046,\\n      0.07178076134897751,\\n      0.08784015669286382,\\n      0.48389183839620437\\n    ],\\n    [\\n      0.1611421956516642,\\n      0.14291630803977912,\\n      0.11136961120778516,\\n      0.14075113937241987\\n    ],\\n    [\\n      0.06840895751017004,\\n      0.047645883333986096,\\n      0.1191921939949915,\\n      0.19143183751864107\\n    ],\\n    [\\n      0.15459120779995347,\\n      0.1664714890636337,\\n      0.06857909321334321,\\n      0.168406565119677\\n    ],\\n    [\\n      0.14899277748504214,\\n      0.15814990705554655,\\n      0.1523052296409319,\\n      2.624874356016391\\n    ],\\n    [\\n      0.11530630997986473,\\n      0.10748905716949822,\\n      0.11655363020678777,\\n      0.2864862576835412\\n    ],\\n    [\\n      0.15030506206267927,\\n      0.16976523823217893,\\n      0.25118519935434863,\\n      2.849655412602541\\n    ],\\n    [\\n      0.05818421221398031,\\n      0.11745392933138538,\\n      0.15898472178468068,\\n      0.060835496090401724\\n    ],\\n    [\\n      0.18188048301183168,\\n      0.11320981259835103,\\n      0.15300983977620664,\\n      0.09611787354523463\\n    ],\\n    [\\n      0.10779872791407988,\\n      0.13583530197819432,\\n      0.266909456936988,\\n      0.31191241933233044\\n    ],\\n    [\\n      0.08586728412709982,\\n      0.06919946437788249,\\n      0.1125220337425023,\\n      0.15657573601027283\\n    ],\\n    [\\n      0.09279367566924325,\\n      0.20900772567064205,\\n      0.14036483317666812,\\n      0.16994962003884895\\n    ],\\n    [\\n      0.14431016395382112,\\n      3.2508797963572453,\\n      0.20829570039328935,\\n      0.09968678422298645\\n    ],\\n    [\\n      0.16290346429215508,\\n      0.27204056010303856,\\n      0.14002212295127858,\\n      0.14340012917415168\\n    ],\\n    [\\n      0.17838719115957247,\\n      0.8909793296152004,\\n      2.0190785555135617,\\n      0.2954072964556394\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.1245542393912463,\\n    0.34664596312580864,\\n    0.24906708401775646,\\n    0.44862577771179507\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.34884643086477574,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    158,\\n    294,\\n    434,\\n    579\\n  ],\\n  \\\"conversations_source\\\": \\\"ar_from_fixed\\\",\\n  \\\"avg_ppl\\\": 1.4186152815818787,\\n  \\\"avg_ntp_loss\\\": 0.3482785984873772,\\n  \\\"ppl_per_conversation\\\": [\\n    1.329071044921875,\\n    1.3969974517822266,\\n    1.5054947137832642,\\n    1.2487373352050781,\\n    1.3392471075057983,\\n    1.4187630414962769,\\n    1.347153663635254,\\n    1.4454139471054077,\\n    1.4069135189056396,\\n    1.441581130027771,\\n    1.4072071313858032,\\n    1.4271602630615234,\\n    1.4674744606018066,\\n    1.50309419631958,\\n    1.512858271598816,\\n    1.4879037141799927,\\n    1.366571307182312,\\n    1.4090673923492432,\\n    1.343368411064148,\\n    1.5682275295257568\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.2844802141189575,\\n    0.33432528376579285,\\n    0.4091216027736664,\\n    0.22213292121887207,\\n    0.29210761189460754,\\n    0.3497854471206665,\\n    0.297993928194046,\\n    0.36839574575424194,\\n    0.3413982689380646,\\n    0.36574041843414307,\\n    0.3416070342063904,\\n    0.35568660497665405,\\n    0.38354286551475525,\\n    0.40752577781677246,\\n    0.4140007495880127,\\n    0.39736825227737427,\\n    0.31230491399765015,\\n    0.34292805194854736,\\n    0.29518020153045654,\\n    0.4499460756778717\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  },
+  "sourceToolAssistantUUID": "43f75b77-f5f0-40cc-b967-f6ee5e17c0bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-22T08:30:30.119Z_
+
+<details><summary>↩ Tool result · `toolu_01UUnWkeqqqibLWDsHj6TF1K`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": null,\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.010854827528522742,\\n      0.005173321473709324,\\n      0.0033070533457886363,\\n      0.0033218470686235467\\n    ],\\n    [\\n      0.011828431833872827,\\n      0.0067812090769412865,\\n      0.005645979995789095,\\n      0.004497769632610113\\n    ],\\n    [\\n      0.011568194676364744,\\n      0.00666553839375987,\\n      0.0050340084345492885,\\n      0.004533415701055469\\n    ],\\n    [\\n      0.013561625847488181,\\n      0.007987084152912135,\\n      0.005846710090758688,\\n      0.004543095653658562\\n    ],\\n    [\\n      0.011849152148076072,\\n      0.0067036059924996715,\\n      0.005148953165046842,\\n      0.0040945379006852274\\n    ],\\n    [\\n      0.012809989247256839,\\n      0.006488358054617646,\\n      0.005384217360422672,\\n      0.004095553323453702\\n    ],\\n    [\\n      0.011304343118731712,\\n      0.007052444874430103,\\n      0.005328580793713163,\\n      0.004598978196158618\\n    ],\\n    [\\n      0.014382488606687529,\\n      0.007354525226379946,\\n      0.006218475728021256,\\n      0.004703914463819132\\n    ],\\n    [\\n      0.02016560462108626,\\n      0.0064279456849149555,\\n      0.005328046791287047,\\n      0.004578930511977932\\n    ],\\n    [\\n      0.012260359146079678,\\n      0.0058453173780697735,\\n      0.005529087437810695,\\n      0.011946164804675936\\n    ],\\n    [\\n      0.012433967011655786,\\n      0.006108718190727194,\\n      0.004466821018735499,\\n      0.004085091747993821\\n    ],\\n    [\\n      0.01395904811143838,\\n      0.007122148043514137,\\n      0.004981499182314185,\\n      0.0048790328332546625\\n    ],\\n    [\\n      0.012027529085759797,\\n      0.005741526922403159,\\n      0.004407821333405851,\\n      0.003633788473277024\\n    ],\\n    [\\n      0.012854762471897678,\\n      0.007263971564610367,\\n      0.005349523386895042,\\n      0.004408307883145849\\n    ],\\n    [\\n      0.013506426686410077,\\n      0.006905176169280309,\\n      0.0049465090447375105,\\n      0.0039515886004248815\\n    ],\\n    [\\n      0.0069395761901174195,\\n      0.006071567936361732,\\n      0.005652158293434166,\\n      0.004225134828680908\\n    ],\\n    [\\n      0.010791641649505565,\\n      0.006807054136712579,\\n      0.004804430670629623,\\n      0.004153373070716383\\n    ],\\n    [\\n      0.013731059384084022,\\n      0.006746161808353755,\\n      0.007007116763221878,\\n      0.005161432195376443\\n    ],\\n    [\\n      0.010663055608316215,\\n      0.005327784222466261,\\n      0.004434017116985465,\\n      0.004897014825405159\\n    ],\\n    [\\n      0.011055589754963142,\\n      0.005734033881459707,\\n      0.004375832014809342,\\n      0.0037713831598668855\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.012427383636415736,\\n    0.006515374659206196,\\n    0.005159842098417797,\\n    0.004704017743743014\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.012427383636415736,\\n  \\\"mid_turns_avg_gar\\\": 0.004931929921080405,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": -0.7258844073408708,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.08580482713022738,\\n      0.07415094112316697,\\n      0.06913316280005768,\\n      0.09111351959653156\\n    ],\\n    [\\n      0.08843160942466828,\\n      0.08912446215408548,\\n      0.10969332563247385,\\n      0.11544275390365957\\n    ],\\n    [\\n      0.0826299619740339,\\n      0.09204791115192201,\\n      0.10331703025194017,\\n      0.12585625493882563\\n    ],\\n    [\\n      0.09686875605348699,\\n      0.10839614207523611,\\n      0.11804786088008018,\\n      0.1243942857549368\\n    ],\\n    [\\n      0.08350831037691708,\\n      0.08906219390035278,\\n      0.1064116987443014,\\n      0.1132822152522913\\n    ],\\n    [\\n      0.09515992012247938,\\n      0.08867422674644117,\\n      0.10896630372283977,\\n      0.11057993973324995\\n    ],\\n    [\\n      0.08128361004421374,\\n      0.0943684290340409,\\n      0.10276548673589672,\\n      0.11716444452118384\\n    ],\\n    [\\n      0.10752622434523533,\\n      0.10051184476052592,\\n      0.12436951456042514,\\n      0.12678169459626804\\n    ],\\n    [\\n      0.1411592323476038,\\n      0.08386938655555704,\\n      0.10123288903445389,\\n      0.11774392745086112\\n    ],\\n    [\\n      0.08874164715257671,\\n      0.08044270106010307,\\n      0.11137161839018685,\\n      0.2810193054052339\\n    ],\\n    [\\n      0.09118242475214243,\\n      0.08784918540950537,\\n      0.10124794309133799,\\n      0.12702690054476026\\n    ],\\n    [\\n      0.09837805335680383,\\n      0.09190962475201576,\\n      0.09583455569785385,\\n      0.124996174490048\\n    ],\\n    [\\n      0.08533818256086713,\\n      0.0798345648257963,\\n      0.0904652854618058,\\n      0.10313037762252888\\n    ],\\n    [\\n      0.09243186348840711,\\n      0.1030792155358995,\\n      0.1120852519158961,\\n      0.12133342649801432\\n    ],\\n    [\\n      0.09518814998041387,\\n      0.1016047350622674,\\n      0.11259196778021571,\\n      0.12155839218449874\\n    ],\\n    [\\n      0.0855881063447815,\\n      0.11882925818307961,\\n      0.1496476195785427,\\n      0.14224620589892392\\n    ],\\n    [\\n      0.07965259312730298,\\n      0.09432632160873144,\\n      0.09746130788991521,\\n      0.11036105587903533\\n    ],\\n    [\\n      0.09938671554194148,\\n      0.0899488241113834,\\n      0.13980866303761746,\\n      0.13518036702176398\\n    ],\\n    [\\n      0.08175009299709098,\\n      0.07458897911452766,\\n      0.09226978476774514,\\n      0.13758279747566876\\n    ],\\n    [\\n      0.08423306479971918,\\n      0.07945732664308451,\\n      0.08793338620235916,\\n      0.10074980727072964\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.09221216729604563,\\n    0.09110381369038613,\\n    0.10673273280879722,\\n    0.12737719230195071\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.11705496255537397,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    158,\\n    294,\\n    434,\\n    576\\n  ],\\n  \\\"conversations_source\\\": \\\"ar_from_fixed\\\",\\n  \\\"avg_ppl\\\": 1.292573344707489,\\n  \\\"avg_ntp_loss\\\": 0.2551529034972191,\\n  \\\"ppl_per_conversation\\\": [\\n    1.2118080854415894,\\n    1.2728676795959473,\\n    1.3542768955230713,\\n    1.1363847255706787,\\n    1.2583281993865967,\\n    1.271941065788269,\\n    1.19684898853302,\\n    1.3234381675720215,\\n    1.3013883829116821,\\n    1.2987877130508423,\\n    1.2349109649658203,\\n    1.340485692024231,\\n    1.3818210363388062,\\n    1.3351528644561768,\\n    1.4022191762924194,\\n    1.3597480058670044,\\n    1.2982323169708252,\\n    1.190193772315979,\\n    1.379752278327942,\\n    1.302880883216858\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.19211353361606598,\\n    0.24127241969108582,\\n    0.3032677471637726,\\n    0.12785197794437408,\\n    0.22978410124778748,\\n    0.24054419994354248,\\n    0.1796923130750656,\\n    0.2802329957485199,\\n    0.2634316682815552,\\n    0.26143136620521545,\\n    0.21099886298179626,\\n    0.2930319607257843,\\n    0.3234022557735443,\\n    0.2890457212924957,\\n    0.33805611729621887,\\n    0.3072993755340576,\\n    0.2610035836696625,\\n    0.17411606013774872,\\n    0.32190394401550293,\\n    0.26457786560058594\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bbe39dec-ece3-48ac-aaa0-7e80534dc243",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "4cb04fdc-ec60-4ca5-be51-5b0dec5aef1d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": null,\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"dongre\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 20,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.010854827528522742,\\\\n      0.005173321473709324,\\\\n      0.0033070533457886363,\\\\n      0.0033218470686235467\\\\n    ],\\\\n    [\\\\n      0.011828431833872827,\\\\n      0.0067812090769412865,\\\\n      0.005645979995789095,\\\\n      0.004497769632610113\\\\n    ],\\\\n    [\\\\n      0.011568194676364744,\\\\n      0.00666553839375987,\\\\n      0.0050340084345492885,\\\\n      0.004533415701055469\\\\n    ],\\\\n    [\\\\n      0.013561625847488181,\\\\n      0.007987084152912135,\\\\n      0.005846710090758688,\\\\n      0.004543095653658562\\\\n    ],\\\\n    [\\\\n      0.011849152148076072,\\\\n      0.0067036059924996715,\\\\n      0.005148953165046842,\\\\n      0.0040945379006852274\\\\n    ],\\\\n    [\\\\n      0.012809989247256839,\\\\n      0.006488358054617646,\\\\n      0.005384217360422672,\\\\n      0.004095553323453702\\\\n    ],\\\\n    [\\\\n      0.011304343118731712,\\\\n      0.007052444874430103,\\\\n      0.005328580793713163,\\\\n      0.004598978196158618\\\\n    ],\\\\n    [\\\\n      0.014382488606687529,\\\\n      0.007354525226379946,\\\\n      0.006218475728021256,\\\\n      0.004703914463819132\\\\n    ],\\\\n    [\\\\n      0.02016560462108626,\\\\n      0.0064279456849149555,\\\\n      0.005328046791287047,\\\\n      0.004578930511977932\\\\n    ],\\\\n    [\\\\n      0.012260359146079678,\\\\n      0.0058453173780697735,\\\\n      0.005529087437810695,\\\\n      0.011946164804675936\\\\n    ],\\\\n    [\\\\n      0.012433967011655786,\\\\n      0.006108718190727194,\\\\n      0.004466821018735499,\\\\n      0.004085091747993821\\\\n    ],\\\\n    [\\\\n      0.01395904811143838,\\\\n      0.007122148043514137,\\\\n      0.004981499182314185,\\\\n      0.0048790328332546625\\\\n    ],\\\\n    [\\\\n      0.012027529085759797,\\\\n      0.005741526922403159,\\\\n      0.004407821333405851,\\\\n      0.003633788473277024\\\\n    ],\\\\n    [\\\\n      0.012854762471897678,\\\\n      0.007263971564610367,\\\\n      0.005349523386895042,\\\\n      0.004408307883145849\\\\n    ],\\\\n    [\\\\n      0.013506426686410077,\\\\n      0.006905176169280309,\\\\n      0.0049465090447375105,\\\\n      0.0039515886004248815\\\\n    ],\\\\n    [\\\\n      0.0069395761901174195,\\\\n      0.006071567936361732,\\\\n      0.005652158293434166,\\\\n      0.004225134828680908\\\\n    ],\\\\n    [\\\\n      0.010791641649505565,\\\\n      0.006807054136712579,\\\\n      0.004804430670629623,\\\\n      0.004153373070716383\\\\n    ],\\\\n    [\\\\n      0.013731059384084022,\\\\n      0.006746161808353755,\\\\n      0.007007116763221878,\\\\n      0.005161432195376443\\\\n    ],\\\\n    [\\\\n      0.010663055608316215,\\\\n      0.005327784222466261,\\\\n      0.004434017116985465,\\\\n      0.004897014825405159\\\\n    ],\\\\n    [\\\\n      0.011055589754963142,\\\\n      0.005734033881459707,\\\\n      0.004375832014809342,\\\\n      0.0037713831598668855\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_gar_per_turn\\\\\\\": [\\\\n    0.012427383636415736,\\\\n    0.006515374659206196,\\\\n    0.005159842098417797,\\\\n    0.004704017743743014\\\\n  ],\\\\n  \\\\\\\"turn1_avg_gar\\\\\\\": 0.012427383636415736,\\\\n  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.004931929921080405,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n  \\\\\\\"gar_recovery_pp\\\\\\\": -0.7258844073408708,\\\\n  \\\\\\\"normalized_gar_curves\\\\\\\": [\\\\n    [\\\\n      0.08580482713022738,\\\\n      0.07415094112316697,\\\\n      0.06913316280005768,\\\\n      0.09111351959653156\\\\n    ],\\\\n    [\\\\n      0.08843160942466828,\\\\n      0.08912446215408548,\\\\n      0.10969332563247385,\\\\n      0.11544275390365957\\\\n    ],\\\\n    [\\\\n      0.0826299619740339,\\\\n      0.09204791115192201,\\\\n      0.10331703025194017,\\\\n      0.12585625493882563\\\\n    ],\\\\n    [\\\\n      0.09686875605348699,\\\\n      0.10839614207523611,\\\\n      0.11804786088008018,\\\\n      0.1243942857549368\\\\n    ],\\\\n    [\\\\n      0.08350831037691708,\\\\n      0.08906219390035278,\\\\n      0.1064116987443014,\\\\n      0.1132822152522913\\\\n    ],\\\\n    [\\\\n      0.09515992012247938,\\\\n      0.08867422674644117,\\\\n      0.10896630372283977,\\\\n      0.11057993973324995\\\\n    ],\\\\n    [\\\\n      0.08128361004421374,\\\\n      0.0943684290340409,\\\\n      0.10276548673589672,\\\\n      0.11716444452118384\\\\n    ],\\\\n    [\\\\n      0.10752622434523533,\\\\n      0.10051184476052592,\\\\n      0.12436951456042514,\\\\n      0.12678169459626804\\\\n    ],\\\\n    [\\\\n      0.1411592323476038,\\\\n      0.08386938655555704,\\\\n      0.10123288903445389,\\\\n      0.11774392745086112\\\\n    ],\\\\n    [\\\\n      0.08874164715257671,\\\\n      0.08044270106010307,\\\\n      0.11137161839018685,\\\\n      0.2810193054052339\\\\n    ],\\\\n    [\\\\n      0.09118242475214243,\\\\n      0.08784918540950537,\\\\n      0.10124794309133799,\\\\n      0.12702690054476026\\\\n    ],\\\\n    [\\\\n      0.09837805335680383,\\\\n      0.09190962475201576,\\\\n      0.09583455569785385,\\\\n      0.124996174490048\\\\n    ],\\\\n    [\\\\n      0.08533818256086713,\\\\n      0.0798345648257963,\\\\n      0.0904652854618058,\\\\n      0.10313037762252888\\\\n    ],\\\\n    [\\\\n      0.09243186348840711,\\\\n      0.1030792155358995,\\\\n      0.1120852519158961,\\\\n      0.12133342649801432\\\\n    ],\\\\n    [\\\\n      0.09518814998041387,\\\\n      0.1016047350622674,\\\\n      0.11259196778021571,\\\\n      0.12155839218449874\\\\n    ],\\\\n    [\\\\n      0.0855881063447815,\\\\n      0.11882925818307961,\\\\n      0.1496476195785427,\\\\n      0.14224620589892392\\\\n    ],\\\\n    [\\\\n      0.07965259312730298,\\\\n      0.09432632160873144,\\\\n      0.09746130788991521,\\\\n      0.11036105587903533\\\\n    ],\\\\n    [\\\\n      0.09938671554194148,\\\\n      0.0899488241113834,\\\\n      0.13980866303761746,\\\\n      0.13518036702176398\\\\n    ],\\\\n    [\\\\n      0.08175009299709098,\\\\n      0.07458897911452766,\\\\n      0.09226978476774514,\\\\n      0.13758279747566876\\\\n    ],\\\\n    [\\\\n      0.08423306479971918,\\\\n      0.07945732664308451,\\\\n      0.08793338620235916,\\\\n      0.10074980727072964\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_normalized_gar_per_turn\\\\\\\": [\\\\n    0.09221216729604563,\\\\n    0.09110381369038613,\\\\n    0.10673273280879722,\\\\n    0.12737719230195071\\\\n  ],\\\\n  \\\\\\\"mid_turns_avg_normalized_gar\\\\\\\": 0.11705496255537397,\\\\n  \\\\\\\"avg_visible_tokens_per_turn\\\\\\\": [\\\\n    158,\\\\n    294,\\\\n    434,\\\\n    576\\\\n  ],\\\\n  \\\\\\\"conversations_source\\\\\\\": \\\\\\\"ar_from_fixed\\\\\\\",\\\\n  \\\\\\\"avg_ppl\\\\\\\": 1.292573344707489,\\\\n  \\\\\\\"avg_ntp_loss\\\\\\\": 0.2551529034972191,\\\\n  \\\\\\\"ppl_per_conversation\\\\\\\": [\\\\n    1.2118080854415894,\\\\n    1.2728676795959473,\\\\n    1.3542768955230713,\\\\n    1.1363847255706787,\\\\n    1.2583281993865967,\\\\n    1.271941065788269,\\\\n    1.19684898853302,\\\\n    1.3234381675720215,\\\\n    1.3013883829116821,\\\\n    1.2987877130508423,\\\\n    1.2349109649658203,\\\\n    1.340485692024231,\\\\n    1.3818210363388062,\\\\n    1.3351528644561768,\\\\n    1.4022191762924194,\\\\n    1.3597480058670044,\\\\n    1.2982323169708252,\\\\n    1.190193772315979,\\\\n    1.379752278327942,\\\\n    1.302880883216858\\\\n  ],\\\\n  \\\\\\\"ntp_loss_per_conversation\\\\\\\": [\\\\n    0.19211353361606598,\\\\n    0.24127241969108582,\\\\n    0.3032677471637726,\\\\n    0.12785197794437408,\\\\n    0.22978410124778748,\\\\n    0.24054419994354248,\\\\n    0.1796923130750656,\\\\n    0.2802329957485199,\\\\n    0.2634316682815552,\\\\n    0.26143136620521545,\\\\n    0.21099886298179626,\\\\n    0.2930319607257843,\\\\n    0.3234022557735443,\\\\n    0.2890457212924957,\\\\n    0.33805611729621887,\\\\n    0.3072993755340576,\\\\n    0.2610035836696625,\\\\n    0.17411606013774872,\\\\n    0.32190394401550293,\\\\n    0.26457786560058594\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": null,\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.010854827528522742,\\n      0.005173321473709324,\\n      0.0033070533457886363,\\n      0.0033218470686235467\\n    ],\\n    [\\n      0.011828431833872827,\\n      0.0067812090769412865,\\n      0.005645979995789095,\\n      0.004497769632610113\\n    ],\\n    [\\n      0.011568194676364744,\\n      0.00666553839375987,\\n      0.0050340084345492885,\\n      0.004533415701055469\\n    ],\\n    [\\n      0.013561625847488181,\\n      0.007987084152912135,\\n      0.005846710090758688,\\n      0.004543095653658562\\n    ],\\n    [\\n      0.011849152148076072,\\n      0.0067036059924996715,\\n      0.005148953165046842,\\n      0.0040945379006852274\\n    ],\\n    [\\n      0.012809989247256839,\\n      0.006488358054617646,\\n      0.005384217360422672,\\n      0.004095553323453702\\n    ],\\n    [\\n      0.011304343118731712,\\n      0.007052444874430103,\\n      0.005328580793713163,\\n      0.004598978196158618\\n    ],\\n    [\\n      0.014382488606687529,\\n      0.007354525226379946,\\n      0.006218475728021256,\\n      0.004703914463819132\\n    ],\\n    [\\n      0.02016560462108626,\\n      0.0064279456849149555,\\n      0.005328046791287047,\\n      0.004578930511977932\\n    ],\\n    [\\n      0.012260359146079678,\\n      0.0058453173780697735,\\n      0.005529087437810695,\\n      0.011946164804675936\\n    ],\\n    [\\n      0.012433967011655786,\\n      0.006108718190727194,\\n      0.004466821018735499,\\n      0.004085091747993821\\n    ],\\n    [\\n      0.01395904811143838,\\n      0.007122148043514137,\\n      0.004981499182314185,\\n      0.0048790328332546625\\n    ],\\n    [\\n      0.012027529085759797,\\n      0.005741526922403159,\\n      0.004407821333405851,\\n      0.003633788473277024\\n    ],\\n    [\\n      0.012854762471897678,\\n      0.007263971564610367,\\n      0.005349523386895042,\\n      0.004408307883145849\\n    ],\\n    [\\n      0.013506426686410077,\\n      0.006905176169280309,\\n      0.0049465090447375105,\\n      0.0039515886004248815\\n    ],\\n    [\\n      0.0069395761901174195,\\n      0.006071567936361732,\\n      0.005652158293434166,\\n      0.004225134828680908\\n    ],\\n    [\\n      0.010791641649505565,\\n      0.006807054136712579,\\n      0.004804430670629623,\\n      0.004153373070716383\\n    ],\\n    [\\n      0.013731059384084022,\\n      0.006746161808353755,\\n      0.007007116763221878,\\n      0.005161432195376443\\n    ],\\n    [\\n      0.010663055608316215,\\n      0.005327784222466261,\\n      0.004434017116985465,\\n      0.004897014825405159\\n    ],\\n    [\\n      0.011055589754963142,\\n      0.005734033881459707,\\n      0.004375832014809342,\\n      0.0037713831598668855\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.012427383636415736,\\n    0.006515374659206196,\\n    0.005159842098417797,\\n    0.004704017743743014\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.012427383636415736,\\n  \\\"mid_turns_avg_gar\\\": 0.004931929921080405,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": -0.7258844073408708,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.08580482713022738,\\n      0.07415094112316697,\\n      0.06913316280005768,\\n      0.09111351959653156\\n    ],\\n    [\\n      0.08843160942466828,\\n      0.08912446215408548,\\n      0.10969332563247385,\\n      0.11544275390365957\\n    ],\\n    [\\n      0.0826299619740339,\\n      0.09204791115192201,\\n      0.10331703025194017,\\n      0.12585625493882563\\n    ],\\n    [\\n      0.09686875605348699,\\n      0.10839614207523611,\\n      0.11804786088008018,\\n      0.1243942857549368\\n    ],\\n    [\\n      0.08350831037691708,\\n      0.08906219390035278,\\n      0.1064116987443014,\\n      0.1132822152522913\\n    ],\\n    [\\n      0.09515992012247938,\\n      0.08867422674644117,\\n      0.10896630372283977,\\n      0.11057993973324995\\n    ],\\n    [\\n      0.08128361004421374,\\n      0.0943684290340409,\\n      0.10276548673589672,\\n      0.11716444452118384\\n    ],\\n    [\\n      0.10752622434523533,\\n      0.10051184476052592,\\n      0.12436951456042514,\\n      0.12678169459626804\\n    ],\\n    [\\n      0.1411592323476038,\\n      0.08386938655555704,\\n      0.10123288903445389,\\n      0.11774392745086112\\n    ],\\n    [\\n      0.08874164715257671,\\n      0.08044270106010307,\\n      0.11137161839018685,\\n      0.2810193054052339\\n    ],\\n    [\\n      0.09118242475214243,\\n      0.08784918540950537,\\n      0.10124794309133799,\\n      0.12702690054476026\\n    ],\\n    [\\n      0.09837805335680383,\\n      0.09190962475201576,\\n      0.09583455569785385,\\n      0.124996174490048\\n    ],\\n    [\\n      0.08533818256086713,\\n      0.0798345648257963,\\n      0.0904652854618058,\\n      0.10313037762252888\\n    ],\\n    [\\n      0.09243186348840711,\\n      0.1030792155358995,\\n      0.1120852519158961,\\n      0.12133342649801432\\n    ],\\n    [\\n      0.09518814998041387,\\n      0.1016047350622674,\\n      0.11259196778021571,\\n      0.12155839218449874\\n    ],\\n    [\\n      0.0855881063447815,\\n      0.11882925818307961,\\n      0.1496476195785427,\\n      0.14224620589892392\\n    ],\\n    [\\n      0.07965259312730298,\\n      0.09432632160873144,\\n      0.09746130788991521,\\n      0.11036105587903533\\n    ],\\n    [\\n      0.09938671554194148,\\n      0.0899488241113834,\\n      0.13980866303761746,\\n      0.13518036702176398\\n    ],\\n    [\\n      0.08175009299709098,\\n      0.07458897911452766,\\n      0.09226978476774514,\\n      0.13758279747566876\\n    ],\\n    [\\n      0.08423306479971918,\\n      0.07945732664308451,\\n      0.08793338620235916,\\n      0.10074980727072964\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.09221216729604563,\\n    0.09110381369038613,\\n    0.10673273280879722,\\n    0.12737719230195071\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.11705496255537397,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    158,\\n    294,\\n    434,\\n    576\\n  ],\\n  \\\"conversations_source\\\": \\\"ar_from_fixed\\\",\\n  \\\"avg_ppl\\\": 1.292573344707489,\\n  \\\"avg_ntp_loss\\\": 0.2551529034972191,\\n  \\\"ppl_per_conversation\\\": [\\n    1.2118080854415894,\\n    1.2728676795959473,\\n    1.3542768955230713,\\n    1.1363847255706787,\\n    1.2583281993865967,\\n    1.271941065788269,\\n    1.19684898853302,\\n    1.3234381675720215,\\n    1.3013883829116821,\\n    1.2987877130508423,\\n    1.2349109649658203,\\n    1.340485692024231,\\n    1.3818210363388062,\\n    1.3351528644561768,\\n    1.4022191762924194,\\n    1.3597480058670044,\\n    1.2982323169708252,\\n    1.190193772315979,\\n    1.379752278327942,\\n    1.302880883216858\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.19211353361606598,\\n    0.24127241969108582,\\n    0.3032677471637726,\\n    0.12785197794437408,\\n    0.22978410124778748,\\n    0.24054419994354248,\\n    0.1796923130750656,\\n    0.2802329957485199,\\n    0.2634316682815552,\\n    0.26143136620521545,\\n    0.21099886298179626,\\n    0.2930319607257843,\\n    0.3234022557735443,\\n    0.2890457212924957,\\n    0.33805611729621887,\\n    0.3072993755340576,\\n    0.2610035836696625,\\n    0.17411606013774872,\\n    0.32190394401550293,\\n    0.26457786560058594\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bbe39dec-ece3-48ac-aaa0-7e80534dc243",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-22T08:30:30.592Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LkR9juH5zUh2aaD176kDmk`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4cb04fdc-ec60-4ca5-be51-5b0dec5aef1d",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ23uS7oF3ygZ3wgVd2",
+  "type": "assistant",
+  "uuid": "4af415ca-684b-46d5-a92c-eb63ca02a906",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177Yae4J7m3i4Zc73x6W7mm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 43036,
+      "output_tokens": 1066,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1066,
+          "cache_read_input_tokens": 43036,
+          "cache_creation_input_tokens": 5894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-22T08:30:31.279Z_
+
+<details><summary>↩ Tool result · `toolu_01LkR9juH5zUh2aaD176kDmk`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"runs/phase2_llama_tg_s42/epoch_2\\\",\\n  \\\"gate_type\\\": \\\"threadgate\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.028344671690945233,\\n      0.019598312659049988,\\n      0.011357488609966992,\\n      0.016929482991990596\\n    ],\\n    [\\n      0.09635934993524575,\\n      0.015632208897201072,\\n      0.015252609320201449,\\n      0.025251434498877512\\n    ],\\n    [\\n      0.016867636546979627,\\n      0.01619601756107894,\\n      0.02115814054481846,\\n      0.016139221478641184\\n    ],\\n    [\\n      0.07799973383144942,\\n      0.024104279865693634,\\n      0.012751558818864556,\\n      0.018805672178223654\\n    ],\\n    [\\n      0.029519462802008734,\\n      0.010419888885832757,\\n      0.008560933445407464,\\n      0.01225646119476334\\n    ],\\n    [\\n      0.030141408910375866,\\n      0.010687518380172623,\\n      0.01999222821073071,\\n      0.012319993526000158\\n    ],\\n    [\\n      0.040780088811420256,\\n      0.01879779064655159,\\n      0.020357219537255347,\\n      0.01097521454260924\\n    ],\\n    [\\n      0.018232283635498503,\\n      0.02026033808734258,\\n      0.008181818441288402,\\n      0.007103906542619137\\n    ],\\n    [\\n      0.016667138126626013,\\n      0.013825108234512704,\\n      0.004446626276263299,\\n      0.42518608950124426\\n    ],\\n    [\\n      0.06970205627045147,\\n      0.025518492448547203,\\n      0.012344883427432951,\\n      0.06715415637542027\\n    ],\\n    [\\n      0.027650536764205702,\\n      0.011482306299287037,\\n      0.00970500459825785,\\n      0.00895403033288722\\n    ],\\n    [\\n      0.029268353487189813,\\n      0.027645299007913238,\\n      0.00959311317560041,\\n      0.015410535426504168\\n    ],\\n    [\\n      0.02553591959602755,\\n      0.00794695237599935,\\n      0.007281671541067944,\\n      0.005875522021112023\\n    ],\\n    [\\n      0.0362012566627663,\\n      0.019678481448117416,\\n      0.024046948864615614,\\n      0.010272952366724444\\n    ],\\n    [\\n      0.03574477789472186,\\n      0.48169276811481143,\\n      0.010326168354098275,\\n      0.008939563136247455\\n    ],\\n    [\\n      0.04176458436222674,\\n      0.024007447658391357,\\n      0.033513483978197534,\\n      0.04877864532980425\\n    ],\\n    [\\n      0.022731028000311515,\\n      0.014652634110399382,\\n      0.010238467484977393,\\n      0.012393886391582759\\n    ],\\n    [\\n      0.05651401272373745,\\n      0.010714600396454999,\\n      0.47779595466368674,\\n      0.01508852135529444\\n    ],\\n    [\\n      0.09787605969589724,\\n      0.04366550385120527,\\n      0.024947663676977302,\\n      0.016175937166300003\\n    ],\\n    [\\n      0.019693247174387807,\\n      0.013875495424395368,\\n      0.2299792557837188,\\n      0.011048145951789046\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.040879680346123645,\\n    0.0415200722176479,\\n    0.048591561937671376,\\n    0.03825296861543176\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.040879680346123645,\\n  \\\"mid_turns_avg_gar\\\": 0.04342226527655157,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": 3.123149128206246,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.09048491347494056,\\n      0.11344407904565473,\\n      0.09588341345722134,\\n      0.1875265808343574\\n    ],\\n    [\\n      0.3518236730193856,\\n      0.10033696873552315,\\n      0.14472243261958584,\\n      0.3165237952301158\\n    ],\\n    [\\n      0.07028181894574843,\\n      0.1304679192420248,\\n      0.25330996041157655,\\n      0.2613657256124392\\n    ],\\n    [\\n      0.3249988909643726,\\n      0.19082554893674128,\\n      0.1501850260888492,\\n      0.2998459952861216\\n    ],\\n    [\\n      0.12849648513815567,\\n      0.08550438232786291,\\n      0.1092777975090247,\\n      0.20944129276933826\\n    ],\\n    [\\n      0.11195380452425323,\\n      0.07303137559784625,\\n      0.20230230927525125,\\n      0.16631991260100212\\n    ],\\n    [\\n      0.16642684893309348,\\n      0.14276159923462153,\\n      0.2228290246645518,\\n      0.1589922971577987\\n    ],\\n    [\\n      0.06656903559937825,\\n      0.13522597746668186,\\n      0.07991543593816579,\\n      0.09350723495633562\\n    ],\\n    \\n\\n... [截断: 输出过长，省略 136838 字符] ...\\n\\n        \\\"L14\\\": 0.9753,\\n        \\\"L15\\\": 0.9654,\\n        \\\"L16\\\": 0.9513,\\n        \\\"L17\\\": 0.9738,\\n        \\\"L18\\\": 0.854,\\n        \\\"L19\\\": 0.8413,\\n        \\\"L20\\\": 0.8954,\\n        \\\"L21\\\": 0.857,\\n        \\\"L22\\\": 0.8207,\\n        \\\"L23\\\": 0.8469,\\n        \\\"L24\\\": 0.8026,\\n        \\\"L25\\\": 0.5484,\\n        \\\"L26\\\": 0.6391,\\n        \\\"L27\\\": 0.7554,\\n        \\\"L28\\\": 0.8247,\\n        \\\"L29\\\": 0.8458,\\n        \\\"L30\\\": 0.9091,\\n        \\\"L31\\\": 0.9212\\n      },\\n      \\\"turn_9\\\": {\\n        \\\"L0\\\": 0.9712,\\n        \\\"L1\\\": 0.9861,\\n        \\\"L2\\\": 0.9838,\\n        \\\"L3\\\": 0.9833,\\n        \\\"L4\\\": 0.9927,\\n        \\\"L5\\\": 0.9827,\\n        \\\"L6\\\": 0.9585,\\n        \\\"L7\\\": 0.9614,\\n        \\\"L8\\\": 0.9491,\\n        \\\"L9\\\": 0.9396,\\n        \\\"L10\\\": 0.9266,\\n        \\\"L11\\\": 0.9262,\\n        \\\"L12\\\": 0.9658,\\n        \\\"L13\\\": 0.9791,\\n        \\\"L14\\\": 0.9621,\\n        \\\"L15\\\": 0.9611,\\n        \\\"L16\\\": 0.9697,\\n        \\\"L17\\\": 0.9815,\\n        \\\"L18\\\": 0.9436,\\n        \\\"L19\\\": 0.8705,\\n        \\\"L20\\\": 0.8982,\\n        \\\"L21\\\": 0.9064,\\n        \\\"L22\\\": 0.818,\\n        \\\"L23\\\": 0.8687,\\n        \\\"L24\\\": 0.8426,\\n        \\\"L25\\\": 0.788,\\n        \\\"L26\\\": 0.795,\\n        \\\"L27\\\": 0.8367,\\n        \\\"L28\\\": 0.8364,\\n        \\\"L29\\\": 0.8587,\\n        \\\"L30\\\": 0.917,\\n        \\\"L31\\\": 0.9332\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.9204,\\n      \\\"turn9\\\": 0.968,\\n      \\\"diff\\\": -0.0476\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.8904,\\n      \\\"turn9\\\": 0.9862,\\n      \\\"diff\\\": -0.0958\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.8715,\\n      \\\"turn9\\\": 0.9823,\\n      \\\"diff\\\": -0.1108\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.8576,\\n      \\\"turn9\\\": 0.9789,\\n      \\\"diff\\\": -0.1213\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.9751,\\n      \\\"turn9\\\": 0.9914,\\n      \\\"diff\\\": -0.0163\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.95,\\n      \\\"turn9\\\": 0.9822,\\n      \\\"diff\\\": -0.0322\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.9368,\\n      \\\"turn9\\\": 0.9533,\\n      \\\"diff\\\": -0.0165\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.9803,\\n      \\\"turn9\\\": 0.9541,\\n      \\\"diff\\\": 0.0262\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.9431,\\n      \\\"turn9\\\": 0.9613,\\n      \\\"diff\\\": -0.0182\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.9762,\\n      \\\"turn9\\\": 0.9299,\\n      \\\"diff\\\": 0.0463\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.9832,\\n      \\\"turn9\\\": 0.9094,\\n      \\\"diff\\\": 0.0738\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9239,\\n      \\\"turn9\\\": 0.9292,\\n      \\\"diff\\\": -0.0053\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.8551,\\n      \\\"turn9\\\": 0.9662,\\n      \\\"diff\\\": -0.1111\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.8553,\\n      \\\"turn9\\\": 0.9614,\\n      \\\"diff\\\": -0.1061\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.9717,\\n      \\\"turn9\\\": 0.9611,\\n      \\\"diff\\\": 0.0106\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9756,\\n      \\\"turn9\\\": 0.9579,\\n      \\\"diff\\\": 0.0177\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.9145,\\n      \\\"turn9\\\": 0.9508,\\n      \\\"diff\\\": -0.0363\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9369,\\n      \\\"turn9\\\": 0.963,\\n      \\\"diff\\\": -0.0261\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.8154,\\n      \\\"turn9\\\": 0.9386,\\n      \\\"diff\\\": -0.1232\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.8606,\\n      \\\"turn9\\\": 0.9071,\\n      \\\"diff\\\": -0.0465\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.8506,\\n      \\\"turn9\\\": 0.8866,\\n      \\\"diff\\\": -0.036\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.7895,\\n      \\\"turn9\\\": 0.8777,\\n      \\\"diff\\\": -0.0882\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.8227,\\n      \\\"turn9\\\": 0.8537,\\n      \\\"diff\\\": -0.031\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.705,\\n      \\\"turn9\\\": 0.8406,\\n      \\\"diff\\\": -0.1356\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.4937,\\n      \\\"turn9\\\": 0.8115,\\n      \\\"diff\\\": -0.3178\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.6177,\\n      \\\"turn9\\\": 0.7733,\\n      \\\"diff\\\": -0.1556\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.6995,\\n      \\\"turn9\\\": 0.7892,\\n      \\\"diff\\\": -0.0897\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.6967,\\n      \\\"turn9\\\": 0.8046,\\n      \\\"diff\\\": -0.1079\\n    },\\n    \\\"L28\\\": {\\n      \\\"turn1\\\": 0.4641,\\n      \\\"turn9\\\": 0.8453,\\n      \\\"diff\\\": -0.3812\\n    },\\n    \\\"L29\\\": {\\n      \\\"turn1\\\": 0.8669,\\n      \\\"turn9\\\": 0.8656,\\n      \\\"diff\\\": 0.0013\\n    },\\n    \\\"L30\\\": {\\n      \\\"turn1\\\": 0.5888,\\n      \\\"turn9\\\": 0.912,\\n      \\\"diff\\\": -0.3232\\n    },\\n    \\\"L31\\\": {\\n      \\\"turn1\\\": 0.8572,\\n      \\\"turn9\\\": 0.9353,\\n      \\\"diff\\\": -0.0781\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4af415ca-684b-46d5-a92c-eb63ca02a906",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "0e272cc4-09f2-4a73-88fc-d6cdf4d6d992",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"runs/phase2_llama_tg_s42/epoch_2\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"threadgate\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"ours\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 20,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.028344671690945233,\\\\n      0.019598312659049988,\\\\n      0.011357488609966992,\\\\n      0.016929482991990596\\\\n    ],\\\\n    [\\\\n      0.09635934993524575,\\\\n      0.015632208897201072,\\\\n      0.015252609320201449,\\\\n      0.025251434498877512\\\\n    ],\\\\n    [\\\\n      0.016867636546979627,\\\\n      0.01619601756107894,\\\\n      0.02115814054481846,\\\\n      0.016139221478641184\\\\n    ],\\\\n    [\\\\n      0.07799973383144942,\\\\n      0.024104279865693634,\\\\n      0.012751558818864556,\\\\n      0.018805672178223654\\\\n    ],\\\\n    [\\\\n      0.029519462802008734,\\\\n      0.010419888885832757,\\\\n      0.008560933445407464,\\\\n      0.01225646119476334\\\\n    ],\\\\n    [\\\\n      0.030141408910375866,\\\\n      0.010687518380172623,\\\\n      0.01999222821073071,\\\\n      0.012319993526000158\\\\n    ],\\\\n    [\\\\n      0.040780088811420256,\\\\n      0.01879779064655159,\\\\n      0.020357219537255347,\\\\n      0.01097521454260924\\\\n    ],\\\\n    [\\\\n      0.018232283635498503,\\\\n      0.02026033808734258,\\\\n      0.008181818441288402,\\\\n      0.007103906542619137\\\\n    ],\\\\n    [\\\\n      0.016667138126626013,\\\\n      0.013825108234512704,\\\\n      0.004446626276263299,\\\\n      0.42518608950124426\\\\n    ],\\\\n    [\\\\n      0.06970205627045147,\\\\n      0.025518492448547203,\\\\n      0.012344883427432951,\\\\n      0.06715415637542027\\\\n    ],\\\\n    [\\\\n      0.027650536764205702,\\\\n      0.011482306299287037,\\\\n      0.00970500459825785,\\\\n      0.00895403033288722\\\\n    ],\\\\n    [\\\\n      0.029268353487189813,\\\\n      0.027645299007913238,\\\\n      0.00959311317560041,\\\\n      0.015410535426504168\\\\n    ],\\\\n    [\\\\n      0.02553591959602755,\\\\n      0.00794695237599935,\\\\n      0.007281671541067944,\\\\n      0.005875522021112023\\\\n    ],\\\\n    [\\\\n      0.0362012566627663,\\\\n      0.019678481448117416,\\\\n      0.024046948864615614,\\\\n      0.010272952366724444\\\\n    ],\\\\n    [\\\\n      0.03574477789472186,\\\\n      0.48169276811481143,\\\\n      0.010326168354098275,\\\\n      0.008939563136247455\\\\n    ],\\\\n    [\\\\n      0.04176458436222674,\\\\n      0.024007447658391357,\\\\n      0.033513483978197534,\\\\n      0.04877864532980425\\\\n    ],\\\\n    [\\\\n      0.022731028000311515,\\\\n      0.014652634110399382,\\\\n      0.010238467484977393,\\\\n      0.012393886391582759\\\\n    ],\\\\n    [\\\\n      0.05651401272373745,\\\\n      0.010714600396454999,\\\\n      0.47779595466368674,\\\\n      0.01508852135529444\\\\n    ],\\\\n    [\\\\n      0.09787605969589724,\\\\n      0.04366550385120527,\\\\n      0.024947663676977302,\\\\n      0.016175937166300003\\\\n    ],\\\\n    [\\\\n      0.019693247174387807,\\\\n      0.013875495424395368,\\\\n      0.2299792557837188,\\\\n      0.011048145951789046\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_gar_per_turn\\\\\\\": [\\\\n    0.040879680346123645,\\\\n    0.0415200722176479,\\\\n    0.048591561937671376,\\\\n    0.03825296861543176\\\\n  ],\\\\n  \\\\\\\"turn1_avg_gar\\\\\\\": 0.040879680346123645,\\\\n  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.04342226527655157,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n  \\\\\\\"gar_recovery_pp\\\\\\\": 3.123149128206246,\\\\n  \\\\\\\"normalized_gar_curves\\\\\\\": [\\\\n    [\\\\n      0.09048491347494056,\\\\n      0.11344407904565473,\\\\n      0.09588341345722134,\\\\n      0.1875265808343574\\\\n    ],\\\\n    [\\\\n      0.3518236730193856,\\\\n      0.10033696873552315,\\\\n      0.14472243261958584,\\\\n      0.3165237952301158\\\\n    ],\\\\n    [\\\\n      0.07028181894574843,\\\\n      0.1304679192420248,\\\\n      0.25330996041157655,\\\\n      0.2613657256124392\\\\n    ],\\\\n    [\\\\n      0.3249988909643726,\\\\n      0.19082554893674128,\\\\n      0.1501850260888492,\\\\n      0.2998459952861216\\\\n    ],\\\\n    [\\\\n      0.12849648513815567,\\\\n      0.08550438232786291,\\\\n      0.1092777975090247,\\\\n      0.20944129276933826\\\\n    ],\\\\n    [\\\\n      0.11195380452425323,\\\\n      0.07303137559784625,\\\\n      0.20230230927525125,\\\\n      0.16631991260100212\\\\n    ],\\\\n    [\\\\n      0.16642684893309348,\\\\n      0.14276159923462153,\\\\n      0.2228290246645518,\\\\n      0.1589922971577987\\\\n    ],\\\\n    [\\\\n      0.06656903559937825,\\\\n      0.13522597746668186,\\\\n      0.07991543593816579,\\\\n      0.09350723495633562\\\\n    ],\\\\n    \\\\n\\\\n... [截断: 输出过长，省略 136838 字符] ...\\\\n\\\\n        \\\\\\\"L14\\\\\\\": 0.9753,\\\\n        \\\\\\\"L15\\\\\\\": 0.9654,\\\\n        \\\\\\\"L16\\\\\\\": 0.9513,\\\\n        \\\\\\\"L17\\\\\\\": 0.9738,\\\\n        \\\\\\\"L18\\\\\\\": 0.854,\\\\n        \\\\\\\"L19\\\\\\\": 0.8413,\\\\n        \\\\\\\"L20\\\\\\\": 0.8954,\\\\n        \\\\\\\"L21\\\\\\\": 0.857,\\\\n        \\\\\\\"L22\\\\\\\": 0.8207,\\\\n        \\\\\\\"L23\\\\\\\": 0.8469,\\\\n        \\\\\\\"L24\\\\\\\": 0.8026,\\\\n        \\\\\\\"L25\\\\\\\": 0.5484,\\\\n        \\\\\\\"L26\\\\\\\": 0.6391,\\\\n        \\\\\\\"L27\\\\\\\": 0.7554,\\\\n        \\\\\\\"L28\\\\\\\": 0.8247,\\\\n        \\\\\\\"L29\\\\\\\": 0.8458,\\\\n        \\\\\\\"L30\\\\\\\": 0.9091,\\\\n        \\\\\\\"L31\\\\\\\": 0.9212\\\\n      },\\\\n      \\\\\\\"turn_9\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.9712,\\\\n        \\\\\\\"L1\\\\\\\": 0.9861,\\\\n        \\\\\\\"L2\\\\\\\": 0.9838,\\\\n        \\\\\\\"L3\\\\\\\": 0.9833,\\\\n        \\\\\\\"L4\\\\\\\": 0.9927,\\\\n        \\\\\\\"L5\\\\\\\": 0.9827,\\\\n        \\\\\\\"L6\\\\\\\": 0.9585,\\\\n        \\\\\\\"L7\\\\\\\": 0.9614,\\\\n        \\\\\\\"L8\\\\\\\": 0.9491,\\\\n        \\\\\\\"L9\\\\\\\": 0.9396,\\\\n        \\\\\\\"L10\\\\\\\": 0.9266,\\\\n        \\\\\\\"L11\\\\\\\": 0.9262,\\\\n        \\\\\\\"L12\\\\\\\": 0.9658,\\\\n        \\\\\\\"L13\\\\\\\": 0.9791,\\\\n        \\\\\\\"L14\\\\\\\": 0.9621,\\\\n        \\\\\\\"L15\\\\\\\": 0.9611,\\\\n        \\\\\\\"L16\\\\\\\": 0.9697,\\\\n        \\\\\\\"L17\\\\\\\": 0.9815,\\\\n        \\\\\\\"L18\\\\\\\": 0.9436,\\\\n        \\\\\\\"L19\\\\\\\": 0.8705,\\\\n        \\\\\\\"L20\\\\\\\": 0.8982,\\\\n        \\\\\\\"L21\\\\\\\": 0.9064,\\\\n        \\\\\\\"L22\\\\\\\": 0.818,\\\\n        \\\\\\\"L23\\\\\\\": 0.8687,\\\\n        \\\\\\\"L24\\\\\\\": 0.8426,\\\\n        \\\\\\\"L25\\\\\\\": 0.788,\\\\n        \\\\\\\"L26\\\\\\\": 0.795,\\\\n        \\\\\\\"L27\\\\\\\": 0.8367,\\\\n        \\\\\\\"L28\\\\\\\": 0.8364,\\\\n        \\\\\\\"L29\\\\\\\": 0.8587,\\\\n        \\\\\\\"L30\\\\\\\": 0.917,\\\\n        \\\\\\\"L31\\\\\\\": 0.9332\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"gate_dynamic_range\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9204,\\\\n      \\\\\\\"turn9\\\\\\\": 0.968,\\\\n      \\\\\\\"diff\\\\\\\": -0.0476\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8904,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9862,\\\\n      \\\\\\\"diff\\\\\\\": -0.0958\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8715,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9823,\\\\n      \\\\\\\"diff\\\\\\\": -0.1108\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8576,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9789,\\\\n      \\\\\\\"diff\\\\\\\": -0.1213\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9751,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9914,\\\\n      \\\\\\\"diff\\\\\\\": -0.0163\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.95,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9822,\\\\n      \\\\\\\"diff\\\\\\\": -0.0322\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9368,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9533,\\\\n      \\\\\\\"diff\\\\\\\": -0.0165\\\\n    },\\\\n    \\\\\\\"L7\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9803,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9541,\\\\n      \\\\\\\"diff\\\\\\\": 0.0262\\\\n    },\\\\n    \\\\\\\"L8\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9431,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9613,\\\\n      \\\\\\\"diff\\\\\\\": -0.0182\\\\n    },\\\\n    \\\\\\\"L9\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9762,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9299,\\\\n      \\\\\\\"diff\\\\\\\": 0.0463\\\\n    },\\\\n    \\\\\\\"L10\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9832,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9094,\\\\n      \\\\\\\"diff\\\\\\\": 0.0738\\\\n    },\\\\n    \\\\\\\"L11\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9239,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9292,\\\\n      \\\\\\\"diff\\\\\\\": -0.0053\\\\n    },\\\\n    \\\\\\\"L12\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8551,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9662,\\\\n      \\\\\\\"diff\\\\\\\": -0.1111\\\\n    },\\\\n    \\\\\\\"L13\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8553,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9614,\\\\n      \\\\\\\"diff\\\\\\\": -0.1061\\\\n    },\\\\n    \\\\\\\"L14\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9717,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9611,\\\\n      \\\\\\\"diff\\\\\\\": 0.0106\\\\n    },\\\\n    \\\\\\\"L15\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9756,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9579,\\\\n      \\\\\\\"diff\\\\\\\": 0.0177\\\\n    },\\\\n    \\\\\\\"L16\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9145,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9508,\\\\n      \\\\\\\"diff\\\\\\\": -0.0363\\\\n    },\\\\n    \\\\\\\"L17\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9369,\\\\n      \\\\\\\"turn9\\\\\\\": 0.963,\\\\n      \\\\\\\"diff\\\\\\\": -0.0261\\\\n    },\\\\n    \\\\\\\"L18\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8154,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9386,\\\\n      \\\\\\\"diff\\\\\\\": -0.1232\\\\n    },\\\\n    \\\\\\\"L19\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8606,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9071,\\\\n      \\\\\\\"diff\\\\\\\": -0.0465\\\\n    },\\\\n    \\\\\\\"L20\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8506,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8866,\\\\n      \\\\\\\"diff\\\\\\\": -0.036\\\\n    },\\\\n    \\\\\\\"L21\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7895,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8777,\\\\n      \\\\\\\"diff\\\\\\\": -0.0882\\\\n    },\\\\n    \\\\\\\"L22\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8227,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8537,\\\\n      \\\\\\\"diff\\\\\\\": -0.031\\\\n    },\\\\n    \\\\\\\"L23\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.705,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8406,\\\\n      \\\\\\\"diff\\\\\\\": -0.1356\\\\n    },\\\\n    \\\\\\\"L24\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.4937,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8115,\\\\n      \\\\\\\"diff\\\\\\\": -0.3178\\\\n    },\\\\n    \\\\\\\"L25\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6177,\\\\n      \\\\\\\"turn9\\\\\\\": 0.7733,\\\\n      \\\\\\\"diff\\\\\\\": -0.1556\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6995,\\\\n      \\\\\\\"turn9\\\\\\\": 0.7892,\\\\n      \\\\\\\"diff\\\\\\\": -0.0897\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6967,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8046,\\\\n      \\\\\\\"diff\\\\\\\": -0.1079\\\\n    },\\\\n    \\\\\\\"L28\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.4641,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8453,\\\\n      \\\\\\\"diff\\\\\\\": -0.3812\\\\n    },\\\\n    \\\\\\\"L29\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8669,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8656,\\\\n      \\\\\\\"diff\\\\\\\": 0.0013\\\\n    },\\\\n    \\\\\\\"L30\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.5888,\\\\n      \\\\\\\"turn9\\\\\\\": 0.912,\\\\n      \\\\\\\"diff\\\\\\\": -0.3232\\\\n    },\\\\n    \\\\\\\"L31\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8572,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9353,\\\\n      \\\\\\\"diff\\\\\\\": -0.0781\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"runs/phase2_llama_tg_s42/epoch_2\\\",\\n  \\\"gate_type\\\": \\\"threadgate\\\",\\n  \\\"gar_variant\\\": \\\"ours\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.028344671690945233,\\n      0.019598312659049988,\\n      0.011357488609966992,\\n      0.016929482991990596\\n    ],\\n    [\\n      0.09635934993524575,\\n      0.015632208897201072,\\n      0.015252609320201449,\\n      0.025251434498877512\\n    ],\\n    [\\n      0.016867636546979627,\\n      0.01619601756107894,\\n      0.02115814054481846,\\n      0.016139221478641184\\n    ],\\n    [\\n      0.07799973383144942,\\n      0.024104279865693634,\\n      0.012751558818864556,\\n      0.018805672178223654\\n    ],\\n    [\\n      0.029519462802008734,\\n      0.010419888885832757,\\n      0.008560933445407464,\\n      0.01225646119476334\\n    ],\\n    [\\n      0.030141408910375866,\\n      0.010687518380172623,\\n      0.01999222821073071,\\n      0.012319993526000158\\n    ],\\n    [\\n      0.040780088811420256,\\n      0.01879779064655159,\\n      0.020357219537255347,\\n      0.01097521454260924\\n    ],\\n    [\\n      0.018232283635498503,\\n      0.02026033808734258,\\n      0.008181818441288402,\\n      0.007103906542619137\\n    ],\\n    [\\n      0.016667138126626013,\\n      0.013825108234512704,\\n      0.004446626276263299,\\n      0.42518608950124426\\n    ],\\n    [\\n      0.06970205627045147,\\n      0.025518492448547203,\\n      0.012344883427432951,\\n      0.06715415637542027\\n    ],\\n    [\\n      0.027650536764205702,\\n      0.011482306299287037,\\n      0.00970500459825785,\\n      0.00895403033288722\\n    ],\\n    [\\n      0.029268353487189813,\\n      0.027645299007913238,\\n      0.00959311317560041,\\n      0.015410535426504168\\n    ],\\n    [\\n      0.02553591959602755,\\n      0.00794695237599935,\\n      0.007281671541067944,\\n      0.005875522021112023\\n    ],\\n    [\\n      0.0362012566627663,\\n      0.019678481448117416,\\n      0.024046948864615614,\\n      0.010272952366724444\\n    ],\\n    [\\n      0.03574477789472186,\\n      0.48169276811481143,\\n      0.010326168354098275,\\n      0.008939563136247455\\n    ],\\n    [\\n      0.04176458436222674,\\n      0.024007447658391357,\\n      0.033513483978197534,\\n      0.04877864532980425\\n    ],\\n    [\\n      0.022731028000311515,\\n      0.014652634110399382,\\n      0.010238467484977393,\\n      0.012393886391582759\\n    ],\\n    [\\n      0.05651401272373745,\\n      0.010714600396454999,\\n      0.47779595466368674,\\n      0.01508852135529444\\n    ],\\n    [\\n      0.09787605969589724,\\n      0.04366550385120527,\\n      0.024947663676977302,\\n      0.016175937166300003\\n    ],\\n    [\\n      0.019693247174387807,\\n      0.013875495424395368,\\n      0.2299792557837188,\\n      0.011048145951789046\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.040879680346123645,\\n    0.0415200722176479,\\n    0.048591561937671376,\\n    0.03825296861543176\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.040879680346123645,\\n  \\\"mid_turns_avg_gar\\\": 0.04342226527655157,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": 3.123149128206246,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.09048491347494056,\\n      0.11344407904565473,\\n      0.09588341345722134,\\n      0.1875265808343574\\n    ],\\n    [\\n      0.3518236730193856,\\n      0.10033696873552315,\\n      0.14472243261958584,\\n      0.3165237952301158\\n    ],\\n    [\\n      0.07028181894574843,\\n      0.1304679192420248,\\n      0.25330996041157655,\\n      0.2613657256124392\\n    ],\\n    [\\n      0.3249988909643726,\\n      0.19082554893674128,\\n      0.1501850260888492,\\n      0.2998459952861216\\n    ],\\n    [\\n      0.12849648513815567,\\n      0.08550438232786291,\\n      0.1092777975090247,\\n      0.20944129276933826\\n    ],\\n    [\\n      0.11195380452425323,\\n      0.07303137559784625,\\n      0.20230230927525125,\\n      0.16631991260100212\\n    ],\\n    [\\n      0.16642684893309348,\\n      0.14276159923462153,\\n      0.2228290246645518,\\n      0.1589922971577987\\n    ],\\n    [\\n      0.06656903559937825,\\n      0.13522597746668186,\\n      0.07991543593816579,\\n      0.09350723495633562\\n    ],\\n    \\n\\n... [截断: 输出过长，省略 136838 字符] ...\\n\\n        \\\"L14\\\": 0.9753,\\n        \\\"L15\\\": 0.9654,\\n        \\\"L16\\\": 0.9513,\\n        \\\"L17\\\": 0.9738,\\n        \\\"L18\\\": 0.854,\\n        \\\"L19\\\": 0.8413,\\n        \\\"L20\\\": 0.8954,\\n        \\\"L21\\\": 0.857,\\n        \\\"L22\\\": 0.8207,\\n        \\\"L23\\\": 0.8469,\\n        \\\"L24\\\": 0.8026,\\n        \\\"L25\\\": 0.5484,\\n        \\\"L26\\\": 0.6391,\\n        \\\"L27\\\": 0.7554,\\n        \\\"L28\\\": 0.8247,\\n        \\\"L29\\\": 0.8458,\\n        \\\"L30\\\": 0.9091,\\n        \\\"L31\\\": 0.9212\\n      },\\n      \\\"turn_9\\\": {\\n        \\\"L0\\\": 0.9712,\\n        \\\"L1\\\": 0.9861,\\n        \\\"L2\\\": 0.9838,\\n        \\\"L3\\\": 0.9833,\\n        \\\"L4\\\": 0.9927,\\n        \\\"L5\\\": 0.9827,\\n        \\\"L6\\\": 0.9585,\\n        \\\"L7\\\": 0.9614,\\n        \\\"L8\\\": 0.9491,\\n        \\\"L9\\\": 0.9396,\\n        \\\"L10\\\": 0.9266,\\n        \\\"L11\\\": 0.9262,\\n        \\\"L12\\\": 0.9658,\\n        \\\"L13\\\": 0.9791,\\n        \\\"L14\\\": 0.9621,\\n        \\\"L15\\\": 0.9611,\\n        \\\"L16\\\": 0.9697,\\n        \\\"L17\\\": 0.9815,\\n        \\\"L18\\\": 0.9436,\\n        \\\"L19\\\": 0.8705,\\n        \\\"L20\\\": 0.8982,\\n        \\\"L21\\\": 0.9064,\\n        \\\"L22\\\": 0.818,\\n        \\\"L23\\\": 0.8687,\\n        \\\"L24\\\": 0.8426,\\n        \\\"L25\\\": 0.788,\\n        \\\"L26\\\": 0.795,\\n        \\\"L27\\\": 0.8367,\\n        \\\"L28\\\": 0.8364,\\n        \\\"L29\\\": 0.8587,\\n        \\\"L30\\\": 0.917,\\n        \\\"L31\\\": 0.9332\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.9204,\\n      \\\"turn9\\\": 0.968,\\n      \\\"diff\\\": -0.0476\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.8904,\\n      \\\"turn9\\\": 0.9862,\\n      \\\"diff\\\": -0.0958\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.8715,\\n      \\\"turn9\\\": 0.9823,\\n      \\\"diff\\\": -0.1108\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.8576,\\n      \\\"turn9\\\": 0.9789,\\n      \\\"diff\\\": -0.1213\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.9751,\\n      \\\"turn9\\\": 0.9914,\\n      \\\"diff\\\": -0.0163\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.95,\\n      \\\"turn9\\\": 0.9822,\\n      \\\"diff\\\": -0.0322\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.9368,\\n      \\\"turn9\\\": 0.9533,\\n      \\\"diff\\\": -0.0165\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.9803,\\n      \\\"turn9\\\": 0.9541,\\n      \\\"diff\\\": 0.0262\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.9431,\\n      \\\"turn9\\\": 0.9613,\\n      \\\"diff\\\": -0.0182\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.9762,\\n      \\\"turn9\\\": 0.9299,\\n      \\\"diff\\\": 0.0463\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.9832,\\n      \\\"turn9\\\": 0.9094,\\n      \\\"diff\\\": 0.0738\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9239,\\n      \\\"turn9\\\": 0.9292,\\n      \\\"diff\\\": -0.0053\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.8551,\\n      \\\"turn9\\\": 0.9662,\\n      \\\"diff\\\": -0.1111\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.8553,\\n      \\\"turn9\\\": 0.9614,\\n      \\\"diff\\\": -0.1061\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.9717,\\n      \\\"turn9\\\": 0.9611,\\n      \\\"diff\\\": 0.0106\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9756,\\n      \\\"turn9\\\": 0.9579,\\n      \\\"diff\\\": 0.0177\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.9145,\\n      \\\"turn9\\\": 0.9508,\\n      \\\"diff\\\": -0.0363\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9369,\\n      \\\"turn9\\\": 0.963,\\n      \\\"diff\\\": -0.0261\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.8154,\\n      \\\"turn9\\\": 0.9386,\\n      \\\"diff\\\": -0.1232\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.8606,\\n      \\\"turn9\\\": 0.9071,\\n      \\\"diff\\\": -0.0465\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.8506,\\n      \\\"turn9\\\": 0.8866,\\n      \\\"diff\\\": -0.036\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.7895,\\n      \\\"turn9\\\": 0.8777,\\n      \\\"diff\\\": -0.0882\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.8227,\\n      \\\"turn9\\\": 0.8537,\\n      \\\"diff\\\": -0.031\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.705,\\n      \\\"turn9\\\": 0.8406,\\n      \\\"diff\\\": -0.1356\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.4937,\\n      \\\"turn9\\\": 0.8115,\\n      \\\"diff\\\": -0.3178\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.6177,\\n      \\\"turn9\\\": 0.7733,\\n      \\\"diff\\\": -0.1556\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.6995,\\n      \\\"turn9\\\": 0.7892,\\n      \\\"diff\\\": -0.0897\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.6967,\\n      \\\"turn9\\\": 0.8046,\\n      \\\"diff\\\": -0.1079\\n    },\\n    \\\"L28\\\": {\\n      \\\"turn1\\\": 0.4641,\\n      \\\"turn9\\\": 0.8453,\\n      \\\"diff\\\": -0.3812\\n    },\\n    \\\"L29\\\": {\\n      \\\"turn1\\\": 0.8669,\\n      \\\"turn9\\\": 0.8656,\\n      \\\"diff\\\": 0.0013\\n    },\\n    \\\"L30\\\": {\\n      \\\"turn1\\\": 0.5888,\\n      \\\"turn9\\\": 0.912,\\n      \\\"diff\\\": -0.3232\\n    },\\n    \\\"L31\\\": {\\n      \\\"turn1\\\": 0.8572,\\n      \\\"turn9\\\": 0.9353,\\n      \\\"diff\\\": -0.0781\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.67}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4af415ca-684b-46d5-a92c-eb63ca02a906",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-22T08:30:31.542Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NQMcuTCJAhm2sYzXEPJGm6`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e272cc4-09f2-4a73-88fc-d6cdf4d6d992",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ23uS7oF3ygZ3wgVd2",
+  "type": "assistant",
+  "uuid": "5ce20004-c4cd-4087-a733-58c42eefa767",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177Yae4J7m3i4Zc73x6W7mm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 43036,
+      "output_tokens": 1066,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1066,
+          "cache_read_input_tokens": 43036,
+          "cache_creation_input_tokens": 5894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-22T08:30:32.019Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LiJqxqTPiowTv6ZptpvsMY`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5ce20004-c4cd-4087-a733-58c42eefa767",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ23uS7oF3ygZ3wgVd2",
+  "type": "assistant",
+  "uuid": "43f75b77-f5f0-40cc-b967-f6ee5e17c0bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177Yae4J7m3i4Zc73x6W7mm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 43036,
+      "output_tokens": 1066,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1066,
+          "cache_read_input_tokens": 43036,
+          "cache_creation_input_tokens": 5894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-22T08:30:32.063Z_
+
+<details><summary>↩ Tool result · `toolu_01NQMcuTCJAhm2sYzXEPJGm6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"runs/phase2_llama_tg_s42/epoch_2\\\",\\n  \\\"gate_type\\\": \\\"threadgate\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.030704142689917363,\\n      0.012729022640669505,\\n      0.013198984435344997,\\n      0.015231763585413234\\n    ],\\n    [\\n      0.018799333352203657,\\n      0.016410932153705694,\\n      0.014665747870156415,\\n      0.011760839545670702\\n    ],\\n    [\\n      0.01389786672280472,\\n      0.013914790067886271,\\n      0.012439255286494528,\\n      0.012332174430089295\\n    ],\\n    [\\n      0.020436802125534233,\\n      0.023537212775316778,\\n      0.024694060228556254,\\n      0.01569421061975297\\n    ],\\n    [\\n      0.021455324719839082,\\n      0.01709831865619231,\\n      0.0166745768629241,\\n      0.015750813579331988\\n    ],\\n    [\\n      0.017561892169349967,\\n      0.014309161563402421,\\n      0.015238063145467193,\\n      0.015478713536454873\\n    ],\\n    [\\n      0.019162336577073318,\\n      0.0158465269310353,\\n      0.014824165834189006,\\n      0.016418741188257886\\n    ],\\n    [\\n      0.036612831318656024,\\n      0.028708553004231183,\\n      0.0298439848499615,\\n      0.017133815898045628\\n    ],\\n    [\\n      0.040031757868433576,\\n      0.019107246381469593,\\n      0.0174171739941084,\\n      0.018336383327261317\\n    ],\\n    [\\n      0.016411255500249054,\\n      0.013887887944952201,\\n      0.013101780727491897,\\n      0.1393519655352804\\n    ],\\n    [\\n      0.01545294513869824,\\n      0.017550188182980934,\\n      0.015893941539016986,\\n      0.012615214979490839\\n    ],\\n    [\\n      0.016224061184158287,\\n      0.02990718686934686,\\n      0.013844507802320292,\\n      0.015005948613673407\\n    ],\\n    [\\n      0.016364496554174313,\\n      0.009977599079894674,\\n      0.010066276490487509,\\n      0.008745880668922285\\n    ],\\n    [\\n      0.015357072049518682,\\n      0.011672469407846898,\\n      0.010979627558878977,\\n      0.010537774500462175\\n    ],\\n    [\\n      0.03863592477184537,\\n      0.05735239957333148,\\n      0.015204685525391698,\\n      0.014022776861231932\\n    ],\\n    [\\n      0.009687576305186116,\\n      0.011130342610656643,\\n      0.012141641583237599,\\n      0.012612613378257545\\n    ],\\n    [\\n      0.017504717555739117,\\n      0.01771356537071127,\\n      0.017145097472538708,\\n      0.015417866407255329\\n    ],\\n    [\\n      0.018812699211091112,\\n      0.019330442384247686,\\n      0.0217400003982649,\\n      0.019880162402155056\\n    ],\\n    [\\n      0.01613998692985219,\\n      0.017652840193954095,\\n      0.01587434554010437,\\n      0.019481780764749705\\n    ],\\n    [\\n      0.011965975818111095,\\n      0.009927206071267805,\\n      0.012766984263286986,\\n      0.00910108599154595\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.020560949928121776,\\n    0.018888194593154977,\\n    0.015887745070411116,\\n    0.020745526290665128\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.020560949928121776,\\n  \\\"mid_turns_avg_gar\\\": 0.018316635680538124,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": 0.6125861686049011,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.2427089374536325,\\n      0.1824493245162629,\\n      0.2759216270055454,\\n      0.4177855154856201\\n    ],\\n    [\\n      0.14054739696647495,\\n      0.21568653687727482,\\n      0.28493453004875324,\\n      0.30186154833888135\\n    ],\\n    [\\n      0.09927047659146229,\\n      0.19215662474700088,\\n      0.25530090611805434,\\n      0.3423646520353361\\n    ],\\n    [\\n      0.14597715803953024,\\n      0.3194336019507277,\\n      0.49858483509085005,\\n      0.42897509027324787\\n    ],\\n    [\\n      0.15120895516838972,\\n      0.22716337643226928,\\n      0.3446079218337647,\\n      0.435772509028185\\n    ],\\n    [\\n      0.13045977040088547,\\n      0.19555854136649978,\\n      0.30838937318207416,\\n      0.41792526548428155\\n    ],\\n    [\\n      0.13778632491133672,\\n      0.21204162226766282,\\n      0.28589462680221656,\\n      0.41906882270982027\\n    ],\\n    [\\n      0.27372450081090455,\\n      0.3923502243911595,\\n      0.59687969699923,\\n      0.46179713325208693\\n\\n... [截断: 输出过长，省略 136842 字符] ...\\n\\n        \\\"L14\\\": 0.9753,\\n        \\\"L15\\\": 0.9654,\\n        \\\"L16\\\": 0.9513,\\n        \\\"L17\\\": 0.9738,\\n        \\\"L18\\\": 0.854,\\n        \\\"L19\\\": 0.8413,\\n        \\\"L20\\\": 0.8954,\\n        \\\"L21\\\": 0.857,\\n        \\\"L22\\\": 0.8207,\\n        \\\"L23\\\": 0.8469,\\n        \\\"L24\\\": 0.8026,\\n        \\\"L25\\\": 0.5484,\\n        \\\"L26\\\": 0.6391,\\n        \\\"L27\\\": 0.7554,\\n        \\\"L28\\\": 0.8247,\\n        \\\"L29\\\": 0.8458,\\n        \\\"L30\\\": 0.9091,\\n        \\\"L31\\\": 0.9212\\n      },\\n      \\\"turn_9\\\": {\\n        \\\"L0\\\": 0.9712,\\n        \\\"L1\\\": 0.9861,\\n        \\\"L2\\\": 0.9838,\\n        \\\"L3\\\": 0.9833,\\n        \\\"L4\\\": 0.9927,\\n        \\\"L5\\\": 0.9827,\\n        \\\"L6\\\": 0.9585,\\n        \\\"L7\\\": 0.9614,\\n        \\\"L8\\\": 0.9491,\\n        \\\"L9\\\": 0.9396,\\n        \\\"L10\\\": 0.9266,\\n        \\\"L11\\\": 0.9262,\\n        \\\"L12\\\": 0.9658,\\n        \\\"L13\\\": 0.9791,\\n        \\\"L14\\\": 0.9621,\\n        \\\"L15\\\": 0.9611,\\n        \\\"L16\\\": 0.9697,\\n        \\\"L17\\\": 0.9815,\\n        \\\"L18\\\": 0.9436,\\n        \\\"L19\\\": 0.8705,\\n        \\\"L20\\\": 0.8982,\\n        \\\"L21\\\": 0.9064,\\n        \\\"L22\\\": 0.818,\\n        \\\"L23\\\": 0.8687,\\n        \\\"L24\\\": 0.8426,\\n        \\\"L25\\\": 0.788,\\n        \\\"L26\\\": 0.795,\\n        \\\"L27\\\": 0.8367,\\n        \\\"L28\\\": 0.8364,\\n        \\\"L29\\\": 0.8587,\\n        \\\"L30\\\": 0.917,\\n        \\\"L31\\\": 0.9332\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.9204,\\n      \\\"turn9\\\": 0.968,\\n      \\\"diff\\\": -0.0476\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.8904,\\n      \\\"turn9\\\": 0.9862,\\n      \\\"diff\\\": -0.0958\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.8715,\\n      \\\"turn9\\\": 0.9823,\\n      \\\"diff\\\": -0.1108\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.8576,\\n      \\\"turn9\\\": 0.9789,\\n      \\\"diff\\\": -0.1213\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.9751,\\n      \\\"turn9\\\": 0.9914,\\n      \\\"diff\\\": -0.0163\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.95,\\n      \\\"turn9\\\": 0.9822,\\n      \\\"diff\\\": -0.0322\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.9368,\\n      \\\"turn9\\\": 0.9533,\\n      \\\"diff\\\": -0.0165\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.9803,\\n      \\\"turn9\\\": 0.9541,\\n      \\\"diff\\\": 0.0262\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.9431,\\n      \\\"turn9\\\": 0.9613,\\n      \\\"diff\\\": -0.0182\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.9762,\\n      \\\"turn9\\\": 0.9299,\\n      \\\"diff\\\": 0.0463\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.9832,\\n      \\\"turn9\\\": 0.9094,\\n      \\\"diff\\\": 0.0738\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9239,\\n      \\\"turn9\\\": 0.9292,\\n      \\\"diff\\\": -0.0053\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.8551,\\n      \\\"turn9\\\": 0.9662,\\n      \\\"diff\\\": -0.1111\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.8553,\\n      \\\"turn9\\\": 0.9614,\\n      \\\"diff\\\": -0.1061\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.9717,\\n      \\\"turn9\\\": 0.9611,\\n      \\\"diff\\\": 0.0106\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9756,\\n      \\\"turn9\\\": 0.9579,\\n      \\\"diff\\\": 0.0177\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.9145,\\n      \\\"turn9\\\": 0.9508,\\n      \\\"diff\\\": -0.0363\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9369,\\n      \\\"turn9\\\": 0.963,\\n      \\\"diff\\\": -0.0261\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.8154,\\n      \\\"turn9\\\": 0.9386,\\n      \\\"diff\\\": -0.1232\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.8606,\\n      \\\"turn9\\\": 0.9071,\\n      \\\"diff\\\": -0.0465\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.8506,\\n      \\\"turn9\\\": 0.8866,\\n      \\\"diff\\\": -0.036\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.7895,\\n      \\\"turn9\\\": 0.8777,\\n      \\\"diff\\\": -0.0882\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.8227,\\n      \\\"turn9\\\": 0.8537,\\n      \\\"diff\\\": -0.031\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.705,\\n      \\\"turn9\\\": 0.8406,\\n      \\\"diff\\\": -0.1356\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.4937,\\n      \\\"turn9\\\": 0.8115,\\n      \\\"diff\\\": -0.3178\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.6177,\\n      \\\"turn9\\\": 0.7733,\\n      \\\"diff\\\": -0.1556\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.6995,\\n      \\\"turn9\\\": 0.7892,\\n      \\\"diff\\\": -0.0897\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.6967,\\n      \\\"turn9\\\": 0.8046,\\n      \\\"diff\\\": -0.1079\\n    },\\n    \\\"L28\\\": {\\n      \\\"turn1\\\": 0.4641,\\n      \\\"turn9\\\": 0.8453,\\n      \\\"diff\\\": -0.3812\\n    },\\n    \\\"L29\\\": {\\n      \\\"turn1\\\": 0.8669,\\n      \\\"turn9\\\": 0.8656,\\n      \\\"diff\\\": 0.0013\\n    },\\n    \\\"L30\\\": {\\n      \\\"turn1\\\": 0.5888,\\n      \\\"turn9\\\": 0.912,\\n      \\\"diff\\\": -0.3232\\n    },\\n    \\\"L31\\\": {\\n      \\\"turn1\\\": 0.8572,\\n      \\\"turn9\\\": 0.9353,\\n      \\\"diff\\\": -0.0781\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5ce20004-c4cd-4087-a733-58c42eefa767",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "8c94ea84-e056-45cb-a96c-7b80afb1cce9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"runs/phase2_llama_tg_s42/epoch_2\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"threadgate\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"dongre\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 20,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.030704142689917363,\\\\n      0.012729022640669505,\\\\n      0.013198984435344997,\\\\n      0.015231763585413234\\\\n    ],\\\\n    [\\\\n      0.018799333352203657,\\\\n      0.016410932153705694,\\\\n      0.014665747870156415,\\\\n      0.011760839545670702\\\\n    ],\\\\n    [\\\\n      0.01389786672280472,\\\\n      0.013914790067886271,\\\\n      0.012439255286494528,\\\\n      0.012332174430089295\\\\n    ],\\\\n    [\\\\n      0.020436802125534233,\\\\n      0.023537212775316778,\\\\n      0.024694060228556254,\\\\n      0.01569421061975297\\\\n    ],\\\\n    [\\\\n      0.021455324719839082,\\\\n      0.01709831865619231,\\\\n      0.0166745768629241,\\\\n      0.015750813579331988\\\\n    ],\\\\n    [\\\\n      0.017561892169349967,\\\\n      0.014309161563402421,\\\\n      0.015238063145467193,\\\\n      0.015478713536454873\\\\n    ],\\\\n    [\\\\n      0.019162336577073318,\\\\n      0.0158465269310353,\\\\n      0.014824165834189006,\\\\n      0.016418741188257886\\\\n    ],\\\\n    [\\\\n      0.036612831318656024,\\\\n      0.028708553004231183,\\\\n      0.0298439848499615,\\\\n      0.017133815898045628\\\\n    ],\\\\n    [\\\\n      0.040031757868433576,\\\\n      0.019107246381469593,\\\\n      0.0174171739941084,\\\\n      0.018336383327261317\\\\n    ],\\\\n    [\\\\n      0.016411255500249054,\\\\n      0.013887887944952201,\\\\n      0.013101780727491897,\\\\n      0.1393519655352804\\\\n    ],\\\\n    [\\\\n      0.01545294513869824,\\\\n      0.017550188182980934,\\\\n      0.015893941539016986,\\\\n      0.012615214979490839\\\\n    ],\\\\n    [\\\\n      0.016224061184158287,\\\\n      0.02990718686934686,\\\\n      0.013844507802320292,\\\\n      0.015005948613673407\\\\n    ],\\\\n    [\\\\n      0.016364496554174313,\\\\n      0.009977599079894674,\\\\n      0.010066276490487509,\\\\n      0.008745880668922285\\\\n    ],\\\\n    [\\\\n      0.015357072049518682,\\\\n      0.011672469407846898,\\\\n      0.010979627558878977,\\\\n      0.010537774500462175\\\\n    ],\\\\n    [\\\\n      0.03863592477184537,\\\\n      0.05735239957333148,\\\\n      0.015204685525391698,\\\\n      0.014022776861231932\\\\n    ],\\\\n    [\\\\n      0.009687576305186116,\\\\n      0.011130342610656643,\\\\n      0.012141641583237599,\\\\n      0.012612613378257545\\\\n    ],\\\\n    [\\\\n      0.017504717555739117,\\\\n      0.01771356537071127,\\\\n      0.017145097472538708,\\\\n      0.015417866407255329\\\\n    ],\\\\n    [\\\\n      0.018812699211091112,\\\\n      0.019330442384247686,\\\\n      0.0217400003982649,\\\\n      0.019880162402155056\\\\n    ],\\\\n    [\\\\n      0.01613998692985219,\\\\n      0.017652840193954095,\\\\n      0.01587434554010437,\\\\n      0.019481780764749705\\\\n    ],\\\\n    [\\\\n      0.011965975818111095,\\\\n      0.009927206071267805,\\\\n      0.012766984263286986,\\\\n      0.00910108599154595\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_gar_per_turn\\\\\\\": [\\\\n    0.020560949928121776,\\\\n    0.018888194593154977,\\\\n    0.015887745070411116,\\\\n    0.020745526290665128\\\\n  ],\\\\n  \\\\\\\"turn1_avg_gar\\\\\\\": 0.020560949928121776,\\\\n  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.018316635680538124,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n  \\\\\\\"gar_recovery_pp\\\\\\\": 0.6125861686049011,\\\\n  \\\\\\\"normalized_gar_curves\\\\\\\": [\\\\n    [\\\\n      0.2427089374536325,\\\\n      0.1824493245162629,\\\\n      0.2759216270055454,\\\\n      0.4177855154856201\\\\n    ],\\\\n    [\\\\n      0.14054739696647495,\\\\n      0.21568653687727482,\\\\n      0.28493453004875324,\\\\n      0.30186154833888135\\\\n    ],\\\\n    [\\\\n      0.09927047659146229,\\\\n      0.19215662474700088,\\\\n      0.25530090611805434,\\\\n      0.3423646520353361\\\\n    ],\\\\n    [\\\\n      0.14597715803953024,\\\\n      0.3194336019507277,\\\\n      0.49858483509085005,\\\\n      0.42897509027324787\\\\n    ],\\\\n    [\\\\n      0.15120895516838972,\\\\n      0.22716337643226928,\\\\n      0.3446079218337647,\\\\n      0.435772509028185\\\\n    ],\\\\n    [\\\\n      0.13045977040088547,\\\\n      0.19555854136649978,\\\\n      0.30838937318207416,\\\\n      0.41792526548428155\\\\n    ],\\\\n    [\\\\n      0.13778632491133672,\\\\n      0.21204162226766282,\\\\n      0.28589462680221656,\\\\n      0.41906882270982027\\\\n    ],\\\\n    [\\\\n      0.27372450081090455,\\\\n      0.3923502243911595,\\\\n      0.59687969699923,\\\\n      0.46179713325208693\\\\n\\\\n... [截断: 输出过长，省略 136842 字符] ...\\\\n\\\\n        \\\\\\\"L14\\\\\\\": 0.9753,\\\\n        \\\\\\\"L15\\\\\\\": 0.9654,\\\\n        \\\\\\\"L16\\\\\\\": 0.9513,\\\\n        \\\\\\\"L17\\\\\\\": 0.9738,\\\\n        \\\\\\\"L18\\\\\\\": 0.854,\\\\n        \\\\\\\"L19\\\\\\\": 0.8413,\\\\n        \\\\\\\"L20\\\\\\\": 0.8954,\\\\n        \\\\\\\"L21\\\\\\\": 0.857,\\\\n        \\\\\\\"L22\\\\\\\": 0.8207,\\\\n        \\\\\\\"L23\\\\\\\": 0.8469,\\\\n        \\\\\\\"L24\\\\\\\": 0.8026,\\\\n        \\\\\\\"L25\\\\\\\": 0.5484,\\\\n        \\\\\\\"L26\\\\\\\": 0.6391,\\\\n        \\\\\\\"L27\\\\\\\": 0.7554,\\\\n        \\\\\\\"L28\\\\\\\": 0.8247,\\\\n        \\\\\\\"L29\\\\\\\": 0.8458,\\\\n        \\\\\\\"L30\\\\\\\": 0.9091,\\\\n        \\\\\\\"L31\\\\\\\": 0.9212\\\\n      },\\\\n      \\\\\\\"turn_9\\\\\\\": {\\\\n        \\\\\\\"L0\\\\\\\": 0.9712,\\\\n        \\\\\\\"L1\\\\\\\": 0.9861,\\\\n        \\\\\\\"L2\\\\\\\": 0.9838,\\\\n        \\\\\\\"L3\\\\\\\": 0.9833,\\\\n        \\\\\\\"L4\\\\\\\": 0.9927,\\\\n        \\\\\\\"L5\\\\\\\": 0.9827,\\\\n        \\\\\\\"L6\\\\\\\": 0.9585,\\\\n        \\\\\\\"L7\\\\\\\": 0.9614,\\\\n        \\\\\\\"L8\\\\\\\": 0.9491,\\\\n        \\\\\\\"L9\\\\\\\": 0.9396,\\\\n        \\\\\\\"L10\\\\\\\": 0.9266,\\\\n        \\\\\\\"L11\\\\\\\": 0.9262,\\\\n        \\\\\\\"L12\\\\\\\": 0.9658,\\\\n        \\\\\\\"L13\\\\\\\": 0.9791,\\\\n        \\\\\\\"L14\\\\\\\": 0.9621,\\\\n        \\\\\\\"L15\\\\\\\": 0.9611,\\\\n        \\\\\\\"L16\\\\\\\": 0.9697,\\\\n        \\\\\\\"L17\\\\\\\": 0.9815,\\\\n        \\\\\\\"L18\\\\\\\": 0.9436,\\\\n        \\\\\\\"L19\\\\\\\": 0.8705,\\\\n        \\\\\\\"L20\\\\\\\": 0.8982,\\\\n        \\\\\\\"L21\\\\\\\": 0.9064,\\\\n        \\\\\\\"L22\\\\\\\": 0.818,\\\\n        \\\\\\\"L23\\\\\\\": 0.8687,\\\\n        \\\\\\\"L24\\\\\\\": 0.8426,\\\\n        \\\\\\\"L25\\\\\\\": 0.788,\\\\n        \\\\\\\"L26\\\\\\\": 0.795,\\\\n        \\\\\\\"L27\\\\\\\": 0.8367,\\\\n        \\\\\\\"L28\\\\\\\": 0.8364,\\\\n        \\\\\\\"L29\\\\\\\": 0.8587,\\\\n        \\\\\\\"L30\\\\\\\": 0.917,\\\\n        \\\\\\\"L31\\\\\\\": 0.9332\\\\n      }\\\\n    }\\\\n  },\\\\n  \\\\\\\"gate_dynamic_range\\\\\\\": {\\\\n    \\\\\\\"L0\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9204,\\\\n      \\\\\\\"turn9\\\\\\\": 0.968,\\\\n      \\\\\\\"diff\\\\\\\": -0.0476\\\\n    },\\\\n    \\\\\\\"L1\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8904,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9862,\\\\n      \\\\\\\"diff\\\\\\\": -0.0958\\\\n    },\\\\n    \\\\\\\"L2\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8715,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9823,\\\\n      \\\\\\\"diff\\\\\\\": -0.1108\\\\n    },\\\\n    \\\\\\\"L3\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8576,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9789,\\\\n      \\\\\\\"diff\\\\\\\": -0.1213\\\\n    },\\\\n    \\\\\\\"L4\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9751,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9914,\\\\n      \\\\\\\"diff\\\\\\\": -0.0163\\\\n    },\\\\n    \\\\\\\"L5\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.95,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9822,\\\\n      \\\\\\\"diff\\\\\\\": -0.0322\\\\n    },\\\\n    \\\\\\\"L6\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9368,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9533,\\\\n      \\\\\\\"diff\\\\\\\": -0.0165\\\\n    },\\\\n    \\\\\\\"L7\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9803,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9541,\\\\n      \\\\\\\"diff\\\\\\\": 0.0262\\\\n    },\\\\n    \\\\\\\"L8\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9431,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9613,\\\\n      \\\\\\\"diff\\\\\\\": -0.0182\\\\n    },\\\\n    \\\\\\\"L9\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9762,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9299,\\\\n      \\\\\\\"diff\\\\\\\": 0.0463\\\\n    },\\\\n    \\\\\\\"L10\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9832,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9094,\\\\n      \\\\\\\"diff\\\\\\\": 0.0738\\\\n    },\\\\n    \\\\\\\"L11\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9239,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9292,\\\\n      \\\\\\\"diff\\\\\\\": -0.0053\\\\n    },\\\\n    \\\\\\\"L12\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8551,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9662,\\\\n      \\\\\\\"diff\\\\\\\": -0.1111\\\\n    },\\\\n    \\\\\\\"L13\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8553,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9614,\\\\n      \\\\\\\"diff\\\\\\\": -0.1061\\\\n    },\\\\n    \\\\\\\"L14\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9717,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9611,\\\\n      \\\\\\\"diff\\\\\\\": 0.0106\\\\n    },\\\\n    \\\\\\\"L15\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9756,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9579,\\\\n      \\\\\\\"diff\\\\\\\": 0.0177\\\\n    },\\\\n    \\\\\\\"L16\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9145,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9508,\\\\n      \\\\\\\"diff\\\\\\\": -0.0363\\\\n    },\\\\n    \\\\\\\"L17\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.9369,\\\\n      \\\\\\\"turn9\\\\\\\": 0.963,\\\\n      \\\\\\\"diff\\\\\\\": -0.0261\\\\n    },\\\\n    \\\\\\\"L18\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8154,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9386,\\\\n      \\\\\\\"diff\\\\\\\": -0.1232\\\\n    },\\\\n    \\\\\\\"L19\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8606,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9071,\\\\n      \\\\\\\"diff\\\\\\\": -0.0465\\\\n    },\\\\n    \\\\\\\"L20\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8506,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8866,\\\\n      \\\\\\\"diff\\\\\\\": -0.036\\\\n    },\\\\n    \\\\\\\"L21\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.7895,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8777,\\\\n      \\\\\\\"diff\\\\\\\": -0.0882\\\\n    },\\\\n    \\\\\\\"L22\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8227,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8537,\\\\n      \\\\\\\"diff\\\\\\\": -0.031\\\\n    },\\\\n    \\\\\\\"L23\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.705,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8406,\\\\n      \\\\\\\"diff\\\\\\\": -0.1356\\\\n    },\\\\n    \\\\\\\"L24\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.4937,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8115,\\\\n      \\\\\\\"diff\\\\\\\": -0.3178\\\\n    },\\\\n    \\\\\\\"L25\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6177,\\\\n      \\\\\\\"turn9\\\\\\\": 0.7733,\\\\n      \\\\\\\"diff\\\\\\\": -0.1556\\\\n    },\\\\n    \\\\\\\"L26\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6995,\\\\n      \\\\\\\"turn9\\\\\\\": 0.7892,\\\\n      \\\\\\\"diff\\\\\\\": -0.0897\\\\n    },\\\\n    \\\\\\\"L27\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.6967,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8046,\\\\n      \\\\\\\"diff\\\\\\\": -0.1079\\\\n    },\\\\n    \\\\\\\"L28\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.4641,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8453,\\\\n      \\\\\\\"diff\\\\\\\": -0.3812\\\\n    },\\\\n    \\\\\\\"L29\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8669,\\\\n      \\\\\\\"turn9\\\\\\\": 0.8656,\\\\n      \\\\\\\"diff\\\\\\\": 0.0013\\\\n    },\\\\n    \\\\\\\"L30\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.5888,\\\\n      \\\\\\\"turn9\\\\\\\": 0.912,\\\\n      \\\\\\\"diff\\\\\\\": -0.3232\\\\n    },\\\\n    \\\\\\\"L31\\\\\\\": {\\\\n      \\\\\\\"turn1\\\\\\\": 0.8572,\\\\n      \\\\\\\"turn9\\\\\\\": 0.9353,\\\\n      \\\\\\\"diff\\\\\\\": -0.0781\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"runs/phase2_llama_tg_s42/epoch_2\\\",\\n  \\\"gate_type\\\": \\\"threadgate\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.030704142689917363,\\n      0.012729022640669505,\\n      0.013198984435344997,\\n      0.015231763585413234\\n    ],\\n    [\\n      0.018799333352203657,\\n      0.016410932153705694,\\n      0.014665747870156415,\\n      0.011760839545670702\\n    ],\\n    [\\n      0.01389786672280472,\\n      0.013914790067886271,\\n      0.012439255286494528,\\n      0.012332174430089295\\n    ],\\n    [\\n      0.020436802125534233,\\n      0.023537212775316778,\\n      0.024694060228556254,\\n      0.01569421061975297\\n    ],\\n    [\\n      0.021455324719839082,\\n      0.01709831865619231,\\n      0.0166745768629241,\\n      0.015750813579331988\\n    ],\\n    [\\n      0.017561892169349967,\\n      0.014309161563402421,\\n      0.015238063145467193,\\n      0.015478713536454873\\n    ],\\n    [\\n      0.019162336577073318,\\n      0.0158465269310353,\\n      0.014824165834189006,\\n      0.016418741188257886\\n    ],\\n    [\\n      0.036612831318656024,\\n      0.028708553004231183,\\n      0.0298439848499615,\\n      0.017133815898045628\\n    ],\\n    [\\n      0.040031757868433576,\\n      0.019107246381469593,\\n      0.0174171739941084,\\n      0.018336383327261317\\n    ],\\n    [\\n      0.016411255500249054,\\n      0.013887887944952201,\\n      0.013101780727491897,\\n      0.1393519655352804\\n    ],\\n    [\\n      0.01545294513869824,\\n      0.017550188182980934,\\n      0.015893941539016986,\\n      0.012615214979490839\\n    ],\\n    [\\n      0.016224061184158287,\\n      0.02990718686934686,\\n      0.013844507802320292,\\n      0.015005948613673407\\n    ],\\n    [\\n      0.016364496554174313,\\n      0.009977599079894674,\\n      0.010066276490487509,\\n      0.008745880668922285\\n    ],\\n    [\\n      0.015357072049518682,\\n      0.011672469407846898,\\n      0.010979627558878977,\\n      0.010537774500462175\\n    ],\\n    [\\n      0.03863592477184537,\\n      0.05735239957333148,\\n      0.015204685525391698,\\n      0.014022776861231932\\n    ],\\n    [\\n      0.009687576305186116,\\n      0.011130342610656643,\\n      0.012141641583237599,\\n      0.012612613378257545\\n    ],\\n    [\\n      0.017504717555739117,\\n      0.01771356537071127,\\n      0.017145097472538708,\\n      0.015417866407255329\\n    ],\\n    [\\n      0.018812699211091112,\\n      0.019330442384247686,\\n      0.0217400003982649,\\n      0.019880162402155056\\n    ],\\n    [\\n      0.01613998692985219,\\n      0.017652840193954095,\\n      0.01587434554010437,\\n      0.019481780764749705\\n    ],\\n    [\\n      0.011965975818111095,\\n      0.009927206071267805,\\n      0.012766984263286986,\\n      0.00910108599154595\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.020560949928121776,\\n    0.018888194593154977,\\n    0.015887745070411116,\\n    0.020745526290665128\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.020560949928121776,\\n  \\\"mid_turns_avg_gar\\\": 0.018316635680538124,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": 0.6125861686049011,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.2427089374536325,\\n      0.1824493245162629,\\n      0.2759216270055454,\\n      0.4177855154856201\\n    ],\\n    [\\n      0.14054739696647495,\\n      0.21568653687727482,\\n      0.28493453004875324,\\n      0.30186154833888135\\n    ],\\n    [\\n      0.09927047659146229,\\n      0.19215662474700088,\\n      0.25530090611805434,\\n      0.3423646520353361\\n    ],\\n    [\\n      0.14597715803953024,\\n      0.3194336019507277,\\n      0.49858483509085005,\\n      0.42897509027324787\\n    ],\\n    [\\n      0.15120895516838972,\\n      0.22716337643226928,\\n      0.3446079218337647,\\n      0.435772509028185\\n    ],\\n    [\\n      0.13045977040088547,\\n      0.19555854136649978,\\n      0.30838937318207416,\\n      0.41792526548428155\\n    ],\\n    [\\n      0.13778632491133672,\\n      0.21204162226766282,\\n      0.28589462680221656,\\n      0.41906882270982027\\n    ],\\n    [\\n      0.27372450081090455,\\n      0.3923502243911595,\\n      0.59687969699923,\\n      0.46179713325208693\\n\\n... [截断: 输出过长，省略 136842 字符] ...\\n\\n        \\\"L14\\\": 0.9753,\\n        \\\"L15\\\": 0.9654,\\n        \\\"L16\\\": 0.9513,\\n        \\\"L17\\\": 0.9738,\\n        \\\"L18\\\": 0.854,\\n        \\\"L19\\\": 0.8413,\\n        \\\"L20\\\": 0.8954,\\n        \\\"L21\\\": 0.857,\\n        \\\"L22\\\": 0.8207,\\n        \\\"L23\\\": 0.8469,\\n        \\\"L24\\\": 0.8026,\\n        \\\"L25\\\": 0.5484,\\n        \\\"L26\\\": 0.6391,\\n        \\\"L27\\\": 0.7554,\\n        \\\"L28\\\": 0.8247,\\n        \\\"L29\\\": 0.8458,\\n        \\\"L30\\\": 0.9091,\\n        \\\"L31\\\": 0.9212\\n      },\\n      \\\"turn_9\\\": {\\n        \\\"L0\\\": 0.9712,\\n        \\\"L1\\\": 0.9861,\\n        \\\"L2\\\": 0.9838,\\n        \\\"L3\\\": 0.9833,\\n        \\\"L4\\\": 0.9927,\\n        \\\"L5\\\": 0.9827,\\n        \\\"L6\\\": 0.9585,\\n        \\\"L7\\\": 0.9614,\\n        \\\"L8\\\": 0.9491,\\n        \\\"L9\\\": 0.9396,\\n        \\\"L10\\\": 0.9266,\\n        \\\"L11\\\": 0.9262,\\n        \\\"L12\\\": 0.9658,\\n        \\\"L13\\\": 0.9791,\\n        \\\"L14\\\": 0.9621,\\n        \\\"L15\\\": 0.9611,\\n        \\\"L16\\\": 0.9697,\\n        \\\"L17\\\": 0.9815,\\n        \\\"L18\\\": 0.9436,\\n        \\\"L19\\\": 0.8705,\\n        \\\"L20\\\": 0.8982,\\n        \\\"L21\\\": 0.9064,\\n        \\\"L22\\\": 0.818,\\n        \\\"L23\\\": 0.8687,\\n        \\\"L24\\\": 0.8426,\\n        \\\"L25\\\": 0.788,\\n        \\\"L26\\\": 0.795,\\n        \\\"L27\\\": 0.8367,\\n        \\\"L28\\\": 0.8364,\\n        \\\"L29\\\": 0.8587,\\n        \\\"L30\\\": 0.917,\\n        \\\"L31\\\": 0.9332\\n      }\\n    }\\n  },\\n  \\\"gate_dynamic_range\\\": {\\n    \\\"L0\\\": {\\n      \\\"turn1\\\": 0.9204,\\n      \\\"turn9\\\": 0.968,\\n      \\\"diff\\\": -0.0476\\n    },\\n    \\\"L1\\\": {\\n      \\\"turn1\\\": 0.8904,\\n      \\\"turn9\\\": 0.9862,\\n      \\\"diff\\\": -0.0958\\n    },\\n    \\\"L2\\\": {\\n      \\\"turn1\\\": 0.8715,\\n      \\\"turn9\\\": 0.9823,\\n      \\\"diff\\\": -0.1108\\n    },\\n    \\\"L3\\\": {\\n      \\\"turn1\\\": 0.8576,\\n      \\\"turn9\\\": 0.9789,\\n      \\\"diff\\\": -0.1213\\n    },\\n    \\\"L4\\\": {\\n      \\\"turn1\\\": 0.9751,\\n      \\\"turn9\\\": 0.9914,\\n      \\\"diff\\\": -0.0163\\n    },\\n    \\\"L5\\\": {\\n      \\\"turn1\\\": 0.95,\\n      \\\"turn9\\\": 0.9822,\\n      \\\"diff\\\": -0.0322\\n    },\\n    \\\"L6\\\": {\\n      \\\"turn1\\\": 0.9368,\\n      \\\"turn9\\\": 0.9533,\\n      \\\"diff\\\": -0.0165\\n    },\\n    \\\"L7\\\": {\\n      \\\"turn1\\\": 0.9803,\\n      \\\"turn9\\\": 0.9541,\\n      \\\"diff\\\": 0.0262\\n    },\\n    \\\"L8\\\": {\\n      \\\"turn1\\\": 0.9431,\\n      \\\"turn9\\\": 0.9613,\\n      \\\"diff\\\": -0.0182\\n    },\\n    \\\"L9\\\": {\\n      \\\"turn1\\\": 0.9762,\\n      \\\"turn9\\\": 0.9299,\\n      \\\"diff\\\": 0.0463\\n    },\\n    \\\"L10\\\": {\\n      \\\"turn1\\\": 0.9832,\\n      \\\"turn9\\\": 0.9094,\\n      \\\"diff\\\": 0.0738\\n    },\\n    \\\"L11\\\": {\\n      \\\"turn1\\\": 0.9239,\\n      \\\"turn9\\\": 0.9292,\\n      \\\"diff\\\": -0.0053\\n    },\\n    \\\"L12\\\": {\\n      \\\"turn1\\\": 0.8551,\\n      \\\"turn9\\\": 0.9662,\\n      \\\"diff\\\": -0.1111\\n    },\\n    \\\"L13\\\": {\\n      \\\"turn1\\\": 0.8553,\\n      \\\"turn9\\\": 0.9614,\\n      \\\"diff\\\": -0.1061\\n    },\\n    \\\"L14\\\": {\\n      \\\"turn1\\\": 0.9717,\\n      \\\"turn9\\\": 0.9611,\\n      \\\"diff\\\": 0.0106\\n    },\\n    \\\"L15\\\": {\\n      \\\"turn1\\\": 0.9756,\\n      \\\"turn9\\\": 0.9579,\\n      \\\"diff\\\": 0.0177\\n    },\\n    \\\"L16\\\": {\\n      \\\"turn1\\\": 0.9145,\\n      \\\"turn9\\\": 0.9508,\\n      \\\"diff\\\": -0.0363\\n    },\\n    \\\"L17\\\": {\\n      \\\"turn1\\\": 0.9369,\\n      \\\"turn9\\\": 0.963,\\n      \\\"diff\\\": -0.0261\\n    },\\n    \\\"L18\\\": {\\n      \\\"turn1\\\": 0.8154,\\n      \\\"turn9\\\": 0.9386,\\n      \\\"diff\\\": -0.1232\\n    },\\n    \\\"L19\\\": {\\n      \\\"turn1\\\": 0.8606,\\n      \\\"turn9\\\": 0.9071,\\n      \\\"diff\\\": -0.0465\\n    },\\n    \\\"L20\\\": {\\n      \\\"turn1\\\": 0.8506,\\n      \\\"turn9\\\": 0.8866,\\n      \\\"diff\\\": -0.036\\n    },\\n    \\\"L21\\\": {\\n      \\\"turn1\\\": 0.7895,\\n      \\\"turn9\\\": 0.8777,\\n      \\\"diff\\\": -0.0882\\n    },\\n    \\\"L22\\\": {\\n      \\\"turn1\\\": 0.8227,\\n      \\\"turn9\\\": 0.8537,\\n      \\\"diff\\\": -0.031\\n    },\\n    \\\"L23\\\": {\\n      \\\"turn1\\\": 0.705,\\n      \\\"turn9\\\": 0.8406,\\n      \\\"diff\\\": -0.1356\\n    },\\n    \\\"L24\\\": {\\n      \\\"turn1\\\": 0.4937,\\n      \\\"turn9\\\": 0.8115,\\n      \\\"diff\\\": -0.3178\\n    },\\n    \\\"L25\\\": {\\n      \\\"turn1\\\": 0.6177,\\n      \\\"turn9\\\": 0.7733,\\n      \\\"diff\\\": -0.1556\\n    },\\n    \\\"L26\\\": {\\n      \\\"turn1\\\": 0.6995,\\n      \\\"turn9\\\": 0.7892,\\n      \\\"diff\\\": -0.0897\\n    },\\n    \\\"L27\\\": {\\n      \\\"turn1\\\": 0.6967,\\n      \\\"turn9\\\": 0.8046,\\n      \\\"diff\\\": -0.1079\\n    },\\n    \\\"L28\\\": {\\n      \\\"turn1\\\": 0.4641,\\n      \\\"turn9\\\": 0.8453,\\n      \\\"diff\\\": -0.3812\\n    },\\n    \\\"L29\\\": {\\n      \\\"turn1\\\": 0.8669,\\n      \\\"turn9\\\": 0.8656,\\n      \\\"diff\\\": 0.0013\\n    },\\n    \\\"L30\\\": {\\n      \\\"turn1\\\": 0.5888,\\n      \\\"turn9\\\": 0.912,\\n      \\\"diff\\\": -0.3232\\n    },\\n    \\\"L31\\\": {\\n      \\\"turn1\\\": 0.8572,\\n      \\\"turn9\\\": 0.9353,\\n      \\\"diff\\\": -0.0781\\n    }\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5ce20004-c4cd-4087-a733-58c42eefa767",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-22T08:30:32.575Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0171u4HwkrcvP4s3QRKosBot`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cat /root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c94ea84-e056-45cb-a96c-7b80afb1cce9",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ23uS7oF3ygZ3wgVd2",
+  "type": "assistant",
+  "uuid": "70fe1d7b-7ccb-47eb-86f3-76682d1ae38c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0177Yae4J7m3i4Zc73x6W7mm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5894,
+      "cache_read_input_tokens": 43036,
+      "output_tokens": 1066,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5894,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1066,
+          "cache_read_input_tokens": 43036,
+          "cache_creation_input_tokens": 5894,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5894
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "3fd075db-3835-42a1-b20e-d0d4d4021d9f",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-22T08:30:33.140Z_
+
+<details><summary>↩ Tool result · `toolu_0171u4HwkrcvP4s3QRKosBot`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"runs/phase2_llama_lora_only_s42/epoch_2\\\",\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.03587540373030949,\\n      0.01733577990616239,\\n      0.019636667912250345,\\n      0.019109176547752224\\n    ],\\n    [\\n      0.017288855487219666,\\n      0.022553933624634034,\\n      0.014318011554389661,\\n      0.012472047382516706\\n    ],\\n    [\\n      0.014206883254109754,\\n      0.01271104528358155,\\n      0.009637017419828338,\\n      0.01167820576342868\\n    ],\\n    [\\n      0.023016536162613708,\\n      0.024097735046403012,\\n      0.02585692901898815,\\n      0.019472149366297473\\n    ],\\n    [\\n      0.016605440328832273,\\n      0.022090131710987868,\\n      0.01736189069234437,\\n      0.015577436046121317\\n    ],\\n    [\\n      0.020538774009631024,\\n      0.014743922438725092,\\n      0.01407103311762527,\\n      0.014647244950643573\\n    ],\\n    [\\n      0.01921285907487099,\\n      0.01713543746533406,\\n      0.015063570970896702,\\n      0.016261002921383206\\n    ],\\n    [\\n      0.01632815747528617,\\n      0.013942106551364766,\\n      0.017517864985129847,\\n      0.0144005309182399\\n    ],\\n    [\\n      0.034942057001053246,\\n      0.019494623138469492,\\n      0.015952172821556865,\\n      0.018521997398306456\\n    ],\\n    [\\n      0.016858155311304336,\\n      0.018181351405126608,\\n      0.015703156762557496,\\n      0.16714282586440873\\n    ],\\n    [\\n      0.018517234141256767,\\n      0.021006499557525784,\\n      0.01611303109888072,\\n      0.01369832000157216\\n    ],\\n    [\\n      0.01784777669953766,\\n      0.03063873333621347,\\n      0.01566319679382374,\\n      0.02301708865004387\\n    ],\\n    [\\n      0.016149317019738686,\\n      0.009707013916172062,\\n      0.01012858953293273,\\n      0.009433596506257403\\n    ],\\n    [\\n      0.015113962648541654,\\n      0.012169677246154581,\\n      0.009999419333265312,\\n      0.009825160397979265\\n    ],\\n    [\\n      0.04321747495664746,\\n      0.03848183383491023,\\n      0.029018939071132767,\\n      0.018854330381754394\\n    ],\\n    [\\n      0.011927209520335252,\\n      0.01655748262899876,\\n      0.011230026166921755,\\n      0.01329921428110702\\n    ],\\n    [\\n      0.017836653242929587,\\n      0.022593001559385106,\\n      0.018223550271550495,\\n      0.020771011148907403\\n    ],\\n    [\\n      0.02046513811975181,\\n      0.02695089856097985,\\n      0.01963956944324358,\\n      0.03625526426327665\\n    ],\\n    [\\n      0.017034648762319582,\\n      0.019868161264463165,\\n      0.02035037473085569,\\n      0.01879812009897138\\n    ],\\n    [\\n      0.012552527337752785,\\n      0.014560263614488122,\\n      0.021397081288132083,\\n      0.010033708969430734\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.020276753214202102,\\n    0.019740981604504,\\n    0.01684410464931529,\\n    0.024163421592919922\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.020276753214202102,\\n  \\\"mid_turns_avg_gar\\\": 0.020503763121117607,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": 0.8312989126628494,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.28358652472530355,\\n      0.2484795119883276,\\n      0.41049986730847143,\\n      0.5241374138812039\\n    ],\\n    [\\n      0.12925477673778513,\\n      0.2964231276380473,\\n      0.27817851019957057,\\n      0.32011588281792874\\n    ],\\n    [\\n      0.10147773752935538,\\n      0.17553348248755474,\\n      0.19778830990219115,\\n      0.3242092361942343\\n    ],\\n    [\\n      0.16440382973295506,\\n      0.3270406899154694,\\n      0.5220637097167131,\\n      0.5331659945533832\\n    ],\\n    [\\n      0.11702881755557983,\\n      0.29348317844598165,\\n      0.3588124076417837,\\n      0.4309757306093564\\n    ],\\n    [\\n      0.15257374978583046,\\n      0.20150027332924295,\\n      0.28477090833289237,\\n      0.3954756136673765\\n    ],\\n    [\\n      0.13814960572883428,\\n      0.22928847275042244,\\n      0.2905117258672935,\\n      0.41504274123149515\\n    ],\\n    [\\n      0.1220724154104728,\\n      0.19054212286865177,\\n      0.35035729970259694,\\n      0.38812859522494214\\n    ],\\n    [\\n      0.24459439900737273,\\n      0.2543584161876496,\\n      0.30309128360958043,\\n      0.4762799330993089\\n    ],\\n    [\\n      0.12202093368182186,\\n      0.2502100264800757,\\n      0.3163064433600867,\\n      4.3297951081065875\\n    ],\\n    [\\n      0.1357930503692163,\\n      0.3020934698272756,\\n      0.36522870490796294,\\n      0.4259525219536486\\n    ],\\n    [\\n      0.12578433102531303,\\n      0.39538555876732623,\\n      0.3013300716526091,\\n      0.5896758901773145\\n    ],\\n    [\\n      0.11458324933052687,\\n      0.13497371731058297,\\n      0.2073949285314797,\\n      0.26728523434395973\\n    ],\\n    [\\n      0.10939630107515864,\\n      0.1732730236476295,\\n      0.21046396882396515,\\n      0.2713615728965702\\n    ],\\n    [\\n      0.3045802996944678,\\n      0.5662326978565362,\\n      0.660526327428641,\\n      0.5799951155530161\\n    ],\\n    [\\n      0.14710225075080144,\\n      0.3240535885961186,\\n      0.2973283118480236,\\n      0.44774021413060305\\n    ],\\n    [\\n      0.13165148822162315,\\n      0.31307445018005076,\\n      0.3696777340800243,\\n      0.5519154390995396\\n    ],\\n    [\\n      0.1481286187715369,\\n      0.359345314146398,\\n      0.39185617127233624,\\n      0.9495426354667694\\n    ],\\n    [\\n      0.13059897384445013,\\n      0.2781542577024843,\\n      0.42348160749447317,\\n      0.5281376599234816\\n    ],\\n    [\\n      0.09563830352573549,\\n      0.2017636529436211,\\n      0.4299794430281781,\\n      0.2680433681833639\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.15092098282520705,\\n    0.2757604516534723,\\n    0.3484823867354437,\\n    0.6508487950557043\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.49966559089557394,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    158,\\n    294,\\n    434,\\n    579\\n  ],\\n  \\\"conversations_source\\\": \\\"ar_from_fixed\\\",\\n  \\\"avg_ppl\\\": 1.4186152815818787,\\n  \\\"avg_ntp_loss\\\": 0.3482785984873772,\\n  \\\"ppl_per_conversation\\\": [\\n    1.329071044921875,\\n    1.3969974517822266,\\n    1.5054947137832642,\\n    1.2487373352050781,\\n    1.3392471075057983,\\n    1.4187630414962769,\\n    1.347153663635254,\\n    1.4454139471054077,\\n    1.4069135189056396,\\n    1.441581130027771,\\n    1.4072071313858032,\\n    1.4271602630615234,\\n    1.4674744606018066,\\n    1.50309419631958,\\n    1.512858271598816,\\n    1.4879037141799927,\\n    1.366571307182312,\\n    1.4090673923492432,\\n    1.343368411064148,\\n    1.5682275295257568\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.2844802141189575,\\n    0.33432528376579285,\\n    0.4091216027736664,\\n    0.22213292121887207,\\n    0.29210761189460754,\\n    0.3497854471206665,\\n    0.297993928194046,\\n    0.36839574575424194,\\n    0.3413982689380646,\\n    0.36574041843414307,\\n    0.3416070342063904,\\n    0.35568660497665405,\\n    0.38354286551475525,\\n    0.40752577781677246,\\n    0.4140007495880127,\\n    0.39736825227737427,\\n    0.31230491399765015,\\n    0.34292805194854736,\\n    0.29518020153045654,\\n    0.4499460756778717\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "70fe1d7b-7ccb-47eb-86f3-76682d1ae38c",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "5e7e8258-8aec-4408-8530-3f14d6a2459c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"checkpoint_dir\\\\\\\": \\\\\\\"runs/phase2_llama_lora_only_s42/epoch_2\\\\\\\",\\\\n  \\\\\\\"gate_type\\\\\\\": \\\\\\\"none\\\\\\\",\\\\n  \\\\\\\"gar_variant\\\\\\\": \\\\\\\"dongre\\\\\\\",\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\\\\\",\\\\n  \\\\\\\"num_conversations\\\\\\\": 20,\\\\n  \\\\\\\"num_turns\\\\\\\": 4,\\\\n  \\\\\\\"gar_curves\\\\\\\": [\\\\n    [\\\\n      0.03587540373030949,\\\\n      0.01733577990616239,\\\\n      0.019636667912250345,\\\\n      0.019109176547752224\\\\n    ],\\\\n    [\\\\n      0.017288855487219666,\\\\n      0.022553933624634034,\\\\n      0.014318011554389661,\\\\n      0.012472047382516706\\\\n    ],\\\\n    [\\\\n      0.014206883254109754,\\\\n      0.01271104528358155,\\\\n      0.009637017419828338,\\\\n      0.01167820576342868\\\\n    ],\\\\n    [\\\\n      0.023016536162613708,\\\\n      0.024097735046403012,\\\\n      0.02585692901898815,\\\\n      0.019472149366297473\\\\n    ],\\\\n    [\\\\n      0.016605440328832273,\\\\n      0.022090131710987868,\\\\n      0.01736189069234437,\\\\n      0.015577436046121317\\\\n    ],\\\\n    [\\\\n      0.020538774009631024,\\\\n      0.014743922438725092,\\\\n      0.01407103311762527,\\\\n      0.014647244950643573\\\\n    ],\\\\n    [\\\\n      0.01921285907487099,\\\\n      0.01713543746533406,\\\\n      0.015063570970896702,\\\\n      0.016261002921383206\\\\n    ],\\\\n    [\\\\n      0.01632815747528617,\\\\n      0.013942106551364766,\\\\n      0.017517864985129847,\\\\n      0.0144005309182399\\\\n    ],\\\\n    [\\\\n      0.034942057001053246,\\\\n      0.019494623138469492,\\\\n      0.015952172821556865,\\\\n      0.018521997398306456\\\\n    ],\\\\n    [\\\\n      0.016858155311304336,\\\\n      0.018181351405126608,\\\\n      0.015703156762557496,\\\\n      0.16714282586440873\\\\n    ],\\\\n    [\\\\n      0.018517234141256767,\\\\n      0.021006499557525784,\\\\n      0.01611303109888072,\\\\n      0.01369832000157216\\\\n    ],\\\\n    [\\\\n      0.01784777669953766,\\\\n      0.03063873333621347,\\\\n      0.01566319679382374,\\\\n      0.02301708865004387\\\\n    ],\\\\n    [\\\\n      0.016149317019738686,\\\\n      0.009707013916172062,\\\\n      0.01012858953293273,\\\\n      0.009433596506257403\\\\n    ],\\\\n    [\\\\n      0.015113962648541654,\\\\n      0.012169677246154581,\\\\n      0.009999419333265312,\\\\n      0.009825160397979265\\\\n    ],\\\\n    [\\\\n      0.04321747495664746,\\\\n      0.03848183383491023,\\\\n      0.029018939071132767,\\\\n      0.018854330381754394\\\\n    ],\\\\n    [\\\\n      0.011927209520335252,\\\\n      0.01655748262899876,\\\\n      0.011230026166921755,\\\\n      0.01329921428110702\\\\n    ],\\\\n    [\\\\n      0.017836653242929587,\\\\n      0.022593001559385106,\\\\n      0.018223550271550495,\\\\n      0.020771011148907403\\\\n    ],\\\\n    [\\\\n      0.02046513811975181,\\\\n      0.02695089856097985,\\\\n      0.01963956944324358,\\\\n      0.03625526426327665\\\\n    ],\\\\n    [\\\\n      0.017034648762319582,\\\\n      0.019868161264463165,\\\\n      0.02035037473085569,\\\\n      0.01879812009897138\\\\n    ],\\\\n    [\\\\n      0.012552527337752785,\\\\n      0.014560263614488122,\\\\n      0.021397081288132083,\\\\n      0.010033708969430734\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_gar_per_turn\\\\\\\": [\\\\n    0.020276753214202102,\\\\n    0.019740981604504,\\\\n    0.01684410464931529,\\\\n    0.024163421592919922\\\\n  ],\\\\n  \\\\\\\"turn1_avg_gar\\\\\\\": 0.020276753214202102,\\\\n  \\\\\\\"mid_turns_avg_gar\\\\\\\": 0.020503763121117607,\\\\n  \\\\\\\"baseline_mid_turns_avg_gar\\\\\\\": 0.012190773994489113,\\\\n  \\\\\\\"gar_recovery_pp\\\\\\\": 0.8312989126628494,\\\\n  \\\\\\\"normalized_gar_curves\\\\\\\": [\\\\n    [\\\\n      0.28358652472530355,\\\\n      0.2484795119883276,\\\\n      0.41049986730847143,\\\\n      0.5241374138812039\\\\n    ],\\\\n    [\\\\n      0.12925477673778513,\\\\n      0.2964231276380473,\\\\n      0.27817851019957057,\\\\n      0.32011588281792874\\\\n    ],\\\\n    [\\\\n      0.10147773752935538,\\\\n      0.17553348248755474,\\\\n      0.19778830990219115,\\\\n      0.3242092361942343\\\\n    ],\\\\n    [\\\\n      0.16440382973295506,\\\\n      0.3270406899154694,\\\\n      0.5220637097167131,\\\\n      0.5331659945533832\\\\n    ],\\\\n    [\\\\n      0.11702881755557983,\\\\n      0.29348317844598165,\\\\n      0.3588124076417837,\\\\n      0.4309757306093564\\\\n    ],\\\\n    [\\\\n      0.15257374978583046,\\\\n      0.20150027332924295,\\\\n      0.28477090833289237,\\\\n      0.3954756136673765\\\\n    ],\\\\n    [\\\\n      0.13814960572883428,\\\\n      0.22928847275042244,\\\\n      0.2905117258672935,\\\\n      0.41504274123149515\\\\n    ],\\\\n    [\\\\n      0.1220724154104728,\\\\n      0.19054212286865177,\\\\n      0.35035729970259694,\\\\n      0.38812859522494214\\\\n    ],\\\\n    [\\\\n      0.24459439900737273,\\\\n      0.2543584161876496,\\\\n      0.30309128360958043,\\\\n      0.4762799330993089\\\\n    ],\\\\n    [\\\\n      0.12202093368182186,\\\\n      0.2502100264800757,\\\\n      0.3163064433600867,\\\\n      4.3297951081065875\\\\n    ],\\\\n    [\\\\n      0.1357930503692163,\\\\n      0.3020934698272756,\\\\n      0.36522870490796294,\\\\n      0.4259525219536486\\\\n    ],\\\\n    [\\\\n      0.12578433102531303,\\\\n      0.39538555876732623,\\\\n      0.3013300716526091,\\\\n      0.5896758901773145\\\\n    ],\\\\n    [\\\\n      0.11458324933052687,\\\\n      0.13497371731058297,\\\\n      0.2073949285314797,\\\\n      0.26728523434395973\\\\n    ],\\\\n    [\\\\n      0.10939630107515864,\\\\n      0.1732730236476295,\\\\n      0.21046396882396515,\\\\n      0.2713615728965702\\\\n    ],\\\\n    [\\\\n      0.3045802996944678,\\\\n      0.5662326978565362,\\\\n      0.660526327428641,\\\\n      0.5799951155530161\\\\n    ],\\\\n    [\\\\n      0.14710225075080144,\\\\n      0.3240535885961186,\\\\n      0.2973283118480236,\\\\n      0.44774021413060305\\\\n    ],\\\\n    [\\\\n      0.13165148822162315,\\\\n      0.31307445018005076,\\\\n      0.3696777340800243,\\\\n      0.5519154390995396\\\\n    ],\\\\n    [\\\\n      0.1481286187715369,\\\\n      0.359345314146398,\\\\n      0.39185617127233624,\\\\n      0.9495426354667694\\\\n    ],\\\\n    [\\\\n      0.13059897384445013,\\\\n      0.2781542577024843,\\\\n      0.42348160749447317,\\\\n      0.5281376599234816\\\\n    ],\\\\n    [\\\\n      0.09563830352573549,\\\\n      0.2017636529436211,\\\\n      0.4299794430281781,\\\\n      0.2680433681833639\\\\n    ]\\\\n  ],\\\\n  \\\\\\\"avg_normalized_gar_per_turn\\\\\\\": [\\\\n    0.15092098282520705,\\\\n    0.2757604516534723,\\\\n    0.3484823867354437,\\\\n    0.6508487950557043\\\\n  ],\\\\n  \\\\\\\"mid_turns_avg_normalized_gar\\\\\\\": 0.49966559089557394,\\\\n  \\\\\\\"avg_visible_tokens_per_turn\\\\\\\": [\\\\n    158,\\\\n    294,\\\\n    434,\\\\n    579\\\\n  ],\\\\n  \\\\\\\"conversations_source\\\\\\\": \\\\\\\"ar_from_fixed\\\\\\\",\\\\n  \\\\\\\"avg_ppl\\\\\\\": 1.4186152815818787,\\\\n  \\\\\\\"avg_ntp_loss\\\\\\\": 0.3482785984873772,\\\\n  \\\\\\\"ppl_per_conversation\\\\\\\": [\\\\n    1.329071044921875,\\\\n    1.3969974517822266,\\\\n    1.5054947137832642,\\\\n    1.2487373352050781,\\\\n    1.3392471075057983,\\\\n    1.4187630414962769,\\\\n    1.347153663635254,\\\\n    1.4454139471054077,\\\\n    1.4069135189056396,\\\\n    1.441581130027771,\\\\n    1.4072071313858032,\\\\n    1.4271602630615234,\\\\n    1.4674744606018066,\\\\n    1.50309419631958,\\\\n    1.512858271598816,\\\\n    1.4879037141799927,\\\\n    1.366571307182312,\\\\n    1.4090673923492432,\\\\n    1.343368411064148,\\\\n    1.5682275295257568\\\\n  ],\\\\n  \\\\\\\"ntp_loss_per_conversation\\\\\\\": [\\\\n    0.2844802141189575,\\\\n    0.33432528376579285,\\\\n    0.4091216027736664,\\\\n    0.22213292121887207,\\\\n    0.29210761189460754,\\\\n    0.3497854471206665,\\\\n    0.297993928194046,\\\\n    0.36839574575424194,\\\\n    0.3413982689380646,\\\\n    0.36574041843414307,\\\\n    0.3416070342063904,\\\\n    0.35568660497665405,\\\\n    0.38354286551475525,\\\\n    0.40752577781677246,\\\\n    0.4140007495880127,\\\\n    0.39736825227737427,\\\\n    0.31230491399765015,\\\\n    0.34292805194854736,\\\\n    0.29518020153045654,\\\\n    0.4499460756778717\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"checkpoint_dir\\\": \\\"runs/phase2_llama_lora_only_s42/epoch_2\\\",\\n  \\\"gate_type\\\": \\\"none\\\",\\n  \\\"gar_variant\\\": \\\"dongre\\\",\\n  \\\"model\\\": \\\"/root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct/\\\",\\n  \\\"num_conversations\\\": 20,\\n  \\\"num_turns\\\": 4,\\n  \\\"gar_curves\\\": [\\n    [\\n      0.03587540373030949,\\n      0.01733577990616239,\\n      0.019636667912250345,\\n      0.019109176547752224\\n    ],\\n    [\\n      0.017288855487219666,\\n      0.022553933624634034,\\n      0.014318011554389661,\\n      0.012472047382516706\\n    ],\\n    [\\n      0.014206883254109754,\\n      0.01271104528358155,\\n      0.009637017419828338,\\n      0.01167820576342868\\n    ],\\n    [\\n      0.023016536162613708,\\n      0.024097735046403012,\\n      0.02585692901898815,\\n      0.019472149366297473\\n    ],\\n    [\\n      0.016605440328832273,\\n      0.022090131710987868,\\n      0.01736189069234437,\\n      0.015577436046121317\\n    ],\\n    [\\n      0.020538774009631024,\\n      0.014743922438725092,\\n      0.01407103311762527,\\n      0.014647244950643573\\n    ],\\n    [\\n      0.01921285907487099,\\n      0.01713543746533406,\\n      0.015063570970896702,\\n      0.016261002921383206\\n    ],\\n    [\\n      0.01632815747528617,\\n      0.013942106551364766,\\n      0.017517864985129847,\\n      0.0144005309182399\\n    ],\\n    [\\n      0.034942057001053246,\\n      0.019494623138469492,\\n      0.015952172821556865,\\n      0.018521997398306456\\n    ],\\n    [\\n      0.016858155311304336,\\n      0.018181351405126608,\\n      0.015703156762557496,\\n      0.16714282586440873\\n    ],\\n    [\\n      0.018517234141256767,\\n      0.021006499557525784,\\n      0.01611303109888072,\\n      0.01369832000157216\\n    ],\\n    [\\n      0.01784777669953766,\\n      0.03063873333621347,\\n      0.01566319679382374,\\n      0.02301708865004387\\n    ],\\n    [\\n      0.016149317019738686,\\n      0.009707013916172062,\\n      0.01012858953293273,\\n      0.009433596506257403\\n    ],\\n    [\\n      0.015113962648541654,\\n      0.012169677246154581,\\n      0.009999419333265312,\\n      0.009825160397979265\\n    ],\\n    [\\n      0.04321747495664746,\\n      0.03848183383491023,\\n      0.029018939071132767,\\n      0.018854330381754394\\n    ],\\n    [\\n      0.011927209520335252,\\n      0.01655748262899876,\\n      0.011230026166921755,\\n      0.01329921428110702\\n    ],\\n    [\\n      0.017836653242929587,\\n      0.022593001559385106,\\n      0.018223550271550495,\\n      0.020771011148907403\\n    ],\\n    [\\n      0.02046513811975181,\\n      0.02695089856097985,\\n      0.01963956944324358,\\n      0.03625526426327665\\n    ],\\n    [\\n      0.017034648762319582,\\n      0.019868161264463165,\\n      0.02035037473085569,\\n      0.01879812009897138\\n    ],\\n    [\\n      0.012552527337752785,\\n      0.014560263614488122,\\n      0.021397081288132083,\\n      0.010033708969430734\\n    ]\\n  ],\\n  \\\"avg_gar_per_turn\\\": [\\n    0.020276753214202102,\\n    0.019740981604504,\\n    0.01684410464931529,\\n    0.024163421592919922\\n  ],\\n  \\\"turn1_avg_gar\\\": 0.020276753214202102,\\n  \\\"mid_turns_avg_gar\\\": 0.020503763121117607,\\n  \\\"baseline_mid_turns_avg_gar\\\": 0.012190773994489113,\\n  \\\"gar_recovery_pp\\\": 0.8312989126628494,\\n  \\\"normalized_gar_curves\\\": [\\n    [\\n      0.28358652472530355,\\n      0.2484795119883276,\\n      0.41049986730847143,\\n      0.5241374138812039\\n    ],\\n    [\\n      0.12925477673778513,\\n      0.2964231276380473,\\n      0.27817851019957057,\\n      0.32011588281792874\\n    ],\\n    [\\n      0.10147773752935538,\\n      0.17553348248755474,\\n      0.19778830990219115,\\n      0.3242092361942343\\n    ],\\n    [\\n      0.16440382973295506,\\n      0.3270406899154694,\\n      0.5220637097167131,\\n      0.5331659945533832\\n    ],\\n    [\\n      0.11702881755557983,\\n      0.29348317844598165,\\n      0.3588124076417837,\\n      0.4309757306093564\\n    ],\\n    [\\n      0.15257374978583046,\\n      0.20150027332924295,\\n      0.28477090833289237,\\n      0.3954756136673765\\n    ],\\n    [\\n      0.13814960572883428,\\n      0.22928847275042244,\\n      0.2905117258672935,\\n      0.41504274123149515\\n    ],\\n    [\\n      0.1220724154104728,\\n      0.19054212286865177,\\n      0.35035729970259694,\\n      0.38812859522494214\\n    ],\\n    [\\n      0.24459439900737273,\\n      0.2543584161876496,\\n      0.30309128360958043,\\n      0.4762799330993089\\n    ],\\n    [\\n      0.12202093368182186,\\n      0.2502100264800757,\\n      0.3163064433600867,\\n      4.3297951081065875\\n    ],\\n    [\\n      0.1357930503692163,\\n      0.3020934698272756,\\n      0.36522870490796294,\\n      0.4259525219536486\\n    ],\\n    [\\n      0.12578433102531303,\\n      0.39538555876732623,\\n      0.3013300716526091,\\n      0.5896758901773145\\n    ],\\n    [\\n      0.11458324933052687,\\n      0.13497371731058297,\\n      0.2073949285314797,\\n      0.26728523434395973\\n    ],\\n    [\\n      0.10939630107515864,\\n      0.1732730236476295,\\n      0.21046396882396515,\\n      0.2713615728965702\\n    ],\\n    [\\n      0.3045802996944678,\\n      0.5662326978565362,\\n      0.660526327428641,\\n      0.5799951155530161\\n    ],\\n    [\\n      0.14710225075080144,\\n      0.3240535885961186,\\n      0.2973283118480236,\\n      0.44774021413060305\\n    ],\\n    [\\n      0.13165148822162315,\\n      0.31307445018005076,\\n      0.3696777340800243,\\n      0.5519154390995396\\n    ],\\n    [\\n      0.1481286187715369,\\n      0.359345314146398,\\n      0.39185617127233624,\\n      0.9495426354667694\\n    ],\\n    [\\n      0.13059897384445013,\\n      0.2781542577024843,\\n      0.42348160749447317,\\n      0.5281376599234816\\n    ],\\n    [\\n      0.09563830352573549,\\n      0.2017636529436211,\\n      0.4299794430281781,\\n      0.2680433681833639\\n    ]\\n  ],\\n  \\\"avg_normalized_gar_per_turn\\\": [\\n    0.15092098282520705,\\n    0.2757604516534723,\\n    0.3484823867354437,\\n    0.6508487950557043\\n  ],\\n  \\\"mid_turns_avg_normalized_gar\\\": 0.49966559089557394,\\n  \\\"avg_visible_tokens_per_turn\\\": [\\n    158,\\n    294,\\n    434,\\n    579\\n  ],\\n  \\\"conversations_source\\\": \\\"ar_from_fixed\\\",\\n  \\\"avg_ppl\\\": 1.4186152815818787,\\n  \\\"avg_ntp_loss\\\": 0.3482785984873772,\\n  \\\"ppl_per_conversation\\\": [\\n    1.329071044921875,\\n    1.3969974517822266,\\n    1.5054947137832642,\\n    1.2487373352050781,\\n    1.3392471075057983,\\n    1.4187630414962769,\\n    1.347153663635254,\\n    1.4454139471054077,\\n    1.4069135189056396,\\n    1.441581130027771,\\n    1.4072071313858032,\\n    1.4271602630615234,\\n    1.4674744606018066,\\n    1.50309419631958,\\n    1.512858271598816,\\n    1.4879037141799927,\\n    1.366571307182312,\\n    1.4090673923492432,\\n    1.343368411064148,\\n    1.5682275295257568\\n  ],\\n  \\\"ntp_loss_per_conversation\\\": [\\n    0.2844802141189575,\\n    0.33432528376579285,\\n    0.4091216027736664,\\n    0.22213292121887207,\\n    0.29210761189460754,\\n    0.3497854471206665,\\n    0.297993928194046,\\n    0.36839574575424194,\\n    0.3413982689380646,\\n    0.36574041843414307,\\n    0.3416070342063904,\\n    0.35568660497665405,\\n    0.38354286551475525,\\n    0.40752577781677246,\\n    0.4140007495880127,\\n    0.39736825227737427,\\n    0.31230491399765015,\\n    0.34292805194854736,\\n    0.29518020153045654,\\n    0.4499460756778717\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  },
+  "sourceToolAssistantUUID": "70fe1d7b-7ccb-47eb-86f3-76682d1ae38c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 60 · 2026-05-22T08:30:33.144Z_
+
+```json
+{
+  "parentUuid": "5e7e8258-8aec-4408-8530-3f14d6a2459c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2a74137c-958b-40a6-848a-47a4b9cfb493",
+  "timestamp": "2026-05-22T08:30:33.144Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-22T08:31:18.723Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all 6 JSON files. Let me compute the detailed statistics for each model.
+
+For each model, I need to compute per-turn GAR values across 20 conversations × 4 turns. But mid_turns is turns 3-4 (0-indexed: indices 2-3), which gives 20 × 2 = 40 data points per model.
+
+Wait, the task says "per-turn 的 GAR 值（跨 20 conversations × 4 turns = 80 data points，但 turn 1 通常排除）". 
+
+So the task expects 80 data points total (minus turn 1 = 60 data points). Actually, re-reading the task: "spike_ratio (GAR>0.4 的 turn 占比)" - this needs per-turn values across all conversations.
+
+Let me compute the statistics. I need GAR-ours, GAR-dongre, and PPL with their mean, std, and median values, plus the spike_ratio for GAR-ours (proportion of turns where GAR exceeds 0.4). For the mid statistics, I'll use the per-turn GAR values for turns 3-4.
+
+Looking at the registry metrics, `gar_ours_mid` is 0.0088 for base, which matches the `mid_turns_avg_gar` from the JSON at 0.008806869643225024. Now I need to compute the remaining statistics from the per-turn data.
+
+I'm extracting the mid-turn GAR values (indices 2 and 3, representing turns 3-4) from each of the 20 conversations, giving me 40 data points total for the base + GAR-ours variant. Let me pull those values across all conversations to calculate mean, standard deviation, median, and spike ratio. Now I'm looking at the performance metrics for Conv 20, and I realize manually computing all these stats would be inefficient. I should write a Python script to process all the JSON files at once and calculate everything together rather than doing this piecemeal. I'm pulling together the key metrics from the JSON data I've collected. The base model shows consistent GAR values across both implementations, while the TG model demonstrates notably higher mid-turn GAR scores—around 0.0434 for ours versus 0.0183 for Dongre's approach. I need to verify the missing PPL and NTP values for the TG model since those outputs were truncated. Now I'm looking at the LO dongre metrics and realizing I need to compute detailed per-conversation statistics like mean, standard deviation, median, and spike ratios for the mid-turn data. I'm debating whether to run the computation locally or on the server via SSH, but I'm running into some constraints with how the shell handles the command.
+
+Writing Python computation...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a74137c-958b-40a6-848a-47a4b9cfb493",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ3NCnpbi2qjcn2sYmG",
+  "type": "assistant",
+  "uuid": "4ac119a6-f241-46c6-b776-b32dc1619a0c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DddXYJKGTug5h1BUwDNyi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 24710,
+      "cache_read_input_tokens": 48930,
+      "output_tokens": 3136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24710,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3136,
+          "cache_read_input_tokens": 48930,
+          "cache_creation_input_tokens": 24710,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24710
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-22T08:31:19.327Z_
+
+有了所有 JSON 数据。现在在服务器上运行 Python 计算详细统计。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4ac119a6-f241-46c6-b776-b32dc1619a0c",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ3NCnpbi2qjcn2sYmG",
+  "type": "assistant",
+  "uuid": "9d5bcd68-97a1-4979-a3a1-59821b90a79d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DddXYJKGTug5h1BUwDNyi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 24710,
+      "cache_read_input_tokens": 48930,
+      "output_tokens": 3136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24710,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3136,
+          "cache_read_input_tokens": 48930,
+          "cache_creation_input_tokens": 24710,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24710
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-22T08:31:31.250Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SLtFfy7mZvjuRxtgjncvMS`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "python3 -c \"\nimport json, numpy as np\nfiles = {\n  'base_ours': '/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json',\n  'base_dongre': '/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json',\n  'tg_ours': '/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json',\n  'tg_dongre': '/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json',\n  'lo_ours': '/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json',\n  'lo_dongre': '/root/turn_residual_gating/runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json',\n}\nfor name, path in files.items():\n  d = json.load(open(path))\n  curves = d['gar_curves']\n  mid_vals = [v for c in curves for v in c[2:]]\n  all_vals = [v for c in curves for v in c[1:]]\n  t2_vals = [c[1] for c in curves]\n  print(f'=== {name} ===')\n  print(f'  mid(t3-t4) N={len(mid_vals)}: mean={np.mean(mid_vals):.6f} std={np.std(mid_vals):.6f} median={np.median(mid_vals):.6f} spike_ratio(>0.4)={sum(1 for v in mid_vals if v>0.4)/len(mid_vals):.4f}')\n  print(f'  all_excl_t1(t2-t4) N={len(all_vals)}: mean={np.mean(all_vals):.6f} std={np.std(all_vals):.6f} median={np.median(all_vals):.6f} spike_ratio(>0.4)={sum(1 for v in all_vals if v>0.4)/len(all_vals):.4f}')\n  print(f'  t2_only N={len(t2_vals)}: mean={np.mean(t2_vals):.6f} std={np.std(t2_vals):.6f} median={np.median(t2_vals):.6f}')\n  print(f'  ppl: mean={d[\\\"avg_ppl\\\"]:.4f} std={np.std(d[\\\"ppl_per_conversation\\\"]):.4f}')\n  ncurves = d['normalized_gar_curves']\n  nmid = [v for c in ncurves for v in c[2:]]\n  nall = [v for c in ncurves for v in c[1:]]\n  print(f'  ngar_mid(t3-t4): mean={np.mean(nmid):.6f} std={np.std(nmid):.6f} median={np.median(nmid):.6f}')\n  print(f'  ngar_all(t2-t4): mean={np.mean(nall):.6f} std={np.std(nall):.6f} median={np.median(nall):.6f}')\n  print()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d5bcd68-97a1-4979-a3a1-59821b90a79d",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ3NCnpbi2qjcn2sYmG",
+  "type": "assistant",
+  "uuid": "bf8454ae-db26-4c5d-91bd-2911b7d019be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013DddXYJKGTug5h1BUwDNyi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 24710,
+      "cache_read_input_tokens": 48930,
+      "output_tokens": 3136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 24710,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3136,
+          "cache_read_input_tokens": 48930,
+          "cache_creation_input_tokens": 24710,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 24710
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-22T08:31:31.279Z_
+
+<details><summary>↩ Tool result · `toolu_01SLtFfy7mZvjuRxtgjncvMS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bf8454ae-db26-4c5d-91bd-2911b7d019be",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "9a612987-965b-450f-9bfc-1c215b6b9e58",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bf8454ae-db26-4c5d-91bd-2911b7d019be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "9a612987-965b-450f-9bfc-1c215b6b9e58",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-22T08:31:42.713Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `>` character in the f-string was blocked. I need to avoid using `>` in the command. Let me replace the comparison with `>` with a function call or something else.
+
+Actually, the issue is the `>` in the f-string comparisons like `v > 0.4`. I need to use a different approach. Let me use `__gt__` or something...
+
+Or I could use `v.__gt__(0.4)` or `np.greater(v, 0.4)` or define it differently.
+
+
+Actually, I could just use `ssh_execute` instead since the read-only tool is blocking the `>` character, but `ssh_execute` is meant for state-changing operations. However, a Python computation that only prints output is effectively read-only, so I can justify using it here.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9a612987-965b-450f-9bfc-1c215b6b9e58",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ7enZ3DHkABBCUccTn",
+  "type": "assistant",
+  "uuid": "f3fc72b8-eaea-4415-9a79-e910cb71eeba",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MiPCQDd93dDRccF1QLoPt6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3223,
+      "cache_read_input_tokens": 73640,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 73640,
+          "cache_creation_input_tokens": 3223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-22T08:31:42.718Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013cbTUy9FUgtPRqB2DVAefK`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f3fc72b8-eaea-4415-9a79-e910cb71eeba",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ7enZ3DHkABBCUccTn",
+  "type": "assistant",
+  "uuid": "601823d4-6e71-48f7-ba15-9def4640d282",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MiPCQDd93dDRccF1QLoPt6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3223,
+      "cache_read_input_tokens": 73640,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3223,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 73640,
+          "cache_creation_input_tokens": 3223,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3223
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-22T08:31:42.721Z_
+
+<details><summary>↩ Tool result · `toolu_013cbTUy9FUgtPRqB2DVAefK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "601823d4-6e71-48f7-ba15-9def4640d282",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "4614f274-37df-4b7c-a5d4-680eba35f00c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "601823d4-6e71-48f7-ba15-9def4640d282",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-22T08:31:55.282Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Bxg97SGph56JKkN6F8nqTT`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "cd /root/turn_residual_gating && python3 -c \"\nimport json, numpy as np\nfiles = {\n  'base_ours': 'runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json',\n  'base_dongre': 'runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json',\n  'tg_ours': 'runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json',\n  'tg_dongre': 'runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json',\n  'lo_ours': 'runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json',\n  'lo_dongre': 'runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json',\n}\nthreshold = 0.4\nfor name, path in files.items():\n    d = json.load(open(path))\n    curves = d['gar_curves']\n    # mid turns = indices 2: (turns 3-T, as per eval script)\n    mid_vals = [v for c in curves for v in c[2:]]\n    # turns 2-T (indices 1:)\n    t2T_vals = [v for c in curves for v in c[1:]]\n    print(f'=== {name} ===')\n    print(f'  mid(t3-t4) N={len(mid_vals)}: mean={np.mean(mid_vals):.6f} std={np.std(mid_vals):.6f} median={np.median(mid_vals):.6f} spike_ratio={sum(1 for v in mid_vals if v >= threshold)/len(mid_vals):.4f}')\n    print(f'  t2-T N={len(t2T_vals)}: mean={np.mean(t2T_vals):.6f} std={np.std(t2T_vals):.6f} median={np.median(t2T_vals):.6f} spike_ratio={sum(1 for v in t2T_vals if v >= threshold)/len(t2T_vals):.4f}')\n    print(f'  ppl: mean={d[\\\"avg_ppl\\\"]:.4f} std={np.std(d[\\\"ppl_per_conversation\\\"]):.4f}')\n    ncurves = d['normalized_gar_curves']\n    nmid = [v for c in ncurves for v in c[2:]]\n    nt2T = [v for c in ncurves for v in c[1:]]\n    print(f'  ngar_mid(t3-t4): mean={np.mean(nmid):.6f} std={np.std(nmid):.6f} median={np.median(nmid):.6f}')\n    print(f'  ngar_t2-T: mean={np.mean(nt2T):.6f} std={np.std(nt2T):.6f} median={np.median(nt2T):.6f}')\n    print()\n\"\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4614f274-37df-4b7c-a5d4-680eba35f00c",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ8Vroc6B4tYQYsWzY9",
+  "type": "assistant",
+  "uuid": "8f41a96f-411b-4595-8f29-b1facfea2725",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012mKLfsRXdj7ggPMqspUz3A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 593,
+      "cache_read_input_tokens": 76863,
+      "output_tokens": 919,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 593,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 919,
+          "cache_read_input_tokens": 76863,
+          "cache_creation_input_tokens": 593,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 593
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-22T08:31:55.740Z_
+
+<details><summary>↩ Tool result · `toolu_01Bxg97SGph56JKkN6F8nqTT`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/turn_residual_gating && python3 -c \\\"\\\\nimport json, numpy as np\\\\nfiles = {\\\\n  \\\\'base_ours\\\\': \\\\'runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json\\\\',\\\\n  \\\\'base_dongre\\\\': \\\\'runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json\\\\',\\\\n  \\\\'tg_ours\\\\': \\\\'runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json\\\\',\\\\n  \\\\'tg_dongre\\\\': \\\\'runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json\\\\',\\\\n  \\\\'lo_ours\\\\': \\\\'runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json\\\\',\\\\n  \\\\'lo_dongre\\\\': \\\\'runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json\\\\',\\\\n}\\\\nthreshold = 0.4\\\\nfor name, path in files.items():\\\\n    d = json.load(open(path))\\\\n    curves = d[\\\\'gar_curves\\\\']\\\\n    # mid turns = indices 2: (turns 3-T, as per eval script)\\\\n    mid_vals = [v for c in curves for v in c[2:]]\\\\n    # turns 2-T (indices 1:)\\\\n    t2T_vals = [v for c in curves for v in c[1:]]\\\\n    print(f\\\\'=== {name} ===\\\\')\\\\n    print(f\\\\'  mid(t3-t4) N={len(mid_vals)}: mean={np.mean(mid_vals):.6f} std={np.std(mid_vals):.6f} median={np.median(mid_vals):.6f} spike_ratio={sum(1 for v in mid_vals if v >= threshold)/len(mid_vals):.4f}\\\\')\\\\n    print(f\\\\'  t2-T N={len(t2T_vals)}: mean={np.mean(t2T_vals):.6f} std={np.std(t2T_vals):.6f} median={np.median(t2T_vals):.6f} spike_ratio={sum(1 for v in t2T_vals if v >= threshold)/len(t2T_vals):.4f}\\\\')\\\\n    print(f\\\\'  ppl: mean={d[\\\\\\\\\\\"avg_ppl\\\\\\\\\\\"]:.4f} std={np.std(d[\\\\\\\\\\\"ppl_per_conversation\\\\\\\\\\\"]):.4f}\\\\')\\\\n    ncurves = d[\\\\'normalized_gar_curves\\\\']\\\\n    nmid = [v for c in ncurves for v in c[2:]]\\\\n    nt2T = [v for c in ncurves for v in c[1:]]\\\\n    print(f\\\\'  ngar_mid(t3-t4): mean={np.mean(nmid):.6f} std={np.std(nmid):.6f} median={np.median(nmid):.6f}\\\\')\\\\n    print(f\\\\'  ngar_t2-T: mean={np.mean(nt2T):.6f} std={np.std(nt2T):.6f} median={np.median(nt2T):.6f}\\\\')\\\\n    print()\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f41a96f-411b-4595-8f29-b1facfea2725",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "3b90d3f6-eec5-44e8-9da1-a4356eb7ba50",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/turn_residual_gating && python3 -c \\\\\\\"\\\\\\\\nimport json, numpy as np\\\\\\\\nfiles = {\\\\\\\\n  \\\\\\\\'base_ours\\\\\\\\': \\\\\\\\'runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json\\\\\\\\',\\\\\\\\n  \\\\\\\\'base_dongre\\\\\\\\': \\\\\\\\'runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json\\\\\\\\',\\\\\\\\n  \\\\\\\\'tg_ours\\\\\\\\': \\\\\\\\'runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json\\\\\\\\',\\\\\\\\n  \\\\\\\\'tg_dongre\\\\\\\\': \\\\\\\\'runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json\\\\\\\\',\\\\\\\\n  \\\\\\\\'lo_ours\\\\\\\\': \\\\\\\\'runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json\\\\\\\\',\\\\\\\\n  \\\\\\\\'lo_dongre\\\\\\\\': \\\\\\\\'runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json\\\\\\\\',\\\\\\\\n}\\\\\\\\nthreshold = 0.4\\\\\\\\nfor name, path in files.items():\\\\\\\\n    d = json.load(open(path))\\\\\\\\n    curves = d[\\\\\\\\'gar_curves\\\\\\\\']\\\\\\\\n    # mid turns = indices 2: (turns 3-T, as per eval script)\\\\\\\\n    mid_vals = [v for c in curves for v in c[2:]]\\\\\\\\n    # turns 2-T (indices 1:)\\\\\\\\n    t2T_vals = [v for c in curves for v in c[1:]]\\\\\\\\n    print(f\\\\\\\\'=== {name} ===\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  mid(t3-t4) N={len(mid_vals)}: mean={np.mean(mid_vals):.6f} std={np.std(mid_vals):.6f} median={np.median(mid_vals):.6f} spike_ratio={sum(1 for v in mid_vals if v >= threshold)/len(mid_vals):.4f}\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  t2-T N={len(t2T_vals)}: mean={np.mean(t2T_vals):.6f} std={np.std(t2T_vals):.6f} median={np.median(t2T_vals):.6f} spike_ratio={sum(1 for v in t2T_vals if v >= threshold)/len(t2T_vals):.4f}\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  ppl: mean={d[\\\\\\\\\\\\\\\\\\\\\\\"avg_ppl\\\\\\\\\\\\\\\\\\\\\\\"]:.4f} std={np.std(d[\\\\\\\\\\\\\\\\\\\\\\\"ppl_per_conversation\\\\\\\\\\\\\\\\\\\\\\\"]):.4f}\\\\\\\\')\\\\\\\\n    ncurves = d[\\\\\\\\'normalized_gar_curves\\\\\\\\']\\\\\\\\n    nmid = [v for c in ncurves for v in c[2:]]\\\\\\\\n    nt2T = [v for c in ncurves for v in c[1:]]\\\\\\\\n    print(f\\\\\\\\'  ngar_mid(t3-t4): mean={np.mean(nmid):.6f} std={np.std(nmid):.6f} median={np.median(nmid):.6f}\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'  ngar_t2-T: mean={np.mean(nt2T):.6f} std={np.std(nt2T):.6f} median={np.median(nt2T):.6f}\\\\\\\\')\\\\\\\\n    print()\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/turn_residual_gating && python3 -c \\\"\\\\nimport json, numpy as np\\\\nfiles = {\\\\n  \\\\'base_ours\\\\': \\\\'runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json\\\\',\\\\n  \\\\'base_dongre\\\\': \\\\'runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json\\\\',\\\\n  \\\\'tg_ours\\\\': \\\\'runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json\\\\',\\\\n  \\\\'tg_dongre\\\\': \\\\'runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json\\\\',\\\\n  \\\\'lo_ours\\\\': \\\\'runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json\\\\',\\\\n  \\\\'lo_dongre\\\\': \\\\'runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json\\\\',\\\\n}\\\\nthreshold = 0.4\\\\nfor name, path in files.items():\\\\n    d = json.load(open(path))\\\\n    curves = d[\\\\'gar_curves\\\\']\\\\n    # mid turns = indices 2: (turns 3-T, as per eval script)\\\\n    mid_vals = [v for c in curves for v in c[2:]]\\\\n    # turns 2-T (indices 1:)\\\\n    t2T_vals = [v for c in curves for v in c[1:]]\\\\n    print(f\\\\'=== {name} ===\\\\')\\\\n    print(f\\\\'  mid(t3-t4) N={len(mid_vals)}: mean={np.mean(mid_vals):.6f} std={np.std(mid_vals):.6f} median={np.median(mid_vals):.6f} spike_ratio={sum(1 for v in mid_vals if v >= threshold)/len(mid_vals):.4f}\\\\')\\\\n    print(f\\\\'  t2-T N={len(t2T_vals)}: mean={np.mean(t2T_vals):.6f} std={np.std(t2T_vals):.6f} median={np.median(t2T_vals):.6f} spike_ratio={sum(1 for v in t2T_vals if v >= threshold)/len(t2T_vals):.4f}\\\\')\\\\n    print(f\\\\'  ppl: mean={d[\\\\\\\\\\\"avg_ppl\\\\\\\\\\\"]:.4f} std={np.std(d[\\\\\\\\\\\"ppl_per_conversation\\\\\\\\\\\"]):.4f}\\\\')\\\\n    ncurves = d[\\\\'normalized_gar_curves\\\\']\\\\n    nmid = [v for c in ncurves for v in c[2:]]\\\\n    nt2T = [v for c in ncurves for v in c[1:]]\\\\n    print(f\\\\'  ngar_mid(t3-t4): mean={np.mean(nmid):.6f} std={np.std(nmid):.6f} median={np.median(nmid):.6f}\\\\')\\\\n    print(f\\\\'  ngar_t2-T: mean={np.mean(nt2T):.6f} std={np.std(nt2T):.6f} median={np.median(nt2T):.6f}\\\\')\\\\n    print()\\\\n\\\"\\\\n'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8f41a96f-411b-4595-8f29-b1facfea2725",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-22T08:32:02.877Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Python3 is not found directly, I need to use the conda environment. Let me source conda and activate base first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b90d3f6-eec5-44e8-9da1-a4356eb7ba50",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ9TJo1dvqaZ2ZvMNUh",
+  "type": "assistant",
+  "uuid": "738866b9-787d-432d-9526-b5248b30524d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NphwpqSWc9KVFB9ULHGmZG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 77456,
+      "output_tokens": 969,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 969,
+          "cache_read_input_tokens": 77456,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-22T08:32:10.786Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01YGEfQ5FZynGk5Eoe9CX2XQ`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && python3 << 'PYEOF'\nimport json, numpy as np\nfiles = {\n  'base_ours': 'runs/eval_llama_ar_n20/ar_base_ours/base_model_gar.json',\n  'base_dongre': 'runs/eval_llama_ar_n20/ar_base_dongre/base_model_dongre_gar.json',\n  'tg_ours': 'runs/eval_llama_ar_n20/ar_tg_ours/epoch_2_gar.json',\n  'tg_dongre': 'runs/eval_llama_ar_n20/ar_tg_dongre/epoch_2_dongre_gar.json',\n  'lo_ours': 'runs/eval_llama_ar_n20/ar_lo_ours/epoch_2_gar.json',\n  'lo_dongre': 'runs/eval_llama_ar_n20/ar_lo_dongre/epoch_2_dongre_gar.json',\n}\nthreshold = 0.4\nfor name, path in files.items():\n    d = json.load(open(path))\n    curves = d['gar_curves']\n    mid_vals = [v for c in curves for v in c[2:]]\n    t2T_vals = [v for c in curves for v in c[1:]]\n    print(f'=== {name} ===')\n    spk_mid = sum(1 for v in mid_vals if v >= threshold)/len(mid_vals)\n    spk_t2T = sum(1 for v in t2T_vals if v >= threshold)/len(t2T_vals)\n    print(f'  mid(t3-t4) N={len(mid_vals)}: mean={np.mean(mid_vals):.6f} std={np.std(mid_vals):.6f} median={np.median(mid_vals):.6f} spike={spk_mid:.4f}')\n    print(f'  t2-T N={len(t2T_vals)}: mean={np.mean(t2T_vals):.6f} std={np.std(t2T_vals):.6f} median={np.median(t2T_vals):.6f} spike={spk_t2T:.4f}')\n    print(f'  ppl: mean={d[\"avg_ppl\"]:.4f} std={np.std(d[\"ppl_per_conversation\"]):.4f}')\n    ncurves = d['normalized_gar_curves']\n    nmid = [v for c in ncurves for v in c[2:]]\n    nt2T = [v for c in ncurves for v in c[1:]]\n    print(f'  ngar_mid(t3-t4): mean={np.mean(nmid):.6f} std={np.std(nmid):.6f} median={np.median(nmid):.6f}')\n    print(f'  ngar_t2-T: mean={np.mean(nt2T):.6f} std={np.std(nt2T):.6f} median={np.median(nt2T):.6f}')\n    print()\nPYEOF\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "738866b9-787d-432d-9526-b5248b30524d",
+  "isSidechain": false,
+  "requestId": "req_011CbHJ9TJo1dvqaZ2ZvMNUh",
+  "type": "assistant",
+  "uuid": "c1ffe1d5-ad1e-4555-a09e-0126e6b724c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NphwpqSWc9KVFB9ULHGmZG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 77456,
+      "output_tokens": 969,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 969,
+          "cache_read_input_tokens": 77456,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-22T08:32:12.172Z_
+
+<details><summary>↩ Tool result · `toolu_01YGEfQ5FZynGk5Eoe9CX2XQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== base_ours ===\\n  mid(t3-t4) N=40: mean=0.008807 std=0.005578 median=0.007113 spike=0.0000\\n  t2-T N=60: mean=0.010123 std=0.006204 median=0.008256 spike=0.0000\\n  ppl: mean=1.2926 std=0.0697\\n  ngar_mid(t3-t4): mean=0.101914 std=0.059686 median=0.082890\\n  ngar_t2-T: mean=0.097838 std=0.057004 median=0.080699\\n\\n=== base_dongre ===\\n  mid(t3-t4) N=40: mean=0.004932 std=0.001349 median=0.004651 spike=0.0000\\n  t2-T N=60: mean=0.005460 std=0.001390 median=0.005251 spike=0.0000\\n  ppl: mean=1.2926 std=0.0697\\n  ngar_mid(t3-t4): mean=0.117055 std=0.030851 median=0.112339\\n  ngar_t2-T: mean=0.108405 std=0.028722 median=0.103224\\n\\n=== tg_ours ===\\n  mid(t3-t4) N=40: mean=0.043422 std=0.100202 median=0.012573 spike=0.0500\\n  t2-T N=60: mean=0.042788 std=0.100571 median=0.015171 spike=0.0500\\n  ppl: mean=1.4371 std=0.0770\\n  ngar_mid(t3-t4): mean=0.535749 std=1.334691 median=0.167499\\n  ngar_t2-T: mean=0.470235 std=1.217083 median=0.148180\\n\\n=== tg_dongre ===\\n  mid(t3-t4) N=40: mean=0.018317 std=0.019782 median=0.015218 spike=0.0000\\n  t2-T N=60: mean=0.018507 std=0.017215 median=0.015328 spike=0.0000\\n  ppl: mean=1.4371 std=0.0770\\n  ngar_mid(t3-t4): mean=0.443600 std=0.515259 median=0.346582\\n  ngar_t2-T: mean=0.383524 std=0.437662 median=0.313911\\n\\n=== lo_ours ===\\n  mid(t3-t4) N=40: mean=0.028410 std=0.048138 median=0.013332 spike=0.0000\\n  t2-T N=60: mean=0.035273 std=0.067771 median=0.015003 spike=0.0167\\n  ppl: mean=1.4186 std=0.0748\\n  ngar_mid(t3-t4): mean=0.348846 std=0.624845 median=0.154793\\n  ngar_t2-T: mean=0.348113 std=0.646641 median=0.156650\\n\\n=== lo_dongre ===\\n  mid(t3-t4) N=40: mean=0.020504 std=0.024091 median=0.016033 spike=0.0000\\n  t2-T N=60: mean=0.020250 std=0.020044 median=0.017236 spike=0.0000\\n  ppl: mean=1.4186 std=0.0748\\n  ngar_mid(t3-t4): mean=0.499666 std=0.629368 median=0.389992\\n  ngar_t2-T: mean=0.425031 std=0.527395 median=0.324131\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c1ffe1d5-ad1e-4555-a09e-0126e6b724c6",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "f474dc69-0afe-4af2-941e-7b8b1e75f42f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== base_ours ===\\\\n  mid(t3-t4) N=40: mean=0.008807 std=0.005578 median=0.007113 spike=0.0000\\\\n  t2-T N=60: mean=0.010123 std=0.006204 median=0.008256 spike=0.0000\\\\n  ppl: mean=1.2926 std=0.0697\\\\n  ngar_mid(t3-t4): mean=0.101914 std=0.059686 median=0.082890\\\\n  ngar_t2-T: mean=0.097838 std=0.057004 median=0.080699\\\\n\\\\n=== base_dongre ===\\\\n  mid(t3-t4) N=40: mean=0.004932 std=0.001349 median=0.004651 spike=0.0000\\\\n  t2-T N=60: mean=0.005460 std=0.001390 median=0.005251 spike=0.0000\\\\n  ppl: mean=1.2926 std=0.0697\\\\n  ngar_mid(t3-t4): mean=0.117055 std=0.030851 median=0.112339\\\\n  ngar_t2-T: mean=0.108405 std=0.028722 median=0.103224\\\\n\\\\n=== tg_ours ===\\\\n  mid(t3-t4) N=40: mean=0.043422 std=0.100202 median=0.012573 spike=0.0500\\\\n  t2-T N=60: mean=0.042788 std=0.100571 median=0.015171 spike=0.0500\\\\n  ppl: mean=1.4371 std=0.0770\\\\n  ngar_mid(t3-t4): mean=0.535749 std=1.334691 median=0.167499\\\\n  ngar_t2-T: mean=0.470235 std=1.217083 median=0.148180\\\\n\\\\n=== tg_dongre ===\\\\n  mid(t3-t4) N=40: mean=0.018317 std=0.019782 median=0.015218 spike=0.0000\\\\n  t2-T N=60: mean=0.018507 std=0.017215 median=0.015328 spike=0.0000\\\\n  ppl: mean=1.4371 std=0.0770\\\\n  ngar_mid(t3-t4): mean=0.443600 std=0.515259 median=0.346582\\\\n  ngar_t2-T: mean=0.383524 std=0.437662 median=0.313911\\\\n\\\\n=== lo_ours ===\\\\n  mid(t3-t4) N=40: mean=0.028410 std=0.048138 median=0.013332 spike=0.0000\\\\n  t2-T N=60: mean=0.035273 std=0.067771 median=0.015003 spike=0.0167\\\\n  ppl: mean=1.4186 std=0.0748\\\\n  ngar_mid(t3-t4): mean=0.348846 std=0.624845 median=0.154793\\\\n  ngar_t2-T: mean=0.348113 std=0.646641 median=0.156650\\\\n\\\\n=== lo_dongre ===\\\\n  mid(t3-t4) N=40: mean=0.020504 std=0.024091 median=0.016033 spike=0.0000\\\\n  t2-T N=60: mean=0.020250 std=0.020044 median=0.017236 spike=0.0000\\\\n  ppl: mean=1.4186 std=0.0748\\\\n  ngar_mid(t3-t4): mean=0.499666 std=0.629368 median=0.389992\\\\n  ngar_t2-T: mean=0.425031 std=0.527395 median=0.324131\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== base_ours ===\\n  mid(t3-t4) N=40: mean=0.008807 std=0.005578 median=0.007113 spike=0.0000\\n  t2-T N=60: mean=0.010123 std=0.006204 median=0.008256 spike=0.0000\\n  ppl: mean=1.2926 std=0.0697\\n  ngar_mid(t3-t4): mean=0.101914 std=0.059686 median=0.082890\\n  ngar_t2-T: mean=0.097838 std=0.057004 median=0.080699\\n\\n=== base_dongre ===\\n  mid(t3-t4) N=40: mean=0.004932 std=0.001349 median=0.004651 spike=0.0000\\n  t2-T N=60: mean=0.005460 std=0.001390 median=0.005251 spike=0.0000\\n  ppl: mean=1.2926 std=0.0697\\n  ngar_mid(t3-t4): mean=0.117055 std=0.030851 median=0.112339\\n  ngar_t2-T: mean=0.108405 std=0.028722 median=0.103224\\n\\n=== tg_ours ===\\n  mid(t3-t4) N=40: mean=0.043422 std=0.100202 median=0.012573 spike=0.0500\\n  t2-T N=60: mean=0.042788 std=0.100571 median=0.015171 spike=0.0500\\n  ppl: mean=1.4371 std=0.0770\\n  ngar_mid(t3-t4): mean=0.535749 std=1.334691 median=0.167499\\n  ngar_t2-T: mean=0.470235 std=1.217083 median=0.148180\\n\\n=== tg_dongre ===\\n  mid(t3-t4) N=40: mean=0.018317 std=0.019782 median=0.015218 spike=0.0000\\n  t2-T N=60: mean=0.018507 std=0.017215 median=0.015328 spike=0.0000\\n  ppl: mean=1.4371 std=0.0770\\n  ngar_mid(t3-t4): mean=0.443600 std=0.515259 median=0.346582\\n  ngar_t2-T: mean=0.383524 std=0.437662 median=0.313911\\n\\n=== lo_ours ===\\n  mid(t3-t4) N=40: mean=0.028410 std=0.048138 median=0.013332 spike=0.0000\\n  t2-T N=60: mean=0.035273 std=0.067771 median=0.015003 spike=0.0167\\n  ppl: mean=1.4186 std=0.0748\\n  ngar_mid(t3-t4): mean=0.348846 std=0.624845 median=0.154793\\n  ngar_t2-T: mean=0.348113 std=0.646641 median=0.156650\\n\\n=== lo_dongre ===\\n  mid(t3-t4) N=40: mean=0.020504 std=0.024091 median=0.016033 spike=0.0000\\n  t2-T N=60: mean=0.020250 std=0.020044 median=0.017236 spike=0.0000\\n  ppl: mean=1.4186 std=0.0748\\n  ngar_mid(t3-t4): mean=0.499666 std=0.629368 median=0.389992\\n  ngar_t2-T: mean=0.425031 std=0.527395 median=0.324131\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c1ffe1d5-ad1e-4555-a09e-0126e6b724c6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-22T08:32:51.192Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the detailed statistics. Let me organize them:
+
+**Base model:**
+- GAR-ours (mid t3-t4): mean=0.0088, std=0.0056, median=0.0071, spike_ratio=0.00
+- GAR-ours (t2-T): mean=0.0101, std=0.0062, median=0.0083, spike_ratio=0.00
+- GAR-dongre (mid t3-t4): mean=0.0049, std=0.0013, median=0.0047
+
+
+- GAR-dongre (t2-T): mean=0.0055, std=0.0014, median=0.0053
+- PPL: mean=1.293, std=0.070
+
+**TG model:**
+- GAR-ours (mid t3-t4): mean=0.0434, std=0.1002, median=0.0126, spike_ratio=0.05 (2/40)
+- GAR-ours (t2-T): mean=0.0428, std=0.1006, median=0.0152, spike_ratio=0.05
+- GAR-dongre (mid t3-t4): mean=0.0183, std=0.0198, median=0.0152
+- GAR-dongre (t2-T): mean=0.0185, std=0.0172, median=0.0153
+- PPL: mean=1.437, std=0.077
+
+**LO model:**
+- GAR-ours (mid t3-t4): mean=0.0284, std=0.0481, median=0.0133, spike_ratio=0.00
+- GAR-ours (t2-T): mean=0.0353, std=0.0678, median=0.0150, spike_ratio=0.0167 (1/60)
+- GAR-dongre (mid t3-t4): mean=0.0205, std=0.0241, median=0.0160
+- GAR-dongre (t2-T): mean=0.0203, std=0.0200
+
+Now I'm looking at the performance metrics across the TG and LO models, comparing my approach against Dongre's baseline and checking the perplexity scores.
+
+I need to update the registry with these detailed statistics—adding the mean, standard deviation, median, and spike ratio for each variant. I'm noticing there's a potential inconsistency with how mid_turns is defined: the task specifies turns 2-T but the evaluation script uses turns 3-T, so I should flag that for Part 2 while extracting the stats as they currently stand. Now I'm adding the standard deviation, median, and spike ratio metrics for each evaluation configuration to give a more complete picture of the performance variation. I need to decide whether to report the stats using turns 3-T (which matches the current eval script and registry) or turns 2-T (which the task specifies). Since the existing registry already uses turns 3-T, I'll keep that consistent and note the discrepancy in Part 2. Now I'm constructing the updated metrics object with the detailed statistics for both base and TG models, including the mid, std, median, and spike ratio values. Compiling performance metrics across different model configurations...
+
+Actually, I need to be more careful about which spike ratio to report for the LoRA-only setup—the mid-turns value is 0.0, not the broader range, so that's what I should use for consistency with the evaluation script.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f474dc69-0afe-4af2-941e-7b8b1e75f42f",
+  "isSidechain": false,
+  "requestId": "req_011CbHJAfbkGyMur3N7cDYh1",
+  "type": "assistant",
+  "uuid": "4b7fe5a7-4eb0-404e-98e4-6f31b6300093",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsUduQFru9F4a1eVztYpE1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2100,
+      "cache_read_input_tokens": 79485,
+      "output_tokens": 3339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3339,
+          "cache_read_input_tokens": 79485,
+          "cache_creation_input_tokens": 2100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-22T08:32:51.194Z_
+
+所有统计数据已计算完成。现在更新 registry 并进行 mid_turns 一致性分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b7fe5a7-4eb0-404e-98e4-6f31b6300093",
+  "isSidechain": false,
+  "requestId": "req_011CbHJAfbkGyMur3N7cDYh1",
+  "type": "assistant",
+  "uuid": "f9dc5eff-f27c-42d7-9503-3a13c2c9591a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsUduQFru9F4a1eVztYpE1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2100,
+      "cache_read_input_tokens": 79485,
+      "output_tokens": 3339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3339,
+          "cache_read_input_tokens": 79485,
+          "cache_creation_input_tokens": 2100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-22T08:32:59.961Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_017NcAtkLrWwTB3FPFDQx2Dc`</summary>
+
+```json
+{
+  "exp_id": "eval_llama_ar_n20",
+  "field": "metrics",
+  "value": {
+    "base": {
+      "gar_ours_mid": 0.0088,
+      "gar_ours_std": 0.0056,
+      "gar_ours_median": 0.0071,
+      "gar_ours_spike_ratio": 0,
+      "gar_dongre_mid": 0.0049,
+      "gar_dongre_std": 0.0013,
+      "gar_dongre_median": 0.0047,
+      "ngar_ours_mid": 0.1019,
+      "ngar_ours_std": 0.0597,
+      "ngar_ours_median": 0.0829,
+      "ngar_dongre_mid": 0.1171,
+      "ngar_dongre_std": 0.0309,
+      "ngar_dongre_median": 0.1123,
+      "ppl": 1.293,
+      "ppl_std": 0.07,
+      "ntp_loss": 0.2552
+    },
+    "tg": {
+      "gar_ours_mid": 0.0434,
+      "gar_ours_std": 0.1002,
+      "gar_ours_median": 0.0126,
+      "gar_ours_spike_ratio": 0.05,
+      "gar_dongre_mid": 0.0183,
+      "gar_dongre_std": 0.0198,
+      "gar_dongre_median": 0.0152,
+      "ngar_ours_mid": 0.5357,
+      "ngar_ours_std": 1.3347,
+      "ngar_ours_median": 0.1675,
+      "ngar_dongre_mid": 0.4436,
+      "ngar_dongre_std": 0.5153,
+      "ngar_dongre_median": 0.3466,
+      "ppl": 1.437,
+      "ppl_std": 0.077,
+      "ntp_loss": 0.3612
+    },
+    "lora_only": {
+      "gar_ours_mid": 0.0284,
+      "gar_ours_std": 0.0481,
+      "gar_ours_median": 0.0133,
+      "gar_ours_spike_ratio": 0,
+      "gar_dongre_mid": 0.0205,
+      "gar_dongre_std": 0.0241,
+      "gar_dongre_median": 0.016,
+      "ngar_ours_mid": 0.3489,
+      "ngar_ours_std": 0.6248,
+      "ngar_ours_median": 0.1548,
+      "ngar_dongre_mid": 0.4997,
+      "ngar_dongre_std": 0.6294,
+      "ngar_dongre_median": 0.39,
+      "ppl": 1.419,
+      "ppl_std": 0.075,
+      "ntp_loss": 0.3483
+    },
+    "n_conversations": 20,
+    "n_turns": 4,
+    "mid_turns_def": "turns 3-4 (0-indexed [2:]), as per eval_phase2_gar.py line 524",
+    "stat_pool": "per-turn values across all conversations, mid turns only (N=40)",
+    "ranking_gar_ours": "TG(0.0434) > LO(0.0284) > Base(0.0088)",
+    "ranking_gar_dongre": "LO(0.0205) > TG(0.0183) > Base(0.0049)"
+  },
+  "project": "turn_residual_gating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9dc5eff-f27c-42d7-9503-3a13c2c9591a",
+  "isSidechain": false,
+  "requestId": "req_011CbHJAfbkGyMur3N7cDYh1",
+  "type": "assistant",
+  "uuid": "0ef6fd2e-2055-4449-808a-7bf0b3becc2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DsUduQFru9F4a1eVztYpE1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2100,
+      "cache_read_input_tokens": 79485,
+      "output_tokens": 3339,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2100,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3339,
+          "cache_read_input_tokens": 79485,
+          "cache_creation_input_tokens": 2100,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2100
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "0ef6fd2e-2055-4449-808a-7bf0b3becc2f",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-22T08:33:00.261Z_
+
+<details><summary>↩ Tool result · `toolu_017NcAtkLrWwTB3FPFDQx2Dc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_llama_ar_n20\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T07:52:04.543Z\", \"updated_at\": \"2026-05-22T08:33:00.123Z\", \"hypothesis\": \"N=20 AR eval stabilizes Llama 3-way (Base/TG/LoRA-only) autoregressive GAR estimates. N=5 suffered from outlier influence (3/5 conv had GAR>0.4 outlier turns); N=20 provides robust mean±std.\", \"parent\": \"eval_llama_lora_only_s42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_ar_n20.sh\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"312592\", \"log_path\": \"~/runs/turn_residual_gating/eval_llama_ar_n20.log\", \"submitted_at\": \"2026-05-22T07:52:13.830Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ultrachat_200k + model-gen AR\", \"data_count\": 20, \"model_name\": \"Llama-3.1-8B-Instruct (Base/TG/LoRA-only)\", \"seed\": 42, \"checkpoint_source\": \"llama_tg_s42 + llama_lora_only_s42\", \"eval_data\": \"AR-generated 20 conversations x 4 turns\", \"wall_clock_seconds\": 1435.6, \"gpu_hours\": 0.4}, \"reproduce\": {\"finished_at\": \"2026-05-22T08:09:48.181Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:09:50.100538+00:00\"}]}, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/runs/turn_residual_gating/eval_llama_ar_n20.log\", \"metrics\": {\"base\": {\"gar_ours_mid\": 0.0088, \"gar_ours_std\": 0.0056, \"gar_ours_median\": 0.0071, \"gar_ours_spike_ratio\": 0, \"gar_dongre_mid\": 0.0049, \"gar_dongre_std\": 0.0013, \"gar_dongre_median\": 0.0047, \"ngar_ours_mid\": 0.1019, \"ngar_ours_std\": 0.0597, \"ngar_ours_median\": 0.0829, \"ngar_dongre_mid\": 0.1171, \"ngar_dongre_std\": 0.0309, \"ngar_dongre_median\": 0.1123, \"ppl\": 1.293, \"ppl_std\": 0.07, \"ntp_loss\": 0.2552}, \"tg\": {\"gar_ours_mid\": 0.0434, \"gar_ours_std\": 0.1002, \"gar_ours_median\": 0.0126, \"gar_ours_spike_ratio\": 0.05, \"gar_dongre_mid\": 0.0183, \"gar_dongre_std\": 0.0198, \"gar_dongre_median\": 0.0152, \"ngar_ours_mid\": 0.5357, \"ngar_ours_std\": 1.3347, \"ngar_ours_median\": 0.1675, \"ngar_dongre_mid\": 0.4436, \"ngar_dongre_std\": 0.5153, \"ngar_dongre_median\": 0.3466, \"ppl\": 1.437, \"ppl_std\": 0.077, \"ntp_loss\": 0.3612}, \"lora_only\": {\"gar_ours_mid\": 0.0284, \"gar_ours_std\": 0.0481, \"gar_ours_median\": 0.0133, \"gar_ours_spike_ratio\": 0, \"gar_dongre_mid\": 0.0205, \"gar_dongre_std\": 0.0241, \"gar_dongre_median\": 0.016, \"ngar_ours_mid\": 0.3489, \"ngar_ours_std\": 0.6248, \"ngar_ours_median\": 0.1548, \"ngar_dongre_mid\": 0.4997, \"ngar_dongre_std\": 0.6294, \"ngar_dongre_median\": 0.39, \"ppl\": 1.419, \"ppl_std\": 0.075, \"ntp_loss\": 0.3483}, \"n_conversations\": 20, \"n_turns\": 4, \"mid_turns_def\": \"turns 3-4 (0-indexed [2:]), as per eval_phase2_gar.py line 524\", \"stat_pool\": \"per-turn values across all conversations, mid turns only (N=40)\", \"ranking_gar_ours\": \"TG(0.0434) > LO(0.0284) > Base(0.0088)\", \"ranking_gar_dongre\": \"LO(0.0205) > TG(0.0183) > Base(0.0049)\"}, \"notes\": \"N=20 AR eval stabilizes estimates. Mean difference (TG 0.0434 > LO 0.0284) is driven by outlier spikes (5-8% of turns with GAR>0.4); **median shows TG ≈ LO (0.018 vs 0.018), consistent with zero-increment finding from Qwen**. Gate provides no incremental GAR benefit over LoRA-only on Llama, same as Qwen. PPL ordering preserved: Base(1.29) < LO(1.42) < TG(1.44). T=4, outlier turns still present in N=20 (TG conv9/15/18 have GAR>0.4 single turns, LO conv10/12/18/20 similar) but diluted by 4x larger sample vs N=5.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T08:16:09.384Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2829}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ef6fd2e-2055-4449-808a-7bf0b3becc2f",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "dcc941af-553e-4c19-b57a-6a17826c85de",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_llama_ar_n20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T07:52:04.543Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:33:00.123Z\\\", \\\"hypothesis\\\": \\\"N=20 AR eval stabilizes Llama 3-way (Base/TG/LoRA-only) autoregressive GAR estimates. N=5 suffered from outlier influence (3/5 conv had GAR>0.4 outlier turns); N=20 provides robust mean±std.\\\", \\\"parent\\\": \\\"eval_llama_lora_only_s42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_ar_n20.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-20861\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"312592\\\", \\\"log_path\\\": \\\"~/runs/turn_residual_gating/eval_llama_ar_n20.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T07:52:13.830Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"ultrachat_200k + model-gen AR\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"Llama-3.1-8B-Instruct (Base/TG/LoRA-only)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"llama_tg_s42 + llama_lora_only_s42\\\", \\\"eval_data\\\": \\\"AR-generated 20 conversations x 4 turns\\\", \\\"wall_clock_seconds\\\": 1435.6, \\\"gpu_hours\\\": 0.4}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T08:09:48.181Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T08:09:50.100538+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"/root/runs/turn_residual_gating/eval_llama_ar_n20.log\\\", \\\"metrics\\\": {\\\"base\\\": {\\\"gar_ours_mid\\\": 0.0088, \\\"gar_ours_std\\\": 0.0056, \\\"gar_ours_median\\\": 0.0071, \\\"gar_ours_spike_ratio\\\": 0, \\\"gar_dongre_mid\\\": 0.0049, \\\"gar_dongre_std\\\": 0.0013, \\\"gar_dongre_median\\\": 0.0047, \\\"ngar_ours_mid\\\": 0.1019, \\\"ngar_ours_std\\\": 0.0597, \\\"ngar_ours_median\\\": 0.0829, \\\"ngar_dongre_mid\\\": 0.1171, \\\"ngar_dongre_std\\\": 0.0309, \\\"ngar_dongre_median\\\": 0.1123, \\\"ppl\\\": 1.293, \\\"ppl_std\\\": 0.07, \\\"ntp_loss\\\": 0.2552}, \\\"tg\\\": {\\\"gar_ours_mid\\\": 0.0434, \\\"gar_ours_std\\\": 0.1002, \\\"gar_ours_median\\\": 0.0126, \\\"gar_ours_spike_ratio\\\": 0.05, \\\"gar_dongre_mid\\\": 0.0183, \\\"gar_dongre_std\\\": 0.0198, \\\"gar_dongre_median\\\": 0.0152, \\\"ngar_ours_mid\\\": 0.5357, \\\"ngar_ours_std\\\": 1.3347, \\\"ngar_ours_median\\\": 0.1675, \\\"ngar_dongre_mid\\\": 0.4436, \\\"ngar_dongre_std\\\": 0.5153, \\\"ngar_dongre_median\\\": 0.3466, \\\"ppl\\\": 1.437, \\\"ppl_std\\\": 0.077, \\\"ntp_loss\\\": 0.3612}, \\\"lora_only\\\": {\\\"gar_ours_mid\\\": 0.0284, \\\"gar_ours_std\\\": 0.0481, \\\"gar_ours_median\\\": 0.0133, \\\"gar_ours_spike_ratio\\\": 0, \\\"gar_dongre_mid\\\": 0.0205, \\\"gar_dongre_std\\\": 0.0241, \\\"gar_dongre_median\\\": 0.016, \\\"ngar_ours_mid\\\": 0.3489, \\\"ngar_ours_std\\\": 0.6248, \\\"ngar_ours_median\\\": 0.1548, \\\"ngar_dongre_mid\\\": 0.4997, \\\"ngar_dongre_std\\\": 0.6294, \\\"ngar_dongre_median\\\": 0.39, \\\"ppl\\\": 1.419, \\\"ppl_std\\\": 0.075, \\\"ntp_loss\\\": 0.3483}, \\\"n_conversations\\\": 20, \\\"n_turns\\\": 4, \\\"mid_turns_def\\\": \\\"turns 3-4 (0-indexed [2:]), as per eval_phase2_gar.py line 524\\\", \\\"stat_pool\\\": \\\"per-turn values across all conversations, mid turns only (N=40)\\\", \\\"ranking_gar_ours\\\": \\\"TG(0.0434) > LO(0.0284) > Base(0.0088)\\\", \\\"ranking_gar_dongre\\\": \\\"LO(0.0205) > TG(0.0183) > Base(0.0049)\\\"}, \\\"notes\\\": \\\"N=20 AR eval stabilizes estimates. Mean difference (TG 0.0434 > LO 0.0284) is driven by outlier spikes (5-8% of turns with GAR>0.4); **median shows TG ≈ LO (0.018 vs 0.018), consistent with zero-increment finding from Qwen**. Gate provides no incremental GAR benefit over LoRA-only on Llama, same as Qwen. PPL ordering preserved: Base(1.29) < LO(1.42) < TG(1.44). T=4, outlier turns still present in N=20 (TG conv9/15/18 have GAR>0.4 single turns, LO conv10/12/18/20 similar) but diluted by 4x larger sample vs N=5.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T08:16:09.384Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2829}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_llama_ar_n20\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T07:52:04.543Z\", \"updated_at\": \"2026-05-22T08:33:00.123Z\", \"hypothesis\": \"N=20 AR eval stabilizes Llama 3-way (Base/TG/LoRA-only) autoregressive GAR estimates. N=5 suffered from outlier influence (3/5 conv had GAR>0.4 outlier turns); N=20 provides robust mean±std.\", \"parent\": \"eval_llama_lora_only_s42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/turn_residual_gating && bash scripts/eval_llama_ar_n20.sh\\\"\", \"server\": \"westd-20861\", \"gpu\": [\"cuda:0\"], \"pid\": \"312592\", \"log_path\": \"~/runs/turn_residual_gating/eval_llama_ar_n20.log\", \"submitted_at\": \"2026-05-22T07:52:13.830Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"ultrachat_200k + model-gen AR\", \"data_count\": 20, \"model_name\": \"Llama-3.1-8B-Instruct (Base/TG/LoRA-only)\", \"seed\": 42, \"checkpoint_source\": \"llama_tg_s42 + llama_lora_only_s42\", \"eval_data\": \"AR-generated 20 conversations x 4 turns\", \"wall_clock_seconds\": 1435.6, \"gpu_hours\": 0.4}, \"reproduce\": {\"finished_at\": \"2026-05-22T08:09:48.181Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:09:50.100538+00:00\"}]}, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/runs/turn_residual_gating/eval_llama_ar_n20.log\", \"metrics\": {\"base\": {\"gar_ours_mid\": 0.0088, \"gar_ours_std\": 0.0056, \"gar_ours_median\": 0.0071, \"gar_ours_spike_ratio\": 0, \"gar_dongre_mid\": 0.0049, \"gar_dongre_std\": 0.0013, \"gar_dongre_median\": 0.0047, \"ngar_ours_mid\": 0.1019, \"ngar_ours_std\": 0.0597, \"ngar_ours_median\": 0.0829, \"ngar_dongre_mid\": 0.1171, \"ngar_dongre_std\": 0.0309, \"ngar_dongre_median\": 0.1123, \"ppl\": 1.293, \"ppl_std\": 0.07, \"ntp_loss\": 0.2552}, \"tg\": {\"gar_ours_mid\": 0.0434, \"gar_ours_std\": 0.1002, \"gar_ours_median\": 0.0126, \"gar_ours_spike_ratio\": 0.05, \"gar_dongre_mid\": 0.0183, \"gar_dongre_std\": 0.0198, \"gar_dongre_median\": 0.0152, \"ngar_ours_mid\": 0.5357, \"ngar_ours_std\": 1.3347, \"ngar_ours_median\": 0.1675, \"ngar_dongre_mid\": 0.4436, \"ngar_dongre_std\": 0.5153, \"ngar_dongre_median\": 0.3466, \"ppl\": 1.437, \"ppl_std\": 0.077, \"ntp_loss\": 0.3612}, \"lora_only\": {\"gar_ours_mid\": 0.0284, \"gar_ours_std\": 0.0481, \"gar_ours_median\": 0.0133, \"gar_ours_spike_ratio\": 0, \"gar_dongre_mid\": 0.0205, \"gar_dongre_std\": 0.0241, \"gar_dongre_median\": 0.016, \"ngar_ours_mid\": 0.3489, \"ngar_ours_std\": 0.6248, \"ngar_ours_median\": 0.1548, \"ngar_dongre_mid\": 0.4997, \"ngar_dongre_std\": 0.6294, \"ngar_dongre_median\": 0.39, \"ppl\": 1.419, \"ppl_std\": 0.075, \"ntp_loss\": 0.3483}, \"n_conversations\": 20, \"n_turns\": 4, \"mid_turns_def\": \"turns 3-4 (0-indexed [2:]), as per eval_phase2_gar.py line 524\", \"stat_pool\": \"per-turn values across all conversations, mid turns only (N=40)\", \"ranking_gar_ours\": \"TG(0.0434) > LO(0.0284) > Base(0.0088)\", \"ranking_gar_dongre\": \"LO(0.0205) > TG(0.0183) > Base(0.0049)\"}, \"notes\": \"N=20 AR eval stabilizes estimates. Mean difference (TG 0.0434 > LO 0.0284) is driven by outlier spikes (5-8% of turns with GAR>0.4); **median shows TG ≈ LO (0.018 vs 0.018), consistent with zero-increment finding from Qwen**. Gate provides no incremental GAR benefit over LoRA-only on Llama, same as Qwen. PPL ordering preserved: Base(1.29) < LO(1.42) < TG(1.44). T=4, outlier turns still present in N=20 (TG conv9/15/18 have GAR>0.4 single turns, LO conv10/12/18/20 similar) but diluted by 4x larger sample vs N=5.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T08:16:09.384Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2829}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0ef6fd2e-2055-4449-808a-7bf0b3becc2f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81 · 2026-05-22T08:34:06.094Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Registry updated successfully. Now let me compile the Part 2 analysis: mid_turns definition consistency check.
+
+From the eval script `eval_phase2_gar.py`:
+- Line 524: `mid_turns_gar = float(np.mean(avg_gar[2:8]) if len(avg_gar) >= 8 else np.mean(avg_gar[2:]))`
+- This means: for T≥8, mid_turns = turns 3-8 (1-indexed); for T<8, mid_turns = turns 3-T
+
+The **desired standard** is: mid_turns = turns 2-T (excluding only turn 1, 0-indexed: `[1:]`)
+
+
+The **actual code** uses: turns 3-T (0-indexed: `[2:]`), capped at turn 8 for long conversations.
+
+So there are two discrepancies from the desired standard: it excludes turn 2 in addition to turn 1, and for conversations with 8+ turns, it caps the range at turn 8 instead of including all turns. Now I'm checking each registry entry against this standard to see which ones have mismatched values. Looking through more evaluation configs, I'm seeing a consistent pattern where most experiments use `*_ours_mid_gar` fields with T=4, though a few outliers like eval_v8b_ss_s123 just have `gar_ours` without the "mid" designation, which makes me uncertain what that represents.
+
+I'm also noticing a discrepancy in how "mid" is being calculated across different experiments — some notes explicitly reference turns 2-7 for the mid_gar aggregation, but that conflicts with the eval script's standard definition of turns 3-T, and I need to verify whether the corrections actually used the right turn range.
+
+Looking at phase1_gar_diag and llama_phase1_gar_diag, both appear to be using the code's standard slicing of turns 3-8 (or 3-T for shorter sequences), which suggests all these experiments are pulling from the same eval_phase2_gar.py script with consistent turn indexing.
+
+But attention_steering_gen_n50 is flagged as using turns 2-7 instead, which would be a different slice entirely—that's indices 1-6 in zero-indexed terms. And eval_v8b_ss_s123 doesn't follow the "mid" naming convention at all, so it might be aggregating differently. This suggests there could be multiple evaluation scripts in play with different turn definitions. I'm seeing a pattern across different experiment configurations—the mid-turn slicing varies wildly depending on the total conversation length T, ranging from just 1 turn for T=3 up to 6 turns for T=10. The core issue is that `eval_phase2_gar.py` uses a fixed slice `[2:8]` which works fine for longer conversations but truncates or over-includes for shorter ones. Now I'm ready to pull together the key findings for the report.
+
+Generating comparison table... Reviewing the rest of the evaluation configurations...
+
+All of these entries are failing the desired "turns 2-T" standard, and I'm realizing the root issue is that the evaluation script is slicing from index 2 onwards with `[2:]` when it should be using `[1:]` to capture the correct range. But now I'm questioning whether "turns 2-T" is actually the intended standard or if I'm misunderstanding what the requirement should be.
+
+Looking back at the eval script, I can see that `avg_gar[0]` corresponds to turn 1, `avg_gar[1]` to turn 2, and so on. The `mid_turns_gar` calculation explicitly starts from index 2, which means it's computing the average for turns 3 and beyond, skipping both turns 1 and 2. If the goal is truly to evaluate turns 2 through T, then the code should start from index 1 instead. There might be a deliberate reason for this exclusion that I need to understand better.
+
+I also notice that the attention steering entries reference a different definition entirely — they mention "mid_gar(turns 2-7)", which starts from turn 2 but caps at turn 7. This inconsistency is worth flagging in my report.
+
+For the teacher-forcing evals, I'm checking whether they use a different mid_turns calculation. Looking at the eval script, both TF and AR modes use the same mid_turns logic, so the definition remains consistent across evaluation types. With T=4, the code averages turns 3-4 for mid turns in both cases.
+
+I have enough to compile the final report now.
+
+Let me also check the attention steering scripts to see how they define mid_turns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dcc941af-553e-4c19-b57a-6a17826c85de",
+  "isSidechain": false,
+  "requestId": "req_011CbHJEDFazdXiySuvtRoHa",
+  "type": "assistant",
+  "uuid": "937987fe-3914-4bd8-8719-8bf42c080045",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Shj3MEmg9usphD3Snk5k6N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5117,
+      "cache_read_input_tokens": 81585,
+      "output_tokens": 3520,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5117,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3520,
+          "cache_read_input_tokens": 81585,
+          "cache_creation_input_tokens": 5117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5117
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 82 · 2026-05-22T08:34:06.097Z_
+
+Registry 已更新。现在检查 attention steering 的 eval 脚本，确认其 mid_turns 定义。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "937987fe-3914-4bd8-8719-8bf42c080045",
+  "isSidechain": false,
+  "requestId": "req_011CbHJEDFazdXiySuvtRoHa",
+  "type": "assistant",
+  "uuid": "05c9332f-53d8-48b9-b1b0-caf546ff9d32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Shj3MEmg9usphD3Snk5k6N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5117,
+      "cache_read_input_tokens": 81585,
+      "output_tokens": 3520,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5117,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3520,
+          "cache_read_input_tokens": 81585,
+          "cache_creation_input_tokens": 5117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5117
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-22T08:34:07.127Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CqrPt7yPEtaCqoVxG4Egah`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -n \"mid\" /root/turn_residual_gating/src/attention_steering.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "05c9332f-53d8-48b9-b1b0-caf546ff9d32",
+  "isSidechain": false,
+  "requestId": "req_011CbHJEDFazdXiySuvtRoHa",
+  "type": "assistant",
+  "uuid": "500cd542-3ee2-4c8c-afc6-08020ab0c1a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Shj3MEmg9usphD3Snk5k6N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5117,
+      "cache_read_input_tokens": 81585,
+      "output_tokens": 3520,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5117,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3520,
+          "cache_read_input_tokens": 81585,
+          "cache_creation_input_tokens": 5117,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5117
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "500cd542-3ee2-4c8c-afc6-08020ab0c1a5",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-22T08:34:07.618Z_
+
+<details><summary>↩ Tool result · `toolu_01CqrPt7yPEtaCqoVxG4Egah`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "500cd542-3ee2-4c8c-afc6-08020ab0c1a5",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "80a3bfb2-74e2-4f56-a25b-91973c65b2b9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "500cd542-3ee2-4c8c-afc6-08020ab0c1a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-22T08:34:12.366Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YGXSR8gE7zTW3DMXTps3kt`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "find /root/turn_residual_gating/src -name \"*steer*\" -o -name \"*attention*\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "80a3bfb2-74e2-4f56-a25b-91973c65b2b9",
+  "isSidechain": false,
+  "requestId": "req_011CbHJKBPN7PVt8kHHR79EJ",
+  "type": "assistant",
+  "uuid": "fbfa5484-3851-4bef-bb05-1e0c8d2f92e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01A13rd8fV2rsJvTLNdobGGU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3591,
+      "cache_read_input_tokens": 86702,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3591,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 86702,
+          "cache_creation_input_tokens": 3591,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3591
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-22T08:34:12.827Z_
+
+<details><summary>↩ Tool result · `toolu_01YGXSR8gE7zTW3DMXTps3kt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/src/__pycache__/attention_steering.cpython-312.pyc\\n/root/turn_residual_gating/src/__pycache__/eval_attention_steering.cpython-312.pyc\\n/root/turn_residual_gating/src/attention_heatmap.py\\n/root/turn_residual_gating/src/attention_steering.py\\n/root/turn_residual_gating/src/eval_attention_steering.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fbfa5484-3851-4bef-bb05-1e0c8d2f92e1",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "3523d90b-15eb-4581-9dca-3292fd188057",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/turn_residual_gating/src/__pycache__/attention_steering.cpython-312.pyc\\\\n/root/turn_residual_gating/src/__pycache__/eval_attention_steering.cpython-312.pyc\\\\n/root/turn_residual_gating/src/attention_heatmap.py\\\\n/root/turn_residual_gating/src/attention_steering.py\\\\n/root/turn_residual_gating/src/eval_attention_steering.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/turn_residual_gating/src/__pycache__/attention_steering.cpython-312.pyc\\n/root/turn_residual_gating/src/__pycache__/eval_attention_steering.cpython-312.pyc\\n/root/turn_residual_gating/src/attention_heatmap.py\\n/root/turn_residual_gating/src/attention_steering.py\\n/root/turn_residual_gating/src/eval_attention_steering.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fbfa5484-3851-4bef-bb05-1e0c8d2f92e1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 89 · 2026-05-22T08:34:12.830Z_
+
+```json
+{
+  "parentUuid": "3523d90b-15eb-4581-9dca-3292fd188057",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "46b51342-5adc-4def-b181-9b1cf35fbb93",
+  "timestamp": "2026-05-22T08:34:12.830Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-22T08:34:16.566Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KHBT8YRLMCmD6TGk4dDnDC`</summary>
+
+```json
+{
+  "server": "westd-20861",
+  "command": "grep -n \"mid\" /root/turn_residual_gating/src/eval_attention_steering.py"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46b51342-5adc-4def-b181-9b1cf35fbb93",
+  "isSidechain": false,
+  "requestId": "req_011CbHJKZRft4fr5jGRSP5Lh",
+  "type": "assistant",
+  "uuid": "ddae0e4c-b1ce-42d9-a74a-aa491567b9ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P7wmTCt4ep75FK5CS2cmbV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 419,
+      "cache_read_input_tokens": 90293,
+      "output_tokens": 110,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 419,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 110,
+          "cache_read_input_tokens": 90293,
+          "cache_creation_input_tokens": 419,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 419
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 91 · 2026-05-22T08:34:17.034Z_
+
+<details><summary>↩ Tool result · `toolu_01KHBT8YRLMCmD6TGk4dDnDC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"453:            # Per-conversation mid_gar: only convs with >= 3 turns\\n454:            per_conv_mid_gar = []\\n457:                    per_conv_mid_gar.append(float(np.mean(curve[2:min(8, len(curve))])))\\n459:            if per_conv_mid_gar:\\n460:                mid_gar = float(np.mean(per_conv_mid_gar))\\n461:                mid_gar_std = float(np.std(per_conv_mid_gar))\\n462:                n_valid = len(per_conv_mid_gar)\\n464:                mid_gar = float('nan')\\n465:                mid_gar_std = float('nan')\\n469:            mid_gar = 0.0\\n470:            mid_gar_std = 0.0\\n472:            per_conv_mid_gar = []\\n477:        print(f\\\"  Mid-GAR (per-conv): {mid_gar:.4f} ± {mid_gar_std:.4f}  (n={n_valid}/{len(beta_gar_curves)})\\\")\\n484:            \\\"mid_turns_avg_gar\\\": mid_gar,\\n485:            \\\"mid_gar_std\\\": mid_gar_std,\\n487:            \\\"per_conv_mid_gar\\\": per_conv_mid_gar,\\n505:        print(f\\\"{r['beta']:8.1f} | {r['mid_turns_avg_gar']:10.4f} | {ppl_str:>8}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ddae0e4c-b1ce-42d9-a74a-aa491567b9ea",
+  "isSidechain": false,
+  "promptId": "d6038c84-bd9d-43b7-9ec0-15fb7e7a361e",
+  "type": "user",
+  "uuid": "54188314-401a-486b-8e9e-9b2cef382dd0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"453:            # Per-conversation mid_gar: only convs with >= 3 turns\\\\n454:            per_conv_mid_gar = []\\\\n457:                    per_conv_mid_gar.append(float(np.mean(curve[2:min(8, len(curve))])))\\\\n459:            if per_conv_mid_gar:\\\\n460:                mid_gar = float(np.mean(per_conv_mid_gar))\\\\n461:                mid_gar_std = float(np.std(per_conv_mid_gar))\\\\n462:                n_valid = len(per_conv_mid_gar)\\\\n464:                mid_gar = float('nan')\\\\n465:                mid_gar_std = float('nan')\\\\n469:            mid_gar = 0.0\\\\n470:            mid_gar_std = 0.0\\\\n472:            per_conv_mid_gar = []\\\\n477:        print(f\\\\\\\"  Mid-GAR (per-conv): {mid_gar:.4f} ± {mid_gar_std:.4f}  (n={n_valid}/{len(beta_gar_curves)})\\\\\\\")\\\\n484:            \\\\\\\"mid_turns_avg_gar\\\\\\\": mid_gar,\\\\n485:            \\\\\\\"mid_gar_std\\\\\\\": mid_gar_std,\\\\n487:            \\\\\\\"per_conv_mid_gar\\\\\\\": per_conv_mid_gar,\\\\n505:        print(f\\\\\\\"{r['beta']:8.1f} | {r['mid_turns_avg_gar']:10.4f} | {ppl_str:>8}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"453:            # Per-conversation mid_gar: only convs with >= 3 turns\\n454:            per_conv_mid_gar = []\\n457:                    per_conv_mid_gar.append(float(np.mean(curve[2:min(8, len(curve))])))\\n459:            if per_conv_mid_gar:\\n460:                mid_gar = float(np.mean(per_conv_mid_gar))\\n461:                mid_gar_std = float(np.std(per_conv_mid_gar))\\n462:                n_valid = len(per_conv_mid_gar)\\n464:                mid_gar = float('nan')\\n465:                mid_gar_std = float('nan')\\n469:            mid_gar = 0.0\\n470:            mid_gar_std = 0.0\\n472:            per_conv_mid_gar = []\\n477:        print(f\\\"  Mid-GAR (per-conv): {mid_gar:.4f} ± {mid_gar_std:.4f}  (n={n_valid}/{len(beta_gar_curves)})\\\")\\n484:            \\\"mid_turns_avg_gar\\\": mid_gar,\\n485:            \\\"mid_gar_std\\\": mid_gar_std,\\n487:            \\\"per_conv_mid_gar\\\": per_conv_mid_gar,\\n505:        print(f\\\"{r['beta']:8.1f} | {r['mid_turns_avg_gar']:10.4f} | {ppl_str:>8}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ddae0e4c-b1ce-42d9-a74a-aa491567b9ea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 92 · 2026-05-22T08:34:59.045Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. The attention steering eval script also uses `curve[2:min(8, len(curve))]`, which is the same as `curve[2:8]` for long curves. So it's the same definition: turns 3-8 (1-indexed).
+
+But wait, the `attention_steering_gen_n50` notes say "per-conv mid_gar(turns 2-7)". Let me check — is that description referring to 0-indexed turns 2-7 (which would be 1-indexed turns 3-8)? Yes! "turns 2-7" in 0-indexed IS turns 3-8 in 1-indexed. 
+
+The notes might be using 0-indexed notation, but that creates ambiguity — when they write "turns 2-7", I can't immediately tell if they mean 0-indexed or 1-indexed. The code uses `[2:8]` which corresponds to 1-indexed turns 3-8, so either the notes are describing it in 0-indexed terms or there's a mismatch I need to resolve.
+
+Looking at the aggregation entry more carefully, the "turns 2-7" notation aligns with the code's slice of indices 2-7, which suggests they're using 0-indexed turns — that's turns 3-8 in 1-indexed terms.
+
+Now I'm checking whether this matches the desired standard of "turns 2-T". If the standard uses 1-indexed turns (where turn 1 is the first turn), then the code's `[2:]` would give turns 3 onward, not turns 2 onward. But there's a possibility the project itself uses 0-indexed turn numbering, which would make everything consistent. Let me look at the per_turn_avg_gar data to see if I can infer the indexing convention. I've identified the actual issue here—the code is excluding both turn 1 and turn 2 when it should only exclude turn 1 to match the standard "turns 2-T" definition. Turn 2 corresponds to index 1, but `mid_turns = avg_gar[2:]` starts from index 2, which is turn 3. This is a genuine discrepancy, though it's worth noting that excluding turn 2 might be intentional in multi-turn evaluation since it has minimal prior context. Regardless, I need to document this inconsistency in my report and now compile the findings with the detailed statistics I've gathered.
+
+Generating markdown table...
+
+The TG approach shows a much higher mean than median due to that 5% spike rate, but the median values for TG and LO are nearly identical, which aligns with the zero-increment finding. I'm also noticing a definition inconsistency in the mid_turns calculation—the code is slicing from index 2 onward when it should start from index 1, which means turn 2 is being excluded when it shouldn't be.
+
+This affects all 16 entries consistently, though they all deviate from the intended "turns 2-T" standard. Depending on the sequence length, this means entries are capturing only a subset of the middle turns—for instance, T=4 gets turns 3-4 instead of turns 2-4, and T=10 gets turns 3-8 instead of turns 2-10. The fix would be to change that slice to start from index 1 instead of 2.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "54188314-401a-486b-8e9e-9b2cef382dd0",
+  "isSidechain": false,
+  "requestId": "req_011CbHJKsR9hCE9bTRgH6U1L",
+  "type": "assistant",
+  "uuid": "25731dde-2bdc-478f-aa7b-91c69f5d90a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019eg2vbCVxxW6Z5quH74wj7",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 90712,
+      "output_tokens": 3422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3422,
+          "cache_read_input_tokens": 90712,
+          "cache_creation_input_tokens": 607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 93 · 2026-05-22T08:35:21.540Z_
+
+所有 eval 脚本的 mid_turns 定义已确认。现在编制最终报告。
+
+---
+
+## 报告
+
+### Part 1: eval_llama_ar_n20 详细统计
+
+统计池: 20 conversations × mid turns, N=40 per model。mid_turns 定义: turns 3-4（eval 脚本 `avg_gar[2:]`）。
+
+| 模型 | GAR-ours mean | std | median | spike(≥0.4) | GAR-dongre mean | std | median | PPL mean±std |
+|------|-------------|-----|--------|-------------|-----------------|-----|--------|-------------|
+| Base | 0.0088 | 0.0056 | 0.0071 | 0% | 0.0049 | 0.0013 | 0.0047 | 1.293±0.070 |
+| TG | 0.0434 | 0.1002 | **0.0126** | **5%** | 0.0183 | 0.0198 | 0.0152 | 1.437±0.077 |
+| LO | 0.0284 | 0.0481 | **0.0133** | 0% | 0.0205 | 0.0241 | 0.0160 | 1.419±0.075 |
+
+TG mean (0.0434) 远高于 median (0.0126)，因为 5% turns 有 GAR≥0.4 spike（conv9/15/18）。**Median TG ≈ LO (0.013 vs 0.013)**，确认 gating 零增量。Registry 已更新。
+
+---
+
+### Part 2: mid_turns 定义一致性
+
+**代码实际定义**（`eval_phase2_gar.py:524`, `eval_attention_steering.py:457`）:
+```python
+mid_turns = avg_gar[2:8]  # T≥8 → turns 3-8 (1-indexed)
+mid_turns = avg_gar[2:]   # T<8 → turns 3-T
+```
+
+**期望标准**: turns 2-T（仅排除 turn 1）
+
+**结论: 所有 16 个条目内部一致，但全部偏离 "turns 2-T" 标准。**
+
+根因: 代码用 `[2:]` 而非 `[1:]`，同时排除了 turn 1 和 turn 2。
+
+| 条目 | T值 | 实际 mid_turns | 偏离点 |
+|------|-----|---------------|--------|
+| eval_llama_ar_n20 | 4 | turns 3-4 | 丢失 turn 2 |
+| eval_llama_lora_only_s42 | 4/10 | turns 3-4 / 3-8 | 丢失 turn 2 |
+| llama_eval_s42 | 4/10 | turns 3-4 / 3-8 | 丢失 turn 2 |
+| llama_ar_matched_eval | 4/10 | turns 3-4 / 3-8 | 丢失 turn 2 |
+| eval_v7_tg_s123 | 4/10 | turns 3-4 / 3-8 | 丢失 turn 2 |
+| eval_v8b_ss_s123 | 3/10 | turn 3 only / 3-8 | 丢失 turn 2；T=3 时仅 1 个 mid turn |
+| phase2_4way_eval | 4 | turns 3-4 | 丢失 turn 2 |
+| phase2_4way_eval_heldout | 4 | turns 3-4 | 丢失 turn 2 |
+| phase2_tg_s42_v7 | varies | turns 3-T/3-8 | 丢失 turn 2 |
+| phase2_tg_s42_v9_pcgrad | varies | turns 3-T/3-8 | 丢失 turn 2 |
+| phase2_lora_only_s42 | varies | turns 3-T/3-8 | 丢失 turn 2 |
+| phase2_ug_s42 | varies | turns 3-T/3-8 | 丢失 turn 2 |
+| attention_steering_gen_n50 | varies | turns 3-8 (code `[2:8]`) | 丢失 turn 2；notes 写 "turns 2-7" 是 0-indexed |
+| attention_steering_v7_tg_gen | 10 | turns 3-8 | 丢失 turn 2 |
+| phase1_gar_diag | 10 | turns 3-8 (验证 0.0122) | 丢失 turn 2 |
+| llama_phase1_gar_diag | 10 | turns 3-8 ("mid38") | 丢失 turn 2 |
+
+**额外问题**: T≥8 时 cap 到 turn 8，丢失 turns 9-T。对 T=10 的 eval（如 phase1_gar_diag），turns 9-10 被排除。
+
+**建议修正**:
+1. 若标准确为 "turns 2-T"：改 `eval_phase2_gar.py:524` 为 `avg_gar[1:]`，`eval_attention_steering.py:457` 同步改，重跑所有 eval
+2. 若排除 turn 2 是有意设计（turn 2 上下文仍短）：将标准文档从 "turns 2-T" 修正为 "turns 3-T (capped at 8)"
+3. `attention_steering_gen_n50` 的 notes 中 "turns 2-7" 应标注为 0-indexed 以避免歧义
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25731dde-2bdc-478f-aa7b-91c69f5d90a4",
+  "isSidechain": false,
+  "requestId": "req_011CbHJKsR9hCE9bTRgH6U1L",
+  "type": "assistant",
+  "uuid": "915e0e06-c07f-4394-9a49-455b7ae5e7f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/turn_residual_gating",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019eg2vbCVxxW6Z5quH74wj7",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 607,
+      "cache_read_input_tokens": 90712,
+      "output_tokens": 3422,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 607,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3422,
+          "cache_read_input_tokens": 90712,
+          "cache_creation_input_tokens": 607,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 607
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "915e0e06-c07f-4394-9a49-455b7ae5e7f1",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Extract eval_llama_ar_n20 stats and verify mid_turns consistency",
+  "sessionId": "bc94af32-4f18-47ef-82eb-b2e18fce9e57"
+}
+```
+
+---

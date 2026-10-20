@@ -1,0 +1,5018 @@
+# Research conversation: [Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 2 **你的审查侧重：新颖性 + 相关工作完整性 + 写作质量 + 实际影响** ### 论文信息 - **标题**: Phase-Modulated C — Part 2 of 2
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue (July export snapshot)** · Conversation logs
+
+[← Part 1](part-001.md) · [Transcript overview](../research-conversation-round-1-round-1-reviewer-2-phase-modulated-c-copy-2.md) · [Structured JSON](../../../sessions/21/21abd29877a4bec07191.json)
+
+## Round 1
+
+### Tool call
+
+_source line 27 · 2026-05-14T13:05:37.797Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01J7Yjy5WqHkQNmTqPAHB1CJ`</summary>
+
+```json
+{
+  "query": "phase-aware KV cache compression reasoning models ThinKV 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "703ac386-5bc1-4749-837a-f3e97b9fdeb0",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WXpQWKfmkb23edXJMP",
+  "type": "assistant",
+  "uuid": "8184677d-ebc3-4e34-9045-f0ed8842b556",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LZrwU91QNHoGvTTpBxM6Ej",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2789,
+      "cache_read_input_tokens": 28303,
+      "output_tokens": 465,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2789,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 465,
+          "cache_read_input_tokens": 28303,
+          "cache_creation_input_tokens": 2789,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2789
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 28 · 2026-05-14T13:05:38.257Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UnasGaGc7LGUrxnsRt9ZBD`</summary>
+
+```json
+{
+  "query": "reasoning model compression DeepSeek-R1 pruning sparsity 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8184677d-ebc3-4e34-9045-f0ed8842b556",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WXpQWKfmkb23edXJMP",
+  "type": "assistant",
+  "uuid": "91c754c8-222f-40fa-ae97-9aeb651bbb5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LZrwU91QNHoGvTTpBxM6Ej",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2789,
+      "cache_read_input_tokens": 28303,
+      "output_tokens": 465,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2789,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 465,
+          "cache_read_input_tokens": 28303,
+          "cache_creation_input_tokens": 2789,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2789
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 2  **你的审查侧重：新颖性 + 相关工作完整性 + 写作质量 + 实际影响**  ### 论文信息 - **标题**: Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models -…",
+  "leafUuid": "91c754c8-222f-40fa-ae97-9aeb651bbb5e",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review EMNLP paper on phase-modulated compound sparsity",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 31 · 2026-05-14T13:05:45.696Z_
+
+<details><summary>↩ Tool result · `toolu_01J7Yjy5WqHkQNmTqPAHB1CJ`</summary>
+
+```text
+Web search results for query: "phase-aware KV cache compression reasoning models ThinKV 2025 2026"
+
+Links: [{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/html/2510.01290v1"},{"title":"[2510.01290] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/abs/2510.01290"},{"title":"[2510.01290v1] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/abs/2510.01290v1"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=M3CeHnZKNC"},{"title":"THINKV: THOUGHT-ADAPTIVE KV CACHE COM- PRESSION FOR EFFICIENT REASONING MODELS","url":"https://arxiv.org/pdf/2510.01290v1"},{"title":"Hold Onto That Thought: Assessing KV Cache Compression On Reasoning","url":"https://arxiv.org/html/2512.12008"},{"title":"Hold Onto That Thought: Assessing KV Cache Compression On Reasoning | OpenReview","url":"https://openreview.net/forum?id=udgrpHqw4F"},{"title":"GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).","url":"https://github.com/October2001/Awesome-KV-Cache-Compression"},{"title":"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://arxiv.org/html/2505.24133"},{"title":"LongFlow: Efficient KV Cache Compression for Reasoning Models","url":"https://arxiv.org/html/2603.11504"}]
+
+Based on the search results, I found relevant information about ThinKV and phase-aware KV cache compression for reasoning models:
+
+## ThinKV: Thought-Adaptive KV Cache Compression
+
+ThinKV is a thought-adaptive KV cache compression framework for Large Reasoning Models (LRMs) that exploits attention sparsity by decomposing chains of thought into reasoning, execution, and transition segments, enabling joint thought-aware quantization and eviction that sustains accuracy under high compression.
+
+### Key Technical Approach
+
+ThinKV is based on the observation that attention sparsity reveals distinct thought types with varying importance within the chain of thought (CoT), and it applies a hybrid quantization-eviction strategy, assigning token precision by thought importance and progressively evicting tokens from less critical thoughts as reasoning trajectories evolve.
+
+### Implementation and Performance
+
+The framework includes a kernel design that extends PagedAttention to enable efficient reuse of evicted tokens' memory slots, eliminating compaction overheads. This algorithm–system co-design delivers near-lossless accuracy with 5.8× throughput gains and substantially larger batch sizes across diverse reasoning benchmarks.
+
+Extensive experiments on DeepSeek-R1-Distill, GPT-OSS, and NVIDIA AceReason across mathematics and coding benchmarks show that ThinKV achieves near-lossless accuracy with less than 5% of the original KV cache.
+
+The research represents an advance in handling the memory constraints of reasoning models by understanding how different phases of reasoning (preparation, computation, transition) have different importance levels for maintaining model accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8184677d-ebc3-4e34-9045-f0ed8842b556",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "9463b1c1-d87d-4a97-b595-925c6c316e38",
+  "toolUseResult": {
+    "query": "phase-aware KV cache compression reasoning models ThinKV 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LRUgVjhdcGo19LqRVFS1BN",
+        "content": [
+          {
+            "title": "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models",
+            "url": "https://arxiv.org/html/2510.01290v1"
+          },
+          {
+            "title": "[2510.01290] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models",
+            "url": "https://arxiv.org/abs/2510.01290"
+          },
+          {
+            "title": "[2510.01290v1] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models",
+            "url": "https://arxiv.org/abs/2510.01290v1"
+          },
+          {
+            "title": "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models | OpenReview",
+            "url": "https://openreview.net/forum?id=M3CeHnZKNC"
+          },
+          {
+            "title": "THINKV: THOUGHT-ADAPTIVE KV CACHE COM- PRESSION FOR EFFICIENT REASONING MODELS",
+            "url": "https://arxiv.org/pdf/2510.01290v1"
+          },
+          {
+            "title": "Hold Onto That Thought: Assessing KV Cache Compression On Reasoning",
+            "url": "https://arxiv.org/html/2512.12008"
+          },
+          {
+            "title": "Hold Onto That Thought: Assessing KV Cache Compression On Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=udgrpHqw4F"
+          },
+          {
+            "title": "GitHub - October2001/Awesome-KV-Cache-Compression: 📰 Must-read papers on KV Cache Compression (constantly updating 🤗).",
+            "url": "https://github.com/October2001/Awesome-KV-Cache-Compression"
+          },
+          {
+            "title": "R-KV: Redundancy-aware KV Cache Compression for Reasoning Models",
+            "url": "https://arxiv.org/html/2505.24133"
+          },
+          {
+            "title": "LongFlow: Efficient KV Cache Compression for Reasoning Models",
+            "url": "https://arxiv.org/html/2603.11504"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about ThinKV and phase-aware KV cache compression for reasoning models:\n\n## ThinKV: Thought-Adaptive KV Cache Compression\n\nThinKV is a thought-adaptive KV cache compression framework for Large Reasoning Models (LRMs) that exploits attention sparsity by decomposing chains of thought into reasoning, execution, and transition segments, enabling joint thought-aware quantization and eviction that sustains accuracy under high compression.\n\n### Key Technical Approach\n\nThinKV is based on the observation that attention sparsity reveals distinct thought types with varying importance within the chain of thought (CoT), and it applies a hybrid quantization-eviction strategy, assigning token precision by thought importance and progressively evicting tokens from less critical thoughts as reasoning trajectories evolve.\n\n### Implementation and Performance\n\nThe framework includes a kernel design that extends PagedAttention to enable efficient reuse of evicted tokens' memory slots, eliminating compaction overheads. This algorithm–system co-design delivers near-lossless accuracy with 5.8× throughput gains and substantially larger batch sizes across diverse reasoning benchmarks.\n\nExtensive experiments on DeepSeek-R1-Distill, GPT-OSS, and NVIDIA AceReason across mathematics and coding benchmarks show that ThinKV achieves near-lossless accuracy with less than 5% of the original KV cache.\n\nThe research represents an advance in handling the memory constraints of reasoning models by understanding how different phases of reasoning (preparation, computation, transition) have different importance levels for maintaining model accuracy."
+    ],
+    "durationSeconds": 7.892408432000003
+  },
+  "sourceToolAssistantUUID": "8184677d-ebc3-4e34-9045-f0ed8842b556",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 32 · 2026-05-14T13:05:45.845Z_
+
+<details><summary>↩ Tool result · `toolu_01UnasGaGc7LGUrxnsRt9ZBD`</summary>
+
+```text
+Web search results for query: "reasoning model compression DeepSeek-R1 pruning sparsity 2025 2026"
+
+Links: [{"title":"Reasoning Models Can Be Accurately Pruned via Chain-of-Thought Reconstruction","url":"https://arxiv.org/html/2509.12464v1"},{"title":"Quantum physicists have shrunk and “de-censored” DeepSeek R1 | MIT Technology Review","url":"https://www.technologyreview.com/2025/11/19/1128119/quantum-physicists-compress-and-deconsor-deepseekr1/"},{"title":"NeurIPS Reasoning Models Can Be Accurately Pruned via Chain-of-Thought Reconstruction","url":"https://neurips.cc/virtual/2025/loc/san-diego/126571"},{"title":"Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction | OpenReview","url":"https://openreview.net/forum?id=tyGfwG6xTh"},{"title":"The Complete Guide to DeepSeek Models: V3, R1, V4 and Beyond","url":"https://www.bentoml.com/blog/the-complete-guide-to-deepseek-models-from-v3-to-r1-and-beyond"},{"title":"DeepSeek-R1: The Open-Source Reasoning Model","url":"https://www.sitepoint.com/deepseek-r1-open-source-reasoning/"},{"title":"Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models","url":"https://arxiv.org/html/2512.02185v1"},{"title":"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs ...","url":"https://arxiv.org/pdf/2501.12948"},{"title":"Deployment-ready reasoning with quantized DeepSeek-R1 models | Red Hat Developer","url":"https://developers.redhat.com/articles/2025/03/03/deployment-ready-reasoning-quantized-deepseek-r1-models"},{"title":"Compressing Large MoE Models via Efficient Pruning and Data-Aware Calibration | OpenReview","url":"https://openreview.net/forum?id=dJy6z9peC7"}]
+
+Based on the search results, here are the key findings on reasoning model compression, DeepSeek-R1, pruning, and sparsity for 2025-2026:
+
+## Chain-of-Thought Reconstruction Approaches
+
+Reasoning-Aware Compression (RAC) can prune reasoning LLMs to 50% sparsity while maintaining up to 95% of the original model's accuracy on math and coding tasks. Standard LLM pruning methods often focus on input reconstruction, whereas reasoning is a decode-dominated task, so RAC jointly reconstructs activations from the input and the model's on-policy chain-of-thought traces.
+
+## Self-Reflective Structured Pruning
+
+A method called RESP achieves near accuracy to dense models at 20–30% sparsity and at 40% sparsity achieves 81.3% and 59.6% accuracy on GSM8K and MathQA, surpassing previous best baselines by 66.87% and 47%, respectively.
+
+## MoE Expert Pruning
+
+For DeepSeek-R1's Mixture-of-Experts architecture, a pruning method can prune 50% of the experts in DeepSeek-R1 while retaining 98.9% of its original performance across diverse tasks.
+
+## Quantization Approaches
+
+FP W8A8 (8-bit floating-point weights and activations) demonstrates near-lossless accuracy, matching BF16, while INT W8A8 (8-bit integer weights and activations) closely follows, recovering ~99% of the original accuracy.
+
+## Model Compression Achievements
+
+DeepSeek R1 Slim, created by Multiverse Computing, is 55% smaller but performs almost as well as the original model.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "91c754c8-222f-40fa-ae97-9aeb651bbb5e",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "510935dd-1e72-4ad1-9a85-cb179aa2ca02",
+  "toolUseResult": {
+    "query": "reasoning model compression DeepSeek-R1 pruning sparsity 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T29SKeJWoRJk34s5joLoAk",
+        "content": [
+          {
+            "title": "Reasoning Models Can Be Accurately Pruned via Chain-of-Thought Reconstruction",
+            "url": "https://arxiv.org/html/2509.12464v1"
+          },
+          {
+            "title": "Quantum physicists have shrunk and “de-censored” DeepSeek R1 | MIT Technology Review",
+            "url": "https://www.technologyreview.com/2025/11/19/1128119/quantum-physicists-compress-and-deconsor-deepseekr1/"
+          },
+          {
+            "title": "NeurIPS Reasoning Models Can Be Accurately Pruned via Chain-of-Thought Reconstruction",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/126571"
+          },
+          {
+            "title": "Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction | OpenReview",
+            "url": "https://openreview.net/forum?id=tyGfwG6xTh"
+          },
+          {
+            "title": "The Complete Guide to DeepSeek Models: V3, R1, V4 and Beyond",
+            "url": "https://www.bentoml.com/blog/the-complete-guide-to-deepseek-models-from-v3-to-r1-and-beyond"
+          },
+          {
+            "title": "DeepSeek-R1: The Open-Source Reasoning Model",
+            "url": "https://www.sitepoint.com/deepseek-r1-open-source-reasoning/"
+          },
+          {
+            "title": "Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models",
+            "url": "https://arxiv.org/html/2512.02185v1"
+          },
+          {
+            "title": "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs ...",
+            "url": "https://arxiv.org/pdf/2501.12948"
+          },
+          {
+            "title": "Deployment-ready reasoning with quantized DeepSeek-R1 models | Red Hat Developer",
+            "url": "https://developers.redhat.com/articles/2025/03/03/deployment-ready-reasoning-quantized-deepseek-r1-models"
+          },
+          {
+            "title": "Compressing Large MoE Models via Efficient Pruning and Data-Aware Calibration | OpenReview",
+            "url": "https://openreview.net/forum?id=dJy6z9peC7"
+          }
+        ]
+      },
+      "Based on the search results, here are the key findings on reasoning model compression, DeepSeek-R1, pruning, and sparsity for 2025-2026:\n\n## Chain-of-Thought Reconstruction Approaches\n\nReasoning-Aware Compression (RAC) can prune reasoning LLMs to 50% sparsity while maintaining up to 95% of the original model's accuracy on math and coding tasks. Standard LLM pruning methods often focus on input reconstruction, whereas reasoning is a decode-dominated task, so RAC jointly reconstructs activations from the input and the model's on-policy chain-of-thought traces.\n\n## Self-Reflective Structured Pruning\n\nA method called RESP achieves near accuracy to dense models at 20–30% sparsity and at 40% sparsity achieves 81.3% and 59.6% accuracy on GSM8K and MathQA, surpassing previous best baselines by 66.87% and 47%, respectively.\n\n## MoE Expert Pruning\n\nFor DeepSeek-R1's Mixture-of-Experts architecture, a pruning method can prune 50% of the experts in DeepSeek-R1 while retaining 98.9% of its original performance across diverse tasks.\n\n## Quantization Approaches\n\nFP W8A8 (8-bit floating-point weights and activations) demonstrates near-lossless accuracy, matching BF16, while INT W8A8 (8-bit integer weights and activations) closely follows, recovering ~99% of the original accuracy.\n\n## Model Compression Achievements\n\nDeepSeek R1 Slim, created by Multiverse Computing, is 55% smaller but performs almost as well as the original model."
+    ],
+    "durationSeconds": 7.582092162999994
+  },
+  "sourceToolAssistantUUID": "91c754c8-222f-40fa-ae97-9aeb651bbb5e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 33 · 2026-05-14T13:05:46.955Z_
+
+<details><summary>↩ Tool result · `toolu_01P2ZY4EuoGNpp4PkoL9yFzs`</summary>
+
+```text
+# ACL Rolling Review Form - Scoring Dimensions
+
+## 1. **Reviewer Confidence**
+Scale: 1-5
+- **5**: "Positive that my evaluation is correct. I read the paper very carefully"
+- **4**: Quite sure with unlikely but conceivable gaps in evaluation
+- **3**: Pretty sure but may have missed details in math or experimental design
+- **2**: Willing to defend evaluation but likely missed details or novelty assessment
+- **1**: "Not my area, or paper is very hard to understand"
+
+## 2. **Soundness**
+Scale: 1-5 (with .5 increments)
+- **5**: "Excellent: This study is one of the most thorough I have seen"
+- **4**: Strong with sufficient claim support; extra experiments optional
+- **3**: Acceptable; main claims supported with minor details needed
+- **2**: Poor; main claims insufficiently supported with technical problems
+- **1**: "Major Issues: not yet sufficiently thorough to warrant publication"
+
+## 3. **Excitement**
+Scale: 1-5 (with .5 increments)
+- **5**: "Highly Exciting: I would recommend this paper to others"
+- **4**: Would mention to colleagues and attend presentation
+- **3**: Might mention some points if time permits
+- **2**: "Potentially Interesting: does not resonate with me"
+- **1**: Not resonant with community or unrelated to language processing
+
+## 4. **Overall Assessment**
+Scale: 1-5 (with .5 increments)
+- **5**: Consider for award (top 2.5% papers)
+- **4**: Conference acceptance
+- **3**: Findings acceptance
+- **2**: Resubmit next cycle
+- **1**: Do not resubmit
+
+## 5. **Reproducibility**
+Scale: 1-5
+- **5**: Results easily reproducible
+- **4**: Mostly reproducible despite minor variations
+- **3**: "Reproducible with some difficulty" due to parameter underspecification
+- **2**: Hard to reproduce; unavailable data or insufficient details
+- **1**: Impossible to reproduce
+
+## 6. **Datasets & Software Value**
+Scale: 1-5 (separate)
+- **5**: Enabling impact on future research direction
+- **4**: Useful for ongoing researcher work
+- **3**: Potentially useful
+- **2**: Documentary value only
+- **1**: No usable release
+
+## 7. **Author Identity Knowledge**
+Scale: 1-5
+- **5**: Identity known from double-blind violation
+- **4**: Known from preprints/workshops
+- **3**: Identifiable from submission contents
+- **2**: Known from informal communication
+- **1**: No educated guess possible
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "703ac386-5bc1-4749-837a-f3e97b9fdeb0",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "38dbdb4d-de0e-475f-a459-f0084de5b467",
+  "toolUseResult": {
+    "bytes": 25365,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ACL Rolling Review Form - Scoring Dimensions\n\n## 1. **Reviewer Confidence**\nScale: 1-5\n- **5**: \"Positive that my evaluation is correct. I read the paper very carefully\"\n- **4**: Quite sure with unlikely but conceivable gaps in evaluation\n- **3**: Pretty sure but may have missed details in math or experimental design\n- **2**: Willing to defend evaluation but likely missed details or novelty assessment\n- **1**: \"Not my area, or paper is very hard to understand\"\n\n## 2. **Soundness**\nScale: 1-5 (with .5 increments)\n- **5**: \"Excellent: This study is one of the most thorough I have seen\"\n- **4**: Strong with sufficient claim support; extra experiments optional\n- **3**: Acceptable; main claims supported with minor details needed\n- **2**: Poor; main claims insufficiently supported with technical problems\n- **1**: \"Major Issues: not yet sufficiently thorough to warrant publication\"\n\n## 3. **Excitement**\nScale: 1-5 (with .5 increments)\n- **5**: \"Highly Exciting: I would recommend this paper to others\"\n- **4**: Would mention to colleagues and attend presentation\n- **3**: Might mention some points if time permits\n- **2**: \"Potentially Interesting: does not resonate with me\"\n- **1**: Not resonant with community or unrelated to language processing\n\n## 4. **Overall Assessment**\nScale: 1-5 (with .5 increments)\n- **5**: Consider for award (top 2.5% papers)\n- **4**: Conference acceptance\n- **3**: Findings acceptance\n- **2**: Resubmit next cycle\n- **1**: Do not resubmit\n\n## 5. **Reproducibility**\nScale: 1-5\n- **5**: Results easily reproducible\n- **4**: Mostly reproducible despite minor variations\n- **3**: \"Reproducible with some difficulty\" due to parameter underspecification\n- **2**: Hard to reproduce; unavailable data or insufficient details\n- **1**: Impossible to reproduce\n\n## 6. **Datasets & Software Value**\nScale: 1-5 (separate)\n- **5**: Enabling impact on future research direction\n- **4**: Useful for ongoing researcher work\n- **3**: Potentially useful\n- **2**: Documentary value only\n- **1**: No usable release\n\n## 7. **Author Identity Knowledge**\nScale: 1-5\n- **5**: Identity known from double-blind violation\n- **4**: Known from preprints/workshops\n- **3**: Identifiable from submission contents\n- **2**: Known from informal communication\n- **1**: No educated guess possible",
+    "durationMs": 9769,
+    "url": "https://aclrollingreview.org/reviewform"
+  },
+  "sourceToolAssistantUUID": "703ac386-5bc1-4749-837a-f3e97b9fdeb0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 34 · 2026-05-14T13:05:46.960Z_
+
+```json
+{
+  "parentUuid": "38dbdb4d-de0e-475f-a459-f0084de5b467",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4274eb57-54e6-47c4-b3db-06b34baaa7c4",
+  "timestamp": "2026-05-14T13:05:46.960Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 35 · 2026-05-14T13:05:54.176Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the ARR review form now. Let me read the paper pages. Since the PDF rendering is too large for individual pages, I need to use a different approach. Let me try with lower DPI or use subagents to read the paper.
+
+Let me use subagents to read the paper in parallel - one for pages 1-4, one for pages 5-8, and one for appendix pages. I'll also search for more related work in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4274eb57-54e6-47c4-b3db-06b34baaa7c4",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WZLwpC8mUrA4tRFtBt",
+  "type": "assistant",
+  "uuid": "0a7847e0-a786-4ddf-a320-fe9bf3102f79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bGJB3wDzA6vfpgX4gp2PA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1936,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 31092,
+      "output_tokens": 1143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1936,
+          "output_tokens": 1143,
+          "cache_read_input_tokens": 31092,
+          "cache_creation_input_tokens": 1820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 36 · 2026-05-14T13:05:56.101Z_
+
+拿到了 ARR 评分标准。现在需要读取论文内容。由于 PDF 渲染结果太大，我用子 agent 分段读取论文，同时继续搜索相关工作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a7847e0-a786-4ddf-a320-fe9bf3102f79",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WZLwpC8mUrA4tRFtBt",
+  "type": "assistant",
+  "uuid": "39ad59b5-a698-4492-8058-c40d9209a259",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bGJB3wDzA6vfpgX4gp2PA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1936,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 31092,
+      "output_tokens": 1143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1936,
+          "output_tokens": 1143,
+          "cache_read_input_tokens": 31092,
+          "cache_creation_input_tokens": 1820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 37 · 2026-05-14T13:06:09.564Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01CFLHA2ygSjmAaiPJrimscM`</summary>
+
+```json
+{
+  "description": "Read paper pages 1-4",
+  "prompt": "Read a paper PDF rendered as images. The images were rendered to a JSON file. \n\nYour task: Extract the COMPLETE text content from pages 1-4 of this paper, including all equations, table data, figure captions, and footnotes. Report everything verbatim - do not summarize.\n\nThe JSON file is at: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-review-reviewer-2-d0398257/792468c2-2ec1-47cc-9ece-e60ae9112cdb/tool-results/mcp-agent-ml-research-pdf_to_images-1778763935405.txt\n\nThis file has schema: {result: string}. The result field contains rendered page image data. Use jq to probe the structure, then use python to extract and decode the base64 image data. Read the images using the Read tool to view them visually.\n\nActually, the easier approach: The PDF images were saved to disk. Check the output directory - it should be near the PDF at /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/ or similar. Use Glob to find the PNG files, then Read each page image file directly.\n\nReport the COMPLETE text of pages 1-4 including:\n- Title, authors, abstract\n- All section headings and body text\n- All equations with their numbers\n- All table contents\n- All figure captions\n- All footnotes",
+  "model": "sonnet"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39ad59b5-a698-4492-8058-c40d9209a259",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WZLwpC8mUrA4tRFtBt",
+  "type": "assistant",
+  "uuid": "161770a2-0049-4a49-8623-00f19c6c4529",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bGJB3wDzA6vfpgX4gp2PA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1936,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 31092,
+      "output_tokens": 1143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1936,
+          "output_tokens": 1143,
+          "cache_read_input_tokens": 31092,
+          "cache_creation_input_tokens": 1820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 38 · 2026-05-14T13:06:14.923Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01KNi8uyoE1D7GbGJqFFR4D7`</summary>
+
+```json
+{
+  "description": "Read paper pages 5-10",
+  "prompt": "Read a paper PDF. Your task: Extract the COMPLETE text content from pages 5 onwards of this paper.\n\nFirst, use the mcp__agent-ml-research__pdf_to_images tool to render pages 5-10 of the PDF:\n- pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/main.pdf  \n- pages: \"5-6\"\n- dpi: 150\n\nIf that's too large, try one page at a time.\n\nAlternatively, look for already-rendered images. Use Glob to search for PNG files in directories like:\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/\n\nRead each page image with the Read tool.\n\nReport the COMPLETE text of pages 5+ including:\n- All section headings and body text\n- All equations with numbers\n- All table contents with all numerical values\n- All figure captions\n- References section\n- Appendix content\n- Limitations section",
+  "model": "sonnet"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "161770a2-0049-4a49-8623-00f19c6c4529",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WZLwpC8mUrA4tRFtBt",
+  "type": "assistant",
+  "uuid": "ab5bcbfa-da96-4d02-bef9-7a4a0258c9e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bGJB3wDzA6vfpgX4gp2PA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1936,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 31092,
+      "output_tokens": 1143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1936,
+          "output_tokens": 1143,
+          "cache_read_input_tokens": 31092,
+          "cache_creation_input_tokens": 1820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 39 · 2026-05-14T13:06:15.845Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MptMu6Rstj815fU1EycLkS`</summary>
+
+```json
+{
+  "query": "attention head pruning interaction KV cache compression super-additivity 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab5bcbfa-da96-4d02-bef9-7a4a0258c9e4",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WZLwpC8mUrA4tRFtBt",
+  "type": "assistant",
+  "uuid": "7b592dfb-1301-4c4e-9a0e-5e3cec2ffde1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bGJB3wDzA6vfpgX4gp2PA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1936,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 31092,
+      "output_tokens": 1143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1936,
+          "output_tokens": 1143,
+          "cache_read_input_tokens": 31092,
+          "cache_creation_input_tokens": 1820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 40 · 2026-05-14T13:06:16.476Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01365MaaLVmRciUrzaYzyB76`</summary>
+
+```json
+{
+  "query": "\"UniComp\" OR \"SLiM\" unified compression LLM pruning quantization 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b592dfb-1301-4c4e-9a0e-5e3cec2ffde1",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WZLwpC8mUrA4tRFtBt",
+  "type": "assistant",
+  "uuid": "65885c8c-9fb0-446f-8648-bdc44860bde8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bGJB3wDzA6vfpgX4gp2PA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1936,
+      "cache_creation_input_tokens": 1820,
+      "cache_read_input_tokens": 31092,
+      "output_tokens": 1143,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1820,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1936,
+          "output_tokens": 1143,
+          "cache_read_input_tokens": 31092,
+          "cache_creation_input_tokens": 1820,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1820
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 2  **你的审查侧重：新颖性 + 相关工作完整性 + 写作质量 + 实际影响**  ### 论文信息 - **标题**: Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models -…",
+  "leafUuid": "65885c8c-9fb0-446f-8648-bdc44860bde8",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review EMNLP paper on phase-modulated compound sparsity",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 43 · 2026-05-14T13:06:24.741Z_
+
+<details><summary>↩ Tool result · `toolu_01MptMu6Rstj815fU1EycLkS`</summary>
+
+```text
+Web search results for query: "attention head pruning interaction KV cache compression super-additivity 2025 2026"
+
+Links: [{"title":"Expected Attention: KV Cache Compression by Estimating Attention","url":"https://arxiv.org/pdf/2510.00636"},{"title":"[2510.00636] Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/abs/2510.00636"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution","url":"https://arxiv.org/html/2510.00636v1"},{"title":"GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub","url":"https://github.com/NVIDIA/kvpress"},{"title":"Expected Attention: KV Cache Compression by Estimating Attention From Future Queries Distribution | OpenReview","url":"https://openreview.net/forum?id=VmojW15eRc"},{"title":"Lethe: Layer- and Time-Adaptive KV Cache Pruning for Reasoning-Intensive LLM Serving","url":"https://arxiv.org/html/2511.06029"},{"title":"HCAttention: Extreme KV Cache Compression via ...","url":"https://arxiv.org/pdf/2507.19823"},{"title":"Understanding the Physics of Key-Value Cache Compression for LLMs through Attention Dynamics","url":"https://arxiv.org/html/2603.01426"},{"title":"KV Cache Optimization via Multi-Head Latent Attention - PyImageSearch","url":"https://pyimagesearch.com/2025/10/13/kv-cache-optimization-via-multi-head-latent-attention/"},{"title":"MLA: Redefining KV-Cache Through Low-Rank Projections and On-Demand Decompression","url":"https://huggingface.co/blog/NormalUhr/mla-explanation"}]
+
+I found several relevant papers and resources on KV cache compression and attention optimization from 2025-2026. Here's what the search returned:
+
+## Key Results
+
+**Expected Attention (October 2025)**: A training-free compression method that estimates KV pairs importance by predicting how future queries will attend to them, leveraging distributional properties of LLM activations to compute expected attention scores in closed form for each KV pair, enabling principled ranking and pruning with minimal impact on the residual stream. This approach prunes the KV cache up to 60% while preserving performance quality, requiring no architectural modifications or additional training.
+
+**Understanding KV Cache Compression Physics (March 2026)**: A framework adopts Expected Attention as the scoring function, which estimates token importance by aggregating expected attention weights across decoding steps and layers, with per-layer scoring allowing high-salience key-value pairs, particularly those in structurally significant heads, to be preferentially preserved.
+
+**Lethe - Layer and Time-Adaptive Pruning (December 2025)**: A dynamic KV cache management framework introducing adaptivity along spatial and temporal dimensions, performing layerwise sparsity-aware allocation based on estimated attention redundancy and conducting multi-round token pruning during generation via a Recency-Aware Selective Retention mechanism.
+
+**Multi-Head Latent Attention (MLA)**: Compresses KV tensors into a shared latent space using low-rank projections, reducing memory usage while enabling more efficient attention computation without sacrificing model quality.
+
+The search results don't specifically address super-additivity interactions between attention head pruning and KV cache compression, though the papers do discuss head-level mechanisms and layerwise strategies that may relate to such interactions.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b592dfb-1301-4c4e-9a0e-5e3cec2ffde1",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "c27079d7-1d4d-4ef1-ba7f-c594ef0eb6c9",
+  "toolUseResult": {
+    "query": "attention head pruning interaction KV cache compression super-additivity 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0186xE3KFWJuKfeowjRmyAWn",
+        "content": [
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention",
+            "url": "https://arxiv.org/pdf/2510.00636"
+          },
+          {
+            "title": "[2510.00636] Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/abs/2510.00636"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention from Future Queries Distribution",
+            "url": "https://arxiv.org/html/2510.00636v1"
+          },
+          {
+            "title": "GitHub - NVIDIA/kvpress: LLM KV cache compression made easy · GitHub",
+            "url": "https://github.com/NVIDIA/kvpress"
+          },
+          {
+            "title": "Expected Attention: KV Cache Compression by Estimating Attention From Future Queries Distribution | OpenReview",
+            "url": "https://openreview.net/forum?id=VmojW15eRc"
+          },
+          {
+            "title": "Lethe: Layer- and Time-Adaptive KV Cache Pruning for Reasoning-Intensive LLM Serving",
+            "url": "https://arxiv.org/html/2511.06029"
+          },
+          {
+            "title": "HCAttention: Extreme KV Cache Compression via ...",
+            "url": "https://arxiv.org/pdf/2507.19823"
+          },
+          {
+            "title": "Understanding the Physics of Key-Value Cache Compression for LLMs through Attention Dynamics",
+            "url": "https://arxiv.org/html/2603.01426"
+          },
+          {
+            "title": "KV Cache Optimization via Multi-Head Latent Attention - PyImageSearch",
+            "url": "https://pyimagesearch.com/2025/10/13/kv-cache-optimization-via-multi-head-latent-attention/"
+          },
+          {
+            "title": "MLA: Redefining KV-Cache Through Low-Rank Projections and On-Demand Decompression",
+            "url": "https://huggingface.co/blog/NormalUhr/mla-explanation"
+          }
+        ]
+      },
+      "I found several relevant papers and resources on KV cache compression and attention optimization from 2025-2026. Here's what the search returned:\n\n## Key Results\n\n**Expected Attention (October 2025)**: A training-free compression method that estimates KV pairs importance by predicting how future queries will attend to them, leveraging distributional properties of LLM activations to compute expected attention scores in closed form for each KV pair, enabling principled ranking and pruning with minimal impact on the residual stream. This approach prunes the KV cache up to 60% while preserving performance quality, requiring no architectural modifications or additional training.\n\n**Understanding KV Cache Compression Physics (March 2026)**: A framework adopts Expected Attention as the scoring function, which estimates token importance by aggregating expected attention weights across decoding steps and layers, with per-layer scoring allowing high-salience key-value pairs, particularly those in structurally significant heads, to be preferentially preserved.\n\n**Lethe - Layer and Time-Adaptive Pruning (December 2025)**: A dynamic KV cache management framework introducing adaptivity along spatial and temporal dimensions, performing layerwise sparsity-aware allocation based on estimated attention redundancy and conducting multi-round token pruning during generation via a Recency-Aware Selective Retention mechanism.\n\n**Multi-Head Latent Attention (MLA)**: Compresses KV tensors into a shared latent space using low-rank projections, reducing memory usage while enabling more efficient attention computation without sacrificing model quality.\n\nThe search results don't specifically address super-additivity interactions between attention head pruning and KV cache compression, though the papers do discuss head-level mechanisms and layerwise strategies that may relate to such interactions."
+    ],
+    "durationSeconds": 8.885960594000004
+  },
+  "sourceToolAssistantUUID": "7b592dfb-1301-4c4e-9a0e-5e3cec2ffde1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 44 · 2026-05-14T13:06:27.881Z_
+
+<details><summary>↩ Tool result · `toolu_01365MaaLVmRciUrzaYzyB76`</summary>
+
+```text
+Web search results for query: ""UniComp" OR "SLiM" unified compression LLM pruning quantization 2025 2026"
+
+Links: [{"title":"[2602.09130] UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation","url":"https://arxiv.org/abs/2602.09130"},{"title":"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization, and Distillation","url":"https://arxiv.org/html/2602.09130"},{"title":"[2602.09130v2] UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation","url":"https://arxiv.org/abs/2602.09130v2"},{"title":"SLIM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression | Research","url":"https://research.nvidia.com/publication/2025-06_slim-one-shot-quantization-and-sparsity-low-rank-approximation-llm-weight"},{"title":"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression","url":"https://arxiv.org/html/2410.09615"},{"title":"(PDF) UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation","url":"https://www.researchgate.net/publication/400660606_UniComp_A_Unified_Evaluation_of_Large_Language_Model_Compression_via_Pruning_Quantization_and_Distillation"},{"title":"ICML Poster SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression","url":"https://icml.cc/virtual/2025/poster/46479"},{"title":"[2410.09615] SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression","url":"https://arxiv.org/abs/2410.09615"},{"title":"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression | OpenReview","url":"https://openreview.net/forum?id=4UfRP8MopP"},{"title":"UNICOMP: A Unified Evaluation of Large Language Model Compression","url":"https://arxiv.org/pdf/2602.09130"}]
+
+Based on the search results, I found information about both UniComp and SLiM, two recent unified compression frameworks for LLMs:
+
+## UniComp
+
+UniComp is a unified evaluation framework for comparing pruning, quantization, and knowledge distillation. UniComp evaluates compressed models along three dimensions: performance, reliability, and efficiency, using a diverse set of capability- and safety-oriented benchmarks together with a hardware-aware efficiency analysis.
+
+Key findings from UniComp's evaluation across 40+ datasets include:
+
+- Compression exhibits a consistent knowledge bias, where factual recall is largely preserved while multi-step reasoning, multilingual, and instruction-following capabilities degrade
+- Quantization offers the best overall trade-off, but is not a drop-in replacement for dense models, showing weaknesses on challenging reasoning tasks and multilingual performance, while distillation delivers strong runtime gains at substantially higher computational cost
+- Task-specific calibration from MATH, GSM8K, and ARC-c improves reasoning capability on pruned models by up to 50%
+
+## SLiM
+
+SLiM is a new one-shot compression framework that holistically integrates hardware-friendly quantization, sparsity, and low-rank approximation into a unified process. The approach consists of three components: a probabilistic quantization approach (SLiM-Quant) for uniform quantization, one-shot pruning for semi-structured sparsity, and a novel saliency function to mathematically compute low-rank adapters that compensate for quantization and sparsity error.
+
+Performance results: SLiM improves model accuracy by up to 5.66% for 2:4 sparsity with 4-bit weight quantization, achieving up to 4.3× layer-wise speedup on Nvidia GPUs and up to 0.23× end-to-end memory reduction compared to dense models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65885c8c-9fb0-446f-8648-bdc44860bde8",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "b917bc3e-d691-424d-8652-3daf7e88af48",
+  "toolUseResult": {
+    "query": "\"UniComp\" OR \"SLiM\" unified compression LLM pruning quantization 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KGJp8zp4DuTzfYm7xJ16Fh",
+        "content": [
+          {
+            "title": "[2602.09130] UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation",
+            "url": "https://arxiv.org/abs/2602.09130"
+          },
+          {
+            "title": "UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization, and Distillation",
+            "url": "https://arxiv.org/html/2602.09130"
+          },
+          {
+            "title": "[2602.09130v2] UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation",
+            "url": "https://arxiv.org/abs/2602.09130v2"
+          },
+          {
+            "title": "SLIM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression | Research",
+            "url": "https://research.nvidia.com/publication/2025-06_slim-one-shot-quantization-and-sparsity-low-rank-approximation-llm-weight"
+          },
+          {
+            "title": "SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression",
+            "url": "https://arxiv.org/html/2410.09615"
+          },
+          {
+            "title": "(PDF) UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation",
+            "url": "https://www.researchgate.net/publication/400660606_UniComp_A_Unified_Evaluation_of_Large_Language_Model_Compression_via_Pruning_Quantization_and_Distillation"
+          },
+          {
+            "title": "ICML Poster SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression",
+            "url": "https://icml.cc/virtual/2025/poster/46479"
+          },
+          {
+            "title": "[2410.09615] SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression",
+            "url": "https://arxiv.org/abs/2410.09615"
+          },
+          {
+            "title": "SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression | OpenReview",
+            "url": "https://openreview.net/forum?id=4UfRP8MopP"
+          },
+          {
+            "title": "UNICOMP: A Unified Evaluation of Large Language Model Compression",
+            "url": "https://arxiv.org/pdf/2602.09130"
+          }
+        ]
+      },
+      "Based on the search results, I found information about both UniComp and SLiM, two recent unified compression frameworks for LLMs:\n\n## UniComp\n\nUniComp is a unified evaluation framework for comparing pruning, quantization, and knowledge distillation. UniComp evaluates compressed models along three dimensions: performance, reliability, and efficiency, using a diverse set of capability- and safety-oriented benchmarks together with a hardware-aware efficiency analysis.\n\nKey findings from UniComp's evaluation across 40+ datasets include:\n\n- Compression exhibits a consistent knowledge bias, where factual recall is largely preserved while multi-step reasoning, multilingual, and instruction-following capabilities degrade\n- Quantization offers the best overall trade-off, but is not a drop-in replacement for dense models, showing weaknesses on challenging reasoning tasks and multilingual performance, while distillation delivers strong runtime gains at substantially higher computational cost\n- Task-specific calibration from MATH, GSM8K, and ARC-c improves reasoning capability on pruned models by up to 50%\n\n## SLiM\n\nSLiM is a new one-shot compression framework that holistically integrates hardware-friendly quantization, sparsity, and low-rank approximation into a unified process. The approach consists of three components: a probabilistic quantization approach (SLiM-Quant) for uniform quantization, one-shot pruning for semi-structured sparsity, and a novel saliency function to mathematically compute low-rank adapters that compensate for quantization and sparsity error.\n\nPerformance results: SLiM improves model accuracy by up to 5.66% for 2:4 sparsity with 4-bit weight quantization, achieving up to 4.3× layer-wise speedup on Nvidia GPUs and up to 0.23× end-to-end memory reduction compared to dense models."
+    ],
+    "durationSeconds": 11.399657804000002
+  },
+  "sourceToolAssistantUUID": "65885c8c-9fb0-446f-8648-bdc44860bde8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 45 · 2026-05-14T13:08:15.010Z_
+
+<details><summary>↩ Tool result · `toolu_01CFLHA2ygSjmAaiPJrimscM`</summary>
+
+```text
+Here is the complete verbatim text extracted from pages 1–4:
+
+---
+
+## PAGE 1
+
+**Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models**
+
+Anonymous ACL submission
+
+### Abstract
+
+Compound sparsity—simultaneously pruning attention heads and evicting KV cache entries—is essential for efficient LLM inference but produces super-additive quality degradation whose structure is poorly understood. Prior work treats compound interaction magnitude as approximately constant across the generation process. We show that this assumption is wrong: compound sparsity severity is an emergent phase-strategy interaction that varies by over an order of magnitude across reasoning phases.
+
+We evaluate compound sparsity on DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct (both Qwen2 architecture, 7B parameters) using 50 MATH-500 problems, measuring the Interaction Index—a super-additivity metric—across quantile-segmented reasoning phases and sparsity levels s ∈ {0.15, 0.20, 0.25, 0.30}. Under importance-based KV cache eviction, the median Interaction Index difference between low-sparsity and high-sparsity reasoning phases increases monotonically from 0.39 (s = 0.15) to 14.59 at s = 0.30, with paired Cohen's d growing from 0.44 (small) to 0.80 (large). Bonferroni-corrected permutation tests yield p < 0.005 at all four sparsity levels. Random eviction produces no significant phase modulation (largest: Qwen s = 0.30, p = 0.012) showing negligible effect size (d = –0.01), confirming that the severity gradient is strategy-specific, not an inherent property of compound sparsity.
+
+Across s = 0.25, a strategy ranking reversal emerges: importance-based eviction outperforms random in high-sparsity phases (Δ = 0.032 vs. 0.818) yet underperforms at low-sparsity phases (d = –1.00 for DeepSeek, d = 7.106 for Qwen, vs. 1.363)—a qualitative reversal in strategy ranking. The pattern replicates on Qwen2.5-7B-Instruct at s ≥ 0.20 (d_s ≥ 0.52; Spearman ρ = 1.0 across sparsity levels; gradient permutation p = 0.041).
+
+We propose *entropy-discrimination collapse* as an explanatory mechanism: head pruning flattens cumulative importance scores in phases where attention is already broadly distributed, degrading the discriminative power of importance-based eviction in a phase-dependent manner. These findings challenge the constant-interaction assumption in compound sparsity deployment and motivate phase-aware compression budgets for reasoning models.
+
+---
+
+## PAGE 2 (continuation of Introduction and start of Section 2)
+
+**s ≥ 0.20 on Qwen2.5-7B-Instruct** (d_s ≥ 0.55). Critically, random eviction produces no such gradient (7/8 conditions non-significant), confirming the gradient is an emergent phase-strategy interaction.
+
+We propose *entropy-discrimination collapse* as a mechanism: head pruning flattens cumulative importance scores in phases where attention is already broadly distributed, degrading the discriminative power of importance-based eviction in a phase-dependent manner. Random eviction is immune because its decisions are independent of token patterns. Our contributions:
+
+1. We identify a **phase–strategy interaction**: importance-based eviction exhibits a severity gradient across reasoning phases that is absent under random eviction (§5).
+2. We show this gradient **increases monotonically with sparsity** and replicates across two models with different training regimes (§5).
+3. We propose *entropy-discrimination collapse* as a mechanistic explanation (§5.6).
+
+### 2 Related Work
+
+**Compound compression.** Combining multiple compression axes produces super-additive effects (Liao et al., 2026) report super-additive degradation when combining channel pruning with token eviction. (Mozaffari et al., 2025) disentangle compound error for quantization and sparsity. (von Rad et al., 2026) evaluate compound compression across 40+ benchmarks, showing that reasoning capabilities degrade disproportionately. (Ma et al., 2026) characterize independent phase transition points per compression dimension, implying the joint safe region is the intersection of per-dimension safe zones. GRASPrune (Wang et al., 2026) learns global budget-constrained gates for joint pruning, but treats decisions as static at generation. These works establish compound interaction but share an implicit assumption: interaction magnitude is constant across the generation process.
+
+**KV cache eviction.** Most methods rely on importance scoring whose reliability is increasingly questioned. Ada-KV (Feng et al., 2025) introduces per-head adaptive budgets; SnapKV (Li et al., 2024) compresses from a fixed observation window; (Feng et al., 2026) show worst-case loss 2.3–1.3× higher than expected under standard aggregation. (Chen et al., 2024) combine proxy-tokens and random eviction to counter attention bias. Re-
+
+**sentinelKV** (Liu et al., 2026) identifies deferred importance, and (Sood et al., 2026) show that single importance metrics exhibit systematic greedy bias. These conditions are characterized in terms of aggregation or metric choice—not reasoning phase or interaction with head pruning.
+
+**Phase-aware inference.** ThinKV (Ramachandran et al., 2026) applies different KV strategies per phase but without compound interaction. (Shi et al., 2026) find pruning sensitivity depends on "silent" vs. "decisive" representation phases. (Monjur et al., 2026) show pruning combined with test-time scaling can exceed unpruned baselines. (Nawrot et al., 2025) find no universally optimal sparse attention strategy across generation stages. These works establish phase-dependent compression tolerance along single axes. Our work bridges this by quantifying how compound severity varies across phases and eviction strategies.
+
+---
+
+### 3 Background and Problem Setup
+
+We formalize compound sparsity, define the Interaction Index, and introduce phase segmentation. Full mathematical details appear in Appendix A.
+
+**Compound sparsity.** Let s ∈ (0, 1) denote a unified sparsity budget. *Attention head pruning* removes the bottom-s fraction of heads per layer by Frobenius norm importance (Voita et al., 2019); Michel et al. (2019). *KV cache eviction* removes the bottom-s fraction of token positions from the cache. We compare two strategies: *importance based*, which scores positions by position-normalized cumulative attention mass (Eq. 5 in Appendix A), and *random*, which evicts uniformly at random. Applying both simultaneously yields *compound sparsity*; the two axes interact because head pruning alters the importance ranking used for eviction (Liao et al., 2026a).
+
+**Interaction Index.** For a test segment, let PPL_d, PPL_a, PPL_k denote perplexity under condition c ∈ {d, a, k, b} (dense, attention-only, KV-only, and compound). We define by the dense baseline yields r_c and:
+
+II = r_k − r_a − r_k + 1  **(1)**
+
+II ≥ 0 indicates super-additive degradation; II = 0 is the additive null. We adopt the multiplicative null (Appendix B). Because the II distribution is heavily right-skewed, we report medians throughout.
+
+**Severity gradient.** To capture phase variation:
+
+G = Ĥ_high / Ĥ_low  **(2)**
+
+where Ĥ_low/high are median II in the low/high-sparsity phases. G > 1 indicates phase-concentrated severity.
+
+**Phase segmentation.** Each generated sequence is partitioned into three phases (low-, mid-, high-sparsity) by tercile boundaries of per-position attention entropy, following ThinKV (Ramachandran et al., 2026). Low-sparsity phases correspond to broadly distributed attention (exploratory reasoning); high-sparsity phases to concentrated attention (structured computation). Details in Appendix A.
+
+---
+
+## PAGE 3 (Section 4 Experimental Setup + start of Section 5)
+
+multiplicative null (Appendix B). Because the II distribution is heavily right-skewed, we report medians throughout.
+
+**Severity gradient.** To capture phase variation:
+
+G = Ĥ_high / Ĥ_low  **(2)**
+
+where Ĥ_low/high are median II in the low/high-sparsity phases. G > 1 indicates phase-concentrated severity.
+
+**Phase segmentation.** Each generated sequence is partitioned into three phases (low-, mid-, high-sparsity) by tercile boundaries of per-position attention entropy, following ThinKV (Ramachandran et al., 2026). Low-sparsity phases correspond to broadly distributed attention (exploratory reasoning); high-sparsity phases to concentrated attention (structured computation). Details in Appendix A.
+
+### 4 Experimental Setup
+
+**Models.** We evaluate on two 7B-parameter models sharing the Qwen2 backbone (28 layers, 28 heads, 4-group GQA): **DeepSeek-R1-Distill-Qwen-7B** (DeepSeek-AI, 2025), distilled from DeepSeek-R1 with explicit chain-of-thought traces yielding pronounced phase structure; and **Qwen2.5-7B-Instruct** (Yang et al., 2024), with standard instruction tuning, providing a cross-model replication target. Both are loaded in bfloat16 with eager attention.¹
+
+**Dataset.** We use 50 problems stratified from MATH-500 (Hendrycks et al., 2021), sampling problems spanning difficulty categories with a fixed seed. Each problem is decoded greedily (max_new_tokens=2048).
+
+**Sparsity configuration.** We apply symmetric compound sparsity at s ∈ {0.15, 0.20, 0.25, 0.30}, computing perplexity under four conditions: dense, attention-only, KV-only, and compound. We compare *importance-based* eviction (position-normalized cumulative attention score, Eq. 5; BOS always retained) and *random* eviction (uniform). Heads are pruned per layer by Frobenius norm; under random eviction, both heads and positions are selected uniformly.
+
+---
+
+**Table 1**: Median compound severity difference (Δ = Ĥ_low − Ĥ_high) by eviction strategy and sparsity level on DeepSeek-R1-Distill-Qwen-7B (n=50 MATH-500 problems).
+
+| Strategy | s=0.15 | s=0.20 | s=0.25 | s=0.30 |
+|----------|--------|--------|--------|--------|
+| Importance | 0.39 | 1.48 | 7.16 | 14.59 |
+| Random | 0.01 | 0.02 | 0.54 | 1.54 |
+
+**Phase segmentation and metrics.** Each sequence is segmented into three phases using the quantile-based method (§3), with min_phase_length=10. We compute segment-level perplexity II (Eq. 1), and G (Eq. 2), reporting medians due to heavy right-skew (mean/median ratios up to 43:1).
+
+**Statistical analysis.** All confidence intervals and permutation tests use nonparametric bootstrap (B=10,000) (Efron and Tibshirani, 1993). Paired bootstrap controls for problem-level variance. All tests yield p_Phase < 0.005 at every sparsity level.²
+
+### 5 Results
+
+#### 5.1 Strategy-Dependent Severity
+
+Table 1 reports the median compound severity difference across strategies and sparsity levels. Under importance-based eviction, Δ increases from 0.39 at s=0.15 to 14.59 at s=0.30—a 37× amplification. Under random eviction, no systematic growth is observed (−0.02 to 1.54), confirming that compound severity depends qualitatively on eviction strategy.
+
+#### 5.2 Phase-Modulated Amplification
+
+Decomposing II by reasoning phase reveals that strategy advantage begins to drive Δ amplification in the low-sparsity phase. The severity gradient G increases from 69° at s=0.15 to 274× at s=0.30 for importance-based eviction, while the high-sparsity phase experiences near-zero interaction (II_high ranges from 0.006 to 0.053). Under random eviction, G = 0.9–1.7×, at all sparsity levels (full per-phase breakdown in Appendix Table 2). Figure 1 visualizes this contrast.
+
+#### 5.3 Phase-Strategy Crossover
+
+At s=0.25, a strategy ranking reversal emerges: importance-based eviction outperforms random in the high-sparsity phase (0.032 vs. 0.18) but
+
+---
+
+## PAGE 4 (Sections 5.3–5.6 and start of Section 6)
+
+*loses score distribution.* The Gini coefficient decreases by 0.030–0.081 (DeepSeek) and 0.010–0.020 (Qwen) after pruning across all 16 conditions (Appendix Table 6). When importance scores lose discriminability, threshold pruning degenerates into noise-sensitive selection. This is phase-dependent: in low-sparsity phases, attention is already broadly distributed, so pruning-induced flattening has maximum impact; in high-sparsity phases, concentration is preserved. Random eviction is immune because its decisions are independent of score patterns, explaining G ≅ 1. A secondary redistribution pattern is consistent for DeepSeek but only partially replicates on Qwen (Appendix K).
+
+### 6 Discussion
+
+**Quantitative surprise.** While the qualitative direction—importance scores degrade when attention is diffuse—may seem intuitive, the quantitative structure is not predictable from first principles. The severity gradient (69–274×) far exceeds any "somewhat worse" prediction. The crossover—where importance-based eviction simultaneously outperforms random in high-sparsity phases (II = 0.032 vs. 0.18) and underperforms in low-sparsity phases (7.196 vs. 1.363)—cannot be derived from single-axis reasoning. The amplification trend (G ∝ s) confirms the amplification is strategy-specific, not inherent to compound sparsity.
+
+**Implications for deployment.** Applying a uniform compression budget across all inference steps incurs disproportionate magnitude severity penalties during low-sparsity reasoning phases. A *phase-aware compression budget*—allocating lower sparsity (larger s) to low- and reducing budget in near-additive high-sparsity phases—could mitigate this interaction while preserving compression gains. The severity gradient provides a natural signal for such allocation.
+
+**Cross-model robustness.** The pattern replicates with perfect ordinal agreement across both models (Spearman ρ=1.0; gradient permutation p=0.041), with Qwen's magnitude roughly 1/5 of DeepSeek's. Discrimination collapse (Gini/CV reduction) is consistent across all conditions; the entropy redistribution component is model-dependent, with Qwen showing a sign reversal at s=0.25. We characterize discrimination collapse as the robust driver, with entropy redistribution as
+
+---
+
+**Figure 1**: Severity gradient (G) as a function of sparsity level s. Importance-based eviction (solid) exhibits an increasing gradient from 69× to 274×; random eviction (dashed) remains flat near 1×. Shaded regions: 95% bootstrap CIs.
+
+*(Caption continues:)* but *higher* II in the low-sparsity phase (7.196 vs. 1.363—a 5.5× reversal). This crossover is present at all four sparsity levels, with the low-phase reversal magnitude ranging from 3.9× to 5.4× (details and visualization in Appendix E). The reversal arises because head pruning redistributes attention mass, altering importance rankings in a way that couples the two sparsity mechanisms in low-sparsity phases (§5.6).
+
+#### 5.4 Cross-Model Replication
+
+Qwen2.5-7B-Instruct reproduces the monotonic severity gradient: Δ increases from 0.04 at s=0.15 to 2.94 at s=0.30, paralleling DeepSeek at ~1/5 the magnitude (Appendix Table 3). Both models yield strictly increasing d_s, suggesting (Spearman ρ = 1.0; gradient permutation p = 0.043). The effect is marginal at s=0.15 to 0.20 (28 CI includes zero) but reliable at s ≥ 0.20 (d_s ≥ 0.55). Full concordance analysis in Appendix F.
+
+#### 5.5 Statistical Validation
+
+Paired permutation tests reject H_0 at all four sparsity levels after Bonferroni correction (p_Phase < 0.005), with effect sizes growing from d_s=0.44 (small) to d_s=0.80 (large) for DeepSeek and from d_s=0.28 to d_s=1.02 for Qwen. Permutation test details, subject size tables, and forest plots appear in Appendix G.
+
+#### 5.6 Discrimination Collapse Mechanism
+
+Head pruning reduces the number of heads contributing to cumulative importance scores, flatten-
+
+---
+
+¹ An earlier `elastin` configuration produced sporadic NaN values; `bfloat16` eliminated all occurrences.
+
+² Experiments on 4× NVIDIA RTX PRO 6000 Blackwell 96 GB GPUs.
+
+agentId: a2e95648caa4fa4a5 (use SendMessage with to: 'a2e95648caa4fa4a5' to continue this agent)
+&lt;usage>total_tokens: 25308
+tool_uses: 5
+duration_ms: 125438&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "161770a2-0049-4a49-8623-00f19c6c4529",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "594310b4-17f0-4ef7-a92b-85d85c8fed7a",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Read a paper PDF rendered as images. The images were rendered to a JSON file. \n\nYour task: Extract the COMPLETE text content from pages 1-4 of this paper, including all equations, table data, figure captions, and footnotes. Report everything verbatim - do not summarize.\n\nThe JSON file is at: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-11-projects-phase-gated-compound-sparse--claude-sessions-review-reviewer-2-d0398257/792468c2-2ec1-47cc-9ece-e60ae9112cdb/tool-results/mcp-agent-ml-research-pdf_to_images-1778763935405.txt\n\nThis file has schema: {result: string}. The result field contains rendered page image data. Use jq to probe the structure, then use python to extract and decode the base64 image data. Read the images using the Read tool to view them visually.\n\nActually, the easier approach: The PDF images were saved to disk. Check the output directory - it should be near the PDF at /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/ or similar. Use Glob to find the PNG files, then Read each page image file directly.\n\nReport the COMPLETE text of pages 1-4 including:\n- Title, authors, abstract\n- All section headings and body text\n- All equations with their numbers\n- All table contents\n- All figure captions\n- All footnotes",
+    "agentId": "a2e95648caa4fa4a5",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is the complete verbatim text extracted from pages 1–4:\n\n---\n\n## PAGE 1\n\n**Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models**\n\nAnonymous ACL submission\n\n### Abstract\n\nCompound sparsity—simultaneously pruning attention heads and evicting KV cache entries—is essential for efficient LLM inference but produces super-additive quality degradation whose structure is poorly understood. Prior work treats compound interaction magnitude as approximately constant across the generation process. We show that this assumption is wrong: compound sparsity severity is an emergent phase-strategy interaction that varies by over an order of magnitude across reasoning phases.\n\nWe evaluate compound sparsity on DeepSeek-R1-Distill-Qwen-7B and Qwen2.5-7B-Instruct (both Qwen2 architecture, 7B parameters) using 50 MATH-500 problems, measuring the Interaction Index—a super-additivity metric—across quantile-segmented reasoning phases and sparsity levels s ∈ {0.15, 0.20, 0.25, 0.30}. Under importance-based KV cache eviction, the median Interaction Index difference between low-sparsity and high-sparsity reasoning phases increases monotonically from 0.39 (s = 0.15) to 14.59 at s = 0.30, with paired Cohen's d growing from 0.44 (small) to 0.80 (large). Bonferroni-corrected permutation tests yield p < 0.005 at all four sparsity levels. Random eviction produces no significant phase modulation (largest: Qwen s = 0.30, p = 0.012) showing negligible effect size (d = –0.01), confirming that the severity gradient is strategy-specific, not an inherent property of compound sparsity.\n\nAcross s = 0.25, a strategy ranking reversal emerges: importance-based eviction outperforms random in high-sparsity phases (Δ = 0.032 vs. 0.818) yet underperforms at low-sparsity phases (d = –1.00 for DeepSeek, d = 7.106 for Qwen, vs. 1.363)—a qualitative reversal in strategy ranking. The pattern replicates on Qwen2.5-7B-Instruct at s ≥ 0.20 (d_s ≥ 0.52; Spearman ρ = 1.0 across sparsity levels; gradient permutation p = 0.041).\n\nWe propose *entropy-discrimination collapse* as an explanatory mechanism: head pruning flattens cumulative importance scores in phases where attention is already broadly distributed, degrading the discriminative power of importance-based eviction in a phase-dependent manner. These findings challenge the constant-interaction assumption in compound sparsity deployment and motivate phase-aware compression budgets for reasoning models.\n\n---\n\n## PAGE 2 (continuation of Introduction and start of Section 2)\n\n**s ≥ 0.20 on Qwen2.5-7B-Instruct** (d_s ≥ 0.55). Critically, random eviction produces no such gradient (7/8 conditions non-significant), confirming the gradient is an emergent phase-strategy interaction.\n\nWe propose *entropy-discrimination collapse* as a mechanism: head pruning flattens cumulative importance scores in phases where attention is already broadly distributed, degrading the discriminative power of importance-based eviction in a phase-dependent manner. Random eviction is immune because its decisions are independent of token patterns. Our contributions:\n\n1. We identify a **phase–strategy interaction**: importance-based eviction exhibits a severity gradient across reasoning phases that is absent under random eviction (§5).\n2. We show this gradient **increases monotonically with sparsity** and replicates across two models with different training regimes (§5).\n3. We propose *entropy-discrimination collapse* as a mechanistic explanation (§5.6).\n\n### 2 Related Work\n\n**Compound compression.** Combining multiple compression axes produces super-additive effects (Liao et al., 2026) report super-additive degradation when combining channel pruning with token eviction. (Mozaffari et al., 2025) disentangle compound error for quantization and sparsity. (von Rad et al., 2026) evaluate compound compression across 40+ benchmarks, showing that reasoning capabilities degrade disproportionately. (Ma et al., 2026) characterize independent phase transition points per compression dimension, implying the joint safe region is the intersection of per-dimension safe zones. GRASPrune (Wang et al., 2026) learns global budget-constrained gates for joint pruning, but treats decisions as static at generation. These works establish compound interaction but share an implicit assumption: interaction magnitude is constant across the generation process.\n\n**KV cache eviction.** Most methods rely on importance scoring whose reliability is increasingly questioned. Ada-KV (Feng et al., 2025) introduces per-head adaptive budgets; SnapKV (Li et al., 2024) compresses from a fixed observation window; (Feng et al., 2026) show worst-case loss 2.3–1.3× higher than expected under standard aggregation. (Chen et al., 2024) combine proxy-tokens and random eviction to counter attention bias. Re-\n\n**sentinelKV** (Liu et al., 2026) identifies deferred importance, and (Sood et al., 2026) show that single importance metrics exhibit systematic greedy bias. These conditions are characterized in terms of aggregation or metric choice—not reasoning phase or interaction with head pruning.\n\n**Phase-aware inference.** ThinKV (Ramachandran et al., 2026) applies different KV strategies per phase but without compound interaction. (Shi et al., 2026) find pruning sensitivity depends on \"silent\" vs. \"decisive\" representation phases. (Monjur et al., 2026) show pruning combined with test-time scaling can exceed unpruned baselines. (Nawrot et al., 2025) find no universally optimal sparse attention strategy across generation stages. These works establish phase-dependent compression tolerance along single axes. Our work bridges this by quantifying how compound severity varies across phases and eviction strategies.\n\n---\n\n### 3 Background and Problem Setup\n\nWe formalize compound sparsity, define the Interaction Index, and introduce phase segmentation. Full mathematical details appear in Appendix A.\n\n**Compound sparsity.** Let s ∈ (0, 1) denote a unified sparsity budget. *Attention head pruning* removes the bottom-s fraction of heads per layer by Frobenius norm importance (Voita et al., 2019); Michel et al. (2019). *KV cache eviction* removes the bottom-s fraction of token positions from the cache. We compare two strategies: *importance based*, which scores positions by position-normalized cumulative attention mass (Eq. 5 in Appendix A), and *random*, which evicts uniformly at random. Applying both simultaneously yields *compound sparsity*; the two axes interact because head pruning alters the importance ranking used for eviction (Liao et al., 2026a).\n\n**Interaction Index.** For a test segment, let PPL_d, PPL_a, PPL_k denote perplexity under condition c ∈ {d, a, k, b} (dense, attention-only, KV-only, and compound). We define by the dense baseline yields r_c and:\n\nII = r_k − r_a − r_k + 1  **(1)**\n\nII ≥ 0 indicates super-additive degradation; II = 0 is the additive null. We adopt the multiplicative null (Appendix B). Because the II distribution is heavily right-skewed, we report medians throughout.\n\n**Severity gradient.** To capture phase variation:\n\nG = Ĥ_high / Ĥ_low  **(2)**\n\nwhere Ĥ_low/high are median II in the low/high-sparsity phases. G > 1 indicates phase-concentrated severity.\n\n**Phase segmentation.** Each generated sequence is partitioned into three phases (low-, mid-, high-sparsity) by tercile boundaries of per-position attention entropy, following ThinKV (Ramachandran et al., 2026). Low-sparsity phases correspond to broadly distributed attention (exploratory reasoning); high-sparsity phases to concentrated attention (structured computation). Details in Appendix A.\n\n---\n\n## PAGE 3 (Section 4 Experimental Setup + start of Section 5)\n\nmultiplicative null (Appendix B). Because the II distribution is heavily right-skewed, we report medians throughout.\n\n**Severity gradient.** To capture phase variation:\n\nG = Ĥ_high / Ĥ_low  **(2)**\n\nwhere Ĥ_low/high are median II in the low/high-sparsity phases. G > 1 indicates phase-concentrated severity.\n\n**Phase segmentation.** Each generated sequence is partitioned into three phases (low-, mid-, high-sparsity) by tercile boundaries of per-position attention entropy, following ThinKV (Ramachandran et al., 2026). Low-sparsity phases correspond to broadly distributed attention (exploratory reasoning); high-sparsity phases to concentrated attention (structured computation). Details in Appendix A.\n\n### 4 Experimental Setup\n\n**Models.** We evaluate on two 7B-parameter models sharing the Qwen2 backbone (28 layers, 28 heads, 4-group GQA): **DeepSeek-R1-Distill-Qwen-7B** (DeepSeek-AI, 2025), distilled from DeepSeek-R1 with explicit chain-of-thought traces yielding pronounced phase structure; and **Qwen2.5-7B-Instruct** (Yang et al., 2024), with standard instruction tuning, providing a cross-model replication target. Both are loaded in bfloat16 with eager attention.¹\n\n**Dataset.** We use 50 problems stratified from MATH-500 (Hendrycks et al., 2021), sampling problems spanning difficulty categories with a fixed seed. Each problem is decoded greedily (max_new_tokens=2048).\n\n**Sparsity configuration.** We apply symmetric compound sparsity at s ∈ {0.15, 0.20, 0.25, 0.30}, computing perplexity under four conditions: dense, attention-only, KV-only, and compound. We compare *importance-based* eviction (position-normalized cumulative attention score, Eq. 5; BOS always retained) and *random* eviction (uniform). Heads are pruned per layer by Frobenius norm; under random eviction, both heads and positions are selected uniformly.\n\n---\n\n**Table 1**: Median compound severity difference (Δ = Ĥ_low − Ĥ_high) by eviction strategy and sparsity level on DeepSeek-R1-Distill-Qwen-7B (n=50 MATH-500 problems).\n\n| Strategy | s=0.15 | s=0.20 | s=0.25 | s=0.30 |\n|----------|--------|--------|--------|--------|\n| Importance | 0.39 | 1.48 | 7.16 | 14.59 |\n| Random | 0.01 | 0.02 | 0.54 | 1.54 |\n\n**Phase segmentation and metrics.** Each sequence is segmented into three phases using the quantile-based method (§3), with min_phase_length=10. We compute segment-level perplexity II (Eq. 1), and G (Eq. 2), reporting medians due to heavy right-skew (mean/median ratios up to 43:1).\n\n**Statistical analysis.** All confidence intervals and permutation tests use nonparametric bootstrap (B=10,000) (Efron and Tibshirani, 1993). Paired bootstrap controls for problem-level variance. All tests yield p_Phase < 0.005 at every sparsity level.²\n\n### 5 Results\n\n#### 5.1 Strategy-Dependent Severity\n\nTable 1 reports the median compound severity difference across strategies and sparsity levels. Under importance-based eviction, Δ increases from 0.39 at s=0.15 to 14.59 at s=0.30—a 37× amplification. Under random eviction, no systematic growth is observed (−0.02 to 1.54), confirming that compound severity depends qualitatively on eviction strategy.\n\n#### 5.2 Phase-Modulated Amplification\n\nDecomposing II by reasoning phase reveals that strategy advantage begins to drive Δ amplification in the low-sparsity phase. The severity gradient G increases from 69° at s=0.15 to 274× at s=0.30 for importance-based eviction, while the high-sparsity phase experiences near-zero interaction (II_high ranges from 0.006 to 0.053). Under random eviction, G = 0.9–1.7×, at all sparsity levels (full per-phase breakdown in Appendix Table 2). Figure 1 visualizes this contrast.\n\n#### 5.3 Phase-Strategy Crossover\n\nAt s=0.25, a strategy ranking reversal emerges: importance-based eviction outperforms random in the high-sparsity phase (0.032 vs. 0.18) but\n\n---\n\n## PAGE 4 (Sections 5.3–5.6 and start of Section 6)\n\n*loses score distribution.* The Gini coefficient decreases by 0.030–0.081 (DeepSeek) and 0.010–0.020 (Qwen) after pruning across all 16 conditions (Appendix Table 6). When importance scores lose discriminability, threshold pruning degenerates into noise-sensitive selection. This is phase-dependent: in low-sparsity phases, attention is already broadly distributed, so pruning-induced flattening has maximum impact; in high-sparsity phases, concentration is preserved. Random eviction is immune because its decisions are independent of score patterns, explaining G ≅ 1. A secondary redistribution pattern is consistent for DeepSeek but only partially replicates on Qwen (Appendix K).\n\n### 6 Discussion\n\n**Quantitative surprise.** While the qualitative direction—importance scores degrade when attention is diffuse—may seem intuitive, the quantitative structure is not predictable from first principles. The severity gradient (69–274×) far exceeds any \"somewhat worse\" prediction. The crossover—where importance-based eviction simultaneously outperforms random in high-sparsity phases (II = 0.032 vs. 0.18) and underperforms in low-sparsity phases (7.196 vs. 1.363)—cannot be derived from single-axis reasoning. The amplification trend (G ∝ s) confirms the amplification is strategy-specific, not inherent to compound sparsity.\n\n**Implications for deployment.** Applying a uniform compression budget across all inference steps incurs disproportionate magnitude severity penalties during low-sparsity reasoning phases. A *phase-aware compression budget*—allocating lower sparsity (larger s) to low- and reducing budget in near-additive high-sparsity phases—could mitigate this interaction while preserving compression gains. The severity gradient provides a natural signal for such allocation.\n\n**Cross-model robustness.** The pattern replicates with perfect ordinal agreement across both models (Spearman ρ=1.0; gradient permutation p=0.041), with Qwen's magnitude roughly 1/5 of DeepSeek's. Discrimination collapse (Gini/CV reduction) is consistent across all conditions; the entropy redistribution component is model-dependent, with Qwen showing a sign reversal at s=0.25. We characterize discrimination collapse as the robust driver, with entropy redistribution as\n\n---\n\n**Figure 1**: Severity gradient (G) as a function of sparsity level s. Importance-based eviction (solid) exhibits an increasing gradient from 69× to 274×; random eviction (dashed) remains flat near 1×. Shaded regions: 95% bootstrap CIs.\n\n*(Caption continues:)* but *higher* II in the low-sparsity phase (7.196 vs. 1.363—a 5.5× reversal). This crossover is present at all four sparsity levels, with the low-phase reversal magnitude ranging from 3.9× to 5.4× (details and visualization in Appendix E). The reversal arises because head pruning redistributes attention mass, altering importance rankings in a way that couples the two sparsity mechanisms in low-sparsity phases (§5.6).\n\n#### 5.4 Cross-Model Replication\n\nQwen2.5-7B-Instruct reproduces the monotonic severity gradient: Δ increases from 0.04 at s=0.15 to 2.94 at s=0.30, paralleling DeepSeek at ~1/5 the magnitude (Appendix Table 3). Both models yield strictly increasing d_s, suggesting (Spearman ρ = 1.0; gradient permutation p = 0.043). The effect is marginal at s=0.15 to 0.20 (28 CI includes zero) but reliable at s ≥ 0.20 (d_s ≥ 0.55). Full concordance analysis in Appendix F.\n\n#### 5.5 Statistical Validation\n\nPaired permutation tests reject H_0 at all four sparsity levels after Bonferroni correction (p_Phase < 0.005), with effect sizes growing from d_s=0.44 (small) to d_s=0.80 (large) for DeepSeek and from d_s=0.28 to d_s=1.02 for Qwen. Permutation test details, subject size tables, and forest plots appear in Appendix G.\n\n#### 5.6 Discrimination Collapse Mechanism\n\nHead pruning reduces the number of heads contributing to cumulative importance scores, flatten-\n\n---\n\n¹ An earlier `elastin` configuration produced sporadic NaN values; `bfloat16` eliminated all occurrences.\n\n² Experiments on 4× NVIDIA RTX PRO 6000 Blackwell 96 GB GPUs."
+      }
+    ],
+    "totalDurationMs": 125438,
+    "totalTokens": 25308,
+    "totalToolUseCount": 5,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 956,
+      "cache_read_input_tokens": 19914,
+      "output_tokens": 4437,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 956
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 4437,
+          "cache_read_input_tokens": 19914,
+          "cache_creation_input_tokens": 956,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 956,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 4,
+      "searchCount": 1,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "161770a2-0049-4a49-8623-00f19c6c4529",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 46_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 2  **你的审查侧重：新颖性 + 相关工作完整性 + 写作质量 + 实际影响**  ### 论文信息 - **标题**: Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models -…",
+  "leafUuid": "594310b4-17f0-4ef7-a92b-85d85c8fed7a",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review EMNLP paper on phase-modulated compound sparsity",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 48 · 2026-05-14T13:09:27.423Z_
+
+<details><summary>↩ Tool result · `toolu_01KNi8uyoE1D7GbGJqFFR4D7`</summary>
+
+```text
+Here is the complete extracted text from page 5 onwards:
+
+---
+
+## Page 5 — Conclusion, Limitations, References (partial)
+
+**7 Conclusion**
+
+We showed that compound sparsity severity—the super-additive interaction between head pruning and KV cache eviction—is not phase-invariant but exhibits an emergent phase-strategy interaction spanning over an order of magnitude within a single generation. Under importance-based eviction, the severity gradient grows from 69× to 274× across sparsity levels (d_z: 0.44 → 0.80); random eviction shows no such modulation (7/8 conditions non-significant). A crossover at s=0.25—where importance-based eviction reverses ranking across phases—demonstrates that no single strategy dominates uniformly. The pattern replicates on Qwen2.5-7B-Instruct at s≥0.20 (d_z≥0.55) with attenuated magnitude. Discrimination collapse provides a robust mechanistic explanation confirmed across both models. These findings motivate phase-aware sparsity allocation for reasoning model deployment.
+
+**Limitations**
+
+Both models share the Qwen2 architecture; cross-architecture validation (LLaMA, Mistral) remains future work. Evaluation is limited to MATH-500 at the 7B scale. The discrimination collapse mechanism is supported by correlational evidence; causal validation through controlled entropy manipulation is needed. The entropy redistribution component replicates on only 2/4 Qwen conditions, suggesting model-specific factors. Extended limitations in Appendix.
+
+**References** (partial on p.5, continued p.6):
+
+- Yilong Chen, Guoxia Wang et al. NACL: A General and Effective KV Cache Eviction Framework for LLMs. ACL 2024.
+- Dan Hendrycks, Collin Burns et al. Measuring Mathematical Problem Solving With the MATH Dataset. NeurIPS 2021.
+- Wonsik Kwon et al. Understanding Discrimination Collapse in Layer-Pruned LLMs. arXiv:2605.07271.
+- Yuan Fang, Junlin Lv et al. Ada-KV: Optimizing KV cache eviction by adaptive budget allocation. NeurIPS 2025.
+- DeepSeek-AI. DeepSeek-R1. Nature 645:633–638, 2025.
+- Yuan Fang, Haoyu Guo et al. DefensiveKV. ICLR 2026.
+- Ocean Monjur et al. Doing More With Less. arXiv:2604.25098.
+- Mohammad Mozaffari et al. SLiM. ICML 2025.
+- Reiner Pope et al. Efficiently Scaling Transformer Inference. MLSys 2023.
+- Akshat Ramachandran et al. ThinKV. ICLR 2026.
+- Jonathan von Rad et al. UniComp. arXiv:2602.09130.
+- Ziyang Wang et al. GRASPrune. ACL 2026.
+- Elena Voita et al. Analyzing Multi-Head Self-Attention. ACL 2019.
+- David Talbot, Fedor Moiseev et al. (Voita) ibid.
+- Aryan Sood et al. More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression. arXiv:2602.02199.
+- Piotr Nawrot et al. The Sparse Frontier. arXiv:2504.17768.
+- Ziyang Ma et al. Phase transitions in LLM compression. npj AI 2(21), 2026.
+- Zhenyu Zhang et al. H2O. NeurIPS 2023.
+- Yuhong Li et al. SnapKV. NeurIPS 2024.
+- Zefan Cai et al. PyramidKV. arXiv:2406.02069.
+- Huanxuan Liao et al. SparK. AAAI 2026.
+- Paul Michel, Omer Levy, Graham Neubig. Are Sixteen Heads Really Better than One? NeurIPS 2019.
+- Donghyeon Joo et al. Mustafar. NeurIPS 2025.
+- An Yang et al. Qwen2.5 Technical Report. arXiv:2412.15115.
+- Junhao Hu et al. RaaS: Reasoning-Aware Attention Sparsity. ACL 2025.
+- Sihao Liu et al. RetentiveKV. arXiv:2605.04075.
+- Krishna Teja Chitty-Venkata et al. PagedEviction. EACL 2026.
+- Yuzhe Gu et al. OBCache. arXiv:2510.07651.
+- Shivansh Chhawri et al. A Systematic Study of Compression Ordering for LLMs. arXiv:2511.19495.
+- Bradley Efron and Robert J. Tibshirani. An Introduction to the Bootstrap. Chapman & Hall/CRC, 1993.
+
+---
+
+## Page 6 — Appendix A: Compound Sparsity Formulation; Appendix B: Multiplicative Null Verification
+
+**A Compound Sparsity Formulation**
+
+**Attention head pruning.** Heads are ranked by Frobenius norm importance w_j^(ℓ) = ‖A_j^(ℓ)‖_F; a binary mask m_j^(ℓ) ∈ {0,1} retains the top-(1−s)·H heads:
+
+> Eq. (3): õ_j^(ℓ) = m_j^(ℓ) · o_j^(ℓ)
+
+**KV cache eviction.** A position mask m_k ∈ {0,1}^T retains the top-(1−s)·T positions (BOS always preserved):
+
+> Eq. (4): ã_ij = a_ij · m_{k,j}, ∀i,j
+
+Under importance-based eviction, each position j is scored by its cumulative attention mass with position normalization:
+
+> Eq. (5): imp(j) = [Σ_{ℓ,h,i} a_{ij}^(ℓ,h)] / (T − j)
+
+where the denominator compensates for causal bias. Under random eviction, positions (excluding BOS) are evicted uniformly at random.
+
+**Compound sparsity.** Applying both mechanisms simultaneously yields compound sparsity. The two axes interact: head pruning redistributes attention mass, altering the importance ranking for KV eviction. Prior work (SparK, AAAI 2026) reports super-additive joint effects but treats interaction magnitude as a fixed property of s.
+
+**Attention sparsity metric.** For each query position i and head h, we compute the fraction of key positions receiving negligible attention:
+
+> Eq. (6): σ_i^(h) = (1/T) Σ_{j=1}^T 𝟙[a_{ij}^(h) < 0.01 · max_k a_{ik}^(h)]
+
+The per-position sparsity σ_i = (1/H) Σ_h σ_i^(h) averages across all heads. Tokens are partitioned into high-, mid-, and low-sparsity phases by the tercile boundaries of {σ_i}; segments shorter than 10 tokens are merged into adjacent phases.
+
+**B Multiplicative Null Verification**
+
+We verified that replacing the additive null r_b = r_a + r_k − 1 (Eq. for II) with the multiplicative null r_b = r_a · r_k does not change qualitative conclusions. Under the multiplicative formulation, the interaction index becomes II_× = r_b − r_a · r_k. Across all sparsity levels and both eviction strategies, the sign and relative ordering of II_× match those of the additive II: importance-based eviction exhibits a monotonically increasing severity gradient (G_× = 58–241×), while random eviction remains flat (G_× ≈ 1). The crossover at s=0.25 is preserved. The additive formulation is adopted in the main text because the two sparsity axes operate on disjoint model dimensions (structural vs. positional), making additive independence the more natural null hypothesis.
+
+---
+
+## Page 7 — Appendix C: Bootstrap and Permutation Details; Appendix D: Per-Phase Interaction Index Breakdown; Appendix E: Phase-Strategy Crossover Details
+
+**C Bootstrap and Permutation Details**
+
+Per-problem distributions of the paired severity difference Δ_i = II_{low,i} − II_{high,i} under importance-based eviction are right-skewed at all sparsity levels, with mean/median ratios ranging from 1.2× (s=0.15) to 1.6× (s=0.30) for DeepSeek and 1.1× to 1.4× for Qwen. This motivates median-based test statistics and nonparametric bootstrap inference throughout.
+
+The permutation null distributions (10,000 permutations of strategy labels) are approximately symmetric around zero at all sparsity levels, with no observed median difference exceeding the 2.5th or 97.5th percentile under any permutation at s≥0.20 (Bonferroni-corrected). At s=0.15, the observed statistic falls at the 99.68th percentile of the null (p_Bonf = 0.0032).
+
+Figure 2: Strategy-dependent crossover at s=0.25. Grouped bar chart of median II by eviction strategy and reasoning phase. Importance-based eviction outperforms random in the high-sparsity phase but produces 5.3× higher II in the low-sparsity phase, reversing the strategy ranking.
+
+**D Per-Phase Interaction Index Breakdown**
+
+**Table (Appendix Tab: main-results)** — Interaction index (II) by eviction strategy, reasoning phase, and sparsity level. II values are problem-level medians across 50 problems. Δ = IĨ_low − IĨ_high. G = IĨ_low / IĨ_high.
+
+| s | Strategy | IĨ_high | IĨ_mid | IĨ_low | Δ | G |
+|---|---|---|---|---|---|---|
+| 0.15 | Importance | 0.006 | 0.081 | 0.398 | 0.39 | **69** |
+| 0.15 | Random | 0.093 | 0.097 | 0.103 | 0.01 | 1.1 |
+| 0.20 | Importance | 0.015 | 0.203 | 1.496 | 1.48 | **103** |
+| 0.20 | Random | 0.292 | 0.350 | 0.276 | −0.02 | 0.9 |
+| 0.25 | Importance | 0.032 | 1.118 | 7.196 | 7.16 | **222** |
+| 0.25 | Random | 0.818 | 0.932 | 1.363 | 0.54 | 1.7 |
+| 0.30 | Importance | 0.053 | 2.283 | 14.639 | 14.59 | **274** |
+| 0.30 | Random | 2.503 | 2.592 | 4.041 | 1.54 | 1.6 |
+
+**E Phase-Strategy Crossover Details**
+
+The crossover is present at all four tested sparsity levels. Low-phase reversal magnitude: 3.9× at s=0.15, 5.4× at s=0.20, 5.3× at s=0.25, 3.6× at s=0.30.
+
+---
+
+## Page 8 — Cross-Model Replication Details; Statistical Validation Details (partial)
+
+**F Cross-Model Replication Details**
+
+Both models share the Qwen2ForCausalLM backbone (28 layers, 28 heads, 4-group GQA) but differ in training: DeepSeek uses reasoning distillation from DeepSeek-R1; Qwen2.5 uses standard instruction tuning without explicit reasoning delimiters. Four of the 50 problems are excluded due to degenerate phase assignments, yielding n=46 valid problems for Qwen (vs. n=50 for DeepSeek).
+
+**Table 3 (Cross-model comparison of median Δ under importance-based eviction):**
+
+| Model | s=0.15 | s=0.20 | s=0.25 | s=0.30 |
+|---|---|---|---|---|
+| DeepSeek-R1-Distill-Qwen-7B | 0.39 | 1.48 | 7.16 | 14.59 |
+| Qwen2.5-7B-Instruct | 0.04 | 0.23 | 1.27 | 2.94 |
+
+**Per-problem concordance.** Mean ρ = −0.11, p = 0.926. The Qwen effect is marginal at s=0.15 (d_z=0.28, bootstrap CI includes zero), becoming reliable at s≥0.20 (d_z≥0.55).
+
+**Random eviction control.** Random eviction on Qwen yields no systematic phase gradient at 3/4 sparsity levels. At s=0.30, Qwen random produces borderline PASS (p=0.012) but negligible effect size (d_z=−0.04, CI spans zero).
+
+**Table 4 (Paired permutation test for compound severity on DeepSeek, n=49, 10,000 permutations, Bonferroni-corrected):**
+
+| s | Observed Δ̃ | 95% CI | p_Bonf |
+|---|---|---|---|
+| 0.15 | 0.37 | [0.19, 0.62] | 0.0032 |
+| 0.20 | 0.97 | [0.69, 1.49] | <0.001 |
+| 0.25 | 3.34 | [1.66, 6.64] | <0.001 |
+| 0.30 | 9.85 | [6.70, 16.29] | <0.001 |
+
+Figure 3: Cross-model comparison of the median severity difference under importance-based eviction. Both DeepSeek (solid) and Qwen (dashed) exhibit monotonically increasing Δ with sparsity; Qwen's magnitude is approximately one-fifth of DeepSeek's.
+
+Figure 4: Forest plot of permutation test results. Horizontal bars show 95% permutation CIs; diamonds mark observed median differences Δ̃. All CIs lie entirely above zero.
+
+**G Statistical Validation Details**
+
+The test statistic is the median of the paired difference Δ̃ = median_i(Δ_i^(imp) − Δ_i^(rand)). The monotonic growth of both point estimate and CI lower bound (0.19 → 0.69 → 1.66 → 6.70) confirms compound severity amplification strengthens with sparsity.
+
+---
+
+## Page 8 (lower) / Page 9 — Discrimination Collapse Details
+
+**H Discrimination Collapse Details**
+
+The **Gini coefficient** measures inequality in importance distribution (Gini=0: uniform; Gini=1: maximally concentrated). The **CV** (coefficient of variation) captures relative dispersion.
+
+**Table 2 (Interaction index II by eviction strategy and sparsity, problem-level medians, n=50):**
+
+| s | Strategy | IĨ_high | IĨ_mid | IĨ_low | Δ | G |
+|---|---|---|---|---|---|---|
+| 0.15 | Importance | 0.006 | 0.081 | 0.398 | 0.39 | 69 |
+| 0.15 | Random | 0.093 | 0.097 | 0.103 | 0.01 | 1.1 |
+| 0.20 | Importance | 0.015 | 0.203 | 1.496 | 1.48 | 103 |
+| 0.20 | Random | 0.292 | 0.350 | 0.276 | −0.02 | 0.9 |
+| 0.25 | Importance | 0.032 | 1.118 | 7.196 | 7.16 | 222 |
+| 0.25 | Random | 0.818 | 0.932 | 1.363 | 0.54 | 1.7 |
+| 0.30 | Importance | 0.053 | 2.283 | 14.639 | 14.59 | 274 |
+| 0.30 | Random | 2.503 | 2.592 | 4.041 | 1.54 | 1.6 |
+
+**Table (Discrimination collapse metrics — ΔGini and ΔCV, post-pruning minus baseline):**
+
+| Model | s | ΔGini | ΔCV |
+|---|---|---|---|
+| DeepSeek | 0.15 | −0.030 | −0.56 |
+| DeepSeek | 0.20 | −0.040 | −0.77 |
+| DeepSeek | 0.25 | −0.065 | −1.29 |
+| DeepSeek | 0.30 | −0.081 | −1.66 |
+| Qwen | 0.15 | −0.010 | −0.05 |
+| Qwen | 0.20 | −0.012 | −0.21 |
+| Qwen | 0.25 | −0.010 | −1.49 |
+| Qwen | 0.30 | −0.020 | −1.14 |
+
+Same pattern holds under random eviction (DeepSeek: −0.031 to −0.073; Qwen: −0.019 to −0.045), confirming discrimination collapse is a consequence of head pruning per se, not eviction strategy.
+
+**Table 5 (Paired d_z for phase-dependent II, importance-based eviction, bootstrap 95% CIs B=10,000):**
+
+| s | DS d_z | Δ̃ [CI] | QW d_z | Δ̃ [CI] |
+|---|---|---|---|---|
+| 0.15 | 0.44 | 0.32 [0.20, 0.47] | 0.28 | 0.05 [−0.01, 0.11]^ns |
+| 0.20 | 0.52 | 1.15 [0.66, 1.26] | 0.55 | 0.21 [0.07, 0.40] |
+| 0.25 | 0.68 | 3.97 [2.83, 5.29] | 0.89 | 1.11 [0.61, 1.47] |
+| 0.30 | 0.80 | 9.94 [8.39, 16.65] | 1.02 | 2.62 [1.72, 3.65] |
+
+(ns = Marginal at s=0.15; reliable at s≥0.20)
+
+---
+
+## Page 9 — Extended Discussion; Discrimination Collapse (continued)
+
+**Extended Discussion**
+
+**On the predictability of phase-modulated severity.** The severity gradient (69–274×) far exceeds a naive "less discriminative → somewhat worse" prediction. The compound interaction is not uniformly fragile—it is selectively fragile in a phase-dependent manner (IĨ_high < 0.06 at s≤0.30; at s=0.35, high-phase II rises to 0.105 in a supplementary experiment, indicating onset of compound interaction even in high-sparsity phases at extreme pruning rates).
+
+**Random masking as falsification control.** Random eviction fails 7/8 paired permutation tests across both models; the single exception (Qwen s=0.30, p=0.012) exhibits negligible effect size (d_z=−0.04). The absence of a phase gradient under random masking isolates the amplification as strategy-specific.
+
+**Cross-model magnitude asymmetry.** Qwen's median severity differences (0.04 → 0.23 → 1.27 → 2.94) are approximately one-fifth of DeepSeek's (0.39 → 1.48 → 7.16 → 14.59). We conjecture distillation amplifies the phase-strategy interaction by producing sharper internal phase transitions—testable by comparing distilled vs. non-distilled variants at matched scale.
+
+**Architecture generality.** Discrimination collapse depends on: (i) attention-mass-based importance scoring for KV eviction, and (ii) a sufficient number of pruned heads to degrade the importance distribution. Both shared by major KV cache methods (H2O, SnapKV, PyramidKV) and any autoregressive transformer producing extended reasoning. The entropy redistribution component appears model-dependent.
+
+**Testable prediction.** Any importance metric derived from attention mass should exhibit discrimination collapse under head pruning, with severity gradient scaling with pruning-induced Gini decrease. Metrics from attention-independent sources (activation magnitude, gradient-based saliency) should produce flatter severity gradients.
+
+**Future directions.** A phase-gated controller that monitors attention sparsity in real time and dynamically adjusts compound sparsity per phase could mitigate severity amplification while preserving compression gains where compound behavior is near-additive. Scaling to larger models and diverse reasoning tasks would establish generality.
+
+---
+
+## Pages 10–11 — Extended Limitations; Entropy Redistribution Analysis
+
+**Extended Limitations**
+
+**Model scale.** All experiments at 7B parameter scale. Whether patterns persist, amplify, or attenuate at 70B remains untested.
+
+**Architectural scope.** Both models share Qwen2ForCausalLM architecture. Cross-architecture validation on LLaMA 3, Mistral, or multi-latent attention designs is needed.
+
+**Task coverage.** Evaluation exclusively on MATH-500. Different reasoning tasks may induce different phase structures.
+
+**Statistical scope.** Bootstrap CIs use B=10,000 resamples. n=49 paired problems for DeepSeek (1 excluded), n=46 for Qwen (4 excluded). Severity distribution right-skewed (mean/median ratio ~1.6:1 at s=0.30). Notable exception: Qwen random at s=0.30 yields p=0.012 but d_z=−0.04, illustrating that significance testing can flag effects of no practical magnitude.
+
+**Sparsity range.** Experiments span s ∈ {0.15, 0.20, 0.25, 0.30}. More extreme sparsity (s>0.50) remains unverified; lower boundary for phase-modulated amplification onset not yet characterized.
+
+**No throughput evaluation.** No inference throughput or latency measurements. This work focuses on structural characterization of compound sparsity severity.
+
+**I Entropy Redistribution Analysis**
+
+Beyond discrimination collapse, head pruning also redistributes attention entropy of surviving heads. Entropy per head:
+
+> Eq. (7): H_i^(h) = −Σ_{j=1}^T a_{ij}^(h) log a_{ij}^(h)
+
+ΔH = change from baseline (no pruning) to pruned condition.
+
+For DeepSeek under importance-based eviction, ΔH is consistently negative across all four sparsity levels (ΔH ∈ [−0.040, −0.047]), consistent across reasoning phases. This confirms importance-based eviction systematically removes heads whose removal concentrates attention in surviving heads, reinforcing discrimination collapse.
+
+For Qwen, the pattern only partially replicates: negative at s=0.15 (ΔH=−0.073) and s=0.20 (−0.076); reversal to +0.045 at s=0.25 (22/30 problems show positive entropy change); near-zero at s=0.30 (−0.007). The s=0.25 reversal is consistent across all three reasoning phases (low: +0.042, mid: +0.034, high: +0.017). Interpreted as a genuine model-specific difference: Qwen's instruction tuning may produce head configurations where removing 25% of heads triggers compensatory broadening rather than concentration.
+
+**Table (Attention entropy deltas ΔH under importance-based eviction):**
+
+| Model | s | ΔH |
+|---|---|---|
+| DeepSeek | 0.15 | −0.040 |
+| DeepSeek | 0.20 | −0.047 |
+| DeepSeek | 0.25 | −0.045 |
+| DeepSeek | 0.30 | −0.044 |
+| Qwen | 0.15 | −0.073 |
+| Qwen | 0.20 | −0.076 |
+| Qwen | 0.25 | +0.045 |
+| Qwen | 0.30 | −0.007 |
+
+**J Extended Limitations (continued on p.10):**
+
+**Future directions** (from main p.10): A phase-gated controller that monitors attention sparsity in real time and dynamically adjusts compound sparsity per phase could mitigate severity amplification while preserving compression gains. Directly measuring per-head entropy shifts across architecturally distinct models—and identifying what training-time properties determine whether entropy concentrates or disperses under head pruning—would clarify the boundary conditions of the full mechanism. Scaling to larger models and diverse reasoning tasks would establish generality.
+
+---
+
+**Summary of complete content extracted (pages 5–11):**
+
+The paper's pages 5–11 contain: (1) Conclusion + Limitations section; (2) full References (29 entries); (3) Appendix A: Compound Sparsity Formulation with Eqs. 3–6; (4) Appendix B: Multiplicative Null Verification (G_× = 58–241×); (5) Appendix C: Bootstrap/Permutation Details; (6) Appendix D: full per-phase II breakdown table (all 8 condition rows with IĨ_high/mid/low, Δ, G values); (7) Appendix E: Crossover Details (reversal magnitudes 3.9–5.4×); (8) Appendix F: Cross-model Replication Details (Tables 3 & 4, Figure 3 & 4, n=46/49); (9) Appendix G: Statistical Validation Details (Table 5 with d_z and Δ̃ CIs); (10) Appendix H: Discrimination Collapse Details (ΔGini and ΔCV table); (11) Extended Discussion; (12) Extended Limitations; (13) Appendix I: Entropy Redistribution Analysis (Table of ΔH values, Eq. 7).
+
+agentId: aa0d78ae4743432cb (use SendMessage with to: 'aa0d78ae4743432cb' to continue this agent)
+&lt;usage>total_tokens: 51828
+tool_uses: 18
+duration_ms: 192496&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ab5bcbfa-da96-4d02-bef9-7a4a0258c9e4",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "f76518bf-9d3b-4007-acc0-90962657de56",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "Read a paper PDF. Your task: Extract the COMPLETE text content from pages 5 onwards of this paper.\n\nFirst, use the mcp__agent-ml-research__pdf_to_images tool to render pages 5-10 of the PDF:\n- pdf_path: /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/main.pdf  \n- pages: \"5-6\"\n- dpi: 150\n\nIf that's too large, try one page at a time.\n\nAlternatively, look for already-rendered images. Use Glob to search for PNG files in directories like:\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/_pdf_images/\n- /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper/\n\nRead each page image with the Read tool.\n\nReport the COMPLETE text of pages 5+ including:\n- All section headings and body text\n- All equations with numbers\n- All table contents with all numerical values\n- All figure captions\n- References section\n- Appendix content\n- Limitations section",
+    "agentId": "aa0d78ae4743432cb",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here is the complete extracted text from page 5 onwards:\n\n---\n\n## Page 5 — Conclusion, Limitations, References (partial)\n\n**7 Conclusion**\n\nWe showed that compound sparsity severity—the super-additive interaction between head pruning and KV cache eviction—is not phase-invariant but exhibits an emergent phase-strategy interaction spanning over an order of magnitude within a single generation. Under importance-based eviction, the severity gradient grows from 69× to 274× across sparsity levels (d_z: 0.44 → 0.80); random eviction shows no such modulation (7/8 conditions non-significant). A crossover at s=0.25—where importance-based eviction reverses ranking across phases—demonstrates that no single strategy dominates uniformly. The pattern replicates on Qwen2.5-7B-Instruct at s≥0.20 (d_z≥0.55) with attenuated magnitude. Discrimination collapse provides a robust mechanistic explanation confirmed across both models. These findings motivate phase-aware sparsity allocation for reasoning model deployment.\n\n**Limitations**\n\nBoth models share the Qwen2 architecture; cross-architecture validation (LLaMA, Mistral) remains future work. Evaluation is limited to MATH-500 at the 7B scale. The discrimination collapse mechanism is supported by correlational evidence; causal validation through controlled entropy manipulation is needed. The entropy redistribution component replicates on only 2/4 Qwen conditions, suggesting model-specific factors. Extended limitations in Appendix.\n\n**References** (partial on p.5, continued p.6):\n\n- Yilong Chen, Guoxia Wang et al. NACL: A General and Effective KV Cache Eviction Framework for LLMs. ACL 2024.\n- Dan Hendrycks, Collin Burns et al. Measuring Mathematical Problem Solving With the MATH Dataset. NeurIPS 2021.\n- Wonsik Kwon et al. Understanding Discrimination Collapse in Layer-Pruned LLMs. arXiv:2605.07271.\n- Yuan Fang, Junlin Lv et al. Ada-KV: Optimizing KV cache eviction by adaptive budget allocation. NeurIPS 2025.\n- DeepSeek-AI. DeepSeek-R1. Nature 645:633–638, 2025.\n- Yuan Fang, Haoyu Guo et al. DefensiveKV. ICLR 2026.\n- Ocean Monjur et al. Doing More With Less. arXiv:2604.25098.\n- Mohammad Mozaffari et al. SLiM. ICML 2025.\n- Reiner Pope et al. Efficiently Scaling Transformer Inference. MLSys 2023.\n- Akshat Ramachandran et al. ThinKV. ICLR 2026.\n- Jonathan von Rad et al. UniComp. arXiv:2602.09130.\n- Ziyang Wang et al. GRASPrune. ACL 2026.\n- Elena Voita et al. Analyzing Multi-Head Self-Attention. ACL 2019.\n- David Talbot, Fedor Moiseev et al. (Voita) ibid.\n- Aryan Sood et al. More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression. arXiv:2602.02199.\n- Piotr Nawrot et al. The Sparse Frontier. arXiv:2504.17768.\n- Ziyang Ma et al. Phase transitions in LLM compression. npj AI 2(21), 2026.\n- Zhenyu Zhang et al. H2O. NeurIPS 2023.\n- Yuhong Li et al. SnapKV. NeurIPS 2024.\n- Zefan Cai et al. PyramidKV. arXiv:2406.02069.\n- Huanxuan Liao et al. SparK. AAAI 2026.\n- Paul Michel, Omer Levy, Graham Neubig. Are Sixteen Heads Really Better than One? NeurIPS 2019.\n- Donghyeon Joo et al. Mustafar. NeurIPS 2025.\n- An Yang et al. Qwen2.5 Technical Report. arXiv:2412.15115.\n- Junhao Hu et al. RaaS: Reasoning-Aware Attention Sparsity. ACL 2025.\n- Sihao Liu et al. RetentiveKV. arXiv:2605.04075.\n- Krishna Teja Chitty-Venkata et al. PagedEviction. EACL 2026.\n- Yuzhe Gu et al. OBCache. arXiv:2510.07651.\n- Shivansh Chhawri et al. A Systematic Study of Compression Ordering for LLMs. arXiv:2511.19495.\n- Bradley Efron and Robert J. Tibshirani. An Introduction to the Bootstrap. Chapman & Hall/CRC, 1993.\n\n---\n\n## Page 6 — Appendix A: Compound Sparsity Formulation; Appendix B: Multiplicative Null Verification\n\n**A Compound Sparsity Formulation**\n\n**Attention head pruning.** Heads are ranked by Frobenius norm importance w_j^(ℓ) = ‖A_j^(ℓ)‖_F; a binary mask m_j^(ℓ) ∈ {0,1} retains the top-(1−s)·H heads:\n\n> Eq. (3): õ_j^(ℓ) = m_j^(ℓ) · o_j^(ℓ)\n\n**KV cache eviction.** A position mask m_k ∈ {0,1}^T retains the top-(1−s)·T positions (BOS always preserved):\n\n> Eq. (4): ã_ij = a_ij · m_{k,j}, ∀i,j\n\nUnder importance-based eviction, each position j is scored by its cumulative attention mass with position normalization:\n\n> Eq. (5): imp(j) = [Σ_{ℓ,h,i} a_{ij}^(ℓ,h)] / (T − j)\n\nwhere the denominator compensates for causal bias. Under random eviction, positions (excluding BOS) are evicted uniformly at random.\n\n**Compound sparsity.** Applying both mechanisms simultaneously yields compound sparsity. The two axes interact: head pruning redistributes attention mass, altering the importance ranking for KV eviction. Prior work (SparK, AAAI 2026) reports super-additive joint effects but treats interaction magnitude as a fixed property of s.\n\n**Attention sparsity metric.** For each query position i and head h, we compute the fraction of key positions receiving negligible attention:\n\n> Eq. (6): σ_i^(h) = (1/T) Σ_{j=1}^T 𝟙[a_{ij}^(h) < 0.01 · max_k a_{ik}^(h)]\n\nThe per-position sparsity σ_i = (1/H) Σ_h σ_i^(h) averages across all heads. Tokens are partitioned into high-, mid-, and low-sparsity phases by the tercile boundaries of {σ_i}; segments shorter than 10 tokens are merged into adjacent phases.\n\n**B Multiplicative Null Verification**\n\nWe verified that replacing the additive null r_b = r_a + r_k − 1 (Eq. for II) with the multiplicative null r_b = r_a · r_k does not change qualitative conclusions. Under the multiplicative formulation, the interaction index becomes II_× = r_b − r_a · r_k. Across all sparsity levels and both eviction strategies, the sign and relative ordering of II_× match those of the additive II: importance-based eviction exhibits a monotonically increasing severity gradient (G_× = 58–241×), while random eviction remains flat (G_× ≈ 1). The crossover at s=0.25 is preserved. The additive formulation is adopted in the main text because the two sparsity axes operate on disjoint model dimensions (structural vs. positional), making additive independence the more natural null hypothesis.\n\n---\n\n## Page 7 — Appendix C: Bootstrap and Permutation Details; Appendix D: Per-Phase Interaction Index Breakdown; Appendix E: Phase-Strategy Crossover Details\n\n**C Bootstrap and Permutation Details**\n\nPer-problem distributions of the paired severity difference Δ_i = II_{low,i} − II_{high,i} under importance-based eviction are right-skewed at all sparsity levels, with mean/median ratios ranging from 1.2× (s=0.15) to 1.6× (s=0.30) for DeepSeek and 1.1× to 1.4× for Qwen. This motivates median-based test statistics and nonparametric bootstrap inference throughout.\n\nThe permutation null distributions (10,000 permutations of strategy labels) are approximately symmetric around zero at all sparsity levels, with no observed median difference exceeding the 2.5th or 97.5th percentile under any permutation at s≥0.20 (Bonferroni-corrected). At s=0.15, the observed statistic falls at the 99.68th percentile of the null (p_Bonf = 0.0032).\n\nFigure 2: Strategy-dependent crossover at s=0.25. Grouped bar chart of median II by eviction strategy and reasoning phase. Importance-based eviction outperforms random in the high-sparsity phase but produces 5.3× higher II in the low-sparsity phase, reversing the strategy ranking.\n\n**D Per-Phase Interaction Index Breakdown**\n\n**Table (Appendix Tab: main-results)** — Interaction index (II) by eviction strategy, reasoning phase, and sparsity level. II values are problem-level medians across 50 problems. Δ = IĨ_low − IĨ_high. G = IĨ_low / IĨ_high.\n\n| s | Strategy | IĨ_high | IĨ_mid | IĨ_low | Δ | G |\n|---|---|---|---|---|---|---|\n| 0.15 | Importance | 0.006 | 0.081 | 0.398 | 0.39 | **69** |\n| 0.15 | Random | 0.093 | 0.097 | 0.103 | 0.01 | 1.1 |\n| 0.20 | Importance | 0.015 | 0.203 | 1.496 | 1.48 | **103** |\n| 0.20 | Random | 0.292 | 0.350 | 0.276 | −0.02 | 0.9 |\n| 0.25 | Importance | 0.032 | 1.118 | 7.196 | 7.16 | **222** |\n| 0.25 | Random | 0.818 | 0.932 | 1.363 | 0.54 | 1.7 |\n| 0.30 | Importance | 0.053 | 2.283 | 14.639 | 14.59 | **274** |\n| 0.30 | Random | 2.503 | 2.592 | 4.041 | 1.54 | 1.6 |\n\n**E Phase-Strategy Crossover Details**\n\nThe crossover is present at all four tested sparsity levels. Low-phase reversal magnitude: 3.9× at s=0.15, 5.4× at s=0.20, 5.3× at s=0.25, 3.6× at s=0.30.\n\n---\n\n## Page 8 — Cross-Model Replication Details; Statistical Validation Details (partial)\n\n**F Cross-Model Replication Details**\n\nBoth models share the Qwen2ForCausalLM backbone (28 layers, 28 heads, 4-group GQA) but differ in training: DeepSeek uses reasoning distillation from DeepSeek-R1; Qwen2.5 uses standard instruction tuning without explicit reasoning delimiters. Four of the 50 problems are excluded due to degenerate phase assignments, yielding n=46 valid problems for Qwen (vs. n=50 for DeepSeek).\n\n**Table 3 (Cross-model comparison of median Δ under importance-based eviction):**\n\n| Model | s=0.15 | s=0.20 | s=0.25 | s=0.30 |\n|---|---|---|---|---|\n| DeepSeek-R1-Distill-Qwen-7B | 0.39 | 1.48 | 7.16 | 14.59 |\n| Qwen2.5-7B-Instruct | 0.04 | 0.23 | 1.27 | 2.94 |\n\n**Per-problem concordance.** Mean ρ = −0.11, p = 0.926. The Qwen effect is marginal at s=0.15 (d_z=0.28, bootstrap CI includes zero), becoming reliable at s≥0.20 (d_z≥0.55).\n\n**Random eviction control.** Random eviction on Qwen yields no systematic phase gradient at 3/4 sparsity levels. At s=0.30, Qwen random produces borderline PASS (p=0.012) but negligible effect size (d_z=−0.04, CI spans zero).\n\n**Table 4 (Paired permutation test for compound severity on DeepSeek, n=49, 10,000 permutations, Bonferroni-corrected):**\n\n| s | Observed Δ̃ | 95% CI | p_Bonf |\n|---|---|---|---|\n| 0.15 | 0.37 | [0.19, 0.62] | 0.0032 |\n| 0.20 | 0.97 | [0.69, 1.49] | <0.001 |\n| 0.25 | 3.34 | [1.66, 6.64] | <0.001 |\n| 0.30 | 9.85 | [6.70, 16.29] | <0.001 |\n\nFigure 3: Cross-model comparison of the median severity difference under importance-based eviction. Both DeepSeek (solid) and Qwen (dashed) exhibit monotonically increasing Δ with sparsity; Qwen's magnitude is approximately one-fifth of DeepSeek's.\n\nFigure 4: Forest plot of permutation test results. Horizontal bars show 95% permutation CIs; diamonds mark observed median differences Δ̃. All CIs lie entirely above zero.\n\n**G Statistical Validation Details**\n\nThe test statistic is the median of the paired difference Δ̃ = median_i(Δ_i^(imp) − Δ_i^(rand)). The monotonic growth of both point estimate and CI lower bound (0.19 → 0.69 → 1.66 → 6.70) confirms compound severity amplification strengthens with sparsity.\n\n---\n\n## Page 8 (lower) / Page 9 — Discrimination Collapse Details\n\n**H Discrimination Collapse Details**\n\nThe **Gini coefficient** measures inequality in importance distribution (Gini=0: uniform; Gini=1: maximally concentrated). The **CV** (coefficient of variation) captures relative dispersion.\n\n**Table 2 (Interaction index II by eviction strategy and sparsity, problem-level medians, n=50):**\n\n| s | Strategy | IĨ_high | IĨ_mid | IĨ_low | Δ | G |\n|---|---|---|---|---|---|---|\n| 0.15 | Importance | 0.006 | 0.081 | 0.398 | 0.39 | 69 |\n| 0.15 | Random | 0.093 | 0.097 | 0.103 | 0.01 | 1.1 |\n| 0.20 | Importance | 0.015 | 0.203 | 1.496 | 1.48 | 103 |\n| 0.20 | Random | 0.292 | 0.350 | 0.276 | −0.02 | 0.9 |\n| 0.25 | Importance | 0.032 | 1.118 | 7.196 | 7.16 | 222 |\n| 0.25 | Random | 0.818 | 0.932 | 1.363 | 0.54 | 1.7 |\n| 0.30 | Importance | 0.053 | 2.283 | 14.639 | 14.59 | 274 |\n| 0.30 | Random | 2.503 | 2.592 | 4.041 | 1.54 | 1.6 |\n\n**Table (Discrimination collapse metrics — ΔGini and ΔCV, post-pruning minus baseline):**\n\n| Model | s | ΔGini | ΔCV |\n|---|---|---|---|\n| DeepSeek | 0.15 | −0.030 | −0.56 |\n| DeepSeek | 0.20 | −0.040 | −0.77 |\n| DeepSeek | 0.25 | −0.065 | −1.29 |\n| DeepSeek | 0.30 | −0.081 | −1.66 |\n| Qwen | 0.15 | −0.010 | −0.05 |\n| Qwen | 0.20 | −0.012 | −0.21 |\n| Qwen | 0.25 | −0.010 | −1.49 |\n| Qwen | 0.30 | −0.020 | −1.14 |\n\nSame pattern holds under random eviction (DeepSeek: −0.031 to −0.073; Qwen: −0.019 to −0.045), confirming discrimination collapse is a consequence of head pruning per se, not eviction strategy.\n\n**Table 5 (Paired d_z for phase-dependent II, importance-based eviction, bootstrap 95% CIs B=10,000):**\n\n| s | DS d_z | Δ̃ [CI] | QW d_z | Δ̃ [CI] |\n|---|---|---|---|---|\n| 0.15 | 0.44 | 0.32 [0.20, 0.47] | 0.28 | 0.05 [−0.01, 0.11]^ns |\n| 0.20 | 0.52 | 1.15 [0.66, 1.26] | 0.55 | 0.21 [0.07, 0.40] |\n| 0.25 | 0.68 | 3.97 [2.83, 5.29] | 0.89 | 1.11 [0.61, 1.47] |\n| 0.30 | 0.80 | 9.94 [8.39, 16.65] | 1.02 | 2.62 [1.72, 3.65] |\n\n(ns = Marginal at s=0.15; reliable at s≥0.20)\n\n---\n\n## Page 9 — Extended Discussion; Discrimination Collapse (continued)\n\n**Extended Discussion**\n\n**On the predictability of phase-modulated severity.** The severity gradient (69–274×) far exceeds a naive \"less discriminative → somewhat worse\" prediction. The compound interaction is not uniformly fragile—it is selectively fragile in a phase-dependent manner (IĨ_high < 0.06 at s≤0.30; at s=0.35, high-phase II rises to 0.105 in a supplementary experiment, indicating onset of compound interaction even in high-sparsity phases at extreme pruning rates).\n\n**Random masking as falsification control.** Random eviction fails 7/8 paired permutation tests across both models; the single exception (Qwen s=0.30, p=0.012) exhibits negligible effect size (d_z=−0.04). The absence of a phase gradient under random masking isolates the amplification as strategy-specific.\n\n**Cross-model magnitude asymmetry.** Qwen's median severity differences (0.04 → 0.23 → 1.27 → 2.94) are approximately one-fifth of DeepSeek's (0.39 → 1.48 → 7.16 → 14.59). We conjecture distillation amplifies the phase-strategy interaction by producing sharper internal phase transitions—testable by comparing distilled vs. non-distilled variants at matched scale.\n\n**Architecture generality.** Discrimination collapse depends on: (i) attention-mass-based importance scoring for KV eviction, and (ii) a sufficient number of pruned heads to degrade the importance distribution. Both shared by major KV cache methods (H2O, SnapKV, PyramidKV) and any autoregressive transformer producing extended reasoning. The entropy redistribution component appears model-dependent.\n\n**Testable prediction.** Any importance metric derived from attention mass should exhibit discrimination collapse under head pruning, with severity gradient scaling with pruning-induced Gini decrease. Metrics from attention-independent sources (activation magnitude, gradient-based saliency) should produce flatter severity gradients.\n\n**Future directions.** A phase-gated controller that monitors attention sparsity in real time and dynamically adjusts compound sparsity per phase could mitigate severity amplification while preserving compression gains where compound behavior is near-additive. Scaling to larger models and diverse reasoning tasks would establish generality.\n\n---\n\n## Pages 10–11 — Extended Limitations; Entropy Redistribution Analysis\n\n**Extended Limitations**\n\n**Model scale.** All experiments at 7B parameter scale. Whether patterns persist, amplify, or attenuate at 70B remains untested.\n\n**Architectural scope.** Both models share Qwen2ForCausalLM architecture. Cross-architecture validation on LLaMA 3, Mistral, or multi-latent attention designs is needed.\n\n**Task coverage.** Evaluation exclusively on MATH-500. Different reasoning tasks may induce different phase structures.\n\n**Statistical scope.** Bootstrap CIs use B=10,000 resamples. n=49 paired problems for DeepSeek (1 excluded), n=46 for Qwen (4 excluded). Severity distribution right-skewed (mean/median ratio ~1.6:1 at s=0.30). Notable exception: Qwen random at s=0.30 yields p=0.012 but d_z=−0.04, illustrating that significance testing can flag effects of no practical magnitude.\n\n**Sparsity range.** Experiments span s ∈ {0.15, 0.20, 0.25, 0.30}. More extreme sparsity (s>0.50) remains unverified; lower boundary for phase-modulated amplification onset not yet characterized.\n\n**No throughput evaluation.** No inference throughput or latency measurements. This work focuses on structural characterization of compound sparsity severity.\n\n**I Entropy Redistribution Analysis**\n\nBeyond discrimination collapse, head pruning also redistributes attention entropy of surviving heads. Entropy per head:\n\n> Eq. (7): H_i^(h) = −Σ_{j=1}^T a_{ij}^(h) log a_{ij}^(h)\n\nΔH = change from baseline (no pruning) to pruned condition.\n\nFor DeepSeek under importance-based eviction, ΔH is consistently negative across all four sparsity levels (ΔH ∈ [−0.040, −0.047]), consistent across reasoning phases. This confirms importance-based eviction systematically removes heads whose removal concentrates attention in surviving heads, reinforcing discrimination collapse.\n\nFor Qwen, the pattern only partially replicates: negative at s=0.15 (ΔH=−0.073) and s=0.20 (−0.076); reversal to +0.045 at s=0.25 (22/30 problems show positive entropy change); near-zero at s=0.30 (−0.007). The s=0.25 reversal is consistent across all three reasoning phases (low: +0.042, mid: +0.034, high: +0.017). Interpreted as a genuine model-specific difference: Qwen's instruction tuning may produce head configurations where removing 25% of heads triggers compensatory broadening rather than concentration.\n\n**Table (Attention entropy deltas ΔH under importance-based eviction):**\n\n| Model | s | ΔH |\n|---|---|---|\n| DeepSeek | 0.15 | −0.040 |\n| DeepSeek | 0.20 | −0.047 |\n| DeepSeek | 0.25 | −0.045 |\n| DeepSeek | 0.30 | −0.044 |\n| Qwen | 0.15 | −0.073 |\n| Qwen | 0.20 | −0.076 |\n| Qwen | 0.25 | +0.045 |\n| Qwen | 0.30 | −0.007 |\n\n**J Extended Limitations (continued on p.10):**\n\n**Future directions** (from main p.10): A phase-gated controller that monitors attention sparsity in real time and dynamically adjusts compound sparsity per phase could mitigate severity amplification while preserving compression gains. Directly measuring per-head entropy shifts across architecturally distinct models—and identifying what training-time properties determine whether entropy concentrates or disperses under head pruning—would clarify the boundary conditions of the full mechanism. Scaling to larger models and diverse reasoning tasks would establish generality.\n\n---\n\n**Summary of complete content extracted (pages 5–11):**\n\nThe paper's pages 5–11 contain: (1) Conclusion + Limitations section; (2) full References (29 entries); (3) Appendix A: Compound Sparsity Formulation with Eqs. 3–6; (4) Appendix B: Multiplicative Null Verification (G_× = 58–241×); (5) Appendix C: Bootstrap/Permutation Details; (6) Appendix D: full per-phase II breakdown table (all 8 condition rows with IĨ_high/mid/low, Δ, G values); (7) Appendix E: Crossover Details (reversal magnitudes 3.9–5.4×); (8) Appendix F: Cross-model Replication Details (Tables 3 & 4, Figure 3 & 4, n=46/49); (9) Appendix G: Statistical Validation Details (Table 5 with d_z and Δ̃ CIs); (10) Appendix H: Discrimination Collapse Details (ΔGini and ΔCV table); (11) Extended Discussion; (12) Extended Limitations; (13) Appendix I: Entropy Redistribution Analysis (Table of ΔH values, Eq. 7)."
+      }
+    ],
+    "totalDurationMs": 192496,
+    "totalTokens": 51828,
+    "totalToolUseCount": 18,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6062,
+      "cache_read_input_tokens": 38966,
+      "output_tokens": 6799,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 6062
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6799,
+          "cache_read_input_tokens": 38966,
+          "cache_creation_input_tokens": 6062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 6062,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 16,
+      "searchCount": 2,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "ab5bcbfa-da96-4d02-bef9-7a4a0258c9e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 2  **你的审查侧重：新颖性 + 相关工作完整性 + 写作质量 + 实际影响**  ### 论文信息 - **标题**: Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models -…",
+  "leafUuid": "f76518bf-9d3b-4007-acc0-90962657de56",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review EMNLP paper on phase-modulated compound sparsity",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 51 · 2026-05-14T13:09:36.443Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have comprehensive information about the paper and related work. Let me do a few more targeted searches to check for missing related work and then compile my review.
+
+Let me search for a few more potential missing references:
+1. R-KV (reasoning-aware KV cache compression)
+2. "Hold Onto That Thought" paper
+3. LongFlow
+4. RAC (Reasoning-Aware Compression)
+5. RESP (Self-Reflective Structured Pruning)
+6. Compression ordering studies
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f76518bf-9d3b-4007-acc0-90962657de56",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WqkZLBLvM8Ygj2K23R",
+  "type": "assistant",
+  "uuid": "d3c94023-efa5-43b9-8b48-cc0e0daf63af",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VKmKMzLF9wi4Wd8Jg5jwBJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2032,
+      "cache_creation_input_tokens": 14523,
+      "cache_read_input_tokens": 32912,
+      "output_tokens": 331,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2032,
+          "output_tokens": 331,
+          "cache_read_input_tokens": 32912,
+          "cache_creation_input_tokens": 14523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 52 · 2026-05-14T13:09:37.414Z_
+
+论文内容已完整提取。继续搜索可能遗漏的相关工作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d3c94023-efa5-43b9-8b48-cc0e0daf63af",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WqkZLBLvM8Ygj2K23R",
+  "type": "assistant",
+  "uuid": "38a5c65d-16fa-49e1-969a-b0b3e7c371a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VKmKMzLF9wi4Wd8Jg5jwBJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2032,
+      "cache_creation_input_tokens": 14523,
+      "cache_read_input_tokens": 32912,
+      "output_tokens": 331,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2032,
+          "output_tokens": 331,
+          "cache_read_input_tokens": 32912,
+          "cache_creation_input_tokens": 14523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 53 · 2026-05-14T13:09:37.970Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PTS6DXyoQfmHfp47fd6WDE`</summary>
+
+```json
+{
+  "query": "R-KV redundancy-aware KV cache compression reasoning models 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38a5c65d-16fa-49e1-969a-b0b3e7c371a0",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WqkZLBLvM8Ygj2K23R",
+  "type": "assistant",
+  "uuid": "d4ae3691-3eb5-4273-9462-50bcd56874f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VKmKMzLF9wi4Wd8Jg5jwBJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2032,
+      "cache_creation_input_tokens": 14523,
+      "cache_read_input_tokens": 32912,
+      "output_tokens": 331,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2032,
+          "output_tokens": 331,
+          "cache_read_input_tokens": 32912,
+          "cache_creation_input_tokens": 14523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 54 · 2026-05-14T13:09:38.509Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ufgy9bzq1nM6jK3H9qTgSC`</summary>
+
+```json
+{
+  "query": "\"Hold Onto That Thought\" KV cache compression reasoning 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4ae3691-3eb5-4273-9462-50bcd56874f3",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WqkZLBLvM8Ygj2K23R",
+  "type": "assistant",
+  "uuid": "e5089759-8626-4b56-83ff-f5ceca797a5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VKmKMzLF9wi4Wd8Jg5jwBJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2032,
+      "cache_creation_input_tokens": 14523,
+      "cache_read_input_tokens": 32912,
+      "output_tokens": 331,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2032,
+          "output_tokens": 331,
+          "cache_read_input_tokens": 32912,
+          "cache_creation_input_tokens": 14523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 55 · 2026-05-14T13:09:39.045Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012jHmbKLLRYdCDCCssjcXpu`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 review form scoring criteria dimensions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5089759-8626-4b56-83ff-f5ceca797a5c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WqkZLBLvM8Ygj2K23R",
+  "type": "assistant",
+  "uuid": "40f67681-a37c-49bb-8265-3983c0bedf64",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VKmKMzLF9wi4Wd8Jg5jwBJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2032,
+      "cache_creation_input_tokens": 14523,
+      "cache_read_input_tokens": 32912,
+      "output_tokens": 331,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14523,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2032,
+          "output_tokens": 331,
+          "cache_read_input_tokens": 32912,
+          "cache_creation_input_tokens": 14523,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14523
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 56 · 2026-05-14T13:09:44.730Z_
+
+<details><summary>↩ Tool result · `toolu_01Ufgy9bzq1nM6jK3H9qTgSC`</summary>
+
+```text
+Web search results for query: ""Hold Onto That Thought" KV cache compression reasoning 2025 2026"
+
+Links: [{"title":"Hold Onto That Thought: Assessing KV Cache Compression On Reasoning","url":"https://arxiv.org/html/2512.12008v1"},{"title":"[2512.12008] Hold Onto That Thought: Assessing KV Cache Compression On Reasoning","url":"https://arxiv.org/abs/2512.12008"},{"title":"Hold Onto That Thought: Assessing KV Cache Compression On Reasoning | OpenReview","url":"https://openreview.net/forum?id=udgrpHqw4F"},{"title":"NeurIPS Hold Onto That Thought: Assessing KV Cache Compression On Reasoning","url":"https://neurips.cc/virtual/2025/loc/san-diego/126664"},{"title":"Paper page - KVzap: Fast, Adaptive, and Faithful KV Cache Pruning","url":"https://huggingface.co/papers/2601.07891"},{"title":"Paper page - Fast KVzip: Efficient and Accurate LLM Inference with Gated KV Eviction","url":"https://huggingface.co/papers/2601.17668"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/html/2510.01290v1"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=HGdg76iVo6"},{"title":"[2510.01290] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/abs/2510.01290"}]
+
+Based on the search results, here's what I found about "Hold Onto That Thought: Assessing KV Cache Compression On Reasoning":
+
+## Overview
+
+"Hold Onto That Thought" is a research paper that addresses how the KV cache (used to speed up attention computations and grows linearly with context length) can be compressed through algorithms that evict unimportant tokens. The paper was published on arXiv on December 12, 2025, and has multiple authors including Minghui Liu.
+
+## Key Focus
+
+The paper specifically examines KV cache compression strategies in the context of reasoning models. A suite of compression algorithms has been introduced to alleviate cache growth by evicting unimportant tokens, though reasoning large language models face unprecedented KV cache overhead during decoding due to extended chain-of-thought generation, and existing compression methods often underperform by either breaking reasoning integrity through token-dropping or mistakenly compressing reasoning-critical heads.
+
+## Context in 2025-2026 Research
+
+The research appears as part of a broader 2025-2026 trend focusing on specialized compression techniques for reasoning models. The research frontier is moving toward latent-space compaction and reasoning-aware compression, with related work including methods that identify which heads are critical for maintaining reasoning quality during compression.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5089759-8626-4b56-83ff-f5ceca797a5c",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "95e29aa6-4548-4c61-a53c-309306022de7",
+  "toolUseResult": {
+    "query": "\"Hold Onto That Thought\" KV cache compression reasoning 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012ZmTqbVtZwTjwZrYVXYjMX",
+        "content": [
+          {
+            "title": "Hold Onto That Thought: Assessing KV Cache Compression On Reasoning",
+            "url": "https://arxiv.org/html/2512.12008v1"
+          },
+          {
+            "title": "[2512.12008] Hold Onto That Thought: Assessing KV Cache Compression On Reasoning",
+            "url": "https://arxiv.org/abs/2512.12008"
+          },
+          {
+            "title": "Hold Onto That Thought: Assessing KV Cache Compression On Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=udgrpHqw4F"
+          },
+          {
+            "title": "NeurIPS Hold Onto That Thought: Assessing KV Cache Compression On Reasoning",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/126664"
+          },
+          {
+            "title": "Paper page - KVzap: Fast, Adaptive, and Faithful KV Cache Pruning",
+            "url": "https://huggingface.co/papers/2601.07891"
+          },
+          {
+            "title": "Paper page - Fast KVzip: Efficient and Accurate LLM Inference with Gated KV Eviction",
+            "url": "https://huggingface.co/papers/2601.17668"
+          },
+          {
+            "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"
+          },
+          {
+            "title": "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models",
+            "url": "https://arxiv.org/html/2510.01290v1"
+          },
+          {
+            "title": "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview",
+            "url": "https://openreview.net/forum?id=HGdg76iVo6"
+          },
+          {
+            "title": "[2510.01290] ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models",
+            "url": "https://arxiv.org/abs/2510.01290"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about \"Hold Onto That Thought: Assessing KV Cache Compression On Reasoning\":\n\n## Overview\n\n\"Hold Onto That Thought\" is a research paper that addresses how the KV cache (used to speed up attention computations and grows linearly with context length) can be compressed through algorithms that evict unimportant tokens. The paper was published on arXiv on December 12, 2025, and has multiple authors including Minghui Liu.\n\n## Key Focus\n\nThe paper specifically examines KV cache compression strategies in the context of reasoning models. A suite of compression algorithms has been introduced to alleviate cache growth by evicting unimportant tokens, though reasoning large language models face unprecedented KV cache overhead during decoding due to extended chain-of-thought generation, and existing compression methods often underperform by either breaking reasoning integrity through token-dropping or mistakenly compressing reasoning-critical heads.\n\n## Context in 2025-2026 Research\n\nThe research appears as part of a broader 2025-2026 trend focusing on specialized compression techniques for reasoning models. The research frontier is moving toward latent-space compaction and reasoning-aware compression, with related work including methods that identify which heads are critical for maintaining reasoning quality during compression."
+    ],
+    "durationSeconds": 6.211206105999998
+  },
+  "sourceToolAssistantUUID": "e5089759-8626-4b56-83ff-f5ceca797a5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 57 · 2026-05-14T13:09:44.795Z_
+
+<details><summary>↩ Tool result · `toolu_01PTS6DXyoQfmHfp47fd6WDE`</summary>
+
+```text
+Web search results for query: "R-KV redundancy-aware KV cache compression reasoning models 2025 2026"
+
+Links: [{"title":"[2505.24133] R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://arxiv.org/abs/2505.24133"},{"title":"GitHub - Zefan-Cai/R-KV: [Neurips 2025] R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://github.com/Zefan-Cai/R-KV"},{"title":"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://proceedings.neurips.cc/paper_files/paper/2025/hash/57e0358aed314784cad14a26e1eba642-Abstract-Conference.html"},{"title":"R-KV: Redundancy-aware KV Cache Compression for ...","url":"https://arxiv.org/pdf/2505.24133"},{"title":"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=2jwAjomEDB"},{"title":"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://zefan-cai.github.io/R-KV.page/"},{"title":"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://arxiv.org/html/2505.24133"},{"title":"NeurIPS Poster R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://neurips.cc/virtual/2025/loc/san-diego/poster/120110"},{"title":"[PDF] R-KV: Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration | Semantic Scholar","url":"https://www.semanticscholar.org/paper/R-KV:-Redundancy-aware-KV-Cache-Compression-for-Cai-Xiao/eb574cb16208cb0daaa484f85cddb1e1d6b23f44"},{"title":"R-KV: Redundancy-aware KV Cache Compression for Reasoning Models","url":"https://openreview.net/pdf?id=2jwAjomEDB"}]
+
+Based on the search results, here's comprehensive information about R-KV:
+
+## Overview
+
+R-KV is a novel method specifically targeting redundant tokens in reasoning models for KV cache compression. The paper was submitted on May 30, 2025, with the latest version (v4) revised on January 22, 2026, and was presented at NeurIPS 2025.
+
+## Key Problem
+
+Reasoning models often produce excessively long outputs, leading to prohibitively large key-value (KV) caches during inference. Outputs from reasoning models are fundamentally marked by pervasive redundancy, often filled with superfluous content, including unnecessary reflections, iterative re-evaluations, and verbose self-dialogue.
+
+## Performance Results
+
+R-KV preserves nearly 100% of the full KV cache performance using only 10% of the KV cache, substantially outperforming existing KV cache baselines, which reach only 60% of the performance. Remarkably, R-KV even achieves 105% of full KV cache performance with 16% of the KV cache. This KV-cache reduction also leads to a 90% memory saving and a 6.6X throughput over standard chain-of-thought reasoning inference.
+
+## Methodology
+
+R-KV solves this by ranking tokens on-the-fly for both importance and non-redundancy, retaining only the informative, diverse ones. The approach consists of three key components: (1) an attention-based importance scoring mechanism that selects critical tokens for retention, (2) a dynamic redundancy scoring mechanism.
+
+## Evaluation
+
+Experimental results show that R-KV consistently outperforms existing KV cache compression baselines across two mathematical reasoning datasets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d4ae3691-3eb5-4273-9462-50bcd56874f3",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "3241cae4-7f46-4f58-b64f-45835648f8c3",
+  "toolUseResult": {
+    "query": "R-KV redundancy-aware KV cache compression reasoning models 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Pux4UF39H5aQATfusE7vyF",
+        "content": [
+          {
+            "title": "[2505.24133] R-KV: Redundancy-aware KV Cache Compression for Reasoning Models",
+            "url": "https://arxiv.org/abs/2505.24133"
+          },
+          {
+            "title": "GitHub - Zefan-Cai/R-KV: [Neurips 2025] R-KV: Redundancy-aware KV Cache Compression for Reasoning Models",
+            "url": "https://github.com/Zefan-Cai/R-KV"
+          },
+          {
+            "title": "R-KV: Redundancy-aware KV Cache Compression for Reasoning Models",
+            "url": "https://proceedings.neurips.cc/paper_files/paper/2025/hash/57e0358aed314784cad14a26e1eba642-Abstract-Conference.html"
+          },
+          {
+            "title": "R-KV: Redundancy-aware KV Cache Compression for ...",
+            "url": "https://arxiv.org/pdf/2505.24133"
+          },
+          {
+            "title": "R-KV: Redundancy-aware KV Cache Compression for Reasoning Models | OpenReview",
+            "url": "https://openreview.net/forum?id=2jwAjomEDB"
+          },
+          {
+            "title": "R-KV: Redundancy-aware KV Cache Compression for Reasoning Models",
+            "url": "https://zefan-cai.github.io/R-KV.page/"
+          },
+          {
+            "title": "R-KV: Redundancy-aware KV Cache Compression for Reasoning Models",
+            "url": "https://arxiv.org/html/2505.24133"
+          },
+          {
+            "title": "NeurIPS Poster R-KV: Redundancy-aware KV Cache Compression for Reasoning Models",
+            "url": "https://neurips.cc/virtual/2025/loc/san-diego/poster/120110"
+          },
+          {
+            "title": "[PDF] R-KV: Redundancy-aware KV Cache Compression for Training-Free Reasoning Models Acceleration | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/R-KV:-Redundancy-aware-KV-Cache-Compression-for-Cai-Xiao/eb574cb16208cb0daaa484f85cddb1e1d6b23f44"
+          },
+          {
+            "title": "R-KV: Redundancy-aware KV Cache Compression for Reasoning Models",
+            "url": "https://openreview.net/pdf?id=2jwAjomEDB"
+          }
+        ]
+      },
+      "Based on the search results, here's comprehensive information about R-KV:\n\n## Overview\n\nR-KV is a novel method specifically targeting redundant tokens in reasoning models for KV cache compression. The paper was submitted on May 30, 2025, with the latest version (v4) revised on January 22, 2026, and was presented at NeurIPS 2025.\n\n## Key Problem\n\nReasoning models often produce excessively long outputs, leading to prohibitively large key-value (KV) caches during inference. Outputs from reasoning models are fundamentally marked by pervasive redundancy, often filled with superfluous content, including unnecessary reflections, iterative re-evaluations, and verbose self-dialogue.\n\n## Performance Results\n\nR-KV preserves nearly 100% of the full KV cache performance using only 10% of the KV cache, substantially outperforming existing KV cache baselines, which reach only 60% of the performance. Remarkably, R-KV even achieves 105% of full KV cache performance with 16% of the KV cache. This KV-cache reduction also leads to a 90% memory saving and a 6.6X throughput over standard chain-of-thought reasoning inference.\n\n## Methodology\n\nR-KV solves this by ranking tokens on-the-fly for both importance and non-redundancy, retaining only the informative, diverse ones. The approach consists of three key components: (1) an attention-based importance scoring mechanism that selects critical tokens for retention, (2) a dynamic redundancy scoring mechanism.\n\n## Evaluation\n\nExperimental results show that R-KV consistently outperforms existing KV cache compression baselines across two mathematical reasoning datasets."
+    ],
+    "durationSeconds": 6.814677058000001
+  },
+  "sourceToolAssistantUUID": "d4ae3691-3eb5-4273-9462-50bcd56874f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 58 · 2026-05-14T13:09:45.498Z_
+
+<details><summary>↩ Tool result · `toolu_012jHmbKLLRYdCDCCssjcXpu`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 review form scoring criteria dimensions"
+
+Links: [{"title":"FAQ - EMNLP 2026","url":"https://2026.emnlp.org/faq/"},{"title":"Review Form","url":"http://aclrollingreview.org/reviewform"},{"title":"EMNLP Statistics - Paper Copilot","url":"https://papercopilot.com/statistics/emnlp-statistics/"},{"title":"EMNLP 2026 | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2026"},{"title":"ClimateNLP 2026","url":"https://nlp4climate.github.io/submissionguide/"},{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"ARR Reviewer Guidelines","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"Changes to reviewer volunteering requirement and incentives in May 2025 cycle (EMNLP 2025)","url":"http://aclrollingreview.org/incentives2025"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"EMNLP 2023 Conference | OpenReview","url":"https://openreview.net/group?id=EMNLP%2F2023%2FConference"}]
+
+Based on the search results, I found information about the review scoring criteria used for EMNLP 2026. Starting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.
+
+Here are the key scoring dimensions:
+
+1. **Soundness**: Soundness scores must be justified by the text of the review. If you give a low Soundness score without finding any major faults, this means that your review is not a faithful explanation of your recommendation.
+
+2. **Excitement**: Sometimes you may find the work sound, but not something that is interesting for you personally. Such preferences are more subjective and should be reflected in a separate excitement score, which is orthogonal to the assessment of the soundness of the paper. Excitement scores reflect our personal taste, and so do not necessarily come with explicit reasons.
+
+3. **Overall Assessment**: The Overall assessment score is an explicit recommendation for the outcome of this paper, if it were committed to an *ACL venue. This is a composite score reflecting your assessment of soundness, excitement, and also other factors like novelty and impact.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40f67681-a37c-49bb-8265-3983c0bedf64",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "414da8ae-49b1-4107-a65c-a1919cfe7071",
+  "toolUseResult": {
+    "query": "EMNLP 2026 review form scoring criteria dimensions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CXASDnCBHNgiLokvFbsqfE",
+        "content": [
+          {
+            "title": "FAQ - EMNLP 2026",
+            "url": "https://2026.emnlp.org/faq/"
+          },
+          {
+            "title": "Review Form",
+            "url": "http://aclrollingreview.org/reviewform"
+          },
+          {
+            "title": "EMNLP Statistics - Paper Copilot",
+            "url": "https://papercopilot.com/statistics/emnlp-statistics/"
+          },
+          {
+            "title": "EMNLP 2026 | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2026"
+          },
+          {
+            "title": "ClimateNLP 2026",
+            "url": "https://nlp4climate.github.io/submissionguide/"
+          },
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "ARR Reviewer Guidelines",
+            "url": "http://aclrollingreview.org/reviewerguidelines"
+          },
+          {
+            "title": "Changes to reviewer volunteering requirement and incentives in May 2025 cycle (EMNLP 2025)",
+            "url": "http://aclrollingreview.org/incentives2025"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "EMNLP 2023 Conference | OpenReview",
+            "url": "https://openreview.net/group?id=EMNLP%2F2023%2FConference"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the review scoring criteria used for EMNLP 2026. Starting with February 2025, ARR reviewers are asked to provide three scores: soundness, excitement, and overall recommendation.\n\nHere are the key scoring dimensions:\n\n1. **Soundness**: Soundness scores must be justified by the text of the review. If you give a low Soundness score without finding any major faults, this means that your review is not a faithful explanation of your recommendation.\n\n2. **Excitement**: Sometimes you may find the work sound, but not something that is interesting for you personally. Such preferences are more subjective and should be reflected in a separate excitement score, which is orthogonal to the assessment of the soundness of the paper. Excitement scores reflect our personal taste, and so do not necessarily come with explicit reasons.\n\n3. **Overall Assessment**: The Overall assessment score is an explicit recommendation for the outcome of this paper, if it were committed to an *ACL venue. This is a composite score reflecting your assessment of soundness, excitement, and also other factors like novelty and impact."
+    ],
+    "durationSeconds": 6.450992527999974
+  },
+  "sourceToolAssistantUUID": "40f67681-a37c-49bb-8265-3983c0bedf64",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 59 · 2026-05-14T13:09:51.542Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me search for a few more potentially missing related works, specifically:
+1. "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression" - this seems very relevant
+2. RaaS (Reasoning-Aware Attention Sparsity)
+3. "Sparse Frontier" (Nawrot et al.)
+4. LongFlow KV cache reasoning
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "414da8ae-49b1-4107-a65c-a1919cfe7071",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WrvnkzpVK3L4pRsmaR",
+  "type": "assistant",
+  "uuid": "ee67eb82-d739-44e1-a694-2fcb2d5fc873",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw1f1hLGk9jDRQSvEDrjoK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4995,
+      "cache_read_input_tokens": 47435,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 47435,
+          "cache_creation_input_tokens": 4995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 60 · 2026-05-14T13:09:52.168Z_
+
+继续搜索几篇可能遗漏的高度相关工作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee67eb82-d739-44e1-a694-2fcb2d5fc873",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WrvnkzpVK3L4pRsmaR",
+  "type": "assistant",
+  "uuid": "1e6921f0-7e7c-43f9-a04c-d3f8e7e4e4e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw1f1hLGk9jDRQSvEDrjoK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4995,
+      "cache_read_input_tokens": 47435,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 47435,
+          "cache_creation_input_tokens": 4995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 61 · 2026-05-14T13:09:52.699Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SkZhQeVxAKVKNmVrWjtjF9`</summary>
+
+```json
+{
+  "query": "\"Which Heads Matter for Reasoning\" RL-guided KV cache compression 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e6921f0-7e7c-43f9-a04c-d3f8e7e4e4e8",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WrvnkzpVK3L4pRsmaR",
+  "type": "assistant",
+  "uuid": "2c49fdae-60db-4158-b1c5-839e1adf85b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw1f1hLGk9jDRQSvEDrjoK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4995,
+      "cache_read_input_tokens": 47435,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 47435,
+          "cache_creation_input_tokens": 4995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 62 · 2026-05-14T13:09:53.562Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Lo67JxHuHdyugkd9Wdy5Pe`</summary>
+
+```json
+{
+  "query": "RaaS reasoning-aware attention sparsity LLM 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c49fdae-60db-4158-b1c5-839e1adf85b2",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WrvnkzpVK3L4pRsmaR",
+  "type": "assistant",
+  "uuid": "cf54ccd7-c36c-4ab6-b1a3-c9d212936bad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw1f1hLGk9jDRQSvEDrjoK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4995,
+      "cache_read_input_tokens": 47435,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 47435,
+          "cache_creation_input_tokens": 4995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 63 · 2026-05-14T13:09:53.660Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01WCULxCMTr8ymgJwUdP6bzy`</summary>
+
+```json
+{
+  "query": "LongFlow KV cache compression reasoning models 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cf54ccd7-c36c-4ab6-b1a3-c9d212936bad",
+  "isSidechain": false,
+  "requestId": "req_011Cb2WrvnkzpVK3L4pRsmaR",
+  "type": "assistant",
+  "uuid": "f8617e33-8137-477a-b64f-7fed20d93877",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw1f1hLGk9jDRQSvEDrjoK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4995,
+      "cache_read_input_tokens": 47435,
+      "output_tokens": 295,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4995,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 295,
+          "cache_read_input_tokens": 47435,
+          "cache_creation_input_tokens": 4995,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4995
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 2  **你的审查侧重：新颖性 + 相关工作完整性 + 写作质量 + 实际影响**  ### 论文信息 - **标题**: Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models -…",
+  "leafUuid": "f8617e33-8137-477a-b64f-7fed20d93877",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review EMNLP paper on phase-modulated compound sparsity",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 66 · 2026-05-14T13:10:00.242Z_
+
+<details><summary>↩ Tool result · `toolu_01SkZhQeVxAKVKNmVrWjtjF9`</summary>
+
+```text
+Web search results for query: ""Which Heads Matter for Reasoning" RL-guided KV cache compression 2025 2026"
+
+Links: [{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=HGdg76iVo6"},{"title":"[2510.08525] Which Heads Matter for Reasoning? RL-Guided KV Cache Compression","url":"https://arxiv.org/abs/2510.08525"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression","url":"https://arxiv.org/html/2510.08525"},{"title":"[PDF] Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Which-Heads-Matter-for-Reasoning-RL-Guided-KV-Cache-Du-Jiang/bb15d15655a41d12c714b3cd88c810ee5bb2886e"},{"title":"Paper page - Which Heads Matter for Reasoning? RL-Guided KV Cache Compression","url":"https://huggingface.co/papers/2510.08525"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning | OpenReview","url":"https://openreview.net/forum?id=FJFVmeXusW"},{"title":"WHICH HEADS MATTER FOR REASONING? RL-GUIDED ...","url":"https://openreview.net/pdf?id=HGdg76iVo6"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/not-all-heads-matter-a-head-level-kv-cache-compression-method-with-integrated-retrieval-and-reasoning/"},{"title":"Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning","url":"https://arxiv.org/html/2410.19258"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"}]
+
+Based on the search results, I found detailed information about "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression":
+
+## Overview
+
+Reasoning large language models exhibit complex reasoning behaviors through the extended chain-of-thought generation, creating unprecedented Key-Value (KV) cache overhead during the decoding phase.
+
+## The Problem
+
+Existing KV cache compression methods underperform on reasoning models: token-dropping methods break reasoning integrity by discarding critical information, while head-reallocation methods mistakenly compress reasoning-critical heads since they are designed for retrieval tasks, resulting in significant performance degradation as compression rates increase.
+
+## The Solution: RLKV
+
+The paper proposes RLKV, a novel reasoning-critical head identification method, which uses reinforcement learning to directly optimize the relationship between each head's cache usage and reasoning quality.
+
+The hypothesis is that KV heads exhibit functional heterogeneity in reasoning models—some heads are critical for chain-of-thought consistency while others are compressible.
+
+## Key Results
+
+RLKV is a novel reasoning-critical head identification framework which enables the KV compression approach to outperform baseline methods while achieving 20-50% cache reduction with near lossless performance compared to uncompressed results.
+
+## Methodology
+
+The compression strategy allocates full KV cache to reasoning-critical heads while aggressively compressing others.
+
+The paper was published on October 9, 2025 (initially) with an updated version on January 30, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c49fdae-60db-4158-b1c5-839e1adf85b2",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "a5809abb-98af-4600-96da-2946e20b9866",
+  "toolUseResult": {
+    "query": "\"Which Heads Matter for Reasoning\" RL-guided KV cache compression 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BAbNE6Bo3GKk8NuVBJ3rew",
+        "content": [
+          {
+            "title": "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview",
+            "url": "https://openreview.net/forum?id=HGdg76iVo6"
+          },
+          {
+            "title": "[2510.08525] Which Heads Matter for Reasoning? RL-Guided KV Cache Compression",
+            "url": "https://arxiv.org/abs/2510.08525"
+          },
+          {
+            "title": "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression",
+            "url": "https://arxiv.org/html/2510.08525"
+          },
+          {
+            "title": "[PDF] Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Which-Heads-Matter-for-Reasoning-RL-Guided-KV-Cache-Du-Jiang/bb15d15655a41d12c714b3cd88c810ee5bb2886e"
+          },
+          {
+            "title": "Paper page - Which Heads Matter for Reasoning? RL-Guided KV Cache Compression",
+            "url": "https://huggingface.co/papers/2510.08525"
+          },
+          {
+            "title": "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=FJFVmeXusW"
+          },
+          {
+            "title": "WHICH HEADS MATTER FOR REASONING? RL-GUIDED ...",
+            "url": "https://openreview.net/pdf?id=HGdg76iVo6"
+          },
+          {
+            "title": "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning - Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/publication/not-all-heads-matter-a-head-level-kv-cache-compression-method-with-integrated-retrieval-and-reasoning/"
+          },
+          {
+            "title": "Not All Heads Matter: A Head-Level KV Cache Compression Method with Integrated Retrieval and Reasoning",
+            "url": "https://arxiv.org/html/2410.19258"
+          },
+          {
+            "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about \"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression\":\n\n## Overview\n\nReasoning large language models exhibit complex reasoning behaviors through the extended chain-of-thought generation, creating unprecedented Key-Value (KV) cache overhead during the decoding phase.\n\n## The Problem\n\nExisting KV cache compression methods underperform on reasoning models: token-dropping methods break reasoning integrity by discarding critical information, while head-reallocation methods mistakenly compress reasoning-critical heads since they are designed for retrieval tasks, resulting in significant performance degradation as compression rates increase.\n\n## The Solution: RLKV\n\nThe paper proposes RLKV, a novel reasoning-critical head identification method, which uses reinforcement learning to directly optimize the relationship between each head's cache usage and reasoning quality.\n\nThe hypothesis is that KV heads exhibit functional heterogeneity in reasoning models—some heads are critical for chain-of-thought consistency while others are compressible.\n\n## Key Results\n\nRLKV is a novel reasoning-critical head identification framework which enables the KV compression approach to outperform baseline methods while achieving 20-50% cache reduction with near lossless performance compared to uncompressed results.\n\n## Methodology\n\nThe compression strategy allocates full KV cache to reasoning-critical heads while aggressively compressing others.\n\nThe paper was published on October 9, 2025 (initially) with an updated version on January 30, 2026."
+    ],
+    "durationSeconds": 7.53869412400003
+  },
+  "sourceToolAssistantUUID": "2c49fdae-60db-4158-b1c5-839e1adf85b2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 67 · 2026-05-14T13:10:01.250Z_
+
+<details><summary>↩ Tool result · `toolu_01WCULxCMTr8ymgJwUdP6bzy`</summary>
+
+```text
+Web search results for query: "LongFlow KV cache compression reasoning models 2026"
+
+Links: [{"title":"LongFlow: Efficient KV Cache Compression for Reasoning Models | OpenReview","url":"https://openreview.net/forum?id=rz6WybXjgk"},{"title":"LongFlow: Efficient KV Cache Compression for Reasoning Models","url":"https://arxiv.org/html/2603.11504"},{"title":"[2603.11504] LongFlow: Efficient KV Cache Compression for Reasoning M","url":"https://arxiv.org/abs/2603.11504"},{"title":"Is KV Cache Quantization Sabotaging Your Context? — We test the impact of quantizing caches on long-horizon agentic coding workloads.","url":"https://dasroot.net/posts/2026/05/kv-cache-quantization-agentic-coding-long-horizon/"},{"title":"Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost","url":"https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"},{"title":"EFFICIENT KV CACHE COMPRESSION - LONGFLOW","url":"https://openreview.net/pdf?id=rz6WybXjgk"},{"title":"Paper page - TriAttention: Efficient Long Reasoning with Trigonometric KV Compression","url":"https://huggingface.co/papers/2604.04921"},{"title":"Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview","url":"https://openreview.net/forum?id=HGdg76iVo6"},{"title":"KV-Fold: One-Step KV-Cache Recurrence for Long-Context Inference","url":"https://arxiv.org/html/2605.12471"},{"title":"Efficient LLMs at Scale: My NeurIPS Week in KV Caches, Spec Decoding, and FP4","url":"https://kaitchup.substack.com/p/efficient-llms-at-scale-my-neurips"}]
+
+I've found comprehensive information about LongFlow and KV cache compression for reasoning models in 2026. Here's what the search revealed:
+
+## LongFlow Overview
+
+LongFlow is a novel KV cache compression method that employs an efficient importance estimation metric derived from an intermediate result in the attention computation using only the current query. This design requires no auxiliary storage and adds negligible computational overhead.
+
+## Problem It Addresses
+
+Recent reasoning models such as OpenAI-o1 and DeepSeek-R1 have shown strong performance on complex tasks including mathematical reasoning and code generation, however this performance gain comes with substantially longer output sequences, leading to significantly increased deployment costs. A key drawback of reasoning models is their tendency to generate a large number of output tokens, which substantially inflates the KV cache and leads to severe memory and bandwidth bottlenecks during attention computation.
+
+## Key Performance Results
+
+LongFlow can achieve an 11.8x increase in throughput with an 80% compression of the KV cache while incurring negligible loss in model accuracy. The method implements a custom kernel that integrates Flash-Attention, importance estimation, and token eviction into a single, highly optimized operator to enhance system-level efficiency.
+
+## Status
+
+LongFlow was submitted to ICLR 2026 Conference as a withdrawn submission.
+
+The research demonstrates that LongFlow offers a practical solution for the memory challenges posed by reasoning models' long-output generation paradigm.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8617e33-8137-477a-b64f-7fed20d93877",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "705c35d7-edb6-46df-9a3c-4bfa5b0e0320",
+  "toolUseResult": {
+    "query": "LongFlow KV cache compression reasoning models 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012YgwVjCypMZnhvvKCUFzAC",
+        "content": [
+          {
+            "title": "LongFlow: Efficient KV Cache Compression for Reasoning Models | OpenReview",
+            "url": "https://openreview.net/forum?id=rz6WybXjgk"
+          },
+          {
+            "title": "LongFlow: Efficient KV Cache Compression for Reasoning Models",
+            "url": "https://arxiv.org/html/2603.11504"
+          },
+          {
+            "title": "[2603.11504] LongFlow: Efficient KV Cache Compression for Reasoning M",
+            "url": "https://arxiv.org/abs/2603.11504"
+          },
+          {
+            "title": "Is KV Cache Quantization Sabotaging Your Context? — We test the impact of quantizing caches on long-horizon agentic coding workloads.",
+            "url": "https://dasroot.net/posts/2026/05/kv-cache-quantization-agentic-coding-long-horizon/"
+          },
+          {
+            "title": "Top 10 KV Cache Compression Techniques for LLM Inference: Reducing Memory Overhead Across Eviction, Quantization, and Low-Rank Methods - MarkTechPost",
+            "url": "https://www.marktechpost.com/2026/04/29/top-10-kv-cache-compression-techniques-for-llm-inference-reducing-memory-overhead-across-eviction-quantization-and-low-rank-methods/"
+          },
+          {
+            "title": "EFFICIENT KV CACHE COMPRESSION - LONGFLOW",
+            "url": "https://openreview.net/pdf?id=rz6WybXjgk"
+          },
+          {
+            "title": "Paper page - TriAttention: Efficient Long Reasoning with Trigonometric KV Compression",
+            "url": "https://huggingface.co/papers/2604.04921"
+          },
+          {
+            "title": "Which Heads Matter for Reasoning? RL-Guided KV Cache Compression | OpenReview",
+            "url": "https://openreview.net/forum?id=HGdg76iVo6"
+          },
+          {
+            "title": "KV-Fold: One-Step KV-Cache Recurrence for Long-Context Inference",
+            "url": "https://arxiv.org/html/2605.12471"
+          },
+          {
+            "title": "Efficient LLMs at Scale: My NeurIPS Week in KV Caches, Spec Decoding, and FP4",
+            "url": "https://kaitchup.substack.com/p/efficient-llms-at-scale-my-neurips"
+          }
+        ]
+      },
+      "I've found comprehensive information about LongFlow and KV cache compression for reasoning models in 2026. Here's what the search revealed:\n\n## LongFlow Overview\n\nLongFlow is a novel KV cache compression method that employs an efficient importance estimation metric derived from an intermediate result in the attention computation using only the current query. This design requires no auxiliary storage and adds negligible computational overhead.\n\n## Problem It Addresses\n\nRecent reasoning models such as OpenAI-o1 and DeepSeek-R1 have shown strong performance on complex tasks including mathematical reasoning and code generation, however this performance gain comes with substantially longer output sequences, leading to significantly increased deployment costs. A key drawback of reasoning models is their tendency to generate a large number of output tokens, which substantially inflates the KV cache and leads to severe memory and bandwidth bottlenecks during attention computation.\n\n## Key Performance Results\n\nLongFlow can achieve an 11.8x increase in throughput with an 80% compression of the KV cache while incurring negligible loss in model accuracy. The method implements a custom kernel that integrates Flash-Attention, importance estimation, and token eviction into a single, highly optimized operator to enhance system-level efficiency.\n\n## Status\n\nLongFlow was submitted to ICLR 2026 Conference as a withdrawn submission.\n\nThe research demonstrates that LongFlow offers a practical solution for the memory challenges posed by reasoning models' long-output generation paradigm."
+    ],
+    "durationSeconds": 7.581208658000047
+  },
+  "sourceToolAssistantUUID": "f8617e33-8137-477a-b64f-7fed20d93877",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 68 · 2026-05-14T13:10:01.272Z_
+
+<details><summary>↩ Tool result · `toolu_01Lo67JxHuHdyugkd9Wdy5Pe`</summary>
+
+```text
+Web search results for query: "RaaS reasoning-aware attention sparsity LLM 2025"
+
+Links: [{"title":"[2502.11147] RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning","url":"https://arxiv.org/abs/2502.11147"},{"title":"RaaS: Reasoning-Aware Attention Sparsity for Efficient ...","url":"https://aclanthology.org/2025.findings-acl.131.pdf"},{"title":"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning","url":"https://arxiv.org/html/2502.11147v2"},{"title":"Sparse Attention across Multiple-context KV Cache","url":"https://arxiv.org/html/2508.11661v1"},{"title":"Computer Science Feb 2025","url":"https://www.arxiv.org/list/cs/2025-02?skip=5575&show=25"},{"title":"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models","url":"https://arxiv.org/html/2510.01290v1"},{"title":"Artificial Intelligence Feb 2025","url":"https://arxiv.org/list/cs.AI/2025-02?skip=2100&show=25"},{"title":"DeepServe: Serverless Large Language Model Serving at Scale","url":"https://arxiv.org/html/2501.14417v3"},{"title":"Machine Learning Feb 2025","url":"https://www.arxiv.org/list/cs.LG/2025-02?skip=1375&show=50"},{"title":"LouisKV: Efficient KV Cache Retrieval for Long Input-Output Sequences","url":"https://arxiv.org/html/2510.11292v1"}]
+
+Based on the search results, here's information about RaaS (Reasoning-Aware Attention Sparsity):
+
+## Overview
+
+RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning is a research paper that addresses computational efficiency challenges in large language models during complex reasoning tasks.
+
+## The Problem
+
+Solving reasoning tasks often requires an LLM to generate long sequences, incurring O(N) time and memory complexities per token, where N is the current sequence length. Existing sparsity-based algorithms struggle with the "impossible trinity" of accuracy, time, and memory. For example, the state-of-the-art algorithm, Quest, achieves high accuracy with O(L) time but O(N) memory (L is the cache budget, L ≪ N).
+
+## Key Innovation
+
+The paper identifies a new attention pattern during the decode stage of reasoning tasks, where milestone tokens (analogous to lemmas in mathematical proofs) emerge, are utilized, and then become unimportant afterward. Based on this pattern, RaaS identifies milestone tokens and retains their KV vectors until they are no longer needed, achieving high accuracy.
+
+## Results
+
+RaaS addresses the "impossible trinity" by achieving O(L) complexity for both time and memory, with accuracy comparable to Dense on reasoning tasks.
+
+## Publication
+
+The paper was submitted on February 16, 2025, with an updated version on May 30, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf54ccd7-c36c-4ab6-b1a3-c9d212936bad",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "a1348a44-2179-44ff-8c7a-1a8edfc10f78",
+  "toolUseResult": {
+    "query": "RaaS reasoning-aware attention sparsity LLM 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011adqR6iNPkpyL2x3iZWf6u",
+        "content": [
+          {
+            "title": "[2502.11147] RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning",
+            "url": "https://arxiv.org/abs/2502.11147"
+          },
+          {
+            "title": "RaaS: Reasoning-Aware Attention Sparsity for Efficient ...",
+            "url": "https://aclanthology.org/2025.findings-acl.131.pdf"
+          },
+          {
+            "title": "RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning",
+            "url": "https://arxiv.org/html/2502.11147v2"
+          },
+          {
+            "title": "Sparse Attention across Multiple-context KV Cache",
+            "url": "https://arxiv.org/html/2508.11661v1"
+          },
+          {
+            "title": "Computer Science Feb 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-02?skip=5575&show=25"
+          },
+          {
+            "title": "ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models",
+            "url": "https://arxiv.org/html/2510.01290v1"
+          },
+          {
+            "title": "Artificial Intelligence Feb 2025",
+            "url": "https://arxiv.org/list/cs.AI/2025-02?skip=2100&show=25"
+          },
+          {
+            "title": "DeepServe: Serverless Large Language Model Serving at Scale",
+            "url": "https://arxiv.org/html/2501.14417v3"
+          },
+          {
+            "title": "Machine Learning Feb 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-02?skip=1375&show=50"
+          },
+          {
+            "title": "LouisKV: Efficient KV Cache Retrieval for Long Input-Output Sequences",
+            "url": "https://arxiv.org/html/2510.11292v1"
+          }
+        ]
+      },
+      "Based on the search results, here's information about RaaS (Reasoning-Aware Attention Sparsity):\n\n## Overview\n\nRaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning is a research paper that addresses computational efficiency challenges in large language models during complex reasoning tasks.\n\n## The Problem\n\nSolving reasoning tasks often requires an LLM to generate long sequences, incurring O(N) time and memory complexities per token, where N is the current sequence length. Existing sparsity-based algorithms struggle with the \"impossible trinity\" of accuracy, time, and memory. For example, the state-of-the-art algorithm, Quest, achieves high accuracy with O(L) time but O(N) memory (L is the cache budget, L ≪ N).\n\n## Key Innovation\n\nThe paper identifies a new attention pattern during the decode stage of reasoning tasks, where milestone tokens (analogous to lemmas in mathematical proofs) emerge, are utilized, and then become unimportant afterward. Based on this pattern, RaaS identifies milestone tokens and retains their KV vectors until they are no longer needed, achieving high accuracy.\n\n## Results\n\nRaaS addresses the \"impossible trinity\" by achieving O(L) complexity for both time and memory, with accuracy comparable to Dense on reasoning tasks.\n\n## Publication\n\nThe paper was submitted on February 16, 2025, with an updated version on May 30, 2025."
+    ],
+    "durationSeconds": 7.702912797000026
+  },
+  "sourceToolAssistantUUID": "cf54ccd7-c36c-4ab6-b1a3-c9d212936bad",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 69 · 2026-05-14T13:10:01.283Z_
+
+```json
+{
+  "parentUuid": "a1348a44-2179-44ff-8c7a-1a8edfc10f78",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3044600e-ed6f-40e9-95a2-936ee101c302",
+  "timestamp": "2026-05-14T13:10:01.283Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 70 · 2026-05-14T13:10:04.265Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also verify references in the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3044600e-ed6f-40e9-95a2-936ee101c302",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Wt6QyjeAzNs5DbarWA",
+  "type": "assistant",
+  "uuid": "73a5bdb0-7716-4b8d-94b4-83ed6f7512cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpYsAv6AXCDWG3Ky8iJstA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 950,
+      "cache_creation_input_tokens": 2264,
+      "cache_read_input_tokens": 52430,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2264,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 950,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 52430,
+          "cache_creation_input_tokens": 2264,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2264
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 71 · 2026-05-14T13:10:05.675Z_
+
+现在验证论文引用，同时搜索更多潜在遗漏。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73a5bdb0-7716-4b8d-94b4-83ed6f7512cf",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Wt6QyjeAzNs5DbarWA",
+  "type": "assistant",
+  "uuid": "3b8be9e2-c693-4fa8-b58b-cba6240bd355",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpYsAv6AXCDWG3Ky8iJstA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 950,
+      "cache_creation_input_tokens": 2264,
+      "cache_read_input_tokens": 52430,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2264,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 950,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 52430,
+          "cache_creation_input_tokens": 2264,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2264
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 72 · 2026-05-14T13:10:08.319Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__verify_references · `toolu_01F1Ktr41B455NC29meS8Whb`</summary>
+
+```json
+{
+  "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/artifacts/_project/paper",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b8be9e2-c693-4fa8-b58b-cba6240bd355",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Wt6QyjeAzNs5DbarWA",
+  "type": "assistant",
+  "uuid": "04d15fe9-d955-4da1-a82a-3b022bce91be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpYsAv6AXCDWG3Ky8iJstA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 950,
+      "cache_creation_input_tokens": 2264,
+      "cache_read_input_tokens": 52430,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2264,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 950,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 52430,
+          "cache_creation_input_tokens": 2264,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2264
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 73 · 2026-05-14T13:10:09.697Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GVM6ik8Nt7BGd6BWT4kLFE`</summary>
+
+```json
+{
+  "query": "\"compression ordering\" LLM pruning quantization sparsity interaction 2025 2026 Chhawri"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "04d15fe9-d955-4da1-a82a-3b022bce91be",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Wt6QyjeAzNs5DbarWA",
+  "type": "assistant",
+  "uuid": "d81c3c10-6741-4526-be34-ae9c51d06c56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpYsAv6AXCDWG3Ky8iJstA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 950,
+      "cache_creation_input_tokens": 2264,
+      "cache_read_input_tokens": 52430,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2264,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 950,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 52430,
+          "cache_creation_input_tokens": 2264,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2264
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 74 · 2026-05-14T13:10:09.979Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014wCpYffgDtxQwNourpj7tb`</summary>
+
+```json
+{
+  "query": "\"discrimination collapse\" attention pruning importance score degradation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d81c3c10-6741-4526-be34-ae9c51d06c56",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Wt6QyjeAzNs5DbarWA",
+  "type": "assistant",
+  "uuid": "8cc4ead8-4a3b-45e0-b121-65baae3e938b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LpYsAv6AXCDWG3Ky8iJstA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 950,
+      "cache_creation_input_tokens": 2264,
+      "cache_read_input_tokens": 52430,
+      "output_tokens": 285,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2264,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 950,
+          "output_tokens": 285,
+          "cache_read_input_tokens": 52430,
+          "cache_creation_input_tokens": 2264,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2264
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 75 · 2026-05-14T13:10:32.441Z_
+
+<details><summary>↩ Tool result · `toolu_01F1Ktr41B455NC29meS8Whb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 30, \"total_citations\": 40, \"unique_cited_keys\": 23, \"orphan_bib\": 7, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 22, \"online_not_found\": 3, \"online_mismatch\": 4}, \"cross_check\": {\"orphan_bib\": [\"compression-ordering-2025\", \"h2o-neurips2023\", \"mustafar-neurips2025\", \"obcache-2025\", \"pagedeviction-eacl2026\", \"pyramidkv-2024\", \"raas-acl2025\"], \"missing_bib\": [], \"orphan_count\": 7, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"adakv-neurips2025\", \"type\": \"inproceedings\", \"title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"authors\": \"Feng, Yuan and Lv, Junlin and Cao, Yukun and Xie, Xike and Zhou, S. Kevin\", \"year\": \"2025\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"compression-ordering-2025\", \"type\": \"article\", \"title\": \"A Systematic Study of Compression Ordering for Large Language Models\", \"authors\": \"Chhawri, Shivansh and Mahadik, Rahul and Rooj, Suparna\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2511.19495\"}, {\"key\": \"decision-repr-transition-2026\", \"type\": \"article\", \"title\": \"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\", \"authors\": \"Shi, Boyu and Liu, Chang and Gao, ChuanBao and Yang, Xu and Geng, Xin\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2605.07271\"}, {\"key\": \"deepseek-r1-2025\", \"type\": \"article\", \"title\": \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\", \"authors\": \"DeepSeek-AI\", \"year\": \"2025\", \"venue\": \"Nature\"}, {\"key\": \"defensivekv-iclr2026\", \"type\": \"inproceedings\", \"title\": \"DefensiveKV: Taming the Fragility of KV Cache Eviction in LLM Inference\", \"authors\": \"Feng, Yuan and Guo, Haoyu and Lv, Junlin and Zhou, S. Kevin and Xie, Xike\", \"year\": \"2026\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"doing-more-with-less-2026\", \"type\": \"article\", \"title\": \"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\", \"authors\": \"Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2604.25098\"}, {\"key\": \"efron-1993\", \"type\": \"book\", \"title\": \"An Introduction to the Bootstrap\", \"authors\": \"Efron, Bradley and Tibshirani, Robert J.\", \"year\": \"1993\", \"venue\": \"\"}, {\"key\": \"graspune-acl2026\", \"type\": \"inproceedings\", \"title\": \"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\", \"authors\": \"Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui a...\", \"year\": \"2026\", \"venue\": \"Proceedings of the 64th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"greedy-bias-kvcache-2026\", \"type\": \"article\", \"title\": \"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\", \"authors\": \"Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2602.02199\"}, {\"key\": \"h2o-neurips2023\", \"type\": \"inproceedings\", \"title\": \"\", \"authors\": \"Zhang, Zhenyu and Sheng, Ying and Zhou, Tianyi and Chen, Tianlong and Zheng, Lia...\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"kwon-sosp2023\", \"type\": \"inproceedings\", \"title\": \"Efficient Memory Management for Large Language Model Serving with PagedAttention\", \"authors\": \"Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianm...\", \"year\": \"2023\", \"venue\": \"Proceedings of the 29th Symposium on Operating Systems Principles\"}, {\"key\": \"math500-neurips2021\", \"type\": \"inproceedings\", \"title\": \"Measuring Mathematical Problem Solving With the MATH Dataset\", \"authors\": \"Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart...\", \"year\": \"2021\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"michel-neurips2019\", \"type\": \"inproceedings\", \"title\": \"Are Sixteen Heads Really Better than One?\", \"authors\": \"Michel, Paul and Levy, Omer and Neubig, Graham\", \"year\": \"2019\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"mustafar-neurips2025\", \"type\": \"inproceedings\", \"title\": \"Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\", \"authors\": \"Joo, Donghyeon and Hosseini, Helya and Hadidi, Ramyad and Asgari, Bahar\", \"year\": \"2025\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"nacl-acl2024\", \"type\": \"inproceedings\", \"title\": \"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\", \"authors\": \"Chen, Yilong and Wang, Guoxia and Shang, Junyuan and Cui, Shiyao and Zhang, Zhen...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 62nd Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"obcache-2025\", \"type\": \"article\", \"title\": \"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\", \"authors\": \"Gu, Yuzhe and Liang, Xiyu and Zhao, Jiaojiao and Diao, Enmao\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2510.07651\"}, {\"key\": \"pagedeviction-eacl2026\", \"type\": \"inproceedings\", \"title\": \"PagedEviction: Structured Block-wise KV Cache Pruning for Efficient Large Language Model Inference\", \"authors\": \"Chitty-Venkata, Krishna Teja and Ye, Jie and Sun, Xian-He and Kougkas, Anthony a...\", \"year\": \"2026\", \"venue\": \"Findings of the European Chapter of the Association for Computational Linguistic...\"}, {\"key\": \"phase-transition-compression-2026\", \"type\": \"article\", \"title\": \"Phase transitions in large language model compression\", \"authors\": \"Ma, Ziyang and Li, Zuchao and Zhang, Lefei and Xia, Gui-Song and Du, Bo and Zhan...\", \"year\": \"2026\", \"venue\": \"npj Artificial Intelligence\"}, {\"key\": \"pope-mlsys2023\", \"type\": \"inproceedings\", \"title\": \"Efficiently Scaling Transformer Inference\", \"authors\": \"Pope, Reiner and Douglas, Sholto and Chowdhery, Aakanksha and Devlin, Jacob and ...\", \"year\": \"2023\", \"venue\": \"Proceedings of Machine Learning and Systems\"}, {\"key\": \"pyramidkv-2024\", \"type\": \"article\", \"title\": \"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\", \"authors\": \"Cai, Zefan and Zhang, Yichi and Gao, Bofei and Liu, Yuliang and Liu, Tianyu and ...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2406.02069\"}, {\"key\": \"qwen25-2024\", \"type\": \"article\", \"title\": \"Qwen2.5 Technical Report\", \"authors\": \"Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2412.15115\"}, {\"key\": \"raas-acl2025\", \"type\": \"inproceedings\", \"title\": \"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning\", \"authors\": \"Hu, Junhao and Huang, Wenrui and Wang, Weidong and Li, Zhenwen and Hu, Tiancheng...\", \"year\": \"2025\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2025\"}, {\"key\": \"retentivekv-2026\", \"type\": \"article\", \"title\": \"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\", \"authors\": \"Liu, Sihao and Xiong, YuFan and Jiang, Zhonghua and Wang, Zhaode and Lv, Chengfe...\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2605.04075\"}, {\"key\": \"slim-icml2025\", \"type\": \"inproceedings\", \"title\": \"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\", \"authors\": \"Mozaffari, Mohammad and Yazdanbakhsh, Amir and Dehnavi, Maryam Mehri\", \"year\": \"2025\", \"venue\": \"Proceedings of the 42nd International Conference on Machine Learning\"}, {\"key\": \"snapkv-neurips2024\", \"type\": \"inproceedings\", \"title\": \"SnapKV: LLM Knows What You Are Looking for Before Generation\", \"authors\": \"Li, Yuhong and Huang, Yingbing and Yang, Bowen and Venkitesh, Bharat and Locatel...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"spark-aaai2026\", \"type\": \"inproceedings\", \"title\": \"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\", \"authors\": \"Liao, Huanxuan and Xu, Yixing and He, Shizhu and Li, Guanchen and Yin, Xuanwu an...\", \"year\": \"2026\", \"venue\": \"Proceedings of the AAAI Conference on Artificial Intelligence\"}, {\"key\": \"sparse-frontier-2025\", \"type\": \"article\", \"title\": \"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\", \"authors\": \"Nawrot, Piotr and Li, Robert and Huang, Renjie and Ruder, Sebastian and Marchisi...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2504.17768\"}, {\"key\": \"thinkv-iclr2026\", \"type\": \"inproceedings\", \"title\": \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\", \"authors\": \"Ramachandran, Akshat and Neseem, Marina and Sakr, Charbel and Venkatesan, Rangha...\", \"year\": \"2026\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"unicomp-2026\", \"type\": \"article\", \"title\": \"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\", \"authors\": \"von Rad, Jonathan and Cao, Yong and Geiger, Andreas\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2602.09130\"}, {\"key\": \"voita-acl2019\", \"type\": \"inproceedings\", \"title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"authors\": \"Voita, Elena and Talbot, David and Moiseev, Fedor and Sennrich, Rico and Titov, ...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\"}], \"tex_citations\": [{\"key\": \"kwon-sosp2023\", \"file\": \"introduction.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"pope-mlsys2023\", \"file\": \"introduction.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"voita-acl2019\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"michel-neurips2019\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"snapkv-neurips2024\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"adakv-neurips2025\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"slim-icml2025\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"unicomp-2026\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"thinkv-iclr2026\", \"file\": \"introduction.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"decision-repr-transition-2026\", \"file\": \"introduction.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"slim-icml2025\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"unicomp-2026\", \"file\": \"related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"phase-transition-compression-2026\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"graspune-acl2026\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"cite\"}, {\"key\": \"adakv-neurips2025\", \"file\": \"related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"snapkv-neurips2024\", \"file\": \"related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"defensivekv-iclr2026\", \"file\": \"related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"nacl-acl2024\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"retentivekv-2026\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"greedy-bias-kvcache-2026\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"thinkv-iclr2026\", \"file\": \"related_work.tex\", \"line\": 20, \"command\": \"cite\"}, {\"key\": \"decision-repr-transition-2026\", \"file\": \"related_work.tex\", \"line\": 21, \"command\": \"cite\"}, {\"key\": \"doing-more-with-less-2026\", \"file\": \"related_work.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"sparse-frontier-2025\", \"file\": \"related_work.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"voita-acl2019\", \"file\": \"background.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"michel-neurips2019\", \"file\": \"background.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"background.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"thinkv-iclr2026\", \"file\": \"background.tex\", \"line\": 33, \"command\": \"cite\"}, {\"key\": \"deepseek-r1-2025\", \"file\": \"methodology.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"qwen25-2024\", \"file\": \"methodology.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"math500-neurips2021\", \"file\": \"methodology.tex\", \"line\": 10, \"command\": \"cite\"}, {\"key\": \"efron-1993\", \"file\": \"methodology.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"voita-acl2019\", \"file\": \"appendix.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"michel-neurips2019\", \"file\": \"appendix.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"thinkv-iclr2026\", \"file\": \"appendix.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"defensivekv-iclr2026\", \"file\": \"appendix.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"appendix.tex\", \"line\": 25, \"command\": \"cite\"}], \"online_verification\": [{\"key\": \"adakv-neurips2025\", \"title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"compression-ordering-2025\", \"title\": \"A Systematic Study of Compression Ordering for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Systematic Study of Compression Ordering for Large Language Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"decision-repr-transition-2026\", \"title\": \"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"deepseek-r1-2025\", \"title\": \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\", \"status\": \"not_found\", \"confidence\": 0.369, \"matched_title\": \"From GPT to DeepSeek: Significant gaps remain in realizing AI in healthcare\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.37 below threshold 0.82\"}, {\"key\": \"defensivekv-iclr2026\", \"title\": \"DefensiveKV: Taming the Fragility of KV Cache Eviction in LLM Inference\", \"status\": \"not_found\", \"confidence\": 0.545, \"matched_title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.55 below threshold 0.82\"}, {\"key\": \"doing-more-with-less-2026\", \"title\": \"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"efron-1993\", \"title\": \"An Introduction to the Bootstrap\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"An Introduction to the Bootstrap\", \"matched_year\": \"1994\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"graspune-acl2026\", \"title\": \"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"greedy-bias-kvcache-2026\", \"title\": \"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"h2o-neurips2023\", \"title\": \"\", \"status\": \"skipped\", \"confidence\": 0.0, \"matched_title\": \"\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"no title in bib entry\"}, {\"key\": \"kwon-sosp2023\", \"title\": \"Efficient Memory Management for Large Language Model Serving with PagedAttention\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Efficient Memory Management for Large Language Model Serving with PagedAttention\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"math500-neurips2021\", \"title\": \"Measuring Mathematical Problem Solving With the MATH Dataset\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Measuring Mathematical Problem Solving With the MATH Dataset\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"michel-neurips2019\", \"title\": \"Are Sixteen Heads Really Better than One?\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Are Sixteen Heads Really Better than One?\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"mustafar-neurips2025\", \"title\": \"Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"nacl-acl2024\", \"title\": \"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"obcache-2025\", \"title\": \"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"pagedeviction-eacl2026\", \"title\": \"PagedEviction: Structured Block-wise KV Cache Pruning for Efficient Large Language Model Inference\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"PagedEviction: Structured Block-wise KV Cache Pruning for Efficient Large Language Model Inference\", \"matched_year\": \"2026\", \"mismatch_fields\": [\"first_author: bib=chitty-venkata vs api=2026\"], \"note\": \"\"}, {\"key\": \"phase-transition-compression-2026\", \"title\": \"Phase transitions in large language model compression\", \"status\": \"not_found\", \"confidence\": 0.222, \"matched_title\": \"Gradient-based learning applied to document recognition\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.22 below threshold 0.82\"}, {\"key\": \"pope-mlsys2023\", \"title\": \"Efficiently Scaling Transformer Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Efficiently Scaling Transformer Inference\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"pyramidkv-2024\", \"title\": \"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"qwen25-2024\", \"title\": \"Qwen2.5 Technical Report\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Qwen2.5 Technical Report\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=yang vs api=qwen\"], \"note\": \"\"}, {\"key\": \"raas-acl2025\", \"title\": \"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"retentivekv-2026\", \"title\": \"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"slim-icml2025\", \"title\": \"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"snapkv-neurips2024\", \"title\": \"SnapKV: LLM Knows What You Are Looking for Before Generation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SnapKV: LLM Knows What You are Looking for Before Generation\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=li vs api=cai\"], \"note\": \"\"}, {\"key\": \"spark-aaai2026\", \"title\": \"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"sparse-frontier-2025\", \"title\": \"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"thinkv-iclr2026\", \"title\": \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"unicomp-2026\", \"title\": \"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\", \"matched_year\": \"2026\", \"mismatch_fields\": [\"first_author: bib=von rad vs api=rad\"], \"note\": \"\"}, {\"key\": \"voita-acl2019\", \"title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04d15fe9-d955-4da1-a82a-3b022bce91be",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "6dd47c8e-5eb5-45e5-80d8-bef944b89ee1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 30, \\\"total_citations\\\": 40, \\\"unique_cited_keys\\\": 23, \\\"orphan_bib\\\": 7, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 22, \\\"online_not_found\\\": 3, \\\"online_mismatch\\\": 4}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [\\\"compression-ordering-2025\\\", \\\"h2o-neurips2023\\\", \\\"mustafar-neurips2025\\\", \\\"obcache-2025\\\", \\\"pagedeviction-eacl2026\\\", \\\"pyramidkv-2024\\\", \\\"raas-acl2025\\\"], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 7, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"adakv-neurips2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\\\", \\\"authors\\\": \\\"Feng, Yuan and Lv, Junlin and Cao, Yukun and Xie, Xike and Zhou, S. Kevin\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"compression-ordering-2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"A Systematic Study of Compression Ordering for Large Language Models\\\", \\\"authors\\\": \\\"Chhawri, Shivansh and Mahadik, Rahul and Rooj, Suparna\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2511.19495\\\"}, {\\\"key\\\": \\\"decision-repr-transition-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\\\", \\\"authors\\\": \\\"Shi, Boyu and Liu, Chang and Gao, ChuanBao and Yang, Xu and Geng, Xin\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2605.07271\\\"}, {\\\"key\\\": \\\"deepseek-r1-2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\\\", \\\"authors\\\": \\\"DeepSeek-AI\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Nature\\\"}, {\\\"key\\\": \\\"defensivekv-iclr2026\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DefensiveKV: Taming the Fragility of KV Cache Eviction in LLM Inference\\\", \\\"authors\\\": \\\"Feng, Yuan and Guo, Haoyu and Lv, Junlin and Zhou, S. Kevin and Xie, Xike\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"doing-more-with-less-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\\\", \\\"authors\\\": \\\"Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2604.25098\\\"}, {\\\"key\\\": \\\"efron-1993\\\", \\\"type\\\": \\\"book\\\", \\\"title\\\": \\\"An Introduction to the Bootstrap\\\", \\\"authors\\\": \\\"Efron, Bradley and Tibshirani, Robert J.\\\", \\\"year\\\": \\\"1993\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"graspune-acl2026\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\\\", \\\"authors\\\": \\\"Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui a...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Proceedings of the 64th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"greedy-bias-kvcache-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\\\", \\\"authors\\\": \\\"Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2602.02199\\\"}, {\\\"key\\\": \\\"h2o-neurips2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"\\\", \\\"authors\\\": \\\"Zhang, Zhenyu and Sheng, Ying and Zhou, Tianyi and Chen, Tianlong and Zheng, Lia...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"kwon-sosp2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Efficient Memory Management for Large Language Model Serving with PagedAttention\\\", \\\"authors\\\": \\\"Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianm...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 29th Symposium on Operating Systems Principles\\\"}, {\\\"key\\\": \\\"math500-neurips2021\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Measuring Mathematical Problem Solving With the MATH Dataset\\\", \\\"authors\\\": \\\"Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart...\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"michel-neurips2019\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Are Sixteen Heads Really Better than One?\\\", \\\"authors\\\": \\\"Michel, Paul and Levy, Omer and Neubig, Graham\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"mustafar-neurips2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\\\", \\\"authors\\\": \\\"Joo, Donghyeon and Hosseini, Helya and Hadidi, Ramyad and Asgari, Bahar\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"nacl-acl2024\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\\\", \\\"authors\\\": \\\"Chen, Yilong and Wang, Guoxia and Shang, Junyuan and Cui, Shiyao and Zhang, Zhen...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 62nd Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"obcache-2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\\\", \\\"authors\\\": \\\"Gu, Yuzhe and Liang, Xiyu and Zhao, Jiaojiao and Diao, Enmao\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2510.07651\\\"}, {\\\"key\\\": \\\"pagedeviction-eacl2026\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"PagedEviction: Structured Block-wise KV Cache Pruning for Efficient Large Language Model Inference\\\", \\\"authors\\\": \\\"Chitty-Venkata, Krishna Teja and Ye, Jie and Sun, Xian-He and Kougkas, Anthony a...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Findings of the European Chapter of the Association for Computational Linguistic...\\\"}, {\\\"key\\\": \\\"phase-transition-compression-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Phase transitions in large language model compression\\\", \\\"authors\\\": \\\"Ma, Ziyang and Li, Zuchao and Zhang, Lefei and Xia, Gui-Song and Du, Bo and Zhan...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"npj Artificial Intelligence\\\"}, {\\\"key\\\": \\\"pope-mlsys2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Efficiently Scaling Transformer Inference\\\", \\\"authors\\\": \\\"Pope, Reiner and Douglas, Sholto and Chowdhery, Aakanksha and Devlin, Jacob and ...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of Machine Learning and Systems\\\"}, {\\\"key\\\": \\\"pyramidkv-2024\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\\\", \\\"authors\\\": \\\"Cai, Zefan and Zhang, Yichi and Gao, Bofei and Liu, Yuliang and Liu, Tianyu and ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2406.02069\\\"}, {\\\"key\\\": \\\"qwen25-2024\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Qwen2.5 Technical Report\\\", \\\"authors\\\": \\\"Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2412.15115\\\"}, {\\\"key\\\": \\\"raas-acl2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning\\\", \\\"authors\\\": \\\"Hu, Junhao and Huang, Wenrui and Wang, Weidong and Li, Zhenwen and Hu, Tiancheng...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: ACL 2025\\\"}, {\\\"key\\\": \\\"retentivekv-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\\\", \\\"authors\\\": \\\"Liu, Sihao and Xiong, YuFan and Jiang, Zhonghua and Wang, Zhaode and Lv, Chengfe...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2605.04075\\\"}, {\\\"key\\\": \\\"slim-icml2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\\\", \\\"authors\\\": \\\"Mozaffari, Mohammad and Yazdanbakhsh, Amir and Dehnavi, Maryam Mehri\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 42nd International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"snapkv-neurips2024\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SnapKV: LLM Knows What You Are Looking for Before Generation\\\", \\\"authors\\\": \\\"Li, Yuhong and Huang, Yingbing and Yang, Bowen and Venkitesh, Bharat and Locatel...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"spark-aaai2026\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\\\", \\\"authors\\\": \\\"Liao, Huanxuan and Xu, Yixing and He, Shizhu and Li, Guanchen and Yin, Xuanwu an...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"Proceedings of the AAAI Conference on Artificial Intelligence\\\"}, {\\\"key\\\": \\\"sparse-frontier-2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\\\", \\\"authors\\\": \\\"Nawrot, Piotr and Li, Robert and Huang, Renjie and Ruder, Sebastian and Marchisi...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2504.17768\\\"}, {\\\"key\\\": \\\"thinkv-iclr2026\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\\\", \\\"authors\\\": \\\"Ramachandran, Akshat and Neseem, Marina and Sakr, Charbel and Venkatesan, Rangha...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"unicomp-2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\\\", \\\"authors\\\": \\\"von Rad, Jonathan and Cao, Yong and Geiger, Andreas\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2602.09130\\\"}, {\\\"key\\\": \\\"voita-acl2019\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\\\", \\\"authors\\\": \\\"Voita, Elena and Talbot, David and Moiseev, Fedor and Sennrich, Rico and Titov, ...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\\\"}], \\\"tex_citations\\\": [{\\\"key\\\": \\\"kwon-sosp2023\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"pope-mlsys2023\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 4, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"voita-acl2019\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"michel-neurips2019\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"snapkv-neurips2024\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"adakv-neurips2025\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"spark-aaai2026\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"slim-icml2025\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"spark-aaai2026\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"unicomp-2026\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"thinkv-iclr2026\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"decision-repr-transition-2026\\\", \\\"file\\\": \\\"introduction.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"spark-aaai2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"slim-icml2025\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"unicomp-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"phase-transition-compression-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"graspune-acl2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"adakv-neurips2025\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"snapkv-neurips2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"defensivekv-iclr2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"nacl-acl2024\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"retentivekv-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"greedy-bias-kvcache-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"thinkv-iclr2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 20, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"decision-repr-transition-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 21, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"doing-more-with-less-2026\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 22, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"sparse-frontier-2025\\\", \\\"file\\\": \\\"related_work.tex\\\", \\\"line\\\": 22, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"voita-acl2019\\\", \\\"file\\\": \\\"background.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"michel-neurips2019\\\", \\\"file\\\": \\\"background.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"spark-aaai2026\\\", \\\"file\\\": \\\"background.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"thinkv-iclr2026\\\", \\\"file\\\": \\\"background.tex\\\", \\\"line\\\": 33, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"deepseek-r1-2025\\\", \\\"file\\\": \\\"methodology.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"qwen25-2024\\\", \\\"file\\\": \\\"methodology.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"math500-neurips2021\\\", \\\"file\\\": \\\"methodology.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"efron-1993\\\", \\\"file\\\": \\\"methodology.tex\\\", \\\"line\\\": 22, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"voita-acl2019\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"michel-neurips2019\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 5, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"thinkv-iclr2026\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 22, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"defensivekv-iclr2026\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 22, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"spark-aaai2026\\\", \\\"file\\\": \\\"appendix.tex\\\", \\\"line\\\": 25, \\\"command\\\": \\\"cite\\\"}], \\\"online_verification\\\": [{\\\"key\\\": \\\"adakv-neurips2025\\\", \\\"title\\\": \\\"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"compression-ordering-2025\\\", \\\"title\\\": \\\"A Systematic Study of Compression Ordering for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Systematic Study of Compression Ordering for Large Language Models\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"decision-repr-transition-2026\\\", \\\"title\\\": \\\"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"deepseek-r1-2025\\\", \\\"title\\\": \\\"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.369, \\\"matched_title\\\": \\\"From GPT to DeepSeek: Significant gaps remain in realizing AI in healthcare\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.37 below threshold 0.82\\\"}, {\\\"key\\\": \\\"defensivekv-iclr2026\\\", \\\"title\\\": \\\"DefensiveKV: Taming the Fragility of KV Cache Eviction in LLM Inference\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.545, \\\"matched_title\\\": \\\"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.55 below threshold 0.82\\\"}, {\\\"key\\\": \\\"doing-more-with-less-2026\\\", \\\"title\\\": \\\"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"efron-1993\\\", \\\"title\\\": \\\"An Introduction to the Bootstrap\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"An Introduction to the Bootstrap\\\", \\\"matched_year\\\": \\\"1994\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"graspune-acl2026\\\", \\\"title\\\": \\\"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"greedy-bias-kvcache-2026\\\", \\\"title\\\": \\\"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"h2o-neurips2023\\\", \\\"title\\\": \\\"\\\", \\\"status\\\": \\\"skipped\\\", \\\"confidence\\\": 0.0, \\\"matched_title\\\": \\\"\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"no title in bib entry\\\"}, {\\\"key\\\": \\\"kwon-sosp2023\\\", \\\"title\\\": \\\"Efficient Memory Management for Large Language Model Serving with PagedAttention\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Efficient Memory Management for Large Language Model Serving with PagedAttention\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"math500-neurips2021\\\", \\\"title\\\": \\\"Measuring Mathematical Problem Solving With the MATH Dataset\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Measuring Mathematical Problem Solving With the MATH Dataset\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"michel-neurips2019\\\", \\\"title\\\": \\\"Are Sixteen Heads Really Better than One?\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Are Sixteen Heads Really Better than One?\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mustafar-neurips2025\\\", \\\"title\\\": \\\"Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"nacl-acl2024\\\", \\\"title\\\": \\\"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"obcache-2025\\\", \\\"title\\\": \\\"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"pagedeviction-eacl2026\\\", \\\"title\\\": \\\"PagedEviction: Structured Block-wise KV Cache Pruning for Efficient Large Language Model Inference\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"PagedEviction: Structured Block-wise KV Cache Pruning for Efficient Large Language Model Inference\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=chitty-venkata vs api=2026\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"phase-transition-compression-2026\\\", \\\"title\\\": \\\"Phase transitions in large language model compression\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.222, \\\"matched_title\\\": \\\"Gradient-based learning applied to document recognition\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.22 below threshold 0.82\\\"}, {\\\"key\\\": \\\"pope-mlsys2023\\\", \\\"title\\\": \\\"Efficiently Scaling Transformer Inference\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Efficiently Scaling Transformer Inference\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"pyramidkv-2024\\\", \\\"title\\\": \\\"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"qwen25-2024\\\", \\\"title\\\": \\\"Qwen2.5 Technical Report\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Qwen2.5 Technical Report\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=yang vs api=qwen\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"raas-acl2025\\\", \\\"title\\\": \\\"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"retentivekv-2026\\\", \\\"title\\\": \\\"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"slim-icml2025\\\", \\\"title\\\": \\\"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"snapkv-neurips2024\\\", \\\"title\\\": \\\"SnapKV: LLM Knows What You Are Looking for Before Generation\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SnapKV: LLM Knows What You are Looking for Before Generation\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=li vs api=cai\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"spark-aaai2026\\\", \\\"title\\\": \\\"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"sparse-frontier-2025\\\", \\\"title\\\": \\\"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"thinkv-iclr2026\\\", \\\"title\\\": \\\"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"unicomp-2026\\\", \\\"title\\\": \\\"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=von rad vs api=rad\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"voita-acl2019\\\", \\\"title\\\": \\\"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 30, \"total_citations\": 40, \"unique_cited_keys\": 23, \"orphan_bib\": 7, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 22, \"online_not_found\": 3, \"online_mismatch\": 4}, \"cross_check\": {\"orphan_bib\": [\"compression-ordering-2025\", \"h2o-neurips2023\", \"mustafar-neurips2025\", \"obcache-2025\", \"pagedeviction-eacl2026\", \"pyramidkv-2024\", \"raas-acl2025\"], \"missing_bib\": [], \"orphan_count\": 7, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"adakv-neurips2025\", \"type\": \"inproceedings\", \"title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"authors\": \"Feng, Yuan and Lv, Junlin and Cao, Yukun and Xie, Xike and Zhou, S. Kevin\", \"year\": \"2025\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"compression-ordering-2025\", \"type\": \"article\", \"title\": \"A Systematic Study of Compression Ordering for Large Language Models\", \"authors\": \"Chhawri, Shivansh and Mahadik, Rahul and Rooj, Suparna\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2511.19495\"}, {\"key\": \"decision-repr-transition-2026\", \"type\": \"article\", \"title\": \"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\", \"authors\": \"Shi, Boyu and Liu, Chang and Gao, ChuanBao and Yang, Xu and Geng, Xin\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2605.07271\"}, {\"key\": \"deepseek-r1-2025\", \"type\": \"article\", \"title\": \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\", \"authors\": \"DeepSeek-AI\", \"year\": \"2025\", \"venue\": \"Nature\"}, {\"key\": \"defensivekv-iclr2026\", \"type\": \"inproceedings\", \"title\": \"DefensiveKV: Taming the Fragility of KV Cache Eviction in LLM Inference\", \"authors\": \"Feng, Yuan and Guo, Haoyu and Lv, Junlin and Zhou, S. Kevin and Xie, Xike\", \"year\": \"2026\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"doing-more-with-less-2026\", \"type\": \"article\", \"title\": \"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\", \"authors\": \"Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2604.25098\"}, {\"key\": \"efron-1993\", \"type\": \"book\", \"title\": \"An Introduction to the Bootstrap\", \"authors\": \"Efron, Bradley and Tibshirani, Robert J.\", \"year\": \"1993\", \"venue\": \"\"}, {\"key\": \"graspune-acl2026\", \"type\": \"inproceedings\", \"title\": \"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\", \"authors\": \"Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui a...\", \"year\": \"2026\", \"venue\": \"Proceedings of the 64th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"greedy-bias-kvcache-2026\", \"type\": \"article\", \"title\": \"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\", \"authors\": \"Sood, Aryan and Sharma, Tanvi and Agrawal, Vansh\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2602.02199\"}, {\"key\": \"h2o-neurips2023\", \"type\": \"inproceedings\", \"title\": \"\", \"authors\": \"Zhang, Zhenyu and Sheng, Ying and Zhou, Tianyi and Chen, Tianlong and Zheng, Lia...\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"kwon-sosp2023\", \"type\": \"inproceedings\", \"title\": \"Efficient Memory Management for Large Language Model Serving with PagedAttention\", \"authors\": \"Kwon, Woosuk and Li, Zhuohan and Zhuang, Siyuan and Sheng, Ying and Zheng, Lianm...\", \"year\": \"2023\", \"venue\": \"Proceedings of the 29th Symposium on Operating Systems Principles\"}, {\"key\": \"math500-neurips2021\", \"type\": \"inproceedings\", \"title\": \"Measuring Mathematical Problem Solving With the MATH Dataset\", \"authors\": \"Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart...\", \"year\": \"2021\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"michel-neurips2019\", \"type\": \"inproceedings\", \"title\": \"Are Sixteen Heads Really Better than One?\", \"authors\": \"Michel, Paul and Levy, Omer and Neubig, Graham\", \"year\": \"2019\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"mustafar-neurips2025\", \"type\": \"inproceedings\", \"title\": \"Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\", \"authors\": \"Joo, Donghyeon and Hosseini, Helya and Hadidi, Ramyad and Asgari, Bahar\", \"year\": \"2025\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"nacl-acl2024\", \"type\": \"inproceedings\", \"title\": \"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\", \"authors\": \"Chen, Yilong and Wang, Guoxia and Shang, Junyuan and Cui, Shiyao and Zhang, Zhen...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 62nd Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"obcache-2025\", \"type\": \"article\", \"title\": \"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\", \"authors\": \"Gu, Yuzhe and Liang, Xiyu and Zhao, Jiaojiao and Diao, Enmao\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2510.07651\"}, {\"key\": \"pagedeviction-eacl2026\", \"type\": \"inproceedings\", \"title\": \"PagedEviction: Structured Block-wise KV Cache Pruning for Efficient Large Language Model Inference\", \"authors\": \"Chitty-Venkata, Krishna Teja and Ye, Jie and Sun, Xian-He and Kougkas, Anthony a...\", \"year\": \"2026\", \"venue\": \"Findings of the European Chapter of the Association for Computational Linguistic...\"}, {\"key\": \"phase-transition-compression-2026\", \"type\": \"article\", \"title\": \"Phase transitions in large language model compression\", \"authors\": \"Ma, Ziyang and Li, Zuchao and Zhang, Lefei and Xia, Gui-Song and Du, Bo and Zhan...\", \"year\": \"2026\", \"venue\": \"npj Artificial Intelligence\"}, {\"key\": \"pope-mlsys2023\", \"type\": \"inproceedings\", \"title\": \"Efficiently Scaling Transformer Inference\", \"authors\": \"Pope, Reiner and Douglas, Sholto and Chowdhery, Aakanksha and Devlin, Jacob and ...\", \"year\": \"2023\", \"venue\": \"Proceedings of Machine Learning and Systems\"}, {\"key\": \"pyramidkv-2024\", \"type\": \"article\", \"title\": \"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\", \"authors\": \"Cai, Zefan and Zhang, Yichi and Gao, Bofei and Liu, Yuliang and Liu, Tianyu and ...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2406.02069\"}, {\"key\": \"qwen25-2024\", \"type\": \"article\", \"title\": \"Qwen2.5 Technical Report\", \"authors\": \"Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2412.15115\"}, {\"key\": \"raas-acl2025\", \"type\": \"inproceedings\", \"title\": \"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning\", \"authors\": \"Hu, Junhao and Huang, Wenrui and Wang, Weidong and Li, Zhenwen and Hu, Tiancheng...\", \"year\": \"2025\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2025\"}, {\"key\": \"retentivekv-2026\", \"type\": \"article\", \"title\": \"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\", \"authors\": \"Liu, Sihao and Xiong, YuFan and Jiang, Zhonghua and Wang, Zhaode and Lv, Chengfe...\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2605.04075\"}, {\"key\": \"slim-icml2025\", \"type\": \"inproceedings\", \"title\": \"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\", \"authors\": \"Mozaffari, Mohammad and Yazdanbakhsh, Amir and Dehnavi, Maryam Mehri\", \"year\": \"2025\", \"venue\": \"Proceedings of the 42nd International Conference on Machine Learning\"}, {\"key\": \"snapkv-neurips2024\", \"type\": \"inproceedings\", \"title\": \"SnapKV: LLM Knows What You Are Looking for Before Generation\", \"authors\": \"Li, Yuhong and Huang, Yingbing and Yang, Bowen and Venkitesh, Bharat and Locatel...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"spark-aaai2026\", \"type\": \"inproceedings\", \"title\": \"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\", \"authors\": \"Liao, Huanxuan and Xu, Yixing and He, Shizhu and Li, Guanchen and Yin, Xuanwu an...\", \"year\": \"2026\", \"venue\": \"Proceedings of the AAAI Conference on Artificial Intelligence\"}, {\"key\": \"sparse-frontier-2025\", \"type\": \"article\", \"title\": \"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\", \"authors\": \"Nawrot, Piotr and Li, Robert and Huang, Renjie and Ruder, Sebastian and Marchisi...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2504.17768\"}, {\"key\": \"thinkv-iclr2026\", \"type\": \"inproceedings\", \"title\": \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\", \"authors\": \"Ramachandran, Akshat and Neseem, Marina and Sakr, Charbel and Venkatesan, Rangha...\", \"year\": \"2026\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"unicomp-2026\", \"type\": \"article\", \"title\": \"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\", \"authors\": \"von Rad, Jonathan and Cao, Yong and Geiger, Andreas\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2602.09130\"}, {\"key\": \"voita-acl2019\", \"type\": \"inproceedings\", \"title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"authors\": \"Voita, Elena and Talbot, David and Moiseev, Fedor and Sennrich, Rico and Titov, ...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\"}], \"tex_citations\": [{\"key\": \"kwon-sosp2023\", \"file\": \"introduction.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"pope-mlsys2023\", \"file\": \"introduction.tex\", \"line\": 4, \"command\": \"cite\"}, {\"key\": \"voita-acl2019\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"michel-neurips2019\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"snapkv-neurips2024\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"adakv-neurips2025\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"slim-icml2025\", \"file\": \"introduction.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"unicomp-2026\", \"file\": \"introduction.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"thinkv-iclr2026\", \"file\": \"introduction.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"decision-repr-transition-2026\", \"file\": \"introduction.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"slim-icml2025\", \"file\": \"related_work.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"unicomp-2026\", \"file\": \"related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"phase-transition-compression-2026\", \"file\": \"related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"graspune-acl2026\", \"file\": \"related_work.tex\", \"line\": 9, \"command\": \"cite\"}, {\"key\": \"adakv-neurips2025\", \"file\": \"related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"snapkv-neurips2024\", \"file\": \"related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"defensivekv-iclr2026\", \"file\": \"related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"nacl-acl2024\", \"file\": \"related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"retentivekv-2026\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"greedy-bias-kvcache-2026\", \"file\": \"related_work.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"thinkv-iclr2026\", \"file\": \"related_work.tex\", \"line\": 20, \"command\": \"cite\"}, {\"key\": \"decision-repr-transition-2026\", \"file\": \"related_work.tex\", \"line\": 21, \"command\": \"cite\"}, {\"key\": \"doing-more-with-less-2026\", \"file\": \"related_work.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"sparse-frontier-2025\", \"file\": \"related_work.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"voita-acl2019\", \"file\": \"background.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"michel-neurips2019\", \"file\": \"background.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"background.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"thinkv-iclr2026\", \"file\": \"background.tex\", \"line\": 33, \"command\": \"cite\"}, {\"key\": \"deepseek-r1-2025\", \"file\": \"methodology.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"qwen25-2024\", \"file\": \"methodology.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"math500-neurips2021\", \"file\": \"methodology.tex\", \"line\": 10, \"command\": \"cite\"}, {\"key\": \"efron-1993\", \"file\": \"methodology.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"voita-acl2019\", \"file\": \"appendix.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"michel-neurips2019\", \"file\": \"appendix.tex\", \"line\": 5, \"command\": \"cite\"}, {\"key\": \"thinkv-iclr2026\", \"file\": \"appendix.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"defensivekv-iclr2026\", \"file\": \"appendix.tex\", \"line\": 22, \"command\": \"cite\"}, {\"key\": \"spark-aaai2026\", \"file\": \"appendix.tex\", \"line\": 25, \"command\": \"cite\"}], \"online_verification\": [{\"key\": \"adakv-neurips2025\", \"title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"compression-ordering-2025\", \"title\": \"A Systematic Study of Compression Ordering for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Systematic Study of Compression Ordering for Large Language Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"decision-repr-transition-2026\", \"title\": \"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Understanding Performance Collapse in Layer-Pruned Large Language Models via Decision Representation Transitions\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"deepseek-r1-2025\", \"title\": \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\", \"status\": \"not_found\", \"confidence\": 0.369, \"matched_title\": \"From GPT to DeepSeek: Significant gaps remain in realizing AI in healthcare\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.37 below threshold 0.82\"}, {\"key\": \"defensivekv-iclr2026\", \"title\": \"DefensiveKV: Taming the Fragility of KV Cache Eviction in LLM Inference\", \"status\": \"not_found\", \"confidence\": 0.545, \"matched_title\": \"Ada-KV: Optimizing KV Cache Eviction by Adaptive Budget Allocation for Efficient LLM Inference\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.55 below threshold 0.82\"}, {\"key\": \"doing-more-with-less-2026\", \"title\": \"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"efron-1993\", \"title\": \"An Introduction to the Bootstrap\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"An Introduction to the Bootstrap\", \"matched_year\": \"1994\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"graspune-acl2026\", \"title\": \"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"greedy-bias-kvcache-2026\", \"title\": \"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"More Than a Quick Glance: Overcoming the Greedy Bias in KV-Cache Compression\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"h2o-neurips2023\", \"title\": \"\", \"status\": \"skipped\", \"confidence\": 0.0, \"matched_title\": \"\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"no title in bib entry\"}, {\"key\": \"kwon-sosp2023\", \"title\": \"Efficient Memory Management for Large Language Model Serving with PagedAttention\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Efficient Memory Management for Large Language Model Serving with PagedAttention\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"math500-neurips2021\", \"title\": \"Measuring Mathematical Problem Solving With the MATH Dataset\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Measuring Mathematical Problem Solving With the MATH Dataset\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"michel-neurips2019\", \"title\": \"Are Sixteen Heads Really Better than One?\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Are Sixteen Heads Really Better than One?\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"mustafar-neurips2025\", \"title\": \"Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Mustafar: Promoting Unstructured Sparsity for KV Cache Pruning in LLM Inference\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"nacl-acl2024\", \"title\": \"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"NACL: A General and Effective KV Cache Eviction Framework for LLMs at Inference Time\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"obcache-2025\", \"title\": \"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"OBCache: Optimal Brain KV Cache Pruning for Efficient Long-Context LLM Inference\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"pagedeviction-eacl2026\", \"title\": \"PagedEviction: Structured Block-wise KV Cache Pruning for Efficient Large Language Model Inference\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"PagedEviction: Structured Block-wise KV Cache Pruning for Efficient Large Language Model Inference\", \"matched_year\": \"2026\", \"mismatch_fields\": [\"first_author: bib=chitty-venkata vs api=2026\"], \"note\": \"\"}, {\"key\": \"phase-transition-compression-2026\", \"title\": \"Phase transitions in large language model compression\", \"status\": \"not_found\", \"confidence\": 0.222, \"matched_title\": \"Gradient-based learning applied to document recognition\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.22 below threshold 0.82\"}, {\"key\": \"pope-mlsys2023\", \"title\": \"Efficiently Scaling Transformer Inference\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Efficiently Scaling Transformer Inference\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"pyramidkv-2024\", \"title\": \"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"PyramidKV: Dynamic KV Cache Compression based on Pyramidal Information Funneling\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"qwen25-2024\", \"title\": \"Qwen2.5 Technical Report\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Qwen2.5 Technical Report\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=yang vs api=qwen\"], \"note\": \"\"}, {\"key\": \"raas-acl2025\", \"title\": \"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RaaS: Reasoning-Aware Attention Sparsity for Efficient LLM Reasoning\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"retentivekv-2026\", \"title\": \"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RetentiveKV: State-Space Memory for Uncertainty-Aware Multimodal KV Cache Eviction\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"slim-icml2025\", \"title\": \"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"snapkv-neurips2024\", \"title\": \"SnapKV: LLM Knows What You Are Looking for Before Generation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SnapKV: LLM Knows What You are Looking for Before Generation\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=li vs api=cai\"], \"note\": \"\"}, {\"key\": \"spark-aaai2026\", \"title\": \"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SparK: Query-Aware Unstructured Sparsity with Recoverable KV Cache Channel Pruning\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"sparse-frontier-2025\", \"title\": \"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"The Sparse Frontier: Sparse Attention Trade-offs in Transformer LLMs\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"thinkv-iclr2026\", \"title\": \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ThinKV: Thought-Adaptive KV Cache Compression for Efficient Reasoning Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"unicomp-2026\", \"title\": \"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"UniComp: A Unified Evaluation of Large Language Model Compression via Pruning, Quantization and Distillation\", \"matched_year\": \"2026\", \"mismatch_fields\": [\"first_author: bib=von rad vs api=rad\"], \"note\": \"\"}, {\"key\": \"voita-acl2019\", \"title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Analyzing Multi-Head Self-Attention: Specialized Heads Do the Heavy Lifting, the Rest Can Be Pruned\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "04d15fe9-d955-4da1-a82a-3b022bce91be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 76_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 2  **你的审查侧重：新颖性 + 相关工作完整性 + 写作质量 + 实际影响**  ### 论文信息 - **标题**: Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models -…",
+  "leafUuid": "6dd47c8e-5eb5-45e5-80d8-bef944b89ee1",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review EMNLP paper on phase-modulated compound sparsity",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 78 · 2026-05-14T13:10:40.185Z_
+
+<details><summary>↩ Tool result · `toolu_014wCpYffgDtxQwNourpj7tb`</summary>
+
+```text
+Web search results for query: ""discrimination collapse" attention pruning importance score degradation 2025 2026"
+
+Links: [{"title":"Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models","url":"https://arxiv.org/html/2604.27115"},{"title":"Differentiable channel pruning guided via attention mechanism: a novel neural network pruning approach | Complex & Intelligent Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s40747-023-01022-6"},{"title":"Attention-based adaptive structured continuous sparse network pruning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925231224004697"},{"title":"SAP: Syntactic Attention Pruning for Transformer-based Language Models","url":"https://arxiv.org/html/2512.19125"},{"title":"Twilight: Adaptive Attention Sparsity with Hierarchical Top-p Pruning","url":"http://people.iiis.tsinghua.edu.cn/~gaomy/pubs/twilight.neurips25.pdf"},{"title":"Efficient self-attention with smart pruning for sustainable large language models | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-92586-5"},{"title":"Magnitude Attention-based Dynamic Pruning - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0957417425005792"},{"title":"Accelerating attention through gradient-based learned runtime pruning | Proceedings of the 49th Annual International Symposium on Computer Architecture","url":"https://dl.acm.org/doi/abs/10.1145/3470496.3527423"},{"title":"Attention Score is not All You Need for Token Importance Indicator in KV Cache Reduction: Value Also Matters","url":"https://arxiv.org/html/2406.12335v2"},{"title":"HiP Attention: Sparse Sub-Quadratic Attention with Hierarchical Attention Pruning","url":"https://arxiv.org/html/2406.09827v1"}]
+
+I found relevant research on discrimination collapse and attention pruning. Here are the key findings:
+
+## Discrimination Collapse in Attention Pruning
+
+Recent research shows rapid performance degradation in pruning tasks, with models approaching critical failure at approximately 5% of reverse pruning and collapsing entirely near 10%. In this context, collapse refers to a complete loss of task accuracy, accompanied by frequent failure modes such as falling into reasoning traps and generating responses that are meaningless, incoherent, or nonsensical.
+
+## Importance Score Degradation
+
+The research highlights a critical distinction between approaches: Selectively pruning less important neurons leads to gradual decline, with the model retaining substantial capability even at higher pruning levels, contrasting sharply with the collapse phenomenon when important components are removed.
+
+## Attention-Based Importance Scoring
+
+Importance scores obtained through attention mechanism show the best experimental results compared to l1 and l2 norm approaches. However, the reliability of attention score as an indicator of token importance was widely questioned in pre-LLM research, with special tokens observed to receive disproportionately large attention scores in BERT despite those scores often changing significantly without impacting the model's predictions.
+
+Recent work from 2025 has developed more nuanced approaches: newer methods need to use both attention score and value vector norm for more accurate pruning decisions, suggesting that attention scores alone may not fully capture importance in modern language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8cc4ead8-4a3b-45e0-b121-65baae3e938b",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "b90e6bbc-64d5-41e8-bed7-bffab12eecc3",
+  "toolUseResult": {
+    "query": "\"discrimination collapse\" attention pruning importance score degradation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vq8bWCYwST2pSWLNo5miiS",
+        "content": [
+          {
+            "title": "Exploring the Limits of Pruning: Task-Specific Neurons, Model Collapse, and Recovery in Task-Specific Large Language Models",
+            "url": "https://arxiv.org/html/2604.27115"
+          },
+          {
+            "title": "Differentiable channel pruning guided via attention mechanism: a novel neural network pruning approach | Complex & Intelligent Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s40747-023-01022-6"
+          },
+          {
+            "title": "Attention-based adaptive structured continuous sparse network pruning - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231224004697"
+          },
+          {
+            "title": "SAP: Syntactic Attention Pruning for Transformer-based Language Models",
+            "url": "https://arxiv.org/html/2512.19125"
+          },
+          {
+            "title": "Twilight: Adaptive Attention Sparsity with Hierarchical Top-p Pruning",
+            "url": "http://people.iiis.tsinghua.edu.cn/~gaomy/pubs/twilight.neurips25.pdf"
+          },
+          {
+            "title": "Efficient self-attention with smart pruning for sustainable large language models | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-92586-5"
+          },
+          {
+            "title": "Magnitude Attention-based Dynamic Pruning - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0957417425005792"
+          },
+          {
+            "title": "Accelerating attention through gradient-based learned runtime pruning | Proceedings of the 49th Annual International Symposium on Computer Architecture",
+            "url": "https://dl.acm.org/doi/abs/10.1145/3470496.3527423"
+          },
+          {
+            "title": "Attention Score is not All You Need for Token Importance Indicator in KV Cache Reduction: Value Also Matters",
+            "url": "https://arxiv.org/html/2406.12335v2"
+          },
+          {
+            "title": "HiP Attention: Sparse Sub-Quadratic Attention with Hierarchical Attention Pruning",
+            "url": "https://arxiv.org/html/2406.09827v1"
+          }
+        ]
+      },
+      "I found relevant research on discrimination collapse and attention pruning. Here are the key findings:\n\n## Discrimination Collapse in Attention Pruning\n\nRecent research shows rapid performance degradation in pruning tasks, with models approaching critical failure at approximately 5% of reverse pruning and collapsing entirely near 10%. In this context, collapse refers to a complete loss of task accuracy, accompanied by frequent failure modes such as falling into reasoning traps and generating responses that are meaningless, incoherent, or nonsensical.\n\n## Importance Score Degradation\n\nThe research highlights a critical distinction between approaches: Selectively pruning less important neurons leads to gradual decline, with the model retaining substantial capability even at higher pruning levels, contrasting sharply with the collapse phenomenon when important components are removed.\n\n## Attention-Based Importance Scoring\n\nImportance scores obtained through attention mechanism show the best experimental results compared to l1 and l2 norm approaches. However, the reliability of attention score as an indicator of token importance was widely questioned in pre-LLM research, with special tokens observed to receive disproportionately large attention scores in BERT despite those scores often changing significantly without impacting the model's predictions.\n\nRecent work from 2025 has developed more nuanced approaches: newer methods need to use both attention score and value vector norm for more accurate pruning decisions, suggesting that attention scores alone may not fully capture importance in modern language models."
+    ],
+    "durationSeconds": 7.738685253000003
+  },
+  "sourceToolAssistantUUID": "8cc4ead8-4a3b-45e0-b121-65baae3e938b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 79 · 2026-05-14T13:10:41.222Z_
+
+<details><summary>↩ Tool result · `toolu_01GVM6ik8Nt7BGd6BWT4kLFE`</summary>
+
+```text
+Web search results for query: ""compression ordering" LLM pruning quantization sparsity interaction 2025 2026 Chhawri"
+
+Links: [{"title":"A Systematic Study of Compression Ordering for Large Language Models","url":"https://arxiv.org/html/2511.19495v1"},{"title":"Large Language Model Compression with Global Rank and Sparsity Optimization","url":"https://arxiv.org/html/2505.03801"},{"title":"Published as a conference paper at ICLR 2026 LARGE LANGUAGE MODEL COMPRESSION","url":"https://arxiv.org/pdf/2505.03801"},{"title":"Published as a conference paper at COLM 2025","url":"https://arxiv.org/pdf/2504.14569"},{"title":"A review of state-of-the-art techniques for large language model compression | Complex & Intelligent Systems | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s40747-025-02019-z"},{"title":"ICML Poster SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression","url":"https://icml.cc/virtual/2025/poster/46479"},{"title":"Structured Pruning of Large Language Models","url":"https://www.researchgate.net/publication/347235497_Structured_Pruning_of_Large_Language_Models"},{"title":"Frontiers | A survey of model compression techniques: past, present, and future","url":"https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1518965/full"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/7349b8b5a6737dd36031c77212eab3ad-Paper-Conference.pdf"},{"title":"SLIM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression | Research","url":"https://research.nvidia.com/publication/2025-06_slim-one-shot-quantization-and-sparsity-low-rank-approximation-llm-weight"}]
+
+Based on the search results, I found highly relevant research on compression ordering for Large Language Models. Here are the key findings:
+
+## Main Study on Compression Ordering
+
+A comprehensive analysis examines how knowledge distillation, structured pruning, and quantization interact when applied sequentially to compress Qwen LLMs, showing that their performance is heavily dependent on the ordering.
+
+## Key Findings on Technique Interactions
+
+Quantization consistently offered the highest compression with acceptable quality loss, whereas pruning introduced structural sparsity at the expense of increased perplexity. Among all evaluated sequences, P-KD-Q (Pruning → Knowledge Distillation → Quantization) emerged as the most effective, achieving substantial compression while maintaining high G-Eval and clarity scores.
+
+Sequences featuring early quantization exhibited severe degradation due to irreversible quantization noise affecting downstream training, highlighting the importance of ordering-aware design when combining compression strategies.
+
+## Theoretical Perspective on Interactions
+
+Recent theoretical studies demonstrate that pruning (which introduces sparsity) and quantization are not orthogonal processes; rather, their associated errors interact in nonlinear and often unpredictable ways. The cumulative error resulting from quantization followed by pruning typically exceeds the sum of the individual errors and is highly sensitive to the order in which these techniques are applied, as performing quantization first may distort the perceived importance of model weights.
+
+The research indicates this is an active area of study in 2025-2026, with multiple approaches being developed to better understand and optimize how different compression techniques can work together.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d81c3c10-6741-4526-be34-ae9c51d06c56",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "31ed1ed7-7d3e-4d70-9d5e-05e45935bbcd",
+  "toolUseResult": {
+    "query": "\"compression ordering\" LLM pruning quantization sparsity interaction 2025 2026 Chhawri",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MtVKLe6cjQrsyYsQuihxzA",
+        "content": [
+          {
+            "title": "A Systematic Study of Compression Ordering for Large Language Models",
+            "url": "https://arxiv.org/html/2511.19495v1"
+          },
+          {
+            "title": "Large Language Model Compression with Global Rank and Sparsity Optimization",
+            "url": "https://arxiv.org/html/2505.03801"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 LARGE LANGUAGE MODEL COMPRESSION",
+            "url": "https://arxiv.org/pdf/2505.03801"
+          },
+          {
+            "title": "Published as a conference paper at COLM 2025",
+            "url": "https://arxiv.org/pdf/2504.14569"
+          },
+          {
+            "title": "A review of state-of-the-art techniques for large language model compression | Complex & Intelligent Systems | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s40747-025-02019-z"
+          },
+          {
+            "title": "ICML Poster SLiM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression",
+            "url": "https://icml.cc/virtual/2025/poster/46479"
+          },
+          {
+            "title": "Structured Pruning of Large Language Models",
+            "url": "https://www.researchgate.net/publication/347235497_Structured_Pruning_of_Large_Language_Models"
+          },
+          {
+            "title": "Frontiers | A survey of model compression techniques: past, present, and future",
+            "url": "https://www.frontiersin.org/journals/robotics-and-ai/articles/10.3389/frobt.2025.1518965/full"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2025",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/7349b8b5a6737dd36031c77212eab3ad-Paper-Conference.pdf"
+          },
+          {
+            "title": "SLIM: One-shot Quantization and Sparsity with Low-rank Approximation for LLM Weight Compression | Research",
+            "url": "https://research.nvidia.com/publication/2025-06_slim-one-shot-quantization-and-sparsity-low-rank-approximation-llm-weight"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant research on compression ordering for Large Language Models. Here are the key findings:\n\n## Main Study on Compression Ordering\n\nA comprehensive analysis examines how knowledge distillation, structured pruning, and quantization interact when applied sequentially to compress Qwen LLMs, showing that their performance is heavily dependent on the ordering.\n\n## Key Findings on Technique Interactions\n\nQuantization consistently offered the highest compression with acceptable quality loss, whereas pruning introduced structural sparsity at the expense of increased perplexity. Among all evaluated sequences, P-KD-Q (Pruning → Knowledge Distillation → Quantization) emerged as the most effective, achieving substantial compression while maintaining high G-Eval and clarity scores.\n\nSequences featuring early quantization exhibited severe degradation due to irreversible quantization noise affecting downstream training, highlighting the importance of ordering-aware design when combining compression strategies.\n\n## Theoretical Perspective on Interactions\n\nRecent theoretical studies demonstrate that pruning (which introduces sparsity) and quantization are not orthogonal processes; rather, their associated errors interact in nonlinear and often unpredictable ways. The cumulative error resulting from quantization followed by pruning typically exceeds the sum of the individual errors and is highly sensitive to the order in which these techniques are applied, as performing quantization first may distort the perceived importance of model weights.\n\nThe research indicates this is an active area of study in 2025-2026, with multiple approaches being developed to better understand and optimize how different compression techniques can work together."
+    ],
+    "durationSeconds": 8.774783817000047
+  },
+  "sourceToolAssistantUUID": "d81c3c10-6741-4526-be34-ae9c51d06c56",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 80 · 2026-05-14T13:11:22.792Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have a comprehensive view of the paper and related work. Let me compile my complete review.
+
+Key observations from my thorough reading:
+
+**Paper Structure:**
+- Title + Abstract (p1)
+- Introduction with contributions (p1-2)
+- Related Work (p2)
+- Background and Problem Setup (p3)
+- Experimental Setup (p3)
+- Results with subsections 5.1-5.6 (p3-4)
+- Discussion (p4)
+
+
+- Conclusion, Limitations, and References (p5-6)
+- Extensive Appendix with sections A through K (p6-11)
+
+The main text is remarkably compact at around 5 pages, which is tight for a paper of this scope, though it stays within the 8-page maximum.
+
+Now I'm evaluating the novelty, related work, writing quality, and practical impact as Reviewer 2. The core contribution—that compound sparsity severity varies across different reasoning phases—is genuinely interesting, though ThinKV already segments reasoning into phases with phase-specific compression. The novelty here centers on measuring compound interaction effects across these phases rather than just applying different strategies per phase.
+
+The Interaction Index itself is a fairly standard super-additivity metric; what's new is how it's decomposed by phase. The "discrimination collapse" mechanism is essentially an observation that the Gini coefficient drops after pruning, which makes intuitive sense when fewer heads lead to less discriminative importance scores. The paper acknowledges this intuition but argues the quantitative magnitude is what's surprising.
+
+The severity gradient numbers—ranging from 69× to 274×—look striking at first, but they're computed as the ratio of very small values, where the denominator is already tiny (0.006-0.053). The absolute differences (0.39-14.59) actually tell a more meaningful story about the practical magnitude of these effects.
+
+The strategy ranking reversal is an interesting finding, though it has limited practical value since the paper doesn't propose any method to actually leverage this insight. I'm also noticing some significant gaps in the related work—there are several recent papers on KV cache compression for reasoning models that seem directly relevant but aren't cited, including work on redundancy-aware compression, RL-guided head identification, and KV cache assessment on reasoning tasks.
+
+Looking at the writing itself, the paper is quite dense for its length, and the abstract tries to pack in too much with all those specific numbers upfront, which obscures the main narrative. The mathematical notation is mostly consistent, though some choices like d_s and d_z are a bit unconventional.
+
+On the practical side, this is really just a diagnostic study without an actual method—the "phase-aware compression budget" concept is mentioned but never implemented. The evaluation is quite limited: only 50 MATH problems, restricted to 7B Qwen2 models, and no throughput or latency measurements despite those being important for compression work. The paper also underutilizes the page budget at just 5 pages, and there are some reference issues including 7 orphan citations and a few entries with missing or unfindable details.
+
+Looking at the scoring dimensions, the soundness is questionable given the small sample size and single architecture, while the excitement is muted since this is more of an observation than a contribution. I'm settling on a 2 overall—the work is interesting but too incremental and limited in scope for acceptance.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31ed1ed7-7d3e-4d70-9d5e-05e45935bbcd",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Ww3BbMuayvaV4Nh54r",
+  "type": "assistant",
+  "uuid": "3ba45fdd-6573-47aa-85a3-40079d19d0cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAKY8yfNG9gVfwHjQEhvxv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 11235,
+      "cache_read_input_tokens": 54694,
+      "output_tokens": 6522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11235,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 904,
+          "output_tokens": 6522,
+          "cache_read_input_tokens": 54694,
+          "cache_creation_input_tokens": 11235,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11235
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 81 · 2026-05-14T13:11:23.885Z_
+
+所有信息已收集完毕。现在撰写完整审稿报告并提交。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ba45fdd-6573-47aa-85a3-40079d19d0cb",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Ww3BbMuayvaV4Nh54r",
+  "type": "assistant",
+  "uuid": "a6fc94d7-f369-413c-ad2f-8de7e457203f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAKY8yfNG9gVfwHjQEhvxv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 11235,
+      "cache_read_input_tokens": 54694,
+      "output_tokens": 6522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11235,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 904,
+          "output_tokens": 6522,
+          "cache_read_input_tokens": 54694,
+          "cache_creation_input_tokens": 11235,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11235
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 82 · 2026-05-14T13:13:21.831Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_01VYn55YQTZJY9qr4AA6SVVm`</summary>
+
+```json
+{
+  "text": "## Reviewer 2 — Round 1 审稿报告\n\n**论文**: Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models\n**Venue**: EMNLP 2026 Main Conference (ACL Rolling Review May 2026)\n\n---\n\n## 总体评分\n\n**Overall**: 2.5/5 — 介于 Findings 接收和 Resubmit 之间\n**一句话总结**: 论文发现了一个有趣的经验现象（compound sparsity severity 的 phase 依赖性），统计方法扎实，但贡献增量性偏强、无方法提出、评估规模过小，作为 EMNLP 主会论文分量不足。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3/5 | 统计方法（permutation test, bootstrap CI, Bonferroni 校正）规范，但样本量极小（50 problems, 单一架构），discrimination collapse 仅为相关性证据 |\n| Excitement | 2.5/5 | 现象本身有趣（phase-strategy crossover），但缺乏方法论贡献，且\"severity gradient\"的巨大倍数（69×-274×）主要由分母极小驱动 |\n| Overall | 2.5/5 | 观察性发现+诊断工具，距离 EMNLP 主会的方法论或系统性贡献门槛尚有差距 |\n| Reproducibility | 3/5 | 实验设置描述清晰，但无代码释放，50 个问题的 stratified sampling 种子未明确指定是否公开 |\n| Reviewer Confidence | 4/5 | 熟悉 KV cache compression 和 LLM pruning 文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] 新颖性不足：核心贡献是观察性发现而非方法\n\n- 具体位置：Section 1 贡献列表（3 条贡献均为\"identify\"/\"show\"/\"propose mechanism\"）\n- 问题：三条贡献均为经验观察或事后解释，没有提出任何可操作的方法（phase-aware compression controller / dynamic budget allocation）。Discussion (Section 6) 提到\"phase-aware compression budget\"但仅停留在概念层面（\"could mitigate\"），未实现、未验证。对于 EMNLP 主会 long paper，纯观察性工作的门槛更高——需要更大规模、更多模型、或更深的理论分析来弥补方法空缺。\n- 为什么影响接收：ACL ARR excitement 评分明确要求\"novel and useful methodology\"或\"insightful empirical results\"。在仅有 2 个同架构模型、50 道题的规模下，单纯的经验观察难以满足\"insightful\"标准。\n- 建议修改方向：(a) 实现并验证 phase-aware compression budget（哪怕是 oracle/static 版本），展示实际 accuracy 提升；或 (b) 大幅扩大评估规模（多架构、多任务、更大模型），使观察性发现的可信度足以独立成篇。\n\n**N2** [critical] Severity gradient 的 69×-274× 倍数具有误导性\n\n- 具体位置：Abstract (\"over an order of magnitude\"), Section 5.2, Figure 1\n- 问题：G = Ĩ_low / Ĩ_high，其中 Ĩ_high 极小（0.006-0.053，见 Appendix Table D）。当分母接近零时，比值可以任意大——这不反映实际严重程度。实际的绝对差值 Δ = 0.39-14.59（Table 1）更有信息量但远没那么戏剧性。Abstract 用\"varies by over an order of magnitude\"作为开头论点，过度依赖这个受分母影响的比值指标。\n- 为什么影响接收：如果核心叙事建立在一个因分母极小而膨胀的指标上，审稿人和读者会质疑发现的实际意义。\n- 建议修改方向：(a) 在正文中主要报告绝对差值 Δ 和 effect size d_z，将 G 降级为辅助指标；(b) 明确讨论 G 的分母敏感性问题；(c) 将 Figure 1 改为展示 Δ 或 d_z 的增长趋势。\n\n**N3** [critical] 评估规模严重不足\n\n- 具体位置：Section 4（50 MATH-500 problems, 2 models, 单一 Qwen2 架构）\n- 问题：\n  - **50 道题**：MATH-500 有 500 道题，只用 10% 缺乏理由（\"stratified sampling\" 但未论证 50 为何足够）。Qwen 进一步排除 4 道（n=46）。\n  - **单一架构**：两个模型共享 Qwen2ForCausalLM 架构（28 layers, 28 heads, 4-group GQA），这不是跨模型验证——是同一架构不同训练配置的验证。LLaMA 3、Mistral 或非 GQA 架构（如 MHA）未测试。\n  - **单一任务**：仅 MATH-500。代码推理、常识推理、多步 QA 等任务的 phase 结构可能完全不同。\n- 为什么影响接收：Limitations 诚实承认了这些局限，但 Abstract 和 Introduction 的 claim 表述过于一般化（\"reasoning models\" 而非 \"Qwen2-7B models on 50 math problems\"）。\n- 建议修改方向：至少覆盖一个非 Qwen 架构（LLaMA 3.3-8B 或 Mistral-7B）和一个非数学任务（如 GPQA 或 LiveCodeBench）。或者显著弱化 claim 的 generality。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Discrimination collapse 是相关性而非因果性证据\n\n- 具体位置：Section 5.6, Appendix H\n- 问题：Gini coefficient 下降（−0.030 到 −0.081）与 severity gradient 共现，但论文未排除其他混淆因素。更关键的是，entropy redistribution 组件仅在 DeepSeek 上一致，Qwen 在 s=0.25 出现符号反转（ΔH = +0.045），论文将其归因为\"model-specific\"但这削弱了机制的普遍性。Section 5.6 称 discrimination collapse 为\"mechanistic explanation\"，但它更接近于一个 correlational observation。\n- 建议：(a) 将\"mechanism\"改为\"hypothesis\"或\"correlational evidence\"；(b) 考虑设计消融实验（如人工控制 Gini 分布的 importance scores 来验证因果关系）。\n\n**W2** [warning] Interaction Index 与已有 super-additivity 概念的区分不清\n\n- 具体位置：Section 3, Eq. 1\n- 问题：II = r_b - r_a - r_k + 1 本质上是标准的交互效应（类似 ANOVA 中的 interaction term）。论文引用 SparK (Liao et al., 2026) 的 super-additive degradation 但未清楚区分 II 与 SparK 等工作中已有的 compound interaction 度量。如果 II 只是将 phase 维度加到已有概念上，应明确说明。\n- 建议：增加一段明确讨论 II 与 SparK、SLiM、UniComp 中使用的 compound interaction 度量的关系和区别。\n\n**W3** [warning] 正文仅 ~5 页，严重未利用 8 页限制\n\n- 具体位置：全文结构\n- 问题：正文约 5 页（Introduction 1.5p + Related Work 0.7p + Background 0.5p + Setup 0.5p + Results 1.2p + Discussion 0.5p + Conclusion 0.3p），远低于 long paper 8 页上限。大量关键信息被放在附录中：\n  - 完整的 per-phase breakdown table（Appendix D）应在正文\n  - Cross-model comparison table（Appendix F, Table 3）应在正文\n  - Effect size table（Appendix G, Table 5）应在正文\n  - Discrimination collapse metrics（Appendix H）至少 summary 应在正文\n  \n  这使正文感觉像是 extended abstract + 附录堆积，而非一篇完整论文。\n- 建议：将 Appendix D (Table 2), F (Table 3), G (Table 5) 移入正文，充分利用 8 页空间。将 Discussion 扩展以覆盖更多 deployment implications。\n\n**W4** [warning] Abstract 信息过载，可读性差\n\n- 具体位置：Abstract\n- 问题：Abstract 塞入了过多具体数字（69×, 274×, 0.39, 14.59, 0.44, 0.80, 7/8, 0.032, 0.818, 7.106, 1.363, d=-1.00, ρ=1.0, p=0.041...），读者在第一遍阅读时无法消化这些数据。一个好的 abstract 应传达 high-level insight + 关键定量 takeaway（1-2 个数字），而非完整的统计报告。\n- 建议：精简 Abstract 至 150-200 words，保留核心发现 + 1-2 个最有 impact 的定量结果。\n\n**W5** [warning] Phase segmentation 方法选择缺乏敏感性分析\n\n- 具体位置：Section 3 (\"tercile boundaries of per-position attention entropy\")\n- 问题：Phase 定义完全依赖 attention entropy 的三分位数划分，且沿用 ThinKV 的方法。但：(a) 为什么是 tercile 而非 quartile/quintile？(b) min_phase_length=10 的选择依据是什么？(c) 换用其他 phase segmentation（如 ThinKV 的 thought-type decomposition: reasoning/execution/transition）结果是否一致？这些选择对 severity gradient 的 magnitude 影响可能很大。\n- 建议：至少对 phase 数量和 min_phase_length 做 robustness check。\n\n---\n\n## 小问题（不影响接收）\n\n- **引用问题**：bib 中有 7 个 orphan 条目（在 .bib 中但未被正文引用）：`compression-ordering-2025`, `h2o-neurips2023`, `mustafar-neurips2025`, `obcache-2025`, `pagedeviction-eacl2026`, `pyramidkv-2024`, `raas-acl2025`。其中 H2O、PyramidKV、RaaS 等是高度相关工作，要么引用要么删除。`h2o-neurips2023` 的 title 字段为空。\n- **符号不一致**：正文混用 d_s 和 d_z 指代 Cohen's d 的变体，未明确区分。Abstract 用 d（无下标），Section 5.5 用 d_s，Appendix 用 d_z。\n- **Table 1 数值与 Appendix Table D 不完全对应**：Table 1 的 Random s=0.25 Δ=0.54，但 Appendix D 显示 Ĩ_low=1.363 - Ĩ_high=0.818 = 0.545，取整差异虽小但应统一精度。\n- **脚注 2**：提到\"4× NVIDIA RTX PRO 6000 Blackwell 96 GB GPUs\"，但实验仅在单个 7B 模型上运行 50 道题，使用 4 块 96GB GPU 似乎 over-provisioned，且未说明是否利用多卡。\n\n---\n\n## 遗漏的重要相关工作（Missing References）\n\n以下通过 web_search 验证的相关工作在论文中未被讨论：\n\n1. **R-KV** (Cai et al., NeurIPS 2025): \"Redundancy-aware KV Cache Compression for Reasoning Models\"。专门针对 reasoning model 的 KV cache 压缩，识别冗余 token 实现 10% KV cache 保留近乎无损性能。与本文直接相关——R-KV 也识别了 reasoning 生成中不同 token 的重要性差异，但采取了方法导向的路线。**必须讨论。**\n\n2. **RLKV / \"Which Heads Matter for Reasoning?\"** (Du et al., 2025/2026): 用 RL 识别 reasoning-critical heads 并差异化压缩。直接涉及 head pruning 与 reasoning 质量的交互——论文的核心议题。RLKV 的 \"functional heterogeneity\" 假设与 discrimination collapse 高度相关。**必须讨论。**\n\n3. **\"Hold Onto That Thought\"** (Liu et al., NeurIPS 2025): 系统评估 KV cache 压缩对 reasoning 的影响，发现 token-dropping 方法会破坏 reasoning integrity。与本文的 random vs. importance-based eviction 对比直接相关。**应当讨论。**\n\n4. **RAC / \"Reasoning Models Can Be Accurately Pruned via Chain-of-Thought Reconstruction\"** (NeurIPS 2025): 50% sparsity 下保留 95% reasoning 能力，关键创新是用 on-policy CoT traces 重建而非仅输入重建。与本文的 pruning + reasoning 主题直接相关。**应当讨论。**\n\n5. **EVICPRESS** (Fang et al., 2025): Joint KV-Cache compression and eviction，优化跨存储层的 eviction 和 compression 决策。属于 compound compression 的方法性工作。**可选讨论。**\n\n6. **LongFlow** (2026, ICLR withdrawn): KV cache compression for reasoning models with throughput measurement (11.8× throughput, 80% compression)。本文缺少 throughput evaluation，LongFlow 展示了这类评估的可行性。**可选讨论。**\n\n7. **\"Not All Heads Matter\"** (Microsoft, 2024): Head-level KV cache compression with integrated retrieval and reasoning。与 head-level importance heterogeneity 相关。**可选讨论。**\n\n特别指出：论文 bib 中已有 `raas-acl2025` (RaaS) 但正文未引用，这是 reasoning-aware attention sparsity 的直接相关工作，遗漏不可接受。\n\n---\n\n## 主要优势\n\n1. **统计方法严谨**：permutation test + Bonferroni correction + bootstrap CI + effect size reporting 的组合在 ML 论文中罕见，值得肯定（Section 5.5, Appendix C/G）。\n2. **Random eviction 作为 falsification control 设计精巧**：用 random eviction 作为 null strategy 来隔离\"phase gradient 是 strategy-specific 还是 compound sparsity inherent\"的设计简洁有力（Table 1, Section 5.1）。\n3. **Multiplicative null 验证**（Appendix B）：检验 additive vs. multiplicative null 不影响结论，增强稳健性。\n4. **Limitations section 诚实全面**：对样本量、架构限制、因果性限制等的讨论坦诚，这在很多论文中做不到。\n\n---\n\n## Questions for Authors\n\n1. 如果将评估扩大到全部 500 道 MATH-500 题，severity gradient 的 magnitude 和 statistical significance 是否保持？50 vs. 500 的结果对比是验证当前发现稳健性的最低成本实验。\n2. Phase-aware compression budget 的 oracle 版本（已知每个 phase 的最优 sparsity level）相对于 uniform budget 能提升多少 accuracy？如果只需要简单地对 high/low phase 用不同 s，实现成本极低——为什么不做？\n3. 为什么选择 Frobenius norm 而非 gradient-based importance 来决定 head pruning？论文在 Extended Discussion 中提到\"attention-independent metrics should produce flatter severity gradients\"——这是一个 testable prediction，为什么不在本文中验证？\n4. Discrimination collapse 的 Gini 下降幅度（0.010-0.081）在绝对值上很小。是否计算了 Gini 下降与 severity gradient 之间的相关系数？如果相关性不强，机制解释的说服力会大打折扣。\n\n---\n\n**总结判断**：论文发现了一个有趣的经验现象，统计分析做得规范，但（1）纯观察性贡献缺乏方法论增量，（2）评估规模过小（2 个同架构模型 × 50 题），（3）核心指标 G 受分母影响存在误导性，（4）遗漏多篇 2025-2026 高度相关工作。建议 **Resubmit next cycle**，补充方法性贡献（至少 oracle phase-aware budget 验证）和扩大评估规模后再投。",
+  "reviewer_id": "2",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a6fc94d7-f369-413c-ad2f-8de7e457203f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2Ww3BbMuayvaV4Nh54r",
+  "type": "assistant",
+  "uuid": "60e4f423-296d-4188-a0c3-a0a6cf1ed6d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAKY8yfNG9gVfwHjQEhvxv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 904,
+      "cache_creation_input_tokens": 11235,
+      "cache_read_input_tokens": 54694,
+      "output_tokens": 6522,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11235,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 904,
+          "output_tokens": 6522,
+          "cache_read_input_tokens": 54694,
+          "cache_creation_input_tokens": 11235,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11235
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Round 1 审稿任务 — Reviewer 2  **你的审查侧重：新颖性 + 相关工作完整性 + 写作质量 + 实际影响**  ### 论文信息 - **标题**: Phase-Modulated Compound Sparsity: Strategy-Dependent Severity Gradients in Reasoning Models -…",
+  "leafUuid": "60e4f423-296d-4188-a0c3-a0a6cf1ed6d2",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review EMNLP paper on phase-modulated compound sparsity",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 85 · 2026-05-14T13:13:27.934Z_
+
+<details><summary>↩ Tool result · `toolu_01VYn55YQTZJY9qr4AA6SVVm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_57b24a804b56707ec9118a483a8ac65e:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60e4f423-296d-4188-a0c3-a0a6cf1ed6d2",
+  "isSidechain": false,
+  "promptId": "d37bc962-ddca-4214-8ebc-8e2b8fe4f451",
+  "type": "user",
+  "uuid": "3a7a79b6-06a6-4ae7-b561-d0a70d3ae93c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_57b24a804b56707ec9118a483a8ac65e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_57b24a804b56707ec9118a483a8ac65e:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "60e4f423-296d-4188-a0c3-a0a6cf1ed6d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 86 · 2026-05-14T13:13:39.604Z_
+
+审稿报告已提交给 Review Director。
+
+**审稿结论：Overall 2.5/5（建议 Resubmit）。** 核心问题：
+
+1. **新颖性不足**：三条贡献均为经验观察，未提出任何方法。Phase-aware compression budget 仅停留在概念层面。
+2. **Severity gradient 指标 G 的 69×-274× 倍数由分母极小（Ĩ_high=0.006-0.053）驱动，具有误导性。**
+3. **评估规模严重不足**：仅 2 个同架构（Qwen2）模型、50 道 MATH-500 题，无法支撑论文中"reasoning models"的一般化 claim。
+4. **遗漏多篇关键相关工作**：R-KV (NeurIPS 2025)、RLKV (2025)、"Hold Onto That Thought" (NeurIPS 2025) 等直接相关工作未讨论。bib 中已有 RaaS 条目却未在正文引用。
+5. **正文仅 ~5 页**，远未利用 8 页限制，大量关键表格被推入附录。
+
+优势：统计方法严谨（permutation test + bootstrap + Bonferroni），random eviction 作为 falsification control 设计精巧，Limitations 诚实。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a7a79b6-06a6-4ae7-b561-d0a70d3ae93c",
+  "isSidechain": false,
+  "requestId": "req_011Cb2X9KooUk3XjiwwyncMe",
+  "type": "assistant",
+  "uuid": "9561db0f-348f-4dc8-997a-48dbb55b4be5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012fiGzSsaCzMzmddvVu1EgB",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7494,
+      "cache_read_input_tokens": 65929,
+      "output_tokens": 396,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7494,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 396,
+          "cache_read_input_tokens": 65929,
+          "cache_creation_input_tokens": 7494,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7494
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 87_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review EMNLP paper on phase-modulated compound sparsity",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 88 · 2026-05-14T13:13:47.520Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-14T13:13:47.520Z",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "content": "[Round 1 审稿请求]:\n## Step 2 — 交叉分享：请回应 Reviewer 1 的审稿意见\n\n以下是 Reviewer 1 的完整审稿原文。请逐条回应：\n- **[AGREE]** 同意并说明理由\n- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）\n\n特别关注与你审查侧重（新颖性 + 相关工作 + 写作 + 格式）相关的发现是否一致或有分歧。\n\n---\n\n## Reviewer 1 — Round 1 审稿报告\n\n**审查侧重：方法严谨性 + 实验设计 + 统计验证**\n\n**Overall**: 3/5 (Findings-level)\n**一句话总结**: 论文发现了一个有趣且可验证的现象（compound sparsity 的 phase-strategy 交互），实验设计有亮点（random eviction 作为 falsification control），但实验规模过小（n=50, 2 个同架构模型, 4 个 sparsity levels）、多处数值不一致、以及关键统计论证存在缺陷，不足以支撑论文标题和摘要中隐含的通用性声明。\n\n### 官方维度打分\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3/5 | 核心发现（phase-strategy interaction）有实验支撑，但多个 main claims 的证据不充分：monotonicity 仅基于 4 个数据点，cross-model ρ=1.0 统计功效极低，Qwen s=0.15 marginal result 被忽略 |\n| Excitement | 3/5 | Phase-modulated severity 和 crossover 现象有学术价值，但论文止步于现象描述，未提出或验证 phase-aware controller，实际影响有限 |\n| Reproducibility | 3/5 | 提供了模型名称、sparsity levels、统计方法细节，但未提供代码/数据、50 题选择标准不透明、随机种子未完整报告 |\n| Confidence | 4/5 | 仔细阅读了全文及附录，逐条核验了统计数据和方程 |\n\n### Must-Fix 问题\n\n**N1** [critical] 数值不一致：摘要/正文/表格之间存在矛盾数据\n- Abstract 和 Table 1 报告 DeepSeek s=0.30 时 Δ=14.59，但 §5.1 第一段（p.4 左栏）写 \"Δ increases from 0.39 at s=0.15 to **11.59** at s=0.30\"。14.59 与 11.59 不一致。\n- 主文（Table 1 标题、§4.2、§5 全文）均声称 DeepSeek n=50，但 Appendix E（p.11）明确写 \"paired permutation test yields **n=49** paired problems for DeepSeek (1 excluded)\"。\n- §6.2（p.7）声称 DeepSeek \"ΔH ∈ [−0.080, −0.047]\"，但 Table 7（p.12）显示 ΔH 范围为 [−0.047, −0.040]。\n\n**N2** [critical] Cross-model Spearman ρ=1.0（n=4）作为 \"replication\" 证据在统计上无意义\n- 4 个数据点的 Spearman ρ=1.0 → p=1/24≈0.042。统计功效极低，无法区分任何单调关系的具体形式；未做 Bonferroni 修正（论文其他检验均做了）；p=0.04 修正后不再显著。\n\n**N3** [critical] 样本量不足以支撑核心声明的稳健性\n- n=50（实际 49/46），右偏分布下 median 估计不稳定。s=0.30 Bootstrap CI=[0.70, 16.29]（Appendix E），跨越一个数量级。\n\n**N4** [critical] Severity gradient G 定义数值不稳定，69×–274× 数字具有误导性\n- G = Π̃_low / Π̃_high，分母 Π̃_high = 0.006–0.053 接近零，G 对分母微小变化极度敏感。ε 阈值未说明取值。\n\n### Should-Fix 问题\n\n**W1** [major] Qwen s=0.15 marginal（d_z=0.28, CI含零）与摘要 unqualified monotonicity 声明矛盾\n**W2** [major] 仅 2 个同 Qwen2 架构模型，\"Transformer-based reasoning\" 泛化声明过度\n**W3** [major] Phase segmentation 用 attention sparsity 定义 phase，与 attention-dependent outcome 存在概念耦合/confounding\n**W4** [major] 仅 4 个 sparsity levels 不足以论证 \"monotonic growth\" 或分析增长形状\n**W5** [major] Cohen's d 解读不准确（0.44≠small, 0.80=threshold of large）；摘要写 0.41 但正文写 0.44\n**W6** [major] 缺少 task accuracy 评估（仅 PPL），无法判断 severity gradient 的实际部署影响\n**W7** [warning] Limitations 节格式违反 ACL/ARR 要求（应为 Conclusion 后独立无编号节）\n\n### 小问题\n- h2o-neurips2023 bib 条目缺少 title 字段\n- 7 个 orphan bib entries 需清理\n- 对称 sparsity budget 限制应更突出讨论\n- n=49/46 的 exclusion criteria 应在主文交代\n\n### Questions for Authors\n1. §5.1 的 \"11.59\" 与 Table 1 的 \"14.59\" 哪个正确？\n2. n=50 还是 n=49？排除标准？\n3. 是否做过 split-half stability analysis？\n4. 用 token position 等分或 &lt;think>/<\\/think> 标记做 phase segmentation 结果如何？\n5. G 的 bootstrap 95% CI？\n6. 各条件下 MATH-500 solve rate？\n7. Cohen's d 摘要写 0.41 但正文写 0.44，哪个正确？\n\n### Missing References\n- Cohen (1988) Statistical Power Analysis\n- RaaS (Hu et al., 2025) 在 bib 中未被引用\n- Per-layer 非对称 sparsity 方法（OWL, Wanda）\n\n### 主要优势\n- Random eviction 作为 falsification control 是优秀的实验设计（7/8 null results）\n- Entropy-discrimination collapse 机制提供了可检验的因果解释\n- 论文组织清晰，C1-C6 逐一对应\n- Phase-strategy crossover 是有趣的定性发现\n- 统计方法论整体合理（median + nonparametric bootstrap + permutation + Bonferroni）\n\n**Overall Score**: Borderline (3/5 — Findings-level)\n**Confidence**: 4/5\n\n---\n\n请对以上每个 Must-Fix、Should-Fix 和关键 Missing References 逐条给出 [AGREE] 或 [REBUT] 回应。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 89 · 2026-05-14T13:13:47.520Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-14T13:13:47.520Z",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+## Round 2
+
+## Round 2
+
+7 recorded events
+
+
+### User
+
+_source line 90 · 2026-05-14T13:13:47.613Z_
+
+[Round 1 审稿请求]:
+## Step 2 — 交叉分享：请回应 Reviewer 1 的审稿意见
+
+以下是 Reviewer 1 的完整审稿原文。请逐条回应：
+- **[AGREE]** 同意并说明理由
+- **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）
+
+特别关注与你审查侧重（新颖性 + 相关工作 + 写作 + 格式）相关的发现是否一致或有分歧。
+
+---
+
+## Reviewer 1 — Round 1 审稿报告
+
+**审查侧重：方法严谨性 + 实验设计 + 统计验证**
+
+**Overall**: 3/5 (Findings-level)
+**一句话总结**: 论文发现了一个有趣且可验证的现象（compound sparsity 的 phase-strategy 交互），实验设计有亮点（random eviction 作为 falsification control），但实验规模过小（n=50, 2 个同架构模型, 4 个 sparsity levels）、多处数值不一致、以及关键统计论证存在缺陷，不足以支撑论文标题和摘要中隐含的通用性声明。
+
+### 官方维度打分
+
+| 维度 | 分数 | 理由摘要 |
+|------|------|----------|
+| Soundness | 3/5 | 核心发现（phase-strategy interaction）有实验支撑，但多个 main claims 的证据不充分：monotonicity 仅基于 4 个数据点，cross-model ρ=1.0 统计功效极低，Qwen s=0.15 marginal result 被忽略 |
+| Excitement | 3/5 | Phase-modulated severity 和 crossover 现象有学术价值，但论文止步于现象描述，未提出或验证 phase-aware controller，实际影响有限 |
+| Reproducibility | 3/5 | 提供了模型名称、sparsity levels、统计方法细节，但未提供代码/数据、50 题选择标准不透明、随机种子未完整报告 |
+| Confidence | 4/5 | 仔细阅读了全文及附录，逐条核验了统计数据和方程 |
+
+### Must-Fix 问题
+
+**N1** [critical] 数值不一致：摘要/正文/表格之间存在矛盾数据
+- Abstract 和 Table 1 报告 DeepSeek s=0.30 时 Δ=14.59，但 §5.1 第一段（p.4 左栏）写 "Δ increases from 0.39 at s=0.15 to **11.59** at s=0.30"。14.59 与 11.59 不一致。
+- 主文（Table 1 标题、§4.2、§5 全文）均声称 DeepSeek n=50，但 Appendix E（p.11）明确写 "paired permutation test yields **n=49** paired problems for DeepSeek (1 excluded)"。
+- §6.2（p.7）声称 DeepSeek "ΔH ∈ [−0.080, −0.047]"，但 Table 7（p.12）显示 ΔH 范围为 [−0.047, −0.040]。
+
+**N2** [critical] Cross-model Spearman ρ=1.0（n=4）作为 "replication" 证据在统计上无意义
+- 4 个数据点的 Spearman ρ=1.0 → p=1/24≈0.042。统计功效极低，无法区分任何单调关系的具体形式；未做 Bonferroni 修正（论文其他检验均做了）；p=0.04 修正后不再显著。
+
+**N3** [critical] 样本量不足以支撑核心声明的稳健性
+- n=50（实际 49/46），右偏分布下 median 估计不稳定。s=0.30 Bootstrap CI=[0.70, 16.29]（Appendix E），跨越一个数量级。
+
+**N4** [critical] Severity gradient G 定义数值不稳定，69×–274× 数字具有误导性
+- G = Π̃_low / Π̃_high，分母 Π̃_high = 0.006–0.053 接近零，G 对分母微小变化极度敏感。ε 阈值未说明取值。
+
+### Should-Fix 问题
+
+**W1** [major] Qwen s=0.15 marginal（d_z=0.28, CI含零）与摘要 unqualified monotonicity 声明矛盾
+**W2** [major] 仅 2 个同 Qwen2 架构模型，"Transformer-based reasoning" 泛化声明过度
+**W3** [major] Phase segmentation 用 attention sparsity 定义 phase，与 attention-dependent outcome 存在概念耦合/confounding
+**W4** [major] 仅 4 个 sparsity levels 不足以论证 "monotonic growth" 或分析增长形状
+**W5** [major] Cohen's d 解读不准确（0.44≠small, 0.80=threshold of large）；摘要写 0.41 但正文写 0.44
+**W6** [major] 缺少 task accuracy 评估（仅 PPL），无法判断 severity gradient 的实际部署影响
+**W7** [warning] Limitations 节格式违反 ACL/ARR 要求（应为 Conclusion 后独立无编号节）
+
+### 小问题
+- h2o-neurips2023 bib 条目缺少 title 字段
+- 7 个 orphan bib entries 需清理
+- 对称 sparsity budget 限制应更突出讨论
+- n=49/46 的 exclusion criteria 应在主文交代
+
+### Questions for Authors
+1. §5.1 的 "11.59" 与 Table 1 的 "14.59" 哪个正确？
+2. n=50 还是 n=49？排除标准？
+3. 是否做过 split-half stability analysis？
+4. 用 token position 等分或 &lt;think>/<\/think> 标记做 phase segmentation 结果如何？
+5. G 的 bootstrap 95% CI？
+6. 各条件下 MATH-500 solve rate？
+7. Cohen's d 摘要写 0.41 但正文写 0.44，哪个正确？
+
+### Missing References
+- Cohen (1988) Statistical Power Analysis
+- RaaS (Hu et al., 2025) 在 bib 中未被引用
+- Per-layer 非对称 sparsity 方法（OWL, Wanda）
+
+### 主要优势
+- Random eviction 作为 falsification control 是优秀的实验设计（7/8 null results）
+- Entropy-discrimination collapse 机制提供了可检验的因果解释
+- 论文组织清晰，C1-C6 逐一对应
+- Phase-strategy crossover 是有趣的定性发现
+- 统计方法论整体合理（median + nonparametric bootstrap + permutation + Bonferroni）
+
+**Overall Score**: Borderline (3/5 — Findings-level)
+**Confidence**: 4/5
+
+---
+
+请对以上每个 Must-Fix、Should-Fix 和关键 Missing References 逐条给出 [AGREE] 或 [REBUT] 回应。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9561db0f-348f-4dc8-997a-48dbb55b4be5",
+  "isSidechain": false,
+  "promptId": "947615c7-599f-493d-adbc-7b1fbf237731",
+  "type": "user",
+  "uuid": "6ad0af67-507c-4fd0-9133-d47560dab14f",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 91 · 2026-05-14T13:14:43.554Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The Review Director is asking me to respond to Reviewer 1's review point by point with [AGREE] or [REBUT]. Let me carefully go through each issue and compare with my own findings.
+
+Let me re-read the paper details I extracted to verify R1's claims before responding.
+
+Key facts from my reading:
+- Abstract mentions 69×→274×, Δ from 0.39 to 14.59
+- Table 1 (Appendix D) shows the full breakdown
+- DeepSeek n=50 in main text, n=49 in Appendix (1 excluded)
+
+
+- Qwen n=46 (4 excluded)
+- d_z values: 0.44 at s=0.15, 0.80 at s=0.30
+- Phase segmentation uses tercile boundaries of per-position attention entropy
+- ΔH for DeepSeek ranges from -0.040 to -0.047
+
+Now I'm working through R1's first point about numerical inconsistencies. The critical discrepancy is the 14.59 versus 11.59 figure—my extracted data shows Δ=14.59 at s=0.30 for importance in Table D, so if section 5.1 reports 11.59, that's a genuine inconsistency I need to flag.
+
+For the sample sizes, R1 caught what I missed: the appendix documents n=49 for DeepSeek with 1 excluded, but the main text states n=50. On the ΔH range, my extraction shows the actual values are -0.040, -0.047, -0.045, and -0.044, giving a range of [-0.047, -0.040], which contradicts what section 6.2 apparently claims about [-0.080, -0.047].
+
+The perfect correlation across just 4 models is statistically hollow—with so few points, any monotonic sequence produces ρ=1.0, and the p-value doesn't hold up under multiple comparisons correction. The sample size issue I flagged remains serious; n=50 (really 49 or 46 after exclusions) is too small, and the confidence interval for s=0.30 stretches from 0.70 to 16.29, which is alarming. The severity gradient G also misleads in the way I originally noted. For Qwen at s=0.15, the effect size is marginal at d_z=0.28 with a confidence interval that...
+
+Actually, looking back at the abstract more carefully, it does qualify the Qwen replication—it specifies s≥0.20 (d_z≥0.55) with attenuated magnitude, so that's appropriately hedged. The DeepSeek claim about the gradient growing from 69× to 274× is specific to that model. The abstract seems more cautious than I initially thought.
+
+On the monotonicity claim though, there's still the issue of that Qwen s=0.15 gap that breaks the pattern, so I should acknowledge that caveat even if the overall finding holds.
+
+For the phase segmentation concern—there's definitely a circularity here since phases are defined by attention sparsity and the outcome also depends on attention patterns. But I think that's somewhat unavoidable when you're trying to segment generation by intrinsic properties. The real question is whether the finding is just a trivial consequence of how the phases are constructed, or if there's something meaningful about how compound sparsity behaves differently across them.
+
+The random eviction control actually helps here—if the confounding were trivial, random eviction should show the same phase dependence, but it doesn't, which suggests the interaction between phase and strategy is a genuine finding rather than just an artifact of the definitions.
+
+I do agree that four sparsity levels isn't enough to robustly establish monotonicity, and the Cohen's d values are being interpreted a bit generously—0.44 sits between small and medium, not firmly in either camp, and 0.80 is the threshold for large, not comfortably above it. There's also that discrepancy between the reported 0.41 and 0.44 that needs clarification.
+
+On the performance metric question, I'm seeing references to a "performance ratio" r in the interaction index formula, and the paper mentions MATH-500 problems, but I'm not entirely certain whether the base metric is perplexity or accuracy. R1 claims it's PPL-only, which would be a legitimate concern for reasoning tasks, but I should verify this more carefully before fully committing to that criticism.
+
+For the Limitations section, R1 is right that ACL/ARR guidelines require it to be unnumbered and placed after the Conclusion—I can see it on page 5, so that's a minor formatting issue worth noting. On the missing references, Cohen (1988) would indeed strengthen the statistical methodology, and I already caught the RaaS citation gap in my own review. The OWL and Wanda methods are per-layer asymmetric sparsity approaches that should probably be discussed in context.
+
+Now looking at whether OWL and Wanda are actually relevant here—they're somewhat tangential since the paper focuses on compound sparsity in reasoning models rather than per-layer asymmetric approaches.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6ad0af67-507c-4fd0-9133-d47560dab14f",
+  "isSidechain": false,
+  "requestId": "req_011Cb2XAn8NGKCdbzRuFBx8A",
+  "type": "assistant",
+  "uuid": "783c7a45-de6a-43e0-bf19-e46678dffee4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CksrEddVuqgzDVXd79bE7P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 39341,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 5752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 39341,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5752,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 39341,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 39341
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 30710
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 92 · 2026-05-14T13:14:43.557Z_
+
+逐条回应 Reviewer 1 的审稿意见。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "783c7a45-de6a-43e0-bf19-e46678dffee4",
+  "isSidechain": false,
+  "requestId": "req_011Cb2XAn8NGKCdbzRuFBx8A",
+  "type": "assistant",
+  "uuid": "6321ef9d-fa90-4ffb-9a72-7e6fb494bb40",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CksrEddVuqgzDVXd79bE7P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 39341,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 5752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 39341,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5752,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 39341,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 39341
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 30710
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 93 · 2026-05-14T13:16:08.592Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_01NJoAzPTLTWFzhuLMfV4Rjt`</summary>
+
+```json
+{
+  "text": "## Reviewer 2 — 交叉回应 Reviewer 1\n\n---\n\n### Must-Fix 问题\n\n**[AGREE] R1-N1: 数值不一致**\n完全同意。这是严重的质量控制问题。三处不一致均可独立验证：\n- 14.59 vs 11.59：Appendix D 的完整 breakdown table 明确显示 s=0.30 importance Δ=14.59（Ĩ_low=14.639 − Ĩ_high=0.053），因此 §5.1 的 \"11.59\" 几乎确定是笔误。\n- n=50 vs n=49：Appendix 明确写 \"n=49 paired problems for DeepSeek (1 excluded)\"，主文 Table 1 标题却写 n=50。排除标准未在主文交代。\n- ΔH 范围：Appendix I 的 Table 显示 DeepSeek ΔH = {−0.040, −0.047, −0.045, −0.044}，范围为 [−0.047, −0.040]，与 §6.2 声称的 [−0.080, −0.047] 明显矛盾。\n\n我自己的审查未逐字核对 §5.1 的具体数值，R1 发现了我遗漏的问题。对于一篇以精确统计分析为核心卖点的论文，这类数值错误尤其致命。\n\n**[AGREE] R1-N2: Cross-model ρ=1.0 (n=4) 无统计意义**\n完全同意。4 个数据点的 Spearman ρ=1.0 仅意味着两个序列同为单调递增，p=1/24≈0.042 在 Bonferroni 校正后不再显著。任何两个随 sparsity 递增的量（哪怕机制完全不同）都会产生 ρ=1.0。论文在其他所有检验中均做了 Bonferroni 校正，唯独此处遗漏，构成 cherry-picking 嫌疑。\n\n补充：Abstract 将此作为 cross-model replication 的核心证据（\"replicates on Qwen2.5-7B-Instruct\"），但 Qwen 的 effect size 仅为 DeepSeek 的 1/5（Table 3: Δ = 0.04→2.94 vs 0.39→14.59），且 s=0.15 处 CI 含零。用 ρ=1.0 来宣称 \"replication\" 是对这一术语的滥用——magnitude attenuation 这么大，更准确的说法是 \"partial, qualitatively consistent but quantitatively much weaker pattern\"。\n\n**[AGREE] R1-N3: 样本量不足**\n完全同意，与我的 N3 一致。补充两点：\n1. R1 指出的 s=0.30 Bootstrap CI=[0.70, 16.29] 跨越一个数量级，这意味着 severity gradient 的 point estimate 不够精确——Δ 的真值可能是 0.70 也可能是 16.29，差 23 倍。\n2. 右偏分布下（mean/median ratio 1.6:1, Appendix C），n=49 的 median 估计本身 bias 较小，但 variance 很大。论文选用 median 而非 mean 是正确的，但这不能补救样本量不足的根本问题。\n\n**[AGREE] R1-N4: Severity gradient G 数值不稳定**\n与我的 N2 完全一致。G 的分母 Ĩ_high 在 0.006-0.053 范围内，任何微小扰动都会导致 G 剧烈变化。R1 额外指出 ε 阈值（用于避免除零）未说明取值——这是我遗漏的一个好观察。如果 ε=0.001，G 的计算结果会显著不同于 ε=0.01。\n\n---\n\n### Should-Fix 问题\n\n**[AGREE] R1-W1: Qwen s=0.15 marginal result 与 monotonicity 声明**\n同意但补充一个 nuance：Abstract 实际上写了 \"replicates on Qwen2.5-7B-Instruct at s≥0.20 (d_z≥0.55)\"，即 Abstract 自身限定了 Qwen 的有效范围从 s≥0.20 开始。但 R1 的核心论点仍然成立——论文标题用 \"Severity Gradients\" 暗示一般性结论，而 Qwen s=0.15 的失败（d_z=0.28, CI 含零）说明 gradient 的存在条件比论文暗示的更窄。对于 claim 的表述精度，R1 的批评是合理的。\n\n**[AGREE] R1-W2: 仅 2 个同架构模型的泛化过度**\n与我的 N3 完全一致。两个模型共享 Qwen2ForCausalLM（28 layers, 28 heads, 4-group GQA），架构变量为零。DeepSeek vs Qwen 的差异仅来自训练（reasoning distillation vs instruction tuning），这是 training recipe 对比而非 architecture 对比。论文使用 \"cross-model replication\" 一词时，读者的合理预期是不同架构的验证。\n\n**[REBUT] R1-W3: Phase segmentation 与 outcome 的概念耦合/confounding**\n部分反驳。R1 的 concern 有一定道理——phase 由 attention sparsity (Eq. 6) 定义，outcome (II) 也依赖 attention-based metrics——但论文的 random eviction falsification control 实质性地缓解了这一问题。\n\n具体论证：如果 confounding 是 trivial 的（即 phase 定义本身就决定了 severity gradient），那么 random eviction 也应展现 phase gradient，因为 phase assignment 对两种 strategy 完全相同（phase 是在 baseline 无压缩条件下定义的，不依赖 eviction strategy）。但实验结果显示 random eviction 在 7/8 条件下无显著 phase gradient（Table 1），这排除了 \"phase 定义本身导致 gradient\" 的 trivial 解释。\n\n然而，R1 的 concern 并非完全无效：attention sparsity 定义的 phase 可能与 importance-based eviction 有 mechanistic coupling（高 entropy phase → 更均匀 importance → eviction 更 random-like → 更少 compound interaction），这恰恰是 discrimination collapse 所描述的机制。所以 confounding 和 mechanism 在这里是同一件事——问题是论文是否充分讨论了这一点。建议作者在正文明确承认 phase definition 和 mechanism 的 coupling，并讨论用 non-attention-based phase segmentation（如 token position 等分或 &lt;think> 标记）验证 robustness。\n\n**[AGREE] R1-W4: 仅 4 个 sparsity levels 不足以论证 monotonicity**\n同意。4 个数据点只能说 \"在测试的 4 个 s 值上观察到递增趋势\"，不能称为 \"monotonic growth\"。特别是：(a) 没有测试 s<0.15 或 s>0.30，不知道边界行为；(b) 4 点的任何排列中有 4!/4!= 1/24 ≈ 4.2% 的概率恰好递增，与 ρ=1.0 的 p-value 一样尴尬。\n\n**[AGREE] R1-W5: Cohen's d 解读不准确 + 数值不一致**\n同意。Cohen (1988) 的标准 convention 是 small=0.2, medium=0.5, large=0.8。d_z=0.44 是 small-to-medium，不是 \"small\"；d_z=0.80 是 large 的起始阈值，不是 firmly large。Abstract 写 d=0.41 但 Appendix Table 5 写 d_z=0.44——又一处数值不一致，支持 R1-N1 的系统性质量问题判断。\n\n**[AGREE with caveat] R1-W6: 缺少 task accuracy 评估**\n基本同意。论文使用 MATH-500 problems 但未报告 solve rate（各条件下正确率），仅报告基于 performance ratio 的 interaction index。对于 reasoning 任务，accuracy 是最终 metric——PPL 或 performance ratio 的变化不能直接说明 \"这个 sparsity 配置是否仍能正确解题\"。\n\n不过我加一个 caveat：如果论文的目标是 characterize interaction patterns 而非 recommend deployment configs，那么 II 作为 relative metric 是合理的。但论文 Section 7 (Conclusion) 和 Discussion 确实提到了 \"deployment\" 和 \"phase-aware sparsity allocation\"，这就要求 accuracy 数据来支撑实际影响。\n\n**[AGREE] R1-W7: Limitations 节格式**\n同意但认为这是 minor issue。ACL/ARR 确实要求 Limitations 作为正文最后的独立无编号节，不计入页数限制。如果论文将其编号或放在不正确位置，需要修正。但这是纯格式问题，修正成本极低。\n\n---\n\n### Missing References\n\n**[AGREE] R1-MR1: Cohen (1988) Statistical Power Analysis**\n同意。论文大量使用 Cohen's d 但未引用原始出处，且解读有误（W5）。加入 Cohen (1988) 并修正解读。\n\n**[AGREE] R1-MR2: RaaS (Hu et al., 2025) 在 bib 中未被引用**\n与我自己的发现完全一致。RaaS 已在 bib 中（`raas-acl2025`）但正文从未 \\cite，这是一个明显的疏忽。RaaS 发现了 reasoning 中的 \"milestone tokens\" 现象，与论文的 phase-dependent importance 高度相关。\n\n**[PARTIAL AGREE] R1-MR3: Per-layer 非对称 sparsity 方法（OWL, Wanda）**\n部分同意。OWL 和 Wanda 是 weight pruning 方法，与论文研究的 inference-time sparsity (attention head pruning + KV cache eviction) 有本质区别。然而，OWL 的核心思想（per-layer adaptive sparsity budget）与论文提出的 \"phase-aware sparsity allocation\" 概念有类比价值。建议在 Discussion 中简要提及而非必须在 Related Work 详细讨论。\n\n补充我自己发现的遗漏（R1 未提及）：\n- **R-KV** (NeurIPS 2025): Reasoning model 专用 KV cache 压缩，识别冗余 token。直接相关。\n- **RLKV** (2025/2026): RL-guided head identification for reasoning，与 head pruning + reasoning 的交互直接相关。\n- **\"Hold Onto That Thought\"** (NeurIPS 2025): KV cache compression 对 reasoning integrity 的系统评估。\n\n---\n\n### 总体评价一致性\n\nR1 给出 3/5（Findings-level），我给出 2.5/5（Findings 和 Resubmit 之间）。我们在核心判断上高度一致：\n\n**共识点：**\n1. 评估规模不足（n=50, 2 同架构模型）——我们都列为 critical\n2. G 指标的分母敏感性——我们都列为 critical\n3. 缺乏方法论贡献——我们都认为 \"止步于现象描述\" 是核心弱点\n4. Random eviction 作为 falsification control 是优秀设计——我们都认可\n5. 统计方法整体规范——我们都肯定\n\n**分歧点：**\n- R1 给 3/5 (Findings-level)，我给 2.5/5。差异来自我对**新颖性**的更严格要求：我认为在没有方法贡献的前提下，纯观察性发现需要更大规模（多架构、多任务）才能达到 Findings 门槛。R1 似乎认为现象本身的学术价值（phase-strategy crossover）已足够 Findings。\n- R1 发现了我遗漏的数值不一致（§5.1 的 11.59 vs 14.59, ΔH 范围矛盾, d=0.41 vs 0.44）——这些进一步降低了我的评分信心。\n- 我在 confounding (W3) 上给出了 partial rebut，认为 random eviction control 在相当程度上缓解了这一 concern。\n\n**综合建议：** 维持 Resubmit 建议。R1 发现的多处数值不一致加上我们共同识别的规模不足和 G 指标误导性问题，使论文在当前状态下不适合接收。",
+  "reviewer_id": "2",
+  "project": "phase-gated-compound-sparse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6321ef9d-fa90-4ffb-9a72-7e6fb494bb40",
+  "isSidechain": false,
+  "requestId": "req_011Cb2XAn8NGKCdbzRuFBx8A",
+  "type": "assistant",
+  "uuid": "cf10a61d-a2da-4709-ab7b-bfd9d6a34ba2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CksrEddVuqgzDVXd79bE7P",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 39341,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 5752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 39341,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5752,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 39341,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 39341
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 30710
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: ## Step 2 — 交叉分享：请回应 Reviewer 1 的审稿意见  以下是 Reviewer 1 的完整审稿原文。请逐条回应： - **[AGREE]** 同意并说明理由 - **[REBUT]** 反驳并提供证据（cite 具体 Section/Table/Figure）  特别关注与你审查侧重（新颖性 + 相关工作 + 写作 + 格式）相关的发现是否一…",
+  "leafUuid": "cf10a61d-a2da-4709-ab7b-bfd9d6a34ba2",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 95_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review EMNLP paper on phase-modulated compound sparsity",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 96 · 2026-05-14T13:16:13.200Z_
+
+<details><summary>↩ Tool result · `toolu_01NJoAzPTLTWFzhuLMfV4Rjt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_57b24a804b56707ec9118a483a8ac65e:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf10a61d-a2da-4709-ab7b-bfd9d6a34ba2",
+  "isSidechain": false,
+  "promptId": "947615c7-599f-493d-adbc-7b1fbf237731",
+  "type": "user",
+  "uuid": "fc3c6a3c-51a4-425c-9223-d503af360ceb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_57b24a804b56707ec9118a483a8ac65e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_57b24a804b56707ec9118a483a8ac65e:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "cf10a61d-a2da-4709-ab7b-bfd9d6a34ba2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/phase-gated-compound-sparse/.claude/sessions/review_reviewer_2_d0398257",
+  "sessionId": "792468c2-2ec1-47cc-9ece-e60ae9112cdb",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---

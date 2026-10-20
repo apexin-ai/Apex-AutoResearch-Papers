@@ -1,0 +1,4152 @@
+# Research conversation: [CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available - exp_id: d003_reasoni
+
+**Exposure Bias Collapses Auxiliary Attention Losses in Multi-Turn Dialogue (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 71
+- **Recorded user turns:** 1
+- **Tool calls:** 21
+- **Original source:** `logs/chats/exported-trajectories/account-1/deeba6c1-a3e0-4d50-ab01-de2cb0ce8100.jsonl`
+- **Structured JSON:** [`865ec8bb007fad775a40.json`](../../sessions/86/865ec8bb007fad775a40.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-12T16:13:43.616Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-12T16:13:43.616Z",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "content": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: d003_reasoning_traces\n- project: solver-verified-formalizer-rl\n- server: westd-16980\n- log_path: /root/carc/d003_exp1.log"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-12T16:13:43.619Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-12T16:13:43.619Z",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+## Round 1
+
+69 recorded events
+
+### User
+
+_source line 3 · 2026-05-12T16:13:43.660Z_
+
+[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。
+详情: Process exited cleanly, W&B data available
+
+- exp_id: d003_reasoning_traces
+- project: solver-verified-formalizer-rl
+- server: westd-16980
+- log_path: /root/carc/d003_exp1.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "213e7111-d833-4150-8402-19c734a5ec81",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-12T16:13:43.660Z_
+
+```json
+{
+  "parentUuid": "213e7111-d833-4150-8402-19c734a5ec81",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__allocate_and_submit",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__approve_worker",
+      "mcp__agent-ml-research__auto_build_provenance",
+      "mcp__agent-ml-research__backup_project_to_s3",
+      "mcp__agent-ml-research__cancel_worker",
+      "mcp__agent-ml-research__check_job_status",
+      "mcp__agent-ml-research__check_paper_consistency",
+      "mcp__agent-ml-research__check_provenance_completeness",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__compute_coverage_matrix",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__edit_paper_section",
+      "mcp__agent-ml-research__feishu_read_tum_pending_key",
+      "mcp__agent-ml-research__feishu_send_alert",
+      "mcp__agent-ml-research__feishu_send_approval_card",
+      "mcp__agent-ml-research__feishu_send_result_card",
+      "mcp__agent-ml-research__feishu_send_tum_key_request_card",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__get_baseline_metrics",
+      "mcp__agent-ml-research__get_gpu_health",
+      "mcp__agent-ml-research__get_image_info",
+      "mcp__agent-ml-research__get_matrix_value",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__get_tum_config",
+      "mcp__agent-ml-research__get_worker_status",
+      "mcp__agent-ml-research__impact_analysis",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__list_artifacts",
+      "mcp__agent-ml-research__list_available_gpus",
+      "mcp__agent-ml-research__list_s3_backups",
+      "mcp__agent-ml-research__list_workers",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__matrix_gap_analysis",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__poll_cron",
+      "mcp__agent-ml-research__poll_secret_request",
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__read_matrix",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__register_cron",
+      "mcp__agent-ml-research__request_secret",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__send_progress",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__submit_on_allocated",
+      "mcp__agent-ml-research__submit_training_job",
+      "mcp__agent-ml-research__sync_matrix_status",
+      "mcp__agent-ml-research__tail_training_logs",
+      "mcp__agent-ml-research__update_baseline",
+      "mcp__agent-ml-research__update_matrix",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__verify_references",
+      "mcp__agent-ml-research__write_paper_section"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "beacdc8b-adec-4e02-9952-6522daaa47df",
+  "timestamp": "2026-05-12T16:13:43.660Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-12T16:13:43.660Z_
+
+```json
+{
+  "parentUuid": "beacdc8b-adec-4e02-9952-6522daaa47df",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7c596430-f189-4a8c-b894-3983efddcdf0",
+  "timestamp": "2026-05-12T16:13:43.660Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-12T16:13:43.660Z_
+
+```json
+{
+  "parentUuid": "7c596430-f189-4a8c-b894-3983efddcdf0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "ee1cd5b7-161a-4bff-b8d9-e9e2d86787f0",
+  "timestamp": "2026-05-12T16:13:43.660Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and transition to done",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-12T16:13:47.839Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+收到 CRON 回调：实验 d003_reasoning_traces 进程正常退出，状态已转为 ANALYZING。我需要：
+
+1. 先执行 session-start 初始化（read_registry, reconcile_crons, 读 report.md 和 ROADMAP.md）
+2. 然后分析实验结果并推进到 DONE
+
+让我先加载需要的工具，然后执行初始化。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee1cd5b7-161a-4bff-b8d9-e9e2d86787f0",
+  "isSidechain": false,
+  "requestId": "req_011CaxyGmkE3aMmCQRfFCkJn",
+  "type": "assistant",
+  "uuid": "b7103ff7-01bd-40c8-94ec-7acaf6220e3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BuuVauuA3P3zisWNS1UvZe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 34275,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34275,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-12T16:13:48.875Z_
+
+收到 CRON 回调，d003_reasoning_traces 进程正常退出。先执行 session-start 初始化，再分析实验结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7103ff7-01bd-40c8-94ec-7acaf6220e3c",
+  "isSidechain": false,
+  "requestId": "req_011CaxyGmkE3aMmCQRfFCkJn",
+  "type": "assistant",
+  "uuid": "9ee10c6a-2a1c-4707-b47f-e007e378d87a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BuuVauuA3P3zisWNS1UvZe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 34275,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34275,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-12T16:13:51.307Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YHZi7Ud23yH4qjx8YB8wZh`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__send_progress",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ee10c6a-2a1c-4707-b47f-e007e378d87a",
+  "isSidechain": false,
+  "requestId": "req_011CaxyGmkE3aMmCQRfFCkJn",
+  "type": "assistant",
+  "uuid": "6879c5dd-9e19-4342-823e-f4fb275ecdf7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BuuVauuA3P3zisWNS1UvZe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 34275,
+      "output_tokens": 399,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 399,
+          "cache_read_input_tokens": 34275,
+          "cache_creation_input_tokens": 0,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-12T16:13:51.315Z_
+
+<details><summary>↩ Tool result · `toolu_01YHZi7Ud23yH4qjx8YB8wZh`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_roadmap"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__main_agent_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__spawn_worker"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__load_project_config"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__send_progress"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6879c5dd-9e19-4342-823e-f4fb275ecdf7",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "10b766ca-c91c-4a3d-bc31-d415a96786ad",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__reconcile_crons",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__read_roadmap",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__main_agent_post_to_director",
+      "mcp__agent-ml-research__spawn_worker",
+      "mcp__agent-ml-research__fetch_wandb_metrics",
+      "mcp__agent-ml-research__load_project_config",
+      "mcp__agent-ml-research__send_progress"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__send_progress",
+    "total_deferred_tools": 78
+  },
+  "sourceToolAssistantUUID": "6879c5dd-9e19-4342-823e-f4fb275ecdf7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-12T16:13:53.765Z_
+
+执行 session-start 初始化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10b766ca-c91c-4a3d-bc31-d415a96786ad",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHLD6iQp4fTAKAatSL",
+  "type": "assistant",
+  "uuid": "2e378176-9a4b-4153-baed-0bf40d2f2f97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jzczdx6T1iWvczmnYKG8N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3797,
+      "cache_read_input_tokens": 34275,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 34275,
+          "cache_creation_input_tokens": 3797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-12T16:13:54.213Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_016dKx5Kwjkfne1TpfULchnn`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2e378176-9a4b-4153-baed-0bf40d2f2f97",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHLD6iQp4fTAKAatSL",
+  "type": "assistant",
+  "uuid": "87d6a9cf-023d-4852-a7b9-cc5c0b87360a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jzczdx6T1iWvczmnYKG8N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3797,
+      "cache_read_input_tokens": 34275,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 34275,
+          "cache_creation_input_tokens": 3797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-12T16:13:54.709Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons · `toolu_01UYmDK3MJZFEVeRrx2cNZYm`</summary>
+
+```json
+{}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87d6a9cf-023d-4852-a7b9-cc5c0b87360a",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHLD6iQp4fTAKAatSL",
+  "type": "assistant",
+  "uuid": "3871017e-3083-4444-956a-ad1b623a62a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jzczdx6T1iWvczmnYKG8N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3797,
+      "cache_read_input_tokens": 34275,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 34275,
+          "cache_creation_input_tokens": 3797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-12T16:13:54.248Z_
+
+<details><summary>↩ Tool result · `toolu_016dKx5Kwjkfne1TpfULchnn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"d003_reasoning_traces\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:00:42.213Z\", \"updated_at\": \"2026-05-12T15:57:11.395Z\", \"spec\": {\"checkpoint_path\": \"/root/carc/d003_reasoning_results.json\", \"log_path\": \"/root/carc/d003_exp1.log\", \"command\": \"python /root/carc/d003_reasoning_traces.py\", \"server\": \"westd-16980\", \"data_path\": \"MATH reasoning traces (20 traces)\", \"data_count\": 30063, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-12T15:53:50.504Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T15:53:40.620856+00:00\"}]}, \"metrics\": {\"full_ppl\": 1.212, \"ema_0.9_ppl\": 1.2522, \"ema_0.7_ppl\": 1.2706, \"ema_0.5_ppl\": 1.278, \"random_ppl\": 1.2271, \"recency_ppl\": 1.217, \"ema_vs_random_gap_pct\": -2.05, \"ema_vs_full_gap_pct\": 3.32, \"recency_vs_full_gap_pct\": 0.41, \"pass\": false}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-12T15:55:11.238Z\"}, \"d003_wikitext_32k\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:00:45.017Z\", \"updated_at\": \"2026-05-12T15:51:02.405Z\", \"spec\": {\"command\": \"python d003_wikitext32k_eval.py\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"28380\", \"log_path\": \"/root/carc/d003_exp2.log\", \"submitted_at\": \"2026-05-12T14:29:13.542Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/carc/d003_wikitext32k_results.json\", \"wall_clock_seconds\": 4855.0, \"gpu_hours\": 1.35, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"data_path\": \"wikitext-2\", \"data_count\": 32768, \"seed\": null}, \"reproduce\": {\"finished_at\": \"2026-05-12T15:46:31.798Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T15:46:32.637844+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"ppl_full\": 7.1822, \"ppl_ema_0.9\": 7.7788, \"ppl_ema_0.7\": 8.1367, \"ppl_ema_0.5\": 8.1352, \"ppl_random\": 7.6432, \"ppl_recency\": 7.1758, \"ema_vs_recency_gap_pct\": 8.4, \"ema_vs_random_gap_pct\": -1.77, \"recency_vs_full_gap_pct\": -0.09}, \"completed_at\": \"2026-05-12T15:50:08.505Z\"}, \"mvp_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T08:58:24.936Z\", \"updated_at\": \"2026-05-12T14:26:09.353Z\", \"spec\": {\"hypothesis\": \"KV similarity (EMA centroid) predicts MLP sparsification tolerance: redundant tokens tolerate 55% sparsity with less perturbation than novel tokens, and EMA score correlates with token surprisal\", \"description\": \"CARC MVP 5-measurement validation on DeepSeek-R1-Distill-Qwen-14B with MATH-500 reasoning traces\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"server\": \"westd-16980\", \"data_path\": \"hendrycks/competition_math\", \"data_count\": 60, \"seed\": \"42+1337\", \"command\": \"python3 carc_mvp.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --thresholds thresholds.json --dataset math --num-samples 30 --per-head --dtype bf16\", \"checkpoint_path\": \"n/a (plan entry, actual runs are carc_mvp_seed42 + carc_mvp_seed1337)\", \"log_path\": \"n/a\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-12T14:26:09.353Z\"}, \"sanity_kv_eviction\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:24:59.909Z\", \"updated_at\": \"2026-05-12T14:26:00.473Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 sanity_check_eviction.py --model DeepSeek-R1-Distill-Qwen-14B\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"17344\", \"log_path\": \"/tmp/sanity_check.log\", \"submitted_at\": \"2026-05-12T11:45:00.029Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-2-raw-v1 (cached)\", \"data_count\": 6144, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"seed\": 42, \"checkpoint_path\": \"/root/carc/sanity_check_results.json\", \"wall_clock_seconds\": 9660.4, \"gpu_hours\": 2.68}, \"metrics\": {\"ppl_full\": 6.0344, \"ppl_ema\": 6.3701, \"ppl_random\": 6.428, \"ppl_recency\": 6.0646, \"gap_ema_vs_full_pct\": 5.56, \"gap_random_vs_full_pct\": 6.52, \"gap_recency_vs_full_pct\": 0.5, \"ema_vs_random_pct\": 0.9}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-12T14:26:00.473Z\"}, \"carc_mvp_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T10:42:23.195Z\", \"updated_at\": \"2026-05-12T12:02:03.324Z\", \"spec\": {\"command\": \"python3 carc_mvp.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --thresholds thresholds.json --output results_seed42.json --num-samples 30 --data-seed 42 --save-records\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"12699\", \"log_path\": \"~/runs/solver-verified-formalizer-rl/carc_mvp_seed42.log\", \"submitted_at\": \"2026-05-12T10:46:23.140Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"EleutherAI/hendrycks_math (precalculus, cached)\", \"data_count\": 30, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"seed\": 42, \"checkpoint_path\": \"N/A (validation experiment, no checkpoint)\", \"wall_clock_seconds\": 4540.2, \"gpu_hours\": 1.26}, \"reproduce\": {\"finished_at\": \"2026-05-12T11:19:47.980Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T11:19:48.898914+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"pearson_r_ema_perturbation\": -0.1176, \"perturbation_diff_pct\": 5.69, \"pearson_r_ema_surprisal\": 0.1162, \"ppl_twotier\": 1.34, \"ppl_uniform40\": 1.34, \"near_zero_ratio\": 1.1, \"chain_level_r_ema_pert\": -0.357, \"chain_level_r_ema_surp\": 0.3195, \"verdict\": \"FAIL\", \"layers_with_pass\": [30, 31, 33]}, \"completed_at\": \"2026-05-12T12:02:03.324Z\"}, \"carc_generate_rope_test\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:54:42.370Z\", \"updated_at\": \"2026-05-12T11:54:42.370Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/carc && CUDA_VISIBLE_DEVICES=0 python3 carc_generate.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --prompt 'Solve: what is the integral of x^2?' --max-new-tokens 100 --budget-ratio 0.1 2>&1 | tee /tmp/carc_generate_test.log\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"18305\", \"log_path\": \"~/runs/solver-verified-formalizer-rl/carc_generate_rope_test.log\", \"submitted_at\": \"2026-05-12T11:54:42.361Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"carc_mvp_seed1337\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T10:42:25.296Z\", \"updated_at\": \"2026-05-12T11:19:51.914Z\", \"spec\": {\"command\": \"python3 carc_mvp.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --thresholds thresholds.json --output results_seed1337.json --num-samples 30 --data-seed 1337 --save-records\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"12843\", \"log_path\": \"~/runs/solver-verified-formalizer-rl/carc_mvp_seed1337.log\", \"submitted_at\": \"2026-05-12T10:46:25.367Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"EleutherAI/hendrycks_math (precalculus, cached)\", \"data_count\": 30, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"seed\": 1337, \"wall_clock_seconds\": 2006.5, \"gpu_hours\": 0.56}, \"reproduce\": {\"finished_at\": \"2026-05-12T11:15:19.767Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T11:15:20.558605+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"pearson_r_ema_perturbation\": -0.113, \"perturbation_diff_pct\": 5.26, \"pearson_r_ema_surprisal\": 0.1255, \"ppl_twotier\": 1.38, \"ppl_uniform40\": 1.38, \"near_zero_ratio\": 1.16, \"verdict\": \"FAIL\", \"layers_with_r_ge_04\": [30, 31, 33], \"layers_with_diff_ge_10pct\": [3, 4, 5, 13, 14, 15, 17, 21, 22, 23, 25, 28, 41, 42, 43, 44, 45]}, \"log_path\": \"/tmp/mvp_seed1337.log\", \"checkpoint_path\": \"n/a\", \"completed_at\": \"2026-05-12T11:19:51.914Z\"}}, \"count\": 7, \"total\": 7, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0188}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "87d6a9cf-023d-4852-a7b9-cc5c0b87360a",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "292b1ba1-edd2-470e-947c-abb316f7124b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"d003_reasoning_traces\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:00:42.213Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:57:11.395Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/carc/d003_reasoning_results.json\\\", \\\"log_path\\\": \\\"/root/carc/d003_exp1.log\\\", \\\"command\\\": \\\"python /root/carc/d003_reasoning_traces.py\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"MATH reasoning traces (20 traces)\\\", \\\"data_count\\\": 30063, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-14B\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T15:53:50.504Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T15:53:40.620856+00:00\\\"}]}, \\\"metrics\\\": {\\\"full_ppl\\\": 1.212, \\\"ema_0.9_ppl\\\": 1.2522, \\\"ema_0.7_ppl\\\": 1.2706, \\\"ema_0.5_ppl\\\": 1.278, \\\"random_ppl\\\": 1.2271, \\\"recency_ppl\\\": 1.217, \\\"ema_vs_random_gap_pct\\\": -2.05, \\\"ema_vs_full_gap_pct\\\": 3.32, \\\"recency_vs_full_gap_pct\\\": 0.41, \\\"pass\\\": false}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-12T15:55:11.238Z\\\"}, \\\"d003_wikitext_32k\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T12:00:45.017Z\\\", \\\"updated_at\\\": \\\"2026-05-12T15:51:02.405Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python d003_wikitext32k_eval.py\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"28380\\\", \\\"log_path\\\": \\\"/root/carc/d003_exp2.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T14:29:13.542Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/carc/d003_wikitext32k_results.json\\\", \\\"wall_clock_seconds\\\": 4855.0, \\\"gpu_hours\\\": 1.35, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-14B\\\", \\\"data_path\\\": \\\"wikitext-2\\\", \\\"data_count\\\": 32768, \\\"seed\\\": null}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T15:46:31.798Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T15:46:32.637844+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"ppl_full\\\": 7.1822, \\\"ppl_ema_0.9\\\": 7.7788, \\\"ppl_ema_0.7\\\": 8.1367, \\\"ppl_ema_0.5\\\": 8.1352, \\\"ppl_random\\\": 7.6432, \\\"ppl_recency\\\": 7.1758, \\\"ema_vs_recency_gap_pct\\\": 8.4, \\\"ema_vs_random_gap_pct\\\": -1.77, \\\"recency_vs_full_gap_pct\\\": -0.09}, \\\"completed_at\\\": \\\"2026-05-12T15:50:08.505Z\\\"}, \\\"mvp_001\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T08:58:24.936Z\\\", \\\"updated_at\\\": \\\"2026-05-12T14:26:09.353Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"KV similarity (EMA centroid) predicts MLP sparsification tolerance: redundant tokens tolerate 55% sparsity with less perturbation than novel tokens, and EMA score correlates with token surprisal\\\", \\\"description\\\": \\\"CARC MVP 5-measurement validation on DeepSeek-R1-Distill-Qwen-14B with MATH-500 reasoning traces\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-14B\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"data_path\\\": \\\"hendrycks/competition_math\\\", \\\"data_count\\\": 60, \\\"seed\\\": \\\"42+1337\\\", \\\"command\\\": \\\"python3 carc_mvp.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --thresholds thresholds.json --dataset math --num-samples 30 --per-head --dtype bf16\\\", \\\"checkpoint_path\\\": \\\"n/a (plan entry, actual runs are carc_mvp_seed42 + carc_mvp_seed1337)\\\", \\\"log_path\\\": \\\"n/a\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-12T14:26:09.353Z\\\"}, \\\"sanity_kv_eviction\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:24:59.909Z\\\", \\\"updated_at\\\": \\\"2026-05-12T14:26:00.473Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python3 sanity_check_eviction.py --model DeepSeek-R1-Distill-Qwen-14B\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"17344\\\", \\\"log_path\\\": \\\"/tmp/sanity_check.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T11:45:00.029Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"wikitext-2-raw-v1 (cached)\\\", \\\"data_count\\\": 6144, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-14B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/carc/sanity_check_results.json\\\", \\\"wall_clock_seconds\\\": 9660.4, \\\"gpu_hours\\\": 2.68}, \\\"metrics\\\": {\\\"ppl_full\\\": 6.0344, \\\"ppl_ema\\\": 6.3701, \\\"ppl_random\\\": 6.428, \\\"ppl_recency\\\": 6.0646, \\\"gap_ema_vs_full_pct\\\": 5.56, \\\"gap_random_vs_full_pct\\\": 6.52, \\\"gap_recency_vs_full_pct\\\": 0.5, \\\"ema_vs_random_pct\\\": 0.9}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-12T14:26:00.473Z\\\"}, \\\"carc_mvp_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T10:42:23.195Z\\\", \\\"updated_at\\\": \\\"2026-05-12T12:02:03.324Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 carc_mvp.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --thresholds thresholds.json --output results_seed42.json --num-samples 30 --data-seed 42 --save-records\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"12699\\\", \\\"log_path\\\": \\\"~/runs/solver-verified-formalizer-rl/carc_mvp_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T10:46:23.140Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"EleutherAI/hendrycks_math (precalculus, cached)\\\", \\\"data_count\\\": 30, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-14B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"N/A (validation experiment, no checkpoint)\\\", \\\"wall_clock_seconds\\\": 4540.2, \\\"gpu_hours\\\": 1.26}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T11:19:47.980Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T11:19:48.898914+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"pearson_r_ema_perturbation\\\": -0.1176, \\\"perturbation_diff_pct\\\": 5.69, \\\"pearson_r_ema_surprisal\\\": 0.1162, \\\"ppl_twotier\\\": 1.34, \\\"ppl_uniform40\\\": 1.34, \\\"near_zero_ratio\\\": 1.1, \\\"chain_level_r_ema_pert\\\": -0.357, \\\"chain_level_r_ema_surp\\\": 0.3195, \\\"verdict\\\": \\\"FAIL\\\", \\\"layers_with_pass\\\": [30, 31, 33]}, \\\"completed_at\\\": \\\"2026-05-12T12:02:03.324Z\\\"}, \\\"carc_generate_rope_test\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T11:54:42.370Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:54:42.370Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/carc && CUDA_VISIBLE_DEVICES=0 python3 carc_generate.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --prompt 'Solve: what is the integral of x^2?' --max-new-tokens 100 --budget-ratio 0.1 2>&1 | tee /tmp/carc_generate_test.log\\\\\\\"\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"18305\\\", \\\"log_path\\\": \\\"~/runs/solver-verified-formalizer-rl/carc_generate_rope_test.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T11:54:42.361Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"carc_mvp_seed1337\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-12T10:42:25.296Z\\\", \\\"updated_at\\\": \\\"2026-05-12T11:19:51.914Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python3 carc_mvp.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --thresholds thresholds.json --output results_seed1337.json --num-samples 30 --data-seed 1337 --save-records\\\", \\\"server\\\": \\\"westd-16980\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"12843\\\", \\\"log_path\\\": \\\"~/runs/solver-verified-formalizer-rl/carc_mvp_seed1337.log\\\", \\\"submitted_at\\\": \\\"2026-05-12T10:46:25.367Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"EleutherAI/hendrycks_math (precalculus, cached)\\\", \\\"data_count\\\": 30, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-14B\\\", \\\"seed\\\": 1337, \\\"wall_clock_seconds\\\": 2006.5, \\\"gpu_hours\\\": 0.56}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-12T11:15:19.767Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-12T11:15:20.558605+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"pearson_r_ema_perturbation\\\": -0.113, \\\"perturbation_diff_pct\\\": 5.26, \\\"pearson_r_ema_surprisal\\\": 0.1255, \\\"ppl_twotier\\\": 1.38, \\\"ppl_uniform40\\\": 1.38, \\\"near_zero_ratio\\\": 1.16, \\\"verdict\\\": \\\"FAIL\\\", \\\"layers_with_r_ge_04\\\": [30, 31, 33], \\\"layers_with_diff_ge_10pct\\\": [3, 4, 5, 13, 14, 15, 17, 21, 22, 23, 25, 28, 41, 42, 43, 44, 45]}, \\\"log_path\\\": \\\"/tmp/mvp_seed1337.log\\\", \\\"checkpoint_path\\\": \\\"n/a\\\", \\\"completed_at\\\": \\\"2026-05-12T11:19:51.914Z\\\"}}, \\\"count\\\": 7, \\\"total\\\": 7, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0188}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"d003_reasoning_traces\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:00:42.213Z\", \"updated_at\": \"2026-05-12T15:57:11.395Z\", \"spec\": {\"checkpoint_path\": \"/root/carc/d003_reasoning_results.json\", \"log_path\": \"/root/carc/d003_exp1.log\", \"command\": \"python /root/carc/d003_reasoning_traces.py\", \"server\": \"westd-16980\", \"data_path\": \"MATH reasoning traces (20 traces)\", \"data_count\": 30063, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-12T15:53:50.504Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T15:53:40.620856+00:00\"}]}, \"metrics\": {\"full_ppl\": 1.212, \"ema_0.9_ppl\": 1.2522, \"ema_0.7_ppl\": 1.2706, \"ema_0.5_ppl\": 1.278, \"random_ppl\": 1.2271, \"recency_ppl\": 1.217, \"ema_vs_random_gap_pct\": -2.05, \"ema_vs_full_gap_pct\": 3.32, \"recency_vs_full_gap_pct\": 0.41, \"pass\": false}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-12T15:55:11.238Z\"}, \"d003_wikitext_32k\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T12:00:45.017Z\", \"updated_at\": \"2026-05-12T15:51:02.405Z\", \"spec\": {\"command\": \"python d003_wikitext32k_eval.py\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"28380\", \"log_path\": \"/root/carc/d003_exp2.log\", \"submitted_at\": \"2026-05-12T14:29:13.542Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/carc/d003_wikitext32k_results.json\", \"wall_clock_seconds\": 4855.0, \"gpu_hours\": 1.35, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"data_path\": \"wikitext-2\", \"data_count\": 32768, \"seed\": null}, \"reproduce\": {\"finished_at\": \"2026-05-12T15:46:31.798Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T15:46:32.637844+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"ppl_full\": 7.1822, \"ppl_ema_0.9\": 7.7788, \"ppl_ema_0.7\": 8.1367, \"ppl_ema_0.5\": 8.1352, \"ppl_random\": 7.6432, \"ppl_recency\": 7.1758, \"ema_vs_recency_gap_pct\": 8.4, \"ema_vs_random_gap_pct\": -1.77, \"recency_vs_full_gap_pct\": -0.09}, \"completed_at\": \"2026-05-12T15:50:08.505Z\"}, \"mvp_001\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T08:58:24.936Z\", \"updated_at\": \"2026-05-12T14:26:09.353Z\", \"spec\": {\"hypothesis\": \"KV similarity (EMA centroid) predicts MLP sparsification tolerance: redundant tokens tolerate 55% sparsity with less perturbation than novel tokens, and EMA score correlates with token surprisal\", \"description\": \"CARC MVP 5-measurement validation on DeepSeek-R1-Distill-Qwen-14B with MATH-500 reasoning traces\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"server\": \"westd-16980\", \"data_path\": \"hendrycks/competition_math\", \"data_count\": 60, \"seed\": \"42+1337\", \"command\": \"python3 carc_mvp.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --thresholds thresholds.json --dataset math --num-samples 30 --per-head --dtype bf16\", \"checkpoint_path\": \"n/a (plan entry, actual runs are carc_mvp_seed42 + carc_mvp_seed1337)\", \"log_path\": \"n/a\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-12T14:26:09.353Z\"}, \"sanity_kv_eviction\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:24:59.909Z\", \"updated_at\": \"2026-05-12T14:26:00.473Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python3 sanity_check_eviction.py --model DeepSeek-R1-Distill-Qwen-14B\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"17344\", \"log_path\": \"/tmp/sanity_check.log\", \"submitted_at\": \"2026-05-12T11:45:00.029Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"wikitext-2-raw-v1 (cached)\", \"data_count\": 6144, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"seed\": 42, \"checkpoint_path\": \"/root/carc/sanity_check_results.json\", \"wall_clock_seconds\": 9660.4, \"gpu_hours\": 2.68}, \"metrics\": {\"ppl_full\": 6.0344, \"ppl_ema\": 6.3701, \"ppl_random\": 6.428, \"ppl_recency\": 6.0646, \"gap_ema_vs_full_pct\": 5.56, \"gap_random_vs_full_pct\": 6.52, \"gap_recency_vs_full_pct\": 0.5, \"ema_vs_random_pct\": 0.9}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-12T14:26:00.473Z\"}, \"carc_mvp_seed42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T10:42:23.195Z\", \"updated_at\": \"2026-05-12T12:02:03.324Z\", \"spec\": {\"command\": \"python3 carc_mvp.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --thresholds thresholds.json --output results_seed42.json --num-samples 30 --data-seed 42 --save-records\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"12699\", \"log_path\": \"~/runs/solver-verified-formalizer-rl/carc_mvp_seed42.log\", \"submitted_at\": \"2026-05-12T10:46:23.140Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"EleutherAI/hendrycks_math (precalculus, cached)\", \"data_count\": 30, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"seed\": 42, \"checkpoint_path\": \"N/A (validation experiment, no checkpoint)\", \"wall_clock_seconds\": 4540.2, \"gpu_hours\": 1.26}, \"reproduce\": {\"finished_at\": \"2026-05-12T11:19:47.980Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T11:19:48.898914+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"pearson_r_ema_perturbation\": -0.1176, \"perturbation_diff_pct\": 5.69, \"pearson_r_ema_surprisal\": 0.1162, \"ppl_twotier\": 1.34, \"ppl_uniform40\": 1.34, \"near_zero_ratio\": 1.1, \"chain_level_r_ema_pert\": -0.357, \"chain_level_r_ema_surp\": 0.3195, \"verdict\": \"FAIL\", \"layers_with_pass\": [30, 31, 33]}, \"completed_at\": \"2026-05-12T12:02:03.324Z\"}, \"carc_generate_rope_test\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-12T11:54:42.370Z\", \"updated_at\": \"2026-05-12T11:54:42.370Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/carc && CUDA_VISIBLE_DEVICES=0 python3 carc_generate.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --prompt 'Solve: what is the integral of x^2?' --max-new-tokens 100 --budget-ratio 0.1 2>&1 | tee /tmp/carc_generate_test.log\\\"\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:0\"], \"pid\": \"18305\", \"log_path\": \"~/runs/solver-verified-formalizer-rl/carc_generate_rope_test.log\", \"submitted_at\": \"2026-05-12T11:54:42.361Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"carc_mvp_seed1337\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-12T10:42:25.296Z\", \"updated_at\": \"2026-05-12T11:19:51.914Z\", \"spec\": {\"command\": \"python3 carc_mvp.py --model /root/carc/models/DeepSeek-R1-Distill-Qwen-14B --thresholds thresholds.json --output results_seed1337.json --num-samples 30 --data-seed 1337 --save-records\", \"server\": \"westd-16980\", \"gpu\": [\"cuda:1\"], \"pid\": \"12843\", \"log_path\": \"~/runs/solver-verified-formalizer-rl/carc_mvp_seed1337.log\", \"submitted_at\": \"2026-05-12T10:46:25.367Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"EleutherAI/hendrycks_math (precalculus, cached)\", \"data_count\": 30, \"model_name\": \"DeepSeek-R1-Distill-Qwen-14B\", \"seed\": 1337, \"wall_clock_seconds\": 2006.5, \"gpu_hours\": 0.56}, \"reproduce\": {\"finished_at\": \"2026-05-12T11:15:19.767Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-12T11:15:20.558605+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"pearson_r_ema_perturbation\": -0.113, \"perturbation_diff_pct\": 5.26, \"pearson_r_ema_surprisal\": 0.1255, \"ppl_twotier\": 1.38, \"ppl_uniform40\": 1.38, \"near_zero_ratio\": 1.16, \"verdict\": \"FAIL\", \"layers_with_r_ge_04\": [30, 31, 33], \"layers_with_diff_ge_10pct\": [3, 4, 5, 13, 14, 15, 17, 21, 22, 23, 25, 28, 41, 42, 43, 44, 45]}, \"log_path\": \"/tmp/mvp_seed1337.log\", \"checkpoint_path\": \"n/a\", \"completed_at\": \"2026-05-12T11:19:51.914Z\"}}, \"count\": 7, \"total\": 7, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0188}}"
+    }
+  },
+  "sourceToolAssistantUUID": "87d6a9cf-023d-4852-a7b9-cc5c0b87360a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-12T16:13:54.730Z_
+
+<details><summary>↩ Tool result · `toolu_01UYmDK3MJZFEVeRrx2cNZYm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3871017e-3083-4444-956a-ad1b623a62a8",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "f25d7501-af10-4655-b51e-ea7e38be54c3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3871017e-3083-4444-956a-ad1b623a62a8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-12T16:13:55.746Z_
+
+<details><summary>↩ Tool result · `toolu_01WW9ZqM5rbg4GZ2jqgfLaEL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"project\": \"solver-verified-formalizer-rl\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/carc\", \"servers\": [\"westd-16980\"]}, \"feishu\": {\"chat_id\": \"oc_66c5460a32413791b7e928db4154825e\", \"operational_chat_id\": \"oc_8dea53114ff0fe9d8d905f9953b0526e\"}, \"project\": {\"created_at\": \"2026-05-12T07:52:50.059Z\", \"description\": \"Solver Trace Ablation for Cross-Logic GRPO Training of Neurosymbolic Formalizers\", \"name\": \"solver-verified-formalizer-rl\", \"phase\": \"mvp\", \"source_idea_id\": \"idea_010\"}}}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bca7fd5d-d51d-443e-96e4-98ac2897fee9",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "8a9035b3-34f1-4720-89b5-08a181035818",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"solver-verified-formalizer-rl\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\"], \\\"project_path\\\": \\\"/root/carc\\\", \\\"servers\\\": [\\\"westd-16980\\\"]}, \\\"feishu\\\": {\\\"chat_id\\\": \\\"oc_66c5460a32413791b7e928db4154825e\\\", \\\"operational_chat_id\\\": \\\"oc_8dea53114ff0fe9d8d905f9953b0526e\\\"}, \\\"project\\\": {\\\"created_at\\\": \\\"2026-05-12T07:52:50.059Z\\\", \\\"description\\\": \\\"Solver Trace Ablation for Cross-Logic GRPO Training of Neurosymbolic Formalizers\\\", \\\"name\\\": \\\"solver-verified-formalizer-rl\\\", \\\"phase\\\": \\\"mvp\\\", \\\"source_idea_id\\\": \\\"idea_010\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"project\": \"solver-verified-formalizer-rl\", \"config\": {\"execution\": {\"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/carc\", \"servers\": [\"westd-16980\"]}, \"feishu\": {\"chat_id\": \"oc_66c5460a32413791b7e928db4154825e\", \"operational_chat_id\": \"oc_8dea53114ff0fe9d8d905f9953b0526e\"}, \"project\": {\"created_at\": \"2026-05-12T07:52:50.059Z\", \"description\": \"Solver Trace Ablation for Cross-Logic GRPO Training of Neurosymbolic Formalizers\", \"name\": \"solver-verified-formalizer-rl\", \"phase\": \"mvp\", \"source_idea_id\": \"idea_010\"}}}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bca7fd5d-d51d-443e-96e4-98ac2897fee9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-12T16:13:55.175Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_011ZA4W1rEEJmasVoEntEZib`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f25d7501-af10-4655-b51e-ea7e38be54c3",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHLD6iQp4fTAKAatSL",
+  "type": "assistant",
+  "uuid": "ee1dc219-a762-43fc-bdb7-64dab337649f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jzczdx6T1iWvczmnYKG8N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3797,
+      "cache_read_input_tokens": 34275,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 34275,
+          "cache_creation_input_tokens": 3797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-12T16:13:55.189Z_
+
+<details><summary>↩ Tool result · `toolu_011ZA4W1rEEJmasVoEntEZib`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/report.md\", \"content\": \"# Handover — 2026-05-12\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- carc_generate_rope_test（准备中）\\n\\n## 近期结论\\n- **d003_reasoning_traces** (negative): —\\n- **d003_wikitext_32k** (negative): —\\n- **mvp_001** (negative): —\\n  [mvp_merged_analysis](/api/workspace-files/projects/solver-verified-formalizer-rl/artifacts/mvp_001/report/mvp_merged_analysis.md)\\n\\n## 趋势\\n成功 0 / 负向 6 / 失败 0 / 共 6\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-16980: 无 GPU 信息\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 470, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ee1dc219-a762-43fc-bdb7-64dab337649f",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "7ce42617-b6bb-4374-ae9d-babed2dd2fb5",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-12\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n- carc_generate_rope_test（准备中）\\\\n\\\\n## 近期结论\\\\n- **d003_reasoning_traces** (negative): —\\\\n- **d003_wikitext_32k** (negative): —\\\\n- **mvp_001** (negative): —\\\\n  [mvp_merged_analysis](/api/workspace-files/projects/solver-verified-formalizer-rl/artifacts/mvp_001/report/mvp_merged_analysis.md)\\\\n\\\\n## 趋势\\\\n成功 0 / 负向 6 / 失败 0 / 共 6\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-16980: 无 GPU 信息\\\\n\\\\n## 告警\\\\n（无）\\\\n\\\", \\\"total_chars\\\": 470, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/report.md\", \"content\": \"# Handover — 2026-05-12\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n- carc_generate_rope_test（准备中）\\n\\n## 近期结论\\n- **d003_reasoning_traces** (negative): —\\n- **d003_wikitext_32k** (negative): —\\n- **mvp_001** (negative): —\\n  [mvp_merged_analysis](/api/workspace-files/projects/solver-verified-formalizer-rl/artifacts/mvp_001/report/mvp_merged_analysis.md)\\n\\n## 趋势\\n成功 0 / 负向 6 / 失败 0 / 共 6\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestd-16980: 无 GPU 信息\\n\\n## 告警\\n（无）\\n\", \"total_chars\": 470, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ee1dc219-a762-43fc-bdb7-64dab337649f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-12T16:13:55.658Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap · `toolu_01JFWdobAswz8bpmcodLYfsz`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ce42617-b6bb-4374-ae9d-babed2dd2fb5",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHLD6iQp4fTAKAatSL",
+  "type": "assistant",
+  "uuid": "7c2fa337-670d-4da4-b88c-748aacb5df6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jzczdx6T1iWvczmnYKG8N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3797,
+      "cache_read_input_tokens": 34275,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 34275,
+          "cache_creation_input_tokens": 3797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-12T16:13:55.671Z_
+
+<details><summary>↩ Tool result · `toolu_01JFWdobAswz8bpmcodLYfsz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/ROADMAP.md\", \"content\": \"# O(1) Recurrence-Aware KV Eviction — Research Dashboard\\n\\n> 最后更新: 2026-05-12 11:23 UTC | 更新原因: 采纳 Reviewer 反馈：补全成功标准 + sanity check gate + ablation 计划 + W_grace 验证需求\\n\\n## 核心方向（Pivot 后）\\nO(1) per-token KV cache eviction using EMA similarity scoring with recurrence-aware protection。替代 R-KV 的 O(B²) pairwise scoring，避免 LazyEviction 的 insertion-filtering 灾难性驱逐。目标 EMNLP 2026 ARR（DDL 2026-05-25，剩 13 天）。\\n\\n**Pivot 原因**: Cross-axis 假说证伪（MVP FAIL: |r|=0.12, perturbation_diff=5.5%）。\\n\\n## 贡献层次\\n1. **O(1) KV eviction signal**: EMA centroid similarity 替代 R-KV O(B²) pairwise comparison\\n2. **Recurrence-aware protection**: Grace window（需自有数据验证，不仅引用 LazyEviction）\\n3. **Budget-triggered policy**: 非 insertion-filtering，避免灾难性误驱逐\\n4. **Negative finding**: Cross-axis hypothesis 不成立（analytical contribution）\\n\\n## 成功标准（Reviewer 要求补全）\\n- **PPL**: 50% budget 下 PPL 退化 ≤ 5% vs full cache\\n- **Baseline**: 至少 beat 1 个 primary baseline（H2O / R-KV）在同 budget 下的 PPL\\n- **Reasoning**: MATH-500 accuracy 在 50% budget 下保持 ≥ 90% of full cache\\n- **Sanity gate**: EMA eviction PPL 显著优于 random eviction（≥ 5% PPL gap）\\n\\n## 当前进展\\n- 阶段：**Path C Day 3 — Sanity check + pipeline 集成**\\n- 服务器：westd-16980, 2×RTX PRO 6000 96GB\\n- 代码：carc_kv_eviction.py 已实现，需集成到 generate pipeline + sanity check\\n- ⚠️ Sanity check 未完成前不全力展开 baseline 复现\\n\\n## 近期任务\\n- [ ] **Sanity check**（优先级 0）：EMA vs random vs recency eviction PPL 对比\\n- [ ] Pipeline 集成：修复 _seen_tokens + position embedding + HF generate 兼容\\n- [ ] Eval 框架：perplexity/MATH-500/LongBench\\n- [ ] Baseline 调研 + 复现（≥2 个：H2O, R-KV/SkipKV/FASA）\\n- [ ] **Ablation 计划**:\\n  - gamma（EMA decay rate）敏感性\\n  - budget ratio 30%/50%/70%\\n  - W_grace 100/175/250（需自有 MRI 数据支撑）\\n  - per-head vs concatenated EMA\\n- [ ] L=32K/64K scaling + throughput\\n- [ ] 论文写作\\n\\n## 时间线（Path C 修订）\\n- **Day 1-2** (5/12-13): ✅ MVP → FAIL → pivot\\n- **Day 3** (5/14): Sanity check（gate）+ pipeline 集成\\n- **Day 4-5** (5/15-16): Baseline 复现 + 初步 eval\\n- **Day 5-7** (5/16-18): Full eval + ablation\\n- **Day 7-8** (5/18-19): L=32K/64K scaling + throughput\\n- **Day 9-12** (5/20-23): 论文写作\\n- **Day 13** (5/24): Buffer + 提交\\n\\n## GPU 预算\\n- 分配：2×RTX PRO 6000 96GB @ westd-16980（cuda:0, cuda:1）\\n- 估算：sanity ~2h + baseline ~20h + eval ~40h + ablation ~20h + scaling ~30h ≈ ~112h\\n- 2 卡并行 → ~56h wall-clock，12 天窗口充足\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D005 | 2026-05-12 | D003 sanity gate FAIL — EMA eviction 劣于 random，γ 模 | d003_wikitext_32k, d003_reasoning_traces |\\n| D004 | 2026-05-12 | D003 允许最后一次部署尝试 + Plan B contingency 加入实验计划 | d003_reasoning_traces, d003_wikitext_32k |\\n| D003 | 2026-05-12 | Sanity check FAIL on WikiText-2 4K，但数据/长度条件不匹配动机场景 | sanity_kv_eviction |\\n| D002 | 2026-05-12 | MVP FAIL → 执行 Path C pivot: 从 CARC cross-axis 转向 O | carc_mvp_seed42, carc_mvp_seed1337 |\\n| D001 | 2026-05-12 | MVP 定义：cross-axis 假设验证（KV similarity → MLP sparsit | — |\\n\\n\", \"lines\": 65}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c2fa337-670d-4da4-b88c-748aacb5df6a",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "42943ae4-18a9-48c9-a812-3ec4ce90a727",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/ROADMAP.md\\\", \\\"content\\\": \\\"# O(1) Recurrence-Aware KV Eviction — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-12 11:23 UTC | 更新原因: 采纳 Reviewer 反馈：补全成功标准 + sanity check gate + ablation 计划 + W_grace 验证需求\\\\n\\\\n## 核心方向（Pivot 后）\\\\nO(1) per-token KV cache eviction using EMA similarity scoring with recurrence-aware protection。替代 R-KV 的 O(B²) pairwise scoring，避免 LazyEviction 的 insertion-filtering 灾难性驱逐。目标 EMNLP 2026 ARR（DDL 2026-05-25，剩 13 天）。\\\\n\\\\n**Pivot 原因**: Cross-axis 假说证伪（MVP FAIL: |r|=0.12, perturbation_diff=5.5%）。\\\\n\\\\n## 贡献层次\\\\n1. **O(1) KV eviction signal**: EMA centroid similarity 替代 R-KV O(B²) pairwise comparison\\\\n2. **Recurrence-aware protection**: Grace window（需自有数据验证，不仅引用 LazyEviction）\\\\n3. **Budget-triggered policy**: 非 insertion-filtering，避免灾难性误驱逐\\\\n4. **Negative finding**: Cross-axis hypothesis 不成立（analytical contribution）\\\\n\\\\n## 成功标准（Reviewer 要求补全）\\\\n- **PPL**: 50% budget 下 PPL 退化 ≤ 5% vs full cache\\\\n- **Baseline**: 至少 beat 1 个 primary baseline（H2O / R-KV）在同 budget 下的 PPL\\\\n- **Reasoning**: MATH-500 accuracy 在 50% budget 下保持 ≥ 90% of full cache\\\\n- **Sanity gate**: EMA eviction PPL 显著优于 random eviction（≥ 5% PPL gap）\\\\n\\\\n## 当前进展\\\\n- 阶段：**Path C Day 3 — Sanity check + pipeline 集成**\\\\n- 服务器：westd-16980, 2×RTX PRO 6000 96GB\\\\n- 代码：carc_kv_eviction.py 已实现，需集成到 generate pipeline + sanity check\\\\n- ⚠️ Sanity check 未完成前不全力展开 baseline 复现\\\\n\\\\n## 近期任务\\\\n- [ ] **Sanity check**（优先级 0）：EMA vs random vs recency eviction PPL 对比\\\\n- [ ] Pipeline 集成：修复 _seen_tokens + position embedding + HF generate 兼容\\\\n- [ ] Eval 框架：perplexity/MATH-500/LongBench\\\\n- [ ] Baseline 调研 + 复现（≥2 个：H2O, R-KV/SkipKV/FASA）\\\\n- [ ] **Ablation 计划**:\\\\n  - gamma（EMA decay rate）敏感性\\\\n  - budget ratio 30%/50%/70%\\\\n  - W_grace 100/175/250（需自有 MRI 数据支撑）\\\\n  - per-head vs concatenated EMA\\\\n- [ ] L=32K/64K scaling + throughput\\\\n- [ ] 论文写作\\\\n\\\\n## 时间线（Path C 修订）\\\\n- **Day 1-2** (5/12-13): ✅ MVP → FAIL → pivot\\\\n- **Day 3** (5/14): Sanity check（gate）+ pipeline 集成\\\\n- **Day 4-5** (5/15-16): Baseline 复现 + 初步 eval\\\\n- **Day 5-7** (5/16-18): Full eval + ablation\\\\n- **Day 7-8** (5/18-19): L=32K/64K scaling + throughput\\\\n- **Day 9-12** (5/20-23): 论文写作\\\\n- **Day 13** (5/24): Buffer + 提交\\\\n\\\\n## GPU 预算\\\\n- 分配：2×RTX PRO 6000 96GB @ westd-16980（cuda:0, cuda:1）\\\\n- 估算：sanity ~2h + baseline ~20h + eval ~40h + ablation ~20h + scaling ~30h ≈ ~112h\\\\n- 2 卡并行 → ~56h wall-clock，12 天窗口充足\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D005 | 2026-05-12 | D003 sanity gate FAIL — EMA eviction 劣于 random，γ 模 | d003_wikitext_32k, d003_reasoning_traces |\\\\n| D004 | 2026-05-12 | D003 允许最后一次部署尝试 + Plan B contingency 加入实验计划 | d003_reasoning_traces, d003_wikitext_32k |\\\\n| D003 | 2026-05-12 | Sanity check FAIL on WikiText-2 4K，但数据/长度条件不匹配动机场景 | sanity_kv_eviction |\\\\n| D002 | 2026-05-12 | MVP FAIL → 执行 Path C pivot: 从 CARC cross-axis 转向 O | carc_mvp_seed42, carc_mvp_seed1337 |\\\\n| D001 | 2026-05-12 | MVP 定义：cross-axis 假设验证（KV similarity → MLP sparsit | — |\\\\n\\\\n\\\", \\\"lines\\\": 65}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/ROADMAP.md\", \"content\": \"# O(1) Recurrence-Aware KV Eviction — Research Dashboard\\n\\n> 最后更新: 2026-05-12 11:23 UTC | 更新原因: 采纳 Reviewer 反馈：补全成功标准 + sanity check gate + ablation 计划 + W_grace 验证需求\\n\\n## 核心方向（Pivot 后）\\nO(1) per-token KV cache eviction using EMA similarity scoring with recurrence-aware protection。替代 R-KV 的 O(B²) pairwise scoring，避免 LazyEviction 的 insertion-filtering 灾难性驱逐。目标 EMNLP 2026 ARR（DDL 2026-05-25，剩 13 天）。\\n\\n**Pivot 原因**: Cross-axis 假说证伪（MVP FAIL: |r|=0.12, perturbation_diff=5.5%）。\\n\\n## 贡献层次\\n1. **O(1) KV eviction signal**: EMA centroid similarity 替代 R-KV O(B²) pairwise comparison\\n2. **Recurrence-aware protection**: Grace window（需自有数据验证，不仅引用 LazyEviction）\\n3. **Budget-triggered policy**: 非 insertion-filtering，避免灾难性误驱逐\\n4. **Negative finding**: Cross-axis hypothesis 不成立（analytical contribution）\\n\\n## 成功标准（Reviewer 要求补全）\\n- **PPL**: 50% budget 下 PPL 退化 ≤ 5% vs full cache\\n- **Baseline**: 至少 beat 1 个 primary baseline（H2O / R-KV）在同 budget 下的 PPL\\n- **Reasoning**: MATH-500 accuracy 在 50% budget 下保持 ≥ 90% of full cache\\n- **Sanity gate**: EMA eviction PPL 显著优于 random eviction（≥ 5% PPL gap）\\n\\n## 当前进展\\n- 阶段：**Path C Day 3 — Sanity check + pipeline 集成**\\n- 服务器：westd-16980, 2×RTX PRO 6000 96GB\\n- 代码：carc_kv_eviction.py 已实现，需集成到 generate pipeline + sanity check\\n- ⚠️ Sanity check 未完成前不全力展开 baseline 复现\\n\\n## 近期任务\\n- [ ] **Sanity check**（优先级 0）：EMA vs random vs recency eviction PPL 对比\\n- [ ] Pipeline 集成：修复 _seen_tokens + position embedding + HF generate 兼容\\n- [ ] Eval 框架：perplexity/MATH-500/LongBench\\n- [ ] Baseline 调研 + 复现（≥2 个：H2O, R-KV/SkipKV/FASA）\\n- [ ] **Ablation 计划**:\\n  - gamma（EMA decay rate）敏感性\\n  - budget ratio 30%/50%/70%\\n  - W_grace 100/175/250（需自有 MRI 数据支撑）\\n  - per-head vs concatenated EMA\\n- [ ] L=32K/64K scaling + throughput\\n- [ ] 论文写作\\n\\n## 时间线（Path C 修订）\\n- **Day 1-2** (5/12-13): ✅ MVP → FAIL → pivot\\n- **Day 3** (5/14): Sanity check（gate）+ pipeline 集成\\n- **Day 4-5** (5/15-16): Baseline 复现 + 初步 eval\\n- **Day 5-7** (5/16-18): Full eval + ablation\\n- **Day 7-8** (5/18-19): L=32K/64K scaling + throughput\\n- **Day 9-12** (5/20-23): 论文写作\\n- **Day 13** (5/24): Buffer + 提交\\n\\n## GPU 预算\\n- 分配：2×RTX PRO 6000 96GB @ westd-16980（cuda:0, cuda:1）\\n- 估算：sanity ~2h + baseline ~20h + eval ~40h + ablation ~20h + scaling ~30h ≈ ~112h\\n- 2 卡并行 → ~56h wall-clock，12 天窗口充足\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D005 | 2026-05-12 | D003 sanity gate FAIL — EMA eviction 劣于 random，γ 模 | d003_wikitext_32k, d003_reasoning_traces |\\n| D004 | 2026-05-12 | D003 允许最后一次部署尝试 + Plan B contingency 加入实验计划 | d003_reasoning_traces, d003_wikitext_32k |\\n| D003 | 2026-05-12 | Sanity check FAIL on WikiText-2 4K，但数据/长度条件不匹配动机场景 | sanity_kv_eviction |\\n| D002 | 2026-05-12 | MVP FAIL → 执行 Path C pivot: 从 CARC cross-axis 转向 O | carc_mvp_seed42, carc_mvp_seed1337 |\\n| D001 | 2026-05-12 | MVP 定义：cross-axis 假设验证（KV similarity → MLP sparsit | — |\\n\\n\", \"lines\": 65}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "7c2fa337-670d-4da4-b88c-748aacb5df6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-12T16:13:55.734Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config · `toolu_01WW9ZqM5rbg4GZ2jqgfLaEL`</summary>
+
+```json
+{
+  "project_name": "solver-verified-formalizer-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "42943ae4-18a9-48c9-a812-3ec4ce90a727",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHLD6iQp4fTAKAatSL",
+  "type": "assistant",
+  "uuid": "bca7fd5d-d51d-443e-96e4-98ac2897fee9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jzczdx6T1iWvczmnYKG8N",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3797,
+      "cache_read_input_tokens": 34275,
+      "output_tokens": 321,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3797,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 321,
+          "cache_read_input_tokens": 34275,
+          "cache_creation_input_tokens": 3797,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3797
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 23_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: d003_reasoning_traces - project: solver-verified-formalizer-rl - server: westd-16980 - log_…",
+  "leafUuid": "8a9035b3-34f1-4720-89b5-08a181035818",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 24_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and transition to done",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-12T16:14:33.197Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Session-start 完成。现在让我分析情况：
+
+**d003_reasoning_traces** 已经被 CRON 标记为 DONE，conclusion = negative。
+
+关键指标：
+- full_ppl: 1.212
+- ema_0.9_ppl: 1.2522
+- ema_0.7_ppl: 1.2706
+- ema_0.5_ppl: 1.278
+- random_ppl: 1.2271
+
+
+- recency_ppl: 1.217
+
+看起来 EMA eviction 在 reasoning traces 上的表现也不如 random eviction，差距达到 -2.05%，这与之前 wikitext_32k 数据集上的结果一致。
+
+实验已经标记为完成且结论为负向，CRON 已经自动推进了流程。现在我需要按照 on-experiment-done 的负向分支来处理：更新 report.md 标记这个负向结果，根据 red-section skill 产出 Framing 调整提案，然后向 Director 汇报。
+
+但我不能默默跑下一个实验，必须等待 Director 的决策。
+
+看了一下整个项目的全景，7 个实验中有 6 个都是负向结果，只有 1 个还在 PREPARING 阶段，这是个很严重的信号。回顾 ROADMAP，D005 已经记录了 D003 sanity gate 失败的决策，这说明之前可能已经分析过这个问题。
+
+现在看 d003_reasoning_traces 的具体指标，用的是 MATH reasoning traces 数据，模型是 DeepSeek-R1-Distill-Qwen-14B，完整 cache 的困惑度是 1.212，而不同的 eviction 策略（EMA、随机、最近性）的困惑度都在 1.217 到 1.252 之间波动。
+
+关键发现是 EMA 策略实际上比随机 eviction 还差 2%，而最近性策略表现最好，只比完整 cache 差 0.41%，这与 wikitext 数据的结论一致，说明整个 sanity check 已经彻底失败了。
+
+现在需要按照失败分支的流程走：更新报告、提出调整方案、向主管汇报。
+
+但我意识到 d003_wikitext_32k 可能之前已经处理过了，所以我先查一下 memory.md 的历史背景，再看看 resource-saturation 的相关内容，然后才能做出合理的 Framing 调整提案。CRON 触发的是 d003_reasoning_traces 的回调，而这个实验的指标和结论似乎已经被填入了，可能是之前的 Worker 已经分析过。
+
+现在我需要按照 on-experiment-done negative 的流程来处理：分析结果、提出 Framing 调整方案，然后向 Director 汇报。
+
+d003_reasoning_traces 已经有了 metrics，我要结合 d003_wikitext_32k 和之前所有的实验数据，整理出一份全面的 Framing 调整提案，所以先得读取相关的项目文件和 resource-saturation 的技能资料。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8a9035b3-34f1-4720-89b5-08a181035818",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHfR1A8WMaexDoaWGj",
+  "type": "assistant",
+  "uuid": "24d2ffbb-ec29-4243-921a-dc950ca1f3ed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012SDrh1JfANuoi9z15Hm9ys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6687,
+      "cache_read_input_tokens": 38072,
+      "output_tokens": 2280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2280,
+          "cache_read_input_tokens": 38072,
+          "cache_creation_input_tokens": 6687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26 · 2026-05-12T16:14:33.199Z_
+
+Session-start 完成。全局状态：7 个实验全部完成，6 个 negative，0 个 success。d003_reasoning_traces 已有 metrics（conclusion=negative）。
+
+现在按 on-experiment-done negative 流程处理。先读取必要的上下文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24d2ffbb-ec29-4243-921a-dc950ca1f3ed",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHfR1A8WMaexDoaWGj",
+  "type": "assistant",
+  "uuid": "2d90ecd2-9163-4181-88f0-d0ce33a9048b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012SDrh1JfANuoi9z15Hm9ys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6687,
+      "cache_read_input_tokens": 38072,
+      "output_tokens": 2280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2280,
+          "cache_read_input_tokens": 38072,
+          "cache_creation_input_tokens": 6687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-12T16:14:33.939Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01FBLFdmHPEu56tr9Vkthj14`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d90ecd2-9163-4181-88f0-d0ce33a9048b",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHfR1A8WMaexDoaWGj",
+  "type": "assistant",
+  "uuid": "3d6aabd0-1fe8-476d-8521-6964fb49b2fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012SDrh1JfANuoi9z15Hm9ys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6687,
+      "cache_read_input_tokens": 38072,
+      "output_tokens": 2280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2280,
+          "cache_read_input_tokens": 38072,
+          "cache_creation_input_tokens": 6687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-12T16:14:35.806Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_016ahVpnZh6NoXT8CppRkYKG`</summary>
+
+```text
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "98313007-96f2-48ba-97e5-7ed45efbc6b4",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "abedb53c-159d-4cae-b28a-f72629919972",
+  "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b.",
+  "sourceToolAssistantUUID": "98313007-96f2-48ba-97e5-7ed45efbc6b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-12T16:14:33.970Z_
+
+<details><summary>↩ Tool result · `toolu_01FBLFdmHPEu56tr9Vkthj14`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/memory.md\", \"content\": \"# Memory\\n\\n## 经验教训\\n\\n### Device mismatch 踩坑 (2026-05-12)\\n在 D003 脚本中用 `torch.zeros(size)` 创建 padding tensor 时，默认在 CPU 上。当 GPU scores 被拷入后存为 `self._cumulative_scores`，后续 eval 阶段新 GPU scores 与之 torch.cat 会 device 不匹配。**必须显式指定 device**: `torch.zeros(size, device=scores.device)`。\\n\\n### D003 三次崩溃根因分类 (2026-05-12)\\n1. HF 网络不通 + CUDA device ordinal (submit_training_job 注入 CUDA_VISIBLE_DEVICES，脚本必须用 --gpu 0)\\n2. HF datasets 网络不通 + transformers 4.57+ DynamicCache API 变更 (key_cache/value_cache → layers[i].keys/values)\\n3. torch.zeros 默认 CPU device → update_scores torch.cat device mismatch\\n\\n三次均为环境/API 兼容问题，核心算法逻辑未出错。教训：**每次修改后必须 smoke test 验证全流程**。\\n\\n### Sanity check 结论 (2026-05-12)\\nWikiText-2 4K token sanity check: EMA vs random gap 仅 0.9%（远低于 5% 门槛）。但 Director 判断数据/长度条件不匹配动机场景（reasoning traces + 32K），因此发起 D003 1-day retry。\\n\\n## 决策上下文\\n\\n### Path C pivot 原因 (2026-05-12)\\nCross-axis 假说（KV similarity → MLP sparsification tolerance）被证伪：|r|=0.12, perturbation_diff=5.5%。Pivot 到 O(1) Recurrence-Aware KV Eviction，复用 EMA scoring 组件但改变 narrative。\\n\\n### Baseline 框架已就绪 (2026-05-12)\\nkvpress v0.5.3 已安装，eval_baselines.py 支持 7 个 baseline (H2O/SnapKV/KeyDiff/StreamingLLM/ExpectedAttn/ObservedAttn/TOVA)。dry-run 通过。D003 完成后立即可跑 baseline 对比。\\n\", \"total_chars\": 1220, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d6aabd0-1fe8-476d-8521-6964fb49b2fd",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "0c3af633-be83-4cc8-a2a2-773610404bfb",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## 经验教训\\\\n\\\\n### Device mismatch 踩坑 (2026-05-12)\\\\n在 D003 脚本中用 `torch.zeros(size)` 创建 padding tensor 时，默认在 CPU 上。当 GPU scores 被拷入后存为 `self._cumulative_scores`，后续 eval 阶段新 GPU scores 与之 torch.cat 会 device 不匹配。**必须显式指定 device**: `torch.zeros(size, device=scores.device)`。\\\\n\\\\n### D003 三次崩溃根因分类 (2026-05-12)\\\\n1. HF 网络不通 + CUDA device ordinal (submit_training_job 注入 CUDA_VISIBLE_DEVICES，脚本必须用 --gpu 0)\\\\n2. HF datasets 网络不通 + transformers 4.57+ DynamicCache API 变更 (key_cache/value_cache → layers[i].keys/values)\\\\n3. torch.zeros 默认 CPU device → update_scores torch.cat device mismatch\\\\n\\\\n三次均为环境/API 兼容问题，核心算法逻辑未出错。教训：**每次修改后必须 smoke test 验证全流程**。\\\\n\\\\n### Sanity check 结论 (2026-05-12)\\\\nWikiText-2 4K token sanity check: EMA vs random gap 仅 0.9%（远低于 5% 门槛）。但 Director 判断数据/长度条件不匹配动机场景（reasoning traces + 32K），因此发起 D003 1-day retry。\\\\n\\\\n## 决策上下文\\\\n\\\\n### Path C pivot 原因 (2026-05-12)\\\\nCross-axis 假说（KV similarity → MLP sparsification tolerance）被证伪：|r|=0.12, perturbation_diff=5.5%。Pivot 到 O(1) Recurrence-Aware KV Eviction，复用 EMA scoring 组件但改变 narrative。\\\\n\\\\n### Baseline 框架已就绪 (2026-05-12)\\\\nkvpress v0.5.3 已安装，eval_baselines.py 支持 7 个 baseline (H2O/SnapKV/KeyDiff/StreamingLLM/ExpectedAttn/ObservedAttn/TOVA)。dry-run 通过。D003 完成后立即可跑 baseline 对比。\\\\n\\\", \\\"total_chars\\\": 1220, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/memory.md\", \"content\": \"# Memory\\n\\n## 经验教训\\n\\n### Device mismatch 踩坑 (2026-05-12)\\n在 D003 脚本中用 `torch.zeros(size)` 创建 padding tensor 时，默认在 CPU 上。当 GPU scores 被拷入后存为 `self._cumulative_scores`，后续 eval 阶段新 GPU scores 与之 torch.cat 会 device 不匹配。**必须显式指定 device**: `torch.zeros(size, device=scores.device)`。\\n\\n### D003 三次崩溃根因分类 (2026-05-12)\\n1. HF 网络不通 + CUDA device ordinal (submit_training_job 注入 CUDA_VISIBLE_DEVICES，脚本必须用 --gpu 0)\\n2. HF datasets 网络不通 + transformers 4.57+ DynamicCache API 变更 (key_cache/value_cache → layers[i].keys/values)\\n3. torch.zeros 默认 CPU device → update_scores torch.cat device mismatch\\n\\n三次均为环境/API 兼容问题，核心算法逻辑未出错。教训：**每次修改后必须 smoke test 验证全流程**。\\n\\n### Sanity check 结论 (2026-05-12)\\nWikiText-2 4K token sanity check: EMA vs random gap 仅 0.9%（远低于 5% 门槛）。但 Director 判断数据/长度条件不匹配动机场景（reasoning traces + 32K），因此发起 D003 1-day retry。\\n\\n## 决策上下文\\n\\n### Path C pivot 原因 (2026-05-12)\\nCross-axis 假说（KV similarity → MLP sparsification tolerance）被证伪：|r|=0.12, perturbation_diff=5.5%。Pivot 到 O(1) Recurrence-Aware KV Eviction，复用 EMA scoring 组件但改变 narrative。\\n\\n### Baseline 框架已就绪 (2026-05-12)\\nkvpress v0.5.3 已安装，eval_baselines.py 支持 7 个 baseline (H2O/SnapKV/KeyDiff/StreamingLLM/ExpectedAttn/ObservedAttn/TOVA)。dry-run 通过。D003 完成后立即可跑 baseline 对比。\\n\", \"total_chars\": 1220, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3d6aabd0-1fe8-476d-8521-6964fb49b2fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-12T16:14:34.474Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01EBzd6xMARe5fqKbHfnSbfN`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl",
+  "file": "paper_framing.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c3af633-be83-4cc8-a2a2-773610404bfb",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHfR1A8WMaexDoaWGj",
+  "type": "assistant",
+  "uuid": "21ccb515-62d0-4d11-a8bf-60638192ef28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012SDrh1JfANuoi9z15Hm9ys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6687,
+      "cache_read_input_tokens": 38072,
+      "output_tokens": 2280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2280,
+          "cache_read_input_tokens": 38072,
+          "cache_creation_input_tokens": 6687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-12T16:14:34.485Z_
+
+<details><summary>↩ Tool result · `toolu_01EBzd6xMARe5fqKbHfnSbfN`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No paper_framing.md found for 'solver-verified-formalizer-rl'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "21ccb515-62d0-4d11-a8bf-60638192ef28",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "f786fb19-1cda-4043-820a-d4ef421d966e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No paper_framing.md found for 'solver-verified-formalizer-rl'.\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No paper_framing.md found for 'solver-verified-formalizer-rl'.\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "21ccb515-62d0-4d11-a8bf-60638192ef28",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-12T16:14:35.384Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01GXF7Tn6EnVYPip4yqd5FCU`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl",
+  "file": "literature_map.yaml",
+  "max_chars": 20000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f786fb19-1cda-4043-820a-d4ef421d966e",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHfR1A8WMaexDoaWGj",
+  "type": "assistant",
+  "uuid": "63081ba5-bc54-4080-809d-6b3f16ede1d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012SDrh1JfANuoi9z15Hm9ys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6687,
+      "cache_read_input_tokens": 38072,
+      "output_tokens": 2280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2280,
+          "cache_read_input_tokens": 38072,
+          "cache_creation_input_tokens": 6687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-12T16:14:35.397Z_
+
+<details><summary>↩ Tool result · `toolu_01GXF7Tn6EnVYPip4yqd5FCU`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No literature_map.yaml found for 'solver-verified-formalizer-rl'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63081ba5-bc54-4080-809d-6b3f16ede1d4",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "9cb9e1dd-bfe2-4a56-9546-e32060c39260",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No literature_map.yaml found for 'solver-verified-formalizer-rl'.\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No literature_map.yaml found for 'solver-verified-formalizer-rl'.\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "63081ba5-bc54-4080-809d-6b3f16ede1d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-12T16:14:35.794Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016ahVpnZh6NoXT8CppRkYKG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9cb9e1dd-bfe2-4a56-9546-e32060c39260",
+  "isSidechain": false,
+  "requestId": "req_011CaxyHfR1A8WMaexDoaWGj",
+  "type": "assistant",
+  "uuid": "98313007-96f2-48ba-97e5-7ed45efbc6b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012SDrh1JfANuoi9z15Hm9ys",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6687,
+      "cache_read_input_tokens": 38072,
+      "output_tokens": 2280,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6687,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2280,
+          "cache_read_input_tokens": 38072,
+          "cache_creation_input_tokens": 6687,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6687
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 35 · 2026-05-12T16:14:35.855Z_
+
+```json
+{
+  "parentUuid": "abedb53c-159d-4cae-b28a-f72629919972",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2c82a92a-ecc5-46be-9274-8e5cb01a76e6",
+  "timestamp": "2026-05-12T16:14:35.855Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-12T16:14:39.020Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+paper_framing.md and literature_map.yaml don't exist yet. Let me try to find the resource-saturation skill.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c82a92a-ecc5-46be-9274-8e5cb01a76e6",
+  "isSidechain": false,
+  "requestId": "req_011CaxyLdtoTfmirnkHESuqN",
+  "type": "assistant",
+  "uuid": "25014ab0-531a-4ac8-849b-4423711820d5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019L2aALqm4Rh3KLyvtvdcS7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3456,
+      "cache_read_input_tokens": 44759,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3456,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 44759,
+          "cache_creation_input_tokens": 3456,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3456
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-12T16:14:39.498Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01NzGmNE1uMW3Tzk3FVLS5TK`</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "25014ab0-531a-4ac8-849b-4423711820d5",
+  "isSidechain": false,
+  "requestId": "req_011CaxyLdtoTfmirnkHESuqN",
+  "type": "assistant",
+  "uuid": "5852d934-f1f6-43ec-9ad7-96c175b5fdca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019L2aALqm4Rh3KLyvtvdcS7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3456,
+      "cache_read_input_tokens": 44759,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3456,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 44759,
+          "cache_creation_input_tokens": 3456,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3456
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-12T16:14:39.520Z_
+
+<details><summary>↩ Tool result · `toolu_01NzGmNE1uMW3Tzk3FVLS5TK`</summary>
+
+```text
+No files found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5852d934-f1f6-43ec-9ad7-96c175b5fdca",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "23525456-39d0-49a0-b6f7-7bfa7410da2d",
+  "toolUseResult": {
+    "filenames": [],
+    "durationMs": 16,
+    "numFiles": 0,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "5852d934-f1f6-43ec-9ad7-96c175b5fdca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-12T16:14:39.977Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_012BpDuZkp8LBa3YQbm7hrPK`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl",
+  "file": "ideas.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "23525456-39d0-49a0-b6f7-7bfa7410da2d",
+  "isSidechain": false,
+  "requestId": "req_011CaxyLdtoTfmirnkHESuqN",
+  "type": "assistant",
+  "uuid": "2a8f9b56-173f-49e6-9487-b20fce83deb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019L2aALqm4Rh3KLyvtvdcS7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3456,
+      "cache_read_input_tokens": 44759,
+      "output_tokens": 215,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3456,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 215,
+          "cache_read_input_tokens": 44759,
+          "cache_creation_input_tokens": 3456,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3456
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-12T16:14:39.993Z_
+
+<details><summary>↩ Tool result · `toolu_012BpDuZkp8LBa3YQbm7hrPK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'solver-verified-formalizer-rl'.\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2a8f9b56-173f-49e6-9487-b20fce83deb5",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "f2612b87-0953-40f9-bdb1-d8b304fbfa2a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'solver-verified-formalizer-rl'.\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'solver-verified-formalizer-rl'.\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2a8f9b56-173f-49e6-9487-b20fce83deb5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: d003_reasoning_traces - project: solver-verified-formalizer-rl - server: westd-16980 - log_…",
+  "leafUuid": "f2612b87-0953-40f9-bdb1-d8b304fbfa2a",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and transition to done",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-12T16:15:14.650Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Resource-saturation skill file not found. Let me just proceed with the analysis.
+
+Let me summarize the complete situation:
+
+**d003_reasoning_traces** (the one CRON just notified about):
+- Data: MATH reasoning traces, 20 traces, 30063 tokens
+- Model: DeepSeek-R1-Distill-Qwen-14B
+- full_ppl: 1.212
+- ema_0.9_ppl: 1.2522 (+3.32% vs full)
+
+
+- ema_0.7_ppl: 1.2706
+- ema_0.5_ppl: 1.278
+- random_ppl: 1.2271
+- recency_ppl: 1.217 (+0.41% vs full)
+- ema_vs_random_gap_pct: -2.05% (EMA WORSE than random)
+- pass: false
+
+When I look at the wikitext dataset alongside this, the full perplexity is 7.1822, but the EMA variant jumps to 7.7788 while recency stays competitive at 7.1. The random baseline sits at 7.6432, so EMA is underperforming across both datasets.
+
+Looking at the original WikiText-2 sanity check, recency consistently stays within 0.5-1% of the full model, while EMA degrades by 5-6% and random by 6.5%. The pattern emerging is that recency eviction is the clear winner—it maintains performance across all settings—whereas EMA provides no real advantage over random sampling and sometimes performs worse.
+
+This is a hard fail on the core premise that EMA centroid similarity should guide eviction decisions. Given this result, I need to follow the protocol: update the report to mark this as negative, prepare a framing adjustment proposal exploring what can be salvaged (recency-based eviction looks promising), and escalate to the Director before proceeding further. The roadmap explicitly says not to fully expand baseline reproduction until the sanity check passes, so I'm at a decision point now.
+
+For the framing proposal, I'm weighing whether to reposition this as an analytical contribution showing when simple recency suffices, or to explore an adaptive policy that switches strategies based on context—though the first option is more honest about the negative result while the second tries to find novelty in the findings.
+
+Given the tight deadline and string of unsuccessful experiments, I need to write up the framing adjustment proposal and brief the Director, while allocating the remaining GPU resources to whichever direction seems most viable.
+
+I'm checking the current worker status — the rope test is stuck in preparation, and I realize I should delegate the heavier lifting like log analysis and literature review to workers rather than handling it myself, keeping my focus on coordination and submitting the core experiments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2612b87-0953-40f9-bdb1-d8b304fbfa2a",
+  "isSidechain": false,
+  "requestId": "req_011CaxyLvXBRPW6wQNokhswr",
+  "type": "assistant",
+  "uuid": "0f620a59-91ef-4e00-affc-b7b6a116249b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWeuPDa33BSDPDztWwMgpt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 339,
+      "cache_read_input_tokens": 48215,
+      "output_tokens": 1671,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 339,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1671,
+          "cache_read_input_tokens": 48215,
+          "cache_creation_input_tokens": 339,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 339
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44 · 2026-05-12T16:15:14.667Z_
+
+全局状态清晰了。现在处理 d003_reasoning_traces negative 结果。先读 experiment plan 了解矩阵状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0f620a59-91ef-4e00-affc-b7b6a116249b",
+  "isSidechain": false,
+  "requestId": "req_011CaxyLvXBRPW6wQNokhswr",
+  "type": "assistant",
+  "uuid": "9fe21120-10f1-46a8-9768-c4151a140fb2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWeuPDa33BSDPDztWwMgpt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 339,
+      "cache_read_input_tokens": 48215,
+      "output_tokens": 1671,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 339,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1671,
+          "cache_read_input_tokens": 48215,
+          "cache_creation_input_tokens": 339,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 339
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-12T16:15:16.215Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FMp4d9our9iUCUdLd2azQ5`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__list_workers",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fe21120-10f1-46a8-9768-c4151a140fb2",
+  "isSidechain": false,
+  "requestId": "req_011CaxyLvXBRPW6wQNokhswr",
+  "type": "assistant",
+  "uuid": "062346c6-3f0a-4460-8273-4f15eb22b821",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SWeuPDa33BSDPDztWwMgpt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 339,
+      "cache_read_input_tokens": 48215,
+      "output_tokens": 1671,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 339,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1671,
+          "cache_read_input_tokens": 48215,
+          "cache_creation_input_tokens": 339,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 339
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-12T16:15:16.223Z_
+
+<details><summary>↩ Tool result · `toolu_01FMp4d9our9iUCUdLd2azQ5`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_experiment_plan_with_status"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__get_project_resource_usage"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__list_workers"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "062346c6-3f0a-4460-8273-4f15eb22b821",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "5b612553-e730-4480-a1fe-82fc6032ef34",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_experiment_plan_with_status",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__get_project_resource_usage",
+      "mcp__agent-ml-research__list_workers"
+    ],
+    "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage,mcp__agent-ml-research__list_workers",
+    "total_deferred_tools": 78
+  },
+  "sourceToolAssistantUUID": "062346c6-3f0a-4460-8273-4f15eb22b821",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-12T16:15:19.410Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_experiment_plan_with_status · `toolu_01Q6hwZdVKgA282xYBPHT18r`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b612553-e730-4480-a1fe-82fc6032ef34",
+  "isSidechain": false,
+  "requestId": "req_011CaxyPbWGmqrh8enT9vS6f",
+  "type": "assistant",
+  "uuid": "8d3a24e0-f73d-4190-a912-3a74d0709cf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0129JFzhCxGKUmZUbABRSm1K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2504,
+      "cache_read_input_tokens": 48554,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2504,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 48554,
+          "cache_creation_input_tokens": 2504,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2504
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-12T16:15:19.460Z_
+
+<details><summary>↩ Tool result · `toolu_01Q6hwZdVKgA282xYBPHT18r`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"pathc_sanity_reasoning\", \"phase\": \"0\", \"description\": \"EMA vs random eviction PPL on reasoning traces (MATH-500, ~30-40K tokens)\", \"claim\": \"EMA eviction signal is meaningful — outperforms random by ≥5% PPL gap\", \"priority\": 0, \"depends_on\": [], \"success_criterion\": \"EMA vs random PPL gap ≥ 5%\", \"estimated_hours\": 3, \"registry_id\": \"d003_reasoning_traces\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"full_ppl\": 1.212, \"ema_0.9_ppl\": 1.2522, \"ema_0.7_ppl\": 1.2706, \"ema_0.5_ppl\": 1.278, \"random_ppl\": 1.2271, \"recency_ppl\": 1.217, \"ema_vs_random_gap_pct\": -2.05, \"ema_vs_full_gap_pct\": 3.32, \"recency_vs_full_gap_pct\": 0.41, \"pass\": false}}, {\"id\": \"pathc_sanity_wikitext32k\", \"phase\": \"0\", \"description\": \"EMA vs recency eviction PPL on WikiText-2 32K prefill\", \"claim\": \"EMA eviction outperforms recency-based eviction on long context\", \"priority\": 0, \"depends_on\": [], \"success_criterion\": \"EMA PPL < recency PPL\", \"estimated_hours\": 3, \"registry_id\": \"d003_wikitext_32k\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"ppl_full\": 7.1822, \"ppl_ema_0.9\": 7.7788, \"ppl_ema_0.7\": 8.1367, \"ppl_ema_0.5\": 8.1352, \"ppl_random\": 7.6432, \"ppl_recency\": 7.1758, \"ema_vs_recency_gap_pct\": 8.4, \"ema_vs_random_gap_pct\": -1.77, \"recency_vs_full_gap_pct\": -0.09}}, {\"id\": \"analysis_heatmap\", \"phase\": \"0b\", \"description\": \"Per-layer heatmap visualization of spatial decoupling (uses MVP existing data)\", \"claim\": \"EMA captures meaningful per-layer structure\", \"priority\": 2, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Visual evidence of per-layer EMA score distribution differences\", \"estimated_hours\": 0, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"analysis_attn_vs_ema\", \"phase\": \"0b\", \"description\": \"Attention-score vs EMA signal comparison using kvpress knorm/expected_attn\", \"claim\": \"EMA signal provides complementary information to attention scores — determines claim scope\", \"priority\": 0, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Quantitative comparison showing EMA vs attention score correlation/divergence\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"analysis_tau_sweep\", \"phase\": \"0b\", \"description\": \"Tau (EMA decay) sensitivity sweep across gamma values\", \"claim\": \"EMA decay rate has measurable impact on eviction quality\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Clear trend in PPL vs gamma curve\", \"estimated_hours\": 2, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"analysis_decay_curve\", \"phase\": \"0b\", \"description\": \"Information decay curve analysis — how EMA scores evolve over sequence length\", \"claim\": \"EMA scores exhibit characteristic decay patterns for different token types\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Distinct decay curves for reasoning vs repetitive tokens\", \"estimated_hours\": 2, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"analysis_second_model\", \"phase\": \"0b\", \"description\": \"Qwen2.5-7B validation for generalization\", \"claim\": \"EMA eviction behavior generalizes across model sizes\", \"priority\": 2, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Similar EMA score distribution patterns on Qwen2.5-7B\", \"estimated_hours\": 8, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ppl_budget30\", \"phase\": \"1\", \"description\": \"PPL evaluation at 30% KV budget\", \"claim\": \"CARC maintains acceptable PPL at aggressive compression\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning\", \"pathc_sanity_wikitext32k\"], \"success_criterion\": \"PPL degradation ≤ 10% vs full cache\", \"estimated_hours\": 3, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ppl_budget50\", \"phase\": \"1\", \"description\": \"PPL evaluation at 50% KV budget\", \"claim\": \"CARC maintains acceptable PPL at moderate compression\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning\", \"pathc_sanity_wikitext32k\"], \"success_criterion\": \"PPL degradation ≤ 5% vs full cache\", \"estimated_hours\": 3, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ppl_budget70\", \"phase\": \"1\", \"description\": \"PPL evaluation at 70% KV budget\", \"claim\": \"CARC maintains acceptable PPL at light compression\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning\", \"pathc_sanity_wikitext32k\"], \"success_criterion\": \"PPL degradation ≤ 2% vs full cache\", \"estimated_hours\": 3, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_baseline_h2o\", \"phase\": \"2\", \"description\": \"H2O baseline comparison via kvpress at matched budgets\", \"claim\": \"CARC outperforms H2O on reasoning-heavy sequences\", \"priority\": 1, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"CARC PPL < H2O PPL at 50% budget\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_baseline_rkv\", \"phase\": \"2\", \"description\": \"R-KV baseline comparison (O(B²) vs O(1) complexity)\", \"claim\": \"CARC achieves comparable PPL to R-KV with O(1) complexity\", \"priority\": 1, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"PPL within 2% of R-KV + throughput advantage\", \"estimated_hours\": 6, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ablation_gamma\", \"phase\": \"3\", \"description\": \"EMA gamma sensitivity (0.5, 0.7, 0.9, 0.95)\", \"claim\": \"Gamma selection impacts eviction quality\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Identified optimal gamma with ≥2% PPL gap vs worst\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ablation_budget\", \"phase\": \"3\", \"description\": \"Budget ratio sweep (20%-80% in 10% steps)\", \"claim\": \"CARC degrades gracefully across budget range\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Monotonic PPL improvement with budget increase\", \"estimated_hours\": 6, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ablation_grace\", \"phase\": \"3\", \"description\": \"Grace window size sweep (0, 50, 100, 175, 250, 500)\", \"claim\": \"Grace window protects recent context and improves PPL\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Grace window > 0 improves PPL vs no grace\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ablation_perhead\", \"phase\": \"3\", \"description\": \"Per-head vs concatenated EMA comparison\", \"claim\": \"Per-head EMA captures finer-grained redundancy\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Per-head mode matches or beats concatenated\", \"estimated_hours\": 3, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_math500_eval\", \"phase\": \"4\", \"description\": \"MATH-500 accuracy with CARC eviction at 50% budget\", \"claim\": \"CARC preserves reasoning capability under compression\", \"priority\": 1, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Accuracy ≥ 90% of full cache baseline\", \"estimated_hours\": 8, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_scaling_32k\", \"phase\": \"5\", \"description\": \"32K context length PPL evaluation\", \"claim\": \"CARC scales to long contexts\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"PPL degradation ≤ 5% at 32K\", \"estimated_hours\": 6, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_scaling_64k\", \"phase\": \"5\", \"description\": \"64K context length PPL evaluation (depends on model max_pos)\", \"claim\": \"CARC scales to very long contexts\", \"priority\": 3, \"depends_on\": [\"pathc_scaling_32k\"], \"success_criterion\": \"PPL degradation ≤ 8% at 64K\", \"estimated_hours\": 10, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_throughput\", \"phase\": \"5\", \"description\": \"Throughput benchmarking — tokens/sec with vs without eviction\", \"claim\": \"CARC eviction overhead is negligible\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Throughput within 5% of full cache\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}], \"total\": 20}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d3a24e0-f73d-4190-a912-3a74d0709cf2",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "2dd4afb3-b4ba-4c41-9e37-08262e151608",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"pathc_sanity_reasoning\\\", \\\"phase\\\": \\\"0\\\", \\\"description\\\": \\\"EMA vs random eviction PPL on reasoning traces (MATH-500, ~30-40K tokens)\\\", \\\"claim\\\": \\\"EMA eviction signal is meaningful — outperforms random by ≥5% PPL gap\\\", \\\"priority\\\": 0, \\\"depends_on\\\": [], \\\"success_criterion\\\": \\\"EMA vs random PPL gap ≥ 5%\\\", \\\"estimated_hours\\\": 3, \\\"registry_id\\\": \\\"d003_reasoning_traces\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"full_ppl\\\": 1.212, \\\"ema_0.9_ppl\\\": 1.2522, \\\"ema_0.7_ppl\\\": 1.2706, \\\"ema_0.5_ppl\\\": 1.278, \\\"random_ppl\\\": 1.2271, \\\"recency_ppl\\\": 1.217, \\\"ema_vs_random_gap_pct\\\": -2.05, \\\"ema_vs_full_gap_pct\\\": 3.32, \\\"recency_vs_full_gap_pct\\\": 0.41, \\\"pass\\\": false}}, {\\\"id\\\": \\\"pathc_sanity_wikitext32k\\\", \\\"phase\\\": \\\"0\\\", \\\"description\\\": \\\"EMA vs recency eviction PPL on WikiText-2 32K prefill\\\", \\\"claim\\\": \\\"EMA eviction outperforms recency-based eviction on long context\\\", \\\"priority\\\": 0, \\\"depends_on\\\": [], \\\"success_criterion\\\": \\\"EMA PPL < recency PPL\\\", \\\"estimated_hours\\\": 3, \\\"registry_id\\\": \\\"d003_wikitext_32k\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"ppl_full\\\": 7.1822, \\\"ppl_ema_0.9\\\": 7.7788, \\\"ppl_ema_0.7\\\": 8.1367, \\\"ppl_ema_0.5\\\": 8.1352, \\\"ppl_random\\\": 7.6432, \\\"ppl_recency\\\": 7.1758, \\\"ema_vs_recency_gap_pct\\\": 8.4, \\\"ema_vs_random_gap_pct\\\": -1.77, \\\"recency_vs_full_gap_pct\\\": -0.09}}, {\\\"id\\\": \\\"analysis_heatmap\\\", \\\"phase\\\": \\\"0b\\\", \\\"description\\\": \\\"Per-layer heatmap visualization of spatial decoupling (uses MVP existing data)\\\", \\\"claim\\\": \\\"EMA captures meaningful per-layer structure\\\", \\\"priority\\\": 2, \\\"depends_on\\\": [\\\"pathc_sanity_reasoning FAIL\\\", \\\"pathc_sanity_wikitext32k FAIL\\\"], \\\"success_criterion\\\": \\\"Visual evidence of per-layer EMA score distribution differences\\\", \\\"estimated_hours\\\": 0, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"analysis_attn_vs_ema\\\", \\\"phase\\\": \\\"0b\\\", \\\"description\\\": \\\"Attention-score vs EMA signal comparison using kvpress knorm/expected_attn\\\", \\\"claim\\\": \\\"EMA signal provides complementary information to attention scores — determines claim scope\\\", \\\"priority\\\": 0, \\\"depends_on\\\": [\\\"pathc_sanity_reasoning FAIL\\\", \\\"pathc_sanity_wikitext32k FAIL\\\"], \\\"success_criterion\\\": \\\"Quantitative comparison showing EMA vs attention score correlation/divergence\\\", \\\"estimated_hours\\\": 4, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"analysis_tau_sweep\\\", \\\"phase\\\": \\\"0b\\\", \\\"description\\\": \\\"Tau (EMA decay) sensitivity sweep across gamma values\\\", \\\"claim\\\": \\\"EMA decay rate has measurable impact on eviction quality\\\", \\\"priority\\\": 1, \\\"depends_on\\\": [\\\"pathc_sanity_reasoning FAIL\\\", \\\"pathc_sanity_wikitext32k FAIL\\\"], \\\"success_criterion\\\": \\\"Clear trend in PPL vs gamma curve\\\", \\\"estimated_hours\\\": 2, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"analysis_decay_curve\\\", \\\"phase\\\": \\\"0b\\\", \\\"description\\\": \\\"Information decay curve analysis — how EMA scores evolve over sequence length\\\", \\\"claim\\\": \\\"EMA scores exhibit characteristic decay patterns for different token types\\\", \\\"priority\\\": 1, \\\"depends_on\\\": [\\\"pathc_sanity_reasoning FAIL\\\", \\\"pathc_sanity_wikitext32k FAIL\\\"], \\\"success_criterion\\\": \\\"Distinct decay curves for reasoning vs repetitive tokens\\\", \\\"estimated_hours\\\": 2, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"analysis_second_model\\\", \\\"phase\\\": \\\"0b\\\", \\\"description\\\": \\\"Qwen2.5-7B validation for generalization\\\", \\\"claim\\\": \\\"EMA eviction behavior generalizes across model sizes\\\", \\\"priority\\\": 2, \\\"depends_on\\\": [\\\"pathc_sanity_reasoning FAIL\\\", \\\"pathc_sanity_wikitext32k FAIL\\\"], \\\"success_criterion\\\": \\\"Similar EMA score distribution patterns on Qwen2.5-7B\\\", \\\"estimated_hours\\\": 8, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_ppl_budget30\\\", \\\"phase\\\": \\\"1\\\", \\\"description\\\": \\\"PPL evaluation at 30% KV budget\\\", \\\"claim\\\": \\\"CARC maintains acceptable PPL at aggressive compression\\\", \\\"priority\\\": 1, \\\"depends_on\\\": [\\\"pathc_sanity_reasoning\\\", \\\"pathc_sanity_wikitext32k\\\"], \\\"success_criterion\\\": \\\"PPL degradation ≤ 10% vs full cache\\\", \\\"estimated_hours\\\": 3, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_ppl_budget50\\\", \\\"phase\\\": \\\"1\\\", \\\"description\\\": \\\"PPL evaluation at 50% KV budget\\\", \\\"claim\\\": \\\"CARC maintains acceptable PPL at moderate compression\\\", \\\"priority\\\": 1, \\\"depends_on\\\": [\\\"pathc_sanity_reasoning\\\", \\\"pathc_sanity_wikitext32k\\\"], \\\"success_criterion\\\": \\\"PPL degradation ≤ 5% vs full cache\\\", \\\"estimated_hours\\\": 3, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_ppl_budget70\\\", \\\"phase\\\": \\\"1\\\", \\\"description\\\": \\\"PPL evaluation at 70% KV budget\\\", \\\"claim\\\": \\\"CARC maintains acceptable PPL at light compression\\\", \\\"priority\\\": 1, \\\"depends_on\\\": [\\\"pathc_sanity_reasoning\\\", \\\"pathc_sanity_wikitext32k\\\"], \\\"success_criterion\\\": \\\"PPL degradation ≤ 2% vs full cache\\\", \\\"estimated_hours\\\": 3, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_baseline_h2o\\\", \\\"phase\\\": \\\"2\\\", \\\"description\\\": \\\"H2O baseline comparison via kvpress at matched budgets\\\", \\\"claim\\\": \\\"CARC outperforms H2O on reasoning-heavy sequences\\\", \\\"priority\\\": 1, \\\"depends_on\\\": [\\\"pathc_ppl_budget50\\\"], \\\"success_criterion\\\": \\\"CARC PPL < H2O PPL at 50% budget\\\", \\\"estimated_hours\\\": 4, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_baseline_rkv\\\", \\\"phase\\\": \\\"2\\\", \\\"description\\\": \\\"R-KV baseline comparison (O(B²) vs O(1) complexity)\\\", \\\"claim\\\": \\\"CARC achieves comparable PPL to R-KV with O(1) complexity\\\", \\\"priority\\\": 1, \\\"depends_on\\\": [\\\"pathc_ppl_budget50\\\"], \\\"success_criterion\\\": \\\"PPL within 2% of R-KV + throughput advantage\\\", \\\"estimated_hours\\\": 6, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_ablation_gamma\\\", \\\"phase\\\": \\\"3\\\", \\\"description\\\": \\\"EMA gamma sensitivity (0.5, 0.7, 0.9, 0.95)\\\", \\\"claim\\\": \\\"Gamma selection impacts eviction quality\\\", \\\"priority\\\": 2, \\\"depends_on\\\": [\\\"pathc_ppl_budget50\\\"], \\\"success_criterion\\\": \\\"Identified optimal gamma with ≥2% PPL gap vs worst\\\", \\\"estimated_hours\\\": 4, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_ablation_budget\\\", \\\"phase\\\": \\\"3\\\", \\\"description\\\": \\\"Budget ratio sweep (20%-80% in 10% steps)\\\", \\\"claim\\\": \\\"CARC degrades gracefully across budget range\\\", \\\"priority\\\": 2, \\\"depends_on\\\": [\\\"pathc_ppl_budget50\\\"], \\\"success_criterion\\\": \\\"Monotonic PPL improvement with budget increase\\\", \\\"estimated_hours\\\": 6, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_ablation_grace\\\", \\\"phase\\\": \\\"3\\\", \\\"description\\\": \\\"Grace window size sweep (0, 50, 100, 175, 250, 500)\\\", \\\"claim\\\": \\\"Grace window protects recent context and improves PPL\\\", \\\"priority\\\": 2, \\\"depends_on\\\": [\\\"pathc_ppl_budget50\\\"], \\\"success_criterion\\\": \\\"Grace window > 0 improves PPL vs no grace\\\", \\\"estimated_hours\\\": 4, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_ablation_perhead\\\", \\\"phase\\\": \\\"3\\\", \\\"description\\\": \\\"Per-head vs concatenated EMA comparison\\\", \\\"claim\\\": \\\"Per-head EMA captures finer-grained redundancy\\\", \\\"priority\\\": 2, \\\"depends_on\\\": [\\\"pathc_ppl_budget50\\\"], \\\"success_criterion\\\": \\\"Per-head mode matches or beats concatenated\\\", \\\"estimated_hours\\\": 3, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_math500_eval\\\", \\\"phase\\\": \\\"4\\\", \\\"description\\\": \\\"MATH-500 accuracy with CARC eviction at 50% budget\\\", \\\"claim\\\": \\\"CARC preserves reasoning capability under compression\\\", \\\"priority\\\": 1, \\\"depends_on\\\": [\\\"pathc_ppl_budget50\\\"], \\\"success_criterion\\\": \\\"Accuracy ≥ 90% of full cache baseline\\\", \\\"estimated_hours\\\": 8, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_scaling_32k\\\", \\\"phase\\\": \\\"5\\\", \\\"description\\\": \\\"32K context length PPL evaluation\\\", \\\"claim\\\": \\\"CARC scales to long contexts\\\", \\\"priority\\\": 2, \\\"depends_on\\\": [\\\"pathc_ppl_budget50\\\"], \\\"success_criterion\\\": \\\"PPL degradation ≤ 5% at 32K\\\", \\\"estimated_hours\\\": 6, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_scaling_64k\\\", \\\"phase\\\": \\\"5\\\", \\\"description\\\": \\\"64K context length PPL evaluation (depends on model max_pos)\\\", \\\"claim\\\": \\\"CARC scales to very long contexts\\\", \\\"priority\\\": 3, \\\"depends_on\\\": [\\\"pathc_scaling_32k\\\"], \\\"success_criterion\\\": \\\"PPL degradation ≤ 8% at 64K\\\", \\\"estimated_hours\\\": 10, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}, {\\\"id\\\": \\\"pathc_throughput\\\", \\\"phase\\\": \\\"5\\\", \\\"description\\\": \\\"Throughput benchmarking — tokens/sec with vs without eviction\\\", \\\"claim\\\": \\\"CARC eviction overhead is negligible\\\", \\\"priority\\\": 2, \\\"depends_on\\\": [\\\"pathc_ppl_budget50\\\"], \\\"success_criterion\\\": \\\"Throughput within 5% of full cache\\\", \\\"estimated_hours\\\": 4, \\\"registry_id\\\": null, \\\"status\\\": \\\"planned\\\"}], \\\"total\\\": 20}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": [{\"id\": \"pathc_sanity_reasoning\", \"phase\": \"0\", \"description\": \"EMA vs random eviction PPL on reasoning traces (MATH-500, ~30-40K tokens)\", \"claim\": \"EMA eviction signal is meaningful — outperforms random by ≥5% PPL gap\", \"priority\": 0, \"depends_on\": [], \"success_criterion\": \"EMA vs random PPL gap ≥ 5%\", \"estimated_hours\": 3, \"registry_id\": \"d003_reasoning_traces\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"full_ppl\": 1.212, \"ema_0.9_ppl\": 1.2522, \"ema_0.7_ppl\": 1.2706, \"ema_0.5_ppl\": 1.278, \"random_ppl\": 1.2271, \"recency_ppl\": 1.217, \"ema_vs_random_gap_pct\": -2.05, \"ema_vs_full_gap_pct\": 3.32, \"recency_vs_full_gap_pct\": 0.41, \"pass\": false}}, {\"id\": \"pathc_sanity_wikitext32k\", \"phase\": \"0\", \"description\": \"EMA vs recency eviction PPL on WikiText-2 32K prefill\", \"claim\": \"EMA eviction outperforms recency-based eviction on long context\", \"priority\": 0, \"depends_on\": [], \"success_criterion\": \"EMA PPL < recency PPL\", \"estimated_hours\": 3, \"registry_id\": \"d003_wikitext_32k\", \"status\": \"DONE\", \"conclusion\": \"negative\", \"metrics\": {\"ppl_full\": 7.1822, \"ppl_ema_0.9\": 7.7788, \"ppl_ema_0.7\": 8.1367, \"ppl_ema_0.5\": 8.1352, \"ppl_random\": 7.6432, \"ppl_recency\": 7.1758, \"ema_vs_recency_gap_pct\": 8.4, \"ema_vs_random_gap_pct\": -1.77, \"recency_vs_full_gap_pct\": -0.09}}, {\"id\": \"analysis_heatmap\", \"phase\": \"0b\", \"description\": \"Per-layer heatmap visualization of spatial decoupling (uses MVP existing data)\", \"claim\": \"EMA captures meaningful per-layer structure\", \"priority\": 2, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Visual evidence of per-layer EMA score distribution differences\", \"estimated_hours\": 0, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"analysis_attn_vs_ema\", \"phase\": \"0b\", \"description\": \"Attention-score vs EMA signal comparison using kvpress knorm/expected_attn\", \"claim\": \"EMA signal provides complementary information to attention scores — determines claim scope\", \"priority\": 0, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Quantitative comparison showing EMA vs attention score correlation/divergence\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"analysis_tau_sweep\", \"phase\": \"0b\", \"description\": \"Tau (EMA decay) sensitivity sweep across gamma values\", \"claim\": \"EMA decay rate has measurable impact on eviction quality\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Clear trend in PPL vs gamma curve\", \"estimated_hours\": 2, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"analysis_decay_curve\", \"phase\": \"0b\", \"description\": \"Information decay curve analysis — how EMA scores evolve over sequence length\", \"claim\": \"EMA scores exhibit characteristic decay patterns for different token types\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Distinct decay curves for reasoning vs repetitive tokens\", \"estimated_hours\": 2, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"analysis_second_model\", \"phase\": \"0b\", \"description\": \"Qwen2.5-7B validation for generalization\", \"claim\": \"EMA eviction behavior generalizes across model sizes\", \"priority\": 2, \"depends_on\": [\"pathc_sanity_reasoning FAIL\", \"pathc_sanity_wikitext32k FAIL\"], \"success_criterion\": \"Similar EMA score distribution patterns on Qwen2.5-7B\", \"estimated_hours\": 8, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ppl_budget30\", \"phase\": \"1\", \"description\": \"PPL evaluation at 30% KV budget\", \"claim\": \"CARC maintains acceptable PPL at aggressive compression\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning\", \"pathc_sanity_wikitext32k\"], \"success_criterion\": \"PPL degradation ≤ 10% vs full cache\", \"estimated_hours\": 3, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ppl_budget50\", \"phase\": \"1\", \"description\": \"PPL evaluation at 50% KV budget\", \"claim\": \"CARC maintains acceptable PPL at moderate compression\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning\", \"pathc_sanity_wikitext32k\"], \"success_criterion\": \"PPL degradation ≤ 5% vs full cache\", \"estimated_hours\": 3, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ppl_budget70\", \"phase\": \"1\", \"description\": \"PPL evaluation at 70% KV budget\", \"claim\": \"CARC maintains acceptable PPL at light compression\", \"priority\": 1, \"depends_on\": [\"pathc_sanity_reasoning\", \"pathc_sanity_wikitext32k\"], \"success_criterion\": \"PPL degradation ≤ 2% vs full cache\", \"estimated_hours\": 3, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_baseline_h2o\", \"phase\": \"2\", \"description\": \"H2O baseline comparison via kvpress at matched budgets\", \"claim\": \"CARC outperforms H2O on reasoning-heavy sequences\", \"priority\": 1, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"CARC PPL < H2O PPL at 50% budget\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_baseline_rkv\", \"phase\": \"2\", \"description\": \"R-KV baseline comparison (O(B²) vs O(1) complexity)\", \"claim\": \"CARC achieves comparable PPL to R-KV with O(1) complexity\", \"priority\": 1, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"PPL within 2% of R-KV + throughput advantage\", \"estimated_hours\": 6, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ablation_gamma\", \"phase\": \"3\", \"description\": \"EMA gamma sensitivity (0.5, 0.7, 0.9, 0.95)\", \"claim\": \"Gamma selection impacts eviction quality\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Identified optimal gamma with ≥2% PPL gap vs worst\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ablation_budget\", \"phase\": \"3\", \"description\": \"Budget ratio sweep (20%-80% in 10% steps)\", \"claim\": \"CARC degrades gracefully across budget range\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Monotonic PPL improvement with budget increase\", \"estimated_hours\": 6, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ablation_grace\", \"phase\": \"3\", \"description\": \"Grace window size sweep (0, 50, 100, 175, 250, 500)\", \"claim\": \"Grace window protects recent context and improves PPL\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Grace window > 0 improves PPL vs no grace\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_ablation_perhead\", \"phase\": \"3\", \"description\": \"Per-head vs concatenated EMA comparison\", \"claim\": \"Per-head EMA captures finer-grained redundancy\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Per-head mode matches or beats concatenated\", \"estimated_hours\": 3, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_math500_eval\", \"phase\": \"4\", \"description\": \"MATH-500 accuracy with CARC eviction at 50% budget\", \"claim\": \"CARC preserves reasoning capability under compression\", \"priority\": 1, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Accuracy ≥ 90% of full cache baseline\", \"estimated_hours\": 8, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_scaling_32k\", \"phase\": \"5\", \"description\": \"32K context length PPL evaluation\", \"claim\": \"CARC scales to long contexts\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"PPL degradation ≤ 5% at 32K\", \"estimated_hours\": 6, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_scaling_64k\", \"phase\": \"5\", \"description\": \"64K context length PPL evaluation (depends on model max_pos)\", \"claim\": \"CARC scales to very long contexts\", \"priority\": 3, \"depends_on\": [\"pathc_scaling_32k\"], \"success_criterion\": \"PPL degradation ≤ 8% at 64K\", \"estimated_hours\": 10, \"registry_id\": null, \"status\": \"planned\"}, {\"id\": \"pathc_throughput\", \"phase\": \"5\", \"description\": \"Throughput benchmarking — tokens/sec with vs without eviction\", \"claim\": \"CARC eviction overhead is negligible\", \"priority\": 2, \"depends_on\": [\"pathc_ppl_budget50\"], \"success_criterion\": \"Throughput within 5% of full cache\", \"estimated_hours\": 4, \"registry_id\": null, \"status\": \"planned\"}], \"total\": 20}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8d3a24e0-f73d-4190-a912-3a74d0709cf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-12T16:15:19.941Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage · `toolu_01Um8Dc4LHPHHq11xxJKc3Yo`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2dd4afb3-b4ba-4c41-9e37-08262e151608",
+  "isSidechain": false,
+  "requestId": "req_011CaxyPbWGmqrh8enT9vS6f",
+  "type": "assistant",
+  "uuid": "dd812d32-8eaa-4b7a-bcaf-818c565997a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0129JFzhCxGKUmZUbABRSm1K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2504,
+      "cache_read_input_tokens": 48554,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2504,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 48554,
+          "cache_creation_input_tokens": 2504,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2504
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-12T16:15:19.985Z_
+
+<details><summary>↩ Tool result · `toolu_01Um8Dc4LHPHHq11xxJKc3Yo`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westd-16980\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westd-16980\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"westd-16980\", \"gpu_id\": \"cuda:0\", \"idle_min\": null}, {\"server\": \"westd-16980\", \"gpu_id\": \"cuda:1\", \"idle_min\": null}], \"running_experiments\": [], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 0, \"cpu_tasks\": 1, \"details\": [{\"worker_id\": \"worker_run_a2_attn_vs_ema_fast_20260512T155234\", \"task\": \"run:a2_attn_vs_ema_fast\"}]}, \"summary\": \"分配 2 张, 实际跑 0 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd812d32-8eaa-4b7a-bcaf-818c565997a9",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "0dcaa62d-9580-4636-bf99-5380f8cde6d4",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westd-16980\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westd-16980\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null}, {\\\"server\\\": \\\"westd-16980\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null}], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 1, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 1, \\\"details\\\": [{\\\"worker_id\\\": \\\"worker_run_a2_attn_vs_ema_fast_20260512T155234\\\", \\\"task\\\": \\\"run:a2_attn_vs_ema_fast\\\"}]}, \\\"summary\\\": \\\"分配 2 张, 实际跑 0 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westd-16980\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westd-16980\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"westd-16980\", \"gpu_id\": \"cuda:0\", \"idle_min\": null}, {\"server\": \"westd-16980\", \"gpu_id\": \"cuda:1\", \"idle_min\": null}], \"running_experiments\": [], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 0, \"cpu_tasks\": 1, \"details\": [{\"worker_id\": \"worker_run_a2_attn_vs_ema_fast_20260512T155234\", \"task\": \"run:a2_attn_vs_ema_fast\"}]}, \"summary\": \"分配 2 张, 实际跑 0 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "dd812d32-8eaa-4b7a-bcaf-818c565997a9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-12T16:15:19.989Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers · `toolu_01E1o2CYkZVSxY2R9CrreU8y`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0dcaa62d-9580-4636-bf99-5380f8cde6d4",
+  "isSidechain": false,
+  "requestId": "req_011CaxyPbWGmqrh8enT9vS6f",
+  "type": "assistant",
+  "uuid": "3546fe8e-89a9-4c56-b054-4259e24f2532",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0129JFzhCxGKUmZUbABRSm1K",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2504,
+      "cache_read_input_tokens": 48554,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2504,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 48554,
+          "cache_creation_input_tokens": 2504,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2504
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-12T16:15:20.018Z_
+
+<details><summary>↩ Tool result · `toolu_01E1o2CYkZVSxY2R9CrreU8y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_run_a2_attn_vs_ema_fast_20260512T155234\", \"task_type\": \"run:a2_attn_vs_ema_fast\", \"project\": \"solver-verified-formalizer-rl\", \"status\": \"running\", \"started_at\": \"2026-05-12T15:52:34.543200+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3546fe8e-89a9-4c56-b054-4259e24f2532",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "d4048ba4-2747-4a6f-95df-f6142934451e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_run_a2_attn_vs_ema_fast_20260512T155234\\\", \\\"task_type\\\": \\\"run:a2_attn_vs_ema_fast\\\", \\\"project\\\": \\\"solver-verified-formalizer-rl\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-12T15:52:34.543200+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_run_a2_attn_vs_ema_fast_20260512T155234\", \"task_type\": \"run:a2_attn_vs_ema_fast\", \"project\": \"solver-verified-formalizer-rl\", \"status\": \"running\", \"started_at\": \"2026-05-12T15:52:34.543200+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3546fe8e-89a9-4c56-b054-4259e24f2532",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: d003_reasoning_traces - project: solver-verified-formalizer-rl - server: westd-16980 - log_…",
+  "leafUuid": "d4048ba4-2747-4a6f-95df-f6142934451e",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and transition to done",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+### Assistant
+
+_source line 55 · 2026-05-12T16:16:47.200Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a full picture:
+
+**Resource Status:**
+- GPU 分配: 2 (cuda:0, cuda:1 @ westd-16980) / 实际跑: 0 ⚠️ 
+- Worker 池: 1 (GPU 0 / CPU 1) — worker_run_a2_attn_vs_ema_fast is running (attention vs EMA analysis)
+- Worker 池 < 2 = 失职 (but I'm about to address this)
+
+**Experiment Plan:**
+- Phase 0 (sanity): 2 done, both negative (d003_reasoning_traces, d003_wikitext_32k)
+
+
+- Phase 0b (analysis): 5 planned, 0 started (analysis_heatmap, analysis_attn_vs_ema, analysis_tau_sweep, analysis_decay_curve, analysis_second_model)
+- Phase 1+ (main experiments): 12 planned, all depend on Phase 0 passing
+
+The sanity gate has failed — the core hypothesis that EMA eviction outperforms random selection isn't holding up, which blocks everything downstream. I'm looking at the detailed results from the reasoning traces and wikitext experiments to understand what went wrong.
+
+The data shows a clear pattern: recency-based eviction stays consistently strong across all sequence lengths, while EMA actually performs worse than random on the longer sequences. EMA only edges out random on the shortest test, suggesting the approach doesn't scale as intended.
+
+The issue seems to be that as sequences grow, the EMA centroid converges toward an average representation of all tokens, making it a poor signal for importance. A token's distance from this centroid tells you how unusual it is, not how critical it is—and the most important tokens might be exactly the unusual ones. Random eviction, by contrast, has a fair shot at preserving any given important token, while EMA systematically removes the outliers.
+
+I need to reframe the narrative around this finding. The original claim was that EMA provides an O(1) eviction signal beating random, but the experiments across meaningful sequence lengths (32K, 30K reasoning) show it underperforms or matches random. So I'm reconsidering what the EMA signal actually captures and how that changes the paper's framing. I also notice there's already a worker running attention vs. EMA analysis as part of Phase 0b, which is exactly the kind of diagnostic work needed here.
+
+Now I'm preparing the formal report following the negative-result protocol: updating the report with the finding, proposing a framing adjustment for the red-section, and preparing to brief the Director. I'll note that literature_map.yaml is missing from the proposal, and I should verify that the reasoning traces registry is properly marked as complete with all metrics and conclusions recorded.
+
+Since report.md is auto-generated, I'll focus on updating memory.md and drafting the Director briefing instead. I'm also flagging a resource constraint issue—the worker pool is at 1 when the hard constraint requires < 2, though this is defensible given we're awaiting direction after the sanity gate failure. Additionally, both GPUs are currently idle, which violates the allocation requirement that all assigned GPUs must be actively running.
+
+Looking at the Phase 0b analysis tasks, I can spawn workers for tau_sweep and decay_curve analysis since they need GPU compute and fall within the planned contingency work if sanity checks fail. This keeps resources utilized while I await the Director's decision on next steps. GPU 资源有 2 个分配但实际只跑了 1 个，现在 d003_reasoning_traces 实验完成了，结果很糟糕——EMA 在 MATH 推理任务上表现反而比随机基线还差，这完全违反了我的假设。
+
+看三轮 sanity check 的汇总数据，EMA 在所有场景下都劣于随机策略，而且序列越长问题越严重，这说明用 EMA centroid similarity 作为 eviction 信号根本行不通。
+
+我现在意识到 EMA 计算的其实是 token 有多"平均"而不是有多"重要"，这就解释了为什么不寻常但关键的推理步骤反而被低估了。
+
+Recency 的持续优势表明注意力模式主要依赖近邻关系，远距离依赖很稀疏。我在考虑三种新的叙述方向，其中最有潜力的是系统验证为什么基于 EMA/centroid 的 O(1) eviction 方法会失败——这虽然是负面结果，但可以作为分析贡献，配合 per-layer heatmap 和注意力对比来支撑论点。
+
+另一个思路是混合策略，让 Recency 作为主要驱逐方式，EMA 只在检测到异常时保护特定 token，这样能在三四天内验证。第三个选项是完全转向基于累积注意力分数的 O(1) eviction，类似 H2O 但保持常数时间复杂度。
+
+我正在对比注意力分数和 EMA 的性能，这个结果会决定这条路是否可行。
+
+无论选择哪个方向，都需要全面改写论文的摘要和引言，因为当前的主张已经不成立了。方法部分的 EMA 评分组件可以保留但需要重新定位，实验部分的数据可以用于分析，讨论部分必须加入为什么 EMA 失效的分析。
+
+接下来我建议立即运行几个关键实验：对比注意力分数和 EMA 的性能，检查 gamma 参数的敏感性以排除参数选择错误的可能性，以及追踪 EMA 分数如何随序列长度变化，这些都能支撑对 EMA 失效原因的理解。目前 Phase 1 及以后的实验都被阻塞了，需要等待决策，但 Phase 0b 的分析实验仍然有价值，因为无论最终选择哪个叙述方向，都需要理解 EMA 为什么会失败。
+
+前三个失败的实验验证了跨轴的 pivot，后三个则验证了 EMA 的 eviction signal，如果 Option C（基于注意力的 O(1) 方案）在 worker 分析中也不可行，应该认真考虑转向完全不同的想法。同时需要创建文献地图来整理相关工作，重点包括 H2O、StreamingLLM、R-KV 等关键论文。
+
+现在需要向 Director 汇报这些结果并让他们决策选择哪个方向，或者是否要 pivot。汇报完后更新记忆文档，然后启动 worker 来处理 GPU 利用率。同时可以开始一些 Phase 0b 的分析实验，比如 tau 参数扫描和 EMA 衰减曲线分析，这些对任何方向都有帮助，而且不会动到论文的核心内容。
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4048ba4-2747-4a6f-95df-f6142934451e",
+  "isSidechain": false,
+  "requestId": "req_011CaxyPsauQhmLHu2d8NsxH",
+  "type": "assistant",
+  "uuid": "d324f978-013d-4d7c-b2f3-69efcc8f8d31",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FNjCV1x7Md2P1VG3Jz2WKZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4003,
+      "cache_read_input_tokens": 51058,
+      "output_tokens": 5330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5330,
+          "cache_read_input_tokens": 51058,
+          "cache_creation_input_tokens": 4003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-12T16:16:49.313Z_
+
+全局状况清晰。d003_reasoning_traces 已 DONE (negative)，三轮 sanity gate 全面 FAIL。1 个 Worker 在跑 attn_vs_ema 分析，2 GPU 空闲。
+
+按 on-experiment-done negative 流程：产出 Framing 调整提案并汇报 Director。同时启动 Phase 0b 分析实验利用空闲 GPU。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d324f978-013d-4d7c-b2f3-69efcc8f8d31",
+  "isSidechain": false,
+  "requestId": "req_011CaxyPsauQhmLHu2d8NsxH",
+  "type": "assistant",
+  "uuid": "84fca736-068b-4570-bafb-ce116e749e66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FNjCV1x7Md2P1VG3Jz2WKZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4003,
+      "cache_read_input_tokens": 51058,
+      "output_tokens": 5330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5330,
+          "cache_read_input_tokens": 51058,
+          "cache_creation_input_tokens": 4003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-12T16:17:05.157Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director · `toolu_012PXKab9s5BvmJZ8Hw1Ld6R`</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 0 ⚠️ | Worker 池 1 (GPU 0 / CPU 1: attn_vs_ema 分析中)\n\n## d003_reasoning_traces 完成 — Sanity Gate 全面 FAIL\n\n### 实验结果 (d003_reasoning_traces)\n\nMATH reasoning traces, 30K tokens, DeepSeek-R1-14B, 50% budget eviction:\n- EMA(γ=0.9) PPL: 1.2522 (+3.32% vs full 1.212)\n- Random PPL: 1.2271 (+1.25% vs full)\n- Recency PPL: 1.217 (+0.41% vs full)\n- **EMA vs Random: -2.05%（EMA 劣于 random）** → FAIL\n\n### 三轮 Sanity Check 汇总\n\n| 实验 | 数据 | EMA vs Random | Recency vs Full |\n|---|---|---|---|\n| sanity_kv_eviction | WikiText 4K | +0.9% | +0.50% |\n| d003_wikitext_32k | WikiText 32K | **-1.77%** | -0.09% |\n| d003_reasoning_traces | MATH 30K | **-2.05%** | +0.41% |\n\n**结论：EMA centroid similarity 作为 eviction signal 不成立。序列越长 EMA 反而越差于 random。Recency 在所有场景 < 1% 退化。**\n\n---\n\n## Framing 调整提案\n\n**原 claim:** EMA centroid similarity 提供 O(1) KV eviction signal，显著优于 random（≥5% gap）\n**实验结果:** 三轮 sanity 表明 EMA ≤ random（长序列差 1-2%）\n\n**根因分析:** EMA centroid 收敛到 \"所有 token 平均表示\"，similarity 衡量 \"token 有多平均\" 而非 \"有多重要\"。不寻常但关键的推理 token 反而被优先驱逐。Recency 优势说明 attention 中近邻依赖主导。\n\n### 3 个 Narrative 备选\n\n**A. Analytical — \"Why O(1) similarity scores fail for KV eviction\"**\n- 贡献：首次系统验证 centroid-based O(1) eviction 失败模式 + per-layer/per-head 分析\n- 已有数据 + Phase 0b 分析在跑/将跑，需补 ≥2 模型\n- 风险：negative results paper 难发主会，可转 Findings/workshop\n- 时间：~5 天补实验 + 5 天论文\n\n**B. Hybrid — \"Recency-first + EMA anomaly guard\"**\n- 假说：Recency 做主策略，EMA 仅在检测到高 divergence 时保护特定 token\n- 贡献：O(1) hybrid policy\n- 风险：novelty 存疑（StreamingLLM 已做 recency），需证 hybrid > pure recency\n- 时间：3-4 天实验 + 论文改写\n\n**C. Pivot — attention-score-based O(1) eviction**\n- 放弃 EMA，用 accumulated attention score 的 O(1) 近似\n- Worker 正在对比 attention vs EMA，结果决定此路可行性\n- 风险：如果 attention 也不行就没有 O(1) story\n- 时间：4-5 天实验 + 全面改写\n\n### 对论文影响\nAbstract/Intro 需全面改写；Method 中 EMA 组件保留但定位变化；已有 sanity data 可用于 analytical section。\n\n### 建议下一步\n- [在跑] attn_vs_ema 分析 — 决定 Option C 可行性\n- [即将启动] tau_sweep + decay_curve — 排除 \"gamma 选错\" 可能 + 支撑 \"why EMA fails\"\n\n### 反思\n- 6 连 negative（cross-axis 3 + EMA eviction 3），核心假说链已断\n- Phase 0b 分析实验无论选哪个 narrative 都需要，已开始利用空闲 GPU\n- 如果 Option C 也不可行，建议认真考虑 pivot 到完全不同的 idea\n- DDL 5/25 剩 13 天，时间紧迫\n\n请 Director 决策：A / B / C / pivot？",
+  "project": "solver-verified-formalizer-rl"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84fca736-068b-4570-bafb-ce116e749e66",
+  "isSidechain": false,
+  "requestId": "req_011CaxyPsauQhmLHu2d8NsxH",
+  "type": "assistant",
+  "uuid": "1f8e4c50-ad14-40af-a58b-e09bdc0de200",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FNjCV1x7Md2P1VG3Jz2WKZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4003,
+      "cache_read_input_tokens": 51058,
+      "output_tokens": 5330,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4003,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5330,
+          "cache_read_input_tokens": 51058,
+          "cache_creation_input_tokens": 4003,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4003
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-12T16:17:09.068Z_
+
+<details><summary>↩ Tool result · `toolu_012PXKab9s5BvmJZ8Hw1Ld6R`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_66c5460a32413791b7e928db4154825e:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f8e4c50-ad14-40af-a58b-e09bdc0de200",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "34921fe0-f680-4a9e-9dc9-0d06f9d1cdad",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_66c5460a32413791b7e928db4154825e:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_66c5460a32413791b7e928db4154825e:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "1f8e4c50-ad14-40af-a58b-e09bdc0de200",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-12T16:17:20.739Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, Director report sent. Now let me:
+1. Update memory.md with the sanity gate conclusion
+2. Spawn workers for Phase 0b analysis experiments (tau_sweep, decay_curve) to utilize idle GPUs
+
+For spawning workers, I need to be careful:
+- tau_sweep and decay_curve need GPU access (SSH to westd-16980)
+- They should use tool_groups ["ssh", "registry"]
+- I need to give them sufficient context about the experiment
+
+But wait, before spawning workers, I should also check: are there scripts already on the server for tau_sweep and decay_curve? I don't know. 
+
+Rather than SSH myself, I should spawn workers with comprehensive task prompts. For tau_sweep, I'll have them sweep gamma values across {0.3, 0.5, 0.7, 0.8, 0.9, 0.95, 0.99} using the same evaluation setup as d003. For decay_curve, they'll analyze how EMA scores evolve across sequence positions and capture the distribution. Both workers need to examine the existing d003 scripts first to understand the codebase, then implement their respective analyses.
+
+I'll spawn the tau_sweep worker first and run decay_curve in parallel, then update memory.md with the key insight about EMA failure.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34921fe0-f680-4a9e-9dc9-0d06f9d1cdad",
+  "isSidechain": false,
+  "requestId": "req_011CaxyXuicaynXNyU3bvk3g",
+  "type": "assistant",
+  "uuid": "2dc28f1f-198c-41bc-8c89-12e955b0dd9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BiQ6rgChTwnPTwFKem5McC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5389,
+      "cache_read_input_tokens": 55061,
+      "output_tokens": 3933,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3933,
+          "cache_read_input_tokens": 55061,
+          "cache_creation_input_tokens": 5389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 60 · 2026-05-12T16:17:20.810Z_
+
+Director 已通知。现在启动 Phase 0b 分析实验利用空闲 GPU，并更新 memory.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2dc28f1f-198c-41bc-8c89-12e955b0dd9b",
+  "isSidechain": false,
+  "requestId": "req_011CaxyXuicaynXNyU3bvk3g",
+  "type": "assistant",
+  "uuid": "bcf33b26-cb3c-4422-a015-e74d4507b82f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BiQ6rgChTwnPTwFKem5McC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5389,
+      "cache_read_input_tokens": 55061,
+      "output_tokens": 3933,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3933,
+          "cache_read_input_tokens": 55061,
+          "cache_creation_input_tokens": 5389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-12T16:17:46.398Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_01C9fg1K2aDUyKMciCntPwT2`</summary>
+
+```json
+{
+  "project": "solver-verified-formalizer-rl",
+  "file": "memory.md",
+  "content": "# Memory\n\n## 经验教训\n\n### Device mismatch 踩坑 (2026-05-12)\n在 D003 脚本中用 `torch.zeros(size)` 创建 padding tensor 时，默认在 CPU 上。当 GPU scores 被拷入后存为 `self._cumulative_scores`，后续 eval 阶段新 GPU scores 与之 torch.cat 会 device 不匹配。**必须显式指定 device**: `torch.zeros(size, device=scores.device)`。\n\n### D003 三次崩溃根因分类 (2026-05-12)\n1. HF 网络不通 + CUDA device ordinal (submit_training_job 注入 CUDA_VISIBLE_DEVICES，脚本必须用 --gpu 0)\n2. HF datasets 网络不通 + transformers 4.57+ DynamicCache API 变更 (key_cache/value_cache → layers[i].keys/values)\n3. torch.zeros 默认 CPU device → update_scores torch.cat device mismatch\n\n三次均为环境/API 兼容问题，核心算法逻辑未出错。教训：**每次修改后必须 smoke test 验证全流程**。\n\n### Sanity check 结论 (2026-05-12)\nWikiText-2 4K token sanity check: EMA vs random gap 仅 0.9%（远低于 5% 门槛）。但 Director 判断数据/长度条件不匹配动机场景（reasoning traces + 32K），因此发起 D003 1-day retry。\n\n### EMA Sanity Gate 全面 FAIL — 根因分析 (2026-05-12)\n三轮 sanity check 结论一致：EMA centroid similarity 不能作为有效的 eviction signal。\n- WikiText 4K: EMA vs random +0.9%（微优但远低于 5% 门槛）\n- WikiText 32K: EMA vs random **-1.77%**（EMA 劣于 random）\n- MATH 30K reasoning: EMA vs random **-2.05%**（EMA 劣于 random）\n\n**根因**：EMA centroid 随序列增长收敛到\"所有 token 平均表示\"，similarity score 实际衡量\"token 有多平均\"而非\"有多重要\"。不寻常但关键的推理 token（高 surprisal）反而被优先驱逐，因为它们与 centroid 距离远。序列越长效应越强（4K 微优 → 32K/30K 劣于 random）。\n\nRecency 在所有场景一致 < 1% 退化，说明 attention 模式以近邻依赖为主。\n\n## 决策上下文\n\n### Path C pivot 原因 (2026-05-12)\nCross-axis 假说（KV similarity → MLP sparsification tolerance）被证伪：|r|=0.12, perturbation_diff=5.5%。Pivot 到 O(1) Recurrence-Aware KV Eviction，复用 EMA scoring 组件但改变 narrative。\n\n### Baseline 框架已就绪 (2026-05-12)\nkvpress v0.5.3 已安装，eval_baselines.py 支持 7 个 baseline (H2O/SnapKV/KeyDiff/StreamingLLM/ExpectedAttn/ObservedAttn/TOVA)。dry-run 通过。\n\n### Sanity Gate FAIL 后方向待决 (2026-05-12)\n6 连 negative（cross-axis 3 + EMA eviction 3）。向 Director 提交 3 个 Framing 备选：A) analytical negative results, B) recency+EMA hybrid, C) attention-based O(1) eviction。等待 Director 决策。Phase 0b 分析实验（attn_vs_ema, tau_sweep, decay_curve）在决策期间继续跑，为任一方向提供支撑。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcf33b26-cb3c-4422-a015-e74d4507b82f",
+  "isSidechain": false,
+  "requestId": "req_011CaxyXuicaynXNyU3bvk3g",
+  "type": "assistant",
+  "uuid": "28293a5a-c68a-43fd-b8c4-6a1912ef4e9d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BiQ6rgChTwnPTwFKem5McC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5389,
+      "cache_read_input_tokens": 55061,
+      "output_tokens": 3933,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3933,
+          "cache_read_input_tokens": 55061,
+          "cache_creation_input_tokens": 5389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-12T16:17:46.418Z_
+
+<details><summary>↩ Tool result · `toolu_01C9fg1K2aDUyKMciCntPwT2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "28293a5a-c68a-43fd-b8c4-6a1912ef4e9d",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "ba14e65b-d34d-4987-966c-a1122a03237c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "28293a5a-c68a-43fd-b8c4-6a1912ef4e9d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-12T16:18:05.518Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_019BJ19YH6mafnvs8yU4hZnP`</summary>
+
+```json
+{
+  "task_type": "run:analysis_tau_sweep",
+  "project": "solver-verified-formalizer-rl",
+  "task_prompt": "## 任务：EMA Gamma 敏感性扫描（Phase 0b 分析实验）\n\n### 目标\n在服务器 westd-16980 上扫描不同 gamma（EMA decay rate）值对 KV eviction PPL 的影响，排除\"gamma 选错导致 EMA 失败\"的可能性。\n\n### 背景\n三轮 sanity check 表明 EMA centroid similarity 作为 eviction signal 不如 random。但之前只测了 gamma={0.5, 0.7, 0.9}。需要更细粒度的 sweep 来确认是 gamma 选择问题还是 EMA 方法本身的问题。\n\n### 实验设计\n- **服务器**: westd-16980, 用 cuda:0\n- **模型**: DeepSeek-R1-Distill-Qwen-14B (已在 /root/carc/models/ 下)\n- **数据**: 复用 d003_reasoning_traces 的 MATH reasoning traces 或 WikiText-2 32K\n- **Gamma values**: {0.1, 0.3, 0.5, 0.7, 0.8, 0.9, 0.95, 0.99}\n- **Budget**: 50%\n- **对比**: 每个 gamma 的 eviction PPL vs full cache PPL vs random eviction PPL\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **代码路径**: /root/carc/\n\n### 步骤\n1. SSH 到 westd-16980，先探测环境（conda 状态、已有脚本）\n2. 查看现有 d003 脚本（d003_reasoning_traces.py 和 d003_wikitext32k_eval.py）了解 EMA eviction 实现\n3. 基于现有脚本创建 gamma sweep 脚本，或修改现有脚本增加 gamma 参数循环\n4. 在 cuda:0 上运行 sweep（预计每个 gamma 10-20 分钟，总计 ~2 小时）\n5. 用 submit_training_job 提交（不要 nohup）\n6. 输出 JSON 结果文件到 /root/carc/analysis_tau_sweep_results.json\n7. 结果格式: {gamma: {ppl_ema, ppl_full, ppl_random, gap_pct}}\n\n### 成功标准\n- 完成所有 8 个 gamma 值的 PPL 测量\n- 输出结果 JSON\n- 如果任一 gamma 实现 EMA vs random ≥ 5% gap → 报告为重要发现\n\n### 出错诊断\n- CUDA OOM → 减小 batch size 或序列长度\n- 模型加载失败 → 检查 /root/carc/models/ 路径\n- 网络问题 → 先 `source /etc/network_turbo`（如果是 AutoDL）\n\n### 注册\n实验完成后用 update_registry 更新 exp_id=analysis_tau_sweep，记录 metrics 和 conclusion。",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "context": "EMA eviction sanity gate 三轮全 FAIL。现在做 Phase 0b 分析，理解 EMA 为何失败。此实验扫描 gamma 敏感性。服务器 westd-16980 已有环境（conda base, DeepSeek-R1-14B 模型在 /root/carc/models/）。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ba14e65b-d34d-4987-966c-a1122a03237c",
+  "isSidechain": false,
+  "requestId": "req_011CaxyXuicaynXNyU3bvk3g",
+  "type": "assistant",
+  "uuid": "dfe94fae-0276-4f68-8441-9c0b15607913",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BiQ6rgChTwnPTwFKem5McC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5389,
+      "cache_read_input_tokens": 55061,
+      "output_tokens": 3933,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3933,
+          "cache_read_input_tokens": 55061,
+          "cache_creation_input_tokens": 5389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-12T16:18:08.178Z_
+
+<details><summary>↩ Tool result · `toolu_019BJ19YH6mafnvs8yU4hZnP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_run_analysis_tau_sweep_20260512T161805\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/logs/workers/worker_run_analysis_tau_sweep_20260512T161805.log\", \"setup_data\": {}, \"message\": \"Worker worker_run_analysis_tau_sweep_20260512T161805 started. Use get_worker_status('worker_run_analysis_tau_sweep_20260512T161805') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dfe94fae-0276-4f68-8441-9c0b15607913",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "ddba60d3-c209-428d-a4f5-3752d03616e3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_run_analysis_tau_sweep_20260512T161805\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/logs/workers/worker_run_analysis_tau_sweep_20260512T161805.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_run_analysis_tau_sweep_20260512T161805 started. Use get_worker_status('worker_run_analysis_tau_sweep_20260512T161805') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_run_analysis_tau_sweep_20260512T161805\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/logs/workers/worker_run_analysis_tau_sweep_20260512T161805.log\", \"setup_data\": {}, \"message\": \"Worker worker_run_analysis_tau_sweep_20260512T161805 started. Use get_worker_status('worker_run_analysis_tau_sweep_20260512T161805') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "dfe94fae-0276-4f68-8441-9c0b15607913",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-12T16:18:23.552Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker · `toolu_01FGhuvc3E4PELsMicEGTvq3`</summary>
+
+```json
+{
+  "task_type": "run:analysis_decay_curve",
+  "project": "solver-verified-formalizer-rl",
+  "task_prompt": "## 任务：EMA Score 衰减曲线分析（Phase 0b 分析实验）\n\n### 目标\n分析 EMA centroid similarity score 随序列位置的演变规律，理解 EMA 作为 eviction signal 失败的根因。产出可视化 + 数据。\n\n### 背景\nEMA eviction 三轮 sanity check 全 FAIL（在长序列上劣于 random）。假说是 EMA centroid 随序列增长收敛到\"平均表示\"，导致 similarity score 失去区分度。需要用数据验证这个假说。\n\n### 实验设计\n- **服务器**: westd-16980, 用 cuda:1\n- **模型**: DeepSeek-R1-Distill-Qwen-14B (在 /root/carc/models/)\n- **数据**: MATH reasoning traces（复用 d003 数据）+ WikiText-2 32K\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **代码路径**: /root/carc/\n\n### 分析内容\n1. **Score 分布随位置变化**: 取一条长序列（32K tokens），每 1000 tokens 记录所有 KV entry 的 EMA score 分布（mean, std, min, max, quartiles）\n2. **Score 区分度衰减**: 计算 score std / mean 作为\"区分度\"指标，绘制其随位置的变化\n3. **Centroid 收敛速率**: 记录 EMA centroid 的 L2 norm 变化和 cosine similarity（相邻 step 的 centroid）\n4. **Token 类型对比**: 如果可以标注 token 类型（reasoning step vs filler），对比不同类型 token 的 score 演变\n5. **Per-layer 对比**: 选 3-5 个代表层（浅/中/深），看不同层的衰减模式是否不同\n\n### 步骤\n1. SSH 到 westd-16980，探测环境\n2. 查看 d003 脚本了解 EMA scoring 实现（关注 EMAEvictionScorer 类）\n3. 创建分析脚本 /root/carc/analysis_decay_curve.py\n4. 在 cuda:1 上运行（用 submit_training_job 提交）\n5. 输出:\n   - /root/carc/analysis_decay_curve_results.json（量化数据）\n   - /root/carc/analysis_decay_curve.png（可视化图：x=position, y=score std/mean, 多条线=不同层）\n\n### 成功标准\n- 量化 EMA score 区分度随序列长度的衰减\n- 产出至少 2 张可视化图（score 分布演变 + 区分度衰减）\n- 确认或否定 \"centroid 收敛到平均表示\" 的假说\n\n### 出错诊断\n- matplotlib 不可用 → `pip install matplotlib`\n- CUDA OOM → 减小 batch 或用 torch.no_grad()\n- 需要 hook 到模型内部 → 参考 d003 脚本中的 KV cache 访问方式\n\n### 注册\n完成后 update_registry exp_id=analysis_decay_curve，记录关键 metrics（如初始 score_std vs 末尾 score_std）和 conclusion。",
+  "tool_groups": [
+    "ssh",
+    "registry"
+  ],
+  "context": "EMA eviction sanity gate 三轮全 FAIL。核心假说：EMA centroid 随序列增长收敛到平均表示，导致 similarity score 失去区分度，不能有效识别重要 token。此实验用数据验证这个假说。服务器 westd-16980 已有环境（conda base, DeepSeek-R1-14B 模型在 /root/carc/models/）。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddba60d3-c209-428d-a4f5-3752d03616e3",
+  "isSidechain": false,
+  "requestId": "req_011CaxyXuicaynXNyU3bvk3g",
+  "type": "assistant",
+  "uuid": "8a5d6b49-0bc1-4f3f-b0c4-2723879768fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BiQ6rgChTwnPTwFKem5McC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5389,
+      "cache_read_input_tokens": 55061,
+      "output_tokens": 3933,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5389,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3933,
+          "cache_read_input_tokens": 55061,
+          "cache_creation_input_tokens": 5389,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5389
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。 详情: Process exited cleanly, W&B data available  - exp_id: d003_reasoning_traces - project: solver-verified-formalizer-rl - server: westd-16980 - log_…",
+  "leafUuid": "8a5d6b49-0bc1-4f3f-b0c4-2723879768fd",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze experiment results and transition to done",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100"
+}
+```
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-12T16:18:25.755Z_
+
+<details><summary>↩ Tool result · `toolu_01FGhuvc3E4PELsMicEGTvq3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_run_analysis_decay_curve_20260512T161823\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/logs/workers/worker_run_analysis_decay_curve_20260512T161823.log\", \"setup_data\": {}, \"message\": \"Worker worker_run_analysis_decay_curve_20260512T161823 started. Use get_worker_status('worker_run_analysis_decay_curve_20260512T161823') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a5d6b49-0bc1-4f3f-b0c4-2723879768fd",
+  "isSidechain": false,
+  "promptId": "78ac54f5-b4b9-4d9f-874d-f47fe010afee",
+  "type": "user",
+  "uuid": "bc4c474f-7e41-46f4-afc2-139f711d21b7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_run_analysis_decay_curve_20260512T161823\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/logs/workers/worker_run_analysis_decay_curve_20260512T161823.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_run_analysis_decay_curve_20260512T161823 started. Use get_worker_status('worker_run_analysis_decay_curve_20260512T161823') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"worker_id\": \"worker_run_analysis_decay_curve_20260512T161823\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/logs/workers/worker_run_analysis_decay_curve_20260512T161823.log\", \"setup_data\": {}, \"message\": \"Worker worker_run_analysis_decay_curve_20260512T161823 started. Use get_worker_status('worker_run_analysis_decay_curve_20260512T161823') to check progress.\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8a5d6b49-0bc1-4f3f-b0c4-2723879768fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 69 · 2026-05-12T16:18:25.760Z_
+
+```json
+{
+  "parentUuid": "bc4c474f-7e41-46f4-afc2-139f711d21b7",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "3b5cd6f7-ebf2-4e0f-a8f2-ced035374162",
+  "timestamp": "2026-05-12T16:18:25.760Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-12T16:18:36.458Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All done. Let me summarize:
+
+1. ✅ Session-start: read registry, reconcile crons, read report/ROADMAP/config
+2. ✅ Analyzed d003_reasoning_traces results: EMA vs random -2.05%, sanity gate FAIL
+3. ✅ Produced Framing adjustment proposal (3 options: A/B/C)
+4. ✅ Reported to Director via main_agent_post_to_director
+5. ✅ Updated memory.md with EMA failure root cause analysis
+
+
+6. ✅ Spawned tau_sweep and decay_curve analysis workers across both GPUs, bringing the worker pool to 3 total and fully utilizing available resources
+
+Now I'm waiting for the analysis results to come back.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b5cd6f7-ebf2-4e0f-a8f2-ced035374162",
+  "isSidechain": false,
+  "requestId": "req_011CaxydZb4p2okVtNDTB6W8",
+  "type": "assistant",
+  "uuid": "34d42475-424b-4e89-81ef-68b1ec8e8e27",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nbs1znot9nz1q9j85Mg3ww",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 60450,
+      "output_tokens": 518,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 518,
+          "cache_read_input_tokens": 60450,
+          "cache_creation_input_tokens": 4604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-12T16:18:37.959Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__send_progress · `toolu_01KUieZwaLzPe9ty2EBqjtkm`</summary>
+
+```json
+{
+  "message": "d003_reasoning_traces CRON 回调处理完成。Sanity gate 三轮全 FAIL（EMA 劣于 random -2.05%）。已向 Director 提交 Framing 调整提案（A/B/C 三选一）。启动 2 个 Phase 0b 分析 Worker（tau_sweep cuda:0 + decay_curve cuda:1），Worker 池现 3 个。等待 Director 决策。"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "34d42475-424b-4e89-81ef-68b1ec8e8e27",
+  "isSidechain": false,
+  "requestId": "req_011CaxydZb4p2okVtNDTB6W8",
+  "type": "assistant",
+  "uuid": "fa3584dd-6f79-45a7-96e8-efba7fa13742",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_11/projects/solver-verified-formalizer-rl/.claude/sessions/agent_dd5bed1b",
+  "sessionId": "deeba6c1-a3e0-4d50-ab01-de2cb0ce8100",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Nbs1znot9nz1q9j85Mg3ww",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4604,
+      "cache_read_input_tokens": 60450,
+      "output_tokens": 518,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 518,
+          "cache_read_input_tokens": 60450,
+          "cache_creation_input_tokens": 4604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
