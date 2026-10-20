@@ -37,6 +37,19 @@ class TraceNormalizationTests(unittest.TestCase):
         self.assertEqual(events[1]["content"], [{"type": "text", "text": ""}])
         self.assertEqual(events[-1]["content"][0]["text"], "{bad json}")
 
+    def test_large_tool_result_metadata_references_preserved_trace(self):
+        record = {"type": "user", "message": {"role": "user", "content": [{"type": "tool_result", "content": "Done"}]},
+                  "tool_use_result": {"content": "x" * 5000}}
+        with patch.object(build, "MAX_BROWSER_EVENT_BYTES", 1000), patch.object(build, "MAX_BROWSER_FIELD_BYTES", 500):
+            events, unparsed = build.parse_source((json.dumps(record) + "\n").encode(), "worker")
+            self.assertEqual(unparsed, 0)
+            self.assertLess(len(build.encoded(events[0])), 1000)
+            reference = events[0]["metadata"]["tool_use_result"]
+            self.assertEqual(reference["storage"], "sanitized-trace-archive")
+            self.assertEqual(reference["source_line"], 1)
+            self.assertEqual(reference["serialized_sha256"], build.hashlib.sha256(build.encoded(record["tool_use_result"])).hexdigest())
+            self.assertEqual(events[0]["content"][0]["content"], "Done")
+
     def test_paging_preserves_rounds_event_ids_and_long_unicode_text(self):
         events = []
         for i in range(13):

@@ -25,6 +25,8 @@ INLINE_BYTES = 700_000
 PAGE_BYTES = 650_000
 MARKDOWN_PAGE_BYTES = 800_000
 PAGE_EVENTS = 180
+MAX_BROWSER_EVENT_BYTES = 2_000_000
+MAX_BROWSER_FIELD_BYTES = 1_000_000
 ROOT = Path(__file__).resolve().parents[1]
 KINDS = {
     "conversation": "Conversation logs",
@@ -62,6 +64,39 @@ def encoded(value):
 def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_bytes(encoded(value))
+
+
+def archive_reference(value, source_line):
+    data = encoded(value)
+    return {"storage": "sanitized-trace-archive", "source_line": source_line,
+            "serialized_bytes": len(data), "serialized_sha256": hashlib.sha256(data).hexdigest(),
+            "note": "Complete sanitized source is retained in trace-files.tar.gz."}
+
+
+def bounded_event(event):
+    if len(encoded(event)) <= MAX_BROWSER_EVENT_BYTES:
+        return event
+    line = event.get("source_line")
+    metadata = event.get("metadata")
+    if isinstance(metadata, dict):
+        for key, value in list(metadata.items()):
+            if len(encoded(value)) > MAX_BROWSER_FIELD_BYTES:
+                metadata[key] = archive_reference(value, line)
+    if len(encoded(event)) <= MAX_BROWSER_EVENT_BYTES:
+        return event
+    content = event.get("content")
+    if isinstance(content, list):
+        metadata = event.setdefault("metadata", {})
+        for index, block in enumerate(content):
+            if len(encoded(block)) > MAX_BROWSER_FIELD_BYTES:
+                metadata.setdefault("large_content_blocks", []).append({"index": index, **archive_reference(block, line)})
+                content[index] = {"type": "text", "text": "Large source content is retained in the sanitized trace archive."}
+    if len(encoded(event)) <= MAX_BROWSER_EVENT_BYTES:
+        return event
+    reference = archive_reference(event, line)
+    return {key: event[key] for key in ("id", "source_line", "timestamp", "role", "recorded_role") if key in event} | {
+        "content": [{"type": "text", "text": "Large source event is retained in the sanitized trace archive."}],
+        "metadata": {"large_event": reference}}
 
 
 @contextmanager
@@ -350,7 +385,7 @@ def normalize_record(record, line, source_kind):
 def parse_source(data, kind):
     text = data.decode("utf-8", errors="replace")
     if kind == "history":
-        return [{"source_line": 1, "role": "note", "content": content_blocks(text)}], 0
+        return [bounded_event({"source_line": 1, "role": "note", "content": content_blocks(text)})], 0
     if kind == "result":
         try:
             result = json.loads(text)
@@ -363,18 +398,18 @@ def parse_source(data, kind):
                     event["metadata"] = rest
             else:
                 event = normalize_record(result, 1, kind)
-            return [event], 0
+            return [bounded_event(event)], 0
         except (json.JSONDecodeError, ValueError):
-            return [{"source_line": 1, "role": "log", "content": content_blocks(text)}], 1
+            return [bounded_event({"source_line": 1, "role": "log", "content": content_blocks(text)})], 1
     events, unparsed = [], 0
     for number, line in enumerate(text.splitlines(), 1):
         if not line.strip():
             continue
         try:
-            events.append(normalize_record(json.loads(line), number, kind))
+            events.append(bounded_event(normalize_record(json.loads(line), number, kind)))
         except (json.JSONDecodeError, ValueError):
             unparsed += 1
-            events.append({"source_line": number, "role": "log", "content": content_blocks(line)})
+            events.append(bounded_event({"source_line": number, "role": "log", "content": content_blocks(line)}))
     return events, unparsed
 
 
@@ -423,6 +458,7 @@ def persist_session(directory, session):
             messages = turn.pop("messages")
             turn["chunks"] = []
             for event in messages:
+                event = bounded_event(event)
                 size = len(encoded(event))
                 if batch and (batch_bytes + size > PAGE_BYTES or len(batch) >= PAGE_EVENTS):
                     flush()
