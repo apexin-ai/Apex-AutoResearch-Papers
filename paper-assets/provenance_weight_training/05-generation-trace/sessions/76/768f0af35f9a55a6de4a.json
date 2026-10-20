@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "768f0af35f9a55a6de4a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check gpu reality 30476",
+  "task_key": "worker_check_gpu_reality_30476_20260518T144415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_reality_30476_20260518T144415_result.json",
+    "occurrence": 1,
+    "bytes": 2823,
+    "sha256": "6c84ce6b4aba07cae8039f18e755234d00098c6a2b43be6043032f9e8e979e74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整报告\n\n### Step 1: GPU 使用情况\n| GPU | 型号 | 显存使用 | GPU利用率 | 状态 |\n|-----|------|---------|----------|------|\n| 0 | RTX PRO 6000 Blackwell | 0MiB / 97887MiB | 0% | 空闲 |\n| 1 | RTX PRO 6000 Blackwell | 0MiB / 97887MiB | 0% | 空闲 |\n| 2 | RTX PRO 6000 Blackwell | 41757MiB / 97887MiB | 98% | **PID 36443 (python)** |\n| 3 | RTX PRO 6000 Blackwell | 0MiB / 97887MiB | 0% | 空闲 |\n\n### Step 2: epoch-matched checkpoints\n全部不存在：\n- `detect_remove_q05_epoch_matched_seed123/final/model.safetensors` — **NOT FOUND**\n- `detect_remove_q05_epoch_matched_seed456/final/model.safetensors` — **NOT FOUND**\n- `epoch_matched_dr_seed123/final/model.safetensors` — **NOT FOUND**\n- `epoch_matched_dr_seed456/final/model.safetensors` — **NOT FOUND**\n\n### Step 3: epoch-matched 日志\n两个日志内容完全相同，只有两行：\n```\nbash: line 1: python: command not found\nEXIT_CODE=127\n```\n**epoch_matched_dr_seed123 和 seed456 都因 `python` 找不到而立即失败，从未开始训练。**\n\n### Step 4: q01 训练状态\n- 输出目录 `/root/autodl-tmp/output/models/detect_remove_q01_seed42/` — **NOT FOUND**\n- 日志同样只有：\n```\nbash: line 1: python: command not found\nEXIT_CODE=127\n```\n**q01 也因 python 找不到而失败。**\n\n### Step 5: q03 训练状态\n日志同样：\n```\nbash: line 1: python: command not found\nEXIT_CODE=127\n```\n**q03 也因 python 找不到而失败。**\n\n### Step 6: tmux sessions\n```\ndetect_remove_q07_seed42_r2: 1 windows (created Mon May 18 20:11:58 2026)\n```\n只有一个 tmux session。\n\n### Step 7: python 训练进程\n唯一运行的训练进程：\n```\nPID 36443 — python training/pretrain_weighted.py\n  --data_path data/scored_data_filtered_q07.jsonl\n  --output_dir /root/autodl-tmp/output/models/detect_remove_q07_seed42\n  --model_name models/Qwen/Qwen3-0.6B\n  --weighting_method uniform\n  --contamination_ratio 0.4\n  --num_train_tokens 200000000\n  --seed 42\n  --CUDA_VISIBLE_DEVICES=2\n```\n**进度: 70% (4301/6103), epoch 0.37, 已运行 ~2h33m, 预计剩余 ~1h03m**\n\n---\n\n### 总结\n\n| 任务 | 状态 |\n|------|------|\n| **q07_seed42_r2** | 正在运行，GPU 2，70% 完成，预计 ~1h 后结束 |\n| **epoch_matched_dr_seed123** | 失败 — `python: command not found` |\n| **epoch_matched_dr_seed456** | 失败 — `python: command not found` |\n| **q01_seed42** | 失败 — `python: command not found` |\n| **q03_seed42** | 失败 — `python: command not found` |\n\n**根因：** epoch_matched 和 q01/q03 的启动脚本没有先 `source /root/miniconda3/bin/activate`，导致 bare `python` 找不到。q07_r2 的启动命令包含了 `source /root/miniconda3/bin/activate`，所以正常运行。GPU 0/1/3 完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-reality-30476.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff5595978472e6b677f2",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh setup westd 30476 env v2",
+  "task_key": "worker_ssh_setup_westd_30476_env_v2_20260517T101635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_setup_westd_30476_env_v2_20260517T101635_result.json",
+    "occurrence": 1,
+    "bytes": 1602,
+    "sha256": "77aaf53cd5ded9dba22008f8a9fcdb74e8b76f0c2d9c6413b4afc200eb2576ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Server Status Summary: westd-30476\n\n| Item | Status | Details |\n|------|--------|---------|\n| **SSH** | OK | Connected successfully |\n| **OS/Kernel** | Ubuntu, 5.15.0-78-generic x86_64 | Up 218 days |\n| **GPUs** | 4x NVIDIA RTX PRO 6000 Blackwell | ~96 GB VRAM each, Driver 580.82, CUDA 13.0 |\n| **Disk (root `/`)** | 30G total, 4% used (29G free) | |\n| **Disk (`/dev/sda2`)** | 879G total, 3% used (816G free) | |\n| **Disk (shared NFS)** | 7.3T total, 24% used (5.3T free) | `/autodl-pub` |\n| **Python** | **MISSING** | No python3 found anywhere |\n| **Conda** | **MISSING** | No conda/miniconda |\n| **PyTorch** | **MISSING** | No pip packages installed |\n| **Pre-built image** | **No** | No `.aml_image.json` detected |\n| **Project code dir** | Exists (`/root/provenance_weight_training/`) | Contains `data/` and `models/` subdirs, but **empty** (no files) |\n| **Training data** | **MISSING** | No `scored_data.jsonl` or `eval_holdout.jsonl` found |\n| **Model weights** | **MISSING** | No `Qwen3-0.6B` directory found |\n\n### What needs to be done\n\n1. **Install Python 3.10+** (miniconda or system package)\n2. **Install PyTorch** (compatible with CUDA 13.0 / Blackwell GPUs)\n3. **Install ML packages**: transformers, accelerate, peft, trl, datasets, wandb, etc.\n4. **Transfer project code** to `/root/provenance_weight_training/`\n5. **Transfer training data**: `scored_data.jsonl`, `eval_holdout.jsonl`\n6. **Download or transfer model weights**: Qwen3-0.6B\n\nThe server is a bare container with only GPU drivers installed. Full environment setup is required."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-setup-westd-30476-env-v2.md"
+}

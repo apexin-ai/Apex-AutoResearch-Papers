@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60611354d81f9cee5242",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval contamination 60 grid b0 5 seed42",
+  "task_key": "worker_eval_contamination_60_grid_b0_5_seed42_20260516T013652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_contamination_60_grid_b0_5_seed42_20260516T013652_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "67ebffa4d2fe3276bda78d1c72f7185c09fcf57f4f6bd5880901e5da9fd6cee9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n## 评估结果\n\n| 实验 | 方法 | ρ | PPL |\n|------|------|---|-----|\n| contamination_60_uniform_seed42 | uniform | 0.6 | 17.766 |\n| **contamination_60_grid_b0_5_seed42** | **grid b=0.5** | **0.6** | **17.704** |\n| grid_b0_5_seed42 | grid b=0.5 | 0.4 | 17.644 |\n\n**结论：grid b=0.5 在 ρ=0.6 下 PPL=17.704，beat uniform（17.766），差值 0.062。** 说明从 ρ=0.4 搜到的最优 b=0.5 在更高污染比下仍然有效，但优势收窄（ρ=0.4 时 grid b=0.5 比 uniform 好 0.12+）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-contamination-60-grid-b0-5-seed42.md"
+}

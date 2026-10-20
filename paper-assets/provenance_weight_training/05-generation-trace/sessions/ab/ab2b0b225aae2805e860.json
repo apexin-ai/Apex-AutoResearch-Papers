@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab2b0b225aae2805e860",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit aeff only nmin1",
+  "task_key": "worker_submit_aeff_only_nmin1_20260523T134218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_aeff_only_nmin1_20260523T134218_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "d02f8860b01136651f44bb117a26d724c59e58efb2f599aca58f1d7db7fe48b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 块 GPU 全部有负载，确认正常。\n\n### 汇总\n\n| 项目 | 状态 |\n|------|------|\n| **磁盘** | /root/autodl-tmp 68GB 可用 |\n| **aeff_only_nmin1_seed42** | PID 875527, cuda:1, 28.7GB 显存占用 |\n| **aeff_only_nmin1_seed123** | PID 875597, cuda:3, 28.7GB 显存占用, GPU util 100% |\n| **GPU 0** (既有实验) | 100% util, 92GB 占用 — 正常运行 |\n| **GPU 2** (既有实验) | 100% util, 92GB 占用 — 正常运行 |\n\nGPU 1 的 utilization 暂时 0% 是因为刚启动在加载模型/数据，很快会上来。4 块卡全部在用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-aeff-only-nmin1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59aad4952b3a5dc6e415",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops anonymous repo push",
+  "task_key": "worker_ops_anonymous_repo_push_20260525T084725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anonymous_repo_push_20260525T084725_result.json",
+    "occurrence": 1,
+    "bytes": 1611,
+    "sha256": "fecf39b8be954399de3b1ee589dbb953c7146564be5dea4e8780de7673815015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**(a) 密钥状态：** 有效。`_anonymous_repo.json` 中的 PAT (`ghp_hSbo...`) 可正常推送。\n\n**(b) 推送完成时间戳：** 2026-05-25 ~08:51 UTC，commit `a0aee63`，force push 到 `main`。\n\n**(c) 匿名性确认：**\n- **Git 历史**：原有 2 个 commit，其中 `9d8d966` 的 author 为 `Ubuntu <ubuntu@ip-172-31-13-155.ap-northeast-1.compute.internal>`，泄露 AWS 实例 IP 和区域。已 squash 为单个 commit，author/committer 统一为 `Anonymous <anonymous@anonymous.invalid>`。\n- **代码内容**：无真名、机构名、edu/ac 邮箱。wandb_project 为 `provenance-weight-training`（与仓库同名，不泄露身份）。无 wandb_entity 设置。无 AutoDL/seetacloud 引用。\n- **硬编码路径**：237 处 `/root/provenance_weight_training` 和 `/root/miniconda3` 路径（shell 脚本中），为通用 Linux root 用户路径，不构成身份泄露。\n- **新增 `.gitignore`**：覆盖 `__pycache__`、`.venv`、`wandb/`、`output/`、`data/`、`.env` 等。\n\n**(d) 完整性确认：**\n- `README.md` ✅ — 含环境要求、安装步骤、数据格式说明、训练命令（adaptive/grid/uniform）、评测命令、weighting methods 表\n- `requirements.txt` ✅ — 10 个依赖（torch, transformers, datasets, accelerate, einops, wandb, sklearn, numpy, scipy, matplotlib）\n- 核心代码 ✅ — `training/pretrain_weighted.py`、`evaluation/eval_pipeline.py`、`detector/`（3 文件）、`weighting/alpha_eff.py`、`data_generation/generate_synthetic.py`\n- 总计 145 文件，含完整实验脚本和分析代码"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anonymous-repo-push.md"
+}

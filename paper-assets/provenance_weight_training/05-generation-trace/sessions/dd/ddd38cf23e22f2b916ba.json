@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddd38cf23e22f2b916ba",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check bs16 status and eval",
+  "task_key": "worker_check_bs16_status_and_eval_20260521T173532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_bs16_status_and_eval_20260521T173532_result.json",
+    "occurrence": 1,
+    "bytes": 125,
+    "sha256": "aed9404aa7cca60e014d3231e0fa79a4e0317e57deec66b5bbd70820f8274448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "~4.5 分钟后回来检查 bs16_adaptive 是否完成（届时应该在 5900+/6103 步附近或已完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bs16-status-and-eval.md"
+}

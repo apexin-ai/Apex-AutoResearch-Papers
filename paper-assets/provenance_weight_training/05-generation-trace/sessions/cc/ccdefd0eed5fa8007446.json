@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccdefd0eed5fa8007446",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "train ess only seed456 cuda1",
+  "task_key": "worker_train_ess_only_seed456_cuda1_20260517T153230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_ess_only_seed456_cuda1_20260517T153230_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "4ed34fbcb370de70e746831217da6ab86e036c673af244059fb7025841771409"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认 ess_only_seed456 在 cuda:1 上启动成功：\n\n- **PID**: 115525\n- **GPU 显存**: 46530MiB / 97887MiB\n- **GPU 利用率**: 96%\n- **tmux session**: `ess_only_seed456`\n- **脚本修复**: 添加 `WANDB_MODE=disabled`，删除 wandb 参数，`save_steps` 改为 500 对齐 `eval_steps`\n\n当前 4 张 GPU 全部在用（GPU0/1/2/3）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-ess-only-seed456-cuda1.md"
+}

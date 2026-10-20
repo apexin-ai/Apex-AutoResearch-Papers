@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac55a4fb6a9c8a4259ec",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh restart prep 41312",
+  "task_key": "worker_ssh_restart_prep_41312_20260517T205609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_restart_prep_41312_20260517T205609_result.json",
+    "occurrence": 1,
+    "bytes": 3397,
+    "sha256": "9fdaba84c0002a4fedd2ed45afeedabb71884bd11fe8b41081d0754f1af565f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集完毕。以下是结果：\n\n---\n\n## 实验 1: ess_only_seed123\n\n```\ncheckpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed123/checkpoint-2000\ntotal_steps: 6103\ncurrent_step: 2000 (实际训练到 ~2987 被 kill，但你指定从 2000 恢复)\nremaining_steps: 4103\n```\n\n**重启命令（无 inline eval）：**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport WANDB_MODE=disabled\ncd /root/provenance_weight_training\n\nCUDA_VISIBLE_DEVICES=2 python training/pretrain_weighted.py \\\n    --data_path data/scored_data.jsonl \\\n    --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed123 \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --weighting_method ess_only \\\n    --contamination_ratio 0.4 \\\n    --n_min 2 \\\n    --tau 0.8 \\\n    --max_steps 6103 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --learning_rate 5e-5 \\\n    --max_length 2048 \\\n    --seed 123 \\\n    --save_steps 500 \\\n    --logging_steps 10 \\\n    --warmup_ratio 0.05 \\\n    --weight_decay 0.01 \\\n    --bf16 \\\n    --save_total_limit 3 \\\n    --save_only_model \\\n    --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed123/checkpoint-2000\n```\n\n---\n\n## 实验 2: ess_only_seed456\n\n```\ncheckpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\ntotal_steps: 6103\ncurrent_step: 2500\nremaining_steps: 3603\n```\n\n**重启命令（无 inline eval）：**\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport WANDB_MODE=disabled\ncd /root/provenance_weight_training\n\nCUDA_VISIBLE_DEVICES=1 python training/pretrain_weighted.py \\\n    --data_path data/scored_data.jsonl \\\n    --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456 \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --weighting_method ess_only \\\n    --contamination_ratio 0.4 \\\n    --n_min 2 \\\n    --tau 0.8 \\\n    --max_steps 6103 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --learning_rate 5e-5 \\\n    --max_length 2048 \\\n    --seed 456 \\\n    --save_steps 500 \\\n    --logging_steps 10 \\\n    --warmup_ratio 0.05 \\\n    --weight_decay 0.01 \\\n    --bf16 \\\n    --save_total_limit 3 \\\n    --save_only_model \\\n    --resume_from_checkpoint /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\n```\n\n---\n\n## 注意事项\n\n**`save_only_model=True` 导致 checkpoint 中无 optimizer 状态**（无 `optimizer.pt`、`scheduler.pt`、`rng_state.pth`）。resume 时：\n- 模型权重正常恢复\n- step 计数器和 LR scheduler 从 `trainer_state.json` 恢复（LR 会 fast-forward 到正确位置）\n- **optimizer 动量（Adam beta1/beta2 累积）会丢失**，从零重新积累\n- 数据迭代顺序会 skip 已训练的 steps\n\n这在实践中通常影响不大，但前几百步 loss 可能有轻微波动。\n\n**已删除的参数**：`--eval_data_path`（原来指向 `data/human/eval_holdout.jsonl`）和对应的 eval 逻辑（脚本中 `eval_data_path=None` 时自动 `eval_strategy=\"no\"`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-restart-prep-41312.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c4855c7aa07cf76f976",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval uniform and adaptive downstream",
+  "task_key": "worker_eval_uniform_and_adaptive_downstream_20260517T171858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_uniform_and_adaptive_downstream_20260517T171858_result.json",
+    "occurrence": 1,
+    "bytes": 1127,
+    "sha256": "0bc05bee80c07a71543c2d1da1960e72e2f703ebdf0c9041f4fe7700064e6e8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Status update:\n\n**uniform_seed42 training is NOT near completion.** It's at step ~623/6103 (10%), with ~23 hours remaining. The 8477/8477 bar was one epoch's forward passes, not total training. `final` checkpoint does not exist yet.\n\n**adaptive_fix_seed42 already has complete fewshot results** from a previous run with the exact settings requested:\n\n```\nadaptive_fix_seed42:\n  HellaSwag (10-shot)  acc_norm = 0.4863\n  ARC-Easy (25-shot)   acc/acc_norm = 0.7100/0.7121\n  PIQA (5-shot)        acc/acc_norm = 0.6866/0.6839\n  WinoGrande (5-shot)  acc = 0.5635\n```\n\nI also ran a new 0-shot eval for adaptive_fix (saved to `qwen_adaptive_fix_downstream/`):\n```\nadaptive_fix_seed42 (0-shot):\n  HellaSwag  acc_norm = 0.4785\n  ARC-Easy   acc/acc_norm = 0.6503/0.6157\n  PIQA       acc/acc_norm = 0.6872/0.6866\n  WinoGrande acc = 0.5777\n```\n\n**Options for uniform:**\n1. Wait for training to finish (~23 hours), then eval the final checkpoint\n2. Eval the latest available checkpoint (checkpoint-600 at step 600/6103) now for a preliminary comparison\n3. Something else\n\nWhat would you like to do?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-uniform-and-adaptive-downstream.md"
+}

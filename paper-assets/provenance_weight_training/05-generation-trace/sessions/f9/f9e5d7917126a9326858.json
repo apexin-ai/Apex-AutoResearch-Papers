@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9e5d7917126a9326858",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops kill duplicate b5 urgent",
+  "task_key": "worker_ops_kill_duplicate_b5_urgent_20260514T113535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_duplicate_b5_urgent_20260514T113535_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "c7e48e9c3bce18bbae0d64ebaea36f71fb3f4105f5182342b42a9083de8f5293"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**1. PID 92798** — 已成功 kill。\n\n**2. PID 94717** — 正常运行中。\n- RSS: 3.6GB，运行时间 13 分 21 秒\n- GPU 显存: 46514 MiB（kill 掉重复进程后显存已恢复正常，OOM 风险解除）\n\n**3. checkpoint 目录** — 无损坏迹象。\n- `checkpoint-500/` 完整，`model.safetensors` 大小 1.19GB（合理）\n- 所有文件在 19:31-19:32 期间统一写入，无冲突痕迹\n- `step_metrics.jsonl` 持续更新中（19:36 最后写入）\n\n**4. PID 92798 来源** — tmux session `grid_b5_0_seed123`。\n- 该 session 于 19:22:46 创建，正是注册的那个 session（PID 94712→94716→94717 进程链）\n- PID 92798 不属于这个 tmux session 的进程链，是一个被额外手动/重复启动的进程。tmux session 中只有一个 `grid_b5_0_seed123`，说明 92798 是在 tmux 之外启动的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicate-b5-urgent.md"
+}

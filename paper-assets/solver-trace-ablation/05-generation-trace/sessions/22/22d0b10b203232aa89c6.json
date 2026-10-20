@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22d0b10b203232aa89c6",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check server full probe",
+  "task_key": "worker_check_server_full_probe_20260513T085746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_server_full_probe_20260513T085746_result.json",
+    "occurrence": 1,
+    "bytes": 2072,
+    "sha256": "0fb6b154536c19886e374620459936603f350634a6a2a31aa5230e83e7258cd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 探测结果汇总\n\n### 1. GPU 状态\n| GPU | 型号 | 显存占用 | 总显存 | 利用率 |\n|-----|------|---------|--------|--------|\n| GPU 0 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 79,003 MiB | 97,887 MiB | 49% |\n| GPU 1 | NVIDIA RTX PRO 6000 Blackwell Server Edition | 82,991 MiB | 97,887 MiB | 0% |\n\n**GPU 进程**: PID 10532 (`python phase0_orthogonality.py`) 占用双卡（78,992 + 82,980 MiB）\n\n### 2. Phase 0 v2 状态：**运行中**\n- tmux session `phase0_ortho_v2`，14:28 启动，已运行 ~2.5 小时\n- **当前进度**: Step 2 生成阶段，已生成 **4704/5000** samples（~94%）\n- 最后日志时间: 16:58，每 ~100 samples 约 2.5-3 分钟\n- **无错误**，预计 ~10 分钟内完成 Step 2 生成\n- Step 1 (Fine-tuning) 已完成，checkpoint 已保存\n\n### 3. correlation_matrix.json\n**不存在**。尚未生成——当前仍在 Step 2 生成阶段，correlation matrix 应在后续步骤产出。\n\n### 4. 日志关键行\n```\n14:28:10 - 加载数据完成 (train 8000, val 1000, test 1000)\n14:28:10 - [Step 1] Fine-tuning on 8000 samples\n         - trainable params: 4,358,144 / 1,548,072,448 (0.28%)\n14:51   - checkpoint 保存完成\n         - [Step 2] 开始生成 5000 samples\n16:58:04 - [Step 2] Generated 4704/5000 samples  ← 最新\n```\n\n### 5. Python 环境\n- Python 3.12.3 (conda base)\n- **torch 2.10.0+cu128**, accelerate 1.13.0\n- transformers 4.57.6, peft 0.19.0, trl 1.1.0\n- datasets 4.8.4, sentence-transformers 5.4.1\n- sacrebleu 2.6.0, scipy 1.17.1, matplotlib 3.10.5\n\n### 6. 已下载模型\n- **Qwen2.5-1.5B** (`/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B/config.json`)\n\n### 7. 数据文件\n| 文件 | 行数 |\n|------|------|\n| train.jsonl | 8,000 |\n| val.jsonl | 1,000 |\n| test.jsonl | 1,000 |\n| **合计** | **10,000** |\n\n### 8. Phase 0 输出目录\n- `outputs/phase0/checkpoint/` — LoRA adapter 已保存（adapter_model.safetensors 17MB）\n- `outputs/phase0/run.log` — 71KB 运行日志\n- `scored_samples.jsonl` — **尚未生成**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-server-full-probe.md"
+}

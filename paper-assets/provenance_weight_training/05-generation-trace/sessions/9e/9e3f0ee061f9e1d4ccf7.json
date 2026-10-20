@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e3f0ee061f9e1d4ccf7",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis detect remove q08 seed42",
+  "task_key": "worker_analysis_detect_remove_q08_seed42_20260518T232955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detect_remove_q08_seed42_20260518T232955_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "fcddbfbbbb69d4400414f00771c6b9a8cd6884b243709a55b033fd86193277b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练完成但 eval 尚未执行。eval 是独立脚本，需要单独运行。\n\n```\neval_ppl_holdout: N/A (eval 未运行)\ntrain_loss_final: 10.38 (Trainer 全程平均; 末尾 step loss ~2.1-3.6)\ntotal_steps: 6103/6103 (100%)\nstatus: success (训练正常完成, EXIT_CODE=0)\nnotes:\n  - 训练耗时 3h33m, epoch=0.4823 (约48%数据被遍历, 符合 200M token budget)\n  - 模型已保存至 /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q08_seed42/final\n  - 日志中无 eval_ppl_holdout: eval 在此项目中是独立步骤 (参考 eval_ngram_uniform.log 的流程)\n  - 需要运行 eval 脚本对 data/human/eval_holdout.jsonl 计算 holdout PPL 才能与 q07(17.32) / q09(17.42) 对比\n  - 末尾 step-level loss 在 2.1~3.6 范围, weighting_method=uniform, b=0 符合预期配置\n```\n\n需要我启动 eval 来获取 holdout PPL 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detect-remove-q08-seed42.md"
+}

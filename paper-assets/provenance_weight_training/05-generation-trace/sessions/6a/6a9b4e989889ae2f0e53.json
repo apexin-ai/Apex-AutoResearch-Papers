@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a9b4e989889ae2f0e53",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis seed42 adaptive diagnostic",
+  "task_key": "worker_analysis_seed42_adaptive_diagnostic_20260514T131507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_seed42_adaptive_diagnostic_20260514T131507_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "aeddb1f3b088a5a247d717fd88970e0dcbed492e16e18fee35a9ffb7a41bf4a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**adaptive_seed42 非 bug，而是信噪比问题。** weighting 机制工作正常（3 个 seed 的 b*/ESS/alpha_eff 统计完全一致）。\n\n### 根因：三个结构性因素叠加\n\n1. **n_min=3 + batch_size=4 过于保守** — 84.5% 的 micro-batch ESS 被钳制在 [3.0, 3.1]，weighting 强度远弱于 grid_b0.5（ESS=2.87，不受 n_min 约束）。这直接解释了为什么 grid_b0.5_seed42 有效而 adaptive_seed42 无效。\n\n2. **per-batch b* 纯噪声** — b* 自相关≈0，intra-step CV=0.51。同一 optimizer step 内 4 个 micro-batch 的 weighting 策略完全不同，等价于向梯度注入额外噪声。Grid 的 CV=0（完美一致）。\n\n3. **改善信号极弱（0.04 ppl, 0.23%）+ 仅 3 个 seed** — seed42 偏离均值仅 1.4σ，统计上不显著。seed42 的 late-phase loss 停滞而 seed123 仍在下降，说明 data ordering 导致了不同优化轨迹。\n\n### 最优先修复\n\n**降低 n_min 到 2**（甚至去掉约束）— 成本最低，直接释放 adaptive 的 weighting 力度，使其接近 grid_b0.5 的有效强度。\n\n报告和图表已保存到 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed42-adaptive-diagnostic.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b44ee0af3205e29f431d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval detect remove q05 v2 seed123",
+  "task_key": "worker_eval_detect_remove_q05_v2_seed123_20260521T233914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_detect_remove_q05_v2_seed123_20260521T233914_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "65cbfb2dd7ecfbc3fb2da80fd3525f28ba66735b89b0fd0746fe9c96a1dff6d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry already fully updated. A previous worker completed the evals and wrote all fields:\n\n| Dataset | Loss | PPL |\n|---------|------|-----|\n| Holdout | 2.8545 | 17.366 |\n| OWT | 2.9013 | 18.198 |\n| Wiki | 2.7234 | 15.232 |\n\n- **status**: DONE\n- **conclusion**: success\n- **checkpoint_path**: `/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed123/final`\n- **log_path**: `~/runs/provenance_weight_training/detect_remove_q05_v2_seed123.log`\n\nHoldout PPL 17.366 vs seed42's 17.285 — consistent across seeds as expected for full D&R. No action needed."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-detect-remove-q05-v2-seed123.md"
+}

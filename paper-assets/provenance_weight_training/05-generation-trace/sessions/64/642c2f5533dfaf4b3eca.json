@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "642c2f5533dfaf4b3eca",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops diagnose permuted score exit",
+  "task_key": "worker_ops_diagnose_permuted_score_exit_20260524T203730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_permuted_score_exit_20260524T203730_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "4490708188a2ebbe46fc5ec29c8ea7e806886c96bf473109343633049a32262e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被之前的 hook 自动清理）。\n\n---\n\n**诊断结果: 训练成功完成**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | success (6103/6103 steps) |\n| train_loss | 8.033 |\n| 训练时长 | ~3h 45m (13540s) |\n| throughput | 7.21 samples/s, 0.45 steps/s |\n| final checkpoint | `.../permuted_score_control_seed42/final` (1.19GB model.safetensors) |\n| eval | 未执行（无 eval_results 文件） |\n\n**备注**: `~/runs/` 日志中 step 500 的 `ENOSPC` 崩溃是第一次运行的残留记录（retry_count=2 确认了重跑）。重启后成功跑完全部 6103 steps 并保存了 final model。\n\nRegistry 已更新为 `conclusion=success`，metrics 已记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-permuted-score-exit.md"
+}

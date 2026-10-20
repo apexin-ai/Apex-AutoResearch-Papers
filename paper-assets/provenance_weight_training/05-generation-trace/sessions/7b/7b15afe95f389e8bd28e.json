@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b15afe95f389e8bd28e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "audit resume eval checkpoint",
+  "task_key": "worker_audit_resume_eval_checkpoint_20260521T043335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_resume_eval_checkpoint_20260521T043335_result.json",
+    "occurrence": 1,
+    "bytes": 3534,
+    "sha256": "46a405b48a5ec8883a19da44ff84558ad9f5d79dfc8ad6aae1b66da3dea05205"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Resume + save_only_model 审计结果\n\n### ✅ 安全（eval 用了 resume 前 checkpoint）\n\n| 实验 | 说明 |\n|------|------|\n| **grid_b0_2_seed456** | eval 明确使用 checkpoint-5500（resume 前）。Registry 注明 \"final checkpoint degraded due to --save_only_model LR reset on resume\"，eval 已绕开。PPL=17.645 |\n| **grid_b0_2_seed123** | 同上。eval 使用 checkpoint-5500。PPL=17.637 |\n\n---\n\n### ⚠️ eval 用了 resume 后 checkpoint，但风险低（resume 极早，剩余步数充足）\n\n| 实验 | resume 点 | 剩余步数 | PPL | 判断依据 |\n|------|-----------|---------|-----|---------|\n| **uniform_seed42** | ckpt-500 | 5603 (92%) | 17.694 | 3 seed 一致 (17.69-17.70)，train_loss 一致 (~7.31)，无异常 |\n| **uniform_seed123** | ckpt-500 | 5603 (92%) | 17.686 | 同上 |\n| **uniform_seed456** | ckpt-500 | 5603 (92%) | 17.702 | 同上 |\n| **grid_b0_3_seed123_r2** | ckpt-1000 | 5103 (84%) | 17.579 | 2026-05-18 re-eval 确认。PPL 在 grid_b0.3 组内正常 |\n| **contamination_60_random_seed42** | ckpt-1000 | 5103 (84%) | 17.832 | 单 seed，无法交叉验证，但 resume 早，数值合理 |\n\n> 这些实验 resume 在训练初期（≤16% 进度），optimizer 有充足步数重新收敛。PPL 无异常波动。\n\n---\n\n### ⚠️ eval 用了 resume 后 checkpoint，中等风险（resume 在中期）\n\n| 实验 | resume 点 | 剩余步数 | PPL | 服务器 | 备注 |\n|------|-----------|---------|-----|--------|------|\n| **ess_only_seed456_r2** | ckpt-2500 | ~3603 (59%) | 17.762 | westd-41312 ✅ | eval 确认用 final/。两 seed 差异 0.04，不算异常但无 from-scratch 基准对比 |\n| **ess_only_seed123_r2** | ckpt-2000 | ~4103 (67%) | 17.721 | westd-41312 ✅ | 同上 |\n| **random_reweight_seed456** | ckpt-1000 | ~5103 (84%) | 17.777 | westd-41312 ✅ | 单 seed 无法交叉验证。resume 较早，但该方法只有此一个 seed 数据点 |\n\n> eval_results_batch_may18.json 确认这 3 个实验 eval 均指向 `{exp}/final/`（post-resume checkpoint）。\n\n---\n\n### ⚠️ 已知受影响，已从论文排除\n\n| 实验 | resume 点 | 剩余步数 | PPL | 服务器 |\n|------|-----------|---------|-----|--------|\n| **grid_b2_0_seed456** | ckpt-3500 | 2603 (43%) | 17.989 | westd-47453 已退役 |\n| **grid_b3_0_seed456** | ckpt-3000 | 3103 (51%) | 17.921 | westd-47453 已退役 |\n| **grid_b5_0_seed456** | ckpt-3000 | 3103 (51%) | 17.993 | westd-47453 已退役 |\n\n> Registry 已标注 \"seed456 b≥2.0 PPL异常高（checkpoint问题），论文只报 2-seed 数据\"。grid_b2_0_seed456 的 train_loss=10.625 是明确的 degradation 信号（正常值 ~5-7）。eval 均使用 post-resume final/ checkpoint。\n\n---\n\n### 总结\n\n| 分类 | 数量 | 实验 |\n|------|------|------|\n| **安全**（eval 用 pre-resume ckpt） | 2 | grid_b0_2_seed456, grid_b0_2_seed123 |\n| **低风险**（resume 极早，PPL 正常） | 5 | uniform_seed42/123/456, grid_b0_3_seed123_r2, contamination_60_random_seed42 |\n| **中风险**（resume 中期，无 scratch 基准） | 3 | ess_only_seed456_r2, ess_only_seed123_r2, random_reweight_seed456 |\n| **已确认受影响，已排除** | 3 | grid_b2_0/b3_0/b5_0_seed456 |\n\n**建议关注的 3 个中风险实验**：ess_only 两个 seed 和 random_reweight_seed456 的 eval 确定用了 post-resume checkpoint。如果要彻底排除 optimizer reset 影响，需要 from-scratch 重跑作为对照。但从 PPL 数值看未见明显 degradation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-resume-eval-checkpoint.md"
+}

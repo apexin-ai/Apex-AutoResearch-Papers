@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9bad6e8510ce3b5f72f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose hybrid rho06",
+  "task_key": "worker_diagnose_hybrid_rho06_20260517T000927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_hybrid_rho06_20260517T000927_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "b1ea7f4ad642e19329df8d82dd9d259f9e7ea73938fcabec63b21956ca39c24d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被清除或从未创建），跳过。\n\n**总结：hybrid_rho06_seed42 完成。**\n\n| 项目 | 值 |\n|------|-----|\n| 训练 | 6103/6103 steps 完成，耗时 ~12.7h |\n| Checkpoint | `/root/autodl-tmp/provenance_weight_training/output/models/hybrid_rho06_seed42/final` |\n| Eval loss (holdout) | **2.8637** |\n| Eval perplexity (holdout) | **17.53** |\n| Registry | DONE, conclusion=success |\n\ncuda:3 现在空闲，可以提交 grid_b0_2_seed42。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-hybrid-rho06.md"
+}

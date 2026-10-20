@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecc57f1a2313a15e5eb9",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code prep batchsize16 nmin8",
+  "task_key": "worker_code_prep_batchsize16_nmin8_20260517T002334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_batchsize16_nmin8_20260517T002334_result.json",
+    "occurrence": 1,
+    "bytes": 197,
+    "sha256": "647f2876410cb58be5b0d7cf39186ad9c60d8e69ae6f92af68698ff369475003"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。训练已在 westd-41312 cuda:2 启动：\n\n- **tmux session**: `batchsize16_nmin8_seed42`\n- **PID**: 47135\n- **GPU 占用**: 85362 MiB on cuda:2\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-batchsize16-nmin8.md"
+}

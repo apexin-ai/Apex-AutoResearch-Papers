@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da9f528b4f71968a0cbe",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis alpha eff vs true alpha",
+  "task_key": "worker_analysis_alpha_eff_vs_true_alpha_20260518T064839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alpha_eff_vs_true_alpha_20260518T064839_result.json",
+    "occurrence": 1,
+    "bytes": 1902,
+    "sha256": "fbcf4bae08a5afa4f3bfafe66492b60a6b8c9cb2f982b01e16b23beb8a4760f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。JSON 已保存至 `/root/provenance_weight_training/alpha_eff_analysis.json`。\n\n## 结果摘要\n\n### 数据概况\n- 371,499 样本（非 247,666，可能之前说的是 ρ=0.4 的子集计数有误）\n- Real: 164,889 (44.4%), Synthetic: 206,610 (55.6%)\n- 标签判断方式：`depth==0` 为 real，`depth==1` 为 synthetic\n\n### 样本级：r_i = 1[q_i ≤ 0.5] vs ground truth\n\n| 指标 | 值 |\n|---|---|\n| Accuracy | **85.8%** |\n| Precision | 86.4% |\n| Recall | 80.6% |\n| F1 | 83.4% |\n\n**Confusion matrix**: TP=132,895 / FP=20,830 / FN=31,994 / TN=185,780\n\n**分区间准确率**：\n| q-score 区间 | 准确率 | 样本数 | 真实分布 |\n|---|---|---|---|\n| [0, 0.2) | **91.6%** | 91,654 | 91.6% real |\n| [0.2, 0.5) | **78.8%** | 62,071 | 78.8% real |\n| [0.5, 0.8) | **50.5%** | 48,730 | ~50/50 混合 |\n| [0.8, 1.0] | **95.3%** | 169,044 | 95.3% synthetic |\n\n不确定区间 [0.2, 0.8) 整体准确率：**66.4%**（110,801 样本）。**核心弱区是 [0.5, 0.8)**，接近随机猜测。\n\n### Batch 级：α_eff vs true_α\n\n| 指标 | 值 |\n|---|---|\n| Pearson r | **0.724** |\n| Spearman r | **0.713** |\n| MAE | **0.073** |\n| α_eff 均值±标准差 | 0.409 ± 0.125 |\n| true_α 均值±标准差 | 0.439 ± 0.124 |\n\n### 对审稿人 Q2 的回答要点\n\n1. **样本级准确率 85.8%**，detector 的二值化近似整体可靠\n2. **高置信区间（q < 0.2 和 q > 0.8，覆盖 70.2% 样本）准确率 > 91%**，大多数样本的标签近似是准确的\n3. **不确定区间 [0.5, 0.8) 约 13% 的样本接近随机**，这是主要噪声来源\n4. **Batch 级 Pearson r=0.72, MAE=0.073**，α_eff 与 true_α 高度相关，batch 级聚合进一步平滑了样本级噪声\n5. α_eff 略低估 true_α（0.409 vs 0.439），即 detector 倾向于把一些 real 误判为 synthetic，但偏差仅约 3 个百分点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alpha-eff-vs-true-alpha.md"
+}

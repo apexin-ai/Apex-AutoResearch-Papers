@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "779093ca856bf3786d17",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11_1778908087.md",
+  "task_key": "loop_11_1778908087",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778908087.md",
+    "occurrence": 1,
+    "bytes": 5085,
+    "sha256": "cbac15a7c0333cec5856b28e59ad341da4f662dcff2d035ef4ef48b5c724eab8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T05:07:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3（westd-47453 上的 4 卡），其他服务器/卡号一概不能用\n- GPU 预算极度紧张：截至 05-16 03:30 UTC 剩余约 10-12h（memory.md 记录），每个实验决策都需要精算\n- submit_training_job 环境激活必须用 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要用 `.venv`（服务器是 aml-train 镜像，用 conda）\n- contamination_60 实验中 τ=0.8 是写死的（代码里 τ=1.0-contamination_ratio×0.5），对 ρ=0.6 自动得 τ=0.7。但 D045 发现 ρ=0.6 下 adaptive(τ=0.8) 显著劣于 grid-best——这是手动传 τ=0.8 的结果，不是自动公式\n- 论文 eval PPL 必须来自统一的 post-hoc eval pipeline（D032），不要混用 inline eval 数据\n- WANDB_MODE 不要设 disabled，否则 cron 误判实验 failed（已有事故 memory.md）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westd-47453，4× RTX 6000 Pro 96G\n- **工作目录**：`/root/provenance_weight_training`\n- **Python**：`/root/miniconda3/bin/python`（conda base 环境）\n- **环境激活**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**：aml-train（已检测）\n- **模型缓存**：HF_HOME=/root/autodl-tmp/.hf_cache（如果是 AutoDL；westd 上检查具体路径）\n- **W&B 项目**：需从 registry 中已有实验推断具体 project/entity\n\n### 3. 📊 当前状态\n\n**RUNNING（4 个，ETA 约 05-16 02:00-03:00 UTC — 可能已经完成，需要立即检查）**：\n| GPU | exp_id | 摘要 |\n|-----|--------|------|\n| cuda:0 | contamination_60_tau07_seed42 | ρ=0.6 τ=0.7 诊断（D045 后续，测 τ 下调是否恢复性能）|\n| cuda:1 | grid_b0_1_seed42 | Grid b=0.1，b* 曲线低端 |\n| cuda:2 | contamination_60_tau06_seed42 | ρ=0.6 τ=0.6 诊断（同 D045）|\n| cuda:3 | detect_remove_baseline_seed42 | 硬过滤 baseline（回答 \"why not just filter?\"）|\n\n⚠️ report.md 中 RUNNING 列表与 ROADMAP 不完全一致（ROADMAP 写的是 contamination_60_seed42_r2/uniform/grid_b0_5，但那批已完成，当前 RUNNING 是后续批次）。**以 registry 为 truth**。\n\n**PREPARING**：batchsize16_nmin8_seed42、grid_b0_2_seed42\n\n**关键等待**：\n- 上述 4 个实验的 cron 完成回调（可能已到达但本 session 未处理）\n- D045 τ-ρ 诊断结论依赖 tau07/tau06 at ρ=0.6 结果\n- bs8_nmin2 negative → Director 已批准写入 coupling rule 分析（D042），非 limitation\n- Paper 初稿 intro/method/conclusion 草稿已在 artifacts/，experiments section 依赖 contamination_60 结果\n\n### 4. 📋 待办（条件触发式）\n- **contamination_60_tau07/tau06 完成** → 分析 τ-ρ 关系：若 PPL ≤ grid-best(17.704) → Claim 3 reframe 为 \"τ follows τ≈1-ρ/2 rule\"；若仍 > grid-best → Claim 3 需大幅削弱，向 Director 提交 Framing 调整提案\n- **grid_b0_1_seed42 完成** → 与 grid_b0_2（PREPARING）、b0_3(17.64)、b0_5(17.65) 拼完 b* 曲线低端，确认 b<0.5 区间 PPL 走势\n- **detect_remove_baseline 完成** → 与 adaptive 对比；若 adaptive 显著优于硬过滤 → 论文增加 \"reweighting vs filtering\" 对比段落\n- **4 个实验全部完成** → 释放 GPU → 提交 grid_b0_2_seed42（PREPARING）；batchsize16_nmin8_seed42 需 Director 确认是否值得在剩余预算下跑\n- **所有 Claim 3 数据就绪** → 写 paper experiments section + 生成图表（τ sweep 图、b* 分布图、Table 1）\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（还剩 ~9 天）\n- **核心 story**（D023）：Dual-constrained adaptive b* = α_eff 质量下界 + ESS 稳定上界 → min-intervention 原则。不是提出 detect-and-reweight（Drayson 2025 已做），而是给 Drayson 框架加 principled adaptive b*\n- **Claim 状态**：Claim 1 ✅ (dual > ESS-only, 3 seeds)，Claim 2 ✅ (adaptive ≈ grid, MVP PASS D019)，Claim 3 🔄 (proportion-free，正在验证 τ-ρ 耦合)\n- **最大风险**：Claim 3。D045 发现 τ=0.8 在 ρ=0.6 下 PPL 比 grid-best 差 0.036（5x seed std）。如果 τ=0.7/0.6 也不行 → Claim 3 要从 \"proportion-free\" 降级为 \"requires τ tuning per contamination level\"，story 削弱\n- **易错点**：\n  - 决策链 D044→D046→D047→D048 是一连串误判和纠正。τ sweep 原始数据是干净的（n_min=2），不要再尝试重跑\n  - n_min=2 vs n_min=3 均值差仅 0.002（D034），论文叙事是 \"n_min∈{2,3} 均有效，方法对 n_min 不敏感\"，不是 \"n_min=2 显著优于 3\"\n  - eval PPL 有 inline vs post-hoc 差异（D032），adaptive_seed42 inline=17.690 post-hoc=17.644，论文必须全用 post-hoc\n  - detect_remove baseline 的 effective epoch 不同（memory.md：filtered subset 重复 ~2.4 遍 vs adaptive 只过 1 遍），写论文时必须说明\n  - GPU 预算是硬约束，每个实验决策都要算好。不要盲目重启失败实验（D041 教训：grid_b_low 连续 4 次失败后被叫停）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778908087.md"
+}

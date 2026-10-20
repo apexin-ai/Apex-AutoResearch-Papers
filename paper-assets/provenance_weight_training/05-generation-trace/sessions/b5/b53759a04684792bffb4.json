@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b53759a04684792bffb4",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose detect remove q07 epoch matched seed42",
+  "task_key": "worker_diagnose_detect_remove_q07_epoch_matched_seed42_20260519T011147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_detect_remove_q07_epoch_matched_seed42_20260519T011147_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "116f304d8a14a0442d853890860a03e81abd068debbbb8d1a048d37aa7f25e39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结论：\n\n**失败原因**：磁盘满（`/root/autodl-tmp/` 250G 100% 占满）。在 step 2000 保存 checkpoint 时 safetensors 序列化写入失败（errno 28）。\n\n**训练进度**：崩溃于 step 2000/3047（64%），运行约 70 分钟。\n\n**Checkpoint 状态**：\n- checkpoint-500/1000/1500 均完整可用（各约 3.4GB）\n- checkpoint-2000 **不完整**（model.safetensors 被截断至 795MB，正常应为 1.19GB，且缺少 optimizer/tokenizer/trainer_state），不可用\n\n**可以 resume**：从 checkpoint-1500 恢复，需先清理磁盘空间（至少删除损坏的 checkpoint-2000 + 其他实验旧文件，释放 10-15GB）。\n\n报告已保存至 `artifacts/detect_remove_q07_epoch_matched_seed42/report/diagnose_q07_epoch_matched.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-detect-remove-q07-epoch-matched-seed42.md"
+}

@@ -1,0 +1,150 @@
+baseline: null
+experiments:
+  phase0_ortho:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T05:08:57.705Z'
+    updated_at: '2026-05-13T09:05:10.048Z'
+    hypothesis: Four PGPF property scores (LC, SN, Quality, Confidence) are sufficiently
+      orthogonal — no pair |r| > 0.7, LC vs Confidence |r| < 0.5 — to justify multi-property
+      filtering
+    spec:
+      command: bash -c "source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export
+        HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+        && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && cd /root/autodl-tmp/pgpf
+        && python phase0_orthogonality.py 2>&1 | tee outputs/phase0/train.log"
+      server: autodl-pgpf
+      gpu:
+      - cuda:0
+      - cuda:1
+      pid: '4307'
+      log_path: ~/runs/pgpf-collapse-filter/phase0_ortho.log
+      submitted_at: '2026-05-13T05:24:47.266Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      wall_clock_seconds: 2836.4
+      gpu_hours: 1.58
+    conclusion: failed
+    completed_at: '2026-05-13T06:12:03.626Z'
+    notes: 失败根因：代码缺陷——Step 1 后 checkpoint 未保存，导致 Step 2 静默崩溃。V2 已修复（checkpoint 保存
+      + 批量生成 + attention_mask + 进度日志 + try/except 容错）
+  phase0_ortho_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T06:28:05.282Z'
+    updated_at: '2026-05-13T10:00:53.260Z'
+    spec:
+      command: python phase0_orthogonality.py
+      server: autodl-pgpf
+      gpu:
+      - cuda:0
+      - cuda:1
+      pid: '10520'
+      log_path: ~/runs/pgpf-collapse-filter/phase0_ortho_v2.log
+      submitted_at: '2026-05-13T06:28:05.280Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/pgpf/data/
+      data_count: 8000
+      model_name: Qwen/Qwen2.5-1.5B
+      seed: 42
+      description: 'Phase 0 orthogonality check: LoRA fine-tune + 5K batched generation
+        + 4-property scoring + correlation + viz'
+      wall_clock_seconds: 12766.0
+      gpu_hours: 7.09
+    conclusion: failed
+    completed_at: '2026-05-13T10:00:51.277Z'
+    notes: Step 1-2 成功完成（LoRA fine-tune + 5K generation），Step 3 卡在 stella 模型 HF 下载超时。已拆分为独立评分实验
+      phase0_score_v3。
+  phase0_score_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T09:51:37.777Z'
+    updated_at: '2026-05-13T10:00:50.336Z'
+    spec:
+      command: score_and_analyze.py (v2, failed)
+      server: autodl-pgpf
+      gpu:
+      - cuda:0
+      - cuda:1
+      pid: '21566'
+      log_path: ~/runs/solver-trace-ablation/phase0_score_v2.log
+      submitted_at: '2026-05-13T09:51:37.773Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      data_path: /root/autodl-tmp/pgpf/outputs/phase0/synthetic.jsonl
+      data_count: 5000
+      model_name: Qwen/Qwen2.5-1.5B
+      seed: 42
+      wall_clock_seconds: 552.6
+      gpu_hours: 0.31
+    conclusion: failed
+    notes: HF_HUB_OFFLINE=1 阻止了 Qwen 模型加载。Qwen 通过 ModelScope 下载，缓存路径格式不兼容 HF Hub 离线模式。v3
+      已修正为绝对路径。
+    completed_at: '2026-05-13T10:00:50.336Z'
+  phase0_score_v3:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T09:58:55.352Z'
+    updated_at: '2026-05-13T10:10:48.246Z'
+    hypothesis: Four PGPF property scores (LC, SN, Quality, Confidence) are sufficiently
+      orthogonal — no pair |r| > 0.7, LC vs Confidence |r| < 0.5 — to justify multi-property
+      filtering
+    spec:
+      checkpoint_path: N/A (scoring only)
+      log_path: /root/autodl-tmp/pgpf/outputs/phase0/score_run_v3.log
+    conclusion: success
+    metrics:
+      pearson_lc_sn: -0.117
+      pearson_lc_q: -0.048
+      pearson_lc_conf: 0.303
+      pearson_sn_q: -0.029
+      pearson_sn_conf: 0.108
+      pearson_q_conf: -0.287
+      spearman_lc_sn: -0.114
+      spearman_lc_q: -0.331
+      spearman_lc_conf: 0.335
+      spearman_sn_q: -0.121
+      spearman_sn_conf: 0.112
+      spearman_q_conf: -0.998
+      judgment: PASS
+    completed_at: '2026-05-13T10:10:48.246Z'
+  phase1_gate_check:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-13T11:00:01.526Z'
+    updated_at: '2026-05-13T11:00:48.185Z'
+    spec:
+      description: Phase 1 三代过滤对比（5 条件 × 3 代 × seed=42），Qwen2.5-1.5B + OpenHermes
+      model_name: Qwen/Qwen2.5-1.5B
+      data_path: OpenHermes-2.5 (8K train / 1K val / 1K test)
+      data_count: 10000
+      seed: 42
+      server: autodl-pgpf
+      gpu:
+      - cuda:0
+      - cuda:1
+      estimated_gpu_hours: 15-20
+      conditions:
+      - NoFilter
+      - Random
+      - Confidence-only
+      - PGPF-S (LC+SN+Conf)
+      - Lexical-only
+      generations: 3
+      mix_ratio: 0.5
+      primary_metric: held-out PPL degradation
+      pass_criteria:
+        collapse_exists: deg(NoFilter) >= 5%
+        pgpf_vs_conf: PGPF-S vs Confidence >= 5% relative
+        pgpf_vs_random: PGPF-S < Random
+      claims:
+      - C1
+      - C2
+    hypothesis: PGPF-S (LC+SN+Conf) filtering outperforms confidence-only filtering
+      across 3 recursive generations, with collapse-predictive properties providing
+      complementary filtering signals

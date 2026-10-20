@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "958f019cdc910be055c4",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval distribution matching w2",
+  "task_key": "worker_eval_distribution_matching_w2_20260519T073140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_distribution_matching_w2_20260519T073140_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "2bae627781b9e544b441afe4825bb17bddf46b857e0a49b6366543c466477961"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验完成。结果摘要：\n\n| Eval Set | Adaptive PPL | Uniform PPL | Δ | Tokens |\n|---|---|---|---|---|\n| **FineWeb holdout** | **17.65** | 17.69 | -0.04 (adaptive 微弱领先) | 4.1M |\n| **OpenWebText** | 18.42 | **18.37** | +0.06 (uniform 更好) | 6.8M |\n| **Wikipedia** | 15.47 | **15.34** | +0.14 (uniform 更好) | 27.0M |\n\n**结论：审稿人的质疑成立。** Adaptive weighting 的 PPL 优势仅限于 FineWeb holdout（且差异极小，-0.04）。在完全独立的 OpenWebText 和 Wikipedia eval set 上，uniform weighting 反而略好。这与 tautological distribution matching 的预期一致：adaptive 增大 human-authored 权重 → FineWeb human-heavy eval 上自然更好，但在其他分布上没有泛化。\n\n实验已注册为 `w2_distribution_matching_eval`（conclusion: negative），artifact 已保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-distribution-matching-w2.md"
+}

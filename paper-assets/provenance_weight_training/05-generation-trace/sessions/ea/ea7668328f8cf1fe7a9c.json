@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea7668328f8cf1fe7a9c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops verify tau sweep readiness",
+  "task_key": "worker_ops_verify_tau_sweep_readiness_20260515T124015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_tau_sweep_readiness_20260515T124015_result.json",
+    "occurrence": 1,
+    "bytes": 1796,
+    "sha256": "fae9b9a1fa8f38ed15f5a34c8149b676a7da266982365a815f3ecd16b87f73bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "output 实际在数据盘 `/dev/md0`（250G，已用 104G，剩余 147G），空间充裕。\n\n## 验证结果汇总\n\n### 全部通过\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| 训练脚本 | ✓ | `training/pretrain_weighted.py` 存在，支持 `--tau` 参数（L251） |\n| 模型文件 | ✓ | `models/Qwen/Qwen3-0.6B` 存在 |\n| 数据文件 | ✓ | `data/scored_data.jsonl` = 371499 条 |\n| eval 脚本 | ✓ | `eval_perplexity.py` 存在 |\n| 无 `--eval_steps` | ✓ | 所有 tau 脚本均未包含 `--eval_steps` |\n| `--contamination_ratio 0.4` | ✓ | 所有脚本均已显式设置 |\n| τ=0.6 运行中 | ✓ | 已有 checkpoint-3500 和 checkpoint-4000（2.3GB） |\n| 磁盘空间 | ✓ | 数据盘 147GB 可用，4 个实验 ~8GB 无压力 |\n| 4 个待提交脚本 | ✓ | 均已存在且参数一致 |\n\n### 各实验完整提交命令（copy-paste ready）\n\n**τ=0.5:**\n```bash\nbash /root/provenance_weight_training/training/run_tau_0.5_seed42.sh\n```\n\n**τ=0.7:**\n```bash\nbash /root/provenance_weight_training/training/run_tau_0.7_seed42.sh\n```\n\n**τ=0.9:**\n```bash\nbash /root/provenance_weight_training/training/run_tau_0.9_seed42.sh\n```\n\n**τ=0.95:**\n```bash\nbash /root/provenance_weight_training/training/run_tau_0.95_seed42.sh\n```\n\n每个脚本内容完全一致，仅 `--tau` 和 `--output_dir` 不同。所有脚本都包含：conda activate、`WANDB_MODE=disabled`、`--weighting_method adaptive`、`--contamination_ratio 0.4`、`--save_total_limit 2`、`--bf16`。\n\n### 风险/注意事项\n- **无风险项**。4 个实验需要 4 个 GPU（或串行跑），需确认 GPU 释放后的分配策略（是否每个实验指定 `CUDA_VISIBLE_DEVICES`）。脚本中未指定 GPU，默认使用 `cuda:0`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-tau-sweep-readiness.md"
+}

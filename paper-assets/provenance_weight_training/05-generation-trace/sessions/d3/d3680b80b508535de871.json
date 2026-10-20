@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3680b80b508535de871",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "maintenance cleanup checkpoints",
+  "task_key": "worker_maintenance_cleanup_checkpoints_20260522T143052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_cleanup_checkpoints_20260522T143052_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "c7a0adf07f564b41ccf70336c8e1584b2db3a69fb5550958fc6d42011dc2ad84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 磁盘可用 | 46G (82%) | **67G (74%)** |\n| 释放空间 | — | **~21G** |\n\n**删除的目录（共 6 个）：**\n- `detect_remove_q05_v2_seed456/checkpoint-5500, checkpoint-6000, checkpoint-6103`（各 3.4G）\n- `random_reweight_v2_seed456/checkpoint-5500, checkpoint-6000, checkpoint-6103`（各 3.4G）\n\n**保留的内容：**\n- `detect_remove_q05_v2_seed456/`: `final/`, `config.json`, `step_metrics.jsonl`\n- `random_reweight_v2_seed456/`: `final/`, `config.json`, `step_metrics.jsonl`, `eval_results/`\n\n磁盘可用 67G，未达 80G 阈值，但已从 82% 降至 74%。如需进一步释放空间可清理其他实验的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-cleanup-checkpoints.md"
+}

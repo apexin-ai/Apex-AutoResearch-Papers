@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb579ae74198a62d093f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh submit bs16 nmin8 r2 30476 cuda3",
+  "task_key": "worker_ssh_submit_bs16_nmin8_r2_30476_cuda3_20260517T190645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_bs16_nmin8_r2_30476_cuda3_20260517T190645_result.json",
+    "occurrence": 1,
+    "bytes": 560,
+    "sha256": "680a338717da20a52cc57cb98703348b3a9b050224902fb2610f4e8ef40eef7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动成功。\n\n- **PID**: 46446\n- **GPU**: cuda:3 (NVIDIA RTX PRO 6000 Blackwell, 95GB)\n- **tmux session**: `batchsize16_nmin8_r2`\n- **日志**: `~/runs/provenance_weight_training/batchsize16_nmin8_r2.log`\n- **配置**: batch_size=4 × grad_accum=4 = 有效 batch_size 16, n_min=8, tau=0.8, adaptive, max_steps=6103\n- **预计时长**: ~4h (2.3s/step × 6103 steps)\n\n注意：原始 batch_size=16 直接 OOM（Qwen3 词表 151k，logits 需 18.5GB），已改为 batch_size=4 + gradient_accumulation_steps=4，数学等效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-bs16-nmin8-r2-30476-cuda3.md"
+}

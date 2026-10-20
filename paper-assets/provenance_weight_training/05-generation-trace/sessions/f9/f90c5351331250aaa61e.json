@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f90c5351331250aaa61e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval llama3b uniform ppl reeval",
+  "task_key": "worker_eval_llama3b_uniform_ppl_reeval_20260519T054206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama3b_uniform_ppl_reeval_20260519T054206_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "273b848cb76dcd15d2c3d41383b04859d95dea7360127f1db44bf72875bd20a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**CHECKPOINT NOT FOUND**\n\n`llama3b_uniform_seed42` 的 checkpoint 已被删除。搜索过的路径：\n\n1. `/root/autodl-tmp/provenance_weight_training/output/models/llama3b_uniform_seed42/final/` — 不存在\n2. `/root/autodl-tmp/output/models/llama3b_uniform_seed42/final/` — 不存在\n3. `find /root/autodl-tmp -path \"*llama3b_uniform*\" -name \"*.safetensors\"` — 无结果\n4. `find /root -maxdepth 6 -path \"*llama3b*\" -name \"*.safetensors\"` — 无结果\n5. `find /root -maxdepth 6 -type d -name \"llama3b_uniform_seed42\"` — 无结果\n\n服务器上现存的模型目录中没有任何 `llama3b_*` checkpoint（uniform 和 adaptive 都不在）。只有之前的 eval 结果目录（`llama3b_uniform_hellaswag`、`llama3b_uniform_mmlu` 等）仍存在，说明 checkpoint 在 eval 完成后被清理了。\n\n**需要重新训练 Llama-3.2-3B uniform 模型才能进行 5000 docs 的 PPL eval。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama3b-uniform-ppl-reeval.md"
+}

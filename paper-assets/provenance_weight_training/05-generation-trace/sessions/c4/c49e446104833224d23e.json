@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c49e446104833224d23e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops 30476 resume contamination pair",
+  "task_key": "worker_ops_30476_resume_contamination_pair_20260518T052656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_30476_resume_contamination_pair_20260518T052656_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "2513e9494d1af72caa72a49341208d6271fa916b423c033d483c9986165af193"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功 resume 并在训练中：\n\n- **contamination_60_grid_b0_3_seed42** (cuda:2): 从 checkpoint-1500 恢复，当前 step 1524/6103 (25%)，~4.5min 剩余\n- **contamination_60_random_seed42** (cuda:3): 从 checkpoint-1000 恢复，当前 step 1023/6103 (17%)，~7.5min 剩余\n\nRegistry 状态已更新：grid_b0_3 改回 RUNNING，random 保持 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-30476-resume-contamination-pair.md"
+}

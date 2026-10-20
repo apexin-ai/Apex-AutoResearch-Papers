@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bdc4c0059751578559f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra westd30476 kill and migrate",
+  "task_key": "worker_infra_westd30476_kill_and_migrate_20260520T053916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd30476_kill_and_migrate_20260520T053916_result.json",
+    "occurrence": 1,
+    "bytes": 1168,
+    "sha256": "ae77103a83aa776c1dc94f57cf07dfb81d8f8c0b9aee6fcb3ab8a3704b8a815d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n---\n\n**KILL**: done — PID 191550, 193988, 199767, 199839 全部已杀\n\n**GPU**: all released — 4 张卡均 0 MiB\n\n**TMUX**: cleared\n\n**迁移文件清单** (→ `westd-41312:/root/autodl-tmp/provenance_weight_training/output/eval_results_from_30476/`):\n\n| 文件 | 大小 | 内容 |\n|------|------|------|\n| `bs8_auto_nmin_seed42_eval.json` | 169B | bs8 baseline eval |\n| `batchsize16_nmin8_r2_eval.json` | 272B | batchsize16 eval |\n| `eval_results_contamination_60_all.json` | 1056B | contamination_60 四组 (seed123/uniform/random/grid) |\n| `contamination_60_grid_b0_3_seed42_eval.json` | 562B | contamination_60_grid final + ckpt-5500 |\n| `rho02_adaptive_tau08_seed42_eval.json` | 258B | rho02 adaptive eval |\n| `grid_b0_3_seed123_eval.json` | 539B | grid b0.3 seed123 re-eval |\n| `grid_b0_3_seed456_r2_eval.json` | 247B | grid b0.3 seed456 r2 |\n| `grid_b0_2_eval.json` | 990B | grid b0.2 四组 (seed456/123 final + ckpt-5500) |\n| `detect_remove_eval.json` | 1733B | detect_remove 10 组 (q02-q09 各 seed) |\n\n**无 OOD eval 结果文件**（OOD 输入数据 .jsonl 不需迁移）\n\n**可释放: YES**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd30476-kill-and-migrate.md"
+}

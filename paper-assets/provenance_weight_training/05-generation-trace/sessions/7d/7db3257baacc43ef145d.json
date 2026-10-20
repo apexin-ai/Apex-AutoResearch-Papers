@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7db3257baacc43ef145d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis batch adaptive tau rho06 r5",
+  "task_key": "worker_analysis_batch_adaptive_tau_rho06_r5_20260517T173708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_batch_adaptive_tau_rho06_r5_20260517T173708_result.json",
+    "occurrence": 1,
+    "bytes": 1399,
+    "sha256": "0aecab219c1851b6c1c5334b409faaac454d5a4dbfe06b2a2c896227acfea8e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。结果如下：\n\n```\n=== 实验结果 ===\nexp_id: batch_adaptive_tau_rho06_r5\ntrain_loss: 9.267\ntrain_runtime: 13903 seconds (~3h51m)\ntotal_steps: 6103\neval_ppl_holdout: 17.73\neval_loss_holdout: 2.8754\neval_holdout_tokens: 4077068\neval_method: sliding window (max_length=2048, stride=1024, 5000 docs, fp16)\ncheckpoint_path: /root/autodl-tmp/output/models/batch_adaptive_tau_rho06_seed42/final\n\n=== 与 ρ=0.6 baselines 对比 ===\nvs uniform (17.766):           -0.036 (略好)\nvs adaptive fixed τ=0.8 (17.74): -0.010 (几乎持平)\nvs τ=0.7 (17.73):              +0.000 (持平)\nvs τ=0.6 (17.7359):            -0.006 (持平)\nvs grid-best b=0.5 (17.704):   +0.026 (略差)\nvs ESS-only (17.77):           -0.040 (略好)\nvs hybrid (17.53):             +0.200 (明显差)\n\n=== 结论 ===\nconclusion: NEGATIVE\n\n理由:\n1. PPL=17.73 与 adaptive fixed τ=0.8 (17.74) 几乎无差异 (Δ=-0.01)，batch-adaptive τ 没有带来实质性改进\n2. 不如 grid-best (17.704) 和 hybrid (17.53)\n3. 结合 parent 实验 (ρ=0.4 也是 NEGATIVE，PPL=17.681 vs baseline 17.6527)，batch-adaptive τ 在两个 contamination level 上都未能证明优势\n4. **batch-adaptive τ 这条路可以放弃**——per-batch 自适应阈值的额外复杂度没有换来 perplexity 收益，固定 τ 或 grid search b 更简单且效果相当或更好\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-batch-adaptive-tau-rho06-r5.md"
+}

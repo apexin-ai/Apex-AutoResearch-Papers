@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32ad61bb0b4e072954a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "sync chart figures to local",
+  "task_key": "worker_sync_chart-figures-to-local_20260516T155552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_chart-figures-to-local_20260516T155552_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "40047887ba7bae9ba98a50964b5c9f46287f281b6c48e9f9140b8347b9e2683c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 文件 | 大小 | Artifact ID |\n|------|------|-------------|\n| `bstar_distribution_rho_comparison.pdf` | 22K | `art_20260516_394480` |\n| `bstar_distribution_rho_comparison.png` | 72K | `art_20260516_65dbae` |\n| `alpha_eff_binding_rate_rho_comparison.pdf` | 23K | `art_20260516_570c85` |\n| `alpha_eff_binding_rate_rho_comparison.png` | 194K | `art_20260516_87549c` |\n| `bstar_trajectory_adaptive_fix.pdf` | 243K | `art_20260516_c9c382` |\n| `bstar_trajectory_adaptive_fix.png` | 398K | `art_20260516_074de8` |\n\n6 个文件已从 westd-47453 下载到本地 `artifacts/figures/` 并注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-chart-figures-to-local.md"
+}

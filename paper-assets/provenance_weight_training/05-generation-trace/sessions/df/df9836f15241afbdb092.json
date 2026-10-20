@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df9836f15241afbdb092",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval uniform ood and pathfix",
+  "task_key": "worker_eval_uniform_ood_and_pathfix_20260524T082950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_uniform_ood_and_pathfix_20260524T082950_result.json",
+    "occurrence": 1,
+    "bytes": 1389,
+    "sha256": "7a65c659156405120d45bb2ffc32e6fbc48dcfcd45c458010a0beb4d813f4a13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All eval complete. Both directories now have all 3 required files matching `n5_statistical_analysis.py --auto` expectations.\n\n## 结果汇总\n\n### Uniform seed789\n\n| Dataset | PPL |\n|---------|-----|\n| Holdout | 17.695 |\n| OWT | 18.387 |\n| Wiki | 15.349 |\n\n### Uniform seed234\n\n| Dataset | PPL |\n|---------|-----|\n| Holdout | 17.708 |\n| OWT | 18.355 |\n| Wiki | 15.352 |\n\n### 与 3-seed 参考对比 (seed42)\n\n| Dataset | seed42 | seed789 | seed234 |\n|---------|--------|---------|---------|\n| Holdout | 17.694 | 17.695 | 17.708 |\n| OWT | 18.364 | 18.387 | 18.355 |\n| Wiki | 15.337 | 15.349 | 15.352 |\n\n### 目录结构\n\n```\neval_results/\n├── bs16_uniform_seed42/     (已有)\n│   ├── eval_holdout.json\n│   ├── eval_owt.json\n│   └── eval_wiki.json\n├── bs16_uniform_seed123/    (已有)\n├── bs16_uniform_seed456/    (已有)\n├── bs16_uniform_seed789/    ← 新建\n│   ├── eval_holdout.json\n│   ├── eval_owt.json\n│   └── eval_wiki.json\n└── bs16_uniform_seed234/    ← 新建\n    ├── eval_holdout.json\n    ├── eval_owt.json\n    └── eval_wiki.json\n```\n\n与 `n5_statistical_analysis.py --auto` 完全兼容 — 目录名匹配 `bs16_uniform_seed(\\d+)` 模式，文件名为 `eval_holdout.json`、`eval_owt.json`、`eval_wiki.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-uniform-ood-and-pathfix.md"
+}

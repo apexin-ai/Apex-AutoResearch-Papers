@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a667b784e959d386e04",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "paper related work",
+  "task_key": "worker_paper_related_work_20260515T233455",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related_work_20260515T233455_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "bc64a5c41b95a56ba2bd4a25f6629082a6aaad01235f290346e070734cb02bb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` tool not available in current tool set. Draft written to:\n\n`artifacts/_project/paper/related_work_draft.md`\n\n**Changes vs existing `related_work.tex`:**\n- Added \"larger models can *amplify* rather than mitigate\" detail from Dohmatob (stronger motivation)\n- Tightened Drayson (ii): clarified SIR \"discretizes into a resampled subset\" vs our \"preserving the full batch\"\n- Removed `yang_2026_data_mixing_agent` and `kuo_2024_data_weighting` from data mixing paragraph (not in task spec, streamlines word count)\n- Added closing gap statement: *\"no existing method provides principled, per-batch exponent selection… without validation set or known contamination proportions\"*\n- ~670 words, 4 paragraphs, all citations use `\\citet{}`/`\\citep{}` format"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work.md"
+}

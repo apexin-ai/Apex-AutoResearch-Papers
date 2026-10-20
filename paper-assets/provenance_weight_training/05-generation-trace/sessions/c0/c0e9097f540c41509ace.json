@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "c0e9097f540c41509ace",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose random reweight seed42",
+  "task_key": "worker_diagnose_random_reweight_seed42_20260516T072019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_random_reweight_seed42_20260516T072019_result.json",
+    "occurrence": 1,
+    "bytes": 1345,
+    "sha256": "d54fed50cd9c13a365fc95ca31cb4b54e829fe130797fbe7941a915b2714c1a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常运行中，已完成 11/6103 steps，ETA ~3.6h。\n\n---\n\n**报告：**\n\n1. **WANDB_API_KEY 实际来源**：服务器上根本没有配置 wandb API key（无 .netrc、无环境变量）。其他实验通过 `WANDB_MODE=offline` 绕过了 key 需求。\n\n2. **修复内容**：在 `scripts/run_random_reweight_seed42.sh` 中添加了两行：\n   - `export WANDB_MODE=offline` — 解决 wandb login 报错\n   - `export CUDA_VISIBLE_DEVICES=2` — 避免 OOM（GPU 0/1/3 被其他实验占用）\n\n3. **dry-run 结果**：通过。实验已在 GPU 2 上正常训练，当前 step 11/6103。\n\n4. \n```json\n{\"root_cause\":\"wandb API key not configured on server, script missing WANDB_MODE=offline unlike other scripts\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"added export WANDB_MODE=offline to run_random_reweight_seed42.sh\",\"added export CUDA_VISIBLE_DEVICES=2 to avoid GPU OOM\"],\"can_auto_fix\":true,\"fixed\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "wandb API key not configured on server, script missing WANDB_MODE=offline unlike other scripts",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "added export WANDB_MODE=offline to run_random_reweight_seed42.sh",
+                "added export CUDA_VISIBLE_DEVICES=2 to avoid GPU OOM"
+              ],
+              "can_auto_fix": true,
+              "fixed": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-random-reweight-seed42.md"
+}

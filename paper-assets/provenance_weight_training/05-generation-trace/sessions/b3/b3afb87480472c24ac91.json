@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3afb87480472c24ac91",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis tau sweep chart",
+  "task_key": "worker_analysis_tau_sweep_chart_20260515T192621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tau_sweep_chart_20260515T192621_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "f013dacd50c4f64fe697638090de554bc70156744d79330537b476b55f614987"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已生成：\n\n- `output/figures/tau_sweep_analysis.pdf` — 20.9 KB\n- `output/figures/tau_sweep_analysis.png` — 209.9 KB (300 dpi)\n\n图表内容：左轴 Holdout PPL（蓝色实线，τ=0.8 星号标注最优 17.6527），右轴 Mean b*（红色虚线），三条 baseline 水平虚线（uniform/golden ratio/ess-only），绿色阴影标注 safe range [0.5, 0.8]。无标题、无网格、8×5 inches，字体 ≥ 12pt。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tau-sweep-chart.md"
+}

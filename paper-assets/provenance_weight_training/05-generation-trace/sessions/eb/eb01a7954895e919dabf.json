@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb01a7954895e919dabf",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "investigate d012 alpha eff changes",
+  "task_key": "worker_investigate_d012_alpha_eff_changes_20260514T171247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_d012_alpha_eff_changes_20260514T171247_result.json",
+    "occurrence": 1,
+    "bytes": 1975,
+    "sha256": "1d86b4a88824953d181cd5bd18500e988769970a0fb4c751313997facc071f57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根因找到了。**\n\n## 完整报告\n\n### 1. D012 对 `alpha_eff.py` 的变更\n\n**零改动。** 文件完全未修改。服务器上存在 `pretrain_weighted.py.v1_backup`，diff 确认 `alpha_eff.py` 从始至终未被触碰。\n\n### 2. Early return 逻辑\n\n`if alpha_0 >= tau: return 0.0` **从最初版本就存在**，不是 D012 引入的。Reviewer 的怀疑不成立。\n\n### 3. D012 实际改动 (`pretrain_weighted.py` diff)\n\n| 变更 | 旧版 | 新版 | 影响 |\n|------|------|------|------|\n| **n_min 默认值** | `max(1, int(batch_size*0.75))` = **3** | `max(2, batch_size//2)` = **2** | 唯一实质性改动 |\n| unweighted_loss | 不记录 | 新增记录 | 仅日志 |\n| gradient_checkpointing | 支持 | 移除，改为 resume_from_checkpoint 重构 | 无关 |\n| W&B 指标 | 无 weighted/unweighted 分离 | 新增 | 仅日志 |\n| **EMA 平滑 b*** | 不存在 | **也不存在** | D012 描述了 EMA 但最终未实现 |\n\n### 4. b=0 比例 1.7% → 78% 的根因\n\n**是数据分析错误，不是代码问题。**\n\n```\nadaptive_fix_seed42 step_metrics.jsonl 总览:\n  Training 条目: 6,130 → b=0 = 138 (2.3%)\n  Eval 条目:    25,431 → b=0 = 25,419 (100.0%)\n  混合计算:     31,521 → b=0 = 25,554 (81.1%) ← 报告的 ~78%\n```\n\n- 旧版 adaptive 的 step_metrics **没有 eval 条目**（24,412 = 6103×4，纯训练数据）\n- 新版 adaptive_fix 的 step_metrics **混入了 25,431 条 eval 数据**（eval 数据集几乎全是 human 样本，alpha_0 ≈ 1.0 >> tau=0.8，100% 触发 early return → b=0）\n- **仅看 training 条目：b=0 rate 从 1.9% → 2.3%，本质无差异**\n\nD015 已经警告过这个问题：「step_metrics 混入 eval 数据需在分析代码中过滤」。\n\n### 5. 结论\n\nD012 **只改了 n_min 默认值**（3→2），没有其他算法改动。EMA 未实现，alpha_eff.py 未修改。78% b=0 是 eval 数据污染 step_metrics 的分析 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-d012-alpha-eff-changes.md"
+}

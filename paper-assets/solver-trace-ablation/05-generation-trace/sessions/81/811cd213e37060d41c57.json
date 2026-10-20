@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "811cd213e37060d41c57",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check phase0 results urgent",
+  "task_key": "worker_check_phase0_results_urgent_20260513T094715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phase0_results_urgent_20260513T094715_result.json",
+    "occurrence": 1,
+    "bytes": 1553,
+    "sha256": "244d1f3c24986a2907d4e6cbf7bcbca2251c7cd77e1278439ab8eacdf65457c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 0 v2 状态：**卡在 Step 3，未产出结果**\n\n### 进度\n\n| Step | 状态 | 详情 |\n|------|------|------|\n| Step 1 (checkpoint) | ✅ | `checkpoint/` 目录已创建 |\n| Step 2 (generation) | ✅ | 5000/5000 samples 生成完毕，`synthetic.jsonl` 15MB |\n| Step 3 (scoring) | ❌ 卡死 | 加载 `stella_en_1.5B_v5` embedding 模型时 HF 连接超时 |\n| Step 4 (correlation) | ⏳ | 未到达 |\n\n### 错误信息\n\nStep 3 在 17:06:12 开始 scoring，试图从 HuggingFace 下载 `NovaSearch/stella_en_1.5B_v5` 模型文件，反复 `ReadTimeoutError`：\n\n```\nHTTPSConnectionPool(host='huggingface.co', port=443): Read timed out. (read timeout=10)\n```\n\n最后一条日志停在 **17:08:22**，Retry 3/5。之后日志无更新——进程大概率已在重试耗尽后崩溃。\n\n### GPU\n- cuda:0: 0% util, 79GB/98GB used\n- cuda:1: 0% util, 83GB/98GB used\n\n显存被占但 GPU 空闲，模型加载到显存后卡在网络 I/O。\n\n### 缺失的输出文件\n`correlation_matrix.json`、`summary.json`、`scored_samples.jsonl`、`*.png` 均不存在。\n\n### 根因\n典型 AutoDL 网络问题。运行前未执行 `source /etc/network_turbo` 启用代理加速，导致 HuggingFace API 超时。需要：\n1. Kill 当前进程\n2. 设置 `source /etc/network_turbo` + `HF_HUB_DISABLE_XET=1` + SSL 证书环境变量\n3. 或者先用 ModelScope 把 stella 模型下载到本地再离线加载\n4. 重跑 Step 3\n\n**不更新 registry**（无输出结果）。需要你确认下一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phase0-results-urgent.md"
+}

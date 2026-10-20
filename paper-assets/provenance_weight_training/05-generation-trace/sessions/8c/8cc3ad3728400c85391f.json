@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cc3ad3728400c85391f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops check n5 training survival",
+  "task_key": "worker_ops_check_n5_training_survival_20260524T061314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_n5_training_survival_20260524T061314_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "33f831353b2288491a932357874ff89596972097c48aee5b47c8931abb80f73c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果：4 个训练全部存活，无需重启\n\n| 实验 | PID | GPU | 进度 | 已运行 | 预计剩余 | 状态 |\n|------|-----|-----|------|--------|---------|------|\n| adaptive_seed789 | 922510 | cuda:0, 100% | 2445/6103 (40%) | 1h30m | ~2h18m | **存活** |\n| uniform_seed789 | 922589 | cuda:1, 100% | 2592/6103 (42%) | 1h30m | ~2h02m | **存活** |\n| adaptive_seed234 | 922738 | cuda:2, 97% | 2446/6103 (40%) | 1h30m | ~2h17m | **存活** |\n| uniform_seed234 | 923155 | cuda:3, 100% | 2592/6103 (42%) | 1h30m | ~2h02m | **存活** |\n\n**GPU 占用**：4 卡各 ~45.6GB / 97.9GB VRAM，利用率 97-100%。\n\n**服务器实际未重启** — 从 `ps` 输出看，init 进程 (PID 1) 启动时间是 May16，4 个训练进程启动时间是 12:42-12:43（今天），tmux session 也存活。训练在正常推进中，预计约 2h 后全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-n5-training-survival.md"
+}

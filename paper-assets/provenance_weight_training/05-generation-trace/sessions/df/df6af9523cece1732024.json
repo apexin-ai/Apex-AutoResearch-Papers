@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df6af9523cece1732024",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_10_1778895267.md",
+  "task_key": "loop_10_1778895267",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778895267.md",
+    "occurrence": 1,
+    "bytes": 3970,
+    "sha256": "b844e01ab9f1d7f316709206d7866a504bb9db76362c082b3294d83eedfd15d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T01:25:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 cuda:0/1/2/3 on westd-47453，不得用其他设备\n- ρ=0.6 contamination 数据路径：`/root/provenance_weight_training/data/scored_data_60.jsonl`（符号链接 scored_data_rho06.jsonl → scored_data_60.jsonl），不要重新生成\n- grid_b_low (b<0.5) 已失败 3 轮（R1 cron 误杀 / R2 shell $b 展开为空 / R3 OOM+GPU 冲突），下次必须：单独 GPU + 每个 b 值硬编码独立命令，不用 shell 变量\n- seed456 的 grid_b 系列（b=2.0/3.0/5.0）因 checkpoint resume 导致 PPL 系统偏高 +0.16~0.25，论文 Table 1 只报 2 seeds (seed42+seed123)，**不要用 seed456 这三个点**\n- bs8 实验 n_min 必须设 2（不是 bs//2=4），D037 已确认 n_min=4 退化为 uniform\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，account=root，工作目录 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Qwen3-0.6B，pretrained baseline PPL=22.97（baseline_qwen3_0.6b）\n- 数据：`data/scored_data.jsonl`（ρ=0.4, 371K 行）/ `data/scored_data_60.jsonl`（ρ=0.6, 371K 行）/ `data/human/eval_holdout.jsonl`（held-out eval）\n- 活跃进程（reconcile_crons 确认）：\n  - bs8_nmin2_seed42_r2: PID 238714, cuda:2, ~85%+\n  - contamination_60_uniform_seed42: PID 250074\n  - contamination_60_grid_b0_5_seed42: PID 255781\n  - contamination_60_seed42_r2: PID 257977\n\n### 3. 📊 当前状态\n刚完成 session-start 初始化。处理了系统告警：Worker `worker_eval_ess_only_seed123_seed456` 30min 无更新，确认其核心任务已完成（ess_only_seed123/456 registry 已更新为 DONE），cancel 了卡住的 worker。已向 Director 汇报。\n\n**RUNNING (4/4 GPU 饱和)**：\n- bs8_nmin2_seed42_r2 — batch_size=8 泛化测试，接近完成\n- contamination_60_uniform_seed42 — ρ=0.6 uniform baseline\n- contamination_60_grid_b0_5_seed42 — ρ=0.6 grid-best b=0.5\n- contamination_60_seed42_r2 — ρ=0.6 adaptive\n\n**等待中**：\n- 4 个 cron 回调（上述 4 个实验完成时触发）\n- grid_b_low_serial_seed42 QUEUED，等 GPU 释放\n\n### 4. 📋 待办\n- bs8_nmin2_seed42_r2 cron 回调 → spawn worker 跑 eval_perplexity.py → 更新 registry → batch_size 泛化证据入 Claim\n- contamination_60 三组全部完成 → spawn worker 统一 eval → 对比 adaptive vs grid vs uniform 在 ρ=0.6 下的 PPL → 汇报 Director contamination robustness 结论\n- contamination_60 结果出来后，如 adaptive 仍优于 grid/uniform → Claim 加固；如退化 → 走 red-section framing 提案\n- GPU 释放后 → 优先跑 grid_b_low_serial_seed42（b=0.1/0.2/0.3 硬编码，每值独立命令）\n- 全部实验完成 → dream_simulate(review_mode=\"full\") 验证 reframed story → 论文初稿启动条件评估\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（剩 9 天）\n- **核心框架**：Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → 最小干预准则），替代 Drayson 的 validation-based grid search\n- **Claim 1** (dual > ESS-only)：3/3 seed 完成 ✅，ESS-only PPL 全部 > uniform > adaptive_fix\n- **Claim 2** (adaptive ≈ grid-best)：3 seed MVP PASS ✅\n- **Claim 3** (τ controls bias-variance)：6 点 sweep 完成 ✅，safe range [0.5, 0.8]，τ=0.8 optimal\n- **n_min robustness**：n_min=1/2/3/4 四点完成，n_min=2 最优\n- **当前缺口**：batch_size 泛化（bs8 在跑）、contamination robustness（ρ=0.6 在跑）、grid_b_low（待 GPU）\n- **易错点**：τ 语义容易搞反——τ 越高 → α_eff 下界越严 → b* 越大 → 降权力度越强（不是越弱）。D035 已修正 Claim 3 framing\n- **GPU 预算紧张**：~140h 已用 / ~40h 剩余，P0 实验可覆盖，P1 需评估取舍\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778895267.md"
+}

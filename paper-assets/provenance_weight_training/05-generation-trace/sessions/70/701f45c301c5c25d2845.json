@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "701f45c301c5c25d2845",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra westd41312 v5 verify and rho06 check",
+  "task_key": "worker_infra_westd41312_v5_verify_and_rho06_check_20260520T085312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd41312_v5_verify_and_rho06_check_20260520T085312_result.json",
+    "occurrence": 1,
+    "bytes": 1604,
+    "sha256": "01c376776b9ef7f0a6aba829055356222ce2b5492a8eec666a1e4d1765a79daa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. nvidia-smi\n- **GPU 0**: RTX PRO 6000 Black — 61693/97887 MiB, **100% 利用率**, PID 453128 (python)\n- **GPU 1**: RTX PRO 6000 Black — 61693/97887 MiB, **100% 利用率**, PID 453205 (python)\n- **GPU 2**: 空闲 (0 MiB, 0%)\n- **GPU 3**: 空闲 (0 MiB, 0%)\n\nGPU 0/1 在跑训练进程。**GPU 2/3 没有 eval 进程** — eval 已经跑完了。\n\n### 2. 1.7B 训练日志\n\n**uniform_1_7b_seed42_v5**: step 8/6103, ~2.89s/it, ETA ~4h53m\n- `weighted_loss` ≈ 1.78–2.36 (uniform 下 b=0, weighted=unweighted)\n\n**adaptive_1_7b_seed42_v5**: step 7/6103, ~3.07s/it, ETA ~5h11m\n- `b` 在 0.39–1.16 间变化, `ess` ≈ 2.0–3.5, 权重机制已生效\n\n两个训练都在正常输出 step，刚启动不久。\n\n### 3. rho06 eval 结果（全部已完成）\n\n**seed42 holdout PPL**: **17.73**\n- OOD OpenWebText PPL: **18.41**\n- OOD Wikipedia PPL: **15.35**\n\n| 指标 | seed42 | seed123 | seed456 |\n|------|--------|---------|---------|\n| holdout eval | ✅ | ✅ | ✅ |\n| OOD openwebtext | ✅ | ✅ | ✅ |\n| OOD wikipedia | ✅ | ✅ (16:40) | ✅ (16:49) |\n| downstream | ✅ (16:51) | ✅ (16:44) | ✅ (16:45) |\n\n**seed42 downstream (0-shot)**:\n| Task | acc | acc_norm |\n|------|-----|----------|\n| ARC-Challenge | 32.5% | 34.2% |\n| ARC-Easy | 65.7% | 61.3% |\n| HellaSwag | 38.1% | 48.1% |\n| PIQA | 68.2% | 68.6% |\n| WinoGrande | 57.9% | — |\n\n全部 3 个 seed 的 eval（holdout + 2×OOD + downstream）已完成。\n\n### 4. 磁盘\n`/root/autodl-tmp/`: 250G 总量, 75G 已用, **176G 可用 (30%)**。空间充足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd41312-v5-verify-and-rho06-check.md"
+}

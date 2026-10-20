@@ -1,0 +1,2196 @@
+{
+  "schema_version": "1.0",
+  "id": "808d3b55217ddf13aa9b",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "ops sync paper and citations",
+  "task_key": "worker_ops_sync_paper_and_citations_20260515T234454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_sync_paper_and_citations_20260515T234454.jsonl",
+    "occurrence": 1,
+    "bytes": 115002,
+    "sha256": "a337477ec7ed55fa06e29c4beeb9616684d9aed3736555536ddae4ba05cd57ad"
+  },
+  "statistics": {
+    "messages": 111,
+    "user_turns": 0,
+    "tool_calls": 55,
+    "roles": {
+      "tool_call": 55,
+      "tool_result": 55,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T23:57:27.468201+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/",
+              "description": "List docs/paper/sections/ files"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T23:57:27.468528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 44\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 15 23:42 .\ndrwxr-xr-x 3 ubuntu ubuntu  4096 May 15 23:42 ..\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu  2434 May 15 22:20 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu  3179 May 15 23:42 experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu  4831 May 15 22:16 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu 10939 May 15 21:29 method.tex\n-rw-r--r-- 1 ubuntu ubuntu  5760 May 15 22:17 related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu     0 May 15 20:19 results.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T23:57:27.468699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/",
+              "description": "List artifacts/_project/paper/ files"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T23:57:27.468843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 176\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 15 23:41 .\ndrwxr-xr-x 6 ubuntu ubuntu  4096 May 14 16:14 ..\n-rw-r--r-- 1 ubuntu ubuntu  3010 May 15 22:08 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu  3010 May 15 22:08 conclusion_386ecc.tex\n-rw-r--r-- 1 ubuntu ubuntu  8537 May 14 16:13 experiment_setup_draft.md\n-rw-r--r-- 1 ubuntu ubuntu  2692 May 15 23:39 experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu  2621 May 15 21:35 experiments_1613c9.tex\n-rw-r--r-- 1 ubuntu ubuntu  2692 May 15 23:39 experiments_86dfd1.tex\n-rw-r--r-- 1 ubuntu ubuntu  5845 May 15 22:10 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  5845 May 15 22:10 introduction_a663ee.tex\n-rw-r--r-- 1 ubuntu ubuntu  4821 May 15 23:38 introduction_c6a67f.tex\n-rw-r--r-- 1 ubuntu ubuntu  5822 May 15 23:36 introduction_draft.md\n-rw-r--r-- 1 ubuntu ubuntu  9257 May 15 21:23 method.tex\n-rw-r--r-- 1 ubuntu ubuntu 11093 May 15 23:37 method_3f5a58.tex\n-rw-r--r-- 1 ubuntu ubuntu  9257 May 15 21:23 method_76a694.tex\n-rw-r--r-- 1 ubuntu ubuntu  7148 May 14 17:05 method_section_draft.md\n-rw-r--r-- 1 ubuntu ubuntu  5442 May 15 20:26 related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu  5567 May 15 23:39 related_work_0b6096.tex\n-rw-r--r-- 1 ubuntu ubuntu  5442 May 15 20:26 related_work_963aec.tex\n-rw-r--r-- 1 ubuntu ubuntu  5700 May 15 23:35 related_work_draft.md\n-rw-r--r-- 1 ubuntu ubuntu  5700 May 15 23:35 related_work_draft_0db5c4.md\n-rw-r--r-- 1 ubuntu ubuntu  4462 May 15 23:39 results.tex\n-rw-r--r-- 1 ubuntu ubuntu  4478 May 15 21:35 results_819b43.tex\n-rw-r--r-- 1 ubuntu ubuntu   415 May 15 20:14 writing_plan_v1_info.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T23:57:27.469038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T23:57:27.469200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tWe introduced Minimum Intervention Reweighting, a dual-constrained framework for contamination-aware pretraining that selects per-batch exponents $b^*$ without validation data.\n5\tThe method finds the smallest $b$ satisfying $\\alpha_{\\mathrm{eff}}(b) \\geq \\tau$ subject to $\\mathrm{ESS}(b) \\geq n_{\\min}$, enforcing a minimum-intervention principle: apply only as much downweighting as needed to meet a quality floor, no more.\n6\tThis stands in direct contrast to ESS-only (maximum-intervention) strategies, which we show degrade performance below even uniform baselines by over-downweighting contaminated samples.\n7\t\n8\tAcross three seeds at 0.6B scale with 40\\% synthetic contamination, adaptive $b^*$ matches grid-search-optimal PPL (17.651 vs.\\ 17.646) within seed variance, eliminating the $|\\mathcal{B}|$-run grid search entirely.\n9\tThe quality threshold $\\tau$ is robust across $[0.5, 0.8]$---all values in this range outperform uniform weighting.\n10\tA lightweight TF-IDF + logistic regression detector (AUC\\,0.94) suffices when post-hoc calibrated (ECE\\,0.048); score calibration matters more than raw discriminative power.\n11\tThe batch-level constraint regime---49.9\\% clean (no reweighting needed), 20.2\\% $\\alpha_{\\mathrm{eff}}$-binding, 30.0\\% ESS-binding---confirms that both constraints are active and complementary in practice.\n12\t\n13\t\\section*{Limitations}\n14\t\\label{sec:limitations}\n15\t\n16\t\\paragraph{Scale.}\n17\tAll experiments use a single model size (Qwen3-0.6B) with batch size 4.\n18\tBatch-level $q$-score statistics concentrate differently at larger batch sizes typical of 3B+ training; the optimal $\\tau$ range and constraint dynamics may shift at scale.\n19\t\n20\t\\paragraph{Contamination distribution.}\n21\tWe inject synthetic data via uniform random mixing at a controlled ratio ($\\rho{=}0.4$).\n22\tReal web-scale contamination is domain-skewed, which may alter within-batch $\\alpha_{\\mathrm{eff}}$ distributions and require domai\n…[truncated 1118 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T23:57:27.469361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/experiments.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T23:57:27.469509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Setup}\n2\t\\label{sec:experiments}\n3\t\n4\t\\paragraph{Training Data.}\n5\tWe sample a 132M-token subset of FineWeb~\\citep{penedo_2024_fineweb} as the real-data source.\n6\tTo simulate web-scale synthetic contamination, we generate continuations with Qwen3-0.6B~\\citep{yang_2025_qwen3}---the same architecture used for continued pretraining---and inject them at ratio $\\rho = 0.4$ via uniform random mixing.\n7\tThis self-contamination design creates a challenging detection scenario where generator and trainee share the same distribution.\n8\t\n9\t\\paragraph{Detector.}\n10\tWe train a TF-IDF + Logistic Regression classifier on a held-out labeled split, achieving AUC\\,=\\,0.939 with calibrated ECE\\,=\\,0.048 after temperature scaling ($T = 0.204$).\n11\tThe resulting $q$-scores have mean 0.60, standard deviation 0.37, and median 0.71, with 46.3\\% of samples in the uncertain range $[0.2, 0.8]$.\n12\tWe use this lightweight detector rather than neural alternatives (e.g., ModernBERT at AUC\\,${\\geq}$\\,0.98 in \\citealt{drayson_2025_detection_collapse}) to test whether score \\emph{calibration} matters more than raw discrimination for reweighting.\n13\t\n14\t\\paragraph{Training.}\n15\tWe continue pretraining Qwen3-0.6B from its pretrained weights for 6{,}103 steps (batch size 4, gradient accumulation 4, effective batch 16) with AdamW, cosine schedule (peak lr\\,=\\,$5{\\times}10^{-5}$), max sequence length 2048, and bf16 precision.\n16\tAll main comparisons use three random seeds (42, 123, 456).\n17\t\n18\t\\paragraph{Evaluation.}\n19\tWe report held-out perplexity (PPL) on a held-out subset of FineWeb (67.8K documents, $\\sim$4M tokens) containing only human-authored text, via sliding-window evaluation (stride 1024).\n20\tAll evaluations are post-hoc with a unified pipeline; training involves no inline evaluation.\n21\t\n22\t\\paragraph{Methods.}\n23\tWe compare five approaches:\n24\t\\begin{itemize}[nosep,leftmargin=*]\n25\t  \\item \\textbf{Uniform}: $w_j = 1$ for all $j$ (no contamination handling).\n26\t  \\it\n…[truncated 782 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T23:57:27.469655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/introduction.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T23:57:27.469808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWeb corpora increasingly contain machine-generated text.\n2\tRecent estimates place the synthetic fraction at 20--60\\% of crawled data~\\citep{cheng_2025_contamination_survey}, and this share grows as language models are deployed for content production at scale.\n3\tTraining on such contaminated data has concrete consequences: \\citet{shumailov_2024_model_collapse} show that recursive training on model outputs leads to irreversible quality degradation---\\emph{model collapse}---and \\citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger this failure mode, ruling out data scaling as a remedy.\n4\tA central difficulty is that the contamination proportion in any given corpus is unknown: synthetic text enters through diverse, uncoordinated channels with no centralized provenance record.\n5\tThe prevalence, severity, and opacity of synthetic contamination make contamination-aware pretraining a practical necessity.\n6\t\n7\tA natural response is \\emph{detect-and-reweight}: train a classifier to estimate each sample's synthetic probability $q(x)$, then suppress likely-synthetic samples via the weighting function $w(x) = (1 - q(x))^b$.\n8\t\\citet{drayson_2025_detection_collapse} demonstrate this approach for model collapse prevention and show that the exponent $b$ critically determines outcomes---their optimal values range from $b{=}10$ for models at ${\\leq}360$M parameters to $b{=}1$ at 1.7B, and misspecification degrades results substantially.\n9\tSelecting $b$ therefore requires per-model validation-set grid search, with computational cost scaling linearly in the number of candidates (six training runs in a typical sweep).\n10\tOther approaches assume even stronger supervision: \\citet{he_2025_golden_ratio} derive theoretically optimal weights from convergence analysis but require the exact contamination ratio $\\rho$, which is precisely what is unavailable in practice.\n11\tHard detection-and-removal strategies\n…[truncated 3953 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T23:57:27.469970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/method.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T23:57:27.470160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Problem Setup}\n5\t\\label{sec:setup}\n6\t\n7\tLet $\\mathcal{D} = \\mathcal{D}_{\\mathrm{real}} \\cup \\mathcal{D}_{\\mathrm{synth}}$ denote a pretraining corpus containing both human-authored and machine-generated text.\n8\tThe contamination ratio $\\rho = |\\mathcal{D}_{\\mathrm{synth}}| / |\\mathcal{D}|$ is unknown---a realistic assumption for web-scale corpora where synthetic content enters from diverse, uncoordinated sources~\\citep{cheng_2025_contamination_survey}.\n9\t\n10\tA pre-trained detector assigns each sample $x$ a synthetic probability $q(x) \\in [0,1]$.\n11\tFollowing \\citet{drayson_2025_detection_collapse}, we weight each sample as\n12\t\\begin{equation}\n13\t  w(x) = (1 - q(x))^{b},\n14\t  \\label{eq:weight}\n15\t\\end{equation}\n16\twhere $b \\geq 0$ controls downweighting intensity: $b = 0$ recovers uniform training, while larger $b$ progressively suppresses high-$q$ samples.\n17\t\\citet{drayson_2025_detection_collapse} select $b$ via validation-set grid search, obtaining different optimal values for different model scales ($b{=}10$ for ${\\leq}360$M parameters, $b{=}1$ for 1.7B).\n18\tWe instead derive $b$ per-batch from the batch's own $q$-score distribution, requiring no held-out validation data.\n19\t\n20\t\\subsection{Dual-Constraint Framework}\n21\t\\label{sec:dual}\n22\t\n23\tGiven a batch $\\mathcal{B} = \\{x_1, \\ldots, x_B\\}$ with detector scores $q_i = q(x_i)$ and weights $w_i(b) = (1 - q_i)^{b}$, we define two batch-level diagnostics that jointly determine $b$.\n24\t\n25\t\\paragraph{Effective real proportion.}\n26\tLet $r_i = \\mathbf{1}[q_i \\leq 0.5]$ estimate whether sample $x_i$ is human-authored.\n27\tThe \\emph{effective real proportion}\n28\t\\begin{equation}\n29\t  \\alpha_{\\mathrm{eff}}(b) = \\frac{\\sum_{i=1}^{B} w_i(b) \\cdot r_i}{\\sum_{i=1}^{B} w_i(b)}\n30\t  \\label{eq:alpha}\n31\t\\end{equation}\n32\tmeasures the share of total weight allocated to likely-real samples.\n33\tAt $b = 0$, $\\alpha_{\\mathrm{eff}}$ equals the raw real fraction in the batch; in\n…[truncated 7701 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T23:57:27.470315+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/related_work.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T23:57:27.470518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\n3\t\\paragraph{Synthetic Contamination and Model Collapse.}\n4\tTraining on recursively generated data leads to irreversible quality degradation---\\emph{model collapse}~\\citep{shumailov_2024_model_collapse}.\n5\t\\citet{alemohammad_2024_mad} formalize this as Model Autophagy Disorder, showing that quality or diversity inevitably degrades without fresh real data, even when original training data is retained.\n6\tMore critically, \\citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction (e.g., $1/1000$) suffices to trigger collapse, ruling out data scaling as a remedy.\n7\t\\citet{cheng_2025_contamination_survey} survey the broader contamination landscape, confirming that synthetic content now constitutes an estimated 20--60\\% of web corpora.\n8\tThese results motivate \\emph{contamination-aware} training strategies that explicitly account for synthetic provenance rather than treating all tokens equally.\n9\t\n10\t\\paragraph{Detection and Filtering of Machine-Generated Text.}\n11\tGiven the severity of contamination, a natural response is to detect and remove synthetic content.\n12\tDetectGPT~\\citep{mitchell_2023_detectgpt} performs zero-shot detection via probability curvature, while Min-$k$\\% Prob~\\citep{shi_2024_minkprob} uses the average log-probability of the lowest-$k$\\% tokens as a reference-free signal.\n13\tBoth produce continuous confidence scores suitable as input to downstream weighting---including ours.\n14\tOn the mitigation side, \\citet{feng_2025_beyond_collapse} prove that even an imperfect verifier prevents collapse, but apply hard binary filtering that discards borderline samples.\n15\t\\citet{guo_2025_escaping_collapse} similarly rely on verification-based selection.\n16\tHard filtering requires a precision--recall threshold; soft reweighting avoids this trade-off by assigning continuous weights.\n17\t\n18\tMost directly related to our work, \\citet{drayson_2025_detection_collapse} propose $w_j = (\n…[truncated 3553 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T23:57:27.470694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/_project/paper/results.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T23:57:27.470884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Results}\n2\t\\label{sec:results}\n3\t\n4\t\\subsection{Main Comparison}\n5\t\n6\tTable~\\ref{tab:main} reports held-out perplexity across methods and seeds.\n7\tAdaptive reweighting achieves mean PPL 17.651, matching grid-best ($b{=}0.5$, mean 17.646) within seed-to-seed variance: the per-seed gap never exceeds 0.007, less than half the cross-seed range of the uniform baseline (17.686--17.702).\n8\tThis parity comes at zero validation cost---grid search requires $|\\mathcal{B}|$ complete training runs (six in our sweep), whereas adaptive requires one.\n9\t\n10\tThe grid-$b$ sweep reveals monotonically increasing PPL from $b{=}0.5$ to $b{=}5.0$ (17.651 to 17.818 on seed 42; full sweep in Appendix~\\ref{app:grid}), confirming that exponent selection is consequential.\n11\tThe optimal $b{=}0.5$ differs from the $b{=}10$ reported by \\citet{drayson_2025_detection_collapse} at comparable model scale, underscoring the model-dependence of fixed-exponent selection.\n12\t\n13\tESS-only (maximum intervention) yields mean PPL 17.723 across three seeds, \\emph{worse} than uniform (17.694) by 0.029.\n14\tRemoving $\\alpha_{\\mathrm{eff}}$ and maximizing $b$ subject only to $\\mathrm{ESS} \\geq n_{\\min}$ leads to over-downweighting that degrades training, providing direct evidence for the minimum-intervention principle.\n15\t\n16\tThe Golden Ratio oracle~\\citep{he_2025_golden_ratio} achieves PPL 17.654 on seed 42 using known provenance labels.\n17\tAdaptive reaches within 0.001 of this upper bound without provenance access, suggesting the dual constraint recovers near-optimal weights from noisy detector scores alone.\n18\t\n19\tThe adaptive $b^*$ distribution (median 0.87, IQR $[0.54, 1.51]$, mean 1.40) confirms that most batches need only moderate intervention.\n20\tThe constraint regime breakdown in \\S\\ref{sec:algorithm} shows that $\\alpha_{\\mathrm{eff}}$ prevents over-intervention in the 40\\% of reweighted batches where moderate $b$ already meets the quality target.\n21\t\n22\t\\begin{table}[t]\n23\t\\centering\n24\t\\small\n…[truncated 2687 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T23:57:27.471072+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T23:57:27.471227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWeb pretraining corpora are increasingly contaminated by machine-generated text, with recent estimates placing the synthetic fraction between 20\\% and 60\\%.\n2\tThis poses a fundamental threat to model quality: \\citet{shumailov2024model} demonstrate that training on recursively generated data leads to irreversible model collapse, and \\citet{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger degradation, ruling out data scaling as a remedy.\n3\tAs synthetic content becomes ubiquitous, \\emph{contamination-aware training}---strategies that explicitly account for data provenance during optimization---is necessary for maintaining pretraining quality.\n4\t\n5\tA natural mitigation is detect-and-reweight: assign each sample a weight $w(x) = (1 - q(x))^b$ based on a detector's estimated synthetic probability $q(x)$, where larger $b$ downweights suspected synthetic text more aggressively \\citep{drayson2025detection}.\n6\tHowever, the exponent $b$ is a sensitive per-model hyperparameter whose optimal value varies by an order of magnitude across scales: $b = 1$ for SmolLM-1.7B versus $b = 10$ for GPT-2 124M.\n7\tSelecting $b$ requires a clean validation set and grid search costing up to $6{\\times}$ the base training budget.\n8\tThe practical question is immediate: \\emph{how should $b$ be chosen without validation data?}\n9\t\n10\tWe propose a \\emph{dual-constraint framework} that derives the exponent adaptively per batch from two diagnostics computed on the detector scores alone.\n11\tThe effective real proportion $\\aeff(b)$ measures the weighted fraction of gradient signal attributable to real data and imposes a \\emph{quality floor}: $\\aeff(b) \\geq \\tau$---at least enough cleaning.\n12\tKish's effective sample size $\\mathrm{ESS}(b)$ \\citep{vehtari2024psis} quantifies weight concentration and imposes a \\emph{stability ceiling}: $\\mathrm{ESS}(b) \\geq \\nmin$---not so much cleaning that gradient signal degrades.\n13\tA key structura\n…[truncated 2927 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T23:57:27.471373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T23:57:27.471523+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\paragraph{Synthetic Contamination and Model Collapse.}\n2\tTraining on recursively generated data leads to irreversible quality degradation---\\emph{model collapse}~\\citep{shumailov2024model}.\n3\t\\citet{alemohammad2024mad} formalize this as Model Autophagy Disorder, showing that quality or diversity inevitably degrades without fresh real data, even when original training data is retained.\n4\tMore critically, \\citet{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction (e.g., $1/1000$) suffices to trigger collapse, ruling out data scaling as a remedy.\n5\tIndependent estimates suggest that synthetic content now constitutes 20--60\\% of web corpora, making this threat increasingly urgent.\n6\tThese results motivate \\emph{contamination-aware} training strategies that explicitly account for synthetic provenance rather than treating all tokens equally.\n7\t\n8\t\\paragraph{Detection and Filtering of Machine-Generated Text.}\n9\tGiven the severity of contamination, a natural response is to detect and remove synthetic content.\n10\tDetectGPT~\\citep{mitchell2023detectgpt} performs zero-shot detection via probability curvature, while Min-$k$\\% Prob~\\citep{shi2024minkprob} uses the average log-probability of the lowest-$k$\\% tokens as a reference-free signal.\n11\tBoth produce continuous confidence scores suitable as input to reweighting frameworks such as ours.\n12\tOn the mitigation side, \\citet{feng2025beyond} prove that even an imperfect verifier prevents collapse, but apply hard binary filtering that discards borderline samples.\n13\t\\citet{guo2025escaping} similarly rely on verification-based selection.\n14\tHard filtering requires a precision--recall threshold; soft reweighting avoids this trade-off by assigning continuous weights.\n15\t\n16\tMost directly related to our work, \\citet{drayson2025detection} propose $w_j = (1{-}q_j)^b$ for collapse prevention via detect-and-reweight, where $q_j$ is the detector's synthetic probability.\n17\tWe adopt the s\n…[truncated 3880 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T23:57:27.471660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T23:57:27.471799+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\paragraph{Training Data.}\n2\tWe sample a 132M-token subset of FineWeb~\\citep{penedo2024fineweb} as the real-data source.\n3\tTo simulate web-scale synthetic contamination, we generate continuations with Qwen3-0.6B~\\citep{yang2025qwen3}---the same model we continue pretraining---and inject them at ratio $\\rho = 0.4$ via uniform random mixing.\n4\tThis self-contamination design---where the model's own outputs are mixed back into its training data---creates a particularly challenging detection scenario, as generator and trainee share identical pretrained weights.\n5\t\n6\t\\paragraph{Detector.}\n7\tWe train a TF-IDF + Logistic Regression classifier on a held-out labeled split, achieving AUC\\,=\\,0.939 with calibrated ECE\\,=\\,0.048 after temperature scaling ($T = 0.204$).\n8\tThe resulting $q$-scores have mean 0.60, standard deviation 0.37, and median 0.71, with 46.3\\% of samples in the uncertain range $[0.2, 0.8]$.\n9\tWe use this lightweight detector rather than neural alternatives (e.g., ModernBERT at AUC\\,${\\geq}$\\,0.98 in \\citealt{drayson2025detection}) to test whether score \\emph{calibration} may matter as much as raw discrimination for reweighting.\n10\t\n11\t\\paragraph{Training.}\n12\tWe continue pretraining Qwen3-0.6B for 6{,}103 steps (batch size 4, gradient accumulation 4, effective batch 16) with AdamW, cosine schedule (peak lr\\,=\\,$5{\\times}10^{-5}$), max sequence length 2048, and bf16 precision.\n13\tThe pretrained checkpoint starts at PPL\\,=\\,22.97 on our held-out set; after continued pretraining, the best method (adaptive $\\bstar$) reaches $17.651 {\\pm} 0.007$ across three seeds ($\\Delta$PPL\\,=\\,$-5.319$, $-23.2\\%$).\n14\tAll main comparisons use three random seeds (42, 123, 456).\n15\tWe note that method-level differences (${\\sim}0.04$ PPL between adaptive and uniform) are small in absolute terms but arise in a regime where the model is already well-optimized; the $5{+}$ PPL drop from pretraining absorbs the easy gains, making further improvement from data curation increasingly \n…[truncated 1266 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T23:57:27.471996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/",
+              "description": "List docs/paper/ directory"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T23:57:27.472127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 372\ndrwxr-xr-x 3 ubuntu ubuntu   4096 May 15 23:42 .\ndrwxr-xr-x 4 ubuntu ubuntu   4096 May 15 05:23 ..\n-rw-r--r-- 1 ubuntu ubuntu  11615 May 15 20:19 acl.sty\n-rw-r--r-- 1 ubuntu ubuntu  45186 May 15 20:19 acl_natbib.bst\n-rw-r--r-- 1 ubuntu ubuntu   4136 May 15 23:42 experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu   4821 May 15 23:38 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  15429 May 15 22:17 main.aux\n-rw-r--r-- 1 ubuntu ubuntu   6506 May 15 22:17 main.bbl\n-rw-r--r-- 1 ubuntu ubuntu   1463 May 15 22:17 main.blg\n-rw-r--r-- 1 ubuntu ubuntu  27225 May 15 22:17 main.log\n-rw-r--r-- 1 ubuntu ubuntu   1276 May 15 22:17 main.out\n-rw-r--r-- 1 ubuntu ubuntu 192299 May 15 22:17 main.pdf\n-rw-r--r-- 1 ubuntu ubuntu   1554 May 15 21:49 main.tex\n-rw-r--r-- 1 ubuntu ubuntu  13295 May 15 23:43 method.tex\n-rw-r--r-- 1 ubuntu ubuntu   6034 May 15 21:48 references.bib\n-rw-r--r-- 1 ubuntu ubuntu   5567 May 15 23:39 related_work.tex\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 15 23:42 sections"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T23:57:27.472249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T23:57:27.472360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T23:57:27.472488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T23:57:27.472621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{graphicx}\n9\t\\usepackage{amsmath}\n10\t\\usepackage{amssymb}\n11\t\\usepackage{amsthm}\n12\t\\usepackage{algorithm}\n13\t\\usepackage{algorithmic}\n14\t\\usepackage{booktabs}\n15\t\\usepackage{multirow}\n16\t\\usepackage{xcolor}\n17\t\\usepackage{enumitem}\n18\t\\usepackage{hyperref}\n19\t\n20\t\\newtheorem{proposition}{Proposition}\n21\t\\newtheorem{definition}{Definition}\n22\t\n23\t\\newcommand{\\bstar}{b^*}\n24\t\\newcommand{\\aeff}{\\alpha_{\\mathrm{eff}}}\n25\t\\newcommand{\\nmin}{n_{\\min}}\n26\t\\newcommand{\\btau}{b_{\\tau}}\n27\t\\newcommand{\\bess}{b_{\\mathrm{ESS}}}\n28\t\n29\t\\title{Minimum Intervention Reweighting: Adaptive Exponent Selection\\\\for Contamination-Aware Pretraining}\n30\t\n31\t\\author{Anonymous}\n32\t\n33\t\\begin{document}\n34\t\\maketitle\n35\t\n36\t\\begin{abstract}\n37\t\\input{sections/abstract}\n38\t\\end{abstract}\n39\t\n40\t\\section{Introduction}\n41\t\\label{sec:intro}\n42\t\\input{sections/introduction}\n43\t\n44\t\\section{Related Work}\n45\t\\label{sec:related}\n46\t\\input{sections/related_work}\n47\t\n48\t\\section{Method}\n49\t\\label{sec:method}\n50\t\\input{sections/method}\n51\t\n52\t\\section{Experimental Setup}\n53\t\\label{sec:experiments}\n54\t\\input{sections/experiments}\n55\t\n56\t\\section{Results}\n57\t\\label{sec:results}\n58\t\\input{sections/results}\n59\t\n60\t\\section{Discussion}\n61\t\\label{sec:discussion}\n62\t\\input{sections/discussion}\n63\t\n64\t\\section{Conclusion}\n65\t\\label{sec:conclusion}\n66\t\\input{sections/conclusion}\n67\t\n68\t\\section*{Limitations}\n69\t\\label{sec:limitations}\n70\t\\input{sections/limitations}\n71\t\n72\t\\bibliography{references}\n73\t\\bibliographystyle{acl_natbib}\n74\t\n75\t\\appendix\n76\t\\input{sections/appendix}\n77\t\n78\t\\end{document}\n79\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T23:57:27.472743+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T23:57:27.472909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for Minimum Intervention Reweighting paper\n2\t% Note: entries to be verified via verify_references before final submission\n3\t\n4\t@article{drayson2025detection,\n5\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n6\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n7\t  journal={arXiv preprint arXiv:2502.15654},\n8\t  year={2025}\n9\t}\n10\t\n11\t@article{he2025golden,\n12\t  title={Golden Ratio Weighting Prevents Model Collapse},\n13\t  author={He, Hengzhi and Xu, Shirong and Cheng, Guang},\n14\t  journal={arXiv preprint arXiv:2502.18049},\n15\t  year={2025}\n16\t}\n17\t\n18\t@article{wang2026survive,\n19\t  title={Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training},\n20\t  author={Wang, Kevin and Niu, Hongqian and Li, Didong},\n21\t  journal={arXiv preprint arXiv:2602.16065},\n22\t  year={2026}\n23\t}\n24\t\n25\t@article{shumailov2024model,\n26\t  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n27\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n28\t  journal={Nature},\n29\t  volume={631},\n30\t  pages={755--759},\n31\t  year={2024}\n32\t}\n33\t\n34\t@inproceedings{dohmatob2025strong,\n35\t  title={Strong Model Collapse},\n36\t  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n37\t  booktitle={ICLR},\n38\t  year={2025}\n39\t}\n40\t\n41\t@article{vehtari2024psis,\n42\t  title={Pareto Smoothed Importance Sampling},\n43\t  author={Vehtari, Aki and Simpson, Daniel and Gelman, Andrew and Yao, Yuling and Gabry, Jonah},\n44\t  journal={JMLR},\n45\t  year={2024}\n46\t}\n47\t\n48\t@inproceedings{sow2025dynamic,\n49\t  title={Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining},\n50\t  author={Sow, Daouda and Woisetschl{\\\"a}ger, Herbert and Bulusu, Saikiran and Wang, Shiqiang and Jacobsen, Hans-Arno and Liang, Yingbin},\n51\t  booktitle={ICLR},\n52\t  year={2025}\n53\t\n…[truncated 4590 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T23:57:27.473229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/introduction.tex",
+              "content": "Web corpora increasingly contain machine-generated text.\nRecent estimates place the synthetic fraction at 20--60\\% of crawled data~\\citep{cheng2025contamination}, and this share grows as language models are deployed for content production at scale.\nTraining on such contaminated data has concrete consequences: \\citet{shumailov2024model} show that recursive training on model outputs leads to irreversible quality degradation---\\emph{model collapse}---and \\citet{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger this failure mode, ruling out data scaling as a remedy.\nA central difficulty is that the contamination proportion in any given corpus is unknown: synthetic text enters through diverse, uncoordinated channels with no centralized provenance record.\nThe prevalence, severity, and opacity of synthetic contamination make contamination-aware pretraining a practical necessity.\n\nA natural response is \\emph{detect-and-reweight}: train a classifier to estimate each sample's synthetic probability $q(x)$, then suppress likely-synthetic samples via the weighting function $w(x) = (1 - q(x))^b$.\n\\citet{drayson2025detection} demonstrate this approach for model collapse prevention and show that the exponent $b$ critically determines outcomes---their optimal values range from $b{=}10$ for models at ${\\leq}360$M parameters to $b{=}1$ at 1.7B, and misspecification degrades results substantially.\nSelecting $b$ therefore requires per-model validation-set grid search, with computational cost scaling linearly in the number of candidates (six training runs in a typical sweep).\nOther approaches assume even stronger supervision: \\citet{he2025golden} derive theoretically optimal weights from convergence analysis but require the exact contamination ratio $\\rho$, which is precisely what is unavailable in practice.\nHard detection-and-removal strategies~\\citep{feng2025beyond} discard borderline samples entirely, sacrificing the smooth reweighting that continuous $q$-scores enable.\n\nGiven per-sample detector scores $q(x)$, how should one choose $b$ without a validation set or known contamination proportion?\nWe formulate this as a dual-constrained optimization over each training batch: find the smallest $b$ that ensures the weighted effective real proportion $\\aeff(b)$ reaches a quality threshold $\\tau$, while keeping Kish's effective sample size $\\mathrm{ESS}(b)$ above a stability floor $\\nmin$.\nThe quality constraint has theoretical grounding: convergence rate under contaminated training improves with the effective real-data fraction~\\citep{wang2026survive}, motivating a lower bound on $\\aeff$.\nThe stability constraint prevents extreme weight concentration that degrades gradient quality.\nThese two requirements exhibit a natural opposition.\n$\\aeff(b)$ increases monotonically in $b$ (Proposition~\\ref{prop:monotone}), yielding a lower bound $\\btau$---the minimum exponent needed to achieve the target quality.\n$\\mathrm{ESS}(b)$ decreases monotonically, yielding an upper bound $\\bess$---the maximum exponent before gradient stability degrades.\nThe adaptive exponent $\\bstar = \\btau$ when the feasible region $[\\btau, \\bess]$ is non-empty, embodying a \\emph{minimum intervention principle}: apply the least downweighting sufficient to meet the quality target, preserving as much effective training data as possible.\nWhen the constraints conflict ($\\btau > \\bess$), the stability ceiling takes precedence.\n\nThis minimum-intervention semantics distinguishes the method from the alternative of maximizing $b$ subject only to ESS stability.\nAmong batches that require reweighting, the dual-constraint solver selects $\\bstar$ via the $\\aeff$ bound in 40\\% of cases, with mean $\\bstar{=}1.67$; the ESS-only variant would choose $b{=}4.15$ in these same batches, 2.5$\\times$ more aggressive.\nThe remaining 49.9\\% of batches have sufficient real-data content to skip reweighting entirely ($\\bstar{=}0$).\nThe per-batch $\\bstar$ distribution (median 0.87, mean 1.40) adapts continuously to each batch's contamination composition without any held-out signal.\n\nOn Qwen3-0.6B continued pretraining with 40\\% synthetic contamination (132M+ tokens from FineWeb), adaptive reweighting achieves mean held-out perplexity of 17.651 across three seeds, matching the grid-searched optimum ($b{=}0.5$, mean 17.646) within seed-to-seed variance (\\S\\ref{sec:results}).\nThe grid sweep requires six complete training runs to identify this optimum; the adaptive method requires one.\nThe ESS-only variant (maximum intervention) yields mean PPL 17.722---worse than the uniform baseline (17.694)---confirming that maximum intervention degrades training while minimum intervention improves it.\nA lightweight TF-IDF + Logistic Regression detector (AUC\\,=\\,0.939, calibrated ECE\\,=\\,0.048) suffices throughout, suggesting that score calibration matters more than raw classification accuracy for provenance-based reweighting.\n\nOur contributions:\n\\begin{itemize}[nosep,leftmargin=*]\n\\item A dual-constrained framework for adaptive exponent selection: $\\bstar = \\inf\\{b \\geq 0 : \\aeff(b) \\geq \\tau\\}$ subject to $\\mathrm{ESS}(b) \\geq \\nmin$, computed per-batch from detector scores with minimum-intervention semantics (\\S\\ref{sec:method}).\n\\item Empirical evidence that adaptive $\\bstar$ matches grid-searched best within seed variance at zero validation cost, and that minimum intervention (dual constraint) outperforms maximum intervention (ESS-only) across three seeds (\\S\\ref{sec:results}).\n\\item A demonstration that a lightweight TF-IDF + LR detector with calibrated $q$-scores supports effective reweighting, achieving results comparable to stronger neural detectors (\\S\\ref{sec:experiments}).\n\\end{itemize}\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T23:57:27.473417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T23:57:27.473572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/method.tex",
+              "content": "\n\\subsection{Problem Setup}\n\\label{sec:setup}\n\nLet $\\mathcal{D} = \\mathcal{D}_{\\mathrm{real}} \\cup \\mathcal{D}_{\\mathrm{synth}}$ denote a pretraining corpus containing both human-authored and machine-generated text.\nThe contamination ratio $\\rho = |\\mathcal{D}_{\\mathrm{synth}}| / |\\mathcal{D}|$ is unknown---a realistic assumption for web-scale corpora where synthetic content enters from diverse, uncoordinated sources~\\citep{cheng2025contamination}.\n\nA pre-trained detector assigns each sample $x$ a synthetic probability $q(x) \\in [0,1]$.\nFollowing \\citet{drayson2025detection}, we weight each sample as\n\\begin{equation}\n  w(x) = (1 - q(x))^{b},\n  \\label{eq:weight}\n\\end{equation}\nwhere $b \\geq 0$ controls downweighting intensity: $b = 0$ recovers uniform training, while larger $b$ progressively suppresses high-$q$ samples.\n\\citet{drayson2025detection} select $b$ via validation-set grid search, obtaining different optimal values for different model scales ($b{=}10$ for ${\\leq}360$M parameters, $b{=}1$ for 1.7B).\nWe instead derive $b$ per-batch from the batch's own $q$-score distribution, requiring no held-out validation data.\n\n\\subsection{Dual-Constraint Framework}\n\\label{sec:dual}\n\nGiven a batch $\\mathcal{B} = \\{x_1, \\ldots, x_B\\}$ with detector scores $q_i = q(x_i)$ and weights $w_i(b) = (1 - q_i)^{b}$, we define two batch-level diagnostics that jointly determine $b$.\n\n\\paragraph{Effective real proportion.}\nLet $r_i = \\mathbf{1}[q_i \\leq 0.5]$ estimate whether sample $x_i$ is human-authored.\nThe \\emph{effective real proportion}\n\\begin{equation}\n  \\alpha_{\\mathrm{eff}}(b) = \\frac{\\sum_{i=1}^{B} w_i(b) \\cdot r_i}{\\sum_{i=1}^{B} w_i(b)}\n  \\label{eq:alpha}\n\\end{equation}\nmeasures the share of total weight allocated to likely-real samples.\nAt $b = 0$, $\\alpha_{\\mathrm{eff}}$ equals the raw real fraction in the batch; increasing $b$ shifts weight toward low-$q$ samples, raising $\\alpha_{\\mathrm{eff}}$.\n\n\\paragraph{Effective sample size.}\nKish's effective sample size~\\citep{vehtari2024psis}\n\\begin{equation}\n  \\mathrm{ESS}(b) = \\frac{\\bigl(\\sum_{i=1}^{B} w_i(b)\\bigr)^{2}}{\\sum_{i=1}^{B} w_i(b)^{2}}\n  \\label{eq:ess}\n\\end{equation}\nquantifies how many equally-weighted samples the weighted batch is equivalent to.\n$\\mathrm{ESS}(0) = B$; as $b$ grows, a few high-$(1{-}q)$ samples dominate and $\\mathrm{ESS}$ drops toward~1.\n\n\\paragraph{Monotonicity.}\nThe two diagnostics exhibit opposing monotonicity in $b$:\n\n\\begin{proposition}\n\\label{prop:monotone}\nFor any batch containing both real and synthetic samples with distinct $q$-values, $\\alpha_{\\mathrm{eff}}(b)$ is strictly increasing in $b$.\n\\end{proposition}\n\n\\begin{proof}[Proof sketch]\nLet $\\pi_i(b) = w_i / \\sum_j w_j$ denote normalized weights.\nDifferentiating $\\alpha_{\\mathrm{eff}} = \\sum_i \\pi_i r_i$ yields\n$\\frac{d\\alpha_{\\mathrm{eff}}}{db} = \\mathrm{Cov}_{\\pi}\\!\\bigl(r_i,\\, \\ln(1{-}q_i)\\bigr)$.\nReal samples ($r_i = 1$) have $q_i \\leq 0.5$ and thus higher $\\ln(1{-}q_i)$, so this covariance is non-negative for any detector with better-than-random discrimination.\nFull derivation in Appendix~\\ref{app:proofs}.\n\\end{proof}\n\n\\noindent $\\mathrm{ESS}(b)$ is monotonically decreasing in $b$---larger exponents concentrate the weight distribution, a standard property of exponential tilting~\\citep{kimura2024iw}.\n\n\\paragraph{Dual constraints.}\nWe impose two requirements on $b$:\n\\begin{enumerate}[nosep,leftmargin=*]\n  \\item \\textbf{Quality floor}: $\\alpha_{\\mathrm{eff}}(b) \\geq \\tau$.\n  Convergence under contaminated training improves with the effective real fraction~\\citep{wang2026survive}; $\\tau$ sets the minimum acceptable quality level.\n  By Proposition~\\ref{prop:monotone}, this constraint defines a \\emph{lower bound} $b_\\tau = \\inf\\{b \\geq 0 : \\alpha_{\\mathrm{eff}}(b) \\geq \\tau\\}$.\n  \\item \\textbf{Stability ceiling}: $\\mathrm{ESS}(b) \\geq n_{\\min}$.\n  Overly concentrated weights yield high-variance gradients; $n_{\\min}$ prevents the batch from degenerating into a single effective sample.\n  Since $\\mathrm{ESS}$ is decreasing, this defines an \\emph{upper bound} $b_{\\mathrm{ESS}} = \\sup\\{b \\geq 0 : \\mathrm{ESS}(b) \\geq n_{\\min}\\}$.\n\\end{enumerate}\nThe optimal exponent is\n\\begin{equation}\n  b^{*} = \\inf\\bigl\\{b \\geq 0 : \\alpha_{\\mathrm{eff}}(b) \\geq \\tau\\bigr\\} \\;\\;\\text{s.t.}\\;\\; \\mathrm{ESS}(b) \\geq n_{\\min}.\n  \\label{eq:bstar}\n\\end{equation}\nThis is the \\emph{minimum intervention principle}: apply the smallest $b$ that achieves the quality floor.\nBorderline samples---those with moderate $q$-values---still carry useful training signal; over-downweighting discards this signal unnecessarily.\nWhen both constraints are satisfiable ($b_\\tau \\leq b_{\\mathrm{ESS}}$), $b^{*} = b_\\tau$ and $\\alpha_{\\mathrm{eff}}$ is the binding constraint---$b^{*}$ lies well below the ESS ceiling.\nWhen they conflict ($b_\\tau > b_{\\mathrm{ESS}}$), the stability ceiling takes precedence: $b^{*} = b_{\\mathrm{ESS}}$, accepting a lower $\\alpha_{\\mathrm{eff}}$ to preserve gradient stability.\nFigure~\\ref{fig:dual_constraint} illustrates the feasible region and the three regimes.\n\n\\subsection{Algorithm}\n\\label{sec:algorithm}\n\nAlgorithm~\\ref{alg:bstar} computes $b^{*}$ for each training batch via bisection on the monotone functions $\\alpha_{\\mathrm{eff}}$ and $\\mathrm{ESS}$.\nEach batch falls into one of three regimes:\n\\begin{enumerate}[nosep,leftmargin=*]\n  \\item \\textbf{Clean} ($\\alpha_{\\mathrm{eff}}(0) \\geq \\tau$): the quality floor holds at $b = 0$; no reweighting needed.\n  \\item \\textbf{$\\alpha_{\\mathrm{eff}}$-binding} ($b_\\tau \\leq b_{\\mathrm{ESS}}$): the quality constraint determines $b^{*} = b_\\tau$; $\\mathrm{ESS}$ remains above $n_{\\min}$ with margin.\n  \\item \\textbf{ESS-binding} ($b_\\tau > b_{\\mathrm{ESS}}$): the stability ceiling caps $b^{*} = b_{\\mathrm{ESS}}$.\n\\end{enumerate}\nAcross 51{,}913 micro-batches in our main experiment ($\\rho{=}0.4$, $\\tau{=}0.8$, $n_{\\min}{=}2$), 49.9\\% are clean, 20.2\\% are $\\alpha_{\\mathrm{eff}}$-binding, and 30.0\\% are ESS-binding.\nIn $\\alpha_{\\mathrm{eff}}$-binding batches, the solver selects $b^{*} = 1.67$ on average, while an ESS-only strategy would choose $b = 4.15$ on the same batches---2.5$\\times$ more aggressive.\nThe residual $\\mathrm{ESS} = 2.60$ in these batches (vs.\\ $n_{\\min} = 2.0$) confirms that the dual constraint prevents unnecessary over-downweighting.\n\n\\begin{algorithm}[t]\n\\caption{Per-batch adaptive $b^{*}$ selection}\n\\label{alg:bstar}\n\\begin{algorithmic}[1]\n\\Require Batch scores $\\{q_i\\}_{i=1}^{B}$, indicators $\\{r_i\\}$, quality threshold~$\\tau$, ESS floor~$n_{\\min}$, search bound~$b_{\\max}$, tolerance~$\\varepsilon$\n\\Ensure Optimal exponent $b^{*}$\n\\If{$\\alpha_{\\mathrm{eff}}(0) \\geq \\tau$}\n  \\State \\Return $0$ \\Comment{clean batch}\n\\EndIf\n\\State $b_\\tau \\gets \\Call{Bisect}{\\alpha_{\\mathrm{eff}}(\\cdot){=}\\tau,\\; [0, b_{\\max}],\\; \\varepsilon}$\n\\If{$\\mathrm{ESS}(b_\\tau) \\geq n_{\\min}$}\n  \\State \\Return $b_\\tau$ \\Comment{$\\alpha_{\\mathrm{eff}}$-binding}\n\\Else\n  \\State $b_{\\mathrm{ESS}} \\gets \\Call{Bisect}{\\mathrm{ESS}(\\cdot){=}n_{\\min},\\; [0, b_{\\max}],\\; \\varepsilon}$\n  \\State \\Return $b_{\\mathrm{ESS}}$ \\Comment{ESS-binding}\n\\EndIf\n\\end{algorithmic}\n\\end{algorithm}\n\n\\paragraph{Implementation.}\nGiven $b^{*}$, we compute normalized weights $\\pi_i = w_i(b^{*}) / \\sum_j w_j(b^{*})$ and form the weighted loss $\\mathcal{L} = \\sum_i \\pi_i \\ell_i$, where $\\ell_i$ is the per-sample cross-entropy.\nThis \\emph{loss reweighting} maintains continuous gradients, unlike the SIR resampling of \\citet{drayson2025detection} which introduces discrete sampling noise by drawing a subset proportional to $w_i$.\nEach bisection requires $\\mathcal{O}(B \\log(b_{\\max}/\\varepsilon))$ operations---with $B{=}4$, $b_{\\max}{=}20$, and $\\varepsilon{=}0.01$, roughly 44 floating-point operations per batch, negligible beside the forward and backward passes.\n\n\\subsection{Hyperparameters}\n\\label{sec:hyperparameters}\n\nThe framework introduces two hyperparameters, both with principled defaults set once across all experiments.\n\n\\paragraph{Quality threshold $\\tau$.}\nConvergence theory for contaminated training shows that convergence rate improves with the effective real fraction~\\citep{wang2026survive}, motivating a lower bound on $\\alpha_{\\mathrm{eff}}$.\nThe specific value of $\\tau$ is set empirically.\nWe find a wide safe range: $\\tau \\in [0.5, 0.8]$ consistently outperforms uniform training (Section~\\ref{sec:results}), with $\\tau = 0.8$ achieving the best perplexity.\nAbove 0.8, $b^{*}$ inflates rapidly (mean $b^{*} = 3.08$ at $\\tau = 0.95$), causing over-downweighting.\nWe use $\\tau = 0.8$ as the default throughout.\n\n\\paragraph{ESS floor $n_{\\min}$.}\nWe set $n_{\\min} = 2$ for batch size $B = 4$.\nThe constraint $n_{\\min} < B$ is necessary: $n_{\\min} \\geq B$ forces $b^{*} = 0$ on every batch, recovering uniform training.\nAt the other extreme, $n_{\\min} = 1$ effectively removes the stability constraint---mean $b^{*}$ rises to 7.20, with 46.7\\% of batches hitting the search ceiling at $b_{\\max}{=}20$, and perplexity degrades by $+0.14$ relative to $n_{\\min} = 2$.\nIn practice, $n_{\\min} \\in \\{2, 3\\}$ yields stable results across seeds (Section~\\ref{sec:results}).\n"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T23:57:27.473773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T23:57:27.473923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/experiments.tex",
+              "content": "\n\\paragraph{Training Data.}\nWe sample a 132M-token subset of FineWeb~\\citep{penedo2024fineweb} as the real-data source.\nTo simulate web-scale synthetic contamination, we generate continuations with Qwen3-0.6B~\\citep{yang2025qwen3}---the same architecture used for continued pretraining---and inject them at ratio $\\rho = 0.4$ via uniform random mixing.\nThis self-contamination design creates a challenging detection scenario where generator and trainee share the same distribution.\n\n\\paragraph{Detector.}\nWe train a TF-IDF + Logistic Regression classifier on a held-out labeled split, achieving AUC\\,=\\,0.939 with calibrated ECE\\,=\\,0.048 after temperature scaling ($T = 0.204$).\nThe resulting $q$-scores have mean 0.60, standard deviation 0.37, and median 0.71, with 46.3\\% of samples in the uncertain range $[0.2, 0.8]$.\nWe use this lightweight detector rather than neural alternatives (e.g., ModernBERT at AUC\\,${\\geq}$\\,0.98 in \\citealt{drayson2025detection}) to test whether score \\emph{calibration} matters more than raw discrimination for reweighting.\n\n\\paragraph{Training.}\nWe continue pretraining Qwen3-0.6B from its pretrained weights for 6{,}103 steps (batch size 4, gradient accumulation 4, effective batch 16) with AdamW, cosine schedule (peak lr\\,=\\,$5{\\times}10^{-5}$), max sequence length 2048, and bf16 precision.\nAll main comparisons use three random seeds (42, 123, 456).\n\n\\paragraph{Evaluation.}\nWe report held-out perplexity (PPL) on a held-out subset of FineWeb (67.8K documents, $\\sim$4M tokens) containing only human-authored text, via sliding-window evaluation (stride 1024).\nAll evaluations are post-hoc with a unified pipeline; training involves no inline evaluation.\n\n\\paragraph{Methods.}\nWe compare five approaches:\n\\begin{itemize}[nosep,leftmargin=*]\n  \\item \\textbf{Uniform}: $w_j = 1$ for all $j$ (no contamination handling).\n  \\item \\textbf{Grid-$b$}: fixed $b \\in \\{0.5, 1.0, 1.5, 2.0, 3.0, 5.0\\}$, best selected post-hoc by held-out PPL.\n        Represents validation-based selection~\\citep{drayson2025detection}.\n  \\item \\textbf{ESS-only}: $b^* = \\max\\{b : \\mathrm{ESS}(b) \\geq n_{\\min}\\}$, the maximum-intervention variant retaining only the stability constraint, ablating $\\alpha_{\\mathrm{eff}}$.\n  \\item \\textbf{Golden Ratio}: $w = 1/\\varphi \\approx 0.618$ for synthetic ($q_j > 0.5$), $w = 1$ otherwise~\\citep{he2025golden}.\n        Requires known provenance labels (oracle).\n  \\item \\textbf{Adaptive} (ours): per-batch $b^*$ from the dual-constraint formulation (\\S\\ref{sec:method}), with $\\tau = 0.8$ and $n_{\\min} = 2$ (half the micro-batch size).\n\\end{itemize}\n"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T23:57:27.474068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T23:57:27.474198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/related_work.tex",
+              "content": "\n\\paragraph{Synthetic Contamination and Model Collapse.}\nTraining on recursively generated data leads to irreversible quality degradation---\\emph{model collapse}~\\citep{shumailov2024model}.\n\\citet{alemohammad2024mad} formalize this as Model Autophagy Disorder, showing that quality or diversity inevitably degrades without fresh real data, even when original training data is retained.\nMore critically, \\citet{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction (e.g., $1/1000$) suffices to trigger collapse, ruling out data scaling as a remedy.\n\\citet{cheng2025contamination} survey the broader contamination landscape, confirming that synthetic content now constitutes an estimated 20--60\\% of web corpora.\nThese results motivate \\emph{contamination-aware} training strategies that explicitly account for synthetic provenance rather than treating all tokens equally.\n\n\\paragraph{Detection and Filtering of Machine-Generated Text.}\nGiven the severity of contamination, a natural response is to detect and remove synthetic content.\nDetectGPT~\\citep{mitchell2023detectgpt} performs zero-shot detection via probability curvature, while Min-$k$\\% Prob~\\citep{shi2024minkprob} uses the average log-probability of the lowest-$k$\\% tokens as a reference-free signal.\nBoth produce continuous confidence scores suitable as input to downstream weighting---including ours.\nOn the mitigation side, \\citet{feng2025beyond} prove that even an imperfect verifier prevents collapse, but apply hard binary filtering that discards borderline samples.\n\\citet{guo2025escaping} similarly rely on verification-based selection.\nHard filtering requires a precision--recall threshold; soft reweighting avoids this trade-off by assigning continuous weights.\n\nMost directly related to our work, \\citet{drayson2025detection} propose $w_j = (1{-}q_j)^b$ for collapse prevention via detect-and-reweight, where $q_j$ is the detector's synthetic probability.\nWe adopt the same weighting formula but differ in several fundamental ways.\n\\textbf{(i)}~Drayson et al.\\ select $b$ via validation-set grid search and fix it throughout training; different model scales require different values ($b{=}10$ for ${\\leq}360$M, $b{=}1$ for 1.7B), making the choice \\emph{per-model} and expensive.\nOur $b^*$ is derived per-batch from dual constraints ($\\alpha_{\\mathrm{eff}} \\geq \\tau$, $\\mathrm{ESS} \\geq n_{\\min}$) at zero validation cost.\n\\textbf{(ii)}~Their SIR resampling discretizes the weight distribution; we apply direct loss reweighting with continuous gradients.\n\\textbf{(iii)}~They employ a ModernBERT-150M detector (AUC\\,=\\,0.986) on WikiText-2 (${\\sim}$2M tokens); we show that a lightweight TF-IDF+LR detector (AUC\\,=\\,0.939) suffices on FineWeb-scale data (132M+ tokens), suggesting that score calibration matters more than raw detection accuracy.\n\n\\paragraph{Data Mixing and Instance-Level Reweighting.}\nA parallel line of work optimizes data composition without targeting synthetic contamination.\nAt the \\emph{domain} level, DoReMi~\\citep{xie2023doremi} learns mixture weights via Group DRO with a proxy model, DSIR~\\citep{xie2023dsir} performs importance resampling with $n$-gram features, and \\citet{ye2025mixing} discover predictable functional forms relating mixing ratios to performance.\nAIOLI~\\citep{chen2025aioli} unifies these into an online adaptive framework, while \\citet{yang2026mixing} train an RL agent for domain-weight selection.\nThese methods do not address instance-level contamination within a domain.\nAt the \\emph{instance} level, SoftDedup~\\citep{he2024softdedup} downweights high-frequency samples via $n$-gram commonness, \\citet{sow2025dynamic} derive sample weights from per-sample loss with convergence guarantees, and \\citet{kuo2024weighting} show that differentiated weighting of LLM-generated data improves downstream classification.\nOur reweighting differs from all of these in being driven by \\emph{provenance}---detector scores estimating human vs.\\ synthetic origin---rather than loss, frequency, or domain membership.\n\n\\paragraph{Theoretical Foundations.}\n\\citet{he2025golden} derive the optimal real-data weight under known mixture proportions, finding the golden-ratio reciprocal (${\\approx}0.62$) optimal when both sources are equally sized.\nTheir result requires the contamination ratio $k$, unavailable in web-scale settings; we use it as an oracle baseline.\n\\citet{wang2026survive} prove that contaminated recursive training converges at a rate governed by the effective real-data fraction $\\alpha$, providing the theoretical motivation for our quality threshold: ensuring $\\alpha_{\\mathrm{eff}}(b) \\geq \\tau$ guarantees a convergence-rate lower bound.\nWe operationalize this without the known-proportion assumption, estimating $\\alpha_{\\mathrm{eff}}$ from batch-level statistics online.\nFor the stability constraint, we build on Kish's effective sample size and the Pareto-smoothed importance sampling framework of \\citet{vehtari2024psis}.\n\\citet{kimura2024iw} provide a broader treatment of importance weighting under distribution shift, within which our provenance-based reweighting can be viewed as a special case of covariate-shift correction where the covariate is synthetic origin probability.\n"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T23:57:27.474354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T23:57:27.474485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/results.tex",
+              "content": "\n\\subsection{Main Comparison}\n\nTable~\\ref{tab:main} reports held-out perplexity across methods and seeds.\nAdaptive reweighting achieves mean PPL 17.651, matching grid-best ($b{=}0.5$, mean 17.646) within seed-to-seed variance: the per-seed gap never exceeds 0.007, less than half the cross-seed range of the uniform baseline (17.686--17.702).\nThis parity comes at zero validation cost---grid search requires $|\\mathcal{B}|$ complete training runs (six in our sweep), whereas adaptive requires one.\n\nThe grid-$b$ sweep reveals monotonically increasing PPL from $b{=}0.5$ to $b{=}5.0$ (17.651 to 17.818 on seed 42; full sweep in Appendix~\\ref{app:grid}), confirming that exponent selection is consequential.\nThe optimal $b{=}0.5$ differs from the $b{=}10$ reported by \\citet{drayson2025detection} at comparable model scale, underscoring the model-dependence of fixed-exponent selection.\n\nESS-only (maximum intervention) yields mean PPL 17.723 across three seeds, \\emph{worse} than uniform (17.694) by 0.029.\nRemoving $\\alpha_{\\mathrm{eff}}$ and maximizing $b$ subject only to $\\mathrm{ESS} \\geq n_{\\min}$ leads to over-downweighting that degrades training, providing direct evidence for the minimum-intervention principle.\n\nThe Golden Ratio oracle~\\citep{he2025golden} achieves PPL 17.654 on seed 42 using known provenance labels.\nAdaptive reaches within 0.001 of this upper bound without provenance access, suggesting the dual constraint recovers near-optimal weights from noisy detector scores alone.\n\nThe adaptive $b^*$ distribution (median 0.87, IQR $[0.54, 1.51]$, mean 1.40) confirms that most batches need only moderate intervention.\nThe constraint regime breakdown in \\S\\ref{sec:algorithm} shows that $\\alpha_{\\mathrm{eff}}$ prevents over-intervention in the 40\\% of reweighted batches where moderate $b$ already meets the quality target.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{Seed 42} & \\textbf{Seed 123} & \\textbf{Seed 456} & \\textbf{Mean} \\\\\n\\midrule\nUniform               & 17.694 & 17.686 & 17.702 & 17.694 \\\\\nGrid-best ($b{=}0.5$) & \\textbf{17.651} & \\textbf{17.638} & \\textbf{17.650} & \\textbf{17.646} \\\\\nESS-only               & 17.730 & 17.720 & 17.719 & 17.723 \\\\\nGolden Ratio$^\\dagger$ & 17.654 & --     & --     & --     \\\\\n\\midrule\nAdaptive (ours)        & 17.653 & 17.643 & 17.657 & 17.651 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Held-out perplexity (PPL, $\\downarrow$).\nGrid-best selects the optimal fixed $b$ post-hoc from six candidates.\n$^\\dagger$Evaluated on seed 42 only.\nBest per column in \\textbf{bold}.}\n\\label{tab:main}\n\\end{table}\n\n\\subsection{Sensitivity Analysis}\n\n\\paragraph{Quality threshold $\\tau$.}\nTable~\\ref{tab:tau} varies $\\tau$ while holding $n_{\\min} = 2$ (seed 42).\nAll values in $\\tau \\in [0.5, 0.8]$ improve over uniform, with $\\tau = 0.8$ achieving the lowest PPL (17.653).\nHigher $\\tau$ demands greater $\\alpha_{\\mathrm{eff}}$, forcing the solver to increase $b^*$: mean $\\bar{b}^*$ rises monotonically from 0.39 at $\\tau{=}0.5$ to 3.08 at $\\tau{=}0.95$.\nBelow 0.8, reweighting is too gentle to fully exploit the detector signal; above, $b^*$ inflates past diminishing returns and PPL degrades.\nThe range $[0.5, 0.8]$ provides a wide safe operating region, with $\\tau = 0.8$ as the recommended default.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}cccc@{}}\n\\toprule\n$\\tau$ & \\textbf{PPL} & $\\Delta_{\\mathrm{unif}}$ & $\\bar{b}^*$ \\\\\n\\midrule\n0.50 & 17.688 & $-$0.006 & 0.39 \\\\\n0.60 & 17.681 & $-$0.013 & 0.59 \\\\\n0.70 & 17.679 & $-$0.015 & 0.89 \\\\\n\\textbf{0.80} & \\textbf{17.653} & $\\mathbf{-0.041}$ & \\textbf{1.40} \\\\\n0.90 & 17.712 & $+$0.018 & 2.36 \\\\\n0.95 & 17.723 & $+$0.029 & 3.08 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Sensitivity to $\\tau$ (seed 42, $n_{\\min}{=}2$, $\\rho{=}0.4$).\n$\\Delta_{\\mathrm{unif}}$: PPL change vs.\\ uniform baseline (17.694).\n$\\bar{b}^*$: mean adaptive exponent across batches.}\n\\label{tab:tau}\n\\end{table}\n\n\\paragraph{Minimum ESS $n_{\\min}$.}\nRemoving the ESS floor ($n_{\\min} = 1$) allows $b^*$ to inflate to mean 7.20, degrading PPL to 17.789---0.095 worse than uniform.\nAt $n_{\\min} = 2$ ($= \\lfloor B/2 \\rfloor$ for batch size $B{=}4$), PPL stabilizes at 17.653; $n_{\\min} = 3$ yields a comparable 17.644.\nThe coupling $n_{\\min} = \\lfloor B/2 \\rfloor$ provides a configuration-aware default that balances reweighting headroom against gradient stability.\n"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T23:57:27.474637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T23:57:27.474756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/conclusion.tex",
+              "content": "\nWe introduced Minimum Intervention Reweighting, a dual-constrained framework for contamination-aware pretraining that selects per-batch exponents $b^*$ without validation data.\nThe method finds the smallest $b$ satisfying $\\alpha_{\\mathrm{eff}}(b) \\geq \\tau$ subject to $\\mathrm{ESS}(b) \\geq n_{\\min}$, enforcing a minimum-intervention principle: apply only as much downweighting as needed to meet a quality floor, no more.\nThis stands in direct contrast to ESS-only (maximum-intervention) strategies, which we show degrade performance below even uniform baselines by over-downweighting contaminated samples.\n\nAcross three seeds at 0.6B scale with 40\\% synthetic contamination, adaptive $b^*$ matches grid-search-optimal PPL (17.651 vs.\\ 17.646) within seed variance, eliminating the $|\\mathcal{B}|$-run grid search entirely.\nThe quality threshold $\\tau$ is robust across $[0.5, 0.8]$---all values in this range outperform uniform weighting.\nA lightweight TF-IDF + logistic regression detector (AUC\\,0.94) suffices when post-hoc calibrated (ECE\\,0.048); score calibration matters more than raw discriminative power.\nThe batch-level constraint regime---49.9\\% clean (no reweighting needed), 20.2\\% $\\alpha_{\\mathrm{eff}}$-binding, 30.0\\% ESS-binding---confirms that both constraints are active and complementary in practice.\n"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T23:57:27.474902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T23:57:27.475026+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/limitations.tex",
+              "content": "\n\\paragraph{Scale.}\nAll experiments use a single model size (Qwen3-0.6B) with batch size 4.\nBatch-level $q$-score statistics concentrate differently at larger batch sizes typical of 3B+ training; the optimal $\\tau$ range and constraint dynamics may shift at scale.\n\n\\paragraph{Contamination distribution.}\nWe inject synthetic data via uniform random mixing at a controlled ratio ($\\rho{=}0.4$).\nReal web-scale contamination is domain-skewed, which may alter within-batch $\\alpha_{\\mathrm{eff}}$ distributions and require domain-aware extensions.\n\n\\paragraph{Detector coverage.}\nWe evaluate one detector family (TF-IDF + logistic regression).\nAlthough our results suggest calibration dominates discrimination for reweighting quality, a systematic ablation across detector architectures and quality levels is needed.\n\n\\paragraph{Threshold.}\n$\\tau$ is an empirical hyperparameter.\nThe convergence theory of \\citet{wang2026survive} assumes a known contamination proportion $\\alpha$, which we do not require; bridging this gap to derive $\\tau$ from first principles remains open.\n\n\\paragraph{Evaluation.}\nWe report held-out perplexity only.\nDownstream task evaluation (MMLU, HellaSwag) would strengthen the practical case, particularly at scales where PPL differences translate more reliably to task performance.\n\n\\paragraph{Effect size.}\nThe PPL improvement over uniform weighting is 0.043 at 0.6B/40\\% contamination.\nWhile consistent across seeds, this effect is modest; we expect amplification at higher contamination ratios and larger model scales, but verification is ongoing.\n"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T23:57:27.475150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T23:57:27.475285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T23:57:27.475430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWeb corpora increasingly contain machine-generated text.\n2\tRecent estimates place the synthetic fraction at 20--60\\% of crawled data~\\citep{cheng_2025_contamination_survey}, and this share grows as language models are deployed for content production at scale.\n3\tTraining on such contaminated data has concrete consequences: \\citet{shumailov_2024_model_collapse} show that recursive training on model outputs leads to irreversible quality degradation---\\emph{model collapse}---and \\citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger this failure mode, ruling out data scaling as a remedy.\n4\tA central difficulty is that the contamination proportion in any given corpus is unknown: synthetic text enters through diverse, uncoordinated channels with no centralized provenance record.\n5\tThe prevalence, severity, and opacity of synthetic contamination make contamination-aware pretraining a practical necessity.\n6\t\n7\tA natural response is \\emph{detect-and-reweight}: train a classifier to estimate each sample's synthetic probability $q(x)$, then suppress likely-synthetic samples via the weighting function $w(x) = (1 - q(x))^b$.\n8\t\\citet{drayson_2025_detection_collapse} demonstrate this approach for model collapse prevention and show that the exponent $b$ critically determines outcomes---their optimal values range from $b{=}10$ for models at ${\\leq}360$M parameters to $b{=}1$ at 1.7B, and misspecification degrades results substantially.\n9\tSelecting $b$ therefore requires per-model validation-set grid search, with computational cost scaling linearly in the number of candidates (six training runs in a typical sweep).\n10\tOther approaches assume even stronger supervision: \\citet{he_2025_golden_ratio} derive theoretically optimal weights from convergence analysis but require the exact contamination ratio $\\rho$, which is precisely what is unavailable in practice.\n11\tHard detection-and-removal strategies\n…[truncated 3953 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T23:57:27.475571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/method.tex"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T23:57:27.475762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{Problem Setup}\n2\t\\label{sec:setup}\n3\t\n4\tLet $\\mathcal{D} = \\mathcal{D}_{\\mathrm{real}} \\cup \\mathcal{D}_{\\mathrm{synth}}$ denote a pretraining corpus containing both human-authored and machine-generated text.\n5\tThe contamination ratio $\\rho = |\\mathcal{D}_{\\mathrm{synth}}| / |\\mathcal{D}|$ is unknown---a realistic assumption for web-scale corpora where synthetic content enters from diverse, uncoordinated sources~\\citep{cheng_2025_contamination_survey}.\n6\t\n7\tA pre-trained detector assigns each sample $x$ a synthetic probability $q(x) \\in [0,1]$.\n8\tFollowing \\citet{drayson_2025_detection_collapse}, we weight each sample as\n9\t\\begin{equation}\n10\t  w(x) = (1 - q(x))^{b},\n11\t  \\label{eq:weight}\n12\t\\end{equation}\n13\twhere $b \\geq 0$ controls downweighting intensity: $b = 0$ recovers uniform training, while larger $b$ progressively suppresses high-$q$ samples.\n14\t\\citet{drayson_2025_detection_collapse} select $b$ via validation-set grid search, obtaining different optimal values for different model scales ($b{=}10$ for ${\\leq}360$M parameters, $b{=}1$ for 1.7B).\n15\tWe instead derive $b$ per-batch from the batch's own $q$-score distribution, requiring no held-out validation data.\n16\t\n17\t\\subsection{Dual-Constraint Framework}\n18\t\\label{sec:dual}\n19\t\n20\tGiven a batch $\\mathcal{B} = \\{x_1, \\ldots, x_B\\}$ with detector scores $q_i = q(x_i)$ and weights $w_i(b) = (1 - q_i)^{b}$, we define two batch-level diagnostics that jointly determine $b$.\n21\t\n22\t\\paragraph{Effective real proportion.}\n23\tLet $r_i = \\mathbf{1}[q_i \\leq 0.5]$ estimate whether sample $x_i$ is human-authored.\n24\tThe \\emph{effective real proportion}\n25\t\\begin{equation}\n26\t  \\alpha_{\\mathrm{eff}}(b) = \\frac{\\sum_{i=1}^{B} w_i(b) \\cdot r_i}{\\sum_{i=1}^{B} w_i(b)}\n27\t  \\label{eq:alpha}\n28\t\\end{equation}\n29\tmeasures the share of total weight allocated to likely-real samples.\n30\tAt $b = 0$, $\\alpha_{\\mathrm{eff}}$ equals the raw real fraction in the batch; increasing $b$ shifts weight toward low-$q$ samp\n…[truncated 7652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T23:57:27.475933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/experiments.tex"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T23:57:27.476081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\paragraph{Training Data.}\n2\tWe sample a 132M-token subset of FineWeb~\\citep{penedo_2024_fineweb} as the real-data source.\n3\tTo simulate web-scale synthetic contamination, we generate continuations with Qwen3-0.6B~\\citep{yang_2025_qwen3}---the same architecture used for continued pretraining---and inject them at ratio $\\rho = 0.4$ via uniform random mixing.\n4\tThis self-contamination design creates a challenging detection scenario where generator and trainee share the same distribution.\n5\t\n6\t\\paragraph{Detector.}\n7\tWe train a TF-IDF + Logistic Regression classifier on a held-out labeled split, achieving AUC\\,=\\,0.939 with calibrated ECE\\,=\\,0.048 after temperature scaling ($T = 0.204$).\n8\tThe resulting $q$-scores have mean 0.60, standard deviation 0.37, and median 0.71, with 46.3\\% of samples in the uncertain range $[0.2, 0.8]$.\n9\tWe use this lightweight detector rather than neural alternatives (e.g., ModernBERT at AUC\\,${\\geq}$\\,0.98 in \\citealt{drayson_2025_detection_collapse}) to test whether score \\emph{calibration} matters more than raw discrimination for reweighting.\n10\t\n11\t\\paragraph{Training.}\n12\tWe continue pretraining Qwen3-0.6B from its pretrained weights for 6{,}103 steps (batch size 4, gradient accumulation 4, effective batch 16) with AdamW, cosine schedule (peak lr\\,=\\,$5{\\times}10^{-5}$), max sequence length 2048, and bf16 precision.\n13\tAll main comparisons use three random seeds (42, 123, 456).\n14\t\n15\t\\paragraph{Evaluation.}\n16\tWe report held-out perplexity (PPL) on a held-out subset of FineWeb (67.8K documents, $\\sim$4M tokens) containing only human-authored text, via sliding-window evaluation (stride 1024).\n17\tAll evaluations are post-hoc with a unified pipeline; training involves no inline evaluation.\n18\t\n19\t\\paragraph{Methods.}\n20\tWe compare five approaches:\n21\t\\begin{itemize}[nosep,leftmargin=*]\n22\t  \\item \\textbf{Uniform}: $w_j = 1$ for all $j$ (no contamination handling).\n23\t  \\item \\textbf{Grid-$b$}: fixed $b \\in \\{0.5, 1.0, 1.5, 2.0, 3.0, 5\n…[truncated 719 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T23:57:27.476220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T23:57:27.476368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\paragraph{Synthetic Contamination and Model Collapse.}\n2\tTraining on recursively generated data leads to irreversible quality degradation---\\emph{model collapse}~\\citep{shumailov_2024_model_collapse}.\n3\t\\citet{alemohammad_2024_mad} formalize this as Model Autophagy Disorder, showing that quality or diversity inevitably degrades without fresh real data, even when original training data is retained.\n4\tMore critically, \\citet{dohmatob_2025_strong_collapse} prove under scaling-law regimes that even a vanishingly small synthetic fraction (e.g., $1/1000$) suffices to trigger collapse, ruling out data scaling as a remedy.\n5\t\\citet{cheng_2025_contamination_survey} survey the broader contamination landscape, confirming that synthetic content now constitutes an estimated 20--60\\% of web corpora.\n6\tThese results motivate \\emph{contamination-aware} training strategies that explicitly account for synthetic provenance rather than treating all tokens equally.\n7\t\n8\t\\paragraph{Detection and Filtering of Machine-Generated Text.}\n9\tGiven the severity of contamination, a natural response is to detect and remove synthetic content.\n10\tDetectGPT~\\citep{mitchell_2023_detectgpt} performs zero-shot detection via probability curvature, while Min-$k$\\% Prob~\\citep{shi_2024_minkprob} uses the average log-probability of the lowest-$k$\\% tokens as a reference-free signal.\n11\tBoth produce continuous confidence scores suitable as input to downstream weighting---including ours.\n12\tOn the mitigation side, \\citet{feng_2025_beyond_collapse} prove that even an imperfect verifier prevents collapse, but apply hard binary filtering that discards borderline samples.\n13\t\\citet{guo_2025_escaping_collapse} similarly rely on verification-based selection.\n14\tHard filtering requires a precision--recall threshold; soft reweighting avoids this trade-off by assigning continuous weights.\n15\t\n16\tMost directly related to our work, \\citet{drayson_2025_detection_collapse} propose $w_j = (1{-}q_j)^b$ for collapse preve\n…[truncated 3523 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T23:57:27.476509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/results.tex"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T23:57:27.476663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\subsection{Main Comparison}\n2\t\n3\tTable~\\ref{tab:main} reports held-out perplexity across methods and seeds.\n4\tAdaptive reweighting achieves mean PPL 17.651, matching grid-best ($b{=}0.5$, mean 17.646) within seed-to-seed variance: the per-seed gap never exceeds 0.007, less than half the cross-seed range of the uniform baseline (17.686--17.702).\n5\tThis parity comes at zero validation cost---grid search requires $|\\mathcal{B}|$ complete training runs (six in our sweep), whereas adaptive requires one.\n6\t\n7\tThe grid-$b$ sweep reveals monotonically increasing PPL from $b{=}0.5$ to $b{=}5.0$ (17.651 to 17.818 on seed 42; full sweep in Appendix~\\ref{app:grid}), confirming that exponent selection is consequential.\n8\tThe optimal $b{=}0.5$ differs from the $b{=}10$ reported by \\citet{drayson_2025_detection_collapse} at comparable model scale, underscoring the model-dependence of fixed-exponent selection.\n9\t\n10\tESS-only (maximum intervention) yields mean PPL 17.723 across three seeds, \\emph{worse} than uniform (17.694) by 0.029.\n11\tRemoving $\\alpha_{\\mathrm{eff}}$ and maximizing $b$ subject only to $\\mathrm{ESS} \\geq n_{\\min}$ leads to over-downweighting that degrades training, providing direct evidence for the minimum-intervention principle.\n12\t\n13\tThe Golden Ratio oracle~\\citep{he_2025_golden_ratio} achieves PPL 17.654 on seed 42 using known provenance labels.\n14\tAdaptive reaches within 0.001 of this upper bound without provenance access, suggesting the dual constraint recovers near-optimal weights from noisy detector scores alone.\n15\t\n16\tThe adaptive $b^*$ distribution (median 0.87, IQR $[0.54, 1.51]$, mean 1.40) confirms that most batches need only moderate intervention.\n17\tThe constraint regime breakdown in \\S\\ref{sec:algorithm} shows that $\\alpha_{\\mathrm{eff}}$ prevents over-intervention in the 40\\% of reweighted batches where moderate $b$ already meets the quality target.\n18\t\n19\t\\begin{table}[t]\n20\t\\centering\n21\t\\small\n22\t\\begin{tabular}{@{}lcccc@{}}\n23\t\\toprule\n24\t\n…[truncated 2639 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T23:57:27.476806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T23:57:27.476981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tWe introduced Minimum Intervention Reweighting, a dual-constrained framework for contamination-aware pretraining that selects per-batch exponents $b^*$ without validation data.\n2\tThe method finds the smallest $b$ satisfying $\\alpha_{\\mathrm{eff}}(b) \\geq \\tau$ subject to $\\mathrm{ESS}(b) \\geq n_{\\min}$, enforcing a minimum-intervention principle: apply only as much downweighting as needed to meet a quality floor, no more.\n3\tThis stands in direct contrast to ESS-only (maximum-intervention) strategies, which we show degrade performance below even uniform baselines by over-downweighting contaminated samples.\n4\t\n5\tAcross three seeds at 0.6B scale with 40\\% synthetic contamination, adaptive $b^*$ matches grid-search-optimal PPL (17.651 vs.\\ 17.646) within seed variance, eliminating the $|\\mathcal{B}|$-run grid search entirely.\n6\tThe quality threshold $\\tau$ is robust across $[0.5, 0.8]$---all values in this range outperform uniform weighting.\n7\tA lightweight TF-IDF + logistic regression detector (AUC\\,0.94) suffices when post-hoc calibrated (ECE\\,0.048); score calibration matters more than raw discriminative power.\n8\tThe batch-level constraint regime---49.9\\% clean (no reweighting needed), 20.2\\% $\\alpha_{\\mathrm{eff}}$-binding, 30.0\\% ESS-binding---confirms that both constraints are active and complementary in practice.\n9\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T23:57:27.477126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T23:57:27.477260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\paragraph{Scale.}\n2\tAll experiments use a single model size (Qwen3-0.6B) with batch size 4.\n3\tBatch-level $q$-score statistics concentrate differently at larger batch sizes typical of 3B+ training; the optimal $\\tau$ range and constraint dynamics may shift at scale.\n4\t\n5\t\\paragraph{Contamination distribution.}\n6\tWe inject synthetic data via uniform random mixing at a controlled ratio ($\\rho{=}0.4$).\n7\tReal web-scale contamination is domain-skewed, which may alter within-batch $\\alpha_{\\mathrm{eff}}$ distributions and require domain-aware extensions.\n8\t\n9\t\\paragraph{Detector coverage.}\n10\tWe evaluate one detector family (TF-IDF + logistic regression).\n11\tAlthough our results suggest calibration dominates discrimination for reweighting quality, a systematic ablation across detector architectures and quality levels is needed.\n12\t\n13\t\\paragraph{Threshold.}\n14\t$\\tau$ is an empirical hyperparameter.\n15\tThe convergence theory of \\citet{wang_2026_survive_contamination} assumes a known contamination proportion $\\alpha$, which we do not require; bridging this gap to derive $\\tau$ from first principles remains open.\n16\t\n17\t\\paragraph{Evaluation.}\n18\tWe report held-out perplexity only.\n19\tDownstream task evaluation (MMLU, HellaSwag) would strengthen the practical case, particularly at scales where PPL differences translate more reliably to task performance.\n20\t\n21\t\\paragraph{Effect size.}\n22\tThe PPL improvement over uniform weighting is 0.043 at 0.6B/40\\% contamination.\n23\tWhile consistent across seeds, this effect is modest; we expect amplification at higher contamination ratios and larger model scales, but verification is ongoing.\n24\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T23:57:27.477454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections && python3 -c \"\nimport os, re\n\n# Citation key mapping: artifact_format -> bib_format\nmapping = {\n    'cheng_2025_contamination_survey': 'cheng2025contamination',\n    'shumailov_2024_model_collapse': 'shumailov2024model',\n    'dohmatob_2025_strong_collapse': 'dohmatob2025strong',\n    'drayson_2025_detection_collapse': 'drayson2025detection',\n    'he_2025_golden_ratio': 'he2025golden',\n    'wang_2026_survive_contamination': 'wang2026survive',\n    'vehtari_2024_psis': 'vehtari2024psis',\n    'feng_2025_beyond_collapse': 'feng2025beyond',\n    'guo_2025_escaping_collapse': 'guo2025escaping',\n    'mitchell_2023_detectgpt': 'mitchell2023detectgpt',\n    'shi_2024_minkprob': 'shi2024minkprob',\n    'alemohammad_2024_mad': 'alemohammad2024mad',\n    'xie_2023_doremi': 'xie2023doremi',\n    'xie_2023_dsir': 'xie2023dsir',\n    'ye_2025_data_mixing_laws': 'ye2025mixing',\n    'chen_2025_aioli': 'chen2025aioli',\n    'yang_2026_data_mixing_agent': 'yang2026mixing',\n    'he_2024_softdedup': 'he2024softdedup',\n    'sow_2025_dynamic_reweighting': 'sow2025dynamic',\n    'kuo_2024_data_weighting': 'kuo2024weighting',\n    'kimura_2024_iw_survey': 'kimura2024iw',\n    'penedo_2024_fineweb': 'penedo2024fineweb',\n    'yang_2025_qwen3': 'yang2025qwen3',\n}\n\nfor fname in os.listdir('.'):\n    if not fname.endswith('.tex'):\n        continue\n    with open(fname, 'r') as f:\n        content = f.read()\n    original = content\n    for old, new in mapping.items():\n        content = content.replace(old, new)\n    if content != original:\n        with open(fname, 'w') as f:\n            f.write(content)\n        # Count replacements\n        count = sum(original.count(old) for old in mapping)\n        print(f'{fname}: {count} citation keys fixed')\n    else:\n        print(f'{fname}: no changes needed')\n\"\n",
+              "description": "Fix all underscore-format citation keys to match bib format"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T23:57:27.477595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "results.tex: 2 citation keys fixed\nintroduction.tex: 7 citation keys fixed\nappendix.tex: no changes needed\nabstract.tex: no changes needed\nlimitations.tex: 1 citation keys fixed\nmethod.tex: 8 citation keys fixed\ndiscussion.tex: no changes needed\nconclusion.tex: no changes needed\nexperiments.tex: 5 citation keys fixed\nrelated_work.tex: 21 citation keys fixed"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T23:57:27.477738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -3 introduction.tex",
+              "description": "Verify introduction.tex citation near \"20--60%\""
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T23:57:27.477873+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web corpora increasingly contain machine-generated text.\nRecent estimates place the synthetic fraction at 20--60\\% of crawled data~\\citep{cheng2025contamination}, and this share grows as language models are deployed for content production at scale.\nTraining on such contaminated data has concrete consequences: \\citet{shumailov2024model} show that recursive training on model outputs leads to irreversible quality degradation---\\emph{model collapse}---and \\citet{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction suffices to trigger this failure mode, ruling out data scaling as a remedy."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T23:57:27.478009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "head -6 related_work.tex",
+              "description": "Verify related_work.tex citation near \"20--60%\""
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T23:57:27.478131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\paragraph{Synthetic Contamination and Model Collapse.}\nTraining on recursively generated data leads to irreversible quality degradation---\\emph{model collapse}~\\citep{shumailov2024model}.\n\\citet{alemohammad2024mad} formalize this as Model Autophagy Disorder, showing that quality or diversity inevitably degrades without fresh real data, even when original training data is retained.\nMore critically, \\citet{dohmatob2025strong} prove under scaling-law regimes that even a vanishingly small synthetic fraction (e.g., $1/1000$) suffices to trigger collapse, ruling out data scaling as a remedy.\n\\citet{cheng2025contamination} survey the broader contamination landscape, confirming that synthetic content now constitutes an estimated 20--60\\% of web corpora.\nThese results motivate \\emph{contamination-aware} training strategies that explicitly account for synthetic provenance rather than treating all tokens equally."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T23:57:27.478249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sed -n '15,18p' experiments.tex",
+              "description": "Check experiments.tex line 16 for held-out FineWeb and human-authored"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T23:57:27.478361+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\paragraph{Evaluation.}\nWe report held-out perplexity (PPL) on a held-out subset of FineWeb (67.8K documents, $\\sim$4M tokens) containing only human-authored text, via sliding-window evaluation (stride 1024).\nAll evaluations are post-hoc with a unified pipeline; training involves no inline evaluation."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T23:57:27.478473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "for f in *.tex; do size=$(wc -c < \"$f\"); lines=$(wc -l < \"$f\"); if [ \"$size\" -eq 0 ] || [ \"$lines\" -eq 0 ]; then echo \"EMPTY: $f ($size bytes, $lines lines)\"; fi; done",
+              "description": "Check for empty .tex files"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T23:57:27.478585+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "EMPTY: abstract.tex (0 bytes, 0 lines)\nEMPTY: appendix.tex (0 bytes, 0 lines)\nEMPTY: discussion.tex (0 bytes, 0 lines)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T23:57:27.478692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -c *.tex | sort -n",
+              "description": "List all .tex file sizes"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T23:57:27.478801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    0 abstract.tex\n    0 appendix.tex\n    0 discussion.tex\n 1324 conclusion.tex\n 1576 limitations.tex\n 2604 experiments.tex\n 4404 results.tex\n 5259 related_work.tex\n 5768 introduction.tex\n 9135 method.tex\n30070 total"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T23:57:27.478970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper && latexmk -pdf main.tex 2>&1 | tail -40",
+              "description": "Compile LaTeX paper with latexmk",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T23:57:27.479102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\\T1/ptm/m/n/10.95 (+20) ply the small-est $\\OML/cmm/m/it/10.95 b$ \\T1/ptm/m/n/1\n0.95 (+20) that achieves the qual-ity\n! Undefined control sequence.\nl.98 \\Require\n              Batch scores $\\{q_i\\}_{i=1}^{B}$, indicators $\\{r_i\\}$, qualit...\n\n? \n! Emergency stop.\nl.98 \n     \n!  ==> Fatal error occurred, no output PDF file produced!\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Using bibtex to make bibliography file(s).\nLatexmk: Summary of warnings from last run of *latex:\n  Latex failed to resolve 2 reference(s)\n  Latex failed to resolve 34 citation(s)\nLatexmk: ====Undefined refs and citations with line #s in .tex file:\n  Citation `cheng2025contamination' on page 1 undefined on input line 2\n  Citation `shumailov2024model' on page 1 undefined on input line 3\n  Citation `dohmatob2025strong' on page 1 undefined on input line 3\n  Citation `drayson2025detection' on page 1 undefined on input line 8\n  Citation `he2025golden' on page 1 undefined on input line 10\n  Citation `feng2025beyond' on page 1 undefined on input line 11\n  Citation `wang2026survive' on page 1 undefined on input line 15\n And 29 more --- see log file 'main.log'\nLatexmk: Errors, so I did not complete making targets\nCollected error summary (may duplicate other messages):\n  bibtex main: Bibtex errors: See file 'main.blg'\n  pdflatex: Command for 'pdflatex' gave return code 1\n      Refer to 'main.log' and/or above output for details\n\nLatexmk: Sometimes, the -f option can be used to get latexmk\n  to try to force complete processing.\n  But normally, you will need to correct the file(s) that caused the\n  error, and then rerun latexmk.\n  In some cases, it is best to clean out generated files before rerunning\n  latexmk after you've corrected the files."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T23:57:27.479273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex",
+              "offset": "12",
+              "limit": "3"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T23:57:27.479395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12\t\\usepackage{algorithm}\n13\t\\usepackage{algorithmic}\n14\t\\usepackage{booktabs}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T23:57:27.479509+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex",
+              "old_string": "\\usepackage{algorithmic}",
+              "new_string": "\\usepackage{algpseudocode}"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T23:57:27.479636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T23:57:27.479750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "rm -f main.aux main.bbl main.blg main.log main.out main.fls main.fdb_latexmk && latexmk -pdf main.tex 2>&1 | tail -40",
+              "description": "Clean build artifacts and recompile",
+              "timeout": "180000"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T23:57:27.479889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX Warning: Reference `alg:bstar' on page 4 undefined on input line 83.\n\n! Undefined control sequence.\nl.98 \\REQUIRE\n              Batch scores $\\{q_i\\}_{i=1}^{B}$, indicators $\\{r_i\\}$, qualit...\n\n? \n! Emergency stop.\nl.98 \n     \n!  ==> Fatal error occurred, no output PDF file produced!\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Using bibtex to make bibliography file(s).\nLatexmk: Summary of warnings from last run of *latex:\n  Latex failed to resolve 9 reference(s)\n  Latex failed to resolve 34 citation(s)\nLatexmk: ====Undefined refs and citations with line #s in .tex file:\n  Citation `cheng2025contamination' on page 1 undefined on input line 2\n  Citation `shumailov2024model' on page 1 undefined on input line 3\n  Citation `dohmatob2025strong' on page 1 undefined on input line 3\n  Citation `drayson2025detection' on page 1 undefined on input line 8\n  Citation `he2025golden' on page 1 undefined on input line 10\n  Citation `feng2025beyond' on page 1 undefined on input line 11\n  Citation `wang2026survive' on page 1 undefined on input line 15\n And 36 more --- see log file 'main.log'\nLatexmk: Errors, so I did not complete making targets\nCollected error summary (may duplicate other messages):\n  pdflatex: Command for 'pdflatex' gave return code 1\n      Refer to 'main.log' and/or above output for details\n\nLatexmk: Sometimes, the -f option can be used to get latexmk\n  to try to force complete processing.\n  But normally, you will need to correct the file(s) that caused the\n  error, and then rerun latexmk.\n  In some cases, it is best to clean out generated files before rerunning\n  latexmk after you've corrected the files."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T23:57:27.480046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n 'algorithmic\\|algpseudocode' main.tex",
+              "description": "Verify algorithm package change in main.tex"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T23:57:27.480164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "13:\\usepackage{algpseudocode}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T23:57:27.480273+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n 'Require\\|REQUIRE\\|\\\\Call\\|\\\\If{' sections/method.tex | head -10",
+              "description": "Check algorithmic command style in method.tex"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T23:57:27.480385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "98:\\REQUIRE Batch scores $\\{q_i\\}_{i=1}^{B}$, indicators $\\{r_i\\}$, quality threshold~$\\tau$, ESS floor~$n_{\\min}$, search bound~$b_{\\max}$, tolerance~$\\varepsilon$"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T23:57:27.480525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/method.tex",
+              "offset": "94",
+              "limit": "20"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T23:57:27.480656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "94\t\\begin{algorithm}[t]\n95\t\\caption{Per-batch adaptive $b^{*}$ selection}\n96\t\\label{alg:bstar}\n97\t\\begin{algorithmic}[1]\n98\t\\REQUIRE Batch scores $\\{q_i\\}_{i=1}^{B}$, indicators $\\{r_i\\}$, quality threshold~$\\tau$, ESS floor~$n_{\\min}$, search bound~$b_{\\max}$, tolerance~$\\varepsilon$\n99\t\\ENSURE Optimal exponent $b^{*}$\n100\t\\IF{$\\alpha_{\\mathrm{eff}}(0) \\geq \\tau$}\n101\t  \\STATE \\textbf{return} $0$ \\COMMENT{clean batch}\n102\t\\ENDIF\n103\t\\STATE $b_\\tau \\gets \\textsc{Bisect}(\\alpha_{\\mathrm{eff}}(\\cdot){=}\\tau,\\; [0, b_{\\max}],\\; \\varepsilon)$\n104\t\\IF{$\\mathrm{ESS}(b_\\tau) \\geq n_{\\min}$}\n105\t  \\STATE \\textbf{return} $b_\\tau$ \\COMMENT{$\\alpha_{\\mathrm{eff}}$-binding}\n106\t\\ELSE\n107\t  \\STATE $b_{\\mathrm{ESS}} \\gets \\textsc{Bisect}(\\mathrm{ESS}(\\cdot){=}n_{\\min},\\; [0, b_{\\max}],\\; \\varepsilon)$\n108\t  \\STATE \\textbf{return} $b_{\\mathrm{ESS}}$ \\COMMENT{ESS-binding}\n109\t\\ENDIF\n110\t\\end{algorithmic}\n111\t\\end{algorithm}\n112\t\n113\t\\paragraph{Implementation.}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T23:57:27.480865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex",
+              "offset": "12",
+              "limit": "3"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T23:57:27.481000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12\t\\usepackage{algorithm}\n13\t\\usepackage{algpseudocode}\n14\t\\usepackage{booktabs}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T23:57:27.481125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex",
+              "old_string": "\\usepackage{algpseudocode}",
+              "new_string": "\\usepackage{algorithmic}"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T23:57:27.481255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T23:57:27.481368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "rm -f main.aux main.bbl main.blg main.log main.out main.fls main.fdb_latexmk && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -30",
+              "description": "Clean compile with pdflatex nonstopmode",
+              "timeout": "120000"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-15T23:57:27.481488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.\n\n\nPackage rerunfilecheck Warning: File `main.out' has changed.\n(rerunfilecheck)                Rerun to get outlines right\n(rerunfilecheck)                or use package `bookmark'.\n\n )\n(see the transcript file for additional information)</usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am\nsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/\ncm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr1\n0.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb\n8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (6 pages, 250883 bytes).\nTranscript written on main.log."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-15T23:57:27.481640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "bibtex main 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Warning|Error|Output written\" | tail -20 && pdflatex -interaction=nonstopmode main.tex 2>&1 | grep -E \"Warning|Error|Output written\" | tail -20",
+              "description": "Run bibtex and two more pdflatex passes",
+              "timeout": "180000"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-15T23:57:27.481767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 2\nThis is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nIllegal, another \\bibstyle command---line 542 of file main.aux\n : \\bibstyle\n :          {acl_natbib}\nI'm skipping whatever remains of this command\nDatabase file #1: references.bib\n(There was 1 error message)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-15T23:57:27.481916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c 'bibstyle' main.aux",
+              "description": "Count bibstyle entries in aux"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-15T23:57:27.482034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "2"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-15T23:57:27.482145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n 'bibliographystyle\\|bibliography' main.tex",
+              "description": "Check bibliography commands in main.tex"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-15T23:57:27.482257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "72:\\bibliography{references}\n73:\\bibliographystyle{acl_natbib}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-15T23:57:27.482365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n 'bibliographystyle' sections/*.tex 2>/dev/null; grep -rn 'bibliographystyle' acl.sty 2>/dev/null | head -5",
+              "description": "Find duplicate bibliographystyle sources"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-15T23:57:27.482472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "195:\\bibliographystyle{acl_natbib}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-15T23:57:27.482604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex",
+              "offset": "70",
+              "limit": "10"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-15T23:57:27.482718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70\t\\input{sections/limitations}\n71\t\n72\t\\bibliography{references}\n73\t\\bibliographystyle{acl_natbib}\n74\t\n75\t\\appendix\n76\t\\input{sections/appendix}\n77\t\n78\t\\end{document}\n79\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-15T23:57:27.482826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex",
+              "old_string": "\\bibliography{references}\n\\bibliographystyle{acl_natbib}",
+              "new_string": "\\bibliography{references}"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-15T23:57:27.482962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-15T23:57:27.483074+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex",
+              "offset": "70",
+              "limit": "10"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-15T23:57:27.483195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "70\t\\input{sections/limitations}\n71\t\n72\t\\bibliography{references}\n73\t\n74\t\\appendix\n75\t\\input{sections/appendix}\n76\t\n77\t\\end{document}\n78\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-15T23:57:27.483330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "rm -f main.aux main.bbl main.blg main.log main.out main.fls main.fdb_latexmk && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && bibtex main 2>&1 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+              "description": "Full clean compile cycle: pdflatex + bibtex + pdflatex x2",
+              "timeout": "180000"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-15T23:57:27.483451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (6 pages, 250883 bytes).\nTranscript written on main.log.\nThis is BibTeX, Version 0.99d (TeX Live 2025/Debian)\nThe top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\n8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (7 pages, 264117 bytes).\nTranscript written on main.log.\n8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sh\nare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (7 pages, 269032 bytes).\nTranscript written on main.log."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-15T23:57:27.483589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"Warning|Error|undefined\" main.log | grep -v \"rerunfilecheck\\|rerun\\|Font\\|float\\|may have changed\" | head -20",
+              "description": "Check for remaining warnings/errors"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-15T23:57:27.483705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX Warning: Reference `app:proofs' on page 3 undefined on input line 54.\nLaTeX Warning: Reference `fig:dual_constraint' on page 4 undefined on input lin\nLaTeX Warning: Reference `app:grid' on page 5 undefined on input line 7.\nLaTeX Warning: There were undefined references."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-15T23:57:27.483882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -c sections/*.tex | sort -n",
+              "description": "Final file sizes"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-15T23:57:27.484037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    0 sections/abstract.tex\n    0 sections/appendix.tex\n    0 sections/discussion.tex\n 1324 sections/conclusion.tex\n 1576 sections/limitations.tex\n 2604 sections/experiments.tex\n 4404 sections/results.tex\n 5259 sections/related_work.tex\n 5768 sections/introduction.tex\n 9163 sections/method.tex\n30098 total"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-15T23:57:27.484201+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报清单\n\n### 同步的文件\n所有 docs/paper/sections/ 的 .tex 文件已与 artifacts 版一致（前一个 Worker 已完成内容同步和 section header 剥离）。本次修复了全部 44 个引用键格式问题：\n\n| 文件 | 字节数 | 引用键修复数 |\n|------|--------|-------------|\n| introduction.tex | 5,768 | 7 |\n| method.tex | 9,163 | 8 |\n| experiments.tex | 2,604 | 5 |\n| related_work.tex | 5,259 | 21 |\n| results.tex | 4,404 | 2 |\n| limitations.tex | 1,576 | 1 |\n| conclusion.tex | 1,324 | 0 |\n\n### 引用修复\n1. **introduction.tex:2** — `20--60\\% of crawled data~\\citep{cheng2025contamination}` — 已存在（来自 artifacts 同步）\n2. **related_work.tex:5** — `\\citet{cheng2025contamination} survey the broader contamination landscape, confirming that synthetic content now constitutes an estimated 20--60\\% of web corpora` — 已存在\n\n所有引用键从 artifact 格式（`cheng_2025_contamination_survey`）统一为 bib 格式（`cheng2025contamination`）。bib 中已有 `cheng2025contamination` 条目（references.bib:118），无需添加。\n\n### experiments.tex Evaluation 段落内容\n第 16 行：`We report held-out perplexity (PPL) on a held-out subset of FineWeb (67.8K documents, $\\sim$4M tokens) containing only human-authored text`  — \"held-out FineWeb\" 和 \"human-authored\" 均存在。\n\n### 编译结果\n**成功**。7 页，269KB PDF。  \n- 修复了 `\\bibliographystyle` 重复（acl.sty 已提供，main.tex 中的重复已移除）  \n- 3 个 undefined ref warnings（`app:proofs`, `fig:dual_constraint`, `app:grid`）— 指向尚未创建的 appendix/figure，非致命\n\n### 空文件\n- `abstract.tex` (0 bytes)\n- `appendix.tex` (0 bytes)\n- `discussion.tex` (0 bytes)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_sync_paper_and_citations_20260515T234454"
+          },
+          "id": "event-000111"
+        }
+      ],
+      "message_count": 111
+    }
+  ],
+  "readable_path": "readable/conversations/ops-sync-paper-and-citations.md"
+}

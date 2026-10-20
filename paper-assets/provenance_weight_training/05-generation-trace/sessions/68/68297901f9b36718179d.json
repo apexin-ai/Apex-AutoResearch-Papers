@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68297901f9b36718179d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval downstream monitor v2",
+  "task_key": "worker_eval_downstream_monitor_v2_20260519T192139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_downstream_monitor_v2_20260519T192139_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "073d70e88acd969ce3dd27604676cdda680644de61147d819a6641f5e2725eb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "首轮检查完成。3 个进程均在运行：\n- **adaptive_seed123** (339293): loglikelihood ~64%，预计几分钟内完成\n- **adaptive_seed456** (339451): loglikelihood 刚开始\n- **uniform_seed123** (339620): 数据集加载阶段\n\n3 分钟后再次轮询。adaptive_seed123 最快，完成后会在其 GPU 上启动 uniform_ood_seed456。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-downstream-monitor-v2.md"
+}

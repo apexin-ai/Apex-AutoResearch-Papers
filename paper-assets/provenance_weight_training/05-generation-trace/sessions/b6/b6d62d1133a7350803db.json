@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6d62d1133a7350803db",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval rho06 tau07 seed42",
+  "task_key": "worker_eval_rho06_tau07_seed42_20260520T030536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_rho06_tau07_seed42_20260520T030536_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "5acc1b8ce2422d666e48546dfc4518de4880412aebfa45fa9c2577385aab9711"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`rho06_tau07_seed42` 全量 eval 结果：\n\n**PPL 指标**\n- Holdout: **17.53** (< 17.73 baseline → success)\n- OpenWebText: **18.21**\n- Wikipedia: **15.27**\n\n**Downstream tasks**\n| Task | acc_norm |\n|------|---------|\n| ARC-Easy | 0.6208 |\n| ARC-Challenge | 0.3524 |\n| HellaSwag | 0.4801 |\n| PIQA | 0.6931 |\n| Winogrande (acc) | 0.5785 |\n\nRegistry 已更新为 DONE/success。τ=0.7 在 ρ=0.6 下 holdout PPL 与 τ=0.8 hybrid (17.53) 持平，优于 τ=0.8 batch_adaptive (17.73)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-rho06-tau07-seed42.md"
+}

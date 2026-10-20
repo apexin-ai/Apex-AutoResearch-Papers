@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a507b7534dfb8a1d2251",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "audit grid eval source",
+  "task_key": "worker_audit_grid_eval_source_20260515T165250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_grid_eval_source_20260515T165250_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "969589c61bad172b1cc384ba45e3dadfdcf248823c94c15e97d3d549ff6ed25f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**审计结果：所有 18 组 grid_b 实验的 eval_ppl_holdout 均来自 eval_perplexity.py post-hoc eval，无需重跑。**\n\n关键发现：\n- 所有 grid 训练均未包含 `--eval_data_path`，无 inline eval\n- `output/eval_results/` 下 18 个 eval JSON 文件格式统一（4077068 tokens, stride=1024, max_docs=5000, fp16），时间戳集中在 5月14-15日\n- 抽查 13 组的 registry 数值与 eval 文件完全匹配\n- `output/eval/` 下有少量早期 eval 痕迹（5004058 tokens），已被后续统一重跑覆盖，不影响当前 registry 值\n\n报告已写入 `artifacts/grid_eval_source_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-grid-eval-source.md"
+}

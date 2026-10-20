@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6ba0c3099192582730b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis experiment data compilation",
+  "task_key": "worker_analysis_experiment-data-compilation_20260516T051015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_experiment-data-compilation_20260516T051015_result.json",
+    "occurrence": 1,
+    "bytes": 691,
+    "sha256": "a2b3b2e14fa3d9c8f0173fddb897d12608d6685a1c664d578e81247cfad2eb66"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已生成并注册：\n\n- `artifacts/experiment_tables.md` — 6 张 Markdown 表格（Tables A-F）\n- `artifacts/experiment_data.csv` — 62 行机器可读 CSV\n\n关键发现：\n- **最优方法**: adaptive n_min=3 (Mean PPL 17.639)，其次 grid_b0.5 (17.646)、adaptive_fix n_min=2 (17.651)\n- **最优 τ**: 0.8（PPL 17.653），过低/过高均降低性能\n- **n_min**: 3 最佳，1 过于激进（b*_mean=7.2），4 退化为 uniform\n- **ρ=0.6**: 所有方法 PPL 增加 0.04-0.09，grid_b0.5 最鲁棒（Δ=0.053）\n- **Batch size**: bs=4 优于 bs=8\n- **Baseline**: Qwen3-0.6B 未训练 PPL=22.970，训练后所有方法均显著提升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-experiment-data-compilation.md"
+}

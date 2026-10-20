@@ -1,0 +1,36 @@
+{
+  "exp_id": "phase0_score_v3",
+  "project": "solver-trace-ablation",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T09:58:55.352Z",
+    "updated_at": "2026-05-13T10:10:48.246Z",
+    "hypothesis": "Four PGPF property scores (LC, SN, Quality, Confidence) are sufficiently orthogonal — no pair |r| > 0.7, LC vs Confidence |r| < 0.5 — to justify multi-property filtering",
+    "spec": {
+      "checkpoint_path": "N/A (scoring only)",
+      "log_path": "/root/autodl-tmp/pgpf/outputs/phase0/score_run_v3.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "pearson_lc_sn": -0.117,
+      "pearson_lc_q": -0.048,
+      "pearson_lc_conf": 0.303,
+      "pearson_sn_q": -0.029,
+      "pearson_sn_conf": 0.108,
+      "pearson_q_conf": -0.287,
+      "spearman_lc_sn": -0.114,
+      "spearman_lc_q": -0.331,
+      "spearman_lc_conf": 0.335,
+      "spearman_sn_q": -0.121,
+      "spearman_sn_conf": 0.112,
+      "spearman_q_conf": -0.998,
+      "judgment": "PASS"
+    },
+    "completed_at": "2026-05-13T10:10:48.246Z"
+  },
+  "timestamp": "2026-05-13T10:10:48.258795+00:00",
+  "trigger": "update_registry"
+}

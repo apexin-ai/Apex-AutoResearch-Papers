@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97fa97a631355f9da0e5",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "director / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_8.md",
+    "occurrence": 1,
+    "bytes": 3317,
+    "sha256": "aecc091b60eb04daeb65abeb4b94da54e2e2f27ec49306d3cbd7bf823c7d2881"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_messages\nupdated: '2026-05-15T14:29:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 @ westd-47453，严禁使用其他卡\n- tau_06_seed42 conclusion 已修正为 **negative**（PPL 17.68 > baseline 17.65），不要当 success 引用\n- τ-b* 因果方向：τ↑ → α_eff 下界更严 → b*↑ → 降权更强（Agent 已存 memory，论文写作必须用此方向）\n- D025：τ 已降级为 empirical HP（不是理论推导），Claim 3 framing 相应调整\n- seed456 b≥2.0 数据有 checkpoint resume artifact（D026），论文用 2 seeds + appendix 注明\n- 聚合口径：论文用 ratio of means (89.9%) 而非 mean of ratios (91.0%)\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453 (connect.westd.seetacloud.com)，root\n- 工作目录：/root/provenance_weight_training\n- Python：conda base 环境（aml-train 镜像）\n- 4× RTX 6000 Pro 96GB，GPU 预算已消耗 ~115h / 剩余 ~65h\n- W&B 未配置，Git 未配置（可选）\n- 飞书 A+B+C 群均已配置，审稿 C 群 active\n\n### 3. 📊 当前状态\n**刚完成**：tau_06_seed42 conclusion 修正 + τ-b* 因果关系记忆存储\n\n**RUNNING**（2 个）：\n- tau_07_seed42 (cuda:0, PID 209824) — τ=0.7 sweep\n- tau_05_seed42 (cuda:1) — τ=0.5 sweep\n\n**ANALYZING**（1 个）：\n- nmin1_seed42 — n_min=1 极端 case，等分析结果\n\n**PREPARING**（5 个）：\n- tau_09_seed42 — 刚因 tmux 冲突失败，Agent 派 Worker 清理后重提交 cuda:3\n- tau_095_seed42 / adaptive_v2_seed42/123/456\n\n**⚠️ cuda:2 和 cuda:3 空闲**——tau_09 重提交应占 cuda:3，cuda:2 需尽快派任务（tau_095 或 nmin4）\n\n### 4. 📋 待办（条件触发式）\n- tau_07/tau_05 完成 → 收集 PPL，更新 τ sweep 汇总表；如果 τ=0.5~0.9 PPL 方差 < 0.05 → Claim 3 (robustness) 成立\n- nmin1 分析完成 → 检查是否 over-downweight（预期 b* 偏大、PPL 偏差）\n- tau_09 重提交成功确认 → 检查 cuda:2 空闲 → 派 tau_095 或 nmin4\n- 所有 τ sweep 完成 → 综合判断 Claim 3 强度；PPL 方差 ≥ 0.05 → 需调整 claim 或补 seed\n- cuda:2/cuda:3 空闲 > 10min → 立即从排期表选下一个实验填入（优先级：tau_095 > nmin4 > batchsize8/16）\n- P0 τ sweep + n_min + batchsize 全部完成 → 评估是否启动 P1（contamination_60 / cross_generator / llama3b）或直接进入论文写作\n\n### 5. 🎯 战略上下文\n- **投稿目标**：EMNLP 2026 ARR May 25（剩 10 天）\n- **核心结论链**：\n  - D023: dual-constraint (α_eff + ESS) 是正确框架\n  - D029: ESS-only PPL=17.73 vs adaptive PPL=17.65 → min-intervention > max-intervention，Key Risk #1 resolved\n  - Golden ratio PPL=17.654 ≈ adaptive 17.65 → oracle 知道真实比例也没明显优势，adaptive 接近 oracle\n  - Grid-best b=0.5 PPL=17.651 ≈ adaptive → adaptive 自动找到了接近最优的 b*\n- **最容易判错的事**：\n  1. τ=0.6 是 negative（PPL 劣化），不要和之前被 kill 的 tau_0.6 混淆——它们是不同实验（后者是旧代码 bug 版本）\n  2. 审稿阶段已启动（C 群），但你是 Research Director，不参与论文格式/投稿材料——那是 Review Director 的事\n  3. GPU 预算看似充裕（~65h 剩余）但 P0 就要 ~40h，P1 如果要做需要申请扩容\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8.md"
+}

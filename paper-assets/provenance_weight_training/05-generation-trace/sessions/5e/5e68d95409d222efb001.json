@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e68d95409d222efb001",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval dr 30476 3runs",
+  "task_key": "worker_eval_dr_30476_3runs_20260518T134907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_dr_30476_3runs_20260518T134907_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "709eb115c7d903c2fc7255d93d4d91e08582a799887814b11bae12d4a1c65917"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 eval 全部完成。汇总结果：\n\n| Checkpoint | Loss | Perplexity | Tokens |\n|---|---|---|---|\n| `detect_remove_q05_seed123/final` | 2.8491 | **17.27** | 4,077,068 |\n| `detect_remove_q05_seed456/final` | 2.8493 | **17.28** | 4,077,068 |\n| `detect_remove_q09_seed42/final` | 2.8577 | **17.42** | 4,077,068 |\n\nq05 两个 seed 的 PPL 非常接近（17.27 vs 17.28），q09 略高（17.42）。JSON 结果已分别保存到 `/root/autodl-tmp/output/eval_q05_seed123.json`、`eval_q05_seed456.json`、`eval_q09_seed42.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-dr-30476-3runs.md"
+}

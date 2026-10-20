@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bb5ac81874182f05d94",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops verify b5 pid94717",
+  "task_key": "worker_ops_verify_b5_pid94717_20260514T113859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_b5_pid94717_20260514T113859_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "c5cc8b6bb2d9e94de7ecc80086c573d8f79f2861354066e50b09a4c8af2943e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PID 94717**: 存活，已运行 16 分 29 秒，执行 `pretrain_weighted.py`（grid_b5_0_seed123）。\n\n**GPU 占用**：4 个进程各占 46514 MiB（~45.4 GB），PID 94717 是其中之一。\n\n| PID | 显存 |\n|-----|------|\n| 93300 | 46514 MiB |\n| 88027 | 46514 MiB |\n| 90134 | 46514 MiB |\n| 94717 | 46514 MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-b5-pid94717.md"
+}

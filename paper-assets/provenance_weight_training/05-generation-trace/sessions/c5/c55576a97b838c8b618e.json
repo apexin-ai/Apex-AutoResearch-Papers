@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c55576a97b838c8b618e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval detect remove q03 epoch matched seed42",
+  "task_key": "worker_eval_detect_remove_q03_epoch_matched_seed42_20260518T233036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_detect_remove_q03_epoch_matched_seed42_20260518T233036_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "f4f81addb5ed78cf75f5dc5786eee2b38b64d4dc02be01e9dcab4c3ca61b8a13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，实验标记为 DONE/success。\n\n## 结果汇总\n\n| 实验 | PPL | Loss |\n|------|-----|------|\n| **epoch-matched q03** (本次) | **17.74** | 2.876 |\n| epoch-matched q05 | 17.65 | — |\n| epoch-matched q05 seed123 | 17.66 | — |\n| epoch-matched q05 seed456 | 17.66 | — |\n| adaptive baseline | 17.651 | — |\n| multi-epoch q03 | 17.25 | — |\n\n**关键发现：** q03 epoch-matched PPL = 17.74，比 q05 epoch-matched (17.65) **高 0.09**，方向相反于预期。在固定训练 budget 下，更严格的过滤（q03）反而略微伤害了性能，可能因为过度删除 borderline 样本减少了数据多样性。multi-epoch q03 (17.25) 的优势完全来自更多训练 epoch（3.2x vs 2.4x），而非更高的单 token 数据质量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-detect-remove-q03-epoch-matched-seed42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8442fa61f2158083e23a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "transfer delta vs rho pdf",
+  "task_key": "worker_transfer_delta_vs_rho_pdf_20260523T095525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_transfer_delta_vs_rho_pdf_20260523T095525_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "54f2b37200899480d62730ea9d694e7ae59ea88a44c44c4cec0028be7e1ce6dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 连接 `connect.westd.seetacloud.com` 失败 — `~/.ssh/config` 中没有该 host 的配置（无端口和密钥信息）。已有的 `autodl-pgpf` 别名指向 `bjb1.seetacloud.com:17606`，那台服务器上没有这个文件。\n\n根据 AutoDL 的特性，实例重启后 SSH 端口会变。请：\n1. 到 AutoDL 控制台查看 `westd-41312` 当前的 SSH 端口\n2. 更新 `~/.ssh/config`，添加类似条目：\n\n```\nHost westd-41312\n    HostName connect.westd.seetacloud.com\n    Port <新端口>\n    User root\n    IdentityFile ~/.ssh/id_ed25519\n    StrictHostKeyChecking no\n    UserKnownHostsFile /dev/null\n```\n\n之后我再执行下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/transfer-delta-vs-rho-pdf.md"
+}

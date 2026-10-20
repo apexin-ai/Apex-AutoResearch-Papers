@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64504669c3c9bda168c5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose adaptive fix failed",
+  "task_key": "worker_diagnose_adaptive_fix_failed_20260514T173948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_adaptive_fix_failed_20260514T173948_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "dd91adcda0c9f0f77fb0b66fb4c40fbf3165d02cda71ca86f0354a007e536691"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**根本原因**：`--overwrite_output_dir` 参数不被 `pretrain_weighted.py` 支持。\n\n日志明确显示：\n```\npretrain_weighted.py: error: unrecognized arguments: --overwrite_output_dir\nEXIT_CODE=2\n```\n\ngrep 确认脚本中没有定义 `overwrite_output_dir` 参数。三个实验失败原因相同。\n\n**修复方案**：删除 `--overwrite_output_dir` 参数即可。修正后的命令（以 seed42 为例）：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/adaptive_fix_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\"\n```\n\n如果需要覆盖已有输出目录的功能，需要在 `pretrain_weighted.py` 的 argparse 中添加 `--overwrite_output_dir` 参数定义，或者在运行前手动清除目标目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-adaptive-fix-failed.md"
+}

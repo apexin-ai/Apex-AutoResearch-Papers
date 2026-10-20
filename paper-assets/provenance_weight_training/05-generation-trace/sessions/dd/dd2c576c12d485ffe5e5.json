@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd2c576c12d485ffe5e5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh eval grid b0 2 and launch seed456",
+  "task_key": "worker_ssh_eval_grid_b0_2_and_launch_seed456_20260517T094819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_grid_b0_2_and_launch_seed456_20260517T094819_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "79a506f591997f7532f341069dc93c051f9e650a8d099b0a4e973819a6b7e6b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**60-minute timeout reached. Training still running.**\n\n## 当前进度报告\n\n| 指标 | 值 |\n|------|------|\n| **训练步数** | 5484/6103 (90%) |\n| **已运行时间** | 10h 32m |\n| **训练步 ETA** | ~22 min（纯训练步，不含 eval） |\n| **Epoch** | 0.24 |\n| **Loss** | weighted_loss ~2.17, unweighted_loss ~2.10 |\n| **PID** | 45224（仍在运行） |\n\n## 预计剩余时间\n\n训练步距完成仅剩 ~619 步（~22 min），但每 500 步触发一次 eval pass（8477 条，每次 ~43 min）：\n\n- Eval @5500: ~43 min（即将触发）\n- Training 5501→6000: ~17 min\n- Eval @6000: ~43 min\n- Training 6001→6103: ~4 min\n- 可能的 final eval: ~43 min\n\n**预计总剩余时间：~2-2.5 小时**\n\n## 后续操作\n\n训练完成后仍需执行：\n1. 确认训练成功（检查 6103/6103）\n2. 运行 `eval_perplexity.py` post-hoc eval\n3. 与 grid_b0_1 (PPL=17.657), grid_b0_3 (PPL=17.640), grid_b0_5 (PPL=17.651) 对比\n4. 确认 cuda:3 释放\n\n建议 **2-2.5 小时后** 重新发起本任务，或用 `/loop` 自动轮询完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-grid-b0-2-and-launch-seed456.md"
+}

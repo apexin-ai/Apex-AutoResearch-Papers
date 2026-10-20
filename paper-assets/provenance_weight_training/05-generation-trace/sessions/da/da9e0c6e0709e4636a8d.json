@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da9e0c6e0709e4636a8d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check llama3b adaptive completion",
+  "task_key": "worker_check_llama3b_adaptive_completion_20260517T135031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_llama3b_adaptive_completion_20260517T135031_result.json",
+    "occurrence": 1,
+    "bytes": 764,
+    "sha256": "3bd0b4df09f1a1b9be902fa9ef8e702e887150221795a27d69c8941ed5f20d72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n**llama3b_adaptive_seed42 训练正常完成。**\n\n| 项目 | 结果 |\n|---|---|\n| 完成步数 | 6103/6103 (100%) |\n| Final model | `/root/autodl-tmp/provenance_weight_training/output/models/llama3b_adaptive_seed42/final` |\n| **Adaptive PPL** | **10.58** |\n| Uniform baseline PPL | 10.38 |\n| **差异** | **+0.20（adaptive 更差）** |\n| cuda:1 | 空闲（eval 进程已退出） |\n\n**关键发现：Adaptive weighting 在 Llama-3.2-3B 上 PPL 比 uniform 高 0.20，未能复现在 GPT-2 上的优势。** 跨模型泛化假设被否定——adaptive 方法的收益可能依赖于模型架构或规模。\n\nRegistry 已更新为 DONE (conclusion=success，指训练成功完成，但 PPL 结果表明假设被否定)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-llama3b-adaptive-completion.md"
+}

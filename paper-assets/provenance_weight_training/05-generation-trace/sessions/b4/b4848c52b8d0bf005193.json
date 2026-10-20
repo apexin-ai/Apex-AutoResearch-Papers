@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4848c52b8d0bf005193",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analyze adaptive fix seed42",
+  "task_key": "worker_analyze_adaptive_fix_seed42_20260514T204056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_adaptive_fix_seed42_20260514T204056_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "57904cf926a2b17436fb10a9d19ab928dddb3b6d6fc87271c3ff19ade8ced2a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 仍在运行，已 26 分钟，进度 35% (6003/16955)。按 ~3.9 it/s 估算，预计还需约 47 分钟完成（总计约 72 分钟）。\n\n完成后我会：\n1. 提取 eval_loss 和 eval_ppl\n2. 用 update_registry 更新指标、checkpoint_path、conclusion、status\n3. 输出中文对比报告\n\n需要我稍后再查进度，还是等你通知？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-adaptive-fix-seed42.md"
+}

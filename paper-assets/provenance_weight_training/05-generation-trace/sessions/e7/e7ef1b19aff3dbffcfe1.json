@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "e7ef1b19aff3dbffcfe1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose grid b0 2 seed123",
+  "task_key": "worker_diagnose_grid_b0_2_seed123_20260518T060153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grid_b0_2_seed123_20260518T060153_result.json",
+    "occurrence": 1,
+    "bytes": 2286,
+    "sha256": "6738699fc25a4e7c60e33c17b2356b98f39be2be7fa9d47086355f9e6d7d1cbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。step_metrics 显示 6103 个 unique steps (0-6102)，无 gap，与 trainer_state.json 的 global_step=6103 一致。\n\n```json\n{\"root_cause\":\"训练实际已完成全部 6103 步。checkpoint-6103 和 final/ 目录完整（model.safetensors 1.19GB），trainer_state.json 显示 global_step=6103, should_training_stop=true。eval_results.json 确认对 final checkpoint 做了评估（PPL=18.43）。失败标记是 cron 误判：训练脚本未写 sentinel 文件，W&B 未活跃，cron 检测到进程死亡 5 次后自动标记 failed。日志文件因 stdout buffering（tqdm \\\\r 进度条重定向到文件）在 step 5749 处截断，后续输出未 flush。\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"将实验状态从 failed 改为 success\",\"PPL=18.43 是 final checkpoint 的真实 eval 结果，无需重新 eval\",\"修复训练脚本：在训练完成后写入 sentinel 文件（如 touch DONE），防止 cron 误判\",\"可选：启动训练时加 PYTHONUNBUFFERED=1 或 python -u 避免日志截断\"],\"can_auto_fix\":true,\"training_actually_completed\":true,\"eval_metrics_valid\":true,\"recommended_conclusion\":\"success\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "训练实际已完成全部 6103 步。checkpoint-6103 和 final/ 目录完整（model.safetensors 1.19GB），trainer_state.json 显示 global_step=6103, should_training_stop=true。eval_results.json 确认对 final checkpoint 做了评估（PPL=18.43）。失败标记是 cron 误判：训练脚本未写 sentinel 文件，W&B 未活跃，cron 检测到进程死亡 5 次后自动标记 failed。日志文件因 stdout buffering（tqdm \\r 进度条重定向到文件）在 step 5749 处截断，后续输出未 flush。",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "将实验状态从 failed 改为 success",
+                "PPL=18.43 是 final checkpoint 的真实 eval 结果，无需重新 eval",
+                "修复训练脚本：在训练完成后写入 sentinel 文件（如 touch DONE），防止 cron 误判",
+                "可选：启动训练时加 PYTHONUNBUFFERED=1 或 python -u 避免日志截断"
+              ],
+              "can_auto_fix": true,
+              "training_actually_completed": true,
+              "eval_metrics_valid": true,
+              "recommended_conclusion": "success"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grid-b0-2-seed123.md"
+}

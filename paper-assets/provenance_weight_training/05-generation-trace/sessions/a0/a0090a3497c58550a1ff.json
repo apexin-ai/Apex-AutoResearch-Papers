@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0090a3497c58550a1ff",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11_1778901776.md",
+  "task_key": "loop_11_1778901776",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778901776.md",
+    "occurrence": 1,
+    "bytes": 4920,
+    "sha256": "9e88c35728fd125f46d871c3602e94d45d126bc3d946e562cde61e58cfc201d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T02:55:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3 on westd-47453，不得使用其他 GPU\n- GPU 预算极度紧张：已消耗 ~154h，剩余 ~26h（含当前 4 个 RUNNING）。每个实验提交前必须确认预算够用\n- WANDB_MODE=disabled 会导致 cron 误判训练完成为 failed（EXIT_CODE=129 + 无 metrics）。后续实验不要禁用 W&B\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && ...`\n- 投稿 deadline：EMNLP 2026 ARR May 25（剩 9 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，4× RTX 6000 Pro 96G\n- 工作目录：/root/provenance_weight_training\n- Python：/root/miniconda3/bin/python（conda base 环境，不是 venv）\n- 镜像：aml-train\n- 模型路径：/root/provenance_weight_training/models/Qwen/Qwen3-0.6B\n- 数据路径：/root/provenance_weight_training/data/scored_data.jsonl (ρ=0.4, 371K), scored_data_60.jsonl (ρ=0.6, 371K), scored_data_filtered_q05.jsonl (153K, q>0.5 filtered)\n- 活跃进程：\n  - cuda:0 — contamination_60_tau07_seed42, PID=282223, ~2.23s/it, 提交 02:09 UTC\n  - cuda:1 — grid_b0_3_seed42, PID=274304, 提交 01:13 UTC\n  - cuda:2 — contamination_60_ess_only_seed42, PID=265012\n  - cuda:3 — detect_remove_baseline_seed42, PID=276739, ~2.2s/it, 提交 01:36 UTC\n- Cron 监控：4 个 active cron 对应上述 4 个 RUNNING 实验\n\n### 3. 📊 当前状态\n**刚做完**：Session 11 大规模状态刷新——contamination_60 三组 + detect_remove baseline + grid_b 低值 sweep 全部提交；adaptive_v2 三个 seed 被 kill（已被 adaptive_fix 系列取代）。\n\n**4 个 RUNNING**：\n- `contamination_60_ess_only_seed42`（cuda:2）— Claim 3 验证：ρ=0.6 ESS-only baseline\n- `contamination_60_tau07_seed42`（cuda:0）— D045 最高优先：ρ=0.6 τ=0.7 诊断，测试 reviewer 建议公式 τ=1-ρ×0.5\n- `grid_b0_3_seed42`（cuda:1）— Claim 2 b* curve：b=0.3 数据点\n- `detect_remove_baseline_seed42`（cuda:3）— Reviewer 问题\"为何不直接过滤\"的 baseline\n\n**3 个 PREPARING**（等 GPU 空出）：\n- `contamination_60_tau06_seed42` — D045 第二数据点，队列 cuda:2（ess_only 完成后）\n- `grid_b0_1_seed42` — b=0.1 数据点，队列 cuda:3（detect_remove 完成后）\n- `grid_b0_2_seed42` — b=0.2 数据点，排在 b0_1/b0_3 之后\n\n**等待中**：4 个 cron 回调（实验完成时触发）。无 pending Worker 回调。无待决 Director 审批。\n\n### 4. 📋 待办（条件触发式）\n- contamination_60_ess_only_seed42 完成 → 提交 contamination_60_tau06_seed42 到 cuda:2（D045 最高优先级）\n- detect_remove_baseline_seed42 完成 → 提交 grid_b0_1_seed42 到 cuda:3 → 分析 detect_remove PPL，对比 adaptive（预期 adaptive 优于 hard-filter）\n- contamination_60_tau07_seed42 完成 → 分析 ρ=0.6 τ=0.7 PPL：≤17.71 = reviewer 公式有效；>17.71 = 需要更低 τ（τ=0.6 已在队列）\n- grid_b0_3_seed42 完成 → 分析 b=0.3 PPL，与 b=0.5 (17.71) 和 uniform (17.694) 对比，绘制 b* curve\n- contamination_60 全部结果出齐（adaptive τ=0.7 + ess_only + τ=0.6 + grid_b0.5 已完成 + uniform 已完成）→ 汇总 Claim 3 证据，向 Director 汇报 proportion-free 是否成立\n- 所有 RUNNING 完成 + 预算允许 → grid_b0_2_seed42；否则砍掉\n- Claim 3 验证完毕 → 派 Worker 写 paper experiments section + 生成论文图表（τ sweep 图、b* 分布图、Table 1）\n\n### 5. 🎯 战略上下文\n**核心 story**：Dual-constraint adaptive b*（α_eff 质量下界 + ESS 稳定上界 → min-intervention）。三个 Claims：\n- Claim 1 ✅ 完成：dual > ESS-only，3 seeds 验证\n- Claim 2 ✅ 完成：adaptive ≈ grid-best，3 seeds MVP PASS\n- Claim 3 🔄 验证中：proportion-free（τ 控制 bias-variance，不依赖 ρ）\n\n**关键决策链**：D023 dual-constraint 框架 → D036 τ=0.8 经验最优 → D043 n_min=2 为主结果 → D045 ρ=0.6 τ=0.8 劣于 grid-best，需诊断 τ-ρ 关系\n\n**易错点**：\n- D045 发现 ρ=0.6 用 τ=0.8（ρ=0.4 的最优值）效果显著劣于 grid-best。这是 Claim 3 的最大风险：如果 τ 需要随 ρ 调整，\"proportion-free\" narrative 就站不住。τ=0.7 和 τ=0.6 的诊断结果决定 paper story 走向\n- contamination_60_uniform_seed42 和 contamination_60_grid_b0_5_seed42 已完成（DONE），结果在 registry 中。不要重跑\n- bs8_nmin2 是 NEGATIVE（D042），已决定写入 limitation section 而非 drop。framing：n_min 应随 batch_size 缩放\n- detect_remove 的 effective epoch 差异（153K 样本 × 2.4 遍 vs 371K × 1 遍）必须在论文中说明\n- Paper 初稿（intro/method/conclusion）已在 artifacts/，experiments section 等 contamination_60 结果出齐后写\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778901776.md"
+}

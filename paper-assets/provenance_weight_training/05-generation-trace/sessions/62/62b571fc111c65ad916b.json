@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62b571fc111c65ad916b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval qwen adaptive lm eval",
+  "task_key": "worker_eval_qwen_adaptive_lm_eval_20260517T140057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen_adaptive_lm_eval_20260517T140057_result.json",
+    "occurrence": 1,
+    "bytes": 1372,
+    "sha256": "3f56ca9782ce04068930a040ad7c37167278163a9d9ee66fec33f9ed4cb060ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部评估完成。汇总对比结果：\n\n## Qwen3-0.6B 下游评估对比：Adaptive vs Base\n\n| Benchmark | Metric | Base (pre-trained) | Adaptive (batchsize16_nmin8) | Δ |\n|-----------|--------|-------------------|------------------------------|-----|\n| HellaSwag (10-shot) | acc_norm | 0.4678 | **0.4890** | +2.12% |\n| ARC-Easy (25-shot) | acc | 0.7138 | 0.7075 | -0.63% |\n| ARC-Easy (25-shot) | acc_norm | 0.7041 | **0.7121** | +0.80% |\n| PIQA (5-shot) | acc | 0.6692 | **0.6828** | +1.36% |\n| PIQA (5-shot) | acc_norm | 0.6719 | **0.6899** | +1.80% |\n| WinoGrande (5-shot) | acc | 0.5580 | 0.5572 | -0.08% |\n\n**结论**：Adaptive weighting fine-tuning 在大多数 benchmark 上略有提升（HellaSwag +2.1%，PIQA +1.8%，ARC-Easy acc_norm +0.8%），WinoGrande 基本持平，无明显退化。\n\n### 文件路径\n- Adaptive 结果：`/root/autodl-tmp/provenance_weight_training/output/eval/qwen_adaptive_*/`\n- Base 结果：`/root/autodl-tmp/provenance_weight_training/output/eval/qwen_base_*/`\n- 日志：`/root/eval_adaptive.log`, `/root/eval_base.log`\n\n### 备注\n- 服务器上无 Qwen3-0.6B uniform_seed42 checkpoint（仅有 llama3b_uniform_seed42）\n- `batchsize16_nmin8_seed42` 即任务中的 \"adaptive_fix_seed42\"（确认为 Qwen3ForCausalLM + adaptive weighting）\n- 用 base Qwen3-0.6B 作为对比 baseline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen-adaptive-lm-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71d7c9d61e4cec0f7c29",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops 30476 disk cleanup emergency",
+  "task_key": "worker_ops_30476_disk_cleanup_emergency_20260519T011212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_30476_disk_cleanup_emergency_20260519T011212_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "70f892b7c0afcd5fe2c38643654ae20958d4779b1e1c9d89772e0da1a8bb7e6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Step 6: 汇报\n\n### 1. 磁盘使用量\n| | 使用 | 可用 | 占比 |\n|---|---|---|---|\n| 清理前 | ~250GB | 0GB | 100% |\n| 清理后 | 133GB | 118GB | 54% |\n\n释放约 117GB。\n\n### 2. 实验存活状态\n| 实验 | GPU | 状态 |\n|---|---|---|\n| detect_remove_q03_seed123 | GPU 0 | **运行中** (PID 76719) |\n| detect_remove_q03_seed456 | GPU 1 | **运行中** (PID 76796) |\n| detect_remove_q09_epoch_matched_seed42 | GPU 3 | **运行中** (PID 89876) |\n| detect_remove_q07_epoch_matched_seed42 | GPU 2 | **已死**，已重启 |\n\n### 3. q07 重启状态\n- PID: 93812\n- 已开始训练，进度 3/3047 steps，预计约 2 小时完成\n- 正常运行中\n\n### 4. 其他 crash\n无。q03_seed123、q03_seed456、q09_epoch_matched 三个实验均正常存活，磁盘清理及时，未发生连锁 crash。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-30476-disk-cleanup-emergency.md"
+}

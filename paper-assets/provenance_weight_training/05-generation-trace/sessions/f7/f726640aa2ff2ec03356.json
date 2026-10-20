@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f726640aa2ff2ec03356",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh eval batch adaptive tau rho06 v2",
+  "task_key": "worker_ssh_eval_batch_adaptive_tau_rho06_v2_20260517T093937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_batch_adaptive_tau_rho06_v2_20260517T093937_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "697e213f8d3e91ec3142fb81aadea205f9b61bad6c1f9cb3da6dc6fdcae0ca1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "服务器 westd-47453 无法连接（port 47453 on 36.103.198.204 拒绝连接）。\n\n可能原因：\n- 实例已关机/被回收（SeetaCloud 按量实例常见）\n- 临时网络中断\n\n**当前状态：无法执行后续步骤（确认训练完成、运行 post-hoc eval）。**\n\n建议操作：\n1. 检查 SeetaCloud 控制台确认实例状态\n2. 如果实例已关机，重新开机后我可以继续执行 eval 流程\n3. 如果实例被回收，需确认 `/root/autodl-tmp/output/models/batch_adaptive_tau_rho06_seed42/` 是否持久化（autodl-tmp 通常跨实例保留）\n\n需要我在实例恢复后继续执行吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-batch-adaptive-tau-rho06-v2.md"
+}

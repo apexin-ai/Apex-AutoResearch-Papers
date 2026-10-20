@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ecaf97cfe8a9b083984c",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "reviewer / loop_17.md",
+  "task_key": "loop_17",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_17.md",
+    "occurrence": 1,
+    "bytes": 4477,
+    "sha256": "81825c52bf7594dd8e98a89037cfe384c96981ec1edd488f693b00bb2484e372"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: max_wall_time\nupdated: '2026-05-17T22:17:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-30476 和 westd-41312 均为 cuda:0-3，越界即 CRITICAL\n- eval 协议统一：eval_perplexity.py, max_docs=5000, stride=1024 (max_length//2), autocast fp16, eval_holdout.jsonl。任何偏离导致 PPL 不可比\n- batchsize16 实验必须 per_device_train_batch_size=16 + gradient_accumulation_steps=1（不能 bs=4×accum=4，因为 ESS 按 micro-batch 算，micro_batch < n_min 会导致 b*=0 永远）\n- 所有实验 WANDB_MODE=disabled，不查 W&B，只看 step_metrics.jsonl + eval_perplexity_results.json\n- westd-41312 进度条显示 X/8477（含 eval forward passes），实际训练步数看 step_metrics.jsonl 最后 step 字段或 max_steps=6103\n\n### 2. 🖥️ 基础设施快照\n- **westd-30476** (root): 4× NVIDIA RTX PRO 6000 Blackwell 98GB\n  - 代码：`/root/provenance_weight_training`\n  - 模型输出：`/root/autodl-tmp/output/models/` 和 `/root/autodl-tmp/provenance_weight_training/output/models/`（两个路径都有实验）\n  - 日志：`/root/runs/provenance_weight_training/*.log`\n  - eval 脚本：`/root/provenance_weight_training/eval_perplexity.py`\n  - conda: base env, HF_HOME=/root/autodl-tmp/.hf_cache\n- **westd-41312** (root): 4× NVIDIA RTX PRO 6000 Blackwell 98GB\n  - 代码：`/root/provenance_weight_training`\n  - 模型输出：`/root/autodl-tmp/provenance_weight_training/output/models/`\n  - lm-eval-harness v0.4.11 已安装：`/root/miniconda3/bin/lm_eval`\n  - eval 结果目录：`/root/autodl-tmp/provenance_weight_training/output/eval/`\n\n### 3. 📊 当前状态\n**刚完成审查**：uniform_seed42_v2 PPL=17.6949（与历史 17.6939 差 0.001，可复现确认）。Llama-3B downstream eval 分析已报 Director（MMLU +1.57pp 显著但 HellaSwag -0.60pp，不支持升级 claim）。\n\n**westd-30476 运行中**（截至 ~22:00 UTC）：\n| GPU | 实验 | PID | 进度 | ETA |\n|-----|------|-----|------|-----|\n| 0 | grid_b0_3_seed456_r2 | 54784 | ~25% | ~3h |\n| 1 | grid_b0_3_seed123 (resumed) | 53826 | ~41% | ~2h |\n| 2 | rho02_adaptive_tau08_seed42 | 41387 | ~90% | ~25min |\n| 3 | batchsize16_nmin8_r2 | 48891 | ~57% | ~2.5h |\n\n**westd-41312 运行中**：\n| GPU | 实验 | PID | 进度 | ETA |\n|-----|------|-----|------|-----|\n| 0 | **空闲** | — | — | — |\n| 1 | ess_only_seed456_r2 | 133526 | ~72% | ~1h |\n| 2 | ess_only_seed123_r2 | 133449 | ~63% | ~1.3h |\n| 3 | random_reweight_seed456 | 136149 | ~33% | ~2.4h |\n\n### 4. 📋 待办（条件触发式）\n- rho02_adaptive_tau08_seed42 完成 → 验证 PPL（预期 ~17.3-17.5 范围），对比 rho02_tau09 的 17.45 确认 tau=0.8 是否更优\n- ess_only_seed123_r2 / seed456_r2 完成 → eval PPL，对比旧 ess_only 结果（seed42 PPL=17.76），3-seed 一致性验证\n- random_reweight_seed456 完成 → eval PPL，凑齐 2-3 seed（seed123 已有 PPL=17.8），确认 random baseline 与 uniform 持平\n- batchsize16_nmin8_r2 完成 → eval PPL，验证 coupling rule n_min=bs//2 在 bs=16 下成立\n- grid_b0_3_seed123/seed456_r2 完成 → eval PPL，验证 cross-seed 一致性（seed42=17.64）\n- 41312 cuda:0 空闲 → Director 应已安排新任务（contamination_60 或其他）\n\n### 5. 🎯 战略上下文\n**三核心 Claim**：\n- Claim 1（detector signal load-bearing）：需 random_reweight baseline PPL ≈ uniform >> adaptive。seed123 已有 17.8 ≈ uniform 17.34? 不对——需重新确认 random 是否真的和 uniform 持平\n- Claim 2（adaptive ≈ grid-best）：adaptive PPL 17.336 vs grid-best b=0.3 PPL 17.64。**注意这里 adaptive 明显更好不是\"≈\"**，U-shape 存在但 grid-best 远不如 adaptive\n- Claim 3（proportion-robust）：tau=0.9 在 ρ=0.2 时 PPL=17.45 > uniform 17.34 **失败**。现在跑 tau=0.8 在 ρ=0.2 验证修正\n\n**易错点**：\n- 8477 vs 6103 步数混淆：带 eval_data_path 的实验进度条显示 8477（含 eval），实际 optimizer steps = 6103\n- output_dir 路径不统一：有些在 `/root/autodl-tmp/output/models/`，有些在 `/root/autodl-tmp/provenance_weight_training/output/models/`——按实际 checkpoint 路径为准\n- save_only_model=True：checkpoint 无 optimizer state，resume 时 Adam momentum 从零重积累，前几百步可能有轻微 loss 波动\n- 进程被 kill 的 pattern：Agent 会主动 kill 带 eval_data_path 的慢实验后重启无 eval 版本，这是正常操作不是故障，但 cron 会报 failed\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-copy-3.md"
+}

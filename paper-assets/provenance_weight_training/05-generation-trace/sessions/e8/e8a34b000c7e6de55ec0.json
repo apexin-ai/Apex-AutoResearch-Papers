@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8a34b000c7e6de55ec0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops disk cleanup critical",
+  "task_key": "worker_ops_disk_cleanup_critical_20260524T164353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_critical_20260524T164353_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "6c2c6744834d12b3cb26dfef5033fd871af2846546feaa4d1b59ae3576ab7ade"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**释放空间**：删除 29 个 checkpoint 目录，释放约 **85GB**（多数为 3.4GB 的 Qwen checkpoint + 少量 1.2G 的 GPT-2 checkpoint）。\n\n**当前磁盘**：\n```\n/dev/md0  250G  140G  111G  56%  /root/autodl-tmp\n```\n从 100% 降到 56%，有 111GB 可用。\n\n**random_subset_epoch_seed42 状态**：\n- tmux session 存活 ✓\n- GPU 0: 100% utilization, 74127 MiB VRAM 占用 ✓\n- 当前 step: **3999**（日志最后记录），训练正常进行中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-critical.md"
+}

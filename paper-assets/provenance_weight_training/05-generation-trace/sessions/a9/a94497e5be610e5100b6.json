@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a94497e5be610e5100b6",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "critical fix csv from registry",
+  "task_key": "worker_critical_fix-csv-from-registry_20260516T034114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_fix-csv-from-registry_20260516T034114_result.json",
+    "occurrence": 1,
+    "bytes": 395,
+    "sha256": "2df05d0d489294030c5a51a5352d8a72d41877c1dc5be43bb7b94f4be7c86341"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已生成并注册：\n\n- **CSV**: `artifacts/metrics_summary.csv` — 39 行，按 eval_ppl_holdout 升序\n- **MD**: `artifacts/metrics_summary.md` — 按 8 个实验组分组\n\n验证结果：\n- adaptive_fix_seed42 = 17.6527 ✓\n- adaptive_fix_seed123 = 17.6432 ✓\n- adaptive_fix_seed456 = 17.6566 ✓\n- PPL > 20 仅 baseline_qwen3_0.6b (22.97) ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/critical-fix-csv-from-registry.md"
+}

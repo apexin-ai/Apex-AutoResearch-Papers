@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a5d307950fac3ccd63e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh prepare grid b03 seed456",
+  "task_key": "worker_ssh_prepare_grid_b03_seed456_20260517T032851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare_grid_b03_seed456_20260517T032851_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "2d7d433e1e1caca1993c6d1f5675d6eb54f43a0a63beea756452cdb156665a74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器脚本已就绪：\n\n- **westd-47453**: `/root/provenance_weight_training/scripts/run_grid_b0_3_seed456.sh` ✓\n- **westd-41312**: `/root/provenance_weight_training/scripts/run_grid_b0_3_seed456.sh` ✓\n\n参数与模板一致，仅 seed 改为 456、output_dir 改为 `grid_b0_3_seed456`。无 CUDA_VISIBLE_DEVICES、无 eval 相关参数。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-grid-b03-seed456.md"
+}

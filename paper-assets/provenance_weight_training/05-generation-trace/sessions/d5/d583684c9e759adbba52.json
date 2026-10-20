@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d583684c9e759adbba52",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11_1778897858.md",
+  "task_key": "loop_11_1778897858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778897858.md",
+    "occurrence": 1,
+    "bytes": 5536,
+    "sha256": "ac5d0b58f92d23519dd50e57fac63cce00b6714b904a476042525264d2c8d8e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T01:34:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: cuda:0/1/2/3 @ westd-47453，禁止用其他设备\n- GPU 预算极度紧张：截至 05-15 23:30 UTC 已消耗 ~154h，剩余 ~26h（当前 3 实验 ~10.8h 后剩 ~15h）。每个实验必须精打细算\n- contamination_60_grid_b0_5_seed42 已 FAILED (EXIT_CODE=129)，需要重跑但不要盲目提交——先诊断是否和之前 grid_b_low 4 连败相同根因\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 前缀\n- WANDB_MODE=disabled 会导致 cron 误判训练为 failed（memory.md 记录）。后续实验不要禁 W&B\n- 投稿 deadline: EMNLP 2026 ARR May 25（距今 9 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-47453, 4× RTX 6000 Pro 96G\n- 工作目录: /root/provenance_weight_training\n- Python: /root/miniconda3/bin/python (conda base, 不是 venv)\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 镜像: aml-train\n- 模型: models/Qwen/Qwen3-0.6B (continued pretraining, 非 random init)\n- 训练数据: data/scored_data.jsonl (371,499 行, ρ≈0.4)\n- 污染数据: data/contamination_60/ (371,499 行, ρ=0.6)\n- 过滤数据: data/scored_data_filtered_q05.jsonl (153,725 行, detect-remove baseline)\n- eval: data/human/eval_holdout.jsonl\n- HF cache: 未特殊设置\n- W&B: 已配置（项目内自动上报）\n- 活跃进程:\n  - contamination_60_seed42_r2: PID 257977, cuda:0, tmux session\n  - contamination_60_ess_only_seed42: PID 265012, cuda:2, tmux session\n  - grid_b0_3_seed42: PID 274304, cuda:1, tmux session, log=~/runs/provenance_weight_training/grid_b0_3_seed42.log\n- Cron 监控: 3 个 active (上述 3 实验各一个), reconcile 确认均 still running\n- cuda:3: 空闲（contamination_60_grid_b0_5_seed42 已 failed 释放）\n\n### 3. 📊 当前状态\n**Registry: 64 实验 — DONE 50 (success 36, negative 3, failed 7, killed 4), RUNNING 3, PREPARING 10, ALLOCATED 1**\n\n**RUNNING (3)**:\n| exp_id | GPU | PID | 用途 |\n|--------|-----|-----|------|\n| contamination_60_seed42_r2 | cuda:0 | 257977 | Claim 3: ρ=0.6 adaptive (τ=0.8, n_min=2) |\n| contamination_60_ess_only_seed42 | cuda:2 | 265012 | Claim 1+3: ρ=0.6 ESS-only |\n| grid_b0_3_seed42 | cuda:1 | 274304 | Claim 2: b=0.3 grid sweep |\n\n**已完成的 contamination_60 结果**:\n- contamination_60_uniform_seed42: ✅ PPL=17.766（ρ=0.6 uniform baseline）\n- contamination_60_grid_b0_5_seed42: ❌ FAILED (EXIT_CODE=129)，需重跑\n- contamination_60_seed42: ❌ FAILED (GPU 冲突)，已由 _r2 重跑\n\n**ALLOCATED (等 GPU)**:\n- detect_remove_baseline_seed42: 数据过滤完成(kept=153,725)，等 GPU 释放后提交\n\n**PREPARING (10)**: τ sweep n_min=2 修正 ×5, grid_b0.1/0.2, adaptive_v2 ×3\n\n**Worker 池: 0** — 前 session 的 Worker 已全部完成/回收。\n\n**cuda:3 空闲** — contamination_60_grid_b0_5_seed42 failed 后释放，应立即提交 detect_remove_baseline_seed42 或重跑 contamination_60_grid_b0_5。\n\n### 4. 📋 待办（条件触发式）\n- **立即**: cuda:3 空闲 → 优先提交 contamination_60_grid_b0_5_seed42 重跑（Claim 3 必须的 grid baseline）或 detect_remove_baseline_seed42（已 ALLOCATED，数据已就绪）。向 Director 请示优先级\n- contamination_60_seed42_r2 cron 回调 → spawn worker 跑 eval_perplexity.py → 与 uniform PPL=17.766 对比，adaptive < 17.766 = Claim 3 成立\n- contamination_60_ess_only_seed42 cron 回调 → 同上 eval → 与 adaptive 对比，验证 Claim 1 在 ρ=0.6 下仍成立\n- grid_b0_3_seed42 cron 回调 → eval → 与 grid_b0.5 (PPL=17.644) 对比，描绘 b* 曲线\n- 三组 contamination_60 全部完成 → 写 experiments section (Claim 3 段) + 更新 Table 1\n- Claim 3 验证通过 → 论文图表生成（τ sweep 图、b* 分布图、contamination 对比图）\n- GPU 预算 <5h 时 → 向 Director 报警，只跑论文必须的实验\n- Paper experiments section 完成 → 全文一致性审查 + reference audit\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D023: Dual-constraint (α_eff + ESS) 框架，min-intervention b*\n- D036: τ sweep 完成，safe range [0.5,0.8], τ=0.8 optimal\n- D043: n_min=2 为论文主结果（原 n_min=3 有 confound，需重跑 τ sweep）\n- D044: τ sweep 5 个实验需用 n_min=2 重跑（PREPARING 中），但 GPU 预算紧张，可能只跑关键的 2-3 个\n\n**三个 Claims**:\n1. ✅ Dual > ESS-only（3 seeds 验证完毕）\n2. ✅ Adaptive ≈ grid-best（MVP + 3 seeds）\n3. 🔄 Proportion-free（contamination_60 验证中，最关键的缺口）\n\n**易错点**:\n- contamination_60_uniform PPL=17.766 比 ρ=0.4 的 uniform PPL=17.694 高 0.072 → 符合预期（更多污染 = 更高 PPL）。对比 adaptive 时不要和 ρ=0.4 的 baseline 比\n- grid_b0_5 在 ρ=0.6 下 failed，可能 b=0.5 对 ρ=0.6 不适用——重跑前先检查是真 crash 还是 SIGHUP 误报\n- τ sweep n_min=2 重跑 10 个实验全部 PREPARING，但 GPU 预算 (~15h) 可能只够跑 3-4 个。需和 Director 讨论优先级裁剪\n- n_min=2 vs n_min=3 的 confound: 原始 τ sweep 用了 n_min=3，D043 决定论文主结果用 n_min=2。如果 n_min=2 重跑结果和 n_min=3 差异很大，story 需要调整\n- bs8_nmin2 是 NEGATIVE (PPL>uniform)，Director 在 D042 决定写入 limitation section，不要尝试修复\n- Paper 初稿（intro/method/conclusion）已在 artifacts/，experiments section 等 contamination_60 结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778897858.md"
+}

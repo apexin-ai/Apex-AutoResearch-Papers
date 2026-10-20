@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a59eedc8c99a46cd78ed",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_16_1779050833.md",
+  "task_key": "loop_16_1779050833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779050833.md",
+    "occurrence": 1,
+    "bytes": 3910,
+    "sha256": "e02321a82401ba99365cdcf78abcee961995dc1ac7b79110eec1bd4ad757423a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-17T20:47:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-30476 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3\n- westd-41312 GPU 白名单: cuda:0, cuda:1, cuda:2, cuda:3\n- output_dir 必须用 /root/autodl-tmp/（持久卷），不要写 /tmp 或 /root/runs\n- submit_training_job 的 command 必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不假设 .venv\n- GPU 编号脚本内始终从 0 开始（框架自动映射物理 GPU）\n- 严禁用 nohup 替代 submit_training_job\n\n### 2. 🖥️ 基础设施快照\n- **westd-30476**: 工作目录 /root/autodl-tmp/provenance_weight_training/\n  - Python: /root/miniconda3/bin/python\n  - 数据: data/scored_data.jsonl (371499条, Qwen3-0.6B 用)\n  - 模型: Qwen/Qwen3-0.6B (HF hub 下载)\n  - 磁盘: /usr/bin/nvidia-smi 分区 816G/879G 可用\n- **westd-41312**: 同结构工作目录\n  - 磁盘: 400G/439G 可用\n- W&B 项目: provenance_weight_training\n- 日志统一在 ~/runs/provenance_weight_training/\n\n### 3. 📊 当前状态\n**刚做的事**: 收到 random_reweight_seed123_r5 (ANALYZING) 的 cron 回调，已 spawn worker 去拉日志+W&B 指标，Worker 尚未返回。\n\n**RUNNING (4)**:\n| exp_id | server | gpu | 目的 |\n|--------|--------|-----|------|\n| grid_b0_3_seed456 | westd-41312 | cuda:3 | Claim 2 低 b 网格补充 |\n| rho02_adaptive_tau09_r5 | westd-30476 | cuda:3 | Claim 3 ρ=0.2 低污染验证 |\n| bs8_auto_nmin_r5 | westd-30476 | cuda:1 | D062 coupling rule bs=8 |\n| batch_adaptive_tau_rho06_r5 | westd-30476 | cuda:2 | D063 batch-adaptive τ ρ=0.6 |\n\n**ANALYZING (1)**: random_reweight_seed123_r5 (westd-30476:cuda:0) — Worker 分析中\n\n**PREPARING (1)**: qwen06b_uniform_seed42\n\n**等待中**:\n- Worker `worker_analysis_random_reweight_seed123_r5_20260517T164335` 回调（拉指标中）\n- 3 个 reconcile 确认的 RUNNING 实验各自的 cron 监控\n\n### 4. 📋 待办\n- Worker 分析回调到达 → 根据 PPL 判断 conclusion（PPL > 17.686 = success，确认 random 退化；PPL ≤ 17.686 = unexpected），update_registry(status=DONE, conclusion=..., metrics=...)，刷新 report.md，汇报 Director\n- random_reweight_seed123_r5 如确认 success → Claim 1 跨 seed random degradation 证据补全（seed42 PPL=17.83, seed123 预期也退化），向 Director 汇报 Claim 1 证据强度升级\n- westd-30476:cuda:0 释放后 → 可安排下一个实验（qwen06b_uniform_seed42 或其他队列任务）\n- 其余 3 个 30476 实验完成 → 逐个分析：bs8_auto_nmin_r5 验证 D062 coupling rule；batch_adaptive_tau_rho06_r5 验证 D063 Plan B；rho02_adaptive_tau09_r5 验证 Claim 3\n- grid_b0_3_seed456 完成 → Claim 2 grid-best 补充数据\n\n### 5. 🎯 战略上下文\n- **核心方法**: Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → min-intervention）\n- **投稿目标**: EMNLP 2026 ARR May 25（还剩 8 天）\n- **Claim 1** (dual > ESS-only): 证据 ★★★★★，已有 3 seeds + ρ=0.6 + mechanism + random baseline (D064)。random_reweight_seed123_r5 是跨 seed 补充\n- **Claim 2** (adaptive ≈ grid): ★★★☆☆，bootstrap p=0.30，grid-best=b=0.3，grid_b0_3_seed456 补低 b 插值\n- **Claim 3** (proportion-robust): ★★☆☆☆，rho02 实验跑中，是证据最薄弱环节\n- **D064 关键结论**: random_reweight_v2 PPL=17.83 > uniform=17.694，detector signal 是 load-bearing 的（不是噪声就能替代）\n- **D062**: n_min=⌊B/2⌋ coupling rule 已升为方法设计原则\n- **D063**: batch-adaptive τ 在 ρ=0.4 NEGATIVE，ρ=0.6 版本还在跑\n- **易错点**: 之前 r2/r3/r4 轮次都因服务器迁移（47453→30476）失败过，r5 是修复环境后的重跑；不要把之前 failed 的 r2-r4 当成\"方法失败\"\n- **llama3b 跨模型**: D067 修正为 neutral（不是 negative），不 pivot，但也不作为 claim 写入 paper\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779050833.md"
+}

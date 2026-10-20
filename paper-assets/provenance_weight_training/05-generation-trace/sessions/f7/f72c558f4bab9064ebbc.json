@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f72c558f4bab9064ebbc",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "urgent full status and eval",
+  "task_key": "worker_urgent_full_status_and_eval_20260523T084611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_full_status_and_eval_20260523T084611_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "08bb5ab2a16e996bfbe3b9abb06f4bfac99dd0d523d9965a2d297a2819091365"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个实验的 12 个 eval 均已完成，无需启动新任务。GPU 当前空闲。\n\n## 完整结果表\n\n| 实验 | holdout_ppl | owt_ppl | wiki_ppl |\n|------|-------------|---------|----------|\n| rho03_adaptive_seed456_r2 | 17.424 | 18.115 | 15.161 |\n| rho03_uniform_seed456 | 17.419 | 18.109 | 15.168 |\n| bs8_nmin4_adaptive_seed123 | 17.631 | 18.338 | 15.353 |\n| bs8_nmin4_uniform_seed123 | 17.687 | 18.370 | 15.385 |\n\n**关键观察：**\n- rho03 配置（bs4）全面优于 bs8_nmin4 配置，三个数据集差距一致（~0.2 ppl）\n- adaptive vs uniform 差异极小：rho03 组差异 < 0.01 ppl，bs8 组 adaptive 略优（~0.05 ppl）\n- GPU 全部空闲，无进程在跑"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-full-status-and-eval.md"
+}

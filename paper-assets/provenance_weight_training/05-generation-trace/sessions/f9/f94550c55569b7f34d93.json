@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f94550c55569b7f34d93",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval d110 tau08 full",
+  "task_key": "worker_eval_d110_tau08_full_20260521T033326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d110_tau08_full_20260521T033326_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "2c628a63539ab93fd49d6e9298d838fb85960d8daf7356432672b917901dd24f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**D110 adaptive_tau08_scratch_seed42 eval 结果：**\n\n| Metric | Value |\n|--------|-------|\n| **Holdout PPL** | 17.9049 (loss 2.8851) |\n| **OWT PPL** | 18.7098 (loss 2.9290) |\n| **Wiki PPL** | 15.6285 (loss 2.7491) |\n\n| Downstream Task | acc | acc_norm |\n|----------------|-----|----------|\n| **arc_challenge** | 0.3242 | 0.3456 |\n| **arc_easy** | 0.6456 | 0.6115 |\n| **hellaswag** | 0.3766 | 0.4709 |\n| **piqa** | 0.6790 | 0.6795 |\n| **winogrande** | 0.5691 | — |\n\n训练 6103 steps 正常完成 (train_loss=4.265)，全套 eval 结果已保存到 `eval_results/` 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d110-tau08-full.md"
+}

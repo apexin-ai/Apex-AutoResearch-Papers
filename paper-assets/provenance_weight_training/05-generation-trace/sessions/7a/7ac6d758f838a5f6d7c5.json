@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ac6d758f838a5f6d7c5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "figures paperbanana retry",
+  "task_key": "worker_figures_paperbanana_retry_20260524T222431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figures_paperbanana_retry_20260524T222431_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "74083a84792d92798cedfd6a1c6c49bbcbd8833855686e48c3943c1a3576b719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有脚本正常运行。\n\n## 汇报\n\n- **PaperBanana 未成功生成参考图**：Google API key 配额耗尽（429 RESOURCE_EXHAUSTED），gemini-2.5-pro 和 gemini-2.5-flash 均失败。需要充值 API 额度或更换 key 后重试。\n- **当前状态**：所有 5 个脚本（`generate_optimized_figures.py`, `fig1_composite.py`, `gen_missing_figures.py`, `plot_dual_constraint.py`, `plot_tau_sweep.py`）已经共享完全一致的 PREMIUM_RC 参数集，无需额外同步。\n- **`fig_bstar_trajectory.py` 不存在**。\n- **无风格校准**：没有 PaperBanana 参考图，无法做视觉对比和参数微调。\n\n需要新的 Google API key 或等配额恢复后重试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figures-paperbanana-retry.md"
+}

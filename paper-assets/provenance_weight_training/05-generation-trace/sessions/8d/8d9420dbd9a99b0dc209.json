@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d9420dbd9a99b0dc209",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis grid b seed42 batch",
+  "task_key": "worker_analysis_grid_b_seed42_batch_20260514T220645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grid_b_seed42_batch_20260514T220645_result.json",
+    "occurrence": 1,
+    "bytes": 1639,
+    "sha256": "e47fd7420d7abe0a78fb83fab3173b6d19f8eab107f9fe235d654d9011f49319"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 个 final checkpoint 确认存在。日志中无 eval_ppl，因为脚本未传 `--eval_data_path`。\n\n## grid_b_seed42_batch 实验结果\n\n| b | train_loss | train_runtime_s | eval_ppl_holdout | checkpoint_path |\n|---|-----------|----------------|-----------------|----------------|\n| 0.5 | 9.598 | 13,036 | **缺失** | `output/models/grid_b0_5_seed42/final/` |\n| 1.0 | 10.223 | 12,968 | **缺失** | `output/models/grid_b1_0_seed42/final/` |\n| 1.5 | 10.485 | 14,789 | **缺失** | `output/models/grid_b1_5_seed42/final/` |\n| 2.0 | 10.621 | 13,034 | **缺失** | `output/models/grid_b2_0_seed42/final/` |\n| 3.0 | 10.754 | 13,036 | **缺失** | `output/models/grid_b3_0_seed42/final/` |\n| 5.0 | 10.858 | 13,115 | **缺失** | `output/models/grid_b5_0_seed42/final/` |\n\n### 关键发现\n\n1. **全部 6 个 b 值缺失 eval_ppl_holdout** — `run_grid_b_seed42.sh` 没有传 `--eval_data_path` 和 `--eval_steps` 参数，训练过程中未执行 evaluation。需要单独跑 eval 才能获得 holdout perplexity。\n\n2. **train_loss 随 b 递增** — 符合预期：b 越大，高质量数据权重越高，weighted loss 越大（因为惩罚低质量样本更重）。\n\n3. **b=1.5 训练时间异常偏长**（14,789s vs 其他 ~13,000s），可能是 I/O 波动或 GPU throttling。\n\n4. **与 seed123 对比**：seed123 的 eval_ppl 在 b=0.5 时最优（17.638 vs uniform 17.69）。seed42 需要补跑 eval 才能对比。\n\n### 下一步\n需要对 6 个 final checkpoint 跑 holdout eval 以获得 eval_ppl_holdout，才能与 uniform_seed42（17.69）和 seed123 结果做有效对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grid-b-seed42-batch.md"
+}

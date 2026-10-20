@@ -1,0 +1,806 @@
+{
+  "schema_version": "1.0",
+  "id": "ac2579a6818b41cf931b",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "check gpt2 seed456 and audit",
+  "task_key": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_check_gpt2_seed456_and_audit_20260521T035535.jsonl",
+    "occurrence": 1,
+    "bytes": 42697,
+    "sha256": "4ba1db2fcfb41d21805a8d23f4cd8782ade1ed04705d0d4eaafafadbc8cbda20"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 19,
+    "roles": {
+      "tool_call": 19,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T03:58:45.260664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T03:58:45.261037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T03:58:45.261216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "ps -p 551638 -o pid,etime,args 2>/dev/null || echo \"PROCESS_EXITED\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T03:58:45.261394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T03:58:45.261542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "tail -30 ~/runs/provenance_weight_training/gpt2_adaptive_seed456.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T03:58:45.261672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "ls /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed456/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T03:58:45.261896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 81%|████████▏ | 4972/6103 [3:10:31<42:48,  2.27s/it]\\\\r 81%|████████▏ | 4973/6103 [3:10:31<43:12,  2.29s/it]\\\\r                                                     \\\\r{'weighting/b': '1.061', 'weighting/alpha_eff': '0.8', 'weighting/ess': '2.252', 'weighting/mean_q': '0.546', 'weighting/unweighted_loss': '2.03', 'weighting/weighted_loss': '3.299', 'weighting/tau_batch': '0.8', 'epoch': '0.2142'}\\\\n\\\\r 81%|████████▏ | 4973/6103 [3:10:32<43:12,  2.29s/it]\\\\r                                                     \\\\r{'weighting/b': '3.16', 'weighting/alpha_eff': '0.6866', 'weighting/ess': '2.006', 'weighting/mean_q': '0.5513', 'weighting/unweighted_loss': '1.766', 'weighting/weighted_loss': '3.04', 'weighting/tau_batch': '0.8', 'epoch': '0.2142'}\\\\n\\\\r 81%|████████▏ | 4973/6103 [3:10:32<43:12,  2.29s/it]\\\\r                                                     \\\\r{'weighting/b': '0.7196', 'weighting/alpha_eff': '0.8', 'weighting/ess': '3.429', 'weighting/mean_q': '0.3365', 'weighting/unweighted_loss': '2.299', 'weighting/weighted_loss': '2.699', 'weighting/tau_batch': '0.8', 'epoch': '0.2142'}\\\\n\\\\r 81%|████████▏ | 4973/6103 [3:10:33<43:12,  2.29s/it]\\\\r                                                     \\\\r{'weighting/b': '0', 'weighting/alpha_eff': '0.8041', 'weighting/ess': '4', 'weighting/mean_q': '0.1959', 'weighting/unweighted_loss': '3.156', 'weighting/weighted_loss': '3.156', 'weighting/tau_batch': '0.8', 'epoch': '0.2142'}\\\\n\\\\r 81%|████████▏ | 4973/6103 [3:10:34<43:12,  2.29s/it]\\\\r 82%|████████▏ | 4974/6103 [3:10:34<42:46,  2.27s/it]\\\\r                                                     \\\\r{'weighting/b': '0.62', 'weighting/alpha_eff': '0.3622', 'weighting/ess': '2.024', 'weighting/mean_q': '0.8455', 'weighting/unweighted_loss': '0.8508', 'weighting/weighted_loss': '1.239', 'weighting/tau_batch': '0.8', 'epoch': '0.2142'}\\\\n\\\\r 82%|████████▏ | 4974/6103 [3:10:34<42:46,  2.27s/it]\\\\r                    \n…[truncated 6397 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T03:58:45.262082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoint-3500\\\\ncheckpoint-4000\\\\ncheckpoint-4500\\\\nconfig.json\\\\nstep_metrics.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T03:58:45.262213+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed456/final/ 2>/dev/null || echo \"NO_FINAL_DIR\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T03:58:45.262338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T03:58:45.262455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "provenance_weight_training",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T03:58:45.263875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (371,994 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T03:58:45.264143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "ps -p 551638 -o pid,etime,args",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T03:58:45.264310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED COMMAND\\\\n551638    03:11:18 bash -c rm -f /tmp/agent-ml-exit/gpt2_adaptive_seed456.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/provenance_weight_training/gpt2_adaptive_seed456.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/gpt2_adaptive_seed456.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/provenance_weight_training && export CUDA_VISIBLE_DEVICES=3 && timeout 14400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_gpt2ppl_qscore.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"'; } > ~/runs/provenance_weight_training/gpt2_adaptive_seed456.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T03:58:45.264461+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Registry resume audit",
+              "prompt": "I need you to analyze a registry JSON file to find all experiments that used \"resume\" in their configuration.\n\nThe file is at: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt\n\nThis is JSON with schema: {result: string} — the `result` field contains a JSON string that needs to be parsed.\n\nSteps:\n1. Probe the structure with jq (type/length/keys)\n2. Parse the inner JSON and search ALL experiments for any mention of \"resume\" in any field — particularly in `spec`, `reproduce`, `command`, `notes`, or any nested field\n3. For each experiment that mentions \"resume\", extract: exp_id, status, conclusion, the resume-related content, and whether save_only_model was used\n4. Also check if any experiment used `--save_only_model` flag\n\nReport back with a clear list in this format:\n- exp_id: resume from X, conclusion=Y, save_only_model=[yes/no]\n\nIf no experiments used resume, say \"无其他受影响实验\".\n\nBe thorough — search the entire stringified content for \"resume\" case-insensitively.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T03:58:45.264641+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T03:58:45.264771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (149920 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T03:58:45.264930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "resume",
+              "path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt",
+              "-i": "True",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T03:58:45.265061+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T03:58:45.265185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "save_only_model",
+              "path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt",
+              "-i": "True",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T03:58:45.265301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:[Omitted long matching line]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T03:58:45.265443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt\"\n# Probe structure\ncat \"$FILE\" | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\nprint('Top-level keys:', list(raw.keys()))\nresult = json.loads(raw['result'])\nprint('Result type:', type(result).__name__)\nif isinstance(result, dict):\n    print('Result keys:', list(result.keys())[:20])\n    # Check structure of first entry\n    for k, v in list(result.items())[:1]:\n        print(f'Sample key: {k}')\n        print(f'Sample value keys: {list(v.keys()) if isinstance(v, dict) else type(v).__name__}')\nelif isinstance(result, list):\n    print('Result length:', len(result))\n    if result:\n        print('First item keys:', list(result[0].keys()) if isinstance(result[0], dict) else type(result[0]).__name__)\n\"\n",
+              "description": "Probe JSON structure of registry file"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T03:58:45.265567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Top-level keys: ['result']\nResult type: dict\nResult keys: ['success', 'data', 'error', 'metadata']\nSample key: success\nSample value keys: bool"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T03:58:45.265691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\ndata = result['data']\nprint('data type:', type(data).__name__)\nif isinstance(data, dict):\n    print('data keys:', list(data.keys())[:30])\n    print('total keys:', len(data.keys()))\nelif isinstance(data, list):\n    print('data length:', len(data))\n\"\n",
+              "description": "Probe data structure inside registry"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T03:58:45.265807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "data type: dict\ndata keys: ['experiments', 'count', 'total', 'baseline']\ntotal keys: 4"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T03:58:45.265961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\nexperiments = result['data']['experiments']\nprint('experiments type:', type(experiments).__name__)\nif isinstance(experiments, list):\n    print('count:', len(experiments))\n    for i, exp in enumerate(experiments[:2]):\n        print(f'\\n--- Experiment {i} ---')\n        print('keys:', list(exp.keys()))\nelif isinstance(experiments, dict):\n    print('count:', len(experiments))\n    for k in list(experiments.keys())[:2]:\n        print(f'\\n--- {k} ---')\n        print('keys:', list(experiments[k].keys()))\n\"\n",
+              "description": "Probe experiments structure"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T03:58:45.266089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "experiments type: dict\ncount: 210\n\n--- gpt2_adaptive_seed123_v2 ---\nkeys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'spec']\n\n--- adaptive_tau08_scratch_seed42_v2 ---\nkeys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'spec']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T03:58:45.266226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\nexperiments = result['data']['experiments']\n\nresume_exps = []\nsave_only_model_exps = []\n\nfor exp_id, exp in experiments.items():\n    exp_str = json.dumps(exp).lower()\n    has_resume = 'resume' in exp_str\n    has_save_only = 'save_only_model' in exp_str\n    \n    if has_resume or has_save_only:\n        resume_exps.append((exp_id, exp, has_resume, has_save_only))\n\nprint(f'Total experiments: {len(experiments)}')\nprint(f'Experiments mentioning resume or save_only_model: {len(resume_exps)}')\nprint()\n\nfor exp_id, exp, has_resume, has_save_only in resume_exps:\n    print(f'=== {exp_id} ===')\n    print(f'  status: {exp.get(\\\"status\\\", \\\"N/A\\\")}')\n    \n    # Check all fields for resume/save_only_model\n    for key in exp.keys():\n        val_str = json.dumps(exp[key])\n        if 'resume' in val_str.lower():\n            # Trim to relevant context\n            idx = val_str.lower().find('resume')\n            start = max(0, idx - 80)\n            end = min(len(val_str), idx + 120)\n            print(f'  [{key}] resume context: ...{val_str[start:end]}...')\n        if 'save_only_model' in val_str.lower():\n            idx = val_str.lower().find('save_only_model')\n            start = max(0, idx - 80)\n            end = min(len(val_str), idx + 120)\n            print(f'  [{key}] save_only_model context: ...{val_str[start:end]}...')\n    \n    # Extract conclusion if present\n    spec = exp.get('spec', {})\n    if isinstance(spec, dict):\n        conclusion = spec.get('conclusion', 'N/A')\n        notes = spec.get('notes', '')\n        reproduce = spec.get('reproduce', '')\n        command = spec.get('command', '')\n        print(f'  conclusion: {conclusion}')\n    print()\n\" 2>&1\n",
+              "description": "Search all 210 experiments for resume and save_only_model mentions"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T03:58:45.266381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (32.2KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/bkq85e7rm.txt\n\nPreview (first 2KB):\nTotal experiments: 210\nExperiments mentioning resume or save_only_model: 77\n\n=== gpt2_adaptive_seed123_v2 ===\n  status: RUNNING\n  [hypothesis] resume context: ... V2: rerun without --save_only_model. Replaces corrupted gpt2_adaptive_seed123 (resume caused optimizer loss). Second seed for detector ablation to confirm gpt2_adaptive_seed42 pattern (PPL=17.79).\"...\n  [hypothesis] save_only_model context: ...-2 PPL detector (AUC=0.913) + adaptive weighting, seed=123. V2: rerun without --save_only_model. Replaces corrupted gpt2_adaptive_seed123 (resume caused optimizer loss). Second seed for detector ablat...\n  [spec] save_only_model context: ...-seed 123 --data_path data/scored_data_gpt2ppl_qscore.jsonl (from scratch, no --save_only_model, no inline eval)\", \"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"pid\": \"565346\", \"log_path\": \"~/runs/proven...\n  conclusion: N/A\n\n=== adaptive_tau08_scratch_seed42_v2 ===\n  status: RUNNING\n  [hypothesis] resume context: ... to preserve optimizer state. Replaces corrupted adaptive_tau08_scratch_seed42 (resume caused optimizer loss). Completes 3-seed from-scratch set for \\u03c4=0.8 OOD comparison.\"...\n  [hypothesis] save_only_model context: ...ive (\\u03c4=0.8, \\u03c1=0.4, n_min=2, seed=42, Qwen3-0.6B). V2: rerun without --save_only_model to preserve optimizer state. Replaces corrupted adaptive_tau08_scratch_seed42 (resume caused optimizer l...\n  [spec] save_only_model context: ... 0.4 --tau 0.8 --seed 42 --data_path data/scored_data.jsonl (from scratch, no --save_only_model, no inline eval)\", \"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"pid\": \"565269\", \"log_path\": \"~/runs/proven...\n  conclusion: N/A\n\n=== gpt2_adaptive_seed123 ===\n  status: DONE\n  [reproduce] save_only_m\n…[truncated 210 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T03:58:45.266534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/bkq85e7rm.txt"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T03:58:45.266769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tTotal experiments: 210\n2\tExperiments mentioning resume or save_only_model: 77\n3\t\n4\t=== gpt2_adaptive_seed123_v2 ===\n5\t  status: RUNNING\n6\t  [hypothesis] resume context: ... V2: rerun without --save_only_model. Replaces corrupted gpt2_adaptive_seed123 (resume caused optimizer loss). Second seed for detector ablation to confirm gpt2_adaptive_seed42 pattern (PPL=17.79).\"...\n7\t  [hypothesis] save_only_model context: ...-2 PPL detector (AUC=0.913) + adaptive weighting, seed=123. V2: rerun without --save_only_model. Replaces corrupted gpt2_adaptive_seed123 (resume caused optimizer loss). Second seed for detector ablat...\n8\t  [spec] save_only_model context: ...-seed 123 --data_path data/scored_data_gpt2ppl_qscore.jsonl (from scratch, no --save_only_model, no inline eval)\", \"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"pid\": \"565346\", \"log_path\": \"~/runs/proven...\n9\t  conclusion: N/A\n10\t\n11\t=== adaptive_tau08_scratch_seed42_v2 ===\n12\t  status: RUNNING\n13\t  [hypothesis] resume context: ... to preserve optimizer state. Replaces corrupted adaptive_tau08_scratch_seed42 (resume caused optimizer loss). Completes 3-seed from-scratch set for \\u03c4=0.8 OOD comparison.\"...\n14\t  [hypothesis] save_only_model context: ...ive (\\u03c4=0.8, \\u03c1=0.4, n_min=2, seed=42, Qwen3-0.6B). V2: rerun without --save_only_model to preserve optimizer state. Replaces corrupted adaptive_tau08_scratch_seed42 (resume caused optimizer l...\n15\t  [spec] save_only_model context: ... 0.4 --tau 0.8 --seed 42 --data_path data/scored_data.jsonl (from scratch, no --save_only_model, no inline eval)\", \"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"pid\": \"565269\", \"log_path\": \"~/runs/proven...\n16\t  conclusion: N/A\n17\t\n18\t=== gpt2_adaptive_seed123 ===\n19\t  status: DONE\n20\t  [reproduce] save_only_model context: ...val_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"finished_at\": \"2026-05-21T00:35:49.664Z\", \"training_hours\": 6.02}...\n21\t  [failure_reason] resume context: ...\n…[truncated 32561 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T03:58:45.266968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\nexperiments = result['data']['experiments']\n\n# Category 1: Experiments that ACTUALLY used --resume_from_checkpoint in their command\n# Category 2: Experiments that mention resume only in hypothesis/notes/failure_reason (context)\n# Category 3: Experiments that used --save_only_model but did NOT resume\n\nactual_resume = []\ncontext_resume = []\nsave_only_no_resume = []\n\nfor exp_id, exp in experiments.items():\n    exp_str = json.dumps(exp)\n    exp_lower = exp_str.lower()\n    \n    # Check spec/command for resume_from_checkpoint\n    spec = exp.get('spec', {})\n    spec_str = json.dumps(spec) if isinstance(spec, dict) else str(spec)\n    \n    has_resume_cmd = 'resume_from_checkpoint' in spec_str or 'resume' in json.dumps(spec).lower().split('command')[0] if 'command' in json.dumps(spec).lower() else False\n    # More precise: check if command field contains resume\n    has_resume_in_command = 'resume_from_checkpoint' in spec_str or ('resume' in spec_str.lower() and 'command' in spec_str.lower())\n    \n    has_resume_anywhere = 'resume' in exp_lower\n    has_save_only = 'save_only_model' in exp_str\n    \n    status = exp.get('status', 'N/A')\n    failure_reason = exp.get('failure_reason', '')\n    \n    # Get conclusion from spec or top-level\n    conclusion = 'N/A'\n    if isinstance(spec, dict):\n        conclusion = spec.get('conclusion', 'N/A')\n    if conclusion == 'N/A':\n        conclusion = exp.get('conclusion', 'N/A')\n    \n    if 'resume_from_checkpoint' in spec_str:\n        # Extract the checkpoint path\n        import re\n        match = re.search(r'resume_from_checkpoint\\s+(\\S+)', spec_str)\n        ckpt = match.group(1) if match else 'unknown'\n        ckpt = ckpt.rstrip('\\\"').rstrip(\\\"'\\\")\n        actual_resume.append({\n            'exp_id': exp_id, \n            'status': status, \n            'conclusion': conclusion,\n            'checkpoint': ckpt,\n            'save_only_model': has_save_only,\n            'failure_reason': failure_reason\n        })\n    elif has_resume_anywhere:\n        # Resume mentioned only in context (hypothesis, notes, failure_reason, metrics)\n        context_resume.append({\n            'exp_id': exp_id, \n            'status': status,\n            'conclusion': conclusion,\n            'save_only_model': has_save_only,\n            'failure_reason': failure_reason\n        })\n\nprint('=== CATEGORY 1: Experiments that ACTUALLY used --resume_from_checkpoint ===')\nprint(f'Count: {len(actual_resume)}')\nprint()\nfor e in actual_resume:\n    som = 'yes' if e['save_only_model'] else 'no'\n    fr = f', failure_reason={e[\\\"failure_reason\\\"][:100]}' if e['failure_reason'] else ''\n    print(f'  - {e[\\\"exp_id\\\"]}: resume from {e[\\\"checkpoint\\\"]}, status={e[\\\"status\\\"]}, conclusion={e[\\\"conclusion\\\"]}, save_only_model={som}{fr}')\n\nprint()\nprint('=== CATEGORY 2: Experiments that MENTION resume in hypothesis/notes/metrics (but NOT in command) ===')\nprint(f'Count: {len(context_resume)}')\nprint()\nfor e in context_resume:\n    som = 'yes' if e['save_only_model'] else 'no'\n    fr = f', failure_reason={e[\\\"failure_reason\\\"][:100]}' if e['failure_reason'] else ''\n    print(f'  - {e[\\\"exp_id\\\"]}: status={e[\\\"status\\\"]}, conclusion={e[\\\"conclusion\\\"]}, save_only_model={som}{fr}')\n\" 2>&1\n",
+              "description": "Classify experiments into actual resume vs contextual mention"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T03:58:45.267153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== CATEGORY 1: Experiments that ACTUALLY used --resume_from_checkpoint ===\nCount: 18\n\n  - gpt2_adaptive_seed123: resume from checkpoint-2500, status=DONE, conclusion=failed, save_only_model=yes, failure_reason=Resume from --save_only_model checkpoint caused optimizer state loss. Adam reinitialized → model deg\n  - adaptive_tau08_scratch_seed42: resume from checkpoint-3500, status=DONE, conclusion=failed, save_only_model=yes, failure_reason=Resume from --save_only_model checkpoint caused optimizer state loss. Adam reinitialized → model deg\n  - detect_remove_q05_seed456: resume from /root/autodl-tmp/output/models/detect_remove_q05_seed456/checkpoint-500\",, status=DONE, conclusion=success, save_only_model=no, failure_reason=startup recovery: process dead, no active cron monitor\n  - adaptive_1_7b_seed42: resume from /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42/checkpoint-2500\\\"\",, status=DONE, conclusion=success, save_only_model=no\n  - random_reweight_seed456: resume from /root/autodl-tmp/provenance_weight_training/output/models/random_reweight_seed456/checkpoint-1000\\\"\",, status=DONE, conclusion=success, save_only_model=yes, failure_reason=EXIT_CODE=143 (SIGTERM — graceful kill)\n  - uniform_1_7b_seed42: resume from /root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42/checkpoint-3000\\\"\",, status=DONE, conclusion=failed, save_only_model=no, failure_reason=EXIT_CODE=1 (generic error — check log tail)\n  - ess_only_seed456_r2: resume from /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed456/checkpoint-2500\\\"\",, status=DONE, conclusion=success, save_only_model=yes, failure_reason=process dead 5× with no sentinel/W&B — auto-resolved as failed\n  - ess_only_seed123_r2: resume from /root/autodl-tmp/provenance_weight_training/output/models/ess_only_seed123/checkpoint-2000\\\"\",, status=DONE, conclusion=success, save_only_model=yes, failure_reason=process dead 5× with no sentinel/W&B — auto-resolved as \n…[truncated 2722 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T03:58:45.267316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\nexperiments = result['data']['experiments']\n\n# For threshold_q07_seed42, extract full resume context\nexp = experiments.get('threshold_q07_seed42', {})\nprint('=== threshold_q07_seed42 full detail ===')\nfor key in ['status', 'notes', 'extra', 'failure_reason', 'spec']:\n    val = exp.get(key)\n    if val:\n        val_str = json.dumps(val)\n        if 'resume' in val_str.lower():\n            print(f'  [{key}]: {val_str[:500]}')\n        \n# Also check if spec has resume_from_checkpoint in command\nspec = exp.get('spec', {})\nif isinstance(spec, dict):\n    cmd = spec.get('command', '')\n    print(f'  [spec.command]: {cmd}')\n\nprint()\n# Also check contamination_60_random_seed42 \nexp2 = experiments.get('contamination_60_random_seed42', {})\nprint('=== contamination_60_random_seed42 full detail ===')\nfor key in ['status', 'notes', 'metrics', 'spec']:\n    val = exp2.get(key)\n    if val:\n        val_str = json.dumps(val)\n        if 'resume' in val_str.lower():\n            print(f'  [{key}]: {val_str[:500]}')\n\" 2>&1\n",
+              "description": "Get full resume context for threshold_q07_seed42 and contamination_60_random_seed42"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T03:58:45.267461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== threshold_q07_seed42 full detail ===\n  [notes]: \"Resume r2 failed: ValueError \\\"Your setup doesn't support bf16/gpu\\\" \\u2014 all 4x GPUs were occupied by other processes when resume script launched. Training stuck at step 5999, checkpoint-5500 intact. Needs retry when GPU is free.\"\n  [extra]: {\"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"Resume r2 from checkpoint-5500 (stuck at step 5999 due to disk full + wandb error loop). wandb/ deleted, WANDB_MODE=disabled. 604 steps remaining.\"}}\n  [spec]: {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_threshold_q07_resume_r2.sh'\", \"server\": \"westd-47453\", \"gpu\": [\"cuda:0\"], \"pid\": \"355121\", \"data_path\": \"/root/provenance_weight_training/data/scored_data_filtered_q07.jsonl\", \"data_count\": 184908, \"model_name\": \"Qwen/Qwen3-0.6B\", \"seed\": 42, \"resume_from\": \"checkpoint-5500\"}\n  [spec.command]: bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && bash scripts/run_threshold_q07_resume_r2.sh'\n\n=== contamination_60_random_seed42 full detail ===\n  [metrics]: {\"eval_ppl_holdout\": 17.832, \"eval_method\": \"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\", \"total_steps\": 6103, \"note\": \"resume from checkpoint-1000; cron falsely marked failed due to log path mismatch\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T03:58:45.267611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/b3383ad3-3746-488b-8ed9-6e9676b7b5ea/tool-results/mcp-agent-ml-research-read_registry-1779335759928.txt\"\ncat \"$FILE\" | python3 -c \"\nimport json, sys\n\nraw = json.load(sys.stdin)\nresult = json.loads(raw['result'])\nexperiments = result['data']['experiments']\n\n# Get conclusion for all resume experiments more carefully\n# Some have conclusion at top-level, some inside spec, some in failure_reason\nresume_ids = [\n    'gpt2_adaptive_seed123', 'adaptive_tau08_scratch_seed42', 'detect_remove_q05_seed456',\n    'adaptive_1_7b_seed42', 'random_reweight_seed456', 'uniform_1_7b_seed42',\n    'ess_only_seed456_r2', 'ess_only_seed123_r2', 'contamination_60_grid_b0_3_seed42',\n    'grid_b0_2_seed456', 'grid_b0_2_seed123', 'grid_b0_3_seed123_r2',\n    'grid_b5_0_seed456', 'grid_b3_0_seed456', 'grid_b2_0_seed456',\n    'uniform_seed456', 'uniform_seed123', 'uniform_seed42',\n    'threshold_q07_seed42', 'contamination_60_random_seed42'\n]\n\nfor eid in resume_ids:\n    exp = experiments.get(eid, {})\n    if not exp:\n        continue\n    # Search for conclusion in all fields\n    conclusion = 'N/A'\n    for key in ['conclusion', 'status', 'spec', 'notes', 'extra', 'metrics', 'failure_reason']:\n        val = exp.get(key)\n        if val:\n            val_str = json.dumps(val) if not isinstance(val, str) else val\n            if 'conclusion' in val_str.lower() and conclusion == 'N/A':\n                # Try to extract conclusion value\n                if isinstance(val, dict) and 'conclusion' in val:\n                    conclusion = val['conclusion']\n                elif isinstance(val, dict):\n                    for k2, v2 in val.items():\n                        if isinstance(v2, dict) and 'conclusion' in v2:\n                            conclusion = v2['conclusion']\n    \n    # Also check spec.conclusion directly\n    spec = exp.get('spec', {})\n    if isinstance(spec, dict) and 'conclusion' in spec:\n        conclusion = spec['conclusion']\n    \n    # Check top-level conclusion\n    if 'conclusion' in exp:\n        conclusion = exp['conclusion']\n    \n    print(f'{eid}: status={exp.get(\\\"status\\\")}, conclusion={conclusion}')\n\" 2>&1\n",
+              "description": "Extract conclusion fields more carefully for all resume experiments"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T03:58:45.267758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "gpt2_adaptive_seed123: status=DONE, conclusion=failed\nadaptive_tau08_scratch_seed42: status=DONE, conclusion=failed\ndetect_remove_q05_seed456: status=DONE, conclusion=success\nadaptive_1_7b_seed42: status=DONE, conclusion=success\nrandom_reweight_seed456: status=DONE, conclusion=success\nuniform_1_7b_seed42: status=DONE, conclusion=failed\ness_only_seed456_r2: status=DONE, conclusion=success\ness_only_seed123_r2: status=DONE, conclusion=success\ncontamination_60_grid_b0_3_seed42: status=DONE, conclusion=success\ngrid_b0_2_seed456: status=DONE, conclusion=success\ngrid_b0_2_seed123: status=DONE, conclusion=success\ngrid_b0_3_seed123_r2: status=DONE, conclusion=success\ngrid_b5_0_seed456: status=DONE, conclusion=success\ngrid_b3_0_seed456: status=DONE, conclusion=success\ngrid_b2_0_seed456: status=DONE, conclusion=success\nuniform_seed456: status=DONE, conclusion=success\nuniform_seed123: status=DONE, conclusion=success\nuniform_seed42: status=DONE, conclusion=success\nthreshold_q07_seed42: status=DONE, conclusion=failed\ncontamination_60_random_seed42: status=DONE, conclusion=success"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T03:58:45.268138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the complete results.\n\n---\n\n## Experiments that ACTUALLY used `--resume_from_checkpoint` (18 experiments)\n\n| # | exp_id | resume from | conclusion | save_only_model |\n|---|--------|-------------|------------|-----------------|\n| 1 | `gpt2_adaptive_seed123` | checkpoint-2500 | **failed** | yes |\n| 2 | `adaptive_tau08_scratch_seed42` | checkpoint-3500 | **failed** | yes |\n| 3 | `detect_remove_q05_seed456` | checkpoint-500 | success | no |\n| 4 | `adaptive_1_7b_seed42` | checkpoint-2500 | success | no |\n| 5 | `random_reweight_seed456` | checkpoint-1000 | success | yes |\n| 6 | `uniform_1_7b_seed42` | checkpoint-3000 | **failed** | no |\n| 7 | `ess_only_seed456_r2` | ess_only_seed456/checkpoint-2500 | success | yes |\n| 8 | `ess_only_seed123_r2` | ess_only_seed123/checkpoint-2000 | success | yes |\n| 9 | `contamination_60_grid_b0_3_seed42` | checkpoint-1500 | success | no |\n| 10 | `grid_b0_2_seed456` | checkpoint-5500 | success | yes |\n| 11 | `grid_b0_2_seed123` | checkpoint-5500 | success | yes |\n| 12 | `grid_b0_3_seed123_r2` | grid_b0_3_seed123/checkpoint-1000 | success | yes |\n| 13 | `grid_b5_0_seed456` | checkpoint-3000 | success | yes |\n| 14 | `grid_b3_0_seed456` | checkpoint-3000 | success | yes |\n| 15 | `grid_b2_0_seed456` | checkpoint-3500 | success | yes |\n| 16 | `uniform_seed456` | checkpoint-500 | success | yes |\n| 17 | `uniform_seed123` | checkpoint-500 | success | yes |\n| 18 | `uniform_seed42` | checkpoint-500 | success | yes |\n\n## Experiments that MENTION resume in context only (not in command) (8 experiments)\n\n| # | exp_id | context | status | save_only_model |\n|---|--------|---------|--------|-----------------|\n| 1 | `gpt2_adaptive_seed123_v2` | V2 rerun replacing corrupted resume experiment | RUNNING | yes (explicitly removing it) |\n| 2 | `adaptive_tau08_scratch_seed42_v2` | V2 rerun replacing corrupted resume experiment | RUNNING | yes (explicitly removing it) |\n| 3 | `adaptive_fromscratch_seed42` | \"from-scratch, no resume\" | DONE/success | no |\n|\n…[truncated 2494 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535",
+            "tool": "Agent",
+            "elapsed_ms": 3
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T03:58:45.268370+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\ngpt2_adaptive_seed456 状态: 训练中 step 4980/6103 (82%)\n已运行: 3h11m, 速度 ~2.27s/step, ETA ~42分钟\n已有 checkpoints: 3500, 4000, 4500（无 final/）\n注意: 此实验使用了 --save_only_model，但是从头训练，不受 resume 问题影响\n\n全局 resume 排查 (20个实验使用过 resume):\n\n❌ 因 resume + save_only_model 失败 (optimizer state loss):\n- gpt2_adaptive_seed123: resume from checkpoint-2500, conclusion=failed, save_only_model=是\n- adaptive_tau08_scratch_seed42: resume from checkpoint-3500, conclusion=failed, save_only_model=是\n  → 两者已有 _v2 从头重跑版本 (RUNNING)\n\n❌ 因其他原因失败:\n- uniform_1_7b_seed42: resume from checkpoint-3000, conclusion=failed, save_only_model=否\n- threshold_q07_seed42: resume from checkpoint-5500 (via shell script), conclusion=failed, save_only_model=否 (GPU占用导致)\n\n⚠️ 标记 success 但有 degradation 记录:\n- grid_b0_2_seed456: resume from checkpoint-5500, conclusion=success, save_only_model=是 (metrics记录LR reset degradation)\n- grid_b0_2_seed123: resume from checkpoint-5500, conclusion=success, save_only_model=是 (同上)\n\n✅ Resume 且 success 无异常 (save_only_model=是):\n- ess_only_seed456_r2, ess_only_seed123_r2, grid_b0_3_seed123_r2,\n  grid_b5_0_seed456, grid_b3_0_seed456, grid_b2_0_seed456,\n  random_reweight_seed456, uniform_seed456, uniform_seed123, uniform_seed42\n- contamination_60_random_seed42 (metrics记录resume from checkpoint-1000)\n\n✅ Resume 且 success (save_only_model=否):\n- detect_remove_q05_seed456, adaptive_1_7b_seed42,\n  contamination_60_grid_b0_3_seed42\n\n总结: save_only_model + resume 组合共12个实验，其中2个明确失败、2个有degradation记录但标记success（建议复查 grid_b0_2_seed456 和 grid_b0_2_seed123 的 eval 结果是否用了 pre-resume checkpoint）。\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpt2_seed456_and_audit_20260521T035535"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/conversations/check-gpt2-seed456-and-audit.md"
+}

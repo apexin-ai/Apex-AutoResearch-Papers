@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "676dccbfbe3b6f9377e1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose threshold q03 seed42",
+  "task_key": "worker_diagnose_threshold_q03_seed42_20260516T103210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_threshold_q03_seed42_20260516T103210_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "3e61d375aed037477a7a4acc463d1e246e85ac2b6cf6d1d0dfd3bdc46a3a1646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因：根分区磁盘满（30G 用满，0 bytes 剩余）**\n\n根分区被三个大目录撑爆：miniconda3 (12G) + data (11G) + models (8.8G) = 32.2G > 30G 限制。虽然 checkpoint 已正确 symlink 到 autodl-tmp 数据盘，但训练数据和基础模型仍在根分区。\n\n三个实验失败模式完全一致：进度条正常推进后突然中断，无任何 Traceback 或错误信息——磁盘满时连错误日志都写不出来。\n\n**紧急提醒**：`rho02_uniform_seed42` 目前还在 GPU 1 上跑（PID 316988），下次 checkpoint save 时同样会挂。\n\n**修复**：将 `data/` 和 `models/` 迁移到 autodl-tmp 并创建 symlink，可释放 ~19.8G。报告已写入 `artifacts/diagnosis_threshold_q03_seed42.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-threshold-q03-seed42.md"
+}

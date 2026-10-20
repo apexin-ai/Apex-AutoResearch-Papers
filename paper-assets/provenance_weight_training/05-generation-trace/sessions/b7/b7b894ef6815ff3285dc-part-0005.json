@@ -1,0 +1,548 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b7b894ef6815ff3285dc",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-17T14:36:07.953Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AogdLv9A3ZR2KxWVsJQdX5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "bb005e17-2d8c-47bd-96f7-3dbda370ecc9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"
+              }
+            }
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WLAPwLtHRqbXnq5Cw7ocen",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-41312",
+                "command": "cat /root/eval_base.log | tr '\\r' '\\n' | grep \"acc_norm\" | tail -5",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "598cf5f7-e2f4-4993-9a94-446b51d8c210",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BzEfjTMByyuXMd7ctYLEHx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 247,
+                "cache_read_input_tokens": 136321,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 247
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-17T14:36:12.509Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WLAPwLtHRqbXnq5Cw7ocen",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"|         |       |none  |    10|acc_norm|↑  |0.4678|±  |0.0050|\\\\n|        |       |none  |    25|acc_norm|↑  |0.7041|±  |0.0094|\\\\n|     |       |none  |     5|acc_norm|↑  |0.6719|±  | 0.011|\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "67e43659-9c82-4235-b5f1-3cb81d9b3aa7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"|         |       |none  |    10|acc_norm|↑  |0.4678|±  |0.0050|\\\\n|        |       |none  |    25|acc_norm|↑  |0.7041|±  |0.0094|\\\\n|     |       |none  |     5|acc_norm|↑  |0.6719|±  | 0.011|\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"|         |       |none  |    10|acc_norm|↑  |0.4678|±  |0.0050|\\n|        |       |none  |    25|acc_norm|↑  |0.7041|±  |0.0094|\\n|     |       |none  |     5|acc_norm|↑  |0.6719|±  | 0.011|\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+              }
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PIQA base: acc_norm=0.6719。等 WinoGrande 结束。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "e00813d6-814e-4cf2-86f1-bde2ff520ef0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013j6JhhidaBuZCkyzt1sbzL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 319,
+                "cache_read_input_tokens": 136568,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 319
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GjBSQquKXhP51ZAGXNK9CT",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-41312",
+                "command": "cat /root/eval_base.log | tr '\\r' '\\n' | grep -E \"(\\|wino|All done)\" | tail -5",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "2a36f685-994d-4fd0-9bae-7fa209583ef1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013j6JhhidaBuZCkyzt1sbzL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 319,
+                "cache_read_input_tokens": 136568,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 319
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-17T14:36:19.417Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GjBSQquKXhP51ZAGXNK9CT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"|winogrande|      1|none  |     5|acc   |↑  |0.558|±  | 0.014|\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "73b8222c-c34d-472d-9e4b-98c0b6889d8a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"|winogrande|      1|none  |     5|acc   |↑  |0.558|±  | 0.014|\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.84}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"|winogrande|      1|none  |     5|acc   |↑  |0.558|±  | 0.014|\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.84}}"
+              }
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011eduxHoYLg3MqyTVrTeUDY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-41312",
+                "command": "cat /root/eval_base.log | tr '\\r' '\\n' | grep \"All done\" | tail -1",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "cd4cb577-b771-41ea-8a61-6fec8629d1c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H4Vmdog2N3cvA37bLEx7kp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 389,
+                "cache_read_input_tokens": 136887,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 389
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-17T14:36:25.343Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011eduxHoYLg3MqyTVrTeUDY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== All done at Sun May 17 22:36:19 CST 2026 ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "79807615-6850-4dfb-9c9c-5d881d124784",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== All done at Sun May 17 22:36:19 CST 2026 ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"=== All done at Sun May 17 22:36:19 CST 2026 ===\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"
+              }
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成！获取完整 JSON 结果确认。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "8875b1ad-7217-43f9-a64b-b47e514460d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011PtudtTRDLY76vZ52ohCF4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 242,
+                "cache_read_input_tokens": 137276,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 242
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D1hcnaFxT18yNkd7NDq7Ya",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-41312",
+                "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, glob\nresults = {}\nfor d in glob.glob('/root/autodl-tmp/provenance_weight_training/output/eval/qwen_base_*/*/*.json'):\n    data = json.load(open(d))\n    for task, metrics in data.get('results', {}).items():\n        results[task] = {k:v for k,v in metrics.items() if 'acc' in k and 'stderr' not in k}\nprint(json.dumps(results, indent=2))\n\"",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "da015222-49c5-437c-ab12-8b6c8690a979",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011PtudtTRDLY76vZ52ohCF4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 242,
+                "cache_read_input_tokens": 137276,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 242
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-17T14:36:36.262Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D1hcnaFxT18yNkd7NDq7Ya",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"hellaswag\\\\\\\": {\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3785102569209321,\\\\n    \\\\\\\"acc_norm,none\\\\\\\": 0.4678350926110337\\\\n  },\\\\n  \\\\\\\"arc_easy\\\\\\\": {\\\\n    \\\\\\\"acc,none\\\\\\\": 0.7138047138047138,\\\\n    \\\\\\\"acc_norm,none\\\\\\\": 0.7041245791245792\\\\n  },\\\\n  \\\\\\\"piqa\\\\\\\": {\\\\n    \\\\\\\"acc,none\\\\\\\": 0.6692056583242655,\\\\n    \\\\\\\"acc_norm,none\\\\\\\": 0.6719260065288357\\\\n  },\\\\n  \\\\\\\"winogrande\\\\\\\": {\\\\n    \\\\\\\"acc,none\\\\\\\": 0.5580110497237569\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "5feeb44d-afd5-4444-9e2a-723f35dc840c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"hellaswag\\\\\\\": {\\\\n    \\\\\\\"acc,none\\\\\\\": 0.3785102569209321,\\\\n    \\\\\\\"acc_norm,none\\\\\\\": 0.4678350926110337\\\\n  },\\\\n  \\\\\\\"arc_easy\\\\\\\": {\\\\n    \\\\\\\"acc,none\\\\\\\": 0.7138047138047138,\\\\n    \\\\\\\"acc_norm,none\\\\\\\": 0.7041245791245792\\\\n  },\\\\n  \\\\\\\"piqa\\\\\\\": {\\\\n    \\\\\\\"acc,none\\\\\\\": 0.6692056583242655,\\\\n    \\\\\\\"acc_norm,none\\\\\\\": 0.6719260065288357\\\\n  },\\\\n  \\\\\\\"winogrande\\\\\\\": {\\\\n    \\\\\\\"acc,none\\\\\\\": 0.5580110497237569\\\\n  }\\\\n}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.69}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"hellaswag\\\": {\\n    \\\"acc,none\\\": 0.3785102569209321,\\n    \\\"acc_norm,none\\\": 0.4678350926110337\\n  },\\n  \\\"arc_easy\\\": {\\n    \\\"acc,none\\\": 0.7138047138047138,\\n    \\\"acc_norm,none\\\": 0.7041245791245792\\n  },\\n  \\\"piqa\\\": {\\n    \\\"acc,none\\\": 0.6692056583242655,\\n    \\\"acc_norm,none\\\": 0.6719260065288357\\n  },\\n  \\\"winogrande\\\": {\\n    \\\"acc,none\\\": 0.5580110497237569\\n  }\\n}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.69}}"
+              }
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部评估完成。汇总对比结果：\n\n## Qwen3-0.6B 下游评估对比：Adaptive vs Base\n\n| Benchmark | Metric | Base (pre-trained) | Adaptive (batchsize16_nmin8) | Δ |\n|-----------|--------|-------------------|------------------------------|-----|\n| HellaSwag (10-shot) | acc_norm | 0.4678 | **0.4890** | +2.12% |\n| ARC-Easy (25-shot) | acc | 0.7138 | 0.7075 | -0.63% |\n| ARC-Easy (25-shot) | acc_norm | 0.7041 | **0.7121** | +0.80% |\n| PIQA (5-shot) | acc | 0.6692 | **0.6828** | +1.36% |\n| PIQA (5-shot) | acc_norm | 0.6719 | **0.6899** | +1.80% |\n| WinoGrande (5-shot) | acc | 0.5580 | 0.5572 | -0.08% |\n\n**结论**：Adaptive weighting fine-tuning 在大多数 benchmark 上略有提升（HellaSwag +2.1%，PIQA +1.8%，ARC-Easy acc_norm +0.8%），WinoGrande 基本持平，无明显退化。\n\n### 文件路径\n- Adaptive 结果：`/root/autodl-tmp/provenance_weight_training/output/eval/qwen_adaptive_*/`\n- Base 结果：`/root/autodl-tmp/provenance_weight_training/output/eval/qwen_base_*/`\n- 日志：`/root/eval_adaptive.log`, `/root/eval_base.log`\n\n### 备注\n- 服务器上无 Qwen3-0.6B uniform_seed42 checkpoint（仅有 llama3b_uniform_seed42）\n- `batchsize16_nmin8_seed42` 即任务中的 \"adaptive_fix_seed42\"（确认为 Qwen3ForCausalLM + adaptive weighting）\n- 用 base Qwen3-0.6B 作为对比 baseline"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "uuid": "c79a246f-2ea3-4fc5-9bf8-c7aaf403752a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UjntaQbZnT2q64MtFAPX2r",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 592,
+                "cache_read_input_tokens": 137518,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 592
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部评估完成。汇总对比结果：\n\n## Qwen3-0.6B 下游评估对比：Adaptive vs Base\n\n| Benchmark | Metric | Base (pre-trained) | Adaptive (batchsize16_nmin8) | Δ |\n|-----------|--------|-------------------|------------------------------|-----|\n| HellaSwag (10-shot) | acc_norm | 0.4678 | **0.4890** | +2.12% |\n| ARC-Easy (25-shot) | acc | 0.7138 | 0.7075 | -0.63% |\n| ARC-Easy (25-shot) | acc_norm | 0.7041 | **0.7121** | +0.80% |\n| PIQA (5-shot) | acc | 0.6692 | **0.6828** | +1.36% |\n| PIQA (5-shot) | acc_norm | 0.6719 | **0.6899** | +1.80% |\n| WinoGrande (5-shot) | acc | 0.5580 | 0.5572 | -0.08% |\n\n**结论**：Adaptive weighting fine-tuning 在大多数 benchmark 上略有提升（HellaSwag +2.1%，PIQA +1.8%，ARC-Easy acc_norm +0.8%），WinoGrande 基本持平，无明显退化。\n\n### 文件路径\n- Adaptive 结果：`/root/autodl-tmp/provenance_weight_training/output/eval/qwen_adaptive_*/`\n- Base 结果：`/root/autodl-tmp/provenance_weight_training/output/eval/qwen_base_*/`\n- 日志：`/root/eval_adaptive.log`, `/root/eval_base.log`\n\n### 备注\n- 服务器上无 Qwen3-0.6B uniform_seed42 checkpoint（仅有 llama3b_uniform_seed42）\n- `batchsize16_nmin8_seed42` 即任务中的 \"adaptive_fix_seed42\"（确认为 Qwen3ForCausalLM + adaptive weighting）\n- 用 base Qwen3-0.6B 作为对比 baseline"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 2143117,
+            "duration_api_ms": 1567601,
+            "num_turns": 309,
+            "stop_reason": "end_turn",
+            "session_id": "9548c56b-5335-4a67-8364-e171ff60a254",
+            "total_cost_usd": 15.641064250000003,
+            "usage": {
+              "input_tokens": 294,
+              "cache_creation_input_tokens": 126269,
+              "cache_read_input_tokens": 26885178,
+              "output_tokens": 56217,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 126269,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 593,
+                  "cache_read_input_tokens": 137518,
+                  "cache_creation_input_tokens": 592,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 592
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2254,
+                "outputTokens": 29,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002399,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 294,
+                "outputTokens": 56217,
+                "cacheReadInputTokens": 26885178,
+                "cacheCreationInputTokens": 126269,
+                "webSearchRequests": 0,
+                "costUSD": 15.638665250000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "61a9b166-c850-4147-9c4e-33f14182cb3c"
+          },
+          "id": "event-000733"
+        }
+      ]
+    }
+  ]
+}

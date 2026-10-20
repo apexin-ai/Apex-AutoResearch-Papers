@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "9e9a9d288065349fd284",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis 1 7b seed456 pair",
+  "task_key": "worker_analysis_1_7b_seed456_pair_20260520T211227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_1_7b_seed456_pair_20260520T211227_result.json",
+    "occurrence": 1,
+    "bytes": 2407214,
+    "sha256": "0df990c69b5583893e097199aaa5c8e26ac734bb7fc62c7e1a824939de420f4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2407234,
+                "serialized_sha256": "67f689f3e4c8ed3f62599842ba8852c028b79403792236efcdf100c54132115e",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-1-7b-seed456-pair.md"
+}

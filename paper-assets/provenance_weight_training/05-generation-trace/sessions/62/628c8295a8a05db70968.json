@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "628c8295a8a05db70968",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh status eval 41312 batch",
+  "task_key": "worker_ssh_status_eval_41312_batch_20260518T003704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_status_eval_41312_batch_20260518T003704_result.json",
+    "occurrence": 1,
+    "bytes": 1191,
+    "sha256": "18facdd183558f66998557152941b53f91f9bcc443878fa4209939c3c5ec29ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 eval 完成。汇总报告：\n\n---\n\n## 实验状态报告\n\n### 1. 实验状态\n\n| 实验 | 状态 | Train Loss | Runtime |\n|------|------|-----------|---------|\n| ess_only_seed456_r2 | **Completed** | 5.998 | 7611s (~2.1h) |\n| ess_only_seed123_r2 | **Completed** | 6.860 | 8674s (~2.4h) |\n| random_reweight_seed456 | **Completed** | 6.657 | 10739s (~3.0h) |\n| grid_b0_2_seed42 | **Running** | — | step 2427/6103 (40%), ETA ~2h09m |\n\n### 2. Eval Perplexity（eval_holdout.jsonl, 5000 docs, 4.08M tokens）\n\n| 实验 | Loss | PPL |\n|------|------|-----|\n| ess_only_seed123 | 2.8747 | **17.72** |\n| ess_only_seed456 | 2.8770 | 17.76 |\n| random_reweight_seed456 | 2.8779 | 17.78 |\n\n三者 PPL 非常接近（17.72–17.78），差异不到 0.4%。\n\n### 3. GPU 使用\n\n| GPU | 显存 | 利用率 | 任务 |\n|-----|------|--------|------|\n| 0 | 46539/97887 MiB | 100% | grid_b0_2_seed42 训练中 |\n| 1 | 0 MiB | 0% | 空闲 |\n| 2 | 0 MiB | 0% | 空闲（eval 刚完成） |\n| 3 | 0 MiB | 0% | 空闲（eval 刚完成） |\n\n### 4. 关键观察\n\ngrid_b0_2_seed42 预计还需 ~2 小时完成，完成后可在 GPU 1-3 任一卡上 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-status-eval-41312-batch.md"
+}

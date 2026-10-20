@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e46998f2dd5b09a77be",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval grid b2 0 seed456",
+  "task_key": "worker_eval_grid_b2_0_seed456_20260515T091612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grid_b2_0_seed456_20260515T091612_result.json",
+    "occurrence": 1,
+    "bytes": 841,
+    "sha256": "dd202050e1c7c49a7c3520c79f9864c65647895f8f327441d39db5b9fa1f9cfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n**grid_b2_0_seed456 eval_ppl_holdout = 17.989**\n\n| Experiment | seed | eval_ppl | delta vs seed456 |\n|---|---|---|---|\n| b=0.5 seed456 | 456 | 17.65 | — |\n| b=1.0 seed456 | 456 | 17.68 | — |\n| b=1.5 seed456 | 456 | 17.71 | — |\n| **b=2.0 seed456** | **456** | **17.99** | — |\n| b=2.0 seed42 | 42 | 17.74 | -0.25 |\n| b=2.0 seed123 | 123 | 17.73 | -0.26 |\n\nPPL=17.99 is an outlier for b=2.0 — 0.25 higher than seed42/seed123. train_loss=10.625 is consistent across seeds, so the convergence was normal. The likely cause is this run used `--bf16` training (added for the resume from checkpoint-3500) while the other b=2.0 seeds trained in fp32. The dtype change could have introduced a slight divergence in later training steps that accumulated into a measurable eval difference."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grid-b2-0-seed456.md"
+}

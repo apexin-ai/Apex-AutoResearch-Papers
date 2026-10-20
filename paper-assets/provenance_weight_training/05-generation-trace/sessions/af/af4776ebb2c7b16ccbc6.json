@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af4776ebb2c7b16ccbc6",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "reviewer / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_3.md",
+    "occurrence": 1,
+    "bytes": 4053,
+    "sha256": "4c565ea82e7bb7596d26e9877323519050d48a88730f5eb66e394f6142342ed2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-14T06:52:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 westd-47453，4 卡全部可用（cuda:0/1/2/3），无 GPU 白名单约束（constraints.yaml 为空）\n- Detector gate 原始定义（D004: AUC≥0.95, ECE≤0.05）已被 D007/D008 pivot 事实覆盖——TF-IDF AUC=0.939 是有意设计，但 D004 gate 阈值**未正式更新**。我已向 Director 提 warning，建议补 addendum。在 Director 回复前，不要以\"未通过 gate\"为由阻断实验\n- Adaptive 实验用的数据是 `data/scored_data.jsonl`（含 q-score），uniform 用的是 `data/mixed_data.jsonl`（无 q-score）。两者底层数据相同（371499 docs），但文件不同，别搞混\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453(root)，工作目录 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不用 venv）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 数据：`data/mixed_data.jsonl`（371K docs）、`data/scored_data.jsonl`（含 TF-IDF q-score）、`data/synthetic/shard_{0-3}/`\n- 检测器输出：`output/detector_tfidf/`（含 calibration_results.json）\n- 训练输出：`output/models/{uniform,grid_b,adaptive}_seed*/`\n- 日志：`~/runs/provenance_weight_training/*.log`\n- 活跃进程（截至 handoff）：\n  - PID 50134: grid_b_seed42_batch, cuda:0, tmux, 6 个 b 值串行（~82% 完成第 1/6 个 b=0.5）\n  - PID 58888: adaptive_seed42, cuda:1, tmux\n  - PID 58978: adaptive_seed123, cuda:2, tmux\n  - PID 59058: adaptive_seed456, cuda:3, tmux\n- 无 W&B 配置（不检查 W&B）\n\n### 3. 📊 当前状态\n我刚完成两轮审查：\n1. watchdog worker 提交 adaptive ×3 seeds 后的状态核实——确认 uniform 3 seeds 已完成（EXIT_CODE=0），adaptive 正常启动，无 GPU 冲突\n2. Director 请求的论文 framing 支撑力度评估——4 个问题全部回复（详见 reviewer_post_to_director 记录）\n\nRegistry 状态（已由 Agent 修复）：\n- uniform_seed42/123/456: DONE, train_loss 7.310/7.312/7.289\n- adaptive_seed42/123/456: RUNNING, 各约 1% 进度，ETA ~06:15 UTC\n- grid_b_seed42_batch: RUNNING, 第 1/6 个 b 值 82%，总 ETA ~21:30 UTC May 14\n- detector_tfidf_lr: DONE, AUC=0.939, ECE=0.048\n- grid-b seeds 123/456 尚未创建\n\n### 4. 📋 待办\n- adaptive ×3 完成（~06:15 UTC）→ 核实 train_loss、检查 b* 分布统计（均值/std/时序趋势）、与 uniform 比较是否有 loss 改善\n- grid_b_seed42 全 6 值完成（~21:30 UTC）→ 核实 6 个 b 值的 loss 曲线、找 best-b、与 adaptive 对比（MVP pass criteria: adaptive ≥ 90% of grid-best improvement）\n- grid-b seeds 123/456 提交后 → 核实 GPU 分配正确（应在 adaptive 腾出的 GPU 上）\n- MVP 全部数据就绪 → 按 D004 kill criteria 判定 PASS/FAIL，独立出审查报告\n- 如果 Director 回复 framing 评估 → 无需额外行动（已提交完整分析）\n\n### 5. 🎯 战略上下文\n- 决策链：D001(AAAI) → D003(改主攻 EMNLP May 25) → D002(MVP 设计) → D004(Reviewer 补全 3seeds/gate/kill) → D005-D008(detector 极化 → TF-IDF pivot)\n- **核心假设**：adaptive b*（从 α_eff 理论推导）无需 grid search 即可匹配 grid-b 最优。MVP pass 条件：adaptive 均值 ≥ 90% grid-best perplexity 改善量（跨 3 seeds）\n- **最易判断错的事**：grid-b 是 6 个完整训练串行跑，不是 1 个训练跑 6 步。单 seed 需 ~22h。Grid-b 是 MVP 时间瓶颈，不是 adaptive\n- **容易踩的坑**：\n  - Registry 状态可能再次滞后（Agent 上次也没及时更新），别只看 registry，直接 ssh_read_only 查 `/tmp/agent-ml-exit/*.exit` 和 `ps -p PID`\n  - Framing 建议中我推荐了 narrative (a)（理论启发的 adaptive 替代 grid search），Director 可能已采纳并传达给 Agent，别和这个方向冲突\n  - Uniform 的 `weighting/mean_q: 0.0` 不是 bug——uniform method 不加载 q-score，所以 mean_q 记为 0\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-copy-3.md"
+}

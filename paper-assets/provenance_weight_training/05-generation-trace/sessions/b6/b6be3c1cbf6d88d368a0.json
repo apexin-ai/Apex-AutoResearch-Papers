@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6be3c1cbf6d88d368a0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose adaptive tau08 scratch seed42",
+  "task_key": "worker_diagnose_adaptive_tau08_scratch_seed42_20260521T012015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_adaptive_tau08_scratch_seed42_20260521T012015_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "31fc348cfb50e699235f354bc139519c9978570c0f83c0b02b9601da5a3b1be4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 memory.md。总结：\n\n**训练进度**：step 4000/6103（65.5%，~131M/200M tokens）。日志尾部 `5974/8477` 是 eval 循环，非训练步。\n\n**根因**：每次 eval 耗时 43 分钟，7 次完整 eval 占总时间 42%（~5h），导致 13h 墙钟时间触发 timeout。\n\n**Checkpoint**：`checkpoint-3500` 完整可用（含 model.safetensors 1.1GB + trainer_state.json）。\n\n**Eval 趋势**：eval_loss 从 3.128→3.040 持续下降，正常。\n\n**Resume 方案**：\n- 从 checkpoint-3500 恢复，剩余 2603 步\n- 如保持 eval 每 500 步：需 ~5.2h，timeout 设 8h\n- 如改为 eval 每 1000 步：需 ~3.2h，节省 ~2h eval 时间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-adaptive-tau08-scratch-seed42.md"
+}

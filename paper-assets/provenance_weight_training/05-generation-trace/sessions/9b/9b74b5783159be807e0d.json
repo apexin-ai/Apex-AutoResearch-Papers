@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b74b5783159be807e0d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra kill gpu0 orphans",
+  "task_key": "worker_infra_kill-gpu0-orphans_20260516T033234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-gpu0-orphans_20260516T033234_result.json",
+    "occurrence": 1,
+    "bytes": 162,
+    "sha256": "126074e3619c6bbfa95bde839a5f264c9252847d683d55b61c78897844c076d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 288572 和 288966 已不在 GPU 进程列表中，显存已释放。当前 4 个 GPU 进程各占 ~46GB，应为 tau07 训练的正常占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-gpu0-orphans.md"
+}

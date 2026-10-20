@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97143ad22bdc0dbfd16a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix 30476 env r4",
+  "task_key": "worker_fix_30476_env_r4_20260517T114406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_30476_env_r4_20260517T114406_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "b14c6e4fb8b1baa8931e2dfac64dc4e8a759d0150c07b79a3f59c53cc010e9a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n---\n\n## 修复结果\n\n### 1. 进程 Kill\n4 个进程 (10035, 10119, 10209, 10727) 及其 python 子进程 (10047, 10131, 10221, 10755) 全部已终止。\n\n### 2. Transformers 版本\n确认降级成功：`transformers==4.57.6`\n\n### 3. 脚本修改\n修改了 1 个文件：\n- `/root/provenance_weight_training/scripts/run_rho02_adaptive_tau09_seed42.sh` — 在 `set -e` 前添加了 `set -o pipefail`\n\n其余脚本不含 `| tee`，无需修改。\n\n### 4. Output 目录\n已清空 4 个失败 output 目录（都只有 config.json + step_metrics.jsonl + 至多 1 个 checkpoint-500）：\n- `bs8_auto_nmin_seed42/`\n- `batch_adaptive_tau_rho06_seed42/`\n- `rho02_adaptive_tau09_seed42/`\n- `random_reweight_seed123/`\n\n### 5. GPU 状态\n4 × NVIDIA RTX PRO 6000 Blackwell (98GB)，全部空闲，0MiB 占用，无运行进程。可以重新提交实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-30476-env-r4.md"
+}

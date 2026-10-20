@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c2522be63d7d75e6386",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code next batch prep",
+  "task_key": "worker_code_next_batch_prep_20260515T192642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_next_batch_prep_20260515T192642_result.json",
+    "occurrence": 1,
+    "bytes": 817,
+    "sha256": "56c3fc31100b40e2f8595e49170409d579373e50cf023cfb5cd72c9a8f67ed35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部语法检查通过。总结：\n\n### 任务 1: grid_b_low seed42\n\n`run_grid_b_low_seed42_v2.sh` 已就绪。与旧版差异：\n- 补了 `--tau 0.8`、`--eval_steps 500`、`export HF_HOME`\n- 每个 b 值训练后自动跑 holdout perplexity eval（结果存 `output/eval/`）\n- 使用 loop 结构更简洁\n\n### 任务 2: ρ=0.6 数据\n\n`--contamination_ratio` 是纯元数据，不影响采样。需要重新混合数据。\n\n已创建：\n- `scripts/prepare_rho06_data.py` — 从 164,889 human + 采样 247,334 synthetic 合成 ρ=0.6 数据，用 TF-IDF detector 评分\n- `scripts/run_prepare_rho06.sh` — 启动器（CPU only，可立即运行）\n- 输出：`data/scored_data_rho06.jsonl`\n\n### README\n\n`output/next_batch_prep.md` 记录了所有启动步骤和参数说明。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-next-batch-prep.md"
+}

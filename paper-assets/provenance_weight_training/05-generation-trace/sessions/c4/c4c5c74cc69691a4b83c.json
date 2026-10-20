@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4c5c74cc69691a4b83c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "data verify contamination 60",
+  "task_key": "worker_data-verify_contamination_60_20260515T201036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data-verify_contamination_60_20260515T201036_result.json",
+    "occurrence": 1,
+    "bytes": 1702,
+    "sha256": "fab9381b47bc6c77a45f1ae49a34fd70d9aceda61ce42029b1878efa37aaa4af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇总\n\n### 1. 数据验证报告\n\n| 指标 | 值 | 预期 | 状态 |\n|------|-----|------|------|\n| 文件 | `scored_data_60.jsonl` (907MB) | ~907MB | OK |\n| 行数 | 371,499 | 371,499 | OK |\n| synthetic/human | 222,900 / 148,599 | ρ=0.6 | OK |\n| JSON 格式 | 7 字段 (text/depth/source_model/prompt_tokens/generated_tokens/decoding/q_score) | — | OK |\n| q_score mean | 0.6243 | — | OK |\n| q_score median | 0.7753 | — | OK |\n| q_score std | 0.3703 | — | OK |\n\n符号链接 `scored_data_rho06.jsonl → scored_data_60.jsonl` 已建立。\n\n### 2. contamination_60_seed42 训练命令\n\n与 adaptive_fix_seed42 仅 2 处差异：`--data_path` 和 `--contamination_ratio`。\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py \\\n  --data_path data/scored_data_60.jsonl \\\n  --output_dir output/models/contamination_60_seed42 \\\n  --model_name models/Qwen/Qwen3-0.6B \\\n  --weighting_method adaptive \\\n  --contamination_ratio 0.6 \\\n  --num_train_tokens 200000000 \\\n  --batch_size 4 \\\n  --gradient_accumulation_steps 4 \\\n  --learning_rate 5e-5 \\\n  --max_length 2048 \\\n  --seed 42 \\\n  --save_steps 500 \\\n  --logging_steps 10 \\\n  --bf16 \\\n  --save_total_limit 3 \\\n  --save_only_model \\\n  --tau 0.8 \\\n  --n_min 2\"\n```\n\n脚本默认 `tau=0.8`, `n_min=max(2, batch_size//2)=2`，此处显式指定保证可复现。\n\n### 3. Registry\n\n实验 `contamination_60_seed42` 已注册为 QUEUED，parent=`adaptive_fix_seed42`，数据验证结果已写入 notes。可直接提交训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-verify-contamination-60.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88ba17102a8624a44425",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "paper method",
+  "task_key": "worker_paper_method_20260515T233706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method_20260515T233706_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "ae96ececca0bb8f5d8b3e91fb5040910a7fd1be54107a83afd937e68d1e7c232"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 已保存至 `method.tex`（v3，provenance coverage 17/18）。\n\n内容结构：\n- **3.1 Problem Setup** — 语料定义、w=(1-q)^b 加权、与 Drayson grid search 的对比\n- **3.2 Dual-Constraint Framework** — α_eff 和 ESS 定义、Proposition 1（单调性 + proof sketch）、双约束 + 最小干预准则 b*\n- **3.3 Adaptive Exponent Selection** — Algorithm 1 伪代码（bisection-based）、三种 regime 详解（含实证统计：50% clean / 20% α-binding / 30% ESS-binding）、loss reweighting 公式、log-space 数值稳定性、复杂度分析\n- **3.4 Hyperparameter Selection** — τ=0.8 默认值（[0.5,0.8] safe range，asymmetric sensitivity）、n_min=2 默认值（与 batch size 交互）\n\n算法描述忠实于 `weighting/alpha_eff.py` 中 `find_optimal_b` 的逻辑：先检查 clean batch → bisection 求 b_τ 和 b_ESS → 比较确定 regime。论文呈现为 bisection（代码用 grid+bisection refinement，等价但更 robust）。10 个 provenance claims 已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method.md"
+}

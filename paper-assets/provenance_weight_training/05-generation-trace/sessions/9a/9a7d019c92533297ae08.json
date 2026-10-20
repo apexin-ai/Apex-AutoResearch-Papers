@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a7d019c92533297ae08",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix cuda3 duplicate eval",
+  "task_key": "worker_fix_cuda3_duplicate_eval_20260520T214229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cuda3_duplicate_eval_20260520T214229_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "4ea7c43dbe02a5a35b2ebc293da5fbd213232392039ce8ac4c3135fdb2ea5c97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇总：\n\n## 清理完成\n\n| 操作 | 状态 |\n|------|------|\n| Kill 重复进程 531852 → 537137 | ✅ 已终止 |\n| 保留进程 530955 → 535166 | ✅ 运行中（Wiki eval） |\n| cuda:0/1/2 | ✅ 未触碰 |\n\n## adaptive_1_7b_seed456 Eval 结果\n\n| 指标 | 值 | 状态 |\n|------|------|------|\n| Holdout PPL | **13.267** | ✅ 完成 |\n| OWT PPL | **13.292** | ✅ 完成 |\n| Wikipedia PPL | — | ⏳ 进行中（PID 535166，已跑 ~16 min） |\n| Downstream 5-task | — | ⏳ 待 Wiki 完成后由 530955 脚本继续执行 |\n\nWiki eval 和 downstream 任务由保留的 `/tmp/run_eval_seed456.sh`（530955）自动串行执行，无需手动干预。需要我轮询等结果出来吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cuda3-duplicate-eval.md"
+}

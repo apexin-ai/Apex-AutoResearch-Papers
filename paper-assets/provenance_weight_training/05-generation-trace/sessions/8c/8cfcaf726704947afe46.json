@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cfcaf726704947afe46",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check rho03 gpu health",
+  "task_key": "worker_check_rho03_gpu_health_20260522T211232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_rho03_gpu_health_20260522T211232_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "598b9c086a3f0616eb98b1790f66ead4a5c5b983cda27ed8a95b635b441401b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 健康检查结果\n\n### PID 存活状态\n全部 4 个进程 **存活**：\n\n| PID | 运行时长 |\n|-----|---------|\n| 805034 | 2h16m16s |\n| 805117 | 2h16m14s |\n| 805886 | 2h13m51s |\n| 805963 | 2h13m48s |\n\n### GPU 利用率与显存\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| GPU 0 | 100% | 28697 / 97887 MiB (29.3%) |\n| GPU 1 | 96% | 28697 / 97887 MiB (29.3%) |\n| GPU 2 | 86% | 28729 / 97887 MiB (29.3%) |\n| GPU 3 | 99% | 28729 / 97887 MiB (29.3%) |\n\n### 训练进度\n\n| 实验 | 当前步数 | 进度 | 速度 | 已运行 | 预估剩余 |\n|------|---------|------|------|--------|---------|\n| rho03_adaptive_seed42 | 3117 / 6103 | **51.1%** | 2.64 s/it | 2h16m | ~2h12m |\n| rho03_adaptive_seed123 | 3067 / 6103 | **50.2%** | 2.65 s/it | 2h14m | ~2h14m |\n| rho03_uniform_seed42 | 3348 / 6103 | **54.9%** | 2.42 s/it | 2h16m | ~1h51m |\n| rho03_uniform_seed123 | 3287 / 6103 | **53.9%** | 2.42 s/it | 2h14m | ~1h53m |\n\n所有实验运行正常。uniform 比 adaptive 快约 8.5%（2.42 vs 2.64 s/it），uniform 两组预计约 ~1h52m 后完成，adaptive 两组预计约 ~2h13m 后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-rho03-gpu-health.md"
+}

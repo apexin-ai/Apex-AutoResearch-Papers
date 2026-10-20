@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1f695ad22966c35528",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval bs8 uniform seed456",
+  "task_key": "worker_eval_bs8_uniform_seed456_20260523T220145",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bs8_uniform_seed456_20260523T220145.log",
+    "occurrence": 1,
+    "bytes": 1926793,
+    "sha256": "90d5b53a1a6d09bf2dd7751a16241c7c213742b5ffddde674d88d5017f76ff04"
+  },
+  "statistics": {
+    "messages": 830,
+    "user_turns": 1,
+    "tool_calls": 355,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "assistant": 105,
+      "record": 1,
+      "tool_call": 355,
+      "tool_result": 355,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 316,
+      "chunks": [
+        {
+          "path": "9c1f695ad22966c35528-part-0001.json",
+          "message_count": 149
+        },
+        {
+          "path": "9c1f695ad22966c35528-part-0002.json",
+          "message_count": 167
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 514,
+      "chunks": [
+        {
+          "path": "9c1f695ad22966c35528-part-0002.json",
+          "message_count": 13
+        },
+        {
+          "path": "9c1f695ad22966c35528-part-0003.json",
+          "message_count": 156
+        },
+        {
+          "path": "9c1f695ad22966c35528-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "9c1f695ad22966c35528-part-0005.json",
+          "message_count": 165
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-bs8-uniform-seed456.md"
+}

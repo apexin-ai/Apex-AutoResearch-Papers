@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "821e833e08d966ce0f62",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "data check gen status",
+  "task_key": "worker_data_check-gen-status_20260513T190245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_check-gen-status_20260513T190245_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "7485146227d64f8f917c01df289d703b98d53f14a1c22c5b059fbf6bd673e183"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 状态：全部 Running\n\n| GPU | 利用率 | 显存 | 当前 tokens | 进度 | 速度 | ETA |\n|-----|--------|------|-------------|------|------|-----|\n| 0 | 89% | 16.5/97.9 GB | 644,949 / 33M | 2.0% | 3,322 tok/s | ~2h42m |\n| 1 | 88% | 16.5/97.9 GB | 644,565 / 33M | 2.0% | 3,300 tok/s | ~2h43m |\n| 2 | 91% | 16.5/97.9 GB | 644,949 / 33M | 2.0% | 3,318 tok/s | ~2h43m |\n| 3 | 90% | 16.5/97.9 GB | 644,949 / 33M | 2.0% | 3,313 tok/s | ~2h43m |\n\n### 汇总\n\n- **模型**：Qwen/Qwen3-0.6B，nucleus sampling (p=0.95, t=0.8)\n- **总 tokens**：~2,579,412 / 132,000,000 (**2.0%**)\n- **总文档数**：7,157 docs（4 shard 各 ~1,790）\n- **总吞吐**：~13,253 tok/s\n- **运行时间**：~3.5 分钟\n- **预估剩余**：~2h43m\n- **无失败**：4 个进程全部正常运行，无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-check-gen-status.md"
+}

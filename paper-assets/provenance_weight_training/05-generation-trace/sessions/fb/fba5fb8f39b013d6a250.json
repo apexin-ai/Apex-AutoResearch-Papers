@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fba5fb8f39b013d6a250",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_10_1778893743.md",
+  "task_key": "loop_10_1778893743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778893743.md",
+    "occurrence": 1,
+    "bytes": 5138,
+    "sha256": "599c6d432b6e6d8231bdfbb7566e55bbf1626ceb150048659988b337cff4fe36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-16T01:03:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0/1/2/3 @ westd-47453**，不得用其他设备\n- **GPU 预算极度紧张**：已消耗 ~154h，剩余 ~26h。contamination_60 三组跑完后仅剩 ~15h。任何新实验必须评估 GPU 时间消耗\n- `contamination_60_ess_only_seed42` 状态异常：registry 显示 RUNNING 但**无 server/gpu/pid/command**（不完整提交），需要修复或重新提交到 cuda:2\n- `grid_b0_2_seed42` 已被 Director 砍掉（D041 预算修正），虽然 status=PREPARING 但 conclusion=killed，不要重启\n- submit_training_job 的 command 必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`\n- **EMNLP 2026 ARR May 25 deadline**（9 天），所有工作服务于此\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-47453, 4× RTX 6000 Pro 96G\n- **工作目录**: `/root/provenance_weight_training`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **环境激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train\n- **数据**: `data/scored_data_60.jsonl`（371K 行, ρ=0.6, 907MB）; ρ=0.4 数据在同目录\n- **模型**: Qwen/Qwen3-0.6B（HF 下载，cache 位置未确认，可能在 /root/autodl-tmp/.hf_cache 或默认位置）\n- **活跃进程**:\n  - contamination_60_uniform_seed42: PID 250074, cuda:1, tmux session\n  - contamination_60_grid_b0_5_seed42: PID 255781, cuda:3, tmux session\n  - contamination_60_seed42_r2: PID 257977, cuda:0, tmux session\n  - contamination_60_ess_only_seed42: PID 265012 (cron 报告), cuda:2(?), 但 registry 无 server/gpu/pid\n- **Cron**: 4 个活跃 cron 对应上述 4 个 RUNNING 实验\n\n### 3. 📊 当前状态\n**刚做完**: Session 11 全面状态刷新，bs8_nmin2_seed42_r2 确认 NEGATIVE（PPL=17.73 > uniform 17.694），Claim 1 (dual > ESS-only) 3 seeds 全部验证完成，contamination_60 数据生成完成并提交三组 Claim 3 验证实验。Paper 初稿（introduction/method/conclusion）已在 artifacts/ 启动。\n\n**RUNNING 实验（Claim 3 验证，ETA ~02:00-03:00 UTC 5/16）**:\n| exp_id | GPU | 作用 |\n|--------|-----|------|\n| contamination_60_seed42_r2 | cuda:0 | ρ=0.6 adaptive (τ=0.8, n_min=2) |\n| contamination_60_uniform_seed42 | cuda:1 | ρ=0.6 uniform baseline |\n| contamination_60_ess_only_seed42 | cuda:2(?) | ρ=0.6 ESS-only baseline |\n| contamination_60_grid_b0_5_seed42 | cuda:3 | ρ=0.6 grid b=0.5 |\n\n**等待中**: 4 个 cron 回调（contamination_60 完成），无待处理的 Director 决策（cuda:2 分配之前在等指示，但现在 ess_only 已提交到 cuda:2）。\n\n**Registry 概览**: 59 实验（48 DONE, 4 RUNNING, 7 PREPARING）。成功 35 / 负向 3 / 失败 6。\n\n### 4. 📋 待办（条件触发式）\n- **contamination_60 四组全部完成** → 分析 ρ=0.6 结果：adaptive vs uniform vs grid vs ESS-only。若 adaptive ≤ uniform → Claim 3 成立（proportion-free）；若 adaptive > uniform → negative，走 red-section framing 提案\n- **contamination_60_ess_only_seed42 cron 报告 PID 265012 但 registry 无 spec** → 检查 tmux session 是否真在跑，若是则补 registry spec（server/gpu/pid/command），若不是则重新提交\n- **Claim 3 验证通过** → 立即推进 paper experiments section 写作 + 图表生成（τ sweep 图、b* 分布图、Table 1）\n- **grid_b0_1_seed42 / grid_b0_3_seed42（PREPARING）** → 等 contamination_60 完成后，若 GPU 预算允许（~15h），可提交。D041 要求先诊断 grid_b_low 4 次失败根因再重启\n- **detect_remove_baseline_seed42（PREPARING）** → 重要 reviewer 预防实验（\"why not just filter?\"），需 Director 批准 GPU 时间\n- **adaptive_v2_seed42/123/456（PREPARING）** → n_min fix 验证，优先级低于 Claim 3 和论文写作\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D023: Dual-constraint 框架（α_eff 下界 + ESS 上界 → min-intervention b*）\n- D036: τ=0.8 经验最优，safe range [0.5, 0.8]\n- D042: bs8_nmin2 negative 写入 n_min analysis（limitation, 不影响核心 claims）\n- Claim 1 ✅ (dual > ESS-only, 3 seeds), Claim 2 ✅ (adaptive ≈ grid, 3 seeds), Claim 3 🔄 (proportion-free, contamination_60 验证中)\n\n**易判断错的事**:\n- `contamination_60_ess_only_seed42` registry 不完整——cron 说 PID 265012 在跑，但 registry 缺关键字段。下一步必须先确认这个实验是否真的在正确运行，避免等一个实际没跑的实验\n- GPU 预算仅 ~15h（contamination_60 后），必须精选后续实验。grid_b_low 已连续失败 4 次（shell 变量/引号问题），D041 要求先诊断根因\n- Paper deadline 9 天——contamination_60 结果是最后一块关键拼图，拿到后应全力推论文而非开新实验\n- bs8_nmin2 negative 不影响核心 story（D042 已决策写入 limitation），不要因此动摇 framing\n- ESS-only 和 dual-constraint 的 b* 分布差异是核心论证点：ESS-only median ~1.59 vs adaptive ~0.87，不要混淆\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778893743.md"
+}

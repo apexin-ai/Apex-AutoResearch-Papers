@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e661cc6078b5641b28d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops check adaptive seed456 progress",
+  "task_key": "worker_ops_check_adaptive_seed456_progress_20260518T053116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_adaptive_seed456_progress_20260518T053116_result.json",
+    "occurrence": 1,
+    "bytes": 114,
+    "sha256": "a5025412368c496ec4444af6bd2b01c3dcabd3696d2526be00df18adb64068ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 ~4 分钟后自动回来检查。训练应该那时已完成，届时直接执行 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-adaptive-seed456-progress.md"
+}

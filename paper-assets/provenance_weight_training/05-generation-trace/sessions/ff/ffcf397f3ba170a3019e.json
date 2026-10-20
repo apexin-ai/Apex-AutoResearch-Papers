@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffcf397f3ba170a3019e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh diagnose 41312 env",
+  "task_key": "worker_ssh_diagnose_41312_env_20260517T183107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_41312_env_20260517T183107_result.json",
+    "occurrence": 1,
+    "bytes": 2063,
+    "sha256": "f121e2f7f8496ce24c94b08d30d4a9197421cc2429b99e05963785ab3f2ba327"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n---\n\n## 诊断报告：westd-41312\n\n### 结论：**不能启动新实验，4 张 GPU 全部在跑**\n\n---\n\n### 1. GPU 状态：全部占满\n\n| GPU | 显存占用 | 利用率 | 运行实验 |\n|-----|---------|--------|---------|\n| 0 | 46539/97887 MiB | 100% | qwen06b_uniform_seed42 |\n| 1 | 75023/97887 MiB | 76% | ess_only_seed456 |\n| 2 | 75023/97887 MiB | 100% | ess_only_seed123 |\n| 3 | 46539/97887 MiB | 100% | random_reweight_seed456 |\n\n### 2. Python 环境：正常\n- Python: `/root/miniconda3/bin/python` 3.12.3\n- transformers: **4.57.6**（有 tokenizer 弃用问题）\n\n### 3. tokenizer bug：**已修复**\n`pretrain_weighted.py` 第 101-105 行有兼容性处理，第 420 行已使用 `processing_class=tokenizer`。这不是之前失败的根因。\n\n### 4. 之前失败的 grid_b0_3_seed456：**实际已成功完成**\n日志末尾显示 `Training complete. Model saved to output/models/grid_b0_3_seed456/final`，EXIT_CODE=0。并非失败。\n\n### 5. 磁盘空间：充足\n- `/root/` = 30G，已用 9.3G，剩余 21G (31%)\n\n### 6. 模型/数据文件：存在\n- Qwen3-0.6B 模型文件完整\n- scored_data.jsonl 974MB 存在\n\n### 7. grid_b 相关脚本\n- `run_grid_b0_1_seed42.sh`\n- `run_grid_b0_2_seed42.sh`\n- `run_grid_b0_3_seed456.sh`\n- `run_grid_b_low_seed42.sh`\n- `submit_grid_b_seed456.sh`\n\n### 8. 当前 4 个活跃实验\n1. **ess_only_seed123** — GPU 2，已跑 ~3h\n2. **ess_only_seed456** — GPU 1，已跑 ~3h\n3. **random_reweight_seed456** — GPU 3，启动于 02:14（~17min）\n4. **qwen06b_uniform_seed42** — GPU 0，启动于 02:17（~14min）\n\n---\n\n### 总结\n- **环境健康**，transformers tokenizer bug 已修复，磁盘充足，模型/数据就位\n- **无法启动新实验**：4 张 GPU 全部被现有训练占满\n- 需等当前实验完成（ess_only 两个接近完成，约 epoch 0.26/200M tokens；uniform 和 random_reweight 刚启动）\n- grid_b0_3_seed456 之前标记为\"被 kill\"但日志显示已正常完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-41312-env.md"
+}

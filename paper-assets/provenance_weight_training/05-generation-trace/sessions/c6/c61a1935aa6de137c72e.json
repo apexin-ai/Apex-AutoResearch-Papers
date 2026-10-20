@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c61a1935aa6de137c72e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra env setup sync",
+  "task_key": "worker_infra_env-setup-sync_20260513T174954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup-sync_20260513T174954_result.json",
+    "occurrence": 1,
+    "bytes": 1358,
+    "sha256": "1324588c92bd95cf13537520f3b12d5419fc19188278bfa5920ca4827bacf0ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 步完成。最终报告：\n\n---\n\n**服务器环境搭建完成 — westd-47453**\n\n| 项目 | 状态 |\n|------|------|\n| **GPU** | 4× NVIDIA RTX PRO 6000 Blackwell Server Edition (94GB each) |\n| **PyTorch** | 2.10.0+cu128, CUDA=True |\n| **transformers** | 4.57.6 |\n| **datasets** | 4.8.4 |\n| **accelerate** | 1.13.0 |\n| **lm_eval** | 0.4.11 |\n| **wandb** | 0.26.0 |\n\n| 模型 | 路径 | 参数量 |\n|------|------|--------|\n| **Qwen3-0.6B** | `/root/provenance_weight_training/models/Qwen/Qwen3-0.6B` | 596.0M |\n| **ModernBERT-base** | `/root/provenance_weight_training/models/modernbert/` (HF cache) | 149.6M |\n\n| 代码文件 | 大小 | 状态 |\n|----------|------|------|\n| `weighting/__init__.py` | 0B | OK |\n| `weighting/alpha_eff.py` | 6,863B | OK |\n| `data_generation/generate_synthetic.py` | 9,111B | OK |\n| `detector/train_detector.py` | 13,594B | OK |\n| `training/pretrain_weighted.py` | 14,685B | OK |\n| `evaluation/eval_pipeline.py` | 13,872B | OK |\n| `evaluation/compare_results.py` | 6,077B | OK |\n\n**alpha_eff 模块测试通过**: `find_optimal_b([0.1,0.3,0.8,0.9,0.2], tau=0.9, n_min=2)` → b*=7.88, alpha_eff=0.856, ESS=2.0\n\n**注意**: ModernBERT 加载需要 `TORCHDYNAMO_DISABLE=1`（torch 2.10.0 的 `torch.compile` 兼容性问题），离线加载需要 `HF_HUB_OFFLINE=1`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-sync.md"
+}

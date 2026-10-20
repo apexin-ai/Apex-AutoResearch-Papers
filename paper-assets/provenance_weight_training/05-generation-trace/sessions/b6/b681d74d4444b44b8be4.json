@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b681d74d4444b44b8be4",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "analysis detect remove q05 v2 seed123",
+  "task_key": "worker_analysis_detect_remove_q05_v2_seed123_20260521T232156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detect_remove_q05_v2_seed123_20260521T232156.log",
+    "occurrence": 1,
+    "bytes": 1027325,
+    "sha256": "8157d838d8b416854d02071a2ccb04b89d2cad595f546778deccb7f7c95f1d18"
+  },
+  "statistics": {
+    "messages": 774,
+    "user_turns": 0,
+    "tool_calls": 327,
+    "roles": {
+      "log": 1,
+      "system": 41,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 327,
+      "tool_result": 327,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 774,
+      "chunks": [
+        {
+          "path": "b681d74d4444b44b8be4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b681d74d4444b44b8be4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b681d74d4444b44b8be4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b681d74d4444b44b8be4-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b681d74d4444b44b8be4-part-0005.json",
+          "message_count": 54
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-detect-remove-q05-v2-seed123.md"
+}

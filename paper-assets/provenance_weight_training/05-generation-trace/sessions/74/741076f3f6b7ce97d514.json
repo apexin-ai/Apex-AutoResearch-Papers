@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "741076f3f6b7ce97d514",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis table1 aggregation",
+  "task_key": "worker_analysis_table1_aggregation_20260515T123940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_table1_aggregation_20260515T123940_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "3bedab18e568662f1932266daeb6836363014fea4689210f0d691bb86ebf34b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 artifact 已生成并注册：\n\n**`table1_data.md`** — 核心结果：\n| Method | Mean PPL | ΔPPL | Δ% |\n|--------|----------|------|-----|\n| Uniform | 17.693 ± 0.006 | — | — |\n| Grid b=0.5 | 17.646 ± 0.007 | −0.047 | −0.3% |\n| Grid b=1.0 | 17.682 ± 0.009 | −0.011 | −0.1% |\n| Grid b=1.5 | 17.710 ± 0.009 | +0.016 | +0.1% |\n| Grid b=2.0 | 17.733 ± 0.011 | +0.040 | +0.2% |\n| Grid b=3.0 | 17.767 ± 0.010 | +0.074 | +0.4% |\n| Grid b=5.0 | 17.811 ± 0.010 | +0.118 | +0.7% |\n| Adaptive (n_min=3) | 17.653 ± 0.032 | −0.040 | −0.2% |\n| Adaptive-fix (n_min=2) | 17.651 ± 0.009 | −0.042 | −0.2% |\n\n- b=2.0/3.0/5.0 只用 2 seeds（seed456 invalidated, D026）\n- ΔPPL 符号：负=优于 uniform\n\n**`experiment_status_summary.md`** — 39 实验，22 success，~96.7 GPU hours（已完成部分）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-table1-aggregation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b30bb9c7e591585cd53d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval westd30476 cuda2 downstream ood queue",
+  "task_key": "worker_eval_westd30476_cuda2_downstream_ood_queue_20260520T050332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd30476_cuda2_downstream_ood_queue_20260520T050332_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "f055172df6e2c3c75f69a643b1e2374b5e0a06a08ec4251d01876d93fe63b8a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个 downstream eval 已在 westd-30476 cuda:2 上串行启动（PID 198200）。OOD 数据不存在，OOD eval 全部跳过。\n\n当前状态：\n- 脚本 `/tmp/run_all_evals.sh` 串行跑 6 个 checkpoint\n- 日志在 `/tmp/eval_all.log`\n- 第一个 `detect_remove_q03_seed123` 正在运行\n- 约 4.5 分钟后自动回来查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd30476-cuda2-downstream-ood-queue.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a18d01c3f9421f3f8850",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra gen progress 30min",
+  "task_key": "worker_infra_gen-progress-30min_20260513T190752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gen-progress-30min_20260513T190752_result.json",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "ac2d61621f8064853667c5dd31db35a30dd4c4744e4789a50c861a6f52c8cd0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设定 30 分钟后（19:39）自动唤醒检查生成进度。届时会依次检查进程状态、GENERATION_DONE 标志、进度统计，并报告结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gen-progress-30min.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e09526a806dc6b76877c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "research tau sensitivity literature",
+  "task_key": "worker_research_tau_sensitivity_literature_20260515T170239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_tau_sensitivity_literature_20260515T170239_result.json",
+    "occurrence": 1,
+    "bytes": 960,
+    "sha256": "34e153b9286bb7158255eca0d9cd4c50fcd5a0931cbcd51057089b5d2a909eae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 artifacts 目录。报告完成。\n\n**核心结果：**\n\n四个方向共筛选 14 篇最相关论文，覆盖 IS clipping (4篇)、α-divergence (3篇)、ESS constraint (3篇)、LLM data quality threshold (3篇) + 1篇 ESS 理论批评。\n\n**综合结论：文献 strongly 支持 Claim 3。** 关键支撑逻辑：\n1. **Sweet spot 普遍存在** — FineWeb-Edu 阈值 2-3 均 work、RGD τ=1 跨任务稳定\n2. **自适应优于固定** — 我们的 adaptive b* 不依赖固定 clipping，τ 只是优化边界\n3. **Dual constraint 降低敏感性** — ESS 约束充当二级保护，类似 Birrell et al. 的正则化降低 α 敏感性\n4. **质量-多样性 trade-off** — QuRating/FineWeb-Edu 证实过高阈值破坏覆盖，过低则质量不足\n\n报告路径：`artifacts/literature_tau_sensitivity.md`，包含每篇论文的 key finding、与我们工作的联系、推荐引用列表和 framing 段落。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-tau-sensitivity-literature.md"
+}

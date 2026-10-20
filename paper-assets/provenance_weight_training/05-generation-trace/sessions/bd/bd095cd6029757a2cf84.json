@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd095cd6029757a2cf84",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_14_1779016764.md",
+  "task_key": "loop_14_1779016764",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1779016764.md",
+    "occurrence": 1,
+    "bytes": 4855,
+    "sha256": "a68bbd3bb037b542a67f7c5f14d7e97172ba0d8cb17b96374531bf64fe62d1cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T18:58:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-47453 GPU 白名单: cuda:0/1/2/3；westd-41312 GPU 白名单: cuda:0/1/2/3。两台各 4 张 RTX PRO 6000 96G，不得使用其他服务器/GPU\n- **禁止传 --use_wandb / --wandb_project / --wandb_run_name**。必须 WANDB_MODE=disabled（不是 offline）。offline 模式写满根分区已导致 3 次失败\n- output_dir / checkpoint 必须写 `/root/autodl-tmp/output/models/`，根分区仅 30GB\n- CUDA_VISIBLE_DEVICES 三级规则：code_prep 写 -1 → submit 前改真实 GPU → 提交前 grep 确认非 -1\n- 投稿目标 EMNLP 2026 ARR May 25（**还剩 9 天**）\n\n### 2. 🖥️ 基础设施快照\n- **westd-47453**: aml-train 镜像, conda base (`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`)\n  - 工作目录: `/root/autodl-tmp/provenance_weight_training/`\n  - 模型: `/root/autodl-tmp/.hf_cache/` (GPT-2 small + Llama-3.2-3B via unsloth)\n  - 数据: ρ=0.4 数据 371K 行; ρ=0.2 数据 ~206K 行; ρ=0.6 数据已有\n  - 活跃进程: rho02_uniform(PID 316980, cuda:1), threshold_q03(PID 325196, cuda:3), batch_adaptive_tau_rho04(PID 326274, cuda:2), threshold_q07_resume(PID 324550, cuda:0 — **疑似已死，cron 报 process gone**)\n- **westd-41312**: aml-train 镜像, conda base, PyTorch 2.10+cu128\n  - 工作目录同上结构\n  - 活跃进程: llama3b_uniform(PID 3112, cuda:0), llama3b_adaptive(PID 4005, cuda:1), hybrid_rho04(PID 3656, cuda:2), hybrid_rho06(PID 3727, cuda:3)\n- **Cron 监控**: 8 个实验均有 cron 注册\n\n### 3. 📊 当前状态\n**刚完成**: D056 数据修正（paper_framing.md 5 处旧数据更新）、论文 Patch 3 轮、b* 轨迹/binding rate 分析\n\n**RUNNING (8 GPU 满载)**:\n| 实验 | 服务器 | GPU | 目的 |\n|------|--------|-----|------|\n| rho02_uniform_seed42 | 47453 | 0→1 | ρ=0.2 基线 (Claim 3 验证) |\n| threshold_q07_seed42 (resume) | 47453 | cuda:0 | ⚠️ **可能已死** — cron miss 1/5 |\n| batch_adaptive_tau_rho04_seed42 | 47453 | cuda:2 | 方案 B ρ=0.4 |\n| threshold_q03_seed42 | 47453 | cuda:3 | 阈值 q>0.3 |\n| llama3b_uniform_seed42 | 41312 | cuda:0 | 跨模型基线 |\n| llama3b_adaptive_seed42 | 41312 | cuda:1 | 跨模型验证 |\n| hybrid_rho04_seed42 | 41312 | cuda:2 | 方案 C ρ=0.4 |\n| hybrid_rho06_seed42 | 41312 | cuda:3 | 方案 C ρ=0.6 |\n\n**⚠️ 关键告警**: threshold_q07_seed42 的 resume 进程疑似已死（cron \"Process gone, no sentinel, no W&B\" miss 1/5）。需 SSH 确认后决定：重启 or 标记失败并释放 cuda:0 给 random_reweight_v2。\n\n**等待中**: 无活跃 Worker 回调。6 个实验排队（PREPARING/QUEUED）。\n\n### 4. 📋 待办（条件触发式）\n- threshold_q07 确认死亡 → 标 DONE(failed) → **立即** spawn Worker 在 47453 cuda:0 跑 random_reweight_v2（致命缺口：detector signal load-bearing?）\n- rho02_uniform 完成 → cuda:1 给 rho02_adaptive_tau09（Claim 3 第三验证点）\n- batch_adaptive_tau_rho04 完成 → cuda:2 给 batch_adaptive_tau_rho06（方案 B ρ=0.6，最高期望值）\n- threshold_q03 完成 → cuda:3 给 bs8_auto_nmin（方案 A 验证）\n- llama3b_uniform + llama3b_adaptive 都完成 → 对比分析跨模型 generalization → 更新 paper\n- hybrid_rho04 + hybrid_rho06 完成 → post-hoc eval + registry → 对比 batch_adaptive_tau 方案\n- 所有 8 实验完成 → Paper 统一 Patch（数据 + figures + tables）→ 送 Reviewer 终审\n\n### 5. 🎯 战略上下文\n**核心结论**: Dual-constrained adaptive b*（α_eff 下界 + ESS 上界）显著优于 ESS-only 和 uniform。Adaptive ≈ grid-best 但零 validation cost。3 Claims 结构：(1) dual > ESS-only, (2) adaptive ≈ grid, (3) proportion-agnostic in practice。\n\n**决策链**: D051 detect_remove PPL=17.29 大幅优于 adaptive → 启动 threshold sensitivity 证明硬过滤需精确校准 → D054 接受 Reviewer \"focused empirical study\" 叙事 → D055 random_reweight 升优先（致命缺口）→ D056 数据修正完成。\n\n**最容易判断错的事**:\n1. threshold_q07 已经 resume 过一次（首次 OOM 在 step 2235/6103），当前 resume 疑似再次死亡。**不要第三次重启**——如果 checkpoint-2000 后仍然 OOM，考虑降 batch_size 或标记失败释放 GPU 给更高优先级的 random_reweight_v2\n2. llama3b 实验 lr=5e-5 可能偏高（Director 已标注⚠️），如果 loss 发散不要慌——这是已知风险\n3. detect_remove PPL=17.29 不是叙事威胁——它证明\"硬过滤强但需精确校准\"，threshold sensitivity 实验（q03/q07）是为此服务的\n4. random_reweight_v2 是**致命缺口**（证明 detector signal load-bearing），必须在投稿前完成\n5. Claim 3 只有 2 个 ρ 点（0.4 + 0.6），rho02 系列是第三验证点，降级为 \"Supporting\" 强度\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1779016764.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bbd64749a067bbe5212",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops uniform to adaptive handoff",
+  "task_key": "worker_ops_uniform-to-adaptive-handoff_20260514T022622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_uniform-to-adaptive-handoff_20260514T022622_result.json",
+    "occurrence": 1,
+    "bytes": 148,
+    "sha256": "26a4ed5ef8167cb2195a6c5a25afb2435a54bcf71e5f6e4cb5412773a39571f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 uniform 全部仍在运行（~3h03min），60 秒后再次检查。任何 PID 消失将立即提交对应的 adaptive 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-uniform-to-adaptive-handoff.md"
+}

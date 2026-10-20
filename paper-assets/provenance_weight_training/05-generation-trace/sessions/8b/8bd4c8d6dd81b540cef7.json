@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bd4c8d6dd81b540cef7",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval q01 epoch matched result",
+  "task_key": "worker_eval_q01_epoch_matched_result_20260519T003103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_q01_epoch_matched_result_20260519T003103_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "63d208ec0e48ecfe50aa8c227d701f803006db77fc042b0daf2c1617f7222dfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| 指标 | 值 |\n|------|-----|\n| **eval_loss_holdout** | 2.8928 |\n| **eval_ppl_holdout** | **18.0436** |\n| num_tokens | 4,077,068 |\n| elapsed | 190.5s |\n\nPPL 18.04，略高于预期范围（17.65–17.85）。q01 是最激进的过滤阈值，epoch-matched 下训练数据最少，PPL 偏高符合预期方向，但比预估高了约 0.2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-q01-epoch-matched-result.md"
+}

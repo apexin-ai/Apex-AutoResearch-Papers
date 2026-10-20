@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0f7883c8f77bac2cdde",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh prepare batchsize16 41312",
+  "task_key": "worker_ssh_prepare_batchsize16_41312_20260517T111722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare_batchsize16_41312_20260517T111722_result.json",
+    "occurrence": 1,
+    "bytes": 502,
+    "sha256": "0a2ed732e6d9abe90baf49423e4483d1c33b3ace6b4ce4ee00fd432fbbfe3812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "参数全部合法。脚本已就绪。\n\n**脚本路径**: `/root/provenance_weight_training/scripts/run_batchsize16_nmin8_r2.sh`\n\n**与原 batchsize16_nmin8_seed42 的关键差异**:\n- 移除 `--eval_steps 500` 和 `--eval_data_path data/human/eval_holdout.jsonl`（M003 硬约束）\n- `--output_dir` 改为 `/root/autodl-tmp/output/models/batchsize16_nmin8_r2`\n- `--wandb_run_name` 改为 `batchsize16_nmin8_r2`\n- 新增 `--gradient_checkpointing`\n- 无 `CUDA_VISIBLE_DEVICES`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-batchsize16-41312.md"
+}

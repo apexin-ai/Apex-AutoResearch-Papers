@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4106ea817fb6525c097",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code prepare grid b seed456 batch",
+  "task_key": "worker_code_prepare_grid_b_seed456_batch_20260514T171600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_grid_b_seed456_batch_20260514T171600_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "b9165bdedc35b9e275f5e6cb69ceb92569cd0a0b9404df8265fff2bd9e29facb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过语法检查。\n\n**`/root/provenance_weight_training/run_grid_b_seed456.sh`** 已就绪：\n\n- 6 个 b 值 (0.5, 1.0, 1.5, 2.0, 3.0, 5.0) 串行训练，seed=456\n- 相比原 seed42 脚本的修改：\n  - seed 42 → 456，所有目录/日志名同步更新\n  - **新增** `--eval_data_path data/human/eval_holdout.jsonl`（原脚本缺失）\n  - **新增** `--bf16`\n  - **新增** `WANDB_MODE=disabled`\n  - `save_total_limit` 2 → 3\n- 语法验证通过，输出目录无冲突，脚本已设为可执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-grid-b-seed456-batch.md"
+}

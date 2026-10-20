@@ -1,0 +1,573 @@
+{
+  "schema_version": "1.0",
+  "id": "8469c1ce374617f71c11",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "ops eval random seed42 and collect grid b0 3",
+  "task_key": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009.jsonl",
+    "occurrence": 1,
+    "bytes": 18669,
+    "sha256": "93c859ceabc469004f4405ef74578f144498f1993a183d4b7688bc35ed9a303b"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "tool_call": 13,
+      "tool_result": 13,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T09:01:11.881567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T09:01:11.881972+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T09:01:11.882172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "ls -la /root/autodl-tmp/output/models/contamination_60_random_seed42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T09:01:11.882312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "tmux capture-pane -t eval_grid_final -p | tail -40",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T09:01:11.882461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 14780\\\\ndrwxr-xr-x  6 root root    4096 May 18 17:00 .\\\\ndrwxr-xr-x 22 root root    4096 May 18 16:55 ..\\\\ndrwxr-xr-x  2 root root    4096 May 18 16:05 checkpoint-5500\\\\ndrwxr-xr-x  2 root root    4096 May 18 16:23 checkpoint-6000\\\\ndrwxr-xr-x  2 root root    4096 May 18 16:26 checkpoint-6103\\\\n-rw-r--r--  1 root root     329 May 18 13:28 config.json\\\\n-rw-r--r--  1 root root     266 May 18 17:00 eval_holdout_final.json\\\\n-rw-r--r--  1 root root     436 May 18 16:57 eval_holdout_final.log\\\\ndrwxr-xr-x  2 root root    4096 May 18 16:26 final\\\\n-rw-r--r--  1 root root 5509000 May 18 16:26 step_metrics.jsonl\\\\n-rw-r--r--  1 root root 1742825 May 18 13:10 train.log\\\\n-rw-r--r--  1 root root 7832248 May 18 16:26 train_resume.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T09:01:11.882597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"can't find pane: eval_grid_final\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T09:01:11.882751+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "cat /root/autodl-tmp/output/models/contamination_60_random_seed42/eval_holdout_final.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T09:01:11.882895+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "ls -la /root/autodl-tmp/output/models/contamination_60_random_seed42/checkpoint-1000/",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T09:01:11.883028+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "ls -la /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T09:01:11.883170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"contamination_60_random_seed42/final\\\\\\\": {\\\\n    \\\\\\\"loss\\\\\\\": 2.8809805719218597,\\\\n    \\\\\\\"perplexity\\\\\\\": 17.831749922901988,\\\\n    \\\\\\\"num_tokens\\\\\\\": 4077068,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 215.9,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/output/models/contamination_60_random_seed42/final\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T09:01:11.883299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/output/models/contamination_60_random_seed42/checkpoint-1000/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T09:01:11.883429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12404\\\\ndrwxr-xr-x  6 root root    4096 May 18 16:58 .\\\\ndrwxr-xr-x 21 root root    4096 May 18 17:00 ..\\\\ndrwxr-xr-x  2 root root    4096 May 18 15:48 checkpoint-5500\\\\ndrwxr-xr-x  2 root root    4096 May 18 16:05 checkpoint-6000\\\\ndrwxr-xr-x  2 root root    4096 May 18 16:09 checkpoint-6103\\\\n-rw-r--r--  1 root root     326 May 18 13:28 config.json\\\\n-rw-r--r--  1 root root     449 May 18 16:58 eval_ckpt5500.log\\\\n-rw-r--r--  1 root root     271 May 18 16:59 eval_final.json\\\\n-rw-r--r--  1 root root    1664 May 18 16:59 eval_final.log\\\\ndrwxr-xr-x  2 root root    4096 May 18 16:09 final\\\\n-rw-r--r--  1 root root 5583351 May 18 16:09 step_metrics.jsonl\\\\n-rw-r--r--  1 root root 7071160 May 18 16:09 train_resume.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T09:01:11.883586+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-30476",
+              "command": "cat /root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/eval_final.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T09:01:11.883719+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"contamination_60_grid_b0_3_seed42/final\\\\\\\": {\\\\n    \\\\\\\"loss\\\\\\\": 2.869828446387316,\\\\n    \\\\\\\"perplexity\\\\\\\": 17.633992765167708,\\\\n    \\\\\\\"num_tokens\\\\\\\": 4077068,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 121.6,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/final\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T09:01:11.883877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_random_seed42",
+              "field": "metrics",
+              "value": "{'eval_ppl_holdout': 17.832, 'eval_loss_holdout': 2.881, 'eval_holdout_tokens': 4077068, 'eval_method': 'eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16', 'note': 'resume from checkpoint-1000 with ~20% LR offset; checkpoint-1000 no longer available (cleaned up)'}"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T09:01:11.884054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_random_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T08:57:57.040Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:00:59.544Z\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/contamination_60_random_seed42/final\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/output/models/contamination_60_random_seed42/train_resume.log\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train_weighted.py --config configs/contamination_60_random_seed42.yaml (resumed from checkpoint-1000)\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"data_path\\\": \\\"data/human/train_contaminated_60.jsonl\\\", \\\"data_count\\\": 23176, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.832, \\\"eval_loss_holdout\\\": 2.881, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\\\", \\\"note\\\": \\\"resume from checkpoint-1000 with ~20% LR offset; checkpoint-1000 no longer available (cleaned up)\\\"}, \\\"hypothesis\\\": \\\"Random (uniform) weighting on 60% contaminated data serves as baseline; without provenance-aware reweighting, the model treats all data equally regardless of contamination level\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1019}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T09:01:11.884196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_grid_b0_3_seed42",
+              "field": "metrics",
+              "value": "{'eval_ppl_holdout': 17.634, 'eval_loss_holdout': 2.87, 'eval_holdout_tokens': 4077068, 'eval_method': 'eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16', 'checkpoint_1500_ppl': 18.583, 'note': 'resume from checkpoint-1500 with ~30% LR offset'}"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T09:01:11.884339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_grid_b0_3_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T09:01:00.909Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:01:00.909Z\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.634, \\\"eval_loss_holdout\\\": 2.87, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\\\", \\\"checkpoint_1500_ppl\\\": 18.583, \\\"note\\\": \\\"resume from checkpoint-1500 with ~30% LR offset\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0797}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T09:01:11.884494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_random_seed42",
+              "field": "conclusion",
+              "value": "success"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T09:01:11.884647+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_random_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T08:57:57.040Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:01:04.795Z\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/contamination_60_random_seed42/final\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/output/models/contamination_60_random_seed42/train_resume.log\\\", \\\"spec\\\": {\\\"command\\\": \\\"python train_weighted.py --config configs/contamination_60_random_seed42.yaml (resumed from checkpoint-1000)\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"data_path\\\": \\\"data/human/train_contaminated_60.jsonl\\\", \\\"data_count\\\": 23176, \\\"model_name\\\": \\\"Qwen/Qwen2.5-0.5B\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.832, \\\"eval_loss_holdout\\\": 2.881, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\\\", \\\"note\\\": \\\"resume from checkpoint-1000 with ~20% LR offset; checkpoint-1000 no longer available (cleaned up)\\\"}, \\\"hypothesis\\\": \\\"Random (uniform) weighting on 60% contaminated data serves as baseline; without provenance-aware reweighting, the model treats all data equally regardless of contamination level\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-18T09:01:00.559Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0857}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T09:01:11.884781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_grid_b0_3_seed42",
+              "field": "conclusion",
+              "value": "success"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T09:01:11.884932+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_grid_b0_3_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T09:01:00.909Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:01:05.705Z\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.634, \\\"eval_loss_holdout\\\": 2.87, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\\\", \\\"checkpoint_1500_ppl\\\": 18.583, \\\"note\\\": \\\"resume from checkpoint-1500 with ~30% LR offset\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0841}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T09:01:11.885061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_grid_b0_3_seed42",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/final"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T09:01:11.885195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_grid_b0_3_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T09:01:00.909Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:01:06.648Z\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.634, \\\"eval_loss_holdout\\\": 2.87, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\\\", \\\"checkpoint_1500_ppl\\\": 18.583, \\\"note\\\": \\\"resume from checkpoint-1500 with ~30% LR offset\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/final\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.073}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T09:01:11.885325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "contamination_60_grid_b0_3_seed42",
+              "field": "log_path",
+              "value": "/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/train_resume.log"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T09:01:11.885462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_grid_b0_3_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T09:01:00.909Z\\\", \\\"updated_at\\\": \\\"2026-05-18T09:01:07.330Z\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.634, \\\"eval_loss_holdout\\\": 2.87, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\\\", \\\"checkpoint_1500_ppl\\\": 18.583, \\\"note\\\": \\\"resume from checkpoint-1500 with ~30% LR offset\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/final\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/output/models/contamination_60_grid_b0_3_seed42/train_resume.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1106}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T09:01:11.885623+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。两个实验的 eval 之前已经跑完（结果文件已存在）。\n\n```\ncontamination_60_random_seed42:     final PPL=17.832, checkpoint-1000 不存在（已清理）\ncontamination_60_grid_b0_3_seed42:  final PPL=17.634 (checkpoint-1500 PPL=18.583)\n```"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_eval_random_seed42_and_collect_grid_b0_3_20260518T090009"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/conversations/ops-eval-random-seed42-and-collect-grid-b0-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9069eb5d0d5c93027ef9",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "exp detect remove q05 seed42",
+  "task_key": "worker_exp_detect_remove_q05_seed42_20260521T112806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_detect_remove_q05_seed42_20260521T112806_result.json",
+    "occurrence": 1,
+    "bytes": 533,
+    "sha256": "b8a1f53954d24b56cea172fe001855da73a0e36bbb76d4217481734501459591"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 PID 601614 正在运行，训练已启动。\n\n**汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 总样本数 | 371,499 |\n| 保留 (q≥0.5) | 217,774 (58.6%) |\n| 移除 (q<0.5) | 153,725 (41.4%) |\n| 过滤数据 | `data/scored_data_filtered_q05.jsonl` |\n| 训练 PID | 601614 (cuda:0) |\n| tmux session | `detect_remove_q05_seed42` |\n| 日志 | `~/runs/provenance_weight_training/detect_remove_q05_seed42.log` |\n| Registry | `detect_remove_q05_seed42` — RUNNING, plan_id=p1_baseline_detect_remove |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-detect-remove-q05-seed42.md"
+}

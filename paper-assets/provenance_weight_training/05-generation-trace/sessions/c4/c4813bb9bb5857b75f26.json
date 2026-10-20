@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4813bb9bb5857b75f26",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval bs8 seed456 full",
+  "task_key": "worker_eval_bs8_seed456_full_20260523T223622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_bs8_seed456_full_20260523T223622_result.json",
+    "occurrence": 1,
+    "bytes": 1167,
+    "sha256": "6db94c59f392975c3e335cfd1df5710d33b67be1153755d3e44f7b0a7c676b6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## B=8 实验状态\n- Adaptive seed456: **完成** `/root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_adaptive_seed456/final`\n- Uniform seed456: **完成** `/root/autodl-tmp/provenance_weight_training/output/models/bs8_nmin4_uniform_seed456/final`\n\n## Eval 结果\n- Adaptive seed456: holdout_ppl = **17.646**, loss = 2.8705\n- Uniform seed456: holdout_ppl = **17.702**, loss = 2.8737\n- seed456 Δ = **-0.056**\n\n## 3-seed 统计量\n\n| Seed | Adaptive | Uniform | Δ |\n|------|----------|---------|--------|\n| 42 | 17.650 | 17.694 | -0.044 |\n| 123 | 17.631 | 17.687 | -0.056 |\n| 456 | 17.646 | 17.702 | -0.056 |\n| **Mean±SD** | **17.642±0.010** | **17.694±0.008** | **-0.052±0.007** |\n\n**t = -13.00, df = 2, p = 0.0059**\nCohen's d = 7.51\nAmplification vs B=4: **2.6×**\n\n## results.tex 更新建议\n当前: `$-$0.050 (2-seed mean)`\n建议改为: `$-$0.052$\\pm$0.007 (3 seeds, $p{=}0.006$)`\n\n三个 seed 结果高度一致（SD 极小），paired t-test 在 df=2 下仍 p<0.01，效果量巨大（Cohen's d=7.51）。B=8 的 Δ 是 B=4 的 2.6 倍，dose-response 关系明确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-bs8-seed456-full.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fc974014080affeb43b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis detect remove q05 v2 seed42",
+  "task_key": "worker_analysis_detect_remove_q05_v2_seed42_20260521T200356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detect_remove_q05_v2_seed42_20260521T200356_result.json",
+    "occurrence": 1,
+    "bytes": 2200,
+    "sha256": "fb89e66dd7afb6717651c395b72e83de0a43728a2bae4bebe1cc4781d94ac5f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W&B 工具有问题，且日志中无 W&B 记录（训练未上报 W&B）。汇总当前可获得的信息。\n\n## 实验结果报告：detect_remove_q05_v2_seed42\n\n### 训练状态\n- **正常完成**：6103/6103 steps, EXIT_CODE=0, 耗时 ~3h33m\n- 模型：Qwen3-0.6B, weighting_method=uniform (即 D&R 直接在过滤后数据上均匀训练)\n- 数据：`scored_data_filtered_q05.jsonl`, 153725 samples\n- LR schedule: linear, lr=5e-5, batch_size=4\n- train_loss (全程平均): 11.0, epoch: 0.635\n\n### Checkpoint 路径\n```\n/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed42/final/\n```\n含 `model.safetensors`, `config.json`, `tokenizer.json` 等。中间 checkpoint: `checkpoint-5500`, `checkpoint-6000`, `checkpoint-6103`。\n\n### Holdout PPL：**尚未评估**\n训练过程中未计算 holdout/eval 指标（无 W&B 记录，日志中无 holdout/ppl/eval 关键词）。需要单独运行 `eval_perplexity.py`：\n\n```bash\ncd /root/provenance_weight_training\npython eval_perplexity.py \\\n    --checkpoints output/models/detect_remove_q05_v2_seed42/final \\\n    --data_path data/human/eval_holdout.jsonl \\\n    --output_path output/eval_results/detect_remove_q05_v2_seed42_eval.json\n```\n\n### 参考：旧版 D&R q05 评估结果（来自 eval_results_from_30476）\n| 实验 | Holdout PPL |\n|------|-------------|\n| detect_remove_q05_seed123 | 17.272 |\n| detect_remove_q05_seed456 | 17.275 |\n| detect_remove_q05_epoch_matched_seed42 | 17.650 |\n\n### Baselines（用户提供）\n| 方法 | Holdout PPL |\n|------|-------------|\n| Adaptive (3-seed mean) | 17.674 ± 0.007 |\n| Uniform (3-seed mean) | 17.694 ± 0.008 |\n\n### 初步判断\n旧版 D&R q05（非 v2）的 PPL ~17.27，显著低于 adaptive (17.674) 和 uniform (17.694)。如果 v2 使用\"正确\"过滤数据后结果类似，则 D&R hard filtering 优于 soft reweighting，这对 adaptive reweighting 的 hypothesis 是 **negative**（hard filtering 更好意味着 soft reweighting 没有额外优势）。\n\n**下一步**：需要运行上述评估命令获取 v2 的实际 holdout PPL，然后才能下最终结论。是否现在运行评估？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detect-remove-q05-v2-seed42.md"
+}

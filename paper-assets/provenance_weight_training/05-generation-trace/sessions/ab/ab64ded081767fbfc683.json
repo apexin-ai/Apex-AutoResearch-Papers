@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab64ded081767fbfc683",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code verify adaptive fix",
+  "task_key": "worker_code_verify_adaptive_fix_20260514T140941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_verify_adaptive_fix_20260514T140941_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "60e1ab0e79022c03f532afc2803f44a6cca12f80742c030540e0137779cc6a88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：READY**\n\n验证结果：\n\n| 检查项 | 期望 | 实际 | 状态 |\n|--------|------|------|------|\n| n_min 默认值 | 2（非 3） | `max(2, batch_size // 2)` — 下界为 2 | ✅ |\n| ESS 下界 | batch_size // 2 | `args.n_min = max(2, args.batch_size // 2)` (L279-280) | ✅ |\n| 无 EMA | 不存在 EMA/smooth 代码 | `find_optimal_b` 直接返回 b*，无任何平滑逻辑 | ✅ |\n| 代码可加载 | import 成功 | `import OK` | ✅ |\n\n`adaptive` 路径逻辑清晰：每个 batch 调用 `find_optimal_b(q_scores, tau, n_min)` 得到 b*，直接计算权重，无 EMA 残留。可以直接提交 adaptive_fix 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-verify-adaptive-fix.md"
+}

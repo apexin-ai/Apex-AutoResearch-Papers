@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de62a6e98943430a24d6",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_10_1778890730.md",
+  "task_key": "loop_10_1778890730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778890730.md",
+    "occurrence": 1,
+    "bytes": 4122,
+    "sha256": "d1ffb46a49c08fe588e862db6d41e5de7fe3bfd267375017b47c74b8585a7a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T23:31:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-47453 的 cuda:0/1/2/3，其他设备号或服务器一律 push back Director\n- **cuda:2 当前空闲**——分配了没跑 = 失职，下一个 session 第一件事必须填上\n- GPU 预算仅剩 ~30h，每次提交前估算耗时，超预算需向 Director 申请扩容\n- 投稿 deadline: EMNLP 2026 ARR May 25（剩 10 天），时间极紧\n- conda 环境激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，**不要假设 .venv 存在**\n- bs8_nmin2_seed42_r2 的 EXIT_CODE=129 实际是 SIGHUP（W&B finalization 后），conclusion 已被标记为 success（eval PPL=17.73 已验证），不要当作失败重跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，4× RTX 6000 Pro 96G\n- 工作目录：/root/provenance_weight_training\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 镜像：aml-train\n- HF cache / 模型 / 数据：均在服务器 /root/provenance_weight_training/ 下\n- 活跃进程：\n  - contamination_60_seed42_r2: PID 257977, cuda:0, cron 监控中\n  - contamination_60_uniform_seed42: PID 250074, cuda:1, cron 监控中\n  - contamination_60_grid_b0_5_seed42: PID 255781, cuda:3, cron 监控中\n- cuda:2：空闲，无进程\n\n### 3. 📊 当前状态\n**刚完成**：bs8_nmin2_seed42_r2 (success, PPL=17.73)——batch_size=8 泛化性确认，n_min=2 在 ESS 范围 [2,8] 下有效。ess_only_seed123 (PPL=17.72) 和 ess_only_seed456 (PPL=17.719) 均 success，Claim 1 三 seed 全部完成（dual > ESS-only 确认）。\n\n**RUNNING**（3 个，contamination_60 系列，测试 ρ=0.6 高污染下的表现）：\n- contamination_60_seed42_r2 (cuda:0)：adaptive τ=0.8, n_min=2\n- contamination_60_uniform_seed42 (cuda:1)：uniform baseline\n- contamination_60_grid_b0_5_seed42 (cuda:3)：grid b=0.5 baseline\n\n**PREPARING**（3 个）：adaptive_v2_seed42/123/456（n_min 从 3→2 修正，无 EMA）\n**QUEUED**（1 个）：grid_b_low_serial_seed42（b=0.1/0.2/0.3 串行 sweep）\n\n**Worker 池**：0 个 running worker——下一个 session 需要立即补充\n\n### 4. 📋 待办（条件触发式）\n- **立即**：cuda:2 空闲 → 从 QUEUED/PREPARING 中选一个提交（grid_b_low_serial_seed42 优先，因为已 QUEUED）\n- contamination_60 三个实验 cron 回调 → 分析三组对比（adaptive vs uniform vs grid-b0.5 @ ρ=0.6），更新 registry，汇报 Director\n- contamination_60 结果若 adaptive ≈ or > grid → Claim 3（proportion-free）加固，可开始论文 Results 写作\n- contamination_60 结果若 adaptive < uniform → 走 red-section negative framing 流程，**禁止默默跑下一个**\n- adaptive_v2 ×3 完成后 → 对比 adaptive_fix（n_min=2 原版）看 EMA 去除的影响\n- 全部实验完成 → dream_simulate(review_mode=\"full\") 验证 story，然后启动论文初稿\n\n### 5. 🎯 战略上下文\n**核心结论链**：D023 dual-constraint 框架 → D025 τ 经验 HP → D029 ESS-only 退化确认 → D033 n_min 叙事重构 → D035 Claim 3 reframe → D036 τ sweep 完成 → D038 writing_plan 批准\n\n**三个 Claims 证据状态**：\n1. Dual > ESS-only：✅ 三 seed 完成（PPL 差 0.06-0.08）\n2. Adaptive ≈ grid-best：✅ 三 seed MVP PASS\n3. Proportion-free（τ controls bias-variance）：✅ τ sweep 6 点 + contamination_60 系列进行中\n\n**n_min robustness**：n_min=1/2/3 完成，n_min=4=batch_size 退化为 uniform（确认）。batch_size=8 泛化确认（PPL=17.73）。\n\n**易错点**：\n- grid_b_low 系列已失败 3 次（R1: GPU 冲突，R2: bash 变量展开，R3: GPU 冲突），第 4 次提交必须**硬编码 b 值 + 指定 GPU**\n- contamination_60_seed42 第一次失败原因是 cuda:2 有 zombie 进程导致 GPU 冲突，R2 已转移到 cuda:0\n- 论文 writing_plan 已获批（D038），但初稿尚未启动——等 contamination_60 结果后可以并行铺论文写作 Worker\n- τ>0.8 退化是 negative 但已 reframe 为\"τ controls bias-variance tradeoff\"（D035），不需要 pivot\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778890730.md"
+}

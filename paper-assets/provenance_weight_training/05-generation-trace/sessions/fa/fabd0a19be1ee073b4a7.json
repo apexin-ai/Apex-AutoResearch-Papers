@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "fabd0a19be1ee073b4a7",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "eval detect remove r2 seed123 eval",
+  "task_key": "worker_eval_detect_remove_r2_seed123_eval_20260522T085248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_detect_remove_r2_seed123_eval_20260522T085248.jsonl",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "8b78d5da5c55978a2e1d3604338f1011373975ccfd48bd8826a4971b49b19fcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T08:52:55.908915+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 10am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_detect_remove_r2_seed123_eval_20260522T085248"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/eval-detect-remove-r2-seed123-eval.md"
+}

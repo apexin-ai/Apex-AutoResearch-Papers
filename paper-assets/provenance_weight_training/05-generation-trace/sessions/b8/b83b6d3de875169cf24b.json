@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b83b6d3de875169cf24b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit random reweight seed123",
+  "task_key": "worker_submit_random_reweight_seed123_20260521T202603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_random_reweight_seed123_20260521T202603_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "b782a493cad2b0f8b95714363299ba5f9f443a73c3bd4622ca5863ab8f64a6ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行，step 9/6103，ETA ~4.5h。\n\n## 产出汇总\n\n| 项 | 结果 |\n|---|---|\n| 磁盘 | 76GB 可用 > 50GB |\n| 数据行数 | 371499 |\n| random/shuffle 参数 | 不是 `--shuffle_scores`，而是使用预打乱文件 `data/scored_data_random_shuffle.jsonl`；tau=0.8（非 0.7） |\n| PID | **653354** |\n| Registry | `random_reweight_seed123` → RUNNING，westd-41312 cuda:3 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-random-reweight-seed123.md"
+}

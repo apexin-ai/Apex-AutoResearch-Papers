@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "c75457a391fbb9cceb23",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "infra westd30476 env check and eval",
+  "task_key": "worker_infra_westd30476_env_check_and_eval_20260520T040101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd30476_env_check_and_eval_20260520T040101.log",
+    "occurrence": 1,
+    "bytes": 696181,
+    "sha256": "5dbe64244a531bff9a44c26c8369c2e02cc6d8ef94c074d92de8d5c268ba017a"
+  },
+  "statistics": {
+    "messages": 371,
+    "user_turns": 0,
+    "tool_calls": 150,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 150,
+      "tool_result": 150,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 371,
+      "chunks": [
+        {
+          "path": "c75457a391fbb9cceb23-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c75457a391fbb9cceb23-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c75457a391fbb9cceb23-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-westd30476-env-check-and-eval.md"
+}

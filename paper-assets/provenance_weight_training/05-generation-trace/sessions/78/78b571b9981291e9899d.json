@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78b571b9981291e9899d",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_6_1778802016.md",
+  "task_key": "loop_6_1778802016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778802016.md",
+    "occurrence": 1,
+    "bytes": 4639,
+    "sha256": "8df5c75ebc240a3aa509255b451f35e7fca0d5eaba8916a02e5a03d32b3cb9e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T23:33:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（westd-47453）。不存在其他可用卡。\n- 数据盘路径：所有 output/models 必须在 `/root/provenance_weight_training/output/`（根分区 30GB，D008 教训）\n- contamination_ratio=0.4 是当前所有 grid/adaptive 实验的固定参数，不可随意改动（uniform 不使用此参数）\n- grid-b seed456 的 b=0.5 实验（grid_b0_5_seed456）是 retry_count=1，之前因 OOM 崩溃过。当前 PID=145062 在 cuda:1 上稳定运行，不要 kill\n- adaptive_v2 三组已被 D012 kill（改为 adaptive_fix），不要重启\n- submit_training_job 命令必须包含 `--eval_data_path data/human/eval_holdout.jsonl --eval_steps 500`，之前多次遗漏导致补跑 eval\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-47453，工作目录 `/root/provenance_weight_training`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: `models/Qwen/Qwen3-0.6B`（本地缓存）\n- **数据**: `data/scored_data.jsonl`（371499 docs, 含 q-score）；`data/human/eval_holdout.jsonl`（~4.08M tokens 纯人类文本）\n- **检测器**: `output/detector_tfidf/`（TF-IDF+LR, AUC=0.939, ECE=0.048）\n- **WANDB**: disabled（所有实验 `WANDB_MODE=disabled`）\n- **活跃进程（4 个 grid-b seed456）**:\n  - grid_b0_5_seed456: PID 145062, cuda:1, tmux=grid_b0_5_seed456\n  - grid_b1_0_seed456: PID 142902, cuda:2, tmux=grid_b1_0_seed456\n  - grid_b1_5_seed456: PID 142985, cuda:3, tmux=grid_b1_5_seed456\n  - grid_b2_0_seed456: PID 152483, cuda:0, tmux=grid_b2_0_seed456\n- **Cron**: 4 个活跃 cron 监控上述 4 个进程\n\n### 3. 📊 当前状态\n**刚完成**: adaptive_fix 三 seed 全部 DONE + grid_b_seed42_batch 全部 DONE。已汇总 metrics 到 memory.md。派了 3 个 Worker 做 MVP 总结准备和 Drayson 新颖性调研（均 running，尚未回调）。\n\n**RUNNING (4)**: grid_b seed456 的 b=0.5/1.0/1.5/2.0，ETA 各约 2-3h（从 ~21:10 启动）\n**QUEUED (2)**: grid_b3_0_seed456, grid_b5_0_seed456（等当前 4 个完成后提交）\n**DONE 关键结果**:\n| 方法 | seed42 | seed123 | seed456 |\n|------|--------|---------|---------|\n| Uniform | 17.69 | 17.69 | 17.70 |\n| Grid-best (b=0.5) | 17.651 | 17.638 | 待跑 |\n| Adaptive fix | 17.65 | 17.643 | 17.66 |\n\n**等待中**:\n- 3 个 Worker 回调（mvp-summary-prep, novelty-drayson-check, literature-drayson-comparison）\n- grid_b seed456 四组 cron 完成回调\n- MVP PASS/FAIL 判定被 BLOCK：需 grid-b seed456 完成后三 seed 汇总\n\n### 4. 📋 待办（条件触发式）\n- grid_b0_5/1_0/1_5/2_0_seed456 任一完成回调 → 更新 registry metrics，确认 eval_ppl 正确记录\n- grid_b seed456 前 4 个全完成 → 立刻提交 grid_b3_0_seed456 + grid_b5_0_seed456（分别上 2 张空闲 GPU）\n- grid_b seed456 全 6 值完成 → 汇总三 seed PPL 表，做 MVP PASS/FAIL 判定（标准：adaptive_fix 均值 ≥ 90% grid-best 改善量）\n- MVP PASS → 启动 post-mvp-kickoff：paper_framing → experiment_plan → 扩展实验矩阵（3 污染比例 × 3 方法 × 2+ 生成器）\n- MVP FAIL → 走 red-section 产出 Framing 调整提案，报 Director\n- Worker mvp-summary-prep 回调 → 整合到 report.md\n- Worker novelty-drayson-check / literature-drayson-comparison 回调 → 更新 literature_map.yaml，评估 Drayson et al. (EMNLP 2025) 的差异化策略\n\n### 5. 🎯 战略上下文\n**核心结论链**: 检测器从 ModernBERT 换到 TF-IDF（D005-D008）→ grid-b 发现 b=0.5 最优且单调递增（可能需探索 b<0.5）→ adaptive 原版 seed42 零改善诊断为 n_min=3 钳制 ESS（D011）→ D012 fix n_min=2 修复了 seed42，三 seed 一致优于 uniform 且 ≈ grid-best（D018 确认无混淆变量）。\n\n**新颖性风险**: Drayson et al. (EMNLP 2025) 使用同一公式 w=(1-q)^b（D013）。正在调研差异化角度。这是论文最大风险点——如果差异化不足，framing 需要大幅调整。\n\n**易错点**:\n- train_loss 跨方法不可比（weighted CE vs unweighted CE），只能用 eval_ppl 做公平对比\n- 不要把 adaptive 原版（n_min=3）和 adaptive_fix（n_min=2）的结果混淆——原版 seed42=17.69 是 bug 导致的退化\n- grid-b best 在搜索空间边界（b=0.5），MVP 后可能需要扩展到 b=0.1/0.2/0.3\n- eval 每次耗时 ~44min，会拖慢训练 tqdm 预估。eval_steps≥500 即可\n- 投稿目标 EMNLP 2026 ARR May 25，今天是 Day 2/12，时间紧迫\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778802016.md"
+}

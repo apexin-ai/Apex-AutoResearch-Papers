@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fe019c9a67de74be764",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_18_1779505653.md",
+  "task_key": "loop_18_1779505653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779505653.md",
+    "occurrence": 1,
+    "bytes": 3488,
+    "sha256": "f37b98c007e13c553879fbbecd8ef5e0bcc292c9220d119f238ab04b04c5d06c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-21T18:56:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-41312 cuda:0/1/2/3，共 4 张 RTX PRO 6000 96GB，不可用其他设备\n- ngram_adaptive 已 2-seed 确认 negative，**不要在没有 Director 指示的情况下启动 ngram_seed456**——cuda:2 空闲待 Director 决策\n- DDL: EMNLP 2026 ARR May 25（~4天），所有实验决策优先论文覆盖率\n- D111 detector ablation 中 GPT-2 detector 的 seed42 也是 negative (PPL 17.79 > uniform 17.694)，不要误以为只有 N-gram 是 negative\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-41312，4× RTX PRO 6000 96GB\n- 工作目录 / Python / conda / 模型路径 / 数据路径：未在本 session SSH 探查，需从 memory.md 或 registry spec 中获取（前序 session 有完整信息）\n- 活跃进程（registry RUNNING）：\n  - adaptive_tau08_scratch_seed42: cuda:0（D110 τ=0.8 from-scratch）\n  - gpt2_adaptive_seed123: cuda:1（D111 GPT-2 detector 第 2 seed）\n  - gpt2_adaptive_seed456: cuda:3（D111 GPT-2 detector 第 3 seed）\n- Cron：reconcile_crons 返回 0 条活跃，但上述 3 个 RUNNING 实验应有 cron 监控（可能需要确认）\n\n### 3. 📊 当前状态\n本 session 收到系统告警：worker_analysis_ngram_adaptive_seed123 卡死 30 分钟。检查后确认 worker 已完成全部分析（更新 registry + 写 artifact + 注册），只是未正常退出。已 cancel worker。\n\nngram_adaptive_seed123 结论：negative，PPL=17.823，与 seed42 (17.820) 一致，均比 uniform (17.694±0.008) 高 +0.13。已向 Director 汇报，附带 cuda:2 空闲决策请求（3 个选项）。**尚未收到 Director 回复。**\n\nRegistry 总计 208 实验：187 DONE, 3 RUNNING, 18 PREPARING。\nWorker 池 = 0 ⚠️（cancel 了最后一个卡死 worker 后清零）。\n\n### 4. 📋 待办\n- Director 回复 cuda:2 决策 → 按指示提交实验（ngram_seed456 / rho06_tau07 / eval / 其他）\n- gpt2_adaptive_seed123 完成回调 → on-experiment-done 分析，大概率也是 negative（seed42 已 negative），更新 D111 detector ablation 全局图\n- gpt2_adaptive_seed456 完成回调 → 同上\n- adaptive_tau08_scratch_seed42 完成回调 → on-experiment-done 分析，这是 D110 τ=0.8 from-scratch，关乎 OOD 3-seed 对称性\n- D111 全部完成后 → Paper Agent 更新论文 detector ablation 章节\n- D110 完成后 → τ=0.8 OOD 3-seed 对比（需 seed123/456 from-scratch，但这些可能需要额外 GPU 时间）\n\n### 5. 🎯 战略上下文\n- 核心结论：detect-and-reweight 方法在 ρ=0.4 下 3-seed 显著改善（Δ=−0.020, p<0.003），1.7B 一致（holdout/OWT），τ=0.7 是统一最优\n- D111 detector ablation 正在揭示：**只有 TF-IDF (AUC=0.965) 有效**，GPT-2 (0.913) 和 N-gram (0.73) 都 negative。这支持 \"detector quality matters\" narrative，但也意味着方法对检测器质量有较高要求——论文需要 frame 成 \"practitioner guidance: use high-quality detector\"\n- 易错点：\n  1. GPT-2 detector seed42 PPL=17.79 看起来比 N-gram 好，但仍是 negative（高于 uniform 17.694）。不要混淆\"比 N-gram 好\"和\"比 uniform 好\"\n  2. D110 τ=0.8 from-scratch 是为了消除 resume-checkpoint 的不对称性，如果结果和 resume 版本差距大，说明之前的 τ=0.8 OOD 结论可能被 resume artifact 污染\n  3. 4 天 DDL，剩余实验必须在 ~2 天内全部跑完 + 分析完，留 2 天给论文更新\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779505653.md"
+}

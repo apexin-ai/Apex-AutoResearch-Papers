@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6387aa845aae52469a68",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code fix adaptive v2",
+  "task_key": "worker_code_fix_adaptive_v2_20260514T132705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_adaptive_v2_20260514T132705_result.json",
+    "occurrence": 1,
+    "bytes": 1514,
+    "sha256": "d87d82174d4c98133af737f4a164b45972d9bec0f6ed8e9dbce9261c9cdad654"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "step_metrics.jsonl 中 `b_star_raw` 和 `b_star_ema` 字段完整存在。\n\n---\n\n## 总结\n\n### 1. 代码修改 diff（8 处）\n\n| 位置 | 修改 |\n|------|------|\n| `WeightedTrainer.__init__` | 新增 `ema_alpha` 参数、`_b_star_ema` 状态 |\n| `compute_loss` adaptive 分支 | `b_val` → `b_star_raw` + EMA 平滑后赋值给 `b_val` |\n| `step_info` | adaptive 时追加 `b_star_raw`、`b_star_ema` |\n| `training_step` | wandb 日志增加 `weighting/b_star_raw`、`weighting/b_star_ema` |\n| `parse_args` | `--n_min` help 文本更新；新增 `--ema_alpha` |\n| `main()` n_min 默认值 | `max(1, int(batch_size*0.75))` → `max(1, batch_size//4)` |\n| `WeightedTrainer` 实例化 | 传入 `ema_alpha` |\n| `config_summary` | 新增 `ema_alpha` 字段 |\n\n### 2. dry-run 验证结果\n\n5 step GPU 训练通过，EMA 平滑效果显著（raw CV 大幅高于 ema CV），`step_metrics.jsonl` 格式正确。\n\n### 3. 提交脚本\n\n路径：`/root/provenance_weight_training/scripts/submit_adaptive_v2.sh`\n\n```bash\nbash submit_adaptive_v2.sh 1 42     # GPU 1 跑 seed42\nbash submit_adaptive_v2.sh 1 all    # GPU 1 串行跑 3 个 seed\n```\n\n### 4. 新增/修改命令行参数\n\n| 参数 | 类型 | 默认值 | 说明 |\n|------|------|--------|------|\n| `--n_min` | int | `max(1, batch_size//4)` (原为 `batch_size*0.75`) | batch_size=4 时 1→释放 weighting 空间 |\n| `--ema_alpha` | float | 0.1 | **新增**，EMA 平滑因子（0=不平滑，1=无记忆） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-adaptive-v2.md"
+}

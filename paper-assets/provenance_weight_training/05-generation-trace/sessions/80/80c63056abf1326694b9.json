@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80c63056abf1326694b9",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analyze adaptive fix seed456 seed42",
+  "task_key": "worker_analyze_adaptive_fix_seed456_seed42_20260514T210225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_adaptive_fix_seed456_seed42_20260514T210225_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "e0aa6cb0313e61947a2e2006600041e7e3c0e4080a37924b8794c4c0092747cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验分析完成，registry 已更新。汇总：\n\n## 结果对比\n\n| 实验 | eval PPL | vs uniform | vs adaptive(原版) | 结论 |\n|------|----------|------------|-------------------|------|\n| **adaptive_fix_seed456** | **17.66** | 17.70 → 17.66 (-0.04) | 17.64 → 17.66 (+0.02) | success |\n| **adaptive_fix_seed42** | **17.65** | 17.69 → 17.65 (-0.04) | 17.69 → 17.65 (-0.04) | success |\n| adaptive_fix_seed123 (参考) | 17.64 | — | — | success |\n\n**关键发现：**\n- **seed42 有改善**：原版 adaptive 与 uniform 持平(17.69)，fix 版降至 17.65，改善 0.04 PPL\n- **seed456 基本持平**：fix 版 17.66 vs 原版 17.64，略微退步 0.02，但仍优于 uniform(17.70)\n- 三个 seed 的 fix 版 PPL 非常一致：17.64, 17.65, 17.66\n\n## b* 分布对比\n\n| 统计量 | seed456 | seed42 | seed123(参考) |\n|--------|---------|--------|---------------|\n| mean | 0.843 | 0.714 | 0.723 |\n| median | 0.44 | 0.069 | 0.0 |\n| std | 1.687 | 1.547 | 1.613 |\n| <0.5 | 52.8% | 59.7% | 59.9% |\n| 0.5-1.0 | 21.3% | 18.2% | 18.0% |\n\nseed42/seed123 的 b* 分布高度一致，seed456 的 b* 略高（median 0.44 vs ~0）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-adaptive-fix-seed456-seed42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61fc26523753bd077798",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis detect remove q05 v2 seed456",
+  "task_key": "worker_analysis_detect_remove_q05_v2_seed456_20260522T132143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_detect_remove_q05_v2_seed456_20260522T132143_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "9c3667993e95f8155223dbfd35d43f26ccd8c1d79ef6bb30c20373fde638cc69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。汇总：\n\n## detect_remove_q05_v2_seed456 结果\n\n| 指标 | 值 |\n|------|-----|\n| **holdout_ppl** | **17.277** |\n| **owt_ppl** | **18.017** |\n| wiki_ppl | fp32 eval 运行中 (PID 779491, GPU 2) |\n| train_loss | 11.01 (HF avg) |\n| total_steps | 6103 |\n| checkpoint | `.../detect_remove_q05_v2_seed456/final` |\n\n## 3-seed 汇总\n\n| | seed42 | seed123_r2 | seed456 | **Mean ± Std** |\n|---|--------|------------|---------|----------------|\n| Holdout PPL | 17.285 | 17.272 | 17.277 | **17.278 ± 0.007** |\n| OWT PPL | 18.014 | 18.008 | 18.017 | **18.013 ± 0.005** |\n| Wiki PPL | 15.053 | 15.047 | pending | 15.050 ± 0.004 (2-seed) |\n\n3-seed 方差极小（holdout std=0.007），D&R hard filtering 结果非常稳定。\n\n**异常**: Wiki eval 使用 fp16+autocast 时出现 NaN（其他 seed 未出现），已在 GPU 2 用 fp32 重跑。结果写入 `eval_wiki.json` 后需手动更新 registry 中的 `wiki_ppl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-detect-remove-q05-v2-seed456.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61ff084cd203180da41f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis contamination 60 ess only",
+  "task_key": "worker_analysis_contamination_60_ess_only_20260516T032558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_contamination_60_ess_only_20260516T032558_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "59aa0e858e9a611536eb0935807dff7bbfa63d046de41d76f90005b7a554bc24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`contamination_60_ess_only_seed42` 已更新为 DONE(success)。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| eval_ppl_holdout | **17.77** |\n| eval_loss_holdout | 2.8775 |\n| train_loss | 9.842 |\n| total_steps | 6103 |\n| train_runtime | 13152s (~3.65h) |\n\n**对比：**\n| 实验 | PPL |\n|------|-----|\n| uniform (baseline) | 17.694 |\n| ρ=0.4 ess_only seed42 | 17.73 |\n| **ρ=0.6 ess_only seed42** | **17.77** |\n\n符合预期：ρ 越高（污染越严重），ESS-only 的 PPL 越差。ρ=0.6 时 PPL 比 uniform 高 0.076，比 ρ=0.4 高 0.04。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-contamination-60-ess-only.md"
+}

@@ -1,0 +1,597 @@
+{
+  "schema_version": "1.0",
+  "id": "db4c697560fc2146ccb4",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260515T202140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_method_20260515T202140.jsonl",
+    "occurrence": 1,
+    "bytes": 38282,
+    "sha256": "cc7524de831a53a33f1c5c62e6c4353c16d65783ff7af860d175d7842e56a588"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T20:24:33.899459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md",
+              "limit": "200"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T20:24:33.900278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 2963 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T20:24:33.900575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/red-section.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T20:24:33.901060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: red-section\n3\tdescription: \"当实验结论为 negative / 审稿人指出 core claim 不成立 / 你要写或修改任何 paper/**/*.md 或 .tex 文件时,立即使用本 skill。提供 Framing 调整提案模板、写作规范、审稿攻击面预演。违反即被 Reviewer critical 打回。\"\n4\talways: true\n5\troles:\n6\t  - agent\n7\t---\n8\t\n9\t# Red Section — Narrative Re-framing\n10\t\n11\t## 什么时候用\n12\t- 实验 conclusion = negative\n13\t- 审稿人指出 core claim 不成立\n14\t- 写论文前（作为通用写作规范）\n15\t\n16\t## Negative 结果的正确心态\n17\t\"不是失败，是发现了 X\"。你的输出应该是 framing 调整提案，而不是 failure report。\n18\t\n19\t## 产出格式\n20\t\n21\t### Framing 调整提案模板\n22\t1. 原 claim：什么\n23\t2. 实验结果：什么（客观数字，不加修饰）\n24\t3. 重新审视：\n25\t   - 这个结果挑战了哪个 hypothesis？\n26\t   - 是否暴露了被忽略的变量？\n27\t   - 在新的 framing 下，哪些已做实验依然有效？哪些要补？\n28\t4. 新的 narrative 骨架（3 种备选，供 Director 选）\n29\t5. 对论文各章节的影响（abstract / intro / method / experiments / discussion / conclusion 逐一评估）\n30\t6. 建议下一步实验（必须至少 3 组备选，填新 framing 下的矩阵空格）\n31\t\n32\t### 写作规范（所有写作场景通用）\n33\t- 禁止 cherry-picking\n34\t- 所有数字必须追溯到 registry\n35\t- 强度与 evidence 匹配（1 个数据集 → 不能说 \"consistently\"）\n36\t- 每个定量 claim 必须附 exp_id\n37\t- 限制强度词（\"significantly\" 必须有统计检验）\n38\t\n39\t### 审稿攻击面预演\n40\t- 这个 section 最容易被审稿人攻击的点\n41\t- 预写 rebuttal 要点\n42\t\n43\t## 输出给谁\n44\t- Framing 调整提案 → Main Agent 向 Director 汇报\n45\t- 写作 skill 合规检查 → Reviewer 审查时验证\n46\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T20:24:33.901325+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:read_registry,read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T20:24:33.901528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T20:24:33.901750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T20:24:33.901990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T20:24:33.902207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "provenance_weight_training",
+              "limit": "0"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T20:24:33.903008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"grid_b_low_seed42_r2\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T20:19:36.129Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:20:14.302Z\\\", \\\"hypothesis\\\": \\\"Low-b grid sweep (b=0.1, 0.2, 0.3) on ρ=0.4 data, seed42. Confirms behavior in b<0.5 region — expect minimal reweighting effect and PPL close to uniform. Establishes that b=0.5 is already near the lower useful bound.\\\", \\\"parent\\\": \\\"grid_b_seed42_batch\\\"}, \\\"contamination_60_grid_b0_5_seed42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T20:19:25.407Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:20:13.344Z\\\", \\\"hypothesis\\\": \\\"ρ=0.6 grid-best (b=0.5) baseline: fixed b=0.5 on 60% contamination. Tests if grid-optimal b from ρ=0.4 transfers to higher contamination, or if adaptive b* adapts better.\\\", \\\"parent\\\": \\\"grid_b0_5_seed456\\\"}, \\\"contamination_60_uniform_seed42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T20:19:24.785Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:20:12.387Z\\\", \\\"hypothesis\\\": \\\"ρ=0.6 uniform baseline: no reweighting on 60% contamination data. Establishes baseline PPL degradation at higher contamination for comparison with adaptive and grid methods.\\\", \\\"parent\\\": \\\"uniform_seed42\\\"}, \\\"contamination_60_seed42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-15T20:12:18.751Z\\\", \\\"updated_at\\\": \\\"2026-05-15T20:12:29.051Z\\\", \\\"hypothesis\\\": \\\"ρ=0.6 contamination robustness test: adaptive weighting (τ=0.8, n_min=2) on higher contamination ratio data. Baseline adaptive_fix_seed42 (ρ=0.4) PPL=17.6527. Tests if adaptive method degrades gracefully as contamination increases from 0.4→0.6.\\\", \\\"parent\\\": \\\"adaptive_fix_seed42\\\", \\\"notes\\\": \\\"数据验证通过: scored_data_60.jsonl 371,499行/907MB, synthetic=222900/human=148599, actual ρ=0.6。q_score: mean=0.6243, std=0.3703, median=0.7753。字段: text/depth/source_model/prompt_tokens/generated_tokens/decoding/q_score。符号链接 scored_data_rho06.jsonl → scored_data_60.jsonl。配置基于 adaptive_fix_seed42，改 d\n…[truncated 30963 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T20:24:33.903289+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "provenance_weight_training",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T20:24:33.903662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — provenance_weight_training\\\\n\\\\n> 状态: STABLE (D023 dual-constraint + D029 ESS-only resolved + D035 τ sweep complete)\\\\n> 最后更新: 2026-05-15 21:30 UTC\\\\n> 投稿目标: EMNLP 2026 ARR May 25\\\\n\\\\n## Core Insight\\\\n\\\\nWeb 语料预训练面临合成数据污染问题（20-60%，来源未知），Drayson et al. (EMNLP 2025) 提出 w=(1-q)^b detect-and-reweight 框架，但 b 需要 per-model validation-based grid search（GPT-2/SmolLM ≤360M 用 b=10，SmolLM 1.7B 用 b=1）。\\\\n\\\\n我们提出 **dual-constrained adaptive b***：per-batch 从 q-score 分布推导最优 b*，同时满足两个约束：\\\\n- **α_eff(b) ≥ τ** — 质量下界：确保加权后有效真实率达到收敛理论要求的阈值（\\\\\\\"至少做够清洁\\\\\\\"）\\\\n- **ESS(b) ≥ n_min** — 稳定上界：确保有效样本量不低于 Kish 阈值（\\\\\\\"不要清洁过头\\\\\\\"）\\\\n\\\\nb* = inf{b ≥ 0 : α_eff(b) ≥ τ} subject to ESS(b) ≥ n_min — **最小干预准则**：在保证质量的前提下，使用最少的 downweighting。\\\\n\\\\n**关键洞察**：α_eff(b) 单调递增、ESS(b) 单调递减。α_eff 给出 b 的下界 b_τ（需至少这么多清洁），ESS 给出 b 的上界 b_ESS（最多这么多清洁）。当 b_τ < b_ESS（~40% reweighted batches），α_eff 是 binding constraint，b* 远小于 ESS 上界（mean 1.67 vs 4.15）——方法选择保守干预而非最大干预。\\\\n\\\\n实现路径：**直接 loss reweighting**（gradient 层面连续加权），vs Drayson 的 SIR resampling（离散重采样）。\\\\n\\\\n### α_eff(b) 的角色（D023 修正定论）\\\\n\\\\n**D021 证明 α_eff(b) 严格单调递增**（dα_eff/db = Cov_w(x, ln x) ≥ 0）——这是正确的。\\\\n\\\\n**D021 的错误推论**：\\\\\\\"因此 α_eff 优化等价于 ESS 阈值化\\\\\\\"——这假设优化目标是 max α_eff(b) s.t. ESS ≥ n_min。但实际优化是 **inf{b : α_eff(b) ≥ τ}**——最小满足质量阈值的 b。单调性恰恰保证了 b_τ 的**存在性和唯一性**。\\\\n\\\\n**Q1 实证（Reviewer 独立核实）**：\\\\n- 51,913 micro-batches 中，49.9% clean (b*=0), 20.2% α_eff binding, 30.0% ESS binding\\\\n- 在需 reweighting 的 batch 中：40.1% α_eff binding, 59.9% ESS binding\\\\n- α_eff binding 时 b*=1.67，ESS-only 方法会选 b*=4.15（2.5× 更激进）\\\\n- α_eff binding 时 ESS=2.60（vs n_min=2.0，有 30% 余量）\\\\n\\\\n**论文呈现**：α_eff 是方法的核心组件（非仅 motivation），提供质量阈值约束。Figure: 双轴图展示 α_eff(b) 和 ESS(b) 曲线 + b_τ 和 b_ESS 标注。\\\\n\\\\n**τ 的定位（D025 定论 + D035 τ sweep 完整数据更新）**：收敛理论 (arXiv 2602.16065) 中 α = m₁/(m₁+m₂) 是已知设计参数，推导依赖已知比例。τ **不能声称有 propor\n…[truncated 10140 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T20:24:33.903963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "provenance_weight_training",
+              "file": "writing_plan.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T20:24:33.904521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/writing_plan.yaml\\\", \\\"content\\\": \\\"# Writing Plan — provenance_weight_training\\\\n# Generated: 2026-05-15\\\\n# Contract for downstream writing Workers\\\\n\\\\nvenue: EMNLP 2026 ARR May 25\\\\ndeadline: 2026-05-25\\\\npage_limit: 8 (+ unlimited appendix)\\\\n\\\\ntitle: \\\\\\\"Minimum Intervention Reweighting: Adaptive Exponent Selection for Contamination-Aware Pretraining\\\\\\\"\\\\n# 备选:\\\\n# - \\\\\\\"Dual-Constrained Adaptive Reweighting for Pretraining on Contaminated Web Corpora\\\\\\\"\\\\n# - \\\\\\\"How Much to Downweight? Principled Exponent Selection for Contamination-Aware Pretraining\\\\\\\"\\\\n\\\\nabstract_outline:\\\\n  - sentence_1: \\\\\\\"Web pretraining corpora contain 20–60% machine-generated text of unknown provenance, and naive training on such mixtures degrades model quality (model collapse).\\\\\\\"\\\\n  - sentence_2: \\\\\\\"Existing detect-and-reweight methods (Drayson et al., 2025) require per-model validation-based grid search over the weighting exponent b, which is expensive and fragile.\\\\\\\"\\\\n  - sentence_3: \\\\\\\"We propose a dual-constrained adaptive b* that jointly enforces a quality lower bound (α_eff ≥ τ) and a stability upper bound (ESS ≥ n_min), yielding the minimum intervention—the smallest b that achieves sufficient cleaning per batch, with zero validation cost.\\\\\\\"\\\\n  - sentence_4: \\\\\\\"On FineWeb with Qwen3-0.6B, adaptive b* matches grid-search-optimal performance within seed variance while eliminating 6× search cost, and outperforms both uniform training and the max-intervention (ESS-only) baseline.\\\\\\\"\\\\n\\\\n# ============================================================\\\\n# SECTIONS\\\\n# ============================================================\\\\n\\\\nsections:\\\\n\\\\n  introduction:\\\\n    target_pages: 1.0\\\\n    key_points:\\\\n      - \\\\\\\"Web corpora contamination is pervasive (20–60%) and growing; strong model collapse occurs even at low contamina\n…[truncated 20970 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T20:24:33.904817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Check main.tex and references",
+              "subagent_type": "Explore",
+              "prompt": "Find and read the main.tex file for the paper in /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/. I need to see:\n1. What LaTeX commands are defined (especially \\bstar, \\aeff, \\nmin, \\btau, \\bess and any theorem/proposition environments)\n2. What packages are loaded (especially algorithm-related packages)\n3. How the method section is included\n\nAlso check if references.bib exists and find the citation keys for: drayson2025detection, wang2026survive, vehtari2024psis (or similar keys). Report exact keys found."
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T20:24:33.905118+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T20:24:33.905442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage[T1]{fontenc}\n6\t\\usepackage[utf8]{inputenc}\n7\t\\usepackage{microtype}\n8\t\\usepackage{inconsolata}\n9\t\\usepackage{graphicx}\n10\t\\usepackage{amsmath}\n11\t\\usepackage{amssymb}\n12\t\\usepackage{amsthm}\n13\t\\usepackage{algorithm}\n14\t\\usepackage{algorithmic}\n15\t\\usepackage{booktabs}\n16\t\\usepackage{multirow}\n17\t\\usepackage{xcolor}\n18\t\\usepackage{hyperref}\n19\t\n20\t\\newtheorem{proposition}{Proposition}\n21\t\\newtheorem{definition}{Definition}\n22\t\n23\t\\newcommand{\\bstar}{b^*}\n24\t\\newcommand{\\aeff}{\\alpha_{\\mathrm{eff}}}\n25\t\\newcommand{\\nmin}{n_{\\min}}\n26\t\\newcommand{\\btau}{b_{\\tau}}\n27\t\\newcommand{\\bess}{b_{\\mathrm{ESS}}}\n28\t\n29\t\\title{Minimum Intervention Reweighting: Adaptive Exponent Selection\\\\for Contamination-Aware Pretraining}\n30\t\n31\t\\author{Anonymous}\n32\t\n33\t\\begin{document}\n34\t\\maketitle\n35\t\n36\t\\begin{abstract}\n37\t\\input{sections/abstract}\n38\t\\end{abstract}\n39\t\n40\t\\section{Introduction}\n41\t\\label{sec:intro}\n42\t\\input{sections/introduction}\n43\t\n44\t\\section{Related Work}\n45\t\\label{sec:related}\n46\t\\input{sections/related_work}\n47\t\n48\t\\section{Method}\n49\t\\label{sec:method}\n50\t\\input{sections/method}\n51\t\n52\t\\section{Experimental Setup}\n53\t\\label{sec:experiments}\n54\t\\input{sections/experiments}\n55\t\n56\t\\section{Results}\n57\t\\label{sec:results}\n58\t\\input{sections/results}\n59\t\n60\t\\section{Discussion}\n61\t\\label{sec:discussion}\n62\t\\input{sections/discussion}\n63\t\n64\t\\section{Conclusion}\n65\t\\label{sec:conclusion}\n66\t\\input{sections/conclusion}\n67\t\n68\t\\section*{Limitations}\n69\t\\label{sec:limitations}\n70\t\\input{sections/limitations}\n71\t\n72\t\\bibliography{references}\n73\t\\bibliographystyle{acl_natbib}\n74\t\n75\t\\appendix\n76\t\\input{sections/appendix}\n77\t\n78\t\\end{document}\n79\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T20:24:33.905673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/*.bib"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T20:24:33.905884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T20:24:33.906108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T20:24:33.906338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% References for Minimum Intervention Reweighting paper\n2\t% Note: entries to be verified via verify_references before final submission\n3\t\n4\t@article{drayson2025detection,\n5\t  title={Machine-Generated Text Detection Prevents Language Model Collapse},\n6\t  author={Drayson, George and Yilmaz, Emine and Lampos, Vasileios},\n7\t  journal={arXiv preprint arXiv:2502.15654},\n8\t  year={2025}\n9\t}\n10\t\n11\t@article{he2025golden,\n12\t  title={Golden Ratio Weighting Prevents Model Collapse},\n13\t  author={He, Hengzhi and Xu, Shirong and Cheng, Guang},\n14\t  journal={arXiv preprint arXiv:2502.18049},\n15\t  year={2025}\n16\t}\n17\t\n18\t@article{wang2026survive,\n19\t  title={Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training},\n20\t  author={Wang, Kevin and Niu, Hongqian and Li, Didong},\n21\t  journal={arXiv preprint arXiv:2602.16065},\n22\t  year={2026}\n23\t}\n24\t\n25\t@article{shumailov2024model,\n26\t  title={{AI} Models Collapse When Trained on Recursively Generated Data},\n27\t  author={Shumailov, Ilia and Shumaylov, Zakhar and Zhao, Yiren and Papernot, Nicolas and Anderson, Ross and Gal, Yarin},\n28\t  journal={Nature},\n29\t  volume={631},\n30\t  pages={755--759},\n31\t  year={2024}\n32\t}\n33\t\n34\t@inproceedings{dohmatob2025strong,\n35\t  title={Strong Model Collapse},\n36\t  author={Dohmatob, Elvis and Feng, Yunzhen and Subramonian, Arjun and Kempe, Julia},\n37\t  booktitle={ICLR},\n38\t  year={2025}\n39\t}\n40\t\n41\t@article{vehtari2024psis,\n42\t  title={Pareto Smoothed Importance Sampling},\n43\t  author={Vehtari, Aki and Simpson, Daniel and Gelman, Andrew and Yao, Yuling and Gabry, Jonah},\n44\t  journal={JMLR},\n45\t  year={2024}\n46\t}\n47\t\n48\t@inproceedings{sow2025dynamic,\n49\t  title={Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining},\n50\t  author={Sow, Daouda and Woisetschl{\\\"a}ger, Herbert and Bulusu, Saikiran and Wang, Shiqiang and Jacobsen, Hans-Arno and Liang, Yingbin},\n51\t  booktitle={ICLR},\n52\t  year={2025}\n53\t\n…[truncated 3774 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T20:24:33.906630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found all the information you requested. Here's a comprehensive summary:\n\n## Summary of main.tex Analysis\n\n### LaTeX Commands Defined (Lines 23-27)\nAll the commands you asked about are defined:\n- `\\bstar` → `b^*`\n- `\\aeff` → `\\alpha_{\\mathrm{eff}}`\n- `\\nmin` → `n_{\\min}`\n- `\\btau` → `b_{\\tau}`\n- `\\bess` → `b_{\\mathrm{ESS}}`\n\n### Theorem/Proposition Environments (Lines 20-21)\n- `\\newtheorem{proposition}{Proposition}`\n- `\\newtheorem{definition}{Definition}`\n\n### Loaded Packages (Lines 2-18)\nKey algorithm-related packages:\n- `algorithm` (line 13)\n- `algorithmic` (line 14)\n\nOther notable packages:\n- acl (review style)\n- amsmath, amssymb, amsthm (math)\n- graphicx, xcolor, hyperref\n- booktabs, multirow (tables)\n- times, latexsym, fontenc, inputenc, microtype, inconsolata\n\n### Method Section Inclusion (Lines 48-50)\n```latex\n\\section{Method}\n\\label{sec:method}\n\\input{sections/method}\n```\n\nThe method content is included via `\\input{sections/method}`.\n\n### Citation Keys Found in references.bib\nAll three citations you requested were found with exact keys:\n1. **drayson2025detection** (line 4) - \"Machine-Generated Text Detection Prevents Language Model Collapse\"\n2. **wang2026survive** (line 18) - \"Can Generative Artificial Intelligence Survive Data Contamination? Theoretical Guarantees under Contaminated Recursive Training\"\n3. **vehtari2024psis** (line 41) - \"Pareto Smoothed Importance Sampling\"\n\nThe bibliography file contains 19 references total in alphabetical order by key, using `acl_natbib` style as specified in main.tex (line 73)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Agent",
+            "elapsed_ms": 1
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T20:24:33.906943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/ 2>/dev/null || echo \"DIR_NOT_FOUND\"",
+              "description": "Check if sections directory exists"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T20:24:33.907177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 8\ndrwxr-xr-x 2 ubuntu ubuntu 4096 May 15 20:19 .\ndrwxr-xr-x 3 ubuntu ubuntu 4096 May 15 20:20 ..\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 appendix.tex\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 experiments.tex\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 limitations.tex\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 method.tex\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 related_work.tex\n-rw-r--r-- 1 ubuntu ubuntu    0 May 15 20:19 results.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T20:24:33.907393+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/method.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T20:24:33.907600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<system-reminder>Warning: the file exists but is shorter than the provided offset (1). The file has 1 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T20:24:33.907901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/method.tex",
+              "content": "% Method section — do not add \\section{Method} here (already in main.tex)\n\n\\subsection{Problem Setup}\n\\label{sec:problem_setup}\n\nLet $\\mathcal{D} = \\{x_1, \\dots, x_N\\}$ denote a pretraining corpus drawn from a mixture of human-written text $\\mathcal{D}_{\\text{real}}$ and machine-generated text $\\mathcal{D}_{\\text{synth}}$, with unknown mixing proportion.\nA pretrained detector assigns each sample a synthetic probability $q(x) \\in [0,1]$, where higher values indicate greater likelihood of machine origin.\nFollowing \\citet{drayson2025detection}, we define the sample weight as\n\\begin{equation}\n  w(x) = (1 - q(x))^b, \\quad b \\geq 0,\n  \\label{eq:weight}\n\\end{equation}\nwhere $b$ controls the strength of downweighting: $b=0$ recovers uniform training, while large $b$ aggressively suppresses samples with high $q(x)$.\n\n\\citet{drayson2025detection} treat $b$ as a hyperparameter selected via per-model validation grid search.\nThis is costly---their reported optima range from $b=1$ (SmolLM-1.7B) to $b=10$ (GPT-2 124M)---and requires a clean validation set that may not be available at web scale.\nWe seek instead to \\emph{derive} $b$ per batch from the detector scores alone, without validation.\n\n\\subsection{Dual-Constraint Framework}\n\\label{sec:dual_constraint}\n\nWe introduce two batch-level diagnostics that together determine the operating point for $b$.\n\n\\paragraph{Effective real proportion.}\nGiven a batch $\\{x_1, \\dots, x_B\\}$ with binary provenance labels $r_i \\in \\{0,1\\}$ (available from the detector at training time via thresholding or, more generally, as soft labels), the \\emph{effective real proportion} under exponent $b$ is\n\\begin{equation}\n  \\aeff(b) \\;=\\; \\frac{\\sum_{i=1}^{B} w_i(b) \\cdot r_i}{\\sum_{i=1}^{B} w_i(b)},\n  \\label{eq:alpha_eff}\n\\end{equation}\nwhere $w_i(b) = (1 - q_i)^b$.\nIntuitively, $\\aeff$ measures the fraction of effective gradient signal attributable to real data after reweighting.\n\n\\paragraph{Effective sample size.}\nKish's effective sample size \\citep{vehtari2024psis} quantifies the concentration of the weight distribution:\n\\begin{equation}\n  \\mathrm{ESS}(b) \\;=\\; \\frac{\\bigl(\\sum_{i=1}^{B} w_i(b)\\bigr)^2}{\\sum_{i=1}^{B} w_i(b)^2}.\n  \\label{eq:ess}\n\\end{equation}\n$\\mathrm{ESS}(b) = B$ when all weights are equal (uniform) and approaches $1$ when a single sample dominates.\n\nThe following monotonicity properties are central to our framework.\n\n\\begin{proposition}[Monotonicity of $\\aeff$]\n\\label{prop:alpha_mono}\n$\\aeff(b)$ is monotonically non-decreasing in $b$, and strictly increasing whenever the detector assigns different score distributions to real and synthetic samples.\n\\end{proposition}\n\n\\emph{Proof sketch.}\nLet $s_i = \\ln(1 - q_i) \\leq 0$. Then $\\frac{dw_i}{db} = w_i \\cdot s_i$, and the quotient rule gives\n\\begin{equation}\n  \\frac{d\\aeff}{db} = \\mathrm{Cov}_w(r,\\, s),\n  \\label{eq:dalpha}\n\\end{equation}\nwhere $\\mathrm{Cov}_w$ denotes the covariance under the normalized weight distribution $\\tilde{w}_i = w_i / \\sum_j w_j$.\nReal samples ($r_i = 1$) tend to have lower $q_i$, hence larger $s_i = \\ln(1-q_i)$; synthetic samples ($r_i = 0$) have higher $q_i$ and more negative $s_i$.\nThus $r$ and $s$ are positively correlated, giving $\\mathrm{Cov}_w(r, s) \\geq 0$ with equality only when the detector is uninformative. \\qed\n\n\\begin{proposition}[Monotonicity of ESS]\n\\label{prop:ess_mono}\n$\\mathrm{ESS}(b)$ is monotonically non-increasing in $b$ for $b \\geq 0$.\n\\end{proposition}\n\n\\emph{Proof sketch.}\nIncreasing $b$ multiplies each weight by $(1-q_i)^{\\Delta b}$, a factor that varies across samples.\nThis multiplicative rescaling increases the coefficient of variation of the weight distribution, which by the Cauchy--Schwarz characterization of ESS implies $\\mathrm{ESS}$ cannot increase. \\qed\n\n\\paragraph{Quality constraint.}\nWe require that the effective real proportion meets a threshold $\\tau \\in (0,1]$:\n\\begin{equation}\n  \\aeff(b) \\geq \\tau.\n  \\label{eq:quality_constraint}\n\\end{equation}\nBy Proposition~\\ref{prop:alpha_mono}, this defines a \\emph{lower bound} $\\btau = \\inf\\{b \\geq 0 : \\aeff(b) \\geq \\tau\\}$: the minimum exponent needed to achieve the quality floor.\n\n\\paragraph{Stability constraint.}\nWe require that the effective sample size does not fall below a minimum $\\nmin$:\n\\begin{equation}\n  \\mathrm{ESS}(b) \\geq \\nmin.\n  \\label{eq:stability_constraint}\n\\end{equation}\nBy Proposition~\\ref{prop:ess_mono}, this defines an \\emph{upper bound} $\\bess = \\sup\\{b \\geq 0 : \\mathrm{ESS}(b) \\geq \\nmin\\}$: the maximum exponent that preserves sufficient effective samples.\n\n\\paragraph{Minimum intervention principle.}\nThe optimal exponent is\n\\begin{equation}\n  \\bstar = \\btau \\quad \\text{subject to} \\quad \\mathrm{ESS}(\\bstar) \\geq \\nmin.\n  \\label{eq:bstar}\n\\end{equation}\nThat is, $\\bstar$ is the \\emph{smallest} $b$ satisfying the quality floor, provided the stability ceiling is not violated.\nThe rationale is conservative: imagine a dial controlling decontamination strength.\n$\\aeff$ specifies the minimum setting for adequate cleaning; ESS specifies the maximum before gradient signal degrades.\nWe select the minimum effective setting---enough cleaning, no more---thereby preserving the largest possible effective sample size.\n\nThis contrasts with an ESS-only strategy that selects $b = \\bess$ (the \\emph{largest} feasible exponent), which maximizes cleaning at the cost of discarding useful gradient signal from borderline samples.\nWe term this the \\emph{maximum intervention} baseline and compare against it empirically in Section~\\ref{sec:results}.\n\n\\subsection{Algorithm}\n\\label{sec:algorithm}\n\n\\begin{algorithm}[t]\n\\caption{Per-Batch Adaptive Exponent Selection}\n\\label{alg:bstar}\n\\begin{algorithmic}[1]\n\\REQUIRE Batch scores $\\{q_1, \\dots, q_B\\}$, labels $\\{r_1, \\dots, r_B\\}$, threshold $\\tau$, ESS floor $\\nmin$, tolerance $\\varepsilon$, maximum exponent $b_{\\max}$\n\\ENSURE Optimal exponent $\\bstar$\n\\STATE $x_i \\leftarrow 1 - q_i$ for all $i$\n\\IF{$\\aeff(0) \\geq \\tau$}\n  \\STATE \\textbf{return} $\\bstar = 0$ \\hfill $\\triangleright$ Already clean\n\\ENDIF\n\\STATE $b_{\\text{lo}} \\leftarrow 0,\\; b_{\\text{hi}} \\leftarrow b_{\\max}$ \\hfill $\\triangleright$ Bisection for $\\btau$\n\\WHILE{$b_{\\text{hi}} - b_{\\text{lo}} > \\varepsilon$}\n  \\STATE $b_{\\text{mid}} \\leftarrow (b_{\\text{lo}} + b_{\\text{hi}}) / 2$\n  \\IF{$\\aeff(b_{\\text{mid}}) \\geq \\tau$}\n    \\STATE $b_{\\text{hi}} \\leftarrow b_{\\text{mid}}$\n  \\ELSE\n    \\STATE $b_{\\text{lo}} \\leftarrow b_{\\text{mid}}$\n  \\ENDIF\n\\ENDWHILE\n\\STATE $\\btau \\leftarrow b_{\\text{hi}}$\n\\IF{$\\mathrm{ESS}(\\btau) \\geq \\nmin$}\n  \\STATE \\textbf{return} $\\bstar = \\btau$ \\hfill $\\triangleright$ Quality-binding regime\n\\ENDIF\n\\STATE Find $\\bess = \\sup\\{b : \\mathrm{ESS}(b) \\geq \\nmin\\}$ via bisection \\hfill $\\triangleright$ Stability-binding regime\n\\STATE \\textbf{return} $\\bstar = \\bess$\n\\end{algorithmic}\n\\end{algorithm}\n\nAlgorithm~\\ref{alg:bstar} solves for $\\bstar$ via bisection on $\\aeff$, exploiting its monotonicity (Proposition~\\ref{prop:alpha_mono}) to guarantee convergence.\nEach batch falls into one of three regimes:\n\\begin{enumerate}\n  \\item \\textbf{Already clean} ($\\aeff(0) \\geq \\tau$): the batch is sufficiently real-dominated without reweighting; $\\bstar = 0$.\n  \\item \\textbf{Quality-binding} ($\\btau < \\bess$): the quality constraint determines $\\bstar = \\btau$, and the stability constraint is satisfied with margin.\n  \\item \\textbf{Stability-binding} ($\\btau \\geq \\bess$): the quality threshold cannot be reached without violating the ESS floor; $\\bstar = \\bess$ is the best feasible compromise.\n\\end{enumerate}\n\n\\paragraph{Implementation.}\nWe apply $\\bstar$ through \\emph{loss reweighting}: the per-sample loss is multiplied by $w_i(\\bstar)$ before gradient accumulation, yielding continuous gradient scaling.\nThis differs from the sampling-importance-resampling (SIR) approach of \\citet{drayson2025detection}, which discretely resamples the batch.\nLoss reweighting avoids the variance introduced by discrete resampling and integrates naturally with standard training loops.\n\n\\paragraph{Complexity.}\nEach bisection requires $O(\\log(b_{\\max}/\\varepsilon))$ evaluations of $\\aeff$ or ESS, each costing $O(B)$ for a batch of size $B$.\nThe total overhead per batch is $O(B \\log(b_{\\max}/\\varepsilon))$, which is negligible compared to the forward and backward passes through the model.\nIn practice, with $b_{\\max} = 20$ and $\\varepsilon = 0.01$, this amounts to ${\\sim}11$ iterations per batch.\n\n\\subsection{Hyperparameter Selection}\n\\label{sec:hyperparams}\n\nThe framework introduces two hyperparameters, $\\tau$ and $\\nmin$, which replace the single but sensitive exponent $b$ of prior work.\n\n\\paragraph{Quality threshold $\\tau$.}\nThe convergence analysis of \\citet{wang2026survive} shows that training on a mixture with effective real proportion $\\alpha$ yields convergence rates that improve with $\\alpha$, providing theoretical motivation for enforcing $\\aeff \\geq \\tau$.\nWhile that analysis assumes a known mixing proportion, $\\tau$ serves as a practical proxy: it specifies the minimum acceptable real-data contribution per batch without requiring knowledge of the global contamination rate.\nEmpirically, we find a wide safe range $\\tau \\in [0.5, 0.8]$ in which all settings improve over uniform training (Section~\\ref{sec:results}), with $\\tau = 0.8$ as the default.\nThe key asymmetry is that $\\tau$ values below the optimum yield mild degradation (the method under-cleans), while values above it cause sharper degradation as $\\bstar$ inflates and over-suppresses borderline samples.\n\n\\paragraph{ESS floor $\\nmin$.}\nWe set $\\nmin = 2$ (i.e., $B/2$ for batch size $B=4$) as the default.\nThis ensures at least two samples' worth of effective gradient signal per batch.\nSetting $\\nmin = 1$ effectively removes the stability constraint and leads to extreme $\\bstar$ values (mean $b^* = 7.2$, with 46.7\\% of batches hitting $b_{\\max}$), degrading performance.\nSetting $\\nmin \\geq B$ forces $\\bstar = 0$ for all batches, recovering uniform training.\nIn practice, $\\nmin \\in \\{2, 3\\}$ yields stable results across seeds.\n\n\\paragraph{Comparison with fixed $b$.}\nBoth $\\tau$ and $\\nmin$ admit principled defaults that transfer across settings without per-model tuning.\nIn contrast, the fixed exponent $b$ in \\citet{drayson2025detection} is a sensitive hyperparameter: optimal values span an order of magnitude across model scales (GPT-2 124M: $b{=}10$; SmolLM-1.7B: $b{=}1$), and selecting $b$ requires a validation set and grid search costing up to $6{\\times}$ the training budget.\nOur adaptive $\\bstar$ eliminates this cost entirely.\n"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T20:24:33.908373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/method.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T20:24:33.908642+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method section 已写入 `sections/method.tex`。结构：\n\n- **3.1 Problem Setup** — 语料定义、加权公式 (cite Drayson)、目标\n- **3.2 Dual-Constraint Framework** — α_eff 和 ESS 定义，Proposition 1 (α_eff 单调递增，proof via Cov_w(r, ln(1-q)))，Proposition 2 (ESS 单调递减)，quality/stability 约束，最小干预原则，与 ESS-only 的对比\n- **3.3 Algorithm** — Algorithm 1 伪代码 (bisection)，三种 regime，loss reweighting vs SIR，复杂度分析\n- **3.4 Hyperparameter Selection** — τ 的理论 motivation + empirical safe range [0.5, 0.8]，n_min 的默认值和边界行为，与 Drayson 固定 b 的对比"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_method_20260515T202140"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-method.md"
+}

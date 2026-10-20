@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85b621539972f6268fce",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit contamination 60 tau07 seed42",
+  "task_key": "worker_submit_contamination_60_tau07_seed42_20260516T020719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_contamination_60_tau07_seed42_20260516T020719_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "3d2b234c3e62a8c5e8828b729d31c04f977b11a6ce064373b4000d0d8cd8333f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 被占用：PID 281303，显存 46514 MiB。\n\n**有冲突，停止执行。** cuda:0 上有进程正在运行（PID 281303，占用 ~46GB 显存），无法提交新任务。需要等当前任务完成或改用其他 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-contamination-60-tau07-seed42.md"
+}

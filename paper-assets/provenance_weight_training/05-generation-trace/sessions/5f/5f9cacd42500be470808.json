@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f9cacd42500be470808",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11_1778908032.md",
+  "task_key": "loop_11_1778908032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778908032.md",
+    "occurrence": 1,
+    "bytes": 3817,
+    "sha256": "e7c1266de3a9023d4a9e02ef29b7b908fbe1d9309a9f090c8852cf47d17ea62d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T05:07:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-47453 上 cuda:0/1/2/3（4× RTX 6000 Pro 96G），必须查 `get_project_status` 确认\n- GPU 预算极度紧张：已消耗 ~154h，剩余 ~10-12h（约 2-3 个实验机会），每次提交前评估 GPU-hours 开销\n- 服务器用 conda 环境（不是 venv）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 禁止 WANDB_MODE=disabled（会导致 cron 误判训练失败）\n- 投稿目标 EMNLP 2026 ARR May 25（距今 9 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，工作目录 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`，conda base 环境\n- 镜像：aml-train（跳过基础环境搭建）\n- 数据：`/root/provenance_weight_training/` 下 mixed_data.jsonl (371K 行, ρ=0.4)，contamination_60 数据 (371K 行, ρ=0.6)\n- 活跃进程（截至 handoff 前）：\n  - contamination_60_seed42_r2: PID 257977, cuda:0\n  - contamination_60_uniform_seed42: PID 250074, cuda:1\n  - contamination_60_grid_b0_5_seed42: PID 255781, cuda:3\n  - grid_b0_1_seed42 / contamination_60_tau06_seed42 / detect_remove_baseline_seed42: 也在 RUNNING（具体 PID 需 SSH 确认）\n  - cuda:2 空闲，等 Director 指示\n\n### 3. 📊 当前状态\n**刚完成**：D048 确认 τ sweep n_min confound 为误报（原始实验确实用了 n_min=2），D047 作废。Claim 1 三种子完整验证通过。contamination_60_ess_only_seed42 完成，确认 ESS-only 在 ρ=0.6 下彻底失效（PPL≈uniform）。\n\n**正在跑**：\n- contamination_60 三组（adaptive/uniform/grid_b0.5）→ Claim 3 proportion-free 关键验证，ETA ~02:00-03:00 UTC\n- contamination_60_tau06_seed42 → τ-ρ 耦合诊断第二数据点\n- grid_b0_1_seed42 → b* curve characterization\n- detect_remove_baseline_seed42 → reviewer pre-answer（为什么不直接过滤）\n\n**等待中**：\n- contamination_60 cron 回调 → 分析 Claim 3\n- Director 决策：cuda:2 分配 / bs8_nmin2 negative framing\n\n### 4. 📋 待办（条件触发式）\n- contamination_60 三组 cron 回调 → spawn worker 计算 metrics，对比 adaptive vs uniform vs grid-best。adaptive < uniform → Claim 3 验证通过；否则 → red-section Framing 提案\n- contamination_60_tau06 完成 → 结合 τ=0.8 结果画 τ-PPL 曲线，判断 τ=1-ρ×0.5 公式是否成立。成立 → Claim 3 reframe 为 \"τ follows simple rule\"；不成立 → Claim 3 大改\n- detect_remove_baseline 完成 → 对比 adaptive vs hard-filter，预期 adaptive 胜（保留全部数据信息）\n- grid_b0_1 完成 → 更新 b* curve（b=0.1/0.3/0.5/0.7/1.0/2.0 完整曲线），写 Table 1\n- 所有 contamination_60 + detect_remove 完成 → 论文 experiments section 可写\n\n### 5. 🎯 战略上下文\n**核心 narrative**：Dual-constrained adaptive b*（α_eff 下界 + ESS 上界 → min-intervention），替代 Drayson 的 validation-based grid search。三 claims：dual>ESS-only ✅, adaptive≈grid ✅, proportion-free 🔄验证中。\n\n**最容易判断错的事**：\n- τ-ρ 耦合（D045）是当前最大风险。τ=0.8 在 ρ=0.4 最优但 ρ=0.6 下劣于 grid-best。如果 τ=0.6/0.7 也不行，Claim 3 需要从 \"proportion-free\" 改为 \"需要 τ 随 ρ 微调\"——这会削弱 story\n- bs8_nmin2 是 NEGATIVE 但不影响核心 claims（均在 bs=4 验证），Director 已决策写入 limitation\n- D048 确认了 τ sweep 原始数据有效（n_min confound 是误报），不需要重跑\n- detect_remove_baseline 的 effective epoch 不同（filtered 数据被重复 ~2.4 遍 vs adaptive 只过 1 遍），写论文时必须说明\n- EXIT_CODE=129 (SIGHUP) 频繁出现但不影响结果——是训练完成后 tmux 清理触发的\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778908032.md"
+}

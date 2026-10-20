@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54a67a65f4cd05f0549f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "review rebuttal structure check",
+  "task_key": "worker_review_rebuttal_structure_check_20260523T043046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_rebuttal_structure_check_20260523T043046_result.json",
+    "occurrence": 1,
+    "bytes": 2666,
+    "sha256": "dcd00e45b879967fc10ef43350e287d45dd1acf81e4c2567e842684dabb3dcff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这份 rebuttal 使用的是 **R10-** 前缀的 issue 编号（C1-C4, M1-M4, m1-m5），共 13 个 R10 issues。用户要求检查的是 **Round 11** 的 11 个 issue（C1-C4, W1-W4, m1-m3），编号体系不同，且 **W1-W4 在 rebuttal 中完全没有出现**。\n\n以下是逐项检查结果：\n\n| Issue | 有回应? | 完整度 | 需要更新/补充的内容 |\n|-------|--------|--------|-------------------|\n| **C1** | 不确定 | — | rebuttal 仅有 R10-C1（seed 42 resume artifact），无法确认是否对应 Round 11 C1。需提供 Round 11 review 原文才能判断。 |\n| **C2** | 部分 | 需更新 | R10-M3 节有 per-seed α_eff 表格，**但 r 值为正 (+0.80)**，用户要求的关键数据是 **r = −0.80**，符号不一致。cross-seed spread = 0.0025 已包含。需确认正负号并更新。 |\n| **C3** | 部分 | 需更新 | R10-C3 在 summary table 中提到\"Contributions restructured\"，但 **未明确写出已删除 \"yielding a practical adaptive method\" 这句话**。需在回应中显式说明该 overclaim 已移除。 |\n| **C4** | 不确定 | — | R10-C4（downstream null）可能对应，但无法确认。 |\n| **W1** | **缺失** | 0% | rebuttal 中无 W1 回应。 |\n| **W2** | **缺失** | 0% | rebuttal 中无 W2 回应。 |\n| **W3** | **缺失** | 0% | **4 篇引用全部未出现**：无 arXiv:2502.06733、无 Self-Influence (EMNLP 2023)、无 ToReMi (arXiv:2504.00695)、无 Wu et al. 2025 (Computational Linguistics)。 |\n| **W4** | 部分 | ~30% | \"Epoch confound\" 节存在，但内容是**辩护 epoch confound 发现的非显然性**，并未讨论 **epoch confound 的 prior work**。需补充相关先行研究。 |\n| **m1** | 不确定 | — | R10-m1（B=4 statistical reliability）可能对应，无法确认。 |\n| **m2** | 不确定 | — | R10-m2（key evidence in appendix）可能对应，无法确认。 |\n| **m3** | 不确定 | — | R10-m3（checklist in PDF）可能对应，无法确认。 |\n\n**核心问题：**\n\n1. **这份 rebuttal 是 Round 10 的回应稿**，不是 Round 11 的。W1-W4 完全缺失，C/m 的映射关系无法确认。\n2. **C2 的 r 值符号矛盾**：rebuttal 写 r = +0.80，用户要求 r = −0.80。需要确认哪个是正确的。\n3. **W3 的 4 篇引用完全缺失**，需要新增段落回应。\n4. **W4 缺 prior work 讨论**，当前内容只是辩护，未引入前人关于 epoch confound 的工作。\n5. **C3 未显式确认删除 overclaim 措辞**。\n\n**建议：** 需要提供 Round 11 的 review 原文，才能准确建立 Round 11 issue 到 rebuttal 段落的映射，并补写 W1-W4 的回应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-rebuttal-structure-check.md"
+}

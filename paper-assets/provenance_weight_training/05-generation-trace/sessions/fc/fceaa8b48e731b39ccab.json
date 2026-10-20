@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fceaa8b48e731b39ccab",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "verify eval script and paper",
+  "task_key": "worker_verify_eval_script_and_paper_20260519T204510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_eval_script_and_paper_20260519T204510_result.json",
+    "occurrence": 1,
+    "bytes": 2044,
+    "sha256": "3ad1f14cfd3f36261dd0785b44f355e4a5665a8474e6863d5b45ba386baa615f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇总结果：\n\n---\n\n### 子任务 A: eval 脚本状态 — ✅ 可用（训练完成后即可一键启动）\n\n**覆盖度检查：**\n- Step 1: In-dist PPL — ✅ `eval_ppl_ood.py` on `data/human/eval_holdout.jsonl`\n- Step 2: OOD PPL — ✅ OpenWebText + Wikipedia 并行 (GPU 0/1)\n- Step 3: Downstream — ✅ lm_eval 5 benchmarks (arc_easy, arc_challenge, hellaswag, piqa, winogrande)\n\n**文件存在性：**\n- `eval_ppl_ood.py` ✅\n- `data/human/eval_holdout.jsonl` ✅\n- `data/eval_openwebtext.jsonl` ✅\n- `data/eval_wikipedia.jsonl` ✅\n\n**语法检查：** `bash -n` 通过，无语法错误\n\n**模型目录：** `output/models/adaptive_fromscratch_seed42/` 存在（含 `config.json`, `step_metrics.jsonl`），但 `final/` 子目录尚不存在——训练完成后会生成，脚本引用 `${MODEL_PATH}` 指向 `final/`，合理。\n\n**结论：** 脚本结构正确，所有依赖文件就位，训练完成后可直接 `bash scripts/run_seed42_full_eval.sh` 一键运行。\n\n---\n\n### 子任务 B: 论文编译 + Round 6 修改\n\n**论文源码位置：** 不在 westd-41312 上，在本地 `docs/paper/`。\n\n**Round 6 修改存在性（本地检查）：**\n\n| 修改项 | 状态 | 位置 |\n|--------|------|------|\n| R3-N1: paired t-test | ✅ | `results.tex:16` — \"paired $t(2)=-37.3$, $p<0.001$\"；`limitations.tex:34` + `checklist.tex:48` 说明 N=3 限制 |\n| R3-N2: τ sensitivity caveat | ✅ | `method.tex:131` — caveat 关于 ESS/micro-batch；`checklist.tex:45` — §5.3 sensitivity analysis for τ and n_min |\n| R3-W1: self-contamination | ✅ | `experiments.tex:4` + `limitations.tex:2,4` — 明确讨论 self-contamination 及其局限性 |\n| R3-W7: B=4 | ✅ | `experiments.tex:13` — \"batch size 4\"；`limitations.tex:7` — \"batch size 4\" 在 limitations 中也有提及 |\n\n**论文编译：** 无法在 westd-41312 上编译（无 .tex 文件）。如需编译验证，需在本地或有 LaTeX 环境的机器上执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-eval-script-and-paper.md"
+}

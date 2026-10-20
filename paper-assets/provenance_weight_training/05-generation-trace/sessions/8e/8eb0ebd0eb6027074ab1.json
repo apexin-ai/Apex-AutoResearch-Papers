@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8eb0ebd0eb6027074ab1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "train n5 seeds batch",
+  "task_key": "worker_train_n5_seeds_batch_20260524T044052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_n5_seeds_batch_20260524T044052_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "340002250cf0a8b8d989ae0cedbbf244729cc2efe8ad100829d6023e690d1791"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 GPU 全部满载运行。汇总：\n\n| GPU | exp_id | method | seed | PID |\n|-----|--------|--------|------|-----|\n| cuda:0 | adaptive_seed789 | adaptive (τ=0.7, n_min=2) | 789 | 922510 |\n| cuda:1 | uniform_seed789 | uniform | 789 | 922589 |\n| cuda:2 | adaptive_seed234 | adaptive (τ=0.7, n_min=2) | 234 | 922738 |\n| cuda:3 | uniform_seed234 | uniform | 234 | 923155 |\n\n**超参数确认**：B=4, grad_accum=4, effective_batch=16, lr=5e-5, max_steps=6103, 200M tokens, bf16, no eval\n\n**预估完成时间**：adaptive_seed234 初始速度 ~2.87s/step × 6103 steps ≈ **4.9 小时**，预计 UTC ~09:40（北京时间约 17:40）完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-n5-seeds-batch.md"
+}

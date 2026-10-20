@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee6968adcfe192b49ece",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis dr epoch matched seed456",
+  "task_key": "worker_analysis_dr_epoch_matched_seed456_20260522T102824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dr_epoch_matched_seed456_20260522T102824_result.json",
+    "occurrence": 1,
+    "bytes": 1060,
+    "sha256": "793a2b739dda45b0a372740319efbfd30bfde8222bb2e7063d8e67d6964cc730"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常完成（2533/2533 steps, EXIT_CODE=0），但**日志中没有任何 eval 结果**——holdout/owt/wiki eval 均未执行。模型 checkpoint 已保存。\n\n汇总当前已知信息：\n\n| 项目 | 状态 |\n|------|------|\n| 训练步数 | 2533/2533 ✅ |\n| EXIT_CODE | 0 ✅ |\n| checkpoint | `/root/autodl-tmp/provenance_weight_training/output/models/dr_epoch_matched_seed456/final/` (1.1GB model.safetensors) ✅ |\n| train_loss (Trainer avg) | 11.1（HF Trainer 累计均值） |\n| last step micro-batch losses | 3.23, 3.04, 2.57, 1.06 (step 2532) |\n| b 值 | 全程 b=0（epoch-matched D&R 使用 uniform weighting，符合预期） |\n| **eval (holdout/owt/wiki)** | **未执行** ❌ |\n\n**需要你手动运行 eval**，或者告诉我用什么 eval 脚本/命令，我来提交。日志中完全没有 eval 相关输出，模型目录也没有 eval_results.json。\n\n同系列 seed42 的 eval 结果（holdout=17.651）和 seed123（holdout=17.659）应该是在训练完成后单独跑的 eval 脚本产出的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dr-epoch-matched-seed456.md"
+}

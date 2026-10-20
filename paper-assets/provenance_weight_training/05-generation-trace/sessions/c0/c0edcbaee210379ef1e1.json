@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0edcbaee210379ef1e1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh grid b0 2 seed42 41312",
+  "task_key": "worker_ssh_grid_b0_2_seed42_41312_20260517T231110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_grid_b0_2_seed42_41312_20260517T231110_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "83ceab02b3ae28383bf1559c82de3b8b2862fbda7122a1d2d0aa1b6db33c4f62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n**报告：**\n\n1. **前置检查**：GPU 0 空闲，数据和模型文件就绪 ✓\n2. **训练启动**：成功（移除了不支持的 `--dataloader_num_workers` 参数）\n3. **PID**：145551\n4. **日志确认**：\n   - `weighting_method=grid`, `grid_b_value=0.2` ✓\n   - 已开始迭代，当前 step 12/6103，速度 ~2.11s/it，预计 ~3.5 小时完成\n   - `weighting/b: 0.2` 参数正确\n   - loss 正常（weighted_loss ~1.5-2.9 范围）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-grid-b0-2-seed42-41312.md"
+}

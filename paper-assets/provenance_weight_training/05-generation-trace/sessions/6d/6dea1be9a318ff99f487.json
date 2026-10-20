@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dea1be9a318ff99f487",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis compile results table",
+  "task_key": "worker_analysis_compile-results-table_20260516T050941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_compile-results-table_20260516T050941_result.json",
+    "occurrence": 1,
+    "bytes": 1161,
+    "sha256": "6e8596b57d2baa304ecd647453f7759f83fd9966d4255085697e2c5c876c8986"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 CSV 已生成并注册。汇总：\n\n**`results_table_main.csv`** — 主结果 (ρ=0.4, 3 seeds)\n\n| Method | seed42 | seed123 | seed456 | Mean | Δ |\n|---|---|---|---|---|---|\n| uniform | 17.694 | 17.686 | 17.702 | 17.694 | — |\n| grid-best | 17.640 | 17.638 | 17.650 | 17.643 | -0.051 |\n| adaptive | 17.653 | 17.643 | 17.657 | 17.651 | -0.043 |\n| ESS-only | 17.730 | 17.720 | 17.719 | 17.723 | +0.029 |\n| golden_ratio | 17.654 | — | — | — | — |\n\n**`results_table_contamination.csv`** — ρ=0.6 对比 (seed42)\n\n| Method | ρ=0.4 | ρ=0.6 | Degradation |\n|---|---|---|---|\n| uniform | 17.694 | 17.766 | +0.072 |\n| grid b=0.5 | 17.651 | 17.704 | +0.053 |\n| adaptive | 17.653 | 17.740 | +0.087 |\n| ESS-only | 17.730 | 17.770 | +0.040 |\n\n**`results_table_ablation.csv`** — τ sweep (0.5→0.95) + n_min sensitivity (1→4)\n\n**`results_table_grid_b_curve.csv`** — b-PPL curve (b=0.3→5.0, 3 seeds), b=0.1 标注 TBD\n\n注意事项：\n- seed456 b≥2.0 数据异常（train_loss 偏低），已在注释中标注\n- detect-and-remove 无 PPL 结果（只有分类器训练）\n- golden_ratio 只有 seed42"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-compile-results-table.md"
+}

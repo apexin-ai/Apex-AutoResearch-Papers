@@ -1,0 +1,83 @@
+experiments:
+  # ===== Phase 0: 属性正交性验证 =====
+  - plan_id: phase0_orthogonality
+    description: "Phase 0 正交性验证：LoRA fine-tune + 5K generation + 4属性评分 + 相关性分析"
+    claim: C2
+    priority: P0
+    depends_on: []
+    registry_id: phase0_score_v3
+    notes: "PASS — 所有 |r|,|ρ| < 0.35; Q vs Conf ρ=-0.998 (rank冗余); 有效维度=3"
+
+  # ===== Phase 1: MVP 三代过滤对比 =====
+  - plan_id: phase1_gate_check
+    description: "Phase 1 gate check: 5条件 × 3代 × seed=42, Qwen2.5-1.5B + OpenHermes, held-out PPL degradation"
+    claim: C1,C2
+    priority: P0
+    depends_on: [phase0_orthogonality]
+    registry_id: phase1_gate_check
+    notes: "Pass: (1) deg(NoFilter)>=5% (2) PGPF-S vs Conf >=5% rel (3) PGPF-S < Random"
+
+  - plan_id: phase1_multi_seed
+    description: "Phase 1 补充 seed=123,7, 与 gate check 相同设置, 用于 variance 报告"
+    claim: C1,C2
+    priority: P1
+    depends_on: [phase1_gate_check]
+    notes: "Gate check PASS 后才跑; 论文需 >=3 seeds"
+
+  # ===== Phase 2: 扩展验证 =====
+  - plan_id: phase2_10gen_case_study
+    description: "10代延长实验：NoFilter + PGPF-S + Confidence-only, 观察长期 collapse 轨迹"
+    claim: C1
+    priority: P1
+    depends_on: [phase1_gate_check]
+    notes: "回应 reviewer concern '5 generations insufficient'"
+
+  - plan_id: phase2_threshold_trajectory
+    description: "PGPF-L 阈值轨迹分析：记录各代最优阈值, 分析 property importance 随代数变化"
+    claim: C3
+    priority: P1
+    depends_on: [phase1_gate_check]
+    notes: "核心 novelty 来源——阈值非单调动态"
+
+  - plan_id: phase2_counterfactual_ablation
+    description: "反事实消融：每代禁用一个属性, 测量 PPL 退化, 验证各属性贡献随代数变化"
+    claim: C3
+    priority: P1
+    depends_on: [phase1_gate_check]
+    notes: "支撑 C3 的 property importance shift claim"
+
+  # ===== Phase 3: Robustness + Baselines =====
+  - plan_id: phase3_oracle_single_scalar
+    description: "Oracle baseline: Kovac 回归系数加权 3 属性为单标量过滤, 对比 PGPF-S"
+    claim: C2
+    priority: P2
+    depends_on: [phase1_gate_check]
+    notes: "测试 multi-property vs 线性组合是否有增益"
+
+  - plan_id: phase3_k_sensitivity
+    description: "k-sensitivity 消融: k ∈ {10,25,50,100} for SN 计算, 验证指标鲁棒性"
+    claim: C2
+    priority: P2
+    depends_on: [phase1_gate_check]
+    notes: "回应 reviewer 'sensitive to k in top-k'"
+
+  - plan_id: phase3_facility_location
+    description: "Facility Location coreset baseline: 结构化子集选择 vs property filtering"
+    claim: C1
+    priority: P2
+    depends_on: [phase1_gate_check]
+    notes: "Research phase baseline #7"
+
+  - plan_id: phase3_kovac_single_best
+    description: "Kovac single-best-property baseline: 单独用 Kovac 回归最佳属性过滤"
+    claim: C2
+    priority: P2
+    depends_on: [phase1_gate_check]
+    notes: "Research phase baseline #8"
+
+  - plan_id: phase3_wallclock_flops
+    description: "Wall-clock + FLOPs 对比: 所有变体的计算开销, 证明 PGPF-S overhead 可忽略"
+    claim: C1
+    priority: P2
+    depends_on: [phase1_gate_check]
+    notes: "回应 reviewer 'computational overhead'"

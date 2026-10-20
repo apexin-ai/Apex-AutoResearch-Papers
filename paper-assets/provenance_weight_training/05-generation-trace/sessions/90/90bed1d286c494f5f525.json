@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90bed1d286c494f5f525",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis ess only seed123",
+  "task_key": "worker_analysis_ess_only_seed123_20260515T214322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ess_only_seed123_20260515T214322_result.json",
+    "occurrence": 1,
+    "bytes": 1460,
+    "sha256": "83be3f71a648dfc473376c229c773a2f097b0efeebbdca6c27d02bd7fa1f0b41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（status=DONE, conclusion=success）。\n\n---\n\n## ess_only_seed123 实验结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| **eval_ppl_holdout** | **17.72** |\n| eval_loss_holdout | 2.8746 |\n| eval_holdout_tokens | 4,077,068 |\n| train_loss (weighted) | 10.2159 |\n| train_steps | 6103 |\n| train_runtime | 3h 36m |\n\n### 对比基线\n\n| 方法 | PPL | vs ess_only_seed123 |\n|------|-----|-----|\n| **ess_only_seed123** | **17.72** | — |\n| ess_only_seed42 | 17.73 | -0.01 |\n| uniform_seed123 | 17.6861 | +0.0339 |\n| adaptive_fix_seed123 | 17.6432 | +0.0768 |\n\n**vs_uniform_delta = +0.034** (ESS-only 更差)\n**vs_adaptive_delta = +0.077** (ESS-only 更差)\n\n### b* 统计\n\n| 统计量 | 值 |\n|--------|-----|\n| mean | 3.55 |\n| median | 1.59 |\n| std | 4.72 |\n| min / max | 0.23 / 20.0 |\n| p10 / p25 / p75 / p90 | 0.54 / 0.84 / 3.83 / 9.60 |\n\nb* 分布高度右偏（median=1.59 远小于 mean=3.55），说明大部分 batch 的 b* 较小（权重差异不大），但有长尾 batch b* 很大（极端 downweight）。约 10% 的 batch b* > 9.6，这些 batch 中部分样本被过度 downweight。\n\n### 结论\n\n结果符合预期：ESS-only 的 PPL 高于 uniform（+0.034）和 adaptive（+0.077），因为没有 α_eff 下界保护，过度 downweight 了部分有效数据。两个 seed（42 和 123）的 ESS-only PPL 高度一致（17.73 vs 17.72），验证了实验的可复现性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ess-only-seed123.md"
+}

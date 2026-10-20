@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5513c8769fe14977537",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix success summary nmin section",
+  "task_key": "worker_fix_success_summary_nmin_section_20260515T153705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_success_summary_nmin_section_20260515T153705_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "28eaebc8a65925beb0564f25c3b25db9cf3f5c177915bf2025025e6811a0874d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改内容：\n\n1. **Adaptive 表 variant 标签**：`original` → `n_min=3 (pre-D012)`，`n_min fix` → `n_min=2 (post-D012)`，表下注释同步更新\n2. **新增 `## n_min Sensitivity Analysis` 小节**（第 93–129 行），包含：\n   - Per-seed PPL 对比表（n_min=1/2/3/4）\n   - 5 条 key observations，核心叙事：n_min=2 优势在稳定性（std 0.009 vs 0.032, 3.8×）而非均值（差 0.002）\n   - b* 分布对比表（n_min=1 和 n_min=2 有详细数据，n_min=3 仅有 range 字符串）\n3. **Key Findings #4 更新**：补充了稳定性叙事和具体数值\n\n所有数值均从 registry 取得，std 使用 sample standard deviation (ddof=1)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-success-summary-nmin-section.md"
+}

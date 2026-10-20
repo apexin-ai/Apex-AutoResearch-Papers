@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1004db3d62f50276333",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "paper writing results",
+  "task_key": "worker_paper_writing_results_20260516T051606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_results_20260516T051606_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "78348a536461e11b872ab3d1a22529105ff62608626786506bb93879fa19a227"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results section written. Four subsections covering all three claims:\n\n- **§5.1 Main Results**: Table 1 with 3-seed data. Adaptive captures 89.6% of grid-best improvement within seed variance. ESS-only worse than uniform on all seeds. Golden Ratio (oracle) matched without known ρ.\n- **§5.2 Contamination Level Robustness**: ρ=0.6 single-seed results. ESS-only collapses to within 0.004 of uniform; adaptive still improves by 0.026.\n- **§5.3 Hyperparameter Sensitivity**: τ sweep table (safe range [0.5, 0.8]) and n_min ablation (n_min=2 stable default). Both proportion-free.\n- **§5.4 Constraint Regime Analysis**: 49.9%/20.2%/30.0% regime breakdown. Minimum intervention principle. Context for small absolute PPL differences in a highly optimized regime.\n\nAll numbers sourced exclusively from the provided registry data. Single-seed results marked explicitly. No \"significantly\" without test, no \"state-of-the-art\", no \"consistently outperforms\"."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-results.md"
+}

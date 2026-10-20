@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6174eac0100e00ee430",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix batchsize16 restart",
+  "task_key": "worker_fix_batchsize16_restart_20260517T004334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_batchsize16_restart_20260517T004334_result.json",
+    "occurrence": 1,
+    "bytes": 1257,
+    "sha256": "0fd24ab9c064adfe66d410be42fef86d43bb3f63062675bfb03270f2984c0156"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论与处理\n\n**根因**：实验从未实际运行。之前的 Worker 在旧服务器 `westd-41312`（已失效）上声称启动，但：\n- 脚本名错误（注册为 `run_batchsize16_nmin8_seed42.sh`，实际为 `run_batchsize16.sh`）\n- 旧服务器不再可达\n- 无任何日志、输出或进程痕迹\n\n**当前状态**：服务器 westd-47453 全部 4 个 GPU 被占用（4 个训练实验进行中），无法立即启动。\n\n**已执行操作**：\n1. 确认脚本 `/root/provenance_weight_training/scripts/run_batchsize16.sh` 存在且参数正确（batch_size=16, n_min=8, tau=0.8, seed=42, scored_data.jsonl, Qwen3-0.6B, WANDB_MODE=disabled）\n2. 部署队列启动器（PID 375555），每 30 秒轮询 4 个训练 PID，第一个结束时自动在对应 GPU 启动 batchsize16_nmin8_seed42\n3. 更新 registry spec 和 notes\n\n**预计时间线**：GPU 3（bs8_auto_nmin_seed42, 13% 完成）将在约 4 小时后（~12:40 CST）最先释放，届时实验自动启动。\n\n**无法满足的要求**：任务要求\"启动后验证 nvidia-smi 显存占用 > 10GB 并等 15 秒二次确认\"——由于 GPU 资源不可用，实验尚未实际启动，此验证步骤需在实验启动后单独执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-batchsize16-restart.md"
+}

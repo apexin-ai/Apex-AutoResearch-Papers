@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a0c125fcc0b0cb331807",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "ops sync and cite fix",
+  "task_key": "worker_ops_sync_and_cite_fix_20260515T234507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_and_cite_fix_20260515T234507.log",
+    "occurrence": 1,
+    "bytes": 607430,
+    "sha256": "87b24490cb497613212a0b4efda888cd05e02e5ff7dc80629fc25a82a6d6a095"
+  },
+  "statistics": {
+    "messages": 203,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 203,
+      "chunks": [
+        {
+          "path": "a0c125fcc0b0cb331807-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a0c125fcc0b0cb331807-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-and-cite-fix.md"
+}

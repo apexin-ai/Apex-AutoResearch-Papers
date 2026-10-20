@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76ab39bc7edf0711bbcb",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval contamination 20 tau07 seed42",
+  "task_key": "worker_eval_contamination_20_tau07_seed42_20260524T205645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_contamination_20_tau07_seed42_20260524T205645_result.json",
+    "occurrence": 1,
+    "bytes": 111,
+    "sha256": "36e3619b8e3c75be6d8fd7eaf8b6234a19776b9f25ab06818defe83985b9931b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在 GPU 1 后台运行，约 4 分钟后轮询结果。完成后自动更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-contamination-20-tau07-seed42.md"
+}

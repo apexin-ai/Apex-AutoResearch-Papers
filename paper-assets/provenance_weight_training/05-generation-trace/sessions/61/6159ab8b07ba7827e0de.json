@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6159ab8b07ba7827e0de",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_4_1778790206.md",
+  "task_key": "loop_4_1778790206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778790206.md",
+    "occurrence": 1,
+    "bytes": 4851,
+    "sha256": "fae0eb6458abe5b1b2c2f38dff25e72bb3c6848bc7f4da93aa9b9a8f0e443d2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-14T18:31:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0/1/2/3 on westd-47453，不得用其他设备\n- adaptive_fix 三组用 `WANDB_MODE=disabled` 提交，训练完成后**必须单独补跑 eval_perplexity.py**（命令中无 --eval_data_path / --eval_steps）\n- grid_b3_0_seed123 和 grid_b2_0_seed123 的 eval 也是事后补跑的（提交时漏了 eval 参数），已补完。但 adaptive_fix 三组尚未补 eval——这是关键路径\n- adaptive_v2 系列（3 个 PREPARING）已 killed（D012 修正取消 EMA），不要重启\n- 诊断实验不要和关键路径训练共享 GPU（D010 教训：显存打满导致训练速度减半）\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-47453，4× RTX 6000 Pro 96GB\n- **工作目录**: /root/provenance_weight_training\n- **Python**: /root/miniconda3/bin/python（conda base，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: /root/provenance_weight_training/models/Qwen/Qwen3-0.6B\n- **数据**: data/scored_data.jsonl (371499 samples, 40% contamination)；eval: data/human/eval_holdout.jsonl (~4.08M tokens)\n- **Eval 脚本**: /root/provenance_weight_training/eval_perplexity.py\n- **活跃进程**:\n  - cuda:0 — grid_b_seed42_batch (PID 50134, tmux=grid_b_seed42_batch, b=2.0 @step ~5149/6103, 剩余 b=3.0/5.0)\n  - cuda:1 — adaptive_fix_seed42 (PID 126796, tmux=adaptive_fix_seed42, resume from checkpoint-1500)\n  - cuda:2 — adaptive_fix_seed123 (PID 126939, tmux=adaptive_fix_seed123, resume from checkpoint-1500)\n  - cuda:3 — adaptive_fix_seed456 (PID 127280, tmux=adaptive_fix_seed456, resume from checkpoint-1000)\n- **Cron**: grid_b_seed42_batch 有 active cron 监控；adaptive_fix 三组由 submit_training_job 自动注册 cron\n- **WANDB**: adaptive_fix 禁用了 wandb（WANDB_MODE=disabled），指标只能从 log 和 checkpoint 获取\n\n### 3. 📊 当前状态\n**刚做完**: adaptive_fix 三组因 EXIT_CODE=2 失败（shell 语法问题），经多轮诊断后清理残留进程并从 checkpoint 恢复重提交，现已确认 4 张 GPU 全部在跑。\n\n**RUNNING (4)**:\n- `adaptive_fix_seed42` (cuda:1) — D012 n_min=2 修复版，从 checkpoint-1500 恢复，总步数 6103\n- `adaptive_fix_seed123` (cuda:2) — 同上，从 checkpoint-1500 恢复\n- `adaptive_fix_seed456` (cuda:3) — 同上，从 checkpoint-1000 恢复（进度稍落后）\n- `grid_b_seed42_batch` (cuda:0) — 6 值串行跑，b=0.5/1.0/1.5 DONE，b=2.0 ~84%，剩 b=3.0/5.0\n\n**QUEUED (7)**: grid_b seed456 全 6 值 + detector_modernbert\n\n**等待中**: 无活跃 Worker。4 个 cron 监控上述 4 个 RUNNING 实验。\n\n### 4. 📋 待办（条件触发式）\n- adaptive_fix 任一完成 → spawn worker 跑 `eval_perplexity.py --model_path output/models/adaptive_fix_seed{X}/final --eval_data data/human/eval_holdout.jsonl`，结果写入 registry metrics\n- adaptive_fix 三组 + grid_b_seed42_batch 全部完成 → **MVP 判定**：adaptive_fix 均值 PPL ≥ 90% of grid-best 改善量 → PASS；否则 FAIL\n- grid_b_seed42_batch 完成 → 汇总 6 值 PPL 表，确认 seed42 best-b 是否也在 b=0.5（与 seed123 一致）\n- 若 seed42/123 best-b 均在边界 b=0.5 → 考虑扩展 grid 到 b=0.1/0.2/0.3\n- MVP PASS → 启动 post-mvp：paper_framing 定稿 → experiment_plan → 全矩阵（3 污染比例 × 3 方法 × 2+ 生成器）\n- MVP FAIL → red-section framing 提案 → Director 决策\n- GPU 释放后 → 按优先级排队：seed456 grid-b 6 值 > diagnostic_contamination100 > detector_modernbert\n\n### 5. 🎯 战略上下文\n- **核心假设**: adaptive b*（基于 α_eff 理论）能免 grid search 达到等效或更优 PPL。seed123 已验证（17.63 < grid-best 17.638），seed42 因 n_min=3 bug 零改善，修复版（n_min=2）正在跑\n- **关键决策链**: D005-D008（detector 选型）→ D011（seed42 零改善暂缓 MVP）→ D012（n_min fix）→ D017（勘误：无 EMA）→ D018（撤回混淆变量 warning）\n- **投稿目标**: EMNLP 2026 ARR May 25（11 天后）\n- **Grid-b 规律**: PPL 随 b 单调递增，best 在搜索边界 b=0.5。adaptive b* 多数在 0.2-0.8，恰好命中最优区间——这是论文 story 核心\n- **易错点**:\n  - adaptive_fix 没有 inline eval，训练完成 ≠ 有 PPL 数据，必须补跑 eval\n  - train_loss 跨方法不可比（weighted CE vs unweighted CE），只能用 eval_ppl_holdout\n  - Eval 耗时 ~44 min/次，安排 eval 时注意不要和训练抢 GPU 显存\n  - grid_b_seed42_batch 是串行脚本（6 值依次跑），cron 只监控外层进程，中间某个 b 值完成不会触发回调\n  - D013 新颖性风险：Drayson et al. (EMNLP 2025) 用同一公式 w=(1-q)^b，需要在论文中明确差异化（adaptive b* vs fixed b）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778790206.md"
+}

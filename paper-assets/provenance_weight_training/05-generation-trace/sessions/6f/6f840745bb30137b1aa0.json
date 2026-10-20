@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f840745bb30137b1aa0",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_9_1778881543.md",
+  "task_key": "loop_9_1778881543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778881543.md",
+    "occurrence": 1,
+    "bytes": 3704,
+    "sha256": "33659c3d53a41bd42af2e6b82da92a475a76b0cdc10a52548016f9a69379c0c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T21:43:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-47453 的 cuda:0/1/2/3，共 4 块 RTX 6000 Pro 96GB。不得使用其他 GPU\n- bs8_nmin2_seed42 刚因 GPU 冲突 OOM 失败（cuda:2 上已有 bs8_seed42），重提交时必须确认目标 GPU 空闲\n- GPU 预算剩余 ~40h，P0 实验预计消耗 ~18h，剩余 ~22h 给 P1\n- 投稿 deadline：EMNLP 2026 ARR May 25（距今 10 天）\n- 3 个 PREPARING 的 adaptive_v2_* 已废弃（D012 决策），不要触碰\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-47453，工作目录 `/root/provenance_weight_training`\n- Python：`/root/miniconda3/bin/python`，conda base 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：`/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- 数据：`/root/provenance_weight_training/data/scored_data.jsonl`（contamination_ratio=0.4）\n- 日志：`~/runs/provenance_weight_training/{exp_id}.log`\n- 活跃进程：\n  - nmin4_seed42: PID 225265, cuda:1\n  - ess_only_seed123: PID 233872, cuda:0\n  - ess_only_seed456: PID 233952, cuda:3\n  - bs8_seed42: PID 236697, cuda:2\n- 4 个 cron 监控活跃（reconcile 已确认）\n\n### 3. 📊 当前状态\n刚处理 bs8_nmin2_seed42 失败回调——诊断为 GPU 冲突 OOM（cuda:2 同时跑了 bs8_seed42），已向 Director 汇报。实验配置本身无问题，等 GPU 空闲后原样重提交。\n\nRegistry 状态：44 实验，37 DONE（success 30, negative 2, failed 2, killed 3），4 RUNNING，3 PREPARING（废弃）。\n\nRUNNING 实验：\n- nmin4_seed42 (cuda:1)：n_min=4 边界条件，预期退化为 uniform\n- ess_only_seed123 (cuda:0)：ESS-only 跨 seed 验证\n- ess_only_seed456 (cuda:3)：ESS-only 跨 seed 验证\n- bs8_seed42 (cuda:2)：batch_size=8 消融\n\n无等待中的 Worker 回调。等待 cron 完成回调。\n\n### 4. 📋 待办\n- 任一实验完成 → eval + 更新 registry + 释放的 GPU 上重提交 bs8_nmin2_seed42（命令不变，只换 GPU）\n- ess_only_seed123 + ess_only_seed456 都完成 → 汇总 3-seed ESS-only 结果（seed42 已 done: PPL 17.728），确认跨 seed 一致性，更新 Claim 1 证据\n- nmin4_seed42 完成 → 整合 n_min ablation 4 点 (1,2,3,4)，验证 n_min=batch_size 退化为 uniform 的假设\n- bs8_seed42 完成 → 与 bs=4 对比，验证 knife-edge 是否为 bs=4 artifact\n- 上述全部完成 + bs8_nmin2_seed42 重跑完成 → 评估论文启动条件（τ sweep ✅ + ess_only 3-seed + n_min ablation + batch_size 消融）\n- τ sweep 图表尚未生成 → 找空闲 Worker 在服务器上画 τ vs PPL + τ vs b* 图\n\n### 5. 🎯 战略上下文\n- 核心方向：Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界），per-batch 自适应推导 b*，替代 Drayson 的 validation-based grid search\n- Framing 稳定（D023 dual-constraint + D025 τ empirical HP + D029 ESS-only resolved + D035 τ sweep complete）\n- τ sweep 结论：safe range [0.5, 0.8]，τ=0.8 best (PPL 17.653)，τ>0.8 退化——已 reframe Claim 3 为 \"wide safe range + principled default\"\n- ESS-only (max-intervention) seed42: PPL 17.728，比 uniform 差 → 确认 min-intervention > max-intervention（D029）\n- n_min 叙事（D034）：从 variance 优势转为 robustness——n_min∈{2,3} 均有效\n- 易错点：\n  - 提交实验时 GPU 编号始终写 0（框架通过 CUDA_VISIBLE_DEVICES 映射物理 GPU）\n  - 不要混淆 bs8_seed42（batch_size=8, n_min=2）和 bs8_nmin2_seed42（同配置但后者是重跑/补充实验）——检查 registry spec 确认区别\n  - τ=0.8 是 adaptive_fix 的默认值，不要误以为需要显式传参\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778881543.md"
+}

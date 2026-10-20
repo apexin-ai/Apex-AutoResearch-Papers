@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a01af0b9c85e2885c3d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval uniform 1 7b seed456 full",
+  "task_key": "worker_eval_uniform_1_7b_seed456_full_20260520T205739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_uniform_1_7b_seed456_full_20260520T205739_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "cb225bf5776df15d288848ef29a881523f61e8a97732c4430c2bec05f40ad468"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 4 evals complete. Here are the full results:\n\n```\nuniform_1_7b_seed456:\n  holdout PPL:      13.2800\n  OWT PPL:          13.3070\n  Wiki PPL:         10.9525\n  arc_easy:         0.7361  (acc_norm: 0.7113)\n  arc_challenge:    0.3899  (acc_norm: 0.4224)\n  hellaswag:        0.4588  (acc_norm: 0.6132)\n  piqa:             0.7361  (acc_norm: 0.7448)\n  winogrande:       0.6251\n  downstream_mean:  0.5892  (acc)\n  downstream_mean:  0.6234  (acc_norm, excl. winogrande)\n```\n\nNotes:\n- **Wiki PPL 10.95** — the most critical indicator per your instructions\n- acc_norm is reported where available (winogrande only has acc, no acc_norm)\n- downstream_mean(acc) = mean of all 5 tasks' `acc,none`: (0.7361 + 0.3899 + 0.4588 + 0.7361 + 0.6251) / 5 = 0.5892\n- downstream_mean(acc_norm) = mean of 4 tasks with acc_norm: (0.7113 + 0.4224 + 0.6132 + 0.7448) / 4 = 0.6229\n\nTotal evaluation time: ~447s for downstream, plus ~1693s for all 3 PPL evals."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-uniform-1-7b-seed456-full.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "975b618c8495649d74cb",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh gpu health 30476",
+  "task_key": "worker_ssh_gpu_health_30476_20260517T201519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_health_30476_20260517T201519_result.json",
+    "occurrence": 1,
+    "bytes": 1371,
+    "sha256": "d1481475db2294ff676d213f13102da5fcc81f606242e1eca4cdd0b9799a1415"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态报告 — westd-30476\n\n| GPU | PID | 实验名 | GPU 利用率 | 显存占用 | 进度 | 速度 | 预计剩余 | 状态 |\n|-----|------|--------|-----------|---------|------|------|---------|------|\n| **0** | 34716 | `grid_b0_1_seed42` | 92% | 74,989 / 97,887 MiB (77%) | **5560/8477 (66%)** | 3.25 it/s | ~15 min | 训练中 |\n| **1** | 42432 | `grid_b0_3_seed123_r2` | 83% | 74,989 / 97,887 MiB (77%) | **7167/8477 (85%)** | 3.26 it/s | ~7 min | 训练中 |\n| **2** | 41387 | `rho02_adaptive_tau08_seed42` | 99% | 46,505 / 97,887 MiB (48%) | **3032/6103 (50%)** | 2.34 s/it | ~2h | 训练中 |\n| **3** | 48891 | `batchsize16_nmin8_r2` | 100% | 71,173 / 97,887 MiB (73%) | **1038/6103 (17%)** | 2.46 s/it | ~3.5h | 训练中 |\n\n### 关键信息\n\n- **4 张 GPU 全部被占用**，无空闲卡\n- GPU 0/1 跑的是 **grid search 实验**（b=0.1/0.3），token 级加权，batch_size=4, grad_accum=4，速度快（~3.25 it/s），GPU 1 约 7 分钟完成，GPU 0 约 15 分钟完成\n- GPU 2 跑的是 **adaptive weighting (rho=0.2, tau=0.8)**，显存占用较低（46 GB），已运行约 2 小时，还需约 2 小时\n- GPU 3 跑的是 **batch_size=16 + n_min=8 实验**，开启了 gradient_checkpointing，已运行约 42 分钟，还需约 3.5 小时\n- **没有实验完成**，所有 4 个都在正常训练中，无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-health-30476.md"
+}

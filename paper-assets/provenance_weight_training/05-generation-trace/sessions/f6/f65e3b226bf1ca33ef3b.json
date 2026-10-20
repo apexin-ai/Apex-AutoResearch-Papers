@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f65e3b226bf1ca33ef3b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval tau07 ood 3seed",
+  "task_key": "worker_eval_tau07_ood_3seed_20260520T010256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_tau07_ood_3seed_20260520T010256_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "98f22d0ba2af8dcbfecb0f240e69d8e4661b3be721d5462d4182d4a3578c7cf7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 OOD eval 全部完成。汇总如下：\n\n## τ=0.7 OOD Results (3-seed)\n\n| Eval Set | τ=0.7 s42 | τ=0.7 s123 | τ=0.7 s456 | τ=0.7 Mean±Std | τ=0.8 Mean | Uniform Mean | Δ(0.7−0.8) | Δ(0.7−Uni) |\n|----------|-----------|------------|------------|----------------|------------|--------------|------------|------------|\n| OpenWebText | 18.348 | 18.348 | 18.344 | **18.347±0.003** | 18.370 | 18.375 | **-0.023** | **-0.028** |\n| Wikipedia   | 15.331 | 15.345 | 15.315 | **15.330±0.015** | 15.355 | 15.359 | **-0.025** | **-0.029** |\n\nτ=0.7 在两个 OOD 数据集上均优于 τ=0.8 和 Uniform baseline——OWT 低 ~0.02-0.03 ppl，Wiki 低 ~0.03 ppl。3-seed 方差极小，结果稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-tau07-ood-3seed.md"
+}

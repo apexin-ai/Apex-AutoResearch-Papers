@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "815f116b8b2cfe945c87",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis grid b0 3 seed456 r2 and orphan",
+  "task_key": "worker_analysis_grid_b0_3_seed456_r2_and_orphan_20260518T005841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grid_b0_3_seed456_r2_and_orphan_20260518T005841_result.json",
+    "occurrence": 1,
+    "bytes": 1482,
+    "sha256": "7712f519bfdcbc2f6655ae0b37cfcac890dad6678eb5b9917606ba3df213a743"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。汇总报告：\n\n---\n\n## 任务 1: grid_b0_3_seed456_r2\n\n| 指标 | 值 |\n|---|---|\n| **eval_ppl_holdout** | **17.64** |\n| eval_loss_holdout | 2.8700 |\n| eval_tokens | 4,077,068 |\n| train_loss (avg) | 9.085 |\n| total_steps | 6103/6103 (100%) |\n| checkpoint_path | `/root/autodl-tmp/output/models/grid_b0_3_seed456_r2/final` |\n| 状态 | **成功** |\n\n**Cross-seed 对比**:\n- grid_b0_3_seed42 PPL = 17.640 → grid_b0_3_seed456 PPL = **17.64** (一致)\n- 假设 b=0.5 seed456 PPL = 17.65 → grid_b0_3_seed456 PPL 17.64 < 17.65 ✓\n\n**结论**: Cross-seed replication 确认 grid-best=0.3。两个 seed 的 PPL 高度一致 (17.64 vs 17.640)，且优于 b=0.5。\n\n---\n\n## 任务 2: grid_b0_2_seed42 orphan cron\n\n| 项目 | 结果 |\n|---|---|\n| PID 145551 on westd-30476 | **不存在** |\n| PID 145551 on westd-41312 | **存在且活跃** |\n| 实验 | `pretrain_weighted.py --weighting_method grid --grid_b_value 0.2 --seed 42` |\n| 输出目录 | `/root/autodl-tmp/provenance_weight_training/output/models/grid_b0_2_seed42` |\n| 进度 | **3057/6103 (50%)**, epoch 0.13, ETA ~1h47m |\n| 当前 loss | ~8.5-9.0 范围 |\n\n**结论**: 该 cron 不是 stale 的 — 进程在 westd-41312 上正常运行中，只是 registry 中缺少对应条目。如果 cron 绑定在 westd-30476 上则是错误指向（进程实际在 westd-41312），需要更新 registry 将此实验补录，或将 cron 迁移到正确的服务器。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grid-b0-3-seed456-r2-and-orphan.md"
+}

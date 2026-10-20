@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "748c256620c4f14343a8",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis n5 corrected stats",
+  "task_key": "worker_analysis_n5_corrected_stats_20260524T084245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_n5_corrected_stats_20260524T084245_result.json",
+    "occurrence": 1,
+    "bytes": 1700,
+    "sha256": "721db40223ba2f18632b118badc4534148859b9599475c849f94d27b3fa7d0f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。完整统计结果如下：\n\n---\n\n## N=5 统计分析结果（B=4 修正后）\n\n### 数据表\n\n| Seed | Adaptive (B=4) | Uniform (B=4) | Δ (A−U) |\n|------|----------------|---------------|---------|\n| 42   | 17.680         | 17.694        | −0.0140 |\n| 123  | 17.666         | 17.686        | −0.0200 |\n| 456  | 17.677         | 17.702        | −0.0250 |\n| 789  | 17.668         | 17.696        | −0.0280 |\n| 234  | 17.678         | 17.708        | −0.0300 |\n\n### 统计量\n\n| 指标 | 值 |\n|------|-----|\n| 5-seed Mean Δ | **−0.0234** |\n| SD of Δ | 0.0065 |\n| SE of Δ | 0.0029 (= 0.0065/√5) |\n| Paired t (df=4) | **−8.0931** |\n| p (uncorrected) | **0.001267** |\n| p BH-corrected (k=9, rank 1) | **0.01140** |\n| 95% BCa Bootstrap CI | **[−0.0280, −0.0176]** |\n| Cohen's d | **−3.62** |\n| Cohen's d 95% CI | [−4.86, −2.38] |\n| Effect size interpretation | Large |\n| CI excludes 0 | Yes |\n\n### 验证结果\n\n- **adaptive_seed789**: 训练日志确认 `batch_size: 4`，无 gradient_accumulation（默认=1），即有效 batch size = 4 ✓\n- **adaptive_seed234**: 训练日志确认 `batch_size: 4`，无 gradient_accumulation（默认=1），即有效 batch size = 4 ✓\n- **uniform_seed789**: holdout PPL = 17.6955（eval JSON 确认，与 Director 值 17.696 吻合）\n- **uniform_seed234**: holdout PPL = 17.7083（eval JSON 确认，与 Director 值 17.708 吻合）\n- adaptive seed789/234 的 eval JSON 不在服务器上，PPL 值（17.668/17.678）取自 Director 确认值\n\nJSON 结果已保存至 `/root/autodl-tmp/provenance_weight_training/output/eval_results/n5_corrected_stats.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-n5-corrected-stats.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2f64b9e70a1453ebc44",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "data synthetic gen monitor",
+  "task_key": "worker_data_synthetic-gen-monitor_20260513T190044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_synthetic-gen-monitor_20260513T190044_result.json",
+    "occurrence": 1,
+    "bytes": 56,
+    "sha256": "fdb524caa70ec3f53b5ef7815f3a8061a603a1f9769e749690f2f64cd0a6e054"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 分钟后自动检查下一轮进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-synthetic-gen-monitor.md"
+}

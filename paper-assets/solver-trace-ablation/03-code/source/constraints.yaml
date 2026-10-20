@@ -1,0 +1,13 @@
+_next_id: 3
+constraints:
+- id: C001
+  added: 2026-05-13 09:04 UTC
+  summary: GPU 仅限 autodl-pgpf 的 cuda:0 和 cuda:1，禁止使用其他服务器的卡
+  scope: all
+  reason: 项目分配的 GPU 白名单，2×RTX PRO 6000 96GB
+- id: C002
+  added: 2026-05-13 10:14 UTC
+  summary: 正交性检查必须同时计算 Pearson 和 Spearman，取 max(|r|, |ρ|) 作为判定值
+  scope: all
+  reason: 'D003: Pearson-only 对非线性单调关系低估相关性，Phase 0 已暴露该缺陷'
+  decision_id: D003

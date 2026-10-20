@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7a82c385d5e877a71df",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis figure data prep",
+  "task_key": "worker_analysis_figure-data-prep_20260516T051202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_figure-data-prep_20260516T051202_result.json",
+    "occurrence": 1,
+    "bytes": 696,
+    "sha256": "a897cdd0de9221ef4dc1f151ef049ab3e2bd5b2d9218611a46226cd7dbf865e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个 CSV 数据文件全部生成并注册完成：\n\n| 文件 | 行数 | 说明 |\n|------|------|------|\n| `fig_tau_sweep.csv` | 7行 | τ=0.5~0.95 + uniform参考线，含 b* 统计量 |\n| `fig_b_landscape.csv` | 20行 | 3 seed 的 grid-b PPL + adaptive 标注点，seed456 已截断至 b≤1.5 |\n| `fig_nmin_ablation.csv` | 5行 | n_min=1~4 + uniform参考线 |\n| `fig_contamination_comparison.csv` | 4行 | ρ=0.4 vs ρ=0.6 四种方法对比 |\n| `fig_method_comparison.csv` | 5行 | 跨 seed 方法对比，含 mean/std |\n\n所有 PPL 值均从 registry 实际 metrics 提取，未使用 fallback。待补充：b=0.1 seed42 完成后需更新 `fig_b_landscape.csv`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-figure-data-prep.md"
+}

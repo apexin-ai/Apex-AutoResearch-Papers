@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90b2fc51ed4ca4354666",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "monitor training progress",
+  "task_key": "worker_monitor_training_progress_20260513T235517",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training_progress_20260513T235517_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "48ccd80ba2c5992659dbb667ba3a9fc7efb3492dd1ee99c64b84ee73af3c285c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/training_progress_check.md`。关键结论：\n\n**全部 4 个实验正常运行，无异常。**\n\n| 实验 | 进度 | 预计剩余 |\n|------|------|---------|\n| uniform_seed42 | 1422/6103 (23%) | ~1h 45m |\n| uniform_seed123 | 1419/6103 (23%) | ~1h 45m |\n| uniform_seed456 | 1419/6103 (23%) | ~1h 45m |\n| grid_b (b=0.5, 第1/6个) | 179/6103 (3%) | ~19h（全部6个b值） |\n\n- 4 卡 GPU 利用率 93-99%，显存约 44-47 GB / 98 GB\n- 磁盘 30G/250G（12%），预计全部完成后 ~40G，无风险\n- 3 个 uniform 实验约 09:40 UTC 完成；grid-b 全部 6 个值约明天 03:00 UTC 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress.md"
+}

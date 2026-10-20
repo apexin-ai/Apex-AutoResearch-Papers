@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd3c5e5f305249fb7bdc",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "status b8 progress check",
+  "task_key": "worker_status_b8_progress_check_20260522T135121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_b8_progress_check_20260522T135121_result.json",
+    "occurrence": 1,
+    "bytes": 76,
+    "sha256": "3f32182d68bbdc05c2045307673ae4e6f17b3ea09f322619ee647c568c65b45e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- bs8_adaptive: step 3984/6103\n- bs8_uniform: step 3330/6103"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-b8-progress-check.md"
+}

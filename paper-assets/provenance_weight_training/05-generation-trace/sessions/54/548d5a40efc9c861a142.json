@@ -1,0 +1,1717 @@
+{
+  "schema_version": "1.0",
+  "id": "548d5a40efc9c861a142",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "submit contamination 60 random seed123",
+  "task_key": "worker_submit_contamination_60_random_seed123_20260518T063808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_contamination_60_random_seed123_20260518T063808.log",
+    "occurrence": 1,
+    "bytes": 83720,
+    "sha256": "591cdb16e10d8be8e2c26f09787d2e193b7752f353fabbaa206b8a994cbcec79"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 13,
+      "tool_call": 11,
+      "tool_result": 11,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+                "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d02d8519-3957-40a2-8292-63fc9279161a",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779086400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "8cf03f69-5ad7-4409-b218-8210d229db27",
+                "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to submit a training experiment on server westd-41312, GPU cuda:2. Let me break this down:\n\n1. Use `submit_training_job` to submit the training job\n2. Check that it started successfully\n3. Update the registry\n\nLet me first load the necessary MCP tools.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "9e8855ba-f9fd-4433-a6ba-df9d8b729a83",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DxUZeaT1Qqi5mTFkSpxS9Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12605,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12605
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DfCT2gYmWVNAozukDFhPMN",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "910e9daa-463d-4664-b4d6-772add63dcca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DxUZeaT1Qqi5mTFkSpxS9Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12605,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12605
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T06:38:22.625Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01DfCT2gYmWVNAozukDFhPMN",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "71dbefcc-1bf1-44cc-9649-2c1cb0f5c552",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__register_artifact",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me load the `submit_training_job` tool since the task requires using it.",
+              "signature": "EosCClkIDRgCKkBKaJwOksO2FNBgLGXScAX2oMdiUasR+3VW/JCi1fAAhPFkKOQZNP8nZ0TIrcVdFUMaJgqXCdaR1svWmr/c/dRyMg9jbGF1ZGUtb3B1cy00LTY4ABIMVGRKBB8DJPuAg5g5Ggy3vxq6YZB2lQBsT/ciMIoFsjw9FG07wi75qMdGPV5tl20ljjtbcdSXM7O2YwJUh8nln61/jgSaaIqmiREzeipgWdP8FmNfGDmvmd8rhnLXe1p1/pareBmB3HI3k+fqrNhnGShFGJuU1r43JUiDob5k/7tmIhjlUu6/VzGEra8LSJb21BMcjQlChV9wOOrlyxvPUAGYkK0mMDVHXwoihKcRGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "294c76da-6be3-496e-9fd1-19f825748fca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018vMUJPrPmWdKUC2CjQvBkA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1882,
+                "cache_read_input_tokens": 24446,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1882
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GfiXZX1vRqqgGBiBrA2dNZ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "submit training job",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "7d2ba476-dd13-4d4a-8bca-898051b993b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018vMUJPrPmWdKUC2CjQvBkA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1882,
+                "cache_read_input_tokens": 24446,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1882
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T06:38:26.536Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GfiXZX1vRqqgGBiBrA2dNZ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__kill_job"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "CronDelete"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "CronCreate"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "2b660ba6-62e9-4996-8549-7058ffa7d58a",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__kill_job",
+                "CronDelete",
+                "CronCreate"
+              ],
+              "query": "submit training job",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "There's no `submit_training_job` tool available. The task says to use `submit_training_job` but it doesn't exist in the tool list. Let me use `ssh_execute` to set up tmux and run the training command manually, similar to what `submit_training_job` would do. But first, let me check if there's a different tool name or if I need to do it manually via ssh_execute.\n\nActually, looking at the task description again: \"使用 `submit_training_job` 提交（自动创建 tmux + cron 监控）\". But this tool doesn't exist. Let me just use ssh_execute to create a tmux session and run the command, and set up cron monitoring separately.\n\n\nNow I'll execute the training job on westd-41312 using tmux with GPU cuda:2.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "0d761b2b-a2b0-4c63-b058-a2e2a6c54ef7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BcC7Pa7swvU8UdHL1Q736e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1549,
+                "cache_read_input_tokens": 26328,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1549
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有找到 `submit_training_job` 工具，改用 `ssh_execute` + tmux 手动提交。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "8177bb51-d2cf-47fc-b580-af330902fa34",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BcC7Pa7swvU8UdHL1Q736e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1549,
+                "cache_read_input_tokens": 26328,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1549
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vh3oxMCPEx9gp5LGgtC7Ga",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-41312",
+                "command": "tmux new-session -d -s contamination_60_random_seed123 'CUDA_VISIBLE_DEVICES=2 bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123/train.log\"'",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "55a4091c-bfb6-4bd4-b43c-f1a94151de86",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BcC7Pa7swvU8UdHL1Q736e",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1549,
+                "cache_read_input_tokens": 26328,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1549
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T06:38:37.599Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vh3oxMCPEx9gp5LGgtC7Ga",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "f78fd6c4-d0a2-488f-ac61-45a96d4c1671",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux session 已创建。确认进程启动状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "8f208d08-d575-4ca1-ba13-dae169d65461",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015wpG8Cp1LuH3od6mDp1pZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 717,
+                "cache_read_input_tokens": 27877,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 717
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q2KZXVVvkmsxCK2fqnDABt",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-41312",
+                "command": "sleep 5 && ps aux | grep pretrain_weighted | grep -v grep",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "5a141c10-55b5-4f9b-bacb-c3c6ae3eaa9a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015wpG8Cp1LuH3od6mDp1pZk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 717,
+                "cache_read_input_tokens": 27877,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 717
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T06:38:46.295Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q2KZXVVvkmsxCK2fqnDABt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     181813  0.0  0.0   4364  2044 ?        S    14:19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup env CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 > /root/provenance_weight_training/logs/contamination_60_ess_only_seed123.log 2>&1 &\\\\nroot     181818  101  0.3 85870576 3830932 ?    Sl   14:19  19:10 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\nroot     182187  0.0  0.0   4364  2088 ?        S    14:20   0:00 bash -c mkdir -p /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup env CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 > /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456/train.log 2>&1 &\\\\nroot     182193  101  0.3 85887244 3852016 ?    Sl   14:20  18:56 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\nroot     183248  0.0  0.0   6088  3796 ?        Ss   14:38   0:00 tmux new-session -d -s contamination_60_random_seed123 CUDA_VISIBLE_DEVICES=2 bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123/train.log\\\\\\\"\\\\nroot     183249  0.0  0.0   4364  3200 pts/0    Ss+  14:38   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123/train.log\\\\nroot     183255  273  0.2 15047200 2603484 pts/0 Rl+ 14:38   0:24 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\nroot     183331  0.0  0.0   4364  3240 pts/1    Ss+  14:38   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456/train.log\\\\nroot     183337  298  0.2 14777900 2334992 pts/1 Rl+ 14:38   0:23 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "3f3de537-68b2-4b7f-8da1-e218906ac97b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     181813  0.0  0.0   4364  2044 ?        S    14:19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup env CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 > /root/provenance_weight_training/logs/contamination_60_ess_only_seed123.log 2>&1 &\\\\nroot     181818  101  0.3 85870576 3830932 ?    Sl   14:19  19:10 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\nroot     182187  0.0  0.0   4364  2088 ?        S    14:20   0:00 bash -c mkdir -p /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup env CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 > /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456/train.log 2>&1 &\\\\nroot     182193  101  0.3 85887244 3852016 ?    Sl   14:20  18:56 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\nroot     183248  0.0  0.0   6088  3796 ?        Ss   14:38   0:00 tmux new-session -d -s contamination_60_random_seed123 CUDA_VISIBLE_DEVICES=2 bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123/train.log\\\\\\\"\\\\nroot     183249  0.0  0.0   4364  3200 pts/0    Ss+  14:38   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123/train.log\\\\nroot     183255  273  0.2 15047200 2603484 pts/0 Rl+ 14:38   0:24 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\nroot     183331  0.0  0.0   4364  3240 pts/1    Ss+  14:38   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456/train.log\\\\nroot     183337  298  0.2 14777900 2334992 pts/1 Rl+ 14:38   0:23 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root     181813  0.0  0.0   4364  2044 ?        S    14:19   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup env CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 > /root/provenance_weight_training/logs/contamination_60_ess_only_seed123.log 2>&1 &\\nroot     181818  101  0.3 85870576 3830932 ?    Sl   14:19  19:10 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\nroot     182187  0.0  0.0   4364  2088 ?        S    14:20   0:00 bash -c mkdir -p /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && nohup env CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 > /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456/train.log 2>&1 &\\nroot     182193  101  0.3 85887244 3852016 ?    Sl   14:20  18:56 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\nroot     183248  0.0  0.0   6088  3796 ?        Ss   14:38   0:00 tmux new-session -d -s contamination_60_random_seed123 CUDA_VISIBLE_DEVICES=2 bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123/train.log\\\"\\nroot     183249  0.0  0.0   4364  3200 pts/0    Ss+  14:38   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123/train.log\\nroot     183255  273  0.2 15047200 2603484 pts/0 Rl+ 14:38   0:24 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\nroot     183331  0.0  0.0   4364  3240 pts/1    Ss+  14:38   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 2>&1 | tee /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456/train.log\\nroot     183337  298  0.2 14777900 2334992 pts/1 Rl+ 14:38   0:23 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.44}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The process is running. PID is 183255 for the contamination_60_random_seed123 experiment on cuda:2. Let me check the initial log output and then update the registry.",
+              "signature": "EuECClkIDRgCKkDNYzMwFr+vz+EvvK1KeICh+WGd5qaf5iaMqJrBjccKIACdiqGWH0ff6mAn1mGLbcFuCxnKMs3jiPQpkAo8W3IRMg9jbGF1ZGUtb3B1cy00LTY4ABIMDZyCyMoxbgPt2QmAGgxzZRngPmhjY4/kEGYiMBWQ4lJI+2KGaKg18lu9aBuUM3hXNY2B0z1TVGxYm7KWCuRZF9wNS1b4S9Zj8hPBBSq1AbtlX5XqaelEPCehYCxN8xG7mxAZWI3PkC3mdUToi/Y1rXOPBYmoeJf/mMclciC/zMj4+EIhtFnzO3arSEL0rbkgfQ3zrWIw1o/ASNRyia8WqIwxhCsNXTnCqoYJ4E1fmfDV8lHlgjml8PJrJwTKbJ52swb/YqaZqzrEAAxxj34Vr40ZCjLQ1ryqugpekHr//w7q3VQdvarcwMQ3e19oyojIQAPA7xPPbI/l38Om1i36DuJLIJwYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "3e037c37-7515-40cd-b487-7bc474dd6766",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0131MpH9dEHwWnJTwg3SJADW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2706,
+                "cache_read_input_tokens": 28594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2706
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已启动，PID **183255**，在 cuda:2 上运行。查看前几行 log。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "3b139d07-b1c8-4f17-8617-c0d83d891a18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0131MpH9dEHwWnJTwg3SJADW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2706,
+                "cache_read_input_tokens": 28594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2706
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017JUckGXSLdXW9iAy2bngij",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-41312",
+                "command": "tmux capture-pane -t contamination_60_random_seed123 -p | tail -30",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "e4dfde4f-0b72-43ab-a5f7-02fd8cb9073b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0131MpH9dEHwWnJTwg3SJADW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2706,
+                "cache_read_input_tokens": 28594,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2706
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T06:38:51.634Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017JUckGXSLdXW9iAy2bngij",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"one, 'pad_token_id': 151643}.\\\\nLoading tokenizer: models/Qwen/Qwen3-0.6B\\\\nLoading model: models/Qwen/Qwen3-0.6B\\\\nLoading training data: data/scored_data_60.jsonl\\\\n  371499 examples loaded\\\\n  num_train_tokens=200000000 → max_steps=6103\\\\n\\\\n=== Training Config ===\\\\n  model_name: models/Qwen/Qwen3-0.6B\\\\n  weighting_method: random\\\\n  grid_b_value: None\\\\n  tau: 0.8\\\\n  adaptive_tau: False\\\\n  tau_delta: None\\\\n  tau_min: None\\\\n  n_min: 2\\\\n  contamination_ratio: 0.6\\\\n  batch_size: 4\\\\n  learning_rate: 5e-05\\\\n  max_steps: 6103\\\\n  seed: 123\\\\n  num_examples: 371499\\\\n\\\\n  0%|          | 1/6103 [00:02<4:37:50,  2.73s/it]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "fbf43cb5-9a9c-4a10-ba0d-b7c7c9bd7b76",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"one, 'pad_token_id': 151643}.\\\\nLoading tokenizer: models/Qwen/Qwen3-0.6B\\\\nLoading model: models/Qwen/Qwen3-0.6B\\\\nLoading training data: data/scored_data_60.jsonl\\\\n  371499 examples loaded\\\\n  num_train_tokens=200000000 → max_steps=6103\\\\n\\\\n=== Training Config ===\\\\n  model_name: models/Qwen/Qwen3-0.6B\\\\n  weighting_method: random\\\\n  grid_b_value: None\\\\n  tau: 0.8\\\\n  adaptive_tau: False\\\\n  tau_delta: None\\\\n  tau_min: None\\\\n  n_min: 2\\\\n  contamination_ratio: 0.6\\\\n  batch_size: 4\\\\n  learning_rate: 5e-05\\\\n  max_steps: 6103\\\\n  seed: 123\\\\n  num_examples: 371499\\\\n\\\\n  0%|          | 1/6103 [00:02<4:37:50,  2.73s/it]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"one, 'pad_token_id': 151643}.\\nLoading tokenizer: models/Qwen/Qwen3-0.6B\\nLoading model: models/Qwen/Qwen3-0.6B\\nLoading training data: data/scored_data_60.jsonl\\n  371499 examples loaded\\n  num_train_tokens=200000000 → max_steps=6103\\n\\n=== Training Config ===\\n  model_name: models/Qwen/Qwen3-0.6B\\n  weighting_method: random\\n  grid_b_value: None\\n  tau: 0.8\\n  adaptive_tau: False\\n  tau_delta: None\\n  tau_min: None\\n  n_min: 2\\n  contamination_ratio: 0.6\\n  batch_size: 4\\n  learning_rate: 5e-05\\n  max_steps: 6103\\n  seed: 123\\n  num_examples: 371499\\n\\n  0%|          | 1/6103 [00:02<4:37:50,  2.73s/it]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动。max_steps=6103，预计 ~4.6 小时。更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "3fa3189c-d29d-4f5a-9a79-5595ca043ba7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DoDLw86AmwG6Gth2CRhk9Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 578,
+                "cache_read_input_tokens": 31300,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 578
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Uv9fEyNm6rdQVY1k3RJhpv",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "contamination_60_random_seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "provenance_weight_training",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=2 python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3",
+                  "server": "westd-41312",
+                  "gpu": 2,
+                  "data_path": "data/scored_data_60.jsonl",
+                  "data_count": 371499,
+                  "model_name": "Qwen3-0.6B",
+                  "seed": 123
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "14e264cb-9619-423f-9fbd-49af20360549",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DoDLw86AmwG6Gth2CRhk9Z",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 578,
+                "cache_read_input_tokens": 31300,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 578
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T06:38:59.244Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Uv9fEyNm6rdQVY1k3RJhpv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.342}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "86876621-bbe3-412b-a528-ca2f4f961729",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.342}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.342}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry transition from PREPARING to RUNNING is not allowed. Let me check the current status and fix it.",
+              "signature": "EqgCClkIDRgCKkB+WYy9kOTc87C2MAyJVNiNNkfoeP2Es5icmbmWmzPnL6Tbw/p5ccI5VTfVKMCHWOnz4UBKhHmYaq0Zg4FdhG6IMg9jbGF1ZGUtb3B1cy00LTY4ABIMBtMTG/6HgbDoyrIGGgych/RSJ03dkrbBP24iMITTI938iQiIoEz4D2wWLuK1ofkgsChj1m8WFRPnbDGT5luJifJATosA5WAdiBEIASp90w0R/1NNoET8LUdJ4NKM34w1iIzXymdqxnirBpvLJs/9UhjHNOZMcwQfFuRhZgn2hmg8CINOHVtKXaRYdnjjFBij88+PBgLvzNgeyDGF+uXY12TTy9E2h23SG0OQK8yNYIswQ+M3jCBuGsD8oQC4cjQjq4WZy/07l/4VqzkYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "489b62bb-6bb5-4080-a7c3-06a287fdbe68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0185UeXvSMS1Q9Njf4NyUBJS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 615,
+                "cache_read_input_tokens": 31878,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 615
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BX9QUk3mJ9L24P8cwoDGme",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "provenance_weight_training",
+                "filters": {
+                  "exp_id": "contamination_60_random_seed123"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "ddd2dbd8-cfc5-4a5f-9814-afbd75f24a0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0185UeXvSMS1Q9Njf4NyUBJS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 615,
+                "cache_read_input_tokens": 31878,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 615
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T06:39:02.912Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BX9QUk3mJ9L24P8cwoDGme",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3272}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "2dea0620-db47-486a-964e-70d4702c9387",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3272}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3272}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "No experiments found with that filter. The filter key might be wrong - let me check the registry for all experiments with a broader approach.",
+              "signature": "EskCClkIDRgCKkC0DeUgniX4x0V5Qu+fZIarLH296X33KlgutTFtfsOAq6lbrzlmAXPonA5kXkEwS8pjE83/xSNbk+9B6d98KBSfMg9jbGF1ZGUtb3B1cy00LTY4ABIMFzeRDgz/KlT/LIckGgwjX9fS2xv+9gnGttQiMLzxwF/e4plchOzQPy28yw/IM+axl8x9Tn/BKrLF+ppQg3Z0eVvSVEXt/SWn3f6s+SqdAULYk48X2+ZeDdqXEA/g62t+k5TT5Q8TTQOzxdYlAUEulJxHhh/qILJhX1sHdqthpxHZ32WNuEW90s5e/pSLKqi+nzqHLhHbsyGPkTlmHV/XvfRExUu5no1PXkszdck5Ea4BRnP3MFwiCwAOCv31l9TZvZJAwrGzEJvL/o8xi+cf6L7htf+NuLy6D4pxTUh7DFeUuV2YwF9IzGlKB8IYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "361a262f-ce8d-4648-aa42-26db9f71e3da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PjNiCUfsKK3Xk2tTRrQ18p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 233,
+                "cache_read_input_tokens": 32493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 233
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FNGxSQ4efBrGmCyqTwQ92u",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "provenance_weight_training",
+                "fields": [
+                  "*"
+                ],
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "6dbca42d-a446-4ab8-b794-3c9dc81f27aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PjNiCUfsKK3Xk2tTRrQ18p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 233,
+                "cache_read_input_tokens": 32493,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 233
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T06:39:06.919Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FNGxSQ4efBrGmCyqTwQ92u",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"contamination_60_ess_only_seed123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:40.225Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:21:27.033Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed123) of ESS-only at ρ=0.6. D075 found ESS-only(17.770) ≈ uniform(17.766) at ρ=0.6, suggesting max-intervention collapses at high contamination. 3-seed data tests if this collapse is robust or seed-specific, strengthening Claim 1 four-tier hierarchy cross-ρ evidence.\\\", \\\"parent\\\": \\\"contamination_60_ess_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"data_path\\\": \\\"data/scored_data_60.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 123}}, \\\"contamination_60_ess_only_seed456\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:41.546Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:21:21.188Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed456) of ESS-only at ρ=0.6. D075 found ESS-only(17.770) ≈ uniform(17.766) at ρ=0.6, suggesting max-intervention collapses at high contamination. 3-seed data tests if this collapse is robust or seed-specific, strengthening Claim 1 four-tier hierarchy cross-ρ evidence.\\\", \\\"parent\\\": \\\"contamination_60_ess_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"data_path\\\": \\\"data/scored_data_60.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"models/Qwen/Qwen3-0.6B\\\", \\\"eval_data\\\": \\\"N/A (training experiment, not eval)\\\"}}, \\\"contamination_60_random_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:44.245Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:19:04.688Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed456) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\\\", \\\"parent\\\": \\\"contamination_60_random_seed42\\\"}, \\\"contamination_60_random_seed123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:42.911Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:19:04.064Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed123) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\\\", \\\"parent\\\": \\\"contamination_60_random_seed42\\\"}, \\\"grid_b0_2_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T01:38:11.212Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:13:39.221Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed456) of grid b=0.2: 3rd seed for b=0.2 plateau confirmation, completing Claim 2 cross-seed grid curve at the optimal region.\\\", \\\"parent\\\": \\\"grid_b0_2_seed42\\\", \\\"failure_reason\\\": \\\"SSH check failed 5x — last error: [Errno None] Unable to connect to port 30476 on 36.103.198.204\\\", \\\"completed_at\\\": \\\"2026-05-18T05:20:07.918Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python training/pretrain_weighted.py --resume_from_checkpoint checkpoint-5500 --weighting_method grid --grid_b_value 0.2 --seed 456\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 200000000, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"grid_b0_2_seed456/checkpoint-5500\\\", \\\"eval_data\\\": \\\"N/A (training, not eval)\\\"}, \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.645, \\\"eval_loss_holdout\\\": 2.87, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\\\", \\\"eval_checkpoint\\\": \\\"checkpoint-5500\\\", \\\"note\\\": \\\"eval at checkpoint-5500; final checkpoint degraded due to --save_only_model LR reset on resume\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/grid_b0_2_seed456/checkpoint-5500\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/output/models/grid_b0_2_seed456/step_metrics.jsonl\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 5, \\\"total\\\": 121, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3665}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "03536d0d-62f1-4bb0-9ac7-f6a449af0b8f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"contamination_60_ess_only_seed123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:40.225Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:21:27.033Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed123) of ESS-only at ρ=0.6. D075 found ESS-only(17.770) ≈ uniform(17.766) at ρ=0.6, suggesting max-intervention collapses at high contamination. 3-seed data tests if this collapse is robust or seed-specific, strengthening Claim 1 four-tier hierarchy cross-ρ evidence.\\\", \\\"parent\\\": \\\"contamination_60_ess_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"data_path\\\": \\\"data/scored_data_60.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 123}}, \\\"contamination_60_ess_only_seed456\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:41.546Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:21:21.188Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed456) of ESS-only at ρ=0.6. D075 found ESS-only(17.770) ≈ uniform(17.766) at ρ=0.6, suggesting max-intervention collapses at high contamination. 3-seed data tests if this collapse is robust or seed-specific, strengthening Claim 1 four-tier hierarchy cross-ρ evidence.\\\", \\\"parent\\\": \\\"contamination_60_ess_only_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"data_path\\\": \\\"data/scored_data_60.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"models/Qwen/Qwen3-0.6B\\\", \\\"eval_data\\\": \\\"N/A (training experiment, not eval)\\\"}}, \\\"contamination_60_random_seed456\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:44.245Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:19:04.688Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed456) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\\\", \\\"parent\\\": \\\"contamination_60_random_seed42\\\"}, \\\"contamination_60_random_seed123\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:42.911Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:19:04.064Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed123) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\\\", \\\"parent\\\": \\\"contamination_60_random_seed42\\\"}, \\\"grid_b0_2_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T01:38:11.212Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:13:39.221Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed456) of grid b=0.2: 3rd seed for b=0.2 plateau confirmation, completing Claim 2 cross-seed grid curve at the optimal region.\\\", \\\"parent\\\": \\\"grid_b0_2_seed42\\\", \\\"failure_reason\\\": \\\"SSH check failed 5x — last error: [Errno None] Unable to connect to port 30476 on 36.103.198.204\\\", \\\"completed_at\\\": \\\"2026-05-18T05:20:07.918Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python training/pretrain_weighted.py --resume_from_checkpoint checkpoint-5500 --weighting_method grid --grid_b_value 0.2 --seed 456\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 200000000, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"grid_b0_2_seed456/checkpoint-5500\\\", \\\"eval_data\\\": \\\"N/A (training, not eval)\\\"}, \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.645, \\\"eval_loss_holdout\\\": 2.87, \\\"eval_holdout_tokens\\\": 4077068, \\\"eval_method\\\": \\\"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\\\", \\\"eval_checkpoint\\\": \\\"checkpoint-5500\\\", \\\"note\\\": \\\"eval at checkpoint-5500; final checkpoint degraded due to --save_only_model LR reset on resume\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/grid_b0_2_seed456/checkpoint-5500\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/output/models/grid_b0_2_seed456/step_metrics.jsonl\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 5, \\\"total\\\": 121, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3665}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"contamination_60_ess_only_seed123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:18:40.225Z\", \"updated_at\": \"2026-05-18T06:21:27.033Z\", \"hypothesis\": \"Cross-seed replication (seed123) of ESS-only at ρ=0.6. D075 found ESS-only(17.770) ≈ uniform(17.766) at ρ=0.6, suggesting max-intervention collapses at high contamination. 3-seed data tests if this collapse is robust or seed-specific, strengthening Claim 1 four-tier hierarchy cross-ρ evidence.\", \"parent\": \"contamination_60_ess_only_seed42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\", \"server\": \"westd-41312\", \"data_path\": \"data/scored_data_60.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 123}}, \"contamination_60_ess_only_seed456\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:18:41.546Z\", \"updated_at\": \"2026-05-18T06:21:21.188Z\", \"hypothesis\": \"Cross-seed replication (seed456) of ESS-only at ρ=0.6. D075 found ESS-only(17.770) ≈ uniform(17.766) at ρ=0.6, suggesting max-intervention collapses at high contamination. 3-seed data tests if this collapse is robust or seed-specific, strengthening Claim 1 four-tier hierarchy cross-ρ evidence.\", \"parent\": \"contamination_60_ess_only_seed42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method ess_only --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\", \"server\": \"westd-41312\", \"data_path\": \"data/scored_data_60.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 456, \"checkpoint_source\": \"models/Qwen/Qwen3-0.6B\", \"eval_data\": \"N/A (training experiment, not eval)\"}}, \"contamination_60_random_seed456\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:18:44.245Z\", \"updated_at\": \"2026-05-18T06:19:04.688Z\", \"hypothesis\": \"Cross-seed replication (seed456) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\", \"parent\": \"contamination_60_random_seed42\"}, \"contamination_60_random_seed123\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:18:42.911Z\", \"updated_at\": \"2026-05-18T06:19:04.064Z\", \"hypothesis\": \"Cross-seed replication (seed123) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\", \"parent\": \"contamination_60_random_seed42\"}, \"grid_b0_2_seed456\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T01:38:11.212Z\", \"updated_at\": \"2026-05-18T06:13:39.221Z\", \"hypothesis\": \"Cross-seed replication (seed456) of grid b=0.2: 3rd seed for b=0.2 plateau confirmation, completing Claim 2 cross-seed grid curve at the optimal region.\", \"parent\": \"grid_b0_2_seed42\", \"failure_reason\": \"SSH check failed 5x — last error: [Errno None] Unable to connect to port 30476 on 36.103.198.204\", \"completed_at\": \"2026-05-18T05:20:07.918Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"python training/pretrain_weighted.py --resume_from_checkpoint checkpoint-5500 --weighting_method grid --grid_b_value 0.2 --seed 456\", \"server\": \"westd-30476\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 200000000, \"model_name\": \"Qwen3-0.6B\", \"seed\": 456, \"checkpoint_source\": \"grid_b0_2_seed456/checkpoint-5500\", \"eval_data\": \"N/A (training, not eval)\"}, \"metrics\": {\"eval_ppl_holdout\": 17.645, \"eval_loss_holdout\": 2.87, \"eval_holdout_tokens\": 4077068, \"eval_method\": \"eval_perplexity.py --max_docs 5000 --max_length 2048 --stride 1024 --fp16\", \"eval_checkpoint\": \"checkpoint-5500\", \"note\": \"eval at checkpoint-5500; final checkpoint degraded due to --save_only_model LR reset on resume\"}, \"checkpoint_path\": \"/root/autodl-tmp/output/models/grid_b0_2_seed456/checkpoint-5500\", \"log_path\": \"/root/autodl-tmp/output/models/grid_b0_2_seed456/step_metrics.jsonl\", \"conclusion\": \"success\"}}, \"count\": 5, \"total\": 121, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3665}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态是 PREPARING，需要先转到 QUEUED 再转 RUNNING。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "9736b6bb-6a82-418a-93e2-6ec5f7fb197f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UzMjju6YY6CZoJMupMSjMb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2254,
+                "cache_read_input_tokens": 32726,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2254
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PmftSFbceHrZUmdnVHxJfr",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "contamination_60_random_seed123",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "bec130fe-6fc7-4a5b-ae53-b7c6a52a9704",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UzMjju6YY6CZoJMupMSjMb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2254,
+                "cache_read_input_tokens": 32726,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2254
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T06:39:12.945Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PmftSFbceHrZUmdnVHxJfr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_random_seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:42.911Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:39:11.935Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed123) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\\\", \\\"parent\\\": \\\"contamination_60_random_seed42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3448}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "d3cf5aba-0f46-46c8-a9ff-19557ef96da9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_random_seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:42.911Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:39:11.935Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed123) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\\\", \\\"parent\\\": \\\"contamination_60_random_seed42\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3448}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"contamination_60_random_seed123\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:18:42.911Z\", \"updated_at\": \"2026-05-18T06:39:11.935Z\", \"hypothesis\": \"Cross-seed replication (seed123) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\", \"parent\": \"contamination_60_random_seed42\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3448}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MYi9cef84xV7gnAZZxWbFz",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "contamination_60_random_seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "provenance_weight_training",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=2 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3",
+                  "server": "westd-41312",
+                  "gpu": 2,
+                  "data_path": "data/scored_data_60.jsonl",
+                  "data_count": 371499,
+                  "model_name": "Qwen3-0.6B",
+                  "seed": 123
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "120ce307-f733-45ea-8dd6-af0a59863206",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Scm6kgCJPrBwj7Bx7HV5oU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 417,
+                "cache_read_input_tokens": 34980,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 417
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T06:39:18.550Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MYi9cef84xV7gnAZZxWbFz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6263}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "9cdea578-9112-4517-aef8-536f0dc6a950",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6263}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\", \"metadata\": {\"elapsed_seconds\": 0.6263}}"
+              }
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry is requiring checkpoint_source and eval_data because it thinks this is an eval experiment (it has a parent). Let me add those fields.",
+              "signature": "Es4CClkIDRgCKkD31e4ortsjPRM7qgLKMHzvjcGks/AjBkEduH0Ccy3AyL0EQXoS1PcXjR4JisdXozZrWoxh9+pLasHEfRvfGUYLMg9jbGF1ZGUtb3B1cy00LTY4ABIMNmGQXWBhCIlT6d+WGgy4NU9xe4xE6TT8ejsiMKokexx/EiA3iNnSZwcFKNQOBgrm3KAe1jvZMet69mtUbimLDk0Uh1dsxvT/HdZ9LCqiASHo0iD9xE6/OJ9yPM+l+d8FGrLP8Ghlg4WQeW0QwHMgm9nEvqxXgoxnbJ7QZVyvMSYwbqvFKroQlBA4P1do1hdSNUHSVi4zyHRx76j2Xix8zzvpfOtwOP/oBV25O6dACK8aum8H8zXkDOQtmM8CAIzLNKuOiDpxaT/j1ASZ2ZWXcF/z7NNi2uv6hWMviVAREcTwGbj9PRHyWs2PIHWOol3DtBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "0cc22de4-c115-429f-a832-6c263c94a436",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019MNGUxaW9ZUirVwPiDgDSA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 503,
+                "cache_read_input_tokens": 35397,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 503
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H2YTNWPhVAFPsJrpFxLkqD",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "contamination_60_random_seed123",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "provenance_weight_training",
+                "spec": {
+                  "command": "CUDA_VISIBLE_DEVICES=2 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3",
+                  "server": "westd-41312",
+                  "gpu": 2,
+                  "data_path": "data/scored_data_60.jsonl",
+                  "data_count": 371499,
+                  "model_name": "Qwen3-0.6B",
+                  "seed": 123,
+                  "checkpoint_source": "models/Qwen/Qwen3-0.6B",
+                  "eval_data": "N/A (training experiment, not eval)"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "073104a7-e07c-4e41-8a89-5184e3110a90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019MNGUxaW9ZUirVwPiDgDSA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 503,
+                "cache_read_input_tokens": 35397,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 503
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T06:39:26.493Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H2YTNWPhVAFPsJrpFxLkqD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_random_seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:42.911Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:39:25.470Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed123) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\\\", \\\"parent\\\": \\\"contamination_60_random_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": 2, \\\"data_path\\\": \\\"data/scored_data_60.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"models/Qwen/Qwen3-0.6B\\\", \\\"eval_data\\\": \\\"N/A (training experiment, not eval)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3383}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "2e12f762-3d2c-4a72-b67f-8fb184785e67",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"contamination_60_random_seed123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T06:18:42.911Z\\\", \\\"updated_at\\\": \\\"2026-05-18T06:39:25.470Z\\\", \\\"hypothesis\\\": \\\"Cross-seed replication (seed123) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\\\", \\\"parent\\\": \\\"contamination_60_random_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": 2, \\\"data_path\\\": \\\"data/scored_data_60.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"models/Qwen/Qwen3-0.6B\\\", \\\"eval_data\\\": \\\"N/A (training experiment, not eval)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3383}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"contamination_60_random_seed123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T06:18:42.911Z\", \"updated_at\": \"2026-05-18T06:39:25.470Z\", \"hypothesis\": \"Cross-seed replication (seed123) of random reweighting at ρ=0.6. Random weights ignore detector scores entirely. If PPL > ESS-only and > uniform (consistent with seed42), completes four-tier ablation hierarchy (adaptive < uniform < ESS-only < random) at ρ=0.6 with 3-seed evidence, confirming Claim 1 holds cross-ρ.\", \"parent\": \"contamination_60_random_seed42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 WANDB_MODE=disabled python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_random_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method random --contamination_ratio 0.6 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\", \"server\": \"westd-41312\", \"gpu\": 2, \"data_path\": \"data/scored_data_60.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 123, \"checkpoint_source\": \"models/Qwen/Qwen3-0.6B\", \"eval_data\": \"N/A (training experiment, not eval)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.3383}}"
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID**: 183255\n- **服务器**: westd-41312, cuda:2\n- **tmux session**: `contamination_60_random_seed123`\n- **max_steps**: 6103, ~2.73s/it\n- **预计时长**: ~4.6 小时（约 19:00 完成）\n- **Registry**: 已更新为 RUNNING"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "uuid": "70f6cfd7-d4e8-4ecb-9b5a-ab39ad756add",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gz6DZ2xNv8Rzc2XhkTgjyG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1086,
+                "cache_read_input_tokens": 35900,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1086
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID**: 183255\n- **服务器**: westd-41312, cuda:2\n- **tmux session**: `contamination_60_random_seed123`\n- **max_steps**: 6103, ~2.73s/it\n- **预计时长**: ~4.6 小时（约 19:00 完成）\n- **Registry**: 已更新为 RUNNING"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 74342,
+            "duration_api_ms": 64688,
+            "num_turns": 12,
+            "stop_reason": "end_turn",
+            "session_id": "bc793fde-7182-48f8-a513-c224ae1263c3",
+            "total_cost_usd": 0.41590125,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 25145,
+              "cache_read_input_tokens": 353760,
+              "output_tokens": 3220,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25145,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 105,
+                  "cache_read_input_tokens": 35900,
+                  "cache_creation_input_tokens": 1086,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1086
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1170,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001275,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 18,
+                "outputTokens": 3220,
+                "cacheReadInputTokens": 353760,
+                "cacheCreationInputTokens": 25145,
+                "webSearchRequests": 0,
+                "costUSD": 0.41462625,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b5714111-24bf-40ae-bb9c-00b40dd7382e"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/worker-executions/submit-contamination-60-random-seed123.md"
+}

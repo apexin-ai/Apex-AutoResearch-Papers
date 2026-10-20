@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9fb00292a56c636d48d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis rho02 tau08 log",
+  "task_key": "worker_analysis_rho02_tau08_log_20260517T223731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rho02_tau08_log_20260517T223731_result.json",
+    "occurrence": 1,
+    "bytes": 1248,
+    "sha256": "76f4974e9f49bd126ea64b46ce9356ee72c2b7ea88840991995feebebdcbbbde"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。结果汇总：\n\n## rho02_adaptive_tau08_seed42 实验结果\n\n### 训练指标\n| 指标 | 值 |\n|------|-----|\n| train_loss (HF avg) | 11.68 |\n| total_steps | 6103 |\n| train_runtime | 14598.9s (4h03m) |\n| epoch | 0.47 |\n\n### Eval Holdout 指标\n| 指标 | �� |\n|------|-----|\n| **eval_ppl_holdout** | **17.382** |\n| **eval_loss_holdout** | **2.8555** |\n| eval_holdout_tokens | 4,077,068 |\n| eval_elapsed | 193.2s |\n\n### Weighting 统计 (训练末期 step 6100-6102)\n- τ_batch = 0.8 (固定)\n- b* 分布：约 40-50% batch 中 b=0（uniform fallback），其余 b∈[0.2, 15.6]\n- alpha_eff 多数在 0.7-0.8 区间\n- ESS 在 2.0-4.0 之间波动（b=0 时 ESS=4 即全 batch）\n\n### 与基准对比\n| 实验 | PPL | 结论 |\n|------|-----|------|\n| rho02_uniform_seed42 | 17.336 | baseline |\n| **rho02_adaptive_tau08_seed42** | **17.382** | +0.046, 略差于 uniform |\n| rho02_adaptive_tau09_r5 | 17.450 | τ=0.9 负面 |\n\n### 结论\n\n**τ=0.8 的 PPL (17.382) > uniform baseline (17.336)**，差距 +0.046。虽然比 τ=0.9 (17.45) 好，但仍未能超越 uniform baseline。Claim 3 在 ρ=0.2 条件下暂不成立——adaptive weighting 在低污染率下未带来增益。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rho02-tau08-log.md"
+}

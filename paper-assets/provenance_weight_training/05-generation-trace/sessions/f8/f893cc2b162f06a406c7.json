@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f893cc2b162f06a406c7",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis 1 7b 3seed prep",
+  "task_key": "worker_analysis_1_7b_3seed_prep_20260520T205914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_1_7b_3seed_prep_20260520T205914_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "dfa240b0bf37b66d2234bb6d0b7f0805e00944926d06d82824b525f2ee6e96a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模板已生成并注册：`artifacts/_project/report/1_7b_3seed_comparison_template.md`\n\n核心发现摘要：\n\n**2-seed 数据**（seed42 + seed123 已填入）：\n- **Holdout**: Δ=−0.012±0.003，方向一致（两 seed 均 adaptive 优），但幅度比 0.6B 缩小约 70%\n- **OWT**: Δ=−0.005±0.006，接近 0\n- **Wiki**: Δ=**+0.023±0.018**，adaptive **劣于** uniform。seed42 的 +0.036 是主要来源（uniform 侧 seed42 偏低 10.919 拉大了差距）\n- **Downstream**: Δ≈0，与 0.6B 结论一致\n\n**Wiki OOD variance 关注点**：seed42 +0.036 vs seed123 +0.010，variance 主要来自 uniform 侧（std=0.016），不是 adaptive 侧（std=0.002）。seed456 将决定 3-seed 均值和 \"no harm at scale\" framing 是否需要加 qualifier。\n\n**对论文 claim 的影响**：seed456 对 \"method scales without degradation\" 风险低，但对 Wiki OOD 信号的定论是 **中等风险**——若 3-seed Wiki Δ 显著 positive，需在 results 中 acknowledge。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-1-7b-3seed-prep.md"
+}

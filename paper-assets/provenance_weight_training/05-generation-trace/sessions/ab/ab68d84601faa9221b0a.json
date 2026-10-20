@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab68d84601faa9221b0a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval threshold q07 completion",
+  "task_key": "worker_eval_threshold_q07_completion_20260516T102045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_threshold_q07_completion_20260516T102045_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "376d9f26926bb0f56e8046d3add26fd4a340e4456c632bcd4e39efa08b78b03e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 结果\n\n**threshold_q07_seed42：训练失败**\n\n- 进度：2235/6103 steps (37%, epoch 0.19)\n- 原因：进程在 18:20 被静默 kill，无 error/traceback/OOM 日志。推测实例被回收或内存不足\n- 最后 checkpoint：checkpoint-2000\n- 未执行 eval（训练未完成，无 final checkpoint）\n\n### 阈值实验对比\n\n| 实验 | 阈值 | 状态 | PPL |\n|------|------|------|-----|\n| detect_remove | q>0.5 | DONE | 17.29 |\n| threshold_q03 | q>0.3 | 运行中 | - |\n| threshold_q07 | q>0.7 | **失败** | - |\n\n需要重跑 threshold_q07_seed42 才能完成阈值敏感性对比。建议从 checkpoint-2000 resume 以节省时间（已跑完 37%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-threshold-q07-completion.md"
+}

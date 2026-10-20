@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d17301e976bd25529382",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "status westd 47453 loop14",
+  "task_key": "worker_status_westd-47453-loop14_20260516T143746",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_westd-47453-loop14_20260516T143746_result.json",
+    "occurrence": 1,
+    "bytes": 1934,
+    "sha256": "dd73201ceb3a181735eb6ce6f3070b8a29595e50951dba0769eb1901ec6953a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总如下：\n\n---\n\n## 训练状态汇总\n\n**服务器**: westd-47453 | 4× NVIDIA RTX PRO 6000 Blackwell (98GB)\n**GPU 利用率**: 全部 94-100%，VRAM 各 75GB/98GB\n**磁盘**: 根分区 7.1GB 空闲 (77%) ✅ | autodl-tmp 45GB 空闲 (83%) ✅\n\n| 实验 | GPU | 进度 | 当前 per-batch loss | 预计剩余 (含eval) | 备注 |\n|------|-----|------|-----|------|------|\n| rho02_uniform_seed42 | cuda:1 | **1800/8477 (21%)** | ~2.6 | ~10h | 已从头重启，新 max_steps=8477 |\n| threshold_q07_seed42 | cuda:0 | **~4000/6103 (66%)** | ~2.7, eval_loss=3.04 | ~3.5h | ✅ 原始运行，从未崩溃 |\n| threshold_q03_seed42 | cuda:3 | **4431/8477 (52%)** | ~2.7 | ~7h | ⚠️ 见下方说明 |\n| batch_adaptive_tau_rho04 | cuda:2 | **2284/8477 (27%)** | weighted ~2.4, unweighted ~1.7 | ~9h | 已从头重启，新 max_steps=8477 |\n\n**训练速度**: 全部 ~3.2 it/s，eval 每 500 步触发一次，每次 eval 耗时 44-53 分钟，占实际训练时间的 90%+。\n\n---\n\n### 重点关注\n\n**threshold_q03_seed42**:\n- 之前 resume 失败 — `ValueError: Can't find a valid checkpoint at output/models/threshold_q03_seed42/checkpoint-2000`（用了相对路径，应该用绝对路径）\n- 已从头重启（max_steps 从 6103 变为 8477），当前在 step 4431，正常训练中\n- step_metrics.jsonl 只记录到 step 1999（文件刷新滞后）\n\n**threshold_q07_seed42**:\n- 唯一没有重启过的实验，连续从 step 0 训练到 ~4000\n- checkpoint 3500 的 eval_loss=3.035，趋势正常下降\n- step_metrics.jsonl 实时记录到 step 3999\n\n**rho02 & batch_adaptive**:\n- 均已重启，旧 checkpoints (max_steps=6103) 仍在磁盘上\n- 新运行 max_steps=8477，训练正常进行\n\n**tmux**: 无法通过 ssh_read_only 检查 tmux（命令被白名单阻止），但所有 4 个进程树都活跃，python 子进程 100% CPU 正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-westd-47453-loop14.md"
+}

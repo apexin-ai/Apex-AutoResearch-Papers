@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55ab33ce6069d22ef044",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval qwen3 0 6b baseline",
+  "task_key": "worker_eval_qwen3_0_6b_baseline_20260515T214825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen3_0_6b_baseline_20260515T214825_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "6a31790965c1d3630c98341de58ca4e07f77e39263a8135c6451b535e105f404"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。Qwen3-0.6B 原始 checkpoint baseline 结果：\n\n| 指标 | 值 |\n|------|-----|\n| **Perplexity** | **22.97** |\n| **Loss** | **3.134** |\n| Eval tokens | 4,077,068 |\n| Eval method | sliding window, stride=1024, max_len=2048, fp16 |\n| 耗时 | 252s |\n\n已注册为 `baseline_qwen3_0.6b`（DONE/success）。Continued pretraining 的绝对提升可以用各实验的 PPL 与 22.97 对比计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen3-0-6b-baseline.md"
+}

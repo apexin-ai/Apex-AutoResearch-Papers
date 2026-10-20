@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8cfafe84b941c94ea0f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit detect remove cuda3 and eval grid b05",
+  "task_key": "worker_submit_detect_remove_cuda3_and_eval_grid_b05_20260516T013525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_detect_remove_cuda3_and_eval_grid_b05_20260516T013525_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "c7aea635d6a4b222f71baf8914fe152c40af97ab4ebee7ae68db71e508a9c414"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "detect_remove 速度正在快速恢复：3.22 → 2.20s/it，即将稳定到 ~2.1s/it。\n\n---\n\n## 总结\n\n| 项目 | 结果 |\n|------|------|\n| **cuda:3 验证** | 清空 → detect_remove 正常启动（PID 276739, 46514 MiB） |\n| **cuda:1 grid_b0_3 恢复** | 杀掉残留 detect_remove (PID 275277) 后，速度从 4.51s/it → **2.11s/it** |\n| **detect_remove 启动** | PID 276739, step 101/6103, 速度 ~2.2s/it（已恢复） |\n| **contamination_60_grid_b0_5 eval** | **Loss=2.8738, PPL=17.70**, 4,077,068 tokens, 283s |\n| **Registry** | metrics 已更新（eval_ppl_holdout=17.7, eval_loss_holdout=2.8738） |\n\n**全 4 卡 GPU 状态**：\n| GPU | PID | 显存 | 利用率 | 实验 |\n|-----|-----|------|--------|------|\n| 0 | 257982 | 46.5/98 GB | 80% | (其他实验) |\n| 1 | 274309 | 46.5/98 GB | 99% | grid_b0_3_seed42 (2.11s/it) |\n| 2 | 265017 | 46.5/98 GB | 95% | (其他实验) |\n| 3 | 276739 | 46.5/98 GB | 54%→恢复中 | detect_remove_baseline_seed42 (2.2s/it) |\n\n额外处理：杀掉了 4 个重复 eval 进程（疑似其他 agent 提交），避免资源浪费。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-detect-remove-cuda3-and-eval-grid-b05.md"
+}

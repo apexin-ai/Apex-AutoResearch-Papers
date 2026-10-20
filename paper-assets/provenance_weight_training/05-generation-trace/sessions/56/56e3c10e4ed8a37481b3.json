@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56e3c10e4ed8a37481b3",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "status westd 47453 progress",
+  "task_key": "worker_status_westd-47453-progress_20260516T141909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_westd-47453-progress_20260516T141909_result.json",
+    "occurrence": 1,
+    "bytes": 3051,
+    "sha256": "1b42f854d9fd33964fd391a711540f927d1a6fe1a49c9a0d72463ca076ea6e57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集完毕。\n\n---\n\n## Part 1: 实验进度\n\n### 1. cuda:0 — threshold_q07 (PID 324550) ✅ ALIVE\n- **Step**: 3999 / 6103 (65.5%)\n- **已运行**: 3h 36min（从 checkpoint-2000 恢复）\n- **速度**: ~6.49 s/step（有效步 1999 步用了 3.6h）\n- **剩余**: 2104 steps × 6.49s ≈ **3.8h**\n- **预计完成**: ~May 17 02:00\n- **最新 checkpoint**: checkpoint-3500\n\n### 2. cuda:1 — rho02_uniform (PID 316980) ✅ ALIVE\n- **Step**: 2674 / 6103 (43.8%)\n- **已运行**: 5h 14min\n- **速度**: ~2.12 s/it（进度条显示）\n- **剩余**: 3429 steps × 2.12s ≈ **2.0h**\n- **预计完成**: ~May 17 00:20\n- **最新 checkpoint**: checkpoint-2500\n\n### 3. cuda:2 — batch_adaptive_tau_rho04 (PID 326274) ✅ ALIVE\n- **Step**: 1762 / 6103 (28.9%)\n- **已运行**: 3h 17min\n- **速度**: ~2.27 s/it（进度条显示）\n- **剩余**: 4341 steps × 2.27s ≈ **2.7h**\n- **预计完成**: ~May 17 01:00\n- **最新 checkpoint**: checkpoint-1500\n\n### 4. cuda:3 — threshold_q03 (PID 325196) ✅ ALIVE\n- **Step**: 1999 / 6103 (32.7%)\n- **已运行**: 3h 33min\n- **速度**: ~6.39 s/step\n- **剩余**: 4104 steps × 6.39s ≈ **7.3h**\n- **预计完成**: ~May 17 05:30\n- **最新 checkpoint**: checkpoint-1500\n\n> **注意**: threshold_q07 和 threshold_q03 的速度（~6.4 s/step）明显慢于 rho02_uniform 和 batch_adaptive（~2.2 s/step），约慢 3x。可能与数据过滤后的 dataloader 行为有关。\n\n---\n\n## Part 2: random_reweight_v2 脚本确认\n\n脚本完整内容：\n\n```bash\n#!/bin/bash\n# Random reweighting baseline v2 (seed=42) — fixed checkpoint saving\n# Fix: WANDB_MODE=disabled, output to data disk, explicit eval batch size\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport WANDB_MODE=disabled\nexport CUDA_VISIBLE_DEVICES=0\ncd /root/provenance_weight_training\n\npython training/pretrain_weighted.py \\\n    --data_path data/scored_data.jsonl \\\n    --eval_data_path data/human/eval_holdout.jsonl \\\n    --output_dir /root/autodl-tmp/output/models/random_reweight_seed42 \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --weighting_method random \\\n    --contamination_ratio 0.4 \\\n    --tau 0.8 \\\n    --n_min 2 \\\n    --num_train_tokens 200000000 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --learning_rate 5e-5 \\\n    --max_length 2048 \\\n    --seed 42 \\\n    --eval_steps 500 \\\n    --save_steps 500 \\\n    --logging_steps 10 \\\n    --bf16 \\\n    --save_total_limit 3 \\\n    --save_only_model\n\necho \"DONE: random_reweight_v2 seed42\"\n```\n\n检查结果：\n\n| 检查项 | 状态 |\n|--------|------|\n| WANDB_MODE=disabled | ✅ 正确 |\n| output_dir 在数据盘 | ✅ `/root/autodl-tmp/output/models/random_reweight_seed42` |\n| CUDA_VISIBLE_DEVICES | `0` — 当前 cuda:0 被 threshold_q07 占用，**需等其完成后再启动** |\n| 无 --use_wandb 等参数 | ✅ 无 wandb 相关训练参数 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-westd-47453-progress.md"
+}

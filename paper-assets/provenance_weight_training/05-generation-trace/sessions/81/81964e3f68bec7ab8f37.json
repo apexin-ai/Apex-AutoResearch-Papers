@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "81964e3f68bec7ab8f37",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "analyze adaptive fix seed42",
+  "task_key": "worker_analyze_adaptive_fix_seed42_20260514T204056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_adaptive_fix_seed42_20260514T204056.log",
+    "occurrence": 1,
+    "bytes": 1115252,
+    "sha256": "3b5a7798774d9fd23cf8b7a117ce769bd978914f1a9bd362ad22b86a40cdda56"
+  },
+  "statistics": {
+    "messages": 789,
+    "user_turns": 1,
+    "tool_calls": 365,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 365,
+      "tool_result": 365,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 776,
+      "chunks": [
+        {
+          "path": "81964e3f68bec7ab8f37-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "81964e3f68bec7ab8f37-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "81964e3f68bec7ab8f37-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "81964e3f68bec7ab8f37-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "81964e3f68bec7ab8f37-part-0005.json",
+          "message_count": 56
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "81964e3f68bec7ab8f37-part-0005.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analyze-adaptive-fix-seed42.md"
+}

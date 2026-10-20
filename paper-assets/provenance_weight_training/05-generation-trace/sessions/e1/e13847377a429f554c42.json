@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "e13847377a429f554c42",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval distribution matching w2",
+  "task_key": "worker_eval_distribution_matching_w2_20260519T073140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_distribution_matching_w2_20260519T073140.log",
+    "occurrence": 1,
+    "bytes": 780156,
+    "sha256": "fc934f3cfc47856710a1b3fbbfd35bfb3a0b12de995f882fe7f6ce5454148af6"
+  },
+  "statistics": {
+    "messages": 548,
+    "user_turns": 0,
+    "tool_calls": 230,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 84,
+      "tool_call": 230,
+      "tool_result": 230,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 548,
+      "chunks": [
+        {
+          "path": "e13847377a429f554c42-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e13847377a429f554c42-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e13847377a429f554c42-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e13847377a429f554c42-part-0004.json",
+          "message_count": 8
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-distribution-matching-w2.md"
+}

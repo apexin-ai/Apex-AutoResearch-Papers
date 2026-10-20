@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f42e59b22be65029188",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "monitor grid b0 3 check",
+  "task_key": "worker_monitor_grid_b0_3_check_20260516T012452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_grid_b0_3_check_20260516T012452_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "97dfb508824d0b9ee142bfef62d08ec341e988444f2c5c578115a8dea79156cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## grid_b0_3_seed42 训练状态\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | 存活 (PID 274304, 运行 ~12 分钟) |\n| **当前进度** | step 292 / 6103 (**4.8%**) |\n| **速度** | ~4.52 s/step |\n| **预计剩余** | ~7 小时 18 分钟 |\n| **GPU (cuda:1)** | 利用率 99%, 显存 93042 / 97887 MiB |\n| **当前 loss** | weighted ~2.97, unweighted ~2.20 (step 292) |\n| **Checkpoints** | 尚无（save_steps=500，首个 checkpoint 在 step 500 保存） |\n\n训练正常进行中，预计总耗时约 7.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-grid-b0-3-check.md"
+}

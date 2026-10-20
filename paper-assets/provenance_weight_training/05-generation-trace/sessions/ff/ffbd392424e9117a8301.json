@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffbd392424e9117a8301",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval qwen uniform lm eval",
+  "task_key": "worker_eval_qwen_uniform_lm_eval_20260517T144729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_qwen_uniform_lm_eval_20260517T144729_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "e446fbbbdaa62d8a1113e79b4eac38d300de73bbb91226ca52ded85caec0fb34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-41312 上不存在 Qwen3-0.6B uniform_seed42 checkpoint。**\n\n现有模型：\n| 目录名 | 基座模型 | 加权方式 | 有 final? |\n|---------|----------|----------|-----------|\n| `llama3b_uniform_seed42` | LlamaForCausalLM | uniform | Yes |\n| `llama3b_adaptive_seed42` | LlamaForCausalLM | adaptive | Yes |\n| `batchsize16_nmin8_seed42` | Qwen3-0.6B | adaptive | Yes |\n| `grid_b0_2_seed42` | Qwen3-0.6B | grid (b=0.2) | Yes |\n| `grid_b0_3_seed456` | Qwen3-0.6B | grid (b=0.3) | No (训练中?) |\n| `hybrid_rho04_seed42` | Qwen3-0.6B | adaptive | Yes |\n| `hybrid_rho06_seed42` | Qwen3-0.6B | adaptive | Yes |\n\n已有 Qwen eval 输出目录：`qwen_adaptive_*` 和 `qwen_base_*`（无 `qwen_uniform_*`）。\n\nQwen3-0.6B 的 uniform weighting continued pretraining 似乎还没有跑过。需要先训练这个模型，还是评估其他已有的 checkpoint？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-qwen-uniform-lm-eval.md"
+}

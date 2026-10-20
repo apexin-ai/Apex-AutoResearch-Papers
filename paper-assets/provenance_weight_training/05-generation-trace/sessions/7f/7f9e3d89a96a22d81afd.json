@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f9e3d89a96a22d81afd",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis contamination 60 seed123",
+  "task_key": "worker_analysis_contamination_60_seed123_20260518T025741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_contamination_60_seed123_20260518T025741_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "1fed18ce3ae5beab82c10995abe172f9d47b8e374f07b091c0753129f2be0ec0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n```\nRESULT_SUMMARY:\neval_ppl_holdout: 17.732\neval_loss_holdout: 2.8754\ntrain_loss: 9.6302\ntotal_steps: 6103\nconclusion: success\ndelta_vs_uniform_seed42: -0.034\ncheckpoint_path: /root/autodl-tmp/output/models/contamination_60_seed123/final\n```\n\nCross-seed 复现成功：seed123 的 adaptive PPL (17.732) 与 seed42 (17.74) 高度一致（Δ=0.008），均优于 uniform baseline (17.766)。adaptive weighting 在 ρ=0.6 的优势不依赖于特定 seed，Claim 3 得到加强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-contamination-60-seed123.md"
+}

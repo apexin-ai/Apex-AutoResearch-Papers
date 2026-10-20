@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b56fb7bb0a9a491c618",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh verify 30476 training start",
+  "task_key": "worker_ssh_verify_30476_training_start_20260517T112733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_30476_training_start_20260517T112733_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "16b458a28ad26bc40513a6f232dd529f77f007709b2fb3ff4868077fa3f08196"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行：\n\n| 实验 | PID | 进程存活 | 训练输出 | 进度 | 速度 |\n|------|-----|---------|---------|------|------|\n| random_reweight_seed123_r2 | 10035 | Y | Y | 41/6103 (1%) | ~2.17s/it |\n| bs8_auto_nmin_r3 | 10119 | Y | Y | 38/6103 (1%) | ~2.31s/it |\n| batch_adaptive_tau_rho06_r3 | 10209 | Y | Y | 36/6103 (1%) | ~2.29s/it |\n| rho02_adaptive_tau09_r3 | 10727 | Y | Y | 33/6103 (1%) | ~2.42s/it |\n\n无 import error 或 traceback。所有实验都在正常输出 weighting metrics 和 loss，预计各需约 3.5-4 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-30476-training-start.md"
+}

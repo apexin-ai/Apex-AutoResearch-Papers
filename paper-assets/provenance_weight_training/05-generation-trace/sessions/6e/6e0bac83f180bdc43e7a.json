@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e0bac83f180bdc43e7a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis compile experiment table",
+  "task_key": "worker_analysis_compile_experiment_table_20260515T160409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_compile_experiment_table_20260515T160409_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "d3cfdee23c1174999d4dc1d16509826c761e3d1f63988df152a2a6098fffc2b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到 `artifacts/paper_tables.md` 并注册。\n\n关键发现：\n- **Adaptive-fix (n_min=2) 是最优方法**：mean PPL 17.651，与 Grid-best(b=0.5) 的 17.646 持平，且无需网格搜索\n- **Golden Ratio oracle (17.654) 并未超过 adaptive-fix**，说明自适应方法已接近理论上界\n- **τ sweep 仅完成 2/6**：τ=0.8 最优，τ=0.6 劣化 +0.031；其余 4 个 τ 值待补"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-compile-experiment-table.md"
+}

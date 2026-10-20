@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7a3e075cbae4caa37e2",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "train cuda1 replacement",
+  "task_key": "worker_train_cuda1_replacement_20260524T164825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cuda1_replacement_20260524T164825_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "1764ae1b14e61e22bd5dc4f3b1023462b2be0b9bcd902f94756c5142a9c61068"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:1 不空闲。** 刚才（72秒前）已启动 `p0_nmin_5` 实验。当前 4 卡全部占用：\n\n| GPU | 实验 | 运行时间 | 状态 |\n|-----|------|---------|------|\n| cuda:0 | random_subset_epoch_seed42 | ~8h | 运行中 |\n| cuda:1 | p0_nmin_5 | ~72s | **刚启动** |\n| cuda:2 | detect_remove_q05_seed42 | ~50min | 74% (6266/8477) |\n| cuda:3 | permuted_score_control_seed42 | ~69s | **刚启动** |\n\n无空闲 GPU，无法启动 contamination_20_tau07_seed42。\n\n---\n\n**detect_remove_q05_seed42 进度：** step 6266/8477 (74%)，速度 ~3.33 it/s，剩余 2211 steps，**预计 ~11 分钟后完成**。\n\n---\n\n下一步选项：\n1. 等 cuda:2 上的 detect_remove_q05_seed42 完成后（~11min），在 cuda:2 上启动 contamination_20_tau07_seed42\n2. 等 cuda:0 上的 random_subset_epoch_seed42 完成后，在 cuda:0 上启动\n3. 数据已确认就绪（scored_data_rho02.jsonl, 206111 行），随时可以排队"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cuda1-replacement.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6587c1b404d578e57651",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code ess only multiseed scripts",
+  "task_key": "worker_code_ess_only_multiseed_scripts_20260515T123855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ess_only_multiseed_scripts_20260515T123855_result.json",
+    "occurrence": 1,
+    "bytes": 1506,
+    "sha256": "2be2d6034d1ea0a3eb01e8cb017cd8f93ede2b428988aabdcb608e45c96ab9ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 产出汇总\n\n### run_ess_only_seed123.sh\n```bash\n#!/bin/bash\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh\nconda activate base\ncd /root/provenance_weight_training\n\nWANDB_MODE=disabled python training/pretrain_weighted.py \\\n    --data_path data/scored_data.jsonl \\\n    --output_dir output/models/ess_only_seed123 \\\n    --weighting_method ess_only \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --num_train_tokens 200000000 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --max_length 2048 \\\n    --learning_rate 5e-5 \\\n    --seed 123 \\\n    --logging_steps 10 \\\n    --save_steps 500 \\\n    --save_total_limit 2 \\\n    --save_only_model \\\n    --contamination_ratio 0.4 \\\n    --tau 0.8 \\\n    --bf16\n```\n\n### run_ess_only_seed456.sh\n同上，`seed123` → `seed456`，`--seed 123` → `--seed 456`。\n\n### diff 验证\n- 两个脚本仅 `--output_dir`、`--seed`、echo 消息不同\n- **无 `--eval_data_path` 或 `--eval_steps`**（已从 seed42 模板中移除）\n\n### 提交命令模板\n```bash\n# seed123\nnohup bash /root/provenance_weight_training/training/run_ess_only_seed123.sh > /root/provenance_weight_training/output/logs/ess_only_seed123.log 2>&1 &\n\n# seed456\nnohup bash /root/provenance_weight_training/training/run_ess_only_seed456.sh > /root/provenance_weight_training/output/logs/ess_only_seed456.log 2>&1 &\n```\n\n脚本已就绪，τ sweep 完成后可直接提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ess-only-multiseed-scripts.md"
+}

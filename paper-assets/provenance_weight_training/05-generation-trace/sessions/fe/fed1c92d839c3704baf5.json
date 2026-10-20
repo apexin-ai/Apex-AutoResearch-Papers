@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fed1c92d839c3704baf5",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4024,
+    "sha256": "0bf4ec03f304f9c934267ee13d7a8ffb5232f534ae18ee8b03d098078b78f3bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-13T21:55:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westd-47453 的 cuda:0~3（项目配置 `execution.gpu_ids`），不可用其他服务器的卡\n- MVP 混合数据比例必须是 **40% synthetic / 60% human**（D004），刚发现 Agent 组装成了 67% synthetic，已派指令修正但尚未确认修复\n- Grid-b baseline 必须是 **fixed-b per training run**（每个 b 值跑完整训练），不是 per-batch 自适应选 b — 这个 bug 已修但要警惕回退\n- Detector gate check 硬约束: AUC ≥ 0.95 且 ECE ≤ 0.05，不通过不能开始预训练\n- 远程服务器用 conda 环境，python 在 `/root/miniconda3/bin/`，`python3` 不在 PATH，脚本必须先 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n\n### 2. 🖥️ 基础设施快照\n- 服务器: westd-47453, SSH `ssh -p 47453 root@connect.westd.seetacloud.com`, 密码存 secret `ssh_password_westd47453`\n- GPU: 4× NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB\n- 工作目录: `/root/provenance_weight_training/`\n- Python: `/root/miniconda3/bin/python` (conda base env)\n- PyTorch 2.10.0+cu128, transformers 4.57.6, accelerate 1.13.0\n- ModernBERT 需要 `TORCHDYNAMO_DISABLE=1`\n- 模型缓存: Qwen3-0.6B 和 ModernBERT-base 已下载到默认 HF cache\n- 人类数据: `/root/provenance_weight_training/data/human/{train,detector,eval_holdout}.jsonl` (120M/50M/50M tokens)\n- 合成数据: `/root/provenance_weight_training/data/synthetic/` (4 shards, 132M tokens total)\n- 本地代码: `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/`\n- 活跃进程: 检测器训练在 cuda:0 运行中（ModernBERT-base fine-tuning）\n- W&B/wandb: 未配置\n- Cron: 无\n\n### 3. 📊 当前状态\n- **合成数据生成**: 完成（132M tokens, 退化率 0.87% 合格）\n- **混合数据组装**: 已完成但比例错误（67% synthetic vs 目标 40%），已发指令修正，等 Agent 确认\n- **检测器训练**: 正在 cuda:0 上跑（ModernBERT-base, 预计 15-45 分钟）\n- **代码修复**: 全部 6 项 critical/warning 已修复并同步到远程（Reviewer 确认）\n- Registry: 空（MVP 阶段尚未注册正式实验）\n- 等待: Agent 回复混合数据修正确认 + 检测器训练完成回调\n\n### 4. 📋 待办\n- Agent 确认混合数据已修正为 40% → 继续等检测器完成\n- 检测器训练完成 → gate check (AUC ≥ 0.95, ECE ≤ 0.05)：通过 → 对修正后的 mixed dataset 打 q(x) scores；不通过 → 让 Agent 排查（加数据/调超参）\n- q(x) scores 就绪 → 启动 24 runs MVP 预训练（3 seeds × 8 configs: 1 uniform + 6 grid-b + 1 adaptive），4 卡并行 ~6 batch × ~2h\n- 24 runs 全部完成 → eval (ppl + HellaSwag + MMLU) → compare_results.py 跑 multi-seed 聚合 → 判定 Pass/Fail\n- MVP PASS → complete_mvp() 进入 research 阶段 → 写 paper_framing.md + experiment_plan.yaml + dream_simulate\n- MVP FAIL → 按 kill criteria 分级处理（D004: Level 1 查校准 / Level 2 查 pipeline / Level 3 pivot）\n\n### 5. 🎯 战略上下文\n- 投稿目标: **EMNLP 2026 ARR May 25**（主攻，D003），AAAI 2027 后备。用户明确要求不要保守\n- 核心假设: adaptive b*（从 α_eff 推导）无需 grid search 即可匹配/超越 grid-searched b\n- 决策链: D001(AAAI 主攻) → D003(修正为 EMNLP 主攻，用户要求) → D002(MVP 设计) → D004(采纳 Reviewer 补全: 3 seeds/gate/grid定义/kill criteria)\n- 12 天排期: Day 1-2 代码+数据（接近完成）→ Day 2-3 检测器+MVP → Day 3-7 全矩阵 → Day 7-10 论文 → Day 10-12 迭代提交\n- 易错点: (1) RTX 6000 Pro 性能约 H100 的 50-60%，wall-clock 估算要乘 1.5-2x；(2) 200M tokens 对 0.6B 模型欠训练（0.33 tok/param），如果 3 seeds 方差大到条件间 CI 重叠，需增到 300-400M tokens；(3) 合成数据比例必须是 40% 不是 67%，这个错误刚被发现，确认 Agent 真的改了再放行预训练\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

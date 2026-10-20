@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9822c94ac52a51ee36f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra gpu check both servers",
+  "task_key": "worker_infra_gpu_check_both_servers_20260520T030822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu_check_both_servers_20260520T030822_result.json",
+    "occurrence": 1,
+    "bytes": 1480,
+    "sha256": "b48afccfc41bb391379b55dbf42d12c513101aea938519780d6b831ee1efb31c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### westd-41312 (4× RTX PRO 6000 Blackwell, 96GB each)\n\n| GPU | 显存占用 | GPU利用率 | 温度 |\n|-----|---------|----------|------|\n| 0 | 561 / 97887 MiB | 0% | 35°C |\n| 1 | 7435 / 97887 MiB | 12% | 37°C |\n| 2 | 1317 / 97887 MiB | 12% | 39°C |\n| 3 | 1639 / 97887 MiB | 20% | 45°C |\n\n**活跃进程**: 1 个 python 进程 (PID 374939) 占用全部 4 张卡（GPU1 占用最多 7.4GB）\n**tmux**: 无 session\n**`adaptive_fromscratch_seed42` / `pretrain_weighted`**: **未在运行**（ps grep 无结果，exit code 1）\n\n> PID 374939 占用显存不大且 GPU 利用率低，可能是一个空闲的 Python 进程或刚结束的残留。\n\n### westd-30476 (4× RTX PRO 6000 Blackwell, 96GB each)\n\n| GPU | 显存占用 | GPU利用率 | 温度 |\n|-----|---------|----------|------|\n| 0 | 0 / 97887 MiB | 0% | 30°C |\n| 1 | 0 / 97887 MiB | 0% | 30°C |\n| 2 | 0 / 97887 MiB | 0% | 30°C |\n| 3 | 0 / 97887 MiB | 0% | 30°C |\n\n**活跃进程**: 无\n**tmux**: 无 session\n**状态**: 完全空闲\n\n### 特别检查结果\n\n| 检查项 | 结果 |\n|--------|------|\n| `adaptive_fromscratch_seed42` 在跑？ | **否** — 无匹配进程 |\n| rho06 checkpoint | **存在** — `/root/autodl-tmp/.../hybrid_rho06_seed42/final/config.json` (May 17) |\n| 训练脚本 | **存在** — `pretrain_weighted.py` (19KB, May 17) |\n| ρ=0.6 数据文件 | **存在** — 符号链接 → `scored_data_60.jsonl`，**371,499 行** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-check-both-servers.md"
+}

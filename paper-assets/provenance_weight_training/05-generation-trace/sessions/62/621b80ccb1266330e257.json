@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "621b80ccb1266330e257",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code tau sweep analysis framework",
+  "task_key": "worker_code_tau_sweep_analysis_framework_20260515T101943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tau_sweep_analysis_framework_20260515T101943_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "3e57b58255b80c542059be7e1845b64922451bdc3f3d99c703c35aaf5e69beb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证通过。\n\n**文件**: `artifacts/analyze_tau_sweep.py`\n\n**用法**:\n- `python analyze_tau_sweep.py --dummy` — 用 dummy 数据生成示例图\n- `python analyze_tau_sweep.py -i results.json -o ./figures` — 从 JSON 读取真实数据\n- `--uniform-ppl` / `--grid-best-ppl` 可覆盖 baseline 值\n\n**输出**:\n- Figure 1: τ vs eval_ppl 曲线（含 uniform/grid-best baseline 虚线，τ=0.8 default 标注）\n- Figure 2: τ vs Δ improvement 曲线\n- Markdown 表格（stdout），含 Δ vs uniform、Δ vs grid-best、% of grid-best improvement\n\nDummy 数据验证显示 τ=0.8 处 PPL 最低（17.651），呈现预期的 U 型曲线。等真实 sweep 数据到位后，准备 JSON 文件运行即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tau-sweep-analysis-framework.md"
+}

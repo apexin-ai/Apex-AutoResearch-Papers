@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "900895c6cdf8d3774b3e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit detect remove q09 seed42",
+  "task_key": "worker_submit_detect_remove_q09_seed42_20260518T092212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_detect_remove_q09_seed42_20260518T092212_result.json",
+    "occurrence": 1,
+    "bytes": 407,
+    "sha256": "ee8c3b6800f5f0799aadeb3556228b9d41eb6df36138255951845e7653acf69d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。\n\n**汇总：**\n\n| 项目 | 值 |\n|---|---|\n| experiment_id | `detect_remove_q09_seed42` |\n| PID | 27362 |\n| GPU | cuda:3, ~41.7 GB 显存 |\n| 数据 | `scored_data_filtered_q09.jsonl` (228,743 samples) |\n| 速度 | ~2.10 s/it |\n| 总步数 | 6,103 |\n| ETA | ~3.5 小时 (~20:55 UTC) |\n| tmux | `detect_remove_q09_seed42` |\n| Registry | RUNNING |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-detect-remove-q09-seed42.md"
+}

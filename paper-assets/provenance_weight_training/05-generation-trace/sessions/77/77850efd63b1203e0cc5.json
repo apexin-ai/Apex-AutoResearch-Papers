@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77850efd63b1203e0cc5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis uniform seed234",
+  "task_key": "worker_analysis_uniform_seed234_20260524T082207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_uniform_seed234_20260524T082207_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "b997a9bdab44bcd679d30953dd3d187f342bc83d194a3225f1f0f4d3f87acc20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both experiments complete. Summary:\n\n## uniform_seed234\n\n| Metric | Value |\n|--------|-------|\n| train_loss | 8.008 |\n| total_steps | 6103 |\n| train_duration_s | 12,780 (3h33m) |\n| eval_ppl_holdout | **17.7082** |\n| eval_loss_holdout | **2.8740** |\n| eval_holdout_tokens | 4,077,068 |\n| checkpoint | `/root/autodl-tmp/provenance_weight_training/output/models/uniform_seed234/final` |\n\n## uniform_seed789\n\n| Metric | Value |\n|--------|-------|\n| train_loss | 7.959 |\n| total_steps | 6103 |\n| train_duration_s | 12,790 (3h33m) |\n| eval_ppl_holdout | **17.6954** |\n| eval_loss_holdout | **2.8733** |\n| eval_holdout_tokens | 4,077,068 |\n| checkpoint | `/root/autodl-tmp/provenance_weight_training/output/models/uniform_seed789/final` |\n\n两个 seed 的 holdout PPL 非常接近（17.71 vs 17.70），差异 <0.1%，训练正常无异常。Checkpoints 均包含 checkpoint-6000、checkpoint-6103 和 final。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-uniform-seed234.md"
+}

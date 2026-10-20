@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6aa1d771fa666138fe3c",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_11_1778907970.md",
+  "task_key": "loop_11_1778907970",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778907970.md",
+    "occurrence": 1,
+    "bytes": 4328,
+    "sha256": "bf44c563aca04f9e318ba916442f4708e0a5edc90d4d7d1531e827c09113543e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T03:34:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 `cuda:0/1/2/3` on `westd-47453`，config 已确认。不要用其他服务器/GPU\n- GPU 预算极度紧张：已消耗 ~154h，当前 4 实验再吃 ~14-16h，剩余仅 ~10-12h（约 2-3 个实验）。**每一个实验都要精打细算**\n- `WANDB_MODE=disabled` 会导致 cron 误判训练失败（因为找不到 W&B metrics）。后续实验**不要**禁用 W&B\n- `detect_remove_baseline` 训练用的是 filtered 153K 样本跑 200M tokens（~2.4 epochs），adaptive 用 371K 样本跑 1 epoch。写论文时必须说明 effective epoch 差异\n- 投稿目标 EMNLP 2026 ARR May 25（距今 9 天），禁止 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-47453，4× RTX 6000 Pro 96G\n- **工作目录**: `/root/provenance_weight_training`\n- **Python**: `/root/miniconda3/bin/python`，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（跳过基础环境搭建）\n- **模型**: `/root/provenance_weight_training/models/Qwen/Qwen3-0.6B`\n- **活跃进程**:\n  - `grid_b0_3_seed42`: PID 274304, cuda:1, cron 监控中\n  - `detect_remove_baseline_seed42`: PID 276739, cron 监控中\n  - `contamination_60_tau07_seed42`: PID 282223, cron 监控中\n  - `contamination_60_tau06_seed42`: PID 287971, cron 监控中\n- **Cron**: 4 个活跃 cron（reconcile 刚确认全部 still running）\n\n### 3. 📊 当前状态\n\n**RUNNING (4)**:\n| exp_id | GPU | 目的 |\n|--------|-----|------|\n| grid_b0_3_seed42 | cuda:1 | Grid-b sweep b=0.3，ρ=0.4，逼近最优区间 |\n| detect_remove_baseline_seed42 | ? | Detect-and-remove baseline，回答 reviewer \"为什么不直接过滤\" |\n| contamination_60_tau07_seed42 | ? | ρ=0.6 τ=0.7 诊断，公式 τ=1-ρ×0.5 |\n| contamination_60_tau06_seed42 | ? | ρ=0.6 τ=0.6 诊断，更深 τ 下移 |\n\n**PREPARING (3)**: batchsize16_nmin8_seed42, grid_b0_1_seed42, grid_b0_2_seed42（grid_b0_2 已标 killed）\n\n**等待中**: 无活跃 Worker。4 个 cron 回调将在实验完成时触发。\n\n**总计**: 成功 39 / 负向 3 / 失败 6 / 共 65（含 RUNNING+PREPARING）\n\n### 4. 📋 待办（条件触发式）\n- `contamination_60_tau07_seed42` 完成 → 对比 PPL 与 grid-best 17.704。若 PPL≤17.71 → τ=1-ρ×0.5 公式有效，Claim 3 reframe 为 \"τ follows simple rule of ρ\"；若 PPL>17.71 → 看 τ=0.6 结果\n- `contamination_60_tau06_seed42` 完成 → 与 τ=0.7 联合分析。两个都失败 → Claim 3 需大幅调整，产出 Framing 提案\n- `detect_remove_baseline_seed42` 完成 → PPL 应 > adaptive（因信息丢弃）。若如预期 → 支持 reweighting > filtering 论点；若 PPL≤adaptive → 挑战核心 framing\n- `grid_b0_3_seed42` 完成 → 补充 b-PPL 曲线低 b 区间数据点\n- PREPARING 实验 `grid_b0_1` 和 `batchsize16_nmin8` → 等 GPU 释放 + Director 分配。**预算紧张，可能跑不了全部**\n- 所有 RUNNING 完成后 → Paper experiments section 可以写了（依赖这些结果）\n- 论文图表生成（τ sweep 图、b* 分布图、Table 1）→ 等实验数据齐全\n\n### 5. 🎯 战略上下文\n- **核心结论**: Dual-constraint (α_eff + ESS) 通过 min-intervention 选 b*，稳定优于 ESS-only (max-intervention) 和 uniform。3 seeds 验证完毕 (Claim 1 ✅, Claim 2 ✅)\n- **最大风险**: Claim 3 (proportion-free)。τ=0.8 在 ρ=0.4 最优但在 ρ=0.6 劣于 grid-best (gap=0.036 PPL)。D045 确认 τ-ρ 耦合存在。当前 τ=0.7/0.6 诊断实验决定 Claim 3 的命运\n- **决策链**: D023(dual-constraint) → D025(τ empirical HP) → D036(τ sweep) → D043(n_min=2 主结果) → D045(τ-ρ 耦合) → D048(τ sweep confound 为误报)\n- **易错点 1**: 不要把 ρ=0.4 和 ρ=0.6 的 τ 最优值直接比较——两个 contamination level 的 data distribution 不同，τ 的最优值本应不同\n- **易错点 2**: bs8_nmin2 negative 已决策写入 limitation (D042)，不要试图修复\n- **易错点 3**: EXIT_CODE=129 (SIGHUP) 多次出现但不影响训练结果，不要误判为失败——检查日志确认实际完成度\n- **Paper 状态**: introduction/method/conclusion 草稿已在 artifacts/，experiments section 待写（等 contamination_60 结果）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778907970.md"
+}

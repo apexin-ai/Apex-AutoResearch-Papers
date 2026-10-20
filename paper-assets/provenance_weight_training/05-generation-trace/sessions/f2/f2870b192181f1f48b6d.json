@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2870b192181f1f48b6d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval gpt2 seed456 holdout",
+  "task_key": "worker_eval_gpt2_seed456_holdout_20260521T043602",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gpt2_seed456_holdout_20260521T043602_result.json",
+    "occurrence": 1,
+    "bytes": 721,
+    "sha256": "da3e0c64d8b7e3c93381b7e5a60b3ebc84eee2d159e97487ac871c54c4440753"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练在 step 6000/6103（98%）崩溃，磁盘满（250G/250G）。checkpoint-6000 损坏（仅 36KB）。\n\n**现状**：\n- 最后完整 checkpoint：**checkpoint-5500**（step 5500/6103，~90%，1.1GB model.safetensors）\n- checkpoint-4500, 5000 也完整（各 1.2G）\n- checkpoint-6000 损坏，不可用\n\n**两个选项**：\n\n1. **直接用 checkpoint-5500 跑 eval** — 快，但只训了 90%，可能 PPL 偏高\n2. **清空间 + 从 5500 resume 剩余 603 steps → eval** — 删 checkpoint-4500/5000/6000 释放 ~2.4G，resume 跑完。但 `--save_only_model` 没存 optimizer state，resume 后 Adam momentum/variance 从零开始，最后 603 步影响应该不大\n\n哪个方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gpt2-seed456-holdout.md"
+}

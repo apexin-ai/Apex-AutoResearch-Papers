@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "686fe402602b1e081fb0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code miscalibration",
+  "task_key": "worker_code_miscalibration_20260518T114915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_miscalibration_20260518T114915_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "133dda3e5fb199093f21e4ae7d185f3ff45e2c81e9b1ec1b8a732d042c6da5a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果：\n\n| | 样本数 | q_score 均值 | 示例样本 (原 0.9681) |\n|---|---|---|---|\n| 原始 | 371,499 | 0.5987 | 0.9681 |\n| T=2.0 | 371,499 | 0.5916 | 0.8463 |\n| T=3.0 | 371,499 | 0.5774 | 0.7572 |\n\n温度越高，分数越趋向均匀（高置信度分数被压低，低置信度分数被提高），符合预期的 miscalibration 效果。文件已写入：\n- `/root/provenance_weight_training/data/scored_data_T2.0.jsonl`\n- `/root/provenance_weight_training/data/scored_data_T3.0.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-miscalibration.md"
+}

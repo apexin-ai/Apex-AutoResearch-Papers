@@ -1,0 +1,1459 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7eb11a7da3fbe1204f2f",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Extract detector comparison experiments",
+                "usage": {
+                  "total_tokens": 35587,
+                  "tool_uses": 14,
+                  "duration_ms": 82292
+                },
+                "last_tool_name": "Bash",
+                "uuid": "ebeb2a42-74d1-42ed-b7f2-a47f70054de1",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Extract downstream benchmarks",
+                "usage": {
+                  "total_tokens": 35634,
+                  "tool_uses": 15,
+                  "duration_ms": 85719
+                },
+                "last_tool_name": "Bash",
+                "uuid": "e285fe6d-ff8a-4d9c-9507-d6f44e20eb5f",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Extract Llama and 1.7B experiments",
+                "usage": {
+                  "total_tokens": 40409,
+                  "tool_uses": 16,
+                  "duration_ms": 93374
+                },
+                "last_tool_name": "Bash",
+                "uuid": "66c130cf-bbe8-43f7-8485-e624b66a3825",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Extract D&R threshold experiments",
+                "usage": {
+                  "total_tokens": 40478,
+                  "tool_uses": 17,
+                  "duration_ms": 98139
+                },
+                "last_tool_name": "Bash",
+                "uuid": "97d8f911-2adb-4e64-8923-af58e68a4586",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Extract hybrid and main rho=0.4 experiments",
+                "usage": {
+                  "total_tokens": 40547,
+                  "tool_uses": 18,
+                  "duration_ms": 107564
+                },
+                "last_tool_name": "Bash",
+                "uuid": "8d86f0e9-6461-4e1b-9066-76a6df604ea1",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get remaining seed details and OOD experiments",
+                "usage": {
+                  "total_tokens": 51058,
+                  "tool_uses": 19,
+                  "duration_ms": 116800
+                },
+                "last_tool_name": "Bash",
+                "uuid": "b8c43546-f9d8-4def-99f4-e65dcaa09d95",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Extract ESS-only, random, permuted control experiments",
+                "usage": {
+                  "total_tokens": 51105,
+                  "tool_uses": 20,
+                  "duration_ms": 121098
+                },
+                "last_tool_name": "Bash",
+                "uuid": "0fb0c129-6865-4489-9886-dd488e3bdcb5",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Search for statistical tests and correlation data",
+                "usage": {
+                  "total_tokens": 51152,
+                  "tool_uses": 21,
+                  "duration_ms": 127728
+                },
+                "last_tool_name": "Bash",
+                "uuid": "b32f1dff-a4b8-4f9b-85f2-49fa22286ac4",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Deep dive into alpha_eff and b*=0 experiments",
+                "usage": {
+                  "total_tokens": 56993,
+                  "tool_uses": 22,
+                  "duration_ms": 135655
+                },
+                "last_tool_name": "Bash",
+                "uuid": "8fe1d838-ab77-4cfc-9ed8-4e5b59fde5ca",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get full 1.7B downstream metrics",
+                "usage": {
+                  "total_tokens": 57040,
+                  "tool_uses": 23,
+                  "duration_ms": 142227
+                },
+                "last_tool_name": "Bash",
+                "uuid": "869f8bc6-c266-47b3-a476-9097f53300b4",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get BS16, nmin, W2, eval_q experiments",
+                "usage": {
+                  "total_tokens": 57087,
+                  "tool_uses": 24,
+                  "duration_ms": 146124
+                },
+                "last_tool_name": "Bash",
+                "uuid": "867a1376-d391-4d38-85d0-15fb490a6214",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get Llama full details and search for MMLU",
+                "usage": {
+                  "total_tokens": 67329,
+                  "tool_uses": 25,
+                  "duration_ms": 154981
+                },
+                "last_tool_name": "Bash",
+                "uuid": "e296d17d-8bb8-46c8-b253-72fde4ccbdea",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Search for statistical tests across all experiments",
+                "usage": {
+                  "total_tokens": 67376,
+                  "tool_uses": 26,
+                  "duration_ms": 160623
+                },
+                "last_tool_name": "Bash",
+                "uuid": "f264c79c-2898-4b5d-b40d-40f03328771a",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get training hyperparams, data stats, detector details",
+                "usage": {
+                  "total_tokens": 67423,
+                  "tool_uses": 27,
+                  "duration_ms": 167576
+                },
+                "last_tool_name": "Bash",
+                "uuid": "1cdab153-2800-4e53-9631-c7ec0f3949da",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get statistical test notes and baseline details",
+                "usage": {
+                  "total_tokens": 72261,
+                  "tool_uses": 28,
+                  "duration_ms": 176130
+                },
+                "last_tool_name": "Bash",
+                "uuid": "04f9d0f1-9c8f-4c1c-8d6c-da8559e6ffdc",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get tau07 full details and rho=0.6 adaptive data",
+                "usage": {
+                  "total_tokens": 72330,
+                  "tool_uses": 29,
+                  "duration_ms": 183897
+                },
+                "last_tool_name": "Bash",
+                "uuid": "a0fa3e35-6083-493e-a92a-59764144be37",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get grid_b_low and grid_b0_3 details",
+                "usage": {
+                  "total_tokens": 72399,
+                  "tool_uses": 30,
+                  "duration_ms": 188906
+                },
+                "last_tool_name": "Bash",
+                "uuid": "b8b33924-0112-4b4c-a247-e8187bee1c96",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get grid_b_seed42_batch and baseline full metrics",
+                "usage": {
+                  "total_tokens": 79329,
+                  "tool_uses": 31,
+                  "duration_ms": 195197
+                },
+                "last_tool_name": "Bash",
+                "uuid": "36fa388c-e62a-4459-94a9-f736d913421d",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Extract ALL downstream benchmarks from all experiments",
+                "usage": {
+                  "total_tokens": 79376,
+                  "tool_uses": 32,
+                  "duration_ms": 199343
+                },
+                "last_tool_name": "Bash",
+                "uuid": "fad03bd6-0e1f-4e09-9b55-6b02c263e675",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get remaining rho=0.6 seeds and D&R retention stats",
+                "usage": {
+                  "total_tokens": 84240,
+                  "tool_uses": 33,
+                  "duration_ms": 209714
+                },
+                "last_tool_name": "Bash",
+                "uuid": "2817da53-9ddc-4c39-8c27-aa09250b91d2",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get D&R spec data counts for retention percentages",
+                "usage": {
+                  "total_tokens": 84290,
+                  "tool_uses": 34,
+                  "duration_ms": 214139
+                },
+                "last_tool_name": "Bash",
+                "uuid": "d568a527-30c3-44c0-99b3-c1ec024ff2fb",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Search for alpha_eff correlation data and b*=0 stats",
+                "usage": {
+                  "total_tokens": 89198,
+                  "tool_uses": 35,
+                  "duration_ms": 227769
+                },
+                "last_tool_name": "Bash",
+                "uuid": "10fd951e-083a-495f-948e-a0649f5a4cd2",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get tau sweep b_star details and rho02 full data",
+                "usage": {
+                  "total_tokens": 90764,
+                  "tool_uses": 36,
+                  "duration_ms": 234655
+                },
+                "last_tool_name": "Bash",
+                "uuid": "5072b12e-62b8-4aad-91f1-a4656b412595",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get remaining experiment details",
+                "usage": {
+                  "total_tokens": 90836,
+                  "tool_uses": 37,
+                  "duration_ms": 240181
+                },
+                "last_tool_name": "Bash",
+                "uuid": "d6c488bf-7a06-4f74-8b81-288ba1548b30",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get GPT2 and ngram detector details",
+                "usage": {
+                  "total_tokens": 94049,
+                  "tool_uses": 38,
+                  "duration_ms": 250734
+                },
+                "last_tool_name": "Bash",
+                "uuid": "c1433bbb-8409-4b09-838c-29f33da5b795",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get baseline and all OOD PPLs",
+                "usage": {
+                  "total_tokens": 94050,
+                  "tool_uses": 39,
+                  "duration_ms": 255430
+                },
+                "last_tool_name": "Bash",
+                "uuid": "03898fc3-dc5d-4a95-bd5b-a605486729dc",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_progress",
+                "task_id": "acb0ad2099cf0088b",
+                "tool_use_id": "toolu_01NuYPDyvrMJLcBKrQo3rorZ",
+                "description": "Running Get remaining missing data",
+                "usage": {
+                  "total_tokens": 99420,
+                  "tool_uses": 40,
+                  "duration_ms": 266625
+                },
+                "last_tool_name": "Bash",
+                "uuid": "707ff89d-bf1f-4083-b3a0-64bdfeb75f0d",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_updated",
+                "task_id": "acb0ad2099cf0088b",
+                "patch": {
+                  "status": "completed",
+                  "end_time": 1779739807158
+                },
+                "uuid": "8d3e56ab-077f-44cc-9a08-e77d17a77f41",
+                "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9"
+              }
+            }
+          ],
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me now systematically go through the appendix.tex and cross-reference every number with the main text sections I've already read. While waiting for the registry agent, I can start the cross-validation between appendix and main text.\n\nLet me organize my audit by section:\n\n### Section: Grid Search (app:grid, lines 78-104)\n**Table tab:grid_full** - Grid search at ρ=0.4, seed 42:\n- b=0.1: 17.657\n- b=0.2: 17.640\n- b=0.3: **17.640** (bold, best)\n\n\n- b=0.5: 17.651\n- b=1.0: 17.692\n- b=1.5: 17.718\n- b=2.0: 17.741\n- b=3.0: 17.774\n- b=5.0: 17.818\n\nThe caption reports a three-seed mean of 17.655 ± 0.009 for b=0.1 and identifies b=0.3 as the post-hoc best. When I check results.tex line 30, it mentions 17.620 for the grid b=0.3 configuration with a three-seed mean and post-hoc oracle designation, but there's a discrepancy I need to investigate further.\n\nLooking at the appendix table, b=0.3 shows 17.640 for seed 42, which is a single-seed result, while results.tex reports the three-seed mean as 17.620—these are measuring different things so they're consistent. The auxiliary table confirms Grid (b=0.3) across three seeds gives 17.620 ± 0.033. I also notice that at b=1.0, the PPL equals the uniform baseline at 17.692 versus 17.694, which is worth noting as a reference point.\n\nNow I'm checking the quality threshold sweep results. The table shows how performance varies across different τ values, with τ=0.70 appearing to be the sweet spot—it achieves the best holdout perplexity of 17.674 ± 0.006 with a -0.020 improvement, and shows consistent gains across the other datasets as well. The τ=0.80 setting is slightly worse, suggesting diminishing returns at higher thresholds. I'm verifying the baseline numbers across different seed configurations. The caption references a 3-seed uniform baseline of 17.694, which I can confirm by averaging the three specific seeds from the results table. Now I'm checking whether the delta values are calculated correctly—the τ=0.7 delta of -0.020 matches the difference between 17.674 and 17.694, so that checks out. I need to reconcile the 5-seed comparison mentioned in the caption with what's actually in the main results table. Now I'm cross-referencing the robustness and sensitivity results across the tables—checking that the τ=0.7 versus τ=0.8 comparisons and their delta values align consistently with what's reported in the text, particularly for the OWT and Wiki datasets at different contamination levels. I'm verifying the remaining tau values match their expected deltas, and they all check out. Now I'm moving into the tau-rho rank preservation section, cross-referencing the figure captions and statistical annotations with the results file to ensure the reported differences and seed counts are consistent. I'm noticing a discrepancy in the adaptive baseline values across different sections—the hybrid table shows 17.689 for seed 42 at τ=0.8, but the appendix τ sweep table reports 17.683±.006 for the same parameters with multiple seeds, and I need to reconcile whether the resume artifact section's checkpoint-resumed run explains this difference. I'm realizing the hybrid table uses τ=0.8 while the ρ=0.6 reference table uses τ=0.7 for Adaptive, so those 17.740 and 17.735 values aren't directly comparable. Now checking the D&R numbers—the hybrid table shows seed 42 only at 17.285, but the results.tex 3-seed mean is 17.280 ± .010, and there's a reference value of 17.291 that doesn't quite match either.\n\nLooking at the D&R threshold table, q>0.5 shows 17.28 (likely seed 42), which is 17.285 rounded to 2 decimal places—so that checks out, though the rounding convention could push it to 17.29 depending on the exact value. I'm noticing the threshold table lists 17.28 for q>0.5 with seed 42, but the hybrid table shows 17.285 for the same condition—this could be a rounding difference, though standard rounding would give 17.29 rather than 17.28. The results.tex file reports 17.280 ± .010 as a 3-seed average, which is different from the single-seed values, so these numbers are likely coming from different experimental runs. seed 42, q>0.5), there's roughly a 0.005 discrepancy that seems odd. Let me cross-check the other D&R variants: q>0.3 shows consistent values across all sources at 17.250, and q>0.7 matches at 17.32 for the holdout set, though the OWT and Wiki variants aren't in these tables. Now I'm looking at the q>0.1 entry in the threshold table to continue verifying. Now I'm checking the full threshold table across all q values, and I notice the raw perplexity stays remarkably stable around 17.2-17.4 regardless of threshold, while epoch-matched values cluster around 17.6-17.7 when available. The q>0.3 entry with 17.250 matches what's reported in the epoch matching results, confirming this is the right reference point. I'm realizing the discrepancy might stem from different seeding approaches—the epoch-matched value of 17.657 in the table is a 3-seed mean, while the threshold table's 17.65 could be from a single seed run, which would explain why they don't match exactly when rounded.\n\nNow I'm moving on to cross-check other sections, starting with the downstream task evaluation metrics. Now I'm cross-referencing these numbers against the discussion and results sections to verify consistency. Let me calculate the mean across all five tasks for both the adaptive and uniform approaches with seed 42, but I'm getting 0.5474 and 0.5522 respectively—neither matches the reported 0.5414 value.\n\nLooking at the caption more carefully, it clarifies that the table shows τ=0.8 results, while the 0.5414 figure refers to τ=0.7 models trained from scratch. Since seed 42 uses checkpoint-resumption at τ=0.8, I can't directly verify the 0.5414 claim from this table, though I can confirm it's consistently cited across the paper.\n\nNow examining the higher contamination results at ρ=0.6, where the grid search with b=0.3 only has seed 42 available, while the adaptive and uniform sampling methods show all three seeds with tighter variance, and the random uniform approach produces notably higher values around 17.86. The full-precision p-value is 0.004, but when rounded to three decimal places it becomes 0.010, which matches what the reference lists as the uncorrected p-value. The results file shows p_BH=0.064, which is the Benjamini-Hochberg corrected version—likely applying a correction factor across the nine family-wise comparisons to transform the uncorrected 0.010 to 0.064.\n\nNow I'm verifying the mean values for each sampling method by averaging their three replicates, and they all check out correctly. Moving on to calculate the standard deviations... I'm finishing the variance calculations for the ESS-only approach and then checking the random sampling results—all the standard deviations are rounding correctly. The difference between the adaptive and uniform means checks out at -0.032, and I'm cross-referencing this against the results file to confirm everything aligns.\n\nNow I'm verifying the gap between ESS-only and uniform performance at different correlation levels, but I'm noticing a discrepancy—the text claims a 0.043 gap at ρ=0.4, but my calculation from the table shows 0.040 instead. I see the discrepancy now—the ESS-only result is being compared against the 3-seed uniform baseline of 17.694, not the full 5-seed uniform mean of 17.697, which gives the 0.043 degradation they report.\n\nNow checking the appendix entries: at ρ=0.4, the 0.043 gap holds with the 3-seed means, and at ρ=0.6 both methods converge to 17.763 with no gap. For the Δ=−0.032 claim, I'm verifying it across individual seeds—the per-seed differences average to exactly −0.032 as stated. Moving on to check the Adaptive-vs-Grid comparison at ρ=0.\n\n4, where the 3-seed mean for Adaptive is 17.674 and Grid is 17.620, giving the reported 0.054 gap. At ρ=0.6, I'm now verifying the 0.097 gap between Adaptive's 3-seed mean of 17.731 and Grid's seed 42 result.\n\nMoving into the α_eff proxy validation section, I'm checking the correlation metrics from the alpha_corr table across different batch sizes—Pearson and Spearman correlations are consistently in the 0.68–0.71 range, with MAE values decreasing as batch size increases from 4 to 16, and biases staying tightly clustered around -0.03.\n\nI'm also verifying the per-seed breakdown, which shows strong Spearman correlations (0.87–0.88) across all three seeds with minimal variance in the b*=0 percentages around 5.8%.\n\nNow I'm cross-referencing the proxy correlation discrepancy—the table reports r(α_eff, q̄) ≈ 0.80, while the discussion mentions r(α_eff, true real fraction) ≈ 0.79, but these measure different things since q̄ is a noisy proxy for the true batch composition, which explains the slight difference.\n\nChecking the clean batch percentage against results.tex confirms 5.8% with the seed 42 setting, and verifying the Spearman correlation claim that ρ_s ≥ 0.86 holds since the minimum value in the table is 0.8692.\n\nThe spread calculations all check out: Pearson correlation varies by 0.0025 across seeds, Spearman by 0.0069, and the clean batch percentage by 0.2 percentage points.\n\nNow I'm looking at the detector comparison metrics—TF-IDF with logistic regression achieves the best performance at AUC 0.94 with low calibration error, while GPT-2 perplexity and n-gram perplexity baselines perform progressively worse. The delta values represent deviations from the uniform baseline perplexity of 17.694, and I'm verifying these calculations match the reported numbers. I'm noticing a discrepancy between the detector table showing TF-IDF adaptive at τ=0.8 with PPL 17.650, versus the tau sweep table reporting τ=0.80 with 17.683±.006 from three from-scratch seeds. These don't match, so I need to check whether the detector comparison used different experimental conditions or a different seed set than the tau sweep. I'm noticing a discrepancy between the detector table and τ sweep results for the same conditions—17.650 vs 17.683 for TF-IDF at τ=0.8 with 3 seeds. The difference of 0.033 seems too large to be noise, so either the experimental setups differ (maybe different n_min values or seed selections) or there's an actual inconsistency in how the results were generated. The detector table might have been run earlier when the resume artifact was still present, which would explain why it doesn't match the τ sweep results that explicitly used from-scratch seeds. I should flag this as a potential inconsistency between the two experimental runs. Now I'm checking the detector configuration details against the reference materials—verifying the TF-IDF setup with 50k features, the logistic regression parameters, and the temperature calibration that brought ECE down to around 0.048.\n\nThere's a minor discrepancy where the detector section rounds ECE to 0.05 while the main text reports 0.048, but these are close enough that it's likely just a rounding difference. For the synthetic data generation, they're using nucleus sampling with specific temperature and token parameters to create roughly 100M synthetic tokens. Now I'm cross-referencing the contamination results, particularly the ρ=0.2 case where the performance delta matches the reference value.\n\nLooking at the cross-model transfer results, the MMLU benchmark shows the adaptive approach outperforming uniform sampling by about 1.57 percentage points with similar confidence intervals.\n\nFor HellaSwag, the adaptive method actually underperforms slightly at 72.49% compared to uniform's 73.08%, a difference of roughly 0.6 percentage points in the opposite direction. Cross-checking against the results section confirms these values match when rounded. There's a minor discrepancy in the HellaSwag calculation—the raw difference is -0.59 but the table reports -0.60, likely due to rounding conventions.\n\nNow looking at the checkpoint resume artifact, I'm seeing results from the first thousand training steps comparing different hyperparameter configurations. The resume approach shows a delta of -0.041 while from-scratch achieves -0.005 at τ=0.8, and across different datasets the resume method varies: FineWeb drops by 0.041, OWT gains 0.058, and Wiki improves by 0.137.\n\nBut when I cross-reference this against the τ sweep table, there's a discrepancy—the τ sweep table shows -0.011 for τ=0.80 on the holdout set, not -0.005. The τ sweep uses a 3-seed uniform baseline of 17.694, and at τ=0.80 the holdout reaches 17.683, giving -0.011. So the resume section's from-scratch value doesn't match what the τ sweep table reports for the same condition.\n\nLooking more carefully at the footnote, the resume table's Δ=-0.005 is relative to a single-seed clean replication run, not the 3-seed mean. That means seed 42's from-scratch adaptive at τ=0.8 should be 17.694 - 0.005 = 17.689, which matches what I see in the hybrid table for the same configuration—so those are actually consistent. The τ sweep table's -0.011 is the 3-seed average, which is a different baseline entirely.\n\nNow I'm moving into the ρ=0.3 section and looking at the per-seed results across different datasets. The uniform and adaptive configurations show some variation across seeds and datasets, with adaptive sometimes matching uniform exactly and sometimes showing small differences. Now I'm cross-checking the statistical significance claims against the reference data—the t-test result holds up, and I'm verifying that the transition boundary around ρ=0.3 is real by confirming the delta values shift from positive to negative as expected, plus the micro-batch statistics align with what's reported in the tables. Verifying each calculation against the source documents—the effect size, noncentrality parameter, standard deviations, and all p-values check out against the tables and results file.\n\nNow I'm checking the appendix summary table to confirm the downstream task results show minimal change, the cross-model performance shifts are as expected, the temperature sweep shows improvement in the middle range with degradation at higher values, and the statistical power calculation confirms we have sufficient samples.\n\nLooking at the trajectory figure caption, the training step count of 6,103 matches what's documented in the configuration table.\n\nVerifying the correlation coefficient and batch size effects—at B=16 the adaptive advantage triples with the reported effect size and standard error, and I'm cross-referencing these numbers against the results section to ensure consistency.\n\nChecking the remaining appendix sections for the paired t-test statistics and effect sizes on the rank preservation analysis.\n\nNow I'm reviewing the training configuration from the experiments table: the model is Qwen3-0.6B trained for 6,103 steps with an effective batch size of 16 (micro-batch of 4 with 4× gradient accumulation), using bfloat16 precision, AdamW optimizer with a peak learning rate of 5×10^-5, linear schedule with warmup, 2048 token sequences, and a single GPU.\n\nThe reference mentions warmup steps of 100 and weight decay of 0.01, but these details don't appear explicitly in the paper or appendix—they're likely in the code. For the dataset, the paper confirms the 132M-token subset of FineWeb, though the exact breakdown of 371,499 total samples (222,899 real, 148,600 synthetic) isn't stated in the text itself.\n\nNow I'm verifying the math on the synthetic data ratio. The paper mentions a token-level contamination ratio ρ = 0.4 with a resulting document-level synthetic fraction of 55.6%, but when I calculate 148,600 synthetic documents out of 371,499 total, that's exactly 40%, which seems to contradict what's stated about the document-level fraction.\n\nThe key insight is that ρ = 0.4 refers to tokens, not documents. Since synthetic documents are shorter on average (304 vs 560 words), you'd need a higher proportion of synthetic documents to reach 40% token contamination, which would explain why the document-level fraction is 55.6%. But the numbers I'm working with don't seem to align with this—either the reference numbers aren't from the paper itself, or I'm misinterpreting what the paper actually specifies about the dataset composition. So these reference numbers are for me to verify against the registry, not against the paper text.\n\nActually, if 148,600/371,499 = 40.0% by document, but the paper says document-level is 55.6%, then the reference numbers don't match the paper's claim. Unless the reference numbers are wrong or I'm computing wrong. Let me recalculate: 148,600/(148,600+222,899) = 148,600/371,499 = 0.3999... ≈ 40.0% synthetic by document count. But the paper says 55.6%. So either:\n1. The reference numbers are approximate / from a different stage\n2. The paper's 55.6% is wrong\n3. The sample counts include duplicates or something else\n\nHmm, actually maybe the reference numbers are the MIXED corpus, where ρ=0.4 means 40% tokens are synthetic. If synthetic docs average 304 words and real docs average 560 words, I can work backwards to find what document-level percentage would produce 40% token-level synthetic content. Setting up the ratio of synthetic to real documents based on their average lengths, I get that we'd need about 55.1% of documents to be synthetic to hit that 40% token target, which matches the paper's 55.6% pretty closely—the small difference is just rounding. The reference numbers don't align with the paper's 55.6% claim—whether I calculate it as 40.0% or 60.0% depending on which column represents synthetic data, neither matches. Since the 55.6% figure is mathematically consistent with the word length ratio, the reference numbers might be from a different configuration or have the labels reversed, but without more context I can't resolve this discrepancy.\n\nNow I'm compiling my findings and noticing several inconsistencies across the tables. There's a meaningful difference between the detector table and τ sweep results for TF-IDF+LR (0.033 PPL gap), arithmetic errors in the cross-model deltas like the HellaSwag calculation, and some issues with the hybrid table entries that I need to examine more closely. Looking at the detector table and tau sweep table, both claim the same experimental setup with ρ=0.4, τ=0.8, and 3 seeds using TF-IDF+LR. The arithmetic checks out for both—the detector table shows a delta of -0.044 and the tau table shows -0.011—but these are different values, which suggests they might actually be from different experimental runs despite the matching parameters.\n\nI'm hypothesizing that the detector table might include seed 42 with resume contamination while the tau sweep uses only from-scratch seeds. If seed 42 resume produces a PPL around 17.653, I can work backwards to see if the other seeds in each experiment would be consistent with their reported means. So the other seeds in the detector table average around 17.649, compared to 17.680 in the τ sweep—that 0.031 difference suggests these might be entirely different seed sets. But the gap is suspicious enough that I think the detector table was probably built from older resumed results while the τ sweep got updated with fresh from-scratch runs, which would explain the systematic 0.033 PPL difference between the two tables.\n\nActually, I need to reconsider this more carefully. The detector table compares different detector types at τ=0.8, so the TF-IDF entry there should match the τ=0.8 point in the τ sweep table exactly. If they don't match, one of them is wrong. The τ sweep explicitly says \"3 from-scratch seeds,\" but the detector table just says \"3 seeds\" without that specification, which means it probably includes the contaminated seed 42. So the detector table's TF-IDF value of 17.650 is likely the problematic one, and it should be recalculated using the same from-scratch seeds as the τ sweep.\n\nIf I update that TF-IDF entry to 17.683, the Δ value shrinks from -0.044 to -0.011, which is much smaller in magnitude but still supports the claim that TF-IDF produces the only improvement over uniform. The caption already hedges this with a note about τ=0.7 achieving 17.674, so the finding remains defensible. I should verify the other numerical claims too—the 2.7× ECE gap between TF-IDF and GPT-2 checks out (0.131 / 0.048 ≈ 2.729), and I need to look at the raw PPL curve claim about the U-shaped minimum at q>0.3.\n\nLooking at the epoch-matched PPL values across thresholds, I see 17.74 → 17.65 → 17.62, which does decrease, but then it ticks back up to 17.628 at q>0.9. That's not strictly monotonic—there's a slight increase at the tail, so the claim about monotonic decrease needs adjustment.\n\nBut wait, the paper says \"saturates\" at q≥0.5, which means it levels off rather than continuously decreasing. The small uptick from 17.62 to 17.628 is within noise, and saturation allows for this kind of plateau behavior. The data actually supports the saturation claim starting at q=0.5, where the PPL stops meaningfully improving.\n\nNow I need to verify the coupling rule claim about the relationship between batch size B and minimum sequence length n_min. Now I'm cross-checking the perplexity improvements across batch sizes—B=4 shows a −0.023 delta, B=8 reaches −0.052, and B=16 peaks at −0.068, confirming the 3.0× amplification ratio. Let me verify the baseline uniform results in the main table to ensure the mean calculation is consistent.\n\nActually, I see the issue now—the table caption mentions 5-seed means (seeds 42, 123, 456, 789, 234), but only three seed columns are displayed. The mean of 17.697 reflects all five seeds, not just the three visible ones. The three shown seeds average to 17.694, so seeds 789 and 234 together must account for the difference.\n\nFor the Adaptive condition, the 5-seed mean of 17.674 happens to match the 3-seed mean exactly, which means seeds 789 and 234 average to the same value. The standard deviations reported (0.008 for Uniform, 0.006 for Adaptive) are calculated across all five seeds, so I can't fully verify them with only the three visible columns.\n\nLet me now pull together the full audit. I'm also double-checking the table values—the main results show Uniform at 17.697 using five seeds (42, 123, 456, 789, 234), while the appendix baseline with three seeds (42, 123, 456) gives 17.694, which is consistent with the documentation. For the τ=0.70 Adaptive condition in the appendix, Holdout is 17.674 with a delta of -0.020, and I need to verify this aligns with what the main text reports.\n\nThe deltas check out: comparing the 5-seed adaptive mean of 17.674 against the 3-seed uniform baseline of 17.694 gives -0.020, and against the 5-seed uniform of 17.697 gives -0.023, both correctly reported in their respective contexts. For the ESS-only gap at ρ=0.4, the 3-seed ESS-only mean of 17.737 minus the 3-seed uniform of 17.694 yields the reported gap of 0.043, which matches the main text's claim that ESS-only degrades performance by that amount relative to uniform.\n\nThe main table shows ESS-only at 17.737 and uniform at 17.697, which would give 0.040, but that's comparing 3-seed ESS-only against 5-seed uniform—the 0.043 figure correctly uses the 3-seed uniform baseline since both methods are 3-seed in that comparison. It's methodologically sound but could potentially confuse readers about which baseline is being used.\n\nNow I'm checking the t-test values in the caption for Table tab:rho06, which reports paired t=−15.4 with p=0.004 at full precision, noting that 3-decimal rounding yields t=−9.95 and p=0.010. Let me verify this by computing the per-seed differences and running the test.\n\nComputing the per-seed deltas and their statistics: the mean difference is −0.032 with a standard deviation of about 0.00557, giving a standard error of 0.003216 and thus t = −9.95. So the rounded version checks out, which means the full-precision t-statistic of −15.4 must come from tighter per-seed deltas that haven't been rounded yet.\n\nNow I'm checking the p-value for this t-statistic with 2 degrees of freedom. At t(2) = −9.95, the two-tailed p-value comes out to around 0.010, which matches what the caption reports. The full-precision t = −15.4 gives p ≈ 0.004, suggesting the test is sensitive to the precision of the underlying values.\n\nLooking at results.tex, I see it reports the rounded t-statistic with the Benjamini-Hochberg corrected p-value, so there's a mix of precision levels being used. Now I need to compile all the discrepancies I've found and determine which ones actually need fixing.\n\nThe main issue is that the detector table shows TF-IDF+LR at τ=0.8 with a PPL of 17.650±.010, but the tau table reports 17.683±.006 for the same condition using three fresh seeds—this suggests the detector table may have pulled contaminated results. There are also minor arithmetic issues like the HellaSwag cross-model difference being off by 0.01 percentage points, and some ECE values that appear rounded differently than stated elsewhere. A few other discrepancies between tables turn out to be just rounding artifacts rather than actual errors. I need to verify whether the TF-IDF detector result should match the τ sweep baseline of 17.683±.006, which would give Δ=-0.011 instead of -0.044, but I'm uncertain about updating it without confirming the from-scratch 3-seed mean for that specific experiment. I should also check if the standard deviation needs updating and whether the resume artifact contamination affects only TF-IDF or the other detectors too. τ sweep τ=0.8 is described as \"3 from-scratch seeds (Appendix app:resume_artifact)\". The detector comparison might use different seeds (e.g., seeds that were always from-scratch, not the same 42/123/456). In that case, 17.650 could be correct for those seeds.\n\nBut that would be very unusual to use different seed sets for different tables. And the SD of 0.010 for TF-IDF vs 0.006 for τ=0.80 suggests different data. If they used the same seeds, the SD should be the same.\n\nI think what happened is the detector table uses 3 seeds that may include the resume-contaminated seed 42, while the τ sweep uses from-scratch seeds (likely 42, 123, 456 from-scratch).\n\nGiven the resume artifact section's explicit warning about this, I should flag this discrepancy rather than blindly change it. The user said to fix what can be fixed directly, so I'll address the clear arithmetic issues and flag the uncertain ones. For the cross-model HellaSwag Δ = -0.59, this is probably just rounding of the source values, so I'll flag it but not fix. For the detector details \"0.12 to 0.05\", I should update it to \"0.12 to 0.048\" for consistency, though \"0.05\" could reasonably be interpreted as approximate.\n\nNow I'm checking the appendix text more carefully. At B=16, the adaptive advantage shows a 3.0× amplification with Δ = -0.068±0.005, and the Spearman correlation is listed as r = 0.699 with the true real fraction. Looking at the table, the binarized version shows r = 0.699 at B=4, but the continuous version is around r ≈ 0.77–0.79, so there's a mismatch in which version is being cited here.\n\nLet me verify all the numbers in the trajectory caption and the following paragraph. The training steps (6,103), seed (42), and ρ (0.4) all check out. The batch size notation is consistent—B=4 is the base batch with B=16 after gradient accumulation. The Spearman r = 0.699 matches the table at B=4, and I need to confirm the adaptive advantage values against the results file.\n\nNow I'm compiling the full audit report and checking whether any appendix cross-references point to other appendix sections. I've already verified the main table numbers, so I'm looking for internal appendix citations—like the 5-seed comparison yielding Δ=−0.023, the τ=0.8 resume artifact reference, and the ρ=0.4 value of 0.043. These all check out.\n\nI'm also being more careful with the discussion.tex cross-references now. The +0.046 at ρ=0.2 and the sharp transition in [0.3, 0.4] both match what I've verified, and the Pearson r ≈ 0.79 is distinct from the 0.80 q̄ correlation in the per-seed table—the caption clarifies this difference. Many of these numbers can't be fully verified against the registry without access to it, but I'll note that in my report.\n\nBefore I compile everything, let me double-check the Bonferroni-Holm correction claims. The uncorrected p-values are 0.0012 at ρ=0.4 and 0.010 at ρ=0.6. With k=9 comparisons, the threshold is α/9 = 0.00556, so the smallest p-value passes. Multiplying by 9 gives the corrected p ≈ 0.011, which matches what's stated in the text.\n\nFor the second p-value at ρ=0.6, I need to recalculate using the Bonferroni-Holm formula where each adjusted p-value is the maximum of the previous adjustment and the current p-value times the remaining degrees of freedom. The calculation seems off—0.010 × 8 gives 0.080, not 0.064, so there's a discrepancy I need to resolve.\n\nLooking at the notation more carefully, \"p_BH\" in the paper could refer to either Bonferroni-Holm or Benjamini-Hochberg, even though the text explicitly mentions Bonferroni-Holm. Let me check if Benjamini-Hochberg produces the 0.064 value instead. So the 9 comparisons break down into 6 reweighting methods tested at ρ=0.4 against uniform, plus 3 additional tests at different ρ levels (0.2, 0.3, and 0.6). The ρ=0.6 adaptive versus uniform comparison is one of those three additional tests, and I'm trying to figure out which rank position it occupies in the sorted p-value list to work backwards to that 0.064 adjusted value. Working backward from the adjusted p-value of 0.064, I can check if it's consistent with either correction method. For Holm, that would require a non-integer rank, which is impossible. For Benjamini-Hochberg, I'm solving for what rank would produce that adjusted value, but the math isn't working out either.\n\nThis suggests the uncorrected p-value might not be exactly 0.010—the caption mentions full precision gives p=0.004, which rounds to 0.010 at three decimal places. Let me recalculate using the full precision value instead.\n\nIf I apply Benjamini-Hochberg with p=0.004 at different ranks, I get values like 0.018 or 0.00514, neither of which matches 0.064 either. I'm wondering if they're using a different correction method entirely, or perhaps applying the step-up procedure in a way I haven't considered yet—maybe accounting for the maximum of preceding adjusted p-values in the BH calculation. I'm checking whether 0.064 could result from the Benjamini-Hochberg formula with different uncorrected p-values, testing r=1, 2, and 3 to see what raw p-value would produce that adjusted result. Even with the full-precision p=0.004, the math doesn't work out to give 0.064, which makes me suspect there might be an error in the reported p_BH value itself.\n\nActually, I should reconsider what \"Bonferroni-Holm\" means here—it's the Holm stepwise procedure, not standard Benjamini-Hochberg. In that method, I'd need to sort all nine p-values and apply the stepwise adjustment where each adjusted p-value is the maximum of the previous adjustments. If the ρ=0.6 test sits at rank 7 with uncorrected p=0.010, its Holm adjustment would be 0.010 × 3 = 0.030, but that's still nowhere near 0.064.\n\nThe only way to get 0.064 is if an earlier test in the ranking has a larger adjusted value that carries forward—for instance, if some test at rank 4 has p=0.01067, its adjustment would be 0.01067 × 6 = 0.064, and then all subsequent tests would inherit at least that value.\n\nWithout the full table of nine p-values, I can't verify whether this is what actually happened, so I'll note this as a limitation rather than flag it as an error. The Benjamini-Hochberg correction depends on the entire family of comparisons, and I'm only seeing the final reported values.\n\nNow let me check the specific claims in the appendix. The TF-IDF versus GPT-2 comparison checks out—the ECE ratio of 0.131 to 0.048 does equal approximately 2.7×. For the N-gram analysis, it has better calibration than GPT-2 with an ECE of 0.069 versus 0.131, but its discriminative ability is weak at an AUC of 0.73. Let me continue examining the next claim about discriminative power.\n\nThe TF-IDF+LR detector shows the only improvement over uniform calibration with an ECE of 0.048, which corresponds to a delta of -0.044 in the table—negative indicating improvement. Even if the TF-IDF perplexity were actually 17.683 instead of 17.650, the delta would shift to -0.011, still negative and still supporting the improvement claim. I should verify one more set of numbers from line 363 before finalizing my audit. I'm working through the math on the synthetic token ratio—if they're targeting ~100M synthetic tokens but only using them at ρ=0.4, that means roughly 53M tokens end up in the final corpus, which suggests the 100M figure refers to what was generated before the mixing ratio was applied. Wait, I need to reconsider what \"132M-token subset\" actually refers to. If that's the total mixed corpus, then the real data would be about 79M tokens and synthetic would be roughly 53M—meaning they're generating around 100M tokens but only using about half of it. That interpretation makes more sense than the total being 220M. The wording is genuinely ambiguous—\"132M-token subset of FineWeb\" suggests that's the real data contribution, but if ρ=0.4 means 40% synthetic, the math doesn't align unless 132M is the total budget. The detector section mentions targeting ~100M synthetic tokens, which would fit better if the real portion is around 79-88M, so I'll assume that's the intended setup and move forward.\n\nNow I'm checking whether the registry agent has finished its validation, and if not, I'll compile my audit findings organized by the number of values checked, issues discovered, and corrections made.\n\nTallying up across all the tables, I'm looking at roughly 200+ individual numbers that need verification—spanning PPL values, thresholds, metrics, and in-text references. The critical issue I've identified so far is an inconsistency in the TF-IDF perplexity values in the detector table.\n\nFor that detector table discrepancy, the tau sweep value of 17.683 appears more reliable since it explicitly used three from-scratch seeds, whereas the detector table doesn't specify its seeding approach. But I can't simply swap in the tau value without checking whether the other detector rows (GPT-2, N-gram) were run under the same conditions—if they weren't, changing just one number would break the cross-detector comparison.\n\nActually, the resume artifact only contaminated the adaptive model's training checkpoint at seed 42 and τ=0.8, so it wouldn't affect GPT-2 or N-gram detectors since those are separate experiment types. The key question is whether all three detectors in that table used the same seeds and training setup, because if the TF-IDF detector was updated to use from-scratch seeds but the others weren't, the comparison becomes invalid. are from-scratch could make the comparison invalid. The user should verify this against the actual experiment logs to be sure.\n\nFor the ECE rounding issue, I need to be more careful here. The threshold mentioned is \"0.05\" but the actual final ECE value is \"0.048\", so I should update that result to reflect the precise number rather than the rounded threshold.\n\nOn the HellaSwag delta, I'm catching an arithmetic error: 72.49 - 73.08 equals -0.59, not -0.60. I'll correct this to -0.59pp, though I should check if there's additional precision in the underlying values that might justify the original rounding. There's a 0.01 percentage point discrepancy in the table—the calculation shows -0.59 but it's displayed as -0.60. I need to make three fixes: correct the HellaSwag delta to -0.59pp, update the ECE value to 0.048, and note the detector table inconsistency. For the ECE change, I should clarify whether to update just the final value or the full range from 0.12 to 0.048 depending on what the context actually describes. to verify exactly without the full distribution data. Let me proceed with finalizing the edits.\n\nI want to do one more cross-check on the ESS binding percentages across different ρ values. The appendix mentions ~49% of batches at one point, while results.tex shows ~44% ESS-binding at ρ=0.4 and ~50% at ρ=0.6. There's a slight discrepancy between ~43% and ~44% that I should flag, though it's minor. The ~43% versus ~44% discrepancy is minor since both use the approximation symbol, but I should standardize the appendix to match results.tex at ~44% for consistency. I'm settling on three concrete fixes: updating the HellaSwag delta from -0.60 to -0.59, correcting the ECE value to 0.048, and flagging the detector table inconsistency, then I'll document the remaining cross-checks.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "c188d9a1-d056-4e39-a3c1-797d8a472a5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019wN8wqHoGRPpBeGJySyWCQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 49492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 查询在后台运行中，先基于正文交叉验证开始审计。读取 discussion.tex 中需要的交叉引用数字。\n\n现在系统地审计 appendix 每个数字。先做正文-附录交叉验证，registry 结果到了再补充。\n\n我已经完成了正文（results.tex, experiments.tex, discussion.tex）与 appendix 的全面交叉验证。以下是几个需要确认的点，让我先修复明确的算术错误。\n\n**发现 1**: Cross-model HellaSwag Δ 算术错误 — 72.49 − 73.08 = −0.59，表中写 −0.60pp。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "e9a3a991-213f-4008-8871-5ea2baf8520e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019wN8wqHoGRPpBeGJySyWCQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 49492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PsSsLesDKSBPkAP1b36obJ",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex",
+                "old_string": "HellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.60pp \\\\",
+                "new_string": "HellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.59pp \\\\"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "630e1949-d3b8-4e1b-b058-1b4118dba920",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019wN8wqHoGRPpBeGJySyWCQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 49492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 22,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-25T20:16:26.751Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PsSsLesDKSBPkAP1b36obJ",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "2f3a470f-e832-49bd-b1ec-938b002f5400",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex",
+              "oldString": "HellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.60pp \\\\",
+              "newString": "HellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.59pp \\\\",
+              "originalFile": "\\section{Proofs}\n\\label{app:proofs}\n\n\\begin{proposition}[$\\alpha_{\\mathrm{eff}}$ monotonicity]\n\\label{prop:monotone}\n$\\alpha_{\\mathrm{eff}}(b)$ is non-decreasing in $b$, and strictly increasing whenever the batch contains at least two samples with distinct $q$-values.\n\\end{proposition}\n\n\\begin{proof}[Proof of Proposition~\\ref{prop:monotone}]\nLet $w_i(b) = (1 - q_i)^b$, $W(b) = \\sum_{j=1}^B w_j(b)$, and $\\pi_i(b) = w_i(b) / W(b)$.\nThen\n\\begin{equation*}\n  \\alpha_{\\mathrm{eff}}(b) = \\sum_{i=1}^{B} \\pi_i(b)\\, (1 - q_i).\n\\end{equation*}\nTaking the derivative with respect to $b$:\n\\begin{align*}\n  \\frac{d\\pi_i}{db}\n  &= \\pi_i \\!\\left(\\frac{d \\ln w_i}{db} - \\frac{d \\ln W}{db}\\right) \\\\\n  &= \\pi_i \\!\\left(\\ln(1{-}q_i) - \\textstyle\\sum_j \\pi_j \\ln(1{-}q_j)\\right).\n\\end{align*}\nSubstituting,\n\\begin{align*}\n  \\frac{d\\alpha_{\\mathrm{eff}}}{db}\n  &= \\sum_i (1{-}q_i)\\, \\pi_i \\!\\left(\\ln(1{-}q_i) - \\mathbb{E}_{\\pi}[\\ln(1{-}q)]\\right) \\\\\n  &= \\mathrm{Cov}_{\\pi}\\!\\bigl(1{-}q_i,\\, \\ln(1{-}q_i)\\bigr).\n\\end{align*}\nSince $(1{-}q_i)$ and $\\ln(1{-}q_i)$ are both increasing functions of $(1{-}q_i)$, they are positively associated, so the covariance is non-negative.\n\\end{proof}\n\n\\begin{proposition}[ESS monotonicity]\n\\label{prop:ess_mono}\n$\\mathrm{ESS}(b)$ is non-increasing in $b$, and strictly decreasing whenever the batch contains at least two samples with distinct $q$-values.\n\\end{proposition}\n\n\\begin{proof}\nWrite $\\mathrm{ESS}(b) = 1 / \\sum_i \\pi_i(b)^2$, where $\\pi_i(b) = w_i(b) / W(b)$.\nThe denominator $\\sum_i \\pi_i^2$ is the Herfindahl index $H$.\nDifferentiating $H$ with respect to $b$:\n\\begin{equation*}\n  \\frac{dH}{db} = 2 \\sum_i \\pi_i^2 \\bigl(\\ln(1{-}q_i) - \\mathbb{E}_{\\pi}[\\ln(1{-}q)]\\bigr).\n\\end{equation*}\nSince $\\pi_i \\propto (1{-}q_i)^b$, larger $\\pi_i$ implies larger $\\ln(1{-}q_i)$; the $\\pi^2$-weighted sum assigns greater mass to terms where $\\ln(1{-}q_i) > \\mathbb{E}_\\pi[\\ln(1{-}q)]$, so $dH/db \\geq 0$, with strict inequality when at least two $q$-values differ.\nThus $H$ is non-decreasing and $\\mathrm{ESS} = 1/H$ is non-increasing.\nThis is a standard property of exponential tilting~\\citep{kish1965survey,owen2013mc}.\n\\end{proof}\n\n\\section{Algorithm Details}\n\\label{app:algorithm}\n\n\\begin{algorithm}[h]\n\\caption{Per-batch adaptive $b^{*}$ selection}\n\\label{alg:bstar}\n\\begin{algorithmic}[1]\n\\REQUIRE Batch scores $\\{q_i\\}_{i=1}^{B}$, threshold~$\\tau$, ESS floor~$n_{\\min}$, bound~$b_{\\max}$, tol.~$\\varepsilon$\n\\ENSURE Optimal sharpening exponent $b^{*}$\n\\IF{$\\alpha_{\\mathrm{eff}}(0) \\geq \\tau$}\n  \\STATE \\textbf{return} $0$ \\COMMENT{clean batch}\n\\ENDIF\n\\STATE $b_\\tau \\gets \\textsc{Bisect}(\\alpha_{\\mathrm{eff}}(\\cdot){=}\\tau,\\; [0, b_{\\max}],\\; \\varepsilon)$\n\\IF{$\\mathrm{ESS}(b_\\tau) \\geq n_{\\min}$}\n  \\STATE \\textbf{return} $b_\\tau$ \\COMMENT{$\\alpha_{\\mathrm{eff}}$-binding}\n\\ELSE\n  \\STATE $b_{\\mathrm{ESS}} \\gets \\textsc{Bisect}(\\mathrm{ESS}(\\cdot){=}n_{\\min},\\; [0, b_{\\max}],\\; \\varepsilon)$\n  \\STATE \\textbf{return} $b_{\\mathrm{ESS}}$ \\COMMENT{ESS-binding}\n\\ENDIF\n\\end{algorithmic}\n\\end{algorithm}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{bstar_trajectory_adaptive_fix}\n\\caption{Adaptive $\\bstar$ trajectory over 6{,}103 training steps (seed\\,42, $\\rho{=}0.4$).\nThe exponent alternates between clean ($\\bstar{=}0$), $\\aeff$-binding, and ESS-binding regimes with no systematic drift, reflecting per-batch adaptation to local $q$-score composition.}\n\\label{fig:bstar_traj}\n\\end{figure}\nWe compute $\\bstar$ at the micro-batch level ($B{=}4$) rather than the effective batch ($B{=}16$ after gradient accumulation) because $q$-score statistics exhibit sufficient variance within micro-batches: Spearman $r{=}0.699$ with the true real fraction, and at $B{=}16$ the adaptive advantage amplifies $3.0{\\times}$ ($\\Delta{=}{-}0.068{\\pm}0.005$; \\S\\ref{sec:sensitivity}).\n\n\\section{Grid Search Details}\n\\label{app:grid}\n\nTable~\\ref{tab:grid_full} reports held-out PPL for all grid-$b$ values at $\\rho = 0.4$ (seed\\,42).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}cc@{}}\n\\toprule\n$b$ & PPL $\\downarrow$ \\\\\n\\midrule\n0.1 & 17.657 \\\\\n0.2 & 17.640 \\\\\n0.3 & \\textbf{17.640} \\\\\n0.5 & 17.651 \\\\\n1.0 & 17.692 \\\\\n1.5 & 17.718 \\\\\n2.0 & 17.741 \\\\\n3.0 & 17.774 \\\\\n5.0 & 17.818 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Full grid search results ($\\rho{=}0.4$, seed\\,42).\n$b \\in [0.1, 0.5]$ forms a broad plateau (three-seed mean for $b{=}0.1$: $17.655 \\pm 0.009$); $b{=}0.3$ is the post-hoc best.}\n\\label{tab:grid_full}\n\\end{table}\n\n\\section{Quality Threshold Sweep}\n\\label{app:tau_sweep}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}ccccccc@{}}\n\\toprule\n$\\tau$ & Holdout $\\downarrow$ & $\\Delta_{\\text{H}}$ & OWT $\\downarrow$ & $\\Delta_{\\text{O}}$ & Wiki $\\downarrow$ & $\\Delta_{\\text{W}}$ \\\\\n\\midrule\n0.50 & 17.688 & $-$0.006 & -- & -- & -- & -- \\\\\n0.60 & 17.681 & $-$0.013 & -- & -- & -- & -- \\\\\n0.70$^\\star$ & \\textbf{17.674{\\tiny$\\pm$.006}} & $\\boldsymbol{-}$\\textbf{0.020} & \\textbf{18.347{\\tiny$\\pm$.003}} & $\\boldsymbol{-}$\\textbf{0.028} & \\textbf{15.330{\\tiny$\\pm$.015}} & $\\boldsymbol{-}$\\textbf{0.029} \\\\\n0.80$^\\star$ & 17.683{\\tiny$\\pm$.006} & $-$0.011 & 18.370{\\tiny$\\pm$.005} & $-$0.005 & 15.350 & $-$0.009 \\\\\n0.90 & 17.712 & $+$0.018 & -- & -- & -- & -- \\\\\n0.95 & 17.723 & $+$0.029 & -- & -- & -- & -- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Quality threshold sweep ($\\nmin{=}2$, $\\rho{=}0.4$).\n$\\Delta$ relative to 3-seed uniform baseline (Holdout 17.694, OWT 18.375, Wiki 15.359).\n$^\\star$\\,$\\tau{=}0.7$: 5-seed mean (SD from 5 seeds); $\\tau{=}0.8$: 3 from-scratch seeds (Appendix~\\ref{app:resume_artifact}). The 5-seed comparison in Table~\\ref{tab:main} yields $\\Delta{=}{-}0.023$.\nOther values from single-seed exploratory sweep (seed\\,42, holdout only).\n$\\tau{=}0.7$ achieves the lowest holdout and largest OOD gains ($|\\Delta| \\geq 0.028$); $\\tau{=}0.8$'s OOD effect is smaller ($|\\Delta| \\leq 0.009$).}\n\\label{tab:tau}\n\\end{table}\n\n\\section{Batch-Adaptive $\\tau$}\n\\label{app:batch_adaptive}\n\nWe tested a per-batch adaptive variant that clamps $\\tau$ between 0.5 and the fixed threshold based on local $\\aeff(0)$, allowing the quality floor to relax in batches with low estimated real fraction.\nAt both contamination levels ($\\rho \\in \\{0.4, 0.6\\}$), the adaptive variant did not outperform the fixed threshold (single-seed exploratory at each level), suggesting the quality constraint does not require adaptation to local contamination density.\nThis supports the ``two hyperparameters with good defaults'' characterization: neither $\\tau$ nor $\\nmin$ benefits from per-batch tuning.\n\n\\section{\\texorpdfstring{$\\tau$--$\\rho$}{tau-rho} Rank Preservation}\n\\label{app:tau_rho}\n\nFigure~\\ref{fig:tau_rho_rank} shows the $\\tau$--PPL relationship at two contamination levels.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{tau_rho_rank_preservation}\n\\caption{(a) Held-out PPL as a function of quality threshold $\\tau$ at $\\rho \\in \\{0.4, 0.6\\}$.\n$\\tau{=}0.7$ and $\\tau{=}0.8$ yield comparable holdout PPL at $\\rho{=}0.4$; at $\\rho{=}0.6$, $\\tau{=}0.7$ is statistically better (paired $t{=}{-}4.70$, $p{<}0.05$, 3 seeds, $\\Delta{=}{-}0.005$). $\\tau{=}0.7$ also achieves lower OOD perplexity at both levels ($\\rho{=}0.6$: $\\Delta_{\\text{OWT}}{=}{-}0.014$, $\\Delta_{\\text{Wiki}}{=}{-}0.013$, 2 seeds).\n(b) Normalized PPL gap relative to uniform at shared $\\tau$ values.}\n\\label{fig:tau_rho_rank}\n\\end{figure}\n\n\\section{Hybrid and Threshold Comparison}\n\\label{app:hybrid}\n\nTable~\\ref{tab:hybrid} compares method families across contamination levels.\nTable~\\ref{tab:dr_threshold} shows D\\&R sensitivity to the detection threshold at both full training length and epoch-matched settings.\nRaw PPL traces a U-shaped curve with a minimum at $q{>}0.3$ (17.250, 3 seeds), but this curve conflates filtering quality with multi-epoch exposure: aggressive thresholds retain less data and repeat it more often.\nEpoch-matched comparisons (rightmost column of Table~\\ref{tab:dr_threshold}) remove the multi-epoch confound: the U-shape vanishes and PPL decreases monotonically, saturating near the adaptive $\\bstar$ level at $q{\\geq}0.5$.\nFigure~\\ref{fig:dr_dual_curve} visualizes the two curves.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Method} & $\\rho{=}0.4$ & $\\rho{=}0.6$ \\\\\n\\midrule\nUniform & 17.694 & 17.766 \\\\\nAdaptive $\\bstar$ & 17.689 & 17.740 \\\\\nHybrid ($q{>}0.95$ + adaptive) & 17.514 & 17.530$^*$ \\\\\nDetect \\& Remove ($q{>}0.5$) & 17.285 & -- \\\\\nDetect \\& Remove ($q{>}0.3$) & 17.250 & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Method comparison across contamination levels (seed\\,42, $\\tau{=}0.8$).\n$^*$Hybrid at $\\rho{=}0.6$ filters high-confidence synthetic ($q{>}0.95$), reducing effective $\\rho$ to ${\\approx}0.4$; PPL is not directly comparable to $\\rho{=}0.6$ baselines.}\n\\label{tab:hybrid}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}ccccc@{}}\n\\toprule\n\\textbf{Thresh.} & \\textbf{Ret.\\ \\%} & \\textbf{Epochs} & \\textbf{Raw PPL} $\\downarrow$ & \\textbf{Ep.-matched} $\\downarrow$ \\\\\n\\midrule\n$q > 0.1$ & 15.0\\% & ${\\sim}$10.0 & 17.40 & 18.04 \\\\\n$q > 0.2$ & ${\\sim}$23\\% & ${\\sim}$5.0 & 17.27 & -- \\\\\n$q > 0.3$ & 31.5\\% & ${\\sim}$3.2 & \\textbf{17.250}$^\\dagger$ & 17.74 \\\\\n$q > 0.4$ & ${\\sim}$38\\% & ${\\sim}$2.8 & 17.26 & -- \\\\\n$q > 0.5$ & 41.4\\% & ${\\sim}$2.4 & 17.28 & 17.65 \\\\\n$q > 0.6$ & ${\\sim}$46\\% & ${\\sim}$1.7 & 17.30 & -- \\\\\n$q > 0.7$ & 49.8\\% & ${\\sim}$2.0 & 17.32 & 17.62 \\\\\n$q > 0.8$ & ${\\sim}$56\\% & ${\\sim}$1.3 & 17.34 & -- \\\\\n$q > 0.9$ & 61.6\\% & ${\\sim}$1.1 & 17.42 & 17.628 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{D\\&R threshold sensitivity ($\\rho{=}0.4$, seed\\,42 unless noted).\nRaw PPL traces a U-shaped curve (minimum at $q{>}0.3$); epoch-matched PPL (single content epoch) decreases monotonically and saturates near the adaptive $\\bstar$ level (${\\approx}$17.65) at $q{\\geq}0.5$; the U-shape is thus a multi-epoch artifact.\n$^\\dagger$\\,3-seed mean $17.250 \\pm 0.001$.}\n\\label{tab:dr_threshold}\n\\end{table}\n\nSee Figure~\\ref{fig:dr_dual_curve} (\\S\\ref{sec:main-results}) for the dual-curve visualization.\n\n\\section{Downstream Task Evaluation}\n\\label{app:downstream}\n\nTable~\\ref{tab:downstream} reports downstream benchmark accuracy for adaptive vs.\\ uniform training at $\\rho{=}0.4$ (seed\\,42, Qwen3-0.6B).\nAcross multiple seeds, downstream differences are mixed in direction and uniformly within standard error, indicating that adaptive reweighting has no meaningful downstream impact.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\n\\textbf{Benchmark} & \\textbf{Metric} & \\textbf{Adaptive} & \\textbf{Uniform} & $\\boldsymbol{\\Delta}$ \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{Seed 42 (checkpoint resume)}} \\\\\nARC-Challenge & acc\\_norm & 0.343 & 0.348 & $-$0.005 \\\\\nARC-Easy & acc & 0.650 & 0.657 & $-$0.007 \\\\\nHellaSwag & acc\\_norm & 0.479 & 0.484 & $-$0.005 \\\\\nPIQA & acc & 0.687 & 0.686 & $+$0.001 \\\\\nWinoGrande & acc & 0.578 & 0.586 & $-$0.008 \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{From-scratch 2-seed mean (seeds 123, 456)}} \\\\\n\\multicolumn{3}{@{}l}{Mean $\\Delta$ across 5 tasks} & & $+$0.001 \\\\\n\\multicolumn{3}{@{}l}{Direction} & \\multicolumn{2}{c}{mixed (seed 123: 3/5$-$; seed 456: 3/5$+$)} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Downstream benchmarks (Qwen3-0.6B, $\\rho{=}0.4$).\nSeed\\,42 used a checkpoint-resumed adaptive model; from-scratch seeds (123, 456) show mixed direction with mean $|\\Delta| \\leq 0.01$.\nAll differences within standard error ($\\pm 0.01$).\nModels use $\\tau{=}0.8$; $\\tau{=}0.7$ yields identical 3-seed means (0.5414).}\n\\label{tab:downstream}\n\\end{table}\n\n\\section{Higher Contamination Details}\n\\label{app:rho06}\n\nTable~\\ref{tab:rho06} reports results at $\\rho{=}0.6$.\nThe full five-method ablation preserves the hierarchy from $\\rho{=}0.4$ across all three seeds: Grid ${<}$ Adaptive ${<}$ Uniform ${\\approx}$ ESS-only ${<}$ Random.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{Seed 42} & \\textbf{Seed 123} & \\textbf{Seed 456} & \\textbf{Mean} \\\\\n\\midrule\nGrid ($b{=}0.3$)$^\\ddagger$ & \\textbf{17.634} & -- & -- & -- \\\\\nAdaptive $\\bstar$ & 17.735 & 17.727 & 17.732 & 17.731 $\\pm$ .004 \\\\\nUniform           & 17.766 & 17.754 & 17.770 & 17.763 $\\pm$ .008 \\\\\nESS-only          & 17.770 & 17.760 & 17.760 & 17.763 $\\pm$ .006 \\\\\nRandom $\\mathcal{U}(0,2)$ & 17.832 & 17.870 & 17.880 & 17.861 $\\pm$ .025 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Results at $\\rho{=}0.6$ (Qwen3-0.6B, $\\nmin{=}2$).\nAdaptive uses $\\tau{=}0.7$ (consistent with main results); other methods are $\\tau$-independent.\n$^\\ddagger$Post-hoc oracle; seed\\,42 only.\nAdaptive vs.\\ Uniform: $\\Delta{=}{-}0.032$, paired $t{=}{-}15.4$, $p{=}0.004$ (full precision; 3dp rounding yields $t{=}{-}9.95$, $p{=}0.010$).\nESS-only collapses onto Uniform (both $17.763$); Random ($17.861$) confirms detector signal is load-bearing.}\n\\label{tab:rho06}\n\\end{table}\n\nThe ESS-only/Uniform gap collapses from 0.043 at $\\rho{=}0.4$ to 0.000 at $\\rho{=}0.6$ (three-seed means: both $17.763$); ESS binding rises to ${\\sim}$49\\% of batches (from ${\\sim}$43\\% at $\\rho{=}0.4$), and the constraints become nearly balanced rather than $\\aeff$-dominant.\nThe adaptive method maintains its advantage ($\\Delta{=}{-}0.032$, consistent across seeds) through the $\\aeff$ quality constraint, which operates independently of the ESS ceiling.\nRandom reweighting ($17.861 \\pm 0.025$) is substantially worse than Uniform, with the highest cross-seed variance; uninformed weights add noise without corrective signal.\nThe Adaptive-vs-Grid gap is 0.054 at $\\rho{=}0.4$ (mean-to-mean, consistent with Table~\\ref{tab:aux}) and 0.097 at $\\rho{=}0.6$ (adaptive 3-seed mean vs.\\ grid seed\\,42; the $\\rho{=}0.6$ grid result is preliminary and may not generalize across seeds).\n\n\\section{\\texorpdfstring{$\\alpha_{\\mathrm{eff}}$}{alpha-eff} Proxy Validation}\n\\label{app:alpha_validation}\n\nTable~\\ref{tab:alpha_corr} reports the correlation between $\\aeff(0)$ (the detector-based proxy at $b{=}0$) and the true batch-level real fraction $\\alpha_{\\mathrm{true}}$, computed over all training batches at $\\rho{=}0.4$ (seed\\,42).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}ccccc@{}}\n\\toprule\n$B$ & Pearson $r$ & Spearman $r$ & MAE$\\downarrow$ & Bias \\\\\n\\midrule\n4  & 0.706 & 0.699 & 0.114 & $-$0.029 \\\\\n8  & 0.697 & 0.683 & 0.097 & $-$0.027 \\\\\n16 & 0.707 & 0.691 & 0.075 & $-$0.031 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Correlation between $\\aeff(0)$ and true batch-level real fraction across batch sizes ($\\rho{=}0.4$, seed\\,42).\nValues use a binarized proxy $\\hat{r}_i = \\mathbf{1}[q_i \\leq 0.5]$ for discrete comparison; the continuous formulation used during training (\\S\\ref{sec:method}) achieves $r \\approx 0.77$--$0.79$ depending on batch size.\nThe consistent negative bias (${\\approx}{-}0.03$) indicates that $\\aeff$ slightly underestimates the true real fraction, biasing the method toward conservative intervention.}\n\\label{tab:alpha_corr}\n\\end{table}\n\nMean absolute error (MAE) decreases with batch size (0.114 $\\to$ 0.075) as expected from averaging, but the rank-order information that drives $\\bstar$ selection is already well-captured at $B{=}4$.\n\n\\paragraph{Cross-seed stability.}\nTable~\\ref{tab:alpha_corr_perseed} reports the correlation between $\\aeff$ and the batch mean $q$-score ($\\bar{q}$, computed from known labels) across all three seeds.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}cccc@{}}\n\\toprule\n\\textbf{Seed} & Pearson $r(\\aeff, \\bar{q})$ & Spearman $\\rho_s$ & $\\bstar{=}0$ (\\%) \\\\\n\\midrule\n42  & 0.8019 & 0.8761 & 5.8 \\\\\n123 & 0.7994 & 0.8692 & 5.7 \\\\\n456 & 0.8006 & 0.8749 & 5.9 \\\\\n\\midrule\n\\textbf{Spread} & 0.0025 & 0.0069 & 0.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-seed $\\aeff$--$\\bar{q}$ correlation ($\\rho{=}0.4$, $B{=}4$).\nCross-seed spread is $<$0.003 for Pearson $r$ and $<$0.007 for Spearman $\\rho_s$, indicating stable proxy fidelity across random seeds.\n$r(\\aeff, \\bar{q}) = 0.80$ measures the proxy's fidelity to batch composition; the ground-truth correlation $r(\\aeff, \\text{true real fraction}) \\approx 0.79$ (\\S\\ref{sec:discussion}) is slightly lower due to detector noise.\nThe per-seed table demonstrates cross-seed stability rather than superseding the ground-truth estimate.}\n\\label{tab:alpha_corr_perseed}\n\\end{table}\n\n\\section{Detector Comparison}\n\\label{app:detector}\n\nSee Figure~\\ref{fig:overview}b (\\S\\ref{sec:robustness}) for the detector requirements visualization.\n\nTable~\\ref{tab:detector} compares three detector families for adaptive reweighting.\nThe discriminative TF-IDF+LR detector (ECE\\,=\\,0.048) produces the only improvement over uniform.\nThe TF-IDF vs.\\ GPT-2 contrast (comparable AUC: 0.94 vs.\\ 0.91, but $2.7{\\times}$ ECE gap: 0.048 vs.\\ 0.131) isolates calibration as an empirically observed requirement; however, N-gram's better ECE (0.069) does not compensate for its low AUC (0.73); both sufficient discrimination and good calibration are jointly necessary in our setting.\nTF-IDF+LR's $q$-scores have reliable probabilistic semantics, so the $\\aeff$ proxy accurately tracks batch quality.\nGenerative detectors assign high $q$-scores to fluent, predictable human text (false positives concentrated among high-quality samples), systematically inflating $\\aeff$ for clean batches and deflating it for contaminated ones, which inverts the minimum-intervention logic.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccccc@{}}\n\\toprule\n\\textbf{Detector} & \\textbf{Type} & \\textbf{AUC} & \\textbf{ECE} & \\textbf{Mean PPL} & $\\boldsymbol{\\Delta}$ \\\\\n\\midrule\nTF-IDF+LR & Discriminative & 0.94 & 0.048 & 17.650{\\tiny$\\pm$.010} & $-$0.044 \\\\\nGPT-2 PPL & Generative & 0.91 & 0.131 & 17.792{\\tiny$\\pm$.005} & $+$0.098 \\\\\nN-gram PPL & Generative & 0.73 & 0.069 & 17.823{\\tiny$\\pm$.003} & $+$0.129 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Detector comparison for adaptive reweighting ($\\rho{=}0.4$, $\\tau{=}0.8$, 3 seeds).\nUniform baseline PPL\\,=\\,17.694.\n$\\Delta$ = Adaptive $-$ Uniform (negative is better).\nTF-IDF+LR calibrated via temperature scaling.\nThe $\\tau$ confound is conservative: TF-IDF+LR at $\\tau{=}0.7$ achieves 17.674 (Table~\\ref{tab:main}).}\n\\label{tab:detector}\n\\end{table}\n\n\\section{Detector and Synthetic Data Details}\n\\label{app:detector_details}\n\n\\paragraph{TF-IDF+LR detector.}\nTF-IDF features (unigrams + bigrams, max 50{,}000 features, sublinear TF) fed to Logistic Regression (C\\,=\\,1.0, L2 penalty, solver\\,=\\,lbfgs, max\\_iter\\,=\\,100).\nTrained on a held-out labeled split (10K documents per class).\nPost-hoc temperature scaling applied when uncalibrated ECE exceeds 0.05: a scalar $T$ is searched via \\texttt{scipy.optimize.minimize\\_scalar} over $[0.1, 10.0]$ on a 20\\% stratified validation split, yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.05).\nThe detector is selected automatically from six configurations as the first satisfying AUC $\\in [0.85, 0.98]$ and mid-range score ratio $\\geq 5\\%$.\n\n\\paragraph{Synthetic data generation.}\nContinuations generated with Qwen3-0.6B (self-generation) using nucleus sampling ($p{=}0.95$, $T{=}0.8$), producing up to 384 tokens per continuation from a 128-token prefix prompt (512 total), targeting ${\\sim}$100M synthetic tokens.\nSource prompts are the first 128 tokens of randomly sampled FineWeb documents, used as prefix continuations.\nInjected at token-level ratio $\\rho$ via uniform random mixing across the training corpus.\n\n\\section{Low Contamination Analysis}\n\\label{app:rho02}\n\nAt $\\rho{=}0.2$, the adaptive method degrades by $+$0.046 PPL relative to uniform (0.26\\% relative, seed\\,42).\nThe detector's mean $q$-score at this contamination level is 0.393 (vs.\\ 0.487 at $\\rho{=}0.4$), indicating that many clean samples receive moderate $q$-scores, blurring the provenance signal.\nThe regime decomposition reveals 13.7\\% clean batches ($\\bstar{=}0$), 60.1\\% $\\aeff$-binding, and 26.3\\% ESS-binding, with mean $\\bstar{=}1.735$ in reweighted batches.\nThe high $\\aeff$-binding rate (60.1\\% vs.\\ ${\\sim}$50\\% at $\\rho{=}0.4$) means the method actively intervenes rather than defaulting to $\\bstar{=}0$, but the unreliable signal causes it to suppress useful training data.\nThis is consistent with the generative detector failures: when $q$-scores do not reliably separate provenance, the minimum intervention framework amplifies the error rather than correcting it.\nThe effective range of the method is $\\rho \\geq 0.4$ with $\\tau \\in [0.7, 0.8]$ (\\S\\ref{sec:sensitivity}); lower $\\tau$ values may extend the range but have not been tested at $\\rho{=}0.2$.\n\n\\section{Cross-Model Transfer}\n\\label{app:cross_model}\n\nTable~\\ref{tab:cross_model} reports a single exploratory run with Llama-3.2-3B as a cross-generator (synthetic data generated by Llama, training on Qwen3-0.6B); this does not establish generality.\nResults are mixed: MMLU improves while HellaSwag slightly degrades, consistent with the pattern observed in Qwen3-1.7B downstream evaluation (\\S\\ref{sec:robustness}).\nPerplexity comparison omitted due to inconsistent evaluation configurations; checkpoints were not retained for re-evaluation.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Metric} & \\textbf{Uniform} & \\textbf{Adaptive} & $\\boldsymbol{\\Delta}$ \\\\\n\\midrule\nMMLU (5-shot) & 51.85\\% $\\pm$ .41 & 53.42\\% $\\pm$ .41 & $+$1.57pp \\\\\nHellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.60pp \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model transfer: Llama-3.2-3B generator, Qwen3-0.6B trainer ($\\rho{=}0.4$, single seed).\nMixed results reflect evaluation-set distribution sensitivity rather than consistent quality differences.}\n\\label{tab:cross_model}\n\\end{table}\n\n\\section{Checkpoint Resume Artifact}\n\\label{app:resume_artifact}\n\nThe checkpoint-resume artifact described here affected early $\\tau{=}0.8$ experiments only.\nAll results in Tables~\\ref{tab:main}--\\ref{tab:epoch_match} use independent from-scratch training ($\\tau{=}0.7$; Table~\\ref{tab:main} Adaptive/Uniform: five seeds, others: three seeds).\n\nThe adaptive model for seed\\,42 in early $\\tau{=}0.8$ runs was trained with a checkpoint-resumed run whose first ${\\sim}$1{,}000 steps used different hyperparameters (learning rate warmup, gradient accumulation configuration) than seeds 123 and 456, which were trained from scratch.\nThe resume artifact inflates the in-distribution effect ($\\Delta{=}{-}0.041$ resume vs.\\ $\\Delta{=}{-}0.005$ from-scratch at $\\tau{=}0.8$) and reverses the out-of-distribution direction:\n\n\\begin{center}\n\\small\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Domain} & \\textbf{Resume} & \\textbf{From-scratch} & \\textbf{Dir.} \\\\\n\\midrule\nFineWeb (in-dist) & $-$0.041 & $-$0.005 & same \\\\\nOpenWebText (OOD) & $+$0.058 & $-$0.005 & reversed \\\\\nWikipedia (OOD)   & $+$0.137 & $-$0.009 & reversed \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\scriptsize $\\Delta$ relative to from-scratch uniform (Table~\\ref{tab:tau}). Resume: seed\\,42 original checkpoint. From-scratch: clean replication run.}\n\\end{center}\n\nThe resume model showed apparent distribution matching (OOD degradation), which was the basis for the ``distribution matching'' finding in earlier analyses.\nFrom-scratch retraining eliminates this pattern: all three evaluation domains show small, directionally consistent improvements, providing no evidence of distribution matching.\nThis underscores the importance of controlling for training artifacts when interpreting small effect sizes across evaluation domains.\n\n\\section{Additional Contamination Rate}\n\\label{app:rho03}\n\nTo probe the boundary between the degradation regime ($\\rho{=}0.2$, $\\Delta{=}{+}0.046$) and the improvement regime ($\\rho{=}0.4$, $\\Delta{=}{-}0.023$), we run adaptive $\\bstar$ and uniform baselines at $\\rho{=}0.3$ using the same experimental setup as the main experiments (Qwen3-0.6B, 132M FineWeb tokens, $\\tau{=}0.7$, $\\nmin{=}2$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{Seed} & \\textbf{FineWeb} $\\downarrow$ & \\textbf{OWT} $\\downarrow$ & \\textbf{Wiki} $\\downarrow$ \\\\\n\\midrule\nUniform          & 42  & 17.422 & 18.113 & 15.204 \\\\\nAdaptive $\\bstar$ & 42  & 17.422 & 18.123 & 15.172 \\\\\n\\midrule\nUniform          & 123 & 17.433 & 18.126 & 15.204 \\\\\nAdaptive $\\bstar$ & 123 & 17.435 & 18.148 & 15.165 \\\\\n\\midrule\nUniform          & 456 & 17.419 & -- & -- \\\\\nAdaptive $\\bstar$ & 456 & 17.424 & -- & -- \\\\\n\\midrule\n$\\Delta$ (3-seed mean) & --  & $+$0.002 & -- & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Results at $\\rho{=}0.3$ (Qwen3-0.6B, 3 seeds).\nHoldout $\\Delta{=}{+}0.002$ ($t(2){=}1.60$, $p{=}0.25$, non-significant); OOD available for seeds 42 and 123 only, mixed in direction.}\n\\label{tab:rho03}\n\\end{table}\n\nThe holdout difference is effectively zero ($\\Delta{=}{+}0.002$, $t(2){=}1.60$, $p{=}0.25$, non-significant), placing the transition boundary between the degradation regime ($\\rho{=}0.2$, $\\Delta{=}{+}0.046$) and the improvement regime ($\\rho{=}0.4$, $\\Delta{=}{-}0.023$) within $[0.3, 0.4]$ (Figure~\\ref{fig:delta_vs_rho}).\n\nAt $\\rho{=}0.3$, 28\\% of micro-batches have $\\bstar{=}0$ (clean, no intervention), compared to ${\\sim}$6\\% at $\\rho{=}0.4$; the low intervention frequency explains why the method neither helps nor harms.\nThe progression across contamination levels ($\\rho{=}0.2$ harmful, $+$0.046; $\\rho{=}0.3$ neutral, $+$0.002; $\\rho{=}0.4$ beneficial, $-$0.023) shows a graceful transition rather than abrupt failure, consistent with the detector's signal-to-noise ratio gradually crossing the threshold needed for reliable $\\aeff$ estimation.\n\n\\section{Statistical Power Analysis}\n\\label{app:power}\n\nThe adaptive-vs-uniform comparison at $\\rho{=}0.4$ has Cohen's $d = \\bar{\\Delta}/\\mathrm{SD}_{\\Delta} = 0.023/0.006 = 3.83$ (5 seeds, paired).\nA one-sided paired $t$-test at $\\alpha{=}0.05$ with $d{=}3.83$ and $N{=}5$ achieves statistical power ${>}0.99$ (noncentrality $\\lambda = d\\sqrt{N} = 8.56$, $t_{0.05,4} = 2.13$), indicating that $N{=}5$ is more than adequate to detect an effect of this magnitude.\n\nThe low cross-seed variance ($\\sigma{=}0.006$) reflects the experimental design: seeds affect only parameter initialization, not data order (the dataloader is deterministic), so the primary stochastic axis is initialization noise at 0.6B scale.\nThe uniform baseline exhibits comparable variance ($\\sigma{=}0.008$); the low dispersion is a property of the experimental setting rather than a method artifact.\n\nWe apply Bonferroni--Holm correction for $k{=}9$ family-wise comparisons (six reweighting methods $\\times$ one contamination level, plus three additional $\\rho$ levels).\nAfter correction, $p_{\\mathrm{BH}}{=}0.011$ at $\\rho{=}0.4$, reaching conventional significance at $\\alpha{=}0.05$.\nAt $\\rho{=}0.6$ (3 seeds), $p_{\\mathrm{BH}}{=}0.064$; the family includes structurally heterogeneous tests (different methods, different $\\rho$), which makes Bonferroni--Holm conservative.\nThe uncorrected $p$-values ($0.0012$ and $0.010$ respectively), directional consistency across all seeds, and the dose-response pattern across $\\rho$ levels collectively support a real effect.\n\n\\section{Supplementary Analyses Summary}\n\\label{app:summary}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lll@{}}\n\\toprule\n\\textbf{Analysis} & \\textbf{Key result} & \\textbf{App.} \\\\\n\\midrule\nDownstream tasks & No gain (5 benchmarks, $|\\Delta|\\leq 0.01$) & \\ref{app:downstream} \\\\\nCross-model (Llama) & Mixed (MMLU $+$1.6, HellaSwag $-$0.6) & \\ref{app:cross_model} \\\\\n$\\tau$ sweep & $[0.5,0.8]$ all improve; $\\tau{>}0.8$ degrades & \\ref{app:tau_sweep} \\\\\n$\\rho{=}0.3$ boundary & $\\Delta{=}{+}0.002$ (neutral, 3 seeds) & \\ref{app:rho03} \\\\\nStatistical power & Cohen's $d{=}3.83$, power ${>}0.99$ at $N{=}5$ & \\ref{app:power} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Summary of supplementary analyses.}\n\\label{tab:appendix_summary}\n\\end{table}\n\n\\section{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant\nthroughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n    pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections,\n    polishing prose, and reformatting \\LaTeX{}.\n    \\item \\textbf{Literature:} summarizing related papers to inform\n    the related-work section.\n\\end{itemize}\n\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 394,
+                  "oldLines": 7,
+                  "newStart": 394,
+                  "newLines": 7,
+                  "lines": [
+                    " \\textbf{Metric} & \\textbf{Uniform} & \\textbf{Adaptive} & $\\boldsymbol{\\Delta}$ \\\\",
+                    " \\midrule",
+                    " MMLU (5-shot) & 51.85\\% $\\pm$ .41 & 53.42\\% $\\pm$ .41 & $+$1.57pp \\\\",
+                    "-HellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.60pp \\\\",
+                    "+HellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.59pp \\\\",
+                    " \\bottomrule",
+                    " \\end{tabular}}",
+                    " \\caption{Cross-model transfer: Llama-3.2-3B generator, Qwen3-0.6B trainer ($\\rho{=}0.4$, single seed)."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Excellent! The registry agent has returned with comprehensive data. Let me now cross-reference the registry data against the appendix numbers.\n\nKey findings from registry:\n\n### Critical Issue #1: Detector table vs τ sweep (CONFIRMED)\nRegistry shows the `adaptive_seed42` (τ=0.8) has holdout PPL = 17.644. And `adaptive_seed123` = 17.6308, `adaptive_seed456` = 17.6419. These are the original τ=0.8 runs with n_min=3.\n\nThe `adaptive_fix` series (τ=0.8, n_min=2): seed42=17.6527, seed123=17.6432, seed456=17.6566.\n\n\nThe τ=0.7 from-scratch runs show slightly higher perplexity: seed42=17.68, seed123=17.666, seed456=17.677. But the detector table reports TF-IDF at τ=0.8 as 17.650±.010, while the tau sweep table lists τ=0.80 from-scratch at 17.683±.006. Computing the mean of the original adaptive runs at τ=0.8 with n_min=3 gives approximately 17.638, which sits between these reported values.\n\nHowever, when I calculate the adaptive_fix series with τ=0.8 and n_min=2, the mean comes to about 17.651—that matches the detector table's 17.650 almost exactly. So the detector table is pulling from the adaptive_fix runs, not the τ sweep. The τ=0.80 value of 17.683 from the tau table appears to be from a different experimental setup, likely the from-scratch tau sweep runs, though I need to verify which specific experiments produced that result.\n\nLooking at the registry more carefully, I can see tau07_seed42 gives 17.68, which aligns with the paper's τ=0.7 result. But for τ=0.8, I'm trying to trace whether the 17.683 comes from tau08 experiments or if there are other from-scratch runs not clearly labeled in the registry.\n\nThe resume artifact section clarifies things though—it notes a -0.005 difference for from-scratch FineWeb at seed 42, which means the from-scratch adaptive at τ=0.8 should be 17.689, matching what the hybrid table shows for that configuration.\n\nBut when I work backward from the 3-seed mean of 17.683 in the paper, the other two seeds average to 17.680, while the `adaptive_fix` series shows 17.650 for those same seeds. That's a meaningful gap, suggesting the `adaptive_fix` experiments might be using different hyperparameters like n_min=2 instead of n_min=3, or some other training variation. Looking at the individual seed results from the registry, I can compute the mean and standard deviation directly: the three adaptive_fix runs average to 17.6508, which matches the table's 17.650, but when I calculate the standard deviation from those same seeds, I get roughly 0.007, which is smaller than the reported ±.010—there's a slight discrepancy in the uncertainty estimate.\n\nThe τ sweep table reports 17.683 for τ=0.8, which appears to come from a separate set of from-scratch runs that aren't obviously labeled in the registry, possibly stored under different experiment IDs or added after the registry was last updated. This reveals the core problem: the detector table and τ sweep table are reporting different PPL values (17.650 vs 17.683, a difference of 0.033) for what should be identical experimental conditions, and I'm flagging this as the primary inconsistency.\n\nNow I'm noticing a second critical issue—the registry shows n_min=3 as the default for the original experiments, but the paper consistently states n_min=2 throughout (in the τ sweep caption, ρ sweep caption, and experiments.tex). If the original runs actually used n_min=3 while the paper claims n_min=2, that's a significant discrepancy that could affect the validity of the reported results.\n\nLooking at the actual numbers, the main results table appears to be using the τ=0.7, n_min=2 runs (tau07_seed*) rather than the original adaptive_seed* runs with τ=0.8 and n_min=3, which explains why the registry values don't match the published numbers. The 2dp rounding doesn't match either—17.2853 rounds to 17.29, not 17.28. I'm wondering if the threshold table might be using the 3-seed mean instead, which would be around 17.278, closer to what's shown.\n\nLooking at the other entries in the table, I notice q>0.3 has a footnote explicitly marking it as the 3-seed mean, but q>0.5 doesn't have that notation even though it appears to also be the 3-seed mean. The caption says \"seed 42 unless noted,\" which creates an inconsistency if q>0.5 is actually derived from multiple seeds without being marked.\n\nNow I'm cross-checking the grid_full results against the registry to verify the seed 42 values with ρ=0.4. Generating metrics table...\n\nLet me recalculate using the more precise mean of 17.6197 to see if that closes the gap with the paper's reported standard deviation. The deviations work out slightly differently, giving me 0.0351 instead of the paper's 0.033—still a small discrepancy. I'm wondering if the _r2 suffix on these registry entries indicates re-runs, and whether there might be earlier versions with different values that could explain the variance.\n\nNow I'm cross-checking the rho06 results across different methods and seeds against what the paper reports. Looking at the Grid b=0.3 and Adaptive methods with seeds 42, 123, and 456, everything matches perfectly between the paper and registry values.\n\nThe Uniform sampling method also shows perfect alignment across all three seeds. For the ESS-only approach, most values match exactly, though seeds 123 and 456 show minor rounding differences (17.760 vs 17.763, and 17.760 vs 17.762) that are negligible. The Random method rounds cleanly across all seeds, with the registry values matching the paper's reported numbers.\n\nNow I'm checking whether the paper's mean calculation is consistent with its reported values. If I use the registry values for ESS-only (17.770, 17.763, 17.762), the mean would be 17.765, not the 17.763 shown in the paper. But when I use the paper's own rounded values (17.770, 17.760, 17.760), the mean comes out to exactly 17.763, which matches. So the paper appears to have rounded the individual seed results before computing the mean, which introduces a slight discrepancy between what the registry values would produce and what the paper reports. The registry values give a slightly different mean of 17.765 and a lower standard deviation around 0.004, which would change the reported statistics compared to what the paper shows.\n\nHowever, the difference is minimal—just 0.002 between 17.765 and 17.763—so the paper's claim that ESS-only approximates Uniform still holds roughly. The registry might contain different experimental runs than the paper used, especially given the _r2 suffixes indicating re-runs, so I shouldn't read too much into the discrepancies.\n\nNow I'm cross-checking the D&R threshold table against both the paper values and registry entries to see where they align. Now I'm noticing a discrepancy in how the results are reported—the paper shows 17.28 for q>0.5, but the registry values don't match that when using seed 42 alone. The 3-seed mean for v2 does round to 17.28, which suggests the paper might be using averaged results despite the caption implying single-seed results. There's a labeling inconsistency here that needs clarification. I'm checking which D&R thresholds actually use 3-seed data: q>0.3 and q>0.7 are clearly marked with footnotes, but q>0.5's value of 17.28 is also a 3-seed mean (averaging around 17.278), not the single seed 42 value of 17.285, so it should have a footnote too. Generating comparison tables... I'm wondering if there's another version of the hybrid experiment I'm missing, but the registry only shows one hybrid rho06 entry, so this 0.004 PPL difference between paper and registry is real and worth flagging. Now I'm cross-checking the rho03 results, looking at uniform and adaptive methods across different seeds and datasets to see if those match up. I'm noticing a discrepancy—seeds 234 and 789 appear in the registry but only with τ=0.8 settings, not the τ=0.7 used in the main table. The main table claims a 5-seed mean of 17.674 for adaptive at τ=0.7, but I can only verify three seeds (42, 123, 456). I need to figure out where the τ=0.7 results for seeds 234 and 789 are, or if the mean calculation is based on different seeds than expected. The naming convention might have shifted, so seeds 234 and 789 could actually be τ=0.7 runs even though they're not explicitly labeled that way—the small difference between τ=0.7 and τ=0.8 makes them plausible either way. Now I'm noticing a major discrepancy in the detector configuration: the registry shows TF-IDF with 10,000 max features and C=0.01, but the paper specifies 50,000 features and C=1.0—that's a substantial gap I need to reconcile.\n\nThe final metrics align perfectly though (AUC 0.939 vs 0.94, ECE 0.048, temperature 0.204), which suggests the registry might be documenting an earlier iteration of the detector while the paper describes the final tuned version, or the registry specs were extracted incompletely. to match almost exactly, which suggests the registry entry does correspond to the actual downstream task run. The slight differences in ARC-E, HellaSwag, and WinoGrande scores are within rounding error, so this one checks out as verifiable.\n\nBut now I'm noticing there's also a τ=0.7 variant in the registry with its own downstream scores that are similarly close to the paper's reported numbers, which means I need to track which threshold version corresponds to which reported result. I'm noticing a major discrepancy in the ARC-E scores between the registry and paper values—0.6128 versus 0.657 is far too large to be rounding error. Since the uniform baseline doesn't depend on τ, these scores should match regardless of which τ setting the paper lists them under, which suggests either different experimental runs or a data mismatch I need to investigate further. I'm going through each claim systematically to see what I can actually verify against the registry data. Most of the grid search and parameter-specific values check out, though there are some inconsistencies—the hybrid model results are slightly off, the detector comparison doesn't align with the τ sweep findings, and several downstream evaluation metrics appear to come from a different evaluation pipeline than what's stored in the registry. The cross-model results have gaps too, with some MMLU and HellaSwag scores missing entirely and an arithmetic discrepancy in the delta calculations. I'll focus on flagging what's verifiable versus what remains unconfirmed due to these mismatches in evaluation versions and configurations.\n\nNow I'm compiling the final report with targeted fixes: correcting the HellaSwag delta and ECE rounding, then flagging the detector table inconsistency, the hybrid discrepancy, the ESS-only rounding issue, and the D&R labeling question rather than changing them outright since these involve either minor numerical differences or unclear averaging methods. I'm not certain of the correct values.\n\nActually, let me reconsider which of these I should fix:\n\nFix 3 (detector table): This is the most significant issue. The detector table TF-IDF PPL should match either the τ sweep or be a separate, clearly documented experiment. I should NOT change this without knowing which source is canonical. Flag only.\n\nFix 4 (hybrid ρ=0.6): 17.530 vs 17.526. The registry clearly shows 17.526. I should change the paper to 17.526 unless there's another run. But given the * footnote and the context, I'm not 100% sure. Let me check: 17.526 rounds to 17.53 at 2dp. The paper shows 17.530 at 3dp. If the actual value is 17.526, the paper should say 17.526. I'll flag rather than fix without being certain there isn't a different version of this run.\n\nFix 5 (ESS-only): Paper shows 17.760 for seeds 123 and 456, registry shows 17.763 and 17.762. This affects the mean (17.763 vs 17.765). I'll flag but not fix, as the registry values might be from different runs.\n\nFix 6 (D&R q>0.5 labeling): The table shows 17.28 which matches the 3-seed mean (17.278 ≈ 17.28) but the caption says \"seed 42 unless noted.\" I'm uncertain whether this is actually the 3-seed mean or if it should have a footnote clarifying this.\n\nNow let me finalize my fixes: I'll correct the HellaSwag Δ from -0.60 to -0.59 and the ECE description from 0.05 to 0.048. For the remaining issues—the detector table discrepancy, the hybrid ρ=0.6 value, the ESS-only per-seed values, and the D&R q>0.5 labeling—I'll flag these for further investigation rather than making changes without certainty.\n\nThe rounding in results.tex checks out (1.57 rounds to 1.6, 0.59 rounds to 0.6), so the appendix table correction I've already made is the key fix. Let me verify the ρ=0.2 Δ value: the registry shows 17.382 minus 17.336 equals +0.046, which matches the reference and paper. The appendix correctly notes this is at τ=0.8 for the adaptive case.\n\nNow I'm noticing a major discrepancy in the regime decomposition—the appendix reports 13.7% clean batches while the registry shows 40-50% for b*=0, which seems contradictory. I need to reread the appendix carefully to understand what conditions these statistics are actually describing. decomposition at b*=0 shows 13.7%, which is much lower than the registry's 40-50% for τ=0.8—so the appendix must be describing a τ=0.7 run instead. But when I cross-check the delta values, the appendix's +0.046 matches the τ=0.8 registry entry, not τ=0.7, which creates a contradiction about which threshold was actually used. I'm realizing the threshold logic works the opposite way—at τ=0.7, more batches should pass the lower threshold and be marked clean, so the 13.7% figure only makes sense if τ is actually higher than 0.8, not lower.\n\nLooking at the detector's performance at ρ=0.2, the mean q-score is around 0.393, which means α_eff(0) ≈ 0.61 for most batches. This would make most batches exceed a τ=0.7 threshold, contradicting the 13.7% clean rate unless the threshold is significantly higher.\n\nBut wait—if α_eff(0) is typically 0.61 and τ=0.7, then only batches where α_eff(0) ≥ 0.7 get b*=0, which would indeed be rare. That actually explains the 13.7% figure. The detector's moderate q-scores on real samples suppress the effective alpha, making it hard to reach the threshold even with low contamination.\n\nThe inconsistency is that τ=0.8 should be even stricter, yet the registry shows 40-50% clean batches there—which doesn't align with having only 13.7% at the lower τ=0.7 threshold.\n\nI think the registry value might be an estimate from the notes rather than a precise metric, or it's from a different experimental setup. I'll flag this discrepancy but move forward with finalizing the report. Now I need to verify the training hyperparameters, particularly the warmup schedule.\n\nThe reference mentions specific warmup and weight decay values, but the registry shows these as \"NOT FOUND\". The paper describes a linear warmup schedule but doesn't specify the number of steps, and weight decay isn't mentioned anywhere in the appendix or experiments section. These details might exist in the code but aren't documented in the paper itself, so I can't verify them against the provided materials.\n\nNow I'm tallying up all the numbers I've audited across the tables—the grid results, the tau sweep comparisons, the hybrid configurations, the threshold analysis, and the downstream tasks.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "39d4555a-79ba-4de2-abe0-caebdca3599c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VKmWBopM6dtqYQ41azagc4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 40833,
+                "cache_read_input_tokens": 49492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 40833
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry agent 完成了。现在做 ECE 精度修复。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "4c1ad7a5-58f2-42f5-a660-a10269bf4f71",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VKmWBopM6dtqYQ41azagc4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 40833,
+                "cache_read_input_tokens": 49492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 40833
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CpdWqF2J2XtEFUQFtyTstP",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex",
+                "old_string": "yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.05).",
+                "new_string": "yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.048)."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "18a7ac93-c47c-4f02-9716-3630b796c95d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VKmWBopM6dtqYQ41azagc4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 40833,
+                "cache_read_input_tokens": 49492,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 40833
+                },
+                "output_tokens": 29,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-25T20:20:19.417Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CpdWqF2J2XtEFUQFtyTstP",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "e0b742ff-04a7-4879-9805-7a7675a546f2",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex",
+              "oldString": "yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.05).",
+              "newString": "yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.048).",
+              "originalFile": "\\section{Proofs}\n\\label{app:proofs}\n\n\\begin{proposition}[$\\alpha_{\\mathrm{eff}}$ monotonicity]\n\\label{prop:monotone}\n$\\alpha_{\\mathrm{eff}}(b)$ is non-decreasing in $b$, and strictly increasing whenever the batch contains at least two samples with distinct $q$-values.\n\\end{proposition}\n\n\\begin{proof}[Proof of Proposition~\\ref{prop:monotone}]\nLet $w_i(b) = (1 - q_i)^b$, $W(b) = \\sum_{j=1}^B w_j(b)$, and $\\pi_i(b) = w_i(b) / W(b)$.\nThen\n\\begin{equation*}\n  \\alpha_{\\mathrm{eff}}(b) = \\sum_{i=1}^{B} \\pi_i(b)\\, (1 - q_i).\n\\end{equation*}\nTaking the derivative with respect to $b$:\n\\begin{align*}\n  \\frac{d\\pi_i}{db}\n  &= \\pi_i \\!\\left(\\frac{d \\ln w_i}{db} - \\frac{d \\ln W}{db}\\right) \\\\\n  &= \\pi_i \\!\\left(\\ln(1{-}q_i) - \\textstyle\\sum_j \\pi_j \\ln(1{-}q_j)\\right).\n\\end{align*}\nSubstituting,\n\\begin{align*}\n  \\frac{d\\alpha_{\\mathrm{eff}}}{db}\n  &= \\sum_i (1{-}q_i)\\, \\pi_i \\!\\left(\\ln(1{-}q_i) - \\mathbb{E}_{\\pi}[\\ln(1{-}q)]\\right) \\\\\n  &= \\mathrm{Cov}_{\\pi}\\!\\bigl(1{-}q_i,\\, \\ln(1{-}q_i)\\bigr).\n\\end{align*}\nSince $(1{-}q_i)$ and $\\ln(1{-}q_i)$ are both increasing functions of $(1{-}q_i)$, they are positively associated, so the covariance is non-negative.\n\\end{proof}\n\n\\begin{proposition}[ESS monotonicity]\n\\label{prop:ess_mono}\n$\\mathrm{ESS}(b)$ is non-increasing in $b$, and strictly decreasing whenever the batch contains at least two samples with distinct $q$-values.\n\\end{proposition}\n\n\\begin{proof}\nWrite $\\mathrm{ESS}(b) = 1 / \\sum_i \\pi_i(b)^2$, where $\\pi_i(b) = w_i(b) / W(b)$.\nThe denominator $\\sum_i \\pi_i^2$ is the Herfindahl index $H$.\nDifferentiating $H$ with respect to $b$:\n\\begin{equation*}\n  \\frac{dH}{db} = 2 \\sum_i \\pi_i^2 \\bigl(\\ln(1{-}q_i) - \\mathbb{E}_{\\pi}[\\ln(1{-}q)]\\bigr).\n\\end{equation*}\nSince $\\pi_i \\propto (1{-}q_i)^b$, larger $\\pi_i$ implies larger $\\ln(1{-}q_i)$; the $\\pi^2$-weighted sum assigns greater mass to terms where $\\ln(1{-}q_i) > \\mathbb{E}_\\pi[\\ln(1{-}q)]$, so $dH/db \\geq 0$, with strict inequality when at least two $q$-values differ.\nThus $H$ is non-decreasing and $\\mathrm{ESS} = 1/H$ is non-increasing.\nThis is a standard property of exponential tilting~\\citep{kish1965survey,owen2013mc}.\n\\end{proof}\n\n\\section{Algorithm Details}\n\\label{app:algorithm}\n\n\\begin{algorithm}[h]\n\\caption{Per-batch adaptive $b^{*}$ selection}\n\\label{alg:bstar}\n\\begin{algorithmic}[1]\n\\REQUIRE Batch scores $\\{q_i\\}_{i=1}^{B}$, threshold~$\\tau$, ESS floor~$n_{\\min}$, bound~$b_{\\max}$, tol.~$\\varepsilon$\n\\ENSURE Optimal sharpening exponent $b^{*}$\n\\IF{$\\alpha_{\\mathrm{eff}}(0) \\geq \\tau$}\n  \\STATE \\textbf{return} $0$ \\COMMENT{clean batch}\n\\ENDIF\n\\STATE $b_\\tau \\gets \\textsc{Bisect}(\\alpha_{\\mathrm{eff}}(\\cdot){=}\\tau,\\; [0, b_{\\max}],\\; \\varepsilon)$\n\\IF{$\\mathrm{ESS}(b_\\tau) \\geq n_{\\min}$}\n  \\STATE \\textbf{return} $b_\\tau$ \\COMMENT{$\\alpha_{\\mathrm{eff}}$-binding}\n\\ELSE\n  \\STATE $b_{\\mathrm{ESS}} \\gets \\textsc{Bisect}(\\mathrm{ESS}(\\cdot){=}n_{\\min},\\; [0, b_{\\max}],\\; \\varepsilon)$\n  \\STATE \\textbf{return} $b_{\\mathrm{ESS}}$ \\COMMENT{ESS-binding}\n\\ENDIF\n\\end{algorithmic}\n\\end{algorithm}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{bstar_trajectory_adaptive_fix}\n\\caption{Adaptive $\\bstar$ trajectory over 6{,}103 training steps (seed\\,42, $\\rho{=}0.4$).\nThe exponent alternates between clean ($\\bstar{=}0$), $\\aeff$-binding, and ESS-binding regimes with no systematic drift, reflecting per-batch adaptation to local $q$-score composition.}\n\\label{fig:bstar_traj}\n\\end{figure}\nWe compute $\\bstar$ at the micro-batch level ($B{=}4$) rather than the effective batch ($B{=}16$ after gradient accumulation) because $q$-score statistics exhibit sufficient variance within micro-batches: Spearman $r{=}0.699$ with the true real fraction, and at $B{=}16$ the adaptive advantage amplifies $3.0{\\times}$ ($\\Delta{=}{-}0.068{\\pm}0.005$; \\S\\ref{sec:sensitivity}).\n\n\\section{Grid Search Details}\n\\label{app:grid}\n\nTable~\\ref{tab:grid_full} reports held-out PPL for all grid-$b$ values at $\\rho = 0.4$ (seed\\,42).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}cc@{}}\n\\toprule\n$b$ & PPL $\\downarrow$ \\\\\n\\midrule\n0.1 & 17.657 \\\\\n0.2 & 17.640 \\\\\n0.3 & \\textbf{17.640} \\\\\n0.5 & 17.651 \\\\\n1.0 & 17.692 \\\\\n1.5 & 17.718 \\\\\n2.0 & 17.741 \\\\\n3.0 & 17.774 \\\\\n5.0 & 17.818 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Full grid search results ($\\rho{=}0.4$, seed\\,42).\n$b \\in [0.1, 0.5]$ forms a broad plateau (three-seed mean for $b{=}0.1$: $17.655 \\pm 0.009$); $b{=}0.3$ is the post-hoc best.}\n\\label{tab:grid_full}\n\\end{table}\n\n\\section{Quality Threshold Sweep}\n\\label{app:tau_sweep}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}ccccccc@{}}\n\\toprule\n$\\tau$ & Holdout $\\downarrow$ & $\\Delta_{\\text{H}}$ & OWT $\\downarrow$ & $\\Delta_{\\text{O}}$ & Wiki $\\downarrow$ & $\\Delta_{\\text{W}}$ \\\\\n\\midrule\n0.50 & 17.688 & $-$0.006 & -- & -- & -- & -- \\\\\n0.60 & 17.681 & $-$0.013 & -- & -- & -- & -- \\\\\n0.70$^\\star$ & \\textbf{17.674{\\tiny$\\pm$.006}} & $\\boldsymbol{-}$\\textbf{0.020} & \\textbf{18.347{\\tiny$\\pm$.003}} & $\\boldsymbol{-}$\\textbf{0.028} & \\textbf{15.330{\\tiny$\\pm$.015}} & $\\boldsymbol{-}$\\textbf{0.029} \\\\\n0.80$^\\star$ & 17.683{\\tiny$\\pm$.006} & $-$0.011 & 18.370{\\tiny$\\pm$.005} & $-$0.005 & 15.350 & $-$0.009 \\\\\n0.90 & 17.712 & $+$0.018 & -- & -- & -- & -- \\\\\n0.95 & 17.723 & $+$0.029 & -- & -- & -- & -- \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Quality threshold sweep ($\\nmin{=}2$, $\\rho{=}0.4$).\n$\\Delta$ relative to 3-seed uniform baseline (Holdout 17.694, OWT 18.375, Wiki 15.359).\n$^\\star$\\,$\\tau{=}0.7$: 5-seed mean (SD from 5 seeds); $\\tau{=}0.8$: 3 from-scratch seeds (Appendix~\\ref{app:resume_artifact}). The 5-seed comparison in Table~\\ref{tab:main} yields $\\Delta{=}{-}0.023$.\nOther values from single-seed exploratory sweep (seed\\,42, holdout only).\n$\\tau{=}0.7$ achieves the lowest holdout and largest OOD gains ($|\\Delta| \\geq 0.028$); $\\tau{=}0.8$'s OOD effect is smaller ($|\\Delta| \\leq 0.009$).}\n\\label{tab:tau}\n\\end{table}\n\n\\section{Batch-Adaptive $\\tau$}\n\\label{app:batch_adaptive}\n\nWe tested a per-batch adaptive variant that clamps $\\tau$ between 0.5 and the fixed threshold based on local $\\aeff(0)$, allowing the quality floor to relax in batches with low estimated real fraction.\nAt both contamination levels ($\\rho \\in \\{0.4, 0.6\\}$), the adaptive variant did not outperform the fixed threshold (single-seed exploratory at each level), suggesting the quality constraint does not require adaptation to local contamination density.\nThis supports the ``two hyperparameters with good defaults'' characterization: neither $\\tau$ nor $\\nmin$ benefits from per-batch tuning.\n\n\\section{\\texorpdfstring{$\\tau$--$\\rho$}{tau-rho} Rank Preservation}\n\\label{app:tau_rho}\n\nFigure~\\ref{fig:tau_rho_rank} shows the $\\tau$--PPL relationship at two contamination levels.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{tau_rho_rank_preservation}\n\\caption{(a) Held-out PPL as a function of quality threshold $\\tau$ at $\\rho \\in \\{0.4, 0.6\\}$.\n$\\tau{=}0.7$ and $\\tau{=}0.8$ yield comparable holdout PPL at $\\rho{=}0.4$; at $\\rho{=}0.6$, $\\tau{=}0.7$ is statistically better (paired $t{=}{-}4.70$, $p{<}0.05$, 3 seeds, $\\Delta{=}{-}0.005$). $\\tau{=}0.7$ also achieves lower OOD perplexity at both levels ($\\rho{=}0.6$: $\\Delta_{\\text{OWT}}{=}{-}0.014$, $\\Delta_{\\text{Wiki}}{=}{-}0.013$, 2 seeds).\n(b) Normalized PPL gap relative to uniform at shared $\\tau$ values.}\n\\label{fig:tau_rho_rank}\n\\end{figure}\n\n\\section{Hybrid and Threshold Comparison}\n\\label{app:hybrid}\n\nTable~\\ref{tab:hybrid} compares method families across contamination levels.\nTable~\\ref{tab:dr_threshold} shows D\\&R sensitivity to the detection threshold at both full training length and epoch-matched settings.\nRaw PPL traces a U-shaped curve with a minimum at $q{>}0.3$ (17.250, 3 seeds), but this curve conflates filtering quality with multi-epoch exposure: aggressive thresholds retain less data and repeat it more often.\nEpoch-matched comparisons (rightmost column of Table~\\ref{tab:dr_threshold}) remove the multi-epoch confound: the U-shape vanishes and PPL decreases monotonically, saturating near the adaptive $\\bstar$ level at $q{\\geq}0.5$.\nFigure~\\ref{fig:dr_dual_curve} visualizes the two curves.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\n\\textbf{Method} & $\\rho{=}0.4$ & $\\rho{=}0.6$ \\\\\n\\midrule\nUniform & 17.694 & 17.766 \\\\\nAdaptive $\\bstar$ & 17.689 & 17.740 \\\\\nHybrid ($q{>}0.95$ + adaptive) & 17.514 & 17.530$^*$ \\\\\nDetect \\& Remove ($q{>}0.5$) & 17.285 & -- \\\\\nDetect \\& Remove ($q{>}0.3$) & 17.250 & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Method comparison across contamination levels (seed\\,42, $\\tau{=}0.8$).\n$^*$Hybrid at $\\rho{=}0.6$ filters high-confidence synthetic ($q{>}0.95$), reducing effective $\\rho$ to ${\\approx}0.4$; PPL is not directly comparable to $\\rho{=}0.6$ baselines.}\n\\label{tab:hybrid}\n\\end{table}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\begin{tabular}{@{}ccccc@{}}\n\\toprule\n\\textbf{Thresh.} & \\textbf{Ret.\\ \\%} & \\textbf{Epochs} & \\textbf{Raw PPL} $\\downarrow$ & \\textbf{Ep.-matched} $\\downarrow$ \\\\\n\\midrule\n$q > 0.1$ & 15.0\\% & ${\\sim}$10.0 & 17.40 & 18.04 \\\\\n$q > 0.2$ & ${\\sim}$23\\% & ${\\sim}$5.0 & 17.27 & -- \\\\\n$q > 0.3$ & 31.5\\% & ${\\sim}$3.2 & \\textbf{17.250}$^\\dagger$ & 17.74 \\\\\n$q > 0.4$ & ${\\sim}$38\\% & ${\\sim}$2.8 & 17.26 & -- \\\\\n$q > 0.5$ & 41.4\\% & ${\\sim}$2.4 & 17.28 & 17.65 \\\\\n$q > 0.6$ & ${\\sim}$46\\% & ${\\sim}$1.7 & 17.30 & -- \\\\\n$q > 0.7$ & 49.8\\% & ${\\sim}$2.0 & 17.32 & 17.62 \\\\\n$q > 0.8$ & ${\\sim}$56\\% & ${\\sim}$1.3 & 17.34 & -- \\\\\n$q > 0.9$ & 61.6\\% & ${\\sim}$1.1 & 17.42 & 17.628 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{D\\&R threshold sensitivity ($\\rho{=}0.4$, seed\\,42 unless noted).\nRaw PPL traces a U-shaped curve (minimum at $q{>}0.3$); epoch-matched PPL (single content epoch) decreases monotonically and saturates near the adaptive $\\bstar$ level (${\\approx}$17.65) at $q{\\geq}0.5$; the U-shape is thus a multi-epoch artifact.\n$^\\dagger$\\,3-seed mean $17.250 \\pm 0.001$.}\n\\label{tab:dr_threshold}\n\\end{table}\n\nSee Figure~\\ref{fig:dr_dual_curve} (\\S\\ref{sec:main-results}) for the dual-curve visualization.\n\n\\section{Downstream Task Evaluation}\n\\label{app:downstream}\n\nTable~\\ref{tab:downstream} reports downstream benchmark accuracy for adaptive vs.\\ uniform training at $\\rho{=}0.4$ (seed\\,42, Qwen3-0.6B).\nAcross multiple seeds, downstream differences are mixed in direction and uniformly within standard error, indicating that adaptive reweighting has no meaningful downstream impact.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccc@{}}\n\\toprule\n\\textbf{Benchmark} & \\textbf{Metric} & \\textbf{Adaptive} & \\textbf{Uniform} & $\\boldsymbol{\\Delta}$ \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{Seed 42 (checkpoint resume)}} \\\\\nARC-Challenge & acc\\_norm & 0.343 & 0.348 & $-$0.005 \\\\\nARC-Easy & acc & 0.650 & 0.657 & $-$0.007 \\\\\nHellaSwag & acc\\_norm & 0.479 & 0.484 & $-$0.005 \\\\\nPIQA & acc & 0.687 & 0.686 & $+$0.001 \\\\\nWinoGrande & acc & 0.578 & 0.586 & $-$0.008 \\\\\n\\midrule\n\\multicolumn{5}{@{}l}{\\textit{From-scratch 2-seed mean (seeds 123, 456)}} \\\\\n\\multicolumn{3}{@{}l}{Mean $\\Delta$ across 5 tasks} & & $+$0.001 \\\\\n\\multicolumn{3}{@{}l}{Direction} & \\multicolumn{2}{c}{mixed (seed 123: 3/5$-$; seed 456: 3/5$+$)} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Downstream benchmarks (Qwen3-0.6B, $\\rho{=}0.4$).\nSeed\\,42 used a checkpoint-resumed adaptive model; from-scratch seeds (123, 456) show mixed direction with mean $|\\Delta| \\leq 0.01$.\nAll differences within standard error ($\\pm 0.01$).\nModels use $\\tau{=}0.8$; $\\tau{=}0.7$ yields identical 3-seed means (0.5414).}\n\\label{tab:downstream}\n\\end{table}\n\n\\section{Higher Contamination Details}\n\\label{app:rho06}\n\nTable~\\ref{tab:rho06} reports results at $\\rho{=}0.6$.\nThe full five-method ablation preserves the hierarchy from $\\rho{=}0.4$ across all three seeds: Grid ${<}$ Adaptive ${<}$ Uniform ${\\approx}$ ESS-only ${<}$ Random.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{Seed 42} & \\textbf{Seed 123} & \\textbf{Seed 456} & \\textbf{Mean} \\\\\n\\midrule\nGrid ($b{=}0.3$)$^\\ddagger$ & \\textbf{17.634} & -- & -- & -- \\\\\nAdaptive $\\bstar$ & 17.735 & 17.727 & 17.732 & 17.731 $\\pm$ .004 \\\\\nUniform           & 17.766 & 17.754 & 17.770 & 17.763 $\\pm$ .008 \\\\\nESS-only          & 17.770 & 17.760 & 17.760 & 17.763 $\\pm$ .006 \\\\\nRandom $\\mathcal{U}(0,2)$ & 17.832 & 17.870 & 17.880 & 17.861 $\\pm$ .025 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Results at $\\rho{=}0.6$ (Qwen3-0.6B, $\\nmin{=}2$).\nAdaptive uses $\\tau{=}0.7$ (consistent with main results); other methods are $\\tau$-independent.\n$^\\ddagger$Post-hoc oracle; seed\\,42 only.\nAdaptive vs.\\ Uniform: $\\Delta{=}{-}0.032$, paired $t{=}{-}15.4$, $p{=}0.004$ (full precision; 3dp rounding yields $t{=}{-}9.95$, $p{=}0.010$).\nESS-only collapses onto Uniform (both $17.763$); Random ($17.861$) confirms detector signal is load-bearing.}\n\\label{tab:rho06}\n\\end{table}\n\nThe ESS-only/Uniform gap collapses from 0.043 at $\\rho{=}0.4$ to 0.000 at $\\rho{=}0.6$ (three-seed means: both $17.763$); ESS binding rises to ${\\sim}$49\\% of batches (from ${\\sim}$43\\% at $\\rho{=}0.4$), and the constraints become nearly balanced rather than $\\aeff$-dominant.\nThe adaptive method maintains its advantage ($\\Delta{=}{-}0.032$, consistent across seeds) through the $\\aeff$ quality constraint, which operates independently of the ESS ceiling.\nRandom reweighting ($17.861 \\pm 0.025$) is substantially worse than Uniform, with the highest cross-seed variance; uninformed weights add noise without corrective signal.\nThe Adaptive-vs-Grid gap is 0.054 at $\\rho{=}0.4$ (mean-to-mean, consistent with Table~\\ref{tab:aux}) and 0.097 at $\\rho{=}0.6$ (adaptive 3-seed mean vs.\\ grid seed\\,42; the $\\rho{=}0.6$ grid result is preliminary and may not generalize across seeds).\n\n\\section{\\texorpdfstring{$\\alpha_{\\mathrm{eff}}$}{alpha-eff} Proxy Validation}\n\\label{app:alpha_validation}\n\nTable~\\ref{tab:alpha_corr} reports the correlation between $\\aeff(0)$ (the detector-based proxy at $b{=}0$) and the true batch-level real fraction $\\alpha_{\\mathrm{true}}$, computed over all training batches at $\\rho{=}0.4$ (seed\\,42).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}ccccc@{}}\n\\toprule\n$B$ & Pearson $r$ & Spearman $r$ & MAE$\\downarrow$ & Bias \\\\\n\\midrule\n4  & 0.706 & 0.699 & 0.114 & $-$0.029 \\\\\n8  & 0.697 & 0.683 & 0.097 & $-$0.027 \\\\\n16 & 0.707 & 0.691 & 0.075 & $-$0.031 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Correlation between $\\aeff(0)$ and true batch-level real fraction across batch sizes ($\\rho{=}0.4$, seed\\,42).\nValues use a binarized proxy $\\hat{r}_i = \\mathbf{1}[q_i \\leq 0.5]$ for discrete comparison; the continuous formulation used during training (\\S\\ref{sec:method}) achieves $r \\approx 0.77$--$0.79$ depending on batch size.\nThe consistent negative bias (${\\approx}{-}0.03$) indicates that $\\aeff$ slightly underestimates the true real fraction, biasing the method toward conservative intervention.}\n\\label{tab:alpha_corr}\n\\end{table}\n\nMean absolute error (MAE) decreases with batch size (0.114 $\\to$ 0.075) as expected from averaging, but the rank-order information that drives $\\bstar$ selection is already well-captured at $B{=}4$.\n\n\\paragraph{Cross-seed stability.}\nTable~\\ref{tab:alpha_corr_perseed} reports the correlation between $\\aeff$ and the batch mean $q$-score ($\\bar{q}$, computed from known labels) across all three seeds.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}cccc@{}}\n\\toprule\n\\textbf{Seed} & Pearson $r(\\aeff, \\bar{q})$ & Spearman $\\rho_s$ & $\\bstar{=}0$ (\\%) \\\\\n\\midrule\n42  & 0.8019 & 0.8761 & 5.8 \\\\\n123 & 0.7994 & 0.8692 & 5.7 \\\\\n456 & 0.8006 & 0.8749 & 5.9 \\\\\n\\midrule\n\\textbf{Spread} & 0.0025 & 0.0069 & 0.2 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-seed $\\aeff$--$\\bar{q}$ correlation ($\\rho{=}0.4$, $B{=}4$).\nCross-seed spread is $<$0.003 for Pearson $r$ and $<$0.007 for Spearman $\\rho_s$, indicating stable proxy fidelity across random seeds.\n$r(\\aeff, \\bar{q}) = 0.80$ measures the proxy's fidelity to batch composition; the ground-truth correlation $r(\\aeff, \\text{true real fraction}) \\approx 0.79$ (\\S\\ref{sec:discussion}) is slightly lower due to detector noise.\nThe per-seed table demonstrates cross-seed stability rather than superseding the ground-truth estimate.}\n\\label{tab:alpha_corr_perseed}\n\\end{table}\n\n\\section{Detector Comparison}\n\\label{app:detector}\n\nSee Figure~\\ref{fig:overview}b (\\S\\ref{sec:robustness}) for the detector requirements visualization.\n\nTable~\\ref{tab:detector} compares three detector families for adaptive reweighting.\nThe discriminative TF-IDF+LR detector (ECE\\,=\\,0.048) produces the only improvement over uniform.\nThe TF-IDF vs.\\ GPT-2 contrast (comparable AUC: 0.94 vs.\\ 0.91, but $2.7{\\times}$ ECE gap: 0.048 vs.\\ 0.131) isolates calibration as an empirically observed requirement; however, N-gram's better ECE (0.069) does not compensate for its low AUC (0.73); both sufficient discrimination and good calibration are jointly necessary in our setting.\nTF-IDF+LR's $q$-scores have reliable probabilistic semantics, so the $\\aeff$ proxy accurately tracks batch quality.\nGenerative detectors assign high $q$-scores to fluent, predictable human text (false positives concentrated among high-quality samples), systematically inflating $\\aeff$ for clean batches and deflating it for contaminated ones, which inverts the minimum-intervention logic.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llccccc@{}}\n\\toprule\n\\textbf{Detector} & \\textbf{Type} & \\textbf{AUC} & \\textbf{ECE} & \\textbf{Mean PPL} & $\\boldsymbol{\\Delta}$ \\\\\n\\midrule\nTF-IDF+LR & Discriminative & 0.94 & 0.048 & 17.650{\\tiny$\\pm$.010} & $-$0.044 \\\\\nGPT-2 PPL & Generative & 0.91 & 0.131 & 17.792{\\tiny$\\pm$.005} & $+$0.098 \\\\\nN-gram PPL & Generative & 0.73 & 0.069 & 17.823{\\tiny$\\pm$.003} & $+$0.129 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Detector comparison for adaptive reweighting ($\\rho{=}0.4$, $\\tau{=}0.8$, 3 seeds).\nUniform baseline PPL\\,=\\,17.694.\n$\\Delta$ = Adaptive $-$ Uniform (negative is better).\nTF-IDF+LR calibrated via temperature scaling.\nThe $\\tau$ confound is conservative: TF-IDF+LR at $\\tau{=}0.7$ achieves 17.674 (Table~\\ref{tab:main}).}\n\\label{tab:detector}\n\\end{table}\n\n\\section{Detector and Synthetic Data Details}\n\\label{app:detector_details}\n\n\\paragraph{TF-IDF+LR detector.}\nTF-IDF features (unigrams + bigrams, max 50{,}000 features, sublinear TF) fed to Logistic Regression (C\\,=\\,1.0, L2 penalty, solver\\,=\\,lbfgs, max\\_iter\\,=\\,100).\nTrained on a held-out labeled split (10K documents per class).\nPost-hoc temperature scaling applied when uncalibrated ECE exceeds 0.05: a scalar $T$ is searched via \\texttt{scipy.optimize.minimize\\_scalar} over $[0.1, 10.0]$ on a 20\\% stratified validation split, yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.05).\nThe detector is selected automatically from six configurations as the first satisfying AUC $\\in [0.85, 0.98]$ and mid-range score ratio $\\geq 5\\%$.\n\n\\paragraph{Synthetic data generation.}\nContinuations generated with Qwen3-0.6B (self-generation) using nucleus sampling ($p{=}0.95$, $T{=}0.8$), producing up to 384 tokens per continuation from a 128-token prefix prompt (512 total), targeting ${\\sim}$100M synthetic tokens.\nSource prompts are the first 128 tokens of randomly sampled FineWeb documents, used as prefix continuations.\nInjected at token-level ratio $\\rho$ via uniform random mixing across the training corpus.\n\n\\section{Low Contamination Analysis}\n\\label{app:rho02}\n\nAt $\\rho{=}0.2$, the adaptive method degrades by $+$0.046 PPL relative to uniform (0.26\\% relative, seed\\,42).\nThe detector's mean $q$-score at this contamination level is 0.393 (vs.\\ 0.487 at $\\rho{=}0.4$), indicating that many clean samples receive moderate $q$-scores, blurring the provenance signal.\nThe regime decomposition reveals 13.7\\% clean batches ($\\bstar{=}0$), 60.1\\% $\\aeff$-binding, and 26.3\\% ESS-binding, with mean $\\bstar{=}1.735$ in reweighted batches.\nThe high $\\aeff$-binding rate (60.1\\% vs.\\ ${\\sim}$50\\% at $\\rho{=}0.4$) means the method actively intervenes rather than defaulting to $\\bstar{=}0$, but the unreliable signal causes it to suppress useful training data.\nThis is consistent with the generative detector failures: when $q$-scores do not reliably separate provenance, the minimum intervention framework amplifies the error rather than correcting it.\nThe effective range of the method is $\\rho \\geq 0.4$ with $\\tau \\in [0.7, 0.8]$ (\\S\\ref{sec:sensitivity}); lower $\\tau$ values may extend the range but have not been tested at $\\rho{=}0.2$.\n\n\\section{Cross-Model Transfer}\n\\label{app:cross_model}\n\nTable~\\ref{tab:cross_model} reports a single exploratory run with Llama-3.2-3B as a cross-generator (synthetic data generated by Llama, training on Qwen3-0.6B); this does not establish generality.\nResults are mixed: MMLU improves while HellaSwag slightly degrades, consistent with the pattern observed in Qwen3-1.7B downstream evaluation (\\S\\ref{sec:robustness}).\nPerplexity comparison omitted due to inconsistent evaluation configurations; checkpoints were not retained for re-evaluation.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Metric} & \\textbf{Uniform} & \\textbf{Adaptive} & $\\boldsymbol{\\Delta}$ \\\\\n\\midrule\nMMLU (5-shot) & 51.85\\% $\\pm$ .41 & 53.42\\% $\\pm$ .41 & $+$1.57pp \\\\\nHellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.59pp \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model transfer: Llama-3.2-3B generator, Qwen3-0.6B trainer ($\\rho{=}0.4$, single seed).\nMixed results reflect evaluation-set distribution sensitivity rather than consistent quality differences.}\n\\label{tab:cross_model}\n\\end{table}\n\n\\section{Checkpoint Resume Artifact}\n\\label{app:resume_artifact}\n\nThe checkpoint-resume artifact described here affected early $\\tau{=}0.8$ experiments only.\nAll results in Tables~\\ref{tab:main}--\\ref{tab:epoch_match} use independent from-scratch training ($\\tau{=}0.7$; Table~\\ref{tab:main} Adaptive/Uniform: five seeds, others: three seeds).\n\nThe adaptive model for seed\\,42 in early $\\tau{=}0.8$ runs was trained with a checkpoint-resumed run whose first ${\\sim}$1{,}000 steps used different hyperparameters (learning rate warmup, gradient accumulation configuration) than seeds 123 and 456, which were trained from scratch.\nThe resume artifact inflates the in-distribution effect ($\\Delta{=}{-}0.041$ resume vs.\\ $\\Delta{=}{-}0.005$ from-scratch at $\\tau{=}0.8$) and reverses the out-of-distribution direction:\n\n\\begin{center}\n\\small\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\n\\textbf{Domain} & \\textbf{Resume} & \\textbf{From-scratch} & \\textbf{Dir.} \\\\\n\\midrule\nFineWeb (in-dist) & $-$0.041 & $-$0.005 & same \\\\\nOpenWebText (OOD) & $+$0.058 & $-$0.005 & reversed \\\\\nWikipedia (OOD)   & $+$0.137 & $-$0.009 & reversed \\\\\n\\bottomrule\n\\end{tabular}\\\\[2pt]\n{\\scriptsize $\\Delta$ relative to from-scratch uniform (Table~\\ref{tab:tau}). Resume: seed\\,42 original checkpoint. From-scratch: clean replication run.}\n\\end{center}\n\nThe resume model showed apparent distribution matching (OOD degradation), which was the basis for the ``distribution matching'' finding in earlier analyses.\nFrom-scratch retraining eliminates this pattern: all three evaluation domains show small, directionally consistent improvements, providing no evidence of distribution matching.\nThis underscores the importance of controlling for training artifacts when interpreting small effect sizes across evaluation domains.\n\n\\section{Additional Contamination Rate}\n\\label{app:rho03}\n\nTo probe the boundary between the degradation regime ($\\rho{=}0.2$, $\\Delta{=}{+}0.046$) and the improvement regime ($\\rho{=}0.4$, $\\Delta{=}{-}0.023$), we run adaptive $\\bstar$ and uniform baselines at $\\rho{=}0.3$ using the same experimental setup as the main experiments (Qwen3-0.6B, 132M FineWeb tokens, $\\tau{=}0.7$, $\\nmin{=}2$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcccc@{}}\n\\toprule\n\\textbf{Method} & \\textbf{Seed} & \\textbf{FineWeb} $\\downarrow$ & \\textbf{OWT} $\\downarrow$ & \\textbf{Wiki} $\\downarrow$ \\\\\n\\midrule\nUniform          & 42  & 17.422 & 18.113 & 15.204 \\\\\nAdaptive $\\bstar$ & 42  & 17.422 & 18.123 & 15.172 \\\\\n\\midrule\nUniform          & 123 & 17.433 & 18.126 & 15.204 \\\\\nAdaptive $\\bstar$ & 123 & 17.435 & 18.148 & 15.165 \\\\\n\\midrule\nUniform          & 456 & 17.419 & -- & -- \\\\\nAdaptive $\\bstar$ & 456 & 17.424 & -- & -- \\\\\n\\midrule\n$\\Delta$ (3-seed mean) & --  & $+$0.002 & -- & -- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Results at $\\rho{=}0.3$ (Qwen3-0.6B, 3 seeds).\nHoldout $\\Delta{=}{+}0.002$ ($t(2){=}1.60$, $p{=}0.25$, non-significant); OOD available for seeds 42 and 123 only, mixed in direction.}\n\\label{tab:rho03}\n\\end{table}\n\nThe holdout difference is effectively zero ($\\Delta{=}{+}0.002$, $t(2){=}1.60$, $p{=}0.25$, non-significant), placing the transition boundary between the degradation regime ($\\rho{=}0.2$, $\\Delta{=}{+}0.046$) and the improvement regime ($\\rho{=}0.4$, $\\Delta{=}{-}0.023$) within $[0.3, 0.4]$ (Figure~\\ref{fig:delta_vs_rho}).\n\nAt $\\rho{=}0.3$, 28\\% of micro-batches have $\\bstar{=}0$ (clean, no intervention), compared to ${\\sim}$6\\% at $\\rho{=}0.4$; the low intervention frequency explains why the method neither helps nor harms.\nThe progression across contamination levels ($\\rho{=}0.2$ harmful, $+$0.046; $\\rho{=}0.3$ neutral, $+$0.002; $\\rho{=}0.4$ beneficial, $-$0.023) shows a graceful transition rather than abrupt failure, consistent with the detector's signal-to-noise ratio gradually crossing the threshold needed for reliable $\\aeff$ estimation.\n\n\\section{Statistical Power Analysis}\n\\label{app:power}\n\nThe adaptive-vs-uniform comparison at $\\rho{=}0.4$ has Cohen's $d = \\bar{\\Delta}/\\mathrm{SD}_{\\Delta} = 0.023/0.006 = 3.83$ (5 seeds, paired).\nA one-sided paired $t$-test at $\\alpha{=}0.05$ with $d{=}3.83$ and $N{=}5$ achieves statistical power ${>}0.99$ (noncentrality $\\lambda = d\\sqrt{N} = 8.56$, $t_{0.05,4} = 2.13$), indicating that $N{=}5$ is more than adequate to detect an effect of this magnitude.\n\nThe low cross-seed variance ($\\sigma{=}0.006$) reflects the experimental design: seeds affect only parameter initialization, not data order (the dataloader is deterministic), so the primary stochastic axis is initialization noise at 0.6B scale.\nThe uniform baseline exhibits comparable variance ($\\sigma{=}0.008$); the low dispersion is a property of the experimental setting rather than a method artifact.\n\nWe apply Bonferroni--Holm correction for $k{=}9$ family-wise comparisons (six reweighting methods $\\times$ one contamination level, plus three additional $\\rho$ levels).\nAfter correction, $p_{\\mathrm{BH}}{=}0.011$ at $\\rho{=}0.4$, reaching conventional significance at $\\alpha{=}0.05$.\nAt $\\rho{=}0.6$ (3 seeds), $p_{\\mathrm{BH}}{=}0.064$; the family includes structurally heterogeneous tests (different methods, different $\\rho$), which makes Bonferroni--Holm conservative.\nThe uncorrected $p$-values ($0.0012$ and $0.010$ respectively), directional consistency across all seeds, and the dose-response pattern across $\\rho$ levels collectively support a real effect.\n\n\\section{Supplementary Analyses Summary}\n\\label{app:summary}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lll@{}}\n\\toprule\n\\textbf{Analysis} & \\textbf{Key result} & \\textbf{App.} \\\\\n\\midrule\nDownstream tasks & No gain (5 benchmarks, $|\\Delta|\\leq 0.01$) & \\ref{app:downstream} \\\\\nCross-model (Llama) & Mixed (MMLU $+$1.6, HellaSwag $-$0.6) & \\ref{app:cross_model} \\\\\n$\\tau$ sweep & $[0.5,0.8]$ all improve; $\\tau{>}0.8$ degrades & \\ref{app:tau_sweep} \\\\\n$\\rho{=}0.3$ boundary & $\\Delta{=}{+}0.002$ (neutral, 3 seeds) & \\ref{app:rho03} \\\\\nStatistical power & Cohen's $d{=}3.83$, power ${>}0.99$ at $N{=}5$ & \\ref{app:power} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Summary of supplementary analyses.}\n\\label{tab:appendix_summary}\n\\end{table}\n\n\\section{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant\nthroughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing\n    pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections,\n    polishing prose, and reformatting \\LaTeX{}.\n    \\item \\textbf{Literature:} summarizing related papers to inform\n    the related-work section.\n\\end{itemize}\n\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 360,
+                  "oldLines": 7,
+                  "newStart": 360,
+                  "newLines": 7,
+                  "lines": [
+                    " \\paragraph{TF-IDF+LR detector.}",
+                    " TF-IDF features (unigrams + bigrams, max 50{,}000 features, sublinear TF) fed to Logistic Regression (C\\,=\\,1.0, L2 penalty, solver\\,=\\,lbfgs, max\\_iter\\,=\\,100).",
+                    " Trained on a held-out labeled split (10K documents per class).",
+                    "-Post-hoc temperature scaling applied when uncalibrated ECE exceeds 0.05: a scalar $T$ is searched via \\texttt{scipy.optimize.minimize\\_scalar} over $[0.1, 10.0]$ on a 20\\% stratified validation split, yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.05).",
+                    "+Post-hoc temperature scaling applied when uncalibrated ECE exceeds 0.05: a scalar $T$ is searched via \\texttt{scipy.optimize.minimize\\_scalar} over $[0.1, 10.0]$ on a 20\\% stratified validation split, yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.048).",
+                    " The detector is selected automatically from six configurations as the first satisfying AUC $\\in [0.85, 0.98]$ and mid-range score ratio $\\geq 5\\%$.",
+                    " ",
+                    " \\paragraph{Synthetic data generation.}"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me also verify one thing that bothered me: the HellaSwag Δ in results.tex. It says \"HellaSwag −0.6 percentage points\" which rounds correctly from -0.59. So the results.tex is fine, only the appendix table was wrong with -0.60pp (should be -0.59pp). Already fixed.\n\nNow let me compile the full audit report.\n\nWait, I should also check if there are other numbers in results.tex that reference appendix numbers and might need cross-checking. I already did this comprehensively.\n\n\nNow I'm putting together the final report.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "fec06cd8-6fac-4cd0-b38b-4f6a0ee898d0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012UQwR53YbSEjWn9jP3QCic",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12958,
+                "cache_read_input_tokens": 90325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12958
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在验证修复后的文件完整性。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "1b0257c2-2de7-4a66-9812-4f1e07e69a74",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012UQwR53YbSEjWn9jP3QCic",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12958,
+                "cache_read_input_tokens": 90325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12958
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019M5b3k6FV2Anfdx2eWQoEV",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex",
+                "offset": 360,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "b902fe07-4900-4457-8193-e2fbbb0dbb91",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012UQwR53YbSEjWn9jP3QCic",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12958,
+                "cache_read_input_tokens": 90325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12958
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-25T20:20:26.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019M5b3k6FV2Anfdx2eWQoEV",
+              "type": "tool_result",
+              "content": "360\t\\paragraph{TF-IDF+LR detector.}\n361\tTF-IDF features (unigrams + bigrams, max 50{,}000 features, sublinear TF) fed to Logistic Regression (C\\,=\\,1.0, L2 penalty, solver\\,=\\,lbfgs, max\\_iter\\,=\\,100).\n362\tTrained on a held-out labeled split (10K documents per class).\n363\tPost-hoc temperature scaling applied when uncalibrated ECE exceeds 0.05: a scalar $T$ is searched via \\texttt{scipy.optimize.minimize\\_scalar} over $[0.1, 10.0]$ on a 20\\% stratified validation split, yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.048).\n364\tThe detector is selected automatically from six configurations as the first satisfying AUC $\\in [0.85, 0.98]$ and mid-range score ratio $\\geq 5\\%$.\n365\t\n366\t\\paragraph{Synthetic data generation.}\n367\tContinuations generated with Qwen3-0.6B (self-generation) using nucleus sampling ($p{=}0.95$, $T{=}0.8$), producing up to 384 tokens per continuation from a 128-token prefix prompt (512 total), targeting ${\\sim}$100M synthetic tokens.\n368\tSource prompts are the first 128 tokens of randomly sampled FineWeb documents, used as prefix continuations.\n369\tInjected at token-level ratio $\\rho$ via uniform random mixing across the training corpus."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "81b75c3b-abdd-4a4a-8e4c-35982b1d4172",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex",
+                "content": "\\paragraph{TF-IDF+LR detector.}\nTF-IDF features (unigrams + bigrams, max 50{,}000 features, sublinear TF) fed to Logistic Regression (C\\,=\\,1.0, L2 penalty, solver\\,=\\,lbfgs, max\\_iter\\,=\\,100).\nTrained on a held-out labeled split (10K documents per class).\nPost-hoc temperature scaling applied when uncalibrated ECE exceeds 0.05: a scalar $T$ is searched via \\texttt{scipy.optimize.minimize\\_scalar} over $[0.1, 10.0]$ on a 20\\% stratified validation split, yielding $T{=}0.204$ (ECE reduced from 0.12 to 0.048).\nThe detector is selected automatically from six configurations as the first satisfying AUC $\\in [0.85, 0.98]$ and mid-range score ratio $\\geq 5\\%$.\n\n\\paragraph{Synthetic data generation.}\nContinuations generated with Qwen3-0.6B (self-generation) using nucleus sampling ($p{=}0.95$, $T{=}0.8$), producing up to 384 tokens per continuation from a 128-token prefix prompt (512 total), targeting ${\\sim}$100M synthetic tokens.\nSource prompts are the first 128 tokens of randomly sampled FineWeb documents, used as prefix continuations.\nInjected at token-level ratio $\\rho$ via uniform random mixing across the training corpus.",
+                "numLines": 10,
+                "startLine": 360,
+                "totalLines": 517
+              }
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PWbHRCgpC6YaSpCAMm5x9S",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex",
+                "offset": 395,
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "37f7352f-ed89-410c-b830-2f839ff46b5a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012UQwR53YbSEjWn9jP3QCic",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 12958,
+                "cache_read_input_tokens": 90325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12958
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-25T20:20:26.857Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PWbHRCgpC6YaSpCAMm5x9S",
+              "type": "tool_result",
+              "content": "395\t\\midrule\n396\tMMLU (5-shot) & 51.85\\% $\\pm$ .41 & 53.42\\% $\\pm$ .41 & $+$1.57pp \\\\\n397\tHellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.59pp \\\\\n398\t\\bottomrule\n399\t\\end{tabular}}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "b3102bed-765e-4f5f-a501-84fe25c4fa05",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/docs/paper/sections/appendix.tex",
+                "content": "\\midrule\nMMLU (5-shot) & 51.85\\% $\\pm$ .41 & 53.42\\% $\\pm$ .41 & $+$1.57pp \\\\\nHellaSwag (10-shot, acc\\_norm) & 73.08\\% $\\pm$ .44 & 72.49\\% $\\pm$ .45 & $-$0.59pp \\\\\n\\bottomrule\n\\end{tabular}}",
+                "numLines": 5,
+                "startLine": 395,
+                "totalLines": 517
+              }
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修复已生效。下面是完整审计报告。\n\n---\n\n## Appendix 数字真实性审计报告\n\n**审计范围**: `appendix.tex` 全部 12 张表 + 行间数字，共约 **260 个数字**\n\n### 一、已修复问题（2 处）\n\n| 文件:行号 | 数字 | 问题 | 处理 |\n|-----------|------|------|------|\n| appendix.tex:397 | Δ=−0.60pp | HellaSwag 72.49−73.08=−0.59，非−0.60 | 已改为 −0.59pp |\n| appendix.tex:363 | ECE \"to 0.05\" | 全文其他位置（experiments.tex, tab:detector）均用 0.048，此处精度不一致 | 已改为 0.048 |\n\n### 二、出处存疑 / 需人工确认的数字（4 处）\n\n#### 1. **[严重]** Tab:detector TF-IDF PPL 与 Tab:tau τ=0.80 不一致\n\n- Tab:detector（L344）: TF-IDF+LR, τ=0.8, 3 seeds → **17.650 ± .010**, Δ=−0.044\n- Tab:tau（L120）: τ=0.80, 3 from-scratch seeds → **17.683 ± .006**, Δ=−0.011\n- 差值 **0.033**，超过 SD\n- Registry 交叉验证：`adaptive_fix` 系列（τ=0.8, n_min=2）3-seed mean ≈ 17.651，与 tab:detector 吻合；tab:tau 的 17.683 可能来自另一批 from-scratch 训练\n- **疑因**: Tab:detector 可能混入了 checkpoint-resumed seed 42 结果（resume artifact section 已警告此问题），或两表使用了不同实验批次\n- **建议**: 确认 tab:detector 的 TF-IDF 行是否使用纯 from-scratch seeds；若是，更新为与 tab:tau 一致的 17.683±.006（Δ=−0.011）\n\n#### 2. **[轻微]** Tab:hybrid ρ=0.6 Hybrid PPL\n\n- 论文（L172）: 17.530\n- Registry `hybrid_rho06_seed42`: **17.526**\n- 差值 0.004，需确认是否有更新版本的实验\n\n#### 3. **[轻微]** Tab:rho06 ESS-only seeds 123/456\n\n- 论文: 两个都写 **17.760**\n- Registry: seed 123 = **17.763**, seed 456 = **17.762**\n- 影响: 若用 registry 值，mean 从 17.763 变为 17.765（仍与 Uniform 17.763 接近，但不完全相等）\n\n#### 4. **[标注]** Tab:dr_threshold q>0.5 可能是 3-seed 均值\n\n- 表中 q>0.5 Raw PPL = 17.28，caption 写 \"seed 42 unless noted\"\n- Registry seed 42: 17.291 (v1) / 17.285 (v2)，均 ≠ 17.28\n- Registry 3-seed v2 均值: (17.285+17.272+17.277)/3 = **17.278 ≈ 17.28** ✓\n- 建议: 如确实是 3-seed mean，应像 q>0.3 一样加 † 脚注\n\n### 三、正文 ↔ Appendix 交叉一致性验证\n\n| 交叉项 | Appendix | 正文 (results/experiments/discussion) | 一致? |\n|--------|----------|---------------------------------------|-------|\n| Adaptive τ=0.7 5-seed holdout | 17.674±.006 (tab:tau) | 17.674±.006 (tab:main) | ✓ |\n| Uniform 3-seed baseline | 17.694 (tab:tau caption) | (17.694+17.686+17.702)/3=17.694 | ✓ |\n| Δ_H at τ=0.7 vs 3-seed unif | −0.020 | (17.674−17.694=−0.020) | ✓ |\n| Δ at 5-seed (tab:main) | −0.023 (caption note) | 17.674−17.697=−0.023 | ✓ |\n| τ=0.7 OWT Δ | −0.028 | −0.028 (results L147) | ✓ |\n| τ=0.7 Wiki Δ | −0.029 | −0.029 (results L147) | ✓ |\n| τ=0.8 OWT Δ | −0.005 | −0.005 (results L147) | ✓ |\n| τ=0.8 Wiki Δ | −0.009 | −0.009 (results L147) | ✓ |\n| ρ=0.6 adaptive mean | 17.731±.004 | 17.731±0.004 (results L81) | ✓ |\n| ρ=0.6 uniform mean | 17.763±.008 | 17.763±0.008 (results L81) | ✓ |\n| ρ=0.6 hierarchy | Grid < Adaptive < Uniform ≈ ESS < Random | Same (results L82) | ✓ |\n| ρ=0.6 paired t (3dp) | t=−9.95, p=0.010 | t=−9.95, p_BH=0.064 (results L81) | ✓ |\n| p_BH=0.011 at ρ=0.4 | app:power L476 | results L31 | ✓ |\n| p_BH=0.064 at ρ=0.6 | app:power L477 | results L81 | ✓ |\n| Grid b=0.3 3-seed mean | 17.620±.033 (tab:aux via cross-ref) | 17.620±.033 (tab:aux) | ✓ |\n| b=1.0 ≈ uniform | 17.692 (tab:grid_full) | 17.692 vs 17.694 (results L34) | ✓ |\n| D&R q>0.3 3-seed | 17.250±.001 | 17.250±.001 (tab:epoch_match) | ✓ |\n| D&R q>0.7 raw | 17.32 | 17.32 (tab:epoch_match) | ✓ |\n| ESS-only gap at ρ=0.4 | 0.043 (L271) | 0.043 (results L38) | ✓ |\n| B=16 Δ amplification | 3.0×, −0.068±0.005 (L76) | 3.0×, −0.068±0.005 (results L155) | ✓ |\n| Spearman r B=4 | 0.699 (tab:alpha_corr & L76) | 0.699 | ✓ |\n| ρ=0.2 Δ | +0.046 (L374) | +0.046 (discussion L6) | ✓ |\n| ρ=0.3 Δ | +0.002 (L461) | Within [0.3,0.4] boundary (discussion L6) | ✓ |\n| Cross-model MMLU | +1.57pp (tab:cross_model) | +1.6pp (results L115, rounded) | ✓ |\n| Cohen's d | 3.83 = 0.023/0.006 (L469) | — (arithmetic ✓) | ✓ |\n| Downstream mean | 0.5414 (tab:downstream caption) | 0.5414 (discussion L31) | ✓ |\n| ECE gap 2.7× | 0.131/0.048=2.73 (L332) | 2.7× (results L122) | ✓ |\n| τ-ρ paired t | −4.70 (fig caption L149) | −4.70 (results L147) | ✓ |\n| Training steps | 6,103 (L72) | 6,103 (experiments tab:config) | ✓ |\n\n### 四、Registry 交叉验证\n\n| 数据 | 论文 | Registry | 一致? |\n|------|------|----------|-------|\n| Grid b=0.1–5.0 seed 42 | 9 values | 9 values exact match | ✓ |\n| Grid b=0.3 3-seed mean | 17.620 | (17.64+17.579+17.64)/3=17.620 | ✓ |\n| ρ=0.6 Adaptive 3 seeds | 17.735/17.727/17.732 | 17.735/17.727/17.732 | ✓ |\n| ρ=0.6 Uniform 3 seeds | 17.766/17.754/17.770 | 17.766/17.754/17.77 | ✓ |\n| ρ=0.6 Random 3 seeds | 17.832/17.870/17.880 | 17.832/17.87/17.88 | ✓ |\n| ρ=0.6 Grid b=0.3 | 17.634 | 17.634 | ✓ |\n| ρ=0.3 all 6 holdout values | match | match exactly | ✓ |\n| D&R q>0.3 3-seed | 17.250 | 17.25/17.25/17.2509 → 17.250 | ✓ |\n| D&R q>0.7 3-seed | 17.32 | 17.32/17.32/17.32 | ✓ |\n| Epoch-matched all 5 values | match | match exactly | ✓ |\n| Hybrid ρ=0.4 | 17.514 | 17.514 | ✓ |\n| GPT-2 detector 3-seed PPL | 17.792 | (17.79+17.788+17.797)/3=17.792 | ✓ |\n| N-gram detector 3-seed PPL | 17.823 | (17.820+17.823+17.826)/3=17.823 | ✓ |\n| Golden Ratio seed 42 | 17.654 (tab:aux) | 17.654 | ✓ |\n| ρ=0.2 Δ=+0.046 | 17.382−17.336=0.046 | 17.382−17.336=0.046 | ✓ |\n| Detector AUC=0.94, ECE=0.048, T=0.204 | match | AUC=0.939≈0.94, ECE=0.048, T=0.204 | ✓ |\n| α_eff correlation, per-seed stats | — | NOT in registry (separate analysis script) | 无法验证 |\n| Cross-model MMLU/HellaSwag | — | NOT in registry | 无法验证 |\n| Detector hyperparams (50k, C=1.0) | — | Registry 记录不同值 (10k, C=0.01)，可能是旧版配置 | 无法验证 |\n\n### 五、算术抽检（全部通过）\n\n- Tab:rho06 所有 mean/SD: 手动重算均一致 ✓\n- Tab:tau 所有 Δ: 手动重算均一致 ✓\n- Tab:detector Δ: 17.650−17.694=−0.044 ✓ (算术正确，但基数可能有问题，见第二节)\n- Tab:rho03 Δ: (17.427−17.425)/=+0.002 ✓\n- Cohen's d: 0.023/0.006=3.83 ✓; λ=3.83×√5=8.56 ✓\n- Tab:alpha_corr_perseed spread: max−min 算术 ✓\n- Cross-model MMLU Δ: 53.42−51.85=1.57 ✓\n\n### 总结\n\n- **审计数字**: ~260\n- **已修复**: 2（HellaSwag Δ 算术、ECE 精度）\n- **需确认**: 4（detector table 最重要，其余为小数点级精度问题）\n- **无法从 registry 验证**: 3 类（α_eff 相关分析、Llama MMLU/HellaSwag、detector 超参细节）\n- **正文-附录一致性**: 全部 30+ 项交叉引用一致"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "uuid": "ca8a6e00-77d7-48d6-b16a-3e008c234833",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VUhNUMJ4pF89MB5PJvqh5U",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 103283,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修复已生效。下面是完整审计报告。\n\n---\n\n## Appendix 数字真实性审计报告\n\n**审计范围**: `appendix.tex` 全部 12 张表 + 行间数字，共约 **260 个数字**\n\n### 一、已修复问题（2 处）\n\n| 文件:行号 | 数字 | 问题 | 处理 |\n|-----------|------|------|------|\n| appendix.tex:397 | Δ=−0.60pp | HellaSwag 72.49−73.08=−0.59，非−0.60 | 已改为 −0.59pp |\n| appendix.tex:363 | ECE \"to 0.05\" | 全文其他位置（experiments.tex, tab:detector）均用 0.048，此处精度不一致 | 已改为 0.048 |\n\n### 二、出处存疑 / 需人工确认的数字（4 处）\n\n#### 1. **[严重]** Tab:detector TF-IDF PPL 与 Tab:tau τ=0.80 不一致\n\n- Tab:detector（L344）: TF-IDF+LR, τ=0.8, 3 seeds → **17.650 ± .010**, Δ=−0.044\n- Tab:tau（L120）: τ=0.80, 3 from-scratch seeds → **17.683 ± .006**, Δ=−0.011\n- 差值 **0.033**，超过 SD\n- Registry 交叉验证：`adaptive_fix` 系列（τ=0.8, n_min=2）3-seed mean ≈ 17.651，与 tab:detector 吻合；tab:tau 的 17.683 可能来自另一批 from-scratch 训练\n- **疑因**: Tab:detector 可能混入了 checkpoint-resumed seed 42 结果（resume artifact section 已警告此问题），或两表使用了不同实验批次\n- **建议**: 确认 tab:detector 的 TF-IDF 行是否使用纯 from-scratch seeds；若是，更新为与 tab:tau 一致的 17.683±.006（Δ=−0.011）\n\n#### 2. **[轻微]** Tab:hybrid ρ=0.6 Hybrid PPL\n\n- 论文（L172）: 17.530\n- Registry `hybrid_rho06_seed42`: **17.526**\n- 差值 0.004，需确认是否有更新版本的实验\n\n#### 3. **[轻微]** Tab:rho06 ESS-only seeds 123/456\n\n- 论文: 两个都写 **17.760**\n- Registry: seed 123 = **17.763**, seed 456 = **17.762**\n- 影响: 若用 registry 值，mean 从 17.763 变为 17.765（仍与 Uniform 17.763 接近，但不完全相等）\n\n#### 4. **[标注]** Tab:dr_threshold q>0.5 可能是 3-seed 均值\n\n- 表中 q>0.5 Raw PPL = 17.28，caption 写 \"seed 42 unless noted\"\n- Registry seed 42: 17.291 (v1) / 17.285 (v2)，均 ≠ 17.28\n- Registry 3-seed v2 均值: (17.285+17.272+17.277)/3 = **17.278 ≈ 17.28** ✓\n- 建议: 如确实是 3-seed mean，应像 q>0.3 一样加 † 脚注\n\n### 三、正文 ↔ Appendix 交叉一致性验证\n\n| 交叉项 | Appendix | 正文 (results/experiments/discussion) | 一致? |\n|--------|----------|---------------------------------------|-------|\n| Adaptive τ=0.7 5-seed holdout | 17.674±.006 (tab:tau) | 17.674±.006 (tab:main) | ✓ |\n| Uniform 3-seed baseline | 17.694 (tab:tau caption) | (17.694+17.686+17.702)/3=17.694 | ✓ |\n| Δ_H at τ=0.7 vs 3-seed unif | −0.020 | (17.674−17.694=−0.020) | ✓ |\n| Δ at 5-seed (tab:main) | −0.023 (caption note) | 17.674−17.697=−0.023 | ✓ |\n| τ=0.7 OWT Δ | −0.028 | −0.028 (results L147) | ✓ |\n| τ=0.7 Wiki Δ | −0.029 | −0.029 (results L147) | ✓ |\n| τ=0.8 OWT Δ | −0.005 | −0.005 (results L147) | ✓ |\n| τ=0.8 Wiki Δ | −0.009 | −0.009 (results L147) | ✓ |\n| ρ=0.6 adaptive mean | 17.731±.004 | 17.731±0.004 (results L81) | ✓ |\n| ρ=0.6 uniform mean | 17.763±.008 | 17.763±0.008 (results L81) | ✓ |\n| ρ=0.6 hierarchy | Grid < Adaptive < Uniform ≈ ESS < Random | Same (results L82) | ✓ |\n| ρ=0.6 paired t (3dp) | t=−9.95, p=0.010 | t=−9.95, p_BH=0.064 (results L81) | ✓ |\n| p_BH=0.011 at ρ=0.4 | app:power L476 | results L31 | ✓ |\n| p_BH=0.064 at ρ=0.6 | app:power L477 | results L81 | ✓ |\n| Grid b=0.3 3-seed mean | 17.620±.033 (tab:aux via cross-ref) | 17.620±.033 (tab:aux) | ✓ |\n| b=1.0 ≈ uniform | 17.692 (tab:grid_full) | 17.692 vs 17.694 (results L34) | ✓ |\n| D&R q>0.3 3-seed | 17.250±.001 | 17.250±.001 (tab:epoch_match) | ✓ |\n| D&R q>0.7 raw | 17.32 | 17.32 (tab:epoch_match) | ✓ |\n| ESS-only gap at ρ=0.4 | 0.043 (L271) | 0.043 (results L38) | ✓ |\n| B=16 Δ amplification | 3.0×, −0.068±0.005 (L76) | 3.0×, −0.068±0.005 (results L155) | ✓ |\n| Spearman r B=4 | 0.699 (tab:alpha_corr & L76) | 0.699 | ✓ |\n| ρ=0.2 Δ | +0.046 (L374) | +0.046 (discussion L6) | ✓ |\n| ρ=0.3 Δ | +0.002 (L461) | Within [0.3,0.4] boundary (discussion L6) | ✓ |\n| Cross-model MMLU | +1.57pp (tab:cross_model) | +1.6pp (results L115, rounded) | ✓ |\n| Cohen's d | 3.83 = 0.023/0.006 (L469) | — (arithmetic ✓) | ✓ |\n| Downstream mean | 0.5414 (tab:downstream caption) | 0.5414 (discussion L31) | ✓ |\n| ECE gap 2.7× | 0.131/0.048=2.73 (L332) | 2.7× (results L122) | ✓ |\n| τ-ρ paired t | −4.70 (fig caption L149) | −4.70 (results L147) | ✓ |\n| Training steps | 6,103 (L72) | 6,103 (experiments tab:config) | ✓ |\n\n### 四、Registry 交叉验证\n\n| 数据 | 论文 | Registry | 一致? |\n|------|------|----------|-------|\n| Grid b=0.1–5.0 seed 42 | 9 values | 9 values exact match | ✓ |\n| Grid b=0.3 3-seed mean | 17.620 | (17.64+17.579+17.64)/3=17.620 | ✓ |\n| ρ=0.6 Adaptive 3 seeds | 17.735/17.727/17.732 | 17.735/17.727/17.732 | ✓ |\n| ρ=0.6 Uniform 3 seeds | 17.766/17.754/17.770 | 17.766/17.754/17.77 | ✓ |\n| ρ=0.6 Random 3 seeds | 17.832/17.870/17.880 | 17.832/17.87/17.88 | ✓ |\n| ρ=0.6 Grid b=0.3 | 17.634 | 17.634 | ✓ |\n| ρ=0.3 all 6 holdout values | match | match exactly | ✓ |\n| D&R q>0.3 3-seed | 17.250 | 17.25/17.25/17.2509 → 17.250 | ✓ |\n| D&R q>0.7 3-seed | 17.32 | 17.32/17.32/17.32 | ✓ |\n| Epoch-matched all 5 values | match | match exactly | ✓ |\n| Hybrid ρ=0.4 | 17.514 | 17.514 | ✓ |\n| GPT-2 detector 3-seed PPL | 17.792 | (17.79+17.788+17.797)/3=17.792 | ✓ |\n| N-gram detector 3-seed PPL | 17.823 | (17.820+17.823+17.826)/3=17.823 | ✓ |\n| Golden Ratio seed 42 | 17.654 (tab:aux) | 17.654 | ✓ |\n| ρ=0.2 Δ=+0.046 | 17.382−17.336=0.046 | 17.382−17.336=0.046 | ✓ |\n| Detector AUC=0.94, ECE=0.048, T=0.204 | match | AUC=0.939≈0.94, ECE=0.048, T=0.204 | ✓ |\n| α_eff correlation, per-seed stats | — | NOT in registry (separate analysis script) | 无法验证 |\n| Cross-model MMLU/HellaSwag | — | NOT in registry | 无法验证 |\n| Detector hyperparams (50k, C=1.0) | — | Registry 记录不同值 (10k, C=0.01)，可能是旧版配置 | 无法验证 |\n\n### 五、算术抽检（全部通过）\n\n- Tab:rho06 所有 mean/SD: 手动重算均一致 ✓\n- Tab:tau 所有 Δ: 手动重算均一致 ✓\n- Tab:detector Δ: 17.650−17.694=−0.044 ✓ (算术正确，但基数可能有问题，见第二节)\n- Tab:rho03 Δ: (17.427−17.425)/=+0.002 ✓\n- Cohen's d: 0.023/0.006=3.83 ✓; λ=3.83×√5=8.56 ✓\n- Tab:alpha_corr_perseed spread: max−min 算术 ✓\n- Cross-model MMLU Δ: 53.42−51.85=1.57 ✓\n\n### 总结\n\n- **审计数字**: ~260\n- **已修复**: 2（HellaSwag Δ 算术、ECE 精度）\n- **需确认**: 4（detector table 最重要，其余为小数点级精度问题）\n- **无法从 registry 验证**: 3 类（α_eff 相关分析、Llama MMLU/HellaSwag、detector 超参细节）\n- **正文-附录一致性**: 全部 30+ 项交叉引用一致"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1142043,
+            "duration_api_ms": 1561156,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "b883e8c8-4e70-4c1d-86d0-e21cb1b9cee9",
+            "total_cost_usd": 3.8348272499999996,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 82294,
+              "cache_read_input_tokens": 366296,
+              "output_tokens": 48167,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 82294,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 3501,
+                  "cache_read_input_tokens": 103283,
+                  "cache_creation_input_tokens": 987,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 987
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1421,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001516,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 34,
+                "outputTokens": 78237,
+                "cacheReadInputTokens": 1351770,
+                "cacheCreationInputTokens": 192213,
+                "webSearchRequests": 0,
+                "costUSD": 3.8333112499999995,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "1b7ce474-5171-4523-a2b2-6199e5d306f2"
+          },
+          "id": "event-000083"
+        }
+      ]
+    }
+  ]
+}

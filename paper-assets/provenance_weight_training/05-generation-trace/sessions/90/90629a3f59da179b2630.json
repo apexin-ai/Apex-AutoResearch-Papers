@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90629a3f59da179b2630",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code grid b low script",
+  "task_key": "worker_code_grid_b_low_script_20260515T202036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grid_b_low_script_20260515T202036_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "803f97b7a6732dac92f34ea600ce6c3775eae2ca68138c3d867678ec14fb51ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪：\n\n- **脚本路径**: `/root/provenance_weight_training/run_grid_b_low_seed42.sh`\n- **语法检查**: SYNTAX_OK\n- **数据文件**: `data/scored_data.jsonl` 存在 (930MB)\n- **模型目录**: `models/Qwen/Qwen3-0.6B` 存在 (符号链接)\n\n脚本串行运行 b=0.1 → 0.2 → 0.3，每次训练完打印时间戳，任一失败即停止。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grid-b-low-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e129359b5d89ad1bacb7",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops cleanup b5 residuals",
+  "task_key": "worker_ops_cleanup_b5_residuals_20260514T114831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_b5_residuals_20260514T114831_result.json",
+    "occurrence": 1,
+    "bytes": 309,
+    "sha256": "9ff7721fd39386b592b8fb30024e0cb0be3af3793c69d664fb28aada5e1844c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部清理完成：\n\n| 步骤 | 结果 |\n|------|------|\n| 删除 exit 文件 | `/tmp/agent-ml-exit/grid_b5_0_seed123.exit` 已删除 |\n| 清理 log 残留 | `Terminated` 和 `EXIT_CODE=129` 已从日志中移除 |\n| 进程状态 | PID 94717 正常运行，已运行 26:29，RSS 3.6GB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-b5-residuals.md"
+}

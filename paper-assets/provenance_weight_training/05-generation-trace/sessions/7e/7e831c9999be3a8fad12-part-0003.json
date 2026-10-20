@@ -1,0 +1,894 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7e831c9999be3a8fad12",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 338,
+          "timestamp": "2026-05-20T04:48:53.206Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YL6SPmBZ8Q1446RbBg5iSW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.3293515358361775,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013734057652635537,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.35665529010238906,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.013998056902620168\\\\n    },\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_easy\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6531986531986532,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.009766326091716078,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.6106902356902357,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.010005212782878208\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.3850826528579964,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.004856203374715312,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.481876120294762,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.004986502296930994\\\\n    },\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6893362350380848,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.010797078933727623,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.6931447225244831,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.01076029507058034\\\\n    },\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5659037095501184,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013929882555694053\\\\n    }\\\\n  },\\\\n  \\\\\\\"group_subtasks\\\\\\\": {\\\\n    \\\\\\\"arc_easy\\\\\\\": [],\\\\n    \\\\\\\"arc_challenge\\\\\\\": [],\\\\n    \\\\\\\"hellaswag\\\\\\\": [],\\\\n    \\\\\\\"piqa\\\\\\\": [],\\\\n    \\\\\\\"winogrande\\\\\\\": []\\\\n  },\\\\n  \\\\\\\"configs\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"tag\\\\\\\": [\\\\n        \\\\\\\"ai2_arc\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"dataset_path\\\\\\\": \\\\\\\"allenai/ai2_arc\\\\\\\",\\\\n      \\\\\\\"dataset_name\\\\\\\": \\\\\\\"ARC-Challenge\\\\\\\",\\\\n      \\\\\\\"training_split\\\\\\\": \\\\\\\"train\\\\\\\",\\\\n      \\\\\\\"validation_split\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"test_split\\\\\\\": \\\\\\\"test\\\\\\\",\\\\n      \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n      \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{choices.label.index(answerKey)}}\\\\\\\",\\\\n      \\\\\\\"unsafe_code\\\\\\\": false,\\\\n      \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"{{choices.text}}\\\\\\\",\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\",\\\\n      \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"fewshot_config\\\\\\\": {\\\\n        \\\\\\\"sampler\\\\\\\": \\\\\\\"default\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": null,\\\\n        \\\\\\\"process_docs\\\\\\\": null,\\\\n        \\\\\\\"fewshot_indices\\\\\\\": null,\\\\n        \\\\\\\"samples\\\\\\\": null,\\\\n        \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n        \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"{{choices.text}}\\\\\\\",\\\\n        \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{choices.label.index(answerKey)}}\\\\\\\",\\\\n        \\\\\\\"gen_prefix\\\\\\\": null,\\\\n        \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\"\\\\n      },\\\\n      \\\\\\\"num_fewshot\\\\\\\": 0,\\\\n      \\\\\\\"metric_list\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"metric\\\\\\\": \\\\\\\"acc\\\\\\\",\\\\n          \\\\\\\"aggregation\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n          \\\\\\\"higher_is_better\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"metric\\\\\\\": \\\\\\\"acc_norm\\\\\\\",\\\\n          \\\\\\\"aggregation\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n          \\\\\\\"higher_is_better\\\\\\\": true\\\\n        }\\\\n      ],\\\\n      \\\\\\\"output_type\\\\\\\": \\\\\\\"multiple_choice\\\\\\\",\\\\n      \\\\\\\"repeats\\\\\\\": 1,\\\\n      \\\\\\\"should_decontaminate\\\\\\\": true,\\\\n      \\\\\\\"doc_to_decontamination_query\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n      \\\\\\\"metadata\\\\\\\": {\\\\n        \\\\\\\"version\\\\\\\": 1.0,\\\\n        \\\\\\\"pretrained\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q04_seed42/final\\\\\\\",\\\\n        \\\\\\\"dtype\\\\\\\": \\\\\\\"float16\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"arc_easy\\\\\\\",\\\\n      \\\\\\\"tag\\\\\\\": [\\\\n        \\\\\\\"ai2_arc\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"dataset_path\\\\\\\": \\\\\\\"allenai/ai2_arc\\\\\\\",\\\\n      \\\\\\\"dataset_name\\\\\\\": \\\\\\\"ARC-Easy\\\\\\\",\\\\n      \\\\\\\"training_split\\\\\\\": \\\\\\\"train\\\\\\\",\\\\n      \\\\\\\"validation_split\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"test_split\\\\\\\": \\\\\\\"test\\\\\\\",\\\\n      \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n      \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{choices.label.index(answerKey)}}\\\\\\\",\\\\n      \\\\\\\"unsafe_code\\\\\\\": false,\\\\n      \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"{{choices.text}}\\\\\\\",\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\",\\\\n      \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"fewshot_config\\\\\\\": {\\\\n        \\\\\\\"sampler\\\\\\\": \\\\\\\"default\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": null,\\\\n        \\\\\\\"process_docs\\\\\\\": null,\\\\n        \\\\\\\"fewshot_indices\\\\\\\": null,\\\\n        \\\\\\\"samples\\\\\\\": null,\\\\n        \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n        \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"{{choices.text}}\\\\\\\",\\\\n        \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{choices.label.index(answerKey)}}\\\\\\\",\\\\n        \\\\\\\"gen_prefix\\\\\\\": null,\\\\n        \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\"\\\\n      },\\\\n      \\\\\\\"num_fewshot\\\\\\\": 0,\\\\n      \\\\\\\"metric_list\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"metric\\\\\\\": \\\\\\\"acc\\\\\\\",\\\\n          \\\\\\\"aggregation\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n          \\\\\\\"hig\\\\n\\\\n... [截断: 输出过长，省略 11009 字符] ...\\\\n\\\\n104 instances)\\\\\\\\nL2 cache:                        208 MiB (104 instances)\\\\\\\\nL3 cache:                        210 MiB (2 instances)\\\\\\\\nNUMA node(s):                    2\\\\\\\\nNUMA node0 CPU(s):               0-51,104-155\\\\\\\\nNUMA node1 CPU(s):               52-103,156-207\\\\\\\\nVulnerability Itlb multihit:     Not affected\\\\\\\\nVulnerability L1tf:              Not affected\\\\\\\\nVulnerability Mds:               Not affected\\\\\\\\nVulnerability Meltdown:          Not affected\\\\\\\\nVulnerability Mmio stale data:   Not affected\\\\\\\\nVulnerability Retbleed:          Not affected\\\\\\\\nVulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp\\\\\\\\nVulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization\\\\\\\\nVulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence\\\\\\\\nVulnerability Srbds:             Not affected\\\\\\\\nVulnerability Tsx async abort:   Not affected\\\\\\\\n\\\\\\\\nVersions of relevant libraries:\\\\\\\\n[pip3] numpy==2.2.6\\\\\\\\n[pip3] nvidia-cublas-cu12==12.8.4.1\\\\\\\\n[pip3] nvidia-cuda-cupti-cu12==12.8.90\\\\\\\\n[pip3] nvidia-cuda-nvrtc-cu12==12.8.93\\\\\\\\n[pip3] nvidia-cuda-runtime-cu12==12.8.90\\\\\\\\n[pip3] nvidia-cudnn-cu12==9.10.2.21\\\\\\\\n[pip3] nvidia-cudnn-frontend==1.18.0\\\\\\\\n[pip3] nvidia-cufft-cu12==11.3.3.83\\\\\\\\n[pip3] nvidia-curand-cu12==10.3.9.90\\\\\\\\n[pip3] nvidia-cusolver-cu12==11.7.3.90\\\\\\\\n[pip3] nvidia-cusparse-cu12==12.5.8.93\\\\\\\\n[pip3] nvidia-cusparselt-cu12==0.7.1\\\\\\\\n[pip3] nvidia-nccl-cu12==2.27.5\\\\\\\\n[pip3] nvidia-nvjitlink-cu12==12.8.93\\\\\\\\n[pip3] nvidia-nvtx-cu12==12.8.90\\\\\\\\n[pip3] torch==2.10.0+cu128\\\\\\\\n[pip3] torch_c_dlpack_ext==0.1.5\\\\\\\\n[pip3] torchaudio==2.10.0\\\\\\\\n[pip3] torchvision==0.25.0+cu128\\\\\\\\n[pip3] triton==3.6.0\\\\\\\\n[conda] numpy                     2.2.6                    pypi_0    pypi\\\\\\\\n[conda] nvidia-cublas-cu12        12.8.4.1                 pypi_0    pypi\\\\\\\\n[conda] nvidia-cuda-cupti-cu12    12.8.90                  pypi_0    pypi\\\\\\\\n[conda] nvidia-cuda-nvrtc-cu12    12.8.93                  pypi_0    pypi\\\\\\\\n[conda] nvidia-cuda-runtime-cu12  12.8.90                  pypi_0    pypi\\\\\\\\n[conda] nvidia-cudnn-cu12         9.10.2.21                pypi_0    pypi\\\\\\\\n[conda] nvidia-cudnn-frontend     1.18.0                   pypi_0    pypi\\\\\\\\n[conda] nvidia-cufft-cu12         11.3.3.83                pypi_0    pypi\\\\\\\\n[conda] nvidia-curand-cu12        10.3.9.90                pypi_0    pypi\\\\\\\\n[conda] nvidia-cusolver-cu12      11.7.3.90                pypi_0    pypi\\\\\\\\n[conda] nvidia-cusparse-cu12      12.5.8.93                pypi_0    pypi\\\\\\\\n[conda] nvidia-cusparselt-cu12    0.7.1                    pypi_0    pypi\\\\\\\\n[conda] nvidia-nccl-cu12          2.27.5                   pypi_0    pypi\\\\\\\\n[conda] nvidia-nvjitlink-cu12     12.8.93                  pypi_0    pypi\\\\\\\\n[conda] nvidia-nvtx-cu12          12.8.90                  pypi_0    pypi\\\\\\\\n[conda] torch                     2.10.0+cu128             pypi_0    pypi\\\\\\\\n[conda] torch-c-dlpack-ext        0.1.5                    pypi_0    pypi\\\\\\\\n[conda] torchaudio                2.10.0                   pypi_0    pypi\\\\\\\\n[conda] torchvision               0.25.0+cu128             pypi_0    pypi\\\\\\\\n[conda] triton                    3.6.0                    pypi_0    pypi\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"5.8.1\\\\\\\",\\\\n  \\\\\\\"lm_eval_version\\\\\\\": \\\\\\\"0.4.11\\\\\\\",\\\\n  \\\\\\\"upper_git_hash\\\\\\\": null,\\\\n  \\\\\\\"tokenizer_pad_token\\\\\\\": [\\\\n    \\\\\\\"<|endoftext|>\\\\\\\",\\\\n    \\\\\\\"151643\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"tokenizer_eos_token\\\\\\\": [\\\\n    \\\\\\\"<|im_end|>\\\\\\\",\\\\n    \\\\\\\"151645\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"tokenizer_bos_token\\\\\\\": [\\\\n    null,\\\\n    \\\\\\\"None\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"eot_token_id\\\\\\\": 151645,\\\\n  \\\\\\\"max_length\\\\\\\": 40960,\\\\n  \\\\\\\"task_hashes\\\\\\\": {},\\\\n  \\\\\\\"model_source\\\\\\\": \\\\\\\"hf\\\\\\\",\\\\n  \\\\\\\"model_name\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q04_seed42/final\\\\\\\",\\\\n  \\\\\\\"model_name_sanitized\\\\\\\": \\\\\\\"__root__autodl-tmp__provenance_weight_training__output__models__detect_remove_q04_seed42__final\\\\\\\",\\\\n  \\\\\\\"system_instruction\\\\\\\": null,\\\\n  \\\\\\\"system_instruction_sha\\\\\\\": null,\\\\n  \\\\\\\"fewshot_as_multiturn\\\\\\\": null,\\\\n  \\\\\\\"chat_template\\\\\\\": null,\\\\n  \\\\\\\"chat_template_sha\\\\\\\": null,\\\\n  \\\\\\\"total_evaluation_time_seconds\\\\\\\": \\\\\\\"88.2968032732606\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "446ebf46-351d-4513-8fed-b740f05de3fa",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.3293515358361775,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013734057652635537,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.35665529010238906,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.013998056902620168\\\\n    },\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"arc_easy\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6531986531986532,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.009766326091716078,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.6106902356902357,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.010005212782878208\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"hellaswag\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.3850826528579964,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.004856203374715312,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.481876120294762,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.004986502296930994\\\\n    },\\\\n    \\\\\\\"piqa\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"piqa\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.6893362350380848,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.010797078933727623,\\\\n      \\\\\\\"acc_norm,none\\\\\\\": 0.6931447225244831,\\\\n      \\\\\\\"acc_norm_stderr,none\\\\\\\": 0.01076029507058034\\\\n    },\\\\n    \\\\\\\"winogrande\\\\\\\": {\\\\n      \\\\\\\"alias\\\\\\\": \\\\\\\"winogrande\\\\\\\",\\\\n      \\\\\\\"acc,none\\\\\\\": 0.5659037095501184,\\\\n      \\\\\\\"acc_stderr,none\\\\\\\": 0.013929882555694053\\\\n    }\\\\n  },\\\\n  \\\\\\\"group_subtasks\\\\\\\": {\\\\n    \\\\\\\"arc_easy\\\\\\\": [],\\\\n    \\\\\\\"arc_challenge\\\\\\\": [],\\\\n    \\\\\\\"hellaswag\\\\\\\": [],\\\\n    \\\\\\\"piqa\\\\\\\": [],\\\\n    \\\\\\\"winogrande\\\\\\\": []\\\\n  },\\\\n  \\\\\\\"configs\\\\\\\": {\\\\n    \\\\\\\"arc_challenge\\\\\\\": {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"arc_challenge\\\\\\\",\\\\n      \\\\\\\"tag\\\\\\\": [\\\\n        \\\\\\\"ai2_arc\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"dataset_path\\\\\\\": \\\\\\\"allenai/ai2_arc\\\\\\\",\\\\n      \\\\\\\"dataset_name\\\\\\\": \\\\\\\"ARC-Challenge\\\\\\\",\\\\n      \\\\\\\"training_split\\\\\\\": \\\\\\\"train\\\\\\\",\\\\n      \\\\\\\"validation_split\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"test_split\\\\\\\": \\\\\\\"test\\\\\\\",\\\\n      \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n      \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{choices.label.index(answerKey)}}\\\\\\\",\\\\n      \\\\\\\"unsafe_code\\\\\\\": false,\\\\n      \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"{{choices.text}}\\\\\\\",\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\",\\\\n      \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"fewshot_config\\\\\\\": {\\\\n        \\\\\\\"sampler\\\\\\\": \\\\\\\"default\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": null,\\\\n        \\\\\\\"process_docs\\\\\\\": null,\\\\n        \\\\\\\"fewshot_indices\\\\\\\": null,\\\\n        \\\\\\\"samples\\\\\\\": null,\\\\n        \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n        \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"{{choices.text}}\\\\\\\",\\\\n        \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{choices.label.index(answerKey)}}\\\\\\\",\\\\n        \\\\\\\"gen_prefix\\\\\\\": null,\\\\n        \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\"\\\\n      },\\\\n      \\\\\\\"num_fewshot\\\\\\\": 0,\\\\n      \\\\\\\"metric_list\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"metric\\\\\\\": \\\\\\\"acc\\\\\\\",\\\\n          \\\\\\\"aggregation\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n          \\\\\\\"higher_is_better\\\\\\\": true\\\\n        },\\\\n        {\\\\n          \\\\\\\"metric\\\\\\\": \\\\\\\"acc_norm\\\\\\\",\\\\n          \\\\\\\"aggregation\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n          \\\\\\\"higher_is_better\\\\\\\": true\\\\n        }\\\\n      ],\\\\n      \\\\\\\"output_type\\\\\\\": \\\\\\\"multiple_choice\\\\\\\",\\\\n      \\\\\\\"repeats\\\\\\\": 1,\\\\n      \\\\\\\"should_decontaminate\\\\\\\": true,\\\\n      \\\\\\\"doc_to_decontamination_query\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n      \\\\\\\"metadata\\\\\\\": {\\\\n        \\\\\\\"version\\\\\\\": 1.0,\\\\n        \\\\\\\"pretrained\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q04_seed42/final\\\\\\\",\\\\n        \\\\\\\"dtype\\\\\\\": \\\\\\\"float16\\\\\\\"\\\\n      }\\\\n    },\\\\n    \\\\\\\"arc_easy\\\\\\\": {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"arc_easy\\\\\\\",\\\\n      \\\\\\\"tag\\\\\\\": [\\\\n        \\\\\\\"ai2_arc\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"dataset_path\\\\\\\": \\\\\\\"allenai/ai2_arc\\\\\\\",\\\\n      \\\\\\\"dataset_name\\\\\\\": \\\\\\\"ARC-Easy\\\\\\\",\\\\n      \\\\\\\"training_split\\\\\\\": \\\\\\\"train\\\\\\\",\\\\n      \\\\\\\"validation_split\\\\\\\": \\\\\\\"validation\\\\\\\",\\\\n      \\\\\\\"test_split\\\\\\\": \\\\\\\"test\\\\\\\",\\\\n      \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n      \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{choices.label.index(answerKey)}}\\\\\\\",\\\\n      \\\\\\\"unsafe_code\\\\\\\": false,\\\\n      \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"{{choices.text}}\\\\\\\",\\\\n      \\\\\\\"description\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\",\\\\n      \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"fewshot_config\\\\\\\": {\\\\n        \\\\\\\"sampler\\\\\\\": \\\\\\\"default\\\\\\\",\\\\n        \\\\\\\"split\\\\\\\": null,\\\\n        \\\\\\\"process_docs\\\\\\\": null,\\\\n        \\\\\\\"fewshot_indices\\\\\\\": null,\\\\n        \\\\\\\"samples\\\\\\\": null,\\\\n        \\\\\\\"doc_to_text\\\\\\\": \\\\\\\"Question: {{question}}\\\\\\\\nAnswer:\\\\\\\",\\\\n        \\\\\\\"doc_to_choice\\\\\\\": \\\\\\\"{{choices.text}}\\\\\\\",\\\\n        \\\\\\\"doc_to_target\\\\\\\": \\\\\\\"{{choices.label.index(answerKey)}}\\\\\\\",\\\\n        \\\\\\\"gen_prefix\\\\\\\": null,\\\\n        \\\\\\\"fewshot_delimiter\\\\\\\": \\\\\\\"\\\\\\\\n\\\\\\\\n\\\\\\\",\\\\n        \\\\\\\"target_delimiter\\\\\\\": \\\\\\\" \\\\\\\"\\\\n      },\\\\n      \\\\\\\"num_fewshot\\\\\\\": 0,\\\\n      \\\\\\\"metric_list\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"metric\\\\\\\": \\\\\\\"acc\\\\\\\",\\\\n          \\\\\\\"aggregation\\\\\\\": \\\\\\\"mean\\\\\\\",\\\\n          \\\\\\\"hig\\\\n\\\\n... [截断: 输出过长，省略 11009 字符] ...\\\\n\\\\n104 instances)\\\\\\\\nL2 cache:                        208 MiB (104 instances)\\\\\\\\nL3 cache:                        210 MiB (2 instances)\\\\\\\\nNUMA node(s):                    2\\\\\\\\nNUMA node0 CPU(s):               0-51,104-155\\\\\\\\nNUMA node1 CPU(s):               52-103,156-207\\\\\\\\nVulnerability Itlb multihit:     Not affected\\\\\\\\nVulnerability L1tf:              Not affected\\\\\\\\nVulnerability Mds:               Not affected\\\\\\\\nVulnerability Meltdown:          Not affected\\\\\\\\nVulnerability Mmio stale data:   Not affected\\\\\\\\nVulnerability Retbleed:          Not affected\\\\\\\\nVulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp\\\\\\\\nVulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization\\\\\\\\nVulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence\\\\\\\\nVulnerability Srbds:             Not affected\\\\\\\\nVulnerability Tsx async abort:   Not affected\\\\\\\\n\\\\\\\\nVersions of relevant libraries:\\\\\\\\n[pip3] numpy==2.2.6\\\\\\\\n[pip3] nvidia-cublas-cu12==12.8.4.1\\\\\\\\n[pip3] nvidia-cuda-cupti-cu12==12.8.90\\\\\\\\n[pip3] nvidia-cuda-nvrtc-cu12==12.8.93\\\\\\\\n[pip3] nvidia-cuda-runtime-cu12==12.8.90\\\\\\\\n[pip3] nvidia-cudnn-cu12==9.10.2.21\\\\\\\\n[pip3] nvidia-cudnn-frontend==1.18.0\\\\\\\\n[pip3] nvidia-cufft-cu12==11.3.3.83\\\\\\\\n[pip3] nvidia-curand-cu12==10.3.9.90\\\\\\\\n[pip3] nvidia-cusolver-cu12==11.7.3.90\\\\\\\\n[pip3] nvidia-cusparse-cu12==12.5.8.93\\\\\\\\n[pip3] nvidia-cusparselt-cu12==0.7.1\\\\\\\\n[pip3] nvidia-nccl-cu12==2.27.5\\\\\\\\n[pip3] nvidia-nvjitlink-cu12==12.8.93\\\\\\\\n[pip3] nvidia-nvtx-cu12==12.8.90\\\\\\\\n[pip3] torch==2.10.0+cu128\\\\\\\\n[pip3] torch_c_dlpack_ext==0.1.5\\\\\\\\n[pip3] torchaudio==2.10.0\\\\\\\\n[pip3] torchvision==0.25.0+cu128\\\\\\\\n[pip3] triton==3.6.0\\\\\\\\n[conda] numpy                     2.2.6                    pypi_0    pypi\\\\\\\\n[conda] nvidia-cublas-cu12        12.8.4.1                 pypi_0    pypi\\\\\\\\n[conda] nvidia-cuda-cupti-cu12    12.8.90                  pypi_0    pypi\\\\\\\\n[conda] nvidia-cuda-nvrtc-cu12    12.8.93                  pypi_0    pypi\\\\\\\\n[conda] nvidia-cuda-runtime-cu12  12.8.90                  pypi_0    pypi\\\\\\\\n[conda] nvidia-cudnn-cu12         9.10.2.21                pypi_0    pypi\\\\\\\\n[conda] nvidia-cudnn-frontend     1.18.0                   pypi_0    pypi\\\\\\\\n[conda] nvidia-cufft-cu12         11.3.3.83                pypi_0    pypi\\\\\\\\n[conda] nvidia-curand-cu12        10.3.9.90                pypi_0    pypi\\\\\\\\n[conda] nvidia-cusolver-cu12      11.7.3.90                pypi_0    pypi\\\\\\\\n[conda] nvidia-cusparse-cu12      12.5.8.93                pypi_0    pypi\\\\\\\\n[conda] nvidia-cusparselt-cu12    0.7.1                    pypi_0    pypi\\\\\\\\n[conda] nvidia-nccl-cu12          2.27.5                   pypi_0    pypi\\\\\\\\n[conda] nvidia-nvjitlink-cu12     12.8.93                  pypi_0    pypi\\\\\\\\n[conda] nvidia-nvtx-cu12          12.8.90                  pypi_0    pypi\\\\\\\\n[conda] torch                     2.10.0+cu128             pypi_0    pypi\\\\\\\\n[conda] torch-c-dlpack-ext        0.1.5                    pypi_0    pypi\\\\\\\\n[conda] torchaudio                2.10.0                   pypi_0    pypi\\\\\\\\n[conda] torchvision               0.25.0+cu128             pypi_0    pypi\\\\\\\\n[conda] triton                    3.6.0                    pypi_0    pypi\\\\\\\",\\\\n  \\\\\\\"transformers_version\\\\\\\": \\\\\\\"5.8.1\\\\\\\",\\\\n  \\\\\\\"lm_eval_version\\\\\\\": \\\\\\\"0.4.11\\\\\\\",\\\\n  \\\\\\\"upper_git_hash\\\\\\\": null,\\\\n  \\\\\\\"tokenizer_pad_token\\\\\\\": [\\\\n    \\\\\\\"<|endoftext|>\\\\\\\",\\\\n    \\\\\\\"151643\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"tokenizer_eos_token\\\\\\\": [\\\\n    \\\\\\\"<|im_end|>\\\\\\\",\\\\n    \\\\\\\"151645\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"tokenizer_bos_token\\\\\\\": [\\\\n    null,\\\\n    \\\\\\\"None\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"eot_token_id\\\\\\\": 151645,\\\\n  \\\\\\\"max_length\\\\\\\": 40960,\\\\n  \\\\\\\"task_hashes\\\\\\\": {},\\\\n  \\\\\\\"model_source\\\\\\\": \\\\\\\"hf\\\\\\\",\\\\n  \\\\\\\"model_name\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q04_seed42/final\\\\\\\",\\\\n  \\\\\\\"model_name_sanitized\\\\\\\": \\\\\\\"__root__autodl-tmp__provenance_weight_training__output__models__detect_remove_q04_seed42__final\\\\\\\",\\\\n  \\\\\\\"system_instruction\\\\\\\": null,\\\\n  \\\\\\\"system_instruction_sha\\\\\\\": null,\\\\n  \\\\\\\"fewshot_as_multiturn\\\\\\\": null,\\\\n  \\\\\\\"chat_template\\\\\\\": null,\\\\n  \\\\\\\"chat_template_sha\\\\\\\": null,\\\\n  \\\\\\\"total_evaluation_time_seconds\\\\\\\": \\\\\\\"88.2968032732606\\\\\\\"\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"results\\\": {\\n    \\\"arc_challenge\\\": {\\n      \\\"alias\\\": \\\"arc_challenge\\\",\\n      \\\"acc,none\\\": 0.3293515358361775,\\n      \\\"acc_stderr,none\\\": 0.013734057652635537,\\n      \\\"acc_norm,none\\\": 0.35665529010238906,\\n      \\\"acc_norm_stderr,none\\\": 0.013998056902620168\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"alias\\\": \\\"arc_easy\\\",\\n      \\\"acc,none\\\": 0.6531986531986532,\\n      \\\"acc_stderr,none\\\": 0.009766326091716078,\\n      \\\"acc_norm,none\\\": 0.6106902356902357,\\n      \\\"acc_norm_stderr,none\\\": 0.010005212782878208\\n    },\\n    \\\"hellaswag\\\": {\\n      \\\"alias\\\": \\\"hellaswag\\\",\\n      \\\"acc,none\\\": 0.3850826528579964,\\n      \\\"acc_stderr,none\\\": 0.004856203374715312,\\n      \\\"acc_norm,none\\\": 0.481876120294762,\\n      \\\"acc_norm_stderr,none\\\": 0.004986502296930994\\n    },\\n    \\\"piqa\\\": {\\n      \\\"alias\\\": \\\"piqa\\\",\\n      \\\"acc,none\\\": 0.6893362350380848,\\n      \\\"acc_stderr,none\\\": 0.010797078933727623,\\n      \\\"acc_norm,none\\\": 0.6931447225244831,\\n      \\\"acc_norm_stderr,none\\\": 0.01076029507058034\\n    },\\n    \\\"winogrande\\\": {\\n      \\\"alias\\\": \\\"winogrande\\\",\\n      \\\"acc,none\\\": 0.5659037095501184,\\n      \\\"acc_stderr,none\\\": 0.013929882555694053\\n    }\\n  },\\n  \\\"group_subtasks\\\": {\\n    \\\"arc_easy\\\": [],\\n    \\\"arc_challenge\\\": [],\\n    \\\"hellaswag\\\": [],\\n    \\\"piqa\\\": [],\\n    \\\"winogrande\\\": []\\n  },\\n  \\\"configs\\\": {\\n    \\\"arc_challenge\\\": {\\n      \\\"task\\\": \\\"arc_challenge\\\",\\n      \\\"tag\\\": [\\n        \\\"ai2_arc\\\"\\n      ],\\n      \\\"dataset_path\\\": \\\"allenai/ai2_arc\\\",\\n      \\\"dataset_name\\\": \\\"ARC-Challenge\\\",\\n      \\\"training_split\\\": \\\"train\\\",\\n      \\\"validation_split\\\": \\\"validation\\\",\\n      \\\"test_split\\\": \\\"test\\\",\\n      \\\"doc_to_text\\\": \\\"Question: {{question}}\\\\nAnswer:\\\",\\n      \\\"doc_to_target\\\": \\\"{{choices.label.index(answerKey)}}\\\",\\n      \\\"unsafe_code\\\": false,\\n      \\\"doc_to_choice\\\": \\\"{{choices.text}}\\\",\\n      \\\"description\\\": \\\"\\\",\\n      \\\"target_delimiter\\\": \\\" \\\",\\n      \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n      \\\"fewshot_config\\\": {\\n        \\\"sampler\\\": \\\"default\\\",\\n        \\\"split\\\": null,\\n        \\\"process_docs\\\": null,\\n        \\\"fewshot_indices\\\": null,\\n        \\\"samples\\\": null,\\n        \\\"doc_to_text\\\": \\\"Question: {{question}}\\\\nAnswer:\\\",\\n        \\\"doc_to_choice\\\": \\\"{{choices.text}}\\\",\\n        \\\"doc_to_target\\\": \\\"{{choices.label.index(answerKey)}}\\\",\\n        \\\"gen_prefix\\\": null,\\n        \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n        \\\"target_delimiter\\\": \\\" \\\"\\n      },\\n      \\\"num_fewshot\\\": 0,\\n      \\\"metric_list\\\": [\\n        {\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"aggregation\\\": \\\"mean\\\",\\n          \\\"higher_is_better\\\": true\\n        },\\n        {\\n          \\\"metric\\\": \\\"acc_norm\\\",\\n          \\\"aggregation\\\": \\\"mean\\\",\\n          \\\"higher_is_better\\\": true\\n        }\\n      ],\\n      \\\"output_type\\\": \\\"multiple_choice\\\",\\n      \\\"repeats\\\": 1,\\n      \\\"should_decontaminate\\\": true,\\n      \\\"doc_to_decontamination_query\\\": \\\"Question: {{question}}\\\\nAnswer:\\\",\\n      \\\"metadata\\\": {\\n        \\\"version\\\": 1.0,\\n        \\\"pretrained\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q04_seed42/final\\\",\\n        \\\"dtype\\\": \\\"float16\\\"\\n      }\\n    },\\n    \\\"arc_easy\\\": {\\n      \\\"task\\\": \\\"arc_easy\\\",\\n      \\\"tag\\\": [\\n        \\\"ai2_arc\\\"\\n      ],\\n      \\\"dataset_path\\\": \\\"allenai/ai2_arc\\\",\\n      \\\"dataset_name\\\": \\\"ARC-Easy\\\",\\n      \\\"training_split\\\": \\\"train\\\",\\n      \\\"validation_split\\\": \\\"validation\\\",\\n      \\\"test_split\\\": \\\"test\\\",\\n      \\\"doc_to_text\\\": \\\"Question: {{question}}\\\\nAnswer:\\\",\\n      \\\"doc_to_target\\\": \\\"{{choices.label.index(answerKey)}}\\\",\\n      \\\"unsafe_code\\\": false,\\n      \\\"doc_to_choice\\\": \\\"{{choices.text}}\\\",\\n      \\\"description\\\": \\\"\\\",\\n      \\\"target_delimiter\\\": \\\" \\\",\\n      \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n      \\\"fewshot_config\\\": {\\n        \\\"sampler\\\": \\\"default\\\",\\n        \\\"split\\\": null,\\n        \\\"process_docs\\\": null,\\n        \\\"fewshot_indices\\\": null,\\n        \\\"samples\\\": null,\\n        \\\"doc_to_text\\\": \\\"Question: {{question}}\\\\nAnswer:\\\",\\n        \\\"doc_to_choice\\\": \\\"{{choices.text}}\\\",\\n        \\\"doc_to_target\\\": \\\"{{choices.label.index(answerKey)}}\\\",\\n        \\\"gen_prefix\\\": null,\\n        \\\"fewshot_delimiter\\\": \\\"\\\\n\\\\n\\\",\\n        \\\"target_delimiter\\\": \\\" \\\"\\n      },\\n      \\\"num_fewshot\\\": 0,\\n      \\\"metric_list\\\": [\\n        {\\n          \\\"metric\\\": \\\"acc\\\",\\n          \\\"aggregation\\\": \\\"mean\\\",\\n          \\\"hig\\n\\n... [截断: 输出过长，省略 11009 字符] ...\\n\\n104 instances)\\\\nL2 cache:                        208 MiB (104 instances)\\\\nL3 cache:                        210 MiB (2 instances)\\\\nNUMA node(s):                    2\\\\nNUMA node0 CPU(s):               0-51,104-155\\\\nNUMA node1 CPU(s):               52-103,156-207\\\\nVulnerability Itlb multihit:     Not affected\\\\nVulnerability L1tf:              Not affected\\\\nVulnerability Mds:               Not affected\\\\nVulnerability Meltdown:          Not affected\\\\nVulnerability Mmio stale data:   Not affected\\\\nVulnerability Retbleed:          Not affected\\\\nVulnerability Spec store bypass: Mitigation; Speculative Store Bypass disabled via prctl and seccomp\\\\nVulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization\\\\nVulnerability Spectre v2:        Mitigation; Enhanced IBRS, IBPB conditional, RSB filling, PBRSB-eIBRS SW sequence\\\\nVulnerability Srbds:             Not affected\\\\nVulnerability Tsx async abort:   Not affected\\\\n\\\\nVersions of relevant libraries:\\\\n[pip3] numpy==2.2.6\\\\n[pip3] nvidia-cublas-cu12==12.8.4.1\\\\n[pip3] nvidia-cuda-cupti-cu12==12.8.90\\\\n[pip3] nvidia-cuda-nvrtc-cu12==12.8.93\\\\n[pip3] nvidia-cuda-runtime-cu12==12.8.90\\\\n[pip3] nvidia-cudnn-cu12==9.10.2.21\\\\n[pip3] nvidia-cudnn-frontend==1.18.0\\\\n[pip3] nvidia-cufft-cu12==11.3.3.83\\\\n[pip3] nvidia-curand-cu12==10.3.9.90\\\\n[pip3] nvidia-cusolver-cu12==11.7.3.90\\\\n[pip3] nvidia-cusparse-cu12==12.5.8.93\\\\n[pip3] nvidia-cusparselt-cu12==0.7.1\\\\n[pip3] nvidia-nccl-cu12==2.27.5\\\\n[pip3] nvidia-nvjitlink-cu12==12.8.93\\\\n[pip3] nvidia-nvtx-cu12==12.8.90\\\\n[pip3] torch==2.10.0+cu128\\\\n[pip3] torch_c_dlpack_ext==0.1.5\\\\n[pip3] torchaudio==2.10.0\\\\n[pip3] torchvision==0.25.0+cu128\\\\n[pip3] triton==3.6.0\\\\n[conda] numpy                     2.2.6                    pypi_0    pypi\\\\n[conda] nvidia-cublas-cu12        12.8.4.1                 pypi_0    pypi\\\\n[conda] nvidia-cuda-cupti-cu12    12.8.90                  pypi_0    pypi\\\\n[conda] nvidia-cuda-nvrtc-cu12    12.8.93                  pypi_0    pypi\\\\n[conda] nvidia-cuda-runtime-cu12  12.8.90                  pypi_0    pypi\\\\n[conda] nvidia-cudnn-cu12         9.10.2.21                pypi_0    pypi\\\\n[conda] nvidia-cudnn-frontend     1.18.0                   pypi_0    pypi\\\\n[conda] nvidia-cufft-cu12         11.3.3.83                pypi_0    pypi\\\\n[conda] nvidia-curand-cu12        10.3.9.90                pypi_0    pypi\\\\n[conda] nvidia-cusolver-cu12      11.7.3.90                pypi_0    pypi\\\\n[conda] nvidia-cusparse-cu12      12.5.8.93                pypi_0    pypi\\\\n[conda] nvidia-cusparselt-cu12    0.7.1                    pypi_0    pypi\\\\n[conda] nvidia-nccl-cu12          2.27.5                   pypi_0    pypi\\\\n[conda] nvidia-nvjitlink-cu12     12.8.93                  pypi_0    pypi\\\\n[conda] nvidia-nvtx-cu12          12.8.90                  pypi_0    pypi\\\\n[conda] torch                     2.10.0+cu128             pypi_0    pypi\\\\n[conda] torch-c-dlpack-ext        0.1.5                    pypi_0    pypi\\\\n[conda] torchaudio                2.10.0                   pypi_0    pypi\\\\n[conda] torchvision               0.25.0+cu128             pypi_0    pypi\\\\n[conda] triton                    3.6.0                    pypi_0    pypi\\\",\\n  \\\"transformers_version\\\": \\\"5.8.1\\\",\\n  \\\"lm_eval_version\\\": \\\"0.4.11\\\",\\n  \\\"upper_git_hash\\\": null,\\n  \\\"tokenizer_pad_token\\\": [\\n    \\\"<|endoftext|>\\\",\\n    \\\"151643\\\"\\n  ],\\n  \\\"tokenizer_eos_token\\\": [\\n    \\\"<|im_end|>\\\",\\n    \\\"151645\\\"\\n  ],\\n  \\\"tokenizer_bos_token\\\": [\\n    null,\\n    \\\"None\\\"\\n  ],\\n  \\\"eot_token_id\\\": 151645,\\n  \\\"max_length\\\": 40960,\\n  \\\"task_hashes\\\": {},\\n  \\\"model_source\\\": \\\"hf\\\",\\n  \\\"model_name\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q04_seed42/final\\\",\\n  \\\"model_name_sanitized\\\": \\\"__root__autodl-tmp__provenance_weight_training__output__models__detect_remove_q04_seed42__final\\\",\\n  \\\"system_instruction\\\": null,\\n  \\\"system_instruction_sha\\\": null,\\n  \\\"fewshot_as_multiturn\\\": null,\\n  \\\"chat_template\\\": null,\\n  \\\"chat_template_sha\\\": null,\\n  \\\"total_evaluation_time_seconds\\\": \\\"88.2968032732606\\\"\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000338"
+        },
+        {
+          "source_line": 339,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I have q04 results:\n\n**detect_remove_q04_seed42 downstream results:**\n- arc_easy acc_norm: 0.6107\n- arc_challenge acc_norm: 0.3567\n- hellaswag acc_norm: 0.4819\n- piqa acc_norm: 0.6931\n- winogrande acc: 0.5659\n\nMean = (0.6107 + 0.3567 + 0.4819 + 0.6931 + 0.5659) / 5 = 2.7083 / 5 = 0.5417\n\n\nNow I need to update the registry and look for epoch_matched results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "9b0fe731-6e08-4a80-9a44-f6a8916a7b1c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011jvMPSsmG58BS6u2d81W4M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4335,
+                "cache_read_input_tokens": 149071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4335
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000339"
+        },
+        {
+          "source_line": 340,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**q04 结果：**\n| Benchmark | Score |\n|-----------|-------|\n| arc_easy (acc_norm) | 0.6107 |\n| arc_challenge (acc_norm) | 0.3567 |\n| hellaswag (acc_norm) | 0.4819 |\n| piqa (acc_norm) | 0.6931 |\n| winogrande (acc) | 0.5659 |\n| **Mean** | **0.5417** |\n\n更新 registry 和检查 epoch_matched。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "04723938-1230-4029-9dbe-e5016bdf1c21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011jvMPSsmG58BS6u2d81W4M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4335,
+                "cache_read_input_tokens": 149071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4335
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000340"
+        },
+        {
+          "source_line": 341,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gjrd4J2qgjSmX4ez9cnNXY",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detect_remove_q04_seed42",
+                "field": "metrics",
+                "value": {
+                  "eval_ppl_holdout": 17.26,
+                  "eval_loss_holdout": 2.8485,
+                  "downstream_arc_easy_acc_norm": 0.6107,
+                  "downstream_arc_challenge_acc_norm": 0.3567,
+                  "downstream_hellaswag_acc_norm": 0.4819,
+                  "downstream_piqa_acc_norm": 0.6931,
+                  "downstream_winogrande_acc": 0.5659,
+                  "downstream_eval_method": "lm_eval 0.4.11, 0-shot, float16, batch_size=auto"
+                },
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "870b92f9-bcd0-4921-b93b-ff067746b2d6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011jvMPSsmG58BS6u2d81W4M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4335,
+                "cache_read_input_tokens": 149071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4335
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000341"
+        },
+        {
+          "source_line": 342,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UU7ppDVoNfw4w7257p2xM7",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_q04",
+                "field": "metrics",
+                "value": {
+                  "loss": 2.8485,
+                  "perplexity": 17.2626,
+                  "num_tokens": 4077068,
+                  "elapsed_seconds": 103.8,
+                  "downstream_arc_easy_acc_norm": 0.6107,
+                  "downstream_arc_challenge_acc_norm": 0.3567,
+                  "downstream_hellaswag_acc_norm": 0.4819,
+                  "downstream_piqa_acc_norm": 0.6931,
+                  "downstream_winogrande_acc": 0.5659,
+                  "downstream_eval_method": "lm_eval 0.4.11, 0-shot, float16, batch_size=auto"
+                },
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "acbf32a7-dc60-41e4-8e81-5932dd0a6486",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011jvMPSsmG58BS6u2d81W4M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4335,
+                "cache_read_input_tokens": 149071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4335
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000342"
+        },
+        {
+          "source_line": 343,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VT5tzSbRwaYmuU53pUB9Ec",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-41312",
+                "account": "root",
+                "command": "find /root/autodl-tmp -maxdepth 5 -type d -name \"final\" -path \"*epoch_matched*\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "1cc9222f-4e43-46f6-a82d-a10def8d55ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011jvMPSsmG58BS6u2d81W4M",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4335,
+                "cache_read_input_tokens": 149071,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4335
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000343"
+        },
+        {
+          "source_line": 344,
+          "timestamp": "2026-05-20T04:49:09.972Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gjrd4J2qgjSmX4ez9cnNXY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q04_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T17:57:02.595Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:49:09.614Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/detect_remove_q04_seed42/final\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q04_seed42.log\\\", \\\"data_count\\\": 136957}, \\\"hypothesis\\\": \\\"D&R threshold t=0.4: keep q≤0.4 samples. Densification point between q03 (31.5%) and q05 (41.4%, PPL=17.28). Helps pinpoint the PPL sweet spot and quantify sensitivity. Part of expanded 9-point D&R threshold curve.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T21:34:03.227Z\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.26, \\\"eval_loss_holdout\\\": 2.8485, \\\"downstream_arc_easy_acc_norm\\\": 0.6107, \\\"downstream_arc_challenge_acc_norm\\\": 0.3567, \\\"downstream_hellaswag_acc_norm\\\": 0.4819, \\\"downstream_piqa_acc_norm\\\": 0.6931, \\\"downstream_winogrande_acc\\\": 0.5659, \\\"downstream_eval_method\\\": \\\"lm_eval 0.4.11, 0-shot, float16, batch_size=auto\\\"}, \\\"completed_at\\\": \\\"2026-05-18T22:01:52.526Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4912}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "bf68f02c-1204-4041-b055-ba762d99580b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q04_seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T17:57:02.595Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:49:09.614Z\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/detect_remove_q04_seed42/final\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q04_seed42.log\\\", \\\"data_count\\\": 136957}, \\\"hypothesis\\\": \\\"D&R threshold t=0.4: keep q≤0.4 samples. Densification point between q03 (31.5%) and q05 (41.4%, PPL=17.28). Helps pinpoint the PPL sweet spot and quantify sensitivity. Part of expanded 9-point D&R threshold curve.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-18T21:34:03.227Z\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.26, \\\"eval_loss_holdout\\\": 2.8485, \\\"downstream_arc_easy_acc_norm\\\": 0.6107, \\\"downstream_arc_challenge_acc_norm\\\": 0.3567, \\\"downstream_hellaswag_acc_norm\\\": 0.4819, \\\"downstream_piqa_acc_norm\\\": 0.6931, \\\"downstream_winogrande_acc\\\": 0.5659, \\\"downstream_eval_method\\\": \\\"lm_eval 0.4.11, 0-shot, float16, batch_size=auto\\\"}, \\\"completed_at\\\": \\\"2026-05-18T22:01:52.526Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4912}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detect_remove_q04_seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:57:02.595Z\", \"updated_at\": \"2026-05-20T04:49:09.614Z\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/output/models/detect_remove_q04_seed42/final\", \"log_path\": \"~/runs/provenance_weight_training/detect_remove_q04_seed42.log\", \"data_count\": 136957}, \"hypothesis\": \"D&R threshold t=0.4: keep q≤0.4 samples. Densification point between q03 (31.5%) and q05 (41.4%, PPL=17.28). Helps pinpoint the PPL sweet spot and quantify sensitivity. Part of expanded 9-point D&R threshold curve.\", \"reproduce\": {\"finished_at\": \"2026-05-18T21:34:03.227Z\"}, \"conclusion\": \"success\", \"metrics\": {\"eval_ppl_holdout\": 17.26, \"eval_loss_holdout\": 2.8485, \"downstream_arc_easy_acc_norm\": 0.6107, \"downstream_arc_challenge_acc_norm\": 0.3567, \"downstream_hellaswag_acc_norm\": 0.4819, \"downstream_piqa_acc_norm\": 0.6931, \"downstream_winogrande_acc\": 0.5659, \"downstream_eval_method\": \"lm_eval 0.4.11, 0-shot, float16, batch_size=auto\"}, \"completed_at\": \"2026-05-18T22:01:52.526Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4912}}"
+              }
+            }
+          },
+          "id": "event-000344"
+        },
+        {
+          "source_line": 345,
+          "timestamp": "2026-05-20T04:49:10.837Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UU7ppDVoNfw4w7257p2xM7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_q04\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T21:49:30.129Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:49:10.488Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_perplexity.py --checkpoints /root/autodl-tmp/output/models/detect_remove_q04_seed42/final --data_path data/human/eval_holdout.jsonl --max_docs 5000 --max_length 2048\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"75261\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/eval_q04.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T21:49:29.738Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/human/eval_holdout.jsonl\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"detect_remove_q04_seed42\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"detect_remove_q04_seed42\\\", \\\"eval_data\\\": \\\"human/eval_holdout.jsonl\\\", \\\"wall_clock_seconds\\\": 109387.9, \\\"gpu_hours\\\": 30.39}, \\\"metrics\\\": {\\\"loss\\\": 2.8485, \\\"perplexity\\\": 17.2626, \\\"num_tokens\\\": 4077068, \\\"elapsed_seconds\\\": 103.8, \\\"downstream_arc_easy_acc_norm\\\": 0.6107, \\\"downstream_arc_challenge_acc_norm\\\": 0.3567, \\\"downstream_hellaswag_acc_norm\\\": 0.4819, \\\"downstream_piqa_acc_norm\\\": 0.6931, \\\"downstream_winogrande_acc\\\": 0.5659, \\\"downstream_eval_method\\\": \\\"lm_eval 0.4.11, 0-shot, float16, batch_size=auto\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/detect_remove_q04_seed42/final\\\", \\\"log_path\\\": \\\"/tmp/eval_q04.log\\\", \\\"hypothesis\\\": \\\"Detect-remove at q=0.4 threshold should show lower PPL than epoch-matched baseline, with slightly higher PPL than q=0.3 due to retaining more borderline-quality documents.\\\", \\\"completed_at\\\": \\\"2026-05-20T04:12:37.643Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8518}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "538c4190-9618-44f9-8792-5ff603c6e305",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_q04\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T21:49:30.129Z\\\", \\\"updated_at\\\": \\\"2026-05-20T04:49:10.488Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_perplexity.py --checkpoints /root/autodl-tmp/output/models/detect_remove_q04_seed42/final --data_path data/human/eval_holdout.jsonl --max_docs 5000 --max_length 2048\\\", \\\"server\\\": \\\"westd-30476\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"75261\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/eval_q04.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T21:49:29.738Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/human/eval_holdout.jsonl\\\", \\\"data_count\\\": 5000, \\\"model_name\\\": \\\"detect_remove_q04_seed42\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"detect_remove_q04_seed42\\\", \\\"eval_data\\\": \\\"human/eval_holdout.jsonl\\\", \\\"wall_clock_seconds\\\": 109387.9, \\\"gpu_hours\\\": 30.39}, \\\"metrics\\\": {\\\"loss\\\": 2.8485, \\\"perplexity\\\": 17.2626, \\\"num_tokens\\\": 4077068, \\\"elapsed_seconds\\\": 103.8, \\\"downstream_arc_easy_acc_norm\\\": 0.6107, \\\"downstream_arc_challenge_acc_norm\\\": 0.3567, \\\"downstream_hellaswag_acc_norm\\\": 0.4819, \\\"downstream_piqa_acc_norm\\\": 0.6931, \\\"downstream_winogrande_acc\\\": 0.5659, \\\"downstream_eval_method\\\": \\\"lm_eval 0.4.11, 0-shot, float16, batch_size=auto\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/output/models/detect_remove_q04_seed42/final\\\", \\\"log_path\\\": \\\"/tmp/eval_q04.log\\\", \\\"hypothesis\\\": \\\"Detect-remove at q=0.4 threshold should show lower PPL than epoch-matched baseline, with slightly higher PPL than q=0.3 due to retaining more borderline-quality documents.\\\", \\\"completed_at\\\": \\\"2026-05-20T04:12:37.643Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8518}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_q04\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:49:30.129Z\", \"updated_at\": \"2026-05-20T04:49:10.488Z\", \"spec\": {\"command\": \"python eval_perplexity.py --checkpoints /root/autodl-tmp/output/models/detect_remove_q04_seed42/final --data_path data/human/eval_holdout.jsonl --max_docs 5000 --max_length 2048\", \"server\": \"westd-30476\", \"gpu\": [\"cuda:1\"], \"pid\": \"75261\", \"log_path\": \"~/runs/provenance_weight_training/eval_q04.log\", \"submitted_at\": \"2026-05-18T21:49:29.738Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/human/eval_holdout.jsonl\", \"data_count\": 5000, \"model_name\": \"detect_remove_q04_seed42\", \"seed\": 42, \"checkpoint_source\": \"detect_remove_q04_seed42\", \"eval_data\": \"human/eval_holdout.jsonl\", \"wall_clock_seconds\": 109387.9, \"gpu_hours\": 30.39}, \"metrics\": {\"loss\": 2.8485, \"perplexity\": 17.2626, \"num_tokens\": 4077068, \"elapsed_seconds\": 103.8, \"downstream_arc_easy_acc_norm\": 0.6107, \"downstream_arc_challenge_acc_norm\": 0.3567, \"downstream_hellaswag_acc_norm\": 0.4819, \"downstream_piqa_acc_norm\": 0.6931, \"downstream_winogrande_acc\": 0.5659, \"downstream_eval_method\": \"lm_eval 0.4.11, 0-shot, float16, batch_size=auto\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/output/models/detect_remove_q04_seed42/final\", \"log_path\": \"/tmp/eval_q04.log\", \"hypothesis\": \"Detect-remove at q=0.4 threshold should show lower PPL than epoch-matched baseline, with slightly higher PPL than q=0.3 due to retaining more borderline-quality documents.\", \"completed_at\": \"2026-05-20T04:12:37.643Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8518}}"
+              }
+            }
+          },
+          "id": "event-000345"
+        },
+        {
+          "source_line": 346,
+          "timestamp": "2026-05-20T04:49:11.290Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VT5tzSbRwaYmuU53pUB9Ec",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "f459c877-943e-4921-b08c-82aab9aa2691",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000346"
+        },
+        {
+          "source_line": 347,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-41312 上没有 epoch_matched checkpoint。跳过第四步。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "a04820ba-af6a-4daf-b5cb-a3e83e5bee45",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LBDHtntWTzM2yL2qkLdTCq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2389,
+                "cache_read_input_tokens": 153406,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2389
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000347"
+        },
+        {
+          "source_line": 348,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H5ajoXFmqYsdFCE34mPRJi",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Copy q03/q04 checkpoints from westd-30476 to westd-41312",
+                    "status": "completed",
+                    "activeForm": "Copying checkpoints"
+                  },
+                  {
+                    "content": "Run lm_eval downstream for detect_remove_q03_seed42_r2 on cuda:3",
+                    "status": "completed",
+                    "activeForm": "Running q03 downstream eval"
+                  },
+                  {
+                    "content": "Parse q03 results and update registry",
+                    "status": "completed",
+                    "activeForm": "Parsing q03 results"
+                  },
+                  {
+                    "content": "Run lm_eval downstream for detect_remove_q04_seed42 on cuda:3",
+                    "status": "completed",
+                    "activeForm": "Running q04 downstream eval"
+                  },
+                  {
+                    "content": "Parse q04 results and update registry",
+                    "status": "completed",
+                    "activeForm": "Parsing q04 results"
+                  },
+                  {
+                    "content": "Check if epoch_matched checkpoint exists on westd-41312",
+                    "status": "completed",
+                    "activeForm": "Checking epoch_matched checkpoint (not found, skipped)"
+                  },
+                  {
+                    "content": "Summarize all downstream results",
+                    "status": "in_progress",
+                    "activeForm": "Summarizing results"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "6a85c042-bcc6-47da-955d-a2c40e0df1db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LBDHtntWTzM2yL2qkLdTCq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2389,
+                "cache_read_input_tokens": 153406,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2389
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000348"
+        },
+        {
+          "source_line": 349,
+          "timestamp": "2026-05-20T04:49:17.857Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01H5ajoXFmqYsdFCE34mPRJi",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "bcc26bed-562d-4556-a5ef-f2204f2464ee",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Copy q03/q04 checkpoints from westd-30476 to westd-41312",
+                  "status": "completed",
+                  "activeForm": "Copying checkpoints"
+                },
+                {
+                  "content": "Run lm_eval downstream for detect_remove_q03_seed42_r2 on cuda:3",
+                  "status": "completed",
+                  "activeForm": "Running q03 downstream eval"
+                },
+                {
+                  "content": "Parse q03 results and update registry",
+                  "status": "completed",
+                  "activeForm": "Parsing q03 results"
+                },
+                {
+                  "content": "Run lm_eval downstream for detect_remove_q04_seed42 on cuda:3",
+                  "status": "in_progress",
+                  "activeForm": "Running q04 downstream eval (PID 406803)"
+                },
+                {
+                  "content": "Parse q04 results and update registry",
+                  "status": "pending",
+                  "activeForm": "Parsing q04 results"
+                },
+                {
+                  "content": "Check if epoch_matched checkpoint exists on westd-41312",
+                  "status": "pending",
+                  "activeForm": "Checking epoch_matched checkpoint"
+                },
+                {
+                  "content": "Summarize all downstream results",
+                  "status": "pending",
+                  "activeForm": "Summarizing results"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Copy q03/q04 checkpoints from westd-30476 to westd-41312",
+                  "status": "completed",
+                  "activeForm": "Copying checkpoints"
+                },
+                {
+                  "content": "Run lm_eval downstream for detect_remove_q03_seed42_r2 on cuda:3",
+                  "status": "completed",
+                  "activeForm": "Running q03 downstream eval"
+                },
+                {
+                  "content": "Parse q03 results and update registry",
+                  "status": "completed",
+                  "activeForm": "Parsing q03 results"
+                },
+                {
+                  "content": "Run lm_eval downstream for detect_remove_q04_seed42 on cuda:3",
+                  "status": "completed",
+                  "activeForm": "Running q04 downstream eval"
+                },
+                {
+                  "content": "Parse q04 results and update registry",
+                  "status": "completed",
+                  "activeForm": "Parsing q04 results"
+                },
+                {
+                  "content": "Check if epoch_matched checkpoint exists on westd-41312",
+                  "status": "completed",
+                  "activeForm": "Checking epoch_matched checkpoint (not found, skipped)"
+                },
+                {
+                  "content": "Summarize all downstream results",
+                  "status": "in_progress",
+                  "activeForm": "Summarizing results"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000349"
+        },
+        {
+          "source_line": 350,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总：Detect-Remove Downstream Eval 结果\n\n| Experiment | arc_easy | arc_challenge | hellaswag | piqa | winogrande | **Mean** |\n|---|---|---|---|---|---|---|\n| **detect_remove_q03_seed42_r2** | 0.6301 | 0.3549 | 0.4851 | 0.6872 | 0.5675 | **0.5449** |\n| **detect_remove_q04_seed42** | 0.6107 | 0.3567 | 0.4819 | 0.6931 | 0.5659 | **0.5417** |\n| uniform_seed42 (baseline) | 0.6128 | 0.3481 | 0.4836 | 0.6877 | 0.5856 | 0.5436 |\n| adaptive_fromscratch_seed42 | 0.6178 | 0.3524 | 0.4806 | 0.6844 | 0.5801 | 0.5431 |\n\n关键发现：\n- **q03** 均值 0.5449 略高于 uniform baseline (0.5436, +0.13pp)，主要由 arc_easy (+1.73pp) 和 arc_challenge (+0.68pp) 贡献，但 winogrande 下降明显 (-1.81pp)\n- **q04** 均值 0.5417 略低于 baseline (-0.19pp)，arc_easy 下降但 piqa 和 arc_challenge 有提升\n- 整体差异在噪声范围内，downstream benchmark 对这些 detect-remove 变体不敏感\n\nepoch_matched checkpoint 不在 westd-41312 上，已跳过。Registry 已更新。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "1ac4c487-84c5-4849-81ff-d4436339aa0a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GdHZqNpb77ENjYHoqCyEJN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 155795,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 391
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000350"
+        },
+        {
+          "source_line": 351,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0145FKit6mgenaUeMqYBuuHD",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Copy q03/q04 checkpoints from westd-30476 to westd-41312",
+                    "status": "completed",
+                    "activeForm": "Copying checkpoints"
+                  },
+                  {
+                    "content": "Run lm_eval downstream for detect_remove_q03_seed42_r2 on cuda:3",
+                    "status": "completed",
+                    "activeForm": "Running q03 downstream eval"
+                  },
+                  {
+                    "content": "Parse q03 results and update registry",
+                    "status": "completed",
+                    "activeForm": "Parsing q03 results"
+                  },
+                  {
+                    "content": "Run lm_eval downstream for detect_remove_q04_seed42 on cuda:3",
+                    "status": "completed",
+                    "activeForm": "Running q04 downstream eval"
+                  },
+                  {
+                    "content": "Parse q04 results and update registry",
+                    "status": "completed",
+                    "activeForm": "Parsing q04 results"
+                  },
+                  {
+                    "content": "Check if epoch_matched checkpoint exists on westd-41312",
+                    "status": "completed",
+                    "activeForm": "Checking epoch_matched checkpoint (not found, skipped)"
+                  },
+                  {
+                    "content": "Summarize all downstream results",
+                    "status": "completed",
+                    "activeForm": "Summarizing results"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "4d1fb6e2-4450-471a-963b-85c139e38cf3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GdHZqNpb77ENjYHoqCyEJN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 391,
+                "cache_read_input_tokens": 155795,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 391
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000351"
+        },
+        {
+          "source_line": 352,
+          "timestamp": "2026-05-20T04:49:29.960Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0145FKit6mgenaUeMqYBuuHD",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "uuid": "f0d6ea26-9e6a-45bf-ad9d-e5a1085547a7",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Copy q03/q04 checkpoints from westd-30476 to westd-41312",
+                  "status": "completed",
+                  "activeForm": "Copying checkpoints"
+                },
+                {
+                  "content": "Run lm_eval downstream for detect_remove_q03_seed42_r2 on cuda:3",
+                  "status": "completed",
+                  "activeForm": "Running q03 downstream eval"
+                },
+                {
+                  "content": "Parse q03 results and update registry",
+                  "status": "completed",
+                  "activeForm": "Parsing q03 results"
+                },
+                {
+                  "content": "Run lm_eval downstream for detect_remove_q04_seed42 on cuda:3",
+                  "status": "completed",
+                  "activeForm": "Running q04 downstream eval"
+                },
+                {
+                  "content": "Parse q04 results and update registry",
+                  "status": "completed",
+                  "activeForm": "Parsing q04 results"
+                },
+                {
+                  "content": "Check if epoch_matched checkpoint exists on westd-41312",
+                  "status": "completed",
+                  "activeForm": "Checking epoch_matched checkpoint (not found, skipped)"
+                },
+                {
+                  "content": "Summarize all downstream results",
+                  "status": "in_progress",
+                  "activeForm": "Summarizing results"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Copy q03/q04 checkpoints from westd-30476 to westd-41312",
+                  "status": "completed",
+                  "activeForm": "Copying checkpoints"
+                },
+                {
+                  "content": "Run lm_eval downstream for detect_remove_q03_seed42_r2 on cuda:3",
+                  "status": "completed",
+                  "activeForm": "Running q03 downstream eval"
+                },
+                {
+                  "content": "Parse q03 results and update registry",
+                  "status": "completed",
+                  "activeForm": "Parsing q03 results"
+                },
+                {
+                  "content": "Run lm_eval downstream for detect_remove_q04_seed42 on cuda:3",
+                  "status": "completed",
+                  "activeForm": "Running q04 downstream eval"
+                },
+                {
+                  "content": "Parse q04 results and update registry",
+                  "status": "completed",
+                  "activeForm": "Parsing q04 results"
+                },
+                {
+                  "content": "Check if epoch_matched checkpoint exists on westd-41312",
+                  "status": "completed",
+                  "activeForm": "Checking epoch_matched checkpoint (not found, skipped)"
+                },
+                {
+                  "content": "Summarize all downstream results",
+                  "status": "completed",
+                  "activeForm": "Summarizing results"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000352"
+        },
+        {
+          "source_line": 353,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 668553,
+            "duration_api_ms": 599075,
+            "num_turns": 127,
+            "stop_reason": "end_turn",
+            "session_id": "2e6d2196-f8ae-42d6-8df3-bda694e98ed2",
+            "total_cost_usd": 5.3670444999999996,
+            "usage": {
+              "input_tokens": 96,
+              "cache_creation_input_tokens": 145186,
+              "cache_read_input_tokens": 7437150,
+              "output_tokens": 29551,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 145186,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 2,
+                  "cache_read_input_tokens": 156186,
+                  "cache_creation_input_tokens": 841,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 841
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1702,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001802,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 96,
+                "outputTokens": 29551,
+                "cacheReadInputTokens": 7437150,
+                "cacheCreationInputTokens": 145186,
+                "webSearchRequests": 0,
+                "costUSD": 5.365242499999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "2cdf0081-7daf-4968-a83d-efc22ea30de4"
+          },
+          "id": "event-000353"
+        }
+      ]
+    }
+  ]
+}

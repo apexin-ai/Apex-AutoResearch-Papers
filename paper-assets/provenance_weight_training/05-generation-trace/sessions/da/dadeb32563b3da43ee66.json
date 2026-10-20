@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dadeb32563b3da43ee66",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit contamination 60 ess only seed456",
+  "task_key": "worker_submit_contamination_60_ess_only_seed456_20260518T061928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_contamination_60_ess_only_seed456_20260518T061928_result.json",
+    "occurrence": 1,
+    "bytes": 386,
+    "sha256": "90a641840ba7f5a26cfc4f7a8ff2e19bcc965f7da9f45f11ad1de2fccf8c1cb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **实验**: contamination_60_ess_only_seed456\n- **服务器**: westd-41312, GPU 1 (PID 182193)\n- **状态**: RUNNING, ~2.13s/it, 6103 steps, ETA ~3.5h\n- **日志**: `/root/autodl-tmp/provenance_weight_training/output/models/contamination_60_ess_only_seed456/train.log`\n- **未加 --save_only_model**，checkpoint 包含完整 optimizer/scheduler 状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-contamination-60-ess-only-seed456.md"
+}

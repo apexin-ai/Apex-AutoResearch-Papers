@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70a677bfe27aa2f253e3",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh kill gpu2 and resubmit",
+  "task_key": "worker_ssh_kill_gpu2_and_resubmit_20260515T184751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_gpu2_and_resubmit_20260515T184751_result.json",
+    "occurrence": 1,
+    "bytes": 126,
+    "sha256": "cfcd6da213e9842042bb02080fd7194628d1f104cbbcc5d4b42b71c36ad8e5e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部后台任务已完成。bs8_nmin2_seed42_r2 训练正常运行中，~2.3s/step，无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-gpu2-and-resubmit.md"
+}

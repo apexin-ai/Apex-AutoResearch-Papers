@@ -1,0 +1,37 @@
+_next_id: 4
+decisions:
+- id: D001
+  date: 2026-05-13 04:26 UTC
+  summary: 放弃 EMNLP 2026 ARR May 25，重定向至 AAAI 2027（abstract Jul 25, paper Aug 1）
+  rationale: EMNLP 2026 ARR deadline 5月25日距今仅12天，而项目需8-12周完成。即使只做最小实验也无法在12天内产出完整论文。AAAI
+    2027 给出约11周缓冲，足够完成 MVP + 主实验 + 写作。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-13 10:13 UTC
+  summary: Phase 0 PASS：属性正交性验证通过，有效属性空间 3 维（LC, SN, Quality/Confidence），进入 Phase
+    1
+  rationale: Pearson |r| 全部 < 0.7（最大 0.303），LC vs Confidence |r| = 0.303 < 0.5。Quality
+    vs Confidence Spearman ρ = -0.998 说明两者 rank 冗余（Quality = base PPL ≈ -Confidence
+    的非线性变换）。PGPF 的增量价值来自 LC 和 SN。Phase 1 中 PGPF-S 使用 3 属性（LC + SN + Confidence），避免
+    Quality-Confidence 冗余。等待 Reviewer 独立核实后正式启动 Phase 1。
+  related_experiments:
+  - exp_id: phase0_score_v3
+    role: primary
+    result: PASS - all |r| < 0.7, LC vs Confidence = 0.303
+  - exp_id: phase0_ortho_v2
+    role: predecessor
+    result: failed - stella download timeout
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-13 10:14 UTC
+  summary: 修正正交性 pass criteria：同时检查 Pearson 和 Spearman，取 max(|r|, |ρ|) 判定
+  rationale: Reviewer 指出 Pearson-only criteria 在非线性单调关系下会严重低估相关性（Quality vs Confidence
+    Pearson=-0.287 但 Spearman=-0.998）。后续所有正交性检查必须同时检查两种相关系数。
+  related_experiments:
+  - exp_id: phase0_score_v3
+    role: trigger
+    result: Quality vs Confidence Spearman -0.998 被 Pearson-only 漏检
+  depends_on:
+  - D002

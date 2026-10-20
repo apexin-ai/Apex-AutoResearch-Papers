@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "f566f080bd3e1986cde9",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose contamination 60 random seed42",
+  "task_key": "worker_diagnose_contamination_60_random_seed42_20260518T085849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_contamination_60_random_seed42_20260518T085849_result.json",
+    "occurrence": 1,
+    "bytes": 1777,
+    "sha256": "d7b547558fdaa6561da7c878c37320cd565b99219b23946ae5f8402dfd625121"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n```json\n{\"actual_status\": \"completed\", \"last_step\": 6103, \"expected_total_steps\": 6103, \"checkpoint_path\": \"/root/autodl-tmp/output/models/contamination_60_random_seed42/final\", \"log_path\": \"/root/autodl-tmp/output/models/contamination_60_random_seed42/train_resume.log\", \"root_cause\": \"日志未写入 ~/runs/ 监控路径，cron 在预期路径找不到 sentinel 文件也无 W&B run，因此误判为 dead process\", \"evidence\": \"进度条 6103/6103 (100%)，日志末行 'Training complete. Model saved to .../final'，final/ 目录含完整 model.safetensors (1.19GB) + tokenizer，训练耗时 10719s (~2h58m)，另有 eval_holdout_final.log 表明 eval 已触发\"}\n```\n\n关键发现：\n- 训练 **已完成**，6103/6103 steps，模型已保存到 `final/` 目录\n- ROADMAP 标注正确（\"已完成，误标failed\"）\n- 被误标原因：日志写入了 output 目录而非 `~/runs/provenance_weight_training/contamination_60_random_seed42.log`，cron 在预期路径找不到 sentinel 和 W&B run"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "actual_status": "completed",
+              "last_step": 6103,
+              "expected_total_steps": 6103,
+              "checkpoint_path": "/root/autodl-tmp/output/models/contamination_60_random_seed42/final",
+              "log_path": "/root/autodl-tmp/output/models/contamination_60_random_seed42/train_resume.log",
+              "root_cause": "日志未写入 ~/runs/ 监控路径，cron 在预期路径找不到 sentinel 文件也无 W&B run，因此误判为 dead process",
+              "evidence": "进度条 6103/6103 (100%)，日志末行 'Training complete. Model saved to .../final'，final/ 目录含完整 model.safetensors (1.19GB) + tokenizer，训练耗时 10719s (~2h58m)，另有 eval_holdout_final.log 表明 eval 已触发"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-contamination-60-random-seed42.md"
+}

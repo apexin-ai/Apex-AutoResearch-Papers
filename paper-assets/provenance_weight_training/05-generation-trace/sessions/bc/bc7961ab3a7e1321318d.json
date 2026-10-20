@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc7961ab3a7e1321318d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose and eval bs16 adaptive seed123 r2",
+  "task_key": "worker_diagnose_and_eval_bs16_adaptive_seed123_r2_20260521T231813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_and_eval_bs16_adaptive_seed123_r2_20260521T231813_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "739d498bdde841e7be9c22bd404902024665259863e07c4db1cc1fa0cb28a01d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完毕。汇总如下：\n\n---\n\n## 结果\n\n### 1. 训练状态：成功\n- 6103/6103 步完成，train_loss=2.534\n- final 目录已保存 model.safetensors (1.1GB)\n- checkpoint-5500, 6000, 6103 均存在\n\n### 2. Eval 结果\n\n| 指标 | bs16_adaptive_seed123 | bs16_uniform_seed123 | Δ(adaptive−uniform) |\n|------|----------------------|---------------------|---------------------|\n| holdout_ppl | **17.616** | 17.686 | **−0.070** |\n| holdout_loss | 2.8688 | 2.8728 | −0.0040 |\n| owt_ppl | **18.325** | 18.369 | **−0.044** |\n| owt_loss | 2.9083 | 2.9107 | −0.0024 |\n| wiki_ppl | **15.349** | 15.381 | **−0.033** |\n| wiki_loss | 2.7310 | 2.7332 | −0.0022 |\n\n### 3. seed123 vs seed42 Δ 对比\n\n| 指标 | seed42 Δ | seed123 Δ |\n|------|---------|-----------|\n| holdout_ppl | −0.063 | **−0.070** |\n| owt_ppl | −0.061 | **−0.044** |\n| wiki_ppl | −0.095 | **−0.033** |\n\n**seed123 在 holdout 上复现了 adaptive 优势（−0.070 vs −0.063，方向一致且幅度相近）。** OWT 和 wiki 的优势方向一致但幅度略小。三个 eval set 均显示 adaptive < uniform，效应不是 seed-dependent。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-and-eval-bs16-adaptive-seed123-r2.md"
+}

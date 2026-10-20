@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf4465d9d2a8454f8109",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval grid b0 2 and submit b0 3",
+  "task_key": "worker_eval_grid_b0_2_and_submit_b0_3_20260517T124529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grid_b0_2_and_submit_b0_3_20260517T124529_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "a6368c48ed5b85b270a75ea77d4c4ab780ad0478b39df15407d1d6361144a812"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成：\n\n**Part 1 — grid_b0_2_seed42 Eval**\n- **PPL = 17.643**（loss = 2.8704，4,077,068 tokens）\n- 与 grid_b0_3_seed42（PPL=17.640）几乎相同，b=0.2 和 b=0.3 在该区间性能持平\n- Registry 已更新：metrics / conclusion=success / status=DONE\n\n**Part 2 — grid_b0_3_seed456 提交**\n- 服务器：westd-41312，GPU：cuda:3\n- PID：88491（tmux session: grid_b0_3_seed456）\n- output_dir 已修正为相对路径 `output/models/grid_b0_3_seed456`（通过 symlink 写入 autodl-tmp）\n- Registry 状态已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grid-b0-2-and-submit-b0-3.md"
+}

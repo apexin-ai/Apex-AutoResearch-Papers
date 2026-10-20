@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92773299e4ffa3749a3a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code prepare eval scripts",
+  "task_key": "worker_code_prepare_eval_scripts_20260514T122932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_eval_scripts_20260514T122932_result.json",
+    "occurrence": 1,
+    "bytes": 2187,
+    "sha256": "3a62ce4f2868d08e8c7ab4e90b07230e701a26c356a91c611842fb3ee0adf0bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法检查通过。\n\n---\n\n## 调查结果\n\n### 1. Eval 机制\n\n**训练脚本不内置 eval。** Eval 由独立的 `auto_eval_watcher.py`（后台守护进程，PID 74150）自动完成：\n- 每 60 秒扫描 `output/models/grid_b*/final/model.safetensors`\n- 发现新 checkpoint 且 `output/eval_results/{exp_id}_eval.json` 不存在时，调用 `eval_perplexity.py` 在 GPU 3 上跑 eval\n- 使用 holdout 数据 `data/human/eval_holdout.jsonl`（~5000 docs, 4M tokens）\n\n**Seed42 batch 没有 eval 结果的原因：** 不是脚本跳过了 eval，而是 watcher 启动晚了。从日志看 watcher 15:37 启动时，seed42 的 b0.5 和 b1.0 已经训练完了，所以 watcher 立即跑了它们的 eval。之后 b1.5 训完后也被 watcher 自动捕获并 eval 了。b2.0/3.0/5.0 还在训练中，没有 `final/` 目录。\n\n### 2. 单个 eval 耗时\n\n**约 2.5-3 分钟**（从日志的时间戳计算）。6 个 b 值串行跑约 15-18 分钟。\n\n### 3. Seed42 eval 脚本\n\n路径：`/root/provenance_weight_training/scripts/run_eval_seed42.sh`\n\n用法：`bash scripts/run_eval_seed42.sh [gpu_id]`（默认 GPU 0）\n\n功能：自动跳过已有 eval 结果或 checkpoint 未就绪的项。实际上这个脚本是**备用方案**——`auto_eval_watcher.py` 已经在自动处理。\n\n### 4. Seed123 的 b2.0/3.0/5.0 完成后会自动跑 eval 吗？\n\n**会。** `auto_eval_watcher.py` 正在运行，且它匹配所有 `grid_b*` 目录（不区分 seed），所以 seed123 的 b2.0/3.0/5.0 训练完成后也会被自动 eval。\n\n当前 eval 进度汇总：\n\n| Checkpoint | Eval 状态 | PPL |\n|---|---|---|\n| grid_b0_5_seed42 | 完成 | 17.65 |\n| grid_b1_0_seed42 | 完成 | 17.69 |\n| grid_b1_5_seed42 | 完成 | 17.72 |\n| grid_b2_0_seed42 | 等待训练完成 | - |\n| grid_b3_0_seed42 | 等待训练完成 | - |\n| grid_b5_0_seed42 | 等待训练完成 | - |\n| grid_b0_5_seed123 | 完成 | 17.64 |\n| grid_b1_0_seed123 | 完成 | 17.67 |\n| grid_b1_5_seed123 | 完成 | 17.70 |\n| grid_b2_0_seed123 | 等待训练完成 | - |\n| grid_b3_0_seed123 | 等待训练完成 | - |\n| grid_b5_0_seed123 | 等待训练完成 | - |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-eval-scripts.md"
+}

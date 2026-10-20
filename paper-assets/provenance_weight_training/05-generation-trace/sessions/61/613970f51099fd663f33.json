@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "613970f51099fd663f33",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval grid b3 0 b5 0 seed456",
+  "task_key": "worker_eval_grid_b3_0_b5_0_seed456_20260515T093346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grid_b3_0_b5_0_seed456_20260515T093346_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "c62ae9f150c52d9fddf82cacef44ffd85e189ce5aa1b58a2caf6c9ee63940728"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。两个实验的 post-hoc eval 结果：\n\n| 实验 | eval_ppl | eval_loss | tokens | train_loss (registry) | total_steps |\n|------|----------|-----------|--------|-----------------------|-------------|\n| **grid_b3_0_seed456** | **17.921** | **2.886** | 4,077,068 | 5.435 | 6,103 |\n| **grid_b5_0_seed456** | **17.993** | **2.890** | 4,077,068 | 5.488 | 6,103 |\n\nRegistry 已有完整 metrics，status=DONE，conclusion=success，无需额外更新。eval_results.json 已保存到各自的模型目录。\n\n趋势符合预期：随着 b 增大（更激进的下加权），eval_ppl 轻微上升（b3→17.92, b5→17.99），与 b0.5→b2.0 的趋势一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grid-b3-0-b5-0-seed456.md"
+}

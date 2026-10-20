@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3263429b8c9d64747d9",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code create grid b01 b02 scripts",
+  "task_key": "worker_code_create_grid_b01_b02_scripts_20260516T030413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_create_grid_b01_b02_scripts_20260516T030413_result.json",
+    "occurrence": 1,
+    "bytes": 202,
+    "sha256": "ff222aeb19ea74f3cda8aebf96ca2d8626e8d8c194fc806980610776570b7032"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- `run_grid_b0_1_seed42.sh` — 语法 OK，`grid_b_value=0.1`\n- `run_grid_b0_2_seed42.sh` — 语法 OK，`grid_b_value=0.2`\n- 两个 output 目录均不存在，无冲突"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-create-grid-b01-b02-scripts.md"
+}

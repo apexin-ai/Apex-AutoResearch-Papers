@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5262fdeea776acd0612",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit tau 09 seed42",
+  "task_key": "worker_submit_tau_09_seed42_20260515T135805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_tau_09_seed42_20260515T135805_result.json",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "7c5f2f71fbd7db8a263f270db730126649b8e03dd23580e84623a1c314cbf6c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。tau_09_seed42 已重新提交到 GPU 3（PID 213278），tmux session 正常运行。日志路径：`~/runs/provenance_weight_training/tau_09_seed42.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-tau-09-seed42.md"
+}

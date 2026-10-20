@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72a779698e7d5986ced6",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis adaptive seed234 seed789",
+  "task_key": "worker_analysis_adaptive_seed234_seed789_20260524T083348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_adaptive_seed234_seed789_20260524T083348_result.json",
+    "occurrence": 1,
+    "bytes": 1075,
+    "sha256": "ea1c9cba721823f8c30a3489f51d612fa3517369f8630f680387e2d385e46569"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 最终 Metrics\n\n| 实验 | holdout_ppl | holdout_loss | train_loss | train_duration |\n|------|------------|-------------|-----------|---------------|\n| adaptive_seed234 | 17.6782 | 2.8723 | 9.695 | 13540s (3h46m) |\n| adaptive_seed789 | 17.6684 | 2.8718 | 9.650 | 13570s (3h46m) |\n\n### N=5 Paired t-test (adaptive vs uniform)\n\n| Seed | Adaptive PPL | Uniform PPL | Δ |\n|------|-------------|------------|-------|\n| 42 | 17.6440 | 17.6939 | -0.0499 |\n| 123 | 17.6308 | 17.6861 | -0.0553 |\n| 456 | 17.6419 | 17.7015 | -0.0596 |\n| 789 | 17.6684 | 17.6954 | -0.0270 |\n| 234 | 17.6782 | 17.7082 | -0.0300 |\n\n**Mean Δ = -0.0444 ± 0.0149 (SD)**\n\n- paired t(4) = -6.65, **p = 0.00266**\n- BH-adjusted p (rank 1/9) = **0.0239 < 0.05** → 显著\n\n### Metric 一致性说明\n\n所有 5 个 adaptive 实验均使用 post-hoc eval（`eval_results/ppl_holdout.json`）。uniform 实验使用 inline holdout eval。两者都是对同一 holdout set 计算 PPL，只是 eval 时机不同（final checkpoint 相同），结果可比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-adaptive-seed234-seed789.md"
+}

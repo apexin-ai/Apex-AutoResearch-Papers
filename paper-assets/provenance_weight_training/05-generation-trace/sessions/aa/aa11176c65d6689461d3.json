@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa11176c65d6689461d3",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh launch bs16 nmin8 r2 30476",
+  "task_key": "worker_ssh_launch_bs16_nmin8_r2_30476_20260517T184219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_bs16_nmin8_r2_30476_20260517T184219_result.json",
+    "occurrence": 1,
+    "bytes": 584,
+    "sha256": "50fa0764831bd09bcac091cd0d89c16759d6acbc8d47e1c8749040a5fa6bec9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 被占用**，无法直接启动新实验。\n\n当前状态：\n- cuda:3 上正在运行 `grid_b0_3_seed456`（PID 43554），进度 step 297/~6103（约5%），还需很长时间\n- 所有 4 张 GPU 都在使用中\n\n脚本已准备好，基于 `run_batchsize16_nmin8_seed42.sh` 修改（去掉 `--eval_data_path` 和 `--eval_steps`，output_dir 改为 `batchsize16_nmin8_r2`）。\n\n需要你决定：\n1. **杀掉** cuda:3 上的 `grid_b0_3_seed456` 然后启动新实验\n2. **等** grid_b0_3_seed456 跑完后再启动\n3. 指定其他 GPU 或服务器"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-bs16-nmin8-r2-30476.md"
+}

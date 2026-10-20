@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d637a05c12cb81409a64",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval dr q07 30476",
+  "task_key": "worker_eval_dr_q07_30476_20260518T141843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_dr_q07_30476_20260518T141843_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "012d8a20758020da73dc24f1fd5bb4a182cdcde7ba92ee305b64ea36b8b18ed7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。汇总结果：\n\n---\n\n**第 1 步：Checkpoint 确认**\n- `/root/autodl-tmp/output/models/detect_remove_q07_seed42/final/` 不存在\n- 两条备用路径都不存在\n- 实际可用 checkpoint：`checkpoint-2500`、`checkpoint-3000`、`checkpoint-3500`（训练似乎未生成 final）\n- 使用了最新的 `checkpoint-3500`（1.19 GB, May 18 22:15）\n\n**第 2 步：Eval 结果（detect_remove_q07_seed42/checkpoint-3500）**\n\n| 指标 | 值 |\n|---|---|\n| **Loss** | **2.8618** |\n| **Perplexity** | **17.49** |\n| Tokens 评估量 | 4,077,068 |\n| 文档数 | 5,000 |\n| 耗时 | 191s |\n\n注意：\n- `--stride` 和 `--fp16` 参数该脚本不支持（脚本内部已自带 stride=max_length//2 和 autocast fp16）\n- `data/eval_holdout.jsonl` 相对路径不存在，实际路径为 `/root/autodl-tmp/provenance_weight_training/data/human/eval_holdout.jsonl`\n- 有 tokenizer regex 警告（Mistral tokenizer 已知问题），不影响结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-dr-q07-30476.md"
+}

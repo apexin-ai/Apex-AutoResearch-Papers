@@ -1,0 +1,484 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5d21268e8cf6799d0616",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-21T04:16:44.099Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YGAL6SuDrBnK9oaGSQ6x8z",
+              "type": "tool_result",
+              "content": "adaptive_1_7b_planb_control: status=PREPARING, conclusion=-\nadaptive_1_7b_seed123: status=DONE, conclusion=success\nadaptive_1_7b_seed42: status=DONE, conclusion=success\nadaptive_1_7b_seed42_r2: status=PREPARING, conclusion=-\nadaptive_1_7b_seed42_v3: status=DONE, conclusion=killed\nadaptive_1_7b_seed42_v4: status=DONE, conclusion=failed\nadaptive_1_7b_seed42_v5: status=DONE, conclusion=success\nadaptive_1_7b_seed456: status=DONE, conclusion=success\nadaptive_fix_seed123: status=DONE, conclusion=success\nadaptive_fix_seed42: status=DONE, conclusion=success\nadaptive_fix_seed456: status=DONE, conclusion=success\nadaptive_fromscratch_seed42: status=DONE, conclusion=success\nadaptive_ood_seed123: status=DONE, conclusion=success\nadaptive_ood_seed456: status=DONE, conclusion=success\nadaptive_rho06_tau07_seed123: status=DONE, conclusion=success\nadaptive_rho06_tau07_seed42: status=DONE, conclusion=success\nadaptive_rho06_tau07_seed456: status=DONE, conclusion=success\nadaptive_seed123: status=DONE, conclusion=success\nadaptive_seed42: status=DONE, conclusion=success\nadaptive_seed456: status=DONE, conclusion=success\nadaptive_tau08_scratch_seed42: status=DONE, conclusion=failed\nadaptive_tau08_scratch_seed42_v2: status=RUNNING, conclusion=-\nadaptive_v2_seed123: status=DONE, conclusion=killed\nadaptive_v2_seed42: status=DONE, conclusion=killed\nadaptive_v2_seed456: status=DONE, conclusion=killed\nbaseline_qwen3_0.6b: status=DONE, conclusion=success\nbatch_adaptive_tau_rho04_seed42: status=DONE, conclusion=negative\nbatch_adaptive_tau_rho06_r2: status=DONE, conclusion=failed\nbatch_adaptive_tau_rho06_r3: status=DONE, conclusion=failed\nbatch_adaptive_tau_rho06_r5: status=DONE, conclusion=negative\nbatch_adaptive_tau_rho06_seed42: status=DONE, conclusion=failed\nbatchsize16_nmin8_r2: status=DONE, conclusion=killed\nbatchsize16_nmin8_r3: status=DONE, conclusion=success\nbatchsize16_nmin8_seed42: status=DONE, conclusion=failed\nbs8_auto_nmin_r2: status=DONE, conclusion=failed\nbs8_auto_nmin_r3: status=DONE, conclusion=failed\nbs8_auto_nmin_r5: status=DONE, conclusion=success\nbs8_auto_nmin_seed42: status=DONE, conclusion=failed\nbs8_nmin2_seed42: status=DONE, conclusion=failed\nbs8_nmin2_seed42_r2: status=DONE, conclusion=negative\nbs8_seed42: status=DONE, conclusion=failed\ncontamination_60_adaptive_seed123_tau08: status=DONE, conclusion=success\ncontamination_60_adaptive_seed42_tau08: status=DONE, conclusion=success\ncontamination_60_adaptive_seed456: status=DONE, conclusion=success\ncontamination_60_ess_only_seed123: status=DONE, conclusion=success\ncontamination_60_ess_only_seed42: status=DONE, conclusion=success\ncontamination_60_ess_only_seed456: status=DONE, conclusion=success\ncontamination_60_grid_b0_3_seed42: status=DONE, conclusion=success\ncontamination_60_grid_b0_5_seed42: status=DONE, conclusion=success\ncontamination_60_random_seed123: status=DONE, conclusion=success\ncontamination_60_random_seed42: status=DONE, conclusion=success\ncontamination_60_random_seed456: status=DONE, conclusion=success\ncontamination_60_seed123: status=DONE, conclusion=success\ncontamination_60_seed42: status=DONE, conclusion=failed\ncontamination_60_seed42_r2: status=DONE, conclusion=success\ncontamination_60_tau06_seed42: status=DONE, conclusion=success\ncontamination_60_tau07_seed42: status=DONE, conclusion=success\ncontamination_60_uniform_seed123: status=DONE, conclusion=success\ncontamination_60_uniform_seed42: status=DONE, conclusion=success\ncontamination_60_uniform_seed456: status=DONE, conclusion=success\ndatagen_synthetic_4gpu: status=DONE, conclusion=success\ndetect_remove_baseline_seed42: status=DONE, conclusion=success\ndetect_remove_q01_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q01_seed42: status=DONE, conclusion=success\ndetect_remove_q02_seed42: status=DONE, conclusion=success\ndetect_remove_q03_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q03_seed123: status=DONE, conclusion=success\ndetect_remove_q03_seed42: status=DONE, conclusion=failed\ndetect_remove_q03_seed42_r2: status=DONE, conclusion=success\ndetect_remove_q03_seed456: status=DONE, conclusion=success\ndetect_remove_q04_seed42: status=DONE, conclusion=success\ndetect_remove_q05_epoch_matched: status=PREPARING, conclusion=killed\ndetect_remove_q05_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q05_seed123: status=DONE, conclusion=success\ndetect_remove_q05_seed456: status=DONE, conclusion=success\ndetect_remove_q06_seed42: status=DONE, conclusion=success\ndetect_remove_q07_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q07_seed42: status=DONE, conclusion=success\ndetect_remove_q07_seed42_r2: status=PREPARING, conclusion=killed\ndetect_remove_q08_seed42: status=DONE, conclusion=success\ndetect_remove_q09_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q09_seed42: status=DONE, conclusion=success\ndetector_modernbert: status=DONE, conclusion=killed\ndetector_tfidf_lr: status=DONE, conclusion=success\ndiagnostic_contamination100: status=DONE, conclusion=killed\nenv_probe_41312: status=PREPARING, conclusion=-\nenv_probe_41312_v2: status=PREPARING, conclusion=-\nepoch_matched_dr_seed123: status=DONE, conclusion=success\nepoch_matched_dr_seed456: status=DONE, conclusion=success\ness_only_seed123: status=DONE, conclusion=success\ness_only_seed123_r2: status=DONE, conclusion=success\ness_only_seed42: status=DONE, conclusion=success\ness_only_seed456: status=DONE, conclusion=success\ness_only_seed456_r2: status=DONE, conclusion=success\neval_adaptive_1_7b: status=PREPARING, conclusion=-\neval_adaptive_1_7b_seed123: status=PREPARING, conclusion=-\neval_adaptive_1_7b_v2: status=DONE, conclusion=success\neval_epoch_matched_seed123: status=DONE, conclusion=success\neval_epoch_matched_seed456: status=DONE, conclusion=success\neval_ngram_adaptive: status=DONE, conclusion=success\neval_ngram_uniform: status=DONE, conclusion=success\neval_q01_final: status=PREPARING, conclusion=-\neval_q01_final_v2: status=DONE, conclusion=success\neval_q03_r2: status=DONE, conclusion=success\neval_q04: status=DONE, conclusion=success\neval_q06: status=DONE, conclusion=success\neval_q07_final: status=DONE, conclusion=success\neval_rho06_batch_v5: status=PREPARING, conclusion=-\neval_rho06_batch_v6: status=PREPARING, conclusion=-\neval_rho06_batch_v7: status=DONE, conclusion=success\neval_uniform_1_7b_resumed: status=PREPARING, conclusion=-\neval_uniform_1_7b_seed123: status=PREPARING, conclusion=-\neval_uniform_1_7b_v2: status=PREPARING, conclusion=-\neval_uniform_1_7b_v3: status=DONE, conclusion=success\ngolden_ratio_seed42: status=DONE, conclusion=success\ngpt2_adaptive_seed123: status=DONE, conclusion=failed\ngpt2_adaptive_seed123_v2: status=RUNNING, conclusion=-\ngpt2_adaptive_seed42: status=DONE, conclusion=negative\ngpt2_adaptive_seed456: status=RUNNING, conclusion=-\ngpt2_uniform_seed42: status=DONE, conclusion=success\ngrid_b0_1_seed123: status=DONE, conclusion=success\ngrid_b0_1_seed42: status=DONE, conclusion=success\ngrid_b0_1_seed456: status=DONE, conclusion=success\ngrid_b0_2_seed123: status=DONE, conclusion=success\ngrid_b0_2_seed42: status=DONE, conclusion=success\ngrid_b0_2_seed456: status=DONE, conclusion=success\ngrid_b0_3_seed123: status=DONE, conclusion=failed\ngrid_b0_3_seed123_r2: status=DONE, conclusion=success\ngrid_b0_3_seed42: status=DONE, conclusion=success\ngrid_b0_3_seed456: status=DONE, conclusion=killed\ngrid_b0_3_seed456_r2: status=DONE, conclusion=success\ngrid_b0_5_seed123: status=DONE, conclusion=success\ngrid_b0_5_seed456: status=DONE, conclusion=success\ngrid_b1_0_seed123: status=DONE, conclusion=success\ngrid_b1_0_seed456: status=DONE, conclusion=success\ngrid_b1_5_seed123: status=DONE, conclusion=success\ngrid_b1_5_seed456: status=DONE, conclusion=success\ngrid_b2_0_seed123: status=DONE, conclusion=success\ngrid_b2_0_seed456: status=DONE, conclusion=success\ngrid_b3_0_seed123: status=DONE, conclusion=success\ngrid_b3_0_seed456: status=DONE, conclusion=success\ngrid_b5_0_seed123: status=DONE, conclusion=success\ngrid_b5_0_seed456: status=DONE, conclusion=success\ngrid_b_low_seed42: status=DONE, conclusion=failed\ngrid_b_low_seed42_r2: status=DONE, conclusion=failed\ngrid_b_low_seed42_r3: status=DONE, conclusion=failed\ngrid_b_low_serial_seed42: status=DONE, conclusion=killed\ngrid_b_seed42_batch: status=DONE, conclusion=success\nhybrid_rho04_seed42: status=DONE, conclusion=success\nhybrid_rho06_seed42: status=DONE, conclusion=success\nllama3b_adaptive_seed42: status=DONE, conclusion=negative\nllama3b_uniform_seed42: status=DONE, conclusion=success\nngram_adaptive_seed123: status=DONE, conclusion=negative\nngram_adaptive_seed42: status=DONE, conclusion=negative\nngram_adaptive_seed456: status=RUNNING, conclusion=-\nngram_uniform_seed42: status=DONE, conclusion=success\nnmin1_seed42: status=DONE, conclusion=success\nnmin4_seed42: status=DONE, conclusion=success\nnmin5_seed42: status=DONE, conclusion=killed\np0_contamination_60_datagen: status=DONE, conclusion=success\nqwen06b_uniform_seed42: status=DONE, conclusion=success\nrandom_reweight_seed123: status=DONE, conclusion=failed\nrandom_reweight_seed123_r2: status=DONE, conclusion=failed\nrandom_reweight_seed123_r3: status=DONE, conclusion=failed\nrandom_reweight_seed123_r4: status=DONE, conclusion=failed\nrandom_reweight_seed123_r5: status=DONE, conclusion=success\nrandom_reweight_seed42: status=DONE, conclusion=failed\nrandom_reweight_seed456: status=DONE, conclusion=success\nrandom_reweight_v2_seed42: status=DONE, conclusion=success\nrho02_adaptive_tau08_seed42: status=DONE, conclusion=negative\nrho02_adaptive_tau09_r2: status=DONE, conclusion=failed\nrho02_adaptive_tau09_r3: status=DONE, conclusion=failed\nrho02_adaptive_tau09_r4: status=DONE, conclusion=failed\nrho02_adaptive_tau09_r5: status=DONE, conclusion=negative\nrho02_adaptive_tau09_seed42: status=DONE, conclusion=failed\nrho02_uniform_seed42: status=DONE, conclusion=success\nrho06_tau07_seed123: status=PREPARING, conclusion=killed\nrho06_tau07_seed42: status=DONE, conclusion=failed\nrho06_tau07_seed456: status=PREPARING, conclusion=killed\nstatus_check_41312: status=PREPARING, conclusion=-\ntau07_downstream_eval: status=DONE, conclusion=failed\ntau07_seed123: status=DONE, conclusion=success\ntau07_seed42: status=DONE, conclusion=success\ntau07_seed456: status=DONE, conclusion=success\ntau_0.6_seed42: status=DONE, conclusion=killed\ntau_05_nmin2_seed42: status=DONE, conclusion=killed\ntau_05_seed42: status=DONE, conclusion=success\ntau_06_nmin2_seed42: status=DONE, conclusion=killed\ntau_06_seed42: status=DONE, conclusion=success\ntau_07_nmin2_seed42: status=DONE, conclusion=killed\ntau_07_seed42: status=DONE, conclusion=success\ntau_095_nmin2_seed42: status=DONE, conclusion=killed\ntau_095_seed42: status=DONE, conclusion=negative\ntau_09_nmin2_seed42: status=DONE, conclusion=killed\ntau_09_seed42: status=DONE, conclusion=negative\nthreshold_q03_seed42: status=DONE, conclusion=success\nthreshold_q07_seed42: status=DONE, conclusion=failed\nuniform_1_7b_seed123: status=DONE, conclusion=success\nuniform_1_7b_seed42: status=DONE, conclusion=failed\nuniform_1_7b_seed42_r2: status=PREPARING, conclusion=-\nuniform_1_7b_seed42_v3: status=DONE, conclusion=killed\nuniform_1_7b_seed42_v4: status=DONE, conclusion=failed\nuniform_1_7b_seed42_v5: status=DONE, conclusion=success\nuniform_1_7b_seed456: status=DONE, conclusion=success\nuniform_ood_seed123: status=DONE, conclusion=success\nuniform_ood_seed456: status=DONE, conclusion=success\nuniform_seed123: status=DONE, conclusion=success\nuniform_seed42: status=DONE, conclusion=success\nuniform_seed42_downstream: status=DONE, conclusion=success\nuniform_seed456: status=DONE, conclusion=success\nw2_distribution_matching_eval: status=DONE, conclusion=negative",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "e7f63696-68a8-40db-9075-de36b23598af",
+            "tool_use_result": {
+              "stdout": "adaptive_1_7b_planb_control: status=PREPARING, conclusion=-\nadaptive_1_7b_seed123: status=DONE, conclusion=success\nadaptive_1_7b_seed42: status=DONE, conclusion=success\nadaptive_1_7b_seed42_r2: status=PREPARING, conclusion=-\nadaptive_1_7b_seed42_v3: status=DONE, conclusion=killed\nadaptive_1_7b_seed42_v4: status=DONE, conclusion=failed\nadaptive_1_7b_seed42_v5: status=DONE, conclusion=success\nadaptive_1_7b_seed456: status=DONE, conclusion=success\nadaptive_fix_seed123: status=DONE, conclusion=success\nadaptive_fix_seed42: status=DONE, conclusion=success\nadaptive_fix_seed456: status=DONE, conclusion=success\nadaptive_fromscratch_seed42: status=DONE, conclusion=success\nadaptive_ood_seed123: status=DONE, conclusion=success\nadaptive_ood_seed456: status=DONE, conclusion=success\nadaptive_rho06_tau07_seed123: status=DONE, conclusion=success\nadaptive_rho06_tau07_seed42: status=DONE, conclusion=success\nadaptive_rho06_tau07_seed456: status=DONE, conclusion=success\nadaptive_seed123: status=DONE, conclusion=success\nadaptive_seed42: status=DONE, conclusion=success\nadaptive_seed456: status=DONE, conclusion=success\nadaptive_tau08_scratch_seed42: status=DONE, conclusion=failed\nadaptive_tau08_scratch_seed42_v2: status=RUNNING, conclusion=-\nadaptive_v2_seed123: status=DONE, conclusion=killed\nadaptive_v2_seed42: status=DONE, conclusion=killed\nadaptive_v2_seed456: status=DONE, conclusion=killed\nbaseline_qwen3_0.6b: status=DONE, conclusion=success\nbatch_adaptive_tau_rho04_seed42: status=DONE, conclusion=negative\nbatch_adaptive_tau_rho06_r2: status=DONE, conclusion=failed\nbatch_adaptive_tau_rho06_r3: status=DONE, conclusion=failed\nbatch_adaptive_tau_rho06_r5: status=DONE, conclusion=negative\nbatch_adaptive_tau_rho06_seed42: status=DONE, conclusion=failed\nbatchsize16_nmin8_r2: status=DONE, conclusion=killed\nbatchsize16_nmin8_r3: status=DONE, conclusion=success\nbatchsize16_nmin8_seed42: status=DONE, conclusion=failed\nbs8_auto_nmin_r2: status=DONE, conclusion=failed\nbs8_auto_nmin_r3: status=DONE, conclusion=failed\nbs8_auto_nmin_r5: status=DONE, conclusion=success\nbs8_auto_nmin_seed42: status=DONE, conclusion=failed\nbs8_nmin2_seed42: status=DONE, conclusion=failed\nbs8_nmin2_seed42_r2: status=DONE, conclusion=negative\nbs8_seed42: status=DONE, conclusion=failed\ncontamination_60_adaptive_seed123_tau08: status=DONE, conclusion=success\ncontamination_60_adaptive_seed42_tau08: status=DONE, conclusion=success\ncontamination_60_adaptive_seed456: status=DONE, conclusion=success\ncontamination_60_ess_only_seed123: status=DONE, conclusion=success\ncontamination_60_ess_only_seed42: status=DONE, conclusion=success\ncontamination_60_ess_only_seed456: status=DONE, conclusion=success\ncontamination_60_grid_b0_3_seed42: status=DONE, conclusion=success\ncontamination_60_grid_b0_5_seed42: status=DONE, conclusion=success\ncontamination_60_random_seed123: status=DONE, conclusion=success\ncontamination_60_random_seed42: status=DONE, conclusion=success\ncontamination_60_random_seed456: status=DONE, conclusion=success\ncontamination_60_seed123: status=DONE, conclusion=success\ncontamination_60_seed42: status=DONE, conclusion=failed\ncontamination_60_seed42_r2: status=DONE, conclusion=success\ncontamination_60_tau06_seed42: status=DONE, conclusion=success\ncontamination_60_tau07_seed42: status=DONE, conclusion=success\ncontamination_60_uniform_seed123: status=DONE, conclusion=success\ncontamination_60_uniform_seed42: status=DONE, conclusion=success\ncontamination_60_uniform_seed456: status=DONE, conclusion=success\ndatagen_synthetic_4gpu: status=DONE, conclusion=success\ndetect_remove_baseline_seed42: status=DONE, conclusion=success\ndetect_remove_q01_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q01_seed42: status=DONE, conclusion=success\ndetect_remove_q02_seed42: status=DONE, conclusion=success\ndetect_remove_q03_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q03_seed123: status=DONE, conclusion=success\ndetect_remove_q03_seed42: status=DONE, conclusion=failed\ndetect_remove_q03_seed42_r2: status=DONE, conclusion=success\ndetect_remove_q03_seed456: status=DONE, conclusion=success\ndetect_remove_q04_seed42: status=DONE, conclusion=success\ndetect_remove_q05_epoch_matched: status=PREPARING, conclusion=killed\ndetect_remove_q05_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q05_seed123: status=DONE, conclusion=success\ndetect_remove_q05_seed456: status=DONE, conclusion=success\ndetect_remove_q06_seed42: status=DONE, conclusion=success\ndetect_remove_q07_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q07_seed42: status=DONE, conclusion=success\ndetect_remove_q07_seed42_r2: status=PREPARING, conclusion=killed\ndetect_remove_q08_seed42: status=DONE, conclusion=success\ndetect_remove_q09_epoch_matched_seed42: status=DONE, conclusion=success\ndetect_remove_q09_seed42: status=DONE, conclusion=success\ndetector_modernbert: status=DONE, conclusion=killed\ndetector_tfidf_lr: status=DONE, conclusion=success\ndiagnostic_contamination100: status=DONE, conclusion=killed\nenv_probe_41312: status=PREPARING, conclusion=-\nenv_probe_41312_v2: status=PREPARING, conclusion=-\nepoch_matched_dr_seed123: status=DONE, conclusion=success\nepoch_matched_dr_seed456: status=DONE, conclusion=success\ness_only_seed123: status=DONE, conclusion=success\ness_only_seed123_r2: status=DONE, conclusion=success\ness_only_seed42: status=DONE, conclusion=success\ness_only_seed456: status=DONE, conclusion=success\ness_only_seed456_r2: status=DONE, conclusion=success\neval_adaptive_1_7b: status=PREPARING, conclusion=-\neval_adaptive_1_7b_seed123: status=PREPARING, conclusion=-\neval_adaptive_1_7b_v2: status=DONE, conclusion=success\neval_epoch_matched_seed123: status=DONE, conclusion=success\neval_epoch_matched_seed456: status=DONE, conclusion=success\neval_ngram_adaptive: status=DONE, conclusion=success\neval_ngram_uniform: status=DONE, conclusion=success\neval_q01_final: status=PREPARING, conclusion=-\neval_q01_final_v2: status=DONE, conclusion=success\neval_q03_r2: status=DONE, conclusion=success\neval_q04: status=DONE, conclusion=success\neval_q06: status=DONE, conclusion=success\neval_q07_final: status=DONE, conclusion=success\neval_rho06_batch_v5: status=PREPARING, conclusion=-\neval_rho06_batch_v6: status=PREPARING, conclusion=-\neval_rho06_batch_v7: status=DONE, conclusion=success\neval_uniform_1_7b_resumed: status=PREPARING, conclusion=-\neval_uniform_1_7b_seed123: status=PREPARING, conclusion=-\neval_uniform_1_7b_v2: status=PREPARING, conclusion=-\neval_uniform_1_7b_v3: status=DONE, conclusion=success\ngolden_ratio_seed42: status=DONE, conclusion=success\ngpt2_adaptive_seed123: status=DONE, conclusion=failed\ngpt2_adaptive_seed123_v2: status=RUNNING, conclusion=-\ngpt2_adaptive_seed42: status=DONE, conclusion=negative\ngpt2_adaptive_seed456: status=RUNNING, conclusion=-\ngpt2_uniform_seed42: status=DONE, conclusion=success\ngrid_b0_1_seed123: status=DONE, conclusion=success\ngrid_b0_1_seed42: status=DONE, conclusion=success\ngrid_b0_1_seed456: status=DONE, conclusion=success\ngrid_b0_2_seed123: status=DONE, conclusion=success\ngrid_b0_2_seed42: status=DONE, conclusion=success\ngrid_b0_2_seed456: status=DONE, conclusion=success\ngrid_b0_3_seed123: status=DONE, conclusion=failed\ngrid_b0_3_seed123_r2: status=DONE, conclusion=success\ngrid_b0_3_seed42: status=DONE, conclusion=success\ngrid_b0_3_seed456: status=DONE, conclusion=killed\ngrid_b0_3_seed456_r2: status=DONE, conclusion=success\ngrid_b0_5_seed123: status=DONE, conclusion=success\ngrid_b0_5_seed456: status=DONE, conclusion=success\ngrid_b1_0_seed123: status=DONE, conclusion=success\ngrid_b1_0_seed456: status=DONE, conclusion=success\ngrid_b1_5_seed123: status=DONE, conclusion=success\ngrid_b1_5_seed456: status=DONE, conclusion=success\ngrid_b2_0_seed123: status=DONE, conclusion=success\ngrid_b2_0_seed456: status=DONE, conclusion=success\ngrid_b3_0_seed123: status=DONE, conclusion=success\ngrid_b3_0_seed456: status=DONE, conclusion=success\ngrid_b5_0_seed123: status=DONE, conclusion=success\ngrid_b5_0_seed456: status=DONE, conclusion=success\ngrid_b_low_seed42: status=DONE, conclusion=failed\ngrid_b_low_seed42_r2: status=DONE, conclusion=failed\ngrid_b_low_seed42_r3: status=DONE, conclusion=failed\ngrid_b_low_serial_seed42: status=DONE, conclusion=killed\ngrid_b_seed42_batch: status=DONE, conclusion=success\nhybrid_rho04_seed42: status=DONE, conclusion=success\nhybrid_rho06_seed42: status=DONE, conclusion=success\nllama3b_adaptive_seed42: status=DONE, conclusion=negative\nllama3b_uniform_seed42: status=DONE, conclusion=success\nngram_adaptive_seed123: status=DONE, conclusion=negative\nngram_adaptive_seed42: status=DONE, conclusion=negative\nngram_adaptive_seed456: status=RUNNING, conclusion=-\nngram_uniform_seed42: status=DONE, conclusion=success\nnmin1_seed42: status=DONE, conclusion=success\nnmin4_seed42: status=DONE, conclusion=success\nnmin5_seed42: status=DONE, conclusion=killed\np0_contamination_60_datagen: status=DONE, conclusion=success\nqwen06b_uniform_seed42: status=DONE, conclusion=success\nrandom_reweight_seed123: status=DONE, conclusion=failed\nrandom_reweight_seed123_r2: status=DONE, conclusion=failed\nrandom_reweight_seed123_r3: status=DONE, conclusion=failed\nrandom_reweight_seed123_r4: status=DONE, conclusion=failed\nrandom_reweight_seed123_r5: status=DONE, conclusion=success\nrandom_reweight_seed42: status=DONE, conclusion=failed\nrandom_reweight_seed456: status=DONE, conclusion=success\nrandom_reweight_v2_seed42: status=DONE, conclusion=success\nrho02_adaptive_tau08_seed42: status=DONE, conclusion=negative\nrho02_adaptive_tau09_r2: status=DONE, conclusion=failed\nrho02_adaptive_tau09_r3: status=DONE, conclusion=failed\nrho02_adaptive_tau09_r4: status=DONE, conclusion=failed\nrho02_adaptive_tau09_r5: status=DONE, conclusion=negative\nrho02_adaptive_tau09_seed42: status=DONE, conclusion=failed\nrho02_uniform_seed42: status=DONE, conclusion=success\nrho06_tau07_seed123: status=PREPARING, conclusion=killed\nrho06_tau07_seed42: status=DONE, conclusion=failed\nrho06_tau07_seed456: status=PREPARING, conclusion=killed\nstatus_check_41312: status=PREPARING, conclusion=-\ntau07_downstream_eval: status=DONE, conclusion=failed\ntau07_seed123: status=DONE, conclusion=success\ntau07_seed42: status=DONE, conclusion=success\ntau07_seed456: status=DONE, conclusion=success\ntau_0.6_seed42: status=DONE, conclusion=killed\ntau_05_nmin2_seed42: status=DONE, conclusion=killed\ntau_05_seed42: status=DONE, conclusion=success\ntau_06_nmin2_seed42: status=DONE, conclusion=killed\ntau_06_seed42: status=DONE, conclusion=success\ntau_07_nmin2_seed42: status=DONE, conclusion=killed\ntau_07_seed42: status=DONE, conclusion=success\ntau_095_nmin2_seed42: status=DONE, conclusion=killed\ntau_095_seed42: status=DONE, conclusion=negative\ntau_09_nmin2_seed42: status=DONE, conclusion=killed\ntau_09_seed42: status=DONE, conclusion=negative\nthreshold_q03_seed42: status=DONE, conclusion=success\nthreshold_q07_seed42: status=DONE, conclusion=failed\nuniform_1_7b_seed123: status=DONE, conclusion=success\nuniform_1_7b_seed42: status=DONE, conclusion=failed\nuniform_1_7b_seed42_r2: status=PREPARING, conclusion=-\nuniform_1_7b_seed42_v3: status=DONE, conclusion=killed\nuniform_1_7b_seed42_v4: status=DONE, conclusion=failed\nuniform_1_7b_seed42_v5: status=DONE, conclusion=success\nuniform_1_7b_seed456: status=DONE, conclusion=success\nuniform_ood_seed123: status=DONE, conclusion=success\nuniform_ood_seed456: status=DONE, conclusion=success\nuniform_seed123: status=DONE, conclusion=success\nuniform_seed42: status=DONE, conclusion=success\nuniform_seed42_downstream: status=DONE, conclusion=success\nuniform_seed456: status=DONE, conclusion=success\nw2_distribution_matching_eval: status=DONE, conclusion=negative",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 4 experiments already exist in the registry:\n\n- `ngram_adaptive_seed42`: status=DONE, conclusion=negative\n- `ngram_uniform_seed42`: status=DONE, conclusion=success\n- `gpt2_adaptive_seed42`: status=DONE, conclusion=negative\n- `gpt2_uniform_seed42`: status=DONE, conclusion=success\n\nThey're already registered! Let me tell the user this.\n\nWait, the user said \"这些实验已在服务器上完成，但 registry 中没有条目\" - they claim there are no entries. But actually these 4 experiments DO exist in the registry already with status DONE and conclusions set!\n\n\nI should check the full details of each experiment to confirm they have complete specs and metrics recorded.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "ce9c27e0-2c6b-49fb-b755-504679bc1a54",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0152atinDJzvmooqtTJQSQiL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4261,
+                "cache_read_input_tokens": 56825,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4261
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这 4 个实验已经存在于 registry 中：\n\n- `ngram_adaptive_seed42`: DONE, conclusion=negative\n- `ngram_uniform_seed42`: DONE, conclusion=success\n- `gpt2_adaptive_seed42`: DONE, conclusion=negative\n- `gpt2_uniform_seed42`: DONE, conclusion=success\n\n让我检查它们是否有完整的 spec 和 metrics。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "2a11c619-bd83-4ca1-bd55-b539c6b13cd3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0152atinDJzvmooqtTJQSQiL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4261,
+                "cache_read_input_tokens": 56825,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4261
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018kdwkCHxxeADjJXW84rwcU",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "provenance_weight_training",
+                "filters": {
+                  "status": "DONE"
+                },
+                "fields": [
+                  "*"
+                ],
+                "limit": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "6761ad11-4039-4ba9-b092-b4b645038895",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0152atinDJzvmooqtTJQSQiL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4261,
+                "cache_read_input_tokens": 56825,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4261
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-21T04:16:55.316Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018kdwkCHxxeADjJXW84rwcU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"gpt2_adaptive_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T18:34:08.013Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:54:55.606Z\\\", \\\"hypothesis\\\": \\\"GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=123. Second seed for detector ablation to confirm gpt2_adaptive_seed42 pattern (PPL=17.79, worse than TF-IDF but still meaningful reweighting). If consistent, supports claim that method works across detector quality levels.\\\", \\\"parent\\\": \\\"gpt2_adaptive_seed42\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T18:34:25.885Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_gpt2ppl_qscore.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T00:35:49.664Z\\\", \\\"training_hours\\\": 6.02}, \\\"failure_reason\\\": \\\"Resume from --save_only_model checkpoint caused optimizer state loss. Adam reinitialized → model degraded. Results invalid.\\\", \\\"completed_at\\\": \\\"2026-05-21T00:35:54.270Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T00:36:02.306636+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 123 --data_path data/scored_data_gpt2ppl_qscore.jsonl --resume_from_checkpoint checkpoint-2500 (no inline eval)\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"551137\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/gpt2_adaptive_seed123.log\\\", \\\"data_path\\\": \\\"data/scored_data_gpt2ppl_qscore.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"resume_from_checkpoint-2500\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed123\\\", \\\"detector\\\": \\\"GPT-2 PPL (AUC=0.913)\\\", \\\"resume_note\\\": \\\"Resumed from checkpoint-2500 after timeout (6h). Removed --eval_data_path and --eval_steps to eliminate inline eval overhead (~43min/eval). Remaining ~3603 steps, ~2.3h.\\\", \\\"eval_data\\\": \\\"N/A (training experiment, not eval)\\\", \\\"checkpoint_path\\\": \\\"N/A (corrupted by optimizer loss)\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"adaptive_tau08_scratch_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T17:17:50.273Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:54:53.604Z\\\", \\\"hypothesis\\\": \\\"From-scratch adaptive (τ=0.8, ρ=0.4, n_min=2, seed=42, Qwen3-0.6B). Replaces resume-checkpoint adaptive_fix_seed42 to complete 3-seed from-scratch set with adaptive_ood_seed123/456. Enables symmetric 3-seed OOD comparison: τ=0.7 3-seed vs τ=0.8 3-seed.\\\", \\\"parent\\\": \\\"adaptive_fix_seed42\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T17:18:30.262Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_tau08_scratch_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T01:18:39.252Z\\\", \\\"training_hours\\\": 8.0}, \\\"failure_reason\\\": \\\"Resume from --save_only_model checkpoint caused optimizer state loss. Adam reinitialized → model degraded. Holdout PPL=17.905 (expected ~17.65). Results invalid.\\\", \\\"completed_at\\\": \\\"2026-05-21T01:18:42.560Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T01:18:47.652176+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 42 --data_path data/scored_data.jsonl --resume_from_checkpoint checkpoint-3500 (no inline eval)\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"553579\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_tau08_scratch_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T01:21:15.351Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"resume_from_checkpoint-3500\\\", \\\"eval_data\\\": \\\"N/A (training experiment, eval post-training via eval_results/ pipeline)\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_tau08_scratch_seed42\\\", \\\"resume_note\\\": \\\"Resumed from checkpoint-3500 after timeout (8h). Removed --eval_data_path and --eval_steps to eliminate inline eval overhead. Remaining ~2603 steps, ~1.6h.\\\", \\\"checkpoint_path\\\": \\\"N/A (corrupted by optimizer loss)\\\", \\\"wall_clock_seconds\\\": 9218.3, \\\"gpu_hours\\\": 2.56}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"ngram_adaptive_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T22:16:21.156Z\\\", \\\"updated_at\\\": \\\"2026-05-21T02:19:10.605Z\\\", \\\"hypothesis\\\": \\\"N-gram PPL detector (statistical, AUC=0.73) + adaptive weighting, seed=123. Second seed for detector ablation to confirm ngram_adaptive_seed42 pattern (PPL=17.82). Tests consistency of method with weak statistical detector.\\\", \\\"parent\\\": \\\"ngram_adaptive_seed42\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-20T22:16:55.814Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_ngram_qscore.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T02:12:31.315Z\\\", \\\"training_hours\\\": 3.93}, \\\"spec\\\": {\\\"command\\\": \\\"python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 123 --data_path data/scored_data_ngram_qscore.jsonl\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"543911\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/ngram_adaptive_seed123.log\\\", \\\"data_path\\\": \\\"data/scored_data_ngram_qscore.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed123\\\", \\\"detector\\\": \\\"N-gram PPL (AUC=0.73)\\\"}, \\\"pid\\\": \\\"543911\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/ngram_adaptive_seed123.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T02:12:36.538125+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.823, \\\"eval_loss_holdout\\\": 2.8805, \\\"eval_holdout_tokens\\\": 4077068, \\\"train_loss\\\": 9.289, \\\"total_steps\\\": 6103}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed123/final\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T02:19:10.606Z\\\"}, \\\"adaptive_1_7b_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:55:35.805Z\\\", \\\"updated_at\\\": \\\"2026-05-20T22:15:23.125Z\\\", \\\"hypothesis\\\": \\\"Adaptive (dual-constrained) at 1.7B model scale (seed=456, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:3. Replicates adaptive_1_7b_seed42_v5 (PPL=13.27) with different seed for 3-seed error bars. Paired with uniform_1_7b_seed456.\\\", \\\"parent\\\": \\\"adaptive_1_7b_seed42_v5\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed456 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"494706\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_1_7b_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:00:18.071Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": \\\"data/scored_data.jsonl (training, holdout eval built-in)\\\", \\\"wall_clock_seconds\\\": 21302.6, \\\"gpu_hours\\\": 5.92}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T21:09:28.993Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T21:09:34.067656+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 13.2668, \\\"eval_ppl_openwebtext\\\": 13.292, \\\"eval_ppl_wikipedia\\\": 10.947, \\\"downstream_arc_easy_acc_norm\\\": 0.7146, \\\"downstream_arc_challenge_acc_norm\\\": 0.4352, \\\"downstream_hellaswag_acc_norm\\\": 0.6133, \\\"downstream_piqa_acc_norm\\\": 0.7443, \\\"downstream_winogrande_acc\\\": 0.6219, \\\"downstream_mean\\\": 0.6259, \\\"ood_eval_source\\\": \\\"eval_results/ pipeline\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed456/final\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_1_7b_seed456.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T21:55:20.639Z\\\"}}, \\\"count\\\": 4, \\\"total\\\": 189, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.866}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "6eb0815a-b454-4929-ba68-3680c9564d9d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"gpt2_adaptive_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T18:34:08.013Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:54:55.606Z\\\", \\\"hypothesis\\\": \\\"GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=123. Second seed for detector ablation to confirm gpt2_adaptive_seed42 pattern (PPL=17.79, worse than TF-IDF but still meaningful reweighting). If consistent, supports claim that method works across detector quality levels.\\\", \\\"parent\\\": \\\"gpt2_adaptive_seed42\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T18:34:25.885Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_gpt2ppl_qscore.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T00:35:49.664Z\\\", \\\"training_hours\\\": 6.02}, \\\"failure_reason\\\": \\\"Resume from --save_only_model checkpoint caused optimizer state loss. Adam reinitialized → model degraded. Results invalid.\\\", \\\"completed_at\\\": \\\"2026-05-21T00:35:54.270Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T00:36:02.306636+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 123 --data_path data/scored_data_gpt2ppl_qscore.jsonl --resume_from_checkpoint checkpoint-2500 (no inline eval)\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"551137\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/gpt2_adaptive_seed123.log\\\", \\\"data_path\\\": \\\"data/scored_data_gpt2ppl_qscore.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"resume_from_checkpoint-2500\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed123\\\", \\\"detector\\\": \\\"GPT-2 PPL (AUC=0.913)\\\", \\\"resume_note\\\": \\\"Resumed from checkpoint-2500 after timeout (6h). Removed --eval_data_path and --eval_steps to eliminate inline eval overhead (~43min/eval). Remaining ~3603 steps, ~2.3h.\\\", \\\"eval_data\\\": \\\"N/A (training experiment, not eval)\\\", \\\"checkpoint_path\\\": \\\"N/A (corrupted by optimizer loss)\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"adaptive_tau08_scratch_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T17:17:50.273Z\\\", \\\"updated_at\\\": \\\"2026-05-21T03:54:53.604Z\\\", \\\"hypothesis\\\": \\\"From-scratch adaptive (τ=0.8, ρ=0.4, n_min=2, seed=42, Qwen3-0.6B). Replaces resume-checkpoint adaptive_fix_seed42 to complete 3-seed from-scratch set with adaptive_ood_seed123/456. Enables symmetric 3-seed OOD comparison: τ=0.7 3-seed vs τ=0.8 3-seed.\\\", \\\"parent\\\": \\\"adaptive_fix_seed42\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T17:18:30.262Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_tau08_scratch_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T01:18:39.252Z\\\", \\\"training_hours\\\": 8.0}, \\\"failure_reason\\\": \\\"Resume from --save_only_model checkpoint caused optimizer state loss. Adam reinitialized → model degraded. Holdout PPL=17.905 (expected ~17.65). Results invalid.\\\", \\\"completed_at\\\": \\\"2026-05-21T01:18:42.560Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T01:18:47.652176+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 42 --data_path data/scored_data.jsonl --resume_from_checkpoint checkpoint-3500 (no inline eval)\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"553579\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_tau08_scratch_seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T01:21:15.351Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"resume_from_checkpoint-3500\\\", \\\"eval_data\\\": \\\"N/A (training experiment, eval post-training via eval_results/ pipeline)\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_tau08_scratch_seed42\\\", \\\"resume_note\\\": \\\"Resumed from checkpoint-3500 after timeout (8h). Removed --eval_data_path and --eval_steps to eliminate inline eval overhead. Remaining ~2603 steps, ~1.6h.\\\", \\\"checkpoint_path\\\": \\\"N/A (corrupted by optimizer loss)\\\", \\\"wall_clock_seconds\\\": 9218.3, \\\"gpu_hours\\\": 2.56}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"ngram_adaptive_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T22:16:21.156Z\\\", \\\"updated_at\\\": \\\"2026-05-21T02:19:10.605Z\\\", \\\"hypothesis\\\": \\\"N-gram PPL detector (statistical, AUC=0.73) + adaptive weighting, seed=123. Second seed for detector ablation to confirm ngram_adaptive_seed42 pattern (PPL=17.82). Tests consistency of method with weak statistical detector.\\\", \\\"parent\\\": \\\"ngram_adaptive_seed42\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-20T22:16:55.814Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_ngram_qscore.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-21T02:12:31.315Z\\\", \\\"training_hours\\\": 3.93}, \\\"spec\\\": {\\\"command\\\": \\\"python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 123 --data_path data/scored_data_ngram_qscore.jsonl\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": \\\"543911\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/ngram_adaptive_seed123.log\\\", \\\"data_path\\\": \\\"data/scored_data_ngram_qscore.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed123\\\", \\\"detector\\\": \\\"N-gram PPL (AUC=0.73)\\\"}, \\\"pid\\\": \\\"543911\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/ngram_adaptive_seed123.log\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T02:12:36.538125+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 17.823, \\\"eval_loss_holdout\\\": 2.8805, \\\"eval_holdout_tokens\\\": 4077068, \\\"train_loss\\\": 9.289, \\\"total_steps\\\": 6103}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed123/final\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-21T02:19:10.606Z\\\"}, \\\"adaptive_1_7b_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T15:55:35.805Z\\\", \\\"updated_at\\\": \\\"2026-05-20T22:15:23.125Z\\\", \\\"hypothesis\\\": \\\"Adaptive (dual-constrained) at 1.7B model scale (seed=456, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:3. Replicates adaptive_1_7b_seed42_v5 (PPL=13.27) with different seed for 3-seed error bars. Paired with uniform_1_7b_seed456.\\\", \\\"parent\\\": \\\"adaptive_1_7b_seed42_v5\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed456 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": \\\"494706\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_1_7b_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T16:00:18.071Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": \\\"data/scored_data.jsonl (training, holdout eval built-in)\\\", \\\"wall_clock_seconds\\\": 21302.6, \\\"gpu_hours\\\": 5.92}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T21:09:28.993Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T21:09:34.067656+00:00\\\"}]}, \\\"metrics\\\": {\\\"eval_ppl_holdout\\\": 13.2668, \\\"eval_ppl_openwebtext\\\": 13.292, \\\"eval_ppl_wikipedia\\\": 10.947, \\\"downstream_arc_easy_acc_norm\\\": 0.7146, \\\"downstream_arc_challenge_acc_norm\\\": 0.4352, \\\"downstream_hellaswag_acc_norm\\\": 0.6133, \\\"downstream_piqa_acc_norm\\\": 0.7443, \\\"downstream_winogrande_acc\\\": 0.6219, \\\"downstream_mean\\\": 0.6259, \\\"ood_eval_source\\\": \\\"eval_results/ pipeline\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed456/final\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_1_7b_seed456.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-20T21:55:20.639Z\\\"}}, \\\"count\\\": 4, \\\"total\\\": 189, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.866}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"gpt2_adaptive_seed123\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-20T18:34:08.013Z\", \"updated_at\": \"2026-05-21T03:54:55.606Z\", \"hypothesis\": \"GPT-2 PPL detector (AUC=0.913) + adaptive weighting, seed=123. Second seed for detector ablation to confirm gpt2_adaptive_seed42 pattern (PPL=17.79, worse than TF-IDF but still meaningful reweighting). If consistent, supports claim that method works across detector quality levels.\", \"parent\": \"gpt2_adaptive_seed42\", \"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-20T18:34:25.885Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_gpt2ppl_qscore.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"finished_at\": \"2026-05-21T00:35:49.664Z\", \"training_hours\": 6.02}, \"failure_reason\": \"Resume from --save_only_model checkpoint caused optimizer state loss. Adam reinitialized → model degraded. Results invalid.\", \"completed_at\": \"2026-05-21T00:35:54.270Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T00:36:02.306636+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 123 --data_path data/scored_data_gpt2ppl_qscore.jsonl --resume_from_checkpoint checkpoint-2500 (no inline eval)\", \"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"pid\": \"551137\", \"log_path\": \"~/runs/provenance_weight_training/gpt2_adaptive_seed123.log\", \"data_path\": \"data/scored_data_gpt2ppl_qscore.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 123, \"checkpoint_source\": \"resume_from_checkpoint-2500\", \"output_dir\": \"/root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed123\", \"detector\": \"GPT-2 PPL (AUC=0.913)\", \"resume_note\": \"Resumed from checkpoint-2500 after timeout (6h). Removed --eval_data_path and --eval_steps to eliminate inline eval overhead (~43min/eval). Remaining ~3603 steps, ~2.3h.\", \"eval_data\": \"N/A (training experiment, not eval)\", \"checkpoint_path\": \"N/A (corrupted by optimizer loss)\"}, \"conclusion\": \"failed\"}, \"adaptive_tau08_scratch_seed42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-20T17:17:50.273Z\", \"updated_at\": \"2026-05-21T03:54:53.604Z\", \"hypothesis\": \"From-scratch adaptive (τ=0.8, ρ=0.4, n_min=2, seed=42, Qwen3-0.6B). Replaces resume-checkpoint adaptive_fix_seed42 to complete 3-seed from-scratch set with adaptive_ood_seed123/456. Enables symmetric 3-seed OOD comparison: τ=0.7 3-seed vs τ=0.8 3-seed.\", \"parent\": \"adaptive_fix_seed42\", \"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T17:18:30.262Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --eval_data_path data/human/eval_holdout.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_tau08_scratch_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --eval_steps 500 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"finished_at\": \"2026-05-21T01:18:39.252Z\", \"training_hours\": 8.0}, \"failure_reason\": \"Resume from --save_only_model checkpoint caused optimizer state loss. Adam reinitialized → model degraded. Holdout PPL=17.905 (expected ~17.65). Results invalid.\", \"completed_at\": \"2026-05-21T01:18:42.560Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T01:18:47.652176+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"command\": \"python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 42 --data_path data/scored_data.jsonl --resume_from_checkpoint checkpoint-3500 (no inline eval)\", \"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"pid\": \"553579\", \"log_path\": \"~/runs/provenance_weight_training/adaptive_tau08_scratch_seed42.log\", \"submitted_at\": \"2026-05-21T01:21:15.351Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 42, \"checkpoint_source\": \"resume_from_checkpoint-3500\", \"eval_data\": \"N/A (training experiment, eval post-training via eval_results/ pipeline)\", \"output_dir\": \"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_tau08_scratch_seed42\", \"resume_note\": \"Resumed from checkpoint-3500 after timeout (8h). Removed --eval_data_path and --eval_steps to eliminate inline eval overhead. Remaining ~2603 steps, ~1.6h.\", \"checkpoint_path\": \"N/A (corrupted by optimizer loss)\", \"wall_clock_seconds\": 9218.3, \"gpu_hours\": 2.56}, \"conclusion\": \"failed\"}, \"ngram_adaptive_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T22:16:21.156Z\", \"updated_at\": \"2026-05-21T02:19:10.605Z\", \"hypothesis\": \"N-gram PPL detector (statistical, AUC=0.73) + adaptive weighting, seed=123. Second seed for detector ablation to confirm ngram_adaptive_seed42 pattern (PPL=17.82). Tests consistency of method with weak statistical detector.\", \"parent\": \"ngram_adaptive_seed42\", \"server\": \"westd-41312\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41312\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-20T22:16:55.814Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_ngram_qscore.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed123 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 123 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\\\"\", \"finished_at\": \"2026-05-21T02:12:31.315Z\", \"training_hours\": 3.93}, \"spec\": {\"command\": \"python training/pretrain_weighted.py --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --seed 123 --data_path data/scored_data_ngram_qscore.jsonl\", \"server\": \"westd-41312\", \"gpu\": \"cuda:2\", \"pid\": \"543911\", \"log_path\": \"~/runs/provenance_weight_training/ngram_adaptive_seed123.log\", \"data_path\": \"data/scored_data_ngram_qscore.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-0.6B\", \"seed\": 123, \"checkpoint_source\": \"from_scratch\", \"output_dir\": \"/root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed123\", \"detector\": \"N-gram PPL (AUC=0.73)\"}, \"pid\": \"543911\", \"log_path\": \"~/runs/provenance_weight_training/ngram_adaptive_seed123.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T02:12:36.538125+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 17.823, \"eval_loss_holdout\": 2.8805, \"eval_holdout_tokens\": 4077068, \"train_loss\": 9.289, \"total_steps\": 6103}, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/ngram_adaptive_seed123/final\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-21T02:19:10.606Z\"}, \"adaptive_1_7b_seed456\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T15:55:35.805Z\", \"updated_at\": \"2026-05-20T22:15:23.125Z\", \"hypothesis\": \"Adaptive (dual-constrained) at 1.7B model scale (seed=456, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:3. Replicates adaptive_1_7b_seed42_v5 (PPL=13.27) with different seed for 3-seed error bars. Paired with uniform_1_7b_seed456.\", \"parent\": \"adaptive_1_7b_seed42_v5\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed456 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:3\", \"pid\": \"494706\", \"log_path\": \"~/runs/provenance_weight_training/adaptive_1_7b_seed456.log\", \"submitted_at\": \"2026-05-20T16:00:18.071Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-1.7B\", \"seed\": 456, \"checkpoint_source\": \"from_scratch\", \"eval_data\": \"data/scored_data.jsonl (training, holdout eval built-in)\", \"wall_clock_seconds\": 21302.6, \"gpu_hours\": 5.92}, \"reproduce\": {\"finished_at\": \"2026-05-20T21:09:28.993Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T21:09:34.067656+00:00\"}]}, \"metrics\": {\"eval_ppl_holdout\": 13.2668, \"eval_ppl_openwebtext\": 13.292, \"eval_ppl_wikipedia\": 10.947, \"downstream_arc_easy_acc_norm\": 0.7146, \"downstream_arc_challenge_acc_norm\": 0.4352, \"downstream_hellaswag_acc_norm\": 0.6133, \"downstream_piqa_acc_norm\": 0.7443, \"downstream_winogrande_acc\": 0.6219, \"downstream_mean\": 0.6259, \"ood_eval_source\": \"eval_results/ pipeline\"}, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed456/final\", \"log_path\": \"~/runs/provenance_weight_training/adaptive_1_7b_seed456.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T21:55:20.639Z\"}}, \"count\": 4, \"total\": 189, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.866}}"
+              }
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I can see that the 4 experiments already exist with full data. Let me get the specific details for each of the 4 target experiments.",
+              "signature": "EsoCCmMIDRgCKkC7KdToKH2jEx86nyPRBbWAaphhlqSJe+BkKtibnBMkFhU7CVvuDLTAYUAEtALX/BkIto8FrqOH7cATiVMgH8O7Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDBUUtYXRzCYBk4RGkRoMRyty8+i8msYDN1b3IjC5MxTZ3aJGDsALg2l3qUPUmnOeND+4viFRE60rfXlMSXsABVeXjzKGUcETHtTvQwIqlAFWA8qKH3EmOgK6miRT8DH4kU2KN5adCMHqRpTjCvGktCoOhLzGI7Cm7ALX7HpV4qozid4d2Ftds2TKRwY1N51Af2DeD7YeIdcDdtHoiBusncbMZL7BXRCaGaiDWzWBXYV2Pvp1GEOgHLXd5PhLvvuTm96tj7chuuLmvlLYUpYaZUdR9ZmLxkOm+2mnwsqT2DBjxShcGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "dcb9032d-4afd-48cb-a7a7-24b8361a4b1c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mz8yjGnX6i442ddSufA77w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4929,
+                "cache_read_input_tokens": 61086,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4929
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这 4 个实验已经在 registry 中且数据完整。让我确认各自的具体状态。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "7ec23827-8d13-46bc-873e-b72665bfb89a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mz8yjGnX6i442ddSufA77w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4929,
+                "cache_read_input_tokens": 61086,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4929
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GUDdyC3HBmYV8DzgX6d8XZ",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e/tool-results/mcp-agent-ml-research-read_registry-1779336959512.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\ntargets = ['ngram_adaptive_seed42', 'ngram_uniform_seed42', 'gpt2_adaptive_seed42', 'gpt2_uniform_seed42']\nfor t in targets:\n    exp = experiments.get(t, {})\n    metrics = exp.get('metrics', {})\n    spec = exp.get('spec', {})\n    print(f'=== {t} ===')\n    print(f'  status: {exp.get(\\\"status\\\")}')\n    print(f'  conclusion: {exp.get(\\\"conclusion\\\")}')\n    print(f'  hypothesis: {exp.get(\\\"hypothesis\\\",\\\"-\\\")[:80]}')\n    print(f'  metrics: {metrics}')\n    print(f'  checkpoint_path: {exp.get(\\\"checkpoint_path\\\",\\\"-\\\")}')\n    print(f'  log_path: {exp.get(\\\"log_path\\\",\\\"-\\\")}')\n    print(f'  spec keys: {list(spec.keys()) if spec else \\\"-\\\"}')\n    print()\n\"",
+                "description": "Get details of 4 target experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "f6cbf8d6-cade-4234-941f-49c34136cc1e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mz8yjGnX6i442ddSufA77w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4929,
+                "cache_read_input_tokens": 61086,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4929
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-21T04:17:08.049Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GUDdyC3HBmYV8DzgX6d8XZ",
+              "type": "tool_result",
+              "content": "=== ngram_adaptive_seed42 ===\n  status: DONE\n  conclusion: negative\n  hypothesis: Multi-detector validation: adaptive weighting with n-gram PPL detector (statisti\n  metrics: {'eval_ppl_holdout': 17.82, 'eval_loss_holdout': 2.8803}\n  checkpoint_path: -\n  log_path: -\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'checkpoint_path', 'train_loss', 'train_runtime_s', 'total_steps', 'wall_clock_seconds', 'gpu_hours']\n\n=== ngram_uniform_seed42 ===\n  status: DONE\n  conclusion: success\n  hypothesis: Uniform baseline for n-gram detector comparison. Control condition: uniform weig\n  metrics: {'eval_ppl_holdout': 17.69, 'eval_loss_holdout': 2.8733}\n  checkpoint_path: -\n  log_path: -\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'checkpoint_path', 'train_loss', 'train_runtime_s', 'total_steps', 'wall_clock_seconds', 'gpu_hours']\n\n=== gpt2_adaptive_seed42 ===\n  status: DONE\n  conclusion: negative\n  hypothesis: GPT-2 PPL detector (AUC=0.913) + adaptive weighting: tests whether a weaker but \n  metrics: {'eval_ppl_holdout': 17.79, 'eval_loss_holdout': 2.879, 'train_loss': 10.58, 'train_steps': 6103, 'train_runtime_hours': 3.92}\n  checkpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\n  log_path: -\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n\n=== gpt2_uniform_seed42 ===\n  status: DONE\n  conclusion: success\n  hypothesis: GPT-2 PPL-scored data with uniform weighting (no provenance reweighting) serves \n  metrics: {'eval_ppl_holdout': 17.69, 'eval_loss_holdout': 2.8733, 'train_loss': 7.989, 'train_steps': 6103, 'train_runtime_hours': 3.54}\n  checkpoint_path: -\n  log_path: -\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "c876b7c4-27d0-47f8-a8ce-970343f80ef7",
+            "tool_use_result": {
+              "stdout": "=== ngram_adaptive_seed42 ===\n  status: DONE\n  conclusion: negative\n  hypothesis: Multi-detector validation: adaptive weighting with n-gram PPL detector (statisti\n  metrics: {'eval_ppl_holdout': 17.82, 'eval_loss_holdout': 2.8803}\n  checkpoint_path: -\n  log_path: -\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'checkpoint_path', 'train_loss', 'train_runtime_s', 'total_steps', 'wall_clock_seconds', 'gpu_hours']\n\n=== ngram_uniform_seed42 ===\n  status: DONE\n  conclusion: success\n  hypothesis: Uniform baseline for n-gram detector comparison. Control condition: uniform weig\n  metrics: {'eval_ppl_holdout': 17.69, 'eval_loss_holdout': 2.8733}\n  checkpoint_path: -\n  log_path: -\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'checkpoint_path', 'train_loss', 'train_runtime_s', 'total_steps', 'wall_clock_seconds', 'gpu_hours']\n\n=== gpt2_adaptive_seed42 ===\n  status: DONE\n  conclusion: negative\n  hypothesis: GPT-2 PPL detector (AUC=0.913) + adaptive weighting: tests whether a weaker but \n  metrics: {'eval_ppl_holdout': 17.79, 'eval_loss_holdout': 2.879, 'train_loss': 10.58, 'train_steps': 6103, 'train_runtime_hours': 3.92}\n  checkpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/gpt2_adaptive_seed42/final\n  log_path: -\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']\n\n=== gpt2_uniform_seed42 ===\n  status: DONE\n  conclusion: success\n  hypothesis: GPT-2 PPL-scored data with uniform weighting (no provenance reweighting) serves \n  metrics: {'eval_ppl_holdout': 17.69, 'eval_loss_holdout': 2.8733, 'train_loss': 7.989, 'train_steps': 6103, 'train_runtime_hours': 3.54}\n  checkpoint_path: -\n  log_path: -\n  spec keys: ['command', 'server', 'gpu', 'pid', 'log_path', 'submitted_at', 'submitted_via', 'backend', 'account', 'data_path', 'data_count', 'model_name', 'seed', 'checkpoint_path', 'wall_clock_seconds', 'gpu_hours']",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这 4 个实验已经全部录入 registry，状态都是 DONE，metrics 完整：\n\n```\n已存在（无需补录）:\n- ngram_adaptive_seed42: PPL=17.82, conclusion=negative\n- ngram_uniform_seed42: PPL=17.69, conclusion=success\n- gpt2_adaptive_seed42: PPL=17.79, conclusion=negative\n- gpt2_uniform_seed42: PPL=17.69, conclusion=success\n```\n\n部分条目缺少顶层 `checkpoint_path` 和 `log_path` 字段（但 spec 内有）。需要补全这些字段吗？"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "uuid": "b0533617-1e49-46cb-abc4-d3ee91f62af6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Q6FVHZWTQpo377P4naUM3x",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1400,
+                "cache_read_input_tokens": 66015,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1400
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这 4 个实验已经全部录入 registry，状态都是 DONE，metrics 完整：\n\n```\n已存在（无需补录）:\n- ngram_adaptive_seed42: PPL=17.82, conclusion=negative\n- ngram_uniform_seed42: PPL=17.69, conclusion=success\n- gpt2_adaptive_seed42: PPL=17.79, conclusion=negative\n- gpt2_uniform_seed42: PPL=17.69, conclusion=success\n```\n\n部分条目缺少顶层 `checkpoint_path` 和 `log_path` 字段（但 spec 内有）。需要补全这些字段吗？"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 166594,
+            "duration_api_ms": 162680,
+            "num_turns": 41,
+            "stop_reason": "end_turn",
+            "session_id": "dfae9b9a-4a49-4d9b-8c86-51f7f0f02e8e",
+            "total_cost_usd": 0.9530255,
+            "usage": {
+              "input_tokens": 21,
+              "cache_creation_input_tokens": 55574,
+              "cache_read_input_tokens": 797646,
+              "output_tokens": 8201,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 55574,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 177,
+                  "cache_read_input_tokens": 66015,
+                  "cache_creation_input_tokens": 1400,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1400
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1650,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001735,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 21,
+                "outputTokens": 8201,
+                "cacheReadInputTokens": 797646,
+                "cacheCreationInputTokens": 55574,
+                "webSearchRequests": 0,
+                "costUSD": 0.9512905,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "7c3c1ac8-619a-4224-b31a-4d9f769ead37"
+          },
+          "id": "event-000103"
+        }
+      ]
+    }
+  ]
+}

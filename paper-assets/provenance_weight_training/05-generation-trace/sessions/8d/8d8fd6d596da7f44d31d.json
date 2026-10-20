@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d8fd6d596da7f44d31d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check grid b progress",
+  "task_key": "worker_check_grid_b_progress_20260514T133650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_grid_b_progress_20260514T133650_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "5429f377f88dc629c1eb1dfebe43305d78df0359dd13d2ff774b6372233c7712"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常运行，报告已写入 `artifacts/worker_output.md`。\n\n**实际运行情况**（与任务描述有差异——cuda:0 不是 batch 实验，而是 grid_b2_0_seed42）：\n\n| GPU | 实验 | 当前进度 | 预估剩余 |\n|-----|------|---------|---------|\n| cuda:0 | grid_b2_0_seed42 | step 4167/6103 (68%) | ~1h 9min |\n| cuda:1 | grid_b2_0_seed123 | step 5097/6103 (84%) | ~36min |\n| cuda:2 | grid_b3_0_seed123 | step 4802/6103 (79%) | ~46min |\n| cuda:3 | grid_b5_0_seed123 | step 3619/6103 (59%) | ~1h 33min |\n\n全部预计 23:10 前完成，无 error。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-grid-b-progress.md"
+}

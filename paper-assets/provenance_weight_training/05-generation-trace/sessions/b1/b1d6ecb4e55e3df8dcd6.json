@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1d6ecb4e55e3df8dcd6",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval adaptive fix lm eval fewshot",
+  "task_key": "worker_eval_adaptive_fix_lm_eval_fewshot_20260517T150643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_adaptive_fix_lm_eval_fewshot_20260517T150643_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "7a78b30fdb6979a4a8a3a9dca45c57d28184a3dd8c8a40d47e913b9f7ecf13ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个评估任务完成。汇总结果：\n\n## adaptive_fix_seed42 (Qwen3-0.6B) 评估结果\n\n| Task | num_fewshot | acc | acc_norm |\n|------|-------------|-----|----------|\n| **HellaSwag** | 10 | 0.3818 | **0.4863** |\n| **ARC-Easy** | 25 | **0.7100** | **0.7121** |\n| **PIQA** | 5 | **0.6866** | **0.6839** |\n| **WinoGrande** | 5 | **0.5635** | - |\n\n每个 task 的 num_fewshot 已从 JSON 中确认一致：HellaSwag=10, ARC-Easy=25, PIQA=5, WinoGrande=5。\n\n结果保存在 `westd-41312:/root/autodl-tmp/provenance_weight_training/output/eval/adaptive_fix_fewshot/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-adaptive-fix-lm-eval-fewshot.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "9e8158d3eb80fbda31ad",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "train detector",
+  "task_key": "worker_train_detector_20260513T215332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_detector_20260513T215332.log",
+    "occurrence": 1,
+    "bytes": 1008443,
+    "sha256": "10a50164538632d23d18d37346efc848892c0b42a85a462c521304be860a3928"
+  },
+  "statistics": {
+    "messages": 340,
+    "user_turns": 1,
+    "tool_calls": 124,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 79,
+      "tool_call": 124,
+      "tool_result": 124,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 307,
+      "chunks": [
+        {
+          "path": "9e8158d3eb80fbda31ad-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9e8158d3eb80fbda31ad-part-0002.json",
+          "message_count": 127
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "9e8158d3eb80fbda31ad-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-detector.md"
+}

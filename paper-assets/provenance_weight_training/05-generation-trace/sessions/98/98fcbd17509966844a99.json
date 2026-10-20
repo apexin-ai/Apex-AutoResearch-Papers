@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98fcbd17509966844a99",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval old 41312 experiments",
+  "task_key": "worker_eval_old_41312_experiments_20260518T094841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_old_41312_experiments_20260518T094841_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "a3d9477099cb82502918c15365195038dc53dde2431ba9bfb69e1cf162364c52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 evals completed. Here's the full results summary:\n\n## Eval Results (ρ=0.4, Qwen3-0.6B, 5000 docs, 4,077,068 tokens each)\n\n| Experiment | PPL | Loss | Tokens | Time |\n|---|---|---|---|---|\n| **ess_only_seed123** | 17.721 | 2.8747 | 4,077,068 | 174s |\n| **ess_only_seed456** | 17.762 | 2.8770 | 4,077,068 | 164s |\n| **random_reweight_seed456** | 17.777 | 2.8779 | 4,077,068 | 131s |\n\n### Combined with prior results (all ρ=0.4):\n\n| Method | Seed 42 | Seed 123 | Seed 456 | Mean |\n|---|---|---|---|---|\n| **uniform** | 17.695 | — | — | — |\n| **ess_only** | 17.693 | **17.721** | **17.762** | 17.725 |\n| **random_reweight** | 17.787 | 17.801 | **17.777** | 17.788 |\n\nESS-only consistently outperforms random reweighting across all 3 seeds. Uniform (seed 42 only) is the best single run at 17.695."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-old-41312-experiments.md"
+}

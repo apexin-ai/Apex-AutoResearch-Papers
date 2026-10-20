@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86987933cbc735752bdd",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval epoch matched seed42",
+  "task_key": "worker_eval_epoch_matched_seed42_20260518T094830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_epoch_matched_seed42_20260518T094830_result.json",
+    "occurrence": 1,
+    "bytes": 1281,
+    "sha256": "5ee1fb363f17925878e0ead197fd054ea4aa50a6ae1ced8a04e9af8ceb42ae47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Results: `detect_remove_q05_epoch_matched_seed42`\n\n| Metric | Value |\n|---|---|\n| **Eval PPL** | **17.650** |\n| **Eval Loss** | **2.8707** |\n| **Train Loss** (final step) | 3.184 |\n| **Total Steps** | 2533/2533 (complete) |\n| **Eval Tokens** | 4,077,068 |\n\n### Interpretation\n\nThe epoch-matched D&R control (1 content epoch, 2533 steps) achieves PPL **17.650**, vs the full D&R's **17.290** — a gap of **0.36 PPL**.\n\nThis is a meaningful but moderate difference. It suggests:\n\n- **The majority of D&R's advantage comes from data quality filtering**, not from multi-epoch training on clean data. The epoch-matched control, despite seeing 60% fewer steps (2533 vs 6103), still captures most of the benefit.\n- **Multi-epoch training contributes an additional ~0.36 PPL improvement** on top of the filtering effect. The full D&R's 3.78 content-level epochs vs this control's 1 epoch accounts for this residual gap.\n- The result is **neither PPL >> 17.290 nor PPL ≈ 17.290** — it's somewhere in between, leaning toward \"data quality is the primary driver, with a secondary epoch effect.\"\n\nTo fully quantify the decomposition, the key comparison chain would be:\n`baseline (no filtering) → epoch-matched D&R (17.650) → full D&R (17.290)`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-epoch-matched-seed42.md"
+}

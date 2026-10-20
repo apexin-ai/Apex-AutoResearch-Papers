@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3c14c726b2a58659b5f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis gpt2 uniform seed42",
+  "task_key": "worker_analysis_gpt2_uniform_seed42_20260518T230357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2_uniform_seed42_20260518T230357_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "3a441f393d555269384e9199ef2c9e2168b3824535b7ae46d86679fc28867280"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n| 项目 | 值 |\n|---|---|\n| **训练状态** | 正常完成 (EXIT_CODE=0) |\n| **训练步数** | 6103 steps, 3h32m |\n| **Final train loss** | 7.989 |\n| **Holdout eval PPL** | **17.69** |\n| **Holdout eval loss** | 2.8733 |\n| **Checkpoint** | `/root/autodl-tmp/provenance_weight_training/output/models/gpt2_uniform_seed42/final` |\n\n值得注意：GPT-2 uniform baseline 的 holdout PPL (17.69) 与之前 `qwen06b_uniform_seed42_v2` (17.69) 几乎完全一致，这符合预期——两者都是 uniform weighting，数据源略有不同但底层模型相同。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpt2-uniform-seed42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e19fb279472768658e5b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis rho02 adaptive tau09 r2",
+  "task_key": "worker_analysis_rho02_adaptive_tau09_r2_20260517T111817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rho02_adaptive_tau09_r2_20260517T111817_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "2a2ef8184058b3d2715e7ffbca8863509e3b496be89dffcb32e9d5411b374970"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## rho02_adaptive_tau09_r2 分析\n\n**Status**: FAILED — 初始化阶段崩溃，零训练产出。\n\n**错误**: `TypeError: Trainer.__init__() got an unexpected keyword argument 'tokenizer'`\n- `pretrain_weighted.py:101` 中 `WeightedTrainer.__init__` 传入了 `tokenizer=` 关键字\n- westd-30476 上的 transformers 版本已将该参数重命名为 `processing_class`\n- 同一 bug 导致 `rho02_adaptive_tau09_seed42`、`bs8_auto_nmin_r2`、`batch_adaptive_tau_rho06_r2` 等多个实验全部失败\n\n**对 Claim 3 的影响**:\n- ρ=0.2 adaptive 无数据，Claim 3 (proportion-robustness) **无法验证**\n- 已有 baseline: `rho02_uniform_seed42` PPL=**17.336**\n- 对比参考: ρ=0.4 adaptive PPL=17.644 vs ρ=0.4 uniform PPL≈17.69\n\n**Registry 已更新**: log_path、metrics（含错误信息）、conclusion=failed。\n\n**修复方案**: `pretrain_weighted.py` 第~101行将 `tokenizer=` 替换为 `processing_class=`，然后重提交实验。这个 fix 同时会解决其他因相同 bug 失败的实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rho02-adaptive-tau09-r2.md"
+}

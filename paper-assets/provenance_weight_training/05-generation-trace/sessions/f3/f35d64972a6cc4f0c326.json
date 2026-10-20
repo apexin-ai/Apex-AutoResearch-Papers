@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "f35d64972a6cc4f0c326",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval 1 7b ood cuda01",
+  "task_key": "worker_eval_1_7b_ood_cuda01_20260520T143427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_1_7b_ood_cuda01_20260520T143427.log",
+    "occurrence": 1,
+    "bytes": 765448,
+    "sha256": "744a3746198b205b6d2721115bd05122a78f1eef0a1ba8b3cea5630e1529a54e"
+  },
+  "statistics": {
+    "messages": 650,
+    "user_turns": 0,
+    "tool_calls": 286,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 286,
+      "tool_result": 286,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 650,
+      "chunks": [
+        {
+          "path": "f35d64972a6cc4f0c326-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35d64972a6cc4f0c326-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35d64972a6cc4f0c326-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f35d64972a6cc4f0c326-part-0004.json",
+          "message_count": 110
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-1-7b-ood-cuda01.md"
+}

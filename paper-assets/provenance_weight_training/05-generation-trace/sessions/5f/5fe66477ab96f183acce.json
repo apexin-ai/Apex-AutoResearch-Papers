@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fe66477ab96f183acce",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit rho02 tau09 on 41312",
+  "task_key": "worker_submit_rho02_tau09_on_41312_20260516T124003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_rho02_tau09_on_41312_20260516T124003_result.json",
+    "occurrence": 1,
+    "bytes": 75,
+    "sha256": "43824696ffd6a1a089d89bb01194a3c875d4913492c37daf3a7d59f2ff3269ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 3732 仍在运行。已设置 2 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-rho02-tau09-on-41312.md"
+}

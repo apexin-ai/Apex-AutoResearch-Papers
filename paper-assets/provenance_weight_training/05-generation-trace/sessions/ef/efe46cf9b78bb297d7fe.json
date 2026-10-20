@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efe46cf9b78bb297d7fe",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis q08 eval",
+  "task_key": "worker_analysis_q08_eval_20260518T233158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_q08_eval_20260518T233158_result.json",
+    "occurrence": 1,
+    "bytes": 90,
+    "sha256": "cd4c72c7cc555c90c678f1e4f2c5f664ed3a9b44013b15e0bbdd4304e1f25833"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在 westd-41312 cuda:3 上运行，2 分钟后自动轮询结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-q08-eval.md"
+}

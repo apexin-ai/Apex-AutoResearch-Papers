@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf27f5fc714f4f3bf130",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops diagnostic status and eval",
+  "task_key": "worker_ops_diagnostic-status-and-eval_20260514T084518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnostic-status-and-eval_20260514T084518_result.json",
+    "occurrence": 1,
+    "bytes": 103,
+    "sha256": "783f5c281366e88e9b887ac1b6545b480274e187869c81ea46572593a7dee164"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training is progressing normally — step 292/610, ETA ~28 min. I'll check back shortly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnostic-status-and-eval.md"
+}

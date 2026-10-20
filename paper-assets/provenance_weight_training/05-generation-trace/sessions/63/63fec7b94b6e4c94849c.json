@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63fec7b94b6e4c94849c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose random reweight checkpoint",
+  "task_key": "worker_diagnose_random_reweight_checkpoint_20260516T130015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_random_reweight_checkpoint_20260516T130015_result.json",
+    "occurrence": 1,
+    "bytes": 1388,
+    "sha256": "262896d452e4386e84ee5d6c0a15b8f144f8fd79fdad71abe158cb5fdeacb955"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Dry-run verification complete — fix confirmed working.**\n\n## 最终诊断报告\n\n### 根因\n`random_reweight_seed42` 训练实际只完成了 ~500 步（8%），而非 99.8%。日志中的 \"6092/8477\" 是 **eval 进度条**（不是 training 进度条）。进程在第一次 eval（step 500 触发）期间被 SIGKILL 杀死。\n\nHF Trainer 的 `_maybe_log_save_evaluate()` 执行顺序是 eval → save。eval 未完成 → save 从未执行 → 零 checkpoint。\n\n**被杀原因**：`WANDB_MODE=offline` 向 30GB 根分区写入 ~150MB wandb 本地文件，加上其他进程占用，根分区写满后触发 OOM killer。\n\n### 修复内容 (`run_random_reweight_v2_seed42.sh`)\n| 改动 | 效果 |\n|------|------|\n| `WANDB_MODE=disabled` | 不写任何文件到根分区 |\n| `output_dir` → `/root/autodl-tmp/output/models/` | checkpoint 写入 250GB 数据盘 |\n| `CUDA_VISIBLE_DEVICES=0` → 可按需调整 | 避免 GPU 冲突 |\n\n### Dry-run 验证结果\n- 服务器: `westd-47453`, GPU 3\n- 配置: `max_steps=5, save_steps=3, eval_steps=3`\n- eval 耗时: 21 分 14 秒（8477 步，67823 样本）\n- **checkpoint-3**: 已保存，含 `model.safetensors`（1.19GB）+ 完整 tokenizer + trainer_state\n- **checkpoint-5**: 已保存，同上\n- 训练完整跑完 5 步，无 crash\n\nfix 脚本已就绪，可以直接启动正式训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-random-reweight-checkpoint.md"
+}

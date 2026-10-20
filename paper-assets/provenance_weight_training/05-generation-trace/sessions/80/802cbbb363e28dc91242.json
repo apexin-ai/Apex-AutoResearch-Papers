@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "802cbbb363e28dc91242",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "figure nmin sensitivity plot",
+  "task_key": "worker_figure_nmin_sensitivity_plot_20260515T233454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_nmin_sensitivity_plot_20260515T233454_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "6a913997eddaa54925a6f3022fefe11cce0d6dd17ed0204d92ac47a73b4ce72d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两张图已生成并注册：\n\n| 文件 | 大小 |\n|------|------|\n| `nmin_sensitivity.pdf` | 25 KB |\n| `nmin_sensitivity.png` | 78 KB |\n| `method_comparison.pdf` | 27 KB |\n| `method_comparison.png` | 127 KB |\n\n路径：`westd-47453:/root/provenance_weight_training/artifacts/figures/`\n\n**图 1 (n_min sensitivity)**：4 组条形 (n_min=1~4)，n_min={2,3} 带 error bar 和蓝色高亮有效区间，uniform/ESS-only 两条 baseline 虚线。Y 轴裁切到 17.59–17.82。\n\n**图 2 (method comparison)**：水平条形图，7 种方法按 PPL 排序。adaptive 和 grid-best 用深色突出，pretrained (22.97) 超出 X 轴范围在条内标注值。X 轴范围 [17.5, 18.05]，单栏宽度 3.5 inch。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-nmin-sensitivity-plot.md"
+}

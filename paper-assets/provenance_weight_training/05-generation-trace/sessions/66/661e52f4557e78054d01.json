@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "661e52f4557e78054d01",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval tau 09 seed42",
+  "task_key": "worker_eval_tau_09_seed42_20260515T175828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_tau_09_seed42_20260515T175828_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "c356e6426ebdace4bde28faaacd5faa0c4cfdb3209e7be5f4d1b2c43321abf84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n- **PPL = 17.712**，高于 uniform mean (17.694)，结论 **negative**（差距仅 0.018，边际）\n- **b\\* 分布**：mean=2.36, median=1.32, std=3.04；33.7% ≥ 2，高方差长尾，说明 tau=0.9 放大了 provenance score 的噪声但未带来收益\n- Registry 已更新（metrics、conclusion=negative、checkpoint_path、log_path）\n- 分析报告已注册为 artifact"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-tau-09-seed42.md"
+}

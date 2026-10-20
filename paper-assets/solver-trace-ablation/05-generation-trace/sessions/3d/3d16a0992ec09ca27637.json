@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "id": "3d16a0992ec09ca27637",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check phase0 score v3 result",
+  "task_key": "worker_check_phase0_score_v3_result_20260513T100902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phase0_score_v3_result_20260513T100902_result.json",
+    "occurrence": 1,
+    "bytes": 3507,
+    "sha256": "d4b3131f65827d802869625cc2f977fc5a6f1d01d0e6bd6fc50b2f3ba3a55abd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已在之前删除），不影响结果。\n\n---\n\n## 结果报告\n\n**Phase 0 Score V3：PASS**\n\n### correlation_matrix.json 完整内容\n\n```json\n{\n  \"pearson\": {\n    \"lexical_conformity_vs_semantic_novelty\":  { \"r\": -0.1170, \"p_value\": 0.0 },\n    \"lexical_conformity_vs_quality\":           { \"r\": -0.0475, \"p_value\": 0.00079 },\n    \"lexical_conformity_vs_confidence\":        { \"r\":  0.3028, \"p_value\": 0.0 },\n    \"semantic_novelty_vs_quality\":             { \"r\": -0.0289, \"p_value\": 0.041293 },\n    \"semantic_novelty_vs_confidence\":          { \"r\":  0.1080, \"p_value\": 0.0 },\n    \"quality_vs_confidence\":                   { \"r\": -0.2871, \"p_value\": 0.0 }\n  },\n  \"spearman\": {\n    \"lexical_conformity_vs_semantic_novelty\":  { \"rho\": -0.1144, \"p_value\": 0.0 },\n    \"lexical_conformity_vs_quality\":           { \"rho\": -0.3312, \"p_value\": 0.0 },\n    \"lexical_conformity_vs_confidence\":        { \"rho\":  0.3354, \"p_value\": 0.0 },\n    \"semantic_novelty_vs_quality\":             { \"rho\": -0.1212, \"p_value\": 0.0 },\n    \"semantic_novelty_vs_confidence\":          { \"rho\":  0.1123, \"p_value\": 0.0 },\n    \"quality_vs_confidence\":                   { \"rho\": -0.9979, \"p_value\": 0.0 }\n  },\n  \"judgment\": {\n    \"pass_no_pair_above_0.7\": true,\n    \"pass_lc_confidence_below_0.5\": true,\n    \"overall\": \"PASS\"\n  }\n}\n```\n\n### 关键发现\n\n| 指标对 | Pearson r | Spearman ρ |\n|--------|-----------|------------|\n| LC vs SN | -0.117 | -0.114 |\n| LC vs Quality | -0.048 | -0.331 |\n| **LC vs Confidence** | **0.303** | **0.335** |\n| SN vs Quality | -0.029 | -0.121 |\n| SN vs Confidence | 0.108 | 0.112 |\n| **Quality vs Confidence** | **-0.287** | **-0.998** |\n\n- 所有 Pearson |r| < 0.7 ✓\n- LC vs Confidence |r| = 0.303 < 0.5 ✓\n- Quality vs Confidence 的 Spearman ρ = -0.998（近乎完美负相关），但 Pearson r = -0.287，说明两者存在强单调但非线性关系\n\n### Registry 状态\n\n- `status`: ANALYZING\n- `conclusion`: success\n- Cron: 已不存在（无需删除）"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "pearson": {
+                "lexical_conformity_vs_semantic_novelty": {
+                  "r": -0.117,
+                  "p_value": 0.0
+                },
+                "lexical_conformity_vs_quality": {
+                  "r": -0.0475,
+                  "p_value": 0.00079
+                },
+                "lexical_conformity_vs_confidence": {
+                  "r": 0.3028,
+                  "p_value": 0.0
+                },
+                "semantic_novelty_vs_quality": {
+                  "r": -0.0289,
+                  "p_value": 0.041293
+                },
+                "semantic_novelty_vs_confidence": {
+                  "r": 0.108,
+                  "p_value": 0.0
+                },
+                "quality_vs_confidence": {
+                  "r": -0.2871,
+                  "p_value": 0.0
+                }
+              },
+              "spearman": {
+                "lexical_conformity_vs_semantic_novelty": {
+                  "rho": -0.1144,
+                  "p_value": 0.0
+                },
+                "lexical_conformity_vs_quality": {
+                  "rho": -0.3312,
+                  "p_value": 0.0
+                },
+                "lexical_conformity_vs_confidence": {
+                  "rho": 0.3354,
+                  "p_value": 0.0
+                },
+                "semantic_novelty_vs_quality": {
+                  "rho": -0.1212,
+                  "p_value": 0.0
+                },
+                "semantic_novelty_vs_confidence": {
+                  "rho": 0.1123,
+                  "p_value": 0.0
+                },
+                "quality_vs_confidence": {
+                  "rho": -0.9979,
+                  "p_value": 0.0
+                }
+              },
+              "judgment": {
+                "pass_no_pair_above_0.7": true,
+                "pass_lc_confidence_below_0.5": true,
+                "overall": "PASS"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phase0-score-v3-result.md"
+}

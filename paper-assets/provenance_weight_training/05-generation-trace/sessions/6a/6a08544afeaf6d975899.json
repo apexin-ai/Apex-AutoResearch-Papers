@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a08544afeaf6d975899",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code anonymous repo",
+  "task_key": "worker_code_anonymous_repo_20260523T130715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anonymous_repo_20260523T130715_result.json",
+    "occurrence": 1,
+    "bytes": 476,
+    "sha256": "0c0e20a83c5986da446f1df890aa08a6f9d25fe2323a0312cfaff4293e358b1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Push 成功。汇报：\n\n- **Repo URL**: https://github.com/anonymous-nlp-2026/provenance_weight_training\n- **文件数**: 144\n- **Commit hash**: `c1713ff`\n- **分支**: `main`\n- **敏感词残留**: 无（caoxiaoyu、1844118046、westd、autodl、机构名、api_key 等均已清除或不存在）\n- **匿名化处理**: `/root/autodl-tmp/` 路径已替换为相对路径，`network_turbo` 已注释\n- **新增文件**: `requirements.txt`、`README.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anonymous-repo.md"
+}

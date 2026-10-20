@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cac006efe00a5f84b863",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "figures paperbanana concept diagram",
+  "task_key": "worker_figures_paperbanana_concept_diagram_20260525T035914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figures_paperbanana_concept_diagram_20260525T035914_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "5731ef0a93a26461cb8c9832bc24d4800ad57758d7735b7c0b37471468f9501f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- **PNG**: `artifacts/figures/dr_pipeline_concept.png` (1.9MB, 2752×1536, 300DPI)\n- **PDF**: `artifacts/figures/dr_pipeline_concept.pdf` (3.3MB)\n\n4 个 stage 水平对齐，左到右流程：Training Corpus → TF-IDF+LR Detector → Constrained Optimization (w_i=α^{q_i·b*}) → Language Model (Qwen3-0.6B)，底部附 Uniform → D&R (hard) → Adaptive b* (ours) 方法对比行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figures-paperbanana-concept-diagram.md"
+}

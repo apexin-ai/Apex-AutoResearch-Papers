@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9de43a4440d2451b15d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra cleanup duplicate lm eval",
+  "task_key": "worker_infra_cleanup_duplicate_lm_eval_20260520T033642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_cleanup_duplicate_lm_eval_20260520T033642_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "bc1e619db55ca811864f5a748d1fb320c362508459500fa3f5d26e0e308d446e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**残留进程清理**：无需清理。旧 PID (379015, 379728, 380475) 已不存在，服务器上干净。\n\n**当前 GPU 状态**（4× RTX PRO 6000 Blackwell 98GB）：\n\n| GPU | PID | 任务 | 显存 | 利用率 |\n|-----|------|------|------|--------|\n| 0 | 383864 | adaptive_rho06_tau07_seed42 训练 | 45634MiB | 100% |\n| 1 | 383947 | adaptive_rho06_tau07_seed123 训练 | 45634MiB | 100% |\n| 2 | 384114 | adaptive_rho06_tau07_seed456 训练 | 45634MiB | 100% |\n| 3 | 384367 | uniform_seed42_downstream eval | 1834MiB | 0% |\n\n每个 GPU 上仅有一个正确进程，无多余占用。\n\n**eval 进度**：`uniform_seed42_downstream` 的结果目录已有 3 个 results JSON 文件（11:29、11:30、11:34 生成），说明部分 task 已完成评估，eval 正在进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-duplicate-lm-eval.md"
+}

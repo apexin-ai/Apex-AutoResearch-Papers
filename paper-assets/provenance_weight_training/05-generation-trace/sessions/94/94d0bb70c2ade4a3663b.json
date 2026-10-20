@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94d0bb70c2ade4a3663b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops kill pid 90968",
+  "task_key": "worker_ops_kill_pid_90968_20260514T105639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_pid_90968_20260514T105639_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "755f538f39d4b4a5dd0fc2070c1bb47941686db63dd5dbfcaf12d7c647a28f6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**PID 90968**：进程已不存在（可能之前已终止）。GPU 3 显存 46523 MiB 是 grid_b1_5_seed123 训练占用，属正常。\n\n**GPU 状态**：4 卡均 ~46.5GB / 97.9GB，利用率 94-99%，全部正常运行。\n\n**训练进度**：\n\n| 任务 | GPU | Step / Total | 进度 | 已用时间 | 预估剩余 |\n|------|-----|-------------|------|---------|---------|\n| grid_b1_5_seed123 (b=1.5) | cuda:3 | 5884 / 6103 | **96%** | 4h03m | ~8 min |\n| grid_b_seed42_batch (b=1.5) | cuda:0 | 5724 / 6103 | **94%** | 3h53m | ~13 min |\n| grid_b3_0_seed123 (b=3.0) | cuda:2 | 262 / 6103 | **4%** | 9m | ~3h26m |\n| grid_b2_0_seed123 (b=2.0) | cuda:1 | 548 / 6103 | **9%** | 21m | ~3h16m |\n\n前两个任务即将完成（~10 分钟内），后两个刚启动，预计还需 ~3.5 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-pid-90968.md"
+}

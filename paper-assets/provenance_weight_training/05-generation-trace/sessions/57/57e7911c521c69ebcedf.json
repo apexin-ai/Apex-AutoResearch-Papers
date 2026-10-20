@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57e7911c521c69ebcedf",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops sync and verify adaptive fix",
+  "task_key": "worker_ops_sync_and_verify_adaptive_fix_20260514T141343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync_and_verify_adaptive_fix_20260514T141343_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "daae00022aecc2be97b41a613e023053409a6e67ad87ecebfe94637b1754ea2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**远程代码已同步，无需操作。**\n\n- `n_min` 默认值已是 `max(2, batch_size // 2)`\n- 无 EMA 平滑逻辑\n- import 验证通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-and-verify-adaptive-fix.md"
+}

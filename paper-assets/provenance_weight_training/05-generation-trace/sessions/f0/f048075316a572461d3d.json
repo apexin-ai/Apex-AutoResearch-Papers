@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f048075316a572461d3d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval collect 1 7b seed123 results",
+  "task_key": "worker_eval_collect_1_7b_seed123_results_20260520T163831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect_1_7b_seed123_results_20260520T163831_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "27a9399fed0c401ced2f15e8a9a058f5a3ad9fffcf7ce82e707189699c9d596c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval entries are in PREPARING state and can't jump to DONE — not critical since the main experiment entries have all metrics. Here's the complete results table:\n\n| Metric | uniform seed123 | adaptive seed123 | Δ (adaptive − uniform) |\n|--------|----------------|-----------------|------------------------|\n| **eval_ppl_openwebtext** | 13.292 | 13.291 | −0.001 |\n| **eval_ppl_wikipedia** | 10.942 | 10.952 | +0.010 |\n| **downstream_arc_easy_acc_norm** | 0.7260 | 0.7138 | −0.0122 |\n| **downstream_arc_challenge_acc_norm** | 0.4317 | 0.4386 | +0.0069 |\n| **downstream_hellaswag_acc_norm** | 0.6118 | 0.6147 | +0.0029 |\n| **downstream_piqa_acc_norm** | 0.7454 | 0.7459 | +0.0005 |\n| **downstream_winogrande_acc** | 0.6133 | 0.6298 | +0.0165 |\n| **downstream_mean** | 0.6256 | 0.6286 | **+0.0030** |\n\nseed123 与 seed42 趋势一致：OOD PPL 几乎相同（差异 <0.01），downstream mean adaptive 略优 (+0.30pp vs seed42 的 −0.05pp)。两个 seed 综合看 1.7B scale 下 adaptive 和 uniform 差异极小。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-1-7b-seed123-results.md"
+}

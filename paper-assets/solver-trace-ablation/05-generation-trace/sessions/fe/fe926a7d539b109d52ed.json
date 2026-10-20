@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe926a7d539b109d52ed",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "check phase0 score results",
+  "task_key": "worker_check_phase0_score_results_20260513T095317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_phase0_score_results_20260513T095317_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "e527fff9c6aecaff1247ce099ab198d3ee64302bc1eed16bf76a862f183d92f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**评分任务失败。** `correlation_matrix.json` 和图片文件均未生成。\n\n**失败原因**：模型加载失败。脚本设置了 `HF_HUB_OFFLINE=1`，尝试从 HuggingFace 缓存加载 `Qwen/Qwen2.5-1.5B`，但缓存中不存在标准 HF 格式的缓存目录（`models--Qwen--Qwen2.5-1.5B`）。\n\n模型实际通过 ModelScope 下载，存放在 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B`（ModelScope 的缓存路径格式），而 `transformers` 的 `from_pretrained(\"Qwen/Qwen2.5-1.5B\")` 在离线模式下只认 HF Hub 缓存格式，找不到文件。\n\n**修复方案**：将 `MODEL_NAME` 改为 ModelScope 缓存的实际本地路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-1___5B`（需先确认该目录下有完整的模型文件），或为模型创建符号链接到 HF Hub 缓存格式路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-phase0-score-results.md"
+}

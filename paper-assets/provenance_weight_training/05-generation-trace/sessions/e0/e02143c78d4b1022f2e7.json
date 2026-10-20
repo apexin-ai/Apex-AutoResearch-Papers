@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e02143c78d4b1022f2e7",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval dr q05 ckpt5500 cuda0",
+  "task_key": "worker_eval_dr_q05_ckpt5500_cuda0_20260525T032625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_dr_q05_ckpt5500_cuda0_20260525T032625_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "939ea5ac7952c00d0afc9baecde50bf2db3ff760bd3b8f1fdc5bc5b58cec81a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| Checkpoint | `/root/autodl-tmp/.../detect_remove_q05_seed42/checkpoint-5500/` ✓ |\n| GPU | cuda:0 (RTX PRO 6000 Blackwell, 98GB), PID 5867 运行中 |\n| Eval 顺序 | holdout → openwebtext → wikipedia（串行，各 5000 docs） |\n| 输出文件 | `eval_results_dr_q05_ckpt5500_{holdout,owt,wiki}.json` |\n| 日志 | `/tmp/eval_dr_q05_ckpt5500.log` |\n| Registry | `eval_dr_q05_ckpt5500` → RUNNING, parent=detect_remove_q05_seed42 |\n| 父进程 PID | 5861 (nohup bash) |\n\n当前正在评估 holdout 数据集（模型已加载完毕）。预计三项 eval 总计 30-60 分钟完成。可用 `tail /tmp/eval_dr_q05_ckpt5500.log` 查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-dr-q05-ckpt5500-cuda0.md"
+}

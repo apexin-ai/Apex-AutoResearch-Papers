@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0c985e9450cf8194432",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis gpt2 detector auc",
+  "task_key": "worker_analysis_gpt2-detector-auc_20260518T192753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gpt2-detector-auc_20260518T192753_result.json",
+    "occurrence": 1,
+    "bytes": 1484,
+    "sha256": "40234b1e6525cb690fd281422d9764705f851d8975c01733e42cdfb5667c15e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`pretrain_weighted.py` reads `q_score` from the data (line 79: `item.get(\"q_score\", 0.0)`). The GPT-2 scored data file already has a `q_score` column, so it's directly compatible.\n\n## Results\n\n| Metric | Value |\n|--------|-------|\n| **GPT-2 PPL Detector AUC** | **0.9130** |\n| GPT-2 NLL AUC | 0.9130 |\n| q_score AUC | 0.9130 |\n| Total samples | 371,499 |\n| Contaminated (depth=1) | 206,610 |\n| Clean (depth=0) | 164,889 |\n\n**Key findings:**\n\n1. **AUC = 0.9130** — GPT-2 PPL is a strong contamination detector. Lower PPL = more likely generated (contaminated mean PPL=5.23, clean mean PPL=13.75).\n\n2. **Column names in GPT-2 scored file:** `text`, `depth`, `source_model`, `prompt_tokens`, `generated_tokens`, `decoding`, `q_score`, `gpt2_ppl`, `gpt2_nll`\n\n3. **`q_score` is derived from `gpt2_ppl`** — all three scores yield identical AUC (0.9130), confirming `q_score` in this file is a monotone transform of the GPT-2 PPL score (higher q_score = lower PPL = more contaminated).\n\n4. **Compatible with `pretrain_weighted.py`** — the file has a `q_score` column and `pretrain_weighted.py` reads `item.get(\"q_score\", 0.0)` at line 79. No `--score_column` parameter needed; the file works directly.\n\n5. **Different from original detector's q_score** — the original `scored_data.jsonl` has different `q_score` values (e.g., first record: original=0.968 vs GPT-2=0.754), meaning they use different scoring methods but the same column name."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gpt2-detector-auc.md"
+}

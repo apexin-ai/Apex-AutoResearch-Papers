@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a91b1e014cb7875c04f8",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code plan b batch adaptive tau",
+  "task_key": "worker_code_plan_b_batch_adaptive_tau_20260516T101050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_b_batch_adaptive_tau_20260516T101050_result.json",
+    "occurrence": 1,
+    "bytes": 1718,
+    "sha256": "b7da974eb253388f08c7c9f9efb5a65146ef3b06dda695600d51a2030991a1a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 完成，3 步全部通过。`tau_batch` 按 batch 自适应调整：\n\n| Step | mean_q | tau_batch | b* | alpha_eff |\n|------|--------|-----------|-----|-----------|\n| 0 | 0.654 | 0.646 | 0.628 | 0.646 |\n| 1 | 0.582 | 0.718 | 0.448 | 0.718 |\n| 2 | 0.580 | 0.720 | 0.460 | 0.720 |\n\ntau_batch 在 0.646~0.720 之间变化（全局 τ=0.8），符合预期：batch 越脏（mean_q 越高，natural α_eff 越低），tau_batch 越低，减少不可能达成的过度干预。\n\n## 汇报\n\n### 代码改动\n\n1. **`weighting/alpha_eff.py`**：新增 `find_optimal_b_adaptive_tau()` 函数（插入在 `compute_concentration_bound` 之后、`if __name__` 之前）\n   - 计算 `alpha_eff_natural = compute_alpha_eff(q_scores, 0.0)`\n   - `tau_batch = clamp(alpha_eff_natural + delta, tau_min, tau)`\n   - 用 `tau_batch` 调用 `find_optimal_b`，返回 `(b_star, tau_batch)`\n\n2. **`training/pretrain_weighted.py`**（9 处修改）：\n   - 新增 import `find_optimal_b_adaptive_tau`\n   - `WeightedTrainer.__init__` 新增 `adaptive_tau`, `tau_delta`, `tau_min` 参数\n   - `compute_loss` 的 `adaptive` 分支：`adaptive_tau=True` 时调用新函数\n   - `step_info` 和 wandb 日志增加 `tau_batch` 字段\n   - `parse_args` 新增 `--adaptive_tau`, `--tau_delta`, `--tau_min` 三个 CLI 参数\n   - `WeightedTrainer` 构造传参\n   - `config_summary` 记录新参数\n\n### 脚本路径\n\n- `scripts/run_batch_adaptive_tau_rho04_seed42.sh` — ρ=0.4, τ=0.8, delta=0.3, τ_min=0.5\n- `scripts/run_batch_adaptive_tau_rho06_seed42.sh` — ρ=0.6, τ=0.7, delta=0.3, τ_min=0.5\n\n### 向后兼容\n\n`--adaptive_tau` 默认 False，不加此 flag 时行为完全不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-b-batch-adaptive-tau.md"
+}

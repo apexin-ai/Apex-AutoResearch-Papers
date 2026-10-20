@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57124c5612db0ad9e7ef",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit threshold q07 resume",
+  "task_key": "worker_submit_threshold_q07_resume_20260516T104102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_threshold_q07_resume_20260516T104102_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "d59169ccf0959228a5161f256671530e2cd8471ca053142f5da2d202db7b4924"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Resume 成功。\n\n- **PID**: 324550\n- **Resume 起始 step**: 2001/6103（从 checkpoint-2000 恢复）\n- **GPU**: cuda:0, 60% 利用率, 46.5GB/97.9GB 显存\n- **剩余 steps**: 4102（67%）\n- **预计完成时间**: ~2.5h（约 UTC 13:15 / CST 21:15）\n\n磁盘问题已处理：清理了 /tmp 和旧 checkpoints，根分区从 100% 降到 88%（3.8GB 可用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-threshold-q07-resume.md"
+}

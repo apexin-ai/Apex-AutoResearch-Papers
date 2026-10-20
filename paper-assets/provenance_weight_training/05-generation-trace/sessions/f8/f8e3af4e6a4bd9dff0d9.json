@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8e3af4e6a4bd9dff0d9",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit detect remove q09 epoch matched seed42",
+  "task_key": "worker_submit_detect_remove_q09_epoch_matched_seed42_20260519T002758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_detect_remove_q09_epoch_matched_seed42_20260519T002758_result.json",
+    "occurrence": 1,
+    "bytes": 322,
+    "sha256": "43641f7966fd1776b9403b27afae9568c1ae6bddde2a615e13372724173f50a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，参数确认无误：\n\n- **exp_id**: `detect_remove_q09_epoch_matched_seed42`\n- **GPU**: cuda:3, PID 89871\n- **数据**: 228,743 examples loaded\n- **max_steps**: 3770\n- **weighting_method**: uniform\n- **进度条**: 0/3770 已开始\n\n双曲线计划第 5 个点 (q09) 已在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-detect-remove-q09-epoch-matched-seed42.md"
+}

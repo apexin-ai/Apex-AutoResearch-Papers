@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd42e2f399ebb3c836be",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval cuda3 downstream followup",
+  "task_key": "worker_eval_cuda3_downstream_followup_20260520T045053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_cuda3_downstream_followup_20260520T045053_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "ac823b115dc3bf845f50f55af7d2c1b32f40fdade70de68e1f76d4a15185b9e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已成功完成，结果 JSON 存在且 registry 已包含正确的 downstream metrics。\n\n## 汇总\n\n| Benchmark | detect_remove_q03_seed42_r2 | detect_remove_q04_seed42 |\n|---|---|---|\n| arc_easy (acc_norm) | **0.6301** | 0.6107 |\n| arc_challenge (acc_norm) | 0.3549 | **0.3567** |\n| hellaswag (acc_norm) | **0.4851** | 0.4819 |\n| piqa (acc_norm) | 0.6872 | **0.6931** |\n| winogrande (acc) | **0.5675** | 0.5659 |\n\n- **状态**: 两个 eval 均已完成（q03 完成于 12:46，q04 完成于 12:48，今天）\n- **Registry**: 两个 exp_id 的 downstream metrics 已全部写入，数值与 JSON 完全一致\n- **GPU 3**: 当前空闲（0% 利用率，0 MiB 显存）\n\n上一个 Worker 报告\"空结果\"可能是在 eval 尚未完成时就检查了。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cuda3-downstream-followup.md"
+}

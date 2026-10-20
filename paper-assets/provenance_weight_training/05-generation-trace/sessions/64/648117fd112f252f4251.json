@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "648117fd112f252f4251",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval threshold q03 seed42",
+  "task_key": "worker_eval_threshold_q03_seed42_20260516T232152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_threshold_q03_seed42_20260516T232152_result.json",
+    "occurrence": 1,
+    "bytes": 195,
+    "sha256": "c07272a42770a56a5ac203d222348ef2e652f9494051f728aca4f62e139d99fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。threshold_q03_seed42 的 holdout eval 结果：\n\n| 指标 | 值 |\n|------|------|\n| eval_loss_holdout | 2.848 |\n| eval_ppl_holdout | 17.253 |\n\nRegistry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-threshold-q03-seed42.md"
+}

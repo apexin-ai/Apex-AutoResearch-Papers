@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a316f3f2a5fed921dbae",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "data merge and assemble mixed",
+  "task_key": "worker_data_merge-and-assemble-mixed_20260513T215105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_merge-and-assemble-mixed_20260513T215105_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "d5e71d53b929940af60ea50613864fc820fa67e49f90edc07e138c571548b19b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。混合数据中可见 depth=1 (synthetic) 和 depth=0 (human/fineweb) 记录交替出现，shuffle 生效。\n\n## 报告\n\n| 项目 | 值 |\n|------|-----|\n| 合成数据合并后文档数 | 340,992 |\n| 人类数据文档数 | 164,889 |\n| **混合数据总文档数** | **505,881** |\n| 人类占比 | 32.59% |\n| 合成占比 | 67.41% |\n| 文件路径 | `/root/provenance_weight_training/data/mixed_data.jsonl` |\n| 文件大小 | 1.2 GB |\n\n数据已 shuffle（seed=42），human 记录标注 `depth=0, source=fineweb`，synthetic 记录标注 `depth=1`。`GENERATION_DONE` 标记已创建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-merge-and-assemble-mixed.md"
+}

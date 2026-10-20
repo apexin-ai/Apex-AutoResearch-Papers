@@ -1,0 +1,3526 @@
+{
+  "schema_version": "1.0",
+  "session_id": "b9de33e0847ace349087",
+  "rounds": [
+    {
+      "number": 79,
+      "messages": [
+        {
+          "source_line": 2341,
+          "timestamp": "2026-05-20T08:51:53.805681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "provenance_weight_training",
+              "fields": "['exp_id', 'status', 'conclusion', 'updated_at']",
+              "limit": "20"
+            }
+          },
+          "id": "event-002341"
+        },
+        {
+          "source_line": 2342,
+          "timestamp": "2026-05-20T08:51:54.359369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"adaptive_1_7b_seed42_v5\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"updated_at\\\": \\\"2026-05-20T08:51:17.548Z\\\"}, \\\"uniform_1_7b_seed42_v5\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"updated_at\\\": \\\"2026-05-20T08:51:15.536Z\\\"}, \\\"adaptive_rho06_tau07_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T08:50:25.379Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"adaptive_1_7b_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T08:47:34.649Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"uniform_1_7b_seed42_v4\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T08:47:26.437Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"adaptive_rho06_tau07_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T08:46:05.369Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"adaptive_rho06_tau07_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T08:32:18.426Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"adaptive_fix_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T07:14:40.930Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"qwen06b_uniform_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T07:14:39.481Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"detect_remove_q04_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T07:14:37.043Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"detect_remove_q03_seed42_r2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T07:14:34.819Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"detect_remove_q08_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T07:14:32.824Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"adaptive_1_7b_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:50:47.354Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"uniform_1_7b_seed42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:50:45.424Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"detect_remove_q01_seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:04:46.527Z\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"detect_remove_q03_seed456\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated\n…[truncated 702 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 553
+          },
+          "id": "event-002342"
+        },
+        {
+          "source_line": 2343,
+          "timestamp": "2026-05-20T08:52:06.456866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'adaptive_1_7b_seed42_v5'}",
+              "project": "provenance_weight_training",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002343"
+        },
+        {
+          "source_line": 2344,
+          "timestamp": "2026-05-20T08:52:06.508008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'uniform_1_7b_seed42_v5'}",
+              "project": "provenance_weight_training",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002344"
+        },
+        {
+          "source_line": 2345,
+          "timestamp": "2026-05-20T08:52:06.508419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'adaptive_1_7b_seed42_v4'}",
+              "project": "provenance_weight_training",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002345"
+        },
+        {
+          "source_line": 2346,
+          "timestamp": "2026-05-20T08:52:07.112414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.593}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 655
+          },
+          "id": "event-002346"
+        },
+        {
+          "source_line": 2347,
+          "timestamp": "2026-05-20T08:52:07.614484+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5245}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1106
+          },
+          "id": "event-002347"
+        },
+        {
+          "source_line": 2348,
+          "timestamp": "2026-05-20T08:52:08.117578+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4873}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1609
+          },
+          "id": "event-002348"
+        },
+        {
+          "source_line": 2349,
+          "timestamp": "2026-05-20T08:52:29.223399+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_infra_westd41312_disk_cleanup\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: info] **磁盘清理有效**：/root/autodl-tmp/ 从满到 176GB 可用（250GB 中用 75GB，30%），为 1.7B 训练提供充足空间。\n\n- [severity: info] **Registry 已修正**：uniform_1_7b_seed42_v4 和 adaptive_1_7b_seed42_v4 正确标记为 DONE/failed。v5 实验（uniform_1_7b_seed42_v5, adaptive_1_7b_seed42_v5）已注册为 PENDING。\n\n- [severity: info] **GPU 3 正在执行 rho06_tau07_seed42 downstream eval**（PID 452351, lm_eval 0-shot, arc_easy/arc_challenge/hellaswag/piqa/winogrande, 13934 MiB）。\n\n- [severity: warning] **GPU 0/1/2 仍空闲**：v5 实验 PENDING 但未启动，3 张 97GB 卡空转中。建议尽快启动 v5 1.7B 训练（2 张卡够用）+ rho06_tau07 holdout PPL eval（1 张卡）。\n\n- [severity: info] **旧 1.7B 模型仍占空间**：uniform_1_7b_seed42_resumed (3.3GB) 和 adaptive_1_7b_seed42 (3.3GB) 仍在磁盘上。如果这些是已完成/已失败的旧版本，可考虑清理以防再次空间紧张。",
+              "project": "provenance_weight_training"
+            }
+          },
+          "id": "event-002349"
+        },
+        {
+          "source_line": 2350,
+          "timestamp": "2026-05-20T08:52:33.137411+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3914
+          },
+          "id": "event-002350"
+        },
+        {
+          "source_line": 2351,
+          "timestamp": "2026-05-20T08:52:37.300195+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完毕。磁盘清理 worker 处理得当——空间已恢复、registry 已修正、v5 已规划。主要关注点是 GPU 0/1/2 空闲，等待下一个 worker 启动 v5 训练和 rho06_tau07 holdout PPL eval。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer"
+          },
+          "id": "event-002351"
+        }
+      ]
+    },
+    {
+      "number": 80,
+      "messages": [
+        {
+          "source_line": 2352,
+          "timestamp": "2026-05-20T08:52:55.820097+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_rho06_tau07_full_eval_pipeline_20260520T081434]:\nWorker worker_eval_rho06_tau07_full_eval_pipeline_20260520T081434 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "source": "system"
+          },
+          "id": "event-002352"
+        },
+        {
+          "source_line": 2353,
+          "timestamp": "2026-05-20T08:53:05.318574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'adaptive_rho06_tau07_seed42'}",
+              "project": "provenance_weight_training",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002353"
+        },
+        {
+          "source_line": 2354,
+          "timestamp": "2026-05-20T08:53:05.820726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'adaptive_rho06_tau07_seed123'}",
+              "project": "provenance_weight_training",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002354"
+        },
+        {
+          "source_line": 2355,
+          "timestamp": "2026-05-20T08:53:06.272841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 954
+          },
+          "id": "event-002355"
+        },
+        {
+          "source_line": 2356,
+          "timestamp": "2026-05-20T08:53:06.474041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'adaptive_rho06_tau07_seed456'}",
+              "project": "provenance_weight_training",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002356"
+        },
+        {
+          "source_line": 2357,
+          "timestamp": "2026-05-20T08:53:06.525026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5755}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 704
+          },
+          "id": "event-002357"
+        },
+        {
+          "source_line": 2358,
+          "timestamp": "2026-05-20T08:53:07.028508+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5451}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 554
+          },
+          "id": "event-002358"
+        },
+        {
+          "source_line": 2359,
+          "timestamp": "2026-05-20T08:53:11.596111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002359"
+        },
+        {
+          "source_line": 2360,
+          "timestamp": "2026-05-20T08:53:11.648022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-002360"
+        },
+        {
+          "source_line": 2361,
+          "timestamp": "2026-05-20T08:53:16.416172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 'adaptive_rho06_tau07_seed42' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -70",
+              "description": "Find rho06_tau07_seed42 entry in registry"
+            }
+          },
+          "id": "event-002361"
+        },
+        {
+          "source_line": 2362,
+          "timestamp": "2026-05-20T08:53:16.972564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  adaptive_rho06_tau07_seed42:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-20T03:19:02.608Z'\n    updated_at: '2026-05-20T08:52:13.091Z'\n    hypothesis: Pure adaptive retraining at ρ=0.6, τ=0.7, seed=42. Replaces rho06_tau07_seed42\n      which was contaminated by hybrid checkpoint. From-scratch training with base\n      Qwen3-0.6B to clean output dir. If PPL < 17.73 (ρ=0.6 τ=0.8 baseline), validates\n      τ=0.7 as universal default across contamination levels.\n    parent: rho06_tau07_seed42\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n        training/pretrain_weighted.py --data_path /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl\n        --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed42\n        --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio\n        0.6 --tau 0.7 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n        4 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --bf16\n        --save_total_limit 3 --save_only_model --save_steps 6103\"\n      server: westd-41312\n      gpu:\n      - cuda:0\n      pid: '383864'\n      log_path: ~/runs/provenance_weight_training/adaptive_rho06_tau07_seed42.log\n      submitted_at: '2026-05-20T03:31:32.965Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl\n      data_count: 371499\n      model_name: Qwen/Qwen3-0.6B\n      seed: 42\n      checkpoint_source: N/A (from-scratch training)\n      eval_data: N/A (training experiment)\n      checkpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed42/final\n      train_loss: 9.358\n      train_runtime_hours: 3.74\n      wall_clock_seconds\n…[truncated 1611 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 556
+          },
+          "id": "event-002362"
+        },
+        {
+          "source_line": 2363,
+          "timestamp": "2026-05-20T08:53:17.023258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 'adaptive_rho06_tau07_seed123' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -70",
+              "description": "Find rho06_tau07_seed123 entry in registry"
+            }
+          },
+          "id": "event-002363"
+        },
+        {
+          "source_line": 2364,
+          "timestamp": "2026-05-20T08:53:17.727210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  adaptive_rho06_tau07_seed123:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-20T03:22:15.719Z'\n    updated_at: '2026-05-20T08:46:05.369Z'\n    hypothesis: Pure adaptive training at ρ=0.6, τ=0.7, seed=123. Second seed for\n      clean ρ=0.6 τ=0.7 3-seed set. From-scratch Qwen3-0.6B, no checkpoint reuse.\n      Validates τ=0.7 as universal default across contamination levels.\n    parent: rho06_tau07_seed42\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n        training/pretrain_weighted.py --data_path /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl\n        --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed123\n        --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio\n        0.6 --tau 0.7 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n        4 --learning_rate 5e-5 --max_length 2048 --seed 123 --logging_steps 10 --bf16\n        --save_total_limit 3 --save_only_model --save_steps 6103\"\n      server: westd-41312\n      gpu:\n      - cuda:1\n      pid: '383947'\n      log_path: ~/runs/provenance_weight_training/adaptive_rho06_tau07_seed123.log\n      submitted_at: '2026-05-20T03:31:35.365Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl\n      data_count: 371499\n      model_name: Qwen/Qwen3-0.6B\n      seed: 123\n      checkpoint_source: N/A (from-scratch training)\n      eval_data: N/A (training experiment)\n      checkpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed123/final\n      train_loss: 9.352\n      train_runtime_hours: 3.74\n      wall_clock_seconds: 16928.5\n      gpu_hours: 4.7\n    conclusion: success\n    completed_at: '2026-05-20T\n…[truncated 1550 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 703
+          },
+          "id": "event-002364"
+        },
+        {
+          "source_line": 2365,
+          "timestamp": "2026-05-20T08:53:17.878184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 'adaptive_rho06_tau07_seed456' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -70",
+              "description": "Find rho06_tau07_seed456 entry in registry"
+            }
+          },
+          "id": "event-002365"
+        },
+        {
+          "source_line": 2366,
+          "timestamp": "2026-05-20T08:53:17.979094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  adaptive_rho06_tau07_seed456:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-20T03:22:16.979Z'\n    updated_at: '2026-05-20T08:50:25.379Z'\n    hypothesis: Pure adaptive training at ρ=0.6, τ=0.7, seed=456. Third seed completing\n      clean ρ=0.6 τ=0.7 3-seed set. From-scratch Qwen3-0.6B, no checkpoint reuse.\n      Together with seed42/123, enables paired comparison against ρ=0.6 τ=0.8.\n    parent: rho06_tau07_seed42\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n        training/pretrain_weighted.py --data_path /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl\n        --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed456\n        --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio\n        0.6 --tau 0.7 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n        4 --learning_rate 5e-5 --max_length 2048 --seed 456 --logging_steps 10 --bf16\n        --save_total_limit 3 --save_only_model --save_steps 6103\"\n      server: westd-41312\n      gpu:\n      - cuda:2\n      pid: '384114'\n      log_path: ~/runs/provenance_weight_training/adaptive_rho06_tau07_seed456.log\n      submitted_at: '2026-05-20T03:31:37.645Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl\n      data_count: 371499\n      model_name: Qwen/Qwen3-0.6B\n      seed: 456\n      checkpoint_source: N/A (from-scratch training)\n      eval_data: N/A (training experiment)\n      checkpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed456/final\n      train_loss: 9.342\n      train_runtime_hours: 3.72\n      wall_clock_seconds: 16928.3\n      gpu_hours: 4.7\n    conclusion: success\n    completed_at:\n…[truncated 1299 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-002366"
+        },
+        {
+          "source_line": 2367,
+          "timestamp": "2026-05-20T08:53:31.035735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 2 -A 30 'contamination_60_adaptive_seed456' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -40",
+              "description": "Find rho=0.6 tau=0.8 adaptive baseline (seed456)"
+            }
+          },
+          "id": "event-002367"
+        },
+        {
+          "source_line": 2368,
+          "timestamp": "2026-05-20T08:53:31.940212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    log_path: /root/autodl-tmp/output/models/contamination_60_uniform_seed123/eval_output.log\n    completed_at: '2026-05-18T03:30:01.455Z'\n  contamination_60_adaptive_seed456:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-18T01:38:05.737Z'\n    updated_at: '2026-05-18T05:56:46.834Z'\n    hypothesis: 'Cross-seed replication (seed456) of adaptive weighting at ρ=0.6:\n      pairs with contamination_60_uniform_seed456 for 3rd seed contrast. If adaptive\n      PPL < uniform PPL at ρ=0.6, completes Claim 3 proportion-robustness 3-seed evidence.'\n    parent: contamination_60_seed42_r2\n    spec:\n      command: python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl\n        --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed456\n        --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio\n        0.6 --tau 0.8 --n_min 2 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n        4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps\n        10 --bf16 --save_total_limit 3 --save_only_model\n      server: westd-41312\n      gpu:\n      - cuda:0\n      pid: '158632'\n      log_path: ~/runs/provenance_weight_training/contamination_60_adaptive_seed456.log\n      submitted_at: '2026-05-18T01:44:51.691Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: data/scored_data_60.jsonl\n      data_count: 371499\n      model_name: Qwen/Qwen3-0.6B\n      seed: 456\n      checkpoint_source: contamination_60_seed42_r2\n      eval_data: data/scored_data_60.jsonl\n      wall_clock_seconds: 14209.4\n      gpu_hours: 3.95\n    reproduce:\n      finished_at: '2026-05-18T05:36:41.822Z'\n    extra:\n      hook_events:\n      - event: on_complete"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 904
+          },
+          "id": "event-002368"
+        },
+        {
+          "source_line": 2369,
+          "timestamp": "2026-05-20T08:53:32.445015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 2 -A 30 'contamination_60_adaptive_seed42\\b' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -40",
+              "description": "Find rho=0.6 tau=0.8 adaptive baseline (seed42)"
+            }
+          },
+          "id": "event-002369"
+        },
+        {
+          "source_line": 2370,
+          "timestamp": "2026-05-20T08:53:32.899176+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 454
+          },
+          "id": "event-002370"
+        },
+        {
+          "source_line": 2371,
+          "timestamp": "2026-05-20T08:53:33.102030+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E '(contamination_60_adaptive|tau_0[78])' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -20",
+              "description": "Find all rho=0.6 adaptive entries"
+            }
+          },
+          "id": "event-002371"
+        },
+        {
+          "source_line": 2372,
+          "timestamp": "2026-05-20T08:53:33.254216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  tau_07_seed42:\n      log_path: ~/runs/provenance_weight_training/tau_07_seed42.log\n    log_path: ~/runs/provenance_weight_training/tau_07_seed42.log\n  tau_07_nmin2_seed42:\n      hypothesis: τ=0.7 rerun with correct n_min=2 (original tau_07_seed42 used n_min=3\n      parent: tau_07_seed42\n    hypothesis: τ=0.7 rerun with correct n_min=2 (original tau_07_seed42 used n_min=3\n    parent: tau_07_seed42\n  contamination_60_adaptive_seed456:\n        --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed456\n      log_path: ~/runs/provenance_weight_training/contamination_60_adaptive_seed456.log\n    checkpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed456/final\n    log_path: ~/runs/provenance_weight_training/contamination_60_adaptive_seed456.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-002372"
+        },
+        {
+          "source_line": 2373,
+          "timestamp": "2026-05-20T08:53:39.335011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E 'contamination_60_(adaptive|uniform)_seed' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -v '#' | head -20",
+              "description": "Find all contamination_60 experiment IDs"
+            }
+          },
+          "id": "event-002373"
+        },
+        {
+          "source_line": 2374,
+          "timestamp": "2026-05-20T08:53:40.038869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  contamination_60_uniform_seed42:\n        output/models/contamination_60_uniform_seed42 --model_name models/Qwen/Qwen3-0.6B\n      log_path: ~/runs/provenance_weight_training/contamination_60_uniform_seed42.log\n      checkpoint_path: /root/provenance_weight_training/output/models/contamination_60_uniform_seed42/final\n        output/models/contamination_60_uniform_seed42 --model_name models/Qwen/Qwen3-0.6B\n    log_path: ~/runs/provenance_weight_training/contamination_60_uniform_seed42.log\n    notes: 训练实际已完成 (6103/6103 steps, 3:35:04)。模型已保存到 output/models/contamination_60_uniform_seed42/final。EXIT_CODE=129\n    checkpoint_path: output/models/contamination_60_uniform_seed42/final\n    notes: 训练完成 6103/6103 steps。EXIT_CODE=129 (SIGHUP) 发生在训练完成后（与 contamination_60_uniform_seed42\n  contamination_60_uniform_seed123:\n        --output_dir /root/autodl-tmp/output/models/contamination_60_uniform_seed123\n    checkpoint_path: /root/autodl-tmp/output/models/contamination_60_uniform_seed123/final\n    log_path: /root/autodl-tmp/output/models/contamination_60_uniform_seed123/eval_output.log\n  contamination_60_adaptive_seed456:\n      pairs with contamination_60_uniform_seed456 for 3rd seed contrast. If adaptive\n        --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed456\n      log_path: ~/runs/provenance_weight_training/contamination_60_adaptive_seed456.log\n    checkpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed456/final\n    log_path: ~/runs/provenance_weight_training/contamination_60_adaptive_seed456.log\n  contamination_60_uniform_seed456:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 703
+          },
+          "id": "event-002374"
+        },
+        {
+          "source_line": 2375,
+          "timestamp": "2026-05-20T08:53:40.090464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 5 'contamination_60_adaptive_seed456' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E 'metrics|holdout_ppl|eval_ppl|downstream'",
+              "description": "Get metrics for contamination_60_adaptive_seed456"
+            }
+          },
+          "id": "event-002375"
+        },
+        {
+          "source_line": 2376,
+          "timestamp": "2026-05-20T08:53:40.193509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 103
+          },
+          "id": "event-002376"
+        },
+        {
+          "source_line": 2377,
+          "timestamp": "2026-05-20T08:53:44.616013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 80 '^  contamination_60_adaptive_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|holdout_ppl|eval_ppl|downstream|conclusion)' | head -15",
+              "description": "Get metrics for contamination_60_adaptive_seed456"
+            }
+          },
+          "id": "event-002377"
+        },
+        {
+          "source_line": 2378,
+          "timestamp": "2026-05-20T08:53:45.670323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    metrics:\n      eval_ppl_holdout: 17.735\n    conclusion: success"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 1054
+          },
+          "id": "event-002378"
+        },
+        {
+          "source_line": 2379,
+          "timestamp": "2026-05-20T08:53:45.724150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 80 '^  contamination_60_uniform_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|holdout_ppl|eval_ppl|downstream|conclusion|tau)' | head -15",
+              "description": "Get metrics for contamination_60_uniform_seed456"
+            }
+          },
+          "id": "event-002379"
+        },
+        {
+          "source_line": 2380,
+          "timestamp": "2026-05-20T08:53:45.774798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    metrics:\n      eval_ppl_holdout: 17.77\n    conclusion: success\n        conclusion: failed"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002380"
+        },
+        {
+          "source_line": 2381,
+          "timestamp": "2026-05-20T08:53:54.706458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 2 'contamination_60_seed42_r2\\|contamination_60_adaptive_seed42\\|contamination_60_adaptive_seed123' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '^\\s+[a-z]' | head -10",
+              "description": "Find rho=0.6 adaptive experiment IDs for seed42 and seed123"
+            }
+          },
+          "id": "event-002381"
+        },
+        {
+          "source_line": 2382,
+          "timestamp": "2026-05-20T08:53:55.560173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      eval_data: N/A (training, not eval)\n    conclusion: failed\n    notes: Worker 提交时未指定 GPU，导致与 cuda:0 上的 contamination_60_seed42_r2 冲突。PID 258500\n    completed_at: '2026-05-15T21:57:46.419Z'\n  contamination_60_seed42_r2:\n        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n        training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir\n        output/models/contamination_60_seed42_r2 --model_name models/Qwen/Qwen3-0.6B\n      pid: '257977'\n      log_path: ~/runs/provenance_weight_training/contamination_60_seed42_r2.log"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 853
+          },
+          "id": "event-002382"
+        },
+        {
+          "source_line": 2383,
+          "timestamp": "2026-05-20T08:53:55.560924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  contamination_60_seed42_r2:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|holdout_ppl|eval_ppl|downstream|tau |--tau)' | head -15",
+              "description": "Get metrics and tau for contamination_60_seed42_r2"
+            }
+          },
+          "id": "event-002383"
+        },
+        {
+          "source_line": 2384,
+          "timestamp": "2026-05-20T08:53:55.611467+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "        --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate\n        --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate\n    metrics:\n      eval_ppl_holdout: 17.74"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002384"
+        },
+        {
+          "source_line": 2385,
+          "timestamp": "2026-05-20T08:54:13.806645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 80 '^  contamination_60_adaptive_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -90",
+              "description": "Get full entry for contamination_60_adaptive_seed456"
+            }
+          },
+          "id": "event-002385"
+        },
+        {
+          "source_line": 2386,
+          "timestamp": "2026-05-20T08:54:13.958146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  contamination_60_adaptive_seed456:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-18T01:38:05.737Z'\n    updated_at: '2026-05-18T05:56:46.834Z'\n    hypothesis: 'Cross-seed replication (seed456) of adaptive weighting at ρ=0.6:\n      pairs with contamination_60_uniform_seed456 for 3rd seed contrast. If adaptive\n      PPL < uniform PPL at ρ=0.6, completes Claim 3 proportion-robustness 3-seed evidence.'\n    parent: contamination_60_seed42_r2\n    spec:\n      command: python training/pretrain_weighted.py --data_path data/scored_data_60.jsonl\n        --output_dir /root/autodl-tmp/provenance_weight_training/output/models/contamination_60_adaptive_seed456\n        --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio\n        0.6 --tau 0.8 --n_min 2 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n        4 --learning_rate 5e-5 --max_length 2048 --seed 456 --save_steps 500 --logging_steps\n        10 --bf16 --save_total_limit 3 --save_only_model\n      server: westd-41312\n      gpu:\n      - cuda:0\n      pid: '158632'\n      log_path: ~/runs/provenance_weight_training/contamination_60_adaptive_seed456.log\n      submitted_at: '2026-05-18T01:44:51.691Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: data/scored_data_60.jsonl\n      data_count: 371499\n      model_name: Qwen/Qwen3-0.6B\n      seed: 456\n      checkpoint_source: contamination_60_seed42_r2\n      eval_data: data/scored_data_60.jsonl\n      wall_clock_seconds: 14209.4\n      gpu_hours: 3.95\n    reproduce:\n      finished_at: '2026-05-18T05:36:41.822Z'\n    extra:\n      hook_events:\n      - event: on_complete\n        action: agent\n        ts: '2026-05-18T05:36:46.155880+00:00'\n    metrics:\n      eval_ppl_holdout: 17.735\n      eval_loss_holdout: 2.8755\n      eval_holdout_tokens: 4077068\n      eval_method: eval_perplexity.py --max_docs 5000 --stride 1024 --fp16\n    checkpoint_path: /root/autodl-tmp/provenance_w\n…[truncated 1753 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-002386"
+        },
+        {
+          "source_line": 2387,
+          "timestamp": "2026-05-20T08:54:13.958659+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 80 '^  contamination_60_seed42_r2:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -90",
+              "description": "Get full entry for contamination_60_seed42_r2"
+            }
+          },
+          "id": "event-002387"
+        },
+        {
+          "source_line": 2388,
+          "timestamp": "2026-05-20T08:54:14.009251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  contamination_60_seed42_r2:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-15T21:53:48.975Z'\n    updated_at: '2026-05-16T01:57:12.472Z'\n    hypothesis: Retry of contamination_60_seed42 (failed due to GPU conflict on cuda:2).\n      ρ=0.6 adaptive weighting (τ=0.8, n_min=2) on higher contamination data. Tests\n      graceful degradation as ρ increases from 0.4→0.6.\n    parent: contamination_60_seed42\n    server: westd-47453\n    gpu: cuda:0\n    account: root\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n        training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir\n        output/models/contamination_60_seed42_r2 --model_name models/Qwen/Qwen3-0.6B\n        --weighting_method adaptive --contamination_ratio 0.6 --num_train_tokens 200000000\n        --n_min 2 --tau 0.8 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate\n        5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16\n        --save_total_limit 3 --save_only_model\"\n      server: westd-47453\n      gpu:\n      - cuda:0\n      pid: '257977'\n      log_path: ~/runs/provenance_weight_training/contamination_60_seed42_r2.log\n      submitted_at: '2026-05-15T21:54:22.934Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      wall_clock_seconds: 14569.5\n      gpu_hours: 4.05\n    pid: '257977'\n    log_path: ~/runs/provenance_weight_training/contamination_60_seed42_r2.log\n    reproduce:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n        training/pretrain_weighted.py --data_path data/scored_data_60.jsonl --output_dir\n        output/models/contamination_60_seed42_r2 --model_name models/Qwen/Qwen3-0.6B\n        --weighting_method adaptive --contamination_ratio 0.6 \n…[truncated 1776 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002388"
+        },
+        {
+          "source_line": 2389,
+          "timestamp": "2026-05-20T08:54:42.424629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "wc -l /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl"
+            }
+          },
+          "id": "event-002389"
+        },
+        {
+          "source_line": 2390,
+          "timestamp": "2026-05-20T08:54:42.525359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "head -1 /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl"
+            }
+          },
+          "id": "event-002390"
+        },
+        {
+          "source_line": 2391,
+          "timestamp": "2026-05-20T08:54:42.525781+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "ls -la /root/autodl-tmp/provenance_weight_training/output/eval_results/ --color=never"
+            }
+          },
+          "id": "event-002391"
+        },
+        {
+          "source_line": 2392,
+          "timestamp": "2026-05-20T08:54:44.036271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"371499 /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1611
+          },
+          "id": "event-002392"
+        },
+        {
+          "source_line": 2393,
+          "timestamp": "2026-05-20T08:54:44.538309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"text\\\\\\\": \\\\\\\" a good man.|\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 22 weeks ago||I think it's possible for a man to be a|||\\\\\\\\n|1 year 2\\\\\\\", \\\\\\\"depth\\\\\\\": 1, \\\\\\\"source_model\\\\\\\": \\\\\\\"models/Qwen/Qwen3-0.6B\\\\\\\", \\\\\\\"prompt_tokens\\\\\\\": 128, \\\\\\\"generated_tokens\\\\\\\": 384, \\\\\\\"decoding\\\\\\\": \\\\\\\"nucleus_p0.95_t0.8\\\\\\\", \\\\\\\"q_score\\\\\\\": 0.640972298388188}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2012
+          },
+          "id": "event-002393"
+        },
+        {
+          "source_line": 2394,
+          "timestamp": "2026-05-20T08:54:45.091621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 92\\\\ndrwxr-xr-x 10 root root 4096 May 20 16:51 .\\\\ndrwxr-xr-x  8 root root 4096 May 20 13:40 ..\\\\ndrwxr-xr-x  3 root root  112 May 20 13:30 adaptive_fix_seed42_downstream\\\\n-rw-r--r--  1 root root  271 May 20 14:13 adaptive_fix_seed42_ood_openwebtext.json\\\\n-rw-r--r--  1 root root  271 May 20 14:20 adaptive_fix_seed42_ood_wikipedia.json\\\\ndrwxr-xr-x  3 root root  121 May 20 16:44 adaptive_rho06_tau07_seed123_downstream\\\\n-rw-r--r--  1 root root  289 May 20 16:21 adaptive_rho06_tau07_seed123_eval.json\\\\n-rw-r--r--  1 root root  288 May 20 16:34 adaptive_rho06_tau07_seed123_ood_openwebtext.json\\\\n-rw-r--r--  1 root root  290 May 20 16:40 adaptive_rho06_tau07_seed123_ood_wikipedia.json\\\\ndrwxr-xr-x  3 root root  120 May 20 16:51 adaptive_rho06_tau07_seed42_downstream\\\\n-rw-r--r--  1 root root  285 May 20 16:18 adaptive_rho06_tau07_seed42_eval.json\\\\n-rw-r--r--  1 root root  287 May 20 16:25 adaptive_rho06_tau07_seed42_ood_openwebtext.json\\\\n-rw-r--r--  1 root root  288 May 20 16:32 adaptive_rho06_tau07_seed42_ood_wikipedia.json\\\\ndrwxr-xr-x  3 root root  121 May 20 16:45 adaptive_rho06_tau07_seed456_downstream\\\\n-rw-r--r--  1 root root  289 May 20 16:23 adaptive_rho06_tau07_seed456_eval.json\\\\n-rw-r--r--  1 root root  289 May 20 16:43 adaptive_rho06_tau07_seed456_ood_openwebtext.json\\\\n-rw-r--r--  1 root root  289 May 20 16:49 adaptive_rho06_tau07_seed456_ood_wikipedia.json\\\\ndrwxr-xr-x  3 root root  120 May 20 12:46 detect_remove_q03_downstream\\\\n-rw-r--r--  1 root root  285 May 20 14:22 detect_remove_q03_seed42_r2_ood_openwebtext.json\\\\n-rw-r--r--  1 root root  288 May 20 14:29 detect_remove_q03_seed42_r2_ood_wikipedia.json\\\\ndrwxr-xr-x  3 root root  117 May 20 12:48 detect_remove_q04_downstream\\\\n-rw-r--r--  1 root root  281 May 20 14:31 detect_remove_q04_seed42_ood_openwebtext.json\\\\n-rw-r--r--  1 root root  281 May 20 14:38 detect_remove_q04_seed42_ood_wikipedia.json\\\\ndrwxr-xr-x  3 root root  117 May 2\n…[truncated 715 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2565
+          },
+          "id": "event-002394"
+        },
+        {
+          "source_line": 2395,
+          "timestamp": "2026-05-20T08:54:50.467027+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval_results/adaptive_rho06_tau07_seed42_eval.json"
+            }
+          },
+          "id": "event-002395"
+        },
+        {
+          "source_line": 2396,
+          "timestamp": "2026-05-20T08:54:51.332086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"adaptive_rho06_tau07_seed42/final\\\\\\\": {\\\\n    \\\\\\\"loss\\\\\\\": 2.875536108811227,\\\\n    \\\\\\\"perplexity\\\\\\\": 17.73492942522678,\\\\n    \\\\\\\"num_tokens\\\\\\\": 4077068,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 111.8,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed42/final\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 865
+          },
+          "id": "event-002396"
+        },
+        {
+          "source_line": 2397,
+          "timestamp": "2026-05-20T08:54:51.383037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval_results/adaptive_rho06_tau07_seed42_ood_openwebtext.json"
+            }
+          },
+          "id": "event-002397"
+        },
+        {
+          "source_line": 2398,
+          "timestamp": "2026-05-20T08:54:51.986546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"adaptive_rho06_tau07_seed42/final\\\\\\\": {\\\\n    \\\\\\\"loss\\\\\\\": 2.9127922774426676,\\\\n    \\\\\\\"perplexity\\\\\\\": 18.408127470495717,\\\\n    \\\\\\\"num_tokens\\\\\\\": 6767242,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 140.1,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed42/final\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 603
+          },
+          "id": "event-002398"
+        },
+        {
+          "source_line": 2399,
+          "timestamp": "2026-05-20T08:54:52.390000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval_results/adaptive_rho06_tau07_seed123_eval.json"
+            }
+          },
+          "id": "event-002399"
+        },
+        {
+          "source_line": 2400,
+          "timestamp": "2026-05-20T08:54:52.893948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"adaptive_rho06_tau07_seed123/final\\\\\\\": {\\\\n    \\\\\\\"loss\\\\\\\": 2.8750607135464126,\\\\n    \\\\\\\"perplexity\\\\\\\": 17.726500327491532,\\\\n    \\\\\\\"num_tokens\\\\\\\": 4077068,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 111.7,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed123/final\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-002400"
+        },
+        {
+          "source_line": 2401,
+          "timestamp": "2026-05-20T08:54:52.946011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "cat /root/autodl-tmp/provenance_weight_training/output/eval_results/adaptive_rho06_tau07_seed456_eval.json"
+            }
+          },
+          "id": "event-002401"
+        },
+        {
+          "source_line": 2402,
+          "timestamp": "2026-05-20T08:54:53.450260+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"adaptive_rho06_tau07_seed456/final\\\\\\\": {\\\\n    \\\\\\\"loss\\\\\\\": 2.8753676349156425,\\\\n    \\\\\\\"perplexity\\\\\\\": 17.731941804253736,\\\\n    \\\\\\\"num_tokens\\\\\\\": 4077068,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 114.1,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_rho06_tau07_seed456/final\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 504
+          },
+          "id": "event-002402"
+        },
+        {
+          "source_line": 2403,
+          "timestamp": "2026-05-20T08:55:09.037424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "grep -n 'n_min' /root/provenance_weight_training/training/pretrain_weighted.py"
+            }
+          },
+          "id": "event-002403"
+        },
+        {
+          "source_line": 2404,
+          "timestamp": "2026-05-20T08:55:09.290021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "ls -la /root/provenance_weight_training/data/scored_data_60.jsonl /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl"
+            }
+          },
+          "id": "event-002404"
+        },
+        {
+          "source_line": 2405,
+          "timestamp": "2026-05-20T08:55:09.491106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"97:    def __init__(self, weighting_method: str, tau: float, n_min: int,\\\\n109:        self.n_min = n_min\\\\n168:                    q_scores, tau=self.tau, n_min=self.n_min,\\\\n172:                b_val = find_optimal_b(q_scores, tau=self.tau, n_min=self.n_min)\\\\n186:            b_val = find_ess_only_b(q_scores, n_min=self.n_min)\\\\n285:    parser.add_argument(\\\\\\\"--n_min\\\\\\\", type=int, default=None,\\\\n336:    if args.n_min is None:\\\\n337:        args.n_min = max(2, args.batch_size // 2)\\\\n408:        n_min=args.n_min,\\\\n431:        \\\\\\\"n_min\\\\\\\": args.n_min,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-002405"
+        },
+        {
+          "source_line": 2406,
+          "timestamp": "2026-05-20T08:55:09.994043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"lrwxrwxrwx 1 root root        20 May 16 04:10 /root/autodl-tmp/provenance_weight_training/data/scored_data_rho06.jsonl -> scored_data_60.jsonl\\\\n-rw-r--r-- 1 root root 950819395 May 16 03:35 /root/provenance_weight_training/data/scored_data_60.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 704
+          },
+          "id": "event-002406"
+        },
+        {
+          "source_line": 2407,
+          "timestamp": "2026-05-20T08:55:42.782903+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  tau07_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|holdout_ppl|eval_ppl|downstream|conclusion|tau )' | head -15",
+              "description": "Get tau07_seed42 (rho=0.4) metrics"
+            }
+          },
+          "id": "event-002407"
+        },
+        {
+          "source_line": 2408,
+          "timestamp": "2026-05-20T08:55:43.234964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "        adaptive --contamination_ratio 0.4 --tau 0.7 --seed 42\n    metrics:\n      eval_ppl_holdout: 17.68\n      eval_ppl_openwebtext: 18.348\n      eval_ppl_wikipedia: 15.331\n      downstream_arc_easy_acc_norm: 0.6166\n      downstream_arc_challenge_acc_norm: 0.3473\n      downstream_hellaswag_acc_norm: 0.4795\n      downstream_piqa_acc_norm: 0.6861\n      downstream_winogrande_acc: 0.5817\n      downstream_eval_method: lm_eval 0.4.11, 0-shot, float16, batch_size=auto\n      eval_method: eval_ppl_ood.py (sliding window, stride=1024, max_docs=5000, fp16)\n    conclusion: success\n  tau07_downstream_eval:\n      τ=0.7; must confirm downstream benchmarks match or exceed τ=0.8 and uniform."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-002408"
+        },
+        {
+          "source_line": 2409,
+          "timestamp": "2026-05-20T08:55:43.737200+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  tau07_seed123:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|holdout_ppl|eval_ppl|downstream|conclusion)' | head -15",
+              "description": "Get tau07_seed123 (rho=0.4) metrics"
+            }
+          },
+          "id": "event-002409"
+        },
+        {
+          "source_line": 2410,
+          "timestamp": "2026-05-20T08:55:44.741044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    metrics:\n      eval_ppl_holdout: 17.666\n      eval_ppl_openwebtext: 18.348\n      eval_ppl_wikipedia: 15.345\n      downstream_arc_easy_acc_norm: 0.6309\n      downstream_arc_challenge_acc_norm: 0.3481\n      downstream_hellaswag_acc_norm: 0.4775\n      downstream_piqa_acc_norm: 0.6866\n      downstream_winogrande_acc: 0.5675\n      downstream_eval_method: lm_eval 0.4.11, 0-shot, float16, batch_size=auto\n      eval_method: eval_ppl_ood.py (sliding window, stride=1024, max_docs=5000, fp16)\n    conclusion: success"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 1003
+          },
+          "id": "event-002410"
+        },
+        {
+          "source_line": 2411,
+          "timestamp": "2026-05-20T08:55:44.843036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  tau07_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|holdout_ppl|eval_ppl|downstream|conclusion)' | head -15",
+              "description": "Get tau07_seed456 (rho=0.4) metrics"
+            }
+          },
+          "id": "event-002411"
+        },
+        {
+          "source_line": 2412,
+          "timestamp": "2026-05-20T08:55:45.696814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    metrics:\n      eval_ppl_holdout: 17.677\n      eval_ppl_openwebtext: 18.344\n      eval_ppl_wikipedia: 15.315\n      downstream_arc_easy_acc_norm: 0.6111\n      downstream_arc_challenge_acc_norm: 0.3515\n      downstream_hellaswag_acc_norm: 0.4811\n      downstream_piqa_acc_norm: 0.6834\n      downstream_winogrande_acc: 0.5722\n      downstream_eval_method: lm_eval 0.4.11, 0-shot, float16, batch_size=auto\n      eval_method: eval_ppl_ood.py (sliding window, stride=1024, max_docs=5000, fp16)\n    conclusion: success"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 853
+          },
+          "id": "event-002412"
+        },
+        {
+          "source_line": 2413,
+          "timestamp": "2026-05-20T08:55:45.847813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  adaptive_fix_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|holdout_ppl|eval_ppl|downstream|tau)' | head -15",
+              "description": "Get adaptive_fix_seed42 (rho=0.4 tau=0.8) metrics"
+            }
+          },
+          "id": "event-002413"
+        },
+        {
+          "source_line": 2414,
+          "timestamp": "2026-05-20T08:55:45.948646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    metrics:\n      eval_ppl_holdout: 17.6527\n      downstream_arc_easy: 0.6157\n      downstream_arc_challenge: 0.343\n      downstream_hellaswag: 0.4785\n      downstream_piqa: 0.6866\n      downstream_winogrande: 0.5777\n      downstream_mean: 0.5403\n      downstream_eval_method: lm_eval 0.4.11, 0-shot, float16\n      eval_ppl_openwebtext: 18.424\n      eval_ppl_wikipedia: 15.473\n    eval_ppl_openwebtext: 18.42\n    eval_ppl_wikipedia: 15.47"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-002414"
+        },
+        {
+          "source_line": 2415,
+          "timestamp": "2026-05-20T08:56:29.593975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — rho06_tau07_full_eval_pipeline（τ sensitivity 核实）\n\n**结论**: WARNING\n\n### 核实结果\n\n**数据一致性** ✓\n- 3 组 seed 的 eval JSON 与 registry 完全一致（holdout PPL: 17.735/17.727/17.732）\n- 数据文件确认：`scored_data_rho06.jsonl` → symlink 到 `scored_data_60.jsonl`，与 τ=0.8 实验用同一数据\n- n_min 参数：τ=0.7 未指定（默认 max(2, 4//2)=2），与 τ=0.8 的 --n_min 2 一致。无混杂变量\n\n**全部评估结果（τ=0.7, ρ=0.6, 3 seeds）**\n\n| 指标 | seed42 | seed123 | seed456 | Mean | Std |\n|------|--------|---------|---------|------|-----|\n| holdout_ppl | 17.735 | 17.727 | 17.732 | **17.731** | 0.004 |\n| owt_ppl | 18.408 | 18.385 | 18.411 | **18.401** | 0.014 |\n| wiki_ppl | 15.355 | 15.329 | 15.424 | **15.369** | 0.049 |\n| downstream_mean | 0.5403 | 0.5361 | 0.5375 | **0.5380** | 0.002 |\n\n种子间方差极小，结果高度稳定。✓\n\n### 发现\n\n- [severity: warning] **\"τ=0.7 universally optimal\" claim 过强**：跨 ρ 对比显示方向不一致：\n  - **ρ=0.4**: τ=0.8 holdout PPL 更好（17.653 vs 17.674，Δ=+0.021）；但 τ=0.7 OOD 更好（OWT 18.347 vs 18.424, Wiki 15.330 vs 15.473）\n  - **ρ=0.6**: τ=0.7 marginally 更好（holdout 17.731 vs ~17.738，Δ≈0.007，在 noise 内）\n  \n  正确 framing 应是 **\"τ ∈ [0.7, 0.8] insensitive\"**（方法对 τ 鲁棒），而非 \"τ=0.7 is optimal\"。所有差异 < 0.05 PPL，在 3-seed std 范围内。\n\n- [severity: warning] **τ=0.8 baseline 证据不对称**：\n  - ρ=0.6 τ=0.8 仅有 2 seeds 的 holdout PPL（17.74/17.735），无 OOD 和 downstream 数据\n  - ρ=0.4 τ=0.8 仅有 1 seed（adaptive_fix_seed42）\n  - 若论文要做 paired comparison，需补齐 τ=0.8 的 OOD + downstream eval（至少 ρ=0.6 的已有 checkpoint 可直接跑 eval）\n\n- [severity: info] **Registry 字段命名不一致**：ρ=0.4 τ=0.7 用 `downstream_arc_easy_acc_norm`，ρ=0.6 τ=0.7 用 `downstream_arc_easy`。同一指标两种命名，自动对比工具会出错。建议统一。\n\n- [severity: info] **评估流水线完整**：3 组 seed × 4 类评估（holdout/OWT-OOD/Wiki-OOD/downstream 5 tasks）全部完成，时间戳在 16:18-16:51，执行高效。\n\n### 建议\n\n1. 论文中 τ sensitivity 结论建议改为 \"robust to τ ∈ [0.7, 0.8]\"，不 claim 单一 optimal\n2. 补跑 ρ=0.6 τ=0.8 的 OOD + downstream eval（checkpoint 已有，仅需 eval 不需重训，约 1 GPU-hour）\n3. 统一 registry 下游任务字段命名",
+              "project": "provenance_weight_training"
+            }
+          },
+          "id": "event-002415"
+        },
+        {
+          "source_line": 2416,
+          "timestamp": "2026-05-20T08:56:33.565047+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3971
+          },
+          "id": "event-002416"
+        },
+        {
+          "source_line": 2417,
+          "timestamp": "2026-05-20T08:56:37.669023+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。核心结论：rho06_tau07 全流程评估数据一致性通过，结果高度稳定（3-seed std 极小）。但 τ=0.7 \"universal optimal\" claim 需调整为 \"τ-insensitive in [0.7, 0.8]\"，且 τ=0.8 baseline 的 OOD/downstream 数据缺失需补齐。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer"
+          },
+          "id": "event-002417"
+        }
+      ]
+    },
+    {
+      "number": 81,
+      "messages": [
+        {
+          "source_line": 2418,
+          "timestamp": "2026-05-20T08:56:38.225825+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_infra_westd41312_v5_verify_and_rho06_check_20260520T085312]:\nWorker worker_infra_westd41312_v5_verify_and_rho06_check_20260520T085312 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "source": "system"
+          },
+          "id": "event-002418"
+        },
+        {
+          "source_line": 2419,
+          "timestamp": "2026-05-20T08:56:47.546489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-002419"
+        },
+        {
+          "source_line": 2420,
+          "timestamp": "2026-05-20T08:56:48.550679+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-002420"
+        },
+        {
+          "source_line": 2421,
+          "timestamp": "2026-05-20T08:56:49.404209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 61693 MiB, 97887 MiB\\\\n1, 100 %, 61693 MiB, 97887 MiB\\\\n2, 0 %, 0 MiB, 97887 MiB\\\\n3, 0 %, 0 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1857
+          },
+          "id": "event-002421"
+        },
+        {
+          "source_line": 2422,
+          "timestamp": "2026-05-20T08:56:49.454812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "provenance_weight_training",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-002422"
+        },
+        {
+          "source_line": 2423,
+          "timestamp": "2026-05-20T08:56:49.806533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"453128, GPU-45c23d8d-5e7a-3d24-2f94-ecba6b06e1d0, 61684 MiB, python\\\\n453205, GPU-4503e3d1-59d0-aab1-5b37-28b49d02aabf, 61684 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1255
+          },
+          "id": "event-002423"
+        },
+        {
+          "source_line": 2424,
+          "timestamp": "2026-05-20T08:56:50.310257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"adaptive_1_7b_seed42_v5\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:11.055Z\\\", \\\"updated_at\\\": \\\"2026-05-20T08:53:02.515Z\\\", \\\"hypothesis\\\": \\\"Adaptive (dual-constrained) at 1.7B model scale (seed=42, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:1. v5 replaces v4 (disk full at step 500). Paired with uniform_1_7b_seed42_v5 for scaling claim.\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T08:52:14.451Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 453200, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_1_7b_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:52:48.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (from-scratch training)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\"}}, \\\"uniform_1_7b_seed42_v5\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:09.912Z\\\", \\\"updated_at\\\": \\\"2026-05-20T08:52:58.656Z\\\", \\\"hypothesis\\\": \\\"Uniform baseline at 1\n…[truncated 1580 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 855
+          },
+          "id": "event-002424"
+        },
+        {
+          "source_line": 2425,
+          "timestamp": "2026-05-20T08:57:07.630433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__tail_training_logs",
+              "max_results": "1"
+            }
+          },
+          "id": "event-002425"
+        },
+        {
+          "source_line": 2426,
+          "timestamp": "2026-05-20T08:57:07.681306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-002426"
+        },
+        {
+          "source_line": 2427,
+          "timestamp": "2026-05-20T08:57:11.602709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-41312",
+              "log_path": "~/runs/provenance_weight_training/uniform_1_7b_seed42_v5.log",
+              "n": "20"
+            }
+          },
+          "id": "event-002427"
+        },
+        {
+          "source_line": 2428,
+          "timestamp": "2026-05-20T08:57:11.954628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-41312",
+              "log_path": "~/runs/provenance_weight_training/adaptive_1_7b_seed42_v5.log",
+              "n": "20"
+            }
+          },
+          "id": "event-002428"
+        },
+        {
+          "source_line": 2429,
+          "timestamp": "2026-05-20T08:57:12.055667+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"1%|▏         | 79/6103 [03:49<4:47:54,  2.87s/it]\\\\r  1%|▏         | 80/6103 [03:50<4:47:46,  2.87s/it]\\\\r                                                   \\\\r{'loss': '8.03', 'grad_norm': '18.5', 'learning_rate': '1.291e-05', 'epoch': '0.003446'}\\\", \\\"\\\\r  1%|▏         | 80/6103 [03:50<4:47:46,  2.87s/it]\\\\r                                                   \\\\r{'weighting/b': '0', 'weighting/alpha_eff': '0.3712', 'weighting/ess': '4', 'weighting/mean_q': '0.6288', 'weighting/unweighted_loss': '2.063', 'weighting/weighted_loss': '2.063', 'weighting/tau_batch': '0.8', 'epoch': '0.003446'}\\\", \\\"\\\\r  1%|▏         | 80/6103 [03:50<4:47:46,  2.87s/it]\\\\r                                                   \\\\r{'weighting/b': '0', 'weighting/alpha_eff': '0.1838', 'weighting/ess': '4', 'weighting/mean_q': '0.8162', 'weighting/unweighted_loss': '1.318', 'weighting/weighted_loss': '1.318', 'weighting/tau_batch': '0.8', 'epoch': '0.003446'}\\\", \\\"\\\\r  1%|▏         | 80/6103 [03:51<4:47:46,  2.87s/it]\\\\r                                                   \\\\r{'weighting/b': '0', 'weighting/alpha_eff': '0.2877', 'weighting/ess': '4', 'weighting/mean_q': '0.7123', 'weighting/unweighted_loss': '1.825', 'weighting/weighted_loss': '1.825', 'weighting/tau_batch': '0.8', 'epoch': '0.003446'}\\\", \\\"\\\\r  1%|▏         | 80/6103 [03:52<4:47:46,  2.87s/it]\\\\r                                                   \\\\r{'weighting/b': '0', 'weighting/alpha_eff': '0.3455', 'weighting/ess': '4', 'weighting/mean_q': '0.6545', 'weighting/unweighted_loss': '1.743', 'weighting/weighted_loss': '1.743', 'weighting/tau_batch': '0.8', 'epoch': '0.003446'}\\\", \\\"\\\\r  1%|▏         | 80/6103 [03:52<4:47:46,  2.87s/it]\\\\r  1%|▏         | 81/6103 [03:52<4:47:32,  2.86s/it]\\\\r                                                   \\\\r{'weighting/b': '0', 'weighting/alpha_eff': '0.3532', 'weighting/ess': '4', 'weighting/mean_q': '0.6468', 'weighting/unweighted_loss': '2\n…[truncated 5064 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 452
+          },
+          "id": "event-002429"
+        },
+        {
+          "source_line": 2430,
+          "timestamp": "2026-05-20T08:57:12.607787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"1%|          | 75/6103 [03:48<5:06:51,  3.05s/it]\\\\r                                                   \\\\r{'weighting/b': '0.8055', 'weighting/alpha_eff': '0.8', 'weighting/ess': '2.394', 'weighting/mean_q': '0.5361', 'weighting/unweighted_loss': '2.706', 'weighting/weighted_loss': '3.692', 'weighting/tau_batch': '0.8', 'epoch': '0.00323'}\\\", \\\"\\\\r  1%|          | 75/6103 [03:49<5:06:51,  3.05s/it]\\\\r  1%|          | 76/6103 [03:49<5:04:40,  3.03s/it]\\\\r                                                   \\\\r{'weighting/b': '0.42', 'weighting/alpha_eff': '0.5798', 'weighting/ess': '2.034', 'weighting/mean_q': '0.776', 'weighting/unweighted_loss': '2.337', 'weighting/weighted_loss': '2.585', 'weighting/tau_batch': '0.8', 'epoch': '0.003273'}\\\", \\\"\\\\r  1%|          | 76/6103 [03:49<5:04:40,  3.03s/it]\\\\r                                                   \\\\r{'weighting/b': '0.1883', 'weighting/alpha_eff': '0.8', 'weighting/ess': '3.622', 'weighting/mean_q': '0.3253', 'weighting/unweighted_loss': '1.651', 'weighting/weighted_loss': '1.845', 'weighting/tau_batch': '0.8', 'epoch': '0.003273'}\\\", \\\"\\\\r  1%|          | 76/6103 [03:50<5:04:40,  3.03s/it]\\\\r                                                   \\\\r{'weighting/b': '0.46', 'weighting/alpha_eff': '0.6366', 'weighting/ess': '2.036', 'weighting/mean_q': '0.7361', 'weighting/unweighted_loss': '1.321', 'weighting/weighted_loss': '1.481', 'weighting/tau_batch': '0.8', 'epoch': '0.003273'}\\\", \\\"\\\\r  1%|          | 76/6103 [03:51<5:04:40,  3.03s/it]\\\\r                                                   \\\\r{'weighting/b': '0.8758', 'weighting/alpha_eff': '0.8', 'weighting/ess': '2.624', 'weighting/mean_q': '0.4855', 'weighting/unweighted_loss': '1.91', 'weighting/weighted_loss': '2.333', 'weighting/tau_batch': '0.8', 'epoch': '0.003273'}\\\", \\\"\\\\r  1%|          | 76/6103 [03:52<5:04:40,  3.03s/it]\\\\r  1%|▏         | 77/6103 [03:52<5:05:21,  3.04s/it]\\\\r                    \n…[truncated 5113 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 653
+          },
+          "id": "event-002430"
+        },
+        {
+          "source_line": 2431,
+          "timestamp": "2026-05-20T08:57:48.940494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "df -h /root/autodl-tmp/"
+            }
+          },
+          "id": "event-002431"
+        },
+        {
+          "source_line": 2432,
+          "timestamp": "2026-05-20T08:57:49.091466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-41312",
+              "command": "du -sh /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42/ /root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_resumed/"
+            }
+          },
+          "id": "event-002432"
+        },
+        {
+          "source_line": 2433,
+          "timestamp": "2026-05-20T08:57:49.397493+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G   75G  176G  30% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 456
+          },
+          "id": "event-002433"
+        },
+        {
+          "source_line": 2434,
+          "timestamp": "2026-05-20T08:57:49.950377+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3.3G\\\\t/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42/\\\\n3.3G\\\\t/root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_resumed/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 858
+          },
+          "id": "event-002434"
+        },
+        {
+          "source_line": 2435,
+          "timestamp": "2026-05-20T08:58:10.654678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_infra_westd41312_v5_verify_and_rho06_check\n\n**结论**: PASS\n\n### 发现\n\n- [severity: info] **v5 1.7B 训练正常启动**：\n  - uniform_1_7b_seed42_v5: GPU 0, PID 453128, step 85/6103, 2.87 s/it, ETA ~4h48m, loss=8.03 (step 80)\n  - adaptive_1_7b_seed42_v5: GPU 1, PID 453205, step 80/6103, 3.06 s/it, ETA ~5h07m, loss=9.486 (step 80)\n  - 两者 GPU 利用率均 100%，显存占用 61.7GB/97.9GB ✓\n\n- [severity: info] **Adaptive weighting 行为正确**：adaptive 实验 b>0（0.42-3.23 变化），ESS 2-3.6（dual constraint 生效），weighted_loss > unweighted_loss。uniform 实验 b=0, ESS=4, weighted=unweighted。符合预期。\n\n- [severity: info] **磁盘空间充足**：176GB 可用。v5 无 --save_only_model，checkpoint 含 optimizer state 约 10GB/份。save_total_limit=3 × 2 实验 = 峰值 60GB，剩余 116GB，不会重蹈 v4 覆辙。\n\n- [severity: info] **GPU 2/3 空闲**：rho06_tau07 downstream eval 已完成，GPU 2/3 当前无进程。可安排其他评估任务。\n\n- [severity: info] **关键时间点**：step 500 为 v4 崩溃点（首次 checkpoint 写入），预计约 20 分钟后到达。磁盘余量充足，预期无问题。",
+              "project": "provenance_weight_training"
+            }
+          },
+          "id": "event-002435"
+        },
+        {
+          "source_line": 2436,
+          "timestamp": "2026-05-20T08:58:14.569001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3914
+          },
+          "id": "event-002436"
+        },
+        {
+          "source_line": 2437,
+          "timestamp": "2026-05-20T08:58:18.203093+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 v5 实验正常推进（step ~80/6103），GPU 利用率正常。验证磁盘余量是否能扛住 step 500 的 checkpoint 写入。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer"
+          },
+          "id": "event-002437"
+        }
+      ]
+    },
+    {
+      "number": 82,
+      "messages": [
+        {
+          "source_line": 2438,
+          "timestamp": "2026-05-20T08:58:18.755039+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n**请审查 rho06_tau07 三组 seed 结果，评估对论文 claim 强度的影响**\n\n## 原始数据\n\n| Metric | seed42 | seed123 | seed456 | 3-seed mean |\n|--------|--------|---------|---------|-------------|\n| holdout_ppl | 17.735 | 17.727 | 17.732 | ~17.731 |\n| eval_ppl_openwebtext | 18.408 | 18.385 | 18.411 | ~18.401 |\n| eval_ppl_wikipedia | 15.355 | 15.329 | 15.424 | ~15.369 |\n| downstream_mean | 0.5403 | 0.5361 | 0.5375 | ~0.5380 |\n\n## 对比基线\n\n- **ρ=0.6 τ=0.8 baseline**: holdout PPL 17.73（batch_adaptive）/ 17.53（hybrid，已被确认为 resume artifact）\n- **ρ=0.4 τ=0.7**: holdout PPL 17.674±0.007（3-seed），明确优于 τ=0.8 的 17.694\n- **ρ=0.4 τ=0.8**: holdout PPL 17.694±0.007（3-seed）\n\n## 关键问题\n\n1. **τ=0.7 在 ρ=0.6 下的 PPL (~17.731) 与 τ=0.8 baseline (17.73) 几乎一致**。ρ=0.4 下 τ=0.7 明确优于 τ=0.8（Δ≈-0.02），但在 ρ=0.6 下优势消失。这对\"τ=0.7 作为跨污染水平的通用默认值\"claim 有什么影响？\n\n2. **downstream mean (~0.538) 对比情况如何？** 与 ρ=0.4 τ=0.7 的 downstream 以及 uniform baseline 对比。\n\n3. **OOD 表现**：OWT ~18.40, Wiki ~15.37。与其他配置对比是否有异常？\n\n4. **论文 story 建议**：τ=0.7 在低污染(ρ=0.4)下优势明显，高污染(ρ=0.6)下持平——这个 pattern 是否支持一个更细致的 claim（如\"τ=0.7 至少不劣于 τ=0.8\"），还是削弱了 universality claim？\n\n请给出 claim 强度评估和论文叙事调整建议。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "source": "system"
+          },
+          "id": "event-002438"
+        },
+        {
+          "source_line": 2439,
+          "timestamp": "2026-05-20T08:58:42.799771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E '(adaptive_fix_seed|adaptive_fix_seed42|adaptive_fix_seed123|adaptive_fix_seed456)' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -10",
+              "description": "Find all tau=0.8 rho=0.4 adaptive experiments"
+            }
+          },
+          "id": "event-002439"
+        },
+        {
+          "source_line": 2440,
+          "timestamp": "2026-05-20T08:58:43.461521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  adaptive_fix_seed42:\n        base && cd /root/provenance_weight_training && bash scripts/run_adaptive_fix_seed42.sh\"\n      log_path: ~/runs/provenance_weight_training/adaptive_fix_seed42.log\n    checkpoint_path: output/models/adaptive_fix_seed42/final\n  adaptive_fix_seed123:\n    checkpoint_path: /root/provenance_weight_training/output/models/adaptive_fix_seed123/final\n    log_path: ~/runs/provenance_weight_training/adaptive_fix_seed123.log\n  adaptive_fix_seed456:\n    log_path: ~/runs/provenance_weight_training/adaptive_fix_seed456.log\n        data/human/eval_holdout.jsonl --output_dir output/models/adaptive_fix_seed456"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 661
+          },
+          "id": "event-002440"
+        },
+        {
+          "source_line": 2441,
+          "timestamp": "2026-05-20T08:58:43.613136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 2 -A 5 'downstream_mean' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -80",
+              "description": "Find all experiments with downstream_mean metric"
+            }
+          },
+          "id": "event-002441"
+        },
+        {
+          "source_line": 2442,
+          "timestamp": "2026-05-20T08:58:43.714014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      downstream_piqa: 0.6866\n      downstream_winogrande: 0.5777\n      downstream_mean: 0.5403\n      downstream_eval_method: lm_eval 0.4.11, 0-shot, float16\n      eval_ppl_openwebtext: 18.424\n      eval_ppl_wikipedia: 15.473\n    checkpoint_path: output/models/adaptive_fix_seed42/final\n    eval_ppl_openwebtext: 18.42\n--\n    downstream_piqa: 0.6937\n    downstream_winogrande: 0.5817\n    downstream_mean: 0.5457\n    eval_ppl_openwebtext: 18.04\n    eval_ppl_wikipedia: 15.07\n  adaptive_1_7b_seed123:\n    status: DONE\n    retry_count: 0\n--\n      downstream_piqa: 0.6861\n      downstream_winogrande: 0.5793\n      downstream_mean: 0.5403\n  adaptive_rho06_tau07_seed123:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-20T03:22:15.719Z'\n    updated_at: '2026-05-20T08:46:05.369Z'\n--\n      downstream_piqa: 0.6866\n      downstream_winogrande: 0.5754\n      downstream_mean: 0.5361\n  adaptive_rho06_tau07_seed456:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-20T03:22:16.979Z'\n    updated_at: '2026-05-20T08:50:25.379Z'\n--\n      downstream_piqa: 0.6866\n      downstream_winogrande: 0.562\n      downstream_mean: 0.5375\n  uniform_seed42_downstream:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-20T03:31:40.139Z'\n    updated_at: '2026-05-20T03:56:46.798Z'"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-002442"
+        },
+        {
+          "source_line": 2443,
+          "timestamp": "2026-05-20T08:58:48.080005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 40 '^  adaptive_fix_seed123:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|holdout_ppl|eval_ppl|downstream|tau )' | head -15",
+              "description": "Get adaptive_fix_seed123 metrics"
+            }
+          },
+          "id": "event-002443"
+        },
+        {
+          "source_line": 2444,
+          "timestamp": "2026-05-20T08:58:48.986304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    metrics:\n      eval_ppl_holdout: 17.6432"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 906
+          },
+          "id": "event-002444"
+        },
+        {
+          "source_line": 2445,
+          "timestamp": "2026-05-20T08:58:48.986735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 40 '^  adaptive_fix_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|holdout_ppl|eval_ppl|downstream|tau )' | head -15",
+              "description": "Get adaptive_fix_seed456 metrics"
+            }
+          },
+          "id": "event-002445"
+        },
+        {
+          "source_line": 2446,
+          "timestamp": "2026-05-20T08:58:50.394422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    metrics:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 1407
+          },
+          "id": "event-002446"
+        },
+        {
+          "source_line": 2447,
+          "timestamp": "2026-05-20T08:58:50.898194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 20 '^  tau07_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E 'downstream_(arc|hella|piqa|wino|mean)'",
+              "description": "Get tau07_seed42 downstream details"
+            }
+          },
+          "id": "event-002447"
+        },
+        {
+          "source_line": 2448,
+          "timestamp": "2026-05-20T08:58:51.350266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-002448"
+        },
+        {
+          "source_line": 2449,
+          "timestamp": "2026-05-20T08:58:51.804155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 20 '^  tau07_seed123:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E 'downstream_(arc|hella|piqa|wino|mean)'",
+              "description": "Get tau07_seed123 downstream details"
+            }
+          },
+          "id": "event-002449"
+        },
+        {
+          "source_line": 2450,
+          "timestamp": "2026-05-20T08:58:52.309008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 504
+          },
+          "id": "event-002450"
+        },
+        {
+          "source_line": 2451,
+          "timestamp": "2026-05-20T08:58:52.661372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 20 '^  tau07_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E 'downstream_(arc|hella|piqa|wino|mean)'",
+              "description": "Get tau07_seed456 downstream details"
+            }
+          },
+          "id": "event-002451"
+        },
+        {
+          "source_line": 2452,
+          "timestamp": "2026-05-20T08:58:52.712376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002452"
+        },
+        {
+          "source_line": 2453,
+          "timestamp": "2026-05-20T08:58:57.646478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  adaptive_fix_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(downstream|eval_ppl)' | head -15",
+              "description": "Get full adaptive_fix_seed42 downstream+OOD"
+            }
+          },
+          "id": "event-002453"
+        },
+        {
+          "source_line": 2454,
+          "timestamp": "2026-05-20T08:58:58.650225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      eval_ppl_holdout: 17.6527\n      downstream_arc_easy_acc_norm: 0.6157\n      downstream_arc_challenge_acc_norm: 0.343\n      downstream_hellaswag_acc_norm: 0.4785\n      downstream_piqa_acc_norm: 0.6866\n      downstream_winogrande_acc: 0.5777\n      downstream_mean: 0.5403\n      downstream_eval_method: lm_eval 0.4.11, 0-shot, float16\n      eval_ppl_openwebtext: 18.424\n      eval_ppl_wikipedia: 15.473\n    eval_ppl_openwebtext: 18.42\n    eval_ppl_wikipedia: 15.47"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 1003
+          },
+          "id": "event-002454"
+        },
+        {
+          "source_line": 2455,
+          "timestamp": "2026-05-20T08:58:58.801529+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  adaptive_fix_seed123:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(downstream|eval_ppl)' | head -15",
+              "description": "Get full adaptive_fix_seed123 metrics"
+            }
+          },
+          "id": "event-002455"
+        },
+        {
+          "source_line": 2456,
+          "timestamp": "2026-05-20T08:58:59.554768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      eval_ppl_holdout: 17.6432"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 753
+          },
+          "id": "event-002456"
+        },
+        {
+          "source_line": 2457,
+          "timestamp": "2026-05-20T08:59:00.057348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  adaptive_fix_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(downstream|eval_ppl)' | head -15",
+              "description": "Get full adaptive_fix_seed456 metrics"
+            }
+          },
+          "id": "event-002457"
+        },
+        {
+          "source_line": 2458,
+          "timestamp": "2026-05-20T08:59:00.813981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      eval_ppl_holdout: 17.6566"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 756
+          },
+          "id": "event-002458"
+        },
+        {
+          "source_line": 2459,
+          "timestamp": "2026-05-20T08:59:01.015155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  tau07_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(downstream_arc|downstream_hella|downstream_piqa|downstream_wino|downstream_eval)' | head -10",
+              "description": "Get tau07_seed42 downstream with exact field names"
+            }
+          },
+          "id": "event-002459"
+        },
+        {
+          "source_line": 2460,
+          "timestamp": "2026-05-20T08:59:02.069372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      downstream_arc_easy_acc_norm: 0.6166\n      downstream_arc_challenge_acc_norm: 0.3473\n      downstream_hellaswag_acc_norm: 0.4795\n      downstream_piqa_acc_norm: 0.6861\n      downstream_winogrande_acc: 0.5817\n      downstream_eval_method: lm_eval 0.4.11, 0-shot, float16, batch_size=auto\n  tau07_downstream_eval:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 1054
+          },
+          "id": "event-002460"
+        },
+        {
+          "source_line": 2461,
+          "timestamp": "2026-05-20T08:59:02.774614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  qwen06b_uniform_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(downstream|eval_ppl)' | head -15",
+              "description": "Get uniform baseline downstream+OOD"
+            }
+          },
+          "id": "event-002461"
+        },
+        {
+          "source_line": 2462,
+          "timestamp": "2026-05-20T08:59:02.877034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      clean PPL baseline for Claim 1/2 comparison and enables lm-eval downstream evaluation\n      eval_ppl_holdout: 17.69\n      downstream_arc_easy_acc_norm: 0.6128\n      downstream_arc_challenge_acc_norm: 0.3481\n      downstream_hellaswag_acc_norm: 0.4836\n      downstream_piqa_acc_norm: 0.6877\n      downstream_winogrande_acc: 0.5856\n      downstream_eval_method: lm_eval 0.4.11, 0-shot, float16, batch_size=auto\n      eval_ppl_openwebtext: 18.365\n      eval_ppl_wikipedia: 15.335\n    eval_ppl_openwebtext: 18.37\n    eval_ppl_wikipedia: 15.34"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-002462"
+        },
+        {
+          "source_line": 2463,
+          "timestamp": "2026-05-20T08:59:20.643090+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E '^  (adaptive_seed42|adaptive_seed123|adaptive_seed456):' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+              "description": "Check original adaptive experiments"
+            }
+          },
+          "id": "event-002463"
+        },
+        {
+          "source_line": 2464,
+          "timestamp": "2026-05-20T08:59:20.894417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  adaptive_seed42:\n  adaptive_seed123:\n  adaptive_seed456:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 251
+          },
+          "id": "event-002464"
+        },
+        {
+          "source_line": 2465,
+          "timestamp": "2026-05-20T08:59:21.647588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E 'tau.*0\\.8.*rho.*0\\.4|tau_08|tau08' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -10",
+              "description": "Find tau=0.8 rho=0.4 experiments"
+            }
+          },
+          "id": "event-002465"
+        },
+        {
+          "source_line": 2466,
+          "timestamp": "2026-05-20T08:59:22.803500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      vs_adaptive_fixed_tau08_rho06: '-0.010'\n  rho02_adaptive_tau08_seed42:\n      command: bash -c \"cd /root/provenance_weight_training && bash scripts/run_rho02_adaptive_tau08_seed42.sh\"\n      log_path: ~/runs/provenance_weight_training/rho02_adaptive_tau08_seed42.log\n      checkpoint_path: /root/autodl-tmp/output/models/rho02_adaptive_tau08_seed42/final"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 1155
+          },
+          "id": "event-002466"
+        },
+        {
+          "source_line": 2467,
+          "timestamp": "2026-05-20T08:59:23.106041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 2 -A 10 'contamination_ratio 0.4.*tau 0.8\\|contamination_ratio 0.4.*--tau 0.8' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(^  [a-z]|eval_ppl_holdout)' | head -20",
+              "description": "Find all rho=0.4 tau=0.8 holdout results"
+            }
+          },
+          "id": "event-002467"
+        },
+        {
+          "source_line": 2468,
+          "timestamp": "2026-05-20T08:59:23.156658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002468"
+        },
+        {
+          "source_line": 2469,
+          "timestamp": "2026-05-20T08:59:27.070301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 30 '^  adaptive_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(eval_ppl_holdout|tau|conclusion)' | head -5",
+              "description": "Get original adaptive_seed42 metrics"
+            }
+          },
+          "id": "event-002469"
+        },
+        {
+          "source_line": 2470,
+          "timestamp": "2026-05-20T08:59:28.030014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 959
+          },
+          "id": "event-002470"
+        },
+        {
+          "source_line": 2471,
+          "timestamp": "2026-05-20T08:59:28.130785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 30 '^  adaptive_seed123:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(eval_ppl_holdout|tau|conclusion)' | head -5",
+              "description": "Get original adaptive_seed123 metrics"
+            }
+          },
+          "id": "event-002471"
+        },
+        {
+          "source_line": 2472,
+          "timestamp": "2026-05-20T08:59:28.886978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 756
+          },
+          "id": "event-002472"
+        },
+        {
+          "source_line": 2473,
+          "timestamp": "2026-05-20T08:59:28.990005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 30 '^  adaptive_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(eval_ppl_holdout|tau|conclusion)' | head -5",
+              "description": "Get original adaptive_seed456 metrics"
+            }
+          },
+          "id": "event-002473"
+        },
+        {
+          "source_line": 2474,
+          "timestamp": "2026-05-20T08:59:29.090808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-002474"
+        },
+        {
+          "source_line": 2475,
+          "timestamp": "2026-05-20T08:59:33.811270+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 '^  adaptive_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -55",
+              "description": "Read full adaptive_seed42 entry"
+            }
+          },
+          "id": "event-002475"
+        },
+        {
+          "source_line": 2476,
+          "timestamp": "2026-05-20T08:59:33.861916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  adaptive_seed42:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T02:25:01.824Z'\n    updated_at: '2026-05-15T16:43:05.333Z'\n    hypothesis: Adaptive b* (from α_eff theory) matches or exceeds grid-searched best-b\n      without grid search, seed=42\n    spec:\n      command: python training/pretrain_weighted.py --data_path data/scored_data.jsonl\n        --output_dir output/models/adaptive_seed42 --weighting_method adaptive --model_name\n        models/Qwen/Qwen3-0.6B --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n        4 --max_length 2048 --learning_rate 5e-5 --seed 42 --logging_steps 10 --save_steps\n        500 --eval_steps 500 --save_total_limit 2 --save_only_model --contamination_ratio\n        0.4\n      server: westd-47453\n      gpu:\n      - cuda:1\n      pid: '58888'\n      log_path: ~/runs/provenance_weight_training/adaptive_seed42.log\n      submitted_at: '2026-05-14T02:46:23.000Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: data/scored_data.jsonl\n      data_count: 371499\n      model_name: Qwen/Qwen3-0.6B\n      seed: 42\n      checkpoint_path: output/models/adaptive_seed42/final\n      wall_clock_seconds: 15162.9\n      gpu_hours: 4.21\n    metrics:\n      train_loss: 9.2665\n      train_runtime_s: 13115.09\n      total_steps: 6103\n      train_samples_per_second: 7.445\n      train_steps_per_second: 0.465\n      epoch: 0.26\n      weighting_method: adaptive\n      tau: 0.8\n      n_min: 3\n      contamination_ratio: 0.4\n      b_star: per-batch adaptive (0.0-3.8)\n      alpha_eff_range: 0.03-0.80 (capped at tau)\n      eval_ppl_holdout: 17.644\n      eval_loss_holdout: 2.8704\n      eval_holdout_tokens: 4077068\n      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n        fp16)\n      eval_note: unified post-hoc eval 2026-05-15; confirmed unchanged from prior\n        post-hoc (was 17.644/4077068)\n    conclusion: success"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002476"
+        },
+        {
+          "source_line": 2477,
+          "timestamp": "2026-05-20T08:59:45.658048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 '^  adaptive_fix_seed123:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -55",
+              "description": "Full adaptive_fix_seed123 entry"
+            }
+          },
+          "id": "event-002477"
+        },
+        {
+          "source_line": 2478,
+          "timestamp": "2026-05-20T08:59:45.708795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 '^  adaptive_fix_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -55",
+              "description": "Full adaptive_fix_seed456 entry"
+            }
+          },
+          "id": "event-002478"
+        },
+        {
+          "source_line": 2479,
+          "timestamp": "2026-05-20T08:59:45.710303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 30 '^  adaptive_seed123:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(eval_ppl_holdout|n_min|tau)' | head -5",
+              "description": "Get adaptive_seed123 holdout and params"
+            }
+          },
+          "id": "event-002479"
+        },
+        {
+          "source_line": 2480,
+          "timestamp": "2026-05-20T08:59:46.212475+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  adaptive_fix_seed123:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T13:32:31.409Z'\n    updated_at: '2026-05-16T03:01:01.153Z'\n    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n      constraint maintains or improves seed123 performance (baseline adaptive PPL=17.63,\n      uniform PPL=17.69)'\n    parent: adaptive_seed123\n    notes: 最终清理后重提交。从 checkpoint-1500 恢复，无 inline eval。PID=126944\n    failure_reason: ''\n    conclusion: success\n    spec:\n      contamination_ratio: 0.4\n      tau: 0.8\n      batch_size: 4\n    reproduce:\n      finished_at: '2026-05-14T20:41:22.910Z'\n    completed_at: ''\n    extra:\n      hook_events:\n      - event: on_failed\n        action: agent\n        ts: '2026-05-14T17:38:38.735034+00:00'\n      - event: on_complete\n        action: agent\n        ts: '2026-05-14T20:41:26.828424+00:00'\n    checkpoint_path: /root/provenance_weight_training/output/models/adaptive_fix_seed123/final\n    log_path: ~/runs/provenance_weight_training/adaptive_fix_seed123.log\n    metrics:\n      eval_ppl_holdout: 17.6432\n      eval_loss_holdout: 2.8704\n      eval_loss: 2.8704\n      eval_holdout_tokens: 4077068\n      eval_tokens: 4077068\n      eval_method: eval_perplexity.py (sliding window, stride=1024, max_docs=5000,\n        fp16)\n      eval_note: unified post-hoc eval 2026-05-15; was 17.643/4077068\n      train_loss_weighted: 7.517\n      train_runtime_s: 10347\n      total_steps: 6103\n      epoch: 0.26\n      b_star_mean: 1.431\n      b_star_median: 0.88\n      b_star_std: 2.029\n      b_star_min: 0\n      b_star_max: 20\n      b_star_pct_below_0.5: 20.9\n      b_star_pct_0.5_to_1: 35.7\n      b_star_pct_1_to_2: 27.3\n      b_star_pct_2_to_5: 6.3"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 554
+          },
+          "id": "event-002480"
+        },
+        {
+          "source_line": 2481,
+          "timestamp": "2026-05-20T08:59:46.213024+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  adaptive_fix_seed456:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T13:32:31.779Z'\n    updated_at: '2026-05-16T03:01:00.018Z'\n    hypothesis: 'D012 n_min fix (3→2, batch_size//2): adaptive b* with corrected ESS\n      constraint maintains or improves seed456 performance (baseline adaptive PPL=17.64,\n      uniform PPL=17.70)'\n    parent: adaptive_seed456\n    notes: 最终清理后重提交。从 checkpoint-1000 恢复，无 inline eval。PID=127285\n    spec:\n      n_min: 2\n      tau: 0.8\n    server: westd-47453\n    gpu: cuda:3\n    account: root\n    pid: '115066'\n    log_path: ~/runs/provenance_weight_training/adaptive_fix_seed456.log\n    reproduce:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/provenance_weight_training && WANDB_MODE=disabled python\n        training/pretrain_weighted.py --data_path data/scored_data.jsonl --eval_data_path\n        data/human/eval_holdout.jsonl --output_dir output/models/adaptive_fix_seed456\n        --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio\n        0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps\n        4 --learning_rate 5e-5 --max_length 2048 --seed 456 --eval_steps 500 --save_steps\n        500 --logging_steps 10 --bf16 --save_total_limit 3 --save_only_model\"\n      finished_at: '2026-05-14T21:00:17.106Z'\n    failure_reason: ''\n    conclusion: success\n    completed_at: ''\n    extra:\n      hook_events:\n      - event: on_failed\n        action: agent\n        ts: '2026-05-14T17:38:47.164099+00:00'\n      - event: on_complete\n        action: agent\n        ts: '2026-05-14T21:00:18.079813+00:00'\n    metrics:\n      train_loss: 8.3124\n      train_runtime: 11436.05\n      train_samples_per_second: 8.539\n      train_steps_per_second: 0.534\n      total_steps: 6103\n      eval_ppl_holdout: 17.6566\n      eval_loss_holdout: 2.8711\n      eval_holdout_tokens: 4077068\n      eval_tokens: 4077068\n      eval_method: eval_perplexity\n…[truncated 62 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 504
+          },
+          "id": "event-002481"
+        },
+        {
+          "source_line": 2482,
+          "timestamp": "2026-05-20T08:59:46.213329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 503
+          },
+          "id": "event-002482"
+        },
+        {
+          "source_line": 2483,
+          "timestamp": "2026-05-20T08:59:46.364042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 30 '^  adaptive_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(eval_ppl_holdout|n_min|tau)' | head -5",
+              "description": "Get adaptive_seed456 holdout and params"
+            }
+          },
+          "id": "event-002483"
+        },
+        {
+          "source_line": 2484,
+          "timestamp": "2026-05-20T08:59:46.414685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002484"
+        },
+        {
+          "source_line": 2485,
+          "timestamp": "2026-05-20T09:00:03.886960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E '^  (tau08|tau_08|tau0[.]8)' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -10",
+              "description": "Find tau=0.8 sensitivity experiments"
+            }
+          },
+          "id": "event-002485"
+        },
+        {
+          "source_line": 2486,
+          "timestamp": "2026-05-20T09:00:03.887471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E '^  (qwen06b_uniform_seed42|uniform_ood_seed42|uniform_ood_seed123|uniform_ood_seed456):' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -10",
+              "description": "Find uniform baseline experiments"
+            }
+          },
+          "id": "event-002486"
+        },
+        {
+          "source_line": 2487,
+          "timestamp": "2026-05-20T09:00:03.939802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 20 '^  qwen06b_uniform_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(eval_ppl_holdout|downstream_mean)' | head -5",
+              "description": "Get uniform seed42 holdout PPL"
+            }
+          },
+          "id": "event-002487"
+        },
+        {
+          "source_line": 2488,
+          "timestamp": "2026-05-20T09:00:04.040643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  qwen06b_uniform_seed42:\n  uniform_ood_seed123:\n  uniform_ood_seed456:"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 153
+          },
+          "id": "event-002488"
+        },
+        {
+          "source_line": 2489,
+          "timestamp": "2026-05-20T09:00:04.041130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 154
+          },
+          "id": "event-002489"
+        },
+        {
+          "source_line": 2490,
+          "timestamp": "2026-05-20T09:00:04.041383+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-002490"
+        },
+        {
+          "source_line": 2491,
+          "timestamp": "2026-05-20T09:00:07.260540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 60 '^  qwen06b_uniform_seed42:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -65",
+              "description": "Full uniform baseline entry"
+            }
+          },
+          "id": "event-002491"
+        },
+        {
+          "source_line": 2492,
+          "timestamp": "2026-05-20T09:00:07.311458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  qwen06b_uniform_seed42:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-17T14:59:14.580Z'\n    updated_at: '2026-05-20T07:14:39.481Z'\n    spec:\n      command: bash -c \"cd /root/autodl-tmp/provenance_weight_training && bash scripts/run_uniform_seed42_v2.sh\"\n      server: westd-41312\n      gpu:\n      - cuda:0\n      pid: '125995'\n      log_path: /root/runs/provenance_weight_training/qwen06b_uniform_seed42.log\n      submitted_at: '2026-05-17T18:17:17.865Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      data_path: data/scored_data.jsonl\n      data_count: 50000\n      model_name: Qwen/Qwen3-0.6B\n      seed: 42\n      weighting_method: uniform\n      checkpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/qwen06b_uniform_seed42_v2/final\n      wall_clock_seconds: 14806.2\n      gpu_hours: 4.11\n    hypothesis: Uniform baseline retrain (seed42) without inline eval overhead — provides\n      clean PPL baseline for Claim 1/2 comparison and enables lm-eval downstream evaluation\n      on same checkpoint\n    reproduce:\n      finished_at: '2026-05-17T21:52:18.403Z'\n    extra:\n      hook_events:\n      - event: on_complete\n        action: agent\n        ts: '2026-05-17T21:52:22.072131+00:00'\n    metrics:\n      eval_ppl_holdout: 17.69\n      eval_loss_holdout: 2.8733\n      eval_holdout_tokens: 4077068\n      train_loss: 1.9882\n      note: v2 run on westd-41312 (no inline eval)\n      downstream_arc_easy_acc_norm: 0.6128\n      downstream_arc_challenge_acc_norm: 0.3481\n      downstream_hellaswag_acc_norm: 0.4836\n      downstream_piqa_acc_norm: 0.6877\n      downstream_winogrande_acc: 0.5856\n      downstream_eval_method: lm_eval 0.4.11, 0-shot, float16, batch_size=auto\n      eval_ppl_openwebtext: 18.365\n      eval_ppl_wikipedia: 15.335\n    conclusion: success\n    completed_at: '2026-05-17T22:24:04.055Z'\n    eval_ppl_openwebtext: 18.37\n    eval_ppl_wikipedia: 15.34\n  random_reweight_seed456:\n    status: DONE\n    retry_count: 0\n…[truncated 360 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002492"
+        },
+        {
+          "source_line": 2493,
+          "timestamp": "2026-05-20T09:00:13.500047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 '^  adaptive_seed123:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(eval_ppl_holdout|n_min|tau)' | head -5",
+              "description": "Check adaptive_seed123 metrics"
+            }
+          },
+          "id": "event-002493"
+        },
+        {
+          "source_line": 2494,
+          "timestamp": "2026-05-20T09:00:14.305428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      tau: 0.8\n      n_min: 3\n      alpha_eff_range: 0.04-0.80 (capped at tau)\n      eval_ppl_holdout: 17.6308"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 805
+          },
+          "id": "event-002494"
+        },
+        {
+          "source_line": 2495,
+          "timestamp": "2026-05-20T09:00:14.457034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 50 '^  adaptive_seed456:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(eval_ppl_holdout|n_min|tau)' | head -5",
+              "description": "Check adaptive_seed456 metrics"
+            }
+          },
+          "id": "event-002495"
+        },
+        {
+          "source_line": 2496,
+          "timestamp": "2026-05-20T09:00:14.507663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      tau: 0.8\n      n_min: 3\n      alpha_eff_range: 0.09-0.80 (capped at tau)\n      eval_ppl_holdout: 17.6419"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002496"
+        },
+        {
+          "source_line": 2497,
+          "timestamp": "2026-05-20T09:01:37.748996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — rho06_tau07 Claim 强度评估\n\n**结论**: WARNING（需调整 claim framing）\n\n---\n\n### 1. 全量交叉对比（Registry 独立验证）\n\n**Holdout PPL（越低越好）**\n\n| 配置 | seed42 | seed123 | seed456 | Mean | Std |\n|------|--------|---------|---------|------|-----|\n| ρ=0.4 τ=0.8 (adaptive_fix) | 17.653 | 17.643 | 17.657 | **17.651** | 0.007 |\n| ρ=0.4 τ=0.7 (tau07) | 17.680 | 17.666 | 17.677 | **17.674** | 0.007 |\n| ρ=0.6 τ=0.7 (rho06_tau07) | 17.735 | 17.727 | 17.732 | **17.731** | 0.004 |\n| ρ=0.6 τ=0.8 (contam60) | 17.740 | — | 17.735 | **~17.738** | — |\n| ρ=0.4 uniform | 17.690 | — | — | 17.690 | — |\n\n**OOD PPL（3-seed mean，越低越好）**\n\n| 配置 | OpenWebText | Wikipedia |\n|------|------------|-----------|\n| ρ=0.4 τ=0.7 | **18.347** | **15.330** |\n| ρ=0.4 τ=0.8 | 18.424 (1 seed) | 15.473 (1 seed) |\n| ρ=0.4 uniform | 18.365 | 15.335 |\n| ρ=0.6 τ=0.7 | 18.401 | 15.369 |\n| ρ=0.6 τ=0.8 | ⚠️ 无数据 | ⚠️ 无数据 |\n\n**Downstream Mean（5 tasks, 0-shot, 越高越好）**\n\n| 配置 | Mean |\n|------|------|\n| ρ=0.4 τ=0.7 | **0.5414** |\n| ρ=0.4 τ=0.8 | 0.5403 (1 seed) |\n| ρ=0.4 uniform | 0.5436 |\n| ρ=0.6 τ=0.7 | 0.5380 |\n\n---\n\n### 2. 逐问题回答\n\n**Q1: τ=0.7 universality claim？**\n\n- [severity: warning] **\"τ=0.7 universally optimal\" 不成立**，方向依 ρ 而异：\n  - ρ=0.4: holdout PPL τ=0.8 **更好**（17.651 vs 17.674, Δ=+0.023）\n  - ρ=0.6: holdout PPL τ=0.7 marginally 更好（17.731 vs ~17.738, Δ=-0.007，在 noise 内）\n  - **但 OOD 方向一致**：ρ=0.4 下 τ=0.7 显著优于 τ=0.8（OWT: -0.077, Wiki: -0.143）\n\n**Q2: Downstream**\n\n- [severity: info] **Downstream 差异微小，不构成区分**：ρ=0.4 τ=0.7 (0.5414) ≈ τ=0.8 (0.5403) ≈ uniform (0.5436)。ρ=0.6 τ=0.7 (0.5380) 略低，但 Δ=0.003 在随机噪声范围内。Downstream 不是 τ 选择的 differentiator。\n\n**Q3: OOD 异常？**\n\n- [severity: info] ρ=0.6 τ=0.7 的 OOD (OWT 18.401, Wiki 15.369) 介于 ρ=0.4 τ=0.7 (18.347, 15.330) 和 τ=0.8 (18.424, 15.473) 之间。**无异常**，符合\"更高 ρ → 略高 OOD PPL\"的预期。\n\n**Q4: Claim 强度与叙事建议**\n\n- [severity: warning] **三档 claim 评估**：\n\n  ✅ **强支撑（推荐 framing）**：\"τ ∈ [0.7, 0.8] robust — holdout PPL 差异 ≤ 0.023，方法对 τ 不敏感，无需精细调参\"。这是最诚实且仍然有力的 claim，因为\"不需要 tuning\"本身就是实用优势。\n\n  ⚠️ **部分支撑**：\"τ=0.7 提供更好的 generalization trade-off\"——OOD 数据支持（ρ=0.4 下 OWT/Wiki 均优），但仅 1-seed OOD 对比（τ=0.8），且 ρ=0.6 完全缺失 τ=0.8 OOD 数据。**不够论文级别的 claim**。\n\n  ❌ **不支撑**：\"τ=0.7 consistently outperforms τ=0.8\" / \"τ=0.7 is optimal\"——holdout PPL 在 ρ=0.4 下τ=0.8 反而更好。\n\n---\n\n### 3. 关键证据缺口\n\n- [severity: warning] **ρ=0.6 τ=0.8 无 OOD 和 downstream 数据**：contamination_60_adaptive 实验的 checkpoint 已有（westd-41312 上），仅需 eval 不需重训（~1 GPU-hour）。**不补全就无法在论文中做 ρ=0.6 的 τ 对比**。\n- [severity: warning] **ρ=0.4 τ=0.8 仅 1 seed 有完整 metrics**：adaptive_fix_seed123/456 只有 holdout PPL，无 OOD、downstream。同理需补 eval。\n\n### 4. 数据核验说明\n\n- [severity: info] Director 引用的 \"ρ=0.4 τ=0.8 holdout PPL 17.694\" 与 registry 不一致。Registry 中 adaptive_fix（n_min=2）三种子均值为 **17.651**；原始 adaptive（n_min=3）均值为 **17.639**。17.694 最接近 uniform baseline 的 17.690。建议确认此数字来源，避免论文引用错误数据。",
+              "project": "provenance_weight_training"
+            }
+          },
+          "id": "event-002497"
+        },
+        {
+          "source_line": 2498,
+          "timestamp": "2026-05-20T09:01:42.126042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4377
+          },
+          "id": "event-002498"
+        },
+        {
+          "source_line": 2499,
+          "timestamp": "2026-05-20T09:01:44.371653+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全面收集。以下是验证后的完整对比：\n\n**ρ=0.4 τ=0.8 (adaptive_fix, n_min=2)**:\n- seed42/123/456 holdout: 17.653/17.643/17.657 → mean **17.651**\n- 仅 seed42 有 OOD/downstream (OWT 18.424, Wiki 15.473, downstream_mean 0.5403)\n\n**ρ=0.4 τ=0.7 (tau07, n_min=2)**:\n- seed42/123/456 holdout: 17.680/17.666/17.677 → mean **17.674**\n- downstream_mean: 0.5422/0.5421/0.5399 → mean **0.5414**\n- OOD: OWT 18.347, Wiki 15.330\n\n注意：Director 引用的 τ=0.8 holdout \"17.694\" 与我验证的 17.651 不一致（差 0.043），需要标记。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer"
+          },
+          "id": "event-002499"
+        }
+      ]
+    },
+    {
+      "number": 83,
+      "messages": [
+        {
+          "source_line": 2500,
+          "timestamp": "2026-05-20T09:01:44.985273+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_infra_registry_field_name_unify_20260520T085748]:\nWorker worker_infra_registry_field_name_unify_20260520T085748 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "source": "system"
+          },
+          "id": "event-002500"
+        },
+        {
+          "source_line": 2501,
+          "timestamp": "2026-05-20T09:01:55.446055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E 'downstream_arc_easy_acc_norm|downstream_arc_easy:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -20",
+              "description": "Check if field names are now unified"
+            }
+          },
+          "id": "event-002501"
+        },
+        {
+          "source_line": 2502,
+          "timestamp": "2026-05-20T09:01:55.598287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      downstream_arc_easy_acc_norm: 0.6157\n      downstream_arc_easy_acc_norm: 0.6208\n      downstream_arc_easy_acc_norm: 0.6128\n      downstream_arc_easy_acc_norm: 0.6301\n      downstream_arc_easy_acc_norm: 0.6107\n      downstream_arc_easy_acc_norm: 0.6086\n    downstream_arc_easy: 0.6086\n      downstream_arc_easy_acc_norm: 0.6301\n      downstream_arc_easy_acc_norm: 0.6107\n      downstream_arc_easy_acc_norm: 0.6301\n      downstream_arc_easy_acc_norm: 0.6077\n      downstream_arc_easy_acc_norm: 0.6229\n      downstream_arc_easy_acc_norm: 0.6166\n      downstream_arc_easy_acc_norm: 0.6178\n      downstream_arc_easy_acc_norm: 0.6309\n      downstream_arc_easy_acc_norm: 0.6111\n      downstream_arc_easy_acc_norm: 0.6166\n      downstream_arc_easy_acc_norm: 0.6208\n      downstream_arc_easy_acc_norm: 0.6132\n      downstream_arc_easy_acc_norm: 0.5951"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 152
+          },
+          "id": "event-002502"
+        },
+        {
+          "source_line": 2503,
+          "timestamp": "2026-05-20T09:01:59.808096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c 'downstream_arc_easy:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml && grep -c 'downstream_arc_easy_acc_norm:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+              "description": "Count old vs new field name occurrences"
+            }
+          },
+          "id": "event-002503"
+        },
+        {
+          "source_line": 2504,
+          "timestamp": "2026-05-20T09:02:00.152197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\n21"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 344
+          },
+          "id": "event-002504"
+        },
+        {
+          "source_line": 2505,
+          "timestamp": "2026-05-20T09:02:00.175021+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep 'downstream_arc_easy:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+              "description": "Check remaining old field names"
+            }
+          },
+          "id": "event-002505"
+        },
+        {
+          "source_line": 2506,
+          "timestamp": "2026-05-20T09:02:00.305074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    downstream_arc_easy: 0.6086"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 130
+          },
+          "id": "event-002506"
+        },
+        {
+          "source_line": 2507,
+          "timestamp": "2026-05-20T09:02:05.583831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 30 '    downstream_arc_easy: 0.6086' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '^  [a-z]' | tail -1",
+              "description": "Find which experiment has the remaining old field name"
+            }
+          },
+          "id": "event-002507"
+        },
+        {
+          "source_line": 2508,
+          "timestamp": "2026-05-20T09:02:07.491908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 1908
+          },
+          "id": "event-002508"
+        },
+        {
+          "source_line": 2509,
+          "timestamp": "2026-05-20T09:02:07.994248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -c 'downstream_hellaswag:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml && grep -c 'downstream_piqa:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml && grep -c 'downstream_winogrande:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml && grep -c 'downstream_arc_challenge:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml",
+              "description": "Check if other downstream fields also have old-format remnants"
+            }
+          },
+          "id": "event-002509"
+        },
+        {
+          "source_line": 2510,
+          "timestamp": "2026-05-20T09:02:08.045059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\n1\n1\n1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-002510"
+        },
+        {
+          "source_line": 2511,
+          "timestamp": "2026-05-20T09:02:12.120137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 40 '    downstream_arc_easy: 0.6086' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '^\\s{2}[a-z].*:$' | tail -1",
+              "description": "Find experiment ID with old field name"
+            }
+          },
+          "id": "event-002511"
+        },
+        {
+          "source_line": 2512,
+          "timestamp": "2026-05-20T09:02:12.524292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 404
+          },
+          "id": "event-002512"
+        },
+        {
+          "source_line": 2513,
+          "timestamp": "2026-05-20T09:02:12.875661+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -B 5 'downstream_hellaswag: ' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | head -10",
+              "description": "Find which experiment has old hellaswag field"
+            }
+          },
+          "id": "event-002513"
+        },
+        {
+          "source_line": 2514,
+          "timestamp": "2026-05-20T09:02:12.977221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    conclusion: success\n    checkpoint_path: /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q08_seed42/final\n    completed_at: '2026-05-19T00:01:01.571Z'\n    downstream_arc_easy: 0.6086\n    downstream_arc_challenge: 0.3592\n    downstream_hellaswag: 0.4855"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-002514"
+        },
+        {
+          "source_line": 2515,
+          "timestamp": "2026-05-20T09:02:23.994329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker_infra_registry_field_name_unify\n\n**结论**: PASS（遗漏 1 处）\n\n### 发现\n\n- [severity: info] **大部分统一完成**：21 处 downstream 字段已统一为 `_acc_norm` 后缀格式。\n\n- [severity: info] **遗漏 1 个实验**：`detect_remove_q08_seed42` 的 downstream 字段仍为旧格式（`downstream_arc_easy: 0.6086` 而非 `downstream_arc_easy_acc_norm`），且这些字段在实验顶层而非嵌套在 `metrics:` 下——结构上也不一致。共 5 个旧格式字段需修正。",
+              "project": "provenance_weight_training"
+            }
+          },
+          "id": "event-002515"
+        },
+        {
+          "source_line": 2516,
+          "timestamp": "2026-05-20T09:02:28.233046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4238
+          },
+          "id": "event-002516"
+        },
+        {
+          "source_line": 2517,
+          "timestamp": "2026-05-20T09:02:30.677180+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查 registry 字段名统一化 worker。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer"
+          },
+          "id": "event-002517"
+        }
+      ]
+    },
+    {
+      "number": 84,
+      "messages": [
+        {
+          "source_line": 2518,
+          "timestamp": "2026-05-20T09:05:29.095927+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_adaptive_fix_seed123_456_ood_downstream_20260520T090319]:\nWorker worker_eval_adaptive_fix_seed123_456_ood_downstream_20260520T090319 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "source": "system"
+          },
+          "id": "event-002518"
+        },
+        {
+          "source_line": 2519,
+          "timestamp": "2026-05-20T09:05:39.435039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 80 '^  adaptive_fix_seed123:' /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/registry.yaml | grep -E '(metrics:|eval_ppl|downstream|conclusion)' | head -20",
+              "description": "Check adaptive_fix_seed123 updated metrics"
+            }
+          },
+          "id": "event-002519"
+        },
+        {
+          "source_line": 2520,
+          "timestamp": "2026-05-20T09:05:40.339136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    conclusion: success\n    metrics:\n      eval_ppl_holdout: 17.6432"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_39371eead41d9df941b3542b7f23b377:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 904
+          },
+          "id": "event-002520"
+        }
+      ]
+    }
+  ]
+}

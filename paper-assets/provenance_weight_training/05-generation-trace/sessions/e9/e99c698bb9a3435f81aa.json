@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e99c698bb9a3435f81aa",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "status 47453 gpu audit",
+  "task_key": "worker_status_47453-gpu-audit_20260516T184844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_47453-gpu-audit_20260516T184844_result.json",
+    "occurrence": 1,
+    "bytes": 1923,
+    "sha256": "b85215b008c54f21de6af6518e52e1416ffe88ecd67ef8013621d5a8297e90d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n### GPU 占用\n\n| GPU | PID | 进程 | 显存占用 | GPU利用率 |\n|-----|-----|------|----------|-----------|\n| **0** | 324550 | threshold_q07_seed42 (resume) | 75007/97887 MiB | 100% |\n| **1** | 316988 | rho02_uniform_seed42 | 75007/97887 MiB | 78% |\n| **2** | 326280 | batch_adaptive_tau_rho04_seed42 | 75007/97887 MiB | 99% |\n| **3** | 325202 | threshold_q03_seed42 | 75007/97887 MiB | 80% |\n\n**空闲 GPU：无。4 卡全部满载。**\n\n---\n\n### 各实验 step_metrics 行数 & 进度\n\n| 实验 | step_metrics 行数 | 最新 step | 状态 |\n|------|-------------------|-----------|------|\n| **threshold_q07_seed42** | 24,940 | 5999 | 🔴 运行中（从 checkpoint-2000 恢复），无 final/，无 eval 结果 |\n| **rho02_uniform_seed42** | 20,000 | 4999 | 🔴 运行中 |\n| **threshold_q03_seed42** | 16,000 | 3999 | 🔴 运行中（wandb=offline） |\n| **batch_adaptive_tau_rho04_seed42** | 16,000 | 3999 | 🔴 运行中 |\n| random_reweight_seed42 | 2,000 | — | 已完成/停止（无进程） |\n\n> step_metrics 行数 ≈ step × (batch_size 内的子记录)。6000 step 目标约 24,000 行，threshold_q07 的 24,940 行对应 step 5999，接近完成。\n\n---\n\n### threshold_q07 详情\n\n- **进度**：step 5999/6000（接近完成，差最后 1 step）\n- **final/ 目录**：不存在\n- **eval_perplexity_results.json**：不存在\n- **wandb/ 目录**：不存在（之前 no space left on device 问题后可能被清理）\n- **checkpoint 目录**：checkpoint-4500, checkpoint-5000, checkpoint-5500\n- **从 checkpoint-2000 恢复**，目前在 tmux session `threshold_q07_seed42` 中运行\n\n---\n\n### 磁盘\n\n| 分区 | 已用 | 可用 | 占比 |\n|------|------|------|------|\n| / (overlay) | 24G | 7.0G | 77% |\n| /root/autodl-tmp (/dev/sda2) | 21G | 813G | 3% |\n\n根分区 77%，还可以但需关注。数据盘充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-47453-gpu-audit.md"
+}

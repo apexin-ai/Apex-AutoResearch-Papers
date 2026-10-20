@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91e62d2b2488a175fbc8",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval llama3b uniform reeval",
+  "task_key": "worker_eval_llama3b_uniform_reeval_20260517T140156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama3b_uniform_reeval_20260517T140156_result.json",
+    "occurrence": 1,
+    "bytes": 271,
+    "sha256": "0440784a0e72d3c6b5ef7cb6500eb00a6fdc8ab110dfb6a5b8650c0d829b5f96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。结果：\n\n| 指标 | 值 |\n|---|---|\n| **Perplexity** | **10.53** |\n| **Loss** | 2.3545 |\n| **Token count** | 4,017,316 |\n| Error | 无 |\n\nJSON 结果已保存到 `/root/provenance_weight_training/eval_uniform_seed42_reeval.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama3b-uniform-reeval.md"
+}

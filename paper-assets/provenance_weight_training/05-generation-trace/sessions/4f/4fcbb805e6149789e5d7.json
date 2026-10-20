@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "4fcbb805e6149789e5d7",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "diagnose random reweight checkpoint",
+  "task_key": "worker_diagnose_random_reweight_checkpoint_20260516T130015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_random_reweight_checkpoint_20260516T130015.log",
+    "occurrence": 1,
+    "bytes": 1267747,
+    "sha256": "291d504a1b0f332505f1a93502c4c2f5b7160d6e399d5ac22de6791d78bd9045"
+  },
+  "statistics": {
+    "messages": 928,
+    "user_turns": 1,
+    "tool_calls": 406,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 108,
+      "tool_call": 406,
+      "tool_result": 406,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 704,
+      "chunks": [
+        {
+          "path": "4fcbb805e6149789e5d7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fcbb805e6149789e5d7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fcbb805e6149789e5d7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fcbb805e6149789e5d7-part-0004.json",
+          "message_count": 164
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 224,
+      "chunks": [
+        {
+          "path": "4fcbb805e6149789e5d7-part-0004.json",
+          "message_count": 16
+        },
+        {
+          "path": "4fcbb805e6149789e5d7-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fcbb805e6149789e5d7-part-0006.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-random-reweight-checkpoint.md"
+}

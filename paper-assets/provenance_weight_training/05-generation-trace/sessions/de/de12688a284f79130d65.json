@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de12688a284f79130d65",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh check rho02 checkpoint and scripts",
+  "task_key": "worker_ssh_check_rho02_checkpoint_and_scripts_20260517T060549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_rho02_checkpoint_and_scripts_20260517T060549_result.json",
+    "occurrence": 1,
+    "bytes": 1126,
+    "sha256": "2d9b308915371ac8cea1354751cd8551aabdab69838f574fa0d62a82ad42bdc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. checkpoint-3000 完整路径\n`/root/autodl-tmp/output/models/rho02_adaptive_tau09_seed42/checkpoint-3000/`\n\n### 2. optimizer.pt 或 optimizer_states/\n**NO** — 目录中不存在 `optimizer.pt` 也不存在 `optimizer_states/` 目录。\n\n### 3. scheduler.pt\n**NO** — 不存在 `scheduler.pt`。\n\n### 4. 完整文件列表\n\n| 文件 | 大小 |\n|------|------|\n| added_tokens.json | 707 B |\n| chat_template.jinja | 4.2 KB |\n| config.json | 1.4 KB |\n| generation_config.json | 188 B |\n| merges.txt | 1.6 MB |\n| model.safetensors | **1.19 GB** |\n| special_tokens_map.json | 613 B |\n| tokenizer.json | 11.4 MB |\n| tokenizer_config.json | 5.4 KB |\n| trainer_state.json | 4.2 MB |\n| training_args.bin | 5.9 KB |\n| vocab.json | 2.8 MB |\n\n这是一个 **inference-only checkpoint**（仅含模型权重和 tokenizer，无训练状态），无法用于 resume training。\n\n### 5. grid_b0_3 脚本 eval 参数检查\n**CLEAN** — 两个脚本 (`run_grid_b0_3_seed123.sh`, `run_grid_b0_3_seed456.sh`) 中 grep `eval_steps` 和 `eval_data_path` 均无匹配输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-rho02-checkpoint-and-scripts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7c9847ddf16b12921de",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "train cuda2 experiment",
+  "task_key": "worker_train_cuda2_experiment_20260524T155714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_cuda2_experiment_20260524T155714_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "cae5b3c0d09dbc77ad8d80693edc7ed8318514584099adbcb04b7dc8930f983b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已启动并注册。\n\n**汇报：**\n- **exp_id**: `detect_remove_q05_seed42`\n- **GPU**: cuda:2 (RTX PRO 6000 98GB), westd-41312\n- **方法**: 硬过滤 q_score > 0.5 的样本，剩余 153,725 样本 uniform 训练\n- **速度**: ~2.24s/step, 6103 steps\n- **预计时长**: ~3.8 小时\n- **tmux session**: `detect_remove_q05_seed42`\n- **日志**: `/root/provenance_weight_training/logs/detect_remove_q05_seed42.log`\n- **注意**: wandb 未配置，本次无 wandb 追踪，训练日志写到本地文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-cuda2-experiment.md"
+}

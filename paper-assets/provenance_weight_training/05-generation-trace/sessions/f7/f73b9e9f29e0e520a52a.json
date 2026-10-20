@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f73b9e9f29e0e520a52a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "paper related work rewrite",
+  "task_key": "worker_paper_related_work_rewrite_20260525T143247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_related_work_rewrite_20260525T143247_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "f7e2f29d435fcd3b8045acc5839ff873cdc04b57e5bb6e9455cedb0429ea507b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，0 error，0 undefined citation。\n\n**汇报：**\n\n| | 修改前 | 修改后 |\n|---|---|---|\n| Para 1 | 6 行 | 6 行（不变）|\n| Para 2 | 11 行 | 8 行 |\n| Para 3 | 5 行 | 8 行 |\n| 总行数 | 24 行 | 24 行 |\n\n**新增 bib 条目：**\n- `cortes2010learning` — Cortes, Mansour & Mohri (NeurIPS 2010), importance weighting 泛化界\n- `fang2020rethinking` — Fang, Lu, Niu & Sugiyama (NeurIPS 2020), 深度学习分布偏移下的 importance weighting\n\n**Para 3 现覆盖理论方向：** Cortes (权重二阶矩→ESS) → Fang (深度网络适应性) → Sow (收敛保证) → Ye (mixing laws) → He (最优权重比) → Wang (收敛速率) → Guo (校准) + Kish (ESS)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-related-work-rewrite.md"
+}

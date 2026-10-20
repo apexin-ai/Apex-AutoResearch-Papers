@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9405558b8d5acae376a5",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "verify gpu deconflict",
+  "task_key": "worker_verify_gpu_deconflict_20260514T174413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_gpu_deconflict_20260514T174413_result.json",
+    "occurrence": 1,
+    "bytes": 619,
+    "sha256": "2c9df4d785ac01ca451c6766c3b8e6ce57652abd59be4be3becfe1eb1436fcd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四卡状态确认完毕，每卡只有一个进程，无冲突：\n\n| GPU | PID | 运行时间 | 实验 | 显存 |\n|-----|-----|---------|------|------|\n| cuda:0 | 112475 | — | grid search (batch) | 46514 MiB |\n| cuda:1 | 123836 | 3m34s | adaptive_fix_seed42 (resume ckpt-1500) | 46514 MiB |\n| cuda:2 | 109362 | 3h20m | adaptive_fix_seed123 (原始，带 eval) | 74998 MiB |\n| cuda:3 | 115071 | 2h27m | adaptive_fix_seed456 (原始，带 eval) | 74998 MiB |\n\n重复进程 125680、125759 已不存在，125297 之前已 kill。四卡各一个进程，全部正常运行（GPU-Util 94-99%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-gpu-deconflict.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bf90db72d68b914bcab",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose epoch matched dr failures",
+  "task_key": "worker_diagnose_epoch_matched_dr_failures_20260518T145546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_epoch_matched_dr_failures_20260518T145546_result.json",
+    "occurrence": 1,
+    "bytes": 1012,
+    "sha256": "d26c6bf9386e12de438c7c466392efc3ced97240e5004006aae459d0ee8c58e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理 stale exit files。\n\n## 诊断结果\n\n**根因**: agent-ml-research wrapper 中 `source /root/miniconda3/bin/activate` 在嵌套 `bash -c` 中未能正确激活 conda，导致 `python: command not found` (EXIT_CODE=127)。同类日志 `detect_remove_q03_seed42.log` 逐字记录了:\n```\nbash: line 1: python: command not found\nEXIT_CODE=127\n```\n\n**当前状态**: 三个实验已被手动重启（使用 `/root/miniconda3/bin/python` 绝对路径），**正在正常训练中**:\n\n| 实验 | 进度 | 预计剩余 |\n|------|------|---------|\n| epoch_matched_dr_seed456 | 293/2532 (12%) | ~1h18m |\n| epoch_matched_dr_seed123 | 293/2532 (12%) | ~1h18m |\n| detect_remove_q01_seed42 | 292/6103 (5%) | ~3h23m |\n\n**无需重跑**。尚无模型 checkpoint 和 eval metrics（训练未完成）。已清理 stale `.exit` 文件。后续提交任务应在 wrapper 中使用 `/root/miniconda3/bin/python` 绝对路径。\n\n详细报告: `artifacts/diagnosis_exit127_20260518.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-epoch-matched-dr-failures.md"
+}

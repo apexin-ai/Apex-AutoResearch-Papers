@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea08ab9646ffcc7bce46",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix transformers compat 30476",
+  "task_key": "worker_fix_transformers_compat_30476_20260517T111833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_transformers_compat_30476_20260517T111833_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "97549ef57b99888c7a61a9e11a7d6af2804e2f8ff5f2ebad0b68181722826309"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器均验证通过。\n\n## 修复报告\n\n| 项目 | 详情 |\n|---|---|\n| **transformers 版本** | westd-30476: **5.8.1**, westd-41312: **4.57.6** |\n| **根因** | transformers 5.x 移除了 `Trainer.__init__()` 的 `tokenizer` 参数（4.46 起已 deprecated，重命名为 `processing_class`） |\n| **修改文件** | `training/pretrain_weighted.py` 第 415 行 |\n| **修改内容** | `tokenizer=tokenizer,` → `processing_class=tokenizer,` |\n| **影响范围** | 全项目仅此一处传 `tokenizer=` 给 Trainer |\n| **兼容性** | `processing_class` 自 4.46 起可用，两台服务器均兼容 |\n| **验证** | 两台服务器 `import WeightedTrainer` 均成功 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-transformers-compat-30476.md"
+}

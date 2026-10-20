@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfdbe1ccf4610db4111a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "writing method section draft",
+  "task_key": "worker_writing_method_section_draft_20260514T170348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_method_section_draft_20260514T170348_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "3c329577004dd6ffa89e44094333ab8c5dbad8d72d55046cd9791bb72cceef6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`artifacts/method_section_draft.md` 已写入并注册。\n\n要点总结：\n\n- **所有公式与 `alpha_eff.py` 代码一致**：α_eff(b)、ESS(b)、b* 求解逻辑（grid search + bisection + ESS fallback）\n- **Algorithm 1 忠实反映代码实现**：先检查 α_eff(0) ≥ τ 提前返回，grid search 跟踪 threshold_b 和 best_feasible_b，ESS < n_min 时 early termination，bisection 精化 50 次迭代，ESS 冲突时回退\n- **明确 acknowledge Drayson** 的公式优先权，\"introduced by \\citet{drayson2025}\"\n- **b_max = 20.0** 从代码默认值提取\n- **无 EMA**，无跨 batch 状态\n- **留了 placeholder** 给 b* 分布统计\n- 约 970 words"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-method-section-draft.md"
+}

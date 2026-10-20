@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2d9730d8b69c7bf4392",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "status westd 41312 progress",
+  "task_key": "worker_status_westd-41312-progress_20260516T141918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_westd-41312-progress_20260516T141918_result.json",
+    "occurrence": 1,
+    "bytes": 2463,
+    "sha256": "785ebcdaba92209129b5a3112161595f8315edc95c2fd97f9afd383cc1dc3f01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。汇总如下：\n\n---\n\n## 实验进度汇总（westd-41312）\n\n所有 4 个进程均存活，max_steps 均为 **6103**。\n\n### cuda:0 — llama3b_uniform (PID 3112)\n- **状态**: ALIVE\n- **模型**: Llama-3.2-3B\n- **当前 step**: ~1000/6103 (**16.4%**)\n- **训练速度**: 5.22 s/step\n- **已完成 eval**: step 500 → eval_loss=**2.5689**（eval 耗时 87min）\n- **当前**: 刚触发 step 1000 的 eval\n- **Checkpoint**: checkpoint-500\n- **预估剩余**: 训练 ~7.4h + eval（~11 次 × 87min ≈ 16h）= **~23h**\n\n### cuda:1 — llama3b_adaptive (PID 4005)\n- **状态**: ALIVE\n- **模型**: Llama-3.2-3B\n- **当前 step**: ~980/6103 (**16.1%**)\n- **训练速度**: 5.33 s/step\n- **已完成 eval**: step 500 → eval_loss=**2.5808**（eval 耗时 86min）\n- **Checkpoint**: checkpoint-500\n- **预估剩余**: **~23h**\n\n### cuda:2 — hybrid_rho04 (PID 3656)\n- **状态**: ALIVE\n- **模型**: Qwen3-0.6B（scored_data_hybrid.jsonl, adaptive+filter, rho=0.4）\n- **当前 step**: ~1500/6103 (**24.6%**) — 正在跑 step 1500 的 eval（eval 进度 59%）\n- **训练速度**: 2.42 s/step\n- **Eval 历史**:\n  - step 500: eval_loss=**3.1170**\n  - step 1000: eval_loss=**3.0953**\n- **Checkpoints**: checkpoint-500, checkpoint-1000\n- **预估剩余**: 训练 ~3.1h + eval（~9 次 × 44min ≈ 6.6h）= **~10h**\n\n### cuda:3 — hybrid_rho06 (PID 3727)\n- **状态**: ALIVE\n- **模型**: Qwen3-0.6B（scored_data_hybrid_rho06.jsonl, adaptive+filter, rho=0.6, tau=0.7）\n- **当前 step**: ~1500/6103 (**24.6%**) — 正在跑 step 1500 的 eval（eval 进度 64%）\n- **训练速度**: 2.24 s/step\n- **Eval 历史**:\n  - step 500: eval_loss=**3.1160**\n  - step 1000: eval_loss=**3.0916**\n- **Checkpoints**: checkpoint-500, checkpoint-1000\n- **预估剩余**: **~10h**\n\n---\n\n## Part 2: hybrid 完成确认\n\n**hybrid 实验均未完成**，目前仅在 ~24.6%，远未达到之前报告的 77-79%。这些是新启动的实验（运行约 2h53m），不是之前的那批。\n\n- 无 post-hoc eval 输出（`/root/autodl-tmp/output/eval/` 目录不存在）\n- 两个 hybrid 均正卡在 eval 上（67823 个 eval 样本，每次 eval 约 44min）\n\n**关键瓶颈**: eval 集太大（67823 样本），eval 耗时占总时长 2/3 以上。Llama-3B 的 eval 更是每次 87min。如果不需要如此频繁的 eval，可以考虑增大 eval_steps 或减小 eval 集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-westd-41312-progress.md"
+}

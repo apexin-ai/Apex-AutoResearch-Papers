@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba8f08fdc06233763340",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code mvp analysis script",
+  "task_key": "worker_code_mvp-analysis-script_20260514T150049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-analysis-script_20260514T150049_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "881a4dcf4f0f237e0dac67fa357585f64028e51908dc244a8fdf3f8748e6c6a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功。当前结果：\n\n- **MVP: PASS**（基于 seed42 + seed123，2/3 seeds）\n- adaptive 改善均值 +0.0526 > 90% × grid 改善均值 +0.0455（ratio=1.15）\n- seed456 缺 grid 数据，未纳入判定\n- 两个 seed 的 grid best-b 都是 0.5\n- adaptive_fix b* 均值约 1.4，范围 [0.005, 20.0]\n\n脚本位于 `/root/provenance_weight_training/analyze_mvp.py`，支持 `--export-json`、`--threshold` 参数，自动处理 TBD 缺失实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-analysis-script.md"
+}

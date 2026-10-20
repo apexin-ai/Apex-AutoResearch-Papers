@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "7d0027eac779c8e5c825",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "analysis bonferroni holm",
+  "task_key": "worker_analysis_bonferroni_holm_20260522T172820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bonferroni_holm_20260522T172820.log",
+    "occurrence": 1,
+    "bytes": 708197,
+    "sha256": "57e6705963cc916d83a1cb52ee85ad0ac25588a3bc5fb39b2364f1b6c07350dc"
+  },
+  "statistics": {
+    "messages": 267,
+    "user_turns": 1,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 43,
+      "tool_call": 106,
+      "tool_result": 106,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "7d0027eac779c8e5c825-part-0001.json",
+          "message_count": 171
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 96,
+      "chunks": [
+        {
+          "path": "7d0027eac779c8e5c825-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "7d0027eac779c8e5c825-part-0002.json",
+          "message_count": 87
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bonferroni-holm.md"
+}

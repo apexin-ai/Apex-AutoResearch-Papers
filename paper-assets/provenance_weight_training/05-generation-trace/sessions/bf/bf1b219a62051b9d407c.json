@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf1b219a62051b9d407c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "status threshold q07 final",
+  "task_key": "worker_status_threshold-q07-final_20260516T184516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_threshold-q07-final_20260516T184516_result.json",
+    "occurrence": 1,
+    "bytes": 914,
+    "sha256": "0759101be36a3752732c731cdf7aac9f0e6ecab87996b92ebd3e166ff8b67737"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态：仍在运行，但疑似卡住\n\n| 项目 | 值 |\n|------|-----|\n| 当前 step | 5999 / 6104 (98.3%) |\n| step_metrics 最后更新 | 2026-05-17 02:21:45 +0800（~25分钟无新写入） |\n| 最新 checkpoint | checkpoint-5500 |\n| final/ 目录 | 不存在 |\n| eval 结果 | 不存在 |\n\n**问题**：wandb debug log 在 02:46 仍在持续写入 `no space left on device` 错误，说明进程活着但无法写盘。`df -h` 当前显示根分区还有 7GB 可用——可能是之前一瞬间满了（3个 checkpoint 各 1.2GB + wandb 298MB），导致训练在 step 5999→6000 的 checkpoint 保存时失败并卡住。\n\n**预估**：剩余 105 steps，如果恢复正常应只需几分钟。但当前进程可能已处于错误循环中，无法自行恢复，可能需要手动干预（kill 后从 checkpoint-5500 恢复，或清理 wandb 后等待进程自行继续）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-threshold-q07-final.md"
+}

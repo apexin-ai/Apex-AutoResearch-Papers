@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efc9fff14b769cadab0e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "prep next experiments cuda0 cuda1 cuda2",
+  "task_key": "worker_prep_next_experiments_cuda0_cuda1_cuda2_20260521T172841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_next_experiments_cuda0_cuda1_cuda2_20260521T172841_result.json",
+    "occurrence": 1,
+    "bytes": 3497,
+    "sha256": "858cf4709dbb7b5e3f4494365b2a19942633220e1abc5d4e8b0798754e9948c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已就绪，直接汇报结果。\n\n---\n\n## 产出报告\n\n### 1. ρ=0.6 random shuffle 数据 ✅ 已就绪\n\n- **路径**: `/root/provenance_weight_training/data/scored_data_rho06_random_shuffle.jsonl`\n- **行数**: 371499（与原始 rho06 一致）\n- **方法**: 全局 shuffle q_score 列（seed=42），text 和其他字段不变\n- **原始 q_score 统计**: min=0.0002, max=1.0000, mean=0.6243\n- **验证**: 第一行 text 与原始 rho06 相同，q_score 从 0.641 → 0.054（已打乱）\n\n### 2. eval 命令模板\n\n用户提供的模板参数名有误。`eval_perplexity.py` 的正确参数（参考 `eval_rho06_ppl.sh`）：\n\n```bash\n# bs16_adaptive_tau07_seed42\npython eval_perplexity.py \\\n    --checkpoints /root/autodl-tmp/provenance_weight_training/output/models/bs16_adaptive_tau07_seed42/final \\\n    --data_path data/human/eval_holdout.jsonl \\\n    --output_path /root/autodl-tmp/provenance_weight_training/output/eval_results/bs16_adaptive_tau07_seed42_eval.json\n\n# bs16_uniform_seed42\npython eval_perplexity.py \\\n    --checkpoints /root/autodl-tmp/provenance_weight_training/output/models/bs16_uniform_seed42/final \\\n    --data_path data/human/eval_holdout.jsonl \\\n    --output_path /root/autodl-tmp/provenance_weight_training/output/eval_results/bs16_uniform_seed42_eval.json\n```\n\n**与用户模板的差异**:\n- `--model_path` → 应为 `--checkpoints`\n- `--eval_data` → 应为 `--data_path`\n- `--stride 1024` → 不存在（hardcoded 为 max_length//2 = 1024）\n- `--bf16` → 不存在（脚本固定用 fp16）\n\n**bs16 训练进度**: adaptive 在 step 5579/6103（~91%），uniform 在 5079/6103（~83%）。训练脚本自带 eval_loss（每 500 步），`final/` 目录待训练结束后自动生成。\n\n### 3. ρ=0.6 random reweight 训练命令建议\n\n基于 `run_rho06_adaptive.sh` 模板，改用 shuffled 数据：\n\n```bash\n#!/bin/bash\n# rho06_random_reweight: ρ=0.6 random reweight ablation\n# Uses globally-shuffled q_scores to prove detector signal is load-bearing\nset -e\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport WANDB_MODE=disabled\ncd /root/provenance_weight_training\n\npython training/pretrain_weighted.py \\\n    --data_path data/scored_data_rho06_random_shuffle.jsonl \\\n    --eval_data_path data/human/eval_holdout.jsonl \\\n    --output_dir /root/autodl-tmp/provenance_weight_training/output/models/rho06_random_reweight_seed42 \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --weighting_method adaptive \\\n    --tau 0.8 \\\n    --n_min 2 \\\n    --contamination_ratio 0.6 \\\n    --num_train_tokens 200000000 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --learning_rate 5e-5 \\\n    --max_length 2048 \\\n    --seed 42 \\\n    --eval_steps 500 \\\n    --save_steps 500 \\\n    --logging_steps 10 \\\n    --bf16 \\\n    --save_total_limit 3 \\\n    --save_only_model\n\necho \"DONE: rho06_random_reweight seed42\"\n```\n\n**注意**: ρ=0.4 的 `run_random_reweight_seed42.sh` 用的是 `--weighting_method random`（U(0,2) 随机权重，完全不看 q_score）。上面的命令改用 `--weighting_method adaptive` + 预打乱的 q_score，是更强的消融——控制了分数分布，只破坏 score-text 相关性。如果需要与 ρ=0.4 完全一致的方法论，也可以改为 `--weighting_method random --data_path data/scored_data_rho06.jsonl`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-next-experiments-cuda0-cuda1-cuda2.md"
+}

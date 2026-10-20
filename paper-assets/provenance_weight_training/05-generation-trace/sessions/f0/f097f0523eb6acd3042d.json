@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f097f0523eb6acd3042d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "monitoring training progress check",
+  "task_key": "worker_monitoring_training_progress_check_20260514T183314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitoring_training_progress_check_20260514T183314_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "1a0d82318150924bccb1bb8b66732a15012f865d78f51786ea74c47cabf5b05f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`ps` 命令因 `||` 元字符被 read_only 拦截，但日志都在实时更新，进程均存活。\n\n## 训练进度汇总\n\n| 实验 | GPU | 当前 step | 总 steps | 进度 | 速度 | 预计剩余 | 状态 |\n|------|-----|-----------|----------|------|------|----------|------|\n| adaptive_fix_seed42 | cuda:1 | 2732/6103 | 6103 | 45% | 2.23s/it | ~2h06m | RUNNING |\n| adaptive_fix_seed123 | cuda:2 | 2727/6103 | 6103 | 45% | 2.23s/it | ~2h05m | RUNNING |\n| adaptive_fix_seed456 | cuda:3 | 2227/6103 | 6103 | 36% | 2.19s/it | ~2h21m | RUNNING |\n| grid_b_seed42_batch | cuda:0 | 186/6103 (b=5.0) | 6103 | 3% | 2.11s/it | ~3h28m | RUNNING |\n\n### grid_b_seed42_batch 子任务明细\n\n| b 值 | 状态 | 完成时间 |\n|------|------|----------|\n| 0.5 | DONE | May 14 11:27 |\n| 1.0 | DONE | May 14 15:03 |\n| 1.5 | DONE | May 14 19:10 |\n| 2.0 | DONE | May 14 22:48 |\n| 3.0 | DONE | May 15 02:25 |\n| 5.0 | RUNNING (186/6103, 3%) | 预计 ~3h28m 后 |\n\n所有 4 个实验运行正常，无异常。3 个 adaptive_fix 实验进度相近（36%~45%），预计 2~2.5h 后完成。grid_b 已完成 5/6 个 b 值，最后一个 b=5.0 刚开始，约 3.5h 后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitoring-training-progress-check.md"
+}

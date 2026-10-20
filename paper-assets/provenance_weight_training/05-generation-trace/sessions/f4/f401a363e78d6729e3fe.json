@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f401a363e78d6729e3fe",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "viz nmin sensitivity",
+  "task_key": "worker_viz_nmin_sensitivity_20260515T234523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_nmin_sensitivity_20260515T234523_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "42b562aca731abd0a1b9efe51e8ab62deec91b213d0428e077410363220f678c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图已生成，输出文件：\n\n- `artifacts/figures/nmin_sensitivity.pdf`\n- `artifacts/figures/nmin_sensitivity.png` (300 dpi)\n- 脚本：`output/figures/plot_nmin_sensitivity.py`\n\n图表显示 n_min=3 为最优点（PPL=17.639），n_min=2 和 n_min=3 带 ±1 std error bar，n_min=1/4 为单 seed 菱形标记，Uniform baseline 灰色虚线标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-nmin-sensitivity.md"
+}

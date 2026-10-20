@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd4477c8b29e0a5377a1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "monitor training progress check",
+  "task_key": "worker_monitor_training_progress_check_20260521T190045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_training_progress_check_20260521T190045_result.json",
+    "occurrence": 1,
+    "bytes": 1122,
+    "sha256": "cb8a14e995d7fb25dae98b60562707f047295270f1bbe20dd713d23a6fb06968"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n实验1 (bs16_adaptive_tau07_seed123_r2): step 115/6103 (2%), loss=2.749, ETA ≈ 4h06m\n  weighted_loss=2.455~3.173, ess≈8-13, tau=0.7, 速度 2.46s/step\n\n实验2 (bs16_uniform_seed123):          step 793/6103 (13%), loss=1.946, ETA ≈ 3h36m\n  b=0 (uniform weighting confirmed), ess=16, tau=0.8, 速度 2.44s/step\n\n实验3 (detect_remove_q05_v2_seed42):   step 4394/6103 (72%), loss=11.19 ⚠️, ETA ≈ 59min\n  ess=4, mean_q≈0.1-0.26, 速度 2.09s/step\n  ⚠️ loss 异常高 (11.19), grad_norm=16.75, 可能出现训练不稳定\n\nGPU utilization: cuda:0 100% (90G/96G), cuda:1 100% (90G/96G), cuda:2 0% (空闲), cuda:3 99% (45G/96G)\n磁盘: /root/autodl-tmp 使用率 59%, 可用 103GB\n```\n\n**注意事项**:\n- 实验3 的 loss=11.19 明显偏高（实验1/2 在 ~2.0 左右），grad_norm=16.75 也远高于实验2 的 4.4。建议关注后续 step 是否回落，如果持续高位可能需要检查是否有数据异常。\n- 实验1 的实际 total steps 是 6103（不是预期的 3052），batch 可能不是 16 而是更小。\n- cuda:2 完全空闲，无进程占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-training-progress-check.md"
+}

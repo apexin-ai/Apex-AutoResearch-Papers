@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbed2989e0b9f2111045",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix grid b seed456 remove eval",
+  "task_key": "worker_fix_grid_b_seed456_remove_eval_20260514T172004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_grid_b_seed456_remove_eval_20260514T172004_result.json",
+    "occurrence": 1,
+    "bytes": 604,
+    "sha256": "6467be0bebd721fa4e296ab4159041a24e0af6ebd3c624f4361cdec920e8c7b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`--eval_data_path` 和 `--eval_steps` 两行已移除。\n\n修改后的 seed456 与 seed42 对比，除 seed 值外还有以下差异（均为 seed456 已有的，非本次引入）：\n\n| 参数 | seed456 | seed42 |\n|------|---------|--------|\n| `WANDB_MODE=disabled` | 有 | 无 |\n| `--save_total_limit` | 3 | 2 |\n| `--bf16` | 有 | 无 |\n| `--eval_steps` | 已移除 | 仍有（但无 eval_data_path，不触发 eval） |\n\n这些差异不在本次修改范围内。inline eval 的根源（`--eval_data_path`）已移除，不会再触发 44min/次的 eval 开销。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-grid-b-seed456-remove-eval.md"
+}

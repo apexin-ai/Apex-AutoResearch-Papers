@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c718159997123a3ebe4",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check four experiments status",
+  "task_key": "worker_check_four_experiments_status_20260523T034112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_four_experiments_status_20260523T034112_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "2284340ce4cd86e1c6af599880d33d1d248955ae5317b90c2789062defad5ef1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部存活，GPU 100% 利用率，无 final 目录。\n\n| 实验 | GPU | Step | 进度 | 速度 | 预估剩余 |\n|------|-----|------|------|------|---------|\n| rho03_adaptive_seed456_r2 | 0 (28.7GB) | 401/6103 | 7% | 2.61s/it | ~4h08m |\n| rho03_uniform_seed456 | 2 (26.2GB) | 1544/6103 | 25% | 2.45s/it | ~3h06m |\n| bs8_nmin4_adaptive_seed123_r2 | 1 (48.3GB) | 873/6103 | 14% | 2.61s/it | ~3h47m |\n| bs8_nmin4_uniform_seed123_r2 | 3 (48.3GB) | 880/6103 | 14% | 2.54s/it | ~3h41m |\n\n磁盘：/root/autodl-tmp 250GB 用了 155GB，剩余 96GB (62%)。\n\n注意：rho03_adaptive_seed456_r2 从 checkpoint-1000 恢复但进度条显示 401/6103，进度偏低，可能 step 计数被重置了。rho03_uniform_seed456 没有 resume 但跑得最快（已 25%），因为它不用 gradient_checkpointing 且更早启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-four-experiments-status.md"
+}

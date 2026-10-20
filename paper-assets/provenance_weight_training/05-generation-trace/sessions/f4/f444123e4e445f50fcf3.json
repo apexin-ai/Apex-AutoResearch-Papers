@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f444123e4e445f50fcf3",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval uniform 1 7b seed456",
+  "task_key": "worker_eval_uniform_1_7b_seed456_20260520T205904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_uniform_1_7b_seed456_20260520T205904_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "e42671653f8a397817c373fc058c68961947ae09bc99a0488cb4104426cd8720"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Full eval pipeline complete for `uniform_1_7b_seed456`:\n\n**Results summary:**\n- Holdout PPL: 13.280 | OWT PPL: 13.307 | Wiki PPL: 10.953\n- Downstream mean: 0.6234 (arc_easy 0.711, arc_challenge 0.422, hellaswag 0.613, piqa 0.745, winogrande 0.625)\n\n**3-seed consolidated baseline (uniform_1_7b):**\n- PPL holdout: **13.275 ± 0.009**\n- Downstream mean: **0.6249 ± 0.0013**\n\nVariance across seeds is negligible — the uniform baseline is well-characterized. Registry updated, artifact registered (`art_20260520_d0b8c3`)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-uniform-1-7b-seed456.md"
+}

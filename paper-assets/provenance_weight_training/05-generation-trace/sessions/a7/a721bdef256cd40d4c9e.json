@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a721bdef256cd40d4c9e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh get eval results both",
+  "task_key": "worker_ssh_get_eval_results_both_20260518T012052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_get_eval_results_both_20260518T012052_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "88c4a32a65556d2a306e7ad7411318bd40324b4b65053b23643c7acfee25d5fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All results already collected before the timer fired. Summary above is final."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-get-eval-results-both.md"
+}

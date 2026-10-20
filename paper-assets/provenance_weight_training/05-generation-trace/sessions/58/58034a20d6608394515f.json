@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58034a20d6608394515f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "train adaptive fix seed42 retrain",
+  "task_key": "worker_train_adaptive_fix_seed42_retrain_20260517T145630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_adaptive_fix_seed42_retrain_20260517T145630_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "a9c0b2c5f4959624ab8322a76d6e5500ef5690b7b7b27e94cc3c5a2674a233d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动并在运行中。\n\n**状态确认：**\n- 服务器：westd-41312，GPU 0\n- 配置：adaptive weighting, tau=0.8, n_min=2, contamination_ratio=0.4, seed=42\n- 总步数：6103，save_steps=200, eval_steps=200\n- 当前速度：~8.9s/step，预估总时间 ~15h\n- 输出目录：`/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fix_seed42`\n- 日志：`~/runs/provenance_weight_training/adaptive_fix_seed42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-adaptive-fix-seed42-retrain.md"
+}

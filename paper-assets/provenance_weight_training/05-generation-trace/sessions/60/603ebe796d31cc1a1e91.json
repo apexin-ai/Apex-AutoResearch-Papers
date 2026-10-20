@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "603ebe796d31cc1a1e91",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis q1 alpha eff vs ess",
+  "task_key": "worker_analysis_q1_alpha_eff_vs_ess_20260515T064924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_q1_alpha_eff_vs_ess_20260515T064924_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "e4776f8e6c8d80c83cbe159fa0b5af13c4287178dc1dbcd8fd2f0a8f3bdc2a37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已写入。总结完成的工作：\n\n---\n\n## 分析结论\n\n**α_eff 方法与 ESS 阈值法不等价。** Reviewer 的论断错误。\n\n**根本原因**：Reviewer 假设优化目标是 max_b α_eff(b) s.t. ESS ≥ n_min（此时确实总推到 ESS 边界）。但实际目标是 **inf{b : α_eff(b) ≥ τ}**——最小化干预强度。这是 min-intervention vs max-intervention 的区别。\n\n**实证数据**（51,913 micro-batches）：\n- 49.9% clean batch (b=0)\n- **20.2% α_eff binding**（α_eff 精确达到 τ=0.8，ESS 有余量）\n- 30.0% ESS binding（ESS 触底，α_eff 未达 τ）\n\n**MC 对比**（2000 synthetic batches）：\n- 两种方法仅 33.5% 完全一致\n- α_eff binding 时，b* 仅为 ESS-only 方法的 45%\n- Mean |Δb| = 0.95，Pearson r = 0.64\n\n**回应策略**：强调 b* 是 inf（最小化）语义，τ 有收敛理论基础（ESS 的 n_min 没有），建议加 ESS-only baseline 消融对比。\n\n产出：\n- 服务器: `/root/provenance_weight_training/output/analysis/q1_ess_equivalence_report.txt`\n- 本地 artifact: `artifacts/q1_ess_equivalence_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-q1-alpha-eff-vs-ess.md"
+}

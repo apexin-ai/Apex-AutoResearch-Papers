@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfbeacbcf010752a25d4",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra verify all jobs started",
+  "task_key": "worker_infra_verify_all_jobs_started_20260520T033200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify_all_jobs_started_20260520T033200_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "e8eb5f351c9c00c7122de02e46bf732b2cd6086c6aa49740988594b43372b645"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 任务 | GPU | PID | 显存 | GPU利用率 | 状态 |\n|------|-----|-----|------|-----------|------|\n| adaptive_rho06_tau07_seed42 | GPU 0 | 383864 | 45634 MiB | 69% | **运行中** |\n| adaptive_rho06_tau07_seed123 | GPU 1 | 383947 | 45634 MiB | 100% | **运行中** |\n| adaptive_rho06_tau07_seed456 | GPU 2 | 384114 | 45634 MiB | 98% | **运行中** |\n| uniform_seed42_downstream (lm-eval) | GPU 3 | 384367 | 1834 MiB | 0% | **运行中**（模型加载完成，正在评估） |\n\n- 3 个 adaptive 训练任务：模型和数据加载成功（371499 examples, max_steps=6103），正在训练中，GPU 利用率 69-100%。\n- uniform_seed42_downstream：这是 lm-eval-harness 评估任务（arc_easy, arc_challenge, hellaswag, piqa, winogrande），模型已加载，显存占用较低（评估模式），刚启动正在跑。\n- GPU 3 上还有一个 PID=382185 的旧 python 进程（1834 MiB），可能是之前的残留进程。\n\n全部正常，没有 EXIT_CODE=127 或 \"command not found\" 错误。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-all-jobs-started.md"
+}

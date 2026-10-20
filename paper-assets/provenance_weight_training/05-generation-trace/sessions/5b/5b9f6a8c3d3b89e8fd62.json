@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b9f6a8c3d3b89e8fd62",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval rho04 ood batch",
+  "task_key": "worker_eval_rho04_ood_batch_20260520T164929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_rho04_ood_batch_20260520T164929_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "6216f4bb0cfde0cedc3c08bd43f3844c2287a7feb986c1e006331f5354b18eba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### ρ=0.4 τ=0.8 adaptive (adaptive_fix / adaptive_ood)\n\n| Checkpoint | OWT PPL | Wiki PPL |\n|---|---|---|\n| adaptive_fix_seed42 | 18.424 | 15.473 |\n| adaptive_ood_seed123 | 18.373 | 15.370 |\n| adaptive_ood_seed456 | 18.366 | 15.345 |\n\n### ρ=0.4 uniform baselines\n\n**全部 MISSING。** 服务器上不存在 ρ=0.4 的 uniform checkpoint：\n- `uniform_seed42` — 不存在\n- `uniform_seed123` — 不存在\n- `uniform_seed456` — 不存在\n\n`uniform_ood_seed123` 和 `uniform_ood_seed456` 存在但 config 显示 `contamination_ratio=0.2`（不是 0.4），不是你要的 baseline。\n\n### 注意\n- checkpoint 命名不一致：seed42 叫 `adaptive_fix_seed42`，seed123/456 叫 `adaptive_ood_seed*`，但 config 完全一致（ρ=0.4, τ=0.8, adaptive, n_min=2）\n- GPU 2/3 上正在跑 1.7B 训练（`uniform_1_7b_seed456` on cuda:2, `adaptive_1_7b_seed456` on cuda:3），未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-rho04-ood-batch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ab4d651ff2e4e114036",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code mvp analysis prep",
+  "task_key": "worker_code_mvp-analysis-prep_20260514T202648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-analysis-prep_20260514T202648_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "a517d7b571706f17e9307fb6a65fa59016dc095aa60dea157759eb3fe50fa381"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常。注意 adaptive_fix 的 PPL ~22 是从 trainer_state.json 的 eval_loss 算出的（训练中间 checkpoint 的 inline eval，不是最终 holdout eval），所以数值偏高是预期的——训练还没跑完（5500/6103 步），且这个 eval_loss 是在训练数据子集上算的，不等于 holdout PPL。\n\ngrid_b seed42 的 5 个已完成实验也缺 eval_results.json，需要跑 `eval_perplexity.py`。\n\n脚本已部署到 `/root/provenance_weight_training/analyze_mvp.py`，功能：\n1. 训练状态检测（adaptive_fix 3 个还在训练，grid_b5.0_seed42 也在跑）\n2. 从 eval_results.json / trainer_state.json 自动提取 PPL，标注数据来源\n3. 对比表含 uniform/grid-b/adaptive_fix/adaptive_orig，带 vs_uniform 和 vs_grid_best 百分比\n4. MVP 自动判定（当前因 adaptive_fix 未完成+未跑 holdout eval，数据不完整）\n5. b* 轨迹分析：三个 seed 的 b* 均值 ~0.7，中位数 ~0，趋势 increasing，说明后期 b* 在增大"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-analysis-prep.md"
+}

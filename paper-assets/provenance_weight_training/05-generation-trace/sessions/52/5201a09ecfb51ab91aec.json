@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5201a09ecfb51ab91aec",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis rho04 step metrics check",
+  "task_key": "worker_analysis_rho04-step-metrics-check_20260518T211041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rho04-step-metrics-check_20260518T211041_result.json",
+    "occurrence": 1,
+    "bytes": 1875,
+    "sha256": "84ae4a2264648e4b4d298e5ec13c74fe314971ca78dac83ab6afeb209bf22c88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。汇总如下：\n\n---\n\n## 结果汇总\n\n**westd-30476**: 无任何 adaptive 实验目录（autodl-tmp 和项目根目录均无）。\n\n**westd-41312** 上所有 adaptive 实验（全部 ρ=0.4，除 contamination_60）：\n\n| 实验 | 模型 | ρ | 行数 | 最大 step | max_steps 目标 | 状态 |\n|---|---|---|---|---|---|---|\n| `adaptive_fix_seed42` | Qwen3-0.6B | 0.4 | 100 | 24 | 6103 | **极度不完整**（SIGTERM） |\n| `ngram_adaptive_seed42` | Qwen3-0.6B | 0.4 | 24,412 | 6102 | 6103 | **完整** |\n| `gpt2_adaptive_seed42` | Qwen3-0.6B | 0.4 | 10,820 | 2717 | 6103 | 不完整（~44%） |\n| `adaptive_1_7b_seed42` | Qwen3-1.7B | 0.4 | 26,412 | 6102 | 6103 | **完整** |\n| `adaptive_1_7b_seed123` | Qwen3-1.7B | 0.4 | 6,050 | 1522 | 6103 | 不完整（~25%） |\n| `contamination_60_adaptive_seed456` | (未检查) | 0.6 | 24,712 | 6102 | 6103 | 完整（当前用于 figure） |\n\n**用户要找的 `adaptive_fix_seed123` 和 `adaptive_fix_seed456` 在两台服务器上均不存在。**\n\n## 可用于补充 ρ=0.4 训练动态分析的数据\n\n有两个完整的 ρ=0.4 实验：\n\n1. **`ngram_adaptive_seed42`** — Qwen3-0.6B，24,412 行，step 0→6102，完整训练。但注意这是 **ngram-based** 评分方法的 adaptive，不是标准 adaptive。\n2. **`adaptive_1_7b_seed42`** — Qwen3-1.7B，26,412 行，step 0→6102，完整训练。但这是 **1.7B 模型**，不是主实验的 0.6B。\n\n**结论**：没有与主实验（Qwen3-0.6B + 标准 adaptive + ρ=0.4）配置完全一致的完整 step_metrics。最接近的替代是 `ngram_adaptive_seed42`（同模型同 ρ，但评分方法不同）或 `adaptive_1_7b_seed42`（同方法同 ρ，但模型不同）。如果要做 ρ=0.4 的训练动态图，需要决定是否接受这些差异，或者重跑 `adaptive_fix_seed42`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-rho04-step-metrics-check.md"
+}

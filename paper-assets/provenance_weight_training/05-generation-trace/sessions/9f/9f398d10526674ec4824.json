@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f398d10526674ec4824",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis tau rho rank",
+  "task_key": "worker_analysis_tau-rho-rank_20260516T191312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tau-rho-rank_20260516T191312_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "aceae7a23bfc9f294e95f25c8ba4c4194455fb448ab4b751dc8af78a2b98940e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三件产出全部完成并注册。核心结论：\n\n**Rank preservation 不成立（如实报告）**：\n- ρ=0.4 排序：τ=0.8 > 0.7 > 0.6\n- ρ=0.6 排序：τ=0.7 > 0.6 > 0.8（τ=0.8 从第1掉到第3）\n- Kendall's τ = −0.33, Spearman's ρ = −0.50（均不显著，N=3 太小）\n- 3/3 共享点发生 rank swap\n\n**但 safe range 跨 ρ 保持**：\n- τ ∈ {0.6, 0.7, 0.8} 在两个 ρ 下均优于 uniform baseline\n- 最优 τ 从 0.8 微移到 0.7，绝对 PPL 差仅 0.01\n- normalized gap 量级一致：ρ=0.4 最优 −0.233%，ρ=0.6 最优 −0.203%\n\n**Claim 3 的准确表述应为**：\"τ=0.7–0.8 is optimal across tested ρ values\"，而非 \"τ effect is negligible\" 或 \"ranks are preserved\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tau-rho-rank.md"
+}

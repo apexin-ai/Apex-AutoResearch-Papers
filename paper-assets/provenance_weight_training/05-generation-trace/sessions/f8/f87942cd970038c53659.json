@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f87942cd970038c53659",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval old 30476 experiments",
+  "task_key": "worker_eval_old_30476_experiments_20260518T094911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_old_30476_experiments_20260518T094911_result.json",
+    "occurrence": 1,
+    "bytes": 1353,
+    "sha256": "02d9e720864bee42c4bada2e4931a46ed6226a5c13cba8627fc2785e1b206f9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here's the summary:\n\n## Experiment Status\n\n| Experiment | Status | Steps | PPL | Notes |\n|---|---|---|---|---|\n| **rho02_adaptive_tau08_seed42** | Completed + Eval'd | 6103/6103 | **17.382** | NEW result: ρ=0.2, adaptive, τ=0.8, n_min=2 |\n| **grid_b0_1_seed42** | **Killed at step 1999** | 1999/6103 | — | Only ~33% done, no final checkpoint |\n| **batchsize16_nmin8_r2** | Completed + Eval'd | 6103/6103 | 17.653 | Duplicate — matches prior bs=16 n_min=8 result exactly |\n\n### Details\n\n**rho02_adaptive_tau08_seed42** — This is the new result worth noting. Config: adaptive weighting, τ=0.8 (default), n_min=2, ρ=0.2, seed=42. PPL=17.382. Both training and eval were already completed (eval ran automatically after training finished). The eval file was at the actual output path `/root/autodl-tmp/output/models/rho02_adaptive_tau08_seed42/`.\n\n**grid_b0_1_seed42** — Killed before completion when D&R experiments took the GPU. Last logged step was 1999. Only has checkpoints at 500/1000/1500. Since you already have b=0.1 seed42=17.657 from a prior run, this is a known duplicate — no need to resume.\n\n**batchsize16_nmin8_r2** — Completed successfully, PPL=17.653 confirms the prior result exactly. No new information.\n\nNo eval runs needed — both completed experiments already have eval results on disk."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-old-30476-experiments.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa3ee8bdac3bc045f098",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval seed456 completed metrics and eval",
+  "task_key": "worker_eval_seed456_completed_metrics_and_eval_20260515T005437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed456_completed_metrics_and_eval_20260515T005437_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "073edf7913b1416262bb9c19da98bc1db05d12f6547cdb5ddc854288134ce09d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 实验 | train_loss | train_runtime | eval_ppl_holdout | eval_loss_holdout | status |\n|------|-----------|---------------|------------------|-------------------|--------|\n| grid_b1_0_seed456 | 10.178 | 12964s (3.6h) | **17.70** | 2.8734 | DONE |\n| grid_b1_5_seed456 | 10.435 | 12950s (3.6h) | **17.73** | 2.8750 | DONE |\n\n对比 adaptive 方法的 seed456: eval_ppl=17.66。三种方法在 seed456 上的 holdout perplexity 非常接近（17.66-17.73），与其他 seed 的结果一致。\n\nRegistry 已更新完毕，包含 train metrics + eval metrics，status=DONE，conclusion=success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed456-completed-metrics-and-eval.md"
+}

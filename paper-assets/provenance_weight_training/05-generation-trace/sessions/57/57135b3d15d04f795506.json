@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57135b3d15d04f795506",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit detect remove q07 epoch matched seed42",
+  "task_key": "worker_submit_detect_remove_q07_epoch_matched_seed42_20260518T235903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_detect_remove_q07_epoch_matched_seed42_20260518T235903_result.json",
+    "occurrence": 1,
+    "bytes": 293,
+    "sha256": "963789198f165ebb194fe49a86d1c4dc7b05dc2251de68fe2a4f6dfb33ae5707"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动。\n\n- **PID**: 87108\n- **GPU**: cuda:2\n- **数据**: 184,908 examples loaded\n- **max_steps**: 3047（1 epoch）\n- **当前进度**: 1/3047，预计约 2h20m\n- **日志**: `~/runs/provenance_weight_training/detect_remove_q07_epoch_matched_seed42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-detect-remove-q07-epoch-matched-seed42.md"
+}

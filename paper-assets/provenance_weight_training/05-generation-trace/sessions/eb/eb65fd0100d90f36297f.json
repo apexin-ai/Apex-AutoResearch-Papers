@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb65fd0100d90f36297f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code fix server pretrain",
+  "task_key": "worker_code_fix_server_pretrain_20260514T133943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_server_pretrain_20260514T133943_result.json",
+    "occurrence": 1,
+    "bytes": 448,
+    "sha256": "7080d704277e48addb548bc077418cd3ac623f7e46ba684fd1a7055b5e73d159"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n| 检查项 | 结果 |\n|--------|------|\n| n_min 默认值 = `max(2, args.batch_size // 2)` | 第280行，正确 |\n| 无 EMA 代码 | grep \"ema\" 返回空（exit code 1），确认无 EMA |\n| unweighted_loss 日志 | 第130/158/191行，存在 |\n| WeightedTrainer.__init__ 无 ema_alpha 参数 | 第92行：只有 `weighting_method, tau, n_min, grid_b_value, log_path` |\n\n服务器代码已修复完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-server-pretrain.md"
+}

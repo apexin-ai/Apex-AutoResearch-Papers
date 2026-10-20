@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbbe6c8a40ecca055d9c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "audit numbers group3 appendix",
+  "task_key": "worker_audit_numbers_group3_appendix_20260525T200225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_numbers_group3_appendix_20260525T200225_result.json",
+    "occurrence": 1,
+    "bytes": 7082,
+    "sha256": "5fdc1a88230acb2cea325500b5fc7e0d3baf36cf6db7103ef2a46f19a68c1be5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修复已生效。下面是完整审计报告。\n\n---\n\n## Appendix 数字真实性审计报告\n\n**审计范围**: `appendix.tex` 全部 12 张表 + 行间数字，共约 **260 个数字**\n\n### 一、已修复问题（2 处）\n\n| 文件:行号 | 数字 | 问题 | 处理 |\n|-----------|------|------|------|\n| appendix.tex:397 | Δ=−0.60pp | HellaSwag 72.49−73.08=−0.59，非−0.60 | 已改为 −0.59pp |\n| appendix.tex:363 | ECE \"to 0.05\" | 全文其他位置（experiments.tex, tab:detector）均用 0.048，此处精度不一致 | 已改为 0.048 |\n\n### 二、出处存疑 / 需人工确认的数字（4 处）\n\n#### 1. **[严重]** Tab:detector TF-IDF PPL 与 Tab:tau τ=0.80 不一致\n\n- Tab:detector（L344）: TF-IDF+LR, τ=0.8, 3 seeds → **17.650 ± .010**, Δ=−0.044\n- Tab:tau（L120）: τ=0.80, 3 from-scratch seeds → **17.683 ± .006**, Δ=−0.011\n- 差值 **0.033**，超过 SD\n- Registry 交叉验证：`adaptive_fix` 系列（τ=0.8, n_min=2）3-seed mean ≈ 17.651，与 tab:detector 吻合；tab:tau 的 17.683 可能来自另一批 from-scratch 训练\n- **疑因**: Tab:detector 可能混入了 checkpoint-resumed seed 42 结果（resume artifact section 已警告此问题），或两表使用了不同实验批次\n- **建议**: 确认 tab:detector 的 TF-IDF 行是否使用纯 from-scratch seeds；若是，更新为与 tab:tau 一致的 17.683±.006（Δ=−0.011）\n\n#### 2. **[轻微]** Tab:hybrid ρ=0.6 Hybrid PPL\n\n- 论文（L172）: 17.530\n- Registry `hybrid_rho06_seed42`: **17.526**\n- 差值 0.004，需确认是否有更新版本的实验\n\n#### 3. **[轻微]** Tab:rho06 ESS-only seeds 123/456\n\n- 论文: 两个都写 **17.760**\n- Registry: seed 123 = **17.763**, seed 456 = **17.762**\n- 影响: 若用 registry 值，mean 从 17.763 变为 17.765（仍与 Uniform 17.763 接近，但不完全相等）\n\n#### 4. **[标注]** Tab:dr_threshold q>0.5 可能是 3-seed 均值\n\n- 表中 q>0.5 Raw PPL = 17.28，caption 写 \"seed 42 unless noted\"\n- Registry seed 42: 17.291 (v1) / 17.285 (v2)，均 ≠ 17.28\n- Registry 3-seed v2 均值: (17.285+17.272+17.277)/3 = **17.278 ≈ 17.28** ✓\n- 建议: 如确实是 3-seed mean，应像 q>0.3 一样加 † 脚注\n\n### 三、正文 ↔ Appendix 交叉一致性验证\n\n| 交叉项 | Appendix | 正文 (results/experiments/discussion) | 一致? |\n|--------|----------|---------------------------------------|-------|\n| Adaptive τ=0.7 5-seed holdout | 17.674±.006 (tab:tau) | 17.674±.006 (tab:main) | ✓ |\n| Uniform 3-seed baseline | 17.694 (tab:tau caption) | (17.694+17.686+17.702)/3=17.694 | ✓ |\n| Δ_H at τ=0.7 vs 3-seed unif | −0.020 | (17.674−17.694=−0.020) | ✓ |\n| Δ at 5-seed (tab:main) | −0.023 (caption note) | 17.674−17.697=−0.023 | ✓ |\n| τ=0.7 OWT Δ | −0.028 | −0.028 (results L147) | ✓ |\n| τ=0.7 Wiki Δ | −0.029 | −0.029 (results L147) | ✓ |\n| τ=0.8 OWT Δ | −0.005 | −0.005 (results L147) | ✓ |\n| τ=0.8 Wiki Δ | −0.009 | −0.009 (results L147) | ✓ |\n| ρ=0.6 adaptive mean | 17.731±.004 | 17.731±0.004 (results L81) | ✓ |\n| ρ=0.6 uniform mean | 17.763±.008 | 17.763±0.008 (results L81) | ✓ |\n| ρ=0.6 hierarchy | Grid < Adaptive < Uniform ≈ ESS < Random | Same (results L82) | ✓ |\n| ρ=0.6 paired t (3dp) | t=−9.95, p=0.010 | t=−9.95, p_BH=0.064 (results L81) | ✓ |\n| p_BH=0.011 at ρ=0.4 | app:power L476 | results L31 | ✓ |\n| p_BH=0.064 at ρ=0.6 | app:power L477 | results L81 | ✓ |\n| Grid b=0.3 3-seed mean | 17.620±.033 (tab:aux via cross-ref) | 17.620±.033 (tab:aux) | ✓ |\n| b=1.0 ≈ uniform | 17.692 (tab:grid_full) | 17.692 vs 17.694 (results L34) | ✓ |\n| D&R q>0.3 3-seed | 17.250±.001 | 17.250±.001 (tab:epoch_match) | ✓ |\n| D&R q>0.7 raw | 17.32 | 17.32 (tab:epoch_match) | ✓ |\n| ESS-only gap at ρ=0.4 | 0.043 (L271) | 0.043 (results L38) | ✓ |\n| B=16 Δ amplification | 3.0×, −0.068±0.005 (L76) | 3.0×, −0.068±0.005 (results L155) | ✓ |\n| Spearman r B=4 | 0.699 (tab:alpha_corr & L76) | 0.699 | ✓ |\n| ρ=0.2 Δ | +0.046 (L374) | +0.046 (discussion L6) | ✓ |\n| ρ=0.3 Δ | +0.002 (L461) | Within [0.3,0.4] boundary (discussion L6) | ✓ |\n| Cross-model MMLU | +1.57pp (tab:cross_model) | +1.6pp (results L115, rounded) | ✓ |\n| Cohen's d | 3.83 = 0.023/0.006 (L469) | — (arithmetic ✓) | ✓ |\n| Downstream mean | 0.5414 (tab:downstream caption) | 0.5414 (discussion L31) | ✓ |\n| ECE gap 2.7× | 0.131/0.048=2.73 (L332) | 2.7× (results L122) | ✓ |\n| τ-ρ paired t | −4.70 (fig caption L149) | −4.70 (results L147) | ✓ |\n| Training steps | 6,103 (L72) | 6,103 (experiments tab:config) | ✓ |\n\n### 四、Registry 交叉验证\n\n| 数据 | 论文 | Registry | 一致? |\n|------|------|----------|-------|\n| Grid b=0.1–5.0 seed 42 | 9 values | 9 values exact match | ✓ |\n| Grid b=0.3 3-seed mean | 17.620 | (17.64+17.579+17.64)/3=17.620 | ✓ |\n| ρ=0.6 Adaptive 3 seeds | 17.735/17.727/17.732 | 17.735/17.727/17.732 | ✓ |\n| ρ=0.6 Uniform 3 seeds | 17.766/17.754/17.770 | 17.766/17.754/17.77 | ✓ |\n| ρ=0.6 Random 3 seeds | 17.832/17.870/17.880 | 17.832/17.87/17.88 | ✓ |\n| ρ=0.6 Grid b=0.3 | 17.634 | 17.634 | ✓ |\n| ρ=0.3 all 6 holdout values | match | match exactly | ✓ |\n| D&R q>0.3 3-seed | 17.250 | 17.25/17.25/17.2509 → 17.250 | ✓ |\n| D&R q>0.7 3-seed | 17.32 | 17.32/17.32/17.32 | ✓ |\n| Epoch-matched all 5 values | match | match exactly | ✓ |\n| Hybrid ρ=0.4 | 17.514 | 17.514 | ✓ |\n| GPT-2 detector 3-seed PPL | 17.792 | (17.79+17.788+17.797)/3=17.792 | ✓ |\n| N-gram detector 3-seed PPL | 17.823 | (17.820+17.823+17.826)/3=17.823 | ✓ |\n| Golden Ratio seed 42 | 17.654 (tab:aux) | 17.654 | ✓ |\n| ρ=0.2 Δ=+0.046 | 17.382−17.336=0.046 | 17.382−17.336=0.046 | ✓ |\n| Detector AUC=0.94, ECE=0.048, T=0.204 | match | AUC=0.939≈0.94, ECE=0.048, T=0.204 | ✓ |\n| α_eff correlation, per-seed stats | — | NOT in registry (separate analysis script) | 无法验证 |\n| Cross-model MMLU/HellaSwag | — | NOT in registry | 无法验证 |\n| Detector hyperparams (50k, C=1.0) | — | Registry 记录不同值 (10k, C=0.01)，可能是旧版配置 | 无法验证 |\n\n### 五、算术抽检（全部通过）\n\n- Tab:rho06 所有 mean/SD: 手动重算均一致 ✓\n- Tab:tau 所有 Δ: 手动重算均一致 ✓\n- Tab:detector Δ: 17.650−17.694=−0.044 ✓ (算术正确，但基数可能有问题，见第二节)\n- Tab:rho03 Δ: (17.427−17.425)/=+0.002 ✓\n- Cohen's d: 0.023/0.006=3.83 ✓; λ=3.83×√5=8.56 ✓\n- Tab:alpha_corr_perseed spread: max−min 算术 ✓\n- Cross-model MMLU Δ: 53.42−51.85=1.57 ✓\n\n### 总结\n\n- **审计数字**: ~260\n- **已修复**: 2（HellaSwag Δ 算术、ECE 精度）\n- **需确认**: 4（detector table 最重要，其余为小数点级精度问题）\n- **无法从 registry 验证**: 3 类（α_eff 相关分析、Llama MMLU/HellaSwag、detector 超参细节）\n- **正文-附录一致性**: 全部 30+ 项交叉引用一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-numbers-group3-appendix.md"
+}

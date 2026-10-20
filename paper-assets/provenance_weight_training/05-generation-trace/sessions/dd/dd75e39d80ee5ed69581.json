@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd75e39d80ee5ed69581",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh status eval 30476",
+  "task_key": "worker_ssh_status_eval_30476_20260517T205249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_status_eval_30476_20260517T205249_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "33b2e0e5f34f0ded3b2f28dbae0965a66752a7d8930ac6ec7d72dcb8b250cb2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**所有 4 个实验仍在运行，尚未完成。无法执行 eval。**\n\n当前进度（max_steps=6103）：\n\n| exp_id | PID | GPU | step/total | 进度 |\n|--------|-----|-----|-----------|------|\n| grid_b0_1_seed42 | 34716 | cuda:0 | 1500/6103 | ~25% |\n| grid_b0_3_seed123 | 42432 | cuda:1 | 1000/6103 | ~16% |\n| rho02_adaptive_tau08_seed42 | 41387 | cuda:2 | 3500/6103 | ~57% |\n| batchsize16_nmin8_r2 | 48891 | cuda:3 | 1500/6103 | ~25% |\n\n注意事项：\n- 用户提到的名称 \"grid_b0_3_seed123_r2\" 实际输出目录为 `grid_b0_3_seed123`\n- 用户提到的 \"batchsize16_nmin8_r3\" 实际为 `batchsize16_nmin8_r2`（输出到 `/root/autodl-tmp/provenance_weight_training/output/models/batchsize16_nmin8_r2`）\n\n按当前速率估算（实验从约 01:20-03:32 启动，现在 04:53）：\n- **rho02_adaptive_tau08_seed42** 可能最先完成（约再需 2.5 小时）\n- 其余三个约需 5-8 小时\n\n需要我设定定时检查、等完成后自动跑 eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-status-eval-30476.md"
+}

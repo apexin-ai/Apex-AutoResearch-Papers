@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb5f424568d3b2a01e0b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix kill stale cosine 604879",
+  "task_key": "worker_fix_kill_stale_cosine_604879_20260521T121606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_stale_cosine_604879_20260521T121606_result.json",
+    "occurrence": 1,
+    "bytes": 392,
+    "sha256": "eacda3e81119228dc42b2bec115604915d1c6f51465199858fda3ca7f31985e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕：\n\n| 项目 | 结果 |\n|------|------|\n| Kill 604879 | 已杀死 |\n| cuda:2 进程 | 仅 PID 606296，占用 45634 MiB |\n| 4 卡状态 | 每卡 1 个进程，各 ~45.6GB，正常 |\n| output 目录 | config.json 中 `lr_scheduler_type: \"linear\"`，无 cosine 残留，当前 linear 进程已在正常写入（checkpoint-500 + step_metrics.jsonl） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-stale-cosine-604879.md"
+}

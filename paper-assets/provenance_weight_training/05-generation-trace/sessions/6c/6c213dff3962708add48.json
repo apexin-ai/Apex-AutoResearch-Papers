@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c213dff3962708add48",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis adaptive fromscratch seed42 v2",
+  "task_key": "worker_analysis_adaptive_fromscratch_seed42_v2_20260519T232906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_adaptive_fromscratch_seed42_v2_20260519T232906_result.json",
+    "occurrence": 1,
+    "bytes": 1637,
+    "sha256": "b46d9a341690eff19ce4015dc1ef0a3d4f09698e00aa88bd6395de3e5e46ae6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## adaptive_fromscratch_seed42 分析报告\n\n### 训练状态\n- **状态**: 训练已正常完成（EXIT_CODE=0）\n- **总步数**: 6103/6103（100%）\n- **训练时长**: 3h47m40s\n- **train_loss**: 9.976\n- **epoch**: 0.2629（~200M tokens over 371,499 samples）\n- **配置**: adaptive, τ=0.8, n_min=2, contamination_ratio=0.4, seed=42, Qwen3-0.6B\n\n### 最终指标\n- **eval_ppl_holdout**: ⚠️ **未生成** — 训练脚本未执行 inline eval（trainer_state 中 `should_evaluate: false`）\n- **eval_ppl_train**: ⚠️ **未生成**\n- **checkpoint_path**: `/root/autodl-tmp/provenance_weight_training/output/models/adaptive_fromscratch_seed42/final`（含 model.safetensors）\n\n### 与 seed123/456 对比（待 eval 后填充）\n\n| 实验 | eval_ppl_holdout | conclusion |\n|------|-----------------|------------|\n| adaptive_fromscratch_seed42 | **需要运行 eval** | pending |\n| adaptive_ood_seed123 | 17.677 | negative |\n| adaptive_ood_seed456 | 17.683 | negative |\n\n### Hypothesis 验证\n**无法完成** — 训练已完成，模型已保存，但 eval_ppl_holdout 未计算。需要对 `final/` checkpoint 运行 holdout perplexity 评估（`eval_perplexity.py --max_docs 5000 --max_length 2048`），才能判断 in-dist PPL 是否落在 ~17.677-17.683 范围内。\n\n### 下一步\n需要在 westd-41312 上对 checkpoint 执行 eval，命令类似：\n```bash\npython eval_perplexity.py \\\n  --model_path output/models/adaptive_fromscratch_seed42/final \\\n  --max_docs 5000 --max_length 2048\n```\n这需要 `ssh_execute`，当前约束禁止执行。是否要我运行 eval？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-adaptive-fromscratch-seed42-v2.md"
+}

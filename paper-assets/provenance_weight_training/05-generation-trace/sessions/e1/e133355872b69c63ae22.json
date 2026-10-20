@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e133355872b69c63ae22",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "research regenerate metrics csv",
+  "task_key": "worker_research_regenerate_metrics_csv_20260516T030139",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_regenerate_metrics_csv_20260516T030139_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "4b0b79f4485f33ad7b52cb17eabc6df5454e5e39c1665dcb6194134bdbd4c0c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已生成并注册：\n\n- **CSV**: 59 个 DONE 实验，PPL 统一 3 位小数，`artifact_flag` 列已添加（3 个 grid seed456 实验标记为 `checkpoint_artifact`）\n- **MD**: 含 group 级汇总表（mean PPL ± std）和分组明细表\n\nArtifact IDs: `art_20260516_d1052a` (CSV), `art_20260516_1b7a4a` (MD)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-regenerate-metrics-csv.md"
+}

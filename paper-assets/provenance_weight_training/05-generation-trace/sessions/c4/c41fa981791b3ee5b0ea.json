@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c41fa981791b3ee5b0ea",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh fix model path 30476",
+  "task_key": "worker_ssh_fix_model_path_30476_20260517T102843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_model_path_30476_20260517T102843_result.json",
+    "occurrence": 1,
+    "bytes": 221,
+    "sha256": "ecafacd6f59f06d91b31fbc7229fc12dbd603990e0b64a96493783e8b7958355"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Results:**\n- Rename: **success** (`Qwen3-0___6B` → `Qwen3-0.6B`)\n- Directory contents: model.safetensors (1.5GB), tokenizer.json, config.json, etc. all present\n- Tokenizer load: **OK** (vocab=151643)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-model-path-30476.md"
+}

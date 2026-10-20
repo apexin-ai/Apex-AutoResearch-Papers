@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "612046c53cf18298587b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "verify final partB C",
+  "task_key": "worker_verify_final_partB_C_20260523T191654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_final_partB_C_20260523T191654_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "118b3812596a60eee97b79949de246f31031b27110044978ae3c49f875df3f8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011CbL3GAopUCPE8uq3tJxRC\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011CbL3GAopUCPE8uq3tJxRC"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-final-partb-c.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4d5c44b68240c0b091f",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "director / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_13.md",
+    "occurrence": 1,
+    "bytes": 3841,
+    "sha256": "71949eb7a4c7ebe65f03e944b0e0f961cfb0e43013c7fca3644f7c13a68b8d37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_messages\nupdated: '2026-05-17T21:41:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-30476 cuda:0-3 + westd-41312 cuda:0-3，共 8 张。禁止用其他服务器/GPU\n- eval 参数不可变：`eval_perplexity.py --max_docs 5000 --stride 1024 --fp16`，PPL 基线 uniform=17.694\n- 所有训练实验禁止加 `--eval_data_path`（inline eval 占 84% 时间，M012/M016 反复教训）\n- batchsize16 实验必须 per_device_batch_size=16, grad_accum=1（不是 bs=4 accum=4，否则 n_min > micro-batch → b*≡0，M015）\n- n_min 必须 ≤ micro-batch size（ESS 在 forward pass 粒度计算）\n\n### 2. 🖥️ 基础设施快照\n- **westd-30476**: connect.westd.seetacloud.com, root, 工作目录 /root/provenance_weight_training\n- **westd-41312**: connect.westd.seetacloud.com, root, 工作目录 /root/provenance_weight_training\n- Python: 服务器自带环境（无 conda activate）\n- 模型: Qwen3-0.6B（主模型），checkpoints 在 output/{exp_name}/final_checkpoint\n- 数据: /root/provenance_weight_training/data/human/eval_holdout.jsonl (eval), scored_data_*.jsonl (train)\n- 活跃进程：**预计全部 8 个实验已完成**（ETA 最晚 00:36 UTC，现在已过 4h+），GPU 应全空闲\n- 无 W&B 配置，无 HF cache 需求\n\n### 3. 📊 当前状态\n**关键问题：8 个实验完成但未 eval（Agent 连续 4 次 reset 后 idle）。** 这是最高优先级。\n\n预计已完成的 8 个实验（需 eval_perplexity.py）：\n| 实验 | 服务器 | Claim |\n|------|--------|-------|\n| qwen06b_uniform_seed42 | 41312:cuda:0 | baseline retrain |\n| ess_only_seed456_r2 | 41312:cuda:1 | Claim 1 |\n| ess_only_seed123_r2 | 41312:cuda:2 | Claim 1 |\n| random_reweight_seed456 | 41312:cuda:3 | Claim 1 |\n| grid_b0_3_seed456_r2 | 30476:cuda:0 | Claim 2 |\n| grid_b0_3_seed123_r2 | 30476:cuda:1 | Claim 2 |\n| rho02_adaptive_tau08_seed42 | 30476:cuda:2 | Claim 3 (D068) |\n| batchsize16_nmin8_r3 | 30476:cuda:3 | D062 coupling |\n\nPaper Agent 已完成 2 个 patch（n_min coupling rule + failure mode analysis）。3 个 patch 等数据。\n\n### 4. 📋 待办\n- Agent 启动 → 立即 nvidia-smi 两台服务器 → 对所有已完成实验跑 eval_perplexity.py（并行 4+ workers）→ 更新 registry\n- eval 全部完成 → post-batch narrative review：Claim 1 (ess_only 3-seed + random 3-seed 显著性), Claim 2 (grid_b0_3 3-seed consistency), Claim 3 (rho02_tau08 safe default)\n- 空闲 GPU → 启动: grid_b0_2_seed42 (b=0.2), lm-eval downstream (adaptive vs uniform on HellaSwag/ARC/PIQA/WinoGrande), contamination_60_seed123\n- narrative review 完成 → update_roadmap + Paper Agent 剩余 3 patches (unified table + Claim 1 upgrade + random baseline)\n- rho02_tau08 PPL < 17.694 → Claim 3 \"safe default across ρ\" 成立；PPL > 17.694 → Claim 3 降级为 \"works at ρ≥0.4\"\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 ARR May 25（~7 天）\n- **核心方法**: dual-constrained adaptive b* = inf{b≥0: α_eff(b)≥τ} s.t. ESS(b)≥n_min（最小干预准则）\n- **D069**: MMLU +1.57pp (Llama-3B) 定位为 Discussion 观察，不升级 cross-model claim（HellaSwag -0.60pp 混合信号）\n- **D068**: Claim 3 scope 调整——ρ=0.2+τ=0.9 negative 不否定方法，转为测试 τ=0.8 safe default\n- **grid_b0_1_seed42**: 旧结果 PPL=17.657 已确认 eval 协议一致，可直接用，不需重跑\n- **M016 是系统性问题**: Agent reset 后反复 idle 4h。新 session 启动后必须 10 min 内 check_agent_queue_status 确认 Agent 在工作。如果 idle > 15 min，urgent_agent_message 推一下\n- **易错**: Agent 容易用错 checkpoint 路径（output/ vs autodl-tmp/output/），eval 前先 ls 确认 final_checkpoint 存在\n- **Paper Agent session 已存在**: 直接 director_post_to_paper_agent 即可复用，不需重建\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75c6553f8d32aaa29982",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis compile full tables",
+  "task_key": "worker_analysis_compile_full_tables_20260518T053053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_compile_full_tables_20260518T053053_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "cfae11142d020868da5d45bce574ea523c0154e10c7402961cd3361e6c5dc571"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到 `artifacts/report_tables.md` 并注册。\n\n核心发现：\n\n**Table 1 (Grid U-curve, ρ=0.4)**：U-shape 确认，b=0.3 最优 (17.620±0.035)，两端递增。但 b=0.3 的优势主要来自 seed123 的 17.579 异常值，另两个 seed 均为 17.640。b≥0.5 缺 seed42 数据，b=0.2 缺两个 seed（仍在跑）。大 b 端 (≥2.0) 方差显著增大 (std>0.1)。\n\n**Table 2 (ρ=0.6 ablation)**：层级关系跨 ρ 保持——Adaptive (17.736) < Uniform (17.763) < ESS-only (17.770)，gap 与 ρ=0.4 相当。3 个实验仍在跑（adaptive seed456、random、grid b=0.3），grid b=0.5 无 metrics 需排查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-compile-full-tables.md"
+}

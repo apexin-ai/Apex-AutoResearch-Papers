@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58b48a333a320af9a784",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "audit unified posthoc eval",
+  "task_key": "worker_audit_unified_posthoc_eval_20260515T161707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_unified_posthoc_eval_20260515T161707_result.json",
+    "occurrence": 1,
+    "bytes": 152,
+    "sha256": "fd8734c3d3a7c19ac6db990992618a826ea2b0205dd51fbd89ed301088486b13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor timed out (the eval had already finished before it detected the file). No action needed — all work was already completed above."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-unified-posthoc-eval.md"
+}

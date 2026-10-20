@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9f1560b13b1c41ba62d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh check all progress",
+  "task_key": "worker_ssh_check_all_progress_20260517T030449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_all_progress_20260517T030449_result.json",
+    "occurrence": 1,
+    "bytes": 1154,
+    "sha256": "bafc60af17a8e2af720ca8906eee0b86fea61dcdc4ac1001255c33e6dc5b4782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-47453\nnvidia-smi: [GPU0: 83%, 75007MiB | GPU1: 99%, 57165MiB | GPU2: 99%, 57165MiB | GPU3: 100%, 46019MiB] — 全部在用\n\n| 实验 | GPU | PID存活 | Step/Total | 进度% | 速度 | ETA |\n|------|-----|---------|-----------|-------|------|-----|\n| random_reweight_v2_seed42 | cuda:0 | ✅ 353995 | 6604/8477 | 78% | 3.21 it/s | ~10 min |\n\n## westd-41312\n\n| 实验 | GPU | PID存活 | Step/Total | 进度% | 速度 | ETA |\n|------|-----|---------|-----------|-------|------|-----|\n| llama3b_uniform_seed42 | cuda:0 | ✅ 3112 | 3813/6103 | 62% | 5.21 s/it | ~3h19m |\n| llama3b_adaptive_seed42 | cuda:1 | ✅ 4005 | 3728/6103 | 61% | 5.41 s/it | ~3h34m |\n| batchsize16_nmin8_seed42 | cuda:2 | ✅ 50284 | 7336/8477 | 87% | 3.24 it/s | ~6 min |\n| grid_b0_2_seed42 | cuda:3 | ✅ 45224 | 1500/6103 | 25% | 2.10 s/it | ~2h41m |\n\n**备注：**\n- westd-47453 另有 3 个 tmux 实验占用 GPU1-3（batch_adaptive_tau_rho06, bs8_auto_nmin, rho02_adaptive_tau09）\n- batchsize16_nmin8 和 random_reweight_v2 即将完成（< 10 min）\n- llama3b 两个实验（3B 模型）速度约 5.2-5.4 s/it，预计今晚完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-all-progress.md"
+}

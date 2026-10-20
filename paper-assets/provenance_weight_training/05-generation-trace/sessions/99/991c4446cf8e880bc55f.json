@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "991c4446cf8e880bc55f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "fix resubmit 30476 all",
+  "task_key": "worker_fix_resubmit_30476_all_20260518T144654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_resubmit_30476_all_20260518T144654_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "c215b5c5dc9499978a2bbcb7a992ce466ece9acfed767353dc023e89b687d89b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部成功。汇总报告：\n\n### 结果\n\n| 项目 | 状态 |\n|---|---|\n| **Python 路径** | `/root/miniconda3/bin/python` (PyTorch 2.8.0+cu128, 4 GPU) |\n| **epoch-matched 旧 checkpoint** | 无，4 个目录均不存在（全新训练） |\n\n### GPU 状态\n\n| GPU | 任务 | 显存 | 利用率 | 进度 |\n|---|---|---|---|---|\n| **0** | epoch_matched_dr_seed123 | 41757/97887 MiB | 95% | 21/2532 (1%), ETA ~1h28m |\n| **1** | epoch_matched_dr_seed456 | 41757/97887 MiB | 98% | 33/2532 (1%), ETA ~1h27m |\n| **2** | detect_remove_q07_seed42_r2 | 41757/97887 MiB | 95% | 4432/6103 (73%), ETA ~59m |\n| **3** | detect_remove_q01_seed42 | 41757/97887 MiB | 99% | 39/6103 (1%), ETA ~3h33m |\n\n3 个新 job 全部正常训练中。`detect_remove_q03_seed42` 待 GPU 2 上的 q07_r2 完成后启动（约 1 小时后）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-resubmit-30476-all.md"
+}

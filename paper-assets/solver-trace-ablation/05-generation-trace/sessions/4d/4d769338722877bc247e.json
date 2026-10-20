@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d769338722877bc247e",
+  "project": "solver-trace-ablation",
+  "kind": "result",
+  "title": "code phase1 fixes",
+  "task_key": "worker_code_phase1_fixes_20260513T101915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase1_fixes_20260513T101915_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "2d745eae8bf03008512ee5a528757a884c01ac0902a68215fef1015029c388fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件语法检查通过。\n\n修改摘要：\n\n**recursive_loop.py**:\n- 新增 `_is_degenerate()` 静态方法：过滤 <10 词或非 ASCII >5% 的样本\n- 将原生成逻辑提取为 `_generate_batch()`，`_generate_synthetic()` 在生成后执行最多 2 轮 sanity filter + 重新生成，最终丢弃仍退化的样本并记录日志\n\n**property_scorer.py**:\n- `set_reference_corpus()` 新增 TF-IDF vectorizer fit + corpus mean 计算\n- `lexical_conformity()` 改为 TF-IDF cosine similarity（单参数签名，`score_batch` 调用无需改动）\n- 旧 BLEU-4 实现保留为 `_lexical_conformity_bleu()`，标注弃用原因\n- 顶部新增 `sklearn` import"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase1-fixes.md"
+}

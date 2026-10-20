@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52794c8b584d0964bf1e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code ess only baseline",
+  "task_key": "worker_code_ess_only_baseline_20260515T071521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_ess_only_baseline_20260515T071521_result.json",
+    "occurrence": 1,
+    "bytes": 963,
+    "sha256": "611baf46c03df73d75e0494cb7a8f99bafd2b97b9a6f5ac24c06ecba69c68f83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改正确。注意任务要求脚本路径和 `pretrain_weighted.py` 路径在 `training/` 下，但代码实际在 `artifacts/training/`。服务器端的 `training/` 目录会包含脚本，而服务器上的 `pretrain_weighted.py` 路径可能也是 `training/pretrain_weighted.py`（通过 sync_code）。脚本中 `python training/pretrain_weighted.py` 的路径需要与服务器目录结构一致。\n\n完成。修改总结：\n\n**`artifacts/weighting/alpha_eff.py`**：新增 `find_ess_only_b(q_scores, n_min, b_max=20.0, tol=0.01)` — 二分搜索找 `max{b : ESS(b) ≥ n_min}`。\n\n**`artifacts/training/pretrain_weighted.py`**：\n- import 新增 `find_ess_only_b`\n- argparse choices 加入 `ess_only`\n- `compute_loss` 新增 `ess_only` 分支，调用 `find_ess_only_b` 计算 b*\n\n**`training/run_ess_only_seed42.sh`**：新建运行脚本（已 chmod +x）\n\n**`artifacts/ess_only_implementation.md`**：实现文档"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ess-only-baseline.md"
+}

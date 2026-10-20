@@ -1,0 +1,15 @@
+{
+  "exp_id": "phase0_score_v3",
+  "project": "solver-trace-ablation",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T09:58:55.352Z",
+    "updated_at": "2026-05-13T09:59:04.032Z",
+    "hypothesis": "Four PGPF property scores (LC, SN, Quality, Confidence) are sufficiently orthogonal — no pair |r| > 0.7, LC vs Confidence |r| < 0.5 — to justify multi-property filtering"
+  },
+  "timestamp": "2026-05-13T09:59:04.064557+00:00",
+  "trigger": "update_registry"
+}

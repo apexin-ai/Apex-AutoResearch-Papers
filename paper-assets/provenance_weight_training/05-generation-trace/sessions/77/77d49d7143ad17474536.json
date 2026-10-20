@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77d49d7143ad17474536",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops eval grid b0 2 seed123",
+  "task_key": "worker_ops_eval_grid_b0_2_seed123_20260518T055033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_grid_b0_2_seed123_20260518T055033_result.json",
+    "occurrence": 1,
+    "bytes": 70,
+    "sha256": "3f137f3951a5438cd6c3b4ee044d48c57e486aaf510e20c1abb1cbcc502c7f49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 后台运行中，3 分钟后回来检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-grid-b0-2-seed123.md"
+}

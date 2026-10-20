@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a30acfd4fda82580925e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval dr epoch matched monitor and eval",
+  "task_key": "worker_eval_dr_epoch_matched_monitor_and_eval_20260521T132152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_dr_epoch_matched_monitor_and_eval_20260521T132152_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "b59284d3c6ee6d746f46ffc6c909f80de5a525647804e58a974f39bc09ed7740"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n```\ndr_epoch_matched_indep_lr_seed42:\n  holdout_ppl: 18.78174\n  holdout_loss: 2.93288\n  ood_owt_ppl: 19.23533\n  ood_owt_loss: 2.95675\n  ood_wiki_ppl: 15.95958\n  ood_wiki_loss: 2.77006\n  train_loss_final: 5.833\n  total_steps: 2533\n```\n\n对比之前的 epoch-matched D&R (adaptive, PPL=17.65 holdout) 和 uniform full (PPL=17.694 holdout)，这次 independent LR 的 D&R holdout PPL=18.78，高出约 1.1。这说明独立 LR schedule 下 D&R 的 holdout perplexity 明显更差，LR confound 验证的初步结论是：之前 D&R 的优势部分来源于 LR schedule 差异，而非 weighting 本身。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-dr-epoch-matched-monitor-and-eval.md"
+}

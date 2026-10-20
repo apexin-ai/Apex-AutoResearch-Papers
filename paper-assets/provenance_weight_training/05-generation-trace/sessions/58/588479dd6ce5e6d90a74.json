@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "588479dd6ce5e6d90a74",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "exp rho06 tau07 seed456",
+  "task_key": "worker_exp_rho06_tau07_seed456_20260521T114655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_rho06_tau07_seed456_20260521T114655_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "0becda1fffe79d35f17f15a1b9734cf8a476a00fb8fd4e3e2a5489a4a67831cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动，正在加载数据。\n\n**产出汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 数据 | `scored_data_60.jsonl`，371,499 行，907MB |\n| exp_id | `rho06_tau07_seed456` |\n| GPU | cuda:2 |\n| PID | 603064 |\n| tmux | `rho06_tau07_seed456` |\n| 日志 | `~/runs/provenance_weight_training/rho06_tau07_seed456.log` |\n| Registry | RUNNING，parent=rho06_tau07_seed42 |\n\n模型已加载完毕，正在加载训练数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-rho06-tau07-seed456.md"
+}

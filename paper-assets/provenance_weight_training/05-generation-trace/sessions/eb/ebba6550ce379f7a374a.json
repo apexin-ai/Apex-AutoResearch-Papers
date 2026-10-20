@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebba6550ce379f7a374a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "prep line b 1 7b download",
+  "task_key": "worker_prep_line_b_1_7b_download_20260518T123838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_line_b_1_7b_download_20260518T123838_result.json",
+    "occurrence": 1,
+    "bytes": 1526,
+    "sha256": "74e7ba6dfcc33d532549e7a0b523f58d87685e471244d8e56c6a45467edc21f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Line B 准备报告\n\n**所有步骤已被另一个 agent 先行完成，1.7B 训练正在运行中。**\n\n### 环境\n| 项目 | 值 |\n|---|---|\n| 服务器 | westd-41312, 4× RTX PRO 6000 96GB |\n| Python | 3.12.3 |\n| PyTorch | 2.10.0+cu128 |\n| Transformers | 5.8.1 |\n| Accelerate | 1.13.0 |\n\n### 模型\n- **路径**: `/root/autodl-tmp/provenance_weight_training/models/Qwen/Qwen3-1.7B`\n- **大小**: 3.8GB (2 safetensors shards: 3.3GB + 594MB)\n- 下载完整\n\n### 数据\n- `data/scored_data.jsonl`: 371,499 行，完整\n\n### 训练状态 (已在运行)\n\n| 任务 | GPU | 进度 | 速度 | 显存占用 | ETA |\n|---|---|---|---|---|---|\n| adaptive_1_7b_seed42 | GPU 2 | 673/6103 (11%) | ~3.0 s/step | **61.7GB / 96GB** | ~4.5h |\n| uniform_1_7b_seed42 | GPU 3 | 705/6103 (12%) | ~2.86 s/step | **61.7GB / 96GB** | ~4.3h |\n\n### 训练参数 (与 0.6B 相同)\n- bs=4, ga=4, max_length=2048, lr=5e-5, bf16\n- 200M tokens, 6103 steps, contamination_ratio=0.4, n_min=2, tau=0.8, seed=42, save_steps=500\n\n### 关键发现\n1. **无 OOM** — 61.7GB / 96GB，留有 ~36GB 余量，当前参数完全够用\n2. **训练速度**: ~3 s/step，总训练时间估计 **~5h/run**（0.6B 约 3.5h，1.7B 约 1.4x）\n3. **无需调参** — 相同 bs/ga 配置在 96GB 卡上运行正常\n4. GPU 0 空闲，GPU 1 在跑 GPT-2 PPL scoring\n\n### 清理\n- 已 kill 冗余的下载进程 (我启动的)\n- 已删除 `/root/provenance_weight_training/models/Qwen/Qwen3-1.7B/` 下的不完整文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-line-b-1-7b-download.md"
+}

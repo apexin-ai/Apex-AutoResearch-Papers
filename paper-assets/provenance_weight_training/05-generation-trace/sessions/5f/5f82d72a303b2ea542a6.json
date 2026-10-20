@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f82d72a303b2ea542a6",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh status eval 41312",
+  "task_key": "worker_ssh_status_eval_41312_20260517T205236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_status_eval_41312_20260517T205236_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "4a819bd358d5d0501f4eb2080d3eb153ffa3dd1c5fbe812c5c1fca55f7fd0cd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：全部仍在运行，无实验完成。**\n\n| 实验 | 进度 | 速率 | 预计剩余时间 |\n|------|------|------|------------|\n| qwen06b_uniform_seed42_v2 | 4000/6103 (65%) | 28.5 steps/min | **~74 min** |\n| ess_only_seed456 | 2500/6103 (41%) | 8.1 steps/min | ~7.4 h |\n| ess_only_seed123 | 2500/6103 (41%) | 8.1 steps/min | ~7.4 h |\n| random_reweight_seed456 | 1000/6103 (16%) | 8.1 steps/min | ~10.5 h |\n\n速率差异原因：qwen06b_uniform 没有 `--eval_data_path`（不做周期性 eval），其余 3 个每 500 步做一次 eval 拖慢了训练速率。\n\n**qwen06b_uniform_seed42_v2 约 1.2 小时后完成，是最早可以跑 eval 的。** 其余 3 个今天下午才能完成。\n\n需要我设置一个定时检查，等 qwen06b 完成后自动触发 eval 吗？还是等全部完成后统一跑？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-status-eval-41312.md"
+}

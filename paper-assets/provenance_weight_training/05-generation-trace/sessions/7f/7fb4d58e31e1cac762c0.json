@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fb4d58e31e1cac762c0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "exp bs16 adaptive seed42",
+  "task_key": "worker_exp_bs16_adaptive_seed42_20260521T133905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_bs16_adaptive_seed42_20260521T133905_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "f85df378d153665550708be8877936976f2a062f8e9da41ffbc1d681ec05121b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行，无 OOM。\n\n**汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | `bs16_adaptive_tau07_seed42` |\n| PID | 613352 |\n| GPU | cuda:1 |\n| batch_size | 16 |\n| gradient_accumulation_steps | 1 (effective_batch=16) |\n| n_min | 8 |\n| tau | 0.7 |\n| lr_scheduler_type | linear |\n| total_steps | 6103 |\n| gradient_checkpointing | 启用（原始命令 OOM，加了此参数解决） |\n| 速度 | ~2.75s/it，预计 ~4.5h 完成 |\n| Registry | RUNNING |\n\n注意：相比任务原始命令多加了 `--gradient_checkpointing`，因为 bs=16 的 logits tensor (18.55 GiB) 导致 OOM。主实验 bs=4 无此问题。gradient_checkpointing 不影响训练结果（数值等价），仅以计算换显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-bs16-adaptive-seed42.md"
+}

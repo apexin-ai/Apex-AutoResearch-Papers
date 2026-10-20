@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfef453cbbd3d054dc03",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_10_1778887918.md",
+  "task_key": "loop_10_1778887918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778887918.md",
+    "occurrence": 1,
+    "bytes": 4414,
+    "sha256": "11865e9c4f81b274f3102bd1b78157b8975301fccc88e0ade726b2a8d43c59e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T23:30:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westd-47453 的 cuda:0/1/2/3，config `execution.gpu_ids` 为准\n- cuda:2 当前空闲（分配了没跑）= 失职状态，接手后必须立即安排实验上去\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python ...`，不能假设 .venv 存在\n- bs8_nmin2_seed42_r2 刚在 cuda:2 上 EXIT_CODE=129 失败（疑似 zombie 进程冲突），提交前必须先检查 cuda:2 是否有残留进程\n- GPU 预算仅剩 ~30h，P1 实验（Llama-3B、cross-generator）大概率跑不完，优先 P0\n- EMNLP 2026 ARR May 25 截稿，距今 10 天\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westd-47453，4× RTX 6000 Pro 96G\n- **工作目录**: /root/provenance_weight_training\n- **Python**: /root/miniconda3/bin/python（conda base 环境）\n- **激活命令**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **镜像**: aml-train（已检测，跳过基础环境搭建）\n- **模型**: Qwen3-0.6B（主力），数据 ρ=0.4 和 ρ=0.6 两套\n- **活跃进程**:\n  - contamination_60_seed42_r2: PID 257977, cuda:0, cron 监控中\n  - contamination_60_uniform_seed42: PID 250074, cuda:1, cron 监控中\n  - contamination_60_grid_b0_5_seed42: PID 255781, cuda:3, cron 监控中\n- **Worker 池**: 0（全部已完成/销毁）\n\n### 3. 📊 当前状态\n**刚完成**: ess_only_seed123/456 成功（Claim 1 三 seed 加固完成），bs8_nmin2_seed42_r2 失败（EXIT_CODE=129）\n\n**RUNNING（3 个，全在 ρ=0.6 contamination 系列）**:\n| exp_id | GPU | 假设 |\n|--------|-----|------|\n| contamination_60_seed42_r2 | cuda:0 | ρ=0.6 adaptive (τ=0.8, n_min=2)，测试高污染下的优雅退化 |\n| contamination_60_uniform_seed42 | cuda:1 | ρ=0.6 uniform baseline |\n| contamination_60_grid_b0_5_seed42 | cuda:3 | ρ=0.6 grid-best (b=0.5) baseline |\n\n**QUEUED**: grid_b_low_serial_seed42（b=0.1/0.2/0.3 serial sweep，等 GPU）\n**PREPARING**: adaptive_v2_seed42/123/456（n_min fix 3→2，无 EMA）\n\n**等待中**: 3 个 cron 回调（上述 RUNNING 实验完成时触发）；无 Worker 在跑；D038 批准了 writing_plan.yaml 启动论文初稿\n\n### 4. 📋 待办（条件触发式）\n- **contamination_60 三实验任一完成** → spawn worker 分析结果 + 更新 registry；三个全完成后对比 adaptive vs uniform vs grid-b=0.5 在 ρ=0.6 下的表现\n- **contamination_60 结果出来且 adaptive > uniform** → Claim 1 在 ρ=0.6 加固成功，更新 paper_framing.md\n- **contamination_60 结果出来且 adaptive ≤ uniform** → negative，走 red-section framing 提案流程\n- **cuda:2 空闲** → 立即提交 grid_b_low_serial_seed42（QUEUED）或 adaptive_v2_seed42（PREPARING），优先看哪个对论文更紧急\n- **3 个 contamination_60 全完成** → 释放 cuda:0/1/3，铺下一批：adaptive_v2×3 seeds + 剩余 P0 实验\n- **所有 P0 完成** → 触发 dream_simulate(review_mode=\"full\") 验证 reframed story，然后全力推论文初稿\n\n### 5. 🎯 战略上下文\n**核心结论链**: Dual-constraint adaptive b*（α_eff 下界 + ESS 上界 → min-intervention）稳定优于 uniform 和 ESS-only。三个 Claims 证据状态：\n- Claim 1 (dual > ESS-only): ✅ 3 seeds 完成（ess_only 全部 worse than uniform）\n- Claim 2 (adaptive ≈ grid-best): ✅ 3 seeds MVP PASS\n- Claim 3 (proportion-free, τ controls bias-variance): ✅ τ sweep 6 点完成，safe range [0.5,0.8]\n\n**当前关键实验**: ρ=0.6 contamination 系列是验证方法在更高污染率下是否仍然有效的关键——如果 adaptive 在 ρ=0.6 下仍优于 uniform，story 大幅加强（从单一 ρ=0.4 推广到跨污染率）。\n\n**易踩的坑**:\n- cuda:2 反复出 zombie 进程问题（bs8_seed42、bs8_nmin2_seed42、bs8_nmin2_seed42_r2 连续三次在 cuda:2 失败），提交前必须 SSH 检查 `nvidia-smi` 和 `ps aux | grep python`\n- n_min=4 实验（nmin4_seed42）在 ROADMAP 里标 🔄 但 registry 里是 DONE(success)，ROADMAP 可能未同步\n- grid_b_low_seed42_r2/r3 连续失败，原因是 shell variable quoting 问题，r3 改用 hardcoded serial 脚本（grid_b_low_serial_seed42）解决\n- GPU 预算 ~30h 紧张，不要启动 P1 级别的大实验（Llama-3B 需 24h+），集中火力在 P0\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778887918.md"
+}

@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "607d61de7873b09cdc55",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "read b8 eval precision",
+  "task_key": "worker_read_b8_eval_precision_20260522T161906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_read_b8_eval_precision_20260522T161906.log",
+    "occurrence": 1,
+    "bytes": 1475140,
+    "sha256": "cc312f27db72865dcce5390226005ce5efd19cc2c6f2372f8103e8017e303117"
+  },
+  "statistics": {
+    "messages": 1131,
+    "user_turns": 1,
+    "tool_calls": 520,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 83,
+      "tool_call": 520,
+      "tool_result": 520,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 992,
+      "chunks": [
+        {
+          "path": "607d61de7873b09cdc55-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "607d61de7873b09cdc55-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "607d61de7873b09cdc55-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "607d61de7873b09cdc55-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "607d61de7873b09cdc55-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "607d61de7873b09cdc55-part-0006.json",
+          "message_count": 92
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 139,
+      "chunks": [
+        {
+          "path": "607d61de7873b09cdc55-part-0006.json",
+          "message_count": 88
+        },
+        {
+          "path": "607d61de7873b09cdc55-part-0007.json",
+          "message_count": 51
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/read-b8-eval-precision.md"
+}

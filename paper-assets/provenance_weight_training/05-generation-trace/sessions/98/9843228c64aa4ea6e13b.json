@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9843228c64aa4ea6e13b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check gpu status all4",
+  "task_key": "worker_check_gpu_status_all4_20260521T121339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_status_all4_20260521T121339_result.json",
+    "occurrence": 1,
+    "bytes": 1342,
+    "sha256": "9fcea15ef39f79ede445a4c342f44c2c0cc82d6924be6eceba802bf144b8f98e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 实验 | weighting | lr_scheduler | Step/Total | ETA | GPU Mem |\n|-----|------|-----------|-------------|------------|-----|---------|\n| cuda:0 | detect_remove_q05_seed42 | uniform | linear (default) | 1291/6103 | ~2h47m | 45634 MiB / 97887 MiB |\n| cuda:1 | dr_epoch_matched_indep_lr_seed42 | uniform | linear (default) | 493/2533 | ~1h11m | 45634 MiB / 97887 MiB |\n| cuda:2 | uniform_epoch_matched_indep_lr_seed42 | uniform | **见下方⚠️** | 478/2533 | ~2h33m | **91282 MiB** / 97887 MiB |\n| cuda:3 | random_reweight_baseline_seed42 | adaptive | linear (default) | 687/6103 | ~3h21m | 45634 MiB / 97887 MiB |\n\n**⚠️ cuda:2 有两个进程冲突：**\n- PID 604879：`--lr_scheduler_type cosine`（显式传入）\n- PID 606296：无 `--lr_scheduler_type`（默认 linear）\n- 两个进程写同一个 output_dir `uniform_epoch_matched_indep_lr_seed42`，共享 GPU 2，导致显存占用翻倍（91GB），训练速度也减半（4.47s/it vs 正常 2.08s/it）\n\n**补充：**\n- cuda:2 uniform_epoch_matched 的日志头显示 `lr_scheduler_type: linear`（应该是后启动的 PID 606296 覆盖了日志）\n- cuda:1 dr_epoch_matched 的 cmdline 和日志均无 `--lr_scheduler_type`，使用默认 linear\n- 所有 4 个实验的 `training_args.json` 尚未生成（仅在训练完成后生成）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-status-all4.md"
+}

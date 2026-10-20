@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7a61711f15945e1c53a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops persist ood and check aeff",
+  "task_key": "worker_ops_persist_ood_and_check_aeff_20260523T231028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_persist_ood_and_check_aeff_20260523T231028_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "0912c218d635bc4d3f5683f2ac52bcfb84a7e570cbc8a4115fb06beb5130967f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 持久化\n\n已复制全部 `/tmp/eval_bs8_*` 文件（log + json）到 `/root/provenance_weight_training/logs/`。确认 seed456 文件已持久化：\n\n| 文件 | 大小 |\n|------|------|\n| `eval_bs8_adaptive_seed456.json` | 284B |\n| `eval_bs8_adaptive_seed456.log` | 1406B |\n| `eval_bs8_uniform_seed456.json` | 282B |\n| `eval_bs8_uniform_seed456.log` | 1402B |\n\n同时复制了 OOD 文件（owt/wiki 的 adaptive/uniform 各 log+json 共 8 个文件）。\n\n## aeff_only 进度\n\n- **step 3475/6103 (56.9%)**, ~2.98s/it\n- ETA: 约 **2h10m** → 预计 **~09:00 UTC** 完成\n- GPU 1 占用 100%，45643 MiB 显存，其余 GPU 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-persist-ood-and-check-aeff.md"
+}

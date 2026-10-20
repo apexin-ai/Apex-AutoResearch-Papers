@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7279755410228eeb05cd",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "verify 41312 gpu after submit",
+  "task_key": "worker_verify_41312_gpu_after_submit_20260518T145217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_41312_gpu_after_submit_20260518T145217_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "309e0ead35ae1110f203d75c60dc735aff8aaa41465dc955c8e71b1ba57a69fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 🔴 全部 4 个任务启动失败\n\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| GPU 0 | **0 MiB** / 97887 MiB | ❌ 空闲 |\n| GPU 1 | **0 MiB** / 97887 MiB | ❌ 空闲 |\n| GPU 2 | **0 MiB** / 97887 MiB | ❌ 空闲 |\n| GPU 3 | **0 MiB** / 97887 MiB | ❌ 空闲 |\n\n**失败原因：磁盘空间不足**\n\n所有 4 个任务都因相同错误退出：\n```\nOSError: [Errno 28] No space left on device: '/root/autodl-tmp/output'\nEXIT_CODE=1\n```\n\n- `uniform_1_7b_seed42` — ❌ EXIT_CODE=1\n- `adaptive_1_7b_seed42` — ❌ EXIT_CODE=1\n- `ngram_adaptive_seed42` — ❌ EXIT_CODE=1\n- `ngram_uniform_seed42` — ❌ EXIT_CODE=1\n\n无 tmux session 运行，无 python 进程存活。\n\n需要清理 `/root/autodl-tmp/` 的磁盘空间后重新启动任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-41312-gpu-after-submit.md"
+}

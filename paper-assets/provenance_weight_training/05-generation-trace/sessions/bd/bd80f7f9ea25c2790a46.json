@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd80f7f9ea25c2790a46",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis tau 095 seed42",
+  "task_key": "worker_analysis_tau_095_seed42_20260515T182338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tau_095_seed42_20260515T182338_result.json",
+    "occurrence": 1,
+    "bytes": 952,
+    "sha256": "7161911a4e803bd86e00d6d6fd06c72bcb68bda48422e755abc6269bcf8d6ec8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## tau_095_seed42 结果\n\n| 指标 | 值 |\n|------|-----|\n| **eval_ppl** | **17.723** (+0.070 vs baseline) |\n| eval_loss | 2.8749 |\n| train_loss | 10.198 |\n| b* mean | 3.078 (baseline: 1.399) |\n| b* median | 1.520 (baseline: 0.871) |\n| b* ≥2 占比 | 40.3% (baseline: 16.1%) |\n| **conclusion** | **negative** |\n\n## τ sweep 全景\n\n| τ | PPL | Δ vs baseline | b* mean | 结论 |\n|---|-----|---------------|---------|------|\n| 0.5 | 17.688 | +0.035 | 0.392 | success |\n| 0.6 | 17.681 | +0.028 | 0.590 | success |\n| 0.7 | 17.679 | +0.027 | 0.894 | success |\n| **0.8** | **17.653** | **baseline** | **1.399** | **baseline** |\n| 0.9 | 17.712 | +0.059 | 2.360 | negative |\n| 0.95 | 17.723 | +0.070 | 3.078 | negative |\n\nτ=0.95 确认了 τ 的上界边界。τ 在 [0.5, 0.8] 范围内鲁棒（max Δ=0.035），超过 0.8 后单调退化。Claim 3 应调整 framing 为 \"τ robust in [0.5, 0.8]\"。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tau-095-seed42.md"
+}

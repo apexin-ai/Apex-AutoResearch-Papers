@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfa55fafd29cb9c1e80d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnostic gpu status 20260515",
+  "task_key": "worker_diagnostic_gpu_status_20260515_20260515T143206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnostic_gpu_status_20260515_20260515T143206_result.json",
+    "occurrence": 1,
+    "bytes": 2361,
+    "sha256": "1e1eb78a556e6b4bc9b3935ddad5f1e1c1563acac4389043c882351582c963ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## GPU 状态 & 实验进度报告\n\n### 1. GPU 总览\n\n| GPU | 显存 | 利用率 | 实验 | PID |\n|-----|------|--------|------|-----|\n| cuda:0 | 46,523 / 97,887 MiB | 93% | tau_07_seed42 (τ=0.7) | 209829 |\n| cuda:1 | 46,523 / 97,887 MiB | 86% | tau_05_seed42 (τ=0.5) | 205657 |\n| cuda:2 | 42,472 / 97,887 MiB | 99% | **tau_095_seed42 (τ=0.95)** ← 新实验，刚启动 | 215505 |\n| cuda:3 | 46,523 / 97,887 MiB | 99% | tau_09_seed42 (τ=0.9) | 213283 |\n\n### 2. tau_09_seed42 — 运行中 ✓\n\nPID 213278（bash wrapper）→ PID 213283（python）在 cuda:3 上正常运行。\n\n- 进度：**873 / 6,103** (14.3%)\n- 已用时：32 min\n- 预计剩余：~3h15m\n- 预计完成：约 3h47m 后\n\n### 3. tau_05_seed42 — 运行中\n\n- 进度：**2,585 / 6,103** (42.4%)\n- 已用时：1h37m\n- 预计剩余：~2h07m\n- 速度：2.16 s/it\n\n### 4. tau_07_seed42 — 运行中\n\n- 进度：**1,449 / 6,103** (23.7%)\n- 已用时：56 min\n- 预计剩余：~2h54m\n- 速度：2.24 s/it\n\n### 5. nmin1_seed42 — 训练完成 ✓ / Eval 未执行 ✗\n\n训练正常结束（EXIT_CODE=0），耗时 4h50m，模型已保存到 `output/models/nmin1_seed42/final/`。\n\n**Eval 未运行**：`eval_results.json` 和 `posthoc_eval_nmin1_seed42.json` 均不存在。cuda:2 已被 tau_095_seed42 占用，无法立即执行 eval。\n\n**b 分布** (n_min=1, 24,412 samples)：\n\n| 指标 | 值 |\n|------|-----|\n| mean | 7.197 |\n| median | 1.746 |\n| std | 8.374 |\n| p25 / p75 | 0.803 / 20.000 |\n| zero | 1.9% |\n| < 0.5 | 13.1% |\n| [0.5, 1) | 19.1% |\n| [1, 2) | 21.1% |\n| **≥ 2** | **46.7%** |\n\nalpha_eff：mean=0.714, median=0.800\n\nb 分布显示近半数 batch (46.7%) 的 b≥2，且 p75 直接打到上限 20.0——n_min=1 时加权极其激进，大量 batch 被强力上/下权。与 n_min=2/3 相比，预期 PPL 可能偏高。\n\n### 6. 与 baseline 对比（待 eval）\n\n| 配置 | n_min | PPL | 状态 |\n|------|-------|-----|------|\n| adaptive_fix | 2 | 17.650 | 已完成 |\n| adaptive | 3 | 17.690 | 已完成 |\n| **nmin1** | **1** | **?** | **训练完成，等待 eval** |\n\n### 7. 新发现\n\ncuda:2 上有人提交了 **tau_095_seed42**（τ=0.95）实验，刚启动 42 秒。nmin1 eval 需等某张卡空闲后再执行——最早可在 tau_05 完成后（~2h）用 cuda:1 跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnostic-gpu-status-20260515.md"
+}

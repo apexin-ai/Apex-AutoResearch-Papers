@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ab91dc8ef8b66c9fb3e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose llama3b restart",
+  "task_key": "worker_diagnose_llama3b-restart_20260516T164454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_llama3b-restart_20260516T164454_result.json",
+    "occurrence": 1,
+    "bytes": 1756,
+    "sha256": "8e3a13b88106555d647e1bf4d0b2483805577d7c282643865d91decbfef24558"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：B) 从头训练（非 resume），但这是**正常的首次训练**，不是异常重跑\n\n### 证据\n\n**1. 进程命令行无 `--resume_from_checkpoint`**\n两个进程（PID 3112 uniform, PID 4005 adaptive）的完整命令行中都没有 resume 参数。\n\n**2. 日志显示从零开始**\n- 启动时间：`2026-05-16 19:26`\n- 模型从 `models/meta-llama/Llama-3.2-3B` 全新加载\n- tqdm 从 `0/6103` 开始（后调整为 `/8477`）\n- wandb 创建新 offline run\n\n**3. step_metrics.jsonl 从 step 0 开始，无断层**\n- uniform: 6000 行，step 0 → 1499（每 step 4 条记录，对应 gradient_accumulation_steps=4）\n- adaptive: 6000 行，同样 step 0 → 1499\n- 不存在\"旧记录 + 新记录\"的拼接痕迹，全部是本次运行产出\n\n**4. Checkpoint 状态正常**\n- 两个实验各有 checkpoint-500 和 checkpoint-1000，每个 6.1GB（符合 Llama-3.2-3B save_only_model 大小）\n- checkpoint-500: May 16 ~21:36, checkpoint-1000: May 16 ~23:47（约 2 小时间隔，节奏正常）\n\n**5. 当前进度**\n\n| 实验 | 当前 step | 总 steps | 进度 | 速度 | 预计剩余 |\n|------|----------|---------|------|------|---------|\n| uniform | ~1510 | 8477 | 18% | 1.63 it/s | ~1h 11m |\n| adaptive | ~1170 | 8477 | 14% | 1.64 it/s | ~1h 15m |\n\n**注意**：训练配置显示 `max_steps=6103`，但 tqdm 实际总数为 8477——可能是脚本按实际 token 数重新计算后调整了。\n\n### 总结\n\n之前观察到的 \"tqdm 从 step 0 开始\" 是因为这本来就是首次训练，不是从已有 checkpoint resume 后又回到 0。step_metrics.jsonl 中到 step 1499 的记录就是当前运行的产出，不是旧数据。训练正常推进中，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-llama3b-restart.md"
+}

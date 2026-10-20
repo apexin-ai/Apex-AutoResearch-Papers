@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58871c83129bb8d14a77",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval llama3b reeval unified v2",
+  "task_key": "worker_eval_llama3b_reeval_unified_v2_20260517T144546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_llama3b_reeval_unified_v2_20260517T144546_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "6c577c2d9d2c2012525267934bb9ba905b16114abdfb9754a2b69212fa2ed6f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成，结果如下：\n\n```\nUniform:  PPL=10.53, loss=2.3545, tokens=4,017,316\nAdaptive: PPL=10.58, loss=2.3590, tokens=4,017,316\nToken 一致性: YES\n```\n\n两个 checkpoint 的 token 数**完全一致**（4,017,316），确认此次评估参数完全对齐。脚本使用同一份 tokenized texts（5000 docs），sliding window stride=1024（max_length//2=2048//2），fp16 autocast 硬编码。\n\n结论：Uniform 的 PPL 略优于 Adaptive（10.53 vs 10.58，loss 差 0.0045）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-llama3b-reeval-unified-v2.md"
+}

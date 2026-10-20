@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f52f55aa3db1970c8b47",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "data rho02 datagen",
+  "task_key": "worker_data_rho02-datagen_20260516T085937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_rho02-datagen_20260516T085937_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "0076a297031dd3876577654b69448145275a7065bd019b64759abf48193bcea8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据集生成完成。结果：\n\n| 指标 | 值 |\n|------|-----|\n| 文件路径 | `/root/provenance_weight_training/data/scored_data_rho02.jsonl` |\n| 总行数 | 206,111 |\n| 合成数据 (depth=1) | 41,223 (20.00%) |\n| 人类数据 (depth=0) | 164,888 (80.00%) |\n| 实际 ρ | **0.2000** |\n| 文件大小 | 655 MB |\n| q_score 均值 / 中位数 | 0.3918 / 0.2776 |\n\nρ=0.2 数据集已就绪，可用于后续训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-rho02-datagen.md"
+}

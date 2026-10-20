@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "760e24170b24c0bd8ec8",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ops kill diagnostic restore gpu",
+  "task_key": "worker_ops_kill-diagnostic-restore-gpu_20260514T084731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-diagnostic-restore-gpu_20260514T084731_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "5676cd98057c9ecd90c18079174f5f97927033c016b315b13092bab93289c7f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成，汇总结果：\n\n1. **进程 kill**：78065 和 77192 均已成功终止\n2. **GPU 显存**：4 张卡全部 ~46523 MiB，利用率 99%，GPU 2/3 恢复正常\n3. **训练速度**：\n   - `grid_b1_0_seed123`（GPU 2）：**2.12s/it**，已恢复\n   - `grid_b1_5_seed123`（GPU 3）：**2.11s/it**，已恢复\n4. **`contamination_ratio` 默认值**：**0.2**（第 213 行 `default=0.2`）。诊断实验必须显式传 `--contamination_ratio 0.0` 和 `--contamination_ratio 1.0`，否则会用默认的 0.2。另外 `tau` 会根据 contamination_ratio 自动计算：`tau = 1.0 - contamination_ratio * 0.5`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-diagnostic-restore-gpu.md"
+}

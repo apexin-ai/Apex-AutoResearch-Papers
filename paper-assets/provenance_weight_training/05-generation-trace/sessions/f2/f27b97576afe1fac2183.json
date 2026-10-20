@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f27b97576afe1fac2183",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "research arxiv 2602 16065 tau",
+  "task_key": "worker_research_arxiv_2602_16065_tau_20260515T082138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_arxiv_2602_16065_tau_20260515T082138_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "b9ca7055f92da2164ba762f7740ff6b763d0c9744693981d1c144b4d678e25ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`register_artifact` 工具不可用，报告已写入。\n\n## 审计结论\n\n**arXiv 2602.16065 确实存在**，论文标题是 *Can Generative Artificial Intelligence Survive Data Contamination?*（Wang, Niu, Li, UNC Chapel Hill, 2026）。\n\n**核心发现：α 依赖已知污染比例。**\n\n论文中 α := m₁/(m₁+m₂) 就是真实数据的比例，是实验者主动设定的设计参数。收敛 bound d(P̂_t, P₀) ≲ t^{−min{p,α}} 的推导前提是 α 已知。\n\n**对 Claim 3 的影响：**\n- 该论文**不能**支撑 \"works without known contamination proportion\" 的 claim\n- τ 如果声称源自该 α，逻辑链断裂——论文要求知道比例，我们声称不需要\n- 建议将 τ 降级为 \"empirical hyperparameter with theoretical motivation\"，或为 Claim 3 加 caveat\n\n报告已写入 `artifacts/tau_theory_audit.md`，包含三个可选的论文表述修正方案。\n\nSources:\n- [arXiv 2602.16065 Abstract](https://arxiv.org/abs/2602.16065)\n- [arXiv 2602.16065 HTML](https://arxiv.org/html/2602.16065)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-arxiv-2602-16065-tau.md"
+}

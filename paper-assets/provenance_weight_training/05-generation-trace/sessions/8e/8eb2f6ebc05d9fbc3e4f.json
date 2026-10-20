@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8eb2f6ebc05d9fbc3e4f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit bs8 seed456 pair",
+  "task_key": "worker_submit_bs8_seed456_pair_20260523T124128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_bs8_seed456_pair_20260523T124128_result.json",
+    "occurrence": 1,
+    "bytes": 308,
+    "sha256": "4bbbb4e3af32665071bfa8a49cc8a09e3d09c3f19b14162c21f217d53415996a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已成功启动。\n\n| 项目 | 值 |\n|------|-----|\n| **磁盘可用** | 75GB / 250GB (71% used) |\n| **实验 1** (bs8_nmin4_adaptive_seed456) | PID=871448, GPU 0: 100% util, 46067 MiB |\n| **实验 2** (bs8_nmin4_uniform_seed456) | PID=871842, GPU 2: 77% util, 46035 MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-bs8-seed456-pair.md"
+}

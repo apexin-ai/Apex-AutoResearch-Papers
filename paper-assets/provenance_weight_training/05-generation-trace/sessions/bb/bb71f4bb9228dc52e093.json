@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb71f4bb9228dc52e093",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code binoculars scoring",
+  "task_key": "worker_code_binoculars_scoring_20260518T110620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_binoculars_scoring_20260518T110620_result.json",
+    "occurrence": 1,
+    "bytes": 1702,
+    "sha256": "f51cb58dac7351e4f55f8f56cb7320d1f469b3a2f1a0ea420c2bbe5768449f02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job is running correctly. Here's the summary:\n\n---\n\n## Status Report\n\n**Method:** Llama-3.2-3B PPL (better than GPT-2-medium; same principle but stronger model)\n\n**Scoring speed:** ~31.3 samples/sec\n\n**Progress:** 28K/371K, ETA ~183 min (~3 hours total)\n\n**Output file:** `/root/provenance_weight_training/data/scored_data_gpt2ppl.jsonl` (symlinks to `/root/autodl-tmp/...`)\n- Wait, the symlink was broken. The real file is at `/root/autodl-tmp/provenance_weight_training/data/scored_data_gpt2ppl.jsonl`. The two `data/` dirs are the same physical directory.\n\n**Output format:** Each line is a JSON object with all original fields + `gpt2_ppl` + `gpt2_nll`.\n\n**First 10 entries:**\n\n| # | Type | q_score | gpt2_ppl | gpt2_nll |\n|---|------|---------|----------|----------|\n| 0 | SYNTH | 0.9681 | 4.54 | 1.51 |\n| 1 | SYNTH | 0.9939 | 8.20 | 2.10 |\n| 2 | REAL | 0.0634 | 12.90 | 2.56 |\n| 3 | SYNTH | 0.9814 | 5.45 | 1.70 |\n| 4 | REAL | 0.0959 | 6.31 | 1.84 |\n| 5 | SYNTH | 0.9135 | 4.68 | 1.54 |\n| 6 | SYNTH | 0.9607 | 4.22 | 1.44 |\n| 7 | SYNTH | 0.9211 | 5.35 | 1.68 |\n| 8 | SYNTH | 0.9954 | 5.20 | 1.65 |\n| 9 | SYNTH | 0.9988 | 5.76 | 1.75 |\n\n**Early pattern:** Synthetic text has lower PPL (~4-8) vs real text (~6-13), consistent with expectations (AI text is more predictable to LLMs). The script will also compute correlation with q_score and optimal classification thresholds when it finishes.\n\n**GPU:** cuda:1 (RTX PRO 6000 Blackwell, ~6.4GB VRAM used)\n\n**Note:** The `scored_data_gpt2ppl.jsonl` path works from both `/root/provenance_weight_training/data/` and `/root/autodl-tmp/provenance_weight_training/data/` since they're the same directory."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-binoculars-scoring-copy-2.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "c4cd0d14862171c130d3",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "analysis rho03 uniform seed456",
+  "task_key": "worker_analysis_rho03_uniform_seed456_20260523T064947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_rho03_uniform_seed456_20260523T064947.log",
+    "occurrence": 1,
+    "bytes": 840174,
+    "sha256": "59b2c62fd6757a58c3352668d3c7ede94a154059e9eaf6fea1874b8dac977697"
+  },
+  "statistics": {
+    "messages": 481,
+    "user_turns": 0,
+    "tool_calls": 209,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 209,
+      "tool_result": 209,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 481,
+      "chunks": [
+        {
+          "path": "c4cd0d14862171c130d3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4cd0d14862171c130d3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c4cd0d14862171c130d3-part-0003.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-rho03-uniform-seed456.md"
+}

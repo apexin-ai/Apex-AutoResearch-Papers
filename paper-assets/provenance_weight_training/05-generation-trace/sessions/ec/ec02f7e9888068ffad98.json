@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec02f7e9888068ffad98",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "train ood 4runs",
+  "task_key": "worker_train_ood_4runs_20260519T143538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_ood_4runs_20260519T143538_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "2bae9a86dc5713e063e7483590e4436f76bbb3e3151c9dd86eeda8b7a2fe4b75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个训练全部启动成功，正在训练中：\n\n| exp_id | GPU | 状态 | 显存 | max_steps |\n|--------|-----|------|------|-----------|\n| adaptive_ood_seed123 | cuda:0 | training (step 1/6103) | 45.6GB | 6103 |\n| adaptive_ood_seed456 | cuda:1 | training (step 1/6103) | 40.9GB | 6103 |\n| uniform_ood_seed123 | cuda:2 | training (loading) | 2.0GB | 6103 |\n| uniform_ood_seed456 | cuda:3 | training (loading) | loading | 6103 |\n\n参数确认：\n- adaptive: `scored_data.jsonl` + `--contamination_ratio 0.4`，tau=0.8/n_min=2 为默认值\n- uniform: `mixed_data.jsonl`\n- 共通：200M tokens, bs=4, grad_accum=4, lr=5e-5, save_steps=6103, save_total_limit=2, save_only_model\n- 预估每个 run ~5h（~3s/step × 6103 steps）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-ood-4runs.md"
+}

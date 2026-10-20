@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea16b09723bfa1de762d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh check 41312 status",
+  "task_key": "worker_ssh_check_41312_status_20260517T094201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_41312_status_20260517T094201_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "a151d3678c83d68f6552bdf628b5b993beca93374a9486486d825aa0656574b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## SSH 连通性：**OK**\n- uptime: 50 days, load average: 14.36\n\n## 4 个实验状态\n\n| 实验 | PID | 状态 | 进度 | ETA |\n|------|-----|------|------|-----|\n| llama3b_uniform_seed42 | 3112 (cuda:0) | **ALIVE** | 5394/6103 (88%) | ~1h02m |\n| llama3b_adaptive_seed42 | 4005 (cuda:1) | **ALIVE** | 5278/6103 (86%) | ~1h14m |\n| batchsize16_nmin8_seed42 | 50284 (cuda:2) | **ALIVE** | 4066/6103 (67%) | ~1h24m |\n| grid_b0_2_seed42 | 45224 (cuda:3) | **ALIVE** | 4836/6103 (79%) | ~44m |\n\n**预计完成顺序**：grid_b0_2 (~44m) → llama3b_uniform (~1h) → llama3b_adaptive (~1h14m) → batchsize16_nmin8 (~1h24m)\n\n所有实验均正常运行，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-41312-status.md"
+}

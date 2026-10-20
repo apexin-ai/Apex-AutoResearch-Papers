@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "befccd20f46369ca7044",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_14_1778957898.md",
+  "task_key": "loop_14_1778957898",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778957898.md",
+    "occurrence": 1,
+    "bytes": 4083,
+    "sha256": "8b381434cd23e758b4e85d3c760cc7439eaa1e7412c2617771e828d8a4884ac2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T18:47:44+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-47453 cuda:0-3, westd-41312 cuda:0-3。超出必须 push back Director\n- WANDB_MODE=disabled（不是 offline）。禁止传 --use_wandb/--wandb_project/--wandb_run_name。offline 模式写满根分区是 random_reweight 3 次失败的根因\n- 所有大文件（checkpoint/output/cache）→ /root/autodl-tmp/，根分区仅 ~30GB\n- CUDA_VISIBLE_DEVICES 三级规则：code_prep 写 -1 → submit 时替换为实际 GPU → 提交前 grep 确认非 -1\n- 投稿目标 EMNLP 2026 ARR May 25（剩 9 天），禁止 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- **westd-47453**: 4×RTX 6000 Pro 96G, conda base, aml-train 镜像, Python /root/miniconda3/bin/python\n- **westd-41312**: 4×RTX PRO 6000 Blackwell 94G, conda base, aml-train 镜像, PyTorch 2.10+cu128\n- 模型：GPT-2 系列（主实验）+ unsloth/Llama-3.2-3B（跨模型验证，两台服务器均已部署）\n- HF_HOME=/root/autodl-tmp/.hf_cache\n- 活跃 cron 8 个，对应 8 个 RUNNING 实验（reconcile 刚确认全部 still running）\n\n### 3. 📊 当前状态\n**刚完成**：D056 数据修正（paper_framing.md 5 处旧数据更新），论文 3 轮 Patch，grid_b0_1 U-shape 确认。\n\n**8 GPU 全满载 RUNNING：**\n| 服务器 | GPU | 实验 | PID | 目的 |\n|--------|-----|------|-----|------|\n| westd-47453 | 0 | threshold_q07 | 324550 | 阈值敏感性 q>0.7（⚠️ LR 中断风险）|\n| westd-47453 | 1 | rho02_uniform | 316980 | ρ=0.2 基线 |\n| westd-47453 | 2 | batch_adaptive_tau_rho04 | 326274 | 方案 B ρ=0.4 |\n| westd-47453 | 3 | threshold_q03 | 325196 | 阈值敏感性 q>0.3 |\n| westd-41312 | 0 | llama3b_uniform | 3112 | 跨模型基线（⚠️ lr=5e-5 偏高）|\n| westd-41312 | 1 | llama3b_adaptive | 4005 | 跨模型验证 |\n| westd-41312 | 2 | hybrid_rho04 | 3656 | 方案 C ρ=0.4 |\n| westd-41312 | 3 | hybrid_rho06 | 3727 | 方案 C ρ=0.6 |\n\n**PREPARING 队列**：random_reweight_v2, bs8_auto_nmin, batch_adaptive_tau_rho06, rho02_adaptive_tau09\n\n**等待中**：8 个 cron 监控回调（任一实验完成 → 触发 on-experiment-done → 释放 GPU 给队列中下一个）\n\n### 4. 📋 待办（条件触发式）\n- threshold_q07 完成 → 47453 cuda:0 给 **random_reweight_v2**（致命缺口：detector signal load-bearing?）\n- rho02_uniform 完成 → 47453 cuda:1 给 rho02_adaptive_tau09（Claim 3 第三验证点）\n- batch_adaptive_tau_rho04 完成 → 47453 cuda:2 给 bs8_auto_nmin（Plan A 验证）\n- threshold_q03 完成 → 47453 cuda:3 给 batch_adaptive_tau_rho06（Plan B ρ=0.6）\n- hybrid_rho04/rho06 完成 → post-hoc eval + registry 更新 + 向 Director 汇报方案 C 结果\n- llama3b 两实验完成 → 跨模型 narrative：adaptive 在 3B 是否仍 ≈ grid-best\n- 全部 threshold 实验（q03/q05/q07）完成 → 综合分析：硬过滤是否需精确校准 → 支撑 \"reweighting 更 robust\" narrative\n- Paper 统一 Patch 待 threshold + ρ=0.2 + random_reweight 数据齐备后执行\n\n### 5. 🎯 战略上下文\n- **核心结论链**：Dual-constraint (α_eff + ESS) 以最小干预原则选 b*，稳定优于 ESS-only（max-intervention 退化）和 uniform。Adaptive ≈ grid-best 但零 validation cost。\n- **D055 关键**：random_reweight_v2 是 Reviewer 最可能攻击的缺口——如果随机权重 ≈ adaptive，说明 detector 信号不 load-bearing，整个叙事崩塌。v2 已修复（WANDB_MODE=disabled + output→数据盘），dry-run 通过，等 GPU。\n- **D054 narrative**：focused empirical study，不是 theoretical contribution。Claim 3 已降级为 Claim 2 推论（supporting，非 primary）。\n- **易错点**：(1) detect_remove PPL=17.29 大幅优于 adaptive，但有 effective epoch 差异（2.4× vs 1×），论文必须说明；(2) llama3b 用了 lr=5e-5 偏高，结果可能需要 caveat；(3) Claim 2 capture ratio 在 ρ=0.6 仅 58%，需 limitations 讨论；(4) grid_b0_2 还在队列里，是 b-curve 插值点，非紧急但补全 figure 需要\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778957898.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c0a4e3cb6f715d3fa9a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis bs16 adaptive tau07 seed42",
+  "task_key": "worker_analysis_bs16_adaptive_tau07_seed42_20260521T175441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bs16_adaptive_tau07_seed42_20260521T175441_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "fb10a0550259a0e4efdba29882ce731a8e7e740ac94fb53db85946080db7cb02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。总结：\n\n## bs16_adaptive_tau07_seed42 实验结果\n\n| 指标 | bs16 adaptive | bs4 adaptive (主实验) | bs4 uniform |\n|------|--------------|----------------------|-------------|\n| holdout_ppl | **17.631** | 17.674 | 17.694 |\n| Δ vs bs4 adaptive | **−0.043** | — | — |\n| train_loss | 2.537 | — | — |\n| 总步数 | 6,103 | — | — |\n| 训练时长 | 4h11m | — | — |\n\n**结论：success**\n\nbs16 adaptive (n_min=8) 的 holdout PPL 为 17.631，比 bs4 adaptive (n_min=2) 的 17.674 还低 0.043。这说明：\n\n1. **Dual-constraint 对 batch size 鲁棒**——从 bs=4 扩大到 bs=16（n_min 从 2 涨到 8），PPL 没有变差反而微幅改善\n2. **n_min=8 没有过度正则化**——担心的 \"n_min 过大导致权重分布过于保守\" 没有发生，ESS 约束在更大 batch 下仍能自适应调节\n3. 支持论文中 \"dual-constraint robustness to batch size\" 的 claim\n\n附注：bs16_uniform_seed42 仍在训练中（~93%），完成后可做配对对比确认 Δ(adaptive−uniform) 在 bs=16 下是否也存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bs16-adaptive-tau07-seed42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e40c5266c1121885913",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis ablation summary csv",
+  "task_key": "worker_analysis_ablation-summary-csv_20260516T175320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ablation-summary-csv_20260516T175320_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "a23316411221d1f8197100a7d15af01f77c856035ce749f1a3a4e3e453b8ca2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CSV 已生成并注册（`art_20260516_4c1ef8`）。\n\n**汇总**：44 个实验，9 个类别：\n\n| 类别 | 数量 | 说明 |\n|---|---|---|\n| grid-b_sweep | 15 | b=0.1–5.0, seeds 42/123/456 |\n| tau_sweep | 3 | τ=0.5, 0.6, 0.7 |\n| n_min_ablation | 2 | n_min=1, 4 |\n| rho_cross_validation | 6 | ρ=0.6 各方法对比 |\n| ess_only_baseline | 3 | seeds 42/123/456 |\n| adaptive | 6 | 含 3 fix + 3 原始 |\n| uniform | 3 | seeds 42/123/456 |\n| detect_remove | 1 | seed 42 |\n| other | 5 | baseline/datagen/detector/golden_ratio/p0 |\n\n文件路径：`artifacts/ablation_summary.csv`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ablation-summary-csv.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "791d068ab35d518dbf5e",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "check training progress all",
+  "task_key": "worker_check_training_progress_all_20260523T033017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_training_progress_all_20260523T033017_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "77d7d09917b9495bfdff985235b7121216f72423e524e97481403cd6d42b5e0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个进程全部存活，GPU 满载运行。\n\n| 实验 | GPU | Step | 进度 | Loss (weighted) | 速度 | 已跑 | 预估剩余 |\n|------|-----|------|------|-----------------|------|------|----------|\n| rho03_adaptive_seed456_r2 | cuda:0 (29GB) | 152/6103 | 2.5% | 2.958 | 2.63s/it | ~7min | **~4h21m** |\n| rho03_uniform_seed456 | cuda:2 (26GB) | 1277/6103 | 21% | 2.761 (b=0) | 2.45s/it | ~11min | **~3h17m** |\n| bs8_nmin4_adaptive_seed123_r2 | cuda:1 (48GB) | 623/6103 | 10% | 2.107~2.784 | 2.58s/it | ~5min | **~3h56m** |\n| bs8_nmin4_uniform_seed123_r2 | cuda:3 (48GB) | 625/6103 | 10% | 1.883 (b=0) | 2.54s/it | ~5min | **~3h52m** |\n\n备注：\n- rho03_uniform_seed456 从 ckpt-1000 恢复，进度最快；bs8 两组从 ckpt-500 恢复；adaptive_r2 从头训练所以最慢\n- uniform 组 b=0 符合预期（无 reweighting）\n- 磁盘 `/root/autodl-tmp`: 152G/250G (61%)，剩余 99G，空间充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-training-progress-all-copy-2.md"
+}

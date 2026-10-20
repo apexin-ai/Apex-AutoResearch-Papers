@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb7a6a2526a6e2c06c63",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "research paper outline",
+  "task_key": "worker_research_paper_outline_20260515T200947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_outline_20260515T200947_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "cb8eb6ff97cc0398b6dd96516c019c9f6262146c1831bd9ac463b49c662a462d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`writing_plan.yaml` 已保存。涵盖：\n\n- **暂定标题**: \"Minimum Intervention Reweighting: Adaptive Exponent Selection for Contamination-Aware Pretraining\"\n- **7 个 section** 的详细 key_points + evidence 映射（含 46 个实验的 exp_id 关联）\n- **7 个 figures**（4 个 P0 + 3 个 P1）：dual-constraint 示意图、主对比图、τ sweep 双轴图、binding 分布图等\n- **6 个 tables**（3 个 P0 + 3 个 P1）：主结果表、τ sweep 表、binding 统计表等\n- **写作顺序**: method → experiments → results → intro → related work → discussion → conclusion → abstract\n- **key_citations**: 7 must-cite + 7 should-cite + 9 optional，从 literature_map 提取\n- **pending_results**: 4 个 RUNNING 实验的 ETA 和依赖关系"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-outline.md"
+}

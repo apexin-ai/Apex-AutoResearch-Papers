@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61d197063b238267ebe6",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit detect remove q05 seed456 r2",
+  "task_key": "worker_submit_detect_remove_q05_seed456_r2_20260518T092020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_detect_remove_q05_seed456_r2_20260518T092020_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "6842dd74cbeed1631e1666a1489a291aef00103126ee6fce88fa244ebb38c3ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n| 项目 | 值 |\n|---|---|\n| PID | 26855 |\n| GPU | cuda:1 @ westd-30476 |\n| 显存 | ~39GB（增长中，预计稳定 ~41GB） |\n| 起始 step | 501（从 checkpoint-500 resume） |\n| 总步数 | 6103 |\n| tmux session | `detect_remove_q05_seed456` |\n\n**注意**：发现 cuda:1 上已有 PID 25514 在从头训练（无 `--resume_from_checkpoint`），已 kill 后正确重启。错误 run 的 step_metrics.jsonl 已备份为 `.bak_fromscratch`。\n\n另外 cuda:3 上出现了新进程（PID 27362, 41748MiB），不是本次操作产生的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-detect-remove-q05-seed456-r2-copy-2.md"
+}

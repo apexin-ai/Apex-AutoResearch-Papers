@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7885c96e9951a97380b7",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "paper figure scripts",
+  "task_key": "worker_paper_figure-scripts_20260516T075653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure-scripts_20260516T075653_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "d27b672f580338556ad9693635617659b7411a7f1a1e6810ca01c2e491bd0fb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本已写入 `artifacts/figures/` 并注册：\n\n| 文件 | 内容 |\n|------|------|\n| `plot_grid_b_sweep.py` | b-PPL 曲线，含 3 seed 点、uniform/adaptive 水平线、RUNNING 标注 |\n| `plot_tau_ppl_curve.py` | τ-PPL 双线图，含 safe range 底纹、τ* 星号标注 |\n| `plot_rho_comparison.py` | 4 方法 × 2 ρ 分组柱状图，含数值标签和 adaptive τ 注释 |\n\n脚本均输出 PDF+PNG (300 DPI)，学术风格无标题。运行时从脚本所在目录或项目根目录执行 `python artifacts/figures/plot_*.py` 即可生成图片。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-scripts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9199716f90acb17779bb",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "exp random reweight baseline seed42",
+  "task_key": "worker_exp_random_reweight_baseline_seed42_20260521T114711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_random_reweight_baseline_seed42_20260521T114711_result.json",
+    "occurrence": 1,
+    "bytes": 423,
+    "sha256": "1774663d7fdecc63e5d742e8a18ed169a58aa3c46f0677f0ee61b466dded352a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，模型正在加载中。\n\n**总结：**\n- Registry: `random_reweight_baseline_seed42` 已创建\n- Shuffled 数据: `data/scored_data_random_shuffle.jsonl`（371499 样本，mean=0.5987, std=0.3740，与原始一致）\n- 训练: PID 603550，cuda:3，tmux session `random_reweight_baseline_seed42`\n- 日志: `~/runs/provenance_weight_training/random_reweight_baseline_seed42.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-random-reweight-baseline-seed42.md"
+}

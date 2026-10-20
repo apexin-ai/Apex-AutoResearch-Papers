@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a02bc6ead33e77b0a967",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis grid b5 0 seed123",
+  "task_key": "worker_analysis_grid_b5_0_seed123_20260514T151019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grid_b5_0_seed123_20260514T151019_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "dd496bf022fbc4063d788a42bcfc4b176e72657e769f539711186da088744e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。`grid_b5_0_seed123` 提取结果：\n\n| 指标 | 值 |\n|------|-----|\n| total_steps | 6103 |\n| train_loss_avg (全程) | 2.7118 |\n| train_loss_last100steps | 2.5906 |\n| final_step_loss | 2.4771 |\n| train_runtime | ~13554s (~3.78h) |\n| num_train_tokens | 200M |\n| checkpoint_path | `/root/provenance_weight_training/output/models/grid_b5_0_seed123/final/` |\n| eval_ppl_holdout | **无** |\n| eval_loss | **无** |\n\n该实验启动时未传 `--eval_data_path`，`eval_strategy=\"no\"`，因此没有 eval 指标。需要单独跑 eval 才能获得 `eval_ppl_holdout` 与其他 b 值对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grid-b5-0-seed123.md"
+}

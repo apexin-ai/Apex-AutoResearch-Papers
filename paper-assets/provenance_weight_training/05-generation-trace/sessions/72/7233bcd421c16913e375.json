@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7233bcd421c16913e375",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis random reweight seed123",
+  "task_key": "worker_analysis_random_reweight_seed123_20260522T005350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_random_reweight_seed123_20260522T005350_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "2fdc8048bebde5e68c0f9b296e00091a4792c8c64d838186576ee6669acc4fa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。总结：\n\n---\n\n## 实验 random_reweight_seed123 结果\n\n**Holdout PPL = 17.945**（loss=2.887，6103步，4h23m，train_loss=8.042）\n\n### 对比分析\n\n| 实验 | Holdout PPL | Δ vs adaptive_seed123 |\n|------|------------|----------------------|\n| **random_reweight_seed123** | **17.945** | **+0.329** |\n| random_reweight_v2_seed42 (参考) | 17.830 | +0.214 |\n| adaptive_fix_seed123 (bs16_r2) | 17.616 | baseline |\n| uniform_seed123 | 17.686 | +0.070 |\n\n### 跨 seed 一致性\n- seed42 random reweight: 17.830\n- seed123 random reweight: 17.945\n- 两者都明显差于对应的 adaptive（~17.62-17.65），差值 Δ ≈ +0.21~0.33\n\n### 结论：Detector signal 跨 seed 一致地 load-bearing\n\n打乱 q_scores 后 PPL 退化到 17.945，比真实 detector adaptive（17.616）高 **0.33**，甚至差于 uniform baseline（17.686）。这表明 adaptive weighting 的收益不是来自于权重分布的形状本身，而是来自 detector 对 contamination 的正确定位。两个 seed 结果一致，结论稳健。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-random-reweight-seed123.md"
+}

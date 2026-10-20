@@ -1,0 +1,917 @@
+{
+  "schema_version": "1.0",
+  "id": "93736a87fb24a50eb5b3",
+  "project": "provenance_weight_training",
+  "kind": "conversation",
+  "title": "analysis results compilation",
+  "task_key": "worker_analysis_results_compilation_20260516T004947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_results_compilation_20260516T004947.jsonl",
+    "occurrence": 1,
+    "bytes": 69581,
+    "sha256": "f83143194ce83aaa965875f9eeda318735b98814c13a68c2d3e677b5de94bb96"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T00:53:20.472173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T00:53:20.472490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T00:53:20.472666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "provenance_weight_training",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T00:53:20.473199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (102,527 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T00:53:20.473435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Parse registry and compile Table 1",
+              "prompt": "You need to parse a large JSON registry file and compile structured Table 1 data for a paper.\n\nThe registry file is at: `/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt`\n\nThe file schema is `{result: string}` where `result` is itself a JSON string that needs to be parsed.\n\n## What to do\n\n1. First probe the structure with jq or python to understand the format\n2. Extract ALL experiments with status DONE\n3. For each experiment, extract: exp_id, and the eval_ppl_holdout or eval_ppl metric (field names may vary)\n4. Group experiments into these categories and extract their PPL values:\n\n   - **Uniform baseline**: exp_ids containing \"uniform\" (seeds 42, 123, 456)\n   - **Grid-b sweep seed42**: exp_id \"grid_b_seed42_batch\" — this has metrics like b0_5_eval_ppl, b1_0_eval_ppl etc. for b values 0.5, 1.0, 1.5, 2.0, 3.0, 5.0\n   - **Grid-b sweep seed123**: exp_ids like grid_b0_5_seed123, grid_b1_0_seed123, etc.\n   - **Grid-b sweep seed456**: exp_ids like grid_b0_5_seed456, grid_b1_0_seed456, etc. NOTE: b=2.0, 3.0, 5.0 for seed456 have checkpoint resume artifacts and should be marked excluded\n   - **Adaptive dual-constraint (fix)**: adaptive_fix_seed42/123/456\n   - **Adaptive old (n_min=3 bug)**: adaptive_seed42/123/456\n   - **ESS-only**: ess_only_seed42/123/456\n   - **Golden Ratio oracle**: golden_ratio_seed42\n   - **n_min sensitivity**: nmin1_seed42, adaptive_fix_seed42 (n_min=2), adaptive_seed42 (n_min=3), nmin4_seed42\n   - **τ sweep**: tau_05_seed42, tau_06_seed42, tau_07_seed42, adaptive_fix_seed42 (τ=0.8), tau_09_seed42, tau_095_seed42\n   - **bs8_nmin2**: bs8_nmin2_seed42_r2\n   - **Baseline pretrained**: baseline_qwen3_0.6b\n\n5. Compute mean ± std for groups with multiple seeds\n6. Compute vs_uniform_delta = method_mean - uniform_mean\n7. Keep 4 decimal places\n\n## Output\n\nWrite TWO files to `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/`:\n\n### 1. `table1_data.json` with structure:\n```json\n{\n  \"uniform_mean_ppl\": ...,\n  \"methods\": {\n    \"uniform\": {\n      \"display_name\": \"Uniform Baseline\",\n      \"seeds\": {\"42\": ppl, \"123\": ppl, \"456\": ppl},\n      \"mean\": ..., \"std\": ..., \"vs_uniform_delta\": 0.0\n    },\n    \"grid_b0.5\": {\n      \"display_name\": \"Grid b=0.5\",\n      \"seeds\": {\"42\": ppl, \"123\": ppl, \"456\": ppl},\n      \"mean\": ..., \"std\": ..., \"vs_uniform_delta\": ...\n    },\n    ... (all grid b values)\n    \"adaptive_fix\": {\n      \"display_name\": \"Adaptive (dual-constraint, n_min=2)\",\n      ...\n    },\n    \"adaptive_old\": {\n      \"display_name\": \"Adaptive (n_min=3, bug)\",\n      ...\n    },\n    \"ess_only\": { ... },\n    \"golden_ratio\": {\n      \"display_name\": \"Golden Ratio Oracle\",\n      \"seeds\": {\"42\": ppl},\n      \"mean\": ..., \"std\": null, \"vs_uniform_delta\": ...\n    },\n    \"nmin_sensitivity\": {\n      \"display_name\": \"n_min Sensitivity\",\n      \"values\": {\"1\": {\"exp_id\": ..., \"ppl\": ...}, \"2\": {...}, \"3\": {...}, \"4\": {...}}\n    },\n    \"tau_sweep\": {\n      \"display_name\": \"τ Sweep\",\n      \"values\": {\"0.5\": {\"exp_id\": ..., \"ppl\": ...}, \"0.6\": {...}, ...}\n    },\n    \"bs8_nmin2\": { ... },\n    \"baseline_pretrained\": { ... }\n  },\n  \"excluded\": {\n    \"grid_b2.0_seed456\": {\"exp_id\": ..., \"ppl\": ..., \"reason\": \"checkpoint resume artifact\"},\n    \"grid_b3.0_seed456\": {...},\n    \"grid_b5.0_seed456\": {...}\n  },\n  \"notes\": [\n    \"All PPL values are eval_ppl_holdout from registry\",\n    \"seed456 grid b>=2.0 excluded due to checkpoint resume artifact\",\n    \"adaptive_old uses n_min=3 (bug version)\"\n  ]\n}\n```\n\n### 2. `table1_summary.md` — A markdown table summarizing the key results\n\nReport back: the exact PPL values extracted for each experiment, any experiments you couldn't find or had missing metrics, and confirmation the files were written.\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T00:53:20.473677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T00:53:20.473814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (42996 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T00:53:20.473968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt",
+              "limit": "20"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T00:53:20.474095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (42996 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T00:53:20.474218+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "wc -l /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt",
+              "description": "Check file line count"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T00:53:20.474332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "0 /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T00:53:20.474455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\n# The outer structure is {result: string}\nouter = json.loads(raw)\nprint(\"Outer keys:\", list(outer.keys()))\nprint(\"Type of result:\", type(outer.get('result', '')))\nprint()\n\n# Parse the inner JSON string\ninner = json.loads(outer['result'])\nprint(\"Inner type:\", type(inner))\nif isinstance(inner, dict):\n    print(\"Inner keys:\", list(inner.keys())[:20])\nelif isinstance(inner, list):\n    print(\"Inner length:\", len(inner))\n    print(\"First item keys:\", list(inner[0].keys()) if inner else \"empty\")\nPYEOF\n",
+              "description": "Parse JSON structure"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T00:53:20.474575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Outer keys: ['result']\nType of result: <class 'str'>\n\nInner type: <class 'dict'>\nInner keys: ['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T00:53:20.474698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\n\nprint(\"success:\", inner['success'])\nprint(\"error:\", inner['error'])\nprint(\"metadata:\", inner['metadata'])\nprint()\n\ndata = inner['data']\nprint(\"data type:\", type(data))\nif isinstance(data, dict):\n    print(\"data keys:\", list(data.keys())[:30])\n    # Check first entry\n    for k in list(data.keys())[:2]:\n        print(f\"\\n--- Entry: {k} ---\")\n        entry = data[k]\n        print(json.dumps(entry, indent=2)[:2000])\nelif isinstance(data, list):\n    print(\"data length:\", len(data))\nPYEOF\n",
+              "description": "Explore data structure"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T00:53:20.474830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "success: True\nerror: None\nmetadata: {'elapsed_seconds': 0.2452}\n\ndata type: <class 'dict'>\ndata keys: ['experiments', 'count', 'total', 'baseline']\n\n--- Entry: experiments ---\n{\n  \"bs8_nmin2_seed42_r2\": {\n    \"status\": \"DONE\",\n    \"retry_count\": 0,\n    \"created_at\": \"2026-05-15T18:48:45.682Z\",\n    \"updated_at\": \"2026-05-16T00:26:45.368Z\",\n    \"spec\": {\n      \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && python training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir output/models/bs8_nmin2_seed42 --model_name models/Qwen/Qwen3-0.6B --weighting_method adaptive --contamination_ratio 0.4 --num_train_tokens 200000000 --n_min 2 --tau 0.8 --batch_size 8 --gradient_accumulation_steps 2 --learning_rate 5e-5 --max_length 2048 --seed 42 --logging_steps 10 --save_steps 500 --save_total_limit 3 --save_only_model --bf16\\\"\",\n      \"server\": \"westd-47453\",\n      \"gpu\": [\n        \"cuda:2\"\n      ],\n      \"pid\": \"238714\",\n      \"log_path\": \"~/runs/provenance_weight_training/bs8_nmin2_seed42_r2.log\",\n      \"submitted_at\": \"2026-05-15T18:48:45.530Z\",\n      \"submitted_via\": \"submit_training_job\",\n      \"backend\": \"tmux\",\n      \"account\": \"root\",\n      \"data_path\": \"data/scored_data.jsonl\",\n      \"data_count\": 200000000,\n      \"model_name\": \"Qwen/Qwen3-0.6B\",\n      \"seed\": 42,\n      \"checkpoint_source\": \"N/A (training resubmit, not eval)\",\n      \"eval_data\": \"N/A (training resubmit, not eval)\",\n      \"wall_clock_seconds\": 14753.4,\n      \"gpu_hours\": 4.1\n    },\n    \"hypothesis\": \"batch_size=8 with n_min=2 (correct coupling: n_min=max(2,bs//2)=4\\u2192override to 2 for wider ESS dynamic range [2,8]). Resubmit after zombie cleanup on cuda:2. Parent: bs8_nmin2_seed42 (OOM due to zombie).\",\n    \"parent\": \"bs8_nmin2_seed42\",\n    \"plan_id\": \"p0_batchsize_8\",\n    \"notes\": \"\\u8bad\\u7ec3\\u5b8c\\u6210 6103/6103 steps, train_loss=5.4065. EXIT_CODE=129 (SIGHUP) \\u53d1\\u751f\\u5728\\u8bad\\u7ec3\\u5b\n…[truncated 201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T00:53:20.475057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\ndata = inner['data']\n\nprint(\"count:\", data['count'])\nprint(\"total:\", data['total'])\nprint(\"baseline:\", data['baseline'])\nprint()\n\nexperiments = data['experiments']\nprint(\"All experiment IDs:\")\nfor eid in sorted(experiments.keys()):\n    exp = experiments[eid]\n    status = exp.get('status', 'UNKNOWN')\n    print(f\"  {eid}: status={status}\")\nPYEOF\n",
+              "description": "List all experiments and their statuses"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T00:53:20.475194+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "count: 48\ntotal: 48\nbaseline: None\n\nAll experiment IDs:\n  adaptive_fix_seed123: status=DONE\n  adaptive_fix_seed42: status=DONE\n  adaptive_fix_seed456: status=DONE\n  adaptive_seed123: status=DONE\n  adaptive_seed42: status=DONE\n  adaptive_seed456: status=DONE\n  baseline_qwen3_0.6b: status=DONE\n  bs8_nmin2_seed42: status=DONE\n  bs8_nmin2_seed42_r2: status=DONE\n  bs8_seed42: status=DONE\n  contamination_60_seed42: status=DONE\n  datagen_synthetic_4gpu: status=DONE\n  detector_modernbert: status=DONE\n  detector_tfidf_lr: status=DONE\n  diagnostic_contamination100: status=DONE\n  ess_only_seed123: status=DONE\n  ess_only_seed42: status=DONE\n  ess_only_seed456: status=DONE\n  golden_ratio_seed42: status=DONE\n  grid_b0_5_seed123: status=DONE\n  grid_b0_5_seed456: status=DONE\n  grid_b1_0_seed123: status=DONE\n  grid_b1_0_seed456: status=DONE\n  grid_b1_5_seed123: status=DONE\n  grid_b1_5_seed456: status=DONE\n  grid_b2_0_seed123: status=DONE\n  grid_b2_0_seed456: status=DONE\n  grid_b3_0_seed123: status=DONE\n  grid_b3_0_seed456: status=DONE\n  grid_b5_0_seed123: status=DONE\n  grid_b5_0_seed456: status=DONE\n  grid_b_low_seed42: status=DONE\n  grid_b_low_seed42_r2: status=DONE\n  grid_b_low_seed42_r3: status=DONE\n  grid_b_low_serial_seed42: status=DONE\n  grid_b_seed42_batch: status=DONE\n  nmin1_seed42: status=DONE\n  nmin4_seed42: status=DONE\n  p0_contamination_60_datagen: status=DONE\n  tau_0.6_seed42: status=DONE\n  tau_05_seed42: status=DONE\n  tau_06_seed42: status=DONE\n  tau_07_seed42: status=DONE\n  tau_095_seed42: status=DONE\n  tau_09_seed42: status=DONE\n  uniform_seed123: status=DONE\n  uniform_seed42: status=DONE\n  uniform_seed456: status=DONE"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T00:53:20.475338+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# For each experiment, find all metric-like fields (eval_ppl, etc.)\nfor eid in sorted(experiments.keys()):\n    exp = experiments[eid]\n    # Search for ppl-related keys at top level and in spec\n    ppl_fields = {}\n    for k, v in exp.items():\n        if 'ppl' in str(k).lower() or 'eval' in str(k).lower():\n            ppl_fields[k] = v\n    if 'spec' in exp:\n        for k, v in exp['spec'].items():\n            if 'ppl' in str(k).lower() or 'eval' in str(k).lower():\n                ppl_fields[f'spec.{k}'] = v\n    if 'metrics' in exp:\n        ppl_fields['metrics'] = exp['metrics']\n    if 'results' in exp:\n        ppl_fields['results'] = exp['results']\n    \n    print(f\"\\n=== {eid} ===\")\n    print(json.dumps(ppl_fields, indent=2, default=str)[:1000])\nPYEOF\n",
+              "description": "Extract PPL metrics from all experiments"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T00:53:20.475548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== adaptive_fix_seed123 ===\n{\n  \"spec.eval_data\": \"/root/provenance_weight_training/data/human/eval_holdout.jsonl\",\n  \"metrics\": {\n    \"eval_ppl_holdout\": 17.6432,\n    \"eval_loss_holdout\": 2.8704,\n    \"eval_loss\": 2.8704,\n    \"eval_holdout_tokens\": 4077068,\n    \"eval_tokens\": 4077068,\n    \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\",\n    \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.643/4077068\",\n    \"train_loss_weighted\": 7.517,\n    \"train_runtime_s\": 10347,\n    \"total_steps\": 6103,\n    \"epoch\": 0.26,\n    \"b_star_mean\": 1.431,\n    \"b_star_median\": 0.88,\n    \"b_star_std\": 2.029,\n    \"b_star_min\": 0,\n    \"b_star_max\": 20,\n    \"b_star_pct_below_0.5\": 20.9,\n    \"b_star_pct_0.5_to_1\": 35.7,\n    \"b_star_pct_1_to_2\": 27.3,\n    \"b_star_pct_2_to_5\": 6.3,\n    \"b_star_pct_above_5\": 1.9,\n    \"b_star_count\": 25906,\n    \"b_star_p25\": 0.54,\n    \"b_star_p75\": 1.52,\n    \"b_star_pct_above_2\": 16.1,\n    \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 exclu\n\n=== adaptive_fix_seed42 ===\n{\n  \"metrics\": {\n    \"train_loss\": 7.5167,\n    \"train_runtime\": 10304.37,\n    \"train_samples_per_second\": 9.476,\n    \"train_steps_per_second\": 0.592,\n    \"total_steps\": 6103,\n    \"eval_ppl_holdout\": 17.6527,\n    \"eval_loss_holdout\": 2.8709,\n    \"eval_holdout_tokens\": 4077068,\n    \"eval_tokens\": 4077068,\n    \"eval_method\": \"eval_perplexity.py (sliding window, stride=1024, max_docs=5000, fp16)\",\n    \"eval_note\": \"unified post-hoc eval 2026-05-15; was 17.65/4077068\",\n    \"b_star_count\": 26458,\n    \"b_star_mean\": 1.399,\n    \"b_star_median\": 0.871,\n    \"b_star_std\": 1.933,\n    \"b_star_min\": 0,\n    \"b_star_max\": 20,\n    \"b_star_p25\": 0.54,\n    \"b_star_p75\": 1.512,\n    \"b_star_pct_below_0.5\": 20.9,\n    \"b_star_pct_0.5_to_1\": 35.7,\n    \"b_star_pct_1_to_2\": 27.3,\n    \"b_star_pct_above_2\": 16.1,\n    \"b_star_note\": \"Training-only records (eval checkpoint records with b*=0 excluded)\"\n  }\n}\n\n=== adaptive_fix_seed456 ===\n{\n  \"metrics\": {\n   \n…[truncated 16529 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T00:53:20.475706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Full dump of grid_b_seed42_batch\nexp = experiments['grid_b_seed42_batch']\nprint(json.dumps(exp, indent=2))\nPYEOF\n",
+              "description": "Full dump of grid_b_seed42_batch experiment"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T00:53:20.475868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-13T23:50:09.001Z\",\n  \"updated_at\": \"2026-05-14T22:21:47.253Z\",\n  \"spec\": {\n    \"command\": \"bash run_grid_b_seed42.sh (6 b values serial: 0.5, 1.0, 1.5, 2.0, 3.0, 5.0)\",\n    \"server\": \"westd-47453\",\n    \"gpu\": [\n      \"cuda:0\"\n    ],\n    \"pid\": \"50134\",\n    \"log_path\": \"~/runs/provenance_weight_training/grid_b_seed42_batch.log\",\n    \"submitted_at\": \"2026-05-13T23:50:08.990Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/root/provenance_weight_training/data/scored_data.jsonl\",\n    \"data_count\": 371499,\n    \"model_name\": \"Qwen/Qwen3-0.6B\",\n    \"seed\": 42,\n    \"wall_clock_seconds\": 81098.3,\n    \"gpu_hours\": 22.53\n  },\n  \"hypothesis\": \"Grid-b weighting with 6 b values (0.5, 1.0, 1.5, 2.0, 3.0, 5.0) for seed=42, establishes best-b baseline for comparison with adaptive b*\",\n  \"metrics\": {\n    \"b_values\": [\n      0.5,\n      1,\n      1.5,\n      2,\n      3,\n      5\n    ],\n    \"b0_5_train_loss\": 9.598,\n    \"b0_5_completed\": true,\n    \"b1_0_completed\": true,\n    \"b1_5_completed\": true,\n    \"b2_0_current_step\": 5149,\n    \"b2_0_total_steps\": 6103,\n    \"completed_b_values\": [\n      0.5,\n      1,\n      1.5,\n      2,\n      3\n    ],\n    \"current_b\": 5,\n    \"total_steps\": 6103,\n    \"current_step\": 3422,\n    \"b5_0_progress_pct\": 56,\n    \"eta_minutes\": 95,\n    \"b2_0_completed\": true,\n    \"b2_0_train_loss\": 10.621,\n    \"b2_0_train_runtime_s\": 13034,\n    \"b3_0_completed\": true,\n    \"b3_0_train_loss\": 10.754,\n    \"b3_0_train_runtime_s\": 13036,\n    \"all_completed\": true,\n    \"b1_0_train_loss\": 10.223,\n    \"b1_5_train_loss\": 10.485,\n    \"b5_0_train_loss\": 10.858,\n    \"b0_5_runtime_s\": 13036,\n    \"b1_0_runtime_s\": 12968,\n    \"b1_5_runtime_s\": 14789,\n    \"b2_0_runtime_s\": 13034,\n    \"b3_0_runtime_s\": 13036,\n    \"b5_0_runtime_s\": 13115,\n    \"note\": \"eval_ppl missing - no --eval_data_path in batch script, post-hoc eval pending\",\n    \"b0_5_eval_ppl\": 17.651,\n    \"b1_0\n…[truncated 693 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T00:53:20.476067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Check the grid_b_low experiments\nfor eid in ['grid_b_low_seed42', 'grid_b_low_seed42_r2', 'grid_b_low_seed42_r3', 'grid_b_low_serial_seed42']:\n    exp = experiments[eid]\n    print(f\"\\n=== {eid} ===\")\n    print(\"  status:\", exp.get('status'))\n    print(\"  metrics:\", exp.get('metrics'))\n    print(\"  notes:\", exp.get('notes', '')[:200] if exp.get('notes') else None)\n    print(\"  hypothesis:\", exp.get('hypothesis', '')[:200] if exp.get('hypothesis') else None)\n\n# Also check bs8_nmin2_seed42 (no _r2) and bs8_seed42\nfor eid in ['bs8_nmin2_seed42', 'bs8_seed42']:\n    exp = experiments[eid]\n    print(f\"\\n=== {eid} ===\")\n    print(\"  status:\", exp.get('status'))\n    print(\"  metrics:\", exp.get('metrics'))\n    print(\"  notes:\", exp.get('notes', '')[:200] if exp.get('notes') else None)\nPYEOF\n",
+              "description": "Check grid_b_low and bs8 experiments"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T00:53:20.476273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== grid_b_low_seed42 ===\n  status: DONE\n  metrics: None\n  notes: cron框架误杀(infrastructure bug)。根因: WANDB_MODE=disabled + tmux wrapper PID 不匹配，reconcile_crons 判定进程死亡并发送 SIGTERM。训练实际曾完成 3 个 b 值(8477/8477×3)，但第二次重启后在 step 431 被杀，所有 checkpoint 目录丢失(grid_b0_1/0_2/0_3_see\n  hypothesis: Grid-b extension to b<0.5 (b=0.1/0.2/0.3 serial), seed42, confirming whether grid-best lies at b=0.5 or below\n\n=== grid_b_low_seed42_r2 ===\n  status: DONE\n  metrics: None\n  notes: 失败根因：bash -c \"...\" 双引号内的 $b 被外层 shell 提前展开为空字符串，导致 --grid_b_value 收到空参数，argparse 报错 \"expected one argument\" 立即退出。日志首行 \"Training grid b= ===\" 确认 $b 为空。修复方法：将 $b 转义为 \\$b（如 \\$b 和 \\${b}），或改用 bash -c '...'\n  hypothesis: Low-b grid sweep (b=0.1, 0.2, 0.3) on ρ=0.4 data, seed42. Confirms behavior in b<0.5 region — expect minimal reweighting effect and PPL close to uniform. Establishes that b=0.5 is already near the low\n\n=== grid_b_low_seed42_r3 ===\n  status: DONE\n  metrics: None\n  notes: Worker 提交时未指定 GPU，导致与 cuda:0 上的 contamination_60_seed42_r2 冲突。PID 258500 在启动后秒级崩溃。grid_b_low 需在 GPU 释放后单独提交（每个 b 值独立实验或硬编码脚本 + 显式 CUDA_VISIBLE_DEVICES）。\n  hypothesis: Low-b grid sweep (b=0.1, 0.2, 0.3) on ρ=0.4 data, seed42. R3: uses standalone shell script to avoid quoting issues. Confirms behavior in b<0.5 region.\n\n=== grid_b_low_serial_seed42 ===\n  status: DONE\n  metrics: None\n  notes: R4 killed: cuda:2 GPU冲突，与contamination_60_ess_only_seed42双进程占满显存(93042/97887 MiB)，仅完成48/6103步。第3次因GPU冲突失败(R3=cuda:0撞contamination_60, R4=cuda:2撞ess_only)。PID 265617已确认死亡，cuda:2显存恢复至~46.5GB，ess_only速度从\n  hypothesis: Grid-b low sweep (b=0.1, 0.2, 0.3 serial, hardcoded) on ρ=0.4 data, seed42. No shell variables — each b value hardcoded to avoid quoting issues. R3 of grid_b_low_seed42.\n\n=== bs8_nmin2_seed42 ===\n  status: DONE\n  metrics: None\n  notes: OOM failed: GPU 2 was occupied by zombie PID 236702 (old bs8_seed42). Superseded by bs8_nmin2_seed42_r2. Config: n_min=2, bs=8, grad_accum=2, tau=0.8, adaptive, seed=42.\n\n=== bs8_seed42 ===\n  status: DONE\n  met\n…[truncated 220 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T00:53:20.476440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Check notes for seed456 grid b>=2.0\nfor eid in ['grid_b2_0_seed456', 'grid_b3_0_seed456', 'grid_b5_0_seed456']:\n    exp = experiments[eid]\n    print(f\"\\n=== {eid} ===\")\n    print(\"  notes:\", exp.get('notes', '')[:500] if exp.get('notes') else None)\n    print(\"  hypothesis:\", exp.get('hypothesis', '')[:300] if exp.get('hypothesis') else None)\n    print(\"  parent:\", exp.get('parent'))\n    m = exp.get('metrics', {})\n    print(\"  train_loss:\", m.get('train_loss'))\n    print(\"  train_runtime_s:\", m.get('train_runtime_s'))\n    print(\"  eval_ppl_holdout:\", m.get('eval_ppl_holdout'))\nPYEOF\n",
+              "description": "Check seed456 grid b>=2.0 notes for checkpoint resume evidence"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T00:53:20.476583+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== grid_b2_0_seed456 ===\n  notes: ⚠️ checkpoint resume artifact: PPL=17.989, 比 seed42(17.741)/seed123(17.725) 高 +0.25。训练中断后从 checkpoint-3500 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=2.0 行仅报 2 seeds (seed42+seed123)。\n  hypothesis: Grid-b weighting with b=2.0, seed=456, for multi-seed validation of best-b baseline\n  parent: None\n  train_loss: 10.625\n  train_runtime_s: 12969\n  eval_ppl_holdout: 17.989\n\n=== grid_b3_0_seed456 ===\n  notes: ⚠️ checkpoint resume artifact: PPL=17.921, 比 seed42(17.774)/seed123(17.76) 高 +0.16。训练中断后从 checkpoint-3000 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=3.0 行仅报 2 seeds (seed42+seed123)。\n  hypothesis: Grid-b weighting with b=3.0, seed=456, for multi-seed validation of best-b baseline\n  parent: None\n  train_loss: 5.435\n  train_runtime_s: 6602\n  eval_ppl_holdout: 17.921\n\n=== grid_b5_0_seed456 ===\n  notes: ⚠️ checkpoint resume artifact: PPL=17.993, 比 seed42(17.818)/seed123(17.804) 高 +0.18。训练中断后从 checkpoint-3000 恢复，导致系统性 PPL 偏高。论文 Table 1 中 b=5.0 行仅报 2 seeds (seed42+seed123)。\n  hypothesis: Grid-b weighting with b=5.0, seed=456, for multi-seed validation of best-b baseline\n  parent: None\n  train_loss: 5.488\n  train_runtime_s: 6601\n  eval_ppl_holdout: 17.993"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T00:53:20.476729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\n# Check ess_only experiments fully\nfor eid in ['ess_only_seed42', 'ess_only_seed123', 'ess_only_seed456']:\n    exp = experiments[eid]\n    print(f\"\\n=== {eid} ===\")\n    print(\"  metrics:\", json.dumps(exp.get('metrics', {}), indent=4))\n    print(\"  notes:\", exp.get('notes', '')[:300] if exp.get('notes') else None)\nPYEOF\n",
+              "description": "Check ess_only experiments in detail"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T00:53:20.476889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== ess_only_seed42 ===\n  metrics: {\n    \"eval_ppl\": 17.73,\n    \"eval_loss\": 2.875,\n    \"b_star_median\": 1.58,\n    \"b_star_mean\": 3.51,\n    \"vs_uniform_ppl_delta\": \"+0.038\",\n    \"vs_adaptive_ppl_delta\": \"+0.08\"\n}\n  notes: None\n\n=== ess_only_seed123 ===\n  metrics: {\n    \"eval_ppl_holdout\": 17.72,\n    \"eval_loss_holdout\": 2.8746,\n    \"eval_holdout_tokens\": 4077068,\n    \"eval_method\": \"eval_perplexity.py on data/human/eval_holdout.jsonl, max_docs=5000, stride=1024, fp16\",\n    \"eval_note\": \"Also ran on scored_data.jsonl (train data): ppl=9.66, loss=2.2677, tokens=3029693\",\n    \"train_loss\": 10.2159,\n    \"train_steps\": 6103,\n    \"train_runtime_seconds\": 12959.5,\n    \"b_star_mean\": 3.55,\n    \"b_star_median\": 1.5918,\n    \"b_star_std\": 4.7209,\n    \"b_star_min\": 0.2344,\n    \"b_star_max\": 20,\n    \"b_star_p25\": 0.8398,\n    \"b_star_p75\": 3.8281,\n    \"b_star_p90\": 9.5996,\n    \"b_star_count\": 21971,\n    \"vs_uniform_ppl_delta\": \"+0.034\",\n    \"vs_adaptive_fix_ppl_delta\": \"+0.077\"\n}\n  notes: None\n\n=== ess_only_seed456 ===\n  metrics: {\n    \"eval_ppl\": 17.719,\n    \"eval_loss\": 2.8746,\n    \"eval_tokens\": 4077068,\n    \"train_loss\": 10.174,\n    \"vs_uniform_ppl_delta\": \"+0.018\",\n    \"vs_adaptive_ppl_delta\": \"+0.077\",\n    \"vs_adaptive_fix_ppl_delta\": \"+0.062\"\n}\n  notes: None"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T00:53:20.477053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/",
+              "description": "Check artifacts directory exists"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T00:53:20.477197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\nadaptive_fix_seed42\nall_success_summary.md\nanalyze_tau_sweep.py\nbstar_distribution_analysis.md\ndata_generation\ndetector\ndrayson_comparison.md\ndream_reports\ness_only_analysis_template.md\ness_only_implementation.md\ness_only_seed42\nevaluation\nexperiment_setup_draft.md\nexperiment_status_summary.md\nexperiment_summary.md\nexperiment_summary_table.md\nfigures\nfull_experiment_data.md\ngrid_b5_0_seed123\ngrid_eval_source_audit.md\ninterim_mvp_analysis.md\nliterature_diff_drayson.md\nliterature_notes.md\nliterature_scan_results.md\nliterature_tau_sensitivity.md\nmanifest.yaml\nmethod_section_draft.md\nmvp_analysis_draft.md\nmvp_analysis_summary.md\nnew_scripts_manifest.md\nnmin1_seed42\nnovelty_drayson_analysis.md\npaper_tables.md\nq1_ess_equivalence_analysis.md\nrelated_work_notes.md\nreview_issues.yaml\nrun_mvp.sh\nseed42_diagnostic.md\ntable1_data.md\ntau_095_seed42\ntau_09_seed42\ntau_b_strength.pdf\ntau_b_strength.png\ntau_derivation_check.md\ntau_fix_changelog.md\ntau_ppl_curve.pdf\ntau_ppl_curve.png\ntau_sweep.pdf\ntau_sweep.png\ntau_sweep_commands.md\ntau_sweep_curve_dummy.pdf\ntau_sweep_curve_dummy.png\ntau_sweep_improvement_dummy.pdf\ntau_sweep_improvement_dummy.png\ntau_sweep_readiness.md\ntau_theory_analysis.md\ntau_theory_audit.md\ntraining\ntraining_progress_check.md\nweighting\nworker_output.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T00:53:20.477420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\nimport math\n\nfpath = \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-10-projects-provenance-weight-training/d73ed364-191f-4186-82bb-d624f4b188dc/tool-results/mcp-agent-ml-research-read_registry-1778892601784.txt\"\n\nwith open(fpath, 'r') as f:\n    raw = f.read()\n\nouter = json.loads(raw)\ninner = json.loads(outer['result'])\nexperiments = inner['data']['experiments']\n\ndef get_ppl(exp_id):\n    \"\"\"Get eval PPL from experiment, trying eval_ppl_holdout first, then eval_ppl.\"\"\"\n    exp = experiments.get(exp_id)\n    if not exp:\n        return None\n    m = exp.get('metrics', {})\n    if not m:\n        return None\n    if 'eval_ppl_holdout' in m:\n        return m['eval_ppl_holdout']\n    if 'eval_ppl' in m:\n        return m['eval_ppl']\n    return None\n\ndef get_batch_ppl(b_val_str):\n    \"\"\"Get eval PPL from grid_b_seed42_batch for a given b value.\"\"\"\n    m = experiments['grid_b_seed42_batch']['metrics']\n    key = f\"b{b_val_str}_eval_ppl\"\n    return m.get(key)\n\ndef mean_std(values):\n    \"\"\"Compute mean and std (population) of a list of values.\"\"\"\n    values = [v for v in values if v is not None]\n    if not values:\n        return None, None\n    m = sum(values) / len(values)\n    if len(values) == 1:\n        return round(m, 4), None\n    variance = sum((x - m) ** 2 for x in values) / (len(values) - 1)  # sample std\n    s = math.sqrt(variance)\n    return round(m, 4), round(s, 4)\n\n# ============ EXTRACT ALL PPL VALUES ============\n\n# Uniform baseline\nuniform_ppls = {\n    \"42\": get_ppl(\"uniform_seed42\"),\n    \"123\": get_ppl(\"uniform_seed123\"),\n    \"456\": get_ppl(\"uniform_seed456\"),\n}\nuniform_mean, uniform_std = mean_std(list(uniform_ppls.values()))\n\n# Grid-b sweep: seed42 from batch experiment\ngrid_b_seed42 = {\n    \"0.5\": get_batch_ppl(\"0_5\"),\n    \"1.0\": get_batch_ppl(\"1_0\"),\n    \"1.5\": get_batch_ppl(\"1_5\"),\n    \"2.0\": get_batch_ppl(\"2_0\"),\n    \"3.0\": get_batch_ppl(\"3_0\"),\n    \"5.0\": get_batch_ppl(\"5_0\"),\n}\n\n# Grid-b sweep: seed123\ngrid_b_seed123 = {\n    \"0.5\": get_ppl(\"grid_b0_5_seed123\"),\n    \"1.0\": get_ppl(\"grid_b1_0_seed123\"),\n    \"1.5\": get_ppl(\"grid_b1_5_seed123\"),\n    \"2.0\": get_ppl(\"grid_b2_0_seed123\"),\n    \"3.0\": get_ppl(\"grid_b3_0_seed123\"),\n    \"5.0\": get_ppl(\"grid_b5_0_seed123\"),\n}\n\n# Grid-b sweep: seed456 (b>=2.0 excluded)\ngrid_b_seed456 = {\n    \"0.5\": get_ppl(\"grid_b0_5_seed456\"),\n    \"1.0\": get_ppl(\"grid_b1_0_seed456\"),\n    \"1.5\": get_ppl(\"grid_b1_5_seed456\"),\n    \"2.0\": get_ppl(\"grid_b2_0_seed456\"),  # excluded\n    \"3.0\": get_ppl(\"grid_b3_0_seed456\"),  # excluded\n    \"5.0\": get_ppl(\"grid_b5_0_seed456\"),  # excluded\n}\n\n# Build grid_b method entries\nexcluded = {}\ngrid_methods = {}\nfor b_val in [\"0.5\", \"1.0\", \"1.5\", \"2.0\", \"3.0\", \"5.0\"]:\n    seeds = {\"42\": grid_b_seed42[b_val], \"123\": grid_b_seed123[b_val]}\n    \n    if b_val in [\"2.0\", \"3.0\", \"5.0\"]:\n        # seed456 excluded for b>=2.0\n        b_key_456 = b_val.replace(\".\", \"_\").replace(\"_0\", \"_0\")\n        exc_exp_id = f\"grid_b{b_val.replace('.','_')}_seed456\"\n        excluded[f\"grid_b{b_val}_seed456\"] = {\n            \"exp_id\": exc_exp_id,\n            \"ppl\": grid_b_seed456[b_val],\n            \"reason\": \"checkpoint resume artifact\"\n        }\n    else:\n        seeds[\"456\"] = grid_b_seed456[b_val]\n    \n    valid_ppls = list(seeds.values())\n    m, s = mean_std(valid_ppls)\n    \n    method_key = f\"grid_b{b_val}\"\n    grid_methods[method_key] = {\n        \"display_name\": f\"Grid b={b_val}\",\n        \"seeds\": {k: round(v, 4) if v else v for k, v in seeds.items()},\n        \"mean\": m,\n        \"std\": s,\n        \"vs_uniform_delta\": round(m - uniform_mean, 4) if m else None\n    }\n\n# Adaptive fix (dual-constraint, n_min=2)\nadaptive_fix_ppls = {\n    \"42\": get_ppl(\"adaptive_fix_seed42\"),\n    \"123\": get_ppl(\"adaptive_fix_seed123\"),\n    \"456\": get_ppl(\"adaptive_fix_seed456\"),\n}\naf_mean, af_std = mean_std(list(adaptive_fix_ppls.values()))\n\n# Adaptive old (n_min=3, bug)\nadaptive_old_ppls = {\n    \"42\": get_ppl(\"adaptive_seed42\"),\n    \"123\": get_ppl(\"adaptive_seed123\"),\n    \"456\": get_ppl(\"adaptive_seed456\"),\n}\nao_mean, ao_std = mean_std(list(adaptive_old_ppls.values()))\n\n# ESS-only\ness_only_ppls = {\n    \"42\": get_ppl(\"ess_only_seed42\"),\n    \"123\": get_ppl(\"ess_only_seed123\"),\n    \"456\": get_ppl(\"ess_only_seed456\"),\n}\neo_mean, eo_std = mean_std(list(ess_only_ppls.values()))\n\n# Golden Ratio\ngolden_ppl = get_ppl(\"golden_ratio_seed42\")\ngr_mean, gr_std = mean_std([golden_ppl])\n\n# n_min sensitivity\nnmin_values = {\n    \"1\": {\"exp_id\": \"nmin1_seed42\", \"ppl\": get_ppl(\"nmin1_seed42\")},\n    \"2\": {\"exp_id\": \"adaptive_fix_seed42\", \"ppl\": get_ppl(\"adaptive_fix_seed42\")},\n    \"3\": {\"exp_id\": \"adaptive_seed42\", \"ppl\": get_ppl(\"adaptive_seed42\")},\n    \"4\": {\"exp_id\": \"nmin4_seed42\", \"ppl\": get_ppl(\"nmin4_seed42\")},\n}\n\n# tau sweep\ntau_values = {\n    \"0.5\": {\"exp_id\": \"tau_05_seed42\", \"ppl\": get_ppl(\"tau_05_seed42\")},\n    \"0.6\": {\"exp_id\": \"tau_06_seed42\", \"ppl\": get_ppl(\"tau_06_seed42\")},\n    \"0.7\": {\"exp_id\": \"tau_07_seed42\", \"ppl\": get_ppl(\"tau_07_seed42\")},\n    \"0.8\": {\"exp_id\": \"adaptive_fix_seed42\", \"ppl\": get_ppl(\"adaptive_fix_seed42\")},\n    \"0.9\": {\"exp_id\": \"tau_09_seed42\", \"ppl\": get_ppl(\"tau_09_seed42\")},\n    \"0.95\": {\"exp_id\": \"tau_095_seed42\", \"ppl\": get_ppl(\"tau_095_seed42\")},\n}\n\n# bs8_nmin2\nbs8_ppl = get_ppl(\"bs8_nmin2_seed42_r2\")\nbs8_mean, bs8_std = mean_std([bs8_ppl])\n\n# Baseline pretrained\nbaseline_ppl = get_ppl(\"baseline_qwen3_0.6b\")\nbl_mean, bl_std = mean_std([baseline_ppl])\n\n# ============ BUILD OUTPUT ============\noutput = {\n    \"uniform_mean_ppl\": uniform_mean,\n    \"methods\": {\n        \"uniform\": {\n            \"display_name\": \"Uniform Baseline\",\n            \"seeds\": {k: round(v, 4) for k, v in uniform_ppls.items()},\n            \"mean\": uniform_mean,\n            \"std\": uniform_std,\n            \"vs_uniform_delta\": 0.0\n        },\n    },\n    \"excluded\": excluded,\n    \"notes\": [\n        \"All PPL values are eval_ppl_holdout from registry (some recorded as eval_ppl, same holdout eval)\",\n        \"seed456 grid b>=2.0 excluded due to checkpoint resume artifact\",\n        \"adaptive_old uses n_min=3 (bug version)\",\n        \"Grid b seed42 values come from grid_b_seed42_batch experiment (serial batch run)\",\n        \"ess_only_seed42 and ess_only_seed456 recorded as eval_ppl (not eval_ppl_holdout) but same eval set\"\n    ]\n}\n\n# Add grid methods\nfor k, v in grid_methods.items():\n    output[\"methods\"][k] = v\n\n# Add remaining methods\noutput[\"methods\"][\"adaptive_fix\"] = {\n    \"display_name\": \"Adaptive (dual-constraint, n_min=2)\",\n    \"seeds\": {k: round(v, 4) for k, v in adaptive_fix_ppls.items()},\n    \"mean\": af_mean,\n    \"std\": af_std,\n    \"vs_uniform_delta\": round(af_mean - uniform_mean, 4)\n}\n\noutput[\"methods\"][\"adaptive_old\"] = {\n    \"display_name\": \"Adaptive (n_min=3, bug)\",\n    \"seeds\": {k: round(v, 4) for k, v in adaptive_old_ppls.items()},\n    \"mean\": ao_mean,\n    \"std\": ao_std,\n    \"vs_uniform_delta\": round(ao_mean - uniform_mean, 4)\n}\n\noutput[\"methods\"][\"ess_only\"] = {\n    \"display_name\": \"ESS-only\",\n    \"seeds\": {k: round(v, 4) for k, v in ess_only_ppls.items()},\n    \"mean\": eo_mean,\n    \"std\": eo_std,\n    \"vs_uniform_delta\": round(eo_mean - uniform_mean, 4)\n}\n\noutput[\"methods\"][\"golden_ratio\"] = {\n    \"display_name\": \"Golden Ratio Oracle\",\n    \"seeds\": {\"42\": round(golden_ppl, 4)},\n    \"mean\": gr_mean,\n    \"std\": None,\n    \"vs_uniform_delta\": round(gr_mean - uniform_mean, 4)\n}\n\noutput[\"methods\"][\"nmin_sensitivity\"] = {\n    \"display_name\": \"n_min Sensitivity\",\n    \"values\": {k: {\"exp_id\": v[\"exp_id\"], \"ppl\": round(v[\"ppl\"], 4)} for k, v in nmin_values.items()}\n}\n\noutput[\"methods\"][\"tau_sweep\"] = {\n    \"display_name\": \"τ Sweep\",\n    \"values\": {k: {\"exp_id\": v[\"exp_id\"], \"ppl\": round(v[\"ppl\"], 4)} for k, v in tau_values.items()}\n}\n\noutput[\"methods\"][\"bs8_nmin2\"] = {\n    \"display_name\": \"Batch Size 8, n_min=2\",\n    \"seeds\": {\"42\": round(bs8_ppl, 4)},\n    \"mean\": bs8_mean,\n    \"std\": None,\n    \"vs_uniform_delta\": round(bs8_mean - uniform_mean, 4)\n}\n\noutput[\"methods\"][\"baseline_pretrained\"] = {\n    \"display_name\": \"Baseline Pretrained (Qwen3-0.6B)\",\n    \"seeds\": {\"pretrained\": round(baseline_ppl, 4)},\n    \"mean\": bl_mean,\n    \"std\": None,\n    \"vs_uniform_delta\": round(bl_mean - uniform_mean, 4)\n}\n\n# Write JSON\nout_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_data.json\"\nwith open(out_path, 'w') as f:\n    json.dump(output, f, indent=2)\nprint(f\"Written: {out_path}\")\n\n# ============ BUILD MARKDOWN TABLE ============\nlines = []\nlines.append(\"# Table 1: Provenance-Weighted Pre-training Results\")\nlines.append(\"\")\nlines.append(\"All PPL values are eval_ppl_holdout on human-written holdout set (4,077,068 tokens).\")\nlines.append(\"\")\n\n# Main comparison table\nlines.append(\"## Main Results (Multi-seed)\")\nlines.append(\"\")\nlines.append(\"| Method | Seed 42 | Seed 123 | Seed 456 | Mean | Std | Delta vs Uniform |\")\nlines.append(\"|--------|---------|----------|----------|------|-----|-----------------|\")\n\ndef fmt(v, decimals=4):\n    if v is None:\n        return \"—\"\n    return f\"{v:.{decimals}f}\"\n\ndef delta_fmt(v):\n    if v is None:\n        return \"—\"\n    if v == 0.0:\n        return \"0.0000\"\n    sign = \"+\" if v > 0 else \"\"\n    return f\"{sign}{v:.4f}\"\n\n# Multi-seed methods\nmulti_seed = [\n    (\"uniform\", \"Uniform Baseline\"),\n    (\"grid_b0.5\", \"Grid b=0.5\"),\n    (\"grid_b1.0\", \"Grid b=1.0\"),\n    (\"grid_b1.5\", \"Grid b=1.5\"),\n    (\"adaptive_fix\", \"Adaptive (n_min=2)\"),\n    (\"adaptive_old\", \"Adaptive (n_min=3, bug)\"),\n    (\"ess_only\", \"ESS-only\"),\n]\n\nfor key, name in multi_seed:\n    m = output[\"methods\"][key]\n    s42 = fmt(m[\"seeds\"].get(\"42\"))\n    s123 = fmt(m[\"seeds\"].get(\"123\"))\n    s456 = fmt(m[\"seeds\"].get(\"456\", None))\n    mn = fmt(m[\"mean\"])\n    st = fmt(m[\"std\"])\n    delta = delta_fmt(m[\"vs_uniform_delta\"])\n    lines.append(f\"| {name} | {s42} | {s123} | {s456} | {mn} | {st} | {delta} |\")\n\nlines.append(\"\")\n\n# Grid b with 2 seeds (excluded seed456)\nlines.append(\"## Grid-b (b >= 2.0, seed456 excluded)\")\nlines.append(\"\")\nlines.append(\"| Method | Seed 42 | Seed 123 | Mean | Std | Delta vs Uniform | Seed 456 (excluded) |\")\nlines.append(\"|--------|---------|----------|------|-----|-----------------|---------------------|\")\n\nfor b_val in [\"2.0\", \"3.0\", \"5.0\"]:\n    key = f\"grid_b{b_val}\"\n    m = output[\"methods\"][key]\n    s42 = fmt(m[\"seeds\"].get(\"42\"))\n    s123 = fmt(m[\"seeds\"].get(\"123\"))\n    mn = fmt(m[\"mean\"])\n    st = fmt(m[\"std\"])\n    delta = delta_fmt(m[\"vs_uniform_delta\"])\n    exc_ppl = fmt(output[\"excluded\"][f\"grid_b{b_val}_seed456\"][\"ppl\"])\n    lines.append(f\"| Grid b={b_val} | {s42} | {s123} | {mn} | {st} | {delta} | {exc_ppl} |\")\n\nlines.append(\"\")\n\n# Single-seed methods\nlines.append(\"## Single-seed Methods\")\nlines.append(\"\")\nlines.append(\"| Method | PPL | Delta vs Uniform |\")\nlines.append(\"|--------|-----|-----------------|\")\n\nsingle = [\n    (\"golden_ratio\", \"Golden Ratio Oracle\"),\n    (\"bs8_nmin2\", \"Batch Size 8, n_min=2\"),\n    (\"baseline_pretrained\", \"Baseline Pretrained (Qwen3-0.6B)\"),\n]\nfor key, name in single:\n    m = output[\"methods\"][key]\n    mn = fmt(m[\"mean\"])\n    delta = delta_fmt(m[\"vs_uniform_delta\"])\n    lines.append(f\"| {name} | {mn} | {delta} |\")\n\nlines.append(\"\")\n\n# n_min sensitivity\nlines.append(\"## n_min Sensitivity (seed=42, tau=0.8)\")\nlines.append(\"\")\nlines.append(\"| n_min | Experiment | PPL | Delta vs Uniform |\")\nlines.append(\"|-------|-----------|-----|-----------------|\")\n\nfor nmin_val in [\"1\", \"2\", \"3\", \"4\"]:\n    v = output[\"methods\"][\"nmin_sensitivity\"][\"values\"][nmin_val]\n    delta = delta_fmt(round(v[\"ppl\"] - uniform_mean, 4))\n    lines.append(f\"| {nmin_val} | {v['exp_id']} | {fmt(v['ppl'])} | {delta} |\")\n\nlines.append(\"\")\n\n# tau sweep\nlines.append(\"## tau Sweep (seed=42, n_min=2)\")\nlines.append(\"\")\nlines.append(\"| tau | Experiment | PPL | Delta vs Uniform |\")\nlines.append(\"|-----|-----------|-----|-----------------|\")\n\nfor tau_val in [\"0.5\", \"0.6\", \"0.7\", \"0.8\", \"0.9\", \"0.95\"]:\n    v = output[\"methods\"][\"tau_sweep\"][\"values\"][tau_val]\n    delta = delta_fmt(round(v[\"ppl\"] - uniform_mean, 4))\n    lines.append(f\"| {tau_val} | {v['exp_id']} | {fmt(v['ppl'])} | {delta} |\")\n\nlines.append(\"\")\nlines.append(\"## Notes\")\nlines.append(\"\")\nfor n in output[\"notes\"]:\n    lines.append(f\"- {n}\")\n\nmd_content = \"\\n\".join(lines)\n\nmd_path = \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_summary.md\"\nwith open(md_path, 'w') as f:\n    f.write(md_content)\nprint(f\"Written: {md_path}\")\n\n# Print summary for verification\nprint(\"\\n\\n========== VERIFICATION SUMMARY ==========\\n\")\nprint(f\"Uniform mean PPL: {uniform_mean} (std={uniform_std})\")\nprint(f\"  seed42={uniform_ppls['42']}, seed123={uniform_ppls['123']}, seed456={uniform_ppls['456']}\")\nprint()\n\nfor key, m in output[\"methods\"].items():\n    if \"seeds\" in m:\n        print(f\"{m['display_name']}: mean={m['mean']}, std={m['std']}, delta={m.get('vs_uniform_delta')}\")\n        for s, v in m[\"seeds\"].items():\n            print(f\"  seed{s}: {v}\")\n    elif \"values\" in m:\n        print(f\"{m['display_name']}:\")\n        for k, v in m[\"values\"].items():\n            print(f\"  {k}: {v['ppl']} ({v['exp_id']})\")\n    print()\n\nprint(\"Excluded:\")\nfor k, v in output[\"excluded\"].items():\n    print(f\"  {k}: ppl={v['ppl']}, reason={v['reason']}\")\n\nPYEOF\n",
+              "description": "Build table1_data.json and table1_summary.md with all experiment data"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T00:53:20.477725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Written: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_data.json\nWritten: /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_summary.md\n\n\n========== VERIFICATION SUMMARY ==========\n\nUniform mean PPL: 17.6938 (std=0.0077)\n  seed42=17.6939, seed123=17.6861, seed456=17.7015\n\nUniform Baseline: mean=17.6938, std=0.0077, delta=0.0\n  seed42: 17.6939\n  seed123: 17.6861\n  seed456: 17.7015\n\nGrid b=0.5: mean=17.6463, std=0.0072, delta=-0.0475\n  seed42: 17.651\n  seed123: 17.638\n  seed456: 17.65\n\nGrid b=1.0: mean=17.682, std=0.0092, delta=-0.0118\n  seed42: 17.692\n  seed123: 17.674\n  seed456: 17.68\n\nGrid b=1.5: mean=17.7097, std=0.0085, delta=0.0159\n  seed42: 17.718\n  seed123: 17.701\n  seed456: 17.71\n\nGrid b=2.0: mean=17.733, std=0.0113, delta=0.0392\n  seed42: 17.741\n  seed123: 17.725\n\nGrid b=3.0: mean=17.767, std=0.0099, delta=0.0732\n  seed42: 17.774\n  seed123: 17.76\n\nGrid b=5.0: mean=17.8109, std=0.01, delta=0.1171\n  seed42: 17.818\n  seed123: 17.8039\n\nAdaptive (dual-constraint, n_min=2): mean=17.6508, std=0.0069, delta=-0.043\n  seed42: 17.6527\n  seed123: 17.6432\n  seed456: 17.6566\n\nAdaptive (n_min=3, bug): mean=17.6389, std=0.0071, delta=-0.0549\n  seed42: 17.644\n  seed123: 17.6308\n  seed456: 17.6419\n\nESS-only: mean=17.723, std=0.0061, delta=0.0292\n  seed42: 17.73\n  seed123: 17.72\n  seed456: 17.719\n\nGolden Ratio Oracle: mean=17.654, std=None, delta=-0.0398\n  seed42: 17.654\n\nn_min Sensitivity:\n  1: 17.789 (nmin1_seed42)\n  2: 17.6527 (adaptive_fix_seed42)\n  3: 17.644 (adaptive_seed42)\n  4: 17.6947 (nmin4_seed42)\n\nτ Sweep:\n  0.5: 17.688 (tau_05_seed42)\n  0.6: 17.6805 (tau_06_seed42)\n  0.7: 17.6793 (tau_07_seed42)\n  0.8: 17.6527 (adaptive_fix_seed42)\n  0.9: 17.712 (tau_09_seed42)\n  0.95: 17.723 (tau_095_seed42)\n\nBatch Size 8, n_min=2: mean=17.73, std=None, delta=0.0362\n  seed42: 17.73\n\nBaseline Pretrained (Qwen3-0.6B): mean=22.97, std=None, delta=5.2762\n  seedpretrained: 22.97\n\n…[truncated 211 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T00:53:20.477906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_data.json"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T00:53:20.478046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_summary.md"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T00:53:20.478203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"uniform_mean_ppl\": 17.6938,\n3\t  \"methods\": {\n4\t    \"uniform\": {\n5\t      \"display_name\": \"Uniform Baseline\",\n6\t      \"seeds\": {\n7\t        \"42\": 17.6939,\n8\t        \"123\": 17.6861,\n9\t        \"456\": 17.7015\n10\t      },\n11\t      \"mean\": 17.6938,\n12\t      \"std\": 0.0077,\n13\t      \"vs_uniform_delta\": 0.0\n14\t    },\n15\t    \"grid_b0.5\": {\n16\t      \"display_name\": \"Grid b=0.5\",\n17\t      \"seeds\": {\n18\t        \"42\": 17.651,\n19\t        \"123\": 17.638,\n20\t        \"456\": 17.65\n21\t      },\n22\t      \"mean\": 17.6463,\n23\t      \"std\": 0.0072,\n24\t      \"vs_uniform_delta\": -0.0475\n25\t    },\n26\t    \"grid_b1.0\": {\n27\t      \"display_name\": \"Grid b=1.0\",\n28\t      \"seeds\": {\n29\t        \"42\": 17.692,\n30\t        \"123\": 17.674,\n31\t        \"456\": 17.68\n32\t      },\n33\t      \"mean\": 17.682,\n34\t      \"std\": 0.0092,\n35\t      \"vs_uniform_delta\": -0.0118\n36\t    },\n37\t    \"grid_b1.5\": {\n38\t      \"display_name\": \"Grid b=1.5\",\n39\t      \"seeds\": {\n40\t        \"42\": 17.718,\n41\t        \"123\": 17.701,\n42\t        \"456\": 17.71\n43\t      },\n44\t      \"mean\": 17.7097,\n45\t      \"std\": 0.0085,\n46\t      \"vs_uniform_delta\": 0.0159\n47\t    },\n48\t    \"grid_b2.0\": {\n49\t      \"display_name\": \"Grid b=2.0\",\n50\t      \"seeds\": {\n51\t        \"42\": 17.741,\n52\t        \"123\": 17.725\n53\t      },\n54\t      \"mean\": 17.733,\n55\t      \"std\": 0.0113,\n56\t      \"vs_uniform_delta\": 0.0392\n57\t    },\n58\t    \"grid_b3.0\": {\n59\t      \"display_name\": \"Grid b=3.0\",\n60\t      \"seeds\": {\n61\t        \"42\": 17.774,\n62\t        \"123\": 17.76\n63\t      },\n64\t      \"mean\": 17.767,\n65\t      \"std\": 0.0099,\n66\t      \"vs_uniform_delta\": 0.0732\n67\t    },\n68\t    \"grid_b5.0\": {\n69\t      \"display_name\": \"Grid b=5.0\",\n70\t      \"seeds\": {\n71\t        \"42\": 17.818,\n72\t        \"123\": 17.8039\n73\t      },\n74\t      \"mean\": 17.8109,\n75\t      \"std\": 0.01,\n76\t      \"vs_uniform_delta\": 0.1171\n77\t    },\n78\t    \"adaptive_fix\": {\n79\t      \"display_name\": \"Adaptive (dual-constraint, n_min=2)\",\n80\t      \"seeds\": {\n81\t        \"42\": 17.6527,\n82\t        \"123\": 17.6432,\n83\t        \"456\n…[truncated 3652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T00:53:20.478354+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Table 1: Provenance-Weighted Pre-training Results\n2\t\n3\tAll PPL values are eval_ppl_holdout on human-written holdout set (4,077,068 tokens).\n4\t\n5\t## Main Results (Multi-seed)\n6\t\n7\t| Method | Seed 42 | Seed 123 | Seed 456 | Mean | Std | Delta vs Uniform |\n8\t|--------|---------|----------|----------|------|-----|-----------------|\n9\t| Uniform Baseline | 17.6939 | 17.6861 | 17.7015 | 17.6938 | 0.0077 | 0.0000 |\n10\t| Grid b=0.5 | 17.6510 | 17.6380 | 17.6500 | 17.6463 | 0.0072 | -0.0475 |\n11\t| Grid b=1.0 | 17.6920 | 17.6740 | 17.6800 | 17.6820 | 0.0092 | -0.0118 |\n12\t| Grid b=1.5 | 17.7180 | 17.7010 | 17.7100 | 17.7097 | 0.0085 | +0.0159 |\n13\t| Adaptive (n_min=2) | 17.6527 | 17.6432 | 17.6566 | 17.6508 | 0.0069 | -0.0430 |\n14\t| Adaptive (n_min=3, bug) | 17.6440 | 17.6308 | 17.6419 | 17.6389 | 0.0071 | -0.0549 |\n15\t| ESS-only | 17.7300 | 17.7200 | 17.7190 | 17.7230 | 0.0061 | +0.0292 |\n16\t\n17\t## Grid-b (b >= 2.0, seed456 excluded)\n18\t\n19\t| Method | Seed 42 | Seed 123 | Mean | Std | Delta vs Uniform | Seed 456 (excluded) |\n20\t|--------|---------|----------|------|-----|-----------------|---------------------|\n21\t| Grid b=2.0 | 17.7410 | 17.7250 | 17.7330 | 0.0113 | +0.0392 | 17.9890 |\n22\t| Grid b=3.0 | 17.7740 | 17.7600 | 17.7670 | 0.0099 | +0.0732 | 17.9210 |\n23\t| Grid b=5.0 | 17.8180 | 17.8039 | 17.8109 | 0.0100 | +0.1171 | 17.9930 |\n24\t\n25\t## Single-seed Methods\n26\t\n27\t| Method | PPL | Delta vs Uniform |\n28\t|--------|-----|-----------------|\n29\t| Golden Ratio Oracle | 17.6540 | -0.0398 |\n30\t| Batch Size 8, n_min=2 | 17.7300 | +0.0362 |\n31\t| Baseline Pretrained (Qwen3-0.6B) | 22.9700 | +5.2762 |\n32\t\n33\t## n_min Sensitivity (seed=42, tau=0.8)\n34\t\n35\t| n_min | Experiment | PPL | Delta vs Uniform |\n36\t|-------|-----------|-----|-----------------|\n37\t| 1 | nmin1_seed42 | 17.7890 | +0.0952 |\n38\t| 2 | adaptive_fix_seed42 | 17.6527 | -0.0411 |\n39\t| 3 | adaptive_seed42 | 17.6440 | -0.0498 |\n40\t| 4 | nmin4_seed42 | 17.6947 | +0.0009 |\n41\t\n42\t## tau Sweep (seed=42, n_min=2)\n43\t\n…[truncated 811 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T00:53:20.478562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both files are correct. Here is the summary:\n\n**Files written:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_data.json`\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_summary.md`\n\n**Extracted PPL values (all eval_ppl_holdout on 4,077,068 token holdout set):**\n\n**Uniform baseline:** 17.6939 / 17.6861 / 17.7015 (mean=17.6938, std=0.0077)\n\n**Grid-b (3 seeds for b<=1.5, 2 seeds for b>=2.0):**\n- b=0.5: 17.651 / 17.638 / 17.650 → mean=17.6463 (delta=-0.0475, best grid)\n- b=1.0: 17.692 / 17.674 / 17.680 → mean=17.6820 (delta=-0.0118)\n- b=1.5: 17.718 / 17.701 / 17.710 → mean=17.7097 (delta=+0.0159)\n- b=2.0: 17.741 / 17.725 → mean=17.7330 (delta=+0.0392)\n- b=3.0: 17.774 / 17.760 → mean=17.7670 (delta=+0.0732)\n- b=5.0: 17.818 / 17.804 → mean=17.8109 (delta=+0.1171)\n\n**Adaptive (dual-constraint, n_min=2):** 17.6527 / 17.6432 / 17.6566 → mean=17.6508 (delta=-0.0430)\n\n**Adaptive (n_min=3, bug):** 17.6440 / 17.6308 / 17.6419 → mean=17.6389 (delta=-0.0549, best overall)\n\n**ESS-only:** 17.730 / 17.720 / 17.719 → mean=17.7230 (delta=+0.0292)\n\n**Golden Ratio Oracle:** 17.654 (delta=-0.0398)\n\n**tau sweep (seed42):** 0.5→17.688, 0.6→17.6805, 0.7→17.6793, 0.8→17.6527 (best), 0.9→17.712, 0.95→17.723\n\n**n_min sensitivity (seed42):** n_min=1→17.789, 2→17.6527, 3→17.644 (best), 4→17.6947\n\n**bs8_nmin2:** 17.73 (delta=+0.0362)\n\n**Baseline pretrained (Qwen3-0.6B):** 22.97\n\n**Excluded:** grid_b2.0_seed456 (17.989), grid_b3.0_seed456 (17.921), grid_b5.0_seed456 (17.993) -- all checkpoint resume artifacts with systematically inflated PPL.\n\n**Experiments with no metrics (infrastructure failures, not relevant):** bs8_nmin2_seed42, bs8_seed42, contamination_60_seed42, datagen_synthetic_4gpu, diagnostic_contamination100, grid_b_low_seed42/r2/r3, grid_b_low_serial_seed42, tau_0.6_seed42 (duplicate of tau_06_seed42).\nagentId: ad3f308099aedae81 (use SendMessage with to: 'ad3f308099aedae\n…[truncated 96 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Agent",
+            "elapsed_ms": 5
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T00:53:20.478738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_data.json"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T00:53:20.478878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_summary.md"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T00:53:20.479108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"uniform_mean_ppl\": 17.6938,\n3\t  \"methods\": {\n4\t    \"uniform\": {\n5\t      \"display_name\": \"Uniform Baseline\",\n6\t      \"seeds\": {\n7\t        \"42\": 17.6939,\n8\t        \"123\": 17.6861,\n9\t        \"456\": 17.7015\n10\t      },\n11\t      \"mean\": 17.6938,\n12\t      \"std\": 0.0077,\n13\t      \"vs_uniform_delta\": 0.0\n14\t    },\n15\t    \"grid_b0.5\": {\n16\t      \"display_name\": \"Grid b=0.5\",\n17\t      \"seeds\": {\n18\t        \"42\": 17.651,\n19\t        \"123\": 17.638,\n20\t        \"456\": 17.65\n21\t      },\n22\t      \"mean\": 17.6463,\n23\t      \"std\": 0.0072,\n24\t      \"vs_uniform_delta\": -0.0475\n25\t    },\n26\t    \"grid_b1.0\": {\n27\t      \"display_name\": \"Grid b=1.0\",\n28\t      \"seeds\": {\n29\t        \"42\": 17.692,\n30\t        \"123\": 17.674,\n31\t        \"456\": 17.68\n32\t      },\n33\t      \"mean\": 17.682,\n34\t      \"std\": 0.0092,\n35\t      \"vs_uniform_delta\": -0.0118\n36\t    },\n37\t    \"grid_b1.5\": {\n38\t      \"display_name\": \"Grid b=1.5\",\n39\t      \"seeds\": {\n40\t        \"42\": 17.718,\n41\t        \"123\": 17.701,\n42\t        \"456\": 17.71\n43\t      },\n44\t      \"mean\": 17.7097,\n45\t      \"std\": 0.0085,\n46\t      \"vs_uniform_delta\": 0.0159\n47\t    },\n48\t    \"grid_b2.0\": {\n49\t      \"display_name\": \"Grid b=2.0\",\n50\t      \"seeds\": {\n51\t        \"42\": 17.741,\n52\t        \"123\": 17.725\n53\t      },\n54\t      \"mean\": 17.733,\n55\t      \"std\": 0.0113,\n56\t      \"vs_uniform_delta\": 0.0392\n57\t    },\n58\t    \"grid_b3.0\": {\n59\t      \"display_name\": \"Grid b=3.0\",\n60\t      \"seeds\": {\n61\t        \"42\": 17.774,\n62\t        \"123\": 17.76\n63\t      },\n64\t      \"mean\": 17.767,\n65\t      \"std\": 0.0099,\n66\t      \"vs_uniform_delta\": 0.0732\n67\t    },\n68\t    \"grid_b5.0\": {\n69\t      \"display_name\": \"Grid b=5.0\",\n70\t      \"seeds\": {\n71\t        \"42\": 17.818,\n72\t        \"123\": 17.8039\n73\t      },\n74\t      \"mean\": 17.8109,\n75\t      \"std\": 0.01,\n76\t      \"vs_uniform_delta\": 0.1171\n77\t    },\n78\t    \"adaptive_fix\": {\n79\t      \"display_name\": \"Adaptive (dual-constraint, n_min=2)\",\n80\t      \"seeds\": {\n81\t        \"42\": 17.6527,\n82\t        \"123\": 17.6432,\n83\t        \"456\n…[truncated 3652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T00:53:20.479307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Table 1: Provenance-Weighted Pre-training Results\n2\t\n3\tAll PPL values are eval_ppl_holdout on human-written holdout set (4,077,068 tokens).\n4\t\n5\t## Main Results (Multi-seed)\n6\t\n7\t| Method | Seed 42 | Seed 123 | Seed 456 | Mean | Std | Delta vs Uniform |\n8\t|--------|---------|----------|----------|------|-----|-----------------|\n9\t| Uniform Baseline | 17.6939 | 17.6861 | 17.7015 | 17.6938 | 0.0077 | 0.0000 |\n10\t| Grid b=0.5 | 17.6510 | 17.6380 | 17.6500 | 17.6463 | 0.0072 | -0.0475 |\n11\t| Grid b=1.0 | 17.6920 | 17.6740 | 17.6800 | 17.6820 | 0.0092 | -0.0118 |\n12\t| Grid b=1.5 | 17.7180 | 17.7010 | 17.7100 | 17.7097 | 0.0085 | +0.0159 |\n13\t| Adaptive (n_min=2) | 17.6527 | 17.6432 | 17.6566 | 17.6508 | 0.0069 | -0.0430 |\n14\t| Adaptive (n_min=3, bug) | 17.6440 | 17.6308 | 17.6419 | 17.6389 | 0.0071 | -0.0549 |\n15\t| ESS-only | 17.7300 | 17.7200 | 17.7190 | 17.7230 | 0.0061 | +0.0292 |\n16\t\n17\t## Grid-b (b >= 2.0, seed456 excluded)\n18\t\n19\t| Method | Seed 42 | Seed 123 | Mean | Std | Delta vs Uniform | Seed 456 (excluded) |\n20\t|--------|---------|----------|------|-----|-----------------|---------------------|\n21\t| Grid b=2.0 | 17.7410 | 17.7250 | 17.7330 | 0.0113 | +0.0392 | 17.9890 |\n22\t| Grid b=3.0 | 17.7740 | 17.7600 | 17.7670 | 0.0099 | +0.0732 | 17.9210 |\n23\t| Grid b=5.0 | 17.8180 | 17.8039 | 17.8109 | 0.0100 | +0.1171 | 17.9930 |\n24\t\n25\t## Single-seed Methods\n26\t\n27\t| Method | PPL | Delta vs Uniform |\n28\t|--------|-----|-----------------|\n29\t| Golden Ratio Oracle | 17.6540 | -0.0398 |\n30\t| Batch Size 8, n_min=2 | 17.7300 | +0.0362 |\n31\t| Baseline Pretrained (Qwen3-0.6B) | 22.9700 | +5.2762 |\n32\t\n33\t## n_min Sensitivity (seed=42, tau=0.8)\n34\t\n35\t| n_min | Experiment | PPL | Delta vs Uniform |\n36\t|-------|-----------|-----|-----------------|\n37\t| 1 | nmin1_seed42 | 17.7890 | +0.0952 |\n38\t| 2 | adaptive_fix_seed42 | 17.6527 | -0.0411 |\n39\t| 3 | adaptive_seed42 | 17.6440 | -0.0498 |\n40\t| 4 | nmin4_seed42 | 17.6947 | +0.0009 |\n41\t\n42\t## tau Sweep (seed=42, n_min=2)\n43\t\n…[truncated 811 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T00:53:20.479500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "table1_data",
+              "type": "data",
+              "description": "Table 1 structured data: all experiment PPL values grouped by method, with mean/std/delta computed",
+              "project": "provenance_weight_training",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_data.json",
+              "tags": "['paper', 'table1', 'ppl']"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T00:53:20.479654+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_9d5719\\\", \\\"name\\\": \\\"table1_data\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"Table 1 structured data: all experiment PPL values grouped by method, with mean/std/delta computed\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/data/table1_data.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T00:53:12.052473+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"table1\\\", \\\"ppl\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T00:53:20.479782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "table1_summary",
+              "type": "report",
+              "description": "Table 1 markdown summary: main results, grid-b sweep, sensitivity analyses, all PPL values",
+              "project": "provenance_weight_training",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/table1_summary.md",
+              "tags": "['paper', 'table1', 'summary']"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T00:53:20.479957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_4b345c\\\", \\\"name\\\": \\\"table1_summary\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Table 1 markdown summary: main results, grid-b sweep, sensitivity analyses, all PPL values\\\", \\\"path\\\": \\\"projects/provenance_weight_training/artifacts/_project/report/table1_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"provenance_weight_training\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T00:53:13.373327+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"table1\\\", \\\"summary\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T00:53:20.480126+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。两个文件已生成并注册：\n\n**`table1_data.json`** — 结构化 JSON，包含 13 个方法组的 PPL 数据\n**`table1_summary.md`** — Markdown 摘要表\n\n关键发现：\n- **Adaptive (n_min=3, bug)** PPL 最低：17.6389 (Δ = -0.0549)\n- **Adaptive (n_min=2, fix)** 次之：17.6508 (Δ = -0.0430)\n- **Grid b=0.5** 是最佳 grid 配置：17.6463 (Δ = -0.0475)\n- **ESS-only** 反而比 uniform 差：17.7230 (Δ = +0.0292)\n- seed456 的 grid b≥2.0 已标记 excluded（checkpoint resume artifact）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_results_compilation_20260516T004947"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-results-compilation.md"
+}

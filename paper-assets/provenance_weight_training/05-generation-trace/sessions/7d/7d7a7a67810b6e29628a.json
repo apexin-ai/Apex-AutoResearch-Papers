@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d7a7a67810b6e29628a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval tau07 downstream collect",
+  "task_key": "worker_eval_tau07_downstream_collect_20260520T023911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_tau07_downstream_collect_20260520T023911_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "2d6cd08f45d45d545dca9f923fa0339bed9c4303db08e0fb940e539f38ca7a94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部完成，结果已收集。汇总如下：\n\n```\nτ=0.7 Downstream Results (3-seed):\n\n| Benchmark          | τ=0.7 s42 | τ=0.7 s123 | τ=0.7 s456 | τ=0.7 Mean | τ=0.8 Mean | Uniform Mean | Δ(0.7−0.8) |\n|--------------------|-----------|------------|------------|------------|------------|--------------|------------|\n| ARC-E (acc_norm)   |    0.6166 |     0.6309 |     0.6111 |     0.6195 |     0.6185 |       0.6174 |    +0.0010 |\n| ARC-C (acc_norm)   |    0.3473 |     0.3481 |     0.3515 |     0.3490 |     0.3515 |       0.3476 |    −0.0025 |\n| HellaSwag (acc_norm)|   0.4795 |     0.4775 |     0.4811 |     0.4794 |     0.4799 |       0.4820 |    −0.0005 |\n| PIQA (acc_norm)    |    0.6861 |     0.6866 |     0.6834 |     0.6854 |     0.6831 |       0.6841 |    +0.0023 |\n| WinoGrande (acc)   |    0.5817 |     0.5675 |     0.5722 |     0.5738 |     0.5740 |       0.5762 |    −0.0002 |\n| **Avg**            |    0.5422 |     0.5421 |     0.5399 |  **0.5414**|  **0.5414**|    **0.5414**| **+0.0000**|\n```\n\n关键发现：τ=0.7、τ=0.8、Uniform 三者的 downstream 平均分完全一致（0.5414），各 benchmark 差异均在 ±0.003 以内，无统计显著差异。Provenance weighting 的 τ 选择对 downstream task 性能无实质影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-tau07-downstream-collect-copy-2.md"
+}

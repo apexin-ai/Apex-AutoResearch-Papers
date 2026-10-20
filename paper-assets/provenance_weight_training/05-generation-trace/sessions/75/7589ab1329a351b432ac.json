@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7589ab1329a351b432ac",
+  "project": "provenance_weight_training",
+  "kind": "history",
+  "title": "agent / loop_16_1779056362.md",
+  "task_key": "loop_16_1779056362",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779056362.md",
+    "occurrence": 1,
+    "bytes": 4828,
+    "sha256": "92e71b3c0134b6384fbec0a458f65970ed3906fe7619c20451d2432bf5668472"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-17T21:41:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-30476 GPU 不在 `gpu_ids` 白名单里（白名单只有 westd-41312 的 4 张），但实际有 4 张 GPU 在跑实验。历史遗留——之前从 westd-47453 迁移过来的。向 Director 确认前不要在 30476 上新增实验\n- westd-30476 的 output_dir 必须用 `/root/autodl-tmp/` 持久卷，不要用 `/root/` 临时盘\n- eval 统一用 `eval_perplexity.py`（sliding window, stride=1024, max_docs=5000, fp16, eval_holdout.jsonl），不要用其他 eval 方式，否则指标不可比\n- 投稿目标 EMNLP 2026 ARR May 25，距今 8 天\n\n### 2. 🖥️ 基础设施快照\n- **westd-30476**: 工作目录 `/root/provenance_weight_training`，Python `/root/miniconda3/bin/python`，conda base env。4× RTX PRO 6000 96G。磁盘 `/usr/bin/nvidia-smi` 816G/879G 可用\n- **westd-41312**: 同上结构，`/root/provenance_weight_training`。4× RTX PRO 6000 96G。磁盘 400G/439G 可用\n- 模型: Qwen/Qwen3-0.6B（HF hub 下载到 cache），跨模型验证用 Llama-3.2-3B\n- 数据: `data/scored_data.jsonl`(ρ=0.4, 371k), `data/scored_data_rho06.jsonl`(ρ=0.6, 371k), `data/human/eval_holdout.jsonl`\n- W&B: entity/project 从 project config 读取\n- 活跃 cron: bs8_auto_nmin_r5 (30476:cuda:1, PID 22466), rho02_adaptive_tau09_r5 (30476:cuda:3, PID 22095)\n\n### 3. 📊 当前状态\n**刚做完**: Session 启动初始化。收到 batch_adaptive_tau_rho06_r5 完成回调，已 spawn Worker 分析。同时发现 random_reweight_seed123_r5 也处于 ANALYZING（~1h 未处理），已 spawn 第二个 Worker 分析。\n\n**RUNNING (3)**:\n- `grid_b0_3_seed456` — 41312:cuda:3, Claim 2 跨 seed grid-best 验证, ~92%\n- `bs8_auto_nmin_r5` — 30476:cuda:1, D062 coupling rule bs=8 验证\n- `rho02_adaptive_tau09_r5` — 30476:cuda:3, Claim 3 ρ=0.2 proportion-robustness\n\n**ANALYZING (2)**:\n- `batch_adaptive_tau_rho06_r5` — Worker 正在分析（D063 Plan B, ρ=0.6 batch-adaptive τ）\n- `random_reweight_seed123_r5` — Worker 正在分析（Claim 1 跨 seed random degradation）\n\n**PREPARING (1)**: `qwen06b_uniform_seed42` — 41312:cuda:0, 但未提交\n\n**⚠️ 3 张 GPU 空闲**: westd-41312 cuda:0/1/2。llama3b_uniform(success)、llama3b_adaptive(negative)、batchsize16_nmin8(failed) 完成后未填充。1 个 eval Worker 在跑（eval:uniform_and_adaptive_downstream）。\n\n### 4. 📋 待办\n- Worker `analysis:batch_adaptive_tau_rho06_r5` 回调 → 读 metrics，判 success/negative，update_registry(DONE)，更新 report.md。若 negative（parent ρ=0.4 也 negative）→ batch-adaptive τ 整条路关闭，向 Director 汇报\n- Worker `analysis:random_reweight_seed123_r5` 回调 → 期望 PPL > uniform_seed123(17.686)，与 seed42(17.83) 交叉验证。若 success → Claim 1 跨 seed 证据增强\n- `bs8_auto_nmin_r5` cron 回调 → 分析 D062 coupling rule bs=8 结果。baseline: adaptive_fix PPL=17.6527\n- `rho02_adaptive_tau09_r5` cron 回调 → 分析 Claim 3 ρ=0.2 结果。baseline: 期望 PPL < uniform\n- `grid_b0_3_seed456` cron 回调 → Claim 2 跨 seed。baseline: grid_b0_3_seed42 未查到，grid_b0_2_seed42 可参考\n- 41312 空闲 GPU → 向 Director 汇报资源浪费，推动 qwen06b_uniform_seed42 提交或排新实验\n- 两个 analysis Worker 都完成后 → 综合汇报 Director，带 [资源] 行\n\n### 5. 🎯 战略上下文\n**核心方法**: Dual-constrained adaptive b*（α_eff 质量下界 + ESS 稳定上界 → min-intervention），论文 3 个 claims:\n1. **Claim 1 (dual > ESS-only)**: ★★★★★ 强，3 seeds 确认。random_reweight 证明 detector signal load-bearing（D064）。seed123 正在分析中\n2. **Claim 2 (adaptive ≈ grid-best)**: ★★★☆☆ 中，bootstrap p=0.30 不显著。grid_b0_3_seed456 是最后一个跨 seed 数据点\n3. **Claim 3 (proportion-robust)**: ★★☆☆☆ 弱，τ∈[0.7,0.8] 跨 ρ 有初步证据，rho02 实验补充中\n\n**关键决策链**:\n- D062: n_min coupling rule（n_min=⌊B/2⌋）升级为方法正式设计原则\n- D063: hybrid pre-filter 定位 DEFER，等更多数据\n- D064: random_reweight 确认 detector signal load-bearing\n- D065: Claim 1 叙事升级为 \"both signal and principle\"\n- D066/D067: Llama-3.2-3B 跨模型泛化从 \"negative\" 修正为 \"neutral\"（+0.20 退化不显著）\n\n**易错点**:\n- batch_adaptive_tau 在 ρ=0.4 已 negative（D063），如果 ρ=0.6 也 negative，这条路关闭，不要继续调参\n- 30476 的 4 GPU 不在白名单但在跑实验，这是历史遗留不是 bug——但新实验别往上加\n- llama3b_adaptive 是 \"negative\" 但 D067 修正为 neutral（退化仅 +0.20），不要按 negative 处理\n- batchsize16_nmin8 反复 failed，r2 被 killed——如果要再试需要 Worker 先诊断 root cause\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779056362.md"
+}

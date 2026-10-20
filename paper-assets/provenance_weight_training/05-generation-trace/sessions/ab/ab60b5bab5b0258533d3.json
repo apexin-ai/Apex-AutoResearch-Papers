@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab60b5bab5b0258533d3",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis contamination 60 seed42 r2",
+  "task_key": "worker_analysis_contamination_60_seed42_r2_20260516T015309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_contamination_60_seed42_r2_20260516T015309_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "58f01d99282a8118a9ae5fe269a100d6b9b90777047858541595922134477309"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n**contamination_60_seed42_r2** 完成，conclusion = **success**。\n\n| 指标 | 值 |\n|------|-----|\n| eval_ppl_holdout | **17.74** |\n| eval_loss_holdout | 2.8759 |\n| eval_tokens | 4,077,068 |\n| train_loss | 9.6349 |\n| train_runtime | 14092s (~3h55m) |\n\n**Baseline 对比（ρ=0.6）：**\n- vs uniform (PPL=17.766): adaptive **优** -0.026 PPL\n- vs grid b=0.5 (PPL=17.704): adaptive **劣** +0.036 PPL\n\nAdaptive weighting 在 ρ=0.6 高污染场景下仍能小幅优于 uniform baseline，验证了 graceful degradation 假设。不过 grid b=0.5 的固定权重方案在此设置下表现更好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-contamination-60-seed42-r2.md"
+}

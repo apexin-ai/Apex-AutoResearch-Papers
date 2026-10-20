@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d87e91452480ea399c28",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "submit contamination 60 tau08 seed42 seed123",
+  "task_key": "worker_submit_contamination_60_tau08_seed42_seed123_20260520T093937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_contamination_60_tau08_seed42_seed123_20260520T093937_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "f69339a96575a4b398e3490b0c35946e4cb60022a86eebe89bce75e4947146d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n| 实验 | GPU | PID | 状态 | 参数 |\n|------|-----|-----|------|------|\n| `contamination_60_adaptive_seed42_tau08` | cuda:2 | 459319 | RUNNING | ρ=0.6, τ=0.8, seed=42, adaptive, 200M tokens |\n| `contamination_60_adaptive_seed123_tau08` | cuda:3 | 459396 | RUNNING | ρ=0.6, τ=0.8, seed=123, adaptive, 200M tokens |\n\n- 两个实验已正常出 training log，tau_batch=0.8 确认正确\n- max_steps=6103，预估 ~5 小时完成\n- Registry 已更新到 RUNNING，spec 含完整 provenance 元数据\n- cuda:0/1 的 1.7B 训练未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-contamination-60-tau08-seed42-seed123.md"
+}

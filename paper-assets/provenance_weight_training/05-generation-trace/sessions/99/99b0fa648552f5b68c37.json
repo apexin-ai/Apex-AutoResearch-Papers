@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99b0fa648552f5b68c37",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval mvp held out perplexity",
+  "task_key": "worker_eval_mvp-held-out-perplexity_20260514T070406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mvp-held-out-perplexity_20260514T070406_result.json",
+    "occurrence": 1,
+    "bytes": 1753,
+    "sha256": "7dd7586f92333249300d6ddcf70f1724a96425ff60e9af844b07ddad7b5f439b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终结果\n\n### 1. Train loss 是 weighted 还是 unweighted？\n\n**代码证据**（`training/pretrain_weighted.py`, `compute_loss` 方法）：\n- `uniform`: `loss = per_sample_loss.mean()` — 标准 unweighted CE\n- `adaptive`/`grid`: `loss = (per_sample_loss * weights).sum() / weights.sum()` — **weighted loss**\n- 日志记录的就是 `compute_loss` 的返回值，因此 adaptive 的 train_loss (~9.2) 和 uniform 的 train_loss (~7.3) **不可直接比较**\n\n### 2. Held-out Eval Perplexity\n\n| Model | Seed | Eval PPL (held-out) | Train Loss |\n|-------|------|---------------------|------------|\n| uniform | 42 | **17.69** | 7.310 |\n| uniform | 123 | **17.69** | 7.312 |\n| uniform | 456 | **17.70** | 7.289 |\n| adaptive | 42 | **17.64** | 9.267 |\n| adaptive | 123 | **17.63** | 9.267 |\n| adaptive | 456 | **17.64** | 9.235 |\n\n- **Uniform 均值**: 17.694 (std=0.008)\n- **Adaptive 均值**: 17.639 (std=0.006)\n- **Δ = -0.055 PPL**，adaptive 一致性地优于 uniform（3 个 adaptive seed 全部低于 3 个 uniform seed，无重叠）\n\n### 3. Held-out 数据描述\n- 来源：`data/human/eval_holdout.jsonl`，纯 FineWeb 人类文本（`source: fineweb`, `depth: 0`）\n- 使用 5000 docs，~4.08M tokens\n- 无合成数据污染\n\n### 4. Eval 脚本\n`/root/provenance_weight_training/eval_perplexity.py`\n结果 JSON：`/root/autodl-tmp/provenance_weight_training/output/eval_perplexity_results.json`\n\n### 5. 注意事项\n- 效果差异较小（0.055 PPL / 0.3%），但方向一致、三个 seed 无重叠\n- 训练进程未受干扰（eval 在 GPU 3 上与 grid-b 训练共享，模型仅 1.2GB）\n- tokenizer 有一个 regex 警告但不影响结果（Qwen3 tokenizer 的已知 issue）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mvp-held-out-perplexity.md"
+}

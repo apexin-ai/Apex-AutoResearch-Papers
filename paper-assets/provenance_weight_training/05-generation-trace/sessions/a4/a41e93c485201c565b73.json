@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a41e93c485201c565b73",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code posthoc eval script seed456",
+  "task_key": "worker_code_posthoc_eval_script_seed456_20260515T082156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_posthoc_eval_script_seed456_20260515T082156_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "570d1d0602f20a2aa73c72532512d89c1c64860c3c09cd3d34cccdce32723d69"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过语法检查。\n\n**路径**: `/root/provenance_weight_training/training/run_posthoc_eval_grid_seed456_resumed.sh`\n\n**功能**: 评估 `grid_b2_0_seed456`、`grid_b3_0_seed456`、`grid_b5_0_seed456` 的 `final/` checkpoint，输出到 `output/eval/posthoc_eval_grid_seed456_resumed.json`。格式与 `run_posthoc_eval_grid_b_low.sh` 一致——自动跳过尚未完成的 checkpoint，全部缺失时报错退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-posthoc-eval-script-seed456.md"
+}

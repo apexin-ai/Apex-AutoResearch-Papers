@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bfe5612bfb6519d606f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "figures paperbanana calibration",
+  "task_key": "worker_figures_paperbanana_calibration_20260524T232431",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figures_paperbanana_calibration_20260524T232431_result.json",
+    "occurrence": 1,
+    "bytes": 867,
+    "sha256": "144d979c084ee7dd335bc2815e6a0d6f78441be59ee9df55d8ab8bdc0f5dce79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **PaperBanana 安装成功**（v0.1.2），但 `plot` 子命令与 gemini-2.5-pro 存在兼容性问题（thinking mode 导致 `response.text` 返回 None），已通过直接调用 Gemini API 绕过\n2. **参考图已生成**：`artifacts/figures/grid_b_paperbanana_ref.png`\n3. **标定参数已写入**：`artifacts/figures/paperbanana_calibrated_rc.py`\n\n与现有 PREMIUM_RC 的主要差异：\n| 参数 | PREMIUM_RC | PB Calibrated | \n|------|-----------|--------------|\n| `font.size` | 8.5 | 9 |\n| `xtick/ytick.labelsize` | 7.5 | 8 |\n| `legend.fontsize` | 7 | 8 |\n| `axes.linewidth` | 0.6 | 0.8 |\n| `grid.alpha` | 0.4 | 0.3 |\n| `grid.linewidth` | 0.3 | 0.5 |\n| `grid.color` | #E0E0E0 | #CCCCCC |\n\n整体方向：PB 风格偏好稍大字号、稍淡网格透明度但稍粗网格线、更显著的 axes edge。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figures-paperbanana-calibration.md"
+}

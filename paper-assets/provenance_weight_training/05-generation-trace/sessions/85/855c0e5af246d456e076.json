@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "855c0e5af246d456e076",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval tau07 status and eval",
+  "task_key": "worker_eval_tau07_status_and_eval_20260520T005319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_tau07_status_and_eval_20260520T005319_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "a390ad73c8c156f58a7e84efc73734cab9fe84991d98bf614feaf5d007d51e58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部完成。\n\n## τ=0.7 vs τ=0.8 PPL Comparison\n\n| Seed | τ=0.7 | τ=0.8 | Δ (0.7−0.8) |\n|------|-------|-------|-------------|\n| 42   | 17.680 | 17.689 | −0.009 |\n| 123  | 17.666 | 17.677 | −0.011 |\n| 456  | 17.677 | 17.683 | −0.006 |\n| **Mean** | **17.674** | **17.683** | **−0.009** |\n\nτ=0.7 在三个 seed 上均略优于 τ=0.8，平均 PPL 降低 0.009（17.674 vs 17.683）。差异很小但方向一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-tau07-status-and-eval.md"
+}

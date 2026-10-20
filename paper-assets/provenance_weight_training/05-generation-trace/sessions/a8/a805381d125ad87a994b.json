@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a805381d125ad87a994b",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "restart crashed experiments",
+  "task_key": "worker_restart_crashed_experiments_20260523T032137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_restart_crashed_experiments_20260523T032137_result.json",
+    "occurrence": 1,
+    "bytes": 1227,
+    "sha256": "b7b15125fc820cd70f39214a3b8d6512dc76be22c97611c8327b3f30da1406f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。汇报如下：\n\n---\n\n## 汇报\n\n### 各实验可恢复 checkpoint\n\n| 实验 | checkpoint-500 | checkpoint-1000 | 恢复策略 |\n|------|---------------|-----------------|----------|\n| **rho03_adaptive_seed456** | ❌ 不存在 | 已删除（损坏） | **需从头开始** |\n| **bs8_nmin4_adaptive_seed123** | ✅ 完整（model.safetensors 验证OK，1.11GB） | 已删除（损坏） | **可从 checkpoint-500 恢复** |\n| **bs8_nmin4_uniform_seed123** | ✅ 完整（model.safetensors 验证OK，1.11GB） | 已删除（损坏） | **可从 checkpoint-500 恢复** |\n\n### 磁盘空间\n- `/root/autodl-tmp`: 250G 总量，已用 152G，**可用 99G (61%)**\n\n### rho03_uniform_seed456 (PID 833056) 进度\n- **正在运行**，当前 step **1082/6103**，进度 **~18%**\n- 预估剩余约 3h27m（2.47s/it）\n- 从 checkpoint-1000 恢复成功，训练正常\n- 运行在 GPU 2 (`CUDA_VISIBLE_DEVICES=2`)\n\n### 额外发现\n- `rho03_adaptive_seed456` 的 tmux session 存在但**无活跃 python 进程**——可能因 checkpoint-1000 损坏导致恢复失败已退出\n- `bs8_nmin4_adaptive_seed123` 和 `bs8_nmin4_uniform_seed123` 同样**无活跃训练进程**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/restart-crashed-experiments.md"
+}

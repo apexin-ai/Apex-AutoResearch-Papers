@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89f10a10365f1beb1289",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "research novelty drayson check",
+  "task_key": "worker_research_novelty-drayson-check_20260514T233111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_novelty-drayson-check_20260514T233111_result.json",
+    "occurrence": 1,
+    "bytes": 1279,
+    "sha256": "a94766ca80a7773f5ddbc2acf2b6cd135b3c9e83234c979b07a1ea3bb69f4d2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。报告已保存并注册。\n\n**核心结论**:\n\n1. **Drayson et al. 确认使用完全相同公式** w=(1-q)^b，但 b 通过验证集 empirical 选取（GPT-2/SmolLM≤360M 用 b=10，SmolLM-1.7B 用 b=1），无理论推导，无 ablation。\n\n2. **我们的 adaptive b* 是明确的新贡献** — 在 2024-2026 文献中无人做过 contamination score 权重指数的 principled 自适应推导。\n\n3. **关键差异化维度**:\n   - b 选择: empirical validation vs principled derivation\n   - 问题设置: 已知比例 vs 未知比例\n   - 规模: 36K docs vs 132M+ tokens\n   - 检测器: 强(AUC=0.986) vs 轻量即可(AUC=0.939)\n\n4. **建议 framing**: 主打 \"unknown proportion + principled b*\"，明确 credit Drayson 的公式贡献，将我们定位为同一框架内的 principled extension for realistic settings。\n\nSources:\n- [Drayson et al. (arXiv:2502.15654)](https://arxiv.org/abs/2502.15654)\n- [Golden Ratio Weighting (arXiv:2502.18049)](https://arxiv.org/abs/2502.18049)\n- [Dynamic Loss Reweighting (ICLR 2025)](https://arxiv.org/abs/2502.06733)\n- [DoReMi (NeurIPS 2023)](https://arxiv.org/abs/2305.10429)\n- [Escaping Collapse (NeurIPS 2025)](https://neurips.cc/virtual/2025/loc/san-diego/poster/115205)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-novelty-drayson-check.md"
+}

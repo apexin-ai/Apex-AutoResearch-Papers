@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "fd55aec2d6062e4237be",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval rho06 tau07 seed42",
+  "task_key": "worker_eval_rho06_tau07_seed42_20260520T030536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_rho06_tau07_seed42_20260520T030536.log",
+    "occurrence": 1,
+    "bytes": 645274,
+    "sha256": "ae690d3c8cc2400c28956b72e7007745474bf7b0a27a8e196d7cfd3573c7ec3b"
+  },
+  "statistics": {
+    "messages": 477,
+    "user_turns": 0,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 178,
+      "tool_result": 178,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 477,
+      "chunks": [
+        {
+          "path": "fd55aec2d6062e4237be-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd55aec2d6062e4237be-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd55aec2d6062e4237be-part-0003.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-rho06-tau07-seed42.md"
+}

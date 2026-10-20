@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec9e357dc1f4d35de7fa",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "diagnose gpu0 orphan",
+  "task_key": "worker_diagnose_gpu0_orphan_20260514T211708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu0_orphan_20260514T211708_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "4c6895dc44f00da10a834a8087596d903f94a2b4a4799c66898626efe90bd31a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "情况已与你之前观察到的完全不同。之前的 PID 138525 和 139132 都已退出，当前每块 GPU 恰好各有 1 个进程。\n\n```\nGPU_STATUS:\n  GPU0: 46523 MiB / 97887 MiB  PID 129259  grid_b5_0_seed42 (PPID=50139, 属于 grid_b_seed42_batch)\n  GPU1: 46523 MiB / 97887 MiB  PID 144400  grid_b0_5_seed456 (⚠️ PPID=1, 孤儿进程)\n  GPU2: 46523 MiB / 97887 MiB  PID 142907  grid_b1_0_seed456 (PPID=142906, 在 tmux 中)\n  GPU3: 46523 MiB / 97887 MiB  PID 142990  grid_b1_5_seed456 (PPID=142989, 在 tmux 中)\n\nPID_139132: 已退出\nTMUX_SESSIONS: uniform_seed42 (包含 grid_b_seed42_batch / grid_b1_0_seed456 / grid_b1_5_seed456 的窗口)\nORPHAN_PROCESSES: 有 — PID 144400 (grid_b0_5_seed456)\nCUDA1_AVAILABLE: 否\n```\n\n**关键发现：**\n\nPID 144400 (`grid_b0_5_seed456`) 并没有崩溃退出——它仍在 GPU 1 上运行，占用 ~45.4 GiB。但它是孤儿进程（PPID=1），说明它的 tmux wrapper 已死亡，python 进程被 reparented 到 init。这意味着：\n1. 日志输出可能丢失（tmux 的重定向管道断了）\n2. exit trap 不会触发（wrapper shell 已经退出）\n3. 无法通过 tmux 管理它\n\n需要你决策：\n- **保留**：如果训练实际上在正常跑（可以检查 wandb 或 output_dir 的 checkpoint 时间戳确认），让它跑完\n- **Kill**：如果日志丢失导致无法追踪进度，kill 掉重新提交到 tmux 中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu0-orphan.md"
+}

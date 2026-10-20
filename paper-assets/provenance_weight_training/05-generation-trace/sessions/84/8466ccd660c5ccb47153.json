@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8466ccd660c5ccb47153",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval westd41312 cuda3 prep and downstream",
+  "task_key": "worker_eval_westd41312_cuda3_prep_and_downstream_20260520T051914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd41312_cuda3_prep_and_downstream_20260520T051914_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "f9b8c8fbf9c8799a3653e57fe5addac2c3ea7f22a9f2dd2a2a818bd7fc7efc51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**Task A — downstream eval 结果：**\n\n| Experiment | arc_easy | arc_challenge | hellaswag | piqa | winogrande | mean |\n|---|---|---|---|---|---|---|\n| adaptive_fix_seed42 | 0.6157 | 0.3430 | 0.4785 | 0.6866 | 0.5777 | **0.5403** |\n\n已更新到 registry。\n\n**注意：** adaptive_fix_seed123 和 adaptive_fix_seed456 的 checkpoint **不在 westd-41312 上**，无法在此服务器 eval。seed123 没有记录 server，seed456 在 westd-47453 上训练。\n\n**Task B — 3 个 rho06 eval 脚本已写到服务器：**\n- `/root/provenance_weight_training/scripts/eval_rho06_ppl.sh` — holdout PPL eval\n- `/root/provenance_weight_training/scripts/eval_rho06_downstream.sh` — lm_eval downstream\n- `/root/provenance_weight_training/scripts/eval_rho06_ood.sh` — OOD eval (openwebtext + wikipedia)\n\n用法：`bash scripts/eval_rho06_ppl.sh 3` (GPU ID 作为第一个参数)。每个脚本会串行跑 3 个 seed，跳过未就绪的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd41312-cuda3-prep-and-downstream.md"
+}

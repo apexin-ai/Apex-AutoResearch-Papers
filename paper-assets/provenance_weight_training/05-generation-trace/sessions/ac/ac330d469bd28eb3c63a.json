@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac330d469bd28eb3c63a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code datagen and detector",
+  "task_key": "worker_code_datagen_and_detector_20260513T174351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_datagen_and_detector_20260513T174351_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "f367890f3efa7bea233afa646cccedd357839aab7ed9d618382272985d58e1b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已创建，语法正确，参数解析验证通过。\n\n**`generate_synthetic.py`** — FineWeb streaming 加载 → 截取 128 tokens prompt → nucleus sampling 续写 → JSONL 输出。支持 depth 1/2/3 递归生成、multi-GPU（device_map=\"auto\"）、checkpoint 恢复。\n\n**`train_detector.py`** — 加载 human/synthetic JSONL → 平衡采样 → 80/10/10 split → ModernBERT-base + classification head → HF Trainer 训练（early stopping on AUC）→ TemperatureScaling 校准 → 输出 calibration_results.json + predictions.jsonl + 模型（含 temperature.pt）。校准后 `q(x) = sigmoid(logit / T)` 供下游 alpha_eff.py 使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-datagen-and-detector.md"
+}

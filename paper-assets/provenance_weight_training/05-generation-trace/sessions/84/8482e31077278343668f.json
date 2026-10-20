@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8482e31077278343668f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis full data table",
+  "task_key": "worker_analysis_full_data_table_20260515T154608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full_data_table_20260515T154608_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "0ae6045e79d3123ff2ac65ba4d28a33d5f6a73f1851ba3131f03d5cf3141c98d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。产出文件：`artifacts/experiment_summary_table.md`（已注册为 `art_20260515_3671c5`）。\n\n包含 8 张表：\n\n| 表 | 内容 |\n|---|------|\n| Table 1 | Grid-b sweep (b=0.5–5.0, 3 seeds, seed456 b≥2.0 标注 D026 artifact) |\n| Table 2 | Method comparison (adaptive_fix / uniform / grid-best / golden_ratio / ess_only) + capture ratio + b* 分布 |\n| Table 3 | τ sensitivity (τ=0.6 negative 已标注, 0.5/0.7/0.9/0.95 RUNNING) |\n| Table 4 | n_min ablation (1/2/3/4) + cross-seed variance 对比 |\n| Table 5 | Detector 性能 |\n| Table 6 | Data generation |\n| Table 7 | 非成功实验 (1 negative + 1 failed + 6 killed) |\n| Table 8 | 当前 RUNNING/PREPARING |\n\n核心数字：adaptive_fix 3-seed mean PPL=17.651, vs uniform 17.693 (ΔPPL=+0.042), vs grid-best 17.646 (capture ~87%), 零调参成本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-data-table.md"
+}

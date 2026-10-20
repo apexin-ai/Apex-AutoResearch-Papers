@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a3f6ac9c1ef644a3cab1",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "verify data contradictions",
+  "task_key": "worker_verify_data_contradictions_20260523T111226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_data_contradictions_20260523T111226.log",
+    "occurrence": 1,
+    "bytes": 673052,
+    "sha256": "8f76e9496c8e69607b1beee2d460b1b4dff4aeabc83863ff2a04a0d8c804cd98"
+  },
+  "statistics": {
+    "messages": 207,
+    "user_turns": 0,
+    "tool_calls": 70,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 70,
+      "tool_result": 70,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 207,
+      "chunks": [
+        {
+          "path": "a3f6ac9c1ef644a3cab1-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "a3f6ac9c1ef644a3cab1-part-0002.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/verify-data-contradictions.md"
+}

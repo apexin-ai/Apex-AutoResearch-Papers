@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb0a6e54dedcaf7c0f6f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval random subset cuda0",
+  "task_key": "worker_eval_random_subset_cuda0_20260524T220506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_random_subset_cuda0_20260524T220506_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "55e117d2eb69912c6f034a41e9ed79bd91d0d4f1843e6fedd1b51d4967237765"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕（metrics/conclusion/checkpoint_path/log_path 均已写入）。\n\n## 结果汇总\n\n| Eval Set | PPL |\n|----------|-----|\n| **Holdout** | **17.694** |\n| **OWT** | **18.349** |\n| **Wiki** | **15.317** |\n\n## 关键对比\n\n| 对比 | Holdout PPL | Δ |\n|------|-------------|---|\n| **random_subset_epoch** | 17.694 | — |\n| uniform full-data baseline | ~17.694 | **≈ 0** |\n| D&R q>0.3 multi-epoch | ~17.25 | **+0.444** |\n\n**核心发现**：\n- **vs uniform**：random 31.48% 子集 + multi-epoch 与 uniform full-data PPL **几乎完全相同** (17.694 vs 17.694)。多 epoch 补偿了数据量减少。\n- **vs D&R**：random subset 比 D&R 差 0.444 PPL。说明 **D&R 的过滤质量是真实贡献**，不仅仅是 multi-epoch 的效果。用相同数据量但随机选取 vs 质量过滤选取，后者明显更好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-random-subset-cuda0.md"
+}

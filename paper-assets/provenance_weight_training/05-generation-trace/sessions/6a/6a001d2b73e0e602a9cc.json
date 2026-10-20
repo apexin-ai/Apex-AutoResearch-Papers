@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a001d2b73e0e602a9cc",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code tau independence fix",
+  "task_key": "worker_code_tau_independence_fix_20260515T070927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_tau_independence_fix_20260515T070927_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "e177b8bd1101fb00ed1b7ea32249abd3394a7707a767a4b2deabfa7f23619b49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改了 `training/pretrain_weighted.py` 的 3 处：\n\n| 位置 | 修改前 | 修改后 |\n|------|--------|--------|\n| L235-236 `--tau` 参数 | `default=None`, help 引用 contamination_ratio | `default=0.8`, help 说明固定超参 |\n| L219-220 `--contamination_ratio` help | \"for adaptive tau\" | \"data generation only\" |\n| L278-279 `main()` | `tau = 1.0 - contamination_ratio * 0.5` | 已删除 |\n\n`contamination_ratio` 现在仅出现在 argparse 定义和 config_summary 记录中，训练逻辑中不再引用。Changelog 已写入 `artifacts/tau_fix_changelog.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-tau-independence-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef9ce61edc56e06bae3f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis full experiment tables",
+  "task_key": "worker_analysis_full-experiment-tables_20260516T051338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full-experiment-tables_20260516T051338_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "e78f1936ec4313bf85d3700b591cfefd5aba3d46ba6675ec80d4d8de9a41dfe8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 files已生成并注册，位于 `artifacts/tables/`。\n\n关键结果摘要：\n\n**Table 1** — Adaptive (dual-constraint) 在 ρ=0.4 下 PPL=17.651±0.007，比 uniform (17.694±0.008) 低 0.043；ρ=0.6 下 grid b=0.5 最优 (17.704, Δ=-0.062)。\n\n**Table 2** — 最佳消融配置为 n_min=3 (PPL=17.644)，τ=0.8 是最优 τ 值；bs=8 和高 τ (≥0.9) 均为 NEGATIVE。\n\n**Table 3** — Grid sweep 中 b=0.3 最优 (17.640, Δ=-0.054)，PPL 随 b 增大单调恶化；golden_ratio 接近 adaptive (17.654)。\n\n仍在跑的实验：contamination_60 的 τ=0.6/0.7、grid_b0_1、detect_remove_baseline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-experiment-tables.md"
+}

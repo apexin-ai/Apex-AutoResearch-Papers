@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92d94a35a99914af04c0",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval harvest mmlu and ppl eval",
+  "task_key": "worker_eval_harvest_mmlu_and_ppl_eval_20260517T144410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_harvest_mmlu_and_ppl_eval_20260517T144410_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "da24be1de6691c275c5ebf055bd8e89a807737635d0844028ea633214de040cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都已完成。\n\n---\n\n## 结果汇总\n\n### 任务 1：llama3b_uniform_seed42 MMLU\n\n| 指标 | 数值 |\n|------|------|\n| **MMLU 总 accuracy** | **0.5185** (±0.0040) |\n| Humanities | 0.4648 |\n| Social Sciences | 0.5970 |\n| STEM | 0.4573 |\n| Other | 0.5842 |\n\n### 任务 2：batchsize16_nmin8_seed42 PPL\n\n| 指标 | 数值 |\n|------|------|\n| **Perplexity** | **17.65** |\n| **Loss** | **2.8709** |\n| **Eval tokens** | **4,077,068** |\n| 评估时间 | 162s |\n\n结果文件保存在：`/root/autodl-tmp/provenance_weight_training/output/eval/ppl_batchsize16_nmin8_seed42.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-harvest-mmlu-and-ppl-eval.md"
+}

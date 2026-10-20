@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5fa056f2d68d639ebcc",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code prep ess only seed123",
+  "task_key": "worker_code_prep_ess_only_seed123_20260515T164923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_ess_only_seed123_20260515T164923_result.json",
+    "occurrence": 1,
+    "bytes": 2550,
+    "sha256": "e71f9ff1d3d5610002958587f6f276007e4d652e77aa825686d6779d2abeeb73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 验证通过。以下是完整训练命令：\n\n---\n\n### ess_only_seed123\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/provenance_weight_training\n\npython training/pretrain_weighted.py \\\n    --data_path data/scored_data.jsonl \\\n    --output_dir output/models/ess_only_seed123 \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --weighting_method ess_only \\\n    --contamination_ratio 0.4 \\\n    --num_train_tokens 200000000 \\\n    --n_min 2 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --learning_rate 5e-5 \\\n    --max_length 2048 \\\n    --seed 123 \\\n    --logging_steps 10 \\\n    --save_steps 500 \\\n    --eval_steps 500 \\\n    --bf16 \\\n    --save_total_limit 3 \\\n    --save_only_model\n```\n\n### ess_only_seed456\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/provenance_weight_training\n\npython training/pretrain_weighted.py \\\n    --data_path data/scored_data.jsonl \\\n    --output_dir output/models/ess_only_seed456 \\\n    --model_name models/Qwen/Qwen3-0.6B \\\n    --weighting_method ess_only \\\n    --contamination_ratio 0.4 \\\n    --num_train_tokens 200000000 \\\n    --n_min 2 \\\n    --batch_size 4 \\\n    --gradient_accumulation_steps 4 \\\n    --learning_rate 5e-5 \\\n    --max_length 2048 \\\n    --seed 456 \\\n    --logging_steps 10 \\\n    --save_steps 500 \\\n    --eval_steps 500 \\\n    --bf16 \\\n    --save_total_limit 3 \\\n    --save_only_model\n```\n\n### Dry-run 验证结果\n\n**成功。** 用 `--max_steps 3` + `CUDA_VISIBLE_DEVICES=0` 在 GPU 0 上完成 3 步训练，ess_only weighting 正常工作（b 值自动搜索，ESS≈2.0，alpha_eff 在 0.12-0.94 范围波动），模型保存正常。\n\n### 注意事项\n\n1. **GPU 资源**：当前 4 张 GPU 均有负载（各占 ~46.5 GiB），每张有 ~50 GiB 空闲。Qwen3-0.6B 单卡训练需 ~4 GiB 显存，资源充足，但需用 `CUDA_VISIBLE_DEVICES` 指定空闲 GPU 避免与现有实验冲突。\n2. **W&B**：上述命令未启用 W&B（与 seed42 一致）。如需 W&B 记录，加 `--use_wandb --wandb_project provenance-weight-training --wandb_run_name ess_only_seed123`。\n3. **eval_data_path**：seed42 未使用 eval set。如需与 adaptive_v2 对齐加入 eval，加 `--eval_data_path data/human/eval_holdout.jsonl`。\n4. **预计时长**：seed42 用了 12978 秒（~3.6 小时），新 seed 同配置，耗时相近。两个 seed 可分别放不同 GPU 并行跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-ess-only-seed123.md"
+}

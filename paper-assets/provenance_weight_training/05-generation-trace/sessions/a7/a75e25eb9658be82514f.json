@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a75e25eb9658be82514f",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval dr epoch matched seed123 r2",
+  "task_key": "worker_eval_dr_epoch_matched_seed123_r2_20260522T020907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_dr_epoch_matched_seed123_r2_20260522T020907_result.json",
+    "occurrence": 1,
+    "bytes": 397,
+    "sha256": "6ac53da5e903d4d78fd432120838b8ff53343cbcd57dace345f1052a1179b819"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 显示 `dr_epoch_matched_seed123_r2` 已经是 DONE 状态，且 metrics 已完整：\n\n| 数据集 | Loss | PPL |\n|--------|------|-----|\n| holdout | 2.8713 | 17.6591 |\n| owt | 2.9069 | 18.2991 |\n| wiki | 2.7208 | 15.1918 |\n\nholdout_ppl=17.659 与 baseline seed42 的 17.651 接近，符合预期。\n\neval 已全部完成并写入 registry，无需重复执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-dr-epoch-matched-seed123-r2.md"
+}

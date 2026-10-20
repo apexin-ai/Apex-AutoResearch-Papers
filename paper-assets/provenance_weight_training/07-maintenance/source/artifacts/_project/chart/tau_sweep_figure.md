@@ -1,0 +1,1 @@
+Remote files on westd-47453:\n- /root/provenance_weight_training/output/figures/tau_sweep.pdf (24K)\n- /root/provenance_weight_training/output/figures/tau_sweep.png (116K, 300dpi)\nScript: /root/provenance_weight_training/scripts/plot_tau_sweep.py

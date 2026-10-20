@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69cebef9de99f3473462",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "recovery 30476 check eval",
+  "task_key": "worker_recovery_30476_check_eval_20260518T024402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_recovery_30476_check_eval_20260518T024402_result.json",
+    "occurrence": 1,
+    "bytes": 1349,
+    "sha256": "d6e0c23002853c2385942e25b0d39f24052c61f3232423daf24bcf5520d47a9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 确认完毕，registry 已有正确数据。以下是全部 8 个实验的状态汇总：\n\n---\n\n## westd-30476 (4x RTX PRO 6000, 3 GPU 在用)\n\n| 实验 | GPU | 状态 | 进度 | ETA |\n|------|-----|------|------|-----|\n| **contamination_60_seed123** | - (已释放) | **DONE** | PPL=**17.73**, Loss=2.8754 | - |\n| contamination_60_uniform_seed123 | cuda:3 | RUNNING | 5482/6103 (**90%**) | ~22 min |\n| grid_b0_2_seed456 | cuda:0 | RUNNING | 2149/6103 (**35%**) | ~2h18m |\n| grid_b0_2_seed123 | cuda:1 | RUNNING | 2140/6103 (**35%**) | ~2h18m |\n\n## westd-41312 (4x RTX PRO 6000, 4 GPU 全部在用)\n\n| 实验 | GPU | 状态 | 进度 | ETA |\n|------|-----|------|------|-----|\n| contamination_60_adaptive_seed456 | cuda:0 | RUNNING | 2110/6103 (**35%**) | ~2h27m |\n| contamination_60_uniform_seed456 | cuda:1 | RUNNING | 2369/6103 (**39%**) | ~2h10m |\n| grid_b0_1_seed123 | cuda:2 | RUNNING | 2248/6103 (**37%**) | ~2h17m |\n| grid_b0_1_seed456 | cuda:3 | RUNNING | 2243/6103 (**37%**) | ~2h15m |\n\n## 已完成操作\n- contamination_60_seed123 eval 已确认：PPL=17.73, Loss=2.8754, 4,077,068 tokens（与 registry 一致）\n- 7 个 RUNNING 实验的 registry 状态已全部从 PREPARING 更新为 RUNNING\n- 所有实验预计 ~2-2.5h 后完成（contamination_60_uniform_seed123 最快，约 22 min）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/recovery-30476-check-eval.md"
+}

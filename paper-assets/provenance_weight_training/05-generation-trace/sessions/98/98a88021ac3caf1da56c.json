@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98a88021ac3caf1da56c",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "infra fix batchsize16 script",
+  "task_key": "worker_infra_fix_batchsize16_script_20260516T025116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_batchsize16_script_20260516T025116_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "ed22dfee1e3cdc96f934c8e29f30557a70c44c442abaffd9706795ffd4eb86a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。变更内容：\n\n1. **添加 `--gradient_checkpointing`** — 在 `--gradient_accumulation_steps 1` 之后\n2. **添加 `export WANDB_MODE=disabled`** — 统一标准\n\n参数验证：\n| 参数 | 值 | 状态 |\n|------|-----|------|\n| batch_size | 16 | ✓ |\n| gradient_accumulation_steps | 1 | ✓ |\n| gradient_checkpointing | 已添加 | ✓ |\n| n_min | 2 | ✓ |\n| seed | 42 | ✓ |\n| weighting_method | adaptive | ✓ |\n| data_path | scored_data.jsonl | ✓ |\n| contamination_ratio | 0.4 | ✓ |\n| tau | 0.8 | ✓ |\n| WANDB_MODE | disabled | ✓ |\n\n脚本路径：`/root/provenance_weight_training/scripts/run_batchsize16.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-batchsize16-script.md"
+}

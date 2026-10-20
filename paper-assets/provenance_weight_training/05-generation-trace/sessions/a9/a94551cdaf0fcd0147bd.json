@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a94551cdaf0fcd0147bd",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "analysis contamination 60 uniform seed456",
+  "task_key": "worker_analysis_contamination_60_uniform_seed456_20260518T052307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_contamination_60_uniform_seed456_20260518T052307_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "825dc018bca7a465454fa4b4969fdcf4753a8374b31bad61f6666b2f2093a128"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部更新完成，状态 DONE/success。\n\n**结果汇总：**\n\n| Metric | seed42 | seed123 | seed456 | Mean ± Std |\n|---|---|---|---|---|\n| uniform PPL | 17.766 | 17.754 | 17.77 | 17.763 ± 0.008 |\n| uniform loss | 2.8773 | 2.8766 | 2.8775 | 2.8771 |\n| adaptive PPL | 17.74 | 17.732 | (training) | -- |\n| Δ(adaptive-uniform) | -0.026 | -0.022 | TBD | -- |\n\n3-seed uniform baseline 在 ρ=0.6 下非常稳定（PPL range 0.016）。seed42/seed123 的 adaptive vs uniform gap 分别为 -0.026 和 -0.022，等 contamination_60_adaptive_seed456 训练完成后可完成 Claim 3 的 3-seed 证据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-contamination-60-uniform-seed456.md"
+}

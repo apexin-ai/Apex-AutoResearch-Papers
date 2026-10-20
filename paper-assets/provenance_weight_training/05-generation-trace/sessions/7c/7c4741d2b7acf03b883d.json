@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c4741d2b7acf03b883d",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "eval rho06 tau07 full eval pipeline",
+  "task_key": "worker_eval_rho06_tau07_full_eval_pipeline_20260520T081434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_rho06_tau07_full_eval_pipeline_20260520T081434_result.json",
+    "occurrence": 1,
+    "bytes": 615,
+    "sha256": "6ed9fab73bd14625c6b057c782d88347b647a039c77cffa77310c529558f69b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部 eval 完成，registry 已更新。** 汇总：\n\n| Metric | seed42 | seed123 | seed456 |\n|--------|--------|---------|---------|\n| holdout_ppl | 17.735 | 17.727 | 17.732 |\n| eval_ppl_openwebtext | 18.408 | 18.385 | 18.411 |\n| eval_ppl_wikipedia | 15.355 | 15.329 | 15.424 |\n| downstream_arc_easy | 0.6132 | 0.5951 | 0.6128 |\n| downstream_arc_challenge | 0.3422 | 0.3422 | 0.3456 |\n| downstream_hellaswag | 0.4807 | 0.4811 | 0.4806 |\n| downstream_piqa | 0.6861 | 0.6866 | 0.6866 |\n| downstream_winogrande | 0.5793 | 0.5754 | 0.5620 |\n| downstream_mean | 0.5403 | 0.5361 | 0.5375 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-rho06-tau07-full-eval-pipeline.md"
+}

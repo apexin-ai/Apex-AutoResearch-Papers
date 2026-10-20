@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff38982f4539a3082bda",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "paper update results v2",
+  "task_key": "worker_paper_update-results-v2_20260516T002349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_update-results-v2_20260516T002349_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "8f1448f8e59b3a88f9e4f41074d6cda416c8dbbcfe927da8e7f08bef6dc2d0d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改摘要：\n\n**ESS-only 段落（Claim 1）**：补充 per-seed 一致性论证——ESS-only 在所有 3 个 seed 上均劣于 uniform，adaptive 在所有 3 个 seed 上均优于 uniform（差值 0.041/0.043/0.045），排除 seed-specific artifact。\n\n**n_min 段落**：从 2 句话扩展为完整 ablation 分析：\n- 新增 Table 3（`tab:nmin`）：4 点数据（n_min=1/2/3/4），含 PPL 和 b* mean\n- n_min=4 → b*=0 恒成立，退化为 uniform（17.695 vs 17.694）\n- n_min=3 标注 `‡` 脚注说明来自早期配置，非独立 ablation\n- 新增 bs8_nmin2 分析：B=8 + n_min=2 → ESS range [2,8] 过宽 → PPL 17.73，与 ESS-only 相当\n- 提出 scaling rule：n_min = max(2, ⌊B/2⌋)\n\n**Table 1**：无变化（ESS-only 3 seeds 和 Golden Ratio 已是最新数据）。\n\n**tau 段落**：无变化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-update-results-v2.md"
+}

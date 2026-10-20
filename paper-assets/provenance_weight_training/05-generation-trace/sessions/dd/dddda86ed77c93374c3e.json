@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "dddda86ed77c93374c3e",
+  "project": "provenance_weight_training",
+  "kind": "worker",
+  "title": "eval adaptive fix lm eval fewshot",
+  "task_key": "worker_eval_adaptive_fix_lm_eval_fewshot_20260517T150643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_adaptive_fix_lm_eval_fewshot_20260517T150643.log",
+    "occurrence": 1,
+    "bytes": 776556,
+    "sha256": "fae08bafcd25509ff7814b085600fbbab931be874b1e23681019696256fbbffd"
+  },
+  "statistics": {
+    "messages": 317,
+    "user_turns": 0,
+    "tool_calls": 126,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 126,
+      "tool_result": 126,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 317,
+      "chunks": [
+        {
+          "path": "dddda86ed77c93374c3e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dddda86ed77c93374c3e-part-0002.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-adaptive-fix-lm-eval-fewshot.md"
+}

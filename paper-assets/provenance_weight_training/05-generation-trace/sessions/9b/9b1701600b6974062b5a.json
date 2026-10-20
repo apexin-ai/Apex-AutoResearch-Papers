@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b1701600b6974062b5a",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "ssh cleanup 30476 kill restart",
+  "task_key": "worker_ssh_cleanup_30476_kill_restart_20260517T190209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cleanup_30476_kill_restart_20260517T190209_result.json",
+    "occurrence": 1,
+    "bytes": 606,
+    "sha256": "8a0aebac611bec0870b6fb36f83e7bd47dce1d74b76a6ade5eda95a018b85642"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。最终状态：\n\n| GPU | 状态 | 实验 | PID |\n|-----|------|------|-----|\n| cuda:0 | 运行中 (100%, 74989MiB) | grid_b0_1_seed42 | 34716 |\n| cuda:1 | 运行中 (85%, 74989MiB) | grid_b0_3_seed123_r2 | 42432 |\n| cuda:2 | 运行中 (99%, 46505MiB) | rho02_adaptive_tau08_seed42 | 41387 |\n| cuda:3 | **空闲** (0%, 0MiB) | 已清理，等 batchsize16 worker | — |\n\n- grid_b0_1_seed42 存活正常运行，进度 ~46%，无需重启\n- 已 kill PID 43465 (random_reweight 重复) 和 43543+43554 (grid_b0_3_seed456_r2 及其子进程)\n- cuda:1、cuda:2 未触碰"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cleanup-30476-kill-restart.md"
+}

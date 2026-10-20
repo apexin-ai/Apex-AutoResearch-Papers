@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f76107cca30de0fb630",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "status threshold q07 exit check",
+  "task_key": "worker_status_threshold-q07-exit-check_20260516T191551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_threshold-q07-exit-check_20260516T191551_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "fce37b771fdb8916726841aa1ed263d596ac8e530b8d1e1e5cc8022d1432111e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**状态：失败（第 3 次）**\n\n| 项目 | 结果 |\n|------|------|\n| 进程 355121 | 已退出 |\n| step_metrics 最后 step | 5999（无进展） |\n| final/ 目录 | 不存在 |\n| eval 结果 | 不存在 |\n| 失败原因 | `ValueError: Your setup doesn't support bf16/gpu` |\n| 根因 | 恢复脚本启动时 4x GPU 全被其他进程占满，CUDA 不可用 |\n\n**Checkpoint-5500 完好**，只剩 604 steps（5500→6104）。等 GPU 释放后可再次恢复。\n\n**已完成**：\n- Registry 更新：conclusion=failed，notes 记录原因\n- Cron 已不存在（之前已被清除）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-threshold-q07-exit-check.md"
+}

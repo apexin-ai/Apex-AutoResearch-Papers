@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ebe7e5470d114ac8aec1",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "status downstream and seed42 check",
+  "task_key": "worker_status_downstream_and_seed42_check_20260519T193035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_status_downstream_and_seed42_check_20260519T193035_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "686072c0ba5d15a84705907141189b787c527e8c539f23d20d690f563173675b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 1. Downstream Eval 状态\n\n| 模型 | 状态 | ARC-Easy (acc) | ARC-Chall (acc_norm) | HellaSwag (acc_norm) | PIQA (acc) | WinoGrande (acc) |\n|------|------|-------|-------|-------|-------|-------|\n| adaptive_ood_seed123 | ✅ 完成 | 0.6671 | 0.3481 | 0.4791 | 0.6850 | 0.5706 |\n| adaptive_ood_seed456 | ✅ 完成 | 0.6519 | 0.3541 | 0.4800 | 0.6877 | 0.5714 |\n| uniform_ood_seed123 | ✅ 完成 | 0.6637 | 0.3507 | 0.4797 | 0.6844 | 0.5762 |\n| uniform_ood_seed456 | 🔄 运行中 | — | — | — | — | — |\n\n**uniform_ood_seed456** (PID 340636) 仍在运行，当前阶段：模型已加载完成，正在从缓存加载数据集（网络不可达，用 cached 版本）。尚未开始实际 eval 推理，预计还需 ~2 分钟完成全部 5 个 benchmark。\n\n### 2. adaptive_fromscratch_seed42 训练进度\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **1037 / 6103** (17%) |\n| 速度 | ~2.24 s/step |\n| 预计剩余 | **~3h 09min** |\n| weighted_loss (近期) | 2.5 ~ 3.1 |\n| unweighted_loss (近期) | 1.5 ~ 2.5 |\n\nPID 337777 正常运行中。\n\n### 3. GPU 状态\n\n| GPU | 型号 | 利用率 | 显存 | 用途 |\n|-----|------|--------|------|------|\n| 0 | RTX PRO 6000 Black (98GB) | **100%** | 45.6 / 97.9 GB | adaptive_fromscratch_seed42 训练 |\n| 1 | RTX PRO 6000 Black (98GB) | **0%** | 3.7 / 97.9 GB | uniform_ood_seed456 eval（加载中） |\n| 2 | RTX PRO 6000 Black (98GB) | 0% | 空闲 | — |\n| 3 | RTX PRO 6000 Black (98GB) | 0% | 空闲 | — |\n\nGPU 2、3 空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-downstream-and-seed42-check.md"
+}

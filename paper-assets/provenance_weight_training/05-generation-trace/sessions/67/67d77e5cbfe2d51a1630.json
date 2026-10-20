@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67d77e5cbfe2d51a1630",
+  "project": "provenance_weight_training",
+  "kind": "result",
+  "title": "code sync watcher dynamic gpu",
+  "task_key": "worker_code_sync_watcher_dynamic_gpu_20260515T102926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sync_watcher_dynamic_gpu_20260515T102926_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "9c6d8834bed082421f67571ced8c930ac94291326b6e2023ec73c4e65bdcb3e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项验证全部通过：\n\n| 检查项 | 结果 |\n|--------|------|\n| `get_least_loaded_gpu` 存在 | 行 32（定义）、行 84（调用） |\n| `EVAL_GPU = \"3\"` 硬编码 | 无匹配（已移除） |\n| `glob.glob(..., \"*\")` 通配所有目录 | 行 70 匹配 |\n\n合并版已同步到远程。磁盘文件已更新，当前运行中的 watcher 进程不受影响，下次重启自动生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sync-watcher-dynamic-gpu.md"
+}

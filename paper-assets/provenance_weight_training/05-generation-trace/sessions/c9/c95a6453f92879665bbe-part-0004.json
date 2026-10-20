@@ -1,0 +1,609 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c95a6453f92879665bbe",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 541,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, the experiment already exists with status ANALYZING. Now I need to set the conclusion, checkpoint_path, log_path, and metrics before transitioning to DONE.",
+              "signature": "EucCCmMIDRgCKkBqrHE6pfZQWHlUlcJ7QfUZfD8xQRi3POd7joePX4+DOE1sMKYddpevqwWWbmpyLolAufZ2+iv1wzICD9mpvNMmMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDEhb5htkhzsAeGy8ERoMRzUJ9ccis6MCclc0IjD0YqqOOZ5QHgGq8mvS6oSNqdFHGiCDqCYSRjhFRoLJHSzMMfdfdxYirfjDFJvX7ZAqsQE/Jwt14s5TI4ikipR07vJW9NFYvBr/msdolZG/tLfkMIQE/zCWFIlFKptkP9xKefsM5SE0zHqAI9xlwZEkx6ZlBHaqFkDctvuzF6b78/kh8/++pSCDe0Qn5szFpSEJrv2p8+492EnZLCc8V9W5qGXlrBaxU8Tt7MPsbeolfFy8lUSogeYhS8NptrxXSZh4hg8j/Eg1IB2lAvfZCJ8/pcF1TuVVyLXBIw8+tsDapbeXVcUYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "e3f7d7cc-3a42-42dd-9228-4d7aabad92e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PG1waEbKtXjgZBwa1oTb2C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 958,
+                "cache_read_input_tokens": 131180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 958
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000541"
+        },
+        {
+          "source_line": 542,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Vart8VjMCc9tY26HpTuzTR",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detect_remove_q05_v2_seed456",
+                "field": "conclusion",
+                "value": "success",
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "d89cf615-2e48-4281-b122-f45124ae58e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PG1waEbKtXjgZBwa1oTb2C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 958,
+                "cache_read_input_tokens": 131180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 958
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000542"
+        },
+        {
+          "source_line": 543,
+          "timestamp": "2026-05-22T13:44:13.330Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Vart8VjMCc9tY26HpTuzTR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:12.837Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0969}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "500dcee3-d2c0-4015-816b-a5ac92d306fd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:12.837Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0969}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detect_remove_q05_v2_seed456\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:09:58.143Z\", \"updated_at\": \"2026-05-22T13:44:12.837Z\", \"hypothesis\": \"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\", \"parent\": \"detect_remove_q05_v2_seed42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:2\", \"pid\": 742953, \"log_path\": \"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\", \"submitted_at\": \"2026-05-22T09:10:09.527Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_filtered_q05.jsonl\", \"data_count\": 153725, \"model_name\": \"Qwen3-0.6B\", \"seed\": 456, \"checkpoint_source\": \"from_scratch\", \"eval_data\": [\"holdout_combined\", \"owt_eval\", \"wiki_eval\"]}, \"reproduce\": {\"finished_at\": \"2026-05-22T13:20:27.607Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T13:20:37.624112+00:00\"}]}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0969}}"
+              }
+            }
+          },
+          "id": "event-000543"
+        },
+        {
+          "source_line": 544,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VudBPQWLPBNpfwmdvqGKJV",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detect_remove_q05_v2_seed456",
+                "field": "metrics",
+                "value": {
+                  "holdout_ppl": 17.277,
+                  "holdout_loss": 2.8493,
+                  "owt_ppl": 18.017,
+                  "owt_loss": 2.8913,
+                  "wiki_ppl": "pending_fp32_eval",
+                  "train_loss": 11.01,
+                  "total_steps": 6103,
+                  "training_time_s": 14920
+                },
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "19433a4a-8082-4fc0-9d82-78488ef997f0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PG1waEbKtXjgZBwa1oTb2C",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 958,
+                "cache_read_input_tokens": 131180,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 958
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000544"
+        },
+        {
+          "source_line": 545,
+          "timestamp": "2026-05-22T13:44:15.834Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VudBPQWLPBNpfwmdvqGKJV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:15.384Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"holdout_ppl\\\": 17.277, \\\"holdout_loss\\\": 2.8493, \\\"owt_ppl\\\": 18.017, \\\"owt_loss\\\": 2.8913, \\\"wiki_ppl\\\": \\\"pending_fp32_eval\\\", \\\"train_loss\\\": 11.01, \\\"total_steps\\\": 6103, \\\"training_time_s\\\": 14920}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0683}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "ca73672e-1175-4d62-a181-02d34d589ed2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:15.384Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"holdout_ppl\\\": 17.277, \\\"holdout_loss\\\": 2.8493, \\\"owt_ppl\\\": 18.017, \\\"owt_loss\\\": 2.8913, \\\"wiki_ppl\\\": \\\"pending_fp32_eval\\\", \\\"train_loss\\\": 11.01, \\\"total_steps\\\": 6103, \\\"training_time_s\\\": 14920}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0683}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detect_remove_q05_v2_seed456\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:09:58.143Z\", \"updated_at\": \"2026-05-22T13:44:15.384Z\", \"hypothesis\": \"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\", \"parent\": \"detect_remove_q05_v2_seed42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:2\", \"pid\": 742953, \"log_path\": \"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\", \"submitted_at\": \"2026-05-22T09:10:09.527Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_filtered_q05.jsonl\", \"data_count\": 153725, \"model_name\": \"Qwen3-0.6B\", \"seed\": 456, \"checkpoint_source\": \"from_scratch\", \"eval_data\": [\"holdout_combined\", \"owt_eval\", \"wiki_eval\"]}, \"reproduce\": {\"finished_at\": \"2026-05-22T13:20:27.607Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T13:20:37.624112+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"holdout_ppl\": 17.277, \"holdout_loss\": 2.8493, \"owt_ppl\": 18.017, \"owt_loss\": 2.8913, \"wiki_ppl\": \"pending_fp32_eval\", \"train_loss\": 11.01, \"total_steps\": 6103, \"training_time_s\": 14920}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0683}}"
+              }
+            }
+          },
+          "id": "event-000545"
+        },
+        {
+          "source_line": 546,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017WRVPdA9soDpej1SWhkbmf",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detect_remove_q05_v2_seed456",
+                "field": "checkpoint_path",
+                "value": "/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final",
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "0e33cd36-6fc6-4048-a60b-a16576c3437a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QxDREMmiPDyKrab43rBJE6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2230,
+                "cache_read_input_tokens": 132138,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2230
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000546"
+        },
+        {
+          "source_line": 547,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KFhpkb2c5HcbQhiJUJxLaB",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detect_remove_q05_v2_seed456",
+                "field": "log_path",
+                "value": "~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log",
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "7dddac84-4e4f-4c02-9e26-ad972183c286",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QxDREMmiPDyKrab43rBJE6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2230,
+                "cache_read_input_tokens": 132138,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2230
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000547"
+        },
+        {
+          "source_line": 548,
+          "timestamp": "2026-05-22T13:44:28.671Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017WRVPdA9soDpej1SWhkbmf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:28.220Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"holdout_ppl\\\": 17.277, \\\"holdout_loss\\\": 2.8493, \\\"owt_ppl\\\": 18.017, \\\"owt_loss\\\": 2.8913, \\\"wiki_ppl\\\": \\\"pending_fp32_eval\\\", \\\"train_loss\\\": 11.01, \\\"total_steps\\\": 6103, \\\"training_time_s\\\": 14920}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1006}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "e342c75a-b330-4df1-b21c-9383a708a0c0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:28.220Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"holdout_ppl\\\": 17.277, \\\"holdout_loss\\\": 2.8493, \\\"owt_ppl\\\": 18.017, \\\"owt_loss\\\": 2.8913, \\\"wiki_ppl\\\": \\\"pending_fp32_eval\\\", \\\"train_loss\\\": 11.01, \\\"total_steps\\\": 6103, \\\"training_time_s\\\": 14920}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1006}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detect_remove_q05_v2_seed456\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:09:58.143Z\", \"updated_at\": \"2026-05-22T13:44:28.220Z\", \"hypothesis\": \"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\", \"parent\": \"detect_remove_q05_v2_seed42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:2\", \"pid\": 742953, \"log_path\": \"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\", \"submitted_at\": \"2026-05-22T09:10:09.527Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_filtered_q05.jsonl\", \"data_count\": 153725, \"model_name\": \"Qwen3-0.6B\", \"seed\": 456, \"checkpoint_source\": \"from_scratch\", \"eval_data\": [\"holdout_combined\", \"owt_eval\", \"wiki_eval\"]}, \"reproduce\": {\"finished_at\": \"2026-05-22T13:20:27.607Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T13:20:37.624112+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"holdout_ppl\": 17.277, \"holdout_loss\": 2.8493, \"owt_ppl\": 18.017, \"owt_loss\": 2.8913, \"wiki_ppl\": \"pending_fp32_eval\", \"train_loss\": 11.01, \"total_steps\": 6103, \"training_time_s\": 14920}, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1006}}"
+              }
+            }
+          },
+          "id": "event-000548"
+        },
+        {
+          "source_line": 549,
+          "timestamp": "2026-05-22T13:44:29.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KFhpkb2c5HcbQhiJUJxLaB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:29.341Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"holdout_ppl\\\": 17.277, \\\"holdout_loss\\\": 2.8493, \\\"owt_ppl\\\": 18.017, \\\"owt_loss\\\": 2.8913, \\\"wiki_ppl\\\": \\\"pending_fp32_eval\\\", \\\"train_loss\\\": 11.01, \\\"total_steps\\\": 6103, \\\"training_time_s\\\": 14920}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.107}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "872baa67-912a-4bfe-89d0-0bfc9a9effa3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:29.341Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"holdout_ppl\\\": 17.277, \\\"holdout_loss\\\": 2.8493, \\\"owt_ppl\\\": 18.017, \\\"owt_loss\\\": 2.8913, \\\"wiki_ppl\\\": \\\"pending_fp32_eval\\\", \\\"train_loss\\\": 11.01, \\\"total_steps\\\": 6103, \\\"training_time_s\\\": 14920}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.107}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detect_remove_q05_v2_seed456\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:09:58.143Z\", \"updated_at\": \"2026-05-22T13:44:29.341Z\", \"hypothesis\": \"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\", \"parent\": \"detect_remove_q05_v2_seed42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:2\", \"pid\": 742953, \"log_path\": \"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\", \"submitted_at\": \"2026-05-22T09:10:09.527Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_filtered_q05.jsonl\", \"data_count\": 153725, \"model_name\": \"Qwen3-0.6B\", \"seed\": 456, \"checkpoint_source\": \"from_scratch\", \"eval_data\": [\"holdout_combined\", \"owt_eval\", \"wiki_eval\"]}, \"reproduce\": {\"finished_at\": \"2026-05-22T13:20:27.607Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T13:20:37.624112+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"holdout_ppl\": 17.277, \"holdout_loss\": 2.8493, \"owt_ppl\": 18.017, \"owt_loss\": 2.8913, \"wiki_ppl\": \"pending_fp32_eval\", \"train_loss\": 11.01, \"total_steps\": 6103, \"training_time_s\": 14920}, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final\", \"log_path\": \"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.107}}"
+              }
+            }
+          },
+          "id": "event-000549"
+        },
+        {
+          "source_line": 550,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now transition to DONE."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "29373fca-8c55-4949-acc2-7ae9a23c38e7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H19EtVM5LvwjpvMM4KVDok",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2267,
+                "cache_read_input_tokens": 134368,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2267
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000550"
+        },
+        {
+          "source_line": 551,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BMxrT3y3iRo9VAZUuz1qsb",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "detect_remove_q05_v2_seed456",
+                "field": "status",
+                "value": "DONE",
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "1f477b02-d7d2-4e25-9b2a-6a160f3be3ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H19EtVM5LvwjpvMM4KVDok",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2267,
+                "cache_read_input_tokens": 134368,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2267
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000551"
+        },
+        {
+          "source_line": 552,
+          "timestamp": "2026-05-22T13:44:41.533Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BMxrT3y3iRo9VAZUuz1qsb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:39.347Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"], \\\"wall_clock_seconds\\\": 16469.8, \\\"gpu_hours\\\": 4.57}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"holdout_ppl\\\": 17.277, \\\"holdout_loss\\\": 2.8493, \\\"owt_ppl\\\": 18.017, \\\"owt_loss\\\": 2.8913, \\\"wiki_ppl\\\": \\\"pending_fp32_eval\\\", \\\"train_loss\\\": 11.01, \\\"total_steps\\\": 6103, \\\"training_time_s\\\": 14920}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"completed_at\\\": \\\"2026-05-22T13:44:39.347Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8093}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "0cc9054b-aca0-4b3b-a70e-831635669ea7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"detect_remove_q05_v2_seed456\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:09:58.143Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:44:39.347Z\\\", \\\"hypothesis\\\": \\\"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\\\", \\\"parent\\\": \\\"detect_remove_q05_v2_seed42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 742953, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T09:10:09.527Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data_filtered_q05.jsonl\\\", \\\"data_count\\\": 153725, \\\"model_name\\\": \\\"Qwen3-0.6B\\\", \\\"seed\\\": 456, \\\"checkpoint_source\\\": \\\"from_scratch\\\", \\\"eval_data\\\": [\\\"holdout_combined\\\", \\\"owt_eval\\\", \\\"wiki_eval\\\"], \\\"wall_clock_seconds\\\": 16469.8, \\\"gpu_hours\\\": 4.57}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T13:20:27.607Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T13:20:37.624112+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"holdout_ppl\\\": 17.277, \\\"holdout_loss\\\": 2.8493, \\\"owt_ppl\\\": 18.017, \\\"owt_loss\\\": 2.8913, \\\"wiki_ppl\\\": \\\"pending_fp32_eval\\\", \\\"train_loss\\\": 11.01, \\\"total_steps\\\": 6103, \\\"training_time_s\\\": 14920}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final\\\", \\\"log_path\\\": \\\"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\\\", \\\"completed_at\\\": \\\"2026-05-22T13:44:39.347Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8093}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"detect_remove_q05_v2_seed456\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:09:58.143Z\", \"updated_at\": \"2026-05-22T13:44:39.347Z\", \"hypothesis\": \"D&R hard filtering (remove q≤0.5 samples) with seed 456 should produce holdout PPL consistent with seed42 and seed123, confirming the stability of the filtering approach across random seeds.\", \"parent\": \"detect_remove_q05_v2_seed42\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data_filtered_q05.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456 --model_name models/Qwen/Qwen3-0.6B --weighting_method uniform --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --lr_scheduler_type linear --max_length 2048 --seed 456 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3 --gradient_checkpointing\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:2\", \"pid\": 742953, \"log_path\": \"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\", \"submitted_at\": \"2026-05-22T09:10:09.527Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data_filtered_q05.jsonl\", \"data_count\": 153725, \"model_name\": \"Qwen3-0.6B\", \"seed\": 456, \"checkpoint_source\": \"from_scratch\", \"eval_data\": [\"holdout_combined\", \"owt_eval\", \"wiki_eval\"], \"wall_clock_seconds\": 16469.8, \"gpu_hours\": 4.57}, \"reproduce\": {\"finished_at\": \"2026-05-22T13:20:27.607Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T13:20:37.624112+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"holdout_ppl\": 17.277, \"holdout_loss\": 2.8493, \"owt_ppl\": 18.017, \"owt_loss\": 2.8913, \"wiki_ppl\": \"pending_fp32_eval\", \"train_loss\": 11.01, \"total_steps\": 6103, \"training_time_s\": 14920}, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/detect_remove_q05_v2_seed456/final\", \"log_path\": \"~/runs/provenance_weight_training/detect_remove_q05_v2_seed456.log\", \"completed_at\": \"2026-05-22T13:44:39.347Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8093}}"
+              }
+            }
+          },
+          "id": "event-000552"
+        },
+        {
+          "source_line": 553,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。汇总：\n\n## detect_remove_q05_v2_seed456 结果\n\n| 指标 | 值 |\n|------|-----|\n| **holdout_ppl** | **17.277** |\n| **owt_ppl** | **18.017** |\n| wiki_ppl | fp32 eval 运行中 (PID 779491, GPU 2) |\n| train_loss | 11.01 (HF avg) |\n| total_steps | 6103 |\n| checkpoint | `.../detect_remove_q05_v2_seed456/final` |\n\n## 3-seed 汇总\n\n| | seed42 | seed123_r2 | seed456 | **Mean ± Std** |\n|---|--------|------------|---------|----------------|\n| Holdout PPL | 17.285 | 17.272 | 17.277 | **17.278 ± 0.007** |\n| OWT PPL | 18.014 | 18.008 | 18.017 | **18.013 ± 0.005** |\n| Wiki PPL | 15.053 | 15.047 | pending | 15.050 ± 0.004 (2-seed) |\n\n3-seed 方差极小（holdout std=0.007），D&R hard filtering 结果非常稳定。\n\n**异常**: Wiki eval 使用 fp16+autocast 时出现 NaN（其他 seed 未出现），已在 GPU 2 用 fp32 重跑。结果写入 `eval_wiki.json` 后需手动更新 registry 中的 `wiki_ppl`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "uuid": "e8b5f088-1673-4d6c-b9e3-03e9d564a656",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011PabJ1jcFv12c5LFgJKFRf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1190,
+                "cache_read_input_tokens": 136635,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1190
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000553"
+        },
+        {
+          "source_line": 554,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。汇总：\n\n## detect_remove_q05_v2_seed456 结果\n\n| 指标 | 值 |\n|------|-----|\n| **holdout_ppl** | **17.277** |\n| **owt_ppl** | **18.017** |\n| wiki_ppl | fp32 eval 运行中 (PID 779491, GPU 2) |\n| train_loss | 11.01 (HF avg) |\n| total_steps | 6103 |\n| checkpoint | `.../detect_remove_q05_v2_seed456/final` |\n\n## 3-seed 汇总\n\n| | seed42 | seed123_r2 | seed456 | **Mean ± Std** |\n|---|--------|------------|---------|----------------|\n| Holdout PPL | 17.285 | 17.272 | 17.277 | **17.278 ± 0.007** |\n| OWT PPL | 18.014 | 18.008 | 18.017 | **18.013 ± 0.005** |\n| Wiki PPL | 15.053 | 15.047 | pending | 15.050 ± 0.004 (2-seed) |\n\n3-seed 方差极小（holdout std=0.007），D&R hard filtering 结果非常稳定。\n\n**异常**: Wiki eval 使用 fp16+autocast 时出现 NaN（其他 seed 未出现），已在 GPU 2 用 fp32 重跑。结果写入 `eval_wiki.json` 后需手动更新 registry 中的 `wiki_ppl`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1384252,
+            "duration_api_ms": 1233462,
+            "num_turns": 238,
+            "stop_reason": "end_turn",
+            "session_id": "75c7ad53-b887-4788-a6b5-407fc7d049a6",
+            "total_cost_usd": 10.8548385,
+            "usage": {
+              "input_tokens": 223,
+              "cache_creation_input_tokens": 126378,
+              "cache_read_input_tokens": 18161950,
+              "output_tokens": 39249,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 126378,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 431,
+                  "cache_read_input_tokens": 136635,
+                  "cache_creation_input_tokens": 1190,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1190
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1541,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016610000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 223,
+                "outputTokens": 39249,
+                "cacheReadInputTokens": 18161950,
+                "cacheCreationInputTokens": 126378,
+                "webSearchRequests": 0,
+                "costUSD": 10.853177499999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ce39a789-d108-4e4e-9dc4-1b26859ad5ee"
+          },
+          "id": "event-000554"
+        }
+      ]
+    }
+  ]
+}
